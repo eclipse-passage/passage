@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.lic.internal.equinox.ComponentConfigurationResolver">
+   <implementation class="org.eclipse.passage.lic.internal.equinox.ComponentConfigurationResolver"/>
+   <reference bind="bindLoggerFactory" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" unbind="unbindLoggerFactory"/>
+   <reference bind="bindScr" interface="org.osgi.service.component.runtime.ServiceComponentRuntime" name="Scr" unbind="unbindScr"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.runtime.ConfigurationResolver"/>
+   </service>
+</scr:component>

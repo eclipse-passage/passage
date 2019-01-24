@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018-2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<site>
+	<feature
+		url="features/org.eclipse.passage.lic.equinox.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.equinox.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.net.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.net.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.model.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.model.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.inspector.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.inspector.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.bc.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.bc.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.lic.json.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.lic.json.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.lic.category"
+		label="Passage Licensing Integration Components"
+	>
+		<description>
+			Passage Licensing Integration Components layer includes runtime interfaces and its implementation for Eclipse Equinox
+		</description>
+	</category-def>
+</site>

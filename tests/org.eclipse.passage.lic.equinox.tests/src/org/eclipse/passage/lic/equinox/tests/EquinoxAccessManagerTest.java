@@ -1,0 +1,32 @@
+/*******************************************************************************
+ * Copyright (c) 2018-2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.passage.lic.equinox.tests;
+
+import org.eclipse.passage.lic.internal.equinox.EquinoxAccessManager;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.osgi.service.event.EventAdmin;
+import org.osgi.service.log.LogService;
+
+@SuppressWarnings("restriction")
+public class EquinoxAccessManagerTest {
+	
+	@Test
+	public void testExecuteRestrictions() {
+		EquinoxAccessManager accessManager = new EquinoxAccessManager();
+		accessManager.bindEventAdmin(Mockito.mock(EventAdmin.class));
+		accessManager.bindLogService(Mockito.mock(LogService.class));
+		accessManager.executeAccessRestrictions(null);
+	}
+
+}

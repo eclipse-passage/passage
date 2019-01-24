@@ -1,0 +1,63 @@
+# Notices for Passage Licensing Integration Components
+This content is produced and maintained by the Eclipse Passage project.
+
+* Project home: https://projects.eclipse.org/projects/technology.passage
+
+## Trademarks
+
+Eclipse Passage is a trademark of the Eclipse Foundation.
+
+## Copyright
+
+All content is the property of the respective authors or their employers.
+For more information regarding authorship of content, please consult the
+listed source code repository logs.
+
+## Declared Project Licenses
+
+This program and the accompanying materials are made available under the terms
+of the Eclipse Public License - v 2.0 which is available at
+http://www.eclipse.org/legal/epl-2.0.
+
+SPDX-License-Identifier: EPL-2.0
+
+## Source Code
+
+The project maintains the following source code repositories:
+
+ * https://git.eclipse.org/c/passage 
+
+## Third-party Content
+
+BouncyCastle (1.59)
+
+ * License: Adapted MIT, https://www.bouncycastle.org/license.html
+ * Project: http://www.bouncycastle.org/java.html
+ * Source: https://github.com/bcgit/bc-java
+
+oshi-core (3.8.0)
+
+ * License: EPL-1.0, https://www.eclipse.org/legal/epl-v10.html
+ * Project: https://github.com/oshi/oshi
+ * Source: https://github.com/oshi/oshi
+
+JNA (4.5.1)
+
+ * License: LGPL 2.1 and Apache 2.0, https://github.com/java-native-access/jna/blob/master/LICENSE
+ * Project: https://github.com/java-native-access/jna
+ * Source: https://github.com/java-native-access/jna
+
+SLF4J (1.7.10)
+
+ * License: MIT, https://www.slf4j.org/license.html
+ * Project: https://www.slf4j.org/
+ * Source: https://github.com/qos-ch/slf4j
+
+## Cryptography
+
+Content may contain encryption software. The country in which you are currently
+may have restrictions on the import, possession, and use, and/or re-export to
+another country, of encryption software. BEFORE using any encryption software,
+please check the country's laws, regulations and policies concerning the import,
+possession, or use, and re-export of encryption software, to see if this is
+permitted.

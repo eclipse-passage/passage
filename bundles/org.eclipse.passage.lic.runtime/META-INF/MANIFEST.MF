@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.lic.runtime
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.passage.lic.runtime
+Bundle-Version: 0.3.3.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.passage.lic.runtime,
+ org.eclipse.passage.lic.runtime.io
