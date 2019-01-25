@@ -22,7 +22,7 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>org.eclipse.passage.lic</groupId>
+		<groupId>org.eclipse.passage</groupId>
 		<artifactId>org.eclipse.passage.lic.parent</artifactId>
 		<version>0.4.0-SNAPSHOT</version>
 		<relativePath>../releng/org.eclipse.passage.lic.parent</relativePath>
