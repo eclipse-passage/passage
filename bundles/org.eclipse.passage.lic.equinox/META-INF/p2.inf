@@ -13,4 +13,4 @@
 
 provides.0.namespace = licensing.management
 provides.0.name = equinox
-provides.0.version = 0.3.3
+provides.0.version = 0.4.0

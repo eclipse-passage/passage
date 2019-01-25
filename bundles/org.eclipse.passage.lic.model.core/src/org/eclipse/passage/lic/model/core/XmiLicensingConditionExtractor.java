@@ -39,6 +39,7 @@ public class XmiLicensingConditionExtractor implements LicensingConditionTranspo
 	public XmiLicensingConditionExtractor() {
 		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.1", LicPackage.eINSTANCE);
 		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.2", LicPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/passage/lic/0.3.3", LicPackage.eINSTANCE);
 	}
 
 	@Override

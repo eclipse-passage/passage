@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>org.eclipse.passage.lic</groupId>
 		<artifactId>org.eclipse.passage.lic.parent</artifactId>
-		<version>0.3.3</version>
+		<version>0.4.0-SNAPSHOT</version>
 		<relativePath>../releng/org.eclipse.passage.lic.parent</relativePath>
 	</parent>
 

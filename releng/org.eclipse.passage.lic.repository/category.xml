@@ -13,45 +13,45 @@
 -->
 <site>
 	<feature
-		url="features/org.eclipse.passage.lic.equinox.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.equinox.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.equinox.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.net.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.net.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.net.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.model.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.model.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.model.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.inspector.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.inspector.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.inspector.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.bc.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.bc.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.bc.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.json.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.lic.json.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.lic.json.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<category-def
