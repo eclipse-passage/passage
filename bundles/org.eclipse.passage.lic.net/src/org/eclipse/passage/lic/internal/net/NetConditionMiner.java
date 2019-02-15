@@ -46,9 +46,8 @@ import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 
 public class NetConditionMiner implements ConditionMiner {
 
-	private static final String HOST_PORT = "%s:%s";
-	private static final String PORT_VALUE_NOT_SPECIFIED_ERROR = "Port value not specified for miner";
-	private static final String HOST_VALUE_NOT_SPECIFIED_ERROR = "Host value not specified for miner";
+	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
+
 	private static final String SETTINGS_EXTENSION = ".settings";
 	private static final String MODE = "client";
 	private static final String MINER_LICENSING_CONDITION_TYPE = "extractConditions";
@@ -115,12 +114,12 @@ public class NetConditionMiner implements ConditionMiner {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
 			String hostValue = settingsMap.get(HOST_KEY);
 			if (hostValue == null || hostValue.isEmpty()) {
-				logger.log(Level.FINEST, HOST_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, NetConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
 			String portValue = settingsMap.get(PORT_KEY);
 			if (portValue == null || portValue.isEmpty()) {
-				logger.log(Level.FINEST, PORT_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, NetConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
 
