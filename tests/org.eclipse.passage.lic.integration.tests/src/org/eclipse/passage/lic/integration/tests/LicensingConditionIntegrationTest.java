@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.integration.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingCondition;

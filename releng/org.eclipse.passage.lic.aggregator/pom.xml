@@ -47,6 +47,9 @@
 		<module>../../bundles/org.eclipse.passage.lic.json</module>
 		<module>../../features/org.eclipse.passage.lic.json.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.oshi</module>
+		<module>../../features/org.eclipse.passage.lic.oshi.feature</module>
+
 		<module>../../bundles/org.eclipse.passage.lic.registry</module>
 		<module>../../bundles/org.eclipse.passage.lic.model.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.model</module>
@@ -59,16 +62,17 @@
 		<module>../../features/org.eclipse.passage.lic.inspector.feature</module>
 
 		<module>../../features/org.eclipse.passage.lic.feature</module>
-		<module>../../releng/org.eclipse.passage.lic.repository</module>
 
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.model.core.tests</module>
 
 		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
 
+		<module>../../releng/org.eclipse.passage.lic.repository</module>
 	</modules>
 
 </project>

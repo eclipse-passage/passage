@@ -18,7 +18,7 @@
 >
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>org.eclipse.passage.lic.root</artifactId>
+	<artifactId>org.eclipse.passage.root</artifactId>
 	<packaging>pom</packaging>
 
 	<parent>

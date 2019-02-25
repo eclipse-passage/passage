@@ -43,6 +43,11 @@
 			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20180905201904/repository"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-core.source" version="0.0.0"/>
+			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/I20190221153854/repository"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.junit" version="4.12.0.v201504281640"/>
 			<unit id="org.junit.source" version="4.12.0.v201504281640"/>
 			<unit id="org.mockito" version="2.13.0.v20180426-1843"/>

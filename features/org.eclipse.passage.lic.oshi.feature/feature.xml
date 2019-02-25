@@ -12,7 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="org.eclipse.passage.lic.feature"
+      id="org.eclipse.passage.lic.oshi.feature"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName"
@@ -31,24 +31,15 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.passage.lic.equinox.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="org.eclipse.passage.lic.equinox.feature" version="0.0.0"/>
+   </requires>
 
-   <includes
-         id="org.eclipse.passage.lic.net.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.oshi.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.model.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.inspector.feature"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.passage.lic.oshi"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
