@@ -62,7 +62,7 @@
 	</feature>
 	<category-def
 		name="org.eclipse.passage.lic.category"
-		label="Passage Licensing Integration Components"
+		label="Passage Licensing Integration Components (Incubation)"
 	>
 		<description>
 			Passage Licensing Integration Components layer includes runtime interfaces and its implementation for Eclipse Equinox
