@@ -61,6 +61,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.inspector.ui</module>
 		<module>../../features/org.eclipse.passage.lic.inspector.feature</module>
 
+		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 		<module>../../features/org.eclipse.passage.lic.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
