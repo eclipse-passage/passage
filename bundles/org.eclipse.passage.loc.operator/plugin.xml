@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018-2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<plugin>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            name="%product.name"
+            application="org.eclipse.e4.ui.workbench.swt.E4Application">
+         <property
+               name="appName"
+               value="%application.name">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/org.eclipse.passage.loc.operator/css/default.css">
+         </property>
+         <property
+               name="applicationXMI"
+               value="platform:/plugin/org.eclipse.passage.loc.workbench/LOC.e4xmi">
+         </property>
+         <property
+               name="lifeCycleURI"
+               value="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.LocLifeCycle">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.window.main" selectedElement="_iI4kYKO-EeeLebrZVlD4jQ" label="" iconURI="" tooltip="" width="900" height="600">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_iI4kYKO-EeeLebrZVlD4jQ" elementId="org.eclipse.passage.loc.workbench.perspectivestack.main"/>
+    <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.mainmenu">
+      <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.menu.file" label="File">
+        <children xsi:type="menu:Menu" xmi:id="_A1Pz4At6Eem3luAFH_XWkA" elementId="org.eclipse.passage.loc.workbench.menu.file.new" label="New"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vfriYPJjEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.file.open" label="Open..." iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/open.png" command="_VVIqQPIlEeiO9ZCh0caXIg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="__inoUPGkEei3isMrv8wWOw" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.file.save" label="Save" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/save.png" command="_qIUC4PGkEei3isMrv8wWOw"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_b1ZJEPJjEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.menuseparator.fie"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_jhpDEPJjEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.file.export" label="Export..." iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/export.png" tooltip="" command="_Us_jAPJjEeiO9ZCh0caXIg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_gOyLMPJjEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.menuseparator.exit"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_qN9n4OcwEeiJj4xxolP3dw" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.file.quit" label="Quit" mnemonics="" command="_o5o3EO50Eei1L9WYDuiuXw"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_Y5eDMBPQEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.menu.edit" label="Edit">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_pg9Z4BPQEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.edit.undo" label="Undo" command="_wYEboBPQEemRg8XCpeTHbg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_GQ-BkBPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.edit.redo" label="Redo" command="_zS4m8BPQEemRg8XCpeTHbg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_K5d2sBPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.menuseparator.edit.stack"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_SKl68BPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.menuseparator.edit.clipboard"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_ag5ekBPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.validate" label="Validate" command="_FtJUEBPXEemRg8XCpeTHbg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_VjizwBPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.menuseparator.validate"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_NUsyMOTuEeihL8M4VJIClA" elementId="org.eclipse.passage.loc.workbench.menu.view" label="View"/>
+      <children xsi:type="menu:Menu" xmi:id="_4tOAUIFiEeivxedica_7mQ" elementId="org.eclipse.passage.loc.workbench.menu.help" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_LYoXUO1jEeiDZvQDX7JRaA" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.inspect.hardware" label="Inspect Hardware" iconURI="platform:/plugin/org.eclipse.passage.lic.inspector.ui/icons/etool16/hw-inspector.png" command="_mYhFMO1jEeiDZvQDX7JRaA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_uCBvYOcwEeiJj4xxolP3dw" elementId="org.eclipse.passage.loc.workbench.handledmenuitem.about" label="About" iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/obj16/passage.png" command="_V2DtgO4pEei1L9WYDuiuXw"/>
+      </children>
+    </mainMenu>
+    <sharedElements xsi:type="basic:PartSashContainer" xmi:id="_iK-aoAgmEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore" containerData="30"/>
+    <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.trimbars.top">
+      <children xsi:type="menu:ToolBar" xmi:id="_52QqQOTyEeihL8M4VJIClA" elementId="org.eclipse.passage.loc.workbench.toolbar.main">
+        <children xsi:type="menu:ToolBarSeparator" xmi:id="_WCkLUA6dEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.new"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_a0iSMPIlEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.open" label="Open..." iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/open.png" command="_VVIqQPIlEeiO9ZCh0caXIg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_7WOgYPGkEei3isMrv8wWOw" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.save" label="Save" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/save.png" command="_qIUC4PGkEei3isMrv8wWOw"/>
+        <children xsi:type="menu:ToolBarSeparator" xmi:id="_IvR-YPJkEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.fie"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LJ9REPJkEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.export" label="Export..." iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/export.png" command="_Us_jAPJjEeiO9ZCh0caXIg"/>
+        <children xsi:type="menu:ToolBarSeparator" xmi:id="_1tnR8Aa0EemNz8l9BTvo0A" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.view"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_uPtcsOdJEeigXNdbugUBXw" elementId="org.eclipse.passage.loc.workbench.handler.perspective.open" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.OpenPerspectiveHandler" command="_5P07MOdJEeigXNdbugUBXw"/>
+  <handlers xmi:id="_Rv9FwO1jEeiDZvQDX7JRaA" elementId="org.eclipse.passage.loc.workbench.handler.inspect.hardware" contributionURI="bundleclass://org.eclipse.passage.lic.inspector.ui/org.eclipse.passage.lic.inspector.ui.handlers.InspectHardwareHandler" command="_mYhFMO1jEeiDZvQDX7JRaA"/>
+  <handlers xmi:id="_dnVRcO4pEei1L9WYDuiuXw" elementId="org.eclipse.passage.loc.workbench.handler.aboutdialog.open" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.OpenAboutDialogHandler" command="_V2DtgO4pEei1L9WYDuiuXw"/>
+  <handlers xmi:id="_zo4A8O50Eei1L9WYDuiuXw" elementId="org.eclipse.passage.loc.workbench.handler.file.exit" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.ExitWorkbenchHandler" command="_o5o3EO50Eei1L9WYDuiuXw"/>
+  <handlers xmi:id="_IgapwPGlEei3isMrv8wWOw" elementId="org.eclipse.passage.loc.workbench.handler.file.save" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.SaveHandler" command="_qIUC4PGkEei3isMrv8wWOw"/>
+  <handlers xmi:id="_EPi8YBPREemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handler.edit.undo" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.UndoHandler" command="_wYEboBPQEemRg8XCpeTHbg"/>
+  <handlers xmi:id="_Ocu6YBPXEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handler.edit.redo" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.RedoHandler" command="_zS4m8BPQEemRg8XCpeTHbg"/>
+  <handlers xmi:id="_LbdP0BPZEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.handler.0" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.handlers.ValidateHandler" command="_FtJUEBPXEemRg8XCpeTHbg"/>
+  <bindingTables xmi:id="_TLnQwPf-EeiUjf2KbhjyHQ" elementId="org.eclipse.passage.loc.workbench.bindingtable.area" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
+    <bindings xmi:id="_VDexUPf-EeiUjf2KbhjyHQ" elementId="org.eclipse.passage.loc.workbench.keybinding.exit" keySequence="M1+E" command="_o5o3EO50Eei1L9WYDuiuXw">
+      <tags>type:user</tags>
+    </bindings>
+    <bindings xmi:id="_xuxToO6TEei7yYuaWqiXSw" elementId="org.eclipse.passage.loc.workbench.keybinding.help.about" keySequence="M1+A" command="_V2DtgO4pEei1L9WYDuiuXw">
+      <tags>type:user</tags>
+    </bindings>
+    <bindings xmi:id="_ikkgAPIlEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.keybinding.file.save" keySequence="M1+S" command="_qIUC4PGkEei3isMrv8wWOw">
+      <tags>type:user</tags>
+    </bindings>
+    <bindings xmi:id="_0TEKMBPTEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.keybinding.edit.undo" keySequence="M1+Z" command="_wYEboBPQEemRg8XCpeTHbg">
+      <tags>type:user</tags>
+    </bindings>
+    <bindings xmi:id="_EA4G4BPUEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.keybinding.edit.redo" keySequence="M1+Y" command="_zS4m8BPQEemRg8XCpeTHbg">
+      <tags>type:user</tags>
+    </bindings>
+  </bindingTables>
+  <rootContext xmi:id="_6wlLecgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_6wlLesgZEeSyMNYR5xypkQ" elementId="org.eclipse.passage.loc.workbench.bindingcontext.window" name="In Windows"/>
+    <children xmi:id="_6wlLe8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_oHxDAPJKEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.command.file.new" commandName="New"/>
+  <commands xmi:id="_VVIqQPIlEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.command.file.open" commandName="Open"/>
+  <commands xmi:id="_Us_jAPJjEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.command.file.export" commandName="Export"/>
+  <commands xmi:id="_qIUC4PGkEei3isMrv8wWOw" elementId="org.eclipse.passage.loc.workbench.command.file.save" commandName="Save"/>
+  <commands xmi:id="_o5o3EO50Eei1L9WYDuiuXw" elementId="org.eclipse.passage.loc.workbench.command.file.exit" commandName="Exit"/>
+  <commands xmi:id="_wYEboBPQEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.command.edit.undo" commandName="Undo"/>
+  <commands xmi:id="_zS4m8BPQEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.command.edit.redo" commandName="Redo"/>
+  <commands xmi:id="_5P07MOdJEeigXNdbugUBXw" elementId="org.eclipse.passage.loc.workbench.command.view.perspective" commandName="View Perspective">
+    <parameters xmi:id="_8svG8OdJEeigXNdbugUBXw" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" name="Command Parameter Perspective Id" optional="false"/>
+  </commands>
+  <commands xmi:id="_mYhFMO1jEeiDZvQDX7JRaA" elementId="org.eclipse.passage.loc.workbench.command.inspect.hardware" commandName="Inspect Hardware"/>
+  <commands xmi:id="_V2DtgO4pEei1L9WYDuiuXw" elementId="org.eclipse.passage.loc.workbench.command.help.about" commandName="About"/>
+  <commands xmi:id="_FtJUEBPXEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.workbench.command.edit.validate" commandName="Validate"/>
+  <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_6wlLdcgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_6wlLdsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_6wlLd8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_6wlLeMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <addons xmi:id="_UDwQEPPUEeidN5pWK-UnUQ" elementId="org.eclipse.passage.loc.workbench.addon.licensing" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.internal.workbench.LicensingAddon"/>
+</application:Application>

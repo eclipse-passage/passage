@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Bv3MwAa-EemNz8l9BTvo0A">
+  <imports xsi:type="commands:Command" xmi:id="_mZnMAA0NEem1Ya6RV5AKlw" elementId="org.eclipse.passage.loc.workbench.command.file.open"/>
+  <imports xsi:type="commands:Command" xmi:id="_0t6UwA6REemZZbTGyctv6w" elementId="org.eclipse.passage.loc.workbench.command.file.export"/>
+  <imports xsi:type="commands:Command" xmi:id="_HGSwgAgfEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.workbench.command.view.perspective"/>
+  <imports xsi:type="commands:CommandParameter" xmi:id="_KmcdgAgfEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id"/>
+  <imports xsi:type="basic:PartSashContainer" xmi:id="_EtSYIAgnEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_tVk-0A6dEemZZbTGyctv6w" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Command" xmi:id="_wztSkA6dEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.features.ui.command.featureset.create" commandName="Feature Set" description="New Feature Set"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_vSgxIA6TEemZZbTGyctv6w" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Handler" xmi:id="_vGV6MA6PEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.features.ui.handler.resource.create" contributionURI="bundleclass://org.eclipse.passage.loc.features.ui/org.eclipse.passage.loc.features.ui.handlers.CreateFeatureSetHandler" command="_wztSkA6dEemZZbTGyctv6w"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_M2fNgAgfEemX0JS0sOPu6Q" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
+    <elements xsi:type="advanced:Perspective" xmi:id="_RilJMAgfEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.features.ui.perspective.main" selectedElement="_WbL24AgfEemX0JS0sOPu6Q" label="Features" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/feature.png">
+      <children xsi:type="basic:PartSashContainer" xmi:id="_WbL24AgfEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.features.ui.partsashcontainer.main" selectedElement="_0dLzYAj6EemmM9IATLmVRA" horizontal="true">
+        <children xsi:type="advanced:Placeholder" xmi:id="_HrEX4AgnEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.features.ui.placeholder.explore" containerData="30" ref="_EtSYIAgnEemX0JS0sOPu6Q"/>
+        <children xsi:type="basic:PartStack" xmi:id="_0dLzYAj6EemmM9IATLmVRA" elementId="org.eclipse.passage.loc.features.ui.partstack.details" containerData="70"/>
+      </children>
+      <handlers xmi:id="_g8zlEA0NEem1Ya6RV5AKlw" elementId="org.eclipse.passage.loc.features.ui.handler.file.open" contributionURI="bundleclass://org.eclipse.passage.loc.features.ui/org.eclipse.passage.loc.features.ui.handlers.LoadFeatureSetHandler" command="_mZnMAA0NEem1Ya6RV5AKlw"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_EiI8QAggEemX0JS0sOPu6Q" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_JCTUwAggEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.features.ui.handledmenuitem.features" label="Features" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/feature.png" command="_HGSwgAgfEemX0JS0sOPu6Q">
+      <parameters xmi:id="_21xLgAgiEemX0JS0sOPu6Q" elementId="org.eclipse.passage.loc.features.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.features.ui.perspective.main"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_-GChwA6REemZZbTGyctv6w" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_BrLccA6SEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.features.ui.handledmenuitem.featureset" label="Feature Set" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/feature.png" tooltip="New Feature Set" command="_wztSkA6dEemZZbTGyctv6w"/>
+  </fragments>
+</fragment:ModelFragments>

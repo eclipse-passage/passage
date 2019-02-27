@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_kEFoAOjPEeirQd2CUcYMjQ">
+  <imports xsi:type="commands:Command" xmi:id="_RzFcwPMKEeiuJLGN-praBQ" elementId="org.eclipse.passage.loc.workbench.command.file.open"/>
+  <imports xsi:type="commands:Command" xmi:id="_co724PMIEeiuJLGN-praBQ" elementId="org.eclipse.passage.loc.workbench.command.file.export"/>
+  <imports xsi:type="commands:Command" xmi:id="_-FL1kOjTEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.workbench.command.view.perspective"/>
+  <imports xsi:type="commands:CommandParameter" xmi:id="_KydZcOjUEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id"/>
+  <imports xsi:type="basic:PartSashContainer" xmi:id="_d9Y_AAkaEemiMscYRYKkWw" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_DmACwA80Eemq0ONZAqyi5g" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Command" xmi:id="_G37tkA80Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.products.ui.command.productline.create" commandName="Product Line" description="New Product Line"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Z6nUUA80Eemq0ONZAqyi5g" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Handler" xmi:id="_cTvH0A80Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.products.ui.handler.productline.create" contributionURI="bundleclass://org.eclipse.passage.loc.products.ui/org.eclipse.passage.loc.products.ui.handlers.CreateProductLineHandler" command="_G37tkA80Eemq0ONZAqyi5g"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_m0kyoOjPEeirQd2CUcYMjQ" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
+    <elements xsi:type="advanced:Perspective" xmi:id="__OHwYOjPEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.products.ui.perspective.main" label="Products" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/product.png">
+      <children xsi:type="basic:PartSashContainer" xmi:id="_sUDdoOjQEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.products.ui.partsashcontainer.main" containerData="" selectedElement="__DQuwOjQEeirQd2CUcYMjQ" horizontal="true">
+        <children xsi:type="advanced:Placeholder" xmi:id="_VpEYYAkaEemiMscYRYKkWw" elementId="org.eclipse.passage.loc.products.ui.placeholder.explore" containerData="30" ref="_d9Y_AAkaEemiMscYRYKkWw"/>
+        <children xsi:type="basic:PartStack" xmi:id="__DQuwOjQEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.products.ui.partstack.details" containerData="70"/>
+      </children>
+      <handlers xmi:id="_bF72QPMMEeiuJLGN-praBQ" elementId="org.eclipse.passage.loc.products.ui.handler.product.open" contributionURI="bundleclass://org.eclipse.passage.loc.products.ui/org.eclipse.passage.loc.products.ui.handlers.LoadProductLineHandler" command="_RzFcwPMKEeiuJLGN-praBQ"/>
+      <handlers xmi:id="_fE4_IPMMEeiuJLGN-praBQ" elementId="org.eclipse.passage.loc.products.ui.handler.product.export" contributionURI="bundleclass://org.eclipse.passage.loc.products.ui/org.eclipse.passage.loc.products.ui.handlers.ProductExportHandler" command="_co724PMIEeiuJLGN-praBQ"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_zUHfsOjTEeirQd2CUcYMjQ" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_4KYEAOjTEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.products.ui.handledmenuitem.products" label="Products" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/product.png" command="_-FL1kOjTEeirQd2CUcYMjQ">
+      <parameters xmi:id="_ImobEOjUEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.products.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.products.ui.perspective.main"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_XGIP8A8zEemq0ONZAqyi5g" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_bIM-QA8zEemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.products.ui.handledmenuitem.productline" label="Product Line" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/product.png" tooltip="New Product Line" command="_G37tkA80Eemq0ONZAqyi5g"/>
+  </fragments>
+</fragment:ModelFragments>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.licenses.emfforms.renderers.BaseTextRendererService">
+   <implementation class="org.eclipse.passage.loc.licenses.emfforms.renderers.BaseTextRendererService"/>
+   <service>
+      <provide interface="org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService"/>
+   </service>
+   <reference bind="bindEMFFormsDatabinding" cardinality="1..1" interface="org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding" name="EMFFormsDatabinding" policy="static" unbind="unbindEMFFormsDatabinding"/>
+   <reference bind="bindReportService" cardinality="1..1" interface="org.eclipse.emfforms.spi.common.report.ReportService" name="ReportService" policy="static" unbind="unbindReportService"/>
+</scr:component>

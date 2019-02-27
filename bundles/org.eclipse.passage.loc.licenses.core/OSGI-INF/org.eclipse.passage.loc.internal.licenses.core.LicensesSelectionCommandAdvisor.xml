@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.licenses.core.LicensesSelectionCommandAdvisor">
+   <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="licenses"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor"/>
+   </service>
+   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.loc.edit.LicenseDomainRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
+   <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicensesSelectionCommandAdvisor"/>
+</scr:component>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018-2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<site>
+	<feature
+		url="features/org.eclipse.passage.loc.edit.ui.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.edit.ui.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.workbench.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.workbench.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.features.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.features.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.products.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.products.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.users.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.users.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.licenses.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.licenses.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.dashboard.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.dashboard.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<feature
+		url="features/org.eclipse.passage.loc.operator.feature_0.3.3.qualifier.jar"
+		id="org.eclipse.passage.loc.operator.feature"
+		version="0.3.3.qualifier">
+		<category name="org.eclipse.passage.loc.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.loc.category"
+		label="Passage Licensing Operator Components">
+		<description>
+			Passage Licensing Operator Components
+		</description>
+	</category-def>
+</site>

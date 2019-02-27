@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.workbench.LocImageRegistry">
+   <service>
+      <provide interface="org.eclipse.passage.loc.jface.LocImages"/>
+   </service>
+   <implementation class="org.eclipse.passage.loc.internal.workbench.LocImageRegistry"/>
+</scr:component>

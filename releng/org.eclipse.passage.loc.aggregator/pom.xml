@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018-2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.eclipse.passage.loc.aggregator</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.eclipse.passage.loc</groupId>
+		<artifactId>org.eclipse.passage.loc.parent</artifactId>
+		<version>0.3.3</version>
+		<relativePath>../../releng/org.eclipse.passage.loc.parent</relativePath>
+	</parent>
+
+	<modules>
+		<module>../../releng/org.eclipse.passage.loc.target</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.runtime</module>
+		<module>../../bundles/org.eclipse.passage.loc.edit</module>
+		<module>../../bundles/org.eclipse.passage.loc.workbench</module>
+		<module>../../bundles/org.eclipse.passage.loc.workbench.emfforms</module>
+		<module>../../features/org.eclipse.passage.loc.workbench.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.edit.ui</module>
+		<module>../../features/org.eclipse.passage.loc.edit.ui.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.features.core</module>
+		<module>../../bundles/org.eclipse.passage.loc.features.ui</module>
+		<module>../../bundles/org.eclipse.passage.loc.features.emfforms</module>
+		<module>../../features/org.eclipse.passage.loc.features.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.products.core</module>
+		<module>../../bundles/org.eclipse.passage.loc.products.ui</module>
+		<module>../../bundles/org.eclipse.passage.loc.products.emfforms</module>
+		<module>../../features/org.eclipse.passage.loc.products.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.licenses.core</module>
+		<module>../../bundles/org.eclipse.passage.loc.licenses.ui</module>
+		<module>../../bundles/org.eclipse.passage.loc.licenses.emfforms</module>
+		<module>../../features/org.eclipse.passage.loc.licenses.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.users.core</module>
+		<module>../../bundles/org.eclipse.passage.loc.users.ui</module>
+		<module>../../bundles/org.eclipse.passage.loc.users.emfforms</module>
+		<module>../../features/org.eclipse.passage.loc.users.feature</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.dashboard.ui</module>
+		<module>../../features/org.eclipse.passage.loc.dashboard.feature</module>
+		
+		<module>../../bundles/org.eclipse.passage.loc.operator</module>
+		<module>../../features/org.eclipse.passage.loc.operator.feature</module>
+
+		<module>../../releng/org.eclipse.passage.loc.repository</module>
+
+		<module>../../products/org.eclipse.passage.loc.operator.product</module>
+	</modules>
+
+</project>

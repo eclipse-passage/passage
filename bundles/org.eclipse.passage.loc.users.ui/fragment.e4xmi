@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_BK93UAa7EemNz8l9BTvo0A">
+  <imports xsi:type="commands:Command" xmi:id="_DTJDQAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.workbench.command.file.open"/>
+  <imports xsi:type="commands:Command" xmi:id="_Hic8UAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.workbench.command.view.perspective"/>
+  <imports xsi:type="commands:CommandParameter" xmi:id="_KXsrIAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id"/>
+  <imports xsi:type="basic:PartSashContainer" xmi:id="_OeOboAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_hcMvEA83Eemq0ONZAqyi5g" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Command" xmi:id="_wC9kIA83Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.command.userorigin.create" commandName="User Origin" description="New User Origin"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Cn6GAA84Eemq0ONZAqyi5g" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
+    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.0" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.users.ui.handlers.CreateUserOriginHandler" command="_wC9kIA83Eemq0ONZAqyi5g"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_bDhvQAp1EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
+    <elements xsi:type="advanced:Perspective" xmi:id="_iE1O0Ap1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.perspective.main" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/user.png">
+      <children xsi:type="basic:PartSashContainer" xmi:id="_rCGr0Ap1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.partsashcontainer.main" selectedElement="_xXoDcAp1EemYD4Lz_PRA6A" horizontal="true">
+        <children xsi:type="advanced:Placeholder" xmi:id="_s3_2cAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.placeholder.explore" containerData="30" ref="_OeOboAp1EemYD4Lz_PRA6A"/>
+        <children xsi:type="basic:PartStack" xmi:id="_xXoDcAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.partstack.details" containerData="70"/>
+      </children>
+      <handlers xmi:id="_z3QbEArXEemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.handler.file.open" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.users.ui.handlers.LoadUserOriginHandler" command="_DTJDQAp1EemYD4Lz_PRA6A"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_UtWa4Ap2EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_Z0f64Ap2EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.handledmenuitem.users" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/user.png" command="_Hic8UAp1EemYD4Lz_PRA6A">
+      <parameters xmi:id="_e0itUAp2EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.users.ui.perspective.main"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_NsDI4A84Eemq0ONZAqyi5g" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_S7Q_wA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handledmenuitem.userorigin" label="User Origin" iconURI="platform:/plugin/org.eclipse.passage.lic.model.edit/icons/full/obj16/user.png" tooltip="New User Origin" command="_wC9kIA83Eemq0ONZAqyi5g"/>
+  </fragments>
+</fragment:ModelFragments>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.features.core.FeatureSetClassifierInitializer">
+   <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="features"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.emf.edit.ClassifierInitializer"/>
+   </service>
+   <implementation class="org.eclipse.passage.loc.internal.features.core.FeatureSetClassifierInitializer"/>
+</scr:component>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+<!--
+	Copyright (c) 2018-2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+
+<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.3.3.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-clearPersistedState
+      </programArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <launcher name="PassageOperator">
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.emf.ecp.emfforms.runtime.feature"/>
+      <feature id="org.eclipse.passage.brc.oshi.feature"/>
+      <feature id="org.eclipse.passage.lic.feature"/>
+      <feature id="org.eclipse.passage.loc.workbench.feature"/>
+      <feature id="org.eclipse.passage.loc.features.feature"/>
+      <feature id="org.eclipse.passage.loc.products.feature"/>
+      <feature id="org.eclipse.passage.loc.users.feature"/>
+      <feature id="org.eclipse.passage.loc.licenses.feature"/>
+      <feature id="org.eclipse.passage.loc.dashboard.feature"/>
+      <feature id="org.eclipse.passage.loc.operator.feature"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
+
+</product>
