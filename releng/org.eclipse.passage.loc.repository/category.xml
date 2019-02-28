@@ -62,7 +62,7 @@
 	</feature>
 	<category-def
 		name="org.eclipse.passage.loc.category"
-		label="Passage Licensing Operator Components">
+		label="Passage Licensing Operator Components (Incubation)">
 		<description>
 			Passage Licensing Operator Components
 		</description>
