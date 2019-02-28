@@ -13,51 +13,51 @@
 -->
 <site>
 	<feature
-		url="features/org.eclipse.passage.loc.edit.ui.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.edit.ui.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.edit.ui.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.workbench.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.workbench.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.workbench.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.features.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.features.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.features.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.products.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.products.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.products.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.users.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.users.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.users.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.licenses.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.licenses.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.licenses.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.dashboard.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.dashboard.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.dashboard.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.loc.operator.feature_0.3.3.qualifier.jar"
+		url="features/org.eclipse.passage.loc.operator.feature_0.4.0.qualifier.jar"
 		id="org.eclipse.passage.loc.operator.feature"
-		version="0.3.3.qualifier">
+		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<category-def

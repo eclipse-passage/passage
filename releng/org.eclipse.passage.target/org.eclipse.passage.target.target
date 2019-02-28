@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.loc.target" sequenceNumber="83">
+<target name="org.eclipse.passage.target" sequenceNumber="83">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -32,16 +32,19 @@
 			<repository location="http://download.eclipse.org/eclipse/updates/4.9/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
-			<unit id="org.slf4j.api.source" version="0.0.0"/>
-			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20180905201904/repository"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<unit id="org.junit" version="4.12.0.v201504281640"/>
-			<unit id="org.junit.source" version="4.12.0.v201504281640"/>
-			<unit id="org.mockito" version="2.13.0.v20180426-1843"/>
-			<unit id="org.mockito.source" version="2.13.0.v20180426-1843"/>
-			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20180606145124/repository"/>
+			<unit id="com.sun.jna" version="0.0.0"/>
+			<unit id="com.sun.jna.platform" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-core" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
+			<unit id="org.junit" version="0.0.0"/>
+			<unit id="org.mockito" version="0.0.0"/>
+			<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
 		</location>
 	</locations>
 </target>

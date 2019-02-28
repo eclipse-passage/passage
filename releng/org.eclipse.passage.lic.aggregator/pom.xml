@@ -23,14 +23,12 @@
 
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
-		<artifactId>org.eclipse.passage.lic.parent</artifactId>
+		<artifactId>org.eclipse.passage.parent</artifactId>
 		<version>0.4.0-SNAPSHOT</version>
-		<relativePath>../../releng/org.eclipse.passage.lic.parent</relativePath>
+		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 
 	<modules>
-		<module>../../releng/org.eclipse.passage.lic.target</module>
-
 		<module>../../bundles/org.eclipse.passage.lic.runtime</module>
 		<module>../../bundles/org.eclipse.passage.lic.base</module>
 		<module>../../bundles/org.eclipse.passage.lic.inspector</module>

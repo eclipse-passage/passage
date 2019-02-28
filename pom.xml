@@ -23,13 +23,16 @@
 
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
-		<artifactId>org.eclipse.passage.lic.parent</artifactId>
+		<artifactId>org.eclipse.passage.parent</artifactId>
 		<version>0.4.0-SNAPSHOT</version>
-		<relativePath>./releng/org.eclipse.passage.lic.parent</relativePath>
+		<relativePath>./releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 
 	<modules>
+		<module>./releng/org.eclipse.passage.target</module>
+
 		<module>./releng/org.eclipse.passage.lic.aggregator</module>
+		<module>./releng/org.eclipse.passage.loc.aggregator</module>
 	</modules>
 
 </project>
