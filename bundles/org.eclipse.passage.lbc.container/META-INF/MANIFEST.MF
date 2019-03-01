@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-SymbolicName: org.eclipse.passage.lbc.container
+Bundle-Version: 0.3.3.qualifier
+Bundle-Copyright: %Bundle-Copyright
+Automatic-Module-Name: org.eclipse.passage.lbc.server.container
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: javax.servlet;bundle-version="0.0.0",
+ org.eclipse.osgi;bundle-version="3.13.0",
+ org.apache.httpcomponents.httpclient;bundle-version="0.0.0",
+ org.apache.httpcomponents.httpcore;bundle-version="0.0.0",
+ org.eclipse.passage.lbc.server;bundle-version="0.0.0",
+ org.eclipse.passage.lic.net
+Export-Package: org.eclipse.passage.lbc.container,
+ org.eclipse.passage.lbc.container.params
+Service-Component: OSGI-INF/*.xml
+Bundle-ActivationPolicy: lazy
+

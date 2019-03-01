@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.server.data.ServerLicenseConditionMiner">
+   <implementation class ="org.eclipse.passage.lbc.base.condition.ServerConditionsMiner"/>
+  <reference bind="bindLogger" cardinality="1..1" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" policy="static" unbind="unbindLogger"/>
+   <reference bind="bindLicensingConditionStorage" cardinality="0..n" interface="org.eclipse.passage.lbc.server.LicensingConditionStorage" name="LicensingConditionStorage"  policy="dynamic" unbind="unbindLicensingConditionStorage"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.runtime.ConditionMiner"/>
+   </service>
+   <property name="miner.type" type="String" value="server.miner"/>
+</scr:component>

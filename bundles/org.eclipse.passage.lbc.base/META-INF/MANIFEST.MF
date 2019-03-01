@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.passage.lbc.base
+Bundle-Version: 0.3.3.qualifier
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Automatic-Module-Name: org.eclipse.passage.licnsing.server.base
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: javax.servlet,
+ org.eclipse.osgi,
+ org.eclipse.passage.lic.base,
+ org.eclipse.passage.lic.net,
+ org.eclipse.passage.lbc.server
+Service-Component: OSGI-INF/*.xml
+Bundle-ActivationPolicy: lazy
+
