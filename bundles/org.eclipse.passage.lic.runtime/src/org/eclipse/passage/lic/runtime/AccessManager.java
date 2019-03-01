@@ -35,6 +35,8 @@ public interface AccessManager {
 
 	Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration);
 
+	Iterable<ConfigurationRequirement> resolveFeatureRequirements(String featureId, LicensingConfiguration configuration);
+
 	Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration);
 
 	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
@@ -44,7 +46,5 @@ public interface AccessManager {
 	Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId, LicensingConfiguration configuration);
 
 	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
-
-	Iterable<RestrictionVerdict> getFeatureVerdicts(String featureId, LicensingConfiguration configuration);
 
 }

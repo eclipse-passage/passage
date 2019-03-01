@@ -114,6 +114,27 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
+	public Iterable<ConfigurationRequirement> resolveFeatureRequirements(String featureId,
+			LicensingConfiguration configuration) {
+		if (featureId == null) {
+			return Collections.emptyList();
+		}
+		List<ConfigurationRequirement> result = new ArrayList<>();
+		for (ConfigurationResolver configurationResolver : configurationResolvers) {
+			Iterable<ConfigurationRequirement> requirements = configurationResolver
+					.resolveConfigurationRequirements(configuration);
+			for (ConfigurationRequirement requirement : requirements) {
+				if (featureId.equals(requirement.getFeatureIdentifier())) {
+					result.add(requirement);
+				}
+			}
+		}
+		List<ConfigurationRequirement> unmodifiable = Collections.unmodifiableList(result);
+		postEvent(LicensingLifeCycle.REQUIREMENTS_RESOLVED, unmodifiable);
+		return unmodifiable;
+	}
+
+	@Override
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
 		List<LicensingCondition> result = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
@@ -128,7 +149,8 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+			LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
@@ -136,7 +158,7 @@ public abstract class BaseAccessManager implements AccessManager {
 			List<FeaturePermission> empty = Collections.emptyList();
 			postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, empty);
 			return empty;
-		} 
+		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		List<LicensingCondition> invalid = new ArrayList<>();
@@ -172,7 +194,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
 		return unmodifiable;
 	}
-	
+
 	@Override
 	public Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId,
 			LicensingConfiguration configuration) {
@@ -193,8 +215,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
 
 		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
-		Iterable<RestrictionVerdict> examined = examinePermissons(requirements, permissions,
-				configuration);
+		Iterable<RestrictionVerdict> examined = examinePermissons(requirements, permissions, configuration);
 		examined.forEach(verdicts::add);
 		return verdicts;
 	}
@@ -246,16 +267,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		}
 		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
 	}
-	
-	@Override
-	public Iterable<RestrictionVerdict> getFeatureVerdicts(String featureId, LicensingConfiguration configuration) {
-		if (featureId == null) {
-			return Collections.emptyList();
-		}
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	protected String validate(LicensingCondition condition) {
 		Date validFrom = condition.getValidFrom();
 		if (validFrom == null) {
@@ -278,7 +290,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		}
 		return null;
 	}
-	
+
 	protected abstract void postEvent(String topic, Object data);
 
 	protected abstract void logError(String message, Throwable e);
