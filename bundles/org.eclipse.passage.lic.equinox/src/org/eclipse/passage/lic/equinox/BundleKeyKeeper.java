@@ -22,12 +22,13 @@ import java.net.URL;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 
 public class BundleKeyKeeper implements KeyKeeper {
 
-	private static final String PATH_DEFAULT = "OSGI-INF/"; //$NON-NLS-1$
+	protected static final String PATH_DEFAULT = "OSGI-INF/"; //$NON-NLS-1$
 	
 	private ComponentContext componentContext;
 	
@@ -40,7 +41,7 @@ public class BundleKeyKeeper implements KeyKeeper {
 	public InputStream openKeyStream(LicensingConfiguration configuration) throws IOException {
 		String fileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
 		String keypath = PATH_DEFAULT + fileName;
-		Bundle bundle = componentContext.getUsingBundle();
+		Bundle bundle = getUsingBundle(componentContext);
 		if (bundle == null) {
 			throw new FileNotFoundException(keypath);
 		}
@@ -49,6 +50,14 @@ public class BundleKeyKeeper implements KeyKeeper {
 			throw new FileNotFoundException(keypath);
 		}
 		return resource.openStream();
+	}
+
+	protected Bundle getUsingBundle(ComponentContext componentContext) {
+		Bundle bundle = componentContext.getUsingBundle();
+		if (bundle == null) {
+			return FrameworkUtil.getBundle(getClass());
+		}
+		return bundle;
 	}
 
 }

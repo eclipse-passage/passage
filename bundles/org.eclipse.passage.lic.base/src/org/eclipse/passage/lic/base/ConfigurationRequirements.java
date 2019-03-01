@@ -62,6 +62,18 @@ public class ConfigurationRequirements {
 		return null;
 	}
 
+	public static BaseConfigurationRequirement createConfigurationError(String featureId, LicensingConfiguration configuration) {
+		String name = "Licensing";
+		return createConfigurationError(featureId, name, configuration);
+	}
+
+	public static BaseConfigurationRequirement createConfigurationError(String featureId, String name, LicensingConfiguration configuration) {
+		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
+		String version = LicensingVersions.VERSION_DEFAULT;
+		String source = configuration.getProductIdentifier();
+		return new BaseConfigurationRequirement(featureId, version, name, policy, source, configuration);
+	}
+
 	public static BaseConfigurationRequirement createError(String featureId, String version, String name,
 			Object source, LicensingConfiguration configuration) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;

@@ -41,6 +41,10 @@ public interface AccessManager {
 
 	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
 
+	Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId, LicensingConfiguration configuration);
+
 	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
+
+	Iterable<RestrictionVerdict> getFeatureVerdicts(String featureId, LicensingConfiguration configuration);
 
 }

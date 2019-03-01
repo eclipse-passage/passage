@@ -172,6 +172,32 @@ public abstract class BaseAccessManager implements AccessManager {
 		postEvent(LicensingLifeCycle.CONDITIONS_EVALUATED, unmodifiable);
 		return unmodifiable;
 	}
+	
+	@Override
+	public Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId,
+			LicensingConfiguration configuration) {
+		List<ConfigurationRequirement> requirements = new ArrayList<ConfigurationRequirement>();
+		Iterable<ConfigurationRequirement> resolved = resolveRequirements(configuration);
+		for (ConfigurationRequirement requirement : resolved) {
+			if (featureId.equals(requirement.getFeatureIdentifier())) {
+				requirements.add(requirement);
+			}
+		}
+		List<LicensingCondition> conditions = new ArrayList<LicensingCondition>();
+		Iterable<LicensingCondition> extractConditions = extractConditions(configuration);
+		for (LicensingCondition condition : extractConditions) {
+			if (featureId.equals(condition.getFeatureIdentifier())) {
+				conditions.add(condition);
+			}
+		}
+		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
+
+		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
+		Iterable<RestrictionVerdict> examined = examinePermissons(requirements, permissions,
+				configuration);
+		examined.forEach(verdicts::add);
+		return verdicts;
+	}
 
 	@Override
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements,
@@ -219,6 +245,15 @@ public abstract class BaseAccessManager implements AccessManager {
 			}
 		}
 		postEvent(LicensingLifeCycle.RESTRICTIONS_EXECUTED, restrictions);
+	}
+	
+	@Override
+	public Iterable<RestrictionVerdict> getFeatureVerdicts(String featureId, LicensingConfiguration configuration) {
+		if (featureId == null) {
+			return Collections.emptyList();
+		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	protected String validate(LicensingCondition condition) {
