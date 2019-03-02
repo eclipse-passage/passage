@@ -127,6 +127,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureIdentifier() {
 		return featureIdentifier;
 	}
@@ -136,6 +137,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureIdentifier(String newFeatureIdentifier) {
 		String oldFeatureIdentifier = featureIdentifier;
 		featureIdentifier = newFeatureIdentifier;
@@ -148,6 +150,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureVersion() {
 		return featureVersion;
 	}
@@ -157,6 +160,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureVersion(String newFeatureVersion) {
 		String oldFeatureVersion = featureVersion;
 		featureVersion = newFeatureVersion;
@@ -169,6 +173,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRestrictionLevel() {
 		return restrictionLevel;
 	}
@@ -178,6 +183,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRestrictionLevel(String newRestrictionLevel) {
 		String oldRestrictionLevel = restrictionLevel;
 		restrictionLevel = newRestrictionLevel;
@@ -190,6 +196,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProductVersion getProductVersion() {
 		if (eContainerFeatureID() != LicPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION) return null;
 		return (ProductVersion)eInternalContainer();
@@ -210,6 +217,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProductVersion(ProductVersion newProductVersion) {
 		if (newProductVersion != eInternalContainer() || (eContainerFeatureID() != LicPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION && newProductVersion != null)) {
 			if (EcoreUtil.isAncestor(this, newProductVersion))

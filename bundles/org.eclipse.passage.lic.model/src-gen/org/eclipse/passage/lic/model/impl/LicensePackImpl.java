@@ -184,6 +184,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -193,6 +194,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -205,6 +207,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getIssueDate() {
 		return issueDate;
 	}
@@ -214,6 +217,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIssueDate(Date newIssueDate) {
 		Date oldIssueDate = issueDate;
 		issueDate = newIssueDate;
@@ -226,6 +230,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProductIdentifier() {
 		return productIdentifier;
 	}
@@ -235,6 +240,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProductIdentifier(String newProductIdentifier) {
 		String oldProductIdentifier = productIdentifier;
 		productIdentifier = newProductIdentifier;
@@ -247,6 +253,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProductVersion() {
 		return productVersion;
 	}
@@ -256,6 +263,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProductVersion(String newProductVersion) {
 		String oldProductVersion = productVersion;
 		productVersion = newProductVersion;
@@ -268,6 +276,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserIdentifier() {
 		return userIdentifier;
 	}
@@ -277,6 +286,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserIdentifier(String newUserIdentifier) {
 		String oldUserIdentifier = userIdentifier;
 		userIdentifier = newUserIdentifier;
@@ -289,6 +299,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<LicenseGrant> getLicenseGrants() {
 		if (licenseGrants == null) {
 			licenseGrants = new EObjectContainmentWithInverseEList<LicenseGrant>(LicenseGrant.class, this, LicPackage.LICENSE_PACK__LICENSE_GRANTS, LicPackage.LICENSE_GRANT__LICENSE_PACK);

@@ -166,6 +166,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -175,6 +176,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
@@ -187,6 +189,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Product getProduct() {
 		if (eContainerFeatureID() != LicPackage.PRODUCT_VERSION__PRODUCT) return null;
 		return (Product)eInternalContainer();
@@ -207,6 +210,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProduct(Product newProduct) {
 		if (newProduct != eInternalContainer() || (eContainerFeatureID() != LicPackage.PRODUCT_VERSION__PRODUCT && newProduct != null)) {
 			if (EcoreUtil.isAncestor(this, newProduct))
@@ -228,6 +232,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInstallationToken() {
 		return installationToken;
 	}
@@ -237,6 +242,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstallationToken(String newInstallationToken) {
 		String oldInstallationToken = installationToken;
 		installationToken = newInstallationToken;
@@ -249,6 +255,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSecureToken() {
 		return secureToken;
 	}
@@ -258,6 +265,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSecureToken(String newSecureToken) {
 		String oldSecureToken = secureToken;
 		secureToken = newSecureToken;
@@ -270,6 +278,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ProductVersionFeature> getProductVersionFeatures() {
 		if (productVersionFeatures == null) {
 			productVersionFeatures = new EObjectContainmentWithInverseEList<ProductVersionFeature>(ProductVersionFeature.class, this, LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES, LicPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION);
@@ -282,6 +291,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNews() {
 		return news;
 	}
@@ -291,6 +301,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNews(String newNews) {
 		String oldNews = news;
 		news = newNews;

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="lic" nsURI="http://www.eclipse.org/passage/lic/0.4.0" nsPrefix="org.eclipse.passage.lic">
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureSetDescriptor" instanceClassName="org.eclipse.passage.lic.registry.FeatureSetDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureSetDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureDescriptor" instanceClassName="org.eclipse.passage.lic.registry.FeatureDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.features.FeatureDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureVersionDescriptor" instanceClassName="org.eclipse.passage.lic.registry.FeatureVersionDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureVersionDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductLineDescriptor" instanceClassName="org.eclipse.passage.lic.registry.ProductLineDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="ProductLineDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.products.ProductLineDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="org.eclipse.passage.lic.registry.ProductDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.products.ProductDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionDescriptor" instanceClassName="org.eclipse.passage.lic.registry.ProductVersionDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeatureDescriptor" instanceClassName="org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="ProductVersionFeatureDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserOriginDescriptor" instanceClassName="org.eclipse.passage.lic.registry.UserOriginDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="UserOriginDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.users.UserOriginDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.registry.UserDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.users.UserDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LicensePackDescriptor" instanceClassName="org.eclipse.passage.lic.registry.LicensePackDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="LicensePackDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseGrantDescriptor" instanceClassName="org.eclipse.passage.lic.registry.LicenseGrantDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseGrantDescriptor" instanceClassName="org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureSet" eSuperTypes="#//FeatureSetDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"

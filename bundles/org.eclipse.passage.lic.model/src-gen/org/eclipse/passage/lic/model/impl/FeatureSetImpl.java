@@ -142,6 +142,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -151,6 +152,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -163,6 +165,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -172,6 +175,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -184,6 +188,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -193,6 +198,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -205,6 +211,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Feature> getFeatures() {
 		if (features == null) {
 			features = new EObjectContainmentWithInverseEList<Feature>(Feature.class, this, LicPackage.FEATURE_SET__FEATURES, LicPackage.FEATURE__FEATURE_SET);

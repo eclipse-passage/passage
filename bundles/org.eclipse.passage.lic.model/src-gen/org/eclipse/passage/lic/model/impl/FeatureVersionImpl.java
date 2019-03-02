@@ -106,6 +106,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -115,6 +116,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
@@ -127,6 +129,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeature() {
 		if (eContainerFeatureID() != LicPackage.FEATURE_VERSION__FEATURE) return null;
 		return (Feature)eInternalContainer();
@@ -147,6 +150,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(Feature newFeature) {
 		if (newFeature != eInternalContainer() || (eContainerFeatureID() != LicPackage.FEATURE_VERSION__FEATURE && newFeature != null)) {
 			if (EcoreUtil.isAncestor(this, newFeature))
@@ -168,6 +172,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNews() {
 		return news;
 	}
@@ -177,6 +182,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNews(String newNews) {
 		String oldNews = news;
 		news = newNews;

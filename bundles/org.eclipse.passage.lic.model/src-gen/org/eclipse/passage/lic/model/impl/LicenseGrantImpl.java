@@ -233,6 +233,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureIdentifier() {
 		return featureIdentifier;
 	}
@@ -242,6 +243,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureIdentifier(String newFeatureIdentifier) {
 		String oldFeatureIdentifier = featureIdentifier;
 		featureIdentifier = newFeatureIdentifier;
@@ -254,6 +256,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMatchVersion() {
 		return matchVersion;
 	}
@@ -263,6 +266,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatchVersion(String newMatchVersion) {
 		String oldMatchVersion = matchVersion;
 		matchVersion = newMatchVersion;
@@ -275,6 +279,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMatchRule() {
 		return matchRule;
 	}
@@ -284,6 +289,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatchRule(String newMatchRule) {
 		String oldMatchRule = matchRule;
 		matchRule = newMatchRule;
@@ -296,6 +302,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getValidFrom() {
 		return validFrom;
 	}
@@ -305,6 +312,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidFrom(Date newValidFrom) {
 		Date oldValidFrom = validFrom;
 		validFrom = newValidFrom;
@@ -317,6 +325,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getValidUntil() {
 		return validUntil;
 	}
@@ -326,6 +335,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidUntil(Date newValidUntil) {
 		Date oldValidUntil = validUntil;
 		validUntil = newValidUntil;
@@ -338,6 +348,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getConditionType() {
 		return conditionType;
 	}
@@ -347,6 +358,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConditionType(String newConditionType) {
 		String oldConditionType = conditionType;
 		conditionType = newConditionType;
@@ -359,6 +371,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getConditionExpression() {
 		return conditionExpression;
 	}
@@ -368,6 +381,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConditionExpression(String newConditionExpression) {
 		String oldConditionExpression = conditionExpression;
 		conditionExpression = newConditionExpression;
@@ -380,6 +394,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getCapacity() {
 		return capacity;
 	}
@@ -389,6 +404,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCapacity(int newCapacity) {
 		int oldCapacity = capacity;
 		capacity = newCapacity;
@@ -401,6 +417,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LicensePack getLicensePack() {
 		if (eContainerFeatureID() != LicPackage.LICENSE_GRANT__LICENSE_PACK) return null;
 		return (LicensePack)eInternalContainer();
@@ -421,6 +438,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLicensePack(LicensePack newLicensePack) {
 		if (newLicensePack != eInternalContainer() || (eContainerFeatureID() != LicPackage.LICENSE_GRANT__LICENSE_PACK && newLicensePack != null)) {
 			if (EcoreUtil.isAncestor(this, newLicensePack))

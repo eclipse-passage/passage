@@ -143,7 +143,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getIdentifier() {
+  @Override
+	public String getIdentifier() {
 		return identifier;
 	}
 
@@ -152,7 +153,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIdentifier(String newIdentifier) {
+	@Override
+	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
@@ -164,7 +166,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getName() {
+	@Override
+	public String getName() {
 		return name;
 	}
 
@@ -173,7 +176,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setName(String newName) {
+	@Override
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -185,7 +189,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getDescription() {
+	@Override
+	public String getDescription() {
 		return description;
 	}
 
@@ -194,7 +199,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setDescription(String newDescription) {
+	@Override
+	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
@@ -206,6 +212,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProductLine getProductLine() {
 		if (eContainerFeatureID() != LicPackage.PRODUCT__PRODUCT_LINE) return null;
 		return (ProductLine)eInternalContainer();
@@ -226,6 +233,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProductLine(ProductLine newProductLine) {
 		if (newProductLine != eInternalContainer() || (eContainerFeatureID() != LicPackage.PRODUCT__PRODUCT_LINE && newProductLine != null)) {
 			if (EcoreUtil.isAncestor(this, newProductLine))
@@ -247,6 +255,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ProductVersion> getProductVersions() {
 		if (productVersions == null) {
 			productVersions = new EObjectContainmentWithInverseEList<ProductVersion>(ProductVersion.class, this, LicPackage.PRODUCT__PRODUCT_VERSIONS, LicPackage.PRODUCT_VERSION__PRODUCT);

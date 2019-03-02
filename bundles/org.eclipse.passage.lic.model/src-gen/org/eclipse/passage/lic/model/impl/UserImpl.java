@@ -148,6 +148,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -157,6 +158,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -169,7 +171,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getEmail() {
+	@Override
+	public String getEmail() {
 		return email;
 	}
 
@@ -178,7 +181,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setEmail(String newEmail) {
+	@Override
+	public void setEmail(String newEmail) {
 		String oldEmail = email;
 		email = newEmail;
 		if (eNotificationRequired())
@@ -190,7 +194,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getFullName() {
+	@Override
+	public String getFullName() {
 		return fullName;
 	}
 
@@ -199,6 +204,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFullName(String newFullName) {
 		String oldFullName = fullName;
 		fullName = newFullName;
@@ -211,7 +217,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getDescription() {
+	@Override
+	public String getDescription() {
 		return description;
 	}
 
@@ -220,6 +227,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -232,6 +240,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserOrigin getUserOrigin() {
 		if (eContainerFeatureID() != LicPackage.USER__USER_ORIGIN) return null;
 		return (UserOrigin)eInternalContainer();
@@ -252,6 +261,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserOrigin(UserOrigin newUserOrigin) {
 		if (newUserOrigin != eInternalContainer() || (eContainerFeatureID() != LicPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
 			if (EcoreUtil.isAncestor(this, newUserOrigin))

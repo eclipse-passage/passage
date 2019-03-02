@@ -269,6 +269,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureSetDescriptor() {
 		return featureSetDescriptorEClass;
 	}
@@ -278,6 +279,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductDescriptor() {
 		return productDescriptorEClass;
 	}
@@ -287,6 +289,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductVersionDescriptor() {
 		return productVersionDescriptorEClass;
 	}
@@ -296,6 +299,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductVersionFeatureDescriptor() {
 		return productVersionFeatureDescriptorEClass;
 	}
@@ -305,6 +309,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserOriginDescriptor() {
 		return userOriginDescriptorEClass;
 	}
@@ -314,6 +319,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureDescriptor() {
 		return featureDescriptorEClass;
 	}
@@ -323,6 +329,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureVersionDescriptor() {
 		return featureVersionDescriptorEClass;
 	}
@@ -332,6 +339,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductLineDescriptor() {
 		return productLineDescriptorEClass;
 	}
@@ -341,6 +349,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDescriptor() {
 		return userDescriptorEClass;
 	}
@@ -350,6 +359,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLicensePackDescriptor() {
 		return licensePackDescriptorEClass;
 	}
@@ -359,6 +369,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLicenseGrantDescriptor() {
 		return licenseGrantDescriptorEClass;
 	}
@@ -368,6 +379,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureSet() {
 		return featureSetEClass;
 	}
@@ -377,6 +389,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureSet_Identifier() {
 		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -386,6 +399,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureSet_Name() {
 		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -395,6 +409,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureSet_Description() {
 		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(2);
 	}
@@ -404,6 +419,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureSet_Features() {
 		return (EReference)featureSetEClass.getEStructuralFeatures().get(3);
 	}
@@ -413,7 +429,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EClass getProduct() {
+  @Override
+		public EClass getProduct() {
 		return productEClass;
 	}
 
@@ -422,7 +439,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getProduct_Identifier() {
+  @Override
+		public EAttribute getProduct_Identifier() {
 		return (EAttribute)productEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -431,7 +449,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getProduct_Name() {
+  @Override
+		public EAttribute getProduct_Name() {
 		return (EAttribute)productEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -440,6 +459,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeature() {
 		return featureEClass;
 	}
@@ -449,6 +469,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_Identifier() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(0);
 	}
@@ -458,6 +479,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_Name() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
 	}
@@ -467,6 +489,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeature_Description() {
 		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
 	}
@@ -476,6 +499,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_FeatureSet() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(3);
 	}
@@ -485,6 +509,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature_FeatureVersions() {
 		return (EReference)featureEClass.getEStructuralFeatures().get(4);
 	}
@@ -494,6 +519,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFeatureVersion() {
 		return featureVersionEClass;
 	}
@@ -503,6 +529,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureVersion_Version() {
 		return (EAttribute)featureVersionEClass.getEStructuralFeatures().get(0);
 	}
@@ -512,6 +539,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeatureVersion_Feature() {
 		return (EReference)featureVersionEClass.getEStructuralFeatures().get(1);
 	}
@@ -521,6 +549,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFeatureVersion_News() {
 		return (EAttribute)featureVersionEClass.getEStructuralFeatures().get(2);
 	}
@@ -530,6 +559,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductLine() {
 		return productLineEClass;
 	}
@@ -539,6 +569,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductLine_Identifier() {
 		return (EAttribute)productLineEClass.getEStructuralFeatures().get(0);
 	}
@@ -548,6 +579,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductLine_Name() {
 		return (EAttribute)productLineEClass.getEStructuralFeatures().get(1);
 	}
@@ -557,6 +589,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductLine_Description() {
 		return (EAttribute)productLineEClass.getEStructuralFeatures().get(2);
 	}
@@ -566,6 +599,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProductLine_Products() {
 		return (EReference)productLineEClass.getEStructuralFeatures().get(3);
 	}
@@ -575,6 +609,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUser() {
 		return userEClass;
 	}
@@ -584,6 +619,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Identifier() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
@@ -593,6 +629,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Email() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
@@ -602,6 +639,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_FullName() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
 	}
@@ -611,6 +649,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Description() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
 	}
@@ -620,6 +659,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUser_UserOrigin() {
 		return (EReference)userEClass.getEStructuralFeatures().get(4);
 	}
@@ -629,6 +669,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLicensePack() {
 		return licensePackEClass;
 	}
@@ -638,6 +679,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicensePack_Identifier() {
 		return (EAttribute)licensePackEClass.getEStructuralFeatures().get(0);
 	}
@@ -647,6 +689,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicensePack_IssueDate() {
 		return (EAttribute)licensePackEClass.getEStructuralFeatures().get(1);
 	}
@@ -656,6 +699,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicensePack_ProductIdentifier() {
 		return (EAttribute)licensePackEClass.getEStructuralFeatures().get(2);
 	}
@@ -665,6 +709,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicensePack_ProductVersion() {
 		return (EAttribute)licensePackEClass.getEStructuralFeatures().get(3);
 	}
@@ -674,6 +719,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicensePack_UserIdentifier() {
 		return (EAttribute)licensePackEClass.getEStructuralFeatures().get(4);
 	}
@@ -683,6 +729,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLicensePack_LicenseGrants() {
 		return (EReference)licensePackEClass.getEStructuralFeatures().get(5);
 	}
@@ -692,6 +739,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLicenseGrant() {
 		return licenseGrantEClass;
 	}
@@ -701,6 +749,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_FeatureIdentifier() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(0);
 	}
@@ -710,6 +759,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_MatchVersion() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(1);
 	}
@@ -719,6 +769,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_MatchRule() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(2);
 	}
@@ -728,6 +779,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_ValidFrom() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(3);
 	}
@@ -737,6 +789,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_ValidUntil() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(4);
 	}
@@ -746,6 +799,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_ConditionType() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(5);
 	}
@@ -755,6 +809,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_ConditionExpression() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(6);
 	}
@@ -764,6 +819,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLicenseGrant_Capacity() {
 		return (EAttribute)licenseGrantEClass.getEStructuralFeatures().get(7);
 	}
@@ -773,6 +829,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLicenseGrant_LicensePack() {
 		return (EReference)licenseGrantEClass.getEStructuralFeatures().get(8);
 	}
@@ -782,6 +839,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LicFactory getLicFactory() {
 		return (LicFactory)getEFactoryInstance();
 	}
@@ -791,7 +849,8 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EAttribute getProduct_Description() {
+  @Override
+		public EAttribute getProduct_Description() {
 		return (EAttribute)productEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -800,6 +859,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProduct_ProductLine() {
 		return (EReference)productEClass.getEStructuralFeatures().get(3);
 	}
@@ -809,6 +869,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProduct_ProductVersions() {
 		return (EReference)productEClass.getEStructuralFeatures().get(4);
 	}
@@ -818,6 +879,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductVersion() {
 		return productVersionEClass;
 	}
@@ -827,6 +889,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersion_Version() {
 		return (EAttribute)productVersionEClass.getEStructuralFeatures().get(0);
 	}
@@ -836,6 +899,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProductVersion_Product() {
 		return (EReference)productVersionEClass.getEStructuralFeatures().get(4);
 	}
@@ -845,6 +909,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersion_InstallationToken() {
 		return (EAttribute)productVersionEClass.getEStructuralFeatures().get(1);
 	}
@@ -854,6 +919,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersion_SecureToken() {
 		return (EAttribute)productVersionEClass.getEStructuralFeatures().get(2);
 	}
@@ -863,6 +929,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProductVersion_ProductVersionFeatures() {
 		return (EReference)productVersionEClass.getEStructuralFeatures().get(5);
 	}
@@ -872,6 +939,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersion_News() {
 		return (EAttribute)productVersionEClass.getEStructuralFeatures().get(3);
 	}
@@ -881,6 +949,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProductVersionFeature() {
 		return productVersionFeatureEClass;
 	}
@@ -890,6 +959,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersionFeature_FeatureIdentifier() {
 		return (EAttribute)productVersionFeatureEClass.getEStructuralFeatures().get(0);
 	}
@@ -899,6 +969,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersionFeature_FeatureVersion() {
 		return (EAttribute)productVersionFeatureEClass.getEStructuralFeatures().get(1);
 	}
@@ -908,6 +979,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProductVersionFeature_RestrictionLevel() {
 		return (EAttribute)productVersionFeatureEClass.getEStructuralFeatures().get(2);
 	}
@@ -917,6 +989,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProductVersionFeature_ProductVersion() {
 		return (EReference)productVersionFeatureEClass.getEStructuralFeatures().get(3);
 	}
@@ -926,6 +999,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserOrigin() {
 		return userOriginEClass;
 	}
@@ -935,6 +1009,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserOrigin_Identifier() {
 		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(0);
 	}
@@ -944,6 +1019,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserOrigin_Name() {
 		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(1);
 	}
@@ -953,6 +1029,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserOrigin_Description() {
 		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(2);
 	}
@@ -962,6 +1039,7 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserOrigin_Users() {
 		return (EReference)userOriginEClass.getEStructuralFeatures().get(3);
 	}

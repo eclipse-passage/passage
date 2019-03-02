@@ -142,6 +142,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -151,6 +152,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -163,6 +165,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -172,6 +175,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -184,6 +188,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -193,6 +198,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -205,6 +211,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<User> getUsers() {
 		if (users == null) {
 			users = new EObjectContainmentWithInverseEList<User>(User.class, this, LicPackage.USER_ORIGIN__USERS, LicPackage.USER__USER_ORIGIN);

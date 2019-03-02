@@ -123,7 +123,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected FeatureImpl() {
+	protected FeatureImpl() {
 		super();
 	}
 
@@ -132,8 +132,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  @Override
-  protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return LicPackage.Literals.FEATURE;
 	}
 
@@ -142,7 +142,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getName() {
+	@Override
+	public String getName() {
 		return name;
 	}
 
@@ -151,7 +152,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setName(String newName) {
+	@Override
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -163,7 +165,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getDescription() {
+	@Override
+	public String getDescription() {
 		return description;
 	}
 
@@ -172,11 +175,13 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setDescription(String newDescription) {
+	@Override
+	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription,
+					description));
 	}
 
   /**
@@ -184,6 +189,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureSet getFeatureSet() {
 		if (eContainerFeatureID() != LicPackage.FEATURE__FEATURE_SET) return null;
 		return (FeatureSet)eInternalContainer();
@@ -204,6 +210,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeatureSet(FeatureSet newFeatureSet) {
 		if (newFeatureSet != eInternalContainer() || (eContainerFeatureID() != LicPackage.FEATURE__FEATURE_SET && newFeatureSet != null)) {
 			if (EcoreUtil.isAncestor(this, newFeatureSet))
@@ -225,6 +232,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FeatureVersion> getFeatureVersions() {
 		if (featureVersions == null) {
 			featureVersions = new EObjectContainmentWithInverseEList<FeatureVersion>(FeatureVersion.class, this, LicPackage.FEATURE__FEATURE_VERSIONS, LicPackage.FEATURE_VERSION__FEATURE);
@@ -286,7 +294,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getIdentifier() {
+	@Override
+	public String getIdentifier() {
 		return identifier;
 	}
 
@@ -295,7 +304,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setIdentifier(String newIdentifier) {
+	@Override
+	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())

@@ -51,7 +51,11 @@
   <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
+        name="org.eclipse.emf.sdk.feature.group"/>
+    <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
+    <repository
+        url="http://download.eclipse.org/releases/2018-12"/>
     <repository
         url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
@@ -88,31 +92,6 @@
     <targlet
         name="${scope.project.label}"
         activeRepositoryList="${eclipse.target.platform}">
-      <!--
-      <annotation
-          source="http:/www.eclipse.org/oomph/targlets/TargetDefinitionGenerator">
-        <detail
-            key="location">
-          <value>${git.clone.passage.location}/releng/org.eclipse.passage.target/passage.target</value>
-        </detail>
-        <detail
-            key="extraUnits">
-          <value>org.eclipse.equinox.executable.feature.group</value>
-        </detail>
-        <detail
-            key="includeAllPlatforms">
-          <value>false</value>
-        </detail>
-        <detail
-            key="includeSource">
-          <value>true</value>
-        </detail>
-        <detail
-            key="generateVersions">
-          <value>false</value>
-        </detail>
-      </annotation>
-      -->
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement

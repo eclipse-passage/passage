@@ -88,6 +88,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureSet createFeatureSet() {
 		FeatureSetImpl featureSet = new FeatureSetImpl();
 		return featureSet;
@@ -98,7 +99,8 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Product createProduct() {
+  @Override
+		public Product createProduct() {
 		ProductImpl product = new ProductImpl();
 		return product;
 	}
@@ -108,6 +110,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProductVersion createProductVersion() {
 		ProductVersionImpl productVersion = new ProductVersionImpl();
 		return productVersion;
@@ -118,6 +121,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProductVersionFeature createProductVersionFeature() {
 		ProductVersionFeatureImpl productVersionFeature = new ProductVersionFeatureImpl();
 		return productVersionFeature;
@@ -128,6 +132,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserOrigin createUserOrigin() {
 		UserOriginImpl userOrigin = new UserOriginImpl();
 		return userOrigin;
@@ -138,6 +143,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
@@ -148,6 +154,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FeatureVersion createFeatureVersion() {
 		FeatureVersionImpl featureVersion = new FeatureVersionImpl();
 		return featureVersion;
@@ -158,6 +165,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProductLine createProductLine() {
 		ProductLineImpl productLine = new ProductLineImpl();
 		return productLine;
@@ -168,6 +176,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
@@ -178,6 +187,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LicensePack createLicensePack() {
 		LicensePackImpl licensePack = new LicensePackImpl();
 		return licensePack;
@@ -188,6 +198,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LicenseGrant createLicenseGrant() {
 		LicenseGrantImpl licenseGrant = new LicenseGrantImpl();
 		return licenseGrant;
@@ -198,6 +209,7 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LicPackage getLicPackage() {
 		return (LicPackage)getEPackage();
 	}
