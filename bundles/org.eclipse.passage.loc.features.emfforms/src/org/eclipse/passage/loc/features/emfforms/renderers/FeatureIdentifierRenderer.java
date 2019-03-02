@@ -22,8 +22,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.registry.FeatureDescriptor;
-import org.eclipse.passage.loc.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;

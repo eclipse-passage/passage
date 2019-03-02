@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.model.api;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.registry.FeatureSetDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
 
 /**
  * <!-- begin-user-doc -->

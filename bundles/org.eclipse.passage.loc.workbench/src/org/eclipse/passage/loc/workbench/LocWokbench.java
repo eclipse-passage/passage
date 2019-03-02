@@ -143,7 +143,7 @@ public class LocWokbench {
 	}
 
 	public static <C> C selectClassifier(Shell shell, LicensingImages images, ComposedAdapterFactoryProvider provider,
-			String classifier, String title, Iterable<C> input, C initial, Class<C> clazz) {
+			String classifier, String title, Iterable<? extends C> input, C initial, Class<C> clazz) {
 		Object selected = selectClassifier(shell, images, provider, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);
@@ -152,7 +152,7 @@ public class LocWokbench {
 	}
 
 	public static <C> Object selectClassifier(Shell shell, LicensingImages images,
-			ComposedAdapterFactoryProvider provider, String classifier, String title, Iterable<C> input, C initial) {
+			ComposedAdapterFactoryProvider provider, String classifier, String title, Iterable<? extends C> input, C initial) {
 		if (input == null) {
 			return null;
 		}

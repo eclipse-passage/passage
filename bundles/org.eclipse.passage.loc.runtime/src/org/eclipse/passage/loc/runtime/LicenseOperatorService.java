@@ -13,7 +13,7 @@
 package org.eclipse.passage.loc.runtime;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.registry.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
 
 public interface LicenseOperatorService {
 	

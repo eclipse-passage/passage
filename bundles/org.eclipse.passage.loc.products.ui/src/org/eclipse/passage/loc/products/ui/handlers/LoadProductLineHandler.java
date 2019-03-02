@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.products.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.registry.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 

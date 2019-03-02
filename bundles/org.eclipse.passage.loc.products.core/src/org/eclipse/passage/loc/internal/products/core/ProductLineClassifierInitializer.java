@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.registry.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsRegistry.DOMAIN_NAME })

@@ -18,11 +18,11 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.registry.FeatureDescriptor;
-import org.eclipse.passage.lic.registry.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.registry.ProductDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {
@@ -58,6 +58,7 @@ public class DomainRegistryLabelProvider extends LabelProvider {
 			return text + ' ' + ':' + ' ' + productVersionFeature.getFeatureIdentifier() + ' ' + productVersionFeature.getFeatureVersion();
 		}
 
+		//FIXME: AF: move to LIC
 		if (element instanceof FeatureVersionDescriptor) {
 			FeatureVersionDescriptor productVersion = (FeatureVersionDescriptor) element;
 			FeatureDescriptor feature = productVersion.getFeature();

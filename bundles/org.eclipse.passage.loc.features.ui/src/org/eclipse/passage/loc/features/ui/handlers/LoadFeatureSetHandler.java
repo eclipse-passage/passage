@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.features.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.registry.FeaturesRegistry;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 

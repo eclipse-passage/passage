@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.model.api;
 
 import java.util.Date;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.registry.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor;
 
 /**
  * <!-- begin-user-doc -->

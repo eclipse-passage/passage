@@ -13,7 +13,7 @@
 package org.eclipse.passage.loc.runtime;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.registry.ProductVersionDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 
 public interface ProductOperatorService {
 	

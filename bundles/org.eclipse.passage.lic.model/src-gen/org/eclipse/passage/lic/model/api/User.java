@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.registry.UserDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserDescriptor;
 
 /**
  * <!-- begin-user-doc -->

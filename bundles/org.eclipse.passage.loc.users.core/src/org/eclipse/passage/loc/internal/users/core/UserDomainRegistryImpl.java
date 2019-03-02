@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
@@ -25,17 +24,16 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.model.api.User;
+import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.Identified;
-import org.eclipse.passage.lic.registry.UserDescriptor;
-import org.eclipse.passage.lic.registry.UserOriginDescriptor;
-import org.eclipse.passage.lic.registry.UserRegistry;
-import org.eclipse.passage.lic.registry.UsersEvents;
-import org.eclipse.passage.lic.registry.UsersRegistry;
+import org.eclipse.passage.lic.runtime.registry.Identified;
+import org.eclipse.passage.lic.runtime.users.UserDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserRegistry;
+import org.eclipse.passage.lic.runtime.users.UsersEvents;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
-import org.eclipse.passage.loc.edit.UserDomainRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -48,8 +46,8 @@ import org.osgi.service.event.EventAdmin;
 public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 		implements UserRegistry, UserDomainRegistry, EditingDomainRegistry {
 
-	private final Map<String, UserOrigin> userOriginIndex = new HashMap<>();
-	private final Map<String, User> userIndex = new HashMap<>();
+	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
+	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
 
 	@Reference
 	@Override
@@ -113,17 +111,17 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public Iterable<UserDescriptor> getUsers() {
+	public Iterable<? extends UserDescriptor> getUsers() {
 		return new ArrayList<>(userIndex.values());
 	}
 
 	@Override
-	public Iterable<UserDescriptor> getUsers(String userOriginId) {
-		UserOrigin userOrigin = userOriginIndex.get(userOriginId);
+	public Iterable<? extends UserDescriptor> getUsers(String userOriginId) {
+		UserOriginDescriptor userOrigin = userOriginIndex.get(userOriginId);
 		if (userOrigin == null) {
 			return Collections.emptyList();
 		}
-		return new ArrayList<>(userOrigin.getUsers());
+		return userOrigin.getUsers();
 	}
 
 	@Override
@@ -137,23 +135,22 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public void registerUserOrigin(UserOrigin userOrigin) {
+	public void registerUserOrigin(UserOriginDescriptor userOrigin) {
 		String identifier = userOrigin.getIdentifier();
-		UserOrigin existing = userOriginIndex.put(identifier, userOrigin);
+		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
 		if (existing != null) {
 			// FIXME: warning
 		}
 		eventAdmin.postEvent(OperatorEvents.create(UsersEvents.USER_ORIGIN_CREATE, userOrigin));
-		EList<User> users = userOrigin.getUsers();
-		for (User user : users) {
-			registerUser(user);
-		}
+		userOrigin.getUsers().forEach(u -> {
+			registerUser(u);
+		});
 	}
 
 	@Override
-	public void registerUser(User user) {
+	public void registerUser(UserDescriptor user) {
 		String identifier = user.getEmail();
-		User existing = userIndex.put(identifier, user);
+		UserDescriptor existing = userIndex.put(identifier, user);
 		if (existing != null) {
 			// FIXME: warning
 		}
@@ -162,19 +159,18 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 
 	@Override
 	public void unregisterUserOrigin(String userOriginId) {
-		UserOrigin removed = userOriginIndex.remove(userOriginId);
+		UserOriginDescriptor removed = userOriginIndex.remove(userOriginId);
 		if (removed != null) {
 			eventAdmin.postEvent(OperatorEvents.create(UsersEvents.USER_ORIGIN_DELETE, removed));
-			EList<User> users = removed.getUsers();
-			for (User user : users) {
-				unregisterUser(user.getEmail());
-			}
+			removed.getUsers().forEach(u -> {
+				unregisterUser(u.getEmail());
+			});
 		}
 	}
 
 	@Override
 	public void unregisterUser(String userId) {
-		User removed = userIndex.remove(userId);
+		UserDescriptor removed = userIndex.remove(userId);
 		if (removed != null) {
 			eventAdmin.postEvent(OperatorEvents.create(UsersEvents.USER_DELETE, removed));
 		}
@@ -201,7 +197,7 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 			UserOrigin userOrigin = (UserOrigin) content;
 			registerUserOrigin(userOrigin);
 		} else {
-			//TODO: warning
+			// TODO: warning
 		}
 	}
 

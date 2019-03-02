@@ -15,8 +15,8 @@ package org.eclipse.passage.loc.licenses.ui.viewers;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
 import org.eclipse.passage.lic.jface.LicensingImages;
-import org.eclipse.passage.loc.edit.LicenseDomainRegistry;
 import org.eclipse.passage.loc.workbench.parts.DomainRegistryExplorer;
 
 public class LicenseExplorer extends DomainRegistryExplorer {

@@ -13,10 +13,10 @@
 package org.eclipse.passage.loc.dashboard.ui.panel;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.passage.loc.edit.FeatureDomainRegistry;
-import org.eclipse.passage.loc.edit.LicenseDomainRegistry;
-import org.eclipse.passage.loc.edit.ProductDomainRegistry;
-import org.eclipse.passage.loc.edit.UserDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.swt.widgets.Composite;
 
 public interface DashboardPanelAdvisor {

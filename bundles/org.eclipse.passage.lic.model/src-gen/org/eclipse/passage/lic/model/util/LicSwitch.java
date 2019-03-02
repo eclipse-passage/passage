@@ -17,17 +17,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.FeatureDescriptor;
-import org.eclipse.passage.lic.registry.FeatureSetDescriptor;
-import org.eclipse.passage.lic.registry.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.registry.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.registry.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.ProductDescriptor;
-import org.eclipse.passage.lic.registry.ProductLineDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.registry.UserDescriptor;
-import org.eclipse.passage.lic.registry.UserOriginDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.licenses.emfforms.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.registry.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.workbench.emfforms.LocWorkbenchEmfforms;
 

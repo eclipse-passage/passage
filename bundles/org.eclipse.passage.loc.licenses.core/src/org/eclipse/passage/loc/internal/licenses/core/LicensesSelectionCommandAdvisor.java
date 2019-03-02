@@ -15,10 +15,10 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.LicensesRegistry;
-import org.eclipse.passage.loc.edit.LicenseDomainRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

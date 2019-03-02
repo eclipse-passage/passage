@@ -15,10 +15,10 @@ package org.eclipse.passage.loc.internal.features.core;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.FeaturesRegistry;
-import org.eclipse.passage.loc.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

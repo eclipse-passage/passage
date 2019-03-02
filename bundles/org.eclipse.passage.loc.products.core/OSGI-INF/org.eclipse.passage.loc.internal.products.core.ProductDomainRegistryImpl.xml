@@ -3,8 +3,8 @@
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="products"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_products"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.registry.ProductRegistry"/>
-      <provide interface="org.eclipse.passage.loc.edit.ProductDomainRegistry"/>
+      <provide interface="org.eclipse.passage.lic.runtime.products.ProductRegistry"/>
+      <provide interface="org.eclipse.passage.lic.emf.edit.ProductDomainRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>

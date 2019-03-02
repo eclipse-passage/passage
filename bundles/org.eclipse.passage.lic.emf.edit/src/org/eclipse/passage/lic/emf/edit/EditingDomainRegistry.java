@@ -17,8 +17,8 @@ import java.nio.file.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
-import org.eclipse.passage.lic.registry.Identified;
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
+import org.eclipse.passage.lic.runtime.registry.Identified;
 
 public interface EditingDomainRegistry extends DescriptorRegistry, IEditingDomainProvider, ComposedAdapterFactoryProvider {
 	

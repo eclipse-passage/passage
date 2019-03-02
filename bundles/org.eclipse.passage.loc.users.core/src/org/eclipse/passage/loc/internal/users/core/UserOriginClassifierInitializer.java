@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.users.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.registry.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersRegistry.DOMAIN_NAME })

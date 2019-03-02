@@ -18,17 +18,17 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.FeatureDescriptor;
-import org.eclipse.passage.lic.registry.FeatureSetDescriptor;
-import org.eclipse.passage.lic.registry.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.registry.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.registry.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.ProductDescriptor;
-import org.eclipse.passage.lic.registry.ProductLineDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.registry.UserDescriptor;
-import org.eclipse.passage.lic.registry.UserOriginDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserDescriptor;
+import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -195,13 +195,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.FeatureSetDescriptor
+	 * @see org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureSetDescriptorAdapter() {
@@ -209,13 +209,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.ProductDescriptor <em>Product Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.products.ProductDescriptor <em>Product Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.ProductDescriptor
+	 * @see org.eclipse.passage.lic.runtime.products.ProductDescriptor
 	 * @generated
 	 */
 	public Adapter createProductDescriptorAdapter() {
@@ -223,13 +223,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.ProductVersionDescriptor
+	 * @see org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor
 	 * @generated
 	 */
 	public Adapter createProductVersionDescriptorAdapter() {
@@ -237,13 +237,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.ProductVersionFeatureDescriptor
+	 * @see org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor
 	 * @generated
 	 */
 	public Adapter createProductVersionFeatureDescriptorAdapter() {
@@ -251,13 +251,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.UserOriginDescriptor
+	 * @see org.eclipse.passage.lic.runtime.users.UserOriginDescriptor
 	 * @generated
 	 */
 	public Adapter createUserOriginDescriptorAdapter() {
@@ -265,13 +265,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.FeatureDescriptor <em>Feature Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.FeatureDescriptor
+	 * @see org.eclipse.passage.lic.runtime.features.FeatureDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureDescriptorAdapter() {
@@ -279,13 +279,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.FeatureVersionDescriptor
+	 * @see org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureVersionDescriptorAdapter() {
@@ -293,13 +293,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.ProductLineDescriptor
+	 * @see org.eclipse.passage.lic.runtime.products.ProductLineDescriptor
 	 * @generated
 	 */
 	public Adapter createProductLineDescriptorAdapter() {
@@ -307,13 +307,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.UserDescriptor <em>User Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.users.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.UserDescriptor
+	 * @see org.eclipse.passage.lic.runtime.users.UserDescriptor
 	 * @generated
 	 */
 	public Adapter createUserDescriptorAdapter() {
@@ -321,13 +321,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor
 	 * @generated
 	 */
 	public Adapter createLicensePackDescriptorAdapter() {
@@ -335,13 +335,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.LicenseGrantDescriptor
+	 * @see org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor
 	 * @generated
 	 */
 	public Adapter createLicenseGrantDescriptorAdapter() {

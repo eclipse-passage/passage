@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.products.ui;
 
+import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.ProductDescriptor;
-import org.eclipse.passage.lic.registry.ProductVersionDescriptor;
-import org.eclipse.passage.loc.edit.ProductDomainRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -29,7 +29,7 @@ public class ProductsUi {
 	public static ProductDescriptor selectProductDescriptor(Shell shell, LicensingImages images, ProductDomainRegistry registry, ProductDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProduct().getName();
 		String title = "Select Product";
-		Iterable<ProductDescriptor> input = registry.getProducts();
+		Iterable<? extends ProductDescriptor> input = registry.getProducts();
 		Class<ProductDescriptor> clazz = ProductDescriptor.class;
 		return LocWokbench.selectClassifier(shell, images, registry, classifier, title, input, initial, clazz);
 	}
@@ -38,7 +38,7 @@ public class ProductsUi {
 			ProductDomainRegistry registry, ProductVersionDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
 		String title = "Select Product Version";
-		Iterable<ProductVersionDescriptor> input = registry.getProductVersions();
+		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();
 		Class<ProductVersionDescriptor> clazz = ProductVersionDescriptor.class;
 		return LocWokbench.selectClassifier(shell, images, registry, classifier, title, input, initial, clazz);
 	}

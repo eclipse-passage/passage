@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.registry.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesRegistry.DOMAIN_NAME })

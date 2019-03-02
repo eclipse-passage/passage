@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.features.ui;
 
+import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.FeatureDescriptor;
-import org.eclipse.passage.loc.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 

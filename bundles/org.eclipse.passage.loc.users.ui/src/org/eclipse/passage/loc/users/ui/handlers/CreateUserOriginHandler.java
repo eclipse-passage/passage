@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.users.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.registry.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
