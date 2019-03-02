@@ -22,8 +22,9 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,14 +38,16 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
-	private final ProductDomainRegistry registry;
-	
+	private final ProductsRegistry registry;
+	private final ComposedAdapterFactoryProvider provider;
+
 	@Inject
 	public ProductIdentifierRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		registry = viewContext.getService(ProductDomainRegistry.class);
+		registry = viewContext.getService(ProductsRegistry.class);
+		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -78,7 +81,7 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, getLicensingImages(), registry, initial);
+		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, getLicensingImages(), provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

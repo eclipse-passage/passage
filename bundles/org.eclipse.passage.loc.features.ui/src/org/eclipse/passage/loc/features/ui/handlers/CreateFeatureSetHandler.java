@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.features.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -22,7 +22,7 @@ public class CreateFeatureSetHandler {
 
 	@Execute
 	public void execute(IEclipseContext context) {
-		String domain = FeaturesRegistry.DOMAIN_NAME;
+		String domain = Features.DOMAIN_NAME;
 		String perspectiveId = FeaturesUi.PERSPECTIVE_MAIN;
 		LocWokbench.createDomainResource(context, domain, perspectiveId);
 	}

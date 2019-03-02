@@ -22,8 +22,9 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.runtime.users.UserDescriptor;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,14 +38,16 @@ public class UserIdentifierRenderer extends TextWithButtonRenderer {
 
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
-	private final UserDomainRegistry registry;
+	private final UsersRegistry registry;
+	private final ComposedAdapterFactoryProvider provider;
 	
 	@Inject
 	public UserIdentifierRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		registry = viewContext.getService(UserDomainRegistry.class);
+		registry = viewContext.getService(UsersRegistry.class);
+		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -78,7 +81,7 @@ public class UserIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		UserDescriptor descriptor = UsersUi.selectUserDescriptor(shell, getLicensingImages(), registry, initial);
+		UserDescriptor descriptor = UsersUi.selectUserDescriptor(shell, getLicensingImages(), provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getEmail();
 			if (identifier != null) {

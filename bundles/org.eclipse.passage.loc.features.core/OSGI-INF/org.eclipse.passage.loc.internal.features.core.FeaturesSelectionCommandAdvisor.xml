@@ -4,6 +4,6 @@
    <service>
       <provide interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor"/>
    </service>
-   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
+   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.runtime.features.FeaturesRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.features.core.FeaturesSelectionCommandAdvisor"/>
 </scr:component>

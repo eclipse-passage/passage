@@ -17,16 +17,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.runtime.features.Features;
 import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -73,13 +73,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createFeatureInfo(Composite parent, FeatureDomainRegistry featureRegistry) {
+	public void createFeatureInfo(Composite parent, FeaturesRegistry featureRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText("Features");
 
-		createLinks(group, FeaturesRegistry.DOMAIN_NAME);
+		createLinks(group, Features.DOMAIN_NAME);
 
 		featureSets = createFeatureSetBlock(group);
 		features = createFeatureBlock(group);
@@ -97,7 +97,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Feature Sets defined.\nPlease create or load Feature Set definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = FeaturesRegistry.DOMAIN_NAME;
+		String domain = Features.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getFeatureSet().getName();
 		block.configureEdit("Select Feature Set to edit", new SelectionAdapter() {
 			@Override
@@ -117,7 +117,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Features defined.\nPlease create it for the Feature Set(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = FeaturesRegistry.DOMAIN_NAME;
+		String domain = Features.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getFeature().getName();
 		block.configureEdit("Select Feature to edit", new SelectionAdapter() {
 			@Override
@@ -137,7 +137,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Feature Versions defined.\nPlease create it for the Feature(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = FeaturesRegistry.DOMAIN_NAME;
+		String domain = Features.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getFeatureVersion().getName();
 		block.configureEdit("Select Feature Version to edit", new SelectionAdapter() {
 			@Override
@@ -149,20 +149,20 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateFeatureInfo(FeatureDomainRegistry featureRegistry) {
+	public void updateFeatureInfo(FeaturesRegistry featureRegistry) {
 		featureSets.update(featureRegistry.getFeatureSets());
 		features.update(featureRegistry.getFeatures());
 		featureVersions.update(featureRegistry.getFeatureVersions());
 	}
 
 	@Override
-	public void createProductInfo(Composite parent, ProductDomainRegistry productRegistry) {
+	public void createProductInfo(Composite parent, ProductsRegistry productRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText("Products");
 
-		createLinks(group, ProductsRegistry.DOMAIN_NAME);
+		createLinks(group, Products.DOMAIN_NAME);
 
 		productLines = createProductLineBlock(group);
 		products = createProductBlock(group, productRegistry);
@@ -181,7 +181,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Product Lines defined.\nPlease create or load Product Line definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = ProductsRegistry.DOMAIN_NAME;
+		String domain = Products.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getProductLine().getName();
 		block.configureEdit("Select Product Line to edit", new SelectionAdapter() {
 			@Override
@@ -192,7 +192,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		return block;
 	}
 
-	protected DashboardPanelBlock createProductBlock(Composite parent, ProductDomainRegistry registry) {
+	protected DashboardPanelBlock createProductBlock(Composite parent, ProductsRegistry registry) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Products:";
 		Image image = getImage(LicPackage.eINSTANCE.getProduct());
@@ -201,7 +201,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Products defined.\nPlease create it for the Product Line(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = ProductsRegistry.DOMAIN_NAME;
+		String domain = Products.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getProduct().getName();
 		block.configureEdit("Select Product to edit", new SelectionAdapter() {
 			@Override
@@ -221,7 +221,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Product Versions defined.\nPlease create it for the Product(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = ProductsRegistry.DOMAIN_NAME;
+		String domain = Products.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
 		block.configureEdit("Select Product Version to edit", new SelectionAdapter() {
 			@Override
@@ -241,7 +241,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Product Version Features defined.\nPlease create it for the Product Verion(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = ProductsRegistry.DOMAIN_NAME;
+		String domain = Products.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getProductVersionFeature().getName();
 		block.configureEdit("Select Product Version Feature to edit", new SelectionAdapter() {
 			@Override
@@ -253,7 +253,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateProductInfo(ProductDomainRegistry productRegistry) {
+	public void updateProductInfo(ProductsRegistry productRegistry) {
 		productLines.update(productRegistry.getProductLines());
 		products.update(productRegistry.getProducts());
 		productVersions.update(productRegistry.getProductVersions());
@@ -261,13 +261,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createUserInfo(Composite parent, UserDomainRegistry userRegistry) {
+	public void createUserInfo(Composite parent, UsersRegistry userRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText("Users");
 
-		createLinks(group, UsersRegistry.DOMAIN_NAME);
+		createLinks(group, Users.DOMAIN_NAME);
 
 		userOrigins = createUserOriginBlock(group);
 		users = createUserBlock(group);
@@ -284,7 +284,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no User Origins defined.\nPlease create or load User Origin definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = UsersRegistry.DOMAIN_NAME;
+		String domain = Users.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getUserOrigin().getName();
 		block.configureEdit("Select User Origin to edit", new SelectionAdapter() {
 			@Override
@@ -304,7 +304,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no Users defined.\nPlease create it for the User Origin(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = UsersRegistry.DOMAIN_NAME;
+		String domain = Users.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getUser().getName();
 		block.configureEdit("Select User to edit", new SelectionAdapter() {
 			@Override
@@ -316,19 +316,19 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateUserInfo(UserDomainRegistry userRegistry) {
+	public void updateUserInfo(UsersRegistry userRegistry) {
 		userOrigins.update(userRegistry.getUserOrigins());
 		users.update(userRegistry.getUsers());
 	}
 
 	@Override
-	public void createLicenseInfo(Composite parent, LicenseDomainRegistry licenseRegistry) {
+	public void createLicenseInfo(Composite parent, LicensesRegistry licenseRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText("Licenses");
 
-		createLinks(group, LicensesRegistry.DOMAIN_NAME);
+		createLinks(group, Licenses.DOMAIN_NAME);
 
 		licensePacks = createLicensePackBlock(group);
 		updateLicenseInfo(licenseRegistry);
@@ -343,7 +343,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String warning = "You have no License Packs defined.\nPlease create or load License Pack definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
-		String domain = LicensesRegistry.DOMAIN_NAME;
+		String domain = Licenses.DOMAIN_NAME;
 		String classifier = LicPackage.eINSTANCE.getLicensePack().getName();
 		block.configureEdit("Select License Pack to edit", new SelectionAdapter() {
 			@Override
@@ -355,7 +355,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateLicenseInfo(LicenseDomainRegistry licenseRegistry) {
+	public void updateLicenseInfo(LicensesRegistry licenseRegistry) {
 		licensePacks.update(licenseRegistry.getLicensePacks());
 	}
 

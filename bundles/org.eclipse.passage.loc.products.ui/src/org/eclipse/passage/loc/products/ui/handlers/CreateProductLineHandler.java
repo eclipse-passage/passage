@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.products.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -23,7 +23,7 @@ public class CreateProductLineHandler {
 
 	@Execute
 	public void execute(IEclipseContext context) {
-		String domain = ProductsRegistry.DOMAIN_NAME;
+		String domain = Products.DOMAIN_NAME;
 		String perspectiveId = ProductsUi.PERSPECTIVE_MAIN;
 		LocWokbench.createDomainResource(context, domain, perspectiveId);
 	}

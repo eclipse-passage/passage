@@ -17,10 +17,10 @@ import javax.inject.Named;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
-import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
-import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
+import org.eclipse.passage.lic.runtime.products.Products;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -40,16 +40,16 @@ public class DomainRegistryCreateHandler {
 		String domain = null;
 		switch (domainRegistryId) {
 		case REGISTRY_RESOURCE_CREATE_FEATURE:
-			domain = FeaturesRegistry.DOMAIN_NAME;
+			domain = Features.DOMAIN_NAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_PRODUCT:
-			domain = ProductsRegistry.DOMAIN_NAME;
+			domain = Products.DOMAIN_NAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_USER:
-			domain = UsersRegistry.DOMAIN_NAME;
+			domain = Users.DOMAIN_NAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_LICENSE:
-			domain = LicensesRegistry.DOMAIN_NAME;
+			domain = Licenses.DOMAIN_NAME;
 			break;
 		}
 

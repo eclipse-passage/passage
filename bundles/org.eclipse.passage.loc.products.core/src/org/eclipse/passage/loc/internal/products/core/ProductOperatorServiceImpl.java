@@ -13,16 +13,19 @@
 package org.eclipse.passage.loc.internal.products.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.LicensingPaths;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.model.api.Product;
 import org.eclipse.passage.lic.model.api.ProductVersion;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
+import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.edit.LocEdit;
 import org.eclipse.passage.loc.runtime.ProductOperatorEvents;
@@ -39,13 +42,22 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 	
 	private String pluginId;
 
+	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
-	private ProductDomainRegistry productRegistry;
 	private StreamCodec streamCodec;
 	
 	@Activate
 	public void activate(BundleContext context) {
 		pluginId = context.getBundle().getSymbolicName();
+	}
+
+	@Reference
+	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
+		this.environmentInfo = environmentInfo;
+	}
+
+	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
+		this.environmentInfo = null;
 	}
 
 	@Reference
@@ -64,6 +76,22 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 
 	public void unbindStreamCodec(StreamCodec streamCodec) {
 		this.streamCodec = null;
+	}
+
+	@Override
+	public String createPassword(ProductVersionDescriptor descriptor) {
+		String id = null;
+		String version = null;
+		if (descriptor != null) {
+			ProductDescriptor product = descriptor.getProduct();
+			if (product != null) {
+				id = product.getIdentifier();
+			}
+			version = descriptor.getVersion();
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(id).append("###").append(version); //$NON-NLS-1$
+		return sb.toString();
 	}
 
 	@Override
@@ -106,7 +134,7 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 			String message = String.format(pattern, version, product.getName());
 			return new Status(IStatus.ERROR, pluginId, message);
 		}
-		Path basePath = productRegistry.getBasePath();
+		Path basePath = getBasePath();
 		try {
 			Path path = basePath.resolve(identifier).resolve(version);
 			Files.createDirectories(path);
@@ -116,7 +144,7 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 					+ LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
 			String privateKeyPath = storageKeyFolder + File.separator + keyFileName + LocEdit.EXTENSION_KEY_PRIVATE;
 			streamCodec.createKeyPair(publicKeyPath, privateKeyPath, identifier,
-					productRegistry.createPassword(productVersion));
+					createPassword(productVersion));
 			productVersion.setInstallationToken(publicKeyPath);
 			productVersion.setSecureToken(privateKeyPath);
 			eventAdmin.postEvent(ProductOperatorEvents.publicCreated(publicKeyPath));
@@ -127,6 +155,18 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 		} catch (Exception e) {
 			return new Status(IStatus.ERROR, pluginId, "Product key export error", e);
 		}
+	}
+
+	public Path getBasePath() {
+		String areaValue = environmentInfo.getProperty("user.home"); //$NON-NLS-1$
+		Path passagePath = Paths.get(areaValue, LicensingPaths.FOLDER_LICENSING_BASE);
+		try {
+			Files.createDirectories(passagePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return passagePath;
 	}
 
 }

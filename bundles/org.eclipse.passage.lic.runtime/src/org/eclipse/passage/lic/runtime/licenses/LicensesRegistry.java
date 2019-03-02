@@ -12,9 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.licenses;
 
-public class LicensesRegistry {
-	
-	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_licenses"; //$NON-NLS-1$
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
 
+public interface LicensesRegistry extends DescriptorRegistry {
+	
+	Iterable<? extends LicensePackDescriptor> getLicensePacks();
+
+	Iterable<? extends LicensePackDescriptor> getUserLicensePacks(String userId);
+
+	Iterable<? extends LicensePackDescriptor> getProductVersionLicensePacks(String productId, String version);
+
+	LicensePackDescriptor getLicensePack(String licensePackId);
+
+	void registerLicensePack(LicensePackDescriptor licensePack);
+	
+	void unregisterLicensePack(String identifier);
+	
 }

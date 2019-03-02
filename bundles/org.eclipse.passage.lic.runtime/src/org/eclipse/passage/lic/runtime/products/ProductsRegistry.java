@@ -12,9 +12,45 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.products;
 
-public class ProductsRegistry {
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
+
+public interface ProductsRegistry extends DescriptorRegistry {
+
+	Iterable<? extends ProductLineDescriptor> getProductLines();
+
+	ProductLineDescriptor getProductLine(String productLineId);
+
+	void registerProductLine(ProductLineDescriptor productLine);
 	
-	public static final String DOMAIN_NAME = "products"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_products"; //$NON-NLS-1$
+	void unregisterProductLine(String productLineId);
+	
+	Iterable<? extends ProductDescriptor> getProducts();
+
+	Iterable<? extends ProductDescriptor> getProducts(String productLineId);
+	
+	ProductDescriptor getProduct(String productId);
+
+	void registerProduct(ProductDescriptor product);
+	
+	void unregisterProduct(String productId);
+	
+	Iterable<? extends ProductVersionDescriptor> getProductVersions();
+
+	Iterable<? extends ProductVersionDescriptor> getProductVersions(String productId);
+
+	ProductVersionDescriptor getProductVersion(String productId, String version);
+
+	void registerProductVersion(ProductDescriptor product, ProductVersionDescriptor productVersion);
+	
+	void unregisterProductVersion(String productId, String version);
+	
+	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
+
+	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures(String productId, String version);
+
+	void registerProductVersionFeature(ProductDescriptor product, ProductVersionDescriptor productVersion,
+			ProductVersionFeatureDescriptor productVersionFeature);
+
+	void unregisterProductVersionFeature(String productId, String version, String featureId);
 
 }

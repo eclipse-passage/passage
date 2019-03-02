@@ -12,9 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.users;
 
-public class UsersRegistry {
-	
-	public static final String DOMAIN_NAME = "users"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_users"; //$NON-NLS-1$
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
 
+public interface UsersRegistry extends DescriptorRegistry {
+
+	Iterable<? extends UserOriginDescriptor> getUserOrigins();
+
+	UserOriginDescriptor getUserOrigin(String userOriginId);
+
+	void registerUserOrigin(UserOriginDescriptor userOrigin);
+	
+	void unregisterUserOrigin(String userOriginId);
+	
+	Iterable<? extends UserDescriptor> getUsers();
+
+	Iterable<? extends UserDescriptor> getUsers(String userOriginId);
+
+	UserDescriptor getUser(String userId);
+
+	void registerUser(UserDescriptor user);
+
+	void unregisterUser(String userId);
+	
 }

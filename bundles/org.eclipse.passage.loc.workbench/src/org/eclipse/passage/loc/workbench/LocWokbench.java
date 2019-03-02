@@ -139,12 +139,13 @@ public class LocWokbench {
 		Shell shell = context.get(Shell.class);
 		LicensingImages images = context.get(LicensingImages.class);
 		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
-		return selectClassifier(shell, images, provider, classifier, title, input, initial);
+		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
+		return selectClassifier(shell, images, factory, classifier, title, input, initial);
 	}
 
-	public static <C> C selectClassifier(Shell shell, LicensingImages images, ComposedAdapterFactoryProvider provider,
+	public static <C> C selectClassifier(Shell shell, LicensingImages images, ComposedAdapterFactory factory,
 			String classifier, String title, Iterable<? extends C> input, C initial, Class<C> clazz) {
-		Object selected = selectClassifier(shell, images, provider, classifier, title, input, initial);
+		Object selected = selectClassifier(shell, images, factory, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);
 		}
@@ -152,7 +153,7 @@ public class LocWokbench {
 	}
 
 	public static <C> Object selectClassifier(Shell shell, LicensingImages images,
-			ComposedAdapterFactoryProvider provider, String classifier, String title, Iterable<? extends C> input, C initial) {
+			ComposedAdapterFactory factory, String classifier, String title, Iterable<? extends C> input, C initial) {
 		if (input == null) {
 			return null;
 		}
@@ -169,7 +170,6 @@ public class LocWokbench {
 		dialog.setTitle(title);
 		dialog.setImage(images.getImage(classifier));
 
-		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
 		dialog.setLabelProvider(new DomainRegistryLabelProvider(images, factory));
 		dialog.setInput(input);
 		if (initial != null) {

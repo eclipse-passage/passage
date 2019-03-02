@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.licenses.emfforms.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.workbench.emfforms.LocWorkbenchEmfforms;
 
@@ -22,7 +22,7 @@ public class CreateLicensePackHandler {
 
 	@Execute
 	public void execute(IEclipseContext context) {
-		String domain = LicensesRegistry.DOMAIN_NAME;
+		String domain = Licenses.DOMAIN_NAME;
 		String perspectiveId = LicensesUi.PERSPECTIVE_MAIN;
 		LocWorkbenchEmfforms.createDomainContentObject(context, domain, perspectiveId);
 	}

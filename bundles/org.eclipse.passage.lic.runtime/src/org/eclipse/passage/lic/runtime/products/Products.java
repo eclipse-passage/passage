@@ -10,15 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.runtime;
+package org.eclipse.passage.lic.runtime.products;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
-
-public interface ProductOperatorService {
+public class Products {
 	
-	String createPassword(ProductVersionDescriptor productVersion);
+	public static final String DOMAIN_NAME = "products"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "lic_products"; //$NON-NLS-1$
 
-	IStatus createProductKeys(ProductVersionDescriptor descriptor);
-	
 }

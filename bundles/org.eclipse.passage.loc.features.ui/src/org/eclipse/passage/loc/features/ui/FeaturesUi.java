@@ -12,10 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.features.ui;
 
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -26,12 +28,13 @@ public class FeaturesUi {
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
 	public static FeatureDescriptor selectFeatureDescriptor(Shell shell, LicensingImages images,
-			FeatureDomainRegistry registry, FeatureDescriptor initial) {
+			ComposedAdapterFactoryProvider provider, FeaturesRegistry registry, FeatureDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getFeature().getName();
 		String title = "Select Feature";
-		Iterable<FeatureDescriptor> input = registry.getFeatures();
+		Iterable<? extends FeatureDescriptor> input = registry.getFeatures();
 		Class<FeatureDescriptor> clazz = FeatureDescriptor.class;
-		return LocWokbench.selectClassifier(shell, images, registry, classifier, title, input, initial, clazz);
+		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
+		return LocWokbench.selectClassifier(shell, images, factory, classifier, title, input, initial, clazz);
 	}
 	
 }

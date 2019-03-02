@@ -10,20 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.users;
+package org.eclipse.passage.lic.runtime.licenses;
 
-import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
-
-public interface UserRegistry extends DescriptorRegistry {
-
-	Iterable<? extends UserOriginDescriptor> getUserOrigins();
-
-	UserOriginDescriptor getUserOrigin(String userOriginId);
-
-	Iterable<? extends UserDescriptor> getUsers();
-
-	Iterable<? extends UserDescriptor> getUsers(String userOriginId);
-
-	UserDescriptor getUser(String userId);
+public class Licenses {
+	
+	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "lic_licenses"; //$NON-NLS-1$
 
 }

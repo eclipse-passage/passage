@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.osgi.service.component.annotations.Component;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public final class ProductLineClassifierInitializer implements ClassifierInitializer {
 	@Override
 	public String newObjectIdentifier() {

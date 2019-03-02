@@ -23,41 +23,41 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeaturesEvents;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.runtime.licenses.LicensesEvents;
 import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductsEvents;
 import org.eclipse.passage.lic.runtime.users.UserDescriptor;
 import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.lic.runtime.users.UsersEvents;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 public class DashboardPanelPart {
 	
-	private final FeatureDomainRegistry featureRegistry;
-	private final ProductDomainRegistry productRegistry;
-	private final UserDomainRegistry userRegistry;
-	private final LicenseDomainRegistry licenseRegistry;
+	private final FeaturesRegistry featureRegistry;
+	private final ProductsRegistry productRegistry;
+	private final UsersRegistry userRegistry;
+	private final LicensesRegistry licenseRegistry;
 	private final DashboardPanelAdvisor dashboardAdvisor;
 	
 	@Inject
 	public DashboardPanelPart(IEclipseContext context) {
-		this.featureRegistry = context.get(FeatureDomainRegistry.class);
-		this.productRegistry = context.get(ProductDomainRegistry.class);
-		this.userRegistry = context.get(UserDomainRegistry.class);
-		this.licenseRegistry = context.get(LicenseDomainRegistry.class);
+		this.featureRegistry = context.get(FeaturesRegistry.class);
+		this.productRegistry = context.get(ProductsRegistry.class);
+		this.userRegistry = context.get(UsersRegistry.class);
+		this.licenseRegistry = context.get(LicensesRegistry.class);
 		DashboardPanelAdvisor advisor = context.get(DashboardPanelAdvisor.class);
 		if (advisor == null) {
 			advisor = new DefaultDashboardPanelAdvisor();

@@ -14,14 +14,13 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
-public class LicenseDomainRegistryTracker extends DomainContentAdapter<LicenseDomainRegistry> {
+public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensesDomainRegistry> {
 
-	public LicenseDomainRegistryTracker(LicenseDomainRegistry registry) {
+	public LicensesDomainRegistryTracker(LicensesDomainRegistry registry) {
 		super(registry);
 	}
 

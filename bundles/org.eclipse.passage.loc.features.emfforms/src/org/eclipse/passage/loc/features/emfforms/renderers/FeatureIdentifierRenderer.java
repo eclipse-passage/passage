@@ -22,8 +22,9 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,14 +38,16 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
-	private final FeatureDomainRegistry registry;
+	private final FeaturesRegistry registry;
+	private final ComposedAdapterFactoryProvider provider;
 	
 	@Inject
 	public FeatureIdentifierRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		registry = viewContext.getService(FeatureDomainRegistry.class);
+		registry = viewContext.getService(FeaturesRegistry.class);
+		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -78,7 +81,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, getLicensingImages(), registry, initial);
+		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, getLicensingImages(), provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

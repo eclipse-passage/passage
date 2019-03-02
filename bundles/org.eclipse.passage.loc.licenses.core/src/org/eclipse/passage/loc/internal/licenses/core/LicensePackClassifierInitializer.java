@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.osgi.service.component.annotations.Component;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME })
 public final class LicensePackClassifierInitializer implements ClassifierInitializer {
 	@Override
 	public String newObjectIdentifier() {

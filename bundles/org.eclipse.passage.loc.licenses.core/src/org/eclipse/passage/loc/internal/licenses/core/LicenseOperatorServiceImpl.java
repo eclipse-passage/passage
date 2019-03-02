@@ -16,7 +16,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,16 +29,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.LicensingPaths;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.edit.LocEdit;
 import org.eclipse.passage.loc.runtime.LicenseOperatorEvents;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;
+import org.eclipse.passage.loc.runtime.ProductOperatorService;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Reference;
@@ -47,14 +50,24 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 
 	private String pluginId;
 
+	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
-	private LicenseDomainRegistry licenseRegistry;
-	private ProductDomainRegistry productRegistry;
+	private ProductsRegistry productRegistry;
+	private ProductOperatorService productOperatorService;
 	private StreamCodec streamCodec;
 	
 	@Activate
 	public void activate(BundleContext context) {
 		pluginId = context.getBundle().getSymbolicName();
+	}
+
+	@Reference
+	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
+		this.environmentInfo = environmentInfo;
+	}
+
+	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
+		this.environmentInfo = null;
 	}
 
 	@Reference
@@ -64,6 +77,24 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 
 	public void unbindEventAdmin(EventAdmin eventAdmin) {
 		this.eventAdmin = null;
+	}
+
+	@Reference
+	public void bindProductRegistry(ProductsRegistry productRegistry) {
+		this.productRegistry = productRegistry;
+	}
+
+	public void unbindProductRegistry(ProductsRegistry productRegistry) {
+		this.productRegistry = null;
+	}
+
+	@Reference
+	public void bindProductOperatorService(ProductOperatorService productOperatorService) {
+		this.productOperatorService = productOperatorService;
+	}
+
+	public void unbindProductOperatorService(ProductOperatorService productOperatorService) {
+		this.productOperatorService = null;
 	}
 
 	@Reference(cardinality=ReferenceCardinality.OPTIONAL)
@@ -91,7 +122,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		}
 		String productIdentifier = license.getProductIdentifier();
 		String productVersion = license.getProductVersion();
-		Path basePath = licenseRegistry.getBasePath();
+		Path basePath = getBasePath();
 		Path path = basePath.resolve(productIdentifier).resolve(productVersion);
 		String storageKeyFolder = path.toFile().getAbsolutePath();
 
@@ -133,7 +164,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded); FileInputStream keyStream = new FileInputStream(privateProductToken)) {
 			String username = productIdentifier;
 			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
-			String password = productRegistry.createPassword(pvd);
+			String password = productOperatorService.createPassword(pvd);
 			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
 			eventAdmin.postEvent(LicenseOperatorEvents.encodedIssued(licenseOut));
 			String format = "License pack exported succesfully: \n\n %s \n";
@@ -142,6 +173,18 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		} catch (Exception e) {
 			return new Status(IStatus.ERROR, pluginId, "License Pack export error", e);
 		}
+	}
+
+	public Path getBasePath() {
+		String areaValue = environmentInfo.getProperty("user.home"); //$NON-NLS-1$
+		Path passagePath = Paths.get(areaValue, LicensingPaths.FOLDER_LICENSING_BASE);
+		try {
+			Files.createDirectories(passagePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return passagePath;
 	}
 
 }

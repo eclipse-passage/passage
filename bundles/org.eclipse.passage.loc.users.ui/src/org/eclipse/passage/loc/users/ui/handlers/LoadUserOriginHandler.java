@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.users.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -22,7 +22,7 @@ public class LoadUserOriginHandler {
 
 	@Execute
 	public void execute(IEclipseContext eclipseContext) {
-		String domain = UsersRegistry.DOMAIN_NAME;
+		String domain = Users.DOMAIN_NAME;
 		String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
 		LocWokbench.loadDomainResource(eclipseContext, domain, perspectiveId);
 	}

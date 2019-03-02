@@ -14,16 +14,15 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.model.api.Product;
 import org.eclipse.passage.lic.model.api.ProductLine;
 import org.eclipse.passage.lic.model.api.ProductVersion;
 import org.eclipse.passage.lic.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
-public class ProductDomainRegistryTracker extends DomainContentAdapter<ProductDomainRegistry> {
+public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductsDomainRegistry> {
 	
-	public ProductDomainRegistryTracker(ProductDomainRegistry registry) {
+	public ProductsDomainRegistryTracker(ProductsDomainRegistry registry) {
 		super(registry);
 	}
 

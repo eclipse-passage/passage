@@ -3,6 +3,7 @@
    <service>
       <provide interface="org.eclipse.passage.loc.runtime.ProductOperatorService"/>
    </service>
+   <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindStreamCodec" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.io.StreamCodec" name="StreamCodec" unbind="unbindStreamCodec"/>
    <implementation class="org.eclipse.passage.loc.internal.products.core.ProductOperatorServiceImpl"/>

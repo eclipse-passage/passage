@@ -26,19 +26,19 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeaturesEvents;
 import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.runtime.licenses.LicensesEvents;
 import org.eclipse.passage.lic.runtime.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.products.ProductsEvents;
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
 import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.lic.runtime.users.UsersEvents;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -47,17 +47,17 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DomainRegistryExplorerPart {
 
-	private List<EditingDomainRegistry> registries = new ArrayList<>();
+	private List<DescriptorRegistry> registries = new ArrayList<>();
 
 	private TreeViewer treeView;
 	private LicensingImages licensingImages;
 
 	@Inject
 	public DomainRegistryExplorerPart(IEclipseContext context) {
-		this.registries.add(context.get(FeatureDomainRegistry.class));
-		this.registries.add(context.get(ProductDomainRegistry.class));
-		this.registries.add(context.get(UserDomainRegistry.class));
-		this.registries.add(context.get(LicenseDomainRegistry.class));
+		this.registries.add(context.get(FeaturesRegistry.class));
+		this.registries.add(context.get(ProductsRegistry.class));
+		this.registries.add(context.get(UsersRegistry.class));
+		this.registries.add(context.get(LicensesRegistry.class));
 		this.licensingImages = context.get(LicensingImages.class);
 	}
 

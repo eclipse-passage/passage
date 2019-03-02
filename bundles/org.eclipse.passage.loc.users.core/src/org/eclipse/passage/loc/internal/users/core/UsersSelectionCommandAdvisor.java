@@ -16,23 +16,23 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME })
 public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 	
-	private UserDomainRegistry registry;
+	private UsersRegistry registry;
 	
 	@Reference
-	public void bindDomainRegistry(UserDomainRegistry registry) {
+	public void bindDomainRegistry(UsersRegistry registry) {
 		this.registry = registry;
 	}
 
-	public void unbindDomainRegistry(UserDomainRegistry registry) {
+	public void unbindDomainRegistry(UsersRegistry registry) {
 		this.registry = null;
 	}
 

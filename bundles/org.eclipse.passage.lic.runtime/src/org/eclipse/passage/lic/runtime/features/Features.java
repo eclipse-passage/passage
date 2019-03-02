@@ -10,16 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.edit;
+package org.eclipse.passage.lic.runtime.features;
 
-import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.runtime.licenses.LicenseRegistry;
-import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
-
-public interface LicenseDomainRegistry extends LicenseRegistry, EditingDomainRegistry, DescriptorRegistry {
-
-	void registerLicensePack(LicensePackDescriptor licensePack);
-
-	void unregisterLicensePack(String identifier);
+public class Features {
+	
+	public static final String DOMAIN_NAME = "features"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "lic_features"; //$NON-NLS-1$
 
 }

@@ -15,24 +15,24 @@ package org.eclipse.passage.loc.internal.features.core;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME })
 public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor {
 	
-	private FeatureDomainRegistry registry;
+	private FeaturesRegistry registry;
 	
 	@Reference
-	public void bindDomainRegistry(FeatureDomainRegistry registry) {
+	public void bindDomainRegistry(FeaturesRegistry registry) {
 		this.registry = registry;
 	}
 
-	public void unbindDomainRegistry(FeatureDomainRegistry registry) {
+	public void unbindDomainRegistry(FeaturesRegistry registry) {
 		this.registry = null;
 	}
 

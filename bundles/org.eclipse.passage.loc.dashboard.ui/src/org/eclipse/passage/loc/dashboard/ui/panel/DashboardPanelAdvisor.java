@@ -13,10 +13,10 @@
 package org.eclipse.passage.loc.dashboard.ui.panel;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.swt.widgets.Composite;
 
 public interface DashboardPanelAdvisor {
@@ -25,21 +25,21 @@ public interface DashboardPanelAdvisor {
 
 	void createHeaderInfo(Composite parent);
 
-	void createFeatureInfo(Composite parent, FeatureDomainRegistry featureRegistry);
+	void createFeatureInfo(Composite parent, FeaturesRegistry featureRegistry);
 
-	void updateFeatureInfo(FeatureDomainRegistry featureRegistry);
+	void updateFeatureInfo(FeaturesRegistry featureRegistry);
 	
-	void createProductInfo(Composite parent, ProductDomainRegistry productRegistry);
+	void createProductInfo(Composite parent, ProductsRegistry productRegistry);
 
-	void updateProductInfo(ProductDomainRegistry productRegistry);
+	void updateProductInfo(ProductsRegistry productRegistry);
 	
-	void createUserInfo(Composite parent, UserDomainRegistry userRegistry);
+	void createUserInfo(Composite parent, UsersRegistry userRegistry);
 	
-	void updateUserInfo(UserDomainRegistry userRegistry);
+	void updateUserInfo(UsersRegistry userRegistry);
 	
-	void createLicenseInfo(Composite parent, LicenseDomainRegistry licenseRegistry);
+	void createLicenseInfo(Composite parent, LicensesRegistry licenseRegistry);
 	
-	void updateLicenseInfo(LicenseDomainRegistry licenseRegistry);
+	void updateLicenseInfo(LicensesRegistry licenseRegistry);
 
 	void createFooterInfo(Composite parent);
 

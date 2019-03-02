@@ -17,14 +17,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.runtime.features.FeatureRegistry;
 import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
-import org.eclipse.passage.lic.runtime.licenses.LicenseRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
 import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.runtime.products.ProductRegistry;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
-import org.eclipse.passage.lic.runtime.users.UserRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.swt.graphics.Image;
 
@@ -38,16 +38,16 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if (element instanceof FeatureRegistry) {
+		if (element instanceof FeaturesRegistry) {
 			return "Features";
 		}
-		if (element instanceof ProductRegistry) {
+		if (element instanceof ProductsRegistry) {
 			return "Products";
 		}
-		if (element instanceof UserRegistry) {
+		if (element instanceof UsersRegistry) {
 			return "Users";
 		}
-		if (element instanceof LicenseRegistry) {
+		if (element instanceof LicensesRegistry) {
 			return "Licenses";
 		}
 		if (element instanceof Resource) {
@@ -60,7 +60,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof FeatureRegistry) {
+		if (element instanceof FeaturesRegistry) {
 			return images.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
 		}
 		if (element instanceof EditingDomainBasedRegistry) {
@@ -80,16 +80,16 @@ class DomainRegistryLabelProvider extends LabelProvider {
 			return null;
 		}
 		String lastSegment = uri.lastSegment();
-		if (lastSegment.endsWith(FeaturesRegistry.FILE_EXTENSION_XMI)) {
+		if (lastSegment.endsWith(Features.FILE_EXTENSION_XMI)) {
 			return images.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
 		}
-		if (lastSegment.endsWith(ProductsRegistry.FILE_EXTENSION_XMI)) {
+		if (lastSegment.endsWith(Products.FILE_EXTENSION_XMI)) {
 			return images.getImage(LicPackage.eINSTANCE.getProductLine().getName());
 		}
-		if (lastSegment.endsWith(UsersRegistry.FILE_EXTENSION_XMI)) {
+		if (lastSegment.endsWith(Users.FILE_EXTENSION_XMI)) {
 			return images.getImage(LicPackage.eINSTANCE.getUserOrigin().getName());
 		}
-		if (lastSegment.endsWith(LicensesRegistry.FILE_EXTENSION_XMI)) {
+		if (lastSegment.endsWith(Licenses.FILE_EXTENSION_XMI)) {
 			return images.getImage(LicPackage.eINSTANCE.getLicensePack().getName());
 		}
 		return null;

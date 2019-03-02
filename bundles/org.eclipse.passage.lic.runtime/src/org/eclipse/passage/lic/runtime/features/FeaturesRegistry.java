@@ -12,9 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.features;
 
-public class FeaturesRegistry {
-	
-	public static final String DOMAIN_NAME = "features"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_features"; //$NON-NLS-1$
+import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
 
+public interface FeaturesRegistry extends DescriptorRegistry {
+	
+	Iterable<? extends FeatureSetDescriptor> getFeatureSets();
+
+	FeatureSetDescriptor getFeatureSet(String featureSetId);
+
+	void registerFeatureSet(FeatureSetDescriptor featureSet);
+	
+	void unregisterFeatureSet(String featureSetId);
+
+	Iterable<? extends FeatureDescriptor> getFeatures();
+
+	Iterable<? extends FeatureDescriptor> getFeatures(String featureSetId);
+
+	FeatureDescriptor getFeature(String featureId);
+
+	void registerFeature(FeatureDescriptor feature);
+	
+	void unregisterFeature(String featureId);
+	
+	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
+
+	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions(String featureId);
+
+	FeatureVersionDescriptor getFeatureVersion(String featureId, String version);
+
+	void registerFeatureVersion(FeatureDescriptor feature, FeatureVersionDescriptor featureVersion);
+	
+	void unregisterFeatureVersion(String featureId, String version);
+	
 }

@@ -26,15 +26,14 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.FeatureDomainRegistry;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
-import org.eclipse.passage.lic.runtime.features.FeatureRegistry;
+import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeaturesEvents;
-import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
 import org.eclipse.passage.lic.runtime.registry.Identified;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
@@ -44,10 +43,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesRegistry.DOMAIN_NAME,
-		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + FeaturesRegistry.FILE_EXTENSION_XMI})
-public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
-		implements FeatureRegistry, FeatureDomainRegistry, EditingDomainRegistry {
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME,
+		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI})
+public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
+		implements FeaturesRegistry, EditingDomainRegistry {
 
 	private final Map<String, FeatureSetDescriptor> featureSetIndex = new HashMap<>();
 	private final Map<String, FeatureDescriptor> featureIndex = new HashMap<>();
@@ -106,11 +105,11 @@ public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
 
 	@Override
 	public String getFileExtension() {
-		return FeaturesRegistry.FILE_EXTENSION_XMI;
+		return Features.FILE_EXTENSION_XMI;
 	}
 
 	@Override
-	public Iterable<FeatureSetDescriptor> getFeatureSets() {
+	public Iterable<? extends FeatureSetDescriptor> getFeatureSets() {
 		return new ArrayList<>(featureSetIndex.values());
 	}
 
@@ -120,12 +119,12 @@ public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public Iterable<FeatureDescriptor> getFeatures() {
+	public Iterable<? extends FeatureDescriptor> getFeatures() {
 		return new ArrayList<>(featureIndex.values());
 	}
 
 	@Override
-	public Iterable<FeatureDescriptor> getFeatures(String featureSetId) {
+	public Iterable<? extends FeatureDescriptor> getFeatures(String featureSetId) {
 		FeatureSetDescriptor featureSet = featureSetIndex.get(featureSetId);
 		if (featureSet == null) {
 			return Collections.emptyList();
@@ -141,7 +140,7 @@ public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public Iterable<FeatureVersionDescriptor> getFeatureVersions() {
+	public Iterable<? extends FeatureVersionDescriptor> getFeatureVersions() {
 		List<FeatureVersionDescriptor> list = new ArrayList<>();
 		Collection<Map<String, FeatureVersionDescriptor>> values = featureVersionIndex.values();
 		for (Map<String, FeatureVersionDescriptor> map : values) {
@@ -151,7 +150,7 @@ public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public Iterable<FeatureVersionDescriptor> getFeatureVersions(String featureId) {
+	public Iterable<? extends FeatureVersionDescriptor> getFeatureVersions(String featureId) {
 		Map<String, FeatureVersionDescriptor> map = featureVersionIndex.get(featureId);
 		if (map == null) {
 			return Collections.emptyList();
@@ -169,8 +168,8 @@ public class FeatureDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<FeatureDomainRegistry> createContentAdapter() {
-		return new FeatureDomainRegistryTracker(this);
+	protected DomainContentAdapter<FeaturesDomainRegistry> createContentAdapter() {
+		return new FeaturesDomainRegistryTracker(this);
 	}
 
 	@Override

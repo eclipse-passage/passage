@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.users.core.UserDomainRegistryImpl">
-   <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="users"/>
-   <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_users"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.products.core.ProductsDomainRegistry">
+   <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="products"/>
+   <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_products"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.users.UserRegistry"/>
-      <provide interface="org.eclipse.passage.lic.emf.edit.UserDomainRegistry"/>
+      <provide interface="org.eclipse.passage.lic.runtime.products.ProductsRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>
-   <implementation class="org.eclipse.passage.loc.internal.users.core.UserDomainRegistryImpl"/>
+   <implementation class="org.eclipse.passage.loc.internal.products.core.ProductsDomainRegistry"/>
 </scr:component>

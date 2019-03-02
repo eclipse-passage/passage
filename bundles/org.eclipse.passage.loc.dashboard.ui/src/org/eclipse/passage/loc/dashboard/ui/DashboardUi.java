@@ -24,10 +24,10 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
-import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
-import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.features.Features;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
+import org.eclipse.passage.lic.runtime.products.Products;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
@@ -99,13 +99,13 @@ public class DashboardUi {
 			return null;
 		}
 		switch (domain) {
-		case FeaturesRegistry.DOMAIN_NAME:
+		case Features.DOMAIN_NAME:
 			return FeaturesUi.PERSPECTIVE_MAIN;
-		case ProductsRegistry.DOMAIN_NAME:
+		case Products.DOMAIN_NAME:
 			return ProductsUi.PERSPECTIVE_MAIN;
-		case UsersRegistry.DOMAIN_NAME:
+		case Users.DOMAIN_NAME:
 			return UsersUi.PERSPECTIVE_MAIN;
-		case LicensesRegistry.DOMAIN_NAME:
+		case Licenses.DOMAIN_NAME:
 			return LicensesUi.PERSPECTIVE_MAIN;
 		default:
 			break;

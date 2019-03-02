@@ -26,13 +26,12 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.runtime.licenses.LicenseRegistry;
-import org.eclipse.passage.lic.runtime.licenses.LicensesEvents;
 import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesEvents;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.eclipse.passage.lic.runtime.registry.Identified;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
@@ -42,10 +41,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesRegistry.DOMAIN_NAME,
-		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + LicensesRegistry.FILE_EXTENSION_XMI })
-public class LicenseDomainRegistryImpl extends EditingDomainBasedRegistry
-		implements LicenseRegistry, LicenseDomainRegistry, EditingDomainRegistry {
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME,
+		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
+public class LicensesDomainRegistry extends EditingDomainBasedRegistry
+		implements LicensesRegistry, EditingDomainRegistry {
 
 	private final Map<String, LicensePackDescriptor> licensePackIndex = new HashMap<>();
 	private final Map<String, List<LicensePackDescriptor>> userPackIndex = new HashMap<>();
@@ -112,7 +111,7 @@ public class LicenseDomainRegistryImpl extends EditingDomainBasedRegistry
 
 	@Override
 	public String getFileExtension() {
-		return LicensesRegistry.FILE_EXTENSION_XMI;
+		return Licenses.FILE_EXTENSION_XMI;
 	}
 
 	@Override
@@ -148,8 +147,8 @@ public class LicenseDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<LicenseDomainRegistry> createContentAdapter() {
-		return new LicenseDomainRegistryTracker(this);
+	protected DomainContentAdapter<LicensesDomainRegistry> createContentAdapter() {
+		return new LicensesDomainRegistryTracker(this);
 	}
 
 	@Override

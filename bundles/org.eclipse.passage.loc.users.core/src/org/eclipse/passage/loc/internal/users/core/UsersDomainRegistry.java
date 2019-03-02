@@ -24,15 +24,14 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.registry.Identified;
 import org.eclipse.passage.lic.runtime.users.UserDescriptor;
 import org.eclipse.passage.lic.runtime.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.runtime.users.UserRegistry;
-import org.eclipse.passage.lic.runtime.users.UsersEvents;
 import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.users.UsersEvents;
+import org.eclipse.passage.lic.runtime.users.Users;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
@@ -41,10 +40,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersRegistry.DOMAIN_NAME,
-		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + UsersRegistry.FILE_EXTENSION_XMI })
-public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
-		implements UserRegistry, UserDomainRegistry, EditingDomainRegistry {
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME,
+		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Users.FILE_EXTENSION_XMI })
+public class UsersDomainRegistry extends EditingDomainBasedRegistry
+		implements UsersRegistry, EditingDomainRegistry {
 
 	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
 	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
@@ -97,7 +96,7 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 
 	@Override
 	public String getFileExtension() {
-		return UsersRegistry.FILE_EXTENSION_XMI;
+		return Users.FILE_EXTENSION_XMI;
 	}
 
 	@Override
@@ -130,8 +129,8 @@ public class UserDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<UserDomainRegistry> createContentAdapter() {
-		return new UserDomainRegistryTracker(this);
+	protected DomainContentAdapter<UsersDomainRegistry> createContentAdapter() {
+		return new UsersDomainRegistryTracker(this);
 	}
 
 	@Override

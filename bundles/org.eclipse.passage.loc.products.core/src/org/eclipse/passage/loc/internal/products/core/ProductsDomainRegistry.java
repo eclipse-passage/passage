@@ -26,16 +26,15 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.model.api.ProductLine;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.runtime.products.ProductRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductsEvents;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.eclipse.passage.lic.runtime.registry.Identified;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
@@ -45,10 +44,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsRegistry.DOMAIN_NAME,
-		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + ProductsRegistry.FILE_EXTENSION_XMI })
-public class ProductDomainRegistryImpl extends EditingDomainBasedRegistry
-		implements ProductRegistry, ProductDomainRegistry, EditingDomainRegistry {
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME,
+		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Products.FILE_EXTENSION_XMI })
+public class ProductsDomainRegistry extends EditingDomainBasedRegistry
+		implements ProductsRegistry, EditingDomainRegistry {
 
 	private final Map<String, ProductLineDescriptor> productLineIndex = new HashMap<>();
 	private final Map<String, ProductDescriptor> productIndex = new HashMap<>();
@@ -107,28 +106,12 @@ public class ProductDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public String createPassword(ProductVersionDescriptor descriptor) {
-		String id = null;
-		String version = null;
-		if (descriptor != null) {
-			ProductDescriptor product = descriptor.getProduct();
-			if (product != null) {
-				id = product.getIdentifier();
-			}
-			version = descriptor.getVersion();
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(id).append("###").append(version); //$NON-NLS-1$
-		return sb.toString();
-	}
-
-	@Override
 	public String getFileExtension() {
-		return ProductsRegistry.FILE_EXTENSION_XMI;
+		return Products.FILE_EXTENSION_XMI;
 	}
 
 	@Override
-	public Iterable<ProductLineDescriptor> getProductLines() {
+	public Iterable<? extends ProductLineDescriptor> getProductLines() {
 		return new ArrayList<>(productLineIndex.values());
 	}
 
@@ -214,8 +197,8 @@ public class ProductDomainRegistryImpl extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<ProductDomainRegistry> createContentAdapter() {
-		return new ProductDomainRegistryTracker(this);
+	protected DomainContentAdapter<ProductsDomainRegistry> createContentAdapter() {
+		return new ProductsDomainRegistryTracker(this);
 	}
 
 	@Override

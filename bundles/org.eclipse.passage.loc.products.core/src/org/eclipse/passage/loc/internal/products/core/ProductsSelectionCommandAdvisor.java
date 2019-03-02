@@ -15,24 +15,24 @@ package org.eclipse.passage.loc.internal.products.core;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.ProductDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.products.Products;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor {
 	
-	private ProductDomainRegistry registry;
+	private ProductsRegistry registry;
 	
 	@Reference
-	public void bindDomainRegistry(ProductDomainRegistry registry) {
+	public void bindDomainRegistry(ProductsRegistry registry) {
 		this.registry = registry;
 	}
 
-	public void unbindDomainRegistry(ProductDomainRegistry registry) {
+	public void unbindDomainRegistry(ProductsRegistry registry) {
 		this.registry = null;
 	}
 

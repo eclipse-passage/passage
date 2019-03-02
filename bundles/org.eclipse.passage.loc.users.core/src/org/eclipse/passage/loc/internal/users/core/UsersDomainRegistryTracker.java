@@ -14,14 +14,13 @@ package org.eclipse.passage.loc.internal.users.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
-import org.eclipse.passage.lic.emf.edit.UserDomainRegistry;
 import org.eclipse.passage.lic.model.api.User;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
-public class UserDomainRegistryTracker extends DomainContentAdapter<UserDomainRegistry> {
+public class UsersDomainRegistryTracker extends DomainContentAdapter<UsersDomainRegistry> {
 	
-	public UserDomainRegistryTracker(UserDomainRegistry registry) {
+	public UsersDomainRegistryTracker(UsersDomainRegistry registry) {
 		super(registry);
 	}
 

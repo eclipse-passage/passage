@@ -15,24 +15,24 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.LicenseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.runtime.licenses.Licenses;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesRegistry.DOMAIN_NAME })
+@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME })
 public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor {
 	
-	private LicenseDomainRegistry registry;
+	private LicensesRegistry registry;
 	
 	@Reference
-	public void bindDomainRegistry(LicenseDomainRegistry registry) {
+	public void bindDomainRegistry(LicensesRegistry registry) {
 		this.registry = registry;
 	}
 
-	public void unbindDomainRegistry(LicenseDomainRegistry registry) {
+	public void unbindDomainRegistry(LicensesRegistry registry) {
 		this.registry = null;
 	}
 
