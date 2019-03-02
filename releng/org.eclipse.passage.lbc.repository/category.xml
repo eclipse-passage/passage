@@ -19,9 +19,9 @@
 	</feature>
 	<category-def
 		name="org.eclipse.passage.lbc.category"
-		label="Passage Licensing Backend Components (Licensing Server)">
+		label="Passage Licensing Back-end Components (Incubation)">
 		<description>
-			Passage Licensing Backend Components layer includes server side OSGI based" 
+			Passage Licensing Back-end Components: OSGi-based server to manage licensing data" 
 		</description>
 	</category-def>
 </site>

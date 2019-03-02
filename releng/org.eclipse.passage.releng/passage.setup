@@ -225,7 +225,7 @@
             project="org.eclipse.passage.lic.runtime"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.8/@workingSets.1 //@setupTasks.8/@workingSets.2"/>
+            excludedWorkingSet="//@setupTasks.8/@workingSets.1 //@setupTasks.8/@workingSets.2 //@setupTasks.8/@workingSets.3"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -237,7 +237,7 @@
             project="org.eclipse.passage.lic.runtime"/>
         <operand
             xsi:type="predicates:NamePredicate"
-            pattern=".*\.lic.*"/>
+            pattern=".*\.lic\..*"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -246,10 +246,22 @@
           xsi:type="predicates:AndPredicate">
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lic.runtime"/>
+            project="org.eclipse.passage.loc.runtime"/>
         <operand
             xsi:type="predicates:NamePredicate"
-            pattern=".*\.loc.*"/>
+            pattern=".*\.loc\..*"/>
+      </predicate>
+    </workingSet>
+    <workingSet
+        name="${scope.project.label} LBC">
+      <predicate
+          xsi:type="predicates:AndPredicate">
+        <operand
+            xsi:type="predicates:RepositoryPredicate"
+            project="org.eclipse.passage.lbc.base"/>
+        <operand
+            xsi:type="predicates:NamePredicate"
+            pattern=".*\.lbc\..*"/>
       </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>

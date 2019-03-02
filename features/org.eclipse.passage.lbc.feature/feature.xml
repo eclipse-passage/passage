@@ -13,9 +13,9 @@
 -->
 <feature
       id="org.eclipse.passage.lbc.feature"
-      label="%Feature-Name"
+      label="%featureName"
       version="0.4.0.qualifier"
-      provider-name="%Provider-Name"
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
 
