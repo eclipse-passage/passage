@@ -12,7 +12,7 @@ Require-Bundle: org.junit,
  org.apache.commons.logging;bundle-version="1.1.1",
  org.eclipse.passage.lbc.container,
  org.eclipse.passage.lic.runtime,
- org.eclipse.passage.lbc.server,
+ org.eclipse.passage.lbc.runtime,
  org.eclipse.passage.lic.net,
  org.eclipse.passage.lic.base,
  org.eclipse.osgi

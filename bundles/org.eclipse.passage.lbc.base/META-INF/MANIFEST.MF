@@ -11,7 +11,7 @@ Require-Bundle: javax.servlet,
  org.eclipse.osgi,
  org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.net,
- org.eclipse.passage.lbc.server
+ org.eclipse.passage.lbc.runtime
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 

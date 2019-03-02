@@ -37,7 +37,7 @@ import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.server.LicensingConditionStorage;
+import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 
 public class ServerConditionsStorage extends BaseComponent implements LicensingConditionStorage {
 

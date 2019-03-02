@@ -16,15 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.passage.lbc.runtime.ServerHandler;
+import org.eclipse.passage.lbc.runtime.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
+import org.eclipse.passage.lbc.runtime.ServerRunner;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
-
-import org.eclipse.passage.lbc.server.ServerHandler;
-import org.eclipse.passage.lbc.server.ServerRequestAction;
-import org.eclipse.passage.lbc.server.ServerRequestExecutor;
-import org.eclipse.passage.lbc.server.ServerRequestHandler;
-import org.eclipse.passage.lbc.server.ServerRunner;
 
 public class ServerRunnerImpl implements ServerRunner {
 

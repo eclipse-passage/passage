@@ -22,9 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-
-import org.eclipse.passage.lbc.server.ServerRequestExecutor;
-import org.eclipse.passage.lbc.server.ServerRequestHandler;
+import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 
 public class JettyRequestHandler extends AbstractHandler implements ServerRequestHandler {
 

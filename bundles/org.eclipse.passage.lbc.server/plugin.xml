@@ -14,7 +14,7 @@
 <?eclipse version="3.4"?>
 <plugin>
  <extension
-       id="org.eclipse.passage.lbc.application"
+       id="org.eclipse.passage.lbc.server.application"
        point="org.eclipse.core.runtime.applications">
     <application
           cardinality="1"
@@ -26,11 +26,11 @@
        id="product"
        point="org.eclipse.core.runtime.products">
     <product
-          application="org.eclipse.passage.lbc.application"
-          name="Passage Licensing Backend Component Server">
+          application="org.eclipse.passage.lbc.server.application"
+          name="%product.name">
        <property
              name="appName"
-             value="Passage Licensing Backend Component Server">
+             value="%app.name">
        </property>
     </product>
  </extension>

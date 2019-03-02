@@ -32,7 +32,7 @@
    </license>
 
    <plugin
-         id="org.eclipse.passage.lbc.server"
+         id="org.eclipse.passage.lbc.runtime"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -60,7 +60,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lbc.application"
+         id="org.eclipse.passage.lbc.server"
          download-size="0"
          install-size="0"
          version="0.0.0"

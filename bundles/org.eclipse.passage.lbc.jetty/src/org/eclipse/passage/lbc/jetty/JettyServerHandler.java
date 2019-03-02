@@ -22,8 +22,8 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 
 import org.eclipse.passage.lbc.container.params.ServerPrams;
-import org.eclipse.passage.lbc.server.ServerHandler;
-import org.eclipse.passage.lbc.server.ServerRequestHandler;
+import org.eclipse.passage.lbc.runtime.ServerHandler;
+import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 
 public class JettyServerHandler implements ServerHandler {
 	private static Logger LOG = Logger.getLogger(JettyServerHandler.class.getName());

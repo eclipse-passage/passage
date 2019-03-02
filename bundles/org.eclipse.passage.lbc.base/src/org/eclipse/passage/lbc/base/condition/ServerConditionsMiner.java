@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.server.LicensingConditionStorage;;
+import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;;
 
 public class ServerConditionsMiner extends BaseComponent implements ConditionMiner {
 	

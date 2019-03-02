@@ -27,11 +27,11 @@
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 	<modules>
-		<module>../../bundles/org.eclipse.passage.lbc.server</module>
+		<module>../../bundles/org.eclipse.passage.lbc.runtime</module>
+		<module>../../bundles/org.eclipse.passage.lbc.base</module>
 		<module>../../bundles/org.eclipse.passage.lbc.container</module>
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
-		<module>../../bundles/org.eclipse.passage.lbc.base</module>
-		<module>../../bundles/org.eclipse.passage.lbc.application</module>
+		<module>../../bundles/org.eclipse.passage.lbc.server</module>
 		<module>../../features/org.eclipse.passage.lbc.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lbc.server.test</module>

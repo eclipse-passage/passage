@@ -10,16 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server;
+package org.eclipse.passage.lbc.runtime;
 
-public interface ServerHandler {
+public interface ServerRequestHandler {
 
-	void launch();
+	void remRequestExecutor(ServerRequestExecutor executor);
 
-	void terminate();
-
-	void addServerRequestHandler(ServerRequestHandler handler);
-
-	void remServerRequestHandler(ServerRequestHandler handler);
+	void addRequestExecutor(ServerRequestExecutor executor);
 
 }

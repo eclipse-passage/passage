@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.server.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 
 public class ValidateActionRequest extends BaseComponent implements ServerRequestAction {
 

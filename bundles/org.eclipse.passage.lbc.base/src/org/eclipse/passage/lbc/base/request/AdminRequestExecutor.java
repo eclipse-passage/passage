@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.passage.lic.net.LicensingRequests;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.server.ServerRequestAction;
-import org.eclipse.passage.lbc.server.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
 
 public class AdminRequestExecutor extends BaseComponent implements ServerRequestExecutor {
 

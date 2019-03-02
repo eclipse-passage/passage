@@ -10,13 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server;
+package org.eclipse.passage.lbc.runtime;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-public interface ServerRequestAction {
-
-	public boolean execute(HttpServletRequest request, HttpServletResponse response);
+public interface ServerRunner {
 
 }

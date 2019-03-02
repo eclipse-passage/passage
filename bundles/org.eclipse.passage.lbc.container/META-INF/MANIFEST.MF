@@ -11,7 +11,7 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.osgi;bundle-version="3.13.0",
  org.apache.httpcomponents.httpclient;bundle-version="0.0.0",
  org.apache.httpcomponents.httpcore;bundle-version="0.0.0",
- org.eclipse.passage.lbc.server;bundle-version="0.0.0",
+ org.eclipse.passage.lbc.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.net
 Export-Package: org.eclipse.passage.lbc.container,
  org.eclipse.passage.lbc.container.params

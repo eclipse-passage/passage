@@ -10,14 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server;
+package org.eclipse.passage.lbc.runtime;
 
-import java.util.List;
+public interface ServerHandler {
 
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
+	void launch();
 
-public interface LicensingConditionStorage {
+	void terminate();
 
-	List<BaseLicensingCondition> getLicensingCondition(String productId , String productVersion);
+	void addServerRequestHandler(ServerRequestHandler handler);
+
+	void remServerRequestHandler(ServerRequestHandler handler);
 
 }

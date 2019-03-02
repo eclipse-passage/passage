@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.server.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 
 /**
  * According to AccessManager specification implementation of
