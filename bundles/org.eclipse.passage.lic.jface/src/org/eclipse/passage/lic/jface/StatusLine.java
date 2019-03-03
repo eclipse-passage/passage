@@ -20,11 +20,8 @@ import org.eclipse.swt.widgets.Composite;
 
 public class StatusLine extends CLabel {
 	
-	private final LicensingImages images;
-
-	public StatusLine(Composite parent, LicensingImages images) {
+	public StatusLine(Composite parent) {
 		super(parent, SWT.LEFT);
-		this.images = images;
 	}
 
     private String computeImageKey(IStatus status) {
@@ -55,6 +52,6 @@ public class StatusLine extends CLabel {
     	} else {
     		setText(""); //$NON-NLS-1$
     	}
-    	setImage(images.getImage(computeImageKey(status)));
+    	setImage(LicensingImages.getImage(computeImageKey(status)));
 	}
 }

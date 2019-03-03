@@ -37,8 +37,8 @@
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		url="features/org.eclipse.passage.lic.inspector.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.inspector.feature"
+		url="features/org.eclipse.passage.lic.ui.feature_0.4.0.qualifier.jar"
+		id="org.eclipse.passage.lic.ui.feature"
 		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>

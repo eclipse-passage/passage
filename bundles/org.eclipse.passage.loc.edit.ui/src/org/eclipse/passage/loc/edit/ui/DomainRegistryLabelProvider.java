@@ -30,10 +30,7 @@ import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
 
-	private LicensingImages images;
-
 	public DomainRegistryLabelProvider(LicensingImages images) {
-		this.images = images;
 	}
 
 	@Override
@@ -60,12 +57,9 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof FeaturesRegistry) {
-			return images.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
-		}
 		if (element instanceof EditingDomainBasedRegistry) {
 			EditingDomainBasedRegistry registry = (EditingDomainBasedRegistry) element;
-			return images.getImage(registry.getContentClassifier().getName());
+			return LicensingImages.getImage(registry.getContentClassifier().getName());
 		}
 		if (element instanceof Resource) {
 			Resource resource = (Resource) element;
@@ -81,16 +75,16 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		}
 		String lastSegment = uri.lastSegment();
 		if (lastSegment.endsWith(Features.FILE_EXTENSION_XMI)) {
-			return images.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
+			return LicensingImages.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
 		}
 		if (lastSegment.endsWith(Products.FILE_EXTENSION_XMI)) {
-			return images.getImage(LicPackage.eINSTANCE.getProductLine().getName());
+			return LicensingImages.getImage(LicPackage.eINSTANCE.getProductLine().getName());
 		}
 		if (lastSegment.endsWith(Users.FILE_EXTENSION_XMI)) {
-			return images.getImage(LicPackage.eINSTANCE.getUserOrigin().getName());
+			return LicensingImages.getImage(LicPackage.eINSTANCE.getUserOrigin().getName());
 		}
 		if (lastSegment.endsWith(Licenses.FILE_EXTENSION_XMI)) {
-			return images.getImage(LicPackage.eINSTANCE.getLicensePack().getName());
+			return LicensingImages.getImage(LicPackage.eINSTANCE.getLicensePack().getName());
 		}
 		return null;
 	}

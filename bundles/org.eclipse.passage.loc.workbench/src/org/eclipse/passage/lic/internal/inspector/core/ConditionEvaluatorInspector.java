@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.inspector.ConditionInpector;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
+import org.eclipse.passage.lic.runtime.inspector.ConditionInpector;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

@@ -29,7 +29,6 @@ public class LocWorkbenchEmfforms {
 
 	public static void createDomainContentObject(IEclipseContext context, String domain, String perspectiveId) {
 		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
-		LicensingImages images = context.get(LicensingImages.class);
 	
 		EditingDomainRegistry registry = registryAccess.getDomainRegistry(domain );
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
@@ -45,7 +44,7 @@ public class LocWorkbenchEmfforms {
 	
 		Shell createdShell = dialog.getShell();
 		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(images.getImage(eClass.getName()));
+		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
 	
 		dialog.open();
 	}

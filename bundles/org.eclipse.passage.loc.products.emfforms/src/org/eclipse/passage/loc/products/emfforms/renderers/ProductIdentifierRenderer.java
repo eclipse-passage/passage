@@ -81,7 +81,7 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, getLicensingImages(), provider, registry, initial);
+		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

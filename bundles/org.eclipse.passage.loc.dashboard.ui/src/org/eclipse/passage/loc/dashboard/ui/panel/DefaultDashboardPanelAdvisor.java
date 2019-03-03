@@ -21,12 +21,12 @@ import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.features.Features;
 import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
-import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.runtime.licenses.Licenses;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
+import org.eclipse.passage.lic.runtime.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.runtime.products.Products;
-import org.eclipse.passage.lic.runtime.users.UsersRegistry;
+import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.users.Users;
+import org.eclipse.passage.lic.runtime.users.UsersRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -40,8 +40,6 @@ import org.eclipse.swt.widgets.Link;
 public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	private IEclipseContext context;
-
-	private LicensingImages licensingImages;
 
 	private DashboardPanelBlock featureSets;
 	private DashboardPanelBlock features;
@@ -60,7 +58,6 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	@Override
 	public void init(IEclipseContext context) {
 		this.context = context;
-		licensingImages = context.get(LicensingImages.class);
 	}
 
 	@Override
@@ -401,12 +398,11 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected Image getImage(EClass eClass) {
-		return licensingImages.getImage(eClass.getName());
+		return LicensingImages.getImage(eClass.getName());
 	}
 
 	@Override
 	public void dispose(IEclipseContext context) {
-		licensingImages = null;
 		this.context = null;
 	}
 

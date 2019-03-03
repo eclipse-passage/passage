@@ -28,7 +28,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.passage.loc.workbench.viewers.ResourceSetAdapter;
@@ -42,17 +41,15 @@ public class DomainRegistryExplorer {
 
 	private final EditingDomainRegistry descriptorRegistry;
 	private final ESelectionService selectionService;
-	private final LicensingImages licensingImages;
 
 	private ISelectionChangedListener selectionChangeListener;
 	private TreeViewer viewer;
 	private ResourceSetAdapter resourceSetAdapter;
 
-	public DomainRegistryExplorer(EditingDomainRegistry registry, ESelectionService selectionService, LicensingImages images) {
+	public DomainRegistryExplorer(EditingDomainRegistry registry, ESelectionService selectionService) {
 		super();
 		this.descriptorRegistry = registry;
 		this.selectionService = selectionService;
-		this.licensingImages = images;
 	}
 	
 	public EditingDomainRegistry getDescriptorRegistry() {
@@ -75,7 +72,7 @@ public class DomainRegistryExplorer {
 			factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		}
 		viewer.setContentProvider(new AdapterFactoryContentProvider(factory));
-		viewer.setLabelProvider(new DomainRegistryLabelProvider(licensingImages, factory));
+		viewer.setLabelProvider(new DomainRegistryLabelProvider(factory));
 		selectionChangeListener = new StructuredSelectionListener(selectionService);
 		viewer.addSelectionChangedListener(selectionChangeListener);
 		ResourceSet resourceSet = descriptorRegistry.getEditingDomain().getResourceSet();

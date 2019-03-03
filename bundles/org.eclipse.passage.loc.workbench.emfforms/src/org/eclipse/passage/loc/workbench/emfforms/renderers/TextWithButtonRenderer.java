@@ -28,7 +28,6 @@ import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.passage.lic.jface.LicensingColors;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.loc.jface.LocImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -45,7 +44,6 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 	protected Text text;
 	protected Button button;
 	
-	private final LicensingImages licensingImages;
 	private final LicensingColors licensingColors;
 	private final LocImages locImages;
 
@@ -54,17 +52,12 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.licensingImages = viewContext.getService(LicensingImages.class);
 		this.licensingColors = viewContext.getService(LicensingColors.class);
 		this.locImages = viewContext.getService(LocImages.class);
 	}
 	
 	public LicensingColors getLicensingColors() {
 		return licensingColors;
-	}
-	
-	public LicensingImages getLicensingImages() {
-		return licensingImages;
 	}
 	
 	public LocImages getLocImages() {

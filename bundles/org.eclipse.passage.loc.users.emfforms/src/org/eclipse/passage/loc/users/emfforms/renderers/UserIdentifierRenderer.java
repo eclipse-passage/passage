@@ -81,7 +81,7 @@ public class UserIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		UserDescriptor descriptor = UsersUi.selectUserDescriptor(shell, getLicensingImages(), provider, registry, initial);
+		UserDescriptor descriptor = UsersUi.selectUserDescriptor(shell, provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getEmail();
 			if (identifier != null) {

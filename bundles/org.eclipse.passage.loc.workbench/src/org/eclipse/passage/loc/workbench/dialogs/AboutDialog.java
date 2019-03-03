@@ -48,14 +48,12 @@ public class AboutDialog extends Dialog {
 	private Image productLogo;
 
 	private final TranslationService translations;
-	private final LicensingImages licensingImages;
 	private final IApplicationContext applicationContext;
 	private final String bundleUrl;
 
 	public AboutDialog(Shell parentShell, IEclipseContext context) {
 		super(parentShell);
 		translations = context.get(TranslationService.class);
-		licensingImages = context.get(LicensingImages.class);
 		applicationContext = context.get(IApplicationContext.class);
 		bundleUrl = String.format(PRODUCT_BUNDLE_URL, applicationContext.getBrandingBundle().getSymbolicName());
 	}
@@ -66,7 +64,7 @@ public class AboutDialog extends Dialog {
 		String pattern = translations.translate(ABOUT_TITLE, bundleUrl);
 		String name = translations.translate(PRODUCT_NAME, bundleUrl);
 		newShell.setText(NLS.bind(pattern, name));
-		newShell.setImage(licensingImages.getImage(LicensingImages.IMG_DEFAULT));;
+		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));;
 	}
 
 	@Override

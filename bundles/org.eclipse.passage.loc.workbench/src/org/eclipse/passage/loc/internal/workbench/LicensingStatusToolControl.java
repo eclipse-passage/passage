@@ -22,12 +22,12 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.passage.lic.base.LicensingEvents;
-import org.eclipse.passage.lic.inspector.HardwareInspector;
-import org.eclipse.passage.lic.inspector.ui.dialogs.LicensingInspectorDialog;
 import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
+import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,7 +37,6 @@ import org.eclipse.swt.widgets.Shell;
 
 public class LicensingStatusToolControl {
 	
-	private final LicensingImages images;
 	private final HardwareInspector hardwareInspector;
 
 	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
@@ -46,8 +45,7 @@ public class LicensingStatusToolControl {
 	private Button button;
 
 	@Inject
-	public LicensingStatusToolControl(LicensingImages images, HardwareInspector hardwareInspector) {
-		this.images = images;
+	public LicensingStatusToolControl(HardwareInspector hardwareInspector) {
 		this.hardwareInspector = hardwareInspector;
 	}
 	
@@ -76,19 +74,19 @@ public class LicensingStatusToolControl {
 			public void widgetSelected(SelectionEvent e) {
 				String contacts = "Passage Licensing Integration Components \nhttps://github.com/arsysop/passage-lic";
 				Shell activeShell = button.getDisplay().getActiveShell();
-				LicensingInspectorDialog dialog = new LicensingInspectorDialog(activeShell, images, contacts);
+				LicensingStatusDialog dialog = new LicensingStatusDialog(activeShell, contacts);
 				dialog.setHardwareInspector(hardwareInspector);
 				dialog.updateLicensingStatus(requirements, verdicts);
 				dialog.open();
 			}
 		});
-		button.setImage(images.getImage(LicensingImages.IMG_LEVEL_OK));
+		button.setImage(LicensingImages.getImage(LicensingImages.IMG_LEVEL_OK));
 		button.setText("Undefined");
 	}
 
 	protected void updateButton(RestrictionVerdict last) {
 		String key = RestrictionVerdictLabels.resolveImageKey(last);
-		button.setImage(images.getImage(key));
+		button.setImage(LicensingImages.getImage(key));
 		button.setText(RestrictionVerdictLabels.resolveLabel(last));
 		button.setToolTipText(RestrictionVerdictLabels.resolveSummary(last));
 	}

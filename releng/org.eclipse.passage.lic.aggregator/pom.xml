@@ -31,9 +31,7 @@
 	<modules>
 		<module>../../bundles/org.eclipse.passage.lic.runtime</module>
 		<module>../../bundles/org.eclipse.passage.lic.base</module>
-		<module>../../bundles/org.eclipse.passage.lic.inspector</module>
 		<module>../../bundles/org.eclipse.passage.lic.equinox</module>
-		<module>../../bundles/org.eclipse.passage.lic.jface</module>
 		<module>../../features/org.eclipse.passage.lic.equinox.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.bc</module>
@@ -53,10 +51,12 @@
 		<module>../../bundles/org.eclipse.passage.lic.model.core</module>
 		<module>../../features/org.eclipse.passage.lic.model.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.jface</module>
+		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
 		<module>../../bundles/org.eclipse.passage.lic.emf.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.model.edit</module>
-		<module>../../bundles/org.eclipse.passage.lic.inspector.ui</module>
-		<module>../../features/org.eclipse.passage.lic.inspector.feature</module>
+		<module>../../bundles/org.eclipse.passage.lic.model.ui</module>
+		<module>../../features/org.eclipse.passage.lic.ui.feature</module>
 
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 		<module>../../features/org.eclipse.passage.lic.runtime.feature</module>

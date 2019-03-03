@@ -55,7 +55,7 @@ public class ConditionExpressionRenderer extends TextWithButtonRenderer {
 				dialog.create();
 				Shell dialogShell = dialog.getShell();
 				dialogShell.setText("Condition Expession");
-				Image image = getLicensingImages().getImage(LicensingImages.IMG_DEFAULT);
+				Image image = LicensingImages.getImage(LicensingImages.IMG_DEFAULT);
 				dialogShell.setImage(image);
 				if (dialog.open() == Dialog.OK) {
 					text.setText(dialog.getResultValue());

@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.oshi;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.eclipse.passage.lic.inspector.HardwareInspector;
 import org.eclipse.passage.lic.oshi.OshiHal;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 
 public class OshiHardwareInspector implements HardwareInspector {
 

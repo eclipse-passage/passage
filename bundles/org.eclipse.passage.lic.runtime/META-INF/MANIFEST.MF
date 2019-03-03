@@ -9,6 +9,7 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.lic.runtime,
  org.eclipse.passage.lic.runtime.features,
+ org.eclipse.passage.lic.runtime.inspector,
  org.eclipse.passage.lic.runtime.io,
  org.eclipse.passage.lic.runtime.licenses,
  org.eclipse.passage.lic.runtime.products,

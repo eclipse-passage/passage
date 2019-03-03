@@ -40,11 +40,15 @@
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.passage.lic.oshi.feature"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.passage.lic.net.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.passage.lic.oshi.feature"
+         id="org.eclipse.passage.lic.json.feature"
          version="0.0.0"/>
 
 </feature>

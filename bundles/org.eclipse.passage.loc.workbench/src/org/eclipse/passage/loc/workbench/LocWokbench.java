@@ -78,7 +78,6 @@ public class LocWokbench {
 	}
 
 	public static void createDomainResource(IEclipseContext context, String domain, String perspectiveId) {
-		LicensingImages images = context.get(LicensingImages.class);
 		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry registry = registryAccess.getDomainRegistry(domain);
@@ -93,7 +92,7 @@ public class LocWokbench {
 
 		Shell createdShell = dialog.getShell();
 		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(images.getImage(eClass.getName()));
+		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
 
 		dialog.open();
 	}
@@ -137,23 +136,22 @@ public class LocWokbench {
 	public static <C> Object selectClassifier(IEclipseContext context, String classifier, String title,
 			Iterable<C> input, C initial) {
 		Shell shell = context.get(Shell.class);
-		LicensingImages images = context.get(LicensingImages.class);
 		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
-		return selectClassifier(shell, images, factory, classifier, title, input, initial);
+		return selectClassifier(shell, factory, classifier, title, input, initial);
 	}
 
-	public static <C> C selectClassifier(Shell shell, LicensingImages images, ComposedAdapterFactory factory,
-			String classifier, String title, Iterable<? extends C> input, C initial, Class<C> clazz) {
-		Object selected = selectClassifier(shell, images, factory, classifier, title, input, initial);
+	public static <C> C selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier,
+			String title, Iterable<? extends C> input, C initial, Class<C> clazz) {
+		Object selected = selectClassifier(shell, factory, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);
 		}
 		return null;
 	}
 
-	public static <C> Object selectClassifier(Shell shell, LicensingImages images,
-			ComposedAdapterFactory factory, String classifier, String title, Iterable<? extends C> input, C initial) {
+	public static <C> Object selectClassifier(Shell shell, ComposedAdapterFactory factory,
+			String classifier, String title, Iterable<? extends C> input, C initial) {
 		if (input == null) {
 			return null;
 		}
@@ -166,11 +164,11 @@ public class LocWokbench {
 		}
 		LabelSearchFilter filter = new LabelSearchFilter();
 
-		FilteredSelectionDialog dialog = new FilteredSelectionDialog(shell, images, false, filter);
+		FilteredSelectionDialog dialog = new FilteredSelectionDialog(shell, false, filter);
 		dialog.setTitle(title);
-		dialog.setImage(images.getImage(classifier));
+		dialog.setImage(LicensingImages.getImage(classifier));
 
-		dialog.setLabelProvider(new DomainRegistryLabelProvider(images, factory));
+		dialog.setLabelProvider(new DomainRegistryLabelProvider(factory));
 		dialog.setInput(input);
 		if (initial != null) {
 			dialog.setInitial(initial);

@@ -19,7 +19,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.LicensingConditions;
-import org.eclipse.passage.lic.inspector.HardwareInspector;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 
 import oshi.SystemInfo;
 import oshi.hardware.Baseboard;

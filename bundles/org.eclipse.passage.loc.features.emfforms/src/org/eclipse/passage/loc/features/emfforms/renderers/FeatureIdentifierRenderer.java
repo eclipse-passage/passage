@@ -81,7 +81,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, getLicensingImages(), provider, registry, initial);
+		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, provider, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

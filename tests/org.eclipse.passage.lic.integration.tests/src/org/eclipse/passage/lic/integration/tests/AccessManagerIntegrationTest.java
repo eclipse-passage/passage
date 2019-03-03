@@ -20,12 +20,12 @@ import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
-import org.eclipse.passage.lic.inspector.HardwareInspector;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.junit.Before;
 import org.junit.Test;
 

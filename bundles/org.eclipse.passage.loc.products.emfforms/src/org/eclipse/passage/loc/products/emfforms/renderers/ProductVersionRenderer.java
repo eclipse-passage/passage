@@ -70,8 +70,8 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
 		ProductVersionDescriptor initial = null;
-		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, getLicensingImages(),
-				provider, registry, initial);
+		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, provider,
+				registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getVersion();
 			if (identifier != null) {

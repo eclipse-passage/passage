@@ -23,7 +23,7 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.inspector.ConditionInpector;
+import org.eclipse.passage.lic.runtime.inspector.ConditionInpector;
 
 public class ConditionTypeRenderer extends ComboControlRenderer {
 

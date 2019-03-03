@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.jface.dialogs;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.jface.StatusLine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -31,11 +30,8 @@ public abstract class ObjectSelectionStatusDialog extends ObjectSelectionDialog 
 
 	private IStatus lastStatus;
 
-	private LicensingImages licensingImages;
-
-	public ObjectSelectionStatusDialog(Shell parent, LicensingImages licensingImages) {
-		super(parent);
-		this.licensingImages = licensingImages;
+	public ObjectSelectionStatusDialog(Shell shell) {
+		super(shell);
 	}
 
 	protected abstract void computeResult();
@@ -90,7 +86,7 @@ public abstract class ObjectSelectionStatusDialog extends ObjectSelectionDialog 
 		if (isHelpAvailable()) {
 			createHelpControl(composite);
 		}
-		statusLine = new StatusLine(composite, licensingImages);
+		statusLine = new StatusLine(composite);
 		statusLine.setAlignment(SWT.LEFT);
 		statusLine.setStatus(null);
 		statusLine.setFont(font);

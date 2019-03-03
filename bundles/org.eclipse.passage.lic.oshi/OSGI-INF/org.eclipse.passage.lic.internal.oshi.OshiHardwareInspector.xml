@@ -2,6 +2,6 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector">
    <implementation class="org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.inspector.HardwareInspector"/>
+      <provide interface="org.eclipse.passage.lic.runtime.inspector.HardwareInspector"/>
    </service>
 </scr:component>

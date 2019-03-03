@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.products.ui;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
 import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
@@ -28,23 +27,23 @@ public class ProductsUi {
 
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
-	public static ProductDescriptor selectProductDescriptor(Shell shell, LicensingImages images, ComposedAdapterFactoryProvider provider, ProductsRegistry registry, ProductDescriptor initial) {
+	public static ProductDescriptor selectProductDescriptor(Shell shell, ComposedAdapterFactoryProvider provider, ProductsRegistry registry, ProductDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProduct().getName();
 		String title = "Select Product";
 		Iterable<? extends ProductDescriptor> input = registry.getProducts();
 		Class<ProductDescriptor> clazz = ProductDescriptor.class;
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
-		return LocWokbench.selectClassifier(shell, images, factory, classifier, title, input, initial, clazz);
+		return LocWokbench.selectClassifier(shell, factory, classifier, title, input, initial, clazz);
 	}
 
-	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell, LicensingImages images,
-			ComposedAdapterFactoryProvider provider, ProductsRegistry registry, ProductVersionDescriptor initial) {
+	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
+			ProductsRegistry registry, ProductVersionDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
 		String title = "Select Product Version";
 		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();
 		Class<ProductVersionDescriptor> clazz = ProductVersionDescriptor.class;
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
-		return LocWokbench.selectClassifier(shell, images, factory, classifier, title, input, initial, clazz);
+		return LocWokbench.selectClassifier(shell, factory, classifier, title, input, initial, clazz);
 	}
 
 }

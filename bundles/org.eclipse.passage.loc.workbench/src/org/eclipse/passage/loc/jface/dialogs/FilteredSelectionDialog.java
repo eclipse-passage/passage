@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -48,9 +47,8 @@ public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
 	private LabelProvider labelProvider = new LabelProvider();
 	private ViewerSearchFilter<?> filter;
 
-	public FilteredSelectionDialog(Shell parent, LicensingImages licensingImages, boolean multi,
-			ViewerSearchFilter<?> filter) {
-		super(parent, licensingImages);
+	public FilteredSelectionDialog(Shell parent, boolean multi, ViewerSearchFilter<?> filter) {
+		super(parent);
 		this.multi = multi;
 		this.filter = filter;
 

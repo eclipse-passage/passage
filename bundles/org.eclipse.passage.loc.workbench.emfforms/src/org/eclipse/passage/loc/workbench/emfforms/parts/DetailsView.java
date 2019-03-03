@@ -167,9 +167,8 @@ public class DetailsView {
 				createElementCallback);
 		treeMasterDetail.setLayoutData(treeMasterDetailLayoutData);
 		TreeViewer selectionProvider = treeMasterDetail.getSelectionProvider();
-		LicensingImages licensingImages = context.get(LicensingImages.class);
 		AdapterFactory adapterFactory = context.get(ComposedAdapterFactoryProvider.class).getComposedAdapterFactory();
-		selectionProvider.setLabelProvider(new DomainRegistryLabelProvider(licensingImages, adapterFactory));
+		selectionProvider.setLabelProvider(new DomainRegistryLabelProvider(adapterFactory));
 		return treeMasterDetail;
 	}
 

@@ -27,19 +27,17 @@ import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {
 	
-	private final LicensingImages licensingImages;
 	private final AdapterFactoryLabelProvider delegate;
 	
-	public DomainRegistryLabelProvider(LicensingImages licensingImages, AdapterFactory adapterFactory) {
+	public DomainRegistryLabelProvider(AdapterFactory adapterFactory) {
 		super();
-		this.licensingImages = licensingImages;
 		this.delegate = new AdapterFactoryLabelProvider(adapterFactory);
 	}
 
 	@Override
 	public Image getImage(Object element) {
 		if (element instanceof Resource) {
-			return licensingImages.getImage(LicensingImages.IMG_DEFAULT);
+			return LicensingImages.getImage(LicensingImages.IMG_DEFAULT);
 		}
 		return delegate.getImage(element);
 	}

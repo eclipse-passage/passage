@@ -40,7 +40,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.passage.lic.inspector.feature"
+         id="org.eclipse.passage.lic.ui.feature"
          version="0.0.0"/>
 
 </feature>
