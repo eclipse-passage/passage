@@ -21,7 +21,7 @@ import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.workbench.dialogs.ManageTextValuesDialog;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;

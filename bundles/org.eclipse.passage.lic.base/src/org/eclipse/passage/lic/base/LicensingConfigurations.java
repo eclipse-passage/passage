@@ -18,6 +18,9 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 public class LicensingConfigurations {
 
+	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration("invalid",
+			LicensingVersions.VERSION_DEFAULT);
+
 	public static LicensingConfiguration create(String product, String version) {
 		return new BaseLicensingConfiguration(String.valueOf(product), String.valueOf(version));
 	}
@@ -39,7 +42,7 @@ public class LicensingConfigurations {
 				if (index < args.length) {
 					return args[index];
 				}
-	
+
 			}
 		}
 		return null;

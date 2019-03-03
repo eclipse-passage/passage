@@ -19,10 +19,12 @@ public class BaseRestrictionVerdict implements RestrictionVerdict {
 	
 	private final ConfigurationRequirement configurationRequirement;
 	private final String restrictionPolicy;
+	private final int restrictionCode;
 
-	BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy) {
+	BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy, int restrictionCode) {
 		this.configurationRequirement = configurationRequirement;
 		this.restrictionPolicy = restrictionPolicy;
+		this.restrictionCode = restrictionCode;
 	}
 
 	@Override
@@ -33,6 +35,11 @@ public class BaseRestrictionVerdict implements RestrictionVerdict {
 	@Override
 	public String getRestrictionLevel() {
 		return restrictionPolicy;
+	}
+	
+	@Override
+	public int getRestrictionCode() {
+		return restrictionCode;
 	}
 
 }

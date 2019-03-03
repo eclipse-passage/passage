@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.edit.ui;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.features.FeaturesRegistry;
 import org.eclipse.passage.lic.runtime.features.Features;

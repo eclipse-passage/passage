@@ -19,7 +19,7 @@ import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.workbench.UIEvents;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.edit.LicEditPlugin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.osgi.framework.BundleContext;

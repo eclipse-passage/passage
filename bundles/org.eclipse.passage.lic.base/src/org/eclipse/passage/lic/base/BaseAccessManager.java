@@ -244,7 +244,7 @@ public abstract class BaseAccessManager implements AccessManager {
 					logError("Invalid configuration requirement ignored", new NullPointerException());
 					continue;
 				}
-				RestrictionVerdict verdict = new BaseRestrictionVerdict(requirement, requirement.getRestrictionLevel());
+				RestrictionVerdict verdict = RestrictionVerdicts.createError(requirement, RestrictionVerdicts.CODE_CONFIGURATION_ERROR);
 				verdicts.add(verdict);
 			}
 			postEvent(LicensingLifeCycle.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts));

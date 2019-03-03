@@ -19,7 +19,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.workbench.emfforms.wizards.CreateFormWizard;
 import org.eclipse.swt.widgets.Shell;
 

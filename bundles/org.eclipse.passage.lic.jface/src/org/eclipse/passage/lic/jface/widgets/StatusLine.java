@@ -10,10 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface;
+package org.eclipse.passage.lic.jface.widgets;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;

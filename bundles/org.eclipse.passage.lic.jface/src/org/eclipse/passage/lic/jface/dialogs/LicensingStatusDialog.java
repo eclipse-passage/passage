@@ -25,8 +25,8 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
@@ -46,10 +46,20 @@ import org.eclipse.swt.widgets.TableColumn;
 public class LicensingStatusDialog extends TitleAreaDialog {
 
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
+	
+	private static String defaultContacts = ""; //$NON-NLS-1$
+
+
+	//FIXME: AF: implement https://bugs.eclipse.org/bugs/show_bug.cgi?id=544387
+	public static String getDefaultContacts() {
+		return defaultContacts;
+	}
+
+	public static void setDefaultContacts(String defaultContacts) {
+		LicensingStatusDialog.defaultContacts = defaultContacts;
+	}
 
 	private HardwareInspector hardwareInspector;
-
-	private String contactText = ""; //$NON-NLS-1$
 
 	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
 	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
@@ -57,11 +67,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	private TableViewer tableViewer;
 
-	public LicensingStatusDialog(Shell shell, String contacts) {
+	public LicensingStatusDialog(Shell shell) {
 		super(shell);
-		if (contacts != null) {
-			contactText = contacts;
-		}
 	}
 
 	@Override
@@ -172,7 +179,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		contactsGroup.setLayout(new GridLayout());
 		StyledText contactsText = new StyledText(contactsGroup, SWT.READ_ONLY | SWT.MULTI);
 		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		contactsText.setText(contactText);
+		contactsText.setText(defaultContacts);
 		contactsText.setFont(JFaceResources.getDialogFont());
 	}
 

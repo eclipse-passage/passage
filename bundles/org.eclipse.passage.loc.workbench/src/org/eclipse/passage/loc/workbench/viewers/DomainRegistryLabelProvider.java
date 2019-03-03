@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
 import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;

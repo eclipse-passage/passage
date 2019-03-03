@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.jface;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.*;
-import static org.eclipse.passage.lic.jface.LicensingImages.*;
+import static org.eclipse.passage.lic.jface.resource.LicensingImages.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

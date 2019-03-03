@@ -24,5 +24,5 @@ public class InspectHardwareHandler {
 		HardwareInspectorDialog dialog = new HardwareInspectorDialog(shell, inspector);
 		dialog.open();
 	}
-		
+
 }

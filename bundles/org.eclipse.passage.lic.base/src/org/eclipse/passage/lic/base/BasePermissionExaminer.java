@@ -69,14 +69,13 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
 		for (ConfigurationRequirement requirement : unsatisfied) {
-			verdicts.add(createVerdict(requirement));
+			verdicts.add(createVerdict(requirement, RestrictionVerdicts.CODE_NOT_AUTHORIZED));
 		}
 		return Collections.unmodifiableList(verdicts);
 	}
 
-	protected RestrictionVerdict createVerdict(ConfigurationRequirement requirement) {
-		String level = requirement.getRestrictionLevel();
-		return new BaseRestrictionVerdict(requirement, level);
+	protected RestrictionVerdict createVerdict(ConfigurationRequirement requirement, int code) {
+		return RestrictionVerdicts.create(requirement, code);
 	}
 	
 	protected boolean isCovered(ConfigurationRequirement requirement, FeaturePermission permission) {

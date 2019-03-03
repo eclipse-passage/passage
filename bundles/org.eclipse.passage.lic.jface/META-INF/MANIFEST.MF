@@ -11,6 +11,10 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.equinox.common;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.jface;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.runtime;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.lic.base;bundle-version="0.0.0"
+ org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.lic.equinox;bundle-version="0.4.0"
 Export-Package: org.eclipse.passage.lic.jface,
- org.eclipse.passage.lic.jface.dialogs
+ org.eclipse.passage.lic.jface.dialogs,
+ org.eclipse.passage.lic.jface.resource,
+ org.eclipse.passage.lic.jface.widgets
+Bundle-ActivationPolicy: lazy

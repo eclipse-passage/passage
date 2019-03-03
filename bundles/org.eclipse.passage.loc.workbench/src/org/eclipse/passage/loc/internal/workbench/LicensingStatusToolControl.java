@@ -22,9 +22,9 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.passage.lic.base.LicensingEvents;
-import org.eclipse.passage.lic.jface.LicensingImages;
 import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
@@ -72,9 +72,10 @@ public class LicensingStatusToolControl {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String contacts = "Passage Licensing Integration Components \nhttps://github.com/arsysop/passage-lic";
+				String contacts = "Eclipse Passage \nhttps://projects.eclipse.org/projects/technology.passage";
+				LicensingStatusDialog.setDefaultContacts(contacts);
 				Shell activeShell = button.getDisplay().getActiveShell();
-				LicensingStatusDialog dialog = new LicensingStatusDialog(activeShell, contacts);
+				LicensingStatusDialog dialog = new LicensingStatusDialog(activeShell);
 				dialog.setHardwareInspector(hardwareInspector);
 				dialog.updateLicensingStatus(requirements, verdicts);
 				dialog.open();

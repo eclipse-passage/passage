@@ -21,6 +21,10 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 public class RestrictionVerdicts {
 	
+	public static final int CODE_NOT_AUTHORIZED = 401;
+
+	public static final int CODE_CONFIGURATION_ERROR = 500;
+
 	private RestrictionVerdicts() {
 		// block
 	}
@@ -28,16 +32,26 @@ public class RestrictionVerdicts {
 
 	public static BaseRestrictionVerdict createConfigurationError(String featureId, LicensingConfiguration configuration) {
 		ConfigurationRequirement requirement = ConfigurationRequirements.createConfigurationError(featureId, configuration);
-		return createError(requirement);
+		int code = CODE_CONFIGURATION_ERROR;
+		return createError(requirement, code);
 	}
 
-	public static BaseRestrictionVerdict createError(ConfigurationRequirement requirement) {
+	public static BaseRestrictionVerdict create(ConfigurationRequirement requirement, int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
-		return new BaseRestrictionVerdict(requirement, policy);
+		if (requirement != null) {
+			policy = requirement.getRestrictionLevel();
+		}
+		return new BaseRestrictionVerdict(requirement, policy, code);
 	}
 
-	public static Iterable<BaseRestrictionVerdict> createErrorIterable(ConfigurationRequirement requirement) {
-		return Collections.singletonList(createError(requirement));
+	public static BaseRestrictionVerdict createError(ConfigurationRequirement requirement, int code) {
+		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
+		return new BaseRestrictionVerdict(requirement, policy, code);
+	}
+
+	public static Iterable<BaseRestrictionVerdict> createConfigurationError(ConfigurationRequirement requirement) {
+		int code = CODE_CONFIGURATION_ERROR;
+		return Collections.singletonList(createError(requirement, code));
 	}
 
 

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.jface.dialogs;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.passage.lic.jface.StatusLine;
+import org.eclipse.passage.lic.jface.widgets.StatusLine;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;

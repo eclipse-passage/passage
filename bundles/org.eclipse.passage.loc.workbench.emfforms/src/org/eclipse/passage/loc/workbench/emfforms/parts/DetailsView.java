@@ -53,7 +53,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.edit.LocEdit;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;

@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.jface.LicensingImages;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
 import org.eclipse.passage.loc.jface.dialogs.LabelSearchFilter;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;

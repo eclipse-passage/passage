@@ -27,7 +27,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.passage.lic.jface.LicensingColors;
+import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.loc.jface.LocImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;

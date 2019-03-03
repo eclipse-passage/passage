@@ -24,4 +24,6 @@ public interface RestrictionVerdict {
 
 	String getRestrictionLevel();
 
+	int getRestrictionCode();
+
 }
