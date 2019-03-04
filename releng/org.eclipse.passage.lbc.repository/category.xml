@@ -11,12 +11,6 @@
      ArSysOp - initial API and implementation
 -->
 <site>
-	<feature 
-		url="features/org.eclipse.passage.lbc.feature_0.4.0.qualifier.jar" 
-		id="org.eclipse.passage.lbc.feature" 
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lbc.category" />
-	</feature>
 	<category-def
 		name="org.eclipse.passage.lbc.category"
 		label="Passage Licensing Back-end Components (Incubation)">
@@ -24,4 +18,23 @@
 			Passage Licensing Back-end Components: OSGi-based server to manage licensing data" 
 		</description>
 	</category-def>
+	<feature 
+		id="org.eclipse.passage.lbc.feature" 
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lbc.category" />
+	</feature>
+<!--
+	<category-def
+		name="org.eclipse.passage.lbc.category.source"
+		label="Passage Licensing Back-end Components (Incubation) Developer Resources">
+		<description>
+			Passage Licensing Back-end Components Developer Resources: OSGi-based server to manage licensing data" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.lbc.feature.source" 
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lbc.category.source" />
+	</feature>
+-->
 </site>

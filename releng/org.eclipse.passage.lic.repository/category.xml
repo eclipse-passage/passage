@@ -12,66 +12,100 @@
 		ArSysOp - initial API and implementation
 -->
 <site>
-	<feature
-		url="features/org.eclipse.passage.lic.compile.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.compile.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.runtime.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.runtime.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.equinox.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.equinox.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.model.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.model.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.ui.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.ui.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.bc.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.bc.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.oshi.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.oshi.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.net.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.net.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		url="features/org.eclipse.passage.lic.json.feature_0.4.0.qualifier.jar"
-		id="org.eclipse.passage.lic.json.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
 	<category-def
 		name="org.eclipse.passage.lic.category"
 		label="Passage Licensing Integration Components (Incubation)"
 	>
 		<description>
-			Passage Licensing Integration Components layer includes runtime interfaces and its implementation for Eclipse Equinox
+			Passage Licensing Integration Components includes runtime interfaces and its implementation for Eclipse Equinox
 		</description>
 	</category-def>
+	<feature
+		id="org.eclipse.passage.lic.equinox.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.model.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.ui.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.json.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.net.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.oshi.feature"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.compile.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.runtime.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.bc.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+<!--
+	<category-def
+		name="org.eclipse.passage.lic.category.source"
+		label="Passage Licensing Integration Components (Incubation) Developer Resources"
+	>
+		<description>
+			Passage Licensing Integration Components Developer Resources includes runtime interfaces and its implementation for Eclipse Equinox
+		</description>
+	</category-def>
+	<feature
+		id="org.eclipse.passage.lic.equinox.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.model.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.ui.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.json.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.net.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.oshi.feature.source"
+		version="0.4.0.qualifier">
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.compile.feature.source"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.runtime.feature.source"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.bc.feature.source"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+-->
 </site>

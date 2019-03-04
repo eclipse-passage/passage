@@ -70,6 +70,27 @@
 					</execution>
 				</executions>
 			</plugin>
+<!--
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<addMavenDescriptor>false</addMavenDescriptor>
+							</archive>
+							<reuseBrandingPlugin>false</reuseBrandingPlugin>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+-->
 
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
