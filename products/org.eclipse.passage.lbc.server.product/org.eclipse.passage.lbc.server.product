@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Passage Licensing Data Server (Incubation)" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.server.application" version="0.4.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="Passage Licensing Data Server (Incubation)" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.application" version="0.4.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <programArgs>-os ${target.os} -ws ${target.ws} -arch ${target.arch} -consoleLog
+      <programArgs>-os ${target.os} -ws ${target.ws} -arch ${target.arch} -consoleLog -console
       </programArgs>
       <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true
       </vmArgs>
@@ -82,18 +82,19 @@
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.util"/>
-      <plugin id="org.sat4j.core"/>
-      <plugin id="org.sat4j.pb"/>
-      <plugin id="org.tukaani.xz"/>
-      <plugin id="org.eclipse.passage.lic.runtime"/>
-      <plugin id="org.eclipse.passage.lic.base"/>
-      <plugin id="org.eclipse.passage.lic.equinox"/>
-      <plugin id="org.eclipse.passage.lic.net"/>
-      <plugin id="org.eclipse.passage.lbc.runtime"/>
+      <plugin id="org.eclipse.passage.lbc.application"/>
       <plugin id="org.eclipse.passage.lbc.base"/>
       <plugin id="org.eclipse.passage.lbc.container"/>
       <plugin id="org.eclipse.passage.lbc.jetty"/>
+      <plugin id="org.eclipse.passage.lbc.runtime"/>
       <plugin id="org.eclipse.passage.lbc.server"/>
+      <plugin id="org.eclipse.passage.lic.base"/>
+      <plugin id="org.eclipse.passage.lic.equinox"/>
+      <plugin id="org.eclipse.passage.lic.net"/>
+      <plugin id="org.eclipse.passage.lic.runtime"/>
+      <plugin id="org.sat4j.core"/>
+      <plugin id="org.sat4j.pb"/>
+      <plugin id="org.tukaani.xz"/>
    </plugins>
 
    <features>
@@ -110,7 +111,7 @@
    </features>
 
    <configurations>
-      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="1" />
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
