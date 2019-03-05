@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.server.base.actions.ConditionDescriptorRequestAction">
+	<implementation class="org.eclipse.passage.lbc.base.actions.ConditionDescriptorRequestAction"/>
+		<service>
+			<provide interface="org.eclipse.passage.lbc.runtime.ServerRequestAction"/>
+		</service>
+	<property name="action" type="String" value="extractConditions"/>
+	<reference bind="bindLogger" cardinality="1..1" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" policy="static" unbind="unbindLogger"/>
+	<reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.ConditionMiner" name="ServerConditionMiner" policy="dynamic" unbind="unbindConditionMiner"/>
+	<reference bind="bindLicensingConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.io.LicensingConditionTransport" name="LicensingConditionTransport" policy="dynamic" unbind="unbindLicensingConditionTransport"/>
+</scr:component>
