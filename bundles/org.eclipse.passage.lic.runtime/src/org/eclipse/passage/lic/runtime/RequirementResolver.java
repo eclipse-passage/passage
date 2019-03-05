@@ -18,7 +18,7 @@ package org.eclipse.passage.lic.runtime;
  * {@link ConfigurationRequirement}(s).
  *
  */
-public interface ConfigurationResolver {
+public interface RequirementResolver {
 
 	/**
 	 * 

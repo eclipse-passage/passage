@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox;
+package org.eclipse.passage.lic.equinox.io;
 
 import static org.eclipse.passage.lic.base.LicensingPaths.*;
 

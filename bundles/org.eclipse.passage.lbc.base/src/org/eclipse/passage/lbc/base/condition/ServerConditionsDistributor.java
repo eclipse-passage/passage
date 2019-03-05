@@ -16,7 +16,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.FeaturePermissions;
+import org.eclipse.passage.lic.base.conditions.FeaturePermissions;
 import org.eclipse.passage.lic.net.TimeConditions;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.ConditionMiner;

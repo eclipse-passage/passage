@@ -20,7 +20,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.osgi.service.component.annotations.Component;

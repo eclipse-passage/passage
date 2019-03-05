@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.runtime;
 
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 
 public interface LicensingConditionStorage {
 

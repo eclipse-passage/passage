@@ -21,9 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.passage.lic.base.BaseAccessManager;
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
-import org.eclipse.passage.lic.base.LicensingConditions;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;

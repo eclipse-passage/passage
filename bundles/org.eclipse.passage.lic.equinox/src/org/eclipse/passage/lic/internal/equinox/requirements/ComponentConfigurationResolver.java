@@ -10,18 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseConfigurationRequirement;
-import org.eclipse.passage.lic.base.ConfigurationRequirements;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
+import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.ConfigurationResolver;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -35,7 +35,7 @@ import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
 @Component
-public class ComponentConfigurationResolver implements ConfigurationResolver {
+public class ComponentConfigurationResolver implements RequirementResolver {
 	
 	private Logger logger;
 	private BundleContext bundleContext;

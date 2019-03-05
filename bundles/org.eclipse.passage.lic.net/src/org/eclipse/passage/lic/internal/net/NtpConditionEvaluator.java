@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net;
 
-import org.eclipse.passage.lic.base.BaseConditionEvaluator;
+import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
 import org.eclipse.passage.lic.net.TimeConditions;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.log.LogService;

@@ -10,9 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.equinox.restrictions;
 
-import org.eclipse.passage.lic.base.BasePermissionExaminer;
+import org.eclipse.passage.lic.base.restrictions.BasePermissionExaminer;
+import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

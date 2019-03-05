@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,18 +36,11 @@ import org.eclipse.swt.widgets.Shell;
 
 public class LicensingStatusToolControl {
 	
-	private final HardwareInspector hardwareInspector;
-
 	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
 	private final List<RestrictionVerdict> verdicts = new ArrayList<>();
 
 	private Button button;
 
-	@Inject
-	public LicensingStatusToolControl(HardwareInspector hardwareInspector) {
-		this.hardwareInspector = hardwareInspector;
-	}
-	
 	@Inject
 	@Optional
 	public void requirementsResolved(@UIEventTopic(LicensingEvents.LicensingLifeCycle.REQUIREMENTS_RESOLVED) Iterable<ConfigurationRequirement> reqs) {
@@ -72,11 +64,10 @@ public class LicensingStatusToolControl {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String contacts = "Eclipse Passage \nhttps://projects.eclipse.org/projects/technology.passage";
+				String contacts = "Eclipse Passage \nhttps://www.eclipse.org/passage";
 				LicensingStatusDialog.setDefaultContacts(contacts);
 				Shell activeShell = button.getDisplay().getActiveShell();
 				LicensingStatusDialog dialog = new LicensingStatusDialog(activeShell);
-				dialog.setHardwareInspector(hardwareInspector);
 				dialog.updateLicensingStatus(requirements, verdicts);
 				dialog.open();
 			}

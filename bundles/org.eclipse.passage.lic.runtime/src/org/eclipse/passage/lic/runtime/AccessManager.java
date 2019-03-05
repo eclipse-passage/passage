@@ -17,6 +17,10 @@ package org.eclipse.passage.lic.runtime;
  *
  */
 public interface AccessManager {
+	
+	void registerConditionMiner(ConditionMiner conditionMiner);
+
+	void unregisterConditionMiner(ConditionMiner conditionMiner);
 
 	/**
 	 * Aggregated method to:

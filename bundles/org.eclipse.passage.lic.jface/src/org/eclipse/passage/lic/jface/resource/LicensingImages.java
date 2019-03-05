@@ -40,6 +40,9 @@ public class LicensingImages {
 	public static final String IMG_LEVEL_ERROR = "IMG_LEVEL_ERROR"; //$NON-NLS-1$
 	public static final String IMG_LEVEL_FATAL = "IMG_LEVEL_FATAL"; //$NON-NLS-1$
 
+	public static final String IMG_EXPORT = "IMG_EXPORT"; //$NON-NLS-1$
+	public static final String IMG_IMPORT = "IMG_IMPORT"; //$NON-NLS-1$
+
 	public static final String IMG_INSPECTOR = "IMG_INSPECTOR"; //$NON-NLS-1$
 
 	/**
@@ -145,6 +148,8 @@ public class LicensingImages {
 		paths.put(IMG_LEVEL_ERROR, PATH_OBJECT + "error.png"); //$NON-NLS-1$
 		paths.put(IMG_LEVEL_FATAL, PATH_OBJECT + "fatal.png"); //$NON-NLS-1$
 
+		paths.put(IMG_EXPORT, PATH_ETOOL + "export.png"); //$NON-NLS-1$
+		paths.put(IMG_IMPORT, PATH_ETOOL + "import.png"); //$NON-NLS-1$
 		paths.put(IMG_INSPECTOR, PATH_ETOOL + "hw-inspector.png"); //$NON-NLS-1$
 		declareImages(LicensingImages.class, paths);
 	}

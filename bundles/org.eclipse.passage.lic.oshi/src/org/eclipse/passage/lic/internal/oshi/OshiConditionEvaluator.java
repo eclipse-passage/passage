@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.oshi;
 
-import org.eclipse.passage.lic.base.BaseConditionEvaluator;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.osgi.service.component.annotations.Component;

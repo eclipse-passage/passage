@@ -29,9 +29,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
 import org.eclipse.passage.lic.base.LicensingPaths;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;

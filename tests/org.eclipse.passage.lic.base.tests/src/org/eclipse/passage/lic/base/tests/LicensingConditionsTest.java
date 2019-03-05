@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.base.tests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.base.LicensingConditions;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.junit.Test;
 
 public class LicensingConditionsTest {

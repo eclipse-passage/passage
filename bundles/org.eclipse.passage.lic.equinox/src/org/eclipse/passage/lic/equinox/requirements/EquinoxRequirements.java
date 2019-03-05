@@ -10,17 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox;
+package org.eclipse.passage.lic.equinox.requirements;
 
 import java.util.Collections;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
+import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.equinox.EquinoxAccess;
+import org.eclipse.passage.lic.runtime.AccessManager;
+import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRequirement;
 import org.osgi.framework.wiring.BundleWiring;
 
-public class LicensingBundles {
+public class EquinoxRequirements {
 
 	public static Iterable<BundleRequirement> extractLicensingManagementRequirements(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
@@ -36,6 +41,18 @@ public class LicensingBundles {
 			return wiring.getCapabilities(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE);
 		}
 		return Collections.emptyList();
+	}
+
+	public static Iterable<ConfigurationRequirement> getFeatureRequirements(String featureId, LicensingConfiguration configuration) {
+		if (featureId == null) {
+			return Collections.emptyList();
+		}
+		AccessManager accessManager = EquinoxAccess.getLicensingService(AccessManager.class);
+		if (accessManager == null) {
+			ConfigurationRequirement error = ConfigurationRequirements.createConfigurationError(featureId, configuration);
+			return Collections.singletonList(error);
+		}
+		return accessManager.resolveFeatureRequirements(featureId, configuration);
 	}
 	
 }

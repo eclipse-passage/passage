@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.LicensingConditions;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 
 import oshi.SystemInfo;

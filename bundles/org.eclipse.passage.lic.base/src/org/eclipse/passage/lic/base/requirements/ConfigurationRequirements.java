@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.base.requirements;
 
 import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_LEVEL;
 import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_NAME;
@@ -27,6 +27,7 @@ import static org.eclipse.passage.lic.base.LicensingProperties.toRestrictionLeve
 import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 

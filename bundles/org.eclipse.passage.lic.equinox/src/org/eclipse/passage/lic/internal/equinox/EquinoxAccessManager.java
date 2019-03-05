@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.BaseAccessManager;
-import org.eclipse.passage.lic.equinox.LicensingBundles;
+import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.ConfigurationResolver;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
 import org.osgi.framework.Bundle;
@@ -45,7 +45,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		bundleContext.addBundleListener(this);
 		Bundle[] bundles = bundleContext.getBundles();
 		for (Bundle bundle : bundles) {
-			LicensingBundles.extractLicensingManagementRequirements(bundle);
+			EquinoxRequirements.extractLicensingManagementRequirements(bundle);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	public void bundleChanged(BundleEvent event) {
 		//FIXME: consider event kind
 		Bundle bundle = event.getBundle();
-		LicensingBundles.extractLicensingManagementRequirements(bundle);
+		EquinoxRequirements.extractLicensingManagementRequirements(bundle);
 	}
 
 	@Reference
@@ -85,12 +85,12 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	
 	@Reference
 	@Override
-	public void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	public void bindConfigurationResolver(RequirementResolver configurationResolver) {
 		super.bindConfigurationResolver(configurationResolver);
 	}
 	
 	@Override
-	public void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	public void unbindConfigurationResolver(RequirementResolver configurationResolver) {
 		super.unbindConfigurationResolver(configurationResolver);
 	}
 	

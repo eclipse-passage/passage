@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.integration.tests.SomeKeyKeeper">
-   <implementation class="org.eclipse.passage.lic.equinox.BundleKeyKeeper"/>
+   <implementation class="org.eclipse.passage.lic.equinox.io.BundleKeyKeeper"/>
    <service>
       <provide interface="org.eclipse.passage.lic.runtime.io.KeyKeeper"/>
    </service>

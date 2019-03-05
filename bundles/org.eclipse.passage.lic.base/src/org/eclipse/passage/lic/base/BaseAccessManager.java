@@ -23,11 +23,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.LicensingEvents.LicensingLifeCycle;
+import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.ConditionMiner;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.ConfigurationResolver;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -37,27 +38,27 @@ import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 
 public abstract class BaseAccessManager implements AccessManager {
 
-	private final List<ConfigurationResolver> configurationResolvers = new ArrayList<>();
+	private final List<RequirementResolver> configurationResolvers = new ArrayList<>();
 	private final List<ConditionMiner> conditionMiners = new ArrayList<>();
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
 	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
 	private PermissionExaminer permissionExaminer;
 
-	protected void bindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void bindConfigurationResolver(RequirementResolver configurationResolver) {
 		configurationResolvers.add(configurationResolver);
 	}
 
-	protected void unbindConfigurationResolver(ConfigurationResolver configurationResolver) {
+	protected void unbindConfigurationResolver(RequirementResolver configurationResolver) {
 		configurationResolvers.remove(configurationResolver);
 	}
 
 	protected void bindConditionMiner(ConditionMiner conditionMiner) {
-		conditionMiners.add(conditionMiner);
+		registerConditionMiner(conditionMiner);
 	}
 
 	protected void unbindConditionMiner(ConditionMiner conditionMiner) {
-		conditionMiners.remove(conditionMiner);
+		unregisterConditionMiner(conditionMiner);
 	}
 
 	protected void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
@@ -88,6 +89,16 @@ public abstract class BaseAccessManager implements AccessManager {
 	protected void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.remove(restrictionExecutor);
 	}
+	
+	@Override
+	public void registerConditionMiner(ConditionMiner conditionMiner) {
+		conditionMiners.add(conditionMiner);
+	}
+	
+	@Override
+	public void unregisterConditionMiner(ConditionMiner conditionMiner) {
+		conditionMiners.remove(conditionMiner);
+	}
 
 	@Override
 	public void executeAccessRestrictions(LicensingConfiguration configuration) {
@@ -101,7 +112,7 @@ public abstract class BaseAccessManager implements AccessManager {
 	@Override
 	public Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration) {
 		List<ConfigurationRequirement> result = new ArrayList<>();
-		for (ConfigurationResolver configurationResolver : configurationResolvers) {
+		for (RequirementResolver configurationResolver : configurationResolvers) {
 			Iterable<ConfigurationRequirement> requirements = configurationResolver
 					.resolveConfigurationRequirements(configuration);
 			for (ConfigurationRequirement requirement : requirements) {
@@ -120,7 +131,7 @@ public abstract class BaseAccessManager implements AccessManager {
 			return Collections.emptyList();
 		}
 		List<ConfigurationRequirement> result = new ArrayList<>();
-		for (ConfigurationResolver configurationResolver : configurationResolvers) {
+		for (RequirementResolver configurationResolver : configurationResolvers) {
 			Iterable<ConfigurationRequirement> requirements = configurationResolver
 					.resolveConfigurationRequirements(configuration);
 			for (ConfigurationRequirement requirement : requirements) {

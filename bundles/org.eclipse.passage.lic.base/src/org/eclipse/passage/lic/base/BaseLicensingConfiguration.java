@@ -18,7 +18,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
-public class BaseLicensingConfiguration implements LicensingConfiguration {
+class BaseLicensingConfiguration implements LicensingConfiguration {
 
 	private final String productIdentifier;
 	private final String productVersion;

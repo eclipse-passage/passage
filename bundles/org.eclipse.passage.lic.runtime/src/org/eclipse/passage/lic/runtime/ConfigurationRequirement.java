@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.runtime;
 
 /**
  * The usage constraint defined for specific feature identifier with given
- * version. Obtained from {@link ConfigurationResolver}
+ * version. Obtained from {@link RequirementResolver}
  *
  */
 public interface ConfigurationRequirement {

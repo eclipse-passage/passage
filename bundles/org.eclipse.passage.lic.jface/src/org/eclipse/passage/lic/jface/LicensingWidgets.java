@@ -17,7 +17,8 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
-import org.eclipse.passage.lic.equinox.LicensingEquinox;
+import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
+import org.eclipse.passage.lic.equinox.restrictions.EquinoxRestrictions;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -39,14 +40,14 @@ public class LicensingWidgets {
 	}
 
 	public static IStatus validateLicense(String featureId, LicensingConfiguration configuration, Shell shell) {
-		Iterable<ConfigurationRequirement> required = LicensingEquinox.getFeatureRequirements(featureId, configuration);
+		Iterable<ConfigurationRequirement> required = EquinoxRequirements.getFeatureRequirements(featureId, configuration);
 		Iterator<ConfigurationRequirement> iterator = required.iterator();
 		if (!iterator.hasNext()) {
 			return Status.OK_STATUS;
 		}
 		String featureName = iterator.next().getFeatureName();
-		Iterable<RestrictionVerdict> verdicts = LicensingEquinox.getFeatureVerdicts(featureId, configuration);
-		IStatus status = LicensingEquinox.getLicensingStatus(verdicts, featureName);
+		Iterable<RestrictionVerdict> verdicts = EquinoxRestrictions.getFeatureVerdicts(featureId, configuration);
+		IStatus status = EquinoxRestrictions.getRestrictionStatus(verdicts, featureName);
 		if (status.isOK()) {
 			return status;
 		}

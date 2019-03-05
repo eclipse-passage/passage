@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.json;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 
 public class ConditionDescriptorAggregator {
 

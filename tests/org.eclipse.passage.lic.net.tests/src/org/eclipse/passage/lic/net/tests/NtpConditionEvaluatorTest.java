@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.LicensingConditions;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.net.NtpConditionEvaluator;
 import org.eclipse.passage.lic.net.TimeConditions;
 import org.eclipse.passage.lic.runtime.FeaturePermission;

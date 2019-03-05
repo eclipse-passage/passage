@@ -10,12 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.base.restrictions;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
 
 import java.util.Collections;
 
+import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 

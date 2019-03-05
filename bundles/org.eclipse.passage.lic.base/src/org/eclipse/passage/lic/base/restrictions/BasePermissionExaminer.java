@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.base.restrictions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +20,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.LicensingEvents.LicensingConditionEvents;
+import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.base.conditions.LicensingConditionEvents;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;

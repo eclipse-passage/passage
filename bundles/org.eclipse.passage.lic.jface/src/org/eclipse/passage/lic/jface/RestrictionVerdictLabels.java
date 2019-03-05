@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.RestrictionVerdictComparator;
+import org.eclipse.passage.lic.base.restrictions.RestrictionVerdictComparator;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 
 public class RestrictionVerdictLabels {

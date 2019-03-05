@@ -20,8 +20,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import org.eclipse.passage.lic.base.BaseLicensingCondition;
-import org.eclipse.passage.lic.base.LicensingConditions;
+import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.ConditionDescriptorAggregator;
 import org.eclipse.passage.lic.internal.json.JsonLicensingConditionTransport;
 import org.eclipse.passage.lic.internal.json.LicensingConditionMixIn;

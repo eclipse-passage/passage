@@ -25,8 +25,10 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.passage.lic.equinox.EquinoxAccess;
 import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
@@ -47,6 +49,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
 	
+	public static final int IMPORT_LICENSE_ID = IDialogConstants.CLIENT_ID + 2;
+	
 	private static String defaultContacts = ""; //$NON-NLS-1$
 
 
@@ -59,7 +63,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		LicensingStatusDialog.defaultContacts = defaultContacts;
 	}
 
-	private HardwareInspector hardwareInspector;
+	private final AccessManager accessManager;
+	private final HardwareInspector hardwareInspector;
 
 	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
 	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
@@ -69,6 +74,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	public LicensingStatusDialog(Shell shell) {
 		super(shell);
+		accessManager = EquinoxAccess.getLicensingService(AccessManager.class);
+		hardwareInspector = EquinoxAccess.getLicensingService(HardwareInspector.class);
 	}
 
 	@Override
@@ -93,7 +100,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		return area;
 	}
 
-	private void createAreaContent(Composite area) {
+	protected void createAreaContent(Composite area) {
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout(1, false));
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -117,6 +124,11 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 					return LicensingImages.getImage(imageKey);
 				}
 				return super.getImage(element);
+			}
+			
+			@Override
+			public String getText(Object element) {
+				return "";
 			}
 
 		});
@@ -183,7 +195,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		contactsText.setFont(JFaceResources.getDialogFont());
 	}
 
-	private TableViewerColumn createColumnViewer(TableViewer tableViewDetails, String columnName, int width) {
+	protected TableViewerColumn createColumnViewer(TableViewer tableViewDetails, String columnName, int width) {
 		TableViewerColumn columnViewer = new TableViewerColumn(tableViewDetails, SWT.NONE);
 		TableColumn column = columnViewer.getColumn();
 		column.setText(columnName);
@@ -194,17 +206,15 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
-		createButton(parent, HARDWARE_INSPECTOR_ID, "Inspect", false);
-		Button inspector = getButton(HARDWARE_INSPECTOR_ID);
+		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "Import...", false);
+		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
+		importButton.setEnabled(accessManager != null);
+		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "Inspect...", false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);
+		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
 	}
 
-	public void setHardwareInspector(HardwareInspector hardwareInspector) {
-		this.hardwareInspector = hardwareInspector;
-	}
-	
 	public void updateLicensingStatus(Iterable<ConfigurationRequirement> required, Iterable<RestrictionVerdict> verdicts) {
 		requirements.clear();
 		restrictions.clear();
@@ -225,6 +235,9 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	@Override
 	protected void buttonPressed(int buttonId) {
 		switch (buttonId) {
+		case IMPORT_LICENSE_ID:
+			importLicensePressed();
+			break;
 		case HARDWARE_INSPECTOR_ID:
 			hardwareInspectorPressed();
 			break;
@@ -234,6 +247,11 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		}
 	}
 
+	protected void importLicensePressed() {
+		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), accessManager);
+		dialog.open();
+	}
+	
 	protected void hardwareInspectorPressed() {
 		HardwareInspectorDialog dialog = new HardwareInspectorDialog(getShell(), hardwareInspector);
 		dialog.open();

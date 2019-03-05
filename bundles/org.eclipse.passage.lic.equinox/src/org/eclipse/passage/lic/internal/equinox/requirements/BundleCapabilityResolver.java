@@ -10,20 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.eclipse.passage.lic.base.BaseConfigurationRequirement;
-import org.eclipse.passage.lic.base.ConfigurationRequirements;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.equinox.LicensingBundles;
+import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
+import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.ConfigurationResolver;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 @Component
-public class BundleCapabilityResolver implements ConfigurationResolver {
+public class BundleCapabilityResolver implements RequirementResolver {
 
 	private Logger logger;
 	private BundleContext bundleContext;
@@ -60,7 +60,7 @@ public class BundleCapabilityResolver implements ConfigurationResolver {
 		List<ConfigurationRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
 		for (Bundle bundle : bundles) {
-			Iterable<BundleCapability> capabilities = LicensingBundles.extractLicensingFeatures(bundle);
+			Iterable<BundleCapability> capabilities = EquinoxRequirements.extractLicensingFeatures(bundle);
 			for (BundleCapability capability : capabilities) {
 				Map<String, Object> attributes = capability.getAttributes();
 				Map<String, String> directives = capability.getDirectives();

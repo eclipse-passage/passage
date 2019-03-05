@@ -16,6 +16,12 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.passage.lic.equinox,
- org.eclipse.passage.lic.internal.equinox;x-internal:=true
+ org.eclipse.passage.lic.equinox.conditions,
+ org.eclipse.passage.lic.equinox.io,
+ org.eclipse.passage.lic.equinox.requirements,
+ org.eclipse.passage.lic.equinox.restrictions,
+ org.eclipse.passage.lic.internal.equinox;x-internal:=true,
+ org.eclipse.passage.lic.internal.equinox.requirements;x-internal:=true,
+ org.eclipse.passage.lic.internal.equinox.restrictions;x-internal:=true
 Provide-Capability: licensing.management;licensing.management="equinox";version="0.4.0"
 

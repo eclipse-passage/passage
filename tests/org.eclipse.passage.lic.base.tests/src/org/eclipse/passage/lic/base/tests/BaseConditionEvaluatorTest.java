@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.BaseConditionEvaluator;
+import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
 import org.junit.After;
 import org.junit.Test;
 

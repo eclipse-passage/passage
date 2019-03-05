@@ -20,9 +20,9 @@ import org.osgi.service.event.Event;
 public class EquinoxEvents {
 
 	//@see org.eclipse.e4.core.services.events.IEventBroker.DATA
-	static final String PROPERTY_DATA = "org.eclipse.e4.data"; //$NON-NLS-1$
+	public static final String PROPERTY_DATA = "org.eclipse.e4.data"; //$NON-NLS-1$
 
-	static Event createEvent(String topic, Object data) {
+	public static Event createEvent(String topic, Object data) {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put(PROPERTY_DATA, data);
 		Event event = new Event(topic, properties);

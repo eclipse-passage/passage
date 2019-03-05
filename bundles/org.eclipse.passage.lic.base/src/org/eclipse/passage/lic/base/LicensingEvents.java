@@ -74,31 +74,5 @@ public class LicensingEvents {
 		public static final String RESTRICTIONS_EXECUTED = TOPIC + TOPIC_SEP + "restrictionsExecuted"; //$NON-NLS-1$
 
 	}
-	
-	public static final class LicensingConditionEvents {
-	
-		private LicensingConditionEvents() {
-			//block
-		}
-
-		/**
-		 * Base name for all Licensing condition events
-		 */
-		public static final String TOPIC = LicensingTopicBase + TOPIC_SEP + "ConditionEvents"; //$NON-NLS-1$
-
-		/**
-		 * Sent when conditions are rejected as invalid
-		 */
-		public static final String CONDITIONS_NOT_VALID = TOPIC + TOPIC_SEP + "conditionsNotValid"; //$NON-NLS-1$
-		/**
-		 * Sent when conditions are rejected as invalid
-		 */
-		public static final String CONDITIONS_NOT_EVALUATED = TOPIC + TOPIC_SEP + "conditionsNotEvaluated"; //$NON-NLS-1$
-		/**
-		 * Sent when conditions are leased
-		 */
-		public static final String CONDITIONS_LEASED = TOPIC + TOPIC_SEP + "conditionsLeased"; //$NON-NLS-1$
-
-	}
 
 }
