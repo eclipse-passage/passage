@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.lbc.server
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.passage.lbc.server;singleton:=true
-Bundle-Version: 0.3.3.qualifier
-Automatic-Module-Name: org.eclipse.passage.licensing.server.application
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.core.runtime;bundle-version="3.14.0"
+Bundle-Version: 0.4.0.qualifier
+Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0"

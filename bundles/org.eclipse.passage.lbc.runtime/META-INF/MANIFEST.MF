@@ -1,13 +1,12 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.lbc.runtime
 Bundle-ManifestVersion: 2
-Bundle-Version: 0.3.3.qualifier
+Bundle-SymbolicName: org.eclipse.passage.lbc.runtime;singleton:=true
+Bundle-Version: 0.4.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-SymbolicName: org.eclipse.passage.lbc.runtime;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.passage.lbc.runtime
 Require-Bundle: javax.servlet,
  org.apache.httpcomponents.httpclient,
  org.apache.httpcomponents.httpcore,
@@ -16,6 +15,5 @@ Require-Bundle: javax.servlet,
  com.fasterxml.jackson.core.jackson-core;bundle-version="2.9.2",
  org.eclipse.passage.lic.net,
  org.eclipse.passage.lic.base
-Automatic-Module-Name: org.eclipse.passage.licensing.server
-
-
+Export-Package: org.eclipse.passage.lbc.runtime
+Bundle-ActivationPolicy: lazy
