@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.tests;
 
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_PROVIDER_DEFAULT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -29,7 +30,7 @@ import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionExaminer;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -57,11 +58,13 @@ public class BasePermissionExaminerTest {
 		Object source = new Object();
 		LicensingConfiguration configuration = LicensingConfigurations.create(null, null);
 
+		String provider = LICENSING_FEATURE_PROVIDER_DEFAULT;
+
 		BaseConfigurationRequirement fooRequirement = ConfigurationRequirements.createDefault(FOO_FEATURE_ID,
-				FOO_FEATURE_VERSION, FOO_FEATURE_ID, source, configuration);
+				FOO_FEATURE_VERSION, FOO_FEATURE_ID, provider, source, configuration);
 		BaseConfigurationRequirement barRequirement = ConfigurationRequirements.createDefault(BAR_FEATURE_ID,
-				BAR_FEATURE_VERSION, BAR_FEATURE_ID, source, configuration);
-		Iterable<ConfigurationRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
+				BAR_FEATURE_VERSION, BAR_FEATURE_ID, provider, source, configuration);
+		Iterable<LicensingRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
 
 		Date fooFrom = null;
 		Date foorUntil = null;

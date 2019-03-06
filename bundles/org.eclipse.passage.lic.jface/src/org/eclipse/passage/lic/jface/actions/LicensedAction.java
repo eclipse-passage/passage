@@ -14,29 +14,16 @@ package org.eclipse.passage.lic.jface.actions;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.action.Action;
-import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.jface.LicensingWidgets;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 
 public class LicensedAction extends Action {
 
-	private LicensingConfiguration licensingConfiguration = ApplicationConfigurations.getLicensingConfiguration();
-
-	public LicensingConfiguration getLicensingConfiguration() {
-		return licensingConfiguration;
-	}
-
-	public void setLicensingConfiguration(LicensingConfiguration licensingConfiguration) {
-		this.licensingConfiguration = licensingConfiguration;
-	}
-
 	@Override
 	public void runWithEvent(Event event) {
-		LicensingConfiguration configuration = getLicensingConfiguration();
 		Shell shell = event.display.getActiveShell();
-		IStatus validated = LicensingWidgets.validateLicense(getId(), configuration, shell);
+		IStatus validated = LicensingWidgets.validateLicense(shell, getId());
 		if (!validated.isOK()) {
 			return;
 		}

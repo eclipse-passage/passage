@@ -14,11 +14,13 @@ package org.eclipse.passage.lic.base.restrictions;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 
 public class RestrictionVerdicts {
 	
@@ -31,13 +33,13 @@ public class RestrictionVerdicts {
 	}
 
 
-	public static BaseRestrictionVerdict createConfigurationError(String featureId, LicensingConfiguration configuration) {
-		ConfigurationRequirement requirement = ConfigurationRequirements.createConfigurationError(featureId, configuration);
+	public static BaseRestrictionVerdict createConfigurationError(String featureId, Object source) {
+		LicensingRequirement requirement = ConfigurationRequirements.createConfigurationError(featureId, source);
 		int code = CODE_CONFIGURATION_ERROR;
 		return createError(requirement, code);
 	}
 
-	public static BaseRestrictionVerdict create(ConfigurationRequirement requirement, int code) {
+	public static BaseRestrictionVerdict create(LicensingRequirement requirement, int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		if (requirement != null) {
 			policy = requirement.getRestrictionLevel();
@@ -45,14 +47,29 @@ public class RestrictionVerdicts {
 		return new BaseRestrictionVerdict(requirement, policy, code);
 	}
 
-	public static BaseRestrictionVerdict createError(ConfigurationRequirement requirement, int code) {
+	public static BaseRestrictionVerdict createError(LicensingRequirement requirement, int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		return new BaseRestrictionVerdict(requirement, policy, code);
 	}
 
-	public static Iterable<BaseRestrictionVerdict> createConfigurationError(ConfigurationRequirement requirement) {
+	public static Iterable<BaseRestrictionVerdict> createConfigurationError(LicensingRequirement requirement) {
 		int code = CODE_CONFIGURATION_ERROR;
 		return Collections.singletonList(createError(requirement, code));
+	}
+
+
+	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts) {
+		if (verdicts == null) {
+			return null;
+		}
+		List<RestrictionVerdict> list = new ArrayList<>();
+		verdicts.forEach(list::add);
+		if (list.isEmpty()) {
+			return null;
+		}
+		Collections.sort(list, new RestrictionVerdictComparator());
+		RestrictionVerdict last = list.get(list.size()-1);
+		return last;
 	}
 
 

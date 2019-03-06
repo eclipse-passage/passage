@@ -57,10 +57,8 @@ public class EnvironmentBasedConditionMiner implements ConditionMiner {
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		Object object = properties.get(LicensingProperties.LICENSING_CONDITION_AREA);
-		if (object instanceof String) {
-			String value = (String) object;
-			conditionArea = value;
-		}
+		String value = String.valueOf(object);
+		conditionArea = value;
 	}
 
 	@Reference

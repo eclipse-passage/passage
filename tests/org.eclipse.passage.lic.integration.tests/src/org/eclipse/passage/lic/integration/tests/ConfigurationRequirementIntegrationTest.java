@@ -20,26 +20,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.junit.Test;
 
 public class ConfigurationRequirementIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testResolveRequirementsPositive() {
-		Iterable<ConfigurationRequirement> resolved = accessManager.resolveRequirements(null);
-		Map<String, ConfigurationRequirement> requirements = new HashMap<>();
-		for (ConfigurationRequirement cr : resolved) {
+		Iterable<LicensingRequirement> resolved = accessManager.resolveRequirements(null);
+		Map<String, LicensingRequirement> requirements = new HashMap<>();
+		for (LicensingRequirement cr : resolved) {
 			requirements.put(cr.getFeatureIdentifier(), cr);
 		}
 		assertEquals(2, requirements.size());
-		ConfigurationRequirement bundleRequirement = requirements.get(SOME_BUNDLE_ID);
+		LicensingRequirement bundleRequirement = requirements.get(SOME_BUNDLE_ID);
 		assertNotNull(bundleRequirement);
 		assertEquals(SOME_BUNDLE_ID, bundleRequirement.getFeatureIdentifier());
 		assertEquals(LicensingVersions.VERSION_DEFAULT, bundleRequirement.getFeatureVersion());
 		assertEquals(LICENSING_RESTRICTION_LEVEL_DEFAULT, bundleRequirement.getRestrictionLevel());
 
-		ConfigurationRequirement componentRequirement = requirements.get(SOME_COMPONENT_ID);
+		LicensingRequirement componentRequirement = requirements.get(SOME_COMPONENT_ID);
 		assertNotNull(componentRequirement);
 		assertEquals(SOME_COMPONENT_ID, componentRequirement.getFeatureIdentifier());
 		assertEquals(SOME_COMPONENT_VERSION, componentRequirement.getFeatureVersion());

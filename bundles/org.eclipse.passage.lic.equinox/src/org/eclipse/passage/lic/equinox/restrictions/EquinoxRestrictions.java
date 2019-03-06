@@ -12,32 +12,44 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.restrictions;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.EquinoxAccess;
-import org.eclipse.passage.lic.runtime.AccessManager;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
+import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 
 public class EquinoxRestrictions {
 
-	public static Iterable<RestrictionVerdict> getFeatureVerdicts(String featureId, LicensingConfiguration configuration) {
-		if (featureId == null) {
-			return Collections.emptyList();
+	public static Iterable<RestrictionVerdict> getFeatureVerdicts(String... featureIds) {
+		FeatureInspector featureInspector = EquinoxAccess.getFeatureInspector();
+		if (featureInspector == null) {
+			if (featureInspector == null) {
+				LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
+				if (featureIds.length == 0) {
+					String id = configuration.getProductIdentifier();
+					return Collections.singletonList(RestrictionVerdicts.createConfigurationError(id, configuration));
+				}
+				List<RestrictionVerdict> errors = new ArrayList<>();
+				for (String id : featureIds) {
+					errors.add(RestrictionVerdicts.createConfigurationError(id, configuration));
+				}
+				return errors;
+			}
 		}
-		AccessManager accessManager = EquinoxAccess.getLicensingService(AccessManager.class);
-		if (accessManager == null) {
-			RestrictionVerdict invalid = RestrictionVerdicts.createConfigurationError(featureId, configuration);
-			return Collections.singletonList(invalid);
+		try(FeatureCase inspection = featureInspector.inspectFeatures(featureIds)) {
+			return inspection.getRestrictions();
 		}
-		Iterable<RestrictionVerdict> permissons = accessManager.examineFeaturePermissons(featureId, configuration);
-		return permissons;
 	}
 
 	public static IStatus getRestrictionStatus(Iterable<RestrictionVerdict> verdicts, String featureName) {
@@ -49,7 +61,7 @@ public class EquinoxRestrictions {
 		String title = "Issues with licensing";
 		MultiStatus status = new MultiStatus(pluginId , RestrictionVerdicts.CODE_CONFIGURATION_ERROR, title, null);
 		for (RestrictionVerdict verdict : verdicts) {
-			ConfigurationRequirement configurationRequirement = verdict.getConfigurationRequirement();
+			LicensingRequirement configurationRequirement = verdict.getConfigurationRequirement();
 			if (configurationRequirement != null) {
 				featureName = configurationRequirement.getFeatureName();
 			}

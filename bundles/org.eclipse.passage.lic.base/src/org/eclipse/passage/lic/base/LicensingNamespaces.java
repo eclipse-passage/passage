@@ -21,6 +21,7 @@ public final class LicensingNamespaces {
 
 	public static final String ATTRIBUTE_VERSION = "version"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_NAME = "name"; //$NON-NLS-1$
+	public static final String ATTRIBUTE_PROVIDER = "provider"; //$NON-NLS-1$
 
 	public static final String ATTRIBUTE_LEVEL = "level"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_FATAL = "fatal"; //$NON-NLS-1$

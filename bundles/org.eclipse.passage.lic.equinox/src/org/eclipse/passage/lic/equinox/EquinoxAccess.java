@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
+import org.eclipse.passage.lic.runtime.AccessManager;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
+import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -20,6 +23,18 @@ import org.osgi.framework.ServiceReference;
 public class EquinoxAccess {
 	
 	public static final String PI_LIC_EQUINOX = "org.eclipse.passage.lic.equinox";
+
+	public static AccessManager getAccessManager() {
+		return getLicensingService(AccessManager.class);
+	}
+
+	public static FeatureInspector getFeatureInspector() {
+		return getLicensingService(FeatureInspector.class);
+	}
+	
+	public static HardwareInspector getHardwareInspector() {
+		return getLicensingService(HardwareInspector.class);
+	}
 
 	public static <L> L getLicensingService(Class<L> clazz) {
 		Bundle bundle = FrameworkUtil.getBundle(EquinoxAccess.class);

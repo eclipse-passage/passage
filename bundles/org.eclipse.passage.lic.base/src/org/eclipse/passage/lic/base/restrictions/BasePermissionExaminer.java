@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditionEvents;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
@@ -31,12 +31,12 @@ import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
-	public Iterable<RestrictionVerdict> examine(Iterable<ConfigurationRequirement> requirements,
+	public Iterable<RestrictionVerdict> examine(Iterable<LicensingRequirement> requirements,
 			Iterable<FeaturePermission> permissions) {
-		Map<String, List<ConfigurationRequirement>> required = new HashMap<>();
-		for (ConfigurationRequirement requirement : requirements) {
+		Map<String, List<LicensingRequirement>> required = new HashMap<>();
+		for (LicensingRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();
-			List<ConfigurationRequirement> list = required.computeIfAbsent(featureId, key -> new ArrayList<>());
+			List<LicensingRequirement> list = required.computeIfAbsent(featureId, key -> new ArrayList<>());
 			list.add(requirement);
 		}
 		
@@ -45,7 +45,7 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		Set<String> features = required.keySet();
 		List<LicensingCondition> leased = new ArrayList<>();
 		for (String featureId : features) {
-			List<ConfigurationRequirement> requirementList = required.get(featureId);
+			List<LicensingRequirement> requirementList = required.get(featureId);
 			List<RestrictionVerdict> examined = examineFeatures(requirementList, permissions, leased);
 			verdicts.addAll(examined);
 		}
@@ -55,11 +55,11 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		return Collections.unmodifiableList(verdicts);
 	}
 	
-	protected List<RestrictionVerdict> examineFeatures(List<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, List<LicensingCondition> conditions) {
-		List<ConfigurationRequirement> unsatisfied = new ArrayList<>(requirements);
+	protected List<RestrictionVerdict> examineFeatures(List<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions, List<LicensingCondition> conditions) {
+		List<LicensingRequirement> unsatisfied = new ArrayList<>(requirements);
 		for (FeaturePermission permission : permissions) {
-			List<ConfigurationRequirement> covered = new ArrayList<>();
-			for (ConfigurationRequirement requirement : unsatisfied) {
+			List<LicensingRequirement> covered = new ArrayList<>();
+			for (LicensingRequirement requirement : unsatisfied) {
 				if (isCovered(requirement, permission)) {
 					covered.add(requirement);
 					conditions.add(permission.getLicensingCondition());
@@ -69,17 +69,17 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		}
 		
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
-		for (ConfigurationRequirement requirement : unsatisfied) {
+		for (LicensingRequirement requirement : unsatisfied) {
 			verdicts.add(createVerdict(requirement, RestrictionVerdicts.CODE_NOT_AUTHORIZED));
 		}
 		return Collections.unmodifiableList(verdicts);
 	}
 
-	protected RestrictionVerdict createVerdict(ConfigurationRequirement requirement, int code) {
+	protected RestrictionVerdict createVerdict(LicensingRequirement requirement, int code) {
 		return RestrictionVerdicts.create(requirement, code);
 	}
 	
-	protected boolean isCovered(ConfigurationRequirement requirement, FeaturePermission permission) {
+	protected boolean isCovered(LicensingRequirement requirement, FeaturePermission permission) {
 		LicensingCondition condition = permission.getLicensingCondition();
 		if (condition == null) {
 			return false;

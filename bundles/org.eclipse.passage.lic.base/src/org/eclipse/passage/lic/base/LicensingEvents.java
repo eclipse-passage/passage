@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 
@@ -49,7 +49,12 @@ public class LicensingEvents {
 		public static final String TOPIC = LicensingTopicBase + TOPIC_SEP + "LifeCycle"; //$NON-NLS-1$
 
 		/**
-		 * Sent when {@link ConfigurationRequirement}(s) are resolved
+		 * Name for all Licensing life cycle events
+		 */
+		public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
+
+		/**
+		 * Sent when {@link LicensingRequirement}(s) are resolved
 		 */
 		public static final String REQUIREMENTS_RESOLVED = TOPIC + TOPIC_SEP + "requirementsResolved"; //$NON-NLS-1$
 

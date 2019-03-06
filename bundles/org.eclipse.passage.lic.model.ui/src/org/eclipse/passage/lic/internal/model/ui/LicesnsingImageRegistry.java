@@ -38,12 +38,7 @@ public class LicesnsingImageRegistry {
 	}
 
 	private void registerImages() {
-		Display current = Display.getCurrent();
-		if (current == null) {
-			Display.getDefault().asyncExec(() -> doRegisterImages());
-		} else {
-			doRegisterImages();
-		}
+		Display.getDefault().asyncExec(() -> doRegisterImages());
 	}
 
 	private void doRegisterImages() {

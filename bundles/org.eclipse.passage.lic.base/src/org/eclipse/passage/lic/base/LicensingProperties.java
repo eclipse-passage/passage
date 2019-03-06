@@ -19,7 +19,12 @@ public final class LicensingProperties {
 
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
+
 	public static final String LICENSING_FEATURE_NAME = "licensing.feature.name"; //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_NAME_DEFAULT = "License Management";
+
+	public static final String LICENSING_FEATURE_PROVIDER = "licensing.feature.provider"; //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = "Eclipse Passage";
 	
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$

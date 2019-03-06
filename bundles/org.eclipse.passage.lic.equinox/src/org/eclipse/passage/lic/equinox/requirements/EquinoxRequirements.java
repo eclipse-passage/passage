@@ -12,14 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.EquinoxAccess;
-import org.eclipse.passage.lic.runtime.AccessManager;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
+import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRequirement;
@@ -43,16 +47,23 @@ public class EquinoxRequirements {
 		return Collections.emptyList();
 	}
 
-	public static Iterable<ConfigurationRequirement> getFeatureRequirements(String featureId, LicensingConfiguration configuration) {
-		if (featureId == null) {
-			return Collections.emptyList();
+	public static Iterable<LicensingRequirement> getFeatureRequirements(String... featureIds) {
+		FeatureInspector featureInspector = EquinoxAccess.getFeatureInspector();
+		if (featureInspector == null) {
+			LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
+			if (featureIds.length == 0) {
+				String id = configuration.getProductIdentifier();
+				return Collections.singletonList(ConfigurationRequirements.createConfigurationError(id, configuration));
+			}
+			List<LicensingRequirement> errors = new ArrayList<>();
+			for (String id : featureIds) {
+				errors.add(ConfigurationRequirements.createConfigurationError(id, configuration));
+			}
+			return errors;
 		}
-		AccessManager accessManager = EquinoxAccess.getLicensingService(AccessManager.class);
-		if (accessManager == null) {
-			ConfigurationRequirement error = ConfigurationRequirements.createConfigurationError(featureId, configuration);
-			return Collections.singletonList(error);
+		try(FeatureCase inspection = featureInspector.inspectFeatures(featureIds)) {
+			return inspection.getRequirements();
 		}
-		return accessManager.resolveFeatureRequirements(featureId, configuration);
 	}
 	
 }

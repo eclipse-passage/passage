@@ -12,29 +12,25 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.EquinoxAccess;
 import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
 import org.eclipse.passage.lic.runtime.AccessManager;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
+import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -48,13 +44,12 @@ import org.eclipse.swt.widgets.TableColumn;
 public class LicensingStatusDialog extends TitleAreaDialog {
 
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
-	
+
 	public static final int IMPORT_LICENSE_ID = IDialogConstants.CLIENT_ID + 2;
-	
+
 	private static String defaultContacts = ""; //$NON-NLS-1$
 
-
-	//FIXME: AF: implement https://bugs.eclipse.org/bugs/show_bug.cgi?id=544387
+	// FIXME: AF: implement https://bugs.eclipse.org/bugs/show_bug.cgi?id=544387
 	public static String getDefaultContacts() {
 		return defaultContacts;
 	}
@@ -62,20 +57,21 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	public static void setDefaultContacts(String defaultContacts) {
 		LicensingStatusDialog.defaultContacts = defaultContacts;
 	}
-
 	private final AccessManager accessManager;
+	private final FeatureInspector featureInspector;
 	private final HardwareInspector hardwareInspector;
-
-	private final List<ConfigurationRequirement> requirements = new ArrayList<>();
-	private final List<RestrictionVerdict> restrictions = new ArrayList<>();
-	private final Map<String, List<RestrictionVerdict>> map = new HashMap<>();
+	
+	private final FeatureCase featureCase;
 
 	private TableViewer tableViewer;
 
-	public LicensingStatusDialog(Shell shell) {
+
+	public LicensingStatusDialog(Shell shell, String...features) {
 		super(shell);
-		accessManager = EquinoxAccess.getLicensingService(AccessManager.class);
-		hardwareInspector = EquinoxAccess.getLicensingService(HardwareInspector.class);
+		accessManager = EquinoxAccess.getAccessManager();
+		featureInspector = EquinoxAccess.getFeatureInspector();
+		featureCase = featureInspector.inspectFeatures(features);
+		hardwareInspector = EquinoxAccess.getHardwareInspector();
 	}
 
 	@Override
@@ -88,7 +84,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitle("Licensing status");
-		RestrictionVerdict last = RestrictionVerdictLabels.resolveLastVerdict(restrictions);
+		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(featureCase.getRestrictions());
 		if (last == null) {
 			setMessage(RestrictionVerdictLabels.resolveSummary(last));
 		} else {
@@ -113,76 +109,16 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		tableViewer = new TableViewer(tableDetails);
 		tableViewer.setContentProvider(new ArrayContentProvider());
 
-		TableViewerColumn columnStatusImage = createColumnViewer(tableViewer, "", 20);
-		columnStatusImage.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public Image getImage(Object element) {
-				if (element instanceof ConfigurationRequirement) {
-					ConfigurationRequirement req = (ConfigurationRequirement) element;
-					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
-					String imageKey = RestrictionVerdictLabels.resolveImageKey(verdicts);
-					return LicensingImages.getImage(imageKey);
-				}
-				return super.getImage(element);
-			}
-			
-			@Override
-			public String getText(Object element) {
-				return "";
-			}
+		createColumnViewer(tableViewer, "", 20);
+		createColumnViewer(tableViewer, "Provider", 150);
+		createColumnViewer(tableViewer, "Name", 300);
+		createColumnViewer(tableViewer, "Version", 80);
+		createColumnViewer(tableViewer, "Idenitifier", 200);
+		createColumnViewer(tableViewer, "Level", 50);
 
-		});
-		TableViewerColumn columnFeatureId = createColumnViewer(tableViewer, "Feature Id", 200);
-		columnFeatureId.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof ConfigurationRequirement) {
-					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
-					return requirement.getFeatureIdentifier();
-				}
-				return super.getText(element);
-			}
-		});
-		TableViewerColumn columnFeatureName = createColumnViewer(tableViewer, "Feature Name", 200);
-		columnFeatureName.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof ConfigurationRequirement) {
-					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
-					return requirement.getFeatureName();
-				}
-				return super.getText(element);
-			}
-		});
-		TableViewerColumn columnFeatureVersion = createColumnViewer(tableViewer, "Version",
-				100);
-		columnFeatureVersion.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof ConfigurationRequirement) {
-					ConfigurationRequirement requirement = (ConfigurationRequirement) element;
-					return requirement.getFeatureVersion();
-				}
-				return super.getText(element);
-			}
-		});
+		tableViewer.setLabelProvider(new LicensingLabelProvider());
 
-		TableViewerColumn columnLicenseStatus = createColumnViewer(tableViewer, "Status",
-				200);
-		columnLicenseStatus.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof ConfigurationRequirement) {
-					ConfigurationRequirement req = (ConfigurationRequirement) element;
-					List<RestrictionVerdict> verdicts = map.get(req.getFeatureIdentifier());
-					return RestrictionVerdictLabels.resolveLabel(verdicts);
-				}
-				return super.getText(element);
-			}
-
-		});
-
-		tableViewer.setInput(requirements);
+		tableViewer.setInput(featureCase.getRequirements());
 
 		Group contactsGroup = new Group(area, SWT.NONE);
 		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -215,23 +151,6 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
 	}
 
-	public void updateLicensingStatus(Iterable<ConfigurationRequirement> required, Iterable<RestrictionVerdict> verdicts) {
-		requirements.clear();
-		restrictions.clear();
-		required.forEach(requirements::add);
-		for (RestrictionVerdict verdict : verdicts) {
-			ConfigurationRequirement requirement = verdict.getConfigurationRequirement();
-			
-			String featureId = requirement.getFeatureIdentifier();
-			List<RestrictionVerdict> list = map.computeIfAbsent(featureId, key -> new ArrayList<>());
-			list.add(verdict);
-			restrictions.add(verdict);
-		}
-		if (tableViewer != null && !tableViewer.getControl().isDisposed()) {
-			tableViewer.setInput(requirements);
-		}
-	}
-
 	@Override
 	protected void buttonPressed(int buttonId) {
 		switch (buttonId) {
@@ -251,7 +170,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), accessManager);
 		dialog.open();
 	}
-	
+
 	protected void hardwareInspectorPressed() {
 		HardwareInspectorDialog dialog = new HardwareInspectorDialog(getShell(), hardwareInspector);
 		dialog.open();

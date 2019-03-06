@@ -12,19 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_NAME_DEFAULT;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_PROVIDER_DEFAULT;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Dictionary;
 import java.util.List;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.RequirementResolver;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -70,21 +75,26 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 	}
 
 	@Override
-	public Iterable<ConfigurationRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration) {
-		String lmName = "License Management";
+	public Iterable<LicensingRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration) {
+		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
+		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (scr == null) {
 			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this, configuration);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		if (bundleContext == null) {
 			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, lmName, this, configuration);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
-		List<ConfigurationRequirement> result = new ArrayList<>();
+		List<LicensingRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
 		Collection<ComponentDescriptionDTO> components = scr.getComponentDescriptionDTOs(bundles);
 		for (ComponentDescriptionDTO component : components) {
-			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(component.properties, component, configuration);
+			Bundle bundle = bundleContext.getBundle(component.bundle.id);
+			Dictionary<String, String> headers = bundle.getHeaders();
+			String name = headers.get(Constants.BUNDLE_NAME);
+			String vendor = headers.get(Constants.BUNDLE_VENDOR);
+			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(name, vendor, component.properties, component);
 			if (requirement != null) {
 				result.add(requirement);
 			}

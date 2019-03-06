@@ -13,12 +13,18 @@
 package org.eclipse.passage.lic.jface.resource;
 
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 
 public interface LicensingColors {
 
 	String COLOR_VALIDATION_OK = "COLOR_VALIDATION_OK"; //$NON-NLS-1$
 	String COLOR_VALIDATION_ERROR = "COLOR_VALIDATION_ERROR"; //$NON-NLS-1$
 
+	RGB RGB_LEVEL_OK = new RGB(0, 128, 0);
+	RGB RGB_LEVEL_WARN = new RGB(255, 255, 0);
+	RGB RGB_LEVEL_ERROR = new RGB(255, 0, 0);
+	RGB RGB_LEVEL_FATAL = new RGB(128, 0, 0);
+	
 	Color getColor(String identifier);
 
 }

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.equinox.tests;
 import static org.junit.Assert.assertNotNull;
 
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentConfigurationResolver;
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.framework.BundleContext;
@@ -31,7 +31,7 @@ public class ComponentConfigurationResolverTest {
 		resolver.bindScr(Mockito.mock(ServiceComponentRuntime.class));
 		resolver.bindLoggerFactory(Mockito.mock(LoggerFactory.class));
 		resolver.activate(Mockito.mock(BundleContext.class));
-		Iterable<ConfigurationRequirement> requirements = resolver.resolveConfigurationRequirements(null);
+		Iterable<LicensingRequirement> requirements = resolver.resolveConfigurationRequirements(null);
 		assertNotNull(requirements);
 	}
 

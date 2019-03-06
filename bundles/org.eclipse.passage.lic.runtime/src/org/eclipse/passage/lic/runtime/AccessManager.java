@@ -18,13 +18,9 @@ package org.eclipse.passage.lic.runtime;
  */
 public interface AccessManager {
 	
-	void registerConditionMiner(ConditionMiner conditionMiner);
-
-	void unregisterConditionMiner(ConditionMiner conditionMiner);
-
 	/**
 	 * Aggregated method to:
-	 * <li>resolve {@link ConfigurationRequirement}(s)</li>
+	 * <li>resolve {@link LicensingRequirement}(s)</li>
 	 * <li>obtain {@link LicensingCondition}(s)</li>
 	 * <li>evaluate {@link LicensingCondition}(s) to receive
 	 * {@link FeaturePermission}(s)</li>
@@ -37,17 +33,13 @@ public interface AccessManager {
 	 */
 	void executeAccessRestrictions(LicensingConfiguration configuration);
 
-	Iterable<ConfigurationRequirement> resolveRequirements(LicensingConfiguration configuration);
-
-	Iterable<ConfigurationRequirement> resolveFeatureRequirements(String featureId, LicensingConfiguration configuration);
+	Iterable<LicensingRequirement> resolveRequirements(LicensingConfiguration configuration);
 
 	Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration);
 
 	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
 
-	Iterable<RestrictionVerdict> examinePermissons(Iterable<ConfigurationRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
-
-	Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId, LicensingConfiguration configuration);
+	Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
 
 	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
 

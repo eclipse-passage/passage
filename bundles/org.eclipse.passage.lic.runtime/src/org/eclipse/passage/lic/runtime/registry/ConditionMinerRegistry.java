@@ -10,16 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime;
+package org.eclipse.passage.lic.runtime.registry;
 
-/**
- * Examines how {@link FeaturePermission}(s) cover the
- * {@link LicensingRequirement}(s) and produce {@link RestrictionVerdict}(s)
- * to be consumed by {@link RestrictionExecutor}(s)
- */
-public interface PermissionExaminer {
+import org.eclipse.passage.lic.runtime.ConditionMiner;
 
-	Iterable<RestrictionVerdict> examine(Iterable<LicensingRequirement> requirements,
-			Iterable<FeaturePermission> permissions);
+public interface ConditionMinerRegistry {
+
+	void registerConditionMiner(ConditionMiner conditionMiner);
+
+	void unregisterConditionMiner(ConditionMiner conditionMiner);
 
 }

@@ -12,23 +12,23 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 
 public class BaseRestrictionVerdict implements RestrictionVerdict {
 	
-	private final ConfigurationRequirement configurationRequirement;
+	private final LicensingRequirement configurationRequirement;
 	private final String restrictionPolicy;
 	private final int restrictionCode;
 
-	BaseRestrictionVerdict(ConfigurationRequirement configurationRequirement, String restrictionPolicy, int restrictionCode) {
+	BaseRestrictionVerdict(LicensingRequirement configurationRequirement, String restrictionPolicy, int restrictionCode) {
 		this.configurationRequirement = configurationRequirement;
 		this.restrictionPolicy = restrictionPolicy;
 		this.restrictionCode = restrictionCode;
 	}
 
 	@Override
-	public ConfigurationRequirement getConfigurationRequirement() {
+	public LicensingRequirement getConfigurationRequirement() {
 		return configurationRequirement;
 	}
 

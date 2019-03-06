@@ -25,17 +25,17 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 
 public class ImportLicenseDialog extends TitleAreaDialog {
 
-	private Text sourceText;
+	private Combo sourceText;
 	private Button sourceButton;
 	private String currentMessage;
 
@@ -59,7 +59,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
 		createSelector(contents);
 		createViewer(contents);
-		Dialog.applyDialogFont(parent);
+		Dialog.applyDialogFont(area);
 		return area;
 	}
 
@@ -69,7 +69,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		composite.setLayout(new GridLayout(3, false));
 		Label label = new Label(composite, SWT.NONE);
 		label.setText("From licensing file");
-		sourceText = new Text(composite, SWT.NONE);
+		sourceText = new Combo(composite, SWT.NONE);
 		sourceText.setLayoutData(new GridData(GridData.FILL_BOTH));
 		sourceText.addListener(SWT.Modify, e -> handleEvent(e));
 		sourceButton = new Button(composite, SWT.PUSH);

@@ -28,6 +28,10 @@ import org.eclipse.passage.lic.runtime.io.StreamCodec;
 @SuppressWarnings("restriction")
 public class LocOfflineEmulator {
 	
+	private LocOfflineEmulator() {
+		//block
+	}
+	
 	private static StreamCodec streamCodec = new BcStreamCodec();
 
 	static void encodeLicense(LicensePack license, File publicFile, File privateFile, File licFile, File licenFile)

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.runtime;
 /**
  * 
  * Resolves the given configuration and produces
- * {@link ConfigurationRequirement}(s).
+ * {@link LicensingRequirement}(s).
  *
  */
 public interface RequirementResolver {
@@ -25,6 +25,6 @@ public interface RequirementResolver {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<ConfigurationRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration);
+	Iterable<LicensingRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration);
 
 }

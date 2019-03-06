@@ -19,14 +19,16 @@ import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
+import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
+import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -34,10 +36,11 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 import org.osgi.service.log.LogService;
 
-public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, BundleListener {
+@Component
+public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, ConditionMinerRegistry, BundleListener {
 
 	private EventAdmin eventAdmin;
-	
+
 	private LogService logService;
 
 	@Activate
@@ -56,73 +59,83 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 
 	@Override
 	public void bundleChanged(BundleEvent event) {
-		//FIXME: consider event kind
+		// FIXME: consider event kind
 		Bundle bundle = event.getBundle();
 		EquinoxRequirements.extractLicensingManagementRequirements(bundle);
 	}
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
 	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		super.bindConditionEvaluator(conditionEvaluator, properties);
 	}
-	
+
 	@Override
 	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
 		super.unbindConditionEvaluator(conditionEvaluator, properties);
 	}
-	
-	@Reference
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
 	public void bindConditionMiner(ConditionMiner conditionMiner) {
 		super.bindConditionMiner(conditionMiner);
 	}
-	
+
 	@Override
 	public void unbindConditionMiner(ConditionMiner conditionMiner) {
 		super.unbindConditionMiner(conditionMiner);
 	}
-	
-	@Reference
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
-	public void bindConfigurationResolver(RequirementResolver configurationResolver) {
-		super.bindConfigurationResolver(configurationResolver);
+	public void bindRequirementResolver(RequirementResolver configurationResolver) {
+		super.bindRequirementResolver(configurationResolver);
 	}
-	
+
 	@Override
-	public void unbindConfigurationResolver(RequirementResolver configurationResolver) {
-		super.unbindConfigurationResolver(configurationResolver);
+	public void unbindRequirementResolver(RequirementResolver configurationResolver) {
+		super.unbindRequirementResolver(configurationResolver);
 	}
-	
+
 	@Reference
 	@Override
 	public void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
 		super.bindPermissionExaminer(permissionExaminer);
 	}
-	
+
 	@Override
 	public void unbindPermissionExaminer(PermissionExaminer permissionExaminer) {
 		super.unbindPermissionExaminer(permissionExaminer);
 	}
-	
+
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
 	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		super.bindRestrictionExecutor(restrictionExecutor);
 	}
-	
+
 	@Override
 	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		super.unbindRestrictionExecutor(restrictionExecutor);
 	}
-	
+
 	@Reference
 	public void bindEventAdmin(EventAdmin eventAdmin) {
 		this.eventAdmin = eventAdmin;
 	}
-	
+
 	public void unbindEventAdmin(EventAdmin eventAdmin) {
 		this.eventAdmin = eventAdmin;
+	}
+
+	@Override
+	public void registerConditionMiner(ConditionMiner conditionMiner) {
+		super.registerConditionMiner(conditionMiner);
+	}
+
+	@Override
+	public void unregisterConditionMiner(ConditionMiner conditionMiner) {
+		super.unregisterConditionMiner(conditionMiner);
 	}
 
 	@Override
@@ -135,7 +148,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	public void bindLogService(LogService logService) {
 		this.logService = logService;
 	}
-	
+
 	public void unbindLogService(LogService logService) {
 		this.logService = logService;
 	}
@@ -143,7 +156,7 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void logError(String message, Throwable e) {
-		//FIXME: rework after removing Eclipse Mars support
+		// FIXME: rework after removing Eclipse Mars support
 		logService.log(LogService.LOG_ERROR, message, e);
 	}
 

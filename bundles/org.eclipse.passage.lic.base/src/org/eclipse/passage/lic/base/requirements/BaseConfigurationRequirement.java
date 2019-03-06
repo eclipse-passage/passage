@@ -17,40 +17,44 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_VERSION;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL;
 
-import org.eclipse.passage.lic.runtime.ConfigurationRequirement;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 
-public class BaseConfigurationRequirement implements ConfigurationRequirement {
+public class BaseConfigurationRequirement implements LicensingRequirement {
 	
 	private final String featureIdentifier;
 	private final String featureVersion;
 	private final String featureName;
+	private final String featureProvider;
 	private final String restrictionLevel;
 	private final Object source;
-	private final LicensingConfiguration configuration;
 
-	BaseConfigurationRequirement(String id, String version, String name, String level, Object source, LicensingConfiguration configuration) {
+	BaseConfigurationRequirement(String id, String version, String name, String provider, String level, Object source) {
 		this.featureIdentifier = id;
 		this.featureVersion = version;
 		this.featureName = name;
+		this.featureProvider = provider;
 		this.restrictionLevel = level;
 		this.source = source;
-		this.configuration = configuration;
+	}
+	
+	@Override
+	public String getFeatureProvider() {
+		return featureProvider;
 	}
 
 	@Override
-	public String getFeatureIdentifier() {
-		return featureIdentifier;
+	public String getFeatureName() {
+		return featureName;
 	}
 
 	@Override
 	public String getFeatureVersion() {
 		return featureVersion;
 	}
-	
+
 	@Override
-	public String getFeatureName() {
-		return featureName;
+	public String getFeatureIdentifier() {
+		return featureIdentifier;
 	}
 
 	@Override
@@ -64,11 +68,6 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 	}
 	
 	@Override
-	public LicensingConfiguration getLicensingConfiguration() {
-		return configuration;
-	}
-
-	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(LICENSING_FEATURE_IDENTIFIER).append('=').append(featureIdentifier).append(';');
@@ -76,7 +75,6 @@ public class BaseConfigurationRequirement implements ConfigurationRequirement {
 		sb.append(LICENSING_FEATURE_NAME).append('=').append(featureName).append(';');
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
 		sb.append("source").append('=').append(source).append(';'); //$NON-NLS-1$
-		sb.append("configuration").append('=').append(configuration); //$NON-NLS-1$
 		return sb.toString();
 	}
 

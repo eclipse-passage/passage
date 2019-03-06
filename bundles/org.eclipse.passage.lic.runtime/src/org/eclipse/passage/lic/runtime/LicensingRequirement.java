@@ -17,13 +17,15 @@ package org.eclipse.passage.lic.runtime;
  * version. Obtained from {@link RequirementResolver}
  *
  */
-public interface ConfigurationRequirement {
+public interface LicensingRequirement {
 
-	String getFeatureIdentifier();
-
-	String getFeatureVersion();
-
+	String getFeatureProvider();
+	
 	String getFeatureName();
+	
+	String getFeatureVersion();
+	
+	String getFeatureIdentifier();
 
 	/**
 	 * The default restriction level, as defined by component vendor, may be
@@ -36,6 +38,4 @@ public interface ConfigurationRequirement {
 
 	Object getRequirementSource();
 	
-	LicensingConfiguration getLicensingConfiguration();
-
 }

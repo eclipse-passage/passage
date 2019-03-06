@@ -20,7 +20,7 @@ package org.eclipse.passage.lic.runtime;
  */
 public interface RestrictionVerdict {
 
-	ConfigurationRequirement getConfigurationRequirement();
+	LicensingRequirement getConfigurationRequirement();
 
 	String getRestrictionLevel();
 
