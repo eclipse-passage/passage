@@ -59,7 +59,7 @@
 		<module>../../features/org.eclipse.passage.lic.ui.feature</module>
 
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
-		<module>../../features/org.eclipse.passage.lic.runtime.feature</module>
+		<module>../../features/org.eclipse.passage.lic.execute.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>

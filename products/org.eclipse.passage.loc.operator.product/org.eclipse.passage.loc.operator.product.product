@@ -43,7 +43,7 @@
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.ecp.emfforms.runtime.feature"/>
-      <feature id="org.eclipse.passage.lic.runtime.feature"/>
+      <feature id="org.eclipse.passage.lic.execute.feature"/>
       <feature id="org.eclipse.passage.loc.workbench.feature"/>
       <feature id="org.eclipse.passage.loc.features.feature"/>
       <feature id="org.eclipse.passage.loc.products.feature"/>
