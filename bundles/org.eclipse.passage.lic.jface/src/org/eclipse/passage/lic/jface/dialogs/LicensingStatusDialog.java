@@ -16,14 +16,12 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.EquinoxAccess;
-import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
+import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
+import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
@@ -39,7 +37,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 
 public class LicensingStatusDialog extends TitleAreaDialog {
 
@@ -57,16 +54,16 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	public static void setDefaultContacts(String defaultContacts) {
 		LicensingStatusDialog.defaultContacts = defaultContacts;
 	}
+
 	private final AccessManager accessManager;
 	private final FeatureInspector featureInspector;
 	private final HardwareInspector hardwareInspector;
-	
+
 	private final FeatureCase featureCase;
 
 	private TableViewer tableViewer;
 
-
-	public LicensingStatusDialog(Shell shell, String...features) {
+	public LicensingStatusDialog(Shell shell, String... features) {
 		super(shell);
 		accessManager = EquinoxAccess.getAccessManager();
 		featureInspector = EquinoxAccess.getFeatureInspector();
@@ -86,9 +83,9 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		setTitle("Licensing status");
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(featureCase.getRestrictions());
 		if (last == null) {
-			setMessage(RestrictionVerdictLabels.resolveSummary(last));
+			setMessage(RestrictionLabels.resolveSummary(last));
 		} else {
-			setErrorMessage(RestrictionVerdictLabels.resolveSummary(last));
+			setErrorMessage(RestrictionLabels.resolveSummary(last));
 		}
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
@@ -101,23 +98,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		contents.setLayout(new GridLayout(1, false));
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
 		Table tableDetails = new Table(contents, SWT.BORDER);
-		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		tableDetails.setLayoutData(layoutData);
-		tableDetails.setHeaderVisible(true);
-		tableDetails.setLinesVisible(true);
-
-		tableViewer = new TableViewer(tableDetails);
-		tableViewer.setContentProvider(new ArrayContentProvider());
-
-		createColumnViewer(tableViewer, "", 20);
-		createColumnViewer(tableViewer, "Provider", 150);
-		createColumnViewer(tableViewer, "Name", 300);
-		createColumnViewer(tableViewer, "Version", 80);
-		createColumnViewer(tableViewer, "Idenitifier", 200);
-		createColumnViewer(tableViewer, "Level", 50);
-
-		tableViewer.setLabelProvider(new LicensingLabelProvider());
-
+		tableDetails.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tableViewer = LicensingRequirementViewer.createTableViewer(tableDetails);
 		tableViewer.setInput(featureCase.getRequirements());
 
 		Group contactsGroup = new Group(area, SWT.NONE);
@@ -129,15 +111,6 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		contactsText.setText(defaultContacts);
 		contactsText.setFont(JFaceResources.getDialogFont());
-	}
-
-	protected TableViewerColumn createColumnViewer(TableViewer tableViewDetails, String columnName, int width) {
-		TableViewerColumn columnViewer = new TableViewerColumn(tableViewDetails, SWT.NONE);
-		TableColumn column = columnViewer.getColumn();
-		column.setText(columnName);
-		column.setWidth(width);
-		column.setResizable(true);
-		return columnViewer;
 	}
 
 	@Override

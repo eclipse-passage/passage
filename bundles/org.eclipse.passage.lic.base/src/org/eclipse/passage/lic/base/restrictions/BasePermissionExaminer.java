@@ -21,12 +21,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.base.conditions.LicensingConditionEvents;
 import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.events.PermissionExaminerEvents;
 
 public abstract class BasePermissionExaminer implements PermissionExaminer {
 
@@ -50,7 +50,7 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 			verdicts.addAll(examined);
 		}
 		if (!leased.isEmpty()) {
-			postEvent(LicensingConditionEvents.CONDITIONS_LEASED, Collections.unmodifiableList(leased));
+			postEvent(PermissionExaminerEvents.CONDITIONS_LEASED, Collections.unmodifiableList(leased));
 		}
 		return Collections.unmodifiableList(verdicts);
 	}

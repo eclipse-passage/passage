@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.viewers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
+import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerBasis;
 import org.eclipse.passage.lic.runtime.LicensingRequirement;
@@ -21,15 +21,16 @@ import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.swt.graphics.RGB;
 
-public class ConfigurationRequirementViewerAdapter extends LicensingViewerBasis {
-	
-	public static final int INDEX_PROVIDER = 1;
-	public static final int INDEX_NAME = 2;
-	public static final int INDEX_VERSION = 3;
-	public static final int INDEX_IDENTIFIER = 4;
-	public static final int INDEX_LEVEL = 5;
-	
-	public ConfigurationRequirementViewerAdapter(FeatureInspector inspectorOffice) {
+public class LicensingRequirementViewerAdapter extends LicensingViewerBasis {
+
+	protected static final int INDEX_STATUS = 0;
+	protected static final int INDEX_PROVIDER = 1;
+	protected static final int INDEX_NAME = 2;
+	protected static final int INDEX_VERSION = 3;
+	protected static final int INDEX_IDENTIFIER = 4;
+	protected static final int INDEX_LEVEL = 5;
+
+	public LicensingRequirementViewerAdapter(FeatureInspector inspectorOffice) {
 		super(inspectorOffice);
 	}
 
@@ -41,14 +42,14 @@ public class ConfigurationRequirementViewerAdapter extends LicensingViewerBasis 
 		}
 		return super.getLabel(element);
 	}
-	
+
 	@Override
 	public String getLabel(Object element, int columnIndex) {
 		if (element instanceof LicensingRequirement) {
 			LicensingRequirement requirement = (LicensingRequirement) element;
 			switch (columnIndex) {
 			case INDEX_STATUS:
-				return "";
+				return ""; //$NON-NLS-1$
 			case INDEX_PROVIDER:
 				return requirement.getFeatureProvider();
 			case INDEX_NAME:
@@ -65,13 +66,13 @@ public class ConfigurationRequirementViewerAdapter extends LicensingViewerBasis 
 		}
 		return super.getLabel(element, columnIndex);
 	}
-	
+
 	@Override
 	public ImageDescriptor getImageDescriptor(Object element, int columnIndex) {
 		if (element instanceof LicensingRequirement) {
 			LicensingRequirement requirement = (LicensingRequirement) element;
 			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
-			String imageKey = RestrictionVerdictLabels.resolveImageKey(restrictions);
+			String imageKey = RestrictionLabels.resolveImageKey(restrictions);
 			switch (columnIndex) {
 			case INDEX_STATUS:
 				return LicensingImages.getImageDescriptor(imageKey);
@@ -81,13 +82,13 @@ public class ConfigurationRequirementViewerAdapter extends LicensingViewerBasis 
 		}
 		return super.getImageDescriptor(element, columnIndex);
 	}
-	
+
 	@Override
 	public RGB getBackground(Object element) {
 		if (element instanceof LicensingRequirement) {
 			LicensingRequirement requirement = (LicensingRequirement) element;
 			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
-			return RestrictionVerdictLabels.resolveRGB(restrictions);
+			return RestrictionLabels.resolveRGB(restrictions);
 		}
 		return super.getBackground(element);
 	}

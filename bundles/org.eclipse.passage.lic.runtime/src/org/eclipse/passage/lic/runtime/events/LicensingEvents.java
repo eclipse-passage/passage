@@ -10,20 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime;
+package org.eclipse.passage.lic.runtime.events;
 
-/**
- * 
- * The data required to execute the permission, produced by
- * {@link PermissionExaminer} and consumed by {@link RestrictionExecutor}
- *
- */
-public interface RestrictionVerdict {
+public class LicensingEvents {
 
-	LicensingRequirement getLicensingRequirement();
+	private LicensingEvents() {
+		// block
+	}
 
-	String getRestrictionLevel();
+	/**
+	 * Topic separator character
+	 */
+	public static final String TOPIC_SEP = "/"; //$NON-NLS-1$
 
-	int getRestrictionCode();
+	/**
+	 * Wild card character for matching all sub topics
+	 */
+	public static final String ALL_SUB_TOPICS = "*"; //$NON-NLS-1$
+
+	/**
+	 * Base name of all Licensing events
+	 */
+	public static final String TOPIC_BASE = "org/eclipse/passage/lic/events"; //$NON-NLS-1$
 
 }

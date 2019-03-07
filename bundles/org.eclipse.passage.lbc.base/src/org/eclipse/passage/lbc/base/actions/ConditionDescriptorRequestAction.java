@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.actions;
 
-
 import static org.eclipse.passage.lic.net.LicensingRequests.PRODUCT;
 import static org.eclipse.passage.lic.net.LicensingRequests.VERSION;
 
@@ -26,15 +25,15 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.passage.lbc.base.BaseComponent;
+import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.ConditionMiner;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
-
-import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 
 /**
  * According to AccessManager specification implementation of
@@ -69,9 +68,13 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 			Collection<LicensingCondition> resultConditions = new ArrayList<>();
 
 			for (ConditionMiner miner : licenseConditionMiners) {
-				Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
-
-				resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
+				try {
+					Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
+					resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
+				} catch (LicensingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			String contentType = request.getParameter(LicensingRequests.CONTENT_TYPE);
 			LicensingConditionTransport transport = mapCondition2Transport.get(contentType);

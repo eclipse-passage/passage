@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.LicensingEvents.LicensingLifeCycle;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.LicensingRequirement;
@@ -27,6 +26,7 @@ import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.events.AccessManagerEvents;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.osgi.service.component.annotations.Component;
@@ -35,7 +35,7 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 
-@Component(property = EventConstants.EVENT_TOPIC + "=" + LicensingLifeCycle.TOPIC_ALL)
+@Component(property = EventConstants.EVENT_TOPIC + "=" + AccessManagerEvents.TOPIC_ALL)
 public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 
 	private final Map<String, List<EquinoxFeatureCase>> cases = new HashMap<>();

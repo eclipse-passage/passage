@@ -17,19 +17,19 @@ import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 
 public class BaseRestrictionVerdict implements RestrictionVerdict {
 	
-	private final LicensingRequirement configurationRequirement;
+	private final LicensingRequirement licensingRequirement;
 	private final String restrictionPolicy;
 	private final int restrictionCode;
 
 	BaseRestrictionVerdict(LicensingRequirement configurationRequirement, String restrictionPolicy, int restrictionCode) {
-		this.configurationRequirement = configurationRequirement;
+		this.licensingRequirement = configurationRequirement;
 		this.restrictionPolicy = restrictionPolicy;
 		this.restrictionCode = restrictionCode;
 	}
 
 	@Override
-	public LicensingRequirement getConfigurationRequirement() {
-		return configurationRequirement;
+	public LicensingRequirement getLicensingRequirement() {
+		return licensingRequirement;
 	}
 
 	@Override

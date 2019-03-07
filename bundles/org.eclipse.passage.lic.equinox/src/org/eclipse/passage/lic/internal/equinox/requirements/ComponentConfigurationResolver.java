@@ -75,7 +75,7 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 	}
 
 	@Override
-	public Iterable<LicensingRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration) {
+	public Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration) {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (scr == null) {

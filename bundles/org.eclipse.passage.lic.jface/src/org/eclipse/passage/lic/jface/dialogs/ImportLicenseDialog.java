@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.swt.SWT;
@@ -32,15 +33,19 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 
 public class ImportLicenseDialog extends TitleAreaDialog {
 
+	private final AccessManager accessManager;
 	private Combo sourceText;
 	private Button sourceButton;
 	private String currentMessage;
+	private TableViewer tableViewer;
 
 	public ImportLicenseDialog(Shell shell, AccessManager accessManager) {
 		super(shell);
+		this.accessManager = accessManager;
 	}
 
 	@Override
@@ -79,9 +84,9 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	}
 
 	protected void createViewer(Composite contents) {
-		TableViewer tableViewer = new TableViewer(contents);
-		Control control = tableViewer.getControl();
-		control.setLayoutData(new GridData(GridData.FILL_BOTH));
+		Table tableDetails = new Table(contents, SWT.BORDER);
+		tableDetails.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tableViewer = LicensingConditionViewer.createTableViewer(tableDetails);
 	}
 
 	protected void handleBrowseButtonPressed() {

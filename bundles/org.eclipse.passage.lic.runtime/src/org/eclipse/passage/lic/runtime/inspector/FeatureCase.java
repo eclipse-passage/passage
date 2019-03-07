@@ -18,11 +18,12 @@ import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 public interface FeatureCase extends AutoCloseable {
 
 	Iterable<String> getFeatureIdentifiers();
-	
+
 	Iterable<LicensingRequirement> getRequirements();
 
 	Iterable<RestrictionVerdict> getRestrictions();
 
+	@Override
 	void close();
 
 }

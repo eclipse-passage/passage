@@ -18,12 +18,12 @@ import javax.inject.Inject;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.passage.lic.base.LicensingEvents;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.jface.RestrictionVerdictLabels;
+import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.events.AccessManagerEvents;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,7 +37,7 @@ public class LicensingStatusToolControl {
 
 	@Inject
 	@Optional
-	public void restrictionsExecuted(@UIEventTopic(LicensingEvents.LicensingLifeCycle.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
+	public void restrictionsExecuted(@UIEventTopic(AccessManagerEvents.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(actions);
 		updateButton(last);
 	}
@@ -61,10 +61,10 @@ public class LicensingStatusToolControl {
 	}
 
 	protected void updateButton(RestrictionVerdict last) {
-		String key = RestrictionVerdictLabels.resolveImageKey(last);
+		String key = RestrictionLabels.resolveImageKey(last);
 		button.setImage(LicensingImages.getImage(key));
-		button.setText(RestrictionVerdictLabels.resolveLabel(last));
-		button.setToolTipText(RestrictionVerdictLabels.resolveSummary(last));
+		button.setText(RestrictionLabels.resolveLabel(last));
+		button.setToolTipText(RestrictionLabels.resolveSummary(last));
 	}
 
 }

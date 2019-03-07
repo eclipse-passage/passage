@@ -17,7 +17,7 @@ package org.eclipse.passage.lic.runtime;
  *
  */
 public interface AccessManager {
-	
+
 	/**
 	 * Aggregated method to:
 	 * <li>resolve {@link LicensingRequirement}(s)</li>
@@ -31,16 +31,18 @@ public interface AccessManager {
 	 * @param configuration
 	 * @return the composite result of execution
 	 */
-	void executeAccessRestrictions(LicensingConfiguration configuration);
+	LicensingResult executeAccessRestrictions(LicensingConfiguration configuration);
 
 	Iterable<LicensingRequirement> resolveRequirements(LicensingConfiguration configuration);
 
 	Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration);
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+			LicensingConfiguration configuration);
 
-	Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
+	Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements,
+			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
 
-	void executeRestrictions(Iterable<RestrictionVerdict> restrictions);
+	LicensingResult executeRestrictions(Iterable<RestrictionVerdict> restrictions);
 
 }

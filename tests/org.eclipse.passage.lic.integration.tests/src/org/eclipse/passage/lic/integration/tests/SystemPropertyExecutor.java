@@ -22,7 +22,7 @@ public class SystemPropertyExecutor implements RestrictionExecutor {
 	@Override
 	public void execute(Iterable<RestrictionVerdict> actions) {
 		for (RestrictionVerdict verdict : actions) {
-			String featureIdentifier = verdict.getConfigurationRequirement().getFeatureIdentifier();
+			String featureIdentifier = verdict.getLicensingRequirement().getFeatureIdentifier();
 			String restrictionLevel = verdict.getRestrictionLevel();
 			System.setProperty(featureIdentifier, restrictionLevel);
 		}

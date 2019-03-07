@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.swt.graphics.RGB;
 
-public class RestrictionVerdictLabels {
+public class RestrictionLabels {
 	
 	public static String resolveImageKey(Iterable<RestrictionVerdict> verdicts) {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(verdicts);

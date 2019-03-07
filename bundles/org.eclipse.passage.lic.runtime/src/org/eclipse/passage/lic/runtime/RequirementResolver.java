@@ -25,6 +25,6 @@ public interface RequirementResolver {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<LicensingRequirement> resolveConfigurationRequirements(LicensingConfiguration configuration);
+	Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration);
 
 }

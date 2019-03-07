@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.runtime.ConditionMiner;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lbc.base.BaseComponent;
 
 public class ServerConditionsDistributor extends BaseComponent implements ConditionEvaluator {
@@ -99,10 +99,16 @@ public class ServerConditionsDistributor extends BaseComponent implements Condit
 
 	private boolean checkExistense(LicensingCondition condition, LicensingConfiguration configuration) {
 		for (ConditionMiner miner : miners) {
-			for (LicensingCondition extractedCondition : miner.extractLicensingConditions(configuration)) {
-				if (condition.equals(extractedCondition)) {
-					return true;
+			try {
+				Iterable<LicensingCondition> extracted = miner.extractLicensingConditions(configuration);
+				for (LicensingCondition extractedCondition : extracted) {
+					if (condition.equals(extractedCondition)) {
+						return true;
+					}
 				}
+			} catch (LicensingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return false;

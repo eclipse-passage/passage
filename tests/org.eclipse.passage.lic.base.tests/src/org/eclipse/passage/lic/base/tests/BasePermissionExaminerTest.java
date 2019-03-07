@@ -82,7 +82,7 @@ public class BasePermissionExaminerTest {
 		Iterator<RestrictionVerdict> iterator = verdicts.iterator();
 		RestrictionVerdict next = iterator.next();
 		assertNotNull(next);
-		assertEquals(barRequirement, next.getConfigurationRequirement());
+		assertEquals(barRequirement, next.getLicensingRequirement());
 		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_DEFAULT, next.getRestrictionLevel());
 		assertFalse(iterator.hasNext());
 	}

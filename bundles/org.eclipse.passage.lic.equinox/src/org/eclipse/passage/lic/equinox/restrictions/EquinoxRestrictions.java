@@ -61,9 +61,9 @@ public class EquinoxRestrictions {
 		String title = "Issues with licensing";
 		MultiStatus status = new MultiStatus(pluginId , RestrictionVerdicts.CODE_CONFIGURATION_ERROR, title, null);
 		for (RestrictionVerdict verdict : verdicts) {
-			LicensingRequirement configurationRequirement = verdict.getConfigurationRequirement();
-			if (configurationRequirement != null) {
-				featureName = configurationRequirement.getFeatureName();
+			LicensingRequirement requirement = verdict.getLicensingRequirement();
+			if (requirement != null) {
+				featureName = requirement.getFeatureName();
 			}
 			String message = NLS.bind("Feature \"{0}\" is not licensed properly", featureName);
 			status.add(new Status(IStatus.ERROR, pluginId, message));

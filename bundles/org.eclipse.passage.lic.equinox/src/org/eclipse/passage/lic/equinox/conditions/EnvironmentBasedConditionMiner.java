@@ -12,30 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.conditions;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingPaths;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
+import org.eclipse.passage.lic.base.conditions.BaseConditionMiner;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
@@ -43,8 +35,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-public class EnvironmentBasedConditionMiner implements ConditionMiner {
-	
+public class EnvironmentBasedConditionMiner extends BaseConditionMiner {
+
 	private final Logger logger = Logger.getLogger(EnvironmentBasedConditionMiner.class.getName());
 
 	private final Map<LicensingConfiguration, StreamCodec> streamCodecs = new HashMap<>();
@@ -52,8 +44,8 @@ public class EnvironmentBasedConditionMiner implements ConditionMiner {
 
 	private EnvironmentInfo environmentInfo;
 	private String conditionArea = LicensingPaths.PROPERTY_OSGI_INSTALL_AREA;
-	private LicensingConditionTransport conditionDescriptorTransport;
-	
+	private LicensingConditionTransport transport;
+
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		Object object = properties.get(LicensingProperties.LICENSING_CONDITION_AREA);
@@ -93,27 +85,30 @@ public class EnvironmentBasedConditionMiner implements ConditionMiner {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void bindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
+	public void bindConditionDescriptorTransport(LicensingConditionTransport transport,
+			Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
-			this.conditionDescriptorTransport = transport;
+			this.transport = transport;
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, Object> properties) {
+	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
+			Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
-			this.conditionDescriptorTransport = null;
+			this.transport = null;
 		}
 	}
 
 	@Override
-	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
+	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration)
+			throws LicensingException {
 		List<LicensingCondition> mined = new ArrayList<>();
 		if (configuration == null) {
 			return mined;
 		}
-		if (conditionDescriptorTransport == null) {
+		if (transport == null) {
 			return mined;
 		}
 		if (environmentInfo == null) {
@@ -124,87 +119,31 @@ public class EnvironmentBasedConditionMiner implements ConditionMiner {
 		if (!isConsistens(streamCodec, keyKeeper)) {
 			return mined;
 		}
-		
+
 		String areaValue = environmentInfo.getProperty(conditionArea);
 		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
 		if (!Files.isDirectory(configurationPath)) {
 			return mined;
 		}
 		if (streamCodec == null) {
-			mineDecrypted(configurationPath, mined);
+			mineDecrypted(transport, configurationPath, mined);
 		} else {
-			mineEncrypted(configuration, configurationPath, streamCodec, keyKeeper, mined);
+			mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper, mined);
 		}
 		return mined;
 	}
 
 	protected boolean isConsistens(StreamCodec streamCodec, KeyKeeper keyKeeper) {
 		if (streamCodec == null && keyKeeper == null) {
-			//not encrypted
+			// not encrypted
 			return true;
 		}
 		if (streamCodec != null && keyKeeper != null) {
-			//encrypted
+			// encrypted
 			return true;
 		}
-		//invalid
+		// invalid
 		return false;
-	}
-
-	protected void mineDecrypted(Path configurationPath, List<LicensingCondition> mined) {
-		List<Path> licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_DECRYPTED);
-		for (Path path : licenseFiles) {
-			try (FileInputStream raw = new FileInputStream(path.toFile())){
-				Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(raw);
-				for (LicensingCondition condition : extracted) {
-					mined.add(condition);
-				}
-			} catch (Exception e) {
-				logger.log(Level.FINEST, e.getMessage(), e);
-			}
-		}
-	}
-
-	protected void mineEncrypted(LicensingConfiguration configuration, Path configurationPath, StreamCodec streamCodec,
-			KeyKeeper keyKeeper, List<LicensingCondition> mined) {
-		List<Path> licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
-		for (Path path : licenseFiles) {
-			try (FileInputStream encoded = new FileInputStream(path.toFile()); ByteArrayOutputStream decoded = new ByteArrayOutputStream(); InputStream keyRing = keyKeeper.openKeyStream(configuration)){
-				streamCodec.decodeStream(encoded, decoded, keyRing, null);
-				byte[] byteArray = decoded.toByteArray();
-				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<LicensingCondition> extracted = conditionDescriptorTransport.readConditionDescriptors(input);
-					for (LicensingCondition condition : extracted) {
-						mined.add(condition);
-					}
-				} catch (Exception e) {
-					logger.log(Level.SEVERE, "Failed to extract conditions", e);
-				}
-			} catch (Exception e) {
-				logger.log(Level.FINEST, e.getMessage(), e);
-			}
-		}
-	}
-
-	protected List<Path> collectPacks(Path configurationPath, String extension) {
-		List<Path> licenseFiles = new ArrayList<>();
-		try {
-			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
-
-				@Override
-				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					String lowerCase = file.toString().toLowerCase();
-					if (lowerCase.endsWith(extension)) {
-						licenseFiles.add(file);
-					}
-					return FileVisitResult.CONTINUE;
-				}
-
-			});
-		} catch (IOException e) {
-			logger.log(Level.FINEST, e.getMessage(), e);
-		}
-		return licenseFiles;
 	}
 
 }

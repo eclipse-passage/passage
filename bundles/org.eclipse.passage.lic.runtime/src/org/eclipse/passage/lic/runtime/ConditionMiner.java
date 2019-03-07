@@ -25,6 +25,7 @@ public interface ConditionMiner {
 	 * @param configuration
 	 * @return
 	 */
-	Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration);
+	Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration)
+			throws LicensingException;
 
 }

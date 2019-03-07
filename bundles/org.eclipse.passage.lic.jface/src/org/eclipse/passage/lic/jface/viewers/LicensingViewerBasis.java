@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
@@ -23,8 +24,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.RGB;
 
 public class LicensingViewerBasis implements LicensingViewerAdapter {
-
-	public static final int INDEX_STATUS = 0;
 
 	private final FeatureInspector featureInspector;
 
@@ -84,8 +83,17 @@ public class LicensingViewerBasis implements LicensingViewerAdapter {
 		return getForeground(element);
 	}
 
+	@SuppressWarnings("resource")
+	protected Iterable<LicensingRequirement> getRequirements(String featureIdentifier) {
+		FeatureCase found = featureCases.computeIfAbsent(featureIdentifier,
+				item -> featureInspector.inspectFeatures(featureIdentifier));
+		return found.getRequirements();
+	}
+
+	@SuppressWarnings("resource")
 	protected Iterable<RestrictionVerdict> getRestrictions(String featureIdentifier) {
-		FeatureCase found = featureCases.computeIfAbsent(featureIdentifier, item -> featureInspector.inspectFeatures(featureIdentifier));
+		FeatureCase found = featureCases.computeIfAbsent(featureIdentifier,
+				item -> featureInspector.inspectFeatures(featureIdentifier));
 		return found.getRestrictions();
 	}
 

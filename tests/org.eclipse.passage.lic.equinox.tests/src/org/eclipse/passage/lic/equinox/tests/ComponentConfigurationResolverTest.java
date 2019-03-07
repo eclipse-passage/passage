@@ -31,7 +31,7 @@ public class ComponentConfigurationResolverTest {
 		resolver.bindScr(Mockito.mock(ServiceComponentRuntime.class));
 		resolver.bindLoggerFactory(Mockito.mock(LoggerFactory.class));
 		resolver.activate(Mockito.mock(BundleContext.class));
-		Iterable<LicensingRequirement> requirements = resolver.resolveConfigurationRequirements(null);
+		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
 		assertNotNull(requirements);
 	}
 

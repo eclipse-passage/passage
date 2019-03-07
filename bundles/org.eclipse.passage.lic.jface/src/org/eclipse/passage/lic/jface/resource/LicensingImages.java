@@ -164,7 +164,7 @@ public class LicensingImages {
 	 * @return the status of the operation
 	 */
 	public static IStatus declareImages(Class<?> location, Map<String, String> paths) {
-		ImageRegistry imageRegistry = getImageRegistry();
+		ImageRegistry registry = getImageRegistry();
 		Bundle bundle = null;
 		try {
 			bundle = FrameworkUtil.getBundle(location);
@@ -186,7 +186,7 @@ public class LicensingImages {
 				descriptor = ImageDescriptor.createFromFile(location, path);
 			}
 			if (descriptor != null) {
-				imageRegistry.put(key, descriptor);
+				registry.put(key, descriptor);
 			}
 		}
 		return Status.OK_STATUS;

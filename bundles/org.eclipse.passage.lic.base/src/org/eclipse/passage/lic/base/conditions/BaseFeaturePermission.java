@@ -12,7 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.*;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_EXPIRE_TIME;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_LEASE_TIME;
 
 import java.util.Date;
 
@@ -38,7 +39,8 @@ public class BaseFeaturePermission implements FeaturePermission {
 	public LicensingCondition getLicensingCondition() {
 		return licensingCondition;
 	}
-	
+
+	@Override
 	public LicensingConfiguration getLicensingConfiguration() {
 		return licensingConfiguration;
 	}

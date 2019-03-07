@@ -30,11 +30,11 @@ public class LicensingViewerAdapterFactory implements IAdapterFactory {
 	private IAdapterManager adapterManager;
 	private FeatureInspector featureInspector;
 
-	private ConfigurationRequirementViewerAdapter requirementViewerAdapter;
+	private LicensingRequirementViewerAdapter requirementViewerAdapter;
 	
 	@Activate
 	public void activate() {
-		requirementViewerAdapter = new ConfigurationRequirementViewerAdapter(featureInspector);
+		requirementViewerAdapter = new LicensingRequirementViewerAdapter(featureInspector);
 		adapterManager.registerAdapters(this, LicensingRequirement.class);
 	}
 	
