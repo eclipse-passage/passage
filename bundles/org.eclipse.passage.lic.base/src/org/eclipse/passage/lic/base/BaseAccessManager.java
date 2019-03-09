@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
@@ -37,11 +38,12 @@ import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.events.AccessManagerEvents;
+import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
 
 public abstract class BaseAccessManager implements AccessManager {
 
 	private final List<RequirementResolver> requirementResolvers = new ArrayList<>();
-	private final List<ConditionMiner> conditionMiners = new ArrayList<>();
+	private ConditionMinerRegistry conditionMinerRegistry = new BaseConditionMinerRegistry();
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
 	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
@@ -55,12 +57,14 @@ public abstract class BaseAccessManager implements AccessManager {
 		requirementResolvers.remove(configurationResolver);
 	}
 
-	protected void bindConditionMiner(ConditionMiner conditionMiner) {
-		registerConditionMiner(conditionMiner);
+	protected void bindConditionMinerRegistry(ConditionMinerRegistry registry) {
+		this.conditionMinerRegistry = registry;
 	}
 
-	protected void unbindConditionMiner(ConditionMiner conditionMiner) {
-		unregisterConditionMiner(conditionMiner);
+	protected void unbindConditionMinerRegistry(ConditionMinerRegistry registry) {
+		if (this.conditionMinerRegistry == registry) {
+			this.conditionMinerRegistry = null;
+		}
 	}
 
 	protected void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
@@ -100,14 +104,6 @@ public abstract class BaseAccessManager implements AccessManager {
 		restrictionExecutors.remove(restrictionExecutor);
 	}
 
-	protected void registerConditionMiner(ConditionMiner conditionMiner) {
-		conditionMiners.add(conditionMiner);
-	}
-
-	protected void unregisterConditionMiner(ConditionMiner conditionMiner) {
-		conditionMiners.remove(conditionMiner);
-	}
-
 	@Override
 	public LicensingResult executeAccessRestrictions(LicensingConfiguration configuration) {
 		Iterable<LicensingRequirement> requirements = resolveRequirements(configuration);
@@ -134,14 +130,24 @@ public abstract class BaseAccessManager implements AccessManager {
 
 	@Override
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
+		BaseLicensingResult holder = LicensingResults.createHolder("Extract conditions operation",
+				getClass().getName());
 		List<LicensingCondition> result = new ArrayList<>();
+		Iterable<ConditionMiner> conditionMiners = conditionMinerRegistry.getConditionMiners();
 		for (ConditionMiner conditionMiner : conditionMiners) {
 			try {
 				Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
+				if (conditions == null) {
+					BaseLicensingResult error = LicensingResults.createError("Invalid condition miner",
+							conditionMiner.getClass().getName(), new NullPointerException());
+					holder.addChild(error);
+					continue;
+				}
 				for (LicensingCondition condition : conditions) {
 					result.add(condition);
 				}
 			} catch (LicensingException e) {
+				holder.addChild(e.getResult());
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				// FIXME:send event
@@ -158,7 +164,7 @@ public abstract class BaseAccessManager implements AccessManager {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
-			logError(message, new NullPointerException());
+			logError(message, new IllegalArgumentException());
 			List<FeaturePermission> empty = Collections.emptyList();
 			postEvent(AccessManagerEvents.CONDITIONS_EVALUATED, empty);
 			return empty;

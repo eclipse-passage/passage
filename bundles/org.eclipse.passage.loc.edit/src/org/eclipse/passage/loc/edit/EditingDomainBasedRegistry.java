@@ -34,18 +34,19 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.base.LicensingPaths;
+import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.registry.DescriptorRegistry;
 import org.osgi.service.event.EventAdmin;
 
 public abstract class EditingDomainBasedRegistry implements DescriptorRegistry, EditingDomainRegistry {
-	
-	//FIXME: AF find better place
+
+	// FIXME: AF find better place
 	static {
 		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.1", LicPackage.eINSTANCE); //$NON-NLS-1$
 		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.2", LicPackage.eINSTANCE); //$NON-NLS-1$
@@ -134,9 +135,7 @@ public abstract class EditingDomainBasedRegistry implements DescriptorRegistry, 
 	}
 
 	protected Path getResourceSetPath() throws Exception {
-		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path areaPath = Paths.get(new java.net.URI(areaValue));
-		Path passagePath = areaPath.resolve(LicensingPaths.FOLDER_LICENSING_BASE);
+		Path passagePath = EquinoxPaths.resolveInstallBasePath();
 		Files.createDirectories(passagePath);
 		Path domainPath = passagePath.resolve(domainName);
 		return domainPath;

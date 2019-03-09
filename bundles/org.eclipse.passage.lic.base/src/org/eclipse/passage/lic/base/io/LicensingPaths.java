@@ -10,9 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.base.io;
 
-import java.net.URI;
+import java.io.File;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -25,16 +26,20 @@ public class LicensingPaths {
 	public static String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
 	public static String EXTENSION_LICENSE_ENCRYPTED = ".licen"; //$NON-NLS-1$
 	public static String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
-	
-	public static final String PROPERTY_OSGI_INSTALL_AREA = "osgi.install.area"; //$NON-NLS-1$
-	
-	public static Path getBasePath(String from) {
-		Path path = Paths.get(URI.create(from));
+
+	public static Path resolveBasePath(URL url) {
+		File file = new File(url.getPath());
+		Path path = Paths.get(file.getPath());
 		return path.resolve(FOLDER_LICENSING_BASE);
 	}
 
-	public static Path resolveConfigurationPath(String from, LicensingConfiguration configuration) {
-		Path basePath = getBasePath(from);
+	public static Path resolveConfigurationPath(URL url, LicensingConfiguration configuration) {
+		Path base = resolveBasePath(url);
+		return resolveConfigurationPath(base, configuration);
+	}
+
+	public static Path resolveConfigurationPath(Path from, LicensingConfiguration configuration) {
+		Path basePath = from;
 		if (configuration == null) {
 			return basePath;
 		}

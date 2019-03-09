@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.base.BaseAccessManager;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
 import org.eclipse.passage.lic.runtime.PermissionExaminer;
 import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
@@ -37,7 +36,7 @@ import org.osgi.service.event.EventAdmin;
 import org.osgi.service.log.LogService;
 
 @Component
-public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, ConditionMinerRegistry, BundleListener {
+public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, BundleListener {
 
 	private EventAdmin eventAdmin;
 
@@ -66,28 +65,6 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
-	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
-		super.bindConditionEvaluator(conditionEvaluator, properties);
-	}
-
-	@Override
-	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
-		super.unbindConditionEvaluator(conditionEvaluator, properties);
-	}
-
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	@Override
-	public void bindConditionMiner(ConditionMiner conditionMiner) {
-		super.bindConditionMiner(conditionMiner);
-	}
-
-	@Override
-	public void unbindConditionMiner(ConditionMiner conditionMiner) {
-		super.unbindConditionMiner(conditionMiner);
-	}
-
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	@Override
 	public void bindRequirementResolver(RequirementResolver configurationResolver) {
 		super.bindRequirementResolver(configurationResolver);
 	}
@@ -95,6 +72,28 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	@Override
 	public void unbindRequirementResolver(RequirementResolver configurationResolver) {
 		super.unbindRequirementResolver(configurationResolver);
+	}
+
+	@Reference
+	@Override
+	public void bindConditionMinerRegistry(ConditionMinerRegistry registry) {
+		super.bindConditionMinerRegistry(registry);
+	}
+
+	@Override
+	public void unbindConditionMinerRegistry(ConditionMinerRegistry registry) {
+		super.unbindConditionMinerRegistry(registry);
+	}
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	@Override
+	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+		super.bindConditionEvaluator(conditionEvaluator, properties);
+	}
+
+	@Override
+	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+		super.unbindConditionEvaluator(conditionEvaluator, properties);
 	}
 
 	@Reference
@@ -126,16 +125,6 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 
 	public void unbindEventAdmin(EventAdmin eventAdmin) {
 		this.eventAdmin = eventAdmin;
-	}
-
-	@Override
-	public void registerConditionMiner(ConditionMiner conditionMiner) {
-		super.registerConditionMiner(conditionMiner);
-	}
-
-	@Override
-	public void unregisterConditionMiner(ConditionMiner conditionMiner) {
-		super.unregisterConditionMiner(conditionMiner);
 	}
 
 	@Override

@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2018-2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
 import java.io.ByteArrayInputStream;
@@ -14,9 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.passage.lic.base.BaseLicensingResult;
-import org.eclipse.passage.lic.base.LicensingPaths;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
+import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
@@ -24,9 +35,9 @@ import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
-public abstract class BaseConditionMiner implements ConditionMiner {
+public class ConditionMiners {
 
-	protected void mineDecrypted(LicensingConditionTransport transport, Path configurationPath,
+	public static void mineDecrypted(LicensingConditionTransport transport, Path configurationPath,
 			List<LicensingCondition> mined) throws LicensingException {
 		List<Path> licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_DECRYPTED);
 		for (Path path : licenseFiles) {
@@ -44,7 +55,7 @@ public abstract class BaseConditionMiner implements ConditionMiner {
 		}
 	}
 
-	protected void mineEncrypted(LicensingConditionTransport transport, LicensingConfiguration configuration,
+	public static void mineEncrypted(LicensingConditionTransport transport, LicensingConfiguration configuration,
 			Path configurationPath, StreamCodec streamCodec, KeyKeeper keyKeeper, List<LicensingCondition> mined)
 			throws LicensingException {
 		List<Path> licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
@@ -74,7 +85,7 @@ public abstract class BaseConditionMiner implements ConditionMiner {
 		}
 	}
 
-	protected List<Path> collectPacks(Path configurationPath, String extension) throws LicensingException {
+	public static List<Path> collectPacks(Path configurationPath, String extension) throws LicensingException {
 		List<Path> licenseFiles = new ArrayList<>();
 		try {
 			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {

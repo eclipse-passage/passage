@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.io;
 
-import static org.eclipse.passage.lic.base.LicensingPaths.*;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

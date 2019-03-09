@@ -75,7 +75,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 				Map<String, String> directives = capability.getDirectives();
 				BundleRevision resource = capability.getResource();
 				BaseConfigurationRequirement extracted = ConfigurationRequirements.extractFromCapability(name, vendor,
-						attributes, directives, resource, configuration);
+						attributes, directives, resource);
 				if (extracted != null) {
 					result.add(extracted);
 				} else {

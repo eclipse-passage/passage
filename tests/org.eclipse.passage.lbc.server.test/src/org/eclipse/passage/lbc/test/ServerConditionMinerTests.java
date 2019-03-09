@@ -41,18 +41,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.base.LicensingPaths;
+import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
 
 public class ServerConditionMinerTests {
 	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
@@ -62,8 +58,6 @@ public class ServerConditionMinerTests {
 	private static final String PORT_KEY = "passage.server.port";
 	private static final String HOST_PORT = "%s:%s";
 	private static final String PRODUCT_ID_TEST = "product.test";
-	private static ServiceReference<EnvironmentInfo> environmentInfoReference;
-	private static EnvironmentInfo environmentInfo;
 
 	/**
 	 * Passed through maven-surefire-plugin configuration
@@ -81,10 +75,6 @@ public class ServerConditionMinerTests {
 
 	@BeforeClass
 	public static void preprocesingTest() {
-		Bundle bundle = FrameworkUtil.getBundle(ServerConditionMinerTests.class);
-		BundleContext bundleContext = bundle.getBundleContext();
-		environmentInfoReference = bundleContext.getServiceReference(EnvironmentInfo.class);
-		environmentInfo = bundleContext.getService(environmentInfoReference);
 		try {
 			createServerConfiguration(LicensingConfigurations.create(PRODUCT_ID_TEST, null));
 		} catch (IOException e) {
@@ -93,8 +83,7 @@ public class ServerConditionMinerTests {
 	}
 
 	private static void createServerConfiguration(LicensingConfiguration configuration) throws IOException {
-		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, configuration);
+		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		Files.createDirectories(path);
 		String fileName = LicensingPaths.composeFileName(configuration, EXTENSION_SERVER_SETTINGS);
 		File serverConfigurationFile = path.resolve(fileName).toFile();
@@ -113,12 +102,8 @@ public class ServerConditionMinerTests {
 
 	@Test
 	public void mineConditionFromServerPositiveTest() {
-
-		assertNotNull(environmentInfo);
-		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-
 		LicensingConfiguration configuration = LicensingConfigurations.create(PRODUCT_ID_TEST, null);
-		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
+		Path configurationPath = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		assertTrue(Files.isDirectory(configurationPath));
 
 		List<Path> settinsFiles = new ArrayList<>();

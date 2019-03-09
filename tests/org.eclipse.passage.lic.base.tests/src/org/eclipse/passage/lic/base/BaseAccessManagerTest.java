@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.tests;
+package org.eclipse.passage.lic.base;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,8 +20,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseAccessManager;
-import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
@@ -37,8 +35,8 @@ public class BaseAccessManagerTest {
 	private static final String FEATURE_ID = "feature.id"; //$NON-NLS-1$
 	private static final String FEATURE_VERSION = "0.1.0"; //$NON-NLS-1$
 
-	private List<String> events = new ArrayList<>();
-	private List<String> log = new ArrayList<>();
+	private List<String> posted = new ArrayList<>();
+	private List<String> logged = new ArrayList<>();
 
 	private LicensingConfiguration conf = LicensingConfigurations.create(PRODUCT_ID, PRODUCT_VERSION);
 
@@ -46,21 +44,21 @@ public class BaseAccessManagerTest {
 
 		@Override
 		protected void postEvent(String topic, Object data) {
-			events.add(topic);
+			posted.add(topic);
 		}
 
 		@Override
 		protected void logError(String message, Throwable e) {
-			log.add(message);
+			logged.add(message);
 		}
 	};
 
 	@After
 	public void tearDown() {
-		events.clear();
-		log.clear();
+		posted.clear();
+		logged.clear();
 	}
-	
+
 	@Test
 	public void testExecuteAccessRestrictionsNegative() {
 		manager.executeAccessRestrictions(null);
@@ -107,20 +105,20 @@ public class BaseAccessManagerTest {
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		Date before = new Date(System.currentTimeMillis()-100500);
-		Date after = new Date(System.currentTimeMillis()+100500);
+		Date before = new Date(System.currentTimeMillis() - 100500);
+		Date after = new Date(System.currentTimeMillis() + 100500);
 		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, after)), null);
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
-		
+
 		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, before)), null);
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
-		
+
 		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, before)), null);
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
-		
+
 		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, after)), null);
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
@@ -154,8 +152,8 @@ public class BaseAccessManagerTest {
 	}
 
 	protected void checkMaps(int logSize, int eventSize) {
-		assertEquals(logSize, log.size());
-		assertEquals(eventSize, events.size());
+		assertEquals(logSize, logged.size());
+		assertEquals(eventSize, posted.size());
 	}
 
 }

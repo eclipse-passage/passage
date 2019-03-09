@@ -25,7 +25,8 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+			LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
@@ -34,14 +35,14 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 		}
 		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
-			Map<String,String> checks = LicensingConditions.parseExpression(expression);
+			Map<String, String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
 				String message = String.format("Expression checks are empty for condition %s", condition);
 				logError(message, new Exception());
 				continue;
 			}
 			Set<String> keySet = checks.keySet();
-			
+
 			boolean passed = true;
 			for (String key : keySet) {
 				String value = checks.get(key);
@@ -49,7 +50,8 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 					passed = evaluateSegment(key, value);
 				} catch (Exception e) {
 					passed = false;
-					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition, key, value);
+					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition,
+							key, value);
 					logError(message, new Exception());
 				}
 				if (!passed) {
@@ -62,7 +64,7 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 				result.add(createPermission(condition, configuration));
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -72,6 +74,7 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
 	protected abstract boolean evaluateSegment(String key, String value);
 
+	// FIXME: remove it, throw LicensingException
 	protected abstract void logError(String message, Throwable e);
 
 }

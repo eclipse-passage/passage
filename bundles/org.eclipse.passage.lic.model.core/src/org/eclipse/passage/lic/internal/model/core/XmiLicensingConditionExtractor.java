@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.model.core;
+package org.eclipse.passage.lic.internal.model.core;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE_XML;
@@ -31,15 +31,17 @@ import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
 public class XmiLicensingConditionExtractor implements LicensingConditionTransport {
-	
-	public XmiLicensingConditionExtractor() {
-		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.1", LicPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.2", LicPackage.eINSTANCE);
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/passage/lic/0.3.3", LicPackage.eINSTANCE);
+
+	@Activate
+	public void activate() {
+		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.1", LicPackage.eINSTANCE); //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put("http://www.arsysop.ru/passage/lic/0.3.2", LicPackage.eINSTANCE); //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/passage/lic/0.3.3", LicPackage.eINSTANCE); //$NON-NLS-1$
 	}
 
 	@Override

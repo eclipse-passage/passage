@@ -24,8 +24,8 @@ import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.LicensingPaths;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.bc.BcProperties;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.junit.Rule;

@@ -12,12 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.registry;
 
+import java.util.Map;
+
 import org.eclipse.passage.lic.runtime.ConditionMiner;
 
 public interface ConditionMinerRegistry {
 
-	void registerConditionMiner(ConditionMiner conditionMiner);
+	Iterable<ConditionMiner> getConditionMiners();
 
-	void unregisterConditionMiner(ConditionMiner conditionMiner);
+	void registerConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
+
+	void unregisterConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
 
 }

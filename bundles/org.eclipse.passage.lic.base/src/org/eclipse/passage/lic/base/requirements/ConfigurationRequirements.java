@@ -20,7 +20,6 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.runtime.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 public class ConfigurationRequirements {
 
@@ -29,8 +28,7 @@ public class ConfigurationRequirements {
 	}
 
 	public static BaseConfigurationRequirement extractFromCapability(String bundleName, String bundleVendor,
-			Map<String, Object> attributes, Map<String, String> directives, Object source,
-			LicensingConfiguration configuration) {
+			Map<String, Object> attributes, Map<String, String> directives, Object source) {
 		Object feature = attributes.get(CAPABILITY_LICENSING_FEATURE);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
@@ -40,9 +38,6 @@ public class ConfigurationRequirements {
 				name = featureId;
 			}
 			String provider = getStringValue(attributes, ATTRIBUTE_PROVIDER, bundleVendor);
-			if (provider == null) {
-				provider = "";
-			}
 			String level = toLevelAttribute(attributes.get(ATTRIBUTE_LEVEL));
 			return new BaseConfigurationRequirement(featureId, version, name, provider, level, source);
 		}
@@ -94,7 +89,7 @@ public class ConfigurationRequirements {
 	}
 
 	public static BaseConfigurationRequirement createDefault(String featureId, String version, String name,
-			String provider, Object source, LicensingConfiguration configuration) {
+			String provider, Object source) {
 		String policy = LICENSING_RESTRICTION_LEVEL_DEFAULT;
 		return new BaseConfigurationRequirement(featureId, version, name, provider, policy, source);
 	}

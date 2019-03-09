@@ -10,11 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.registry;
+package org.eclipse.passage.lic.base.io;
 
-//FIXME: rework from inheritance to adapter
-public interface Identified {
+import java.io.IOException;
+import java.io.InputStream;
 
-	String getIdentifier();
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.io.KeyKeeper;
+
+public class NullKeyKeeper implements KeyKeeper {
+
+	public static final NullKeyKeeper INSTANCE = new NullKeyKeeper();
+
+	@Override
+	public InputStream openKeyStream(LicensingConfiguration configuration) throws IOException {
+		return NullInputStream.INSTANCE;
+	}
 
 }

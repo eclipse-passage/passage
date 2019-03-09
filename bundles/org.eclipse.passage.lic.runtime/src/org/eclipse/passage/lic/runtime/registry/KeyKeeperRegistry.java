@@ -12,9 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.registry;
 
-//FIXME: rework from inheritance to adapter
-public interface Identified {
+import java.util.Map;
 
-	String getIdentifier();
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.io.KeyKeeper;
+
+public interface KeyKeeperRegistry {
+
+	KeyKeeper getKeyKeeper(LicensingConfiguration configuration);
+
+	void registerKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties);
+
+	void unregisterKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties);
 
 }

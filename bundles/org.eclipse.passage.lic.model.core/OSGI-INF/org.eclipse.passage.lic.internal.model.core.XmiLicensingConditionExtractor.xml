@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.internal.model.core.XmiLicensingConditionExtractor">
+   <property name="licensing.content.type" value="application/xml"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.runtime.io.LicensingConditionTransport"/>
+   </service>
+   <implementation class="org.eclipse.passage.lic.internal.model.core.XmiLicensingConditionExtractor"/>
+</scr:component>

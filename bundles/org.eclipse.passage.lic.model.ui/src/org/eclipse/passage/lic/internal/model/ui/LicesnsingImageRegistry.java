@@ -34,7 +34,9 @@ public class LicesnsingImageRegistry {
 	public void activate(BundleContext bundleContext) {
 		IEclipseContext serviceContext = EclipseContextFactory.getServiceContext(bundleContext);
 		IEventBroker eventBroker = serviceContext.get(IEventBroker.class);
-		eventBroker.subscribe(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE, null, e -> registerImages(), false);
+		if (eventBroker != null) {
+			eventBroker.subscribe(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE, null, e -> registerImages(), false);
+		}
 	}
 
 	private void registerImages() {

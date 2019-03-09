@@ -4,7 +4,4 @@
    <service>
       <provide interface="org.eclipse.passage.lic.runtime.ConditionMiner"/>
    </service>
-   <property name="licensing.condition.type" type="String" value="floating"/>
-   <reference bind="bindEnvironmentInfo" cardinality="1..1" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" policy="static" unbind="unbindEnvironmentInfo"/>
-   <reference bind="bindConditionDescriptorTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.io.LicensingConditionTransport" name="ConditionDescriptorTransport" policy="dynamic" unbind="unbindConditionDescriptorTransport"/>
 </scr:component>

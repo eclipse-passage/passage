@@ -29,15 +29,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.base.LicensingPaths;
+import org.eclipse.passage.lbc.base.BaseComponent;
+import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-
-import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 
 public class ServerConditionsStorage extends BaseComponent implements LicensingConditionStorage {
 
@@ -88,8 +87,7 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 	public List<BaseLicensingCondition> getLicensingCondition(String productId, String productVersion) {
 
 		List<BaseLicensingCondition> descriptors = new ArrayList<>();
-		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path areaPath = LicensingPaths.getBasePath(areaValue);
+		Path areaPath = EquinoxPaths.resolveInstallBasePath();
 
 		if (!Files.isDirectory(areaPath)) {
 			return descriptors;

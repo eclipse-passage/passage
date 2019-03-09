@@ -12,7 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.integration.tests;
 
-import static org.eclipse.passage.lic.base.LicensingPaths.*;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.composeFileName;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -26,7 +29,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.base.LicensingPaths;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.AccessManager;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -111,23 +114,20 @@ public abstract class LicIntegrationBase {
 		sb.append(PASSAGE_SERVER_PORT_DEF).append('\n');
 		String content = sb.toString();
 
-		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
-		Path path = resolveConfigurationPath(install, configuration);
+		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		Files.createDirectories(path);
 		Path settings = path.resolve(composeFileName(configuration, EXTENSION_SERVER_SETTINGS));
 		Files.write(settings, content.getBytes());
 	}
 
 	protected void deleteServerConfiguration(LicensingConfiguration configuration) throws IOException {
-		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
-		Path path = resolveConfigurationPath(install, configuration);
+		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		Path settings = path.resolve(composeFileName(configuration, EXTENSION_SERVER_SETTINGS));
 		Files.deleteIfExists(settings);
 	}
 
 	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license, boolean encrypted) throws IOException {
-		String install = environmentInfo.getProperty(PROPERTY_OSGI_INSTALL_AREA);
-		Path path = resolveConfigurationPath(install, configuration);
+		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		Files.createDirectories(path);
 
 		File licFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_DECRYPTED)).toFile();
@@ -147,8 +147,7 @@ public abstract class LicIntegrationBase {
 	}
 
 	protected void deleteProductLicense(LicensingConfiguration configuration, boolean encrypted) throws IOException {
-		String install = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path path = LicensingPaths.resolveConfigurationPath(install, configuration);
+		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		FileVisitor<Path> visitor = new SimpleFileVisitor<Path>() {
 
 			@Override

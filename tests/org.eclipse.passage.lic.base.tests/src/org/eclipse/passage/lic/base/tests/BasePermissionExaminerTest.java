@@ -61,9 +61,9 @@ public class BasePermissionExaminerTest {
 		String provider = LICENSING_FEATURE_PROVIDER_DEFAULT;
 
 		BaseConfigurationRequirement fooRequirement = ConfigurationRequirements.createDefault(FOO_FEATURE_ID,
-				FOO_FEATURE_VERSION, FOO_FEATURE_ID, provider, source, configuration);
+				FOO_FEATURE_VERSION, FOO_FEATURE_ID, provider, source);
 		BaseConfigurationRequirement barRequirement = ConfigurationRequirements.createDefault(BAR_FEATURE_ID,
-				BAR_FEATURE_VERSION, BAR_FEATURE_ID, provider, source, configuration);
+				BAR_FEATURE_VERSION, BAR_FEATURE_ID, provider, source);
 		Iterable<LicensingRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
 
 		Date fooFrom = null;

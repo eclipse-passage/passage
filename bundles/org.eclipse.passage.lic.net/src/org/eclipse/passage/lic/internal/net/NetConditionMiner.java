@@ -35,15 +35,16 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.base.LicensingPaths;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.ConditionMiner;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.osgi.service.component.annotations.Component;
 
+@Component
 public class NetConditionMiner implements ConditionMiner {
 
 	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
@@ -55,32 +56,18 @@ public class NetConditionMiner implements ConditionMiner {
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
 
-	private EnvironmentInfo environmentInfo;
-
 	private final Map<String, org.eclipse.passage.lic.runtime.io.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
 	Logger logger = Logger.getLogger(NetConditionMiner.class.getName());
 
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = environmentInfo;
-	}
-
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = null;
-	}
-
 	@Override
 	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
 
 		List<LicensingCondition> conditions = new ArrayList<>();
 
-		if (environmentInfo == null) {
-			return conditions;
-		}
-		String areaValue = environmentInfo.getProperty(LicensingPaths.PROPERTY_OSGI_INSTALL_AREA);
-		Path configurationPath = LicensingPaths.resolveConfigurationPath(areaValue, configuration);
+		Path configurationPath = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		if (!Files.isDirectory(configurationPath)) {
 			return conditions;
 		}

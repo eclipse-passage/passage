@@ -12,9 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.registry;
 
-//FIXME: rework from inheritance to adapter
-public interface Identified {
+import java.util.Map;
 
-	String getIdentifier();
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.io.StreamCodec;
+
+public interface StreamCodecRegistry {
+
+	StreamCodec getStreamCodec(LicensingConfiguration configuration);
+
+	void registerStreamCodec(StreamCodec streamCodec, Map<String, Object> properties);
+
+	void unregisterStreamCodec(StreamCodec streamCodec, Map<String, Object> properties);
 
 }
