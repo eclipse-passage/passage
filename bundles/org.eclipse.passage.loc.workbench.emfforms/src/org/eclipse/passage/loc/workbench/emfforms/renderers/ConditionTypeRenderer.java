@@ -23,29 +23,29 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.runtime.inspector.ConditionInpector;
+import org.eclipse.passage.lic.runtime.registry.ConditionEvaluatorRegistry;
 
 public class ConditionTypeRenderer extends ComboControlRenderer {
 
-	private final ConditionInpector conditionInpector;
+	private final ConditionEvaluatorRegistry conditionInpector;
 
 	@Inject
 	public ConditionTypeRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.conditionInpector = viewContext.getService(ConditionInpector.class);
+		this.conditionInpector = viewContext.getService(ConditionEvaluatorRegistry.class);
 	}
 
 	@Override
 	protected String getUnsetText() {
-		return conditionInpector.getDefaultType();
+		return conditionInpector.getDefaultConditionType();
 	}
 
 	@Override
 	protected List<String> getDefinedValues() {
 		List<String> values = new ArrayList<>();
-		conditionInpector.getSupportedTypes().forEach(values::add);
+		conditionInpector.getSupportedConditionTypes().forEach(values::add);
 		return values;
 	}
 

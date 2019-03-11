@@ -42,8 +42,9 @@ public class EquinoxPaths {
 		try {
 			return Paths.get(URIUtil.fromString(value));
 		} catch (URISyntaxException e) {
-			NLS.bind("Failed to retrieve URI from value \"{0}\" (property \"{1}\")", value, property);
-			LicensingResult result = LicensingResults.createError("", e);
+			String pattern = "Failed to retrieve URI from value \"{0}\" (property \"{1}\")";
+			String message = NLS.bind(pattern, value, property);
+			LicensingResult result = LicensingResults.createError(message, e);
 			throw new LicensingException(result);
 		}
 	}

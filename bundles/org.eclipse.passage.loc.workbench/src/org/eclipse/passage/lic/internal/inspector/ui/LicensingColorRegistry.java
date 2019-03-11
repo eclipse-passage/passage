@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.internal.inspector.ui;
 
 import org.eclipse.jface.resource.ColorRegistry;
-import org.eclipse.passage.lic.jface.resource.LicensingColors;
+import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.osgi.service.component.annotations.Activate;
@@ -21,7 +21,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 @Component
-public class LicensingColorRegistry implements LicensingColors {
+public class LicensingColorRegistry implements LicensingColorResolver {
 
 	private ColorRegistry colorRegistry;
 

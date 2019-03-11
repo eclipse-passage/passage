@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.inspector.core;
+package org.eclipse.passage.lic.internal.equinox.conditions;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE;
 
@@ -19,38 +19,51 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
-import org.eclipse.passage.lic.runtime.inspector.ConditionInpector;
+import org.eclipse.passage.lic.runtime.registry.ConditionEvaluatorRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 @Component
-public class ConditionEvaluatorInspector implements ConditionInpector {
-	
+public class EquinoxConditionEvaluatorRegistry implements ConditionEvaluatorRegistry {
+
 	private final Map<String, ConditionEvaluator> conditionEvaluators = new HashMap<>();
-	
-	@Reference(cardinality=ReferenceCardinality.MULTIPLE)
-	public void bindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	public void bindConditionEvaluator(ConditionEvaluator evaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
-		conditionEvaluators.put(type, conditionEvaluator);
+		conditionEvaluators.put(type, evaluator);
 	}
 
-	public void unbindConditionEvaluator(ConditionEvaluator conditionEvaluator, Map<String, Object> properties) {
+	public void unbindConditionEvaluator(ConditionEvaluator evaluator, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
 		String type = String.valueOf(conditionType);
-		conditionEvaluators.remove(type);
+		ConditionEvaluator existing = conditionEvaluators.remove(type);
+		if (evaluator == existing) {
+			conditionEvaluators.remove(type);
+		}
 	}
 
 	@Override
-	public Iterable<String> getSupportedTypes() {
+	public Iterable<String> getSupportedConditionTypes() {
 		return Collections.unmodifiableSet(conditionEvaluators.keySet());
 	}
 
 	@Override
-	public String getDefaultType() {
+	public String getDefaultConditionType() {
 		// TODO configure via property?
 		return "<undefined>";
+	}
+
+	@Override
+	public ConditionEvaluator getConditionEvaluator(String conditionType) {
+		return conditionEvaluators.get(conditionType);
+	}
+
+	@Override
+	public Iterable<? extends ConditionEvaluator> getConditionEvaluators() {
+		return conditionEvaluators.values();
 	}
 
 }

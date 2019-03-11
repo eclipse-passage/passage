@@ -16,18 +16,22 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRIC
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_FATAL;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_WARN;
-import static org.eclipse.passage.lic.jface.resource.LicensingColors.*;
+import static org.eclipse.passage.lic.jface.resource.LicensingColors.COLOR_LEVEL_ERROR;
+import static org.eclipse.passage.lic.jface.resource.LicensingColors.COLOR_LEVEL_FATAL;
+import static org.eclipse.passage.lic.jface.resource.LicensingColors.COLOR_LEVEL_OK;
+import static org.eclipse.passage.lic.jface.resource.LicensingColors.COLOR_LEVEL_WARN;
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_ERROR;
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_FATAL;
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_OK;
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_WARN;
 
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.swt.graphics.RGB;
 
 public class RestrictionLabels {
-	
+
 	public static String resolveImageKey(Iterable<RestrictionVerdict> verdicts) {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(verdicts);
 		return resolveImageKey(last);
@@ -52,6 +56,35 @@ public class RestrictionLabels {
 			return IMG_LEVEL_ERROR;
 		case LICENSING_RESTRICTION_LEVEL_FATAL:
 			return IMG_LEVEL_FATAL;
+		default:
+			return IMG_LEVEL_WARN;
+		}
+	}
+
+	public static String resolveColorKey(Iterable<RestrictionVerdict> verdicts) {
+		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(verdicts);
+		return resolveColorKey(last);
+	}
+
+	public static String resolveColorKey(RestrictionVerdict verdict) {
+		if (verdict == null) {
+			return COLOR_LEVEL_OK;
+		}
+		return resolveColorKey(verdict.getRestrictionLevel());
+	}
+
+	public static String resolveColorKey(String level) {
+		String restriction = level;
+		if (restriction == null) {
+			restriction = LICENSING_RESTRICTION_LEVEL_DEFAULT;
+		}
+		switch (restriction) {
+		case LICENSING_RESTRICTION_LEVEL_WARN:
+			return COLOR_LEVEL_WARN;
+		case LICENSING_RESTRICTION_LEVEL_ERROR:
+			return COLOR_LEVEL_ERROR;
+		case LICENSING_RESTRICTION_LEVEL_FATAL:
+			return COLOR_LEVEL_FATAL;
 		default:
 			return IMG_LEVEL_WARN;
 		}
@@ -93,7 +126,7 @@ public class RestrictionLabels {
 
 	public static RGB resolveRGB(RestrictionVerdict verdict) {
 		if (verdict == null) {
-			return RGB_LEVEL_OK;
+			return LicensingColors.RGB_LEVEL_OK;
 		}
 		return resolveRGB(verdict.getRestrictionLevel());
 	}
@@ -105,13 +138,13 @@ public class RestrictionLabels {
 		}
 		switch (restriction) {
 		case LICENSING_RESTRICTION_LEVEL_WARN:
-			return RGB_LEVEL_WARN;
+			return LicensingColors.RGB_LEVEL_WARN;
 		case LICENSING_RESTRICTION_LEVEL_ERROR:
-			return RGB_LEVEL_ERROR;
+			return LicensingColors.RGB_LEVEL_ERROR;
 		case LICENSING_RESTRICTION_LEVEL_FATAL:
-			return RGB_LEVEL_FATAL;
+			return LicensingColors.RGB_LEVEL_FATAL;
 		default:
-			return RGB_LEVEL_WARN;
+			return LicensingColors.RGB_LEVEL_WARN;
 		}
 	}
 

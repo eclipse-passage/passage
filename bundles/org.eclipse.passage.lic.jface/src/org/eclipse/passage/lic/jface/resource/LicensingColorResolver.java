@@ -10,12 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.inspector;
+package org.eclipse.passage.lic.jface.resource;
 
-public interface RestrictionInpector {
-	
-	String getDefaultLevel();
+import org.eclipse.swt.graphics.Color;
 
-	Iterable<String> getSupportedLevels();
+public interface LicensingColorResolver {
+
+	String COLOR_VALIDATION_OK = "COLOR_VALIDATION_OK"; //$NON-NLS-1$
+	String COLOR_VALIDATION_ERROR = "COLOR_VALIDATION_ERROR"; //$NON-NLS-1$
+
+	Color getColor(String identifier);
 
 }

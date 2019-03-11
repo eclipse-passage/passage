@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.runtime.RequirementResolver;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.events.AccessManagerEvents;
+import org.eclipse.passage.lic.runtime.events.ConditionEvents;
 import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
 
 public abstract class BaseAccessManager implements AccessManager {
@@ -138,8 +139,10 @@ public abstract class BaseAccessManager implements AccessManager {
 			try {
 				Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
 				if (conditions == null) {
-					BaseLicensingResult error = LicensingResults.createError("Invalid condition miner",
-							conditionMiner.getClass().getName(), new NullPointerException());
+					String source = conditionMiner.getClass().getName();
+					String message = "Invalid condition miner";
+					BaseLicensingResult error = LicensingResults.createError(message, source,
+							new NullPointerException());
 					holder.addChild(error);
 					continue;
 				}
@@ -196,9 +199,15 @@ public abstract class BaseAccessManager implements AccessManager {
 				logError(message, new NullPointerException());
 				continue;
 			}
-			Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(map.get(type), configuration);
-			for (FeaturePermission permission : permissions) {
-				result.add(permission);
+			List<LicensingCondition> mappedConditions = map.get(type);
+			try {
+				Iterable<FeaturePermission> permissions = evaluator.evaluateConditions(mappedConditions, configuration);
+				for (FeaturePermission permission : permissions) {
+					result.add(permission);
+				}
+			} catch (LicensingException e) {
+				logError("Failed to evaluate conditions", e);
+				postEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions);
 			}
 		}
 		postEvent(AccessManagerEvents.CONDITIONS_EVALUATED, unmodifiable);

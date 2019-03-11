@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lic.base.conditions.FeaturePermissions;
 import org.eclipse.passage.lic.net.TimeConditions;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
@@ -24,16 +25,16 @@ import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lbc.base.BaseComponent;
 
 public class ServerConditionsDistributor extends BaseComponent implements ConditionEvaluator {
 
-	List<ConditionMiner> miners = new ArrayList<>();
-	List<LicensingCondition> lockedConditions = new ArrayList<>();
-	List<ConditionTimerTask> conditionTasks = new ArrayList<>();
+	private final List<ConditionMiner> miners = new ArrayList<>();
+	private final List<LicensingCondition> lockedConditions = new ArrayList<>();
+	private final List<ConditionTimerTask> conditionTasks = new ArrayList<>();
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration) {
+	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+			LicensingConfiguration configuration) throws LicensingException {
 		List<FeaturePermission> permissionsResult = new ArrayList<>();
 
 		for (LicensingCondition condition : conditions) {
@@ -47,7 +48,8 @@ public class ServerConditionsDistributor extends BaseComponent implements Condit
 
 						boolean conditionIsLocked = lockedConditions.contains(condition);
 						if (!conditionIsLocked) {
-							FeaturePermission createFeaturePermition = createFeaturePermission(condition, configuration);
+							FeaturePermission createFeaturePermition = createFeaturePermission(condition,
+									configuration);
 							launchFeaturePermissionTask(condition, createFeaturePermition);
 							lockCondition(condition);
 							permissionsResult.add(createFeaturePermition);
@@ -86,8 +88,9 @@ public class ServerConditionsDistributor extends BaseComponent implements Condit
 	private synchronized void lockCondition(LicensingCondition condition) {
 		lockedConditions.add(condition);
 	}
-	
-	private FeaturePermission createFeaturePermission(LicensingCondition condition, LicensingConfiguration configuration) {
+
+	private FeaturePermission createFeaturePermission(LicensingCondition condition,
+			LicensingConfiguration configuration) {
 		long leaseTime = System.currentTimeMillis();
 		long expireTime = leaseTime + 60 * 60 * 1000;
 		Date lease = new Date(leaseTime);
@@ -124,6 +127,18 @@ public class ServerConditionsDistributor extends BaseComponent implements Condit
 		if (miners.contains(miner)) {
 			miners.remove(miner);
 		}
+	}
+
+	@Override
+	public String getConditionName() {
+		// TODO Auto-generated method stub
+		return "Server";
+	}
+
+	@Override
+	public String getConditionDescription() {
+		// TODO Auto-generated method stub
+		return "Server condition evaluator";
 	}
 
 }

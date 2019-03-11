@@ -13,12 +13,17 @@
 package org.eclipse.passage.lic.runtime;
 
 /**
- * Evaluates the collection of {@link LicensingCondition} to obtain a
- * collection of {@link FeaturePermission}
+ * Evaluates the collection of {@link LicensingCondition} to obtain a collection
+ * of {@link FeaturePermission}
  *
  */
 public interface ConditionEvaluator {
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions, LicensingConfiguration configuration);
+	String getConditionName();
+
+	String getConditionDescription();
+
+	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+			LicensingConfiguration configuration) throws LicensingException;
 
 }

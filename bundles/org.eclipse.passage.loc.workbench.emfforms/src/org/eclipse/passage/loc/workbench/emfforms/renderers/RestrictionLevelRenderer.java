@@ -23,29 +23,29 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.runtime.inspector.RestrictionInpector;
+import org.eclipse.passage.lic.runtime.registry.RestrictionExecutorRegistry;
 
 public class RestrictionLevelRenderer extends ComboControlRenderer {
 
-	private final RestrictionInpector restrictionInpector;
+	private final RestrictionExecutorRegistry restrictionInpector;
 
 	@Inject
 	public RestrictionLevelRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.restrictionInpector = viewContext.getService(RestrictionInpector.class);
+		this.restrictionInpector = viewContext.getService(RestrictionExecutorRegistry.class);
 	}
 
 	@Override
 	protected String getUnsetText() {
-		return restrictionInpector.getDefaultLevel();
+		return restrictionInpector.getDefaultRestrictionLevelIdentifier();
 	}
 
 	@Override
 	protected List<String> getDefinedValues() {
 		List<String> values = new ArrayList<>();
-		restrictionInpector.getSupportedLevels().forEach(values::add);
+		restrictionInpector.getRestrictionLevelIdentifiers().forEach(values::add);
 		return values;
 	}
 

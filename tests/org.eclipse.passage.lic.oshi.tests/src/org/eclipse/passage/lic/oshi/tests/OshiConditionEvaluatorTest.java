@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Collections;
 import java.util.Date;
@@ -25,11 +26,12 @@ import java.util.Set;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.oshi.OshiConditionEvaluator;
 import org.eclipse.passage.lic.oshi.OshiHal;
+import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.osgi.service.log.LogService;
 
 @SuppressWarnings("restriction")
 public class OshiConditionEvaluatorTest {
@@ -44,20 +46,27 @@ public class OshiConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditionNegative() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		evaluator.bindLogService(Mockito.mock(LogService.class));
-		assertEmpty(evaluator.evaluateConditions(null, null));
+		evaluate(evaluator, null, null);
 
 		Set<LicensingCondition> empty = Collections.singleton(createOshiCondition(new String()));
-		assertEmpty(evaluator.evaluateConditions(empty, null));
+		evaluate(evaluator, empty, null);
 
 		Set<LicensingCondition> unknown = Collections.singleton(createOshiCondition(EXPRESSION_OS_X3));
-		assertEmpty(evaluator.evaluateConditions(unknown, null));
+		evaluate(evaluator, unknown, null);
+	}
+
+	private void evaluate(ConditionEvaluator evaluator, Set<LicensingCondition> conditions, LicensingConfiguration configuration) {
+		try {
+			evaluator.evaluateConditions(conditions, configuration);
+			fail("Should not accept invalid arguments");
+		} catch (LicensingException e) {
+			// expected
+		}
 	}
 
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiConditionEvaluator evaluator = new OshiConditionEvaluator();
-		evaluator.bindLogService(Mockito.mock(LogService.class));
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
 		Iterator<FeaturePermission> iterator = evaluator.evaluateConditions(future, null).iterator();
 		assertTrue(iterator.hasNext());

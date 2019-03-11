@@ -123,7 +123,7 @@ public class LicensingImages {
 	 * </p>
 	 * 
 	 * @see LicensingImages#getImage(String)
-	 * @see LicensingImages#getImage(String)
+	 * @see LicensingImages#getImageDescriptor(String)
 	 * 
 	 * @return the Licensing image registry
 	 */
@@ -136,11 +136,11 @@ public class LicensingImages {
 	}
 
 	/**
-	 * Initialize default images in JFace's image registry.
+	 * Initialize default images in Licensing image registry.
 	 *
 	 */
 	private static void initializeDefaultImages() {
-		Map<String, String> paths = new HashMap<String, String>();
+		Map<String, String> paths = new HashMap<>();
 		paths.put(IMG_DEFAULT, PATH_OBJECT + "passage.png"); //$NON-NLS-1$
 		paths.put(IMG_LEVEL_OK, PATH_OBJECT + "ok.png"); //$NON-NLS-1$
 		paths.put(IMG_LEVEL_INFO, PATH_OBJECT + "info.png"); //$NON-NLS-1$
@@ -155,11 +155,12 @@ public class LicensingImages {
 	}
 
 	/**
-	 * Declares a Licensing images for the key-> path {@link Map}. May only be called
-	 * from a UI thread.
+	 * Declares a Licensing images for the key-> path {@link Map}. May only be
+	 * called from a UI thread.
 	 * 
 	 * @param location the {@link Class} where the image is relative to
-	 * @param paths    the the key-> path {@link Map} (the path is relative to location)
+	 * @param paths    the the key-> path {@link Map} (the path is relative to
+	 *                 location)
 	 * 
 	 * @return the status of the operation
 	 */

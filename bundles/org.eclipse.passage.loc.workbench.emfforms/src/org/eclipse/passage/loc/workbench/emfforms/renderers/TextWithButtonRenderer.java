@@ -27,7 +27,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.passage.lic.jface.resource.LicensingColors;
+import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
 import org.eclipse.passage.loc.jface.LocImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -44,7 +44,7 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 	protected Text text;
 	protected Button button;
 	
-	private final LicensingColors licensingColors;
+	private final LicensingColorResolver licensingColors;
 	private final LocImages locImages;
 
 	@Inject
@@ -52,11 +52,11 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.licensingColors = viewContext.getService(LicensingColors.class);
+		this.licensingColors = viewContext.getService(LicensingColorResolver.class);
 		this.locImages = viewContext.getService(LocImages.class);
 	}
 	
-	public LicensingColors getLicensingColors() {
+	public LicensingColorResolver getLicensingColors() {
 		return licensingColors;
 	}
 	
@@ -137,9 +137,9 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 		if (control instanceof Text) {
 			Text textControl = ((Text) control);
 			if (textControl.getText().isEmpty()) {
-				control.setBackground(licensingColors.getColor(LicensingColors.COLOR_VALIDATION_ERROR));
+				control.setBackground(licensingColors.getColor(LicensingColorResolver.COLOR_VALIDATION_ERROR));
 			} else {
-				control.setBackground(licensingColors.getColor(LicensingColors.COLOR_VALIDATION_OK));
+				control.setBackground(licensingColors.getColor(LicensingColorResolver.COLOR_VALIDATION_OK));
 			}
 		}
 	}

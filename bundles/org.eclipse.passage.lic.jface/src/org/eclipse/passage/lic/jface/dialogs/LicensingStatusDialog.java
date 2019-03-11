@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -43,6 +44,8 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
 
 	public static final int IMPORT_LICENSE_ID = IDialogConstants.CLIENT_ID + 2;
+
+	public static final int SHOW_CONFIGURATION_ID = IDialogConstants.CLIENT_ID + 3;
 
 	private static String defaultContacts = ""; //$NON-NLS-1$
 
@@ -115,18 +118,35 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "Import...", false);
+		((GridLayout) parent.getLayout()).makeColumnsEqualWidth = false;
+		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, "&Configuration...", false);
+		detailsButton.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
+		detailsButton.setEnabled(accessManager != null);
+		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
 		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
 		importButton.setEnabled(accessManager != null);
-		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "Inspect...", false);
+		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "&Hardware...", false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
 	}
 
 	@Override
+	protected void setButtonLayoutData(Button button) {
+		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
+		int length = button.getText().length();
+		int widthHint = convertWidthInCharsToPixels(length + 8);
+		Point minSize = button.computeSize(SWT.DEFAULT, SWT.DEFAULT, true);
+		data.widthHint = Math.max(widthHint, minSize.x);
+		button.setLayoutData(data);
+	}
+
+	@Override
 	protected void buttonPressed(int buttonId) {
 		switch (buttonId) {
+		case SHOW_CONFIGURATION_ID:
+			showConfigurationPressed();
+			break;
 		case IMPORT_LICENSE_ID:
 			importLicensePressed();
 			break;
@@ -137,6 +157,11 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 			okPressed();
 			break;
 		}
+	}
+
+	protected void showConfigurationPressed() {
+		LicensingConfigurationDialog dialog = new LicensingConfigurationDialog(getShell());
+		dialog.open();
 	}
 
 	protected void importLicensePressed() {

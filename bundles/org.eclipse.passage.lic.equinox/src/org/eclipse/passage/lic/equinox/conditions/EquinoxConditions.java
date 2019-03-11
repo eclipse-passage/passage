@@ -10,19 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime;
+package org.eclipse.passage.lic.equinox.conditions;
 
-/**
- * 
- * Realize the {@link RestrictionVerdict}(s) for the licensed feature:
- * <li>early exit from command line tools with notice</li>
- * <li>blocking dialogs for UI application</li>
- * <li>filtering out the UI</li>
- * <li>blocking of bundles using OSGi level</li>
- *
- */
-public interface RestrictionExecutor {
-
-	LicensingResult execute(Iterable<RestrictionVerdict> actions);
+public class EquinoxConditions {
 
 }

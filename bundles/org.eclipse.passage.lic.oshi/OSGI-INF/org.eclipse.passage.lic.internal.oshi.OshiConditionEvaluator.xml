@@ -4,6 +4,5 @@
    <service>
       <provide interface="org.eclipse.passage.lic.runtime.ConditionEvaluator"/>
    </service>
-   <reference bind="bindLogService" interface="org.osgi.service.log.LogService" name="LogService" unbind="unbindLogService"/>
    <implementation class="org.eclipse.passage.lic.internal.oshi.OshiConditionEvaluator"/>
 </scr:component>

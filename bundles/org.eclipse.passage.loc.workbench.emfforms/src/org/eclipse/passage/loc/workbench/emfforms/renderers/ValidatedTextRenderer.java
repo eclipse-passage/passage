@@ -29,7 +29,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.emfforms.spi.core.services.label.NoLabelFoundException;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.passage.lic.jface.resource.LicensingColors;
+import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -44,7 +44,7 @@ public class ValidatedTextRenderer extends SimpleControlSWTControlSWTRenderer {
 	private static final String TEXT_MESSAGE_DEFAULT = ""; //$NON-NLS-1$
 	private static final String UNSET_TEXT_DEFAULT = ""; //$NON-NLS-1$
 
-	private LicensingColors licensingColors;
+	private LicensingColorResolver licensingColors;
 	private Text text;
 
 	@Inject
@@ -52,7 +52,7 @@ public class ValidatedTextRenderer extends SimpleControlSWTControlSWTRenderer {
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		licensingColors = viewContext.getService(LicensingColors.class);
+		licensingColors = viewContext.getService(LicensingColorResolver.class);
 	}
 
 	@Override
@@ -74,9 +74,9 @@ public class ValidatedTextRenderer extends SimpleControlSWTControlSWTRenderer {
 		if (control instanceof Text) {
 			Text textControl = ((Text) control);
 			if (textControl.getText().isEmpty()) {
-				control.setBackground(licensingColors.getColor(LicensingColors.COLOR_VALIDATION_ERROR));
+				control.setBackground(licensingColors.getColor(LicensingColorResolver.COLOR_VALIDATION_ERROR));
 			} else {
-				control.setBackground(licensingColors.getColor(LicensingColors.COLOR_VALIDATION_OK));
+				control.setBackground(licensingColors.getColor(LicensingColorResolver.COLOR_VALIDATION_OK));
 			}
 		}
 	}

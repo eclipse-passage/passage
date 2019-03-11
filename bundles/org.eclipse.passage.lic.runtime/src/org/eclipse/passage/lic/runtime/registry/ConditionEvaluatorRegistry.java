@@ -10,19 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime;
+package org.eclipse.passage.lic.runtime.registry;
 
-/**
- * 
- * Realize the {@link RestrictionVerdict}(s) for the licensed feature:
- * <li>early exit from command line tools with notice</li>
- * <li>blocking dialogs for UI application</li>
- * <li>filtering out the UI</li>
- * <li>blocking of bundles using OSGi level</li>
- *
- */
-public interface RestrictionExecutor {
+import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 
-	LicensingResult execute(Iterable<RestrictionVerdict> actions);
+public interface ConditionEvaluatorRegistry {
+
+	String getDefaultConditionType();
+
+	Iterable<String> getSupportedConditionTypes();
+
+	ConditionEvaluator getConditionEvaluator(String conditionType);
+
+	Iterable<? extends ConditionEvaluator> getConditionEvaluators();
 
 }

@@ -10,12 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.inspector;
+package org.eclipse.passage.lic.jface.dialogs;
 
-public interface ConditionInpector {
-	
-	String getDefaultType();
+import org.eclipse.passage.lic.runtime.LicensingException;
 
-	Iterable<String> getSupportedTypes();
+public interface LicensingPageContributor {
+
+	String getPageIdentifier();
+
+	String getPageName();
+
+	LicensingRegistryPage createPage() throws LicensingException;
 
 }

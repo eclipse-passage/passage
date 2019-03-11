@@ -25,7 +25,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
@@ -49,8 +48,7 @@ public class ConditionMiners {
 			} catch (Exception e) {
 				String message = String.format("Failed to mine packs at %s", configurationPath);
 				String source = LicensingConditions.class.getName();
-				BaseLicensingResult error = LicensingResults.createError(message, source, e);
-				throw new LicensingException(error);
+				LicensingResults.throwError(message, source, e);
 			}
 		}
 	}
@@ -73,14 +71,12 @@ public class ConditionMiners {
 				} catch (Exception e) {
 					String message = String.format("Failed to to extract conditions from %s", path);
 					String source = LicensingConditions.class.getName();
-					BaseLicensingResult error = LicensingResults.createError(message, source, e);
-					throw new LicensingException(error);
+					LicensingResults.throwError(message, source, e);
 				}
 			} catch (Exception e) {
 				String message = String.format("Failed to mine packs at %s", configurationPath);
 				String source = LicensingConditions.class.getName();
-				BaseLicensingResult error = LicensingResults.createError(message, source, e);
-				throw new LicensingException(error);
+				LicensingResults.throwError(message, source, e);
 			}
 		}
 	}
@@ -103,8 +99,7 @@ public class ConditionMiners {
 		} catch (IOException e) {
 			String message = String.format("Failed to collect packs at %s", configurationPath);
 			String source = LicensingConditions.class.getName();
-			BaseLicensingResult error = LicensingResults.createError(message, source, e);
-			throw new LicensingException(error);
+			LicensingResults.throwError(message, source, e);
 		}
 		return licenseFiles;
 	}

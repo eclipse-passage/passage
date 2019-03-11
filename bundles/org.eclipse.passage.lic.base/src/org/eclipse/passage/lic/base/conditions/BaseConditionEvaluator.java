@@ -17,29 +17,56 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.base.BaseLicensingResult;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 
 public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 
+	private String conditionName;
+	private String conditionDescription;
+
+	@Override
+	public String getConditionName() {
+		return conditionName;
+	}
+
+	public void setConditionName(String name) {
+		this.conditionName = name;
+	}
+
+	@Override
+	public String getConditionDescription() {
+		return conditionDescription;
+	}
+
+	public void setConditionDescription(String description) {
+		this.conditionDescription = description;
+	}
+
 	@Override
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration) {
+			LicensingConfiguration configuration) throws LicensingException {
 		List<FeaturePermission> result = new ArrayList<>();
+		String source = getClass().getName();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
-			logError(message, new NullPointerException());
-			return result;
+			Exception e = new IllegalArgumentException();
+			BaseLicensingResult error = LicensingResults.createError(message, source, e);
+			throw new LicensingException(error);
 		}
 		for (LicensingCondition condition : conditions) {
 			String expression = condition.getConditionExpression();
 			Map<String, String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
 				String message = String.format("Expression checks are empty for condition %s", condition);
-				logError(message, new Exception());
-				continue;
+				Exception e = new IllegalArgumentException();
+				BaseLicensingResult error = LicensingResults.createError(message, source, e);
+				throw new LicensingException(error);
 			}
 			Set<String> keySet = checks.keySet();
 
@@ -52,12 +79,14 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 					passed = false;
 					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition,
 							key, value);
-					logError(message, new Exception());
+					BaseLicensingResult error = LicensingResults.createError(message, source, e);
+					throw new LicensingException(error);
 				}
 				if (!passed) {
 					String message = String.format("Condition %s rejected: key=%s, value=%s", condition, key, value);
-					logError(message, new Exception());
-					break;
+					Exception e = new IllegalArgumentException();
+					BaseLicensingResult error = LicensingResults.createError(message, source, e);
+					throw new LicensingException(error);
 				}
 			}
 			if (passed) {
@@ -73,8 +102,5 @@ public abstract class BaseConditionEvaluator implements ConditionEvaluator {
 	}
 
 	protected abstract boolean evaluateSegment(String key, String value);
-
-	// FIXME: remove it, throw LicensingException
-	protected abstract void logError(String message, Throwable e);
 
 }

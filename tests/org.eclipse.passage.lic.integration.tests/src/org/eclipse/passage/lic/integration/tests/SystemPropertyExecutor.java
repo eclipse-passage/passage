@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.integration.tests;
 
+import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.RestrictionVerdict;
 import org.osgi.service.component.annotations.Component;
@@ -20,12 +22,13 @@ import org.osgi.service.component.annotations.Component;
 public class SystemPropertyExecutor implements RestrictionExecutor {
 
 	@Override
-	public void execute(Iterable<RestrictionVerdict> actions) {
+	public LicensingResult execute(Iterable<RestrictionVerdict> actions) {
 		for (RestrictionVerdict verdict : actions) {
 			String featureIdentifier = verdict.getLicensingRequirement().getFeatureIdentifier();
 			String restrictionLevel = verdict.getRestrictionLevel();
 			System.setProperty(featureIdentifier, restrictionLevel);
 		}
+		return LicensingResults.createOK("");
 	}
 
 }

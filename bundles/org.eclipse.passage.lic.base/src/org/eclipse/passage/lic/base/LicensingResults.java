@@ -16,7 +16,13 @@ import static org.eclipse.passage.lic.base.BaseLicensingResult.CODE_NOMINAL;
 import static org.eclipse.passage.lic.runtime.LicensingResult.ERROR;
 import static org.eclipse.passage.lic.runtime.LicensingResult.OK;
 
+import org.eclipse.passage.lic.runtime.LicensingException;
+
 public class LicensingResults {
+
+	public static BaseLicensingResult createOK(String message) {
+		return new BaseLicensingResult(OK, message, LicensingResults.class.getName());
+	}
 
 	public static BaseLicensingResult createHolder(String message) {
 		return new BaseLicensingResult(OK, message, LicensingResults.class.getName());
@@ -42,6 +48,10 @@ public class LicensingResults {
 
 	public static BaseLicensingResult createError(String message, int code, String source, Throwable e) {
 		return new BaseLicensingResult(ERROR, message, code, source, e);
+	}
+
+	public static void throwError(String message, String source, Throwable e) throws LicensingException {
+		throw new LicensingException(new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e));
 	}
 
 }

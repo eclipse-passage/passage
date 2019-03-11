@@ -16,9 +16,9 @@ import static org.eclipse.passage.lic.runtime.events.LicensingEvents.ALL_SUB_TOP
 import static org.eclipse.passage.lic.runtime.events.LicensingEvents.TOPIC_BASE;
 import static org.eclipse.passage.lic.runtime.events.LicensingEvents.TOPIC_SEP;
 
-public final class PermissionExaminerEvents {
+public final class ConditionEvents {
 
-	private PermissionExaminerEvents() {
+	private ConditionEvents() {
 		// block
 	}
 

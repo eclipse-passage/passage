@@ -17,34 +17,18 @@ import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.ConditionEvaluator;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.log.LogService;
 
-@Component(property = {
-		LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.CONDITION_TYPE_HARDWARE })
+@Component(property = { LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.CONDITION_TYPE_HARDWARE })
 public class OshiConditionEvaluator extends BaseConditionEvaluator implements ConditionEvaluator {
 
-	private LogService logService;
+	public OshiConditionEvaluator() {
+		setConditionName("Hardware");
+		setConditionDescription("Evaluates node-locked conditions using runtime hardware information");
+	}
 
 	@Override
 	protected boolean evaluateSegment(String key, String value) {
 		return OshiHal.evaluateProperty(key, value);
-	}
-
-	@Reference
-	public void bindLogService(LogService logService) {
-		this.logService = logService;
-	}
-	
-	public void unbindLogService(LogService logService) {
-		this.logService = logService;
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	protected void logError(String message, Throwable e) {
-		//FIXME: rework after removing Eclipse Mars support
-		logService.log(LogService.LOG_ERROR, message, e);
 	}
 
 }

@@ -12,45 +12,42 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.After;
 import org.junit.Test;
 
 public class BaseConditionEvaluatorTest {
-	
+
 	private Map<String, Object> segments = new HashMap<>();
-	private Map<String, Object> log = new HashMap<>();
-	
+
 	private BaseConditionEvaluator evaluator = new BaseConditionEvaluator() {
-		
+
 		@Override
 		protected boolean evaluateSegment(String key, String value) {
 			return false;
 		}
 
-		@Override
-		protected void logError(String message, Throwable e) {
-			log.put(message, e);
-		}
-
 	};
-	
+
 	@After
 	public void tearDown() {
-		log.clear();
 		segments.clear();
 	}
 
 	@Test
 	public void testEvaluateConditions() {
-		evaluator.evaluateConditions(null, null);
-		assertEquals(1, log.size());
+		try {
+			evaluator.evaluateConditions(null, null);
+			fail("Should not accept invalid arguments");
+		} catch (LicensingException e) {
+			// expected
+		}
 	}
-
 
 }
