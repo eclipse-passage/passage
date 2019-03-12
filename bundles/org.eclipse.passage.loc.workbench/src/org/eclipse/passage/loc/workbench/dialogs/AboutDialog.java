@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.translation.TranslationService;
 import org.eclipse.equinox.app.IApplicationContext;
@@ -64,7 +65,8 @@ public class AboutDialog extends Dialog {
 		String pattern = translations.translate(ABOUT_TITLE, bundleUrl);
 		String name = translations.translate(PRODUCT_NAME, bundleUrl);
 		newShell.setText(NLS.bind(pattern, name));
-		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));;
+		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
+		;
 	}
 
 	@Override
@@ -116,13 +118,14 @@ public class AboutDialog extends Dialog {
 	}
 
 	private URL getUrl(String productImg) {
-		URL url = null;
 		try {
-			url = new URL(String.format(PRODUCT_BUNDLE_ABOUT_IMAGE, bundleUrl, productImg));
+			URL url = new URL(String.format(PRODUCT_BUNDLE_ABOUT_IMAGE, bundleUrl, productImg));
+			URL found = FileLocator.find(url);
+			return found;
 		} catch (MalformedURLException e) {
 			Logger.getLogger(AboutDialog.class.getName()).log(Level.INFO, e.getMessage(), e);
 		}
-		return url;
+		return null;
 	}
 
 	@Override

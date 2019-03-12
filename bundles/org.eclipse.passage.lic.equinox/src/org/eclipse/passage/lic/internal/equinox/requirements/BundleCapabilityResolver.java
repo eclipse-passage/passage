@@ -45,8 +45,8 @@ public class BundleCapabilityResolver implements RequirementResolver {
 	private BundleContext bundleContext;
 
 	@Activate
-	public void activate(BundleContext bundleContext) {
-		this.bundleContext = bundleContext;
+	public void activate(BundleContext context) {
+		this.bundleContext = context;
 	}
 
 	@Deactivate

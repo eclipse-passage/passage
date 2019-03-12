@@ -81,19 +81,19 @@ public class BaseTextRendererService implements EMFFormsDIRendererService<VContr
 		return ValidatedTextRenderer.class;
 	}
 
-	public void bindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
-		this.databindingService = databindingService;
+	public void bindEMFFormsDatabinding(EMFFormsDatabinding databinding) {
+		this.databindingService = databinding;
 	}
 
-	public void unbindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
+	public void unbindEMFFormsDatabinding(EMFFormsDatabinding databinding) {
 		this.databindingService = null;
 	}
 
-	public void bindReportService(ReportService reportService) {
-		this.reportService = reportService;
+	public void bindReportService(ReportService report) {
+		this.reportService = report;
 	}
 
-	public void unbindReportService(ReportService reportService) {
+	public void unbindReportService(ReportService report) {
 		this.reportService = null;
 	}
 }

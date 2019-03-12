@@ -17,16 +17,17 @@ import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class EquinoxFeatureCase implements FeatureCase {
-	
+
 	private final EquinoxFeatureInspector inspector;
-	
+
 	private final Iterable<String> featureIdentifiers;
-	
+
 	EquinoxFeatureCase(EquinoxFeatureInspector inspector, Iterable<String> features) {
 		this.inspector = inspector;
 		this.featureIdentifiers = features;
 	}
-	
+
+	@Override
 	public Iterable<String> getFeatureIdentifiers() {
 		return featureIdentifiers;
 	}

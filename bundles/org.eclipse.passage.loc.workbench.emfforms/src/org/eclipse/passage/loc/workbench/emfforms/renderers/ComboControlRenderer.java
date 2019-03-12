@@ -51,17 +51,17 @@ public abstract class ComboControlRenderer extends SimpleControlSWTControlSWTRen
 	@Override
 	protected Binding[] createBindings(Control control) throws DatabindingFailedException {
 		DataBindingContext context = getDataBindingContext();
-		final Binding binding = context.bindValue(WidgetProperties.selection().observe(control),
-				getModelValue(), withPreSetValidation(new UpdateValueStrategy()), null);
+		final Binding binding = context.bindValue(WidgetProperties.selection().observe(control), getModelValue(),
+				withPreSetValidation(new UpdateValueStrategy()), null);
 		return new Binding[] { binding };
 	}
 
 	@Override
 	protected Control createSWTControl(Composite parent) {
 		combo = new Combo(parent, SWT.BORDER | SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, false).span(2,1).applyTo(combo);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, false).span(2, 1).applyTo(combo);
 		List<String> definedValues = getDefinedValues();
-		String[] array = (String[]) definedValues.toArray(new String[definedValues.size()]);
+		String[] array = definedValues.toArray(new String[definedValues.size()]);
 		combo.setItems(array);
 		String currentValue = getCurrentValue();
 		if (currentValue == null || currentValue.isEmpty()) {
@@ -84,7 +84,7 @@ public abstract class ComboControlRenderer extends SimpleControlSWTControlSWTRen
 	}
 
 	protected abstract List<String> getDefinedValues();
-	
+
 	protected String getCurrentValue() {
 		try {
 			Object value = getModelValue().getValue();

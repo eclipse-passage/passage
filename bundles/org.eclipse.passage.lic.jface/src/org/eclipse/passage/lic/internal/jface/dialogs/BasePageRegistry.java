@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageRegistry;
+import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 
 public class BasePageRegistry implements LicensingPageRegistry {
 
@@ -33,7 +33,7 @@ public class BasePageRegistry implements LicensingPageRegistry {
 		pageContributors.put(contributor.getPageIdentifier(), contributor);
 	}
 
-	public void registerPageContributor(Class<? extends LicensingRegistryPage> pageClass, String pageName) {
+	public void registerPageContributor(Class<? extends LicensingRegistryPage<?>> pageClass, String pageName) {
 		String pageIdentifier = pageClass.getName();
 		BasePageContributor contributor = new BasePageContributor(pageIdentifier, pageName, pageClass);
 		registerPageContributor(contributor);

@@ -41,32 +41,36 @@ import org.osgi.service.log.LoggerFactory;
 
 @Component
 public class ComponentConfigurationResolver implements RequirementResolver {
-	
+
 	private Logger logger;
 	private BundleContext bundleContext;
 	private ServiceComponentRuntime scr;
-	
+
 	@Reference
-	public void bindLoggerFactory(LoggerFactory loggerFactory) {
-		this.logger = loggerFactory.getLogger(ComponentConfigurationResolver.class);
+	public void bindLoggerFactory(LoggerFactory factory) {
+		this.logger = factory.getLogger(ComponentConfigurationResolver.class);
 	}
 
-	public void unbindLoggerFactory(LoggerFactory loggerFactory) {
-		this.logger = null;
-	}
-	
-	@Reference
-	public void bindScr(ServiceComponentRuntime scr) {
-		this.scr = scr;
+	public void unbindLoggerFactory(LoggerFactory factory) {
+		if (this.logger == factory) {
+			this.logger = null;
+		}
 	}
 
-	public void unbindScr(ServiceComponentRuntime scr) {
-		this.scr = null;
+	@Reference
+	public void bindScr(ServiceComponentRuntime runtime) {
+		this.scr = runtime;
 	}
-	
+
+	public void unbindScr(ServiceComponentRuntime runtime) {
+		if (this.scr == runtime) {
+			this.scr = null;
+		}
+	}
+
 	@Activate
-	public void activate(BundleContext bundleContext) {
-		this.bundleContext = bundleContext;
+	public void activate(BundleContext context) {
+		this.bundleContext = context;
 	}
 
 	@Deactivate
@@ -80,11 +84,13 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (scr == null) {
 			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		if (bundleContext == null) {
 			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
+			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		List<LicensingRequirement> result = new ArrayList<>();
 		Bundle[] bundles = bundleContext.getBundles();
@@ -94,7 +100,8 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 			Dictionary<String, String> headers = bundle.getHeaders();
 			String name = headers.get(Constants.BUNDLE_NAME);
 			String vendor = headers.get(Constants.BUNDLE_VENDOR);
-			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(name, vendor, component.properties, component);
+			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(name, vendor,
+					component.properties, component);
 			if (requirement != null) {
 				result.add(requirement);
 			}

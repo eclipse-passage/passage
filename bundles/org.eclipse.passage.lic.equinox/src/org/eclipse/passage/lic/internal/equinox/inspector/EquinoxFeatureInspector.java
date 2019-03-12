@@ -45,20 +45,19 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 	private AccessManager accessManager;
 
 	@Reference
-	public void bindAccessManager(AccessManager accessManager) {
-		this.accessManager = accessManager;
+	public void bindAccessManager(AccessManager manager) {
+		this.accessManager = manager;
 	}
 
-	public void unbindAccessManager(AccessManager accessManager) {
-		this.accessManager = null;
+	public void unbindAccessManager(AccessManager manager) {
+		if (this.accessManager == manager) {
+			this.accessManager = null;
+		}
 	}
 
 	@Override
 	public void handleEvent(Event event) {
-		System.out.println("EquinoxFeatureInspector.handleEvent() " + event);
-		event.getPropertyNames();
-		// TODO Auto-generated method stub
-
+		// FIXME: should update cached info
 	}
 
 	@Override
@@ -128,11 +127,11 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 
 	public Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId,
 			LicensingConfiguration configuration) {
-		List<LicensingRequirement> requirements = new ArrayList<LicensingRequirement>();
+		List<LicensingRequirement> featureRequirements = new ArrayList<>();
 		Iterable<LicensingRequirement> resolved = accessManager.resolveRequirements(configuration);
 		for (LicensingRequirement requirement : resolved) {
 			if (featureId.equals(requirement.getFeatureIdentifier())) {
-				requirements.add(requirement);
+				featureRequirements.add(requirement);
 			}
 		}
 		List<LicensingCondition> conditions = new ArrayList<LicensingCondition>();
@@ -145,7 +144,7 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
 
 		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
-		Iterable<RestrictionVerdict> examined = accessManager.examinePermissons(requirements, permissions,
+		Iterable<RestrictionVerdict> examined = accessManager.examinePermissons(featureRequirements, permissions,
 				configuration);
 		examined.forEach(verdicts::add);
 		return verdicts;

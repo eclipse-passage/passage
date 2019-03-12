@@ -33,8 +33,8 @@ public class BundleKeyKeeper implements KeyKeeper {
 	private ComponentContext componentContext;
 	
 	@Activate
-	public void activate(ComponentContext componentContext) {
-		this.componentContext = componentContext;
+	public void activate(ComponentContext context) {
+		this.componentContext = context;
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class BundleKeyKeeper implements KeyKeeper {
 		return resource.openStream();
 	}
 
-	protected Bundle getUsingBundle(ComponentContext componentContext) {
-		Bundle bundle = componentContext.getUsingBundle();
+	protected Bundle getUsingBundle(ComponentContext context) {
+		Bundle bundle = context.getUsingBundle();
 		if (bundle == null) {
 			return FrameworkUtil.getBundle(getClass());
 		}

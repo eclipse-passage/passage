@@ -120,12 +120,12 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	}
 
 	@Reference
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
+	public void bindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 
 	@Override
@@ -135,12 +135,14 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	}
 
 	@Reference
-	public void bindLogService(LogService logService) {
-		this.logService = logService;
+	public void bindLogService(LogService log) {
+		this.logService = log;
 	}
 
-	public void unbindLogService(LogService logService) {
-		this.logService = logService;
+	public void unbindLogService(LogService log) {
+		if (this.logService == log) {
+			this.logService = null;
+		}
 	}
 
 	@SuppressWarnings("deprecation")
