@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.equinox.restrictions.EquinoxRestrictions;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 

@@ -16,7 +16,7 @@ import static org.eclipse.passage.lic.base.LicensingProperties.*;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.runtime.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public class BaseLicensingCondition implements LicensingCondition {
 

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.tests;
 
-import org.eclipse.passage.lic.internal.equinox.EquinoxAccessManager;
+import org.eclipse.passage.lic.internal.equinox.access.EquinoxAccessManager;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.service.event.EventAdmin;

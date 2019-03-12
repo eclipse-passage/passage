@@ -24,13 +24,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.runtime.ConditionEvaluator;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.io.FeaturePermissionTransport;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
-
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.access.FeaturePermissionTransport;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.base.condition.ServerConditionsDistributor;
 import org.eclipse.passage.lbc.runtime.ServerRequestAction;
@@ -38,7 +37,7 @@ import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 /**
  * According to AccessManager specification implementation of
  * {@code Iterable<FeaturePermission> evaluateConditions()}
- * {@link org.eclipse.passage.lic.runtime.AccessManager}
+ * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
 public class ConditionCheckoutRequestAction extends BaseComponent implements ServerRequestAction {
 
@@ -77,7 +76,7 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 			String productId = request.getParameter(PRODUCT);
 			String productVersion = request.getParameter(VERSION);
 			LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
-			Iterable<FeaturePermission> evaluatePermissions = conditionEvaluator.evaluateConditions(descriptors, configuration);
+			Iterable<FeaturePermission> evaluatePermissions = conditionEvaluator.emitPermissions(descriptors, configuration);
 
 			FeaturePermissionTransport transportPermission = mapPermission2Transport.get(contentType);
 			if (transportPermission == null) {
@@ -97,7 +96,7 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 		return true;
 	}
 
-	public void bindServerConditionEvaluator(ConditionEvaluator evaluator, Map<String, String> context) {
+	public void bindServerConditionEvaluator(PermissionEmitter evaluator, Map<String, String> context) {
 		String conditionType = context.get(LICENSING_CONTENT_TYPE);
 		if (conditionType != null && conditionType.equals(LICENSING_CONDITION_TYPE_SERVER)) {
 			if (evaluator instanceof ServerConditionsDistributor) {
@@ -106,7 +105,7 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 		}
 	}
 
-	public void unbindServerConditionEvaluator(ConditionEvaluator evaluator, Map<String, String> context) {
+	public void unbindServerConditionEvaluator(PermissionEmitter evaluator, Map<String, String> context) {
 		String conditionType = context.get(LICENSING_CONTENT_TYPE);
 		if (conditionType != null && conditionType.equals(LICENSING_CONDITION_TYPE_SERVER)) {
 			if (evaluator instanceof ServerConditionsDistributor) {

@@ -27,7 +27,7 @@ import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_W
 
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.graphics.RGB;
 
 public class RestrictionLabels {

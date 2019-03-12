@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.eclipse.passage.lic.runtime.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public class ServerConditionsArbitr {
 

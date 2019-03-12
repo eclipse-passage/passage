@@ -29,11 +29,11 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.base.conditions.BaseFeaturePermission;
+import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.net.LicensingRequests;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

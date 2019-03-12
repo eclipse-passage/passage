@@ -24,9 +24,9 @@ import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.junit.Test;
 

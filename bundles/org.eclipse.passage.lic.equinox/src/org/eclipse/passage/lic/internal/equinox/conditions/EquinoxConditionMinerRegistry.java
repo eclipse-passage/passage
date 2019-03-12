@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.equinox.conditions;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

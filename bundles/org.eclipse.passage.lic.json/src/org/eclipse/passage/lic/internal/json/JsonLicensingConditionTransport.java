@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.core.JsonParser;

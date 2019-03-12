@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.registry;
 
-import org.eclipse.passage.lic.runtime.events.LicensingEvents;
+import org.eclipse.passage.lic.runtime.LicensingEvents;
 
 public class RegistryEvents {
 

@@ -18,7 +18,7 @@ import java.util.Map;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
-import org.eclipse.passage.lic.runtime.registry.KeyKeeperRegistry;
+import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 
 public class BaseKeyKeeperRegistry implements KeyKeeperRegistry {
 

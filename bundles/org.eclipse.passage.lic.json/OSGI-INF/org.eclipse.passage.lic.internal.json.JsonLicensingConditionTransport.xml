@@ -3,6 +3,6 @@
    <property name="licensing.content.type" value="application/json"/>
    <implementation class="org.eclipse.passage.lic.internal.json.JsonLicensingConditionTransport"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.io.LicensingConditionTransport"/>
+      <provide interface="org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport"/>
    </service>
 </scr:component>

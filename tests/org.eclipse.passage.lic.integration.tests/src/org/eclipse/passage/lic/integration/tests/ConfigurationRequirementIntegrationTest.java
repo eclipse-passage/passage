@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.junit.Test;
 
 public class ConfigurationRequirementIntegrationTest extends LicIntegrationBase {

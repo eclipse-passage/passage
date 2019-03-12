@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.integration.tests;
 
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingResult;
-import org.eclipse.passage.lic.runtime.RestrictionExecutor;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.osgi.service.component.annotations.Component;
 
 @Component

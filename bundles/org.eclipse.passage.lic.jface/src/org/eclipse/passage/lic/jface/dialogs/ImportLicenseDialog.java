@@ -21,7 +21,7 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.runtime.AccessManager;
+import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;

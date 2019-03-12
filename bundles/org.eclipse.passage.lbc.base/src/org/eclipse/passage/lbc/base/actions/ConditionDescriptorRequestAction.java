@@ -29,16 +29,16 @@ import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.net.LicensingRequests;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 
 /**
  * According to AccessManager specification implementation of
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
- * {@link org.eclipse.passage.lic.runtime.AccessManager}
+ * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
 public class ConditionDescriptorRequestAction extends BaseComponent implements ServerRequestAction {
 

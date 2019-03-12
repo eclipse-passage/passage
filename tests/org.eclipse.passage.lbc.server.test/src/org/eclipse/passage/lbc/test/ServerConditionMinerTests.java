@@ -45,8 +45,8 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.net.LicensingRequests;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

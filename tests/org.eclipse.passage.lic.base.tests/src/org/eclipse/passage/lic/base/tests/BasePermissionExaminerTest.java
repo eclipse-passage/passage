@@ -24,17 +24,17 @@ import java.util.Iterator;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.base.conditions.BaseFeaturePermission;
-import org.eclipse.passage.lic.base.conditions.FeaturePermissions;
+import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
+import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
+import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
-import org.eclipse.passage.lic.base.restrictions.BasePermissionExaminer;
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.junit.Test;
 
 public class BasePermissionExaminerTest {

@@ -19,8 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class RestrictionVerdicts {
 	

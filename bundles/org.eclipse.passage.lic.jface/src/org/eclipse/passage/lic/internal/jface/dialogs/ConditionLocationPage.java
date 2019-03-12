@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
-import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 import org.eclipse.swt.widgets.Composite;
 
 public class ConditionLocationPage extends LicensingRegistryPage<ConditionMinerRegistry> {

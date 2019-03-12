@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.ConditionDescriptorAggregator;
 import org.eclipse.passage.lic.internal.json.JsonLicensingConditionTransport;
 import org.eclipse.passage.lic.internal.json.LicensingConditionMixIn;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonParser;

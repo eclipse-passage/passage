@@ -27,11 +27,11 @@ import java.util.List;
 
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public class ConditionMiners {

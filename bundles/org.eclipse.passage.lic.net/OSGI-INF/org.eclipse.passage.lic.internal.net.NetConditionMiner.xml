@@ -2,6 +2,6 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.net.NetConditionMiner">
    <implementation class="org.eclipse.passage.lic.internal.net.NetConditionMiner"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.ConditionMiner"/>
+      <provide interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner"/>
    </service>
 </scr:component>

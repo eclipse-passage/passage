@@ -20,16 +20,16 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import org.eclipse.passage.lic.base.conditions.BaseFeaturePermission;
+import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
+import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
-import org.eclipse.passage.lic.base.conditions.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.FeaturePermissionAggregator;
 import org.eclipse.passage.lic.internal.json.FeaturePermissionMixln;
 import org.eclipse.passage.lic.internal.json.JsonFeaturePermissionTransport;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonParser;

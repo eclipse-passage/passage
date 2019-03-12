@@ -23,15 +23,15 @@ import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.lic.runtime.registry.KeyKeeperRegistry;
-import org.eclipse.passage.lic.runtime.registry.StreamCodecRegistry;
+import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 
 public abstract class BasePathConditionMiner implements ConditionMiner {
 

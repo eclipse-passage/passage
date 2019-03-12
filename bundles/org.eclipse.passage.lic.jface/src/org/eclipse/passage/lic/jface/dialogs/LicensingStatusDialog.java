@@ -18,15 +18,15 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.equinox.EquinoxAccess;
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
 import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.runtime.AccessManager;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
@@ -68,10 +68,10 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 
 	public LicensingStatusDialog(Shell shell, String... features) {
 		super(shell);
-		accessManager = EquinoxAccess.getAccessManager();
-		featureInspector = EquinoxAccess.getFeatureInspector();
+		accessManager = LicensingEquinox.getAccessManager();
+		featureInspector = LicensingEquinox.getFeatureInspector();
 		featureCase = featureInspector.inspectFeatures(features);
-		hardwareInspector = EquinoxAccess.getHardwareInspector();
+		hardwareInspector = LicensingEquinox.getHardwareInspector();
 	}
 
 	@Override

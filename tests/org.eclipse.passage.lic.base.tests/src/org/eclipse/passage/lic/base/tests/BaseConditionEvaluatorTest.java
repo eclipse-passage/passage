@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.conditions.BaseConditionEvaluator;
+import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.After;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class BaseConditionEvaluatorTest {
 
 	private Map<String, Object> segments = new HashMap<>();
 
-	private BaseConditionEvaluator evaluator = new BaseConditionEvaluator() {
+	private BasePermissionEmitter evaluator = new BasePermissionEmitter() {
 
 		@Override
 		protected boolean evaluateSegment(String key, String value) {
@@ -43,7 +43,7 @@ public class BaseConditionEvaluatorTest {
 	@Test
 	public void testEvaluateConditions() {
 		try {
-			evaluator.evaluateConditions(null, null);
+			evaluator.emitPermissions(null, null);
 			fail("Should not accept invalid arguments");
 		} catch (LicensingException e) {
 			// expected

@@ -6,6 +6,6 @@
 		</service>
 	<property name="action" type="String" value="extractConditions"/>
 	<reference bind="bindLogger" cardinality="1..1" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" policy="static" unbind="unbindLogger"/>
-	<reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.ConditionMiner" name="ServerConditionMiner" policy="dynamic" unbind="unbindConditionMiner"/>
-	<reference bind="bindLicensingConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.io.LicensingConditionTransport" name="LicensingConditionTransport" policy="dynamic" unbind="unbindLicensingConditionTransport"/>
+	<reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner" name="ServerConditionMiner" policy="dynamic" unbind="unbindConditionMiner"/>
+	<reference bind="bindLicensingConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport" name="LicensingConditionTransport" policy="dynamic" unbind="unbindLicensingConditionTransport"/>
 </scr:component>

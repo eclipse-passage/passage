@@ -4,6 +4,6 @@
    <reference bind="bindLoggerFactory" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" unbind="unbindLoggerFactory"/>
    <reference bind="bindScr" interface="org.osgi.service.component.runtime.ServiceComponentRuntime" name="Scr" unbind="unbindScr"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.RequirementResolver"/>
+      <provide interface="org.eclipse.passage.lic.runtime.requirements.RequirementResolver"/>
    </service>
 </scr:component>

@@ -14,26 +14,26 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
-import org.eclipse.passage.lic.runtime.ConditionEvaluator;
-import org.eclipse.passage.lic.runtime.registry.ConditionEvaluatorRegistry;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-public class ConditionTypePage extends LicensingRegistryPage<ConditionEvaluatorRegistry> {
+public class ConditionTypePage extends LicensingRegistryPage<PermissionEmitterRegistry> {
 
 	public ConditionTypePage() {
-		super(ConditionEvaluatorRegistry.class);
+		super(PermissionEmitterRegistry.class);
 	}
 
 	@Override
-	protected void createContent(Composite parent, ConditionEvaluatorRegistry registry) {
+	protected void createContent(Composite parent, PermissionEmitterRegistry registry) {
 		Iterable<String> conditionTypes = registry.getSupportedConditionTypes();
 		GridDataFactory groupData = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false);
 		for (String type : conditionTypes) {
-			ConditionEvaluator evaluator = registry.getConditionEvaluator(type);
+			PermissionEmitter evaluator = registry.getPermissionEmitter(type);
 			Group group = new Group(parent, SWT.NONE);
 			group.setText(evaluator.getConditionName());
 			group.setData(evaluator);

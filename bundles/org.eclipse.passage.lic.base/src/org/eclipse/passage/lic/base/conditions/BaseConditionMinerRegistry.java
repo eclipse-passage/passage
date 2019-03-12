@@ -17,8 +17,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.registry.ConditionMinerRegistry;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 
 public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 

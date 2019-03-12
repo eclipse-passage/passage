@@ -23,18 +23,18 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.runtime.registry.ConditionEvaluatorRegistry;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
 
 public class ConditionTypeRenderer extends ComboControlRenderer {
 
-	private final ConditionEvaluatorRegistry conditionInpector;
+	private final PermissionEmitterRegistry conditionInpector;
 
 	@Inject
 	public ConditionTypeRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.conditionInpector = viewContext.getService(ConditionEvaluatorRegistry.class);
+		this.conditionInpector = viewContext.getService(PermissionEmitterRegistry.class);
 	}
 
 	@Override

@@ -19,11 +19,11 @@ import java.util.List;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
-import org.eclipse.passage.lic.equinox.EquinoxAccess;
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRequirement;
@@ -48,7 +48,7 @@ public class EquinoxRequirements {
 	}
 
 	public static Iterable<LicensingRequirement> getFeatureRequirements(String... featureIds) {
-		FeatureInspector featureInspector = EquinoxAccess.getFeatureInspector();
+		FeatureInspector featureInspector = LicensingEquinox.getFeatureInspector();
 		if (featureInspector == null) {
 			LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
 			if (featureIds.length == 0) {

@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.restrictions;
 
-import org.eclipse.passage.lic.base.restrictions.BasePermissionExaminer;
+import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
 import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
-import org.eclipse.passage.lic.runtime.PermissionExaminer;
+import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
@@ -26,12 +26,12 @@ public class EquinoxPermissionExaminer extends BasePermissionExaminer implements
 	private EventAdmin eventAdmin;
 	
 	@Reference
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
+	public void bindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 	
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
+	public void unbindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 
 	@Override

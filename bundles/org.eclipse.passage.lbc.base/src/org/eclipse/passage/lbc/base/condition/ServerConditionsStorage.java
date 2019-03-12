@@ -34,8 +34,8 @@ import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public class ServerConditionsStorage extends BaseComponent implements LicensingConditionStorage {

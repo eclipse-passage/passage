@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
-import org.eclipse.passage.lic.equinox.EquinoxAccess;
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.dialogs.BasePageRegistry;
 import org.eclipse.passage.lic.internal.jface.dialogs.ConditionLocationPage;
 import org.eclipse.passage.lic.internal.jface.dialogs.ConditionTypePage;
@@ -25,7 +25,7 @@ public class LicensingPages {
 	private final LicensingPageRegistry pageRegistry;
 
 	private LicensingPages() {
-		LicensingPageRegistry registry = EquinoxAccess.getLicensingService(LicensingPageRegistry.class);
+		LicensingPageRegistry registry = LicensingEquinox.getLicensingService(LicensingPageRegistry.class);
 		if (registry == null) {
 			registry = createDefaultContributor();
 		}

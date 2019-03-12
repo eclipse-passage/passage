@@ -17,23 +17,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lic.base.conditions.FeaturePermissions;
+import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.net.TimeConditions;
-import org.eclipse.passage.lic.runtime.ConditionEvaluator;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
-public class ServerConditionsDistributor extends BaseComponent implements ConditionEvaluator {
+public class ServerConditionsDistributor extends BaseComponent implements PermissionEmitter {
 
 	private final List<ConditionMiner> miners = new ArrayList<>();
 	private final List<LicensingCondition> lockedConditions = new ArrayList<>();
 	private final List<ConditionTimerTask> conditionTasks = new ArrayList<>();
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
+	public Iterable<FeaturePermission> emitPermissions(Iterable<LicensingCondition> conditions,
 			LicensingConfiguration configuration) throws LicensingException {
 		List<FeaturePermission> permissionsResult = new ArrayList<>();
 

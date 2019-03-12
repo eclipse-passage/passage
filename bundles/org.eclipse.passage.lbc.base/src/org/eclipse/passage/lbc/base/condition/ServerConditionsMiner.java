@@ -15,10 +15,9 @@ package org.eclipse.passage.lbc.base.condition;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;;
 

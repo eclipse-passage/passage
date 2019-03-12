@@ -3,6 +3,6 @@
    <implementation class="org.eclipse.passage.lic.internal.json.JsonFeaturePermissionTransport"/>
    <property name="licensing.content.type" type="String" value="application/json"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.io.FeaturePermissionTransport"/>
+      <provide interface="org.eclipse.passage.lic.runtime.access.FeaturePermissionTransport"/>
    </service>
 </scr:component>

@@ -20,11 +20,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.passage.lic.base.access.BaseAccessManager;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.RestrictionVerdict;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.junit.After;
 import org.junit.Test;
 

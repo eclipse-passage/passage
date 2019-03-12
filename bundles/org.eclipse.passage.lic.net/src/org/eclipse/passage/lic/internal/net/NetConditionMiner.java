@@ -38,10 +38,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.net.LicensingRequests;
-import org.eclipse.passage.lic.runtime.ConditionMiner;
-import org.eclipse.passage.lic.runtime.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.io.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 @Component
@@ -56,7 +56,7 @@ public class NetConditionMiner implements ConditionMiner {
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
 
-	private final Map<String, org.eclipse.passage.lic.runtime.io.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
+	private final Map<String, org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -130,7 +130,7 @@ public class NetConditionMiner implements ConditionMiner {
 					String contentType = header.getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
-						org.eclipse.passage.lic.runtime.io.LicensingConditionTransport transport = getConditionDescriptorTransport(
+						org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport transport = getConditionDescriptorTransport(
 								contentType);
 						Iterable<LicensingCondition> conditionDescriptors = transport
 								.readConditionDescriptors(entity.getContent());
@@ -149,7 +149,7 @@ public class NetConditionMiner implements ConditionMiner {
 		return conditions;
 	}
 
-	private org.eclipse.passage.lic.runtime.io.LicensingConditionTransport getConditionDescriptorTransport(
+	private org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport getConditionDescriptorTransport(
 			String typeOfContent) {
 		return contentType2ConditionDescriptorTransport.get(typeOfContent);
 	}

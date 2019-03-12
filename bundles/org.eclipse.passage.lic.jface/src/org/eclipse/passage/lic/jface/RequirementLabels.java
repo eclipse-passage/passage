@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.jface;
 
 import java.util.Iterator;
 
-import org.eclipse.passage.lic.runtime.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 
 public class RequirementLabels {
 

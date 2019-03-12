@@ -21,9 +21,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.base.conditions.BaseFeaturePermission;
-import org.eclipse.passage.lic.runtime.FeaturePermission;
-import org.eclipse.passage.lic.runtime.io.FeaturePermissionTransport;
+import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.access.FeaturePermissionTransport;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.core.JsonParser;
