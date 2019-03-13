@@ -28,9 +28,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
-import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 

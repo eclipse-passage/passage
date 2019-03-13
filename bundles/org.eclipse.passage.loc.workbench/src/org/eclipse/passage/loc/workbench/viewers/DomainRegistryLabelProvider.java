@@ -18,11 +18,11 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.runtime.features.FeatureDescriptor;
-import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
-import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.registry.features.FeatureDescriptor;
+import org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {

@@ -17,10 +17,10 @@ import javax.inject.Named;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.passage.lic.runtime.features.Features;
-import org.eclipse.passage.lic.runtime.licenses.Licenses;
-import org.eclipse.passage.lic.runtime.products.Products;
-import org.eclipse.passage.lic.runtime.users.Users;
+import org.eclipse.passage.lic.registry.features.Features;
+import org.eclipse.passage.lic.registry.licenses.Licenses;
+import org.eclipse.passage.lic.registry.products.Products;
+import org.eclipse.passage.lic.registry.users.Users;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
