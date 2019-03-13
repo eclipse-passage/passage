@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
@@ -20,13 +24,21 @@ import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
 public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecutorRegistry> {
+	private Map<String, RGB> restrictionColors = new HashMap<>();
 
 	public RestrictionLevelPage() {
 		super(RestrictionExecutorRegistry.class);
@@ -41,18 +53,33 @@ public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecu
 			String identifier = descriptor.getIdentifier();
 			group.setText(descriptor.getName());
 			group.setData(descriptor);
-			group.setLayout(new GridLayout(1, false));
+			group.setLayout(new GridLayout(2, false));
 			group.setLayoutData(groupData.create());
 
 			Label image = new Label(group, SWT.NONE);
 			String imageKey = RestrictionLabels.resolveImageKey(identifier);
 			image.setImage(LicensingImages.getImage(imageKey));
-			image.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
+			image.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
 			Label color = new Label(group, SWT.NONE);
 			String colorKey = RestrictionLabels.resolveColorKey(identifier);
 			color.setBackground(LicensingColors.getColorRegistry().get(colorKey));
-			color.setLayoutData(new GridData(GridData.FILL_BOTH));
+			color.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+
+			Button selectColor = new Button(group, SWT.PUSH);
+			selectColor.setText("Select");
+			selectColor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+			selectColor.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					ColorDialog dialog = new ColorDialog(Display.getDefault().getActiveShell());
+					RGB rgbSelected = dialog.open();
+					if (rgbSelected != null) {
+						restrictionColors.put(colorKey, rgbSelected);
+						color.setBackground(new Color(Display.getDefault(), rgbSelected));
+					}
+				}
+			});
 
 			Label description = new Label(group, SWT.WRAP);
 			description.setText(descriptor.getDescription());
@@ -64,4 +91,8 @@ public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecu
 		return "Restriction levels definitions are not available.\nPlease check the product configuration";
 	}
 
+	@Override
+	protected IStatus accept() {
+		return LicensingColors.acceptColors(restrictionColors);
+	}
 }

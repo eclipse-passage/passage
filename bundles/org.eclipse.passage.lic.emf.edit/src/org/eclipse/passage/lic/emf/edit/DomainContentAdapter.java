@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.passage.lic.runtime.registry.Identified;
+import org.eclipse.passage.lic.registry.Identified;
 
 public abstract class DomainContentAdapter<R extends EditingDomainRegistry> extends EContentAdapter {
 	

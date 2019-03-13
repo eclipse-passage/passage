@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->

@@ -17,7 +17,7 @@ import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 
 /**
  * <!-- begin-user-doc -->

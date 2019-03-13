@@ -138,13 +138,13 @@ public class RestrictionLabels {
 		}
 		switch (restriction) {
 		case LICENSING_RESTRICTION_LEVEL_WARN:
-			return LicensingColors.RGB_LEVEL_WARN;
+			return LicensingColors.getColorRegistry().get(LicensingColors.COLOR_LEVEL_WARN).getRGB();
 		case LICENSING_RESTRICTION_LEVEL_ERROR:
-			return LicensingColors.RGB_LEVEL_ERROR;
+			return LicensingColors.getColorRegistry().get(LicensingColors.COLOR_LEVEL_ERROR).getRGB();
 		case LICENSING_RESTRICTION_LEVEL_FATAL:
-			return LicensingColors.RGB_LEVEL_FATAL;
+			return LicensingColors.getColorRegistry().get(LicensingColors.COLOR_LEVEL_FATAL).getRGB();
 		default:
-			return LicensingColors.RGB_LEVEL_WARN;
+			return LicensingColors.getColorRegistry().get(LicensingColors.COLOR_LEVEL_WARN).getRGB();
 		}
 	}
 

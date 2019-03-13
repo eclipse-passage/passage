@@ -12,7 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -31,7 +35,7 @@ public class LicensingConfigurationDialog extends TrayDialog {
 
 	private static final String TAB_ID = "TAB_ID"; //$NON-NLS-1$
 	private static String lastTabId = null;
-
+	private Map<TabItem, LicensingRegistryPage<?>> mapRegistryPages = new HashMap<TabItem, LicensingRegistryPage<?>>();
 	private TabFolder tabFolder;
 
 	public LicensingConfigurationDialog(Shell shell) {
@@ -93,7 +97,6 @@ public class LicensingConfigurationDialog extends TrayDialog {
 			item.setText(pageContributor.getPageName());
 			item.setData(pageContributor);
 			item.setData(TAB_ID, pageContributor.getPageIdentifier());
-
 			Composite control = new Composite(folder, SWT.NONE);
 			control.setLayout(new GridLayout());
 			item.setControl(control);
@@ -107,6 +110,7 @@ public class LicensingConfigurationDialog extends TrayDialog {
 			Composite pageComposite = (Composite) item.getControl();
 			try {
 				final LicensingRegistryPage<?> page = element.createPage();
+				mapRegistryPages.put(item, page);
 				page.createControl(pageComposite);
 				Dialog.applyDialogFont(pageComposite);
 				item.setData(page);
@@ -125,6 +129,17 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	@Override
 	protected boolean isResizable() {
 		return true;
+	}
+
+	@Override
+	protected void buttonPressed(int buttonId) {
+		if (IDialogConstants.OK_ID == buttonId) {
+			for (LicensingRegistryPage<?> page : mapRegistryPages.values()) {
+				page.accept();
+			}
+		}
+		super.buttonPressed(buttonId);
+		mapRegistryPages.clear();
 	}
 
 }

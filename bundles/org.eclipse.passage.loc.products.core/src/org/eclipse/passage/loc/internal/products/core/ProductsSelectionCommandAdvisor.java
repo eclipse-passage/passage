@@ -17,8 +17,8 @@ import java.util.Collections;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
-import org.eclipse.passage.lic.runtime.products.Products;
+import org.eclipse.passage.lic.registry.products.Products;
+import org.eclipse.passage.lic.registry.products.ProductsRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -75,6 +77,10 @@ public abstract class LicensingRegistryPage<R> extends DialogPage {
 			bundleContext = null;
 		}
 		super.dispose();
+	}
+
+	protected IStatus accept() {
+		return Status.OK_STATUS;
 	}
 
 }

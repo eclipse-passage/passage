@@ -15,9 +15,9 @@ package org.eclipse.passage.loc.products.ui;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.runtime.products.ProductDescriptor;
-import org.eclipse.passage.lic.runtime.products.ProductsRegistry;
-import org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.registry.products.ProductsRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
