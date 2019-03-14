@@ -21,6 +21,12 @@ import org.eclipse.passage.lic.registry.Identified;
 
 public interface EditingDomainRegistry extends IEditingDomainProvider, ComposedAdapterFactoryProvider {
 
+	void registerSource(String source);
+
+	void unregisterSource(String source);
+
+	Iterable<String> getSources();
+
 	void registerContent(Identified content);
 
 	void unregisterContent(String identifier);
