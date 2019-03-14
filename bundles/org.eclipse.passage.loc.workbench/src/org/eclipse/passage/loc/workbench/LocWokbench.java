@@ -12,16 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
@@ -69,7 +75,7 @@ public class LocWokbench {
 		for (String other : others) {
 			filters.add(maskExtension(other));
 		}
-		String[] array = (String[]) filters.toArray(new String[filters.size()]);
+		String[] array = filters.toArray(new String[filters.size()]);
 		return array;
 	}
 
@@ -80,7 +86,7 @@ public class LocWokbench {
 	public static void createDomainResource(IEclipseContext context, String domain, String perspectiveId) {
 		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
-		EditingDomainRegistry registry = registryAccess.getDomainRegistry(domain);
+		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
 		EClass eClass = registry.getContentClassifier();
 
 		Wizard wizard = new CreateFileWizard(context, domain, perspectiveId);
@@ -99,7 +105,7 @@ public class LocWokbench {
 
 	public static void loadDomainResource(IEclipseContext eclipseContext, String domain, String perspectiveId) {
 		DomainRegistryAccess access = eclipseContext.get(DomainRegistryAccess.class);
-		EditingDomainRegistry registry = access.getDomainRegistry(domain);
+		EditingDomainRegistry<?> registry = access.getDomainRegistry(domain);
 		String fileExtension = access.getFileExtension(domain);
 		Shell shell = eclipseContext.get(Shell.class);
 		String selected = selectLoadPath(shell, fileExtension);
@@ -141,8 +147,8 @@ public class LocWokbench {
 		return selectClassifier(shell, factory, classifier, title, input, initial);
 	}
 
-	public static <C> C selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier,
-			String title, Iterable<? extends C> input, C initial, Class<C> clazz) {
+	public static <C> C selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier, String title,
+			Iterable<? extends C> input, C initial, Class<C> clazz) {
 		Object selected = selectClassifier(shell, factory, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);
@@ -150,8 +156,8 @@ public class LocWokbench {
 		return null;
 	}
 
-	public static <C> Object selectClassifier(Shell shell, ComposedAdapterFactory factory,
-			String classifier, String title, Iterable<? extends C> input, C initial) {
+	public static <C> Object selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier,
+			String title, Iterable<? extends C> input, C initial) {
 		if (input == null) {
 			return null;
 		}
@@ -178,4 +184,31 @@ public class LocWokbench {
 		}
 		return null;
 	}
+
+	public static IStatus save(Resource resource) {
+		try {
+			// FIXME: define parameters
+			resource.save(null);
+			return Status.OK_STATUS;
+		} catch (IOException e) {
+			return new Status(IStatus.ERROR, BUNDLE_SYMBOLIC_NAME, "Error saving resource", e);
+		}
+	}
+
+	public static EditingDomain extractEditingDomain(IEclipseContext context) {
+		EditingDomain editingDomain = context.get(EditingDomain.class);
+		if (editingDomain != null) {
+			return editingDomain;
+		}
+		IEditingDomainProvider provider = context.get(IEditingDomainProvider.class);
+		if (provider != null) {
+			return provider.getEditingDomain();
+		}
+		EditingDomainRegistry<?> registry = context.get(EditingDomainRegistry.class);
+		if (registry != null) {
+			return registry.getEditingDomain();
+		}
+		return null;
+	}
+
 }

@@ -12,9 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.products;
 
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
-
-public interface ProductsRegistry extends DescriptorRegistry {
+public interface ProductsRegistry {
 
 	Iterable<? extends ProductLineDescriptor> getProductLines();
 

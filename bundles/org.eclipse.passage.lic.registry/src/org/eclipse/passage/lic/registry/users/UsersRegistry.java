@@ -12,9 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.users;
 
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
-
-public interface UsersRegistry extends DescriptorRegistry {
+public interface UsersRegistry {
 
 	Iterable<? extends UserOriginDescriptor> getUserOrigins();
 

@@ -20,20 +20,20 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.loc.edit.LocEdit;
+import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class UndoHandler {
 
 	@Execute
 	public void execute(IEclipseContext context) {
-		EditingDomain editingDomain = LocEdit.extractEditingDomain(context);
+		EditingDomain editingDomain = LocWokbench.extractEditingDomain(context);
 		editingDomain.getCommandStack().undo();
 	}
 	
 	
 	@CanExecute
 	public boolean canExecute(IEclipseContext context, MHandledMenuItem item) {
-		EditingDomain editingDomain = LocEdit.extractEditingDomain(context);
+		EditingDomain editingDomain = LocWokbench.extractEditingDomain(context);
 		if (editingDomain == null) {
 			return false;
 		}

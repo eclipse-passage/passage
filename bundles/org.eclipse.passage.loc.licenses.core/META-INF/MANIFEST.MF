@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.model;bundle-version="0.0.0",
  org.eclipse.passage.lic.model.core;bundle-version="0.0.0",
- org.eclipse.passage.loc.runtime;bundle-version="0.0.0",
- org.eclipse.passage.loc.edit;bundle-version="0.0.0"
+ org.eclipse.passage.lic.emf.edit;bundle-version="0.0.0",
+ org.eclipse.passage.loc.runtime;bundle-version="0.0.0"
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

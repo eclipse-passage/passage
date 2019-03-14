@@ -53,7 +53,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.loc.edit.LocEdit;
+import org.eclipse.passage.lic.emf.edit.LicensingEcore;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.swt.SWT;
@@ -70,7 +70,7 @@ public class DetailsView {
 
 	private Composite content;
 
-	//TreeMasterDetailComposite implies the Resource has root EObject
+	// TreeMasterDetailComposite implies the Resource has root EObject
 	private EObject root;
 
 	private final CommandStackListener dirtyStackListener;
@@ -117,8 +117,8 @@ public class DetailsView {
 		if (input == null) {
 			return;
 		}
-		this.root = LocEdit.extractEObject(input);
-		Resource resource = LocEdit.extractResource(input);
+		this.root = LicensingEcore.extractEObject(input);
+		Resource resource = LicensingEcore.extractResource(input);
 		configurePart(resource, context);
 		Control[] children = content.getChildren();
 		for (Control control : children) {
@@ -126,7 +126,8 @@ public class DetailsView {
 		}
 		if (this.root != null) {
 			try {
-				TreeMasterDetailComposite rootView = createRootView(content, resource, getCreateElementCallback(), context);
+				TreeMasterDetailComposite rootView = createRootView(content, resource, getCreateElementCallback(),
+						context);
 				TreeViewer selectionProvider = rootView.getSelectionProvider();
 				selectionProvider.addSelectionChangedListener(selectionChangedListener);
 				selectionProvider.refresh();
@@ -182,29 +183,29 @@ public class DetailsView {
 
 	protected MenuProvider createMenuProvider(final CreateElementCallback createElementCallback) {
 		MenuProvider menuProvider = new MenuProvider() {
-					@Override
-					public Menu getMenu(TreeViewer treeViewer, EditingDomain editingDomain) {
-						final MenuManager menuMgr = new MenuManager();
-						menuMgr.setRemoveAllWhenShown(true);
-						final List<MasterDetailAction> masterDetailActions = ActionCollector.newList()
-								.addCutAction(editingDomain).addCopyAction(editingDomain).addPasteAction(editingDomain)
-								.getList();
-						menuMgr.addMenuListener(new TreeMasterDetailMenuListener(new ChildrenDescriptorCollector(),
-								menuMgr, treeViewer, editingDomain, masterDetailActions, createElementCallback,
-								new DefaultDeleteActionBuilder()));
-						final Menu menu = menuMgr.createContextMenu(treeViewer.getControl());
-						return menu;
+			@Override
+			public Menu getMenu(TreeViewer treeViewer, EditingDomain editingDomain) {
+				final MenuManager menuMgr = new MenuManager();
+				menuMgr.setRemoveAllWhenShown(true);
+				final List<MasterDetailAction> masterDetailActions = ActionCollector.newList()
+						.addCutAction(editingDomain).addCopyAction(editingDomain).addPasteAction(editingDomain)
+						.getList();
+				menuMgr.addMenuListener(new TreeMasterDetailMenuListener(new ChildrenDescriptorCollector(), menuMgr,
+						treeViewer, editingDomain, masterDetailActions, createElementCallback,
+						new DefaultDeleteActionBuilder()));
+				final Menu menu = menuMgr.createContextMenu(treeViewer.getControl());
+				return menu;
 
-					}
-				};
+			}
+		};
 		return menuProvider;
 	}
 
 	protected void configurePart(Resource resource, IEclipseContext context) {
-		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(LocEdit.extractEObject(resource));
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(LicensingEcore.extractEObject(resource));
 		context.set(EditingDomain.class, editingDomain);
 		if (editingDomain instanceof AdapterFactoryEditingDomain) {
-			AdapterFactory adapterFactory = ((AdapterFactoryEditingDomain)editingDomain).getAdapterFactory();
+			AdapterFactory adapterFactory = ((AdapterFactoryEditingDomain) editingDomain).getAdapterFactory();
 			context.set(AdapterFactory.class, adapterFactory);
 			if (commandStack == null) {
 				commandStack = editingDomain.getCommandStack();
@@ -238,7 +239,7 @@ public class DetailsView {
 		}
 		Resource eResource = root.eResource();
 		if (eResource != null) {
-			IStatus status = LocEdit.save(eResource);
+			IStatus status = LocWokbench.save(eResource);
 			if (status.isOK()) {
 				if (commandStack instanceof BasicCommandStack) {
 					BasicCommandStack basicCommandStack = (BasicCommandStack) commandStack;

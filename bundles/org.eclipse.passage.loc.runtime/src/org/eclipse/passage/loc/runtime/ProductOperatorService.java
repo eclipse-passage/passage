@@ -16,9 +16,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
 
 public interface ProductOperatorService {
-	
+
+	// FIXME: find better place
+	public static final String EXTENSION_KEY_PRIVATE = ".scr"; //$NON-NLS-1$
+
 	String createPassword(ProductVersionDescriptor productVersion);
 
 	IStatus createProductKeys(ProductVersionDescriptor descriptor);
-	
+
 }

@@ -22,12 +22,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.emf.edit.LicensingEcore;
 import org.eclipse.passage.lic.model.api.Product;
 import org.eclipse.passage.lic.model.api.ProductVersion;
 import org.eclipse.passage.lic.registry.products.ProductDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.loc.edit.LocEdit;
 import org.eclipse.passage.loc.runtime.ProductOperatorEvents;
 import org.eclipse.passage.loc.runtime.ProductOperatorService;
 import org.osgi.framework.BundleContext;
@@ -39,13 +39,13 @@ import org.osgi.service.event.EventAdmin;
 
 @Component
 public class ProductOperatorServiceImpl implements ProductOperatorService {
-	
+
 	private String pluginId;
 
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
 	private StreamCodec streamCodec;
-	
+
 	@Activate
 	public void activate(BundleContext context) {
 		pluginId = context.getBundle().getSymbolicName();
@@ -69,7 +69,7 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 		this.eventAdmin = null;
 	}
 
-	@Reference(cardinality=ReferenceCardinality.OPTIONAL)
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
 	public void bindStreamCodec(StreamCodec streamCodec) {
 		this.streamCodec = streamCodec;
 	}
@@ -123,7 +123,7 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 		}
 
 		Product product = productVersion.getProduct();
-		String errors = LocEdit.extractValidationError(product);
+		String errors = LicensingEcore.extractValidationError(product);
 		if (errors != null) {
 			return new Status(IStatus.ERROR, pluginId, errors);
 		}
@@ -142,9 +142,8 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 			String keyFileName = identifier + '_' + version;
 			String publicKeyPath = storageKeyFolder + File.separator + keyFileName
 					+ LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
-			String privateKeyPath = storageKeyFolder + File.separator + keyFileName + LocEdit.EXTENSION_KEY_PRIVATE;
-			streamCodec.createKeyPair(publicKeyPath, privateKeyPath, identifier,
-					createPassword(productVersion));
+			String privateKeyPath = storageKeyFolder + File.separator + keyFileName + EXTENSION_KEY_PRIVATE;
+			streamCodec.createKeyPair(publicKeyPath, privateKeyPath, identifier, createPassword(productVersion));
 			productVersion.setInstallationToken(publicKeyPath);
 			productVersion.setSecureToken(privateKeyPath);
 			eventAdmin.postEvent(ProductOperatorEvents.publicCreated(publicKeyPath));

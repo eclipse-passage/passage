@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.emf.edit.LicensingEcore;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.loc.edit.LocEdit;
 import org.eclipse.passage.loc.runtime.LicenseOperatorEvents;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;
 import org.eclipse.passage.loc.runtime.ProductOperatorService;
@@ -118,7 +118,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 			return new Status(IStatus.ERROR, pluginId, "Invalid License Pack");
 		}
 		LicensePack license = EcoreUtil.copy(pack);
-		String errors = LocEdit.extractValidationError(license);
+		String errors = LicensingEcore.extractValidationError(license);
 		if (errors != null) {
 			return new Status(IStatus.ERROR, pluginId, errors);
 		}
@@ -152,7 +152,8 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		}
 
 		String keyFileName = productIdentifier + '_' + productVersion;
-		String privateKeyPath = storageKeyFolder + File.separator + keyFileName + LocEdit.EXTENSION_KEY_PRIVATE;
+		String privateKeyPath = storageKeyFolder + File.separator + keyFileName
+				+ ProductOperatorService.EXTENSION_KEY_PRIVATE;
 		File privateProductToken = new File(privateKeyPath);
 		if (!privateProductToken.exists()) {
 			String pattern = "Product private key not found: \n %s";
