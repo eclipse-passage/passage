@@ -12,18 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.users;
 
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
-
-public interface UsersRegistry extends DescriptorRegistry {
+public interface UsersRegistry {
 
 	Iterable<? extends UserOriginDescriptor> getUserOrigins();
 
 	UserOriginDescriptor getUserOrigin(String userOriginId);
 
 	void registerUserOrigin(UserOriginDescriptor userOrigin);
-	
+
 	void unregisterUserOrigin(String userOriginId);
-	
+
 	Iterable<? extends UserDescriptor> getUsers();
 
 	Iterable<? extends UserDescriptor> getUsers(String userOriginId);
@@ -33,5 +31,5 @@ public interface UsersRegistry extends DescriptorRegistry {
 	void registerUser(UserDescriptor user);
 
 	void unregisterUser(String userId);
-	
+
 }

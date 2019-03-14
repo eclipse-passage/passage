@@ -27,7 +27,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
 import org.eclipse.passage.lic.registry.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.registry.features.FeaturesEvents;
 import org.eclipse.passage.lic.registry.features.FeaturesRegistry;
@@ -47,7 +46,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DomainRegistryExplorerPart {
 
-	private List<DescriptorRegistry> registries = new ArrayList<>();
+	private List<Object> registries = new ArrayList<>();
 
 	private TreeViewer treeView;
 	private LicensingImages licensingImages;

@@ -12,16 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.features;
 
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
+public interface FeaturesRegistry {
 
-public interface FeaturesRegistry extends DescriptorRegistry {
-	
 	Iterable<? extends FeatureSetDescriptor> getFeatureSets();
 
 	FeatureSetDescriptor getFeatureSet(String featureSetId);
 
 	void registerFeatureSet(FeatureSetDescriptor featureSet);
-	
+
 	void unregisterFeatureSet(String featureSetId);
 
 	Iterable<? extends FeatureDescriptor> getFeatures();
@@ -31,9 +29,9 @@ public interface FeaturesRegistry extends DescriptorRegistry {
 	FeatureDescriptor getFeature(String featureId);
 
 	void registerFeature(FeatureDescriptor feature);
-	
+
 	void unregisterFeature(String featureId);
-	
+
 	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
 
 	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions(String featureId);
@@ -41,7 +39,7 @@ public interface FeaturesRegistry extends DescriptorRegistry {
 	FeatureVersionDescriptor getFeatureVersion(String featureId, String version);
 
 	void registerFeatureVersion(FeatureDescriptor feature, FeatureVersionDescriptor featureVersion);
-	
+
 	void unregisterFeatureVersion(String featureId, String version);
-	
+
 }

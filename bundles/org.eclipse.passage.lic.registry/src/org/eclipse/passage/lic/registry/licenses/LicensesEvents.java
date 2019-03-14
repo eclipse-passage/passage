@@ -12,63 +12,73 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.licenses;
 
-import org.eclipse.passage.lic.registry.RegistryEvents;
+import org.eclipse.passage.lic.runtime.LicensingEvents;
 
-public class LicensesEvents extends RegistryEvents {
+public class LicensesEvents {
 
 	/**
 	 * Base name of all Licenses events
 	 */
-	public static final String LICENSES_TOPIC_BASE = "ru/arsysop/passage/lic/registry/licenses"; //$NON-NLS-1$
+	public static final String LICENSES_TOPIC_BASE = "org/eclipse/passage/lic/registry/licenses"; //$NON-NLS-1$
 
 	/**
 	 * Base name of all License Pack events
 	 */
-	public static final String LICENSE_PACK_TOPIC_BASE = LICENSES_TOPIC_BASE + TOPIC_SEP + "LicensePack"; //$NON-NLS-1$
+	public static final String LICENSE_PACK_TOPIC_BASE = LICENSES_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ "LicensePack"; //$NON-NLS-1$
 
 	/**
 	 * License Pack <code>create</code> event
 	 */
-	public static final String LICENSE_PACK_CREATE = LICENSE_PACK_TOPIC_BASE + TOPIC_SEP + CREATE;
+	public static final String LICENSE_PACK_CREATE = LICENSE_PACK_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.CREATE;
 
 	/**
 	 * License Pack <code>read</code> event
 	 */
-	public static final String LICENSE_PACK_READ = LICENSE_PACK_TOPIC_BASE + TOPIC_SEP + READ;
+	public static final String LICENSE_PACK_READ = LICENSE_PACK_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.READ;
 
 	/**
 	 * License Pack <code>update</code> event
 	 */
-	public static final String LICENSE_PACK_UPDATE = LICENSE_PACK_TOPIC_BASE + TOPIC_SEP + UPDATE;
+	public static final String LICENSE_PACK_UPDATE = LICENSE_PACK_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.UPDATE;
 
 	/**
 	 * License Pack <code>delete</code> event
 	 */
-	public static final String LICENSE_PACK_DELETE = LICENSE_PACK_TOPIC_BASE + TOPIC_SEP + DELETE;
+	public static final String LICENSE_PACK_DELETE = LICENSE_PACK_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.DELETE;
 
 	/**
 	 * Base name of all License Grant events
 	 */
-	public static final String LICENSE_GRANT_TOPIC_BASE = LICENSES_TOPIC_BASE + TOPIC_SEP + "LicenseGrant"; //$NON-NLS-1$
+	public static final String LICENSE_GRANT_TOPIC_BASE = LICENSES_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ "LicenseGrant"; //$NON-NLS-1$
 
 	/**
 	 * License Grant <code>create</code> event
 	 */
-	public static final String LICENSE_GRANT_CREATE = LICENSE_GRANT_TOPIC_BASE + TOPIC_SEP + CREATE;
+	public static final String LICENSE_GRANT_CREATE = LICENSE_GRANT_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.CREATE;
 
 	/**
 	 * License Grant <code>read</code> event
 	 */
-	public static final String LICENSE_GRANT_READ = LICENSE_GRANT_TOPIC_BASE + TOPIC_SEP + READ;
+	public static final String LICENSE_GRANT_READ = LICENSE_GRANT_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.READ;
 
 	/**
 	 * License Grant <code>update</code> event
 	 */
-	public static final String LICENSE_GRANT_UPDATE = LICENSE_GRANT_TOPIC_BASE + TOPIC_SEP + UPDATE;
+	public static final String LICENSE_GRANT_UPDATE = LICENSE_GRANT_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.UPDATE;
 
 	/**
 	 * License Grant <code>delete</code> event
 	 */
-	public static final String LICENSE_GRANT_DELETE = LICENSE_GRANT_TOPIC_BASE + TOPIC_SEP + DELETE;
+	public static final String LICENSE_GRANT_DELETE = LICENSE_GRANT_TOPIC_BASE + LicensingEvents.TOPIC_SEP
+			+ LicensingEvents.DELETE;
 
 }

@@ -27,11 +27,11 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
 
 public class LocEdit {
-	
+
 	public static final String BUNDLE_SYMBOLIC_NAME = "org.eclipse.passage.loc.edit"; //$NON-NLS-1$
 
 	public static final String EXTENSION_KEY_PRIVATE = ".scr"; //$NON-NLS-1$
-	
+
 	public static final String LICENSING_REGISTRY_FILE = "licensing.registry.file"; //$NON-NLS-1$
 
 	public static EditingDomain extractEditingDomain(IEclipseContext context) {
@@ -75,11 +75,7 @@ public class LocEdit {
 		return null;
 	}
 
-	public static String extractValidationError(Object input) {
-		EObject eObject = null;
-		if (input instanceof EObject) {
-			eObject = (EObject) input;
-		}
+	public static String extractValidationError(EObject eObject) {
 		if (eObject == null) {
 			return "Input is invalid";
 		}
@@ -89,26 +85,26 @@ public class LocEdit {
 		}
 		// Get the error count and create an appropriate Error message:
 		final int errorCount = result.getChildren().size();
-		
+
 		final String header = "%s error(s) occured while analyzing your inputs:";
 		final String entry = "%s. %s";
-		
+
 		final StringBuilder sb = new StringBuilder();
 		sb.append(String.format(header, errorCount));
 		sb.append('\n');
-	
+
 		int messageCount = 0;
 		for (final Diagnostic d : result.getChildren()) {
 			sb.append('\n');
 			sb.append(String.format(entry, ++messageCount, d.getMessage()));
 		}
-		
+
 		return sb.toString();
 	}
 
 	public static IStatus save(Resource resource) {
 		try {
-			//FIXME: define parameters
+			// FIXME: define parameters
 			resource.save(null);
 			return Status.OK_STATUS;
 		} catch (IOException e) {

@@ -41,10 +41,9 @@ import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
 import org.osgi.service.event.EventAdmin;
 
-public abstract class EditingDomainBasedRegistry implements DescriptorRegistry, EditingDomainRegistry {
+public abstract class EditingDomainBasedRegistry implements EditingDomainRegistry {
 
 	// FIXME: AF find better place
 	static {

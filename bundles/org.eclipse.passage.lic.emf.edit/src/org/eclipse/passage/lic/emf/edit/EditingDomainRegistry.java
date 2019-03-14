@@ -17,19 +17,24 @@ import java.nio.file.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.passage.lic.registry.DescriptorRegistry;
 import org.eclipse.passage.lic.registry.Identified;
 
-public interface EditingDomainRegistry extends DescriptorRegistry, IEditingDomainProvider, ComposedAdapterFactoryProvider {
-	
+public interface EditingDomainRegistry extends IEditingDomainProvider, ComposedAdapterFactoryProvider {
+
+	void registerSource(String source);
+
+	void unregisterSource(String source);
+
+	Iterable<String> getSources();
+
 	void registerContent(Identified content);
 
 	void unregisterContent(String identifier);
 
 	String getFileExtension();
-	
+
 	Path getBasePath();
-	
+
 	EClass getContentClassifier();
 
 	EStructuralFeature getContentIdentifierAttribute();
