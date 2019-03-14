@@ -30,7 +30,6 @@ import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
@@ -68,13 +67,8 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 			Collection<LicensingCondition> resultConditions = new ArrayList<>();
 
 			for (ConditionMiner miner : licenseConditionMiners) {
-				try {
-					Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
-					resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
-				} catch (LicensingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
+				resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
 			}
 			String contentType = request.getParameter(LicensingRequests.CONTENT_TYPE);
 			LicensingConditionTransport transport = mapCondition2Transport.get(contentType);

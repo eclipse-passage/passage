@@ -24,7 +24,8 @@ import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
@@ -35,9 +36,20 @@ import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 
 public abstract class BasePathConditionMiner implements ConditionMiner {
 
+	private LicensingReporter licensingReporter;
 	private KeyKeeperRegistry keyKeeperRegistry;
 	private StreamCodecRegistry streamCodecRegistry;
 	private final Map<String, LicensingConditionTransport> conditionTransports = new HashMap<>();
+
+	protected void bindLicensingReporter(LicensingReporter reporter) {
+		this.licensingReporter = reporter;
+	}
+
+	protected void unbindLicensingReporter(LicensingReporter reporter) {
+		if (this.licensingReporter == reporter) {
+			this.licensingReporter = null;
+		}
+	}
 
 	protected void bindKeyKeeperRegistry(KeyKeeperRegistry registry) {
 		this.keyKeeperRegistry = registry;
@@ -45,7 +57,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 
 	protected void unbindKeyKeeperRegistry(KeyKeeperRegistry registry) {
 		if (this.keyKeeperRegistry == registry) {
-			this.keyKeeperRegistry = registry;
+			this.keyKeeperRegistry = null;
 		}
 	}
 
@@ -55,7 +67,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 
 	protected void unbindStreamCodecRegistry(StreamCodecRegistry registry) {
 		if (this.streamCodecRegistry == registry) {
-			this.streamCodecRegistry = registry;
+			this.streamCodecRegistry = null;
 		}
 	}
 
@@ -75,8 +87,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 	}
 
 	@Override
-	public final Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration)
-			throws LicensingException {
+	public final Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
 		List<LicensingCondition> mined = new ArrayList<>();
 		if (configuration == null) {
 			return mined;
@@ -93,14 +104,18 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		}
 		KeyKeeper keyKeeper = keyKeeperRegistry.getKeyKeeper(configuration);
 		StreamCodec streamCodec = streamCodecRegistry.getStreamCodec(configuration);
+		String source = getClass().getName();
+		LicensingResult result;
 		if (NullKeyKeeper.INSTANCE == keyKeeper && NullStreamCodec.INSTANCE == streamCodec) {
-			ConditionMiners.mineDecrypted(transport, configurationPath, mined);
+			result = ConditionMiners.mineDecrypted(transport, configurationPath, mined, source);
 		} else {
-			ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper, mined);
+			result = ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper,
+					mined, source);
 		}
+		licensingReporter.logResult(result);
 		return mined;
 	}
 
-	protected abstract Path getBasePath() throws LicensingException;
+	protected abstract Path getBasePath();
 
 }

@@ -21,19 +21,19 @@ public interface ProductsRegistry extends DescriptorRegistry {
 	ProductLineDescriptor getProductLine(String productLineId);
 
 	void registerProductLine(ProductLineDescriptor productLine);
-	
+
 	void unregisterProductLine(String productLineId);
-	
+
 	Iterable<? extends ProductDescriptor> getProducts();
 
 	Iterable<? extends ProductDescriptor> getProducts(String productLineId);
-	
+
 	ProductDescriptor getProduct(String productId);
 
 	void registerProduct(ProductDescriptor product);
-	
+
 	void unregisterProduct(String productId);
-	
+
 	Iterable<? extends ProductVersionDescriptor> getProductVersions();
 
 	Iterable<? extends ProductVersionDescriptor> getProductVersions(String productId);
@@ -41,9 +41,9 @@ public interface ProductsRegistry extends DescriptorRegistry {
 	ProductVersionDescriptor getProductVersion(String productId, String version);
 
 	void registerProductVersion(ProductDescriptor product, ProductVersionDescriptor productVersion);
-	
+
 	void unregisterProductVersion(String productId, String version);
-	
+
 	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
 
 	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures(String productId, String version);

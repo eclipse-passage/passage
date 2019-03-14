@@ -21,9 +21,9 @@ public interface UsersRegistry extends DescriptorRegistry {
 	UserOriginDescriptor getUserOrigin(String userOriginId);
 
 	void registerUserOrigin(UserOriginDescriptor userOrigin);
-	
+
 	void unregisterUserOrigin(String userOriginId);
-	
+
 	Iterable<? extends UserDescriptor> getUsers();
 
 	Iterable<? extends UserDescriptor> getUsers(String userOriginId);
@@ -33,5 +33,5 @@ public interface UsersRegistry extends DescriptorRegistry {
 	void registerUser(UserDescriptor user);
 
 	void unregisterUser(String userId);
-	
+
 }

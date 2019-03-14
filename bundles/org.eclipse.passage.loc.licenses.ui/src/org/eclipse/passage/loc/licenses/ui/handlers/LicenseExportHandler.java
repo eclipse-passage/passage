@@ -29,19 +29,25 @@ import org.eclipse.swt.widgets.Shell;
 public class LicenseExportHandler {
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePackDescriptor licensePack, IEclipseContext context) {
+	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePackDescriptor licensePack,
+			IEclipseContext context) {
 		LicenseOperatorService licenseService = context.get(LicenseOperatorService.class);
 		Shell shell = context.get(Shell.class);
 		IStatus status = licenseService.issueLicensePack(licensePack);
 		if (status.isOK()) {
-			MessageDialog.openInformation(shell , "License Pack Issued", status.getMessage());
+			MessageDialog.openInformation(shell, "License Pack Issued", status.getMessage());
 		} else {
 			ErrorDialog.openError(shell, "Error", "Error during license pack export", status);
 		}
 	}
 
 	@CanExecute
-	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePackDescriptor licensePack) {
+	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePackDescriptor licensePack,
+			IEclipseContext context) {
+		LicenseOperatorService licenseService = context.get(LicenseOperatorService.class);
+		if (licenseService == null) {
+			return false;
+		}
 		return licensePack != null;
 	}
 

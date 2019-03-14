@@ -14,6 +14,25 @@ package org.eclipse.passage.lic.runtime;
 
 public class LicensingEvents {
 
+	public static final String PROPERTY_TOPIC = "org.eclipse.passage.lic.runtime.topic"; //$NON-NLS-1$
+	public static final String PROPERTY_DATA = "org.eclipse.passage.lic.runtime.data"; //$NON-NLS-1$
+	/**
+	 * Segment for events of type <code>create</code>
+	 */
+	public static final String CREATE = "create"; //$NON-NLS-1$
+	/**
+	 * Segment for events of type <code>read</code>
+	 */
+	public static final String READ = "read"; //$NON-NLS-1$
+	/**
+	 * Segment for events of type <code>update</code>
+	 */
+	public static final String UPDATE = "update"; //$NON-NLS-1$
+	/**
+	 * Segment for events of type <code>delete</code>
+	 */
+	public static final String DELETE = "delete"; //$NON-NLS-1$
+
 	private LicensingEvents() {
 		// block
 	}
@@ -31,6 +50,6 @@ public class LicensingEvents {
 	/**
 	 * Base name of all Licensing events
 	 */
-	public static final String TOPIC_BASE = "org/eclipse/passage/lic/events"; //$NON-NLS-1$
+	public static final String TOPIC_BASE = "org/eclipse/passage/lic/runtime"; //$NON-NLS-1$
 
 }

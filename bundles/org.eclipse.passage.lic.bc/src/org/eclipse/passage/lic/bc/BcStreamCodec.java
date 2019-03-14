@@ -71,6 +71,8 @@ import org.bouncycastle.openpgp.operator.jcajce.JcaPGPDigestCalculatorProviderBu
 import org.bouncycastle.openpgp.operator.jcajce.JcaPGPKeyPair;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyDecryptorBuilder;
 import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
+import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 import org.osgi.service.component.annotations.Activate;
 
@@ -83,25 +85,29 @@ public class BcStreamCodec implements StreamCodec {
 	private String keyAlgo = BcProperties.KEY_ALGO_DEFAULT;
 	private int keySize = BcProperties.KEY_SIZE_DEFAULT;
 	private int hashAlgo = PGPUtil.SHA512;
-	
+
+	private LicensingConfiguration configuration = LicensingConfigurations.INVALID;
+
 	@Activate
 	public void activate(Map<String, Object> properties) {
+		configuration = LicensingConfigurations.create(properties);
 		keyAlgo = BcProperties.extractKeyAlgo(properties);
 		keySize = BcProperties.extractKeySize(properties);
 	}
-	
+
 	@Override
 	public String getKeyAlgo() {
 		return keyAlgo;
 	}
-	
+
 	@Override
 	public int getKeySize() {
 		return keySize;
 	}
 
 	@Override
-	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password) throws IOException {
+	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password)
+			throws IOException {
 
 		Path pathPublicKey = Paths.get(publicKeyPath);
 		Path pathPrivateKey = Paths.get(privateKeyPath);
@@ -124,8 +130,8 @@ public class BcStreamCodec implements StreamCodec {
 			JcePBESecretKeyEncryptorBuilder jcePBESecretKeyEncryptorBuilder = new JcePBESecretKeyEncryptorBuilder(
 					PGPEncryptedData.CAST5, sha1Calc);
 
-			PBESecretKeyEncryptor secretKeyEcriptor = jcePBESecretKeyEncryptorBuilder.setProvider(BouncyCastleProvider.PROVIDER_NAME)
-					.build(password.toCharArray());
+			PBESecretKeyEncryptor secretKeyEcriptor = jcePBESecretKeyEncryptorBuilder
+					.setProvider(BouncyCastleProvider.PROVIDER_NAME).build(password.toCharArray());
 
 			PGPSignatureSubpacketGenerator subpacketGenerator = new PGPSignatureSubpacketGenerator();
 
@@ -204,7 +210,8 @@ public class BcStreamCodec implements StreamCodec {
 			generator.close();
 			aos.close();
 		} catch (Exception e) {
-			throw new IOException("Encoding error", e);
+			String message = String.format("Encoding error for configuration %s", configuration);
+			throw new IOException(message, e);
 		}
 	}
 
@@ -248,13 +255,14 @@ public class BcStreamCodec implements StreamCodec {
 			final byte[] calculatedDigest = BcDigest.calculateDigest(publicKeyRing);
 			for (int i = 0; i < calculatedDigest.length; i++) {
 				if (calculatedDigest[i] != (digest[i])) {
-					throw new IOException("Key ring digest does not match.");
+					String message = String.format("Key ring digest does not match for configuration %s",
+							configuration);
+					throw new IOException(message);
 				}
 			}
 		}
-		try {
+		try (final InputStream decoderInputStream = PGPUtil.getDecoderStream(input)) {
 			final ByteArrayInputStream keyIn = new ByteArrayInputStream(publicKeyRing);
-			final InputStream decoderInputStream = PGPUtil.getDecoderStream(input);
 
 			PGPObjectFactory pgpFactory = new JcaPGPObjectFactory(decoderInputStream);
 			final PGPCompressedData firstCompressed = (PGPCompressedData) pgpFactory.nextObject();
@@ -263,30 +271,38 @@ public class BcStreamCodec implements StreamCodec {
 			final PGPOnePassSignature slist1s1 = slist1.get(0);
 			final PGPLiteralData literalData = (PGPLiteralData) pgpFactory.nextObject();
 
-			final InputStream literalStream = literalData.getInputStream();
-			InputStream decoderStream = PGPUtil.getDecoderStream(keyIn);
-			final BcPGPPublicKeyRingCollection pgpRing = new BcPGPPublicKeyRingCollection(decoderStream);
-			long decodeKeyId = slist1s1.getKeyID();
+			try (final InputStream literalStream = literalData.getInputStream();
+					InputStream decoderStream = PGPUtil.getDecoderStream(keyIn)) {
+				final BcPGPPublicKeyRingCollection pgpRing = new BcPGPPublicKeyRingCollection(decoderStream);
+				long decodeKeyId = slist1s1.getKeyID();
 
-			final PGPPublicKey decodeKey = pgpRing.getPublicKey(decodeKeyId);
-			final PGPContentVerifierBuilderProvider cvBuilder = new JcaPGPContentVerifierBuilderProvider();
-			slist1s1.init(cvBuilder, decodeKey);
+				final PGPPublicKey decodeKey = pgpRing.getPublicKey(decodeKeyId);
+				if (decodeKey == null) {
+					String message = String.format("Public key invalid for configuration %s", configuration);
+					throw new IOException(message);
+				}
+				final PGPContentVerifierBuilderProvider cvBuilder = new JcaPGPContentVerifierBuilderProvider();
+				slist1s1.init(cvBuilder, decodeKey);
 
-			ByteArrayOutputStream untrusted = new ByteArrayOutputStream();
-			int ch;
-			while ((ch = literalStream.read()) >= 0) {
-				slist1s1.update((byte) ch);
-				untrusted.write(ch);
+				ByteArrayOutputStream untrusted = new ByteArrayOutputStream();
+				int ch;
+				while ((ch = literalStream.read()) >= 0) {
+					slist1s1.update((byte) ch);
+					untrusted.write(ch);
+				}
+				final PGPSignatureList slist2 = (PGPSignatureList) pgpFactory.nextObject();
+				PGPSignature slist2s1 = slist2.get(0);
+				if (slist1s1.verify(slist2s1)) {
+					byte[] verified = untrusted.toByteArray();
+					output.write(verified);
+				}
+				return Long.valueOf(decodeKeyId);
 			}
-			final PGPSignatureList slist2 = (PGPSignatureList) pgpFactory.nextObject();
-			PGPSignature slist2s1 = slist2.get(0);
-			if (slist1s1.verify(slist2s1)) {
-				byte[] verified = untrusted.toByteArray();
-				output.write(verified);
-			}
-			return Long.valueOf(decodeKeyId);
+		} catch (IOException e) {
+			throw e;
 		} catch (Exception e) {
-			throw new IOException("Decoding error", e);
+			String message = String.format("Decoding error for configuration %s", configuration);
+			throw new IOException(message, e);
 		}
 	}
 }

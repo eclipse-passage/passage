@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.access.AccessManagerEvents;
@@ -45,12 +46,24 @@ import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public abstract class BaseAccessManager implements AccessManager {
 
+	private LicensingReporter licensingReporter;
+
 	private final List<RequirementResolver> requirementResolvers = new ArrayList<>();
 	private ConditionMinerRegistry conditionMinerRegistry = new BaseConditionMinerRegistry();
 	private final Map<String, PermissionEmitter> permissionEmitters = new HashMap<>();
 	private final List<RestrictionExecutor> restrictionExecutors = new ArrayList<>();
 
 	private PermissionExaminer examiner;
+
+	protected void bindLicensingReporter(LicensingReporter desk) {
+		this.licensingReporter = desk;
+	}
+
+	protected void unbindLicensingReporter(LicensingReporter desk) {
+		if (this.licensingReporter == desk) {
+			this.licensingReporter = null;
+		}
+	}
 
 	protected void bindRequirementResolver(RequirementResolver requirementResolver) {
 		requirementResolvers.add(requirementResolver);
@@ -135,30 +148,25 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
 		BaseLicensingResult holder = LicensingResults.createHolder("Extract conditions operation",
 				getClass().getName());
-		List<LicensingCondition> result = new ArrayList<>();
+		List<LicensingCondition> mined = new ArrayList<>();
 		Iterable<ConditionMiner> conditionMiners = conditionMinerRegistry.getConditionMiners();
 		for (ConditionMiner conditionMiner : conditionMiners) {
-			try {
-				Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
-				if (conditions == null) {
-					String source = conditionMiner.getClass().getName();
-					String message = "Invalid condition miner";
-					BaseLicensingResult error = LicensingResults.createError(message, source,
-							new NullPointerException());
-					holder.addChild(error);
-					continue;
-				}
-				for (LicensingCondition condition : conditions) {
-					result.add(condition);
-				}
-			} catch (LicensingException e) {
-				holder.addChild(e.getResult());
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				// FIXME:send event
+			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
+			if (conditions == null) {
+				String source = conditionMiner.getClass().getName();
+				String message = "Invalid condition miner";
+				BaseLicensingResult error = LicensingResults.createError(message, source, new NullPointerException());
+				holder.addChild(error);
+				continue;
+			}
+			for (LicensingCondition condition : conditions) {
+				mined.add(condition);
 			}
 		}
-		List<LicensingCondition> unmodifiable = Collections.unmodifiableList(result);
+		Iterable<LicensingResult> children = holder.getChildren();
+		postEvent(ConditionEvents.CONDITIONS_IGNORED, children);
+
+		List<LicensingCondition> unmodifiable = Collections.unmodifiableList(mined);
 		postEvent(AccessManagerEvents.CONDITIONS_EXTRACTED, unmodifiable);
 		return unmodifiable;
 	}

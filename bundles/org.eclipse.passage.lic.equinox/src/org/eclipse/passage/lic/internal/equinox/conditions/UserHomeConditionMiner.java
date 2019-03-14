@@ -12,11 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.conditions;
 
+import java.io.File;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.conditions.BasePathConditionMiner;
-import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
@@ -27,7 +29,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 @Component
-public class InstallLocationConditionMiner extends BasePathConditionMiner implements ConditionMiner {
+public class UserHomeConditionMiner extends BasePathConditionMiner implements ConditionMiner {
 
 	@Reference
 	@Override
@@ -77,7 +79,9 @@ public class InstallLocationConditionMiner extends BasePathConditionMiner implem
 
 	@Override
 	protected Path getBasePath() {
-		return EquinoxPaths.resolveInstallBasePath();
+		String property = System.getProperty("user.home"); //$NON-NLS-1$
+		String value = new File(property).getAbsolutePath();
+		return Paths.get(value, LicensingPaths.FOLDER_LICENSING_BASE);
 	}
 
 }

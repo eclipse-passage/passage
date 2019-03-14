@@ -14,4 +14,4 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.bouncycastle.bcprov;bundle-version="1.59.0",
  org.eclipse.passage.lic.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.lic.bc;x-internal:=true
+Export-Package: org.eclipse.passage.lic.bc

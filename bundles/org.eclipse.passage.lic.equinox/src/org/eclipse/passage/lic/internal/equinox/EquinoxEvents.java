@@ -15,11 +15,13 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.runtime.LicensingEvents;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.osgi.service.event.Event;
 
 public class EquinoxEvents {
 
-	//@see org.eclipse.e4.core.services.events.IEventBroker.DATA
+	// @see org.eclipse.e4.core.services.events.IEventBroker.DATA
 	public static final String PROPERTY_DATA = "org.eclipse.e4.data"; //$NON-NLS-1$
 
 	public static Event createEvent(String topic, Object data) {
@@ -27,6 +29,16 @@ public class EquinoxEvents {
 		properties.put(PROPERTY_DATA, data);
 		Event event = new Event(topic, properties);
 		return event;
+	}
+
+	public static Event extractEvent(LicensingResult result) {
+		Object attachmentTopic = result.getAttachment(LicensingEvents.PROPERTY_TOPIC);
+		if (attachmentTopic instanceof String) {
+			String topic = (String) attachmentTopic;
+			Object data = result.getAttachment(LicensingEvents.PROPERTY_DATA);
+			return createEvent(topic, data);
+		}
+		return null;
 	}
 
 }

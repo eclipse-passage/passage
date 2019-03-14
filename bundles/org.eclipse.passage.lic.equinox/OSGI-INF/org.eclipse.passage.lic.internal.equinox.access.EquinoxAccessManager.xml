@@ -7,6 +7,7 @@
    </service>
    <reference bind="bindConditionMinerRegistry" interface="org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry" name="ConditionMinerRegistry" unbind="unbindConditionMinerRegistry"/>
    <reference bind="bindEventAdmin" cardinality="1..1" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" policy="static" unbind="unbindEventAdmin"/>
+   <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <reference bind="bindLogService" cardinality="1..1" interface="org.osgi.service.log.LogService" name="LogService" policy="static" unbind="unbindLogService"/>
    <reference bind="bindPermissionEmitter" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.access.PermissionEmitter" name="PermissionEmitter" unbind="unbindPermissionEmitter"/>
    <reference bind="bindPermissionExaminer" cardinality="1..1" interface="org.eclipse.passage.lic.runtime.access.PermissionExaminer" name="PermissionExaminer" policy="static" unbind="unbindPermissionExaminer"/>
