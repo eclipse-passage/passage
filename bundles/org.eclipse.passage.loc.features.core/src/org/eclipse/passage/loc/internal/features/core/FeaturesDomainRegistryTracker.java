@@ -18,9 +18,10 @@ import org.eclipse.passage.lic.model.api.Feature;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.FeatureVersion;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.registry.features.FeatureSetDescriptor;
 
-public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeaturesDomainRegistry> {
-	
+public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureSetDescriptor, FeaturesDomainRegistry> {
+
 	public FeaturesDomainRegistryTracker(FeaturesDomainRegistry registry) {
 		super(registry);
 	}
@@ -140,7 +141,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<Features
 				registry.unregisterFeatureVersion(feature.getIdentifier(), featureVersion.getVersion());
 			}
 			break;
-	
+
 		default:
 			break;
 		}
@@ -149,7 +150,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<Features
 	protected void processFeatureVersionVersion(FeatureVersion featureVersion, Notification notification) {
 		Feature feature = featureVersion.getFeature();
 		if (feature == null) {
-			//FIXME: warn
+			// FIXME: warn
 			return;
 		}
 		String oldValue = notification.getOldStringValue();

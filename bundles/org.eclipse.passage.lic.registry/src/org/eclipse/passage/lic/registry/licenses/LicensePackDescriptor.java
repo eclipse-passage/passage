@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.licenses;
 
-import org.eclipse.passage.lic.registry.Identified;
+public interface LicensePackDescriptor {
 
-public interface LicensePackDescriptor extends Identified {
-	
+	String getIdentifier();
+
 	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
 
 	String getUserIdentifier();

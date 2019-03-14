@@ -17,9 +17,10 @@ import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.model.api.User;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
 
-public class UsersDomainRegistryTracker extends DomainContentAdapter<UsersDomainRegistry> {
-	
+public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginDescriptor, UsersDomainRegistry> {
+
 	public UsersDomainRegistryTracker(UsersDomainRegistry registry) {
 		super(registry);
 	}
@@ -44,6 +45,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UsersDomain
 			switch (notification.getFeatureID(User.class)) {
 			case LicPackage.USER__EMAIL:
 				processUserEmail(user, notification);
+				break;
 			default:
 				break;
 			}
@@ -62,6 +64,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UsersDomain
 			if (newValue != null) {
 				registry.registerUserOrigin(userOrigin);
 			}
+			break;
 		default:
 			break;
 		}
@@ -106,6 +109,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UsersDomain
 			if (newValue != null) {
 				registry.registerUser(user);
 			}
+			break;
 		default:
 			break;
 		}

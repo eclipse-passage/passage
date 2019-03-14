@@ -19,20 +19,17 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.Identified;
 import org.eclipse.passage.lic.registry.users.UserDescriptor;
 import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.registry.users.Users;
 import org.eclipse.passage.lic.registry.users.UsersEvents;
 import org.eclipse.passage.lic.registry.users.UsersRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -42,32 +39,21 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME,
 		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Users.FILE_EXTENSION_XMI })
-public class UsersDomainRegistry extends EditingDomainBasedRegistry
-		implements UsersRegistry, EditingDomainRegistry {
+public class UsersDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
+		implements UsersRegistry, EditingDomainRegistry<UserOriginDescriptor> {
 
 	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
 	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
 
 	@Reference
 	@Override
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.bindEnvironmentInfo(environmentInfo);
+	public void bindEventAdmin(EventAdmin admin) {
+		super.bindEventAdmin(admin);
 	}
 
 	@Override
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.unbindEnvironmentInfo(environmentInfo);
-	}
-
-	@Reference
-	@Override
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		super.bindEventAdmin(eventAdmin);
-	}
-
-	@Override
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		super.unbindEventAdmin(eventAdmin);
+	public void unbindEventAdmin(EventAdmin admin) {
+		super.unbindEventAdmin(admin);
 	}
 
 	@Reference
@@ -81,6 +67,7 @@ public class UsersDomainRegistry extends EditingDomainBasedRegistry
 		super.unbindFactoryProvider(factoryProvider);
 	}
 
+	@Override
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		super.activate(properties);
@@ -97,6 +84,16 @@ public class UsersDomainRegistry extends EditingDomainBasedRegistry
 	@Override
 	public String getFileExtension() {
 		return Users.FILE_EXTENSION_XMI;
+	}
+
+	@Override
+	public Class<UserOriginDescriptor> getContentClass() {
+		return UserOriginDescriptor.class;
+	}
+
+	@Override
+	public String resolveIdentifier(UserOriginDescriptor content) {
+		return content.getIdentifier();
 	}
 
 	@Override
@@ -129,7 +126,7 @@ public class UsersDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<UsersDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<UserOriginDescriptor, UsersDomainRegistry> createContentAdapter() {
 		return new UsersDomainRegistryTracker(this);
 	}
 
@@ -191,13 +188,8 @@ public class UsersDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public void registerContent(Identified content) {
-		if (content instanceof UserOrigin) {
-			UserOrigin userOrigin = (UserOrigin) content;
-			registerUserOrigin(userOrigin);
-		} else {
-			// TODO: warning
-		}
+	public void registerContent(UserOriginDescriptor content) {
+		registerUserOrigin(content);
 	}
 
 	@Override

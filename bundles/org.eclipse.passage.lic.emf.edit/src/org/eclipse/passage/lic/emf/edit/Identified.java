@@ -10,18 +10,9 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.features;
+package org.eclipse.passage.lic.emf.edit;
 
-public interface FeatureDescriptor {
-
-	String getIdentifier();
-
-	String getName();
-
-	String getDescription();
-
-	FeatureSetDescriptor getFeatureSet();
-
-	Iterable<? extends FeatureVersionDescriptor> getFeatureVersions();
+//FIXME: rework from inheritance to adapter
+public interface Identified {
 
 }

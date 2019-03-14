@@ -16,16 +16,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.passage.lic.registry.Identified;
 
-public abstract class DomainContentAdapter<R extends EditingDomainRegistry> extends EContentAdapter {
-	
+public abstract class DomainContentAdapter<I, R extends EditingDomainRegistry<I>> extends EContentAdapter {
+
 	protected final R registry;
-	
+
 	protected DomainContentAdapter(R registry) {
 		this.registry = registry;
 	}
-	
+
 	@Override
 	public void notifyChanged(Notification notification) {
 		Object notifier = notification.getNotifier();
@@ -43,6 +42,7 @@ public abstract class DomainContentAdapter<R extends EditingDomainRegistry> exte
 			switch (notification.getFeatureID(Resource.class)) {
 			case Resource.RESOURCE__CONTENTS:
 				processResourceContents(resource, notification);
+				break;
 			case Resource.RESOURCE__IS_LOADED:
 				processResourceIsLoaded(resource, notification);
 				break;
@@ -53,10 +53,11 @@ public abstract class DomainContentAdapter<R extends EditingDomainRegistry> exte
 		super.notifyChanged(notification);
 	}
 
+	@SuppressWarnings("unused")
 	protected void processResourceSetResources(ResourceSet resourceSet, Notification notification) {
-		//nothing by default
+		// nothing by default
 	}
-	
+
 	protected void processResourceContents(Resource resource, Notification notification) {
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
@@ -67,28 +68,32 @@ public abstract class DomainContentAdapter<R extends EditingDomainRegistry> exte
 		case Notification.REMOVE:
 			processResourceContentsRemoved(resource, oldValue);
 			break;
-	
+
 		default:
 			break;
 		}
 	}
 
 	protected void processResourceContentsAdded(Resource resource, Object newValue) {
-		if (newValue instanceof Identified) {
-			Identified identified = (Identified) newValue;
-			registry.registerContent(identified);
+		Class<I> contentClass = registry.getContentClass();
+		if (contentClass.isInstance(newValue)) {
+			I content = contentClass.cast(newValue);
+			registry.registerContent(content);
 		}
 	}
 
 	protected void processResourceContentsRemoved(Resource resource, Object oldValue) {
-		if (oldValue instanceof Identified) {
-			Identified identified = (Identified) oldValue;
-			registry.unregisterContent(identified.getIdentifier());
+		Class<I> contentClass = registry.getContentClass();
+		if (contentClass.isInstance(oldValue)) {
+			I content = contentClass.cast(oldValue);
+			String identifier = registry.resolveIdentifier(content);
+			registry.unregisterContent(identifier);
 		}
 	}
 
+	@SuppressWarnings("unused")
 	protected void processResourceIsLoaded(Resource resource, Notification notification) {
-		//nothing by default
+		// nothing by default
 	}
-	
+
 }

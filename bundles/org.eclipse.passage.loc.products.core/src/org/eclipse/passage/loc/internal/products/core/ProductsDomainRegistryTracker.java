@@ -19,9 +19,10 @@ import org.eclipse.passage.lic.model.api.ProductLine;
 import org.eclipse.passage.lic.model.api.ProductVersion;
 import org.eclipse.passage.lic.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.registry.products.ProductLineDescriptor;
 
-public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductsDomainRegistry> {
-	
+public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLineDescriptor, ProductsDomainRegistry> {
+
 	public ProductsDomainRegistryTracker(ProductsDomainRegistry registry) {
 		super(registry);
 	}
@@ -46,8 +47,10 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			switch (notification.getFeatureID(Product.class)) {
 			case LicPackage.PRODUCT__IDENTIFIER:
 				processProductIdentifier(product, notification);
+				break;
 			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
 				processProductProductVersions(product, notification);
+				break;
 			default:
 				break;
 			}
@@ -56,8 +59,10 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			switch (notification.getFeatureID(ProductVersion.class)) {
 			case LicPackage.PRODUCT_VERSION__VERSION:
 				processProductVersionVersion(productVersion, notification);
+				break;
 			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
 				processProductVersionProductVersionFeatures(productVersion, notification);
+				break;
 			default:
 				break;
 			}
@@ -66,6 +71,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			switch (notification.getFeatureID(ProductVersionFeature.class)) {
 			case LicPackage.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER:
 				processProductVersionFeatureFeatureIdentifier(productVersionFeature, notification);
+				break;
 			default:
 				break;
 			}
@@ -84,6 +90,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			if (newValue != null) {
 				registry.registerProductLine(productLine);
 			}
+			break;
 		default:
 			break;
 		}
@@ -128,6 +135,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			if (newValue != null) {
 				registry.registerProduct(product);
 			}
+			break;
 		default:
 			break;
 		}
@@ -164,7 +172,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 	protected void processProductVersionVersion(ProductVersion productVersion, Notification notification) {
 		Product product = productVersion.getProduct();
 		if (product == null) {
-			//FIXME: warn
+			// FIXME: warn
 			return;
 		}
 		String oldValue = notification.getOldStringValue();
@@ -177,15 +185,17 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			if (newValue != null) {
 				registry.registerProductVersion(product, productVersion);
 			}
+			break;
 		default:
 			break;
 		}
 	}
 
-	protected void processProductVersionProductVersionFeatures(ProductVersion productVersion, Notification notification) {
+	protected void processProductVersionProductVersionFeatures(ProductVersion productVersion,
+			Notification notification) {
 		Product product = productVersion.getProduct();
 		if (product == null) {
-			//FIXME: warn
+			// FIXME: warn
 			return;
 		}
 		Object oldValue = notification.getOldValue();
@@ -205,7 +215,8 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 				ProductVersionFeature productVersionFeature = (ProductVersionFeature) oldValue;
 				String featureId = productVersionFeature.getFeatureIdentifier();
 				if (featureId != null) {
-					registry.unregisterProductVersionFeature(product.getIdentifier(), productVersion.getVersion(), featureId);
+					registry.unregisterProductVersionFeature(product.getIdentifier(), productVersion.getVersion(),
+							featureId);
 				}
 			}
 			break;
@@ -215,15 +226,16 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 		}
 	}
 
-	protected void processProductVersionFeatureFeatureIdentifier(ProductVersionFeature productVersionFeature, Notification notification) {
+	protected void processProductVersionFeatureFeatureIdentifier(ProductVersionFeature productVersionFeature,
+			Notification notification) {
 		ProductVersion productVersion = productVersionFeature.getProductVersion();
 		if (productVersion == null) {
-			//FIXME: warn
+			// FIXME: warn
 			return;
 		}
 		Product product = productVersion.getProduct();
 		if (product == null) {
-			//FIXME: warn
+			// FIXME: warn
 			return;
 		}
 		String oldValue = notification.getOldStringValue();
@@ -238,6 +250,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<Products
 			if (newValue != null) {
 				registry.registerProductVersionFeature(product, productVersion, productVersionFeature);
 			}
+			break;
 		default:
 			break;
 		}

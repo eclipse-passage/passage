@@ -12,12 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.products;
 
-import org.eclipse.passage.lic.registry.Identified;
+public interface ProductDescriptor {
 
-public interface ProductDescriptor extends Identified {
-	
+	String getIdentifier();
+
 	String getName();
-	
+
 	String getDescription();
 
 	ProductLineDescriptor getProductLine();

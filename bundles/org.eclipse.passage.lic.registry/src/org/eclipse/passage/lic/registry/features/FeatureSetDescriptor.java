@@ -12,14 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.features;
 
-import org.eclipse.passage.lic.registry.Identified;
+public interface FeatureSetDescriptor {
 
-public interface FeatureSetDescriptor extends Identified {
+	String getIdentifier();
 
 	String getName();
 
 	String getDescription();
-	
+
 	Iterable<? extends FeatureDescriptor> getFeatures();
 
 }

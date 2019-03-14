@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 
 public class DomainRegistryContentProvider implements ITreeContentProvider {
 
@@ -45,8 +45,8 @@ public class DomainRegistryContentProvider implements ITreeContentProvider {
 			List<?> list = (List<?>) parentElement;
 			return list.toArray();
 		}
-		if (parentElement instanceof EditingDomainBasedRegistry) {
-			EditingDomainBasedRegistry baseRegistry = (EditingDomainBasedRegistry) parentElement;
+		if (parentElement instanceof BaseDomainRegistry) {
+			BaseDomainRegistry baseRegistry = (BaseDomainRegistry) parentElement;
 			ResourceSet resourceSet = baseRegistry.getEditingDomain().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			return resources.toArray();

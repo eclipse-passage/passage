@@ -21,19 +21,16 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.Identified;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.registry.licenses.Licenses;
 import org.eclipse.passage.lic.registry.licenses.LicensesEvents;
 import org.eclipse.passage.lic.registry.licenses.LicensesRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -43,8 +40,8 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME,
 		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
-public class LicensesDomainRegistry extends EditingDomainBasedRegistry
-		implements LicensesRegistry, EditingDomainRegistry {
+public class LicensesDomainRegistry extends BaseDomainRegistry<LicensePackDescriptor>
+		implements LicensesRegistry, EditingDomainRegistry<LicensePackDescriptor> {
 
 	private final Map<String, LicensePackDescriptor> licensePackIndex = new HashMap<>();
 	private final Map<String, List<LicensePackDescriptor>> userPackIndex = new HashMap<>();
@@ -52,24 +49,13 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 
 	@Reference
 	@Override
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.bindEnvironmentInfo(environmentInfo);
+	public void bindEventAdmin(EventAdmin admin) {
+		super.bindEventAdmin(admin);
 	}
 
 	@Override
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.unbindEnvironmentInfo(environmentInfo);
-	}
-
-	@Reference
-	@Override
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		super.bindEventAdmin(eventAdmin);
-	}
-
-	@Override
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		super.unbindEventAdmin(eventAdmin);
+	public void unbindEventAdmin(EventAdmin admin) {
+		super.unbindEventAdmin(admin);
 	}
 
 	@Reference
@@ -83,6 +69,7 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 		super.unbindFactoryProvider(factoryProvider);
 	}
 
+	@Override
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		super.activate(properties);
@@ -112,6 +99,16 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 	@Override
 	public String getFileExtension() {
 		return Licenses.FILE_EXTENSION_XMI;
+	}
+
+	@Override
+	public Class<LicensePackDescriptor> getContentClass() {
+		return LicensePackDescriptor.class;
+	}
+
+	@Override
+	public String resolveIdentifier(LicensePackDescriptor content) {
+		return content.getIdentifier();
 	}
 
 	@Override
@@ -147,7 +144,7 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<LicensesDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<LicensePackDescriptor, LicensesDomainRegistry> createContentAdapter() {
 		return new LicensesDomainRegistryTracker(this);
 	}
 
@@ -160,7 +157,8 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 		}
 		eventAdmin.postEvent(OperatorEvents.create(LicensesEvents.LICENSE_PACK_CREATE, licensePack));
 		String userIdentifier = licensePack.getUserIdentifier();
-		List<LicensePackDescriptor> userPackList = userPackIndex.computeIfAbsent(userIdentifier, key -> new ArrayList<>());
+		List<LicensePackDescriptor> userPackList = userPackIndex.computeIfAbsent(userIdentifier,
+				key -> new ArrayList<>());
 		userPackList.add(licensePack);
 		String productIdentifier = licensePack.getProductIdentifier();
 		Map<String, List<LicensePackDescriptor>> map = productVersionPackIndex.computeIfAbsent(productIdentifier,
@@ -220,13 +218,8 @@ public class LicensesDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public void registerContent(Identified content) {
-		if (content instanceof LicensePack) {
-			LicensePack licensePack = (LicensePack) content;
-			registerLicensePack(licensePack);
-		} else {
-			//TODO: warning
-		}
+	public void registerContent(LicensePackDescriptor content) {
+		registerLicensePack(content);
 	}
 
 	@Override

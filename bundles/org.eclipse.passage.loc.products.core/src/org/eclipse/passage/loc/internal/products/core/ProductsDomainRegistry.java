@@ -21,14 +21,12 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.model.api.ProductLine;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.Identified;
 import org.eclipse.passage.lic.registry.products.ProductDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
@@ -36,7 +34,6 @@ import org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor
 import org.eclipse.passage.lic.registry.products.Products;
 import org.eclipse.passage.lic.registry.products.ProductsEvents;
 import org.eclipse.passage.lic.registry.products.ProductsRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -46,8 +43,8 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME,
 		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Products.FILE_EXTENSION_XMI })
-public class ProductsDomainRegistry extends EditingDomainBasedRegistry
-		implements ProductsRegistry, EditingDomainRegistry {
+public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescriptor>
+		implements ProductsRegistry, EditingDomainRegistry<ProductLineDescriptor> {
 
 	private final Map<String, ProductLineDescriptor> productLineIndex = new HashMap<>();
 	private final Map<String, ProductDescriptor> productIndex = new HashMap<>();
@@ -56,24 +53,13 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 
 	@Reference
 	@Override
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.bindEnvironmentInfo(environmentInfo);
+	public void bindEventAdmin(EventAdmin admin) {
+		super.bindEventAdmin(admin);
 	}
 
 	@Override
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.unbindEnvironmentInfo(environmentInfo);
-	}
-
-	@Reference
-	@Override
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		super.bindEventAdmin(eventAdmin);
-	}
-
-	@Override
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		super.unbindEventAdmin(eventAdmin);
+	public void unbindEventAdmin(EventAdmin admin) {
+		super.unbindEventAdmin(admin);
 	}
 
 	@Reference
@@ -87,6 +73,7 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 		super.unbindFactoryProvider(factoryProvider);
 	}
 
+	@Override
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		super.activate(properties);
@@ -108,6 +95,16 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 	@Override
 	public String getFileExtension() {
 		return Products.FILE_EXTENSION_XMI;
+	}
+
+	@Override
+	public Class<ProductLineDescriptor> getContentClass() {
+		return ProductLineDescriptor.class;
+	}
+
+	@Override
+	public String resolveIdentifier(ProductLineDescriptor content) {
+		return content.getIdentifier();
 	}
 
 	@Override
@@ -197,7 +194,7 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<ProductsDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<ProductLineDescriptor, ProductsDomainRegistry> createContentAdapter() {
 		return new ProductsDomainRegistryTracker(this);
 	}
 
@@ -279,12 +276,12 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 			ProductVersionDescriptor removed = versions.remove(version);
 			if (removed != null) {
 				eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_VERSION_DELETE, removed));
+				removed.getProductVersionFeatures().forEach(
+						pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
 			}
 			if (versions.isEmpty()) {
 				productVersionIndex.remove(productId);
 			}
-			removed.getProductVersionFeatures()
-					.forEach(pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
 		}
 	}
 
@@ -324,13 +321,8 @@ public class ProductsDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public void registerContent(Identified content) {
-		if (content instanceof ProductLine) {
-			ProductLine productLine = (ProductLine) content;
-			registerProductLine(productLine);
-		} else {
-			// TODO: warning
-		}
+	public void registerContent(ProductLineDescriptor content) {
+		registerProductLine(content);
 	}
 
 	@Override

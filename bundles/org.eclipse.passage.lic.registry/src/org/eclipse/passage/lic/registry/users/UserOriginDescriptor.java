@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.registry.users;
 
-import org.eclipse.passage.lic.registry.Identified;
+public interface UserOriginDescriptor {
 
-public interface UserOriginDescriptor extends Identified {
-	
+	String getIdentifier();
+
 	String getName();
 
 	String getDescription();

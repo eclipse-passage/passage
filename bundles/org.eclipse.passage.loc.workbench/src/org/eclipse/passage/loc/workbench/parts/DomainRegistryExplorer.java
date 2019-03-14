@@ -27,8 +27,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.passage.loc.workbench.viewers.ResourceSetAdapter;
 import org.eclipse.passage.loc.workbench.viewers.StructuredSelectionListener;
@@ -65,8 +65,8 @@ public class DomainRegistryExplorer {
 		viewer = new TreeViewer(base);
 		viewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		AdapterFactory factory;
-		if (descriptorRegistry instanceof EditingDomainBasedRegistry) {
-			EditingDomainBasedRegistry registry = (EditingDomainBasedRegistry) descriptorRegistry;
+		if (descriptorRegistry instanceof BaseDomainRegistry) {
+			BaseDomainRegistry registry = (BaseDomainRegistry) descriptorRegistry;
 			factory = registry.getComposedAdapterFactory();
 		} else {
 			factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);

@@ -17,8 +17,9 @@ import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 
-public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensesDomainRegistry> {
+public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePackDescriptor, LicensesDomainRegistry> {
 
 	public LicensesDomainRegistryTracker(LicensesDomainRegistry registry) {
 		super(registry);
@@ -33,7 +34,7 @@ public class LicensesDomainRegistryTracker extends DomainContentAdapter<Licenses
 			case LicPackage.LICENSE_PACK__IDENTIFIER:
 				processLicensePackIdentifier(licensePack, notification);
 				break;
-				//FIXME: over identifiers
+			// FIXME: over identifiers
 			default:
 				break;
 			}

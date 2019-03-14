@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.edit.ui;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.registry.features.Features;
@@ -25,7 +26,6 @@ import org.eclipse.passage.lic.registry.products.Products;
 import org.eclipse.passage.lic.registry.products.ProductsRegistry;
 import org.eclipse.passage.lic.registry.users.Users;
 import org.eclipse.passage.lic.registry.users.UsersRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
@@ -57,8 +57,8 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof EditingDomainBasedRegistry) {
-			EditingDomainBasedRegistry registry = (EditingDomainBasedRegistry) element;
+		if (element instanceof BaseDomainRegistry) {
+			BaseDomainRegistry registry = (BaseDomainRegistry) element;
 			return LicensingImages.getImage(registry.getContentClassifier().getName());
 		}
 		if (element instanceof Resource) {

@@ -21,21 +21,18 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
-import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.Identified;
 import org.eclipse.passage.lic.registry.features.FeatureDescriptor;
 import org.eclipse.passage.lic.registry.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.registry.features.Features;
 import org.eclipse.passage.lic.registry.features.FeaturesEvents;
 import org.eclipse.passage.lic.registry.features.FeaturesRegistry;
-import org.eclipse.passage.loc.edit.EditingDomainBasedRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -44,9 +41,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME,
-		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI})
-public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
-		implements FeaturesRegistry, EditingDomainRegistry {
+		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI })
+public class FeaturesDomainRegistry extends BaseDomainRegistry<FeatureSetDescriptor>
+		implements FeaturesRegistry, EditingDomainRegistry<FeatureSetDescriptor> {
 
 	private final Map<String, FeatureSetDescriptor> featureSetIndex = new HashMap<>();
 	private final Map<String, FeatureDescriptor> featureIndex = new HashMap<>();
@@ -54,24 +51,13 @@ public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
 
 	@Reference
 	@Override
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.bindEnvironmentInfo(environmentInfo);
+	public void bindEventAdmin(EventAdmin admin) {
+		super.bindEventAdmin(admin);
 	}
 
 	@Override
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		super.unbindEnvironmentInfo(environmentInfo);
-	}
-
-	@Reference
-	@Override
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		super.bindEventAdmin(eventAdmin);
-	}
-
-	@Override
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		super.unbindEventAdmin(eventAdmin);
+	public void unbindEventAdmin(EventAdmin admin) {
+		super.unbindEventAdmin(admin);
 	}
 
 	@Reference
@@ -85,6 +71,7 @@ public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
 		super.unbindFactoryProvider(factoryProvider);
 	}
 
+	@Override
 	@Activate
 	public void activate(Map<String, Object> properties) {
 		super.activate(properties);
@@ -106,6 +93,16 @@ public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
 	@Override
 	public String getFileExtension() {
 		return Features.FILE_EXTENSION_XMI;
+	}
+
+	@Override
+	public Class<FeatureSetDescriptor> getContentClass() {
+		return FeatureSetDescriptor.class;
+	}
+
+	@Override
+	public String resolveIdentifier(FeatureSetDescriptor content) {
+		return content.getIdentifier();
 	}
 
 	@Override
@@ -168,7 +165,7 @@ public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	protected DomainContentAdapter<FeaturesDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<FeatureSetDescriptor, FeaturesDomainRegistry> createContentAdapter() {
 		return new FeaturesDomainRegistryTracker(this);
 	}
 
@@ -267,13 +264,8 @@ public class FeaturesDomainRegistry extends EditingDomainBasedRegistry
 	}
 
 	@Override
-	public void registerContent(Identified content) {
-		if (content instanceof FeatureSet) {
-			FeatureSet featureSet = (FeatureSet) content;
-			registerFeatureSet(featureSet);
-		} else {
-			//TODO: warning
-		}
+	public void registerContent(FeatureSetDescriptor content) {
+		registerFeatureSet(content);
 	}
 
 	@Override

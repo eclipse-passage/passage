@@ -12,14 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.edit;
 
-import java.nio.file.Path;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.passage.lic.registry.Identified;
 
-public interface EditingDomainRegistry extends IEditingDomainProvider, ComposedAdapterFactoryProvider {
+public interface EditingDomainRegistry<I> extends IEditingDomainProvider, ComposedAdapterFactoryProvider {
 
 	void registerSource(String source);
 
@@ -27,13 +24,15 @@ public interface EditingDomainRegistry extends IEditingDomainProvider, ComposedA
 
 	Iterable<String> getSources();
 
-	void registerContent(Identified content);
+	Class<I> getContentClass();
+
+	String resolveIdentifier(I content);
+
+	void registerContent(I content);
 
 	void unregisterContent(String identifier);
 
 	String getFileExtension();
-
-	Path getBasePath();
 
 	EClass getContentClassifier();
 
