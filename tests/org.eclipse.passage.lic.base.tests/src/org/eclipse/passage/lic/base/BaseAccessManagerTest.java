@@ -64,7 +64,7 @@ public class BaseAccessManagerTest {
 	public void testExecuteAccessRestrictionsNegative() {
 		manager.executeAccessRestrictions(null);
 		int errors = 1;
-		int events = 5;
+		int events = 6;
 		checkMaps(errors, events);
 	}
 

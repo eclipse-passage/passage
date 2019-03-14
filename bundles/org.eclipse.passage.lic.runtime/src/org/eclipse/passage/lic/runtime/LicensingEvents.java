@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.runtime;
 
 public class LicensingEvents {
 
+	public static final String PROPERTY_TOPIC = "org.eclipse.passage.lic.runtime.topic"; //$NON-NLS-1$
+	public static final String PROPERTY_DATA = "org.eclipse.passage.lic.runtime.data"; //$NON-NLS-1$
+
 	private LicensingEvents() {
 		// block
 	}
@@ -31,6 +34,6 @@ public class LicensingEvents {
 	/**
 	 * Base name of all Licensing events
 	 */
-	public static final String TOPIC_BASE = "org/eclipse/passage/lic/events"; //$NON-NLS-1$
+	public static final String TOPIC_BASE = "org/eclipse/passage/lic/runtime"; //$NON-NLS-1$
 
 }

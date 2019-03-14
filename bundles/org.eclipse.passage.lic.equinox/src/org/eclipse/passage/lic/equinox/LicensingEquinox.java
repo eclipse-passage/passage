@@ -12,7 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox;
 
+import java.util.Iterator;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
@@ -57,5 +63,24 @@ public class LicensingEquinox {
 			return result;
 		}
 		return null;
+	}
+
+	public static IStatus toStatus(LicensingResult result) {
+		int severity = result.getSeverity();
+		String source = result.getSource();
+		String message = result.getMessage();
+		int code = result.getCode();
+		Throwable exception = result.getException();
+		Iterator<LicensingResult> iterator = result.getChildren().iterator();
+		if (iterator.hasNext()) {
+			MultiStatus status = new MultiStatus(source, code, message, exception);
+			while (iterator.hasNext()) {
+				LicensingResult child = iterator.next();
+				status.merge(toStatus(child));
+			}
+			return status;
+		} else {
+			return new Status(severity, source, code, message, exception);
+		}
 	}
 }

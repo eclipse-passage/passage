@@ -42,10 +42,12 @@ import org.eclipse.passage.loc.runtime.LicenseOperatorService;
 import org.eclipse.passage.loc.runtime.ProductOperatorService;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
+@Component
 public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 
 	private String pluginId;
@@ -55,7 +57,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 	private ProductsRegistry productRegistry;
 	private ProductOperatorService productOperatorService;
 	private StreamCodec streamCodec;
-	
+
 	@Activate
 	public void activate(BundleContext context) {
 		pluginId = context.getBundle().getSymbolicName();
@@ -97,7 +99,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		this.productOperatorService = null;
 	}
 
-	@Reference(cardinality=ReferenceCardinality.OPTIONAL)
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
 	public void bindStreamCodec(StreamCodec streamCodec) {
 		this.streamCodec = streamCodec;
 	}
@@ -131,7 +133,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		license.setIdentifier(uuid);
 		license.setIssueDate(value);
 		String licenseIn = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
-		
+
 		URI uri = URI.createFileURI(licenseIn);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
@@ -161,7 +163,8 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		String licenseOut = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
 		File licenseEncoded = new File(licenseOut);
 		try (FileInputStream licenseInput = new FileInputStream(licenseIn);
-				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded); FileInputStream keyStream = new FileInputStream(privateProductToken)) {
+				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded);
+				FileInputStream keyStream = new FileInputStream(privateProductToken)) {
 			String username = productIdentifier;
 			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
 			String password = productOperatorService.createPassword(pvd);

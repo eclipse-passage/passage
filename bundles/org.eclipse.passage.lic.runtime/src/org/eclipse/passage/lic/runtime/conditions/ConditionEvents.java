@@ -25,7 +25,7 @@ public final class ConditionEvents {
 	/**
 	 * Base name for all licensing condition events
 	 */
-	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "PermissionExaminerEvents"; //$NON-NLS-1$
+	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "ConditionEvents"; //$NON-NLS-1$
 
 	/**
 	 * Name for all licensing condition events
@@ -33,7 +33,12 @@ public final class ConditionEvents {
 	public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
 
 	/**
-	 * Sent when conditions are rejected as invalid
+	 * Sent when conditions are ignored
+	 */
+	public static final String CONDITIONS_IGNORED = TOPIC + TOPIC_SEP + "conditionsIgnored"; //$NON-NLS-1$
+
+	/**
+	 * Sent when conditions are rejected as not valid
 	 */
 	public static final String CONDITIONS_NOT_VALID = TOPIC + TOPIC_SEP + "conditionsNotValid"; //$NON-NLS-1$
 	/**

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.conditions.InstallLocationConditionMiner">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.conditions.UserHomeConditionMiner">
    <service>
       <provide interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner"/>
    </service>
@@ -7,5 +7,5 @@
    <reference bind="bindKeyKeeperRegistry" interface="org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry" name="KeyKeeperRegistry" unbind="unbindKeyKeeperRegistry"/>
    <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <reference bind="bindStreamCodecRegistry" interface="org.eclipse.passage.lic.runtime.io.StreamCodecRegistry" name="StreamCodecRegistry" unbind="unbindStreamCodecRegistry"/>
-   <implementation class="org.eclipse.passage.lic.internal.equinox.conditions.InstallLocationConditionMiner"/>
+   <implementation class="org.eclipse.passage.lic.internal.equinox.conditions.UserHomeConditionMiner"/>
 </scr:component>

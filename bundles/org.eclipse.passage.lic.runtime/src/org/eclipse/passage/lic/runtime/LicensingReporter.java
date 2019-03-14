@@ -10,23 +10,33 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.conditions;
-
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+package org.eclipse.passage.lic.runtime;
 
 /**
- * The miner to extract {@link LicensingCondition}(s) from different sources:
- * <li>local file system</li>
- * <li>network server</li>
- * <li>etc</li>
+ * Licensing reporting service used to report the result of licensing activity.
+ *
  */
-public interface ConditionMiner {
+public interface LicensingReporter {
 
 	/**
+	 * Log the result
 	 * 
-	 * @param configuration
-	 * @return
+	 * @param result
 	 */
-	Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration);
+	void logResult(LicensingResult result);
+
+	/**
+	 * Post the result (asynchronous delivery)
+	 * 
+	 * @param result
+	 */
+	void postResult(LicensingResult result);
+
+	/**
+	 * Send the result (synchronous delivery)
+	 * 
+	 * @param result
+	 */
+	void sendResult(LicensingResult result);
 
 }

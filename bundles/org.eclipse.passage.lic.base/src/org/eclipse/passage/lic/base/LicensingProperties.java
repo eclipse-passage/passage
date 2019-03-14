@@ -25,18 +25,19 @@ public final class LicensingProperties {
 
 	public static final String LICENSING_FEATURE_PROVIDER = "licensing.feature.provider"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = "Eclipse Passage";
-	
+
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_ERROR = "error"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_WARN = "warn"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_DEFAULT = LICENSING_RESTRICTION_LEVEL_WARN;
-	
+
 	public static final String LICENSING_LEASE_TIME = "licensing.lease.time"; //$NON-NLS-1$
 	public static final String LICENSING_EXPIRE_TIME = "licensing.expire.time"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
 	public static final String LICENSING_CONDITION_AREA = "licensing.condition.area"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_URI = "licensing.condition.uri"; //$NON-NLS-1$
 
 	public static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; //$NON-NLS-1$
 	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
@@ -51,7 +52,7 @@ public final class LicensingProperties {
 	private LicensingProperties() {
 		// block
 	}
-	
+
 	public static String toRestrictionLevelProperty(Object object) {
 		if (object instanceof String) {
 			String level = (String) object;

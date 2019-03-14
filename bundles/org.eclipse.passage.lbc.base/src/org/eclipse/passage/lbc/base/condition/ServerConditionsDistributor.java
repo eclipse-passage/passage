@@ -102,16 +102,11 @@ public class ServerConditionsDistributor extends BaseComponent implements Permis
 
 	private boolean checkExistense(LicensingCondition condition, LicensingConfiguration configuration) {
 		for (ConditionMiner miner : miners) {
-			try {
-				Iterable<LicensingCondition> extracted = miner.extractLicensingConditions(configuration);
-				for (LicensingCondition extractedCondition : extracted) {
-					if (condition.equals(extractedCondition)) {
-						return true;
-					}
+			Iterable<LicensingCondition> extracted = miner.extractLicensingConditions(configuration);
+			for (LicensingCondition extractedCondition : extracted) {
+				if (condition.equals(extractedCondition)) {
+					return true;
 				}
-			} catch (LicensingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		return false;

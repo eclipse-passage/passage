@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.passage.lic.base.access.BaseAccessManager;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
@@ -62,6 +63,17 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 		// FIXME: consider event kind
 		Bundle bundle = event.getBundle();
 		EquinoxRequirements.extractLicensingManagementRequirements(bundle);
+	}
+
+	@Reference
+	@Override
+	public void bindLicensingReporter(LicensingReporter reporter) {
+		super.bindLicensingReporter(reporter);
+	}
+
+	@Override
+	public void unbindLicensingReporter(LicensingReporter reporter) {
+		super.unbindLicensingReporter(reporter);
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
