@@ -172,15 +172,19 @@ public class LicensingColors {
 	private static RGB stringToRgb(String storedValue) {
 		String pattern = "\\d{1,3}";
 		Matcher matcher = Pattern.compile(pattern).matcher(storedValue);
-		int red = 0, green = 0, blue = 0;
-		if (matcher.find()) {
-			red = Integer.valueOf(matcher.group(0));
-		}
-		if (matcher.find()) {
-			green = Integer.valueOf(matcher.group(0));
-		}
-		if (matcher.find()) {
-			blue = Integer.valueOf(matcher.group(0));
+		int red = 255, green = 255, blue = 255;
+		try {
+			if (matcher.find()) {
+				red = Integer.valueOf(matcher.group(0));
+			}
+			if (matcher.find()) {
+				green = Integer.valueOf(matcher.group(0));
+			}
+			if (matcher.find()) {
+				blue = Integer.valueOf(matcher.group(0));
+			}
+		} catch (NumberFormatException e) {
+			// nothing to do;
 		}
 		return new RGB(red, green, blue);
 	}
