@@ -1,45 +1,54 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2018-2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.users.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
-
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>User</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>User</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail <em>Email</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail
+ * <em>Email</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName
+ * <em>Full Name</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription
+ * <em>Description</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin
+ * <em>User Origin</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -47,9 +56,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -57,9 +66,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -67,9 +76,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String EMAIL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -77,9 +86,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String email = EMAIL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getFullName() <em>Full Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFullName()
 	 * @generated
 	 * @ordered
@@ -87,9 +96,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String FULL_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFullName() <em>Full Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFullName()
 	 * @generated
 	 * @ordered
@@ -97,9 +106,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String fullName = FULL_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -107,9 +116,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -117,8 +126,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UserImpl() {
@@ -126,8 +135,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,8 +145,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,8 +155,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,12 +164,13 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__IDENTIFIER, oldIdentifier, identifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__IDENTIFIER, oldIdentifier,
+					identifier));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -169,8 +179,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,8 +192,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,8 +202,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,8 +215,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,8 +225,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,202 +234,208 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__DESCRIPTION, oldDescription,
+					description));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public UserOrigin getUserOrigin() {
-		if (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN) return null;
-		return (UserOrigin)eInternalContainer();
+		if (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN)
+			return null;
+		return (UserOrigin) eInternalContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetUserOrigin(UserOrigin newUserOrigin, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newUserOrigin, UsersPackage.USER__USER_ORIGIN, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newUserOrigin, UsersPackage.USER__USER_ORIGIN, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void setUserOrigin(UserOrigin newUserOrigin) {
-		if (newUserOrigin != eInternalContainer() || (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
+		if (newUserOrigin != eInternalContainer()
+				|| (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
 			if (EcoreUtil.isAncestor(this, newUserOrigin))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUserOrigin != null)
-				msgs = ((InternalEObject)newUserOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+				msgs = ((InternalEObject) newUserOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__USERS,
+						UserOrigin.class, msgs);
 			msgs = basicSetUserOrigin(newUserOrigin, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__USER_ORIGIN, newUserOrigin, newUserOrigin));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__USER_ORIGIN, newUserOrigin,
+					newUserOrigin));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UsersPackage.USER__USER_ORIGIN:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetUserOrigin((UserOrigin)otherEnd, msgs);
+		case UsersPackage.USER__USER_ORIGIN:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetUserOrigin((UserOrigin) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UsersPackage.USER__USER_ORIGIN:
-				return basicSetUserOrigin(null, msgs);
+		case UsersPackage.USER__USER_ORIGIN:
+			return basicSetUserOrigin(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case UsersPackage.USER__USER_ORIGIN:
-				return eInternalContainer().eInverseRemove(this, UsersPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+		case UsersPackage.USER__USER_ORIGIN:
+			return eInternalContainer().eInverseRemove(this, UsersPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UsersPackage.USER__IDENTIFIER:
-				return getIdentifier();
-			case UsersPackage.USER__EMAIL:
-				return getEmail();
-			case UsersPackage.USER__FULL_NAME:
-				return getFullName();
-			case UsersPackage.USER__DESCRIPTION:
-				return getDescription();
-			case UsersPackage.USER__USER_ORIGIN:
-				return getUserOrigin();
+		case UsersPackage.USER__IDENTIFIER:
+			return getIdentifier();
+		case UsersPackage.USER__EMAIL:
+			return getEmail();
+		case UsersPackage.USER__FULL_NAME:
+			return getFullName();
+		case UsersPackage.USER__DESCRIPTION:
+			return getDescription();
+		case UsersPackage.USER__USER_ORIGIN:
+			return getUserOrigin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UsersPackage.USER__IDENTIFIER:
-				setIdentifier((String)newValue);
-				return;
-			case UsersPackage.USER__EMAIL:
-				setEmail((String)newValue);
-				return;
-			case UsersPackage.USER__FULL_NAME:
-				setFullName((String)newValue);
-				return;
-			case UsersPackage.USER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case UsersPackage.USER__USER_ORIGIN:
-				setUserOrigin((UserOrigin)newValue);
-				return;
+		case UsersPackage.USER__IDENTIFIER:
+			setIdentifier((String) newValue);
+			return;
+		case UsersPackage.USER__EMAIL:
+			setEmail((String) newValue);
+			return;
+		case UsersPackage.USER__FULL_NAME:
+			setFullName((String) newValue);
+			return;
+		case UsersPackage.USER__DESCRIPTION:
+			setDescription((String) newValue);
+			return;
+		case UsersPackage.USER__USER_ORIGIN:
+			setUserOrigin((UserOrigin) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UsersPackage.USER__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
-				return;
-			case UsersPackage.USER__EMAIL:
-				setEmail(EMAIL_EDEFAULT);
-				return;
-			case UsersPackage.USER__FULL_NAME:
-				setFullName(FULL_NAME_EDEFAULT);
-				return;
-			case UsersPackage.USER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case UsersPackage.USER__USER_ORIGIN:
-				setUserOrigin((UserOrigin)null);
-				return;
+		case UsersPackage.USER__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
+		case UsersPackage.USER__EMAIL:
+			setEmail(EMAIL_EDEFAULT);
+			return;
+		case UsersPackage.USER__FULL_NAME:
+			setFullName(FULL_NAME_EDEFAULT);
+			return;
+		case UsersPackage.USER__DESCRIPTION:
+			setDescription(DESCRIPTION_EDEFAULT);
+			return;
+		case UsersPackage.USER__USER_ORIGIN:
+			setUserOrigin((UserOrigin) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UsersPackage.USER__IDENTIFIER:
-				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case UsersPackage.USER__EMAIL:
-				return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
-			case UsersPackage.USER__FULL_NAME:
-				return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
-			case UsersPackage.USER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case UsersPackage.USER__USER_ORIGIN:
-				return getUserOrigin() != null;
+		case UsersPackage.USER__IDENTIFIER:
+			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+		case UsersPackage.USER__EMAIL:
+			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
+		case UsersPackage.USER__FULL_NAME:
+			return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
+		case UsersPackage.USER__DESCRIPTION:
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		case UsersPackage.USER__USER_ORIGIN:
+			return getUserOrigin() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
@@ -434,4 +450,4 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		return result.toString();
 	}
 
-} //UserImpl
+} // UserImpl

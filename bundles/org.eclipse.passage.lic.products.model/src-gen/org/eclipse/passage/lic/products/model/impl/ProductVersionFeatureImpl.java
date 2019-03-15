@@ -1,44 +1,52 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2018-2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.products.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
-
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Product Version Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Product
+ * Version Feature</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getFeatureVersion <em>Feature Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getRestrictionLevel <em>Restriction Level</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getProductVersion <em>Product Version</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getFeatureIdentifier
+ * <em>Feature Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getFeatureVersion
+ * <em>Feature Version</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getRestrictionLevel
+ * <em>Restriction Level</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionFeatureImpl#getProductVersion
+ * <em>Product Version</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container implements ProductVersionFeature {
 	/**
-	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature
+	 * Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeatureIdentifier()
 	 * @generated
 	 * @ordered
@@ -46,9 +54,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected static final String FEATURE_IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature
+	 * Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeatureIdentifier()
 	 * @generated
 	 * @ordered
@@ -56,9 +64,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFeatureVersion() <em>Feature Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getFeatureVersion() <em>Feature
+	 * Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeatureVersion()
 	 * @generated
 	 * @ordered
@@ -66,9 +74,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected static final String FEATURE_VERSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeatureVersion() <em>Feature Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFeatureVersion() <em>Feature
+	 * Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeatureVersion()
 	 * @generated
 	 * @ordered
@@ -76,9 +84,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected String featureVersion = FEATURE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRestrictionLevel() <em>Restriction Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getRestrictionLevel() <em>Restriction
+	 * Level</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRestrictionLevel()
 	 * @generated
 	 * @ordered
@@ -86,9 +94,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected static final String RESTRICTION_LEVEL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRestrictionLevel() <em>Restriction Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRestrictionLevel() <em>Restriction
+	 * Level</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRestrictionLevel()
 	 * @generated
 	 * @ordered
@@ -96,8 +104,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	protected String restrictionLevel = RESTRICTION_LEVEL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProductVersionFeatureImpl() {
@@ -105,8 +113,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,8 +123,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,8 +133,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,8 +148,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,8 +158,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,8 +172,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -174,8 +182,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,8 +196,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,8 +208,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProductVersion(ProductVersion newProductVersion, NotificationChain msgs) {
@@ -211,8 +219,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,8 +245,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,8 +261,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -267,8 +275,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,8 +290,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,8 +310,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -326,8 +334,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -350,8 +358,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -373,8 +381,8 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -393,4 +401,4 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		return result.toString();
 	}
 
-} //ProductVersionFeatureImpl
+} // ProductVersionFeatureImpl
