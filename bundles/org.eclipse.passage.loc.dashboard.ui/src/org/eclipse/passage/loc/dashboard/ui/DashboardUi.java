@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.Features;
 import org.eclipse.passage.lic.products.Products;
 import org.eclipse.passage.lic.registry.licenses.Licenses;
-import org.eclipse.passage.lic.registry.users.Users;
+import org.eclipse.passage.lic.users.Users;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;

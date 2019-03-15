@@ -10,16 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.users;
+package org.eclipse.passage.lic.users;
 
-public interface UserOriginDescriptor {
+public interface UsersRegistry {
 
-	String getIdentifier();
+	Iterable<? extends UserOriginDescriptor> getUserOrigins();
 
-	String getName();
+	UserOriginDescriptor getUserOrigin(String userOriginId);
 
-	String getDescription();
+	void registerUserOrigin(UserOriginDescriptor userOrigin);
+
+	void unregisterUserOrigin(String userOriginId);
 
 	Iterable<? extends UserDescriptor> getUsers();
+
+	Iterable<? extends UserDescriptor> getUsers(String userOriginId);
+
+	UserDescriptor getUser(String userId);
+
+	void registerUser(UserDescriptor user);
+
+	void unregisterUser(String userId);
 
 }

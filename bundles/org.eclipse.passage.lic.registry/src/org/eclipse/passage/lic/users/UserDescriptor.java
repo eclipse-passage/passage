@@ -10,11 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.users;
+package org.eclipse.passage.lic.users;
 
-public class Users {
-	
-	public static final String DOMAIN_NAME = "users"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_users"; //$NON-NLS-1$
+public interface UserDescriptor {
+
+	String getIdentifier();
+
+	String getEmail();
+
+	String getFullName();
+
+	String getDescription();
+
+	UserOriginDescriptor getUserOrigin();
 
 }

@@ -27,8 +27,8 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.users.UserDescriptor;
-import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -251,13 +251,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.users.UserOriginDescriptor
+	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 	 * @generated
 	 */
 	public Adapter createUserOriginDescriptorAdapter() {
@@ -307,13 +307,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.users.UserDescriptor <em>User Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.users.UserDescriptor
+	 * @see org.eclipse.passage.lic.users.UserDescriptor
 	 * @generated
 	 */
 	public Adapter createUserDescriptorAdapter() {

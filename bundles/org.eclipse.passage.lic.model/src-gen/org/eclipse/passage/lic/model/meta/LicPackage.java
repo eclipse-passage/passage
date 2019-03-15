@@ -263,10 +263,10 @@ public interface LicPackage extends EPackage {
 	int PRODUCT_VERSION_FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.users.UserOriginDescriptor
+	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getUserOriginDescriptor()
 	 * @generated
 	 */
@@ -291,10 +291,10 @@ public interface LicPackage extends EPackage {
 	int USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.users.UserDescriptor <em>User Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.users.UserDescriptor
+	 * @see org.eclipse.passage.lic.users.UserDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getUserDescriptor()
 	 * @generated
 	 */
@@ -1222,11 +1222,11 @@ public interface LicPackage extends EPackage {
 	EClass getProductVersionFeatureDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Origin Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.users.UserOriginDescriptor
+	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.users.UserOriginDescriptor"
 	 * @generated
 	 */
@@ -1266,11 +1266,11 @@ public interface LicPackage extends EPackage {
 	EClass getProductLineDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.users.UserDescriptor <em>User Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.users.UserDescriptor
+	 * @see org.eclipse.passage.lic.users.UserDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.users.UserDescriptor"
 	 * @generated
 	 */
@@ -2077,10 +2077,10 @@ public interface LicPackage extends EPackage {
 		EClass PRODUCT_VERSION_FEATURE_DESCRIPTOR = eINSTANCE.getProductVersionFeatureDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.users.UserOriginDescriptor
+		 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getUserOriginDescriptor()
 		 * @generated
 		 */
@@ -2117,10 +2117,10 @@ public interface LicPackage extends EPackage {
 		EClass PRODUCT_LINE_DESCRIPTOR = eINSTANCE.getProductLineDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.users.UserDescriptor <em>User Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.users.UserDescriptor
+		 * @see org.eclipse.passage.lic.users.UserDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getUserDescriptor()
 		 * @generated
 		 */

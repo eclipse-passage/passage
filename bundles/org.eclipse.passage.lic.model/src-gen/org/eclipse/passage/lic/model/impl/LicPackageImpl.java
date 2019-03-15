@@ -39,8 +39,8 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.users.UserDescriptor;
-import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->

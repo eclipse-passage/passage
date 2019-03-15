@@ -37,10 +37,10 @@ import org.eclipse.passage.lic.products.ProductsRegistry;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensesEvents;
 import org.eclipse.passage.lic.registry.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.registry.users.UserDescriptor;
-import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.registry.users.UsersEvents;
-import org.eclipse.passage.lic.registry.users.UsersRegistry;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.UsersEvents;
+import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 

@@ -11,4 +11,4 @@ Require-Bundle: org.eclipse.passage.lic.runtime;bundle-version="0.0.0";visibilit
 Export-Package: org.eclipse.passage.lic.features,
  org.eclipse.passage.lic.products,
  org.eclipse.passage.lic.registry.licenses,
- org.eclipse.passage.lic.registry.users
+ org.eclipse.passage.lic.users

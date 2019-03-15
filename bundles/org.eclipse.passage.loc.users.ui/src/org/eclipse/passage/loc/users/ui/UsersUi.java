@@ -15,8 +15,8 @@ package org.eclipse.passage.loc.users.ui;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.users.UserDescriptor;
-import org.eclipse.passage.lic.registry.users.UsersRegistry;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 

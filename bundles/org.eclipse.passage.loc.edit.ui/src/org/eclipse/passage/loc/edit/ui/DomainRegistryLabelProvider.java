@@ -24,8 +24,8 @@ import org.eclipse.passage.lic.products.Products;
 import org.eclipse.passage.lic.products.ProductsRegistry;
 import org.eclipse.passage.lic.registry.licenses.Licenses;
 import org.eclipse.passage.lic.registry.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.registry.users.Users;
-import org.eclipse.passage.lic.registry.users.UsersRegistry;
+import org.eclipse.passage.lic.users.Users;
+import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {

@@ -23,8 +23,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedRepor
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.registry.users.UserDescriptor;
-import org.eclipse.passage.lic.registry.users.UsersRegistry;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;

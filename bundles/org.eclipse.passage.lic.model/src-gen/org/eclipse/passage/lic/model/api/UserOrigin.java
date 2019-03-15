@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.model.api;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
