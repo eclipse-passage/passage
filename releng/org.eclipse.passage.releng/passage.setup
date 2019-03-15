@@ -200,8 +200,8 @@
       <predicate
           xsi:type="predicates:AndPredicate">
         <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lic.runtime"/>
+            xsi:type="predicates:NamePredicate"
+            pattern=".*passage.*"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
             excludedWorkingSet="//@setupTasks.8/@workingSets.1 //@setupTasks.8/@workingSets.2 //@setupTasks.8/@workingSets.3"/>
