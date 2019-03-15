@@ -14,9 +14,9 @@ package org.eclipse.passage.loc.features.ui;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
+import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.FeaturesRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.features.FeatureDescriptor;
-import org.eclipse.passage.lic.registry.features.FeaturesRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 

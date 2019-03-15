@@ -67,10 +67,10 @@ public interface LicPackage extends EPackage {
   LicPackage eINSTANCE = org.eclipse.passage.lic.model.impl.LicPackageImpl.init();
 
   /**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.features.FeatureSetDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureSetDescriptor()
 	 * @generated
 	 */
@@ -115,10 +115,10 @@ public interface LicPackage extends EPackage {
 	int PRODUCT_VERSION_DESCRIPTOR = 5;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.features.FeatureDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureDescriptor()
 	 * @generated
 	 */
@@ -143,10 +143,10 @@ public interface LicPackage extends EPackage {
 	int FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureVersionDescriptor()
 	 * @generated
 	 */
@@ -1178,11 +1178,11 @@ public interface LicPackage extends EPackage {
 	int LICENSE_GRANT_OPERATION_COUNT = LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT + 0;
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Set Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureSetDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor"
 	 * @generated
 	 */
@@ -1233,22 +1233,22 @@ public interface LicPackage extends EPackage {
 	EClass getUserOriginDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureDescriptor"
 	 * @generated
 	 */
 	EClass getFeatureDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Version Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor"
 	 * @generated
 	 */
@@ -2037,10 +2037,10 @@ public interface LicPackage extends EPackage {
 	 */
   interface Literals {
     /**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.features.FeatureSetDescriptor
+		 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureSetDescriptor()
 		 * @generated
 		 */
@@ -2087,20 +2087,20 @@ public interface LicPackage extends EPackage {
 		EClass USER_ORIGIN_DESCRIPTOR = eINSTANCE.getUserOriginDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.features.FeatureDescriptor
+		 * @see org.eclipse.passage.lic.features.FeatureDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureDescriptor()
 		 * @generated
 		 */
 		EClass FEATURE_DESCRIPTOR = eINSTANCE.getFeatureDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor
+		 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getFeatureVersionDescriptor()
 		 * @generated
 		 */

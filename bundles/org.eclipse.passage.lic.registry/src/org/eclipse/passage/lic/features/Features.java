@@ -10,14 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.features;
+package org.eclipse.passage.lic.features;
 
-public interface FeatureVersionDescriptor {
-
-	public String getVersion();
-
-	public String getNews();
-
-	public FeatureDescriptor getFeature();
+public class Features {
+	
+	public static final String DOMAIN_NAME = "features"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "lic_features"; //$NON-NLS-1$
 
 }

@@ -10,16 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.features;
+package org.eclipse.passage.lic.features;
 
-public interface FeatureSetDescriptor {
+public interface FeatureVersionDescriptor {
 
-	String getIdentifier();
+	public String getVersion();
 
-	String getName();
+	public String getNews();
 
-	String getDescription();
-
-	Iterable<? extends FeatureDescriptor> getFeatures();
+	public FeatureDescriptor getFeature();
 
 }

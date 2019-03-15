@@ -16,11 +16,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.FeatureSetDescriptor;
+import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.registry.features.FeatureDescriptor;
-import org.eclipse.passage.lic.registry.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.registry.products.ProductDescriptor;
@@ -195,13 +195,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureSetDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureSetDescriptorAdapter() {
@@ -265,13 +265,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureDescriptorAdapter() {
@@ -279,13 +279,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.features.FeatureVersionDescriptor
+	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
 	 * @generated
 	 */
 	public Adapter createFeatureVersionDescriptorAdapter() {
