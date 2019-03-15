@@ -26,8 +26,8 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
+import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensesEvents;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
@@ -35,8 +35,8 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.products.ProductsEvents;
-import org.eclipse.passage.lic.products.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductsEvents;
+import org.eclipse.passage.lic.products.registry.ProductsRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.UsersEvents;
@@ -45,13 +45,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 public class DashboardPanelPart {
-	
+
 	private final FeatureRegistry featureRegistry;
 	private final ProductsRegistry productRegistry;
 	private final UsersRegistry userRegistry;
 	private final LicensesRegistry licenseRegistry;
 	private final DashboardPanelAdvisor dashboardAdvisor;
-	
+
 	@Inject
 	public DashboardPanelPart(IEclipseContext context) {
 		this.featureRegistry = context.get(FeatureRegistry.class);
@@ -64,7 +64,7 @@ public class DashboardPanelPart {
 		}
 		this.dashboardAdvisor = advisor;
 	}
-	
+
 	@PostConstruct
 	public void postConstruct(Composite parent, IEclipseContext context) {
 		dashboardAdvisor.init(context);
@@ -78,7 +78,7 @@ public class DashboardPanelPart {
 		createLicenseInfo(area);
 		createFooterInfo(area);
 	}
-	
+
 	protected void createHeaderInfo(Composite parent) {
 		dashboardAdvisor.createHeaderInfo(parent);
 	}
@@ -129,13 +129,15 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdFeatureVersion(@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
+	public void createdFeatureVersion(
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeatureVersion(@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
+	public void deletedFeatureVersion(
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
@@ -165,25 +167,29 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdProductVersion(@UIEventTopic(ProductsEvents.PRODUCT_VERSION_CREATE) ProductVersionDescriptor input) {
+	public void createdProductVersion(
+			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_CREATE) ProductVersionDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedProductVersion(@UIEventTopic(ProductsEvents.PRODUCT_VERSION_DELETE) ProductVersionDescriptor input) {
+	public void deletedProductVersion(
+			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_DELETE) ProductVersionDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdProductVersionFeature(@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_CREATE) ProductVersionFeatureDescriptor input) {
+	public void createdProductVersionFeature(
+			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_CREATE) ProductVersionFeatureDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedProductVersionFeature(@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_DELETE) ProductVersionFeatureDescriptor input) {
+	public void deletedProductVersionFeature(
+			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_DELETE) ProductVersionFeatureDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
@@ -239,15 +245,15 @@ public class DashboardPanelPart {
 	public void preDestroy(IEclipseContext context) {
 		dashboardAdvisor.dispose(context);
 	}
-	
+
 	@Focus
 	public void onFocus() {
-		
+
 	}
-	
+
 	@Persist
 	public void save() {
-		
+
 	}
-	
+
 }

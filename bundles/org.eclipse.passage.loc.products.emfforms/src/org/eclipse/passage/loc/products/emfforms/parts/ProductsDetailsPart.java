@@ -21,7 +21,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.passage.lic.model.api.ProductLine;
-import org.eclipse.passage.lic.products.ProductsEvents;
+import org.eclipse.passage.lic.products.registry.ProductsEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
 public class ProductsDetailsPart extends DetailsView {
@@ -33,10 +33,11 @@ public class ProductsDetailsPart extends DetailsView {
 
 	@Inject
 	@Optional
-	public void showProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_CREATE) ProductLine input, IEclipseContext context) {
+	public void showProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_CREATE) ProductLine input,
+			IEclipseContext context) {
 		show(input, context);
 	}
-	
+
 	@Override
 	protected CreateElementCallback getCreateElementCallback() {
 		return new ProductsCreateElementCallback();

@@ -27,15 +27,15 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
+import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensesEvents;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductsEvents;
-import org.eclipse.passage.lic.products.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductsEvents;
+import org.eclipse.passage.lic.products.registry.ProductsRegistry;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.UsersEvents;
 import org.eclipse.passage.lic.users.UsersRegistry;
@@ -93,19 +93,22 @@ public class DomainRegistryExplorerPart {
 
 	@Inject
 	@Optional
-	public void createFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor descriptor) {
+	public void createFeatureSet(
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void deleteFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor descriptor) {
+	public void deleteFeatureSet(
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void updateFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_UPDATE) FeatureSetDescriptor descriptor) {
+	public void updateFeatureSet(
+			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_UPDATE) FeatureSetDescriptor descriptor) {
 		treeView.refresh();
 	}
 

@@ -22,7 +22,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductsRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -70,8 +70,8 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
 		ProductVersionDescriptor initial = null;
-		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, provider,
-				registry, initial);
+		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, provider, registry,
+				initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getVersion();
 			if (identifier != null) {

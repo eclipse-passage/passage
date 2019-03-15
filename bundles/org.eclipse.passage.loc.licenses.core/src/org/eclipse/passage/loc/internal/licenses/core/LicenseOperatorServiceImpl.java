@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.emf.edit.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductsRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 import org.eclipse.passage.loc.runtime.LicenseOperatorEvents;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;

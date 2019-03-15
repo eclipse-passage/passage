@@ -19,7 +19,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.licenses.Licenses;
-import org.eclipse.passage.lic.products.Products;
+import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.users.Users;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;

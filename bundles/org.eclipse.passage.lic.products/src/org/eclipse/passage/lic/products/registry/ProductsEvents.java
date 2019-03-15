@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.products;
+package org.eclipse.passage.lic.products.registry;
 
 import org.eclipse.passage.lic.runtime.LicensingEvents;
 

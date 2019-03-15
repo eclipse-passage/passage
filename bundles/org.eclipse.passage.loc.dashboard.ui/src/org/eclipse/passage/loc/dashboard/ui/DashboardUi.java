@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.licenses.Licenses;
-import org.eclipse.passage.lic.products.Products;
+import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.users.Users;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
@@ -50,7 +50,8 @@ public class DashboardUi {
 	public static final String COMMANDPARAMETER_EDIT_CLASSIFIER = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.classifier"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_EDIT_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.perspective"; //$NON-NLS-1$
 
-	public static Object executeCommand(IEclipseContext context, String commandId, String parameterId, String parameterValue) {
+	public static Object executeCommand(IEclipseContext context, String commandId, String parameterId,
+			String parameterValue) {
 		Map<Object, Object> parameters = new HashMap<>();
 		parameters.put(parameterId, parameterValue);
 		return executeCommand(context, commandId, parameters);
@@ -59,7 +60,7 @@ public class DashboardUi {
 	public static Object executeCommand(IEclipseContext context, String commandId, Map<Object, Object> parameters) {
 		ECommandService commandService = context.get(ECommandService.class);
 		Command command = commandService.getCommand(commandId);
-		ParameterizedCommand parametrizedCommand = ParameterizedCommand.generateCommand(command, parameters );
+		ParameterizedCommand parametrizedCommand = ParameterizedCommand.generateCommand(command, parameters);
 		EHandlerService eHandlerService = context.get(EHandlerService.class);
 		return eHandlerService.executeHandler(parametrizedCommand);
 	}

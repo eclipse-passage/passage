@@ -17,16 +17,16 @@ import java.util.Collections;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.products.Products;
-import org.eclipse.passage.lic.products.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.products.registry.ProductsRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor {
-	
+
 	private ProductsRegistry registry;
-	
+
 	@Reference
 	public void bindDomainRegistry(ProductsRegistry registry) {
 		this.registry = registry;

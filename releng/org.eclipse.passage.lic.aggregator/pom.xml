@@ -47,6 +47,7 @@
 		<module>../../features/org.eclipse.passage.lic.oshi.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.features</module>
+		<module>../../bundles/org.eclipse.passage.lic.products</module>
 		<module>../../bundles/org.eclipse.passage.lic.registry</module>
 		<module>../../bundles/org.eclipse.passage.lic.model.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.model</module>
