@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.features.model/src-gen"
+    creationIcons="false" editDirectory="org.eclipse.passage.lic.features.edit/src-gen"
+    editorDirectory="org.eclipse.passage.lic.features.editor/src-gen" modelPluginID="org.eclipse.passage.lic.features.model"
+    modelName="Features" editPluginClass="org.eclipse.passage.lic.features.edit.FeaturesEditPlugin"
+    editorPluginClass="org.eclipse.passage.lic.features.editor.FeaturesEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.model.tests.LicAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.eclipse.passage.lic.features.edit" editorPluginID="org.eclipse.passage.lic.features.editor"
+    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
+    cleanup="true" oSGiCompatible="true">
+  <foreignModel>platform:/resource/org.eclipse.passage.lic.features.ecore/model/features.ecore</foreignModel>
+  <genPackages prefix="Features" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
+      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
+      testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#/">
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSetDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersionDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/name"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSet/features"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/name"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/description"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/featureSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/featureVersions"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/version"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/feature"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersion/news"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
