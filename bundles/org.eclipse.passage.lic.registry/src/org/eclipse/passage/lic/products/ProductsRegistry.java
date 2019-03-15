@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.products;
+package org.eclipse.passage.lic.products;
 
 public interface ProductsRegistry {
 

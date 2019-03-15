@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.products;
+package org.eclipse.passage.lic.products;
 
-public interface ProductVersionDescriptor {
+public interface ProductVersionFeatureDescriptor {
 
-	String getVersion();
-
-	public String getNews();
-
-	String getInstallationToken();
-
-	String getSecureToken();
+	String getFeatureIdentifier();
 	
-	ProductDescriptor getProduct();
+	String getFeatureVersion();
 
-	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
+	String getRestrictionLevel();
+
+	ProductVersionDescriptor getProductVersion();
 
 }

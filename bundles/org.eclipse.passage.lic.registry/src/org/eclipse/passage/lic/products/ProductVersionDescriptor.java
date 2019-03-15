@@ -10,11 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.products;
+package org.eclipse.passage.lic.products;
 
-public class Products {
+public interface ProductVersionDescriptor {
+
+	String getVersion();
+
+	public String getNews();
+
+	String getInstallationToken();
+
+	String getSecureToken();
 	
-	public static final String DOMAIN_NAME = "products"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_products"; //$NON-NLS-1$
+	ProductDescriptor getProduct();
+
+	Iterable<? extends ProductVersionFeatureDescriptor> getProductVersionFeatures();
 
 }

@@ -21,12 +21,12 @@ import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.users.UserDescriptor;
 import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
 
@@ -209,13 +209,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.products.ProductDescriptor <em>Product Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.products.ProductDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductDescriptor
 	 * @generated
 	 */
 	public Adapter createProductDescriptorAdapter() {
@@ -223,13 +223,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
 	 * @generated
 	 */
 	public Adapter createProductVersionDescriptorAdapter() {
@@ -237,13 +237,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
 	 * @generated
 	 */
 	public Adapter createProductVersionFeatureDescriptorAdapter() {
@@ -293,13 +293,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.products.ProductLineDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
 	 * @generated
 	 */
 	public Adapter createProductLineDescriptorAdapter() {

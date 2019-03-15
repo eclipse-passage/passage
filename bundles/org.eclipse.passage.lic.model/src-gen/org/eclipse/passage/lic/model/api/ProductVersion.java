@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.model.api;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->

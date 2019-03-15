@@ -95,20 +95,20 @@ public interface LicPackage extends EPackage {
 	int FEATURE_SET_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.products.ProductDescriptor <em>Product Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.products.ProductDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductDescriptor()
 	 * @generated
 	 */
 	int PRODUCT_DESCRIPTOR = 4;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductVersionDescriptor()
 	 * @generated
 	 */
@@ -171,10 +171,10 @@ public interface LicPackage extends EPackage {
 	int FEATURE_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.products.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.products.ProductLineDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductLineDescriptor()
 	 * @generated
 	 */
@@ -235,10 +235,10 @@ public interface LicPackage extends EPackage {
 	int PRODUCT_VERSION_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductVersionFeatureDescriptor()
 	 * @generated
 	 */
@@ -1189,33 +1189,33 @@ public interface LicPackage extends EPackage {
 	EClass getFeatureSetDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.products.ProductDescriptor <em>Product Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.products.ProductDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductDescriptor"
 	 * @generated
 	 */
 	EClass getProductDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Version Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor"
 	 * @generated
 	 */
 	EClass getProductVersionDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Version Feature Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor"
 	 * @generated
 	 */
@@ -1255,11 +1255,11 @@ public interface LicPackage extends EPackage {
 	EClass getFeatureVersionDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Line Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.products.ProductLineDescriptor
+	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductLineDescriptor"
 	 * @generated
 	 */
@@ -2047,30 +2047,30 @@ public interface LicPackage extends EPackage {
 		EClass FEATURE_SET_DESCRIPTOR = eINSTANCE.getFeatureSetDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.products.ProductDescriptor <em>Product Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.products.ProductDescriptor
+		 * @see org.eclipse.passage.lic.products.ProductDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductDescriptor()
 		 * @generated
 		 */
 		EClass PRODUCT_DESCRIPTOR = eINSTANCE.getProductDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.products.ProductVersionDescriptor
+		 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductVersionDescriptor()
 		 * @generated
 		 */
 		EClass PRODUCT_VERSION_DESCRIPTOR = eINSTANCE.getProductVersionDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor
+		 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductVersionFeatureDescriptor()
 		 * @generated
 		 */
@@ -2107,10 +2107,10 @@ public interface LicPackage extends EPackage {
 		EClass FEATURE_VERSION_DESCRIPTOR = eINSTANCE.getFeatureVersionDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.products.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.products.ProductLineDescriptor
+		 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getProductLineDescriptor()
 		 * @generated
 		 */

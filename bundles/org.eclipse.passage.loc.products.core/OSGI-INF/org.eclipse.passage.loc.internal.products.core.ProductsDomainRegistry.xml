@@ -3,7 +3,7 @@
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="products"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_products"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.registry.products.ProductsRegistry"/>
+      <provide interface="org.eclipse.passage.lic.products.ProductsRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>

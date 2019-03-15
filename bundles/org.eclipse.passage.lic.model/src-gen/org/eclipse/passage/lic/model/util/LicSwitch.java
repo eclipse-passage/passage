@@ -20,12 +20,12 @@ import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.registry.users.UserDescriptor;
 import org.eclipse.passage.lic.registry.users.UserOriginDescriptor;
 

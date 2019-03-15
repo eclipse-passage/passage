@@ -20,9 +20,9 @@ import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.registry.products.ProductDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.registry.products.ProductVersionFeatureDescriptor;
+import org.eclipse.passage.lic.products.ProductDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {

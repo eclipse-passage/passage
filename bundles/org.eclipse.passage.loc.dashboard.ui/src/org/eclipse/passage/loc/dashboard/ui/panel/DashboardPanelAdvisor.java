@@ -14,8 +14,8 @@ package org.eclipse.passage.loc.dashboard.ui.panel;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.passage.lic.features.FeaturesRegistry;
+import org.eclipse.passage.lic.products.ProductsRegistry;
 import org.eclipse.passage.lic.registry.licenses.LicensesRegistry;
-import org.eclipse.passage.lic.registry.products.ProductsRegistry;
 import org.eclipse.passage.lic.registry.users.UsersRegistry;
 import org.eclipse.swt.widgets.Composite;
 
