@@ -22,10 +22,10 @@ import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.lic.users.Users;
-import org.eclipse.passage.lic.users.UsersRegistry;
+import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.users.registry.Users;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
@@ -41,7 +41,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		if (element instanceof ProductRegistry) {
 			return "Products";
 		}
-		if (element instanceof UsersRegistry) {
+		if (element instanceof UserRegistry) {
 			return "Users";
 		}
 		if (element instanceof LicensesRegistry) {

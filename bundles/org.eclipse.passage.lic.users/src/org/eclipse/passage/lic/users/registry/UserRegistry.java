@@ -10,9 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.users;
+package org.eclipse.passage.lic.users.registry;
 
-public interface UsersRegistry {
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
+
+public interface UserRegistry {
 
 	Iterable<? extends UserOriginDescriptor> getUserOrigins();
 

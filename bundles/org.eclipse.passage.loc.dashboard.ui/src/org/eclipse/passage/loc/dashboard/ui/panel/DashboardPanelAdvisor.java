@@ -16,7 +16,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.lic.users.UsersRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.swt.widgets.Composite;
 
 public interface DashboardPanelAdvisor {
@@ -33,9 +33,9 @@ public interface DashboardPanelAdvisor {
 
 	void updateProductInfo(ProductRegistry productRegistry);
 
-	void createUserInfo(Composite parent, UsersRegistry userRegistry);
+	void createUserInfo(Composite parent, UserRegistry userRegistry);
 
-	void updateUserInfo(UsersRegistry userRegistry);
+	void updateUserInfo(UserRegistry userRegistry);
 
 	void createLicenseInfo(Composite parent, LicensesRegistry licenseRegistry);
 

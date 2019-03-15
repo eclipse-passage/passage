@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UsersRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -27,7 +27,7 @@ public class UsersUi {
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
 	public static UserDescriptor selectUserDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
-			UsersRegistry registry, UserDescriptor initial) {
+			UserRegistry registry, UserDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getUser().getName();
 		String title = "Select User";
 		Iterable<? extends UserDescriptor> input = registry.getUsers();

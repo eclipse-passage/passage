@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.users.core.UsersDomainRegistry">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.users.core.UserDomainRegistry">
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="users"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_users"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.users.UsersRegistry"/>
+      <provide interface="org.eclipse.passage.lic.users.registry.UserRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>
-   <implementation class="org.eclipse.passage.loc.internal.users.core.UsersDomainRegistry"/>
+   <implementation class="org.eclipse.passage.loc.internal.users.core.UserDomainRegistry"/>
 </scr:component>

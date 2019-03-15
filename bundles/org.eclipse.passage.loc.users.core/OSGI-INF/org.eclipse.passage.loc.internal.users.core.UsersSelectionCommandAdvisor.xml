@@ -4,6 +4,6 @@
    <service>
       <provide interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor"/>
    </service>
-   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.users.UsersRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
+   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.users.registry.UserRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.users.core.UsersSelectionCommandAdvisor"/>
 </scr:component>

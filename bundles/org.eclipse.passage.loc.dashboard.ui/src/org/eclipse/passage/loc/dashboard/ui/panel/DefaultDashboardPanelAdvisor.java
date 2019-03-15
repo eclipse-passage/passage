@@ -23,10 +23,10 @@ import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.lic.users.Users;
-import org.eclipse.passage.lic.users.UsersRegistry;
+import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.users.registry.Users;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -258,7 +258,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createUserInfo(Composite parent, UsersRegistry userRegistry) {
+	public void createUserInfo(Composite parent, UserRegistry userRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
@@ -313,7 +313,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateUserInfo(UsersRegistry userRegistry) {
+	public void updateUserInfo(UserRegistry userRegistry) {
 		userOrigins.update(userRegistry.getUserOrigins());
 		users.update(userRegistry.getUsers());
 	}

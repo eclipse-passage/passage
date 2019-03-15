@@ -21,7 +21,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.passage.lic.model.api.UserOrigin;
-import org.eclipse.passage.lic.users.UsersEvents;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
 public class UsersDetailsPart extends DetailsView {
@@ -33,10 +33,11 @@ public class UsersDetailsPart extends DetailsView {
 
 	@Inject
 	@Optional
-	public void showFeatureSet(@UIEventTopic(UsersEvents.USER_ORIGIN_CREATE) UserOrigin input, IEclipseContext context) {
+	public void showFeatureSet(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOrigin input,
+			IEclipseContext context) {
 		show(input, context);
 	}
-	
+
 	@Override
 	protected CreateElementCallback getCreateElementCallback() {
 		return new UsersCreateElementCallback();

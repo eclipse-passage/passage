@@ -35,12 +35,12 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.UsersEvents;
-import org.eclipse.passage.lic.users.UsersRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
@@ -48,7 +48,7 @@ public class DashboardPanelPart {
 
 	private final FeatureRegistry featureRegistry;
 	private final ProductRegistry productRegistry;
-	private final UsersRegistry userRegistry;
+	private final UserRegistry userRegistry;
 	private final LicensesRegistry licenseRegistry;
 	private final DashboardPanelAdvisor dashboardAdvisor;
 
@@ -56,7 +56,7 @@ public class DashboardPanelPart {
 	public DashboardPanelPart(IEclipseContext context) {
 		this.featureRegistry = context.get(FeatureRegistry.class);
 		this.productRegistry = context.get(ProductRegistry.class);
-		this.userRegistry = context.get(UsersRegistry.class);
+		this.userRegistry = context.get(UserRegistry.class);
 		this.licenseRegistry = context.get(LicensesRegistry.class);
 		DashboardPanelAdvisor advisor = context.get(DashboardPanelAdvisor.class);
 		if (advisor == null) {
@@ -143,13 +143,15 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor input) {
+	public void createdProductLine(
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor input) {
+	public void deletedProductLine(
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
@@ -195,25 +197,25 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdUserOrigin(@UIEventTopic(UsersEvents.USER_ORIGIN_CREATE) UserOriginDescriptor input) {
+	public void createdUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOriginDescriptor input) {
 		dashboardAdvisor.updateUserInfo(userRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedUserOrigin(@UIEventTopic(UsersEvents.USER_ORIGIN_DELETE) UserOriginDescriptor input) {
+	public void deletedUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOriginDescriptor input) {
 		dashboardAdvisor.updateUserInfo(userRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdUser(@UIEventTopic(UsersEvents.USER_CREATE) UserDescriptor input) {
+	public void createdUser(@UIEventTopic(UserRegistryEvents.USER_CREATE) UserDescriptor input) {
 		dashboardAdvisor.updateUserInfo(userRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedUser(@UIEventTopic(UsersEvents.USER_DELETE) UserDescriptor input) {
+	public void deletedUser(@UIEventTopic(UserRegistryEvents.USER_DELETE) UserDescriptor input) {
 		dashboardAdvisor.updateUserInfo(userRegistry);
 	}
 

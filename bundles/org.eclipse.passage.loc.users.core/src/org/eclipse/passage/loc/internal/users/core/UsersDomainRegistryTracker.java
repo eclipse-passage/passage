@@ -19,9 +19,9 @@ import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
-public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginDescriptor, UsersDomainRegistry> {
+public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> {
 
-	public UsersDomainRegistryTracker(UsersDomainRegistry registry) {
+	public UsersDomainRegistryTracker(UserDomainRegistry registry) {
 		super(registry);
 	}
 
