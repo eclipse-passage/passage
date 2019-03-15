@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=opti
  org.eclipse.passage.lic.features;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.products;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.users;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.lic.registry;bundle-version="0.0.0";visibility:=reexport
+ org.eclipse.passage.lic.licenses;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.model.api,
  org.eclipse.passage.lic.model.impl,
  org.eclipse.passage.lic.model.meta,

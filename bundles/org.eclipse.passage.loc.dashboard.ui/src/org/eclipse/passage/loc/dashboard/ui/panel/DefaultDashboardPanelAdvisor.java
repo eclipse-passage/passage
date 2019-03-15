@@ -20,8 +20,8 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.Licenses;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
@@ -319,7 +319,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createLicenseInfo(Composite parent, LicensesRegistry licenseRegistry) {
+	public void createLicenseInfo(Composite parent, LicenseRegistry licenseRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
@@ -352,7 +352,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateLicenseInfo(LicensesRegistry licenseRegistry) {
+	public void updateLicenseInfo(LicenseRegistry licenseRegistry) {
 		licensePacks.update(licenseRegistry.getLicensePacks());
 	}
 

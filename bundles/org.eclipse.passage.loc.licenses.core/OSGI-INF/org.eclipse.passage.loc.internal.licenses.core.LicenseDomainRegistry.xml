@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.licenses.core.LicensesDomainRegistry">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.licenses.core.LicenseDomainRegistry">
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="licenses"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_licenses"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.licenses.LicensesRegistry"/>
+      <provide interface="org.eclipse.passage.lic.licenses.registry.LicenseRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>
-   <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicensesDomainRegistry"/>
+   <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseDomainRegistry"/>
 </scr:component>

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.dashboard.ui.panel;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.swt.widgets.Composite;
@@ -37,9 +37,9 @@ public interface DashboardPanelAdvisor {
 
 	void updateUserInfo(UserRegistry userRegistry);
 
-	void createLicenseInfo(Composite parent, LicensesRegistry licenseRegistry);
+	void createLicenseInfo(Composite parent, LicenseRegistry licenseRegistry);
 
-	void updateLicenseInfo(LicensesRegistry licenseRegistry);
+	void updateLicenseInfo(LicenseRegistry licenseRegistry);
 
 	void createFooterInfo(Composite parent);
 

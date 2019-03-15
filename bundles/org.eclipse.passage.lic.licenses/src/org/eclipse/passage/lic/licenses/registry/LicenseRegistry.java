@@ -10,9 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses;
+package org.eclipse.passage.lic.licenses.registry;
 
-public interface LicensesRegistry {
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+
+public interface LicenseRegistry {
 
 	Iterable<? extends LicensePackDescriptor> getLicensePacks();
 

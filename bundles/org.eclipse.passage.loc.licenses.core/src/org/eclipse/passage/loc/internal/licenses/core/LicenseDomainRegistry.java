@@ -27,9 +27,9 @@ import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.Licenses;
-import org.eclipse.passage.lic.licenses.LicensesEvents;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
@@ -40,8 +40,8 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME,
 		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
-public class LicensesDomainRegistry extends BaseDomainRegistry<LicensePackDescriptor>
-		implements LicensesRegistry, EditingDomainRegistry<LicensePackDescriptor> {
+public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescriptor>
+		implements LicenseRegistry, EditingDomainRegistry<LicensePackDescriptor> {
 
 	private final Map<String, LicensePackDescriptor> licensePackIndex = new HashMap<>();
 	private final Map<String, List<LicensePackDescriptor>> userPackIndex = new HashMap<>();
@@ -144,7 +144,7 @@ public class LicensesDomainRegistry extends BaseDomainRegistry<LicensePackDescri
 	}
 
 	@Override
-	protected DomainContentAdapter<LicensePackDescriptor, LicensesDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<LicensePackDescriptor, LicenseDomainRegistry> createContentAdapter() {
 		return new LicensesDomainRegistryTracker(this);
 	}
 
@@ -155,7 +155,7 @@ public class LicensesDomainRegistry extends BaseDomainRegistry<LicensePackDescri
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(LicensesEvents.LICENSE_PACK_CREATE, licensePack));
+		eventAdmin.postEvent(OperatorEvents.create(LicenseRegistryEvents.LICENSE_PACK_CREATE, licensePack));
 		String userIdentifier = licensePack.getUserIdentifier();
 		List<LicensePackDescriptor> userPackList = userPackIndex.computeIfAbsent(userIdentifier,
 				key -> new ArrayList<>());
@@ -172,7 +172,7 @@ public class LicensesDomainRegistry extends BaseDomainRegistry<LicensePackDescri
 	public void unregisterLicensePack(String identifier) {
 		LicensePackDescriptor removed = licensePackIndex.remove(identifier);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(LicensesEvents.LICENSE_PACK_DELETE, removed));
+			eventAdmin.postEvent(OperatorEvents.create(LicenseRegistryEvents.LICENSE_PACK_DELETE, removed));
 			String userIdentifier = removed.getUserIdentifier();
 
 			List<LicensePackDescriptor> userPackList = userPackIndex.get(userIdentifier);

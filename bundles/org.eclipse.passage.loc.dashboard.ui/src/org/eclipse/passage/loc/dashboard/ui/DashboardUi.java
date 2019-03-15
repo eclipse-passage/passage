@@ -25,7 +25,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.registry.Features;
-import org.eclipse.passage.lic.licenses.Licenses;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;

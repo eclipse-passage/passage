@@ -19,8 +19,8 @@ import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.Licenses;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
@@ -44,7 +44,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		if (element instanceof UserRegistry) {
 			return "Users";
 		}
-		if (element instanceof LicensesRegistry) {
+		if (element instanceof LicenseRegistry) {
 			return "Licenses";
 		}
 		if (element instanceof Resource) {

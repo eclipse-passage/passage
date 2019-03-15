@@ -31,8 +31,8 @@ import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensesEvents;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
@@ -56,7 +56,7 @@ public class DomainRegistryExplorerPart {
 		this.registries.add(context.get(FeatureRegistry.class));
 		this.registries.add(context.get(ProductRegistry.class));
 		this.registries.add(context.get(UserRegistry.class));
-		this.registries.add(context.get(LicensesRegistry.class));
+		this.registries.add(context.get(LicenseRegistry.class));
 		this.licensingImages = context.get(LicensingImages.class);
 	}
 
@@ -153,19 +153,19 @@ public class DomainRegistryExplorerPart {
 
 	@Inject
 	@Optional
-	public void createLicensePack(@UIEventTopic(LicensesEvents.LICENSE_PACK_CREATE) LicensePackDescriptor descriptor) {
+	public void createLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void deleteLicensePack(@UIEventTopic(LicensesEvents.LICENSE_PACK_DELETE) LicensePackDescriptor descriptor) {
+	public void deleteLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void updateLicensePack(@UIEventTopic(LicensesEvents.LICENSE_PACK_UPDATE) LicensePackDescriptor descriptor) {
+	public void updateLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePackDescriptor descriptor) {
 		treeView.refresh();
 	}
 

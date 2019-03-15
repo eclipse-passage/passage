@@ -57,7 +57,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lic.registry"
+         id="org.eclipse.passage.lic.licenses"
          download-size="0"
          install-size="0"
          version="0.0.0"

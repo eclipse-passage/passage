@@ -29,8 +29,8 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.LicensesEvents;
-import org.eclipse.passage.lic.licenses.LicensesRegistry;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -49,7 +49,7 @@ public class DashboardPanelPart {
 	private final FeatureRegistry featureRegistry;
 	private final ProductRegistry productRegistry;
 	private final UserRegistry userRegistry;
-	private final LicensesRegistry licenseRegistry;
+	private final LicenseRegistry licenseRegistry;
 	private final DashboardPanelAdvisor dashboardAdvisor;
 
 	@Inject
@@ -57,7 +57,7 @@ public class DashboardPanelPart {
 		this.featureRegistry = context.get(FeatureRegistry.class);
 		this.productRegistry = context.get(ProductRegistry.class);
 		this.userRegistry = context.get(UserRegistry.class);
-		this.licenseRegistry = context.get(LicensesRegistry.class);
+		this.licenseRegistry = context.get(LicenseRegistry.class);
 		DashboardPanelAdvisor advisor = context.get(DashboardPanelAdvisor.class);
 		if (advisor == null) {
 			advisor = new DefaultDashboardPanelAdvisor();
@@ -221,25 +221,25 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdLicensePack(@UIEventTopic(LicensesEvents.LICENSE_PACK_CREATE) LicensePackDescriptor input) {
+	public void createdLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedLicensePack(@UIEventTopic(LicensesEvents.LICENSE_PACK_DELETE) LicensePackDescriptor input) {
+	public void deletedLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdLicenseGrant(@UIEventTopic(LicensesEvents.LICENSE_GRANT_CREATE) LicensePackDescriptor input) {
+	public void createdLicenseGrant(@UIEventTopic(LicenseRegistryEvents.LICENSE_GRANT_CREATE) LicensePackDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedLicenseGrant(@UIEventTopic(LicensesEvents.LICENSE_GRANT_DELETE) LicensePackDescriptor input) {
+	public void deletedLicenseGrant(@UIEventTopic(LicenseRegistryEvents.LICENSE_GRANT_DELETE) LicensePackDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 

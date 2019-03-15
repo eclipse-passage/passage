@@ -19,9 +19,9 @@ import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
-public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePackDescriptor, LicensesDomainRegistry> {
+public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePackDescriptor, LicenseDomainRegistry> {
 
-	public LicensesDomainRegistryTracker(LicensesDomainRegistry registry) {
+	public LicensesDomainRegistryTracker(LicenseDomainRegistry registry) {
 		super(registry);
 	}
 
