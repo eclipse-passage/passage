@@ -51,6 +51,9 @@
 		<module>../../bundles/org.eclipse.passage.lic.features.model</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
+		<module>../../bundles/org.eclipse.passage.lic.products.ecore</module>
+		<module>../../bundles/org.eclipse.passage.lic.products.model</module>
+
 		<module>../../bundles/org.eclipse.passage.lic.users</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.model.ecore</module>

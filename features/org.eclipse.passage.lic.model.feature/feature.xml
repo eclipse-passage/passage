@@ -64,6 +64,20 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.passage.lic.products.ecore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.products.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.lic.users"
          download-size="0"
          install-size="0"
