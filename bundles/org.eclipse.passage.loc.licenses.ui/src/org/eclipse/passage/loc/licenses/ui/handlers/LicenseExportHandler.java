@@ -22,7 +22,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;
 import org.eclipse.swt.widgets.Shell;
 

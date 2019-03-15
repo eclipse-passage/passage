@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.licenses;
+package org.eclipse.passage.lic.licenses;
 
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 

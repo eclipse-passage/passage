@@ -10,13 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.runtime;
+package org.eclipse.passage.lic.licenses;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+public interface LicensePackDescriptor {
 
-public interface LicenseOperatorService {
-	
-	IStatus issueLicensePack(LicensePackDescriptor licensePack);
+	String getIdentifier();
+
+	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
+
+	String getUserIdentifier();
+
+	String getProductIdentifier();
+
+	String getProductVersion();
 
 }

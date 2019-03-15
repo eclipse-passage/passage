@@ -10,18 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.registry.licenses;
+package org.eclipse.passage.lic.licenses;
 
-public interface LicensePackDescriptor {
+public interface LicensesRegistry {
 
-	String getIdentifier();
+	Iterable<? extends LicensePackDescriptor> getLicensePacks();
 
-	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
+	Iterable<? extends LicensePackDescriptor> getUserLicensePacks(String userId);
 
-	String getUserIdentifier();
+	Iterable<? extends LicensePackDescriptor> getProductVersionLicensePacks(String productId, String version);
 
-	String getProductIdentifier();
+	LicensePackDescriptor getLicensePack(String licensePackId);
 
-	String getProductVersion();
+	void registerLicensePack(LicensePackDescriptor licensePack);
+
+	void unregisterLicensePack(String identifier);
 
 }

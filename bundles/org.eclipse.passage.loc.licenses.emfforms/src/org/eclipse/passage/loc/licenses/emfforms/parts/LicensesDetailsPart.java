@@ -20,8 +20,8 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
+import org.eclipse.passage.lic.licenses.LicensesEvents;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.registry.licenses.LicensesEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
 public class LicensesDetailsPart extends DetailsView {

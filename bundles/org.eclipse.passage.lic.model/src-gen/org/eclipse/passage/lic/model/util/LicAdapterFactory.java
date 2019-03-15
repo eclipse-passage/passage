@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
@@ -321,13 +321,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 	 * @generated
 	 */
 	public Adapter createLicensePackDescriptorAdapter() {
@@ -335,13 +335,13 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 	 * @generated
 	 */
 	public Adapter createLicenseGrantDescriptorAdapter() {

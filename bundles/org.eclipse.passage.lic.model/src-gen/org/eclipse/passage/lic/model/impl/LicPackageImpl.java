@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.Feature;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.FeatureVersion;
@@ -37,8 +39,6 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 

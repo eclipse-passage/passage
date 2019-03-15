@@ -319,10 +319,10 @@ public interface LicPackage extends EPackage {
 	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getLicensePackDescriptor()
 	 * @generated
 	 */
@@ -347,10 +347,10 @@ public interface LicPackage extends EPackage {
 	int LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT = 0;
 
 		/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 	 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getLicenseGrantDescriptor()
 	 * @generated
 	 */
@@ -1277,22 +1277,22 @@ public interface LicPackage extends EPackage {
 	EClass getUserDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor"
 	 * @generated
 	 */
 	EClass getLicensePackDescriptor();
 
 		/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Grant Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor
+	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor"
 	 * @generated
 	 */
@@ -2127,20 +2127,20 @@ public interface LicPackage extends EPackage {
 		EClass USER_DESCRIPTOR = eINSTANCE.getUserDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.licenses.LicensePackDescriptor
+		 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getLicensePackDescriptor()
 		 * @generated
 		 */
 		EClass LICENSE_PACK_DESCRIPTOR = eINSTANCE.getLicensePackDescriptor();
 
 				/**
-		 * The meta object literal for the '{@link org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.passage.lic.registry.licenses.LicenseGrantDescriptor
+		 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 		 * @see org.eclipse.passage.lic.model.impl.LicPackageImpl#getLicenseGrantDescriptor()
 		 * @generated
 		 */
