@@ -21,7 +21,7 @@
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.emf.ecp.sdk.feature.feature.group" version="0.0.0"/>
-			<repository location="http://download.eclipse.org/releases/2018-09/"/>
+			<repository location="http://download.eclipse.org/releases/2018-12/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
@@ -29,7 +29,7 @@
 			<unit id="org.eclipse.rcp.source.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
-			<repository location="http://download.eclipse.org/eclipse/updates/4.9/"/>
+			<repository location="http://download.eclipse.org/eclipse/updates/4.10/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
