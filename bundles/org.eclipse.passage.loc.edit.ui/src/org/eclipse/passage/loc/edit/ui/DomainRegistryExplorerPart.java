@@ -34,8 +34,8 @@ import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensesEvents;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductsEvents;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.UsersEvents;
 import org.eclipse.passage.lic.users.UsersRegistry;
@@ -54,7 +54,7 @@ public class DomainRegistryExplorerPart {
 	@Inject
 	public DomainRegistryExplorerPart(IEclipseContext context) {
 		this.registries.add(context.get(FeatureRegistry.class));
-		this.registries.add(context.get(ProductsRegistry.class));
+		this.registries.add(context.get(ProductRegistry.class));
 		this.registries.add(context.get(UsersRegistry.class));
 		this.registries.add(context.get(LicensesRegistry.class));
 		this.licensingImages = context.get(LicensingImages.class);
@@ -114,19 +114,19 @@ public class DomainRegistryExplorerPart {
 
 	@Inject
 	@Optional
-	public void createProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor descriptor) {
+	public void createProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void deleteProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor descriptor) {
+	public void deleteProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor descriptor) {
 		treeView.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void updatedProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_UPDATE) ProductLineDescriptor descriptor) {
+	public void updatedProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_UPDATE) ProductLineDescriptor descriptor) {
 		treeView.refresh();
 	}
 

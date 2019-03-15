@@ -32,8 +32,8 @@ import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.products.registry.ProductsEvents;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -43,8 +43,8 @@ import org.osgi.service.event.EventAdmin;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME,
 		DomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Products.FILE_EXTENSION_XMI })
-public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescriptor>
-		implements ProductsRegistry, EditingDomainRegistry<ProductLineDescriptor> {
+public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescriptor>
+		implements ProductRegistry, EditingDomainRegistry<ProductLineDescriptor> {
 
 	private final Map<String, ProductLineDescriptor> productLineIndex = new HashMap<>();
 	private final Map<String, ProductDescriptor> productIndex = new HashMap<>();
@@ -194,7 +194,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 	}
 
 	@Override
-	protected DomainContentAdapter<ProductLineDescriptor, ProductsDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<ProductLineDescriptor, ProductDomainRegistry> createContentAdapter() {
 		return new ProductsDomainRegistryTracker(this);
 	}
 
@@ -205,7 +205,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_LINE_CREATE, productLine));
+		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine));
 		productLine.getProducts().forEach(p -> registerProduct(p));
 	}
 
@@ -216,7 +216,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_CREATE, product));
+		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_CREATE, product));
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
 	}
 
@@ -230,7 +230,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_VERSION_CREATE, productVersion));
+		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion));
 	}
 
 	@Override
@@ -248,14 +248,14 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 			// FIXME: warning
 		}
 		eventAdmin
-				.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature));
+				.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature));
 	}
 
 	@Override
 	public void unregisterProductLine(String productLineId) {
 		ProductLineDescriptor removed = productLineIndex.remove(productLineId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_LINE_DELETE, removed));
+			eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed));
 			removed.getProducts().forEach(p -> unregisterProduct(p.getIdentifier()));
 		}
 	}
@@ -264,7 +264,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 	public void unregisterProduct(String productId) {
 		ProductDescriptor removed = productIndex.remove(productId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_DELETE, removed));
+			eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_DELETE, removed));
 			removed.getProductVersions().forEach(pv -> unregisterProductVersion(productId, pv.getVersion()));
 		}
 	}
@@ -275,7 +275,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 		if (versions != null) {
 			ProductVersionDescriptor removed = versions.remove(version);
 			if (removed != null) {
-				eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_VERSION_DELETE, removed));
+				eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed));
 				removed.getProductVersionFeatures().forEach(
 						pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
 			}
@@ -293,7 +293,7 @@ public class ProductsDomainRegistry extends BaseDomainRegistry<ProductLineDescri
 			if (features != null) {
 				ProductVersionFeatureDescriptor removed = features.remove(featureId);
 				if (removed != null) {
-					eventAdmin.postEvent(OperatorEvents.create(ProductsEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
+					eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
 				}
 				if (features.isEmpty()) {
 					versions.remove(version);

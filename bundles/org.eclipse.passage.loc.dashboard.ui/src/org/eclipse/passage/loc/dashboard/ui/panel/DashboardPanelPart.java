@@ -35,8 +35,8 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductsEvents;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.UsersEvents;
@@ -47,7 +47,7 @@ import org.eclipse.swt.widgets.Composite;
 public class DashboardPanelPart {
 
 	private final FeatureRegistry featureRegistry;
-	private final ProductsRegistry productRegistry;
+	private final ProductRegistry productRegistry;
 	private final UsersRegistry userRegistry;
 	private final LicensesRegistry licenseRegistry;
 	private final DashboardPanelAdvisor dashboardAdvisor;
@@ -55,7 +55,7 @@ public class DashboardPanelPart {
 	@Inject
 	public DashboardPanelPart(IEclipseContext context) {
 		this.featureRegistry = context.get(FeatureRegistry.class);
-		this.productRegistry = context.get(ProductsRegistry.class);
+		this.productRegistry = context.get(ProductRegistry.class);
 		this.userRegistry = context.get(UsersRegistry.class);
 		this.licenseRegistry = context.get(LicensesRegistry.class);
 		DashboardPanelAdvisor advisor = context.get(DashboardPanelAdvisor.class);
@@ -143,53 +143,53 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor input) {
+	public void createdProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedProductLine(@UIEventTopic(ProductsEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor input) {
+	public void deletedProductLine(@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdProduct(@UIEventTopic(ProductsEvents.PRODUCT_CREATE) ProductDescriptor input) {
+	public void createdProduct(@UIEventTopic(ProductRegistryEvents.PRODUCT_CREATE) ProductDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedProduct(@UIEventTopic(ProductsEvents.PRODUCT_DELETE) ProductDescriptor input) {
+	public void deletedProduct(@UIEventTopic(ProductRegistryEvents.PRODUCT_DELETE) ProductDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
 	public void createdProductVersion(
-			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_CREATE) ProductVersionDescriptor input) {
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_CREATE) ProductVersionDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProductVersion(
-			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_DELETE) ProductVersionDescriptor input) {
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_DELETE) ProductVersionDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
 	public void createdProductVersionFeature(
-			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_CREATE) ProductVersionFeatureDescriptor input) {
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE) ProductVersionFeatureDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 
 	@Inject
 	@Optional
 	public void deletedProductVersionFeature(
-			@UIEventTopic(ProductsEvents.PRODUCT_VERSION_FEATURE_DELETE) ProductVersionFeatureDescriptor input) {
+			@UIEventTopic(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE) ProductVersionFeatureDescriptor input) {
 		dashboardAdvisor.updateProductInfo(productRegistry);
 	}
 

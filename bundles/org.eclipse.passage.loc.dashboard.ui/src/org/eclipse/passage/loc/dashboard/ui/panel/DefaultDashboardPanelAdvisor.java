@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.Users;
 import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
@@ -153,7 +153,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createProductInfo(Composite parent, ProductsRegistry productRegistry) {
+	public void createProductInfo(Composite parent, ProductRegistry productRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
@@ -189,7 +189,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		return block;
 	}
 
-	protected DashboardPanelBlock createProductBlock(Composite parent, ProductsRegistry registry) {
+	protected DashboardPanelBlock createProductBlock(Composite parent, ProductRegistry registry) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Products:";
 		Image image = getImage(LicPackage.eINSTANCE.getProduct());
@@ -250,7 +250,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateProductInfo(ProductsRegistry productRegistry) {
+	public void updateProductInfo(ProductRegistry productRegistry) {
 		productLines.update(productRegistry.getProductLines());
 		products.update(productRegistry.getProducts());
 		productVersions.update(productRegistry.getProductVersions());

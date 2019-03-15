@@ -4,6 +4,6 @@
    <service>
       <provide interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor"/>
    </service>
-   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.products.registry.ProductsRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
+   <reference bind="bindDomainRegistry" interface="org.eclipse.passage.lic.products.registry.ProductRegistry" name="DomainRegistry" unbind="unbindDomainRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.products.core.ProductsSelectionCommandAdvisor"/>
 </scr:component>

@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 
-public interface ProductsRegistry {
+public interface ProductRegistry {
 
 	Iterable<? extends ProductLineDescriptor> getProductLines();
 

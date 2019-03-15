@@ -21,9 +21,9 @@ import org.eclipse.passage.lic.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 
-public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLineDescriptor, ProductsDomainRegistry> {
+public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLineDescriptor, ProductDomainRegistry> {
 
-	public ProductsDomainRegistryTracker(ProductsDomainRegistry registry) {
+	public ProductsDomainRegistryTracker(ProductDomainRegistry registry) {
 		super(registry);
 	}
 

@@ -22,7 +22,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -36,7 +36,7 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
-	private final ProductsRegistry registry;
+	private final ProductRegistry registry;
 	private final ComposedAdapterFactoryProvider provider;
 
 	@Inject
@@ -44,7 +44,7 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		registry = viewContext.getService(ProductsRegistry.class);
+		registry = viewContext.getService(ProductRegistry.class);
 		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 

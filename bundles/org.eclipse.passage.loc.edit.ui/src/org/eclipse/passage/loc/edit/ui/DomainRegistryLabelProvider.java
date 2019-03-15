@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.Users;
 import org.eclipse.passage.lic.users.UsersRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -38,7 +38,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		if (element instanceof FeatureRegistry) {
 			return "Features";
 		}
-		if (element instanceof ProductsRegistry) {
+		if (element instanceof ProductRegistry) {
 			return "Products";
 		}
 		if (element instanceof UsersRegistry) {

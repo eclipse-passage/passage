@@ -18,21 +18,21 @@ import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private ProductsRegistry registry;
+	private ProductRegistry registry;
 
 	@Reference
-	public void bindDomainRegistry(ProductsRegistry registry) {
+	public void bindDomainRegistry(ProductRegistry registry) {
 		this.registry = registry;
 	}
 
-	public void unbindDomainRegistry(ProductsRegistry registry) {
+	public void unbindDomainRegistry(ProductRegistry registry) {
 		this.registry = null;
 	}
 

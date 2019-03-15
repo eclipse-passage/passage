@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -28,7 +28,7 @@ public class ProductsUi {
 	public static final String PERSPECTIVE_MAIN = BUNDLE_SYMBOLIC_NAME + '.' + "perspective.main"; //$NON-NLS-1$
 
 	public static ProductDescriptor selectProductDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
-			ProductsRegistry registry, ProductDescriptor initial) {
+			ProductRegistry registry, ProductDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProduct().getName();
 		String title = "Select Product";
 		Iterable<? extends ProductDescriptor> input = registry.getProducts();
@@ -38,7 +38,7 @@ public class ProductsUi {
 	}
 
 	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell,
-			ComposedAdapterFactoryProvider provider, ProductsRegistry registry, ProductVersionDescriptor initial) {
+			ComposedAdapterFactoryProvider provider, ProductRegistry registry, ProductVersionDescriptor initial) {
 		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
 		String title = "Select Product Version";
 		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();

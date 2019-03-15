@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.emf.edit.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductsRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 import org.eclipse.passage.loc.runtime.LicenseOperatorEvents;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;
@@ -54,7 +54,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
-	private ProductsRegistry productRegistry;
+	private ProductRegistry productRegistry;
 	private ProductOperatorService productOperatorService;
 	private StreamCodec streamCodec;
 
@@ -82,11 +82,11 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 	}
 
 	@Reference
-	public void bindProductRegistry(ProductsRegistry productRegistry) {
+	public void bindProductRegistry(ProductRegistry productRegistry) {
 		this.productRegistry = productRegistry;
 	}
 
-	public void unbindProductRegistry(ProductsRegistry productRegistry) {
+	public void unbindProductRegistry(ProductRegistry productRegistry) {
 		this.productRegistry = null;
 	}
 
