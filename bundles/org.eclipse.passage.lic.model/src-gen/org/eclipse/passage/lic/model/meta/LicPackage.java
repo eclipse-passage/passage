@@ -48,7 +48,7 @@ public interface LicPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNS_URI = "http://www.eclipse.org/passage/lic/0.4.0"; //$NON-NLS-1$
+  String eNS_URI = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 
   /**
 	 * The package namespace name.

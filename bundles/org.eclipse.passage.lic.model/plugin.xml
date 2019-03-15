@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated passage -->
       <package
-            uri="http://www.eclipse.org/passage/lic/0.4.0/"
+            uri="http://www.eclipse.org/passage/lic/0.3.3/"
             class="org.eclipse.passage.lic.model.meta.LicPackage"
             genModel="model/lic.genmodel"/>
    </extension>
