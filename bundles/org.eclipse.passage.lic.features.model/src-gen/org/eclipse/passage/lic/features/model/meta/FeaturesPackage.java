@@ -53,7 +53,7 @@ public interface FeaturesPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_PREFIX = "org.eclipse.passage.lic"; //$NON-NLS-1$
+	String eNS_PREFIX = "features"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
