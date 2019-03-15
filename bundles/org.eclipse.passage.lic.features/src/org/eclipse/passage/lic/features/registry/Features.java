@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.features;
+package org.eclipse.passage.lic.features.registry;
 
 public class Features {
 	

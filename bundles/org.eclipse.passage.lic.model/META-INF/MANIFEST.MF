@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.ecore;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.lic.features;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.registry;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.model.api,
  org.eclipse.passage.lic.model.impl,

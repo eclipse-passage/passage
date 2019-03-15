@@ -20,7 +20,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
-import org.eclipse.passage.lic.features.FeaturesEvents;
+import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
@@ -33,7 +33,7 @@ public class FeaturesDetailsPart extends DetailsView {
 
 	@Inject
 	@Optional
-	public void showFeatureSet(@UIEventTopic(FeaturesEvents.FEATURE_SET_CREATE) FeatureSet input, IEclipseContext context) {
+	public void showFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSet input, IEclipseContext context) {
 		show(input, context);
 	}
 	

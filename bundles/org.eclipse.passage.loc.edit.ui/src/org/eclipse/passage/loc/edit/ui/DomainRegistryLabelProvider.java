@@ -16,8 +16,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
-import org.eclipse.passage.lic.features.Features;
-import org.eclipse.passage.lic.features.FeaturesRegistry;
+import org.eclipse.passage.lic.features.registry.Features;
+import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
@@ -35,7 +35,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if (element instanceof FeaturesRegistry) {
+		if (element instanceof FeatureRegistry) {
 			return "Features";
 		}
 		if (element instanceof ProductsRegistry) {

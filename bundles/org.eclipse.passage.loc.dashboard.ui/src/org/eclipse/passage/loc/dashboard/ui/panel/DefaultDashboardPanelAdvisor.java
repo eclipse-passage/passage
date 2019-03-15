@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.passage.lic.features.Features;
-import org.eclipse.passage.lic.features.FeaturesRegistry;
+import org.eclipse.passage.lic.features.registry.Features;
+import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.Licenses;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
@@ -70,7 +70,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void createFeatureInfo(Composite parent, FeaturesRegistry featureRegistry) {
+	public void createFeatureInfo(Composite parent, FeatureRegistry featureRegistry) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
@@ -146,7 +146,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	@Override
-	public void updateFeatureInfo(FeaturesRegistry featureRegistry) {
+	public void updateFeatureInfo(FeatureRegistry featureRegistry) {
 		featureSets.update(featureRegistry.getFeatureSets());
 		features.update(featureRegistry.getFeatures());
 		featureVersions.update(featureRegistry.getFeatureVersions());

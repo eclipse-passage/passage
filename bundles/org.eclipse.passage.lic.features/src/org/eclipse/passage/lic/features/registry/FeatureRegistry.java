@@ -10,9 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.features;
+package org.eclipse.passage.lic.features.registry;
 
-public interface FeaturesRegistry {
+import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.FeatureSetDescriptor;
+import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+
+public interface FeatureRegistry {
+
 	Iterable<? extends FeatureSetDescriptor> getFeatureSets();
 
 	FeatureSetDescriptor getFeatureSet(String featureSetId);

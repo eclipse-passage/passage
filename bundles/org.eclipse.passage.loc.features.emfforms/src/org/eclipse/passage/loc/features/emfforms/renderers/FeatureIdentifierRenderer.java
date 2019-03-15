@@ -24,7 +24,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeaturesRegistry;
+import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -38,7 +38,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
-	private final FeaturesRegistry registry;
+	private final FeatureRegistry registry;
 	private final ComposedAdapterFactoryProvider provider;
 	
 	@Inject
@@ -46,7 +46,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		registry = viewContext.getService(FeaturesRegistry.class);
+		registry = viewContext.getService(FeatureRegistry.class);
 		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 

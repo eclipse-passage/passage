@@ -20,9 +20,9 @@ import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.FeatureVersion;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
-public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureSetDescriptor, FeaturesDomainRegistry> {
+public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureSetDescriptor, FeatureDomainRegistry> {
 
-	public FeaturesDomainRegistryTracker(FeaturesDomainRegistry registry) {
+	public FeaturesDomainRegistryTracker(FeatureDomainRegistry registry) {
 		super(registry);
 	}
 

@@ -26,8 +26,8 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.features.FeaturesEvents;
-import org.eclipse.passage.lic.features.FeaturesRegistry;
+import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
+import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensesEvents;
 import org.eclipse.passage.lic.licenses.LicensesRegistry;
@@ -46,7 +46,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DashboardPanelPart {
 	
-	private final FeaturesRegistry featureRegistry;
+	private final FeatureRegistry featureRegistry;
 	private final ProductsRegistry productRegistry;
 	private final UsersRegistry userRegistry;
 	private final LicensesRegistry licenseRegistry;
@@ -54,7 +54,7 @@ public class DashboardPanelPart {
 	
 	@Inject
 	public DashboardPanelPart(IEclipseContext context) {
-		this.featureRegistry = context.get(FeaturesRegistry.class);
+		this.featureRegistry = context.get(FeatureRegistry.class);
 		this.productRegistry = context.get(ProductsRegistry.class);
 		this.userRegistry = context.get(UsersRegistry.class);
 		this.licenseRegistry = context.get(LicensesRegistry.class);
@@ -105,37 +105,37 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdFeatureSet(@UIEventTopic(FeaturesEvents.FEATURE_SET_CREATE) FeatureSetDescriptor input) {
+	public void createdFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeatureSet(@UIEventTopic(FeaturesEvents.FEATURE_SET_DELETE) FeatureSetDescriptor input) {
+	public void deletedFeatureSet(@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdFeature(@UIEventTopic(FeaturesEvents.FEATURE_CREATE) FeatureDescriptor input) {
+	public void createdFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_CREATE) FeatureDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeature(@UIEventTopic(FeaturesEvents.FEATURE_DELETE) FeatureDescriptor input) {
+	public void deletedFeature(@UIEventTopic(FeatureRegistryEvents.FEATURE_DELETE) FeatureDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void createdFeatureVersion(@UIEventTopic(FeaturesEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
+	public void createdFeatureVersion(@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_CREATE) FeatureVersionDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedFeatureVersion(@UIEventTopic(FeaturesEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
+	public void deletedFeatureVersion(@UIEventTopic(FeatureRegistryEvents.FEATURE_VERSION_DELETE) FeatureVersionDescriptor input) {
 		dashboardAdvisor.updateFeatureInfo(featureRegistry);
 	}
 
