@@ -11,7 +11,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.passage.lic.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport
+Import-Package: org.osgi.framework
 Export-Package: org.eclipse.passage.lic.model.edit,
  org.eclipse.passage.lic.model.edit.providers
+Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.passage.lic.model.edit.LicEditPlugin$Implementation$Activator
 Bundle-ActivationPolicy: lazy

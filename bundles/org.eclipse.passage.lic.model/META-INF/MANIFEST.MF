@@ -15,4 +15,5 @@ Export-Package: org.eclipse.passage.lic.model.api,
  org.eclipse.passage.lic.model.impl,
  org.eclipse.passage.lic.model.meta,
  org.eclipse.passage.lic.model.util
+Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

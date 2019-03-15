@@ -1183,7 +1183,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Set Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureSetDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureSetDescriptor"
 	 * @generated
 	 */
 	EClass getFeatureSetDescriptor();
@@ -1194,7 +1194,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.products.ProductDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.products.ProductDescriptor"
 	 * @generated
 	 */
 	EClass getProductDescriptor();
@@ -1205,7 +1205,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Version Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductVersionDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.products.ProductVersionDescriptor"
 	 * @generated
 	 */
 	EClass getProductVersionDescriptor();
@@ -1216,7 +1216,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Version Feature Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductVersionFeatureDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor"
 	 * @generated
 	 */
 	EClass getProductVersionFeatureDescriptor();
@@ -1227,7 +1227,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Origin Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.users.UserOriginDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.users.UserOriginDescriptor"
 	 * @generated
 	 */
 	EClass getUserOriginDescriptor();
@@ -1238,7 +1238,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureDescriptor"
 	 * @generated
 	 */
 	EClass getFeatureDescriptor();
@@ -1249,7 +1249,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Version Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.features.FeatureVersionDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.features.FeatureVersionDescriptor"
 	 * @generated
 	 */
 	EClass getFeatureVersionDescriptor();
@@ -1260,7 +1260,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Line Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.products.ProductLineDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.products.ProductLineDescriptor"
 	 * @generated
 	 */
 	EClass getProductLineDescriptor();
@@ -1271,7 +1271,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.users.UserDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.users.UserDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.users.UserDescriptor"
 	 * @generated
 	 */
 	EClass getUserDescriptor();
@@ -1282,7 +1282,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.licenses.LicensePackDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicensePackDescriptor"
 	 * @generated
 	 */
 	EClass getLicensePackDescriptor();
@@ -1293,7 +1293,7 @@ public interface LicPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Grant Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
-	 * @model instanceClass="org.eclipse.passage.lic.runtime.licenses.LicenseGrantDescriptor"
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicenseGrantDescriptor"
 	 * @generated
 	 */
 	EClass getLicenseGrantDescriptor();

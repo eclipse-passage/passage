@@ -180,8 +180,7 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription,
-					description));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicPackage.FEATURE__DESCRIPTION, oldDescription, description));
 	}
 
   /**
