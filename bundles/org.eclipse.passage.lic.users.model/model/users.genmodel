@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.users.model/src-gen"
+    creationIcons="false" editDirectory="org.eclipse.passage.lic.users.edit/src-gen"
+    editorDirectory="org.eclipse.passage.lic.users.editor/src-gen" modelPluginID="org.eclipse.passage.lic.users.model"
+    modelName="Users" editPluginClass="org.eclipse.passage.lic.users.edit.UsersEditPlugin"
+    editorPluginClass="org.eclipse.passage.lic.users.editor.UsersEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="org.eclipse.passage.lic.model.tests.LicAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.eclipse.passage.lic.users.edit" editorPluginID="org.eclipse.passage.lic.users.editor"
+    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
+    cleanup="true" oSGiCompatible="true">
+  <foreignModel>platform:/resource/org.eclipse.passage.lic.users.ecore/model/users.ecore</foreignModel>
+  <genPackages prefix="Users" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
+      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
+      presentationPackageSuffix="editor" testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/name"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/description"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/users"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/fullName"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/userOrigin"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
