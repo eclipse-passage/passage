@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.emf.edit
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.passage.lic.emf.edit
+Bundle-SymbolicName: org.eclipse.passage.lic.emf
 Bundle-Version: 0.4.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
@@ -9,5 +9,6 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.lic.emf.edit
+Export-Package: org.eclipse.passage.lic.emf.ecore,
+ org.eclipse.passage.lic.emf.edit
 Bundle-ActivationPolicy: lazy

@@ -29,11 +29,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.osgi.service.event.EventAdmin;
 
-public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I> {
+public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
 
 	protected EventAdmin eventAdmin;
 
@@ -72,7 +75,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I> 
 	}
 
 	protected void activate(Map<String, Object> properties) {
-		domainName = String.valueOf(properties.get(DomainRegistryAccess.PROPERTY_DOMAIN_NAME));
+		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
 		contentAdapter = createContentAdapter();
 		editingDomain.getResourceSet().eAdapters().add(contentAdapter);
 		loadResourceSet();
@@ -121,8 +124,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I> 
 		}
 	}
 
-	@Override
-	public ComposedAdapterFactory getComposedAdapterFactory() {
+	protected ComposedAdapterFactory getComposedAdapterFactory() {
 		return composedAdapterFactory;
 	}
 

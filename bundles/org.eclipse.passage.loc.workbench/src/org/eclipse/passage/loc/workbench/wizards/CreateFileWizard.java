@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class CreateFileWizard extends Wizard {
@@ -47,7 +47,7 @@ public class CreateFileWizard extends Wizard {
 	public CreateFileWizard(IEclipseContext context, String domain, String perspectiveId) {
 		this.eclipseContext = context;
 		this.perspectiveId = perspectiveId;
-		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
 		EClass eClass = registry.getContentClassifier();
 		this.domainRegistry = registry;

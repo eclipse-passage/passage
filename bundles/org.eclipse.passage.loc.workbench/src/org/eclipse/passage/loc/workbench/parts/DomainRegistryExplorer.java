@@ -27,8 +27,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.ecore.ResourceSetProvider;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.passage.loc.workbench.viewers.ResourceSetAdapter;
 import org.eclipse.passage.loc.workbench.viewers.StructuredSelectionListener;
@@ -39,21 +39,24 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DomainRegistryExplorer {
 
-	private final EditingDomainRegistry descriptorRegistry;
+	private final ResourceSetProvider resourceSetProvider;
+	private final ComposedAdapterFactoryProvider composedAdapterFactoryProvider;
 	private final ESelectionService selectionService;
 
 	private ISelectionChangedListener selectionChangeListener;
 	private TreeViewer viewer;
 	private ResourceSetAdapter resourceSetAdapter;
 
-	public DomainRegistryExplorer(EditingDomainRegistry registry, ESelectionService selectionService) {
+	public DomainRegistryExplorer(ResourceSetProvider setProvider, ComposedAdapterFactoryProvider factoryProvider,
+			ESelectionService selectionService) {
 		super();
-		this.descriptorRegistry = registry;
+		this.resourceSetProvider = setProvider;
+		this.composedAdapterFactoryProvider = factoryProvider;
 		this.selectionService = selectionService;
 	}
-	
-	public EditingDomainRegistry getDescriptorRegistry() {
-		return descriptorRegistry;
+
+	public ResourceSetProvider getResourceSetProvider() {
+		return resourceSetProvider;
 	}
 
 	@PostConstruct
@@ -65,9 +68,8 @@ public class DomainRegistryExplorer {
 		viewer = new TreeViewer(base);
 		viewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		AdapterFactory factory;
-		if (descriptorRegistry instanceof BaseDomainRegistry) {
-			BaseDomainRegistry registry = (BaseDomainRegistry) descriptorRegistry;
-			factory = registry.getComposedAdapterFactory();
+		if (composedAdapterFactoryProvider != null) {
+			factory = composedAdapterFactoryProvider.getComposedAdapterFactory();
 		} else {
 			factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		}
@@ -75,7 +77,7 @@ public class DomainRegistryExplorer {
 		viewer.setLabelProvider(new DomainRegistryLabelProvider(factory));
 		selectionChangeListener = new StructuredSelectionListener(selectionService);
 		viewer.addSelectionChangedListener(selectionChangeListener);
-		ResourceSet resourceSet = descriptorRegistry.getEditingDomain().getResourceSet();
+		ResourceSet resourceSet = resourceSetProvider.getResourceSet();
 		resourceSetAdapter = new ResourceSetAdapter(viewer);
 		resourceSet.eAdapters().add(resourceSetAdapter);
 		resetInput();
@@ -88,13 +90,13 @@ public class DomainRegistryExplorer {
 
 	@PreDestroy
 	public void dispose() {
-		descriptorRegistry.getEditingDomain().getResourceSet().eAdapters().remove(resourceSetAdapter);
+		resourceSetProvider.getResourceSet().eAdapters().remove(resourceSetAdapter);
 		viewer.removeSelectionChangedListener(selectionChangeListener);
 	}
 
 	protected void resetInput() {
 		if (viewer != null && !viewer.getControl().isDisposed()) {
-			ResourceSet resourceSet = descriptorRegistry.getEditingDomain().getResourceSet();
+			ResourceSet resourceSet = resourceSetProvider.getResourceSet();
 			ISelection selection = viewer.getSelection();
 			viewer.setInput(resourceSet);
 			if (selection.isEmpty()) {

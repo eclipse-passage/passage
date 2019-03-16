@@ -12,12 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.edit;
 
-public interface DomainRegistryAccess {
-	
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
+
+public interface EditingDomainRegistryAccess {
+
 	String PROPERTY_DOMAIN_NAME = "org.eclipse.passage.lic.emf.edit.domain.name"; //$NON-NLS-1$
 	String PROPERTY_FILE_EXTENSION = "org.eclipse.passage.lic.emf.edit.file.extension"; //$NON-NLS-1$
-	
-	EditingDomainRegistry getDomainRegistry(String domain);
+
+	EditingDomainRegistry<?> getDomainRegistry(String domain);
 
 	String getFileExtension(String domain);
 

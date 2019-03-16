@@ -10,13 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.edit;
+package org.eclipse.passage.lic.emf.ecore;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 
-public interface EditingDomainRegistry<I> extends IEditingDomainProvider, ComposedAdapterFactoryProvider {
+public interface EditingDomainRegistry<I> {
 
 	void registerSource(String source);
 

@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
-import org.eclipse.passage.lic.emf.edit.LicensingEcore;
+import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.model.api.Product;
 import org.eclipse.passage.lic.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.ProductDescriptor;

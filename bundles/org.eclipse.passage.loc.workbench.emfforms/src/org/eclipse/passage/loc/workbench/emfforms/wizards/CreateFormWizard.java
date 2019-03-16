@@ -13,7 +13,7 @@
 package org.eclipse.passage.loc.workbench.emfforms.wizards;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.loc.workbench.wizards.CreateFileWizard;
 import org.eclipse.passage.loc.workbench.wizards.CreateFileWizardPage;
 

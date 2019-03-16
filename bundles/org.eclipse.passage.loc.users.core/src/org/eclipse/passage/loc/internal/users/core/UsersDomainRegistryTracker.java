@@ -13,7 +13,7 @@
 package org.eclipse.passage.loc.internal.users.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
+import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.model.api.User;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicPackage;

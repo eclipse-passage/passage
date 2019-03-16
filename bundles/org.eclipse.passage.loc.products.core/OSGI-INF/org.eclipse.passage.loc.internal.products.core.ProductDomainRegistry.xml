@@ -4,7 +4,7 @@
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_products"/>
    <service>
       <provide interface="org.eclipse.passage.lic.products.registry.ProductRegistry"/>
-      <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistry"/>
+      <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>

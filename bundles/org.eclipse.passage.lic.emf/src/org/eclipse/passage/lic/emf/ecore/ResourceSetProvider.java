@@ -10,18 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.features.migration;
+package org.eclipse.passage.lic.emf.ecore;
 
-import org.eclipse.emf.ecore.EPackage;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-@Component(immediate = true)
-public class FeaturesMigrator {
+public interface ResourceSetProvider {
 
-	@Activate
-	public void activate() {
-		Object object = EPackage.Registry.INSTANCE.get("http://www.eclipse.org/passage/lic/0.3.3"); //$NON-NLS-1$
-	}
+	ResourceSet getResourceSet();
 
 }

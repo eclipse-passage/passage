@@ -16,9 +16,9 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.workbench.emfforms.wizards.CreateFormWizard;
 import org.eclipse.swt.widgets.Shell;
@@ -28,7 +28,7 @@ public class LocWorkbenchEmfforms {
 	public static final String BUNDLE_SYMBOLIC_NAME = "org.eclipse.passage.loc.workbench.emfforms"; //$NON-NLS-1$
 
 	public static void createDomainContentObject(IEclipseContext context, String domain, String perspectiveId) {
-		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 	
 		EditingDomainRegistry registry = registryAccess.getDomainRegistry(domain );
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);

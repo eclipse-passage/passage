@@ -13,11 +13,11 @@
 package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.products.registry.Products;
 import org.osgi.service.component.annotations.Component;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
+@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public final class ProductLineClassifierInitializer implements ClassifierInitializer {
 	@Override
 	public String newObjectIdentifier() {

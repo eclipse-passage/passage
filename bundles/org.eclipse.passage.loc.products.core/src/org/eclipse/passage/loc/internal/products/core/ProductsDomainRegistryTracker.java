@@ -13,7 +13,7 @@
 package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.emf.edit.DomainContentAdapter;
+import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.model.api.Product;
 import org.eclipse.passage.lic.model.api.ProductLine;
 import org.eclipse.passage.lic.model.api.ProductVersion;

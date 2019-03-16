@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.users.core;
 
 import java.util.Collections;
 
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.registry.Users;
@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { DomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME })
+@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME })
 public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
 	private UserRegistry registry;

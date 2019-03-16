@@ -15,9 +15,9 @@ package org.eclipse.passage.loc.internal.workbench;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component
-public class LocDomainRegistryAccess implements DomainRegistryAccess {
+public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());;
 

@@ -22,7 +22,7 @@ import org.eclipse.e4.core.commands.ECommandService;
 import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.licenses.registry.Licenses;
@@ -78,7 +78,7 @@ public class DashboardUi {
 	}
 
 	private static Iterable<?> resolveInput(IEclipseContext context, String domain, String classifier) {
-		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		SelectionCommandAdvisor advisor = registryAccess.getSelectionCommandAdvisor(domain);
 		if (advisor != null) {
 			return advisor.getSelectionInput(classifier);
@@ -87,7 +87,7 @@ public class DashboardUi {
 	}
 
 	private static String resolveTitle(IEclipseContext context, String domain, String classifier) {
-		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		SelectionCommandAdvisor advisor = registryAccess.getSelectionCommandAdvisor(domain);
 		if (advisor != null) {
 			return advisor.getSelectionTitle(classifier);

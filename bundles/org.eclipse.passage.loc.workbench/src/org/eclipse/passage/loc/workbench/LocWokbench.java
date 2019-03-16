@@ -33,10 +33,10 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.emf.edit.DomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
 import org.eclipse.passage.loc.jface.dialogs.LabelSearchFilter;
@@ -84,7 +84,7 @@ public class LocWokbench {
 	}
 
 	public static void createDomainResource(IEclipseContext context, String domain, String perspectiveId) {
-		DomainRegistryAccess registryAccess = context.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
 		EClass eClass = registry.getContentClassifier();
@@ -104,7 +104,7 @@ public class LocWokbench {
 	}
 
 	public static void loadDomainResource(IEclipseContext eclipseContext, String domain, String perspectiveId) {
-		DomainRegistryAccess access = eclipseContext.get(DomainRegistryAccess.class);
+		EditingDomainRegistryAccess access = eclipseContext.get(EditingDomainRegistryAccess.class);
 		EditingDomainRegistry<?> registry = access.getDomainRegistry(domain);
 		String fileExtension = access.getFileExtension(domain);
 		Shell shell = eclipseContext.get(Shell.class);
@@ -205,8 +205,10 @@ public class LocWokbench {
 			return provider.getEditingDomain();
 		}
 		EditingDomainRegistry<?> registry = context.get(EditingDomainRegistry.class);
-		if (registry != null) {
-			return registry.getEditingDomain();
+		if (registry instanceof IEditingDomainProvider) {
+			provider = (IEditingDomainProvider) registry;
+			return provider.getEditingDomain();
+
 		}
 		return null;
 	}
