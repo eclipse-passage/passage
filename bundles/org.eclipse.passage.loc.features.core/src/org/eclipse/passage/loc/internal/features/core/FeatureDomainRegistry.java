@@ -21,18 +21,18 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
-import org.eclipse.passage.lic.features.registry.Features;
-import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
+import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -250,17 +250,17 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 
 	@Override
 	public EClass getContentClassifier() {
-		return LicPackage.eINSTANCE.getFeatureSet();
+		return FeaturesPackage.eINSTANCE.getFeatureSet();
 	}
 
 	@Override
 	public EStructuralFeature getContentIdentifierAttribute() {
-		return LicPackage.eINSTANCE.getFeatureSet_Identifier();
+		return FeaturesPackage.eINSTANCE.getFeatureSet_Identifier();
 	}
 
 	@Override
 	public EStructuralFeature getContentNameAttribute() {
-		return LicPackage.eINSTANCE.getFeatureSet_Name();
+		return FeaturesPackage.eINSTANCE.getFeatureSet_Name();
 	}
 
 	@Override

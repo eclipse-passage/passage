@@ -6,7 +6,7 @@
     modelName="Features" editPluginClass="org.eclipse.passage.lic.features.edit.FeaturesEditPlugin"
     editorPluginClass="org.eclipse.passage.lic.features.editor.FeaturesEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" commentFormatting="true" testSuiteClass="org.eclipse.passage.lic.features.model.tests.FeaturesAllTests"
+    codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.features.model.tests.FeaturesAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.eclipse.passage.lic.features.edit" editorPluginID="org.eclipse.passage.lic.features.editor"
     language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"

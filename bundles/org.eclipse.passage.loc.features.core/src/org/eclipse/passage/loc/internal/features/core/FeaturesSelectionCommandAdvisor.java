@@ -16,17 +16,17 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.features.registry.Features;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.features.registry.Features;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME })
 public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor {
-	
+
 	private FeatureRegistry registry;
-	
+
 	@Reference
 	public void bindDomainRegistry(FeatureRegistry registry) {
 		this.registry = registry;
@@ -38,13 +38,13 @@ public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 
 	@Override
 	public String getSelectionTitle(String classifier) {
-		if (LicPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
 			return "Select Feature Set";
 		}
-		if (LicPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
 			return "Select Feature";
 		}
-		if (LicPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
 			return "Select Feature Version";
 		}
 		return null;
@@ -55,13 +55,13 @@ public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 		if (registry == null) {
 			return Collections.emptyList();
 		}
-		if (LicPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
 			return registry.getFeatureSets();
 		}
-		if (LicPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
 			return registry.getFeatures();
 		}
-		if (LicPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
+		if (FeaturesPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
 			return registry.getFeatureVersions();
 		}
 		return Collections.emptyList();

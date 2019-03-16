@@ -36,6 +36,13 @@
    </requires>
 
    <plugin
+         id="org.eclipse.passage.lic.emf"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.lic.features"
          download-size="0"
          install-size="0"
@@ -51,6 +58,13 @@
 
    <plugin
          id="org.eclipse.passage.lic.features.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.features.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -135,13 +149,6 @@
 
    <plugin
          id="org.eclipse.passage.lic.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.passage.lic.emf"
          download-size="0"
          install-size="0"
          version="0.0.0"

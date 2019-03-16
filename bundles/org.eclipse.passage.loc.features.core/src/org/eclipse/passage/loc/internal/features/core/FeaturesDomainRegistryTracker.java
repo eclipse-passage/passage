@@ -15,10 +15,10 @@ package org.eclipse.passage.loc.internal.features.core;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.model.api.Feature;
-import org.eclipse.passage.lic.model.api.FeatureSet;
-import org.eclipse.passage.lic.model.api.FeatureVersion;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
+import org.eclipse.passage.lic.features.model.api.FeatureVersion;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureSetDescriptor, FeatureDomainRegistry> {
 
@@ -32,10 +32,10 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 		if (notifier instanceof FeatureSet) {
 			FeatureSet featureSet = (FeatureSet) notifier;
 			switch (notification.getFeatureID(FeatureSet.class)) {
-			case LicPackage.FEATURE_SET__IDENTIFIER:
+			case FeaturesPackage.FEATURE_SET__IDENTIFIER:
 				processFeatureSetIdentifier(featureSet, notification);
 				break;
-			case LicPackage.FEATURE_SET__FEATURES:
+			case FeaturesPackage.FEATURE_SET__FEATURES:
 				processFeatureSetFeatures(featureSet, notification);
 				break;
 			default:
@@ -44,9 +44,9 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 		} else if (notifier instanceof Feature) {
 			Feature feature = (Feature) notifier;
 			switch (notification.getFeatureID(Feature.class)) {
-			case LicPackage.FEATURE__IDENTIFIER:
+			case FeaturesPackage.FEATURE__IDENTIFIER:
 				processFeatureIdentifier(feature, notification);
-			case LicPackage.FEATURE__FEATURE_VERSIONS:
+			case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 				processFeatureFeatureVersions(feature, notification);
 				break;
 			default:
@@ -55,7 +55,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 		} else if (notifier instanceof FeatureVersion) {
 			FeatureVersion featureVersion = (FeatureVersion) notifier;
 			switch (notification.getFeatureID(FeatureVersion.class)) {
-			case LicPackage.FEATURE_VERSION__VERSION:
+			case FeaturesPackage.FEATURE_VERSION__VERSION:
 				processFeatureVersionVersion(featureVersion, notification);
 				break;
 			default:
@@ -76,6 +76,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 			if (newValue != null) {
 				registry.registerFeatureSet(featureSet);
 			}
+			break;
 		default:
 			break;
 		}
@@ -120,6 +121,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 			if (newValue != null) {
 				registry.registerFeature(feature);
 			}
+			break;
 		default:
 			break;
 		}
@@ -163,6 +165,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 			if (newValue != null) {
 				registry.registerFeatureVersion(feature, featureVersion);
 			}
+			break;
 		default:
 			break;
 		}

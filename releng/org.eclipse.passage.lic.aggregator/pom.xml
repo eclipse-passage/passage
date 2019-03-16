@@ -51,6 +51,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.features</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.model</module>
+		<module>../../bundles/org.eclipse.passage.lic.features.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.migration</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
