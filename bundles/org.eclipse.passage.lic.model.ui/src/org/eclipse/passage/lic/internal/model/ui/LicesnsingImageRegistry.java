@@ -20,6 +20,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.passage.lic.features.edit.FeaturesEditPlugin;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.model.edit.LicEditPlugin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
@@ -49,12 +50,13 @@ public class LicesnsingImageRegistry {
 		Map<String, String> paths = new HashMap<String, String>();
 		String pattern = "$nl$/icons/full/obj16/%s"; //$NON-NLS-1$
 
-		LicPackage lic = LicPackage.eINSTANCE;
-		paths.put(lic.getFeatureSet().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
-		paths.put(lic.getFeature().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
-		paths.put(lic.getFeatureVersion().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
+		FeaturesPackage features = FeaturesPackage.eINSTANCE;
+		paths.put(features.getFeatureSet().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
+		paths.put(features.getFeature().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
+		paths.put(features.getFeatureVersion().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(FeaturesEditPlugin.class, paths);
 
+		LicPackage lic = LicPackage.eINSTANCE;
 		paths.clear();
 		paths.put(lic.getProductLine().getName(), String.format(pattern, "product.png")); //$NON-NLS-1$
 		paths.put(lic.getProduct().getName(), String.format(pattern, "product.png")); //$NON-NLS-1$

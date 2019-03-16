@@ -81,75 +81,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.FeatureSet} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureSetItemProvider featureSetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.FeatureSet}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureSetAdapter() {
-		if (featureSetItemProvider == null) {
-			featureSetItemProvider = new FeatureSetItemProvider(this);
-		}
-
-		return featureSetItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.Feature} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureItemProvider featureItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.Feature}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureAdapter() {
-		if (featureItemProvider == null) {
-			featureItemProvider = new FeatureItemProvider(this);
-		}
-
-		return featureItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.FeatureVersion} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FeatureVersionItemProvider featureVersionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.FeatureVersion}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFeatureVersionAdapter() {
-		if (featureVersionItemProvider == null) {
-			featureVersionItemProvider = new FeatureVersionItemProvider(this);
-		}
-
-		return featureVersionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.ProductLine} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -438,9 +369,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	 */
 	@Override
 	public void dispose() {
-		if (featureSetItemProvider != null) featureSetItemProvider.dispose();
-		if (featureItemProvider != null) featureItemProvider.dispose();
-		if (featureVersionItemProvider != null) featureVersionItemProvider.dispose();
 		if (productLineItemProvider != null) productLineItemProvider.dispose();
 		if (productItemProvider != null) productItemProvider.dispose();
 		if (productVersionItemProvider != null) productVersionItemProvider.dispose();

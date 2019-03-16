@@ -67,9 +67,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LicPackage.FEATURE_SET: return createFeatureSet();
-			case LicPackage.FEATURE: return createFeature();
-			case LicPackage.FEATURE_VERSION: return createFeatureVersion();
 			case LicPackage.PRODUCT_LINE: return createProductLine();
 			case LicPackage.PRODUCT: return createProduct();
 			case LicPackage.PRODUCT_VERSION: return createProductVersion();
@@ -84,17 +81,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	}
 
   /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FeatureSet createFeatureSet() {
-		FeatureSetImpl featureSet = new FeatureSetImpl();
-		return featureSet;
-	}
-
-		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
@@ -136,28 +122,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	public UserOrigin createUserOrigin() {
 		UserOriginImpl userOrigin = new UserOriginImpl();
 		return userOrigin;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature createFeature() {
-		FeatureImpl feature = new FeatureImpl();
-		return feature;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FeatureVersion createFeatureVersion() {
-		FeatureVersionImpl featureVersion = new FeatureVersionImpl();
-		return featureVersion;
 	}
 
 		/**

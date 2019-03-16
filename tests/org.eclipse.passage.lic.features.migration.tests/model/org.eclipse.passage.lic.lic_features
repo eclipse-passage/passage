@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:FeatureSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/0.3.3" identifier="org.eclipse.passage.lic" name="Eclipse Passage LIC" description="Eclipse Passage Licensing Integration Components">
+  <features identifier="org.eclipse.passage.lic.launch" name="Eclipse Passage Launch" description="Eclipse Passage startup feature">
+    <featureVersions version="0.3.3"/>
+  </features>
+  <features identifier="org.eclipse.passage.lic.product" name="Eclipse Passage Product" description="Eclipse Passage product feature">
+    <featureVersions version="0.4.0"/>
+  </features>
+</org.eclipse.passage.lic:FeatureSet>

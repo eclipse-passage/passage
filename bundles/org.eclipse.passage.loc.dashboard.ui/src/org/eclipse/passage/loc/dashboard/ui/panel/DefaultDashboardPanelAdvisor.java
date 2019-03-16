@@ -17,16 +17,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -88,14 +89,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createFeatureSetBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Feature Sets:";
-		Image image = getImage(LicPackage.eINSTANCE.getFeatureSet());
+		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureSet();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Feature Set(s) defined.\nUse it define the Features";
 		String warning = "You have no Feature Sets defined.\nPlease create or load Feature Set definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getFeatureSet().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Feature Set to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -108,14 +110,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Features:";
-		Image image = getImage(LicPackage.eINSTANCE.getFeature());
+		EClass eClass = FeaturesPackage.eINSTANCE.getFeature();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Feature(s) defined.\nUse it define the Feature Version(s)";
 		String warning = "You have no Features defined.\nPlease create it for the Feature Set(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getFeature().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Feature to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -128,14 +131,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createFeatureVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Feature Versions:";
-		Image image = getImage(LicPackage.eINSTANCE.getFeatureVersion());
+		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureVersion();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Feature Version(s) defined.\nUse it define the Product Version(s)";
 		String warning = "You have no Feature Versions defined.\nPlease create it for the Feature(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getFeatureVersion().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Feature Version to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

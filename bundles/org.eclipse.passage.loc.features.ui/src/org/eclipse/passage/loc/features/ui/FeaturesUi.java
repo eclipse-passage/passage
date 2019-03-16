@@ -15,8 +15,8 @@ package org.eclipse.passage.loc.features.ui;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -28,12 +28,12 @@ public class FeaturesUi {
 
 	public static FeatureDescriptor selectFeatureDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
 			FeatureRegistry registry, FeatureDescriptor initial) {
-		String classifier = LicPackage.eINSTANCE.getFeature().getName();
+		String classifier = FeaturesPackage.eINSTANCE.getFeature().getName();
 		String title = "Select Feature";
 		Iterable<? extends FeatureDescriptor> input = registry.getFeatures();
 		Class<FeatureDescriptor> clazz = FeatureDescriptor.class;
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
 		return LocWokbench.selectClassifier(shell, factory, classifier, title, input, initial, clazz);
 	}
-	
+
 }

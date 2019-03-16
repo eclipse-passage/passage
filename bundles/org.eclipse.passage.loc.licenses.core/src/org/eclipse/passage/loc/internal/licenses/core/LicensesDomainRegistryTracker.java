@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.model.api.FeatureSet;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 
@@ -30,7 +29,7 @@ public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicenseP
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof LicensePack) {
 			LicensePack licensePack = (LicensePack) notifier;
-			switch (notification.getFeatureID(FeatureSet.class)) {
+			switch (notification.getFeatureID(LicensePack.class)) {
 			case LicPackage.LICENSE_PACK__IDENTIFIER:
 				processLicensePackIdentifier(licensePack, notification);
 				break;

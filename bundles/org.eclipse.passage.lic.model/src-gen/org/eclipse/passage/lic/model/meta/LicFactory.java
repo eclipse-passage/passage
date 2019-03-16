@@ -13,9 +13,6 @@
 package org.eclipse.passage.lic.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.passage.lic.model.api.Feature;
-import org.eclipse.passage.lic.model.api.FeatureSet;
-import org.eclipse.passage.lic.model.api.FeatureVersion;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.api.Product;
@@ -43,15 +40,6 @@ public interface LicFactory extends EFactory {
   LicFactory eINSTANCE = org.eclipse.passage.lic.model.impl.LicFactoryImpl.init();
 
   /**
-	 * Returns a new object of class '<em>Feature Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Set</em>'.
-	 * @generated
-	 */
-	FeatureSet createFeatureSet();
-
-		/**
 	 * Returns a new object of class '<em>Product</em>'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -86,24 +74,6 @@ public interface LicFactory extends EFactory {
 	 * @generated
 	 */
 	UserOrigin createUserOrigin();
-
-		/**
-	 * Returns a new object of class '<em>Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature</em>'.
-	 * @generated
-	 */
-	Feature createFeature();
-
-		/**
-	 * Returns a new object of class '<em>Feature Version</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Feature Version</em>'.
-	 * @generated
-	 */
-	FeatureVersion createFeatureVersion();
 
 		/**
 	 * Returns a new object of class '<em>Product Line</em>'.

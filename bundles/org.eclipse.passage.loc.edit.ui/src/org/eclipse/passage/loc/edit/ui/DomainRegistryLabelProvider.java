@@ -16,16 +16,17 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
+import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
@@ -75,7 +76,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		}
 		String lastSegment = uri.lastSegment();
 		if (lastSegment.endsWith(Features.FILE_EXTENSION_XMI)) {
-			return LicensingImages.getImage(LicPackage.eINSTANCE.getFeatureSet().getName());
+			return LicensingImages.getImage(FeaturesPackage.eINSTANCE.getFeatureSet().getName());
 		}
 		if (lastSegment.endsWith(Products.FILE_EXTENSION_XMI)) {
 			return LicensingImages.getImage(LicPackage.eINSTANCE.getProductLine().getName());

@@ -16,9 +16,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.*;
@@ -87,18 +84,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
   protected LicSwitch<Adapter> modelSwitch =
     new LicSwitch<Adapter>() {
 			@Override
-			public Adapter caseFeatureSetDescriptor(FeatureSetDescriptor object) {
-				return createFeatureSetDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseFeatureDescriptor(FeatureDescriptor object) {
-				return createFeatureDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseFeatureVersionDescriptor(FeatureVersionDescriptor object) {
-				return createFeatureVersionDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseProductLineDescriptor(ProductLineDescriptor object) {
 				return createProductLineDescriptorAdapter();
 			}
@@ -129,18 +114,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
 				return createLicenseGrantDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseFeatureSet(FeatureSet object) {
-				return createFeatureSetAdapter();
-			}
-			@Override
-			public Adapter caseFeature(Feature object) {
-				return createFeatureAdapter();
-			}
-			@Override
-			public Adapter caseFeatureVersion(FeatureVersion object) {
-				return createFeatureVersionAdapter();
 			}
 			@Override
 			public Adapter caseProductLine(ProductLine object) {
@@ -195,20 +168,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureSetDescriptorAdapter() {
-		return null;
-	}
-
-		/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -261,34 +220,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserOriginDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
-	 * @generated
-	 */
-	public Adapter createFeatureVersionDescriptorAdapter() {
 		return null;
 	}
 
@@ -349,20 +280,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.FeatureSet <em>Feature Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.FeatureSet
-	 * @generated
-	 */
-	public Adapter createFeatureSetAdapter() {
-		return null;
-	}
-
-		/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.Product <em>Product</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -415,34 +332,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserOriginAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.Feature <em>Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.Feature
-	 * @generated
-	 */
-	public Adapter createFeatureAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.FeatureVersion <em>Feature Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.FeatureVersion
-	 * @generated
-	 */
-	public Adapter createFeatureVersionAdapter() {
 		return null;
 	}
 

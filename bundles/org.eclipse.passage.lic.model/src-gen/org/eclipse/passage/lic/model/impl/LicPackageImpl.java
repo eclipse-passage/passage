@@ -17,14 +17,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.model.api.Feature;
-import org.eclipse.passage.lic.model.api.FeatureSet;
-import org.eclipse.passage.lic.model.api.FeatureVersion;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
 import org.eclipse.passage.lic.model.api.Product;
@@ -50,13 +44,6 @@ import org.eclipse.passage.lic.users.UserOriginDescriptor;
  */
 public class LicPackageImpl extends EPackageImpl implements LicPackage {
   /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureSetDescriptorEClass = null;
-
-		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,20 +76,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass featureDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureVersionDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass productLineDescriptorEClass = null;
 
 		/**
@@ -125,13 +98,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * @generated
 	 */
 	private EClass licenseGrantDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureSetEClass = null;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -160,20 +126,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * @generated
 	 */
 	private EClass userOriginEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass featureVersionEClass = null;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -270,16 +222,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getFeatureSetDescriptor() {
-		return featureSetDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getProductDescriptor() {
 		return productDescriptorEClass;
 	}
@@ -312,26 +254,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	@Override
 	public EClass getUserOriginDescriptor() {
 		return userOriginDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureDescriptor() {
-		return featureDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureVersionDescriptor() {
-		return featureVersionDescriptorEClass;
 	}
 
 		/**
@@ -376,56 +298,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 
 		/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureSet() {
-		return featureSetEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureSet_Identifier() {
-		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(0);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureSet_Name() {
-		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(1);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureSet_Description() {
-		return (EAttribute)featureSetEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureSet_Features() {
-		return (EReference)featureSetEClass.getEStructuralFeatures().get(3);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -455,106 +327,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	}
 
   /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeature() {
-		return featureEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeature_Identifier() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(0);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeature_Name() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeature_Description() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFeature_FeatureSet() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(3);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFeature_FeatureVersions() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(4);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getFeatureVersion() {
-		return featureVersionEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureVersion_Version() {
-		return (EAttribute)featureVersionEClass.getEStructuralFeatures().get(0);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getFeatureVersion_Feature() {
-		return (EReference)featureVersionEClass.getEStructuralFeatures().get(1);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFeatureVersion_News() {
-		return (EAttribute)featureVersionEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1063,12 +835,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		featureSetDescriptorEClass = createEClass(FEATURE_SET_DESCRIPTOR);
-
-		featureDescriptorEClass = createEClass(FEATURE_DESCRIPTOR);
-
-		featureVersionDescriptorEClass = createEClass(FEATURE_VERSION_DESCRIPTOR);
-
 		productLineDescriptorEClass = createEClass(PRODUCT_LINE_DESCRIPTOR);
 
 		productDescriptorEClass = createEClass(PRODUCT_DESCRIPTOR);
@@ -1084,24 +850,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		licensePackDescriptorEClass = createEClass(LICENSE_PACK_DESCRIPTOR);
 
 		licenseGrantDescriptorEClass = createEClass(LICENSE_GRANT_DESCRIPTOR);
-
-		featureSetEClass = createEClass(FEATURE_SET);
-		createEAttribute(featureSetEClass, FEATURE_SET__IDENTIFIER);
-		createEAttribute(featureSetEClass, FEATURE_SET__NAME);
-		createEAttribute(featureSetEClass, FEATURE_SET__DESCRIPTION);
-		createEReference(featureSetEClass, FEATURE_SET__FEATURES);
-
-		featureEClass = createEClass(FEATURE);
-		createEAttribute(featureEClass, FEATURE__IDENTIFIER);
-		createEAttribute(featureEClass, FEATURE__NAME);
-		createEAttribute(featureEClass, FEATURE__DESCRIPTION);
-		createEReference(featureEClass, FEATURE__FEATURE_SET);
-		createEReference(featureEClass, FEATURE__FEATURE_VERSIONS);
-
-		featureVersionEClass = createEClass(FEATURE_VERSION);
-		createEAttribute(featureVersionEClass, FEATURE_VERSION__VERSION);
-		createEReference(featureVersionEClass, FEATURE_VERSION__FEATURE);
-		createEAttribute(featureVersionEClass, FEATURE_VERSION__NEWS);
 
 		productLineEClass = createEClass(PRODUCT_LINE);
 		createEAttribute(productLineEClass, PRODUCT_LINE__IDENTIFIER);
@@ -1191,9 +939,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		featureSetEClass.getESuperTypes().add(this.getFeatureSetDescriptor());
-		featureEClass.getESuperTypes().add(this.getFeatureDescriptor());
-		featureVersionEClass.getESuperTypes().add(this.getFeatureVersionDescriptor());
 		productLineEClass.getESuperTypes().add(this.getProductLineDescriptor());
 		productEClass.getESuperTypes().add(this.getProductDescriptor());
 		productVersionEClass.getESuperTypes().add(this.getProductVersionDescriptor());
@@ -1204,12 +949,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(featureSetDescriptorEClass, FeatureSetDescriptor.class, "FeatureSetDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(featureDescriptorEClass, FeatureDescriptor.class, "FeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(featureVersionDescriptorEClass, FeatureVersionDescriptor.class, "FeatureVersionDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(productLineDescriptorEClass, ProductLineDescriptor.class, "ProductLineDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(productDescriptorEClass, ProductDescriptor.class, "ProductDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1225,24 +964,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		initEClass(licensePackDescriptorEClass, LicensePackDescriptor.class, "LicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(licenseGrantDescriptorEClass, LicenseGrantDescriptor.class, "LicenseGrantDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(featureSetEClass, FeatureSet.class, "FeatureSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFeatureSet_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, FeatureSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getFeatureSet_Name(), ecorePackage.getEString(), "name", null, 0, 1, FeatureSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getFeatureSet_Description(), ecorePackage.getEString(), "description", null, 0, 1, FeatureSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFeatureSet_Features(), this.getFeature(), this.getFeature_FeatureSet(), "features", null, 0, -1, FeatureSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFeature_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getFeature_Description(), ecorePackage.getEString(), "description", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFeature_FeatureSet(), this.getFeatureSet(), this.getFeatureSet_Features(), "featureSet", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFeature_FeatureVersions(), this.getFeatureVersion(), this.getFeatureVersion_Feature(), "featureVersions", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(featureVersionEClass, FeatureVersion.class, "FeatureVersion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFeatureVersion_Version(), ecorePackage.getEString(), "version", null, 1, 1, FeatureVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFeatureVersion_Feature(), this.getFeature(), this.getFeature_FeatureVersions(), "feature", null, 1, 1, FeatureVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getFeatureVersion_News(), ecorePackage.getEString(), "news", null, 0, 1, FeatureVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(productLineEClass, ProductLine.class, "ProductLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProductLine_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, ProductLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

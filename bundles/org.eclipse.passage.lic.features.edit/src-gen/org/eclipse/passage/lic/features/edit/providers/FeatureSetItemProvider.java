@@ -169,13 +169,20 @@ public class FeatureSetItemProvider extends ItemProviderAdapter implements IEdit
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureSet) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureSet_type") : //$NON-NLS-1$
-				getString("_UI_FeatureSet_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureSet featureSet = (FeatureSet)object;
+		String identifier = featureSet.getIdentifier();
+		String name = featureSet.getName();
+		if (identifier == null || identifier.length() == 0) {
+			return getString("_UI_FeatureSet_type"); //$NON-NLS-1$
+		}
+		if (name == null || name.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_FeatureSet_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
 	/**
