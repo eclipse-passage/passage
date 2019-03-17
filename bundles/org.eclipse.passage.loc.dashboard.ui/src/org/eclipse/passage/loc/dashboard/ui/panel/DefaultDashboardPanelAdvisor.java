@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
@@ -176,14 +177,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createProductLineBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Product Lines:";
-		Image image = getImage(LicPackage.eINSTANCE.getProductLine());
+		EClass eClass = ProductsPackage.eINSTANCE.getProductLine();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Product Line(s) defined.\nUse it define the Products";
 		String warning = "You have no Product Lines defined.\nPlease create or load Product Line definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getProductLine().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Product Line to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -196,14 +198,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createProductBlock(Composite parent, ProductRegistry registry) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Products:";
-		Image image = getImage(LicPackage.eINSTANCE.getProduct());
+		EClass eClass = ProductsPackage.eINSTANCE.getProduct();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Product(s) defined.\nUse it define the Product Versions";
 		String warning = "You have no Products defined.\nPlease create it for the Product Line(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getProduct().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Product to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -216,14 +219,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createProductVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Product Versions:";
-		Image image = getImage(LicPackage.eINSTANCE.getProductVersion());
+		EClass eClass = ProductsPackage.eINSTANCE.getProductVersion();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Product Version (s) defined.\nUse it define the Product Version Features";
 		String warning = "You have no Product Versions defined.\nPlease create it for the Product(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Product Version to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -236,14 +240,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createProductVersionFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Product Features:";
-		Image image = getImage(LicPackage.eINSTANCE.getProductVersionFeature());
+		EClass eClass = ProductsPackage.eINSTANCE.getProductVersionFeature();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s Product Version Feature(s) defined.\nUse it define License Grants";
 		String warning = "You have no Product Version Features defined.\nPlease create it for the Product Verion(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getProductVersionFeature().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select Product Version Feature to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

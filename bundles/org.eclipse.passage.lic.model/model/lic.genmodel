@@ -15,41 +15,10 @@
       interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="model.edit.providers"
       presentationPackageSuffix="model.editor" testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#/">
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLineDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeatureDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOriginDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicensePackDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicenseGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLine">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLine/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLine/name"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLine/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductLine/products"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product/name"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product/description"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product/productLine"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//Product/productVersions"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/version"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/installationToken"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/secureToken"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/news"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/product"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersion/productVersionFeatures"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/featureIdentifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/featureVersion"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/restrictionLevel"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//ProductVersionFeature/productVersion"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/name"/>

@@ -14,9 +14,9 @@ package org.eclipse.passage.loc.products.ui;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
@@ -29,7 +29,7 @@ public class ProductsUi {
 
 	public static ProductDescriptor selectProductDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
 			ProductRegistry registry, ProductDescriptor initial) {
-		String classifier = LicPackage.eINSTANCE.getProduct().getName();
+		String classifier = ProductsPackage.eINSTANCE.getProduct().getName();
 		String title = "Select Product";
 		Iterable<? extends ProductDescriptor> input = registry.getProducts();
 		Class<ProductDescriptor> clazz = ProductDescriptor.class;
@@ -39,7 +39,7 @@ public class ProductsUi {
 
 	public static ProductVersionDescriptor selectProductVersionDescriptor(Shell shell,
 			ComposedAdapterFactoryProvider provider, ProductRegistry registry, ProductVersionDescriptor initial) {
-		String classifier = LicPackage.eINSTANCE.getProductVersion().getName();
+		String classifier = ProductsPackage.eINSTANCE.getProductVersion().getName();
 		String title = "Select Product Version";
 		Iterable<? extends ProductVersionDescriptor> input = registry.getProductVersions();
 		Class<ProductVersionDescriptor> clazz = ProductVersionDescriptor.class;

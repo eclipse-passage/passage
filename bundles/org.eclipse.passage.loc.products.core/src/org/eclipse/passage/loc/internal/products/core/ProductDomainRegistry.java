@@ -26,14 +26,14 @@ import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
-import org.eclipse.passage.lic.products.registry.Products;
-import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -247,8 +247,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin
-				.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature));
+		eventAdmin.postEvent(
+				OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature));
 	}
 
 	@Override
@@ -293,7 +293,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 			if (features != null) {
 				ProductVersionFeatureDescriptor removed = features.remove(featureId);
 				if (removed != null) {
-					eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
+					eventAdmin.postEvent(
+							OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
 				}
 				if (features.isEmpty()) {
 					versions.remove(version);
@@ -307,17 +308,17 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 
 	@Override
 	public EClass getContentClassifier() {
-		return LicPackage.eINSTANCE.getProductLine();
+		return ProductsPackage.eINSTANCE.getProductLine();
 	}
 
 	@Override
 	public EStructuralFeature getContentIdentifierAttribute() {
-		return LicPackage.eINSTANCE.getProductLine_Identifier();
+		return ProductsPackage.eINSTANCE.getProductLine_Identifier();
 	}
 
 	@Override
 	public EStructuralFeature getContentNameAttribute() {
-		return LicPackage.eINSTANCE.getProductLine_Name();
+		return ProductsPackage.eINSTANCE.getProductLine_Name();
 	}
 
 	@Override

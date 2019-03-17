@@ -20,11 +20,13 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.Licenses;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.swt.graphics.Image;
@@ -79,13 +81,13 @@ class DomainRegistryLabelProvider extends LabelProvider {
 			return LicensingImages.getImage(FeaturesPackage.eINSTANCE.getFeatureSet().getName());
 		}
 		if (lastSegment.endsWith(Products.FILE_EXTENSION_XMI)) {
-			return LicensingImages.getImage(LicPackage.eINSTANCE.getProductLine().getName());
+			return LicensingImages.getImage(ProductsPackage.eINSTANCE.getProductLine().getName());
 		}
 		if (lastSegment.endsWith(Users.FILE_EXTENSION_XMI)) {
-			return LicensingImages.getImage(LicPackage.eINSTANCE.getUserOrigin().getName());
+			return LicensingImages.getImage(UsersPackage.eINSTANCE.getUserOrigin().getName());
 		}
 		if (lastSegment.endsWith(Licenses.FILE_EXTENSION_XMI)) {
-			return LicensingImages.getImage(LicPackage.eINSTANCE.getLicensePack().getName());
+			return LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName());
 		}
 		return null;
 	}

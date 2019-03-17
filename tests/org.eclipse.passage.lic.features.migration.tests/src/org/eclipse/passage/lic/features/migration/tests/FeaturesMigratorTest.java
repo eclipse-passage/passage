@@ -45,24 +45,24 @@ public class FeaturesMigratorTest {
 		EList<Feature> features = featureSet.getFeatures();
 		assertEquals(2, features.size());
 
-		Feature feature0 = features.get(0);
-		assertEquals("org.eclipse.passage.lic.launch", feature0.getIdentifier());
-		assertEquals("Eclipse Passage Launch", feature0.getName());
-		assertEquals("Eclipse Passage startup feature", feature0.getDescription());
+		Feature f0 = features.get(0);
+		assertEquals("org.eclipse.passage.lic.launch", f0.getIdentifier());
+		assertEquals("Eclipse Passage Launch", f0.getName());
+		assertEquals("Eclipse Passage startup feature", f0.getDescription());
 		
-		EList<FeatureVersion> feature0Versions = feature0.getFeatureVersions();
-		assertEquals(1, feature0Versions.size());
-		FeatureVersion feature0Version0 = feature0Versions.get(0);
-		assertEquals("0.3.3", feature0Version0.getVersion());
+		EList<FeatureVersion> f0vs = f0.getFeatureVersions();
+		assertEquals(1, f0vs.size());
+		FeatureVersion f0v0 = f0vs.get(0);
+		assertEquals("0.3.3", f0v0.getVersion());
 
-		Feature feature1 = features.get(1);
-		assertEquals("org.eclipse.passage.lic.product", feature1.getIdentifier());
-		assertEquals("Eclipse Passage Product", feature1.getName());
-		assertEquals("Eclipse Passage product feature", feature1.getDescription());
+		Feature f1 = features.get(1);
+		assertEquals("org.eclipse.passage.lic.product", f1.getIdentifier());
+		assertEquals("Eclipse Passage Product", f1.getName());
+		assertEquals("Eclipse Passage product feature", f1.getDescription());
 
-		EList<FeatureVersion> feature1Versions = feature1.getFeatureVersions();
-		assertEquals(1, feature1Versions.size());
-		FeatureVersion feature1Version0 = feature1Versions.get(0);
-		assertEquals("0.4.0", feature1Version0.getVersion());
+		EList<FeatureVersion> f1vs = f1.getFeatureVersions();
+		assertEquals(1, f1vs.size());
+		FeatureVersion f1v1 = f1vs.get(0);
+		assertEquals("0.4.0", f1v1.getVersion());
 	}
 }

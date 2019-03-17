@@ -64,14 +64,14 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lic.features.edit"
+         id="org.eclipse.passage.lic.features.migration"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lic.features.migration"
+         id="org.eclipse.passage.lic.features.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -93,6 +93,20 @@
 
    <plugin
          id="org.eclipse.passage.lic.products.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.products.migration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.products.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"

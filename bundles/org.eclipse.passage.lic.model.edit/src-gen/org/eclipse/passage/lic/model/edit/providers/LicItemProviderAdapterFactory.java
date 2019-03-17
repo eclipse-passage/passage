@@ -81,98 +81,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.ProductLine} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProductLineItemProvider productLineItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.ProductLine}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProductLineAdapter() {
-		if (productLineItemProvider == null) {
-			productLineItemProvider = new ProductLineItemProvider(this);
-		}
-
-		return productLineItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.Product} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProductItemProvider productItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.Product}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProductAdapter() {
-		if (productItemProvider == null) {
-			productItemProvider = new ProductItemProvider(this);
-		}
-
-		return productItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.ProductVersion} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProductVersionItemProvider productVersionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.ProductVersion}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProductVersionAdapter() {
-		if (productVersionItemProvider == null) {
-			productVersionItemProvider = new ProductVersionItemProvider(this);
-		}
-
-		return productVersionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.ProductVersionFeature} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProductVersionFeatureItemProvider productVersionFeatureItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.ProductVersionFeature}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProductVersionFeatureAdapter() {
-		if (productVersionFeatureItemProvider == null) {
-			productVersionFeatureItemProvider = new ProductVersionFeatureItemProvider(this);
-		}
-
-		return productVersionFeatureItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.UserOrigin} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,10 +277,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	 */
 	@Override
 	public void dispose() {
-		if (productLineItemProvider != null) productLineItemProvider.dispose();
-		if (productItemProvider != null) productItemProvider.dispose();
-		if (productVersionItemProvider != null) productVersionItemProvider.dispose();
-		if (productVersionFeatureItemProvider != null) productVersionFeatureItemProvider.dispose();
 		if (userOriginItemProvider != null) userOriginItemProvider.dispose();
 		if (userItemProvider != null) userItemProvider.dispose();
 		if (licensePackItemProvider != null) licensePackItemProvider.dispose();

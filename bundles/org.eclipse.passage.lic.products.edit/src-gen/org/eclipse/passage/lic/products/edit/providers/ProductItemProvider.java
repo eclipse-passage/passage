@@ -1,17 +1,6 @@
-/*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     ArSysOp - initial API and implementation
- *******************************************************************************/
-package org.eclipse.passage.lic.model.edit.providers;
-
+/**
+ */
+package org.eclipse.passage.lic.products.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,32 +22,29 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.passage.lic.model.api.ProductLine;
-import org.eclipse.passage.lic.model.edit.LicEditPlugin;
-import org.eclipse.passage.lic.model.meta.LicFactory;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+
+import org.eclipse.passage.lic.products.edit.ProductsEditPlugin;
+
+import org.eclipse.passage.lic.products.model.api.Product;
+
+import org.eclipse.passage.lic.products.model.meta.ProductsFactory;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.model.api.ProductLine} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.products.model.api.Product} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ProductLineItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ProductItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProductLineItemProvider(AdapterFactory adapterFactory) {
+	public ProductItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,19 +73,13 @@ public class ProductLineItemProvider
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProductLine_identifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_identifier_feature", "_UI_ProductLine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.PRODUCT_LINE__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Product_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Product_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Product_type"), //$NON-NLS-1$
+						ProductsPackage.Literals.PRODUCT__IDENTIFIER, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -109,19 +89,12 @@ public class ProductLineItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProductLine_name_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_name_feature", "_UI_ProductLine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.PRODUCT_LINE__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Product_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						ProductsPackage.Literals.PRODUCT__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -131,19 +104,13 @@ public class ProductLineItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ProductLine_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_description_feature", "_UI_ProductLine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.PRODUCT_LINE__DESCRIPTION,
-				 true,
-				 true,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Product_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Product_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Product_type"), //$NON-NLS-1$
+						ProductsPackage.Literals.PRODUCT__DESCRIPTION, true, true, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -158,7 +125,7 @@ public class ProductLineItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicPackage.Literals.PRODUCT_LINE__PRODUCTS);
+			childrenFeatures.add(ProductsPackage.Literals.PRODUCT__PRODUCT_VERSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -177,7 +144,7 @@ public class ProductLineItemProvider
 	}
 
 	/**
-	 * This returns ProductLine.gif.
+	 * This returns Product.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -205,18 +172,17 @@ public class ProductLineItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ProductLine productLine = (ProductLine)object;
-		String identifier = productLine.getIdentifier();
-		String name = productLine.getName();
+		Product product = (Product)object;
+		String identifier = product.getIdentifier();
+		String name = product.getName();
 		if (identifier == null || identifier.length() == 0) {
-			return getString("_UI_ProductLine_type"); //$NON-NLS-1$
+			return getString("_UI_Product_type"); //$NON-NLS-1$
 		}
 		if (name == null || name.length() == 0) {
 			return identifier;
 		}
-		return getString("_UI_ProductLine_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
+		return getString("_UI_Product_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -229,15 +195,15 @@ public class ProductLineItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ProductLine.class)) {
-			case LicPackage.PRODUCT_LINE__IDENTIFIER:
-			case LicPackage.PRODUCT_LINE__NAME:
-			case LicPackage.PRODUCT_LINE__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case LicPackage.PRODUCT_LINE__PRODUCTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		switch (notification.getFeatureID(Product.class)) {
+		case ProductsPackage.PRODUCT__IDENTIFIER:
+		case ProductsPackage.PRODUCT__NAME:
+		case ProductsPackage.PRODUCT__DESCRIPTION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -253,10 +219,8 @@ public class ProductLineItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(LicPackage.Literals.PRODUCT_LINE__PRODUCTS,
-				 LicFactory.eINSTANCE.createProduct()));
+		newChildDescriptors.add(createChildParameter(ProductsPackage.Literals.PRODUCT__PRODUCT_VERSIONS,
+				ProductsFactory.eINSTANCE.createProductVersion()));
 	}
 
 	/**
@@ -267,7 +231,7 @@ public class ProductLineItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return LicEditPlugin.INSTANCE;
+		return ProductsEditPlugin.INSTANCE;
 	}
 
 }

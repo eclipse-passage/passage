@@ -16,9 +16,9 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.lic.products.registry.Products;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -38,16 +38,16 @@ public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor 
 
 	@Override
 	public String getSelectionTitle(String classifier) {
-		if (LicPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
 			return "Select Product Line";
 		}
-		if (LicPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
 			return "Select Product";
 		}
-		if (LicPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
 			return "Select Product Version";
 		}
-		if (LicPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
 			return "Select Product Version Feature";
 		}
 		return null;
@@ -58,16 +58,16 @@ public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor 
 		if (registry == null) {
 			return Collections.emptyList();
 		}
-		if (LicPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
 			return registry.getProductLines();
 		}
-		if (LicPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
 			return registry.getProducts();
 		}
-		if (LicPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
 			return registry.getProductVersions();
 		}
-		if (LicPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
+		if (ProductsPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
 			return registry.getProductVersionFeatures();
 		}
 		return Collections.emptyList();

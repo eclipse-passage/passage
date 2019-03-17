@@ -67,10 +67,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LicPackage.PRODUCT_LINE: return createProductLine();
-			case LicPackage.PRODUCT: return createProduct();
-			case LicPackage.PRODUCT_VERSION: return createProductVersion();
-			case LicPackage.PRODUCT_VERSION_FEATURE: return createProductVersionFeature();
 			case LicPackage.USER_ORIGIN: return createUserOrigin();
 			case LicPackage.USER: return createUser();
 			case LicPackage.LICENSE_PACK: return createLicensePack();
@@ -82,39 +78,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  @Override
-		public Product createProduct() {
-		ProductImpl product = new ProductImpl();
-		return product;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProductVersion createProductVersion() {
-		ProductVersionImpl productVersion = new ProductVersionImpl();
-		return productVersion;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProductVersionFeature createProductVersionFeature() {
-		ProductVersionFeatureImpl productVersionFeature = new ProductVersionFeatureImpl();
-		return productVersionFeature;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -122,17 +85,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	public UserOrigin createUserOrigin() {
 		UserOriginImpl userOrigin = new UserOriginImpl();
 		return userOrigin;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProductLine createProductLine() {
-		ProductLineImpl productLine = new ProductLineImpl();
-		return productLine;
 	}
 
 		/**

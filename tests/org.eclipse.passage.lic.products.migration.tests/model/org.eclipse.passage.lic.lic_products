@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/0.3.3" identifier="org.eclipse.passage.lic" name="Eclipse Passage LIC" description="Eclipse Passage Licensing Integration Components">
+  <products identifier="org.eclipse.passage.lic.product" name="Eclipse Passage LIC" description="Eclipse Passage Licensing Integration Components product">
+    <productVersions version="0.3.3" installationToken="./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.pub" secureToken="./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.scr">
+      <productVersionFeatures featureIdentifier="org.eclipse.passage.lic.launch" featureVersion="0.3.3" restrictionLevel="error"/>
+    </productVersions>
+    <productVersions version="0.4.0" installationToken="./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.pub" secureToken="./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.scr">
+      <productVersionFeatures featureIdentifier="org.eclipse.passage.lic.product" featureVersion="0.4.0" restrictionLevel="error"/>
+    </productVersions>
+  </products>
+</org.eclipse.passage.lic:ProductLine>

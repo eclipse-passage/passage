@@ -20,7 +20,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
-import org.eclipse.passage.lic.model.api.ProductLine;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 

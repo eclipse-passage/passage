@@ -65,7 +65,7 @@ public class DelegatingEPackage extends EPackageImpl {
 
 	private final DelegatingEFactory delegatingEFactory = new DelegatingEFactory();
 
-	public DelegatingEPackage(String nsUri) {
+	private DelegatingEPackage(String nsUri) {
 		setNsURI(nsUri);
 		setEFactoryInstance(delegatingEFactory);
 	}

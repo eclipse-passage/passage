@@ -14,12 +14,12 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
-import org.eclipse.passage.lic.model.api.Product;
-import org.eclipse.passage.lic.model.api.ProductLine;
-import org.eclipse.passage.lic.model.api.ProductVersion;
-import org.eclipse.passage.lic.model.api.ProductVersionFeature;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductLineDescriptor, ProductDomainRegistry> {
 
@@ -33,10 +33,10 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		if (notifier instanceof ProductLine) {
 			ProductLine productLine = (ProductLine) notifier;
 			switch (notification.getFeatureID(ProductLine.class)) {
-			case LicPackage.PRODUCT_LINE__IDENTIFIER:
+			case ProductsPackage.PRODUCT_LINE__IDENTIFIER:
 				processProductLineIdentifier(productLine, notification);
 				break;
-			case LicPackage.PRODUCT_LINE__PRODUCTS:
+			case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 				processProductLineProducts(productLine, notification);
 				break;
 			default:
@@ -45,10 +45,10 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		} else if (notifier instanceof Product) {
 			Product product = (Product) notifier;
 			switch (notification.getFeatureID(Product.class)) {
-			case LicPackage.PRODUCT__IDENTIFIER:
+			case ProductsPackage.PRODUCT__IDENTIFIER:
 				processProductIdentifier(product, notification);
 				break;
-			case LicPackage.PRODUCT__PRODUCT_VERSIONS:
+			case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 				processProductProductVersions(product, notification);
 				break;
 			default:
@@ -57,10 +57,10 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		} else if (notifier instanceof ProductVersion) {
 			ProductVersion productVersion = (ProductVersion) notifier;
 			switch (notification.getFeatureID(ProductVersion.class)) {
-			case LicPackage.PRODUCT_VERSION__VERSION:
+			case ProductsPackage.PRODUCT_VERSION__VERSION:
 				processProductVersionVersion(productVersion, notification);
 				break;
-			case LicPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
+			case ProductsPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
 				processProductVersionProductVersionFeatures(productVersion, notification);
 				break;
 			default:
@@ -69,7 +69,7 @@ public class ProductsDomainRegistryTracker extends DomainContentAdapter<ProductL
 		} else if (notifier instanceof ProductVersionFeature) {
 			ProductVersionFeature productVersionFeature = (ProductVersionFeature) notifier;
 			switch (notification.getFeatureID(ProductVersionFeature.class)) {
-			case LicPackage.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER:
+			case ProductsPackage.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER:
 				processProductVersionFeatureFeatureIdentifier(productVersionFeature, notification);
 				break;
 			default:

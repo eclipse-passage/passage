@@ -15,10 +15,6 @@ package org.eclipse.passage.lic.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.model.api.Product;
-import org.eclipse.passage.lic.model.api.ProductLine;
-import org.eclipse.passage.lic.model.api.ProductVersion;
-import org.eclipse.passage.lic.model.api.ProductVersionFeature;
 import org.eclipse.passage.lic.model.api.User;
 import org.eclipse.passage.lic.model.api.UserOrigin;
 
@@ -40,33 +36,6 @@ public interface LicFactory extends EFactory {
   LicFactory eINSTANCE = org.eclipse.passage.lic.model.impl.LicFactoryImpl.init();
 
   /**
-	 * Returns a new object of class '<em>Product</em>'.
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product</em>'.
-	 * @generated
-	 */
-  Product createProduct();
-
-  /**
-	 * Returns a new object of class '<em>Product Version</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product Version</em>'.
-	 * @generated
-	 */
-	ProductVersion createProductVersion();
-
-		/**
-	 * Returns a new object of class '<em>Product Version Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product Version Feature</em>'.
-	 * @generated
-	 */
-	ProductVersionFeature createProductVersionFeature();
-
-		/**
 	 * Returns a new object of class '<em>User Origin</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,15 +43,6 @@ public interface LicFactory extends EFactory {
 	 * @generated
 	 */
 	UserOrigin createUserOrigin();
-
-		/**
-	 * Returns a new object of class '<em>Product Line</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product Line</em>'.
-	 * @generated
-	 */
-	ProductLine createProductLine();
 
 		/**
 	 * Returns a new object of class '<em>User</em>'.

@@ -20,10 +20,6 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
@@ -84,22 +80,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
   protected LicSwitch<Adapter> modelSwitch =
     new LicSwitch<Adapter>() {
 			@Override
-			public Adapter caseProductLineDescriptor(ProductLineDescriptor object) {
-				return createProductLineDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseProductDescriptor(ProductDescriptor object) {
-				return createProductDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseProductVersionDescriptor(ProductVersionDescriptor object) {
-				return createProductVersionDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseProductVersionFeatureDescriptor(ProductVersionFeatureDescriptor object) {
-				return createProductVersionFeatureDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseUserOriginDescriptor(UserOriginDescriptor object) {
 				return createUserOriginDescriptorAdapter();
 			}
@@ -114,22 +94,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
 				return createLicenseGrantDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseProductLine(ProductLine object) {
-				return createProductLineAdapter();
-			}
-			@Override
-			public Adapter caseProduct(Product object) {
-				return createProductAdapter();
-			}
-			@Override
-			public Adapter caseProductVersion(ProductVersion object) {
-				return createProductVersionAdapter();
-			}
-			@Override
-			public Adapter caseProductVersionFeature(ProductVersionFeature object) {
-				return createProductVersionFeatureAdapter();
 			}
 			@Override
 			public Adapter caseUserOrigin(UserOrigin object) {
@@ -168,48 +132,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductDescriptor <em>Product Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductDescriptor
-	 * @generated
-	 */
-	public Adapter createProductDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionDescriptor <em>Product Version Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductVersionDescriptor
-	 * @generated
-	 */
-	public Adapter createProductVersionDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor <em>Product Version Feature Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor
-	 * @generated
-	 */
-	public Adapter createProductVersionFeatureDescriptorAdapter() {
-		return null;
-	}
-
-		/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -220,20 +142,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserOriginDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.products.ProductLineDescriptor <em>Product Line Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.products.ProductLineDescriptor
-	 * @generated
-	 */
-	public Adapter createProductLineDescriptorAdapter() {
 		return null;
 	}
 
@@ -280,48 +188,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.Product <em>Product</em>}'.
-	 * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.Product
-	 * @generated
-	 */
-  public Adapter createProductAdapter() {
-		return null;
-	}
-
-  /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.ProductVersion <em>Product Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.ProductVersion
-	 * @generated
-	 */
-	public Adapter createProductVersionAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.ProductVersionFeature <em>Product Version Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.ProductVersionFeature
-	 * @generated
-	 */
-	public Adapter createProductVersionFeatureAdapter() {
-		return null;
-	}
-
-		/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.UserOrigin <em>User Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -332,20 +198,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserOriginAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.ProductLine <em>Product Line</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.ProductLine
-	 * @generated
-	 */
-	public Adapter createProductLineAdapter() {
 		return null;
 	}
 

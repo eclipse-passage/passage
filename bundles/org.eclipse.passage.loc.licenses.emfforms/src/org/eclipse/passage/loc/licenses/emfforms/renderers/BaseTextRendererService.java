@@ -24,7 +24,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.AbstractSWTRenderer;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.ValidatedTextRenderer;
 
 public class BaseTextRendererService implements EMFFormsDIRendererService<VControl> {
@@ -60,10 +60,10 @@ public class BaseTextRendererService implements EMFFormsDIRendererService<VContr
 		final EStructuralFeature eStructuralFeature = EStructuralFeature.class.cast(valueType);
 
 		if (FeaturesPackage.eINSTANCE.getFeatureVersion_Version().equals(eStructuralFeature)
-				|| LicPackage.eINSTANCE.getProductLine_Identifier().equals(eStructuralFeature)
-				|| LicPackage.eINSTANCE.getProduct_Identifier().equals(eStructuralFeature)
-				|| LicPackage.eINSTANCE.getProduct_Name().equals(eStructuralFeature)
-				|| LicPackage.eINSTANCE.getProductVersion_Version().equals(eStructuralFeature)) {
+				|| ProductsPackage.eINSTANCE.getProductLine_Identifier().equals(eStructuralFeature)
+				|| ProductsPackage.eINSTANCE.getProduct_Identifier().equals(eStructuralFeature)
+				|| ProductsPackage.eINSTANCE.getProduct_Name().equals(eStructuralFeature)
+				|| ProductsPackage.eINSTANCE.getProductVersion_Version().equals(eStructuralFeature)) {
 			return 10;
 		}
 
