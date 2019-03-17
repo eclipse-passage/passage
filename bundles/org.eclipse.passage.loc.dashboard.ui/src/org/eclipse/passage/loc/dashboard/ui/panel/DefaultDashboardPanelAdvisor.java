@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
@@ -284,14 +285,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createUserOriginBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "User Origins:";
-		Image image = getImage(LicPackage.eINSTANCE.getUserOrigin());
+		EClass eClass = UsersPackage.eINSTANCE.getUserOrigin();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s User Origin(s) defined.\nUse it define the Users";
 		String warning = "You have no User Origins defined.\nPlease create or load User Origin definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getUserOrigin().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select User Origin to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -304,14 +306,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createUserBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "Users:";
-		Image image = getImage(LicPackage.eINSTANCE.getUser());
+		EClass eClass = UsersPackage.eINSTANCE.getUser();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s User(s) defined.\nUse it define the License Packs";
 		String warning = "You have no Users defined.\nPlease create it for the User Origin(s)";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getUser().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select User to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

@@ -20,8 +20,6 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,28 +78,12 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
   protected LicSwitch<Adapter> modelSwitch =
     new LicSwitch<Adapter>() {
 			@Override
-			public Adapter caseUserOriginDescriptor(UserOriginDescriptor object) {
-				return createUserOriginDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseUserDescriptor(UserDescriptor object) {
-				return createUserDescriptorAdapter();
-			}
-			@Override
 			public Adapter caseLicensePackDescriptor(LicensePackDescriptor object) {
 				return createLicensePackDescriptorAdapter();
 			}
 			@Override
 			public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
 				return createLicenseGrantDescriptorAdapter();
-			}
-			@Override
-			public Adapter caseUserOrigin(UserOrigin object) {
-				return createUserOriginAdapter();
-			}
-			@Override
-			public Adapter caseUser(User object) {
-				return createUserAdapter();
 			}
 			@Override
 			public Adapter caseLicensePack(LicensePack object) {
@@ -132,34 +114,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
-	 * @generated
-	 */
-	public Adapter createUserOriginDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.users.UserDescriptor
-	 * @generated
-	 */
-	public Adapter createUserDescriptorAdapter() {
-		return null;
-	}
-
-		/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -184,34 +138,6 @@ public class LicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseGrantDescriptorAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.UserOrigin <em>User Origin</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.UserOrigin
-	 * @generated
-	 */
-	public Adapter createUserOriginAdapter() {
-		return null;
-	}
-
-		/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.model.api.User <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.model.api.User
-	 * @generated
-	 */
-	public Adapter createUserAdapter() {
 		return null;
 	}
 

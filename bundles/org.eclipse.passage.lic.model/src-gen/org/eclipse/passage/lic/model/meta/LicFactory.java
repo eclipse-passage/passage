@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.model.meta;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.model.api.User;
-import org.eclipse.passage.lic.model.api.UserOrigin;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,24 +34,6 @@ public interface LicFactory extends EFactory {
   LicFactory eINSTANCE = org.eclipse.passage.lic.model.impl.LicFactoryImpl.init();
 
   /**
-	 * Returns a new object of class '<em>User Origin</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>User Origin</em>'.
-	 * @generated
-	 */
-	UserOrigin createUserOrigin();
-
-		/**
-	 * Returns a new object of class '<em>User</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>User</em>'.
-	 * @generated
-	 */
-	User createUser();
-
-		/**
 	 * Returns a new object of class '<em>License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

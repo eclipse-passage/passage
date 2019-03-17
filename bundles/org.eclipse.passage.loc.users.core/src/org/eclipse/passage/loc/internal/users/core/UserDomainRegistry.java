@@ -24,12 +24,12 @@ import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.registry.Users;
-import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.lic.users.registry.Users;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -174,17 +174,17 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	@Override
 	public EClass getContentClassifier() {
-		return LicPackage.eINSTANCE.getUserOrigin();
+		return UsersPackage.eINSTANCE.getUserOrigin();
 	}
 
 	@Override
 	public EStructuralFeature getContentIdentifierAttribute() {
-		return LicPackage.eINSTANCE.getUserOrigin_Identifier();
+		return UsersPackage.eINSTANCE.getUserOrigin_Identifier();
 	}
 
 	@Override
 	public EStructuralFeature getContentNameAttribute() {
-		return LicPackage.eINSTANCE.getUserOrigin_Name();
+		return UsersPackage.eINSTANCE.getUserOrigin_Name();
 	}
 
 	@Override

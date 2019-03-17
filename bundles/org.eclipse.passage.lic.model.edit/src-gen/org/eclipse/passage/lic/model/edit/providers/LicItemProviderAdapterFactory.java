@@ -81,52 +81,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.UserOrigin} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UserOriginItemProvider userOriginItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.UserOrigin}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUserOriginAdapter() {
-		if (userOriginItemProvider == null) {
-			userOriginItemProvider = new UserOriginItemProvider(this);
-		}
-
-		return userOriginItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.User} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UserItemProvider userItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.model.api.User}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUserAdapter() {
-		if (userItemProvider == null) {
-			userItemProvider = new UserItemProvider(this);
-		}
-
-		return userItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.model.api.LicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,8 +231,6 @@ public class LicItemProviderAdapterFactory extends LicAdapterFactory implements 
 	 */
 	@Override
 	public void dispose() {
-		if (userOriginItemProvider != null) userOriginItemProvider.dispose();
-		if (userItemProvider != null) userItemProvider.dispose();
 		if (licensePackItemProvider != null) licensePackItemProvider.dispose();
 		if (licenseGrantItemProvider != null) licenseGrantItemProvider.dispose();
 	}

@@ -1,17 +1,6 @@
-/*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     ArSysOp - initial API and implementation
- *******************************************************************************/
-package org.eclipse.passage.lic.model.edit.providers;
-
+/**
+ */
+package org.eclipse.passage.lic.users.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +9,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,25 +22,22 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.passage.lic.model.api.UserOrigin;
-import org.eclipse.passage.lic.model.edit.LicEditPlugin;
-import org.eclipse.passage.lic.model.meta.LicFactory;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+
+import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
+
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
+
+import org.eclipse.passage.lic.users.model.meta.UsersFactory;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.model.api.UserOrigin} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserOriginItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class UserOriginItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,19 +74,13 @@ public class UserOriginItemProvider
 	 * @generated
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER_ORIGIN__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserOrigin_type"), //$NON-NLS-1$
+						UsersPackage.Literals.USER_ORIGIN__IDENTIFIER, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -108,19 +90,13 @@ public class UserOriginItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER_ORIGIN__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserOrigin_type"), //$NON-NLS-1$
+						UsersPackage.Literals.USER_ORIGIN__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -130,19 +106,13 @@ public class UserOriginItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER_ORIGIN__DESCRIPTION,
-				 true,
-				 true,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserOrigin_type"), //$NON-NLS-1$
+						UsersPackage.Literals.USER_ORIGIN__DESCRIPTION, true, true, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -152,19 +122,12 @@ public class UserOriginItemProvider
 	 * @generated
 	 */
 	protected void addUsersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", "_UI_UserOrigin_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 LicPackage.Literals.USER_ORIGIN__USERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserOrigin_type"), //$NON-NLS-1$
+						UsersPackage.Literals.USER_ORIGIN__USERS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -179,7 +142,7 @@ public class UserOriginItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicPackage.Literals.USER_ORIGIN__USERS);
+			childrenFeatures.add(UsersPackage.Literals.USER_ORIGIN__USERS);
 		}
 		return childrenFeatures;
 	}
@@ -198,7 +161,7 @@ public class UserOriginItemProvider
 	}
 
 	/**
-	 * This returns UserOrigin.gif.
+	 * This returns User.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -238,7 +201,6 @@ public class UserOriginItemProvider
 		return getString("_UI_UserOrigin_text_pattern", new Object[] {identifier, name}); //$NON-NLS-1$
 	}
 
-
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
@@ -251,14 +213,14 @@ public class UserOriginItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UserOrigin.class)) {
-			case LicPackage.USER_ORIGIN__IDENTIFIER:
-			case LicPackage.USER_ORIGIN__NAME:
-			case LicPackage.USER_ORIGIN__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case LicPackage.USER_ORIGIN__USERS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case UsersPackage.USER_ORIGIN__IDENTIFIER:
+		case UsersPackage.USER_ORIGIN__NAME:
+		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case UsersPackage.USER_ORIGIN__USERS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -274,10 +236,8 @@ public class UserOriginItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(LicPackage.Literals.USER_ORIGIN__USERS,
-				 LicFactory.eINSTANCE.createUser()));
+		newChildDescriptors.add(
+				createChildParameter(UsersPackage.Literals.USER_ORIGIN__USERS, UsersFactory.eINSTANCE.createUser()));
 	}
 
 	/**
@@ -288,7 +248,7 @@ public class UserOriginItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return LicEditPlugin.INSTANCE;
+		return UsersEditPlugin.INSTANCE;
 	}
 
 }

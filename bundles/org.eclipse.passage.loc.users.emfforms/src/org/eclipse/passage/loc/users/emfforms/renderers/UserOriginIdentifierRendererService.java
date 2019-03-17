@@ -16,17 +16,18 @@ import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRendererService;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.ValidatedTextRenderer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component
-public class UserOriginIdentifierRendererService extends StructuredFeatureRendererService implements EMFFormsDIRendererService<VControl> {
+public class UserOriginIdentifierRendererService extends StructuredFeatureRendererService
+		implements EMFFormsDIRendererService<VControl> {
 
 	public UserOriginIdentifierRendererService() {
-		super(ValidatedTextRenderer.class, LicPackage.eINSTANCE.getUserOrigin_Identifier());
+		super(ValidatedTextRenderer.class, UsersPackage.eINSTANCE.getUserOrigin_Identifier());
 	}
 
 	@Reference
@@ -34,18 +35,18 @@ public class UserOriginIdentifierRendererService extends StructuredFeatureRender
 	public void bindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
 		super.bindEMFFormsDatabinding(databindingService);
 	}
-	
+
 	@Override
 	public void unbindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
 		super.unbindEMFFormsDatabinding(databindingService);
 	}
-	
+
 	@Reference
 	@Override
 	public void bindReportService(ReportService reportService) {
 		super.bindReportService(reportService);
 	}
-	
+
 	@Override
 	public void unbindReportService(ReportService reportService) {
 		super.unbindReportService(reportService);

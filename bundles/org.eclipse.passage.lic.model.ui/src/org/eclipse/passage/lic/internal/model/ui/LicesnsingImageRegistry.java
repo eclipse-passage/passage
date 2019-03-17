@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.model.edit.LicEditPlugin;
 import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.edit.ProductsEditPlugin;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
+import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
@@ -78,17 +80,17 @@ public class LicesnsingImageRegistry {
 
 	private void registerUsers(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
-		LicPackage lic = LicPackage.eINSTANCE;
-		paths.put(lic.getUserOrigin().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
-		paths.put(lic.getUser().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
-		LicensingImages.declareImages(LicEditPlugin.class, paths);
+		UsersPackage users = UsersPackage.eINSTANCE;
+		paths.put(users.getUserOrigin().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
+		paths.put(users.getUser().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
+		LicensingImages.declareImages(UsersEditPlugin.class, paths);
 	}
 
 	private void registerLicenses(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
-		LicPackage lic = LicPackage.eINSTANCE;
-		paths.put(lic.getLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
-		paths.put(lic.getLicenseGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
+		LicPackage licenses = LicPackage.eINSTANCE;
+		paths.put(licenses.getLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
+		paths.put(licenses.getLicenseGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(LicEditPlugin.class, paths);
 	}
 

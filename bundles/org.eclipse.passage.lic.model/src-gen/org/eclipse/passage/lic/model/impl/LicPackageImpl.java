@@ -21,12 +21,8 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.LicenseGrant;
 import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.model.api.User;
-import org.eclipse.passage.lic.model.api.UserOrigin;
 import org.eclipse.passage.lic.model.meta.LicFactory;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,20 +36,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass userOriginDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass userDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass licensePackDescriptorEClass = null;
 
 		/**
@@ -62,20 +44,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * @generated
 	 */
 	private EClass licenseGrantDescriptorEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass userOriginEClass = null;
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass userEClass = null;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -158,26 +126,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getUserOriginDescriptor() {
-		return userOriginDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUserDescriptor() {
-		return userDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getLicensePackDescriptor() {
 		return licensePackDescriptorEClass;
 	}
@@ -190,66 +138,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 	@Override
 	public EClass getLicenseGrantDescriptor() {
 		return licenseGrantDescriptorEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUser() {
-		return userEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Identifier() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Email() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_FullName() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Description() {
-		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getUser_UserOrigin() {
-		return (EReference)userEClass.getEStructuralFeatures().get(4);
 	}
 
 		/**
@@ -434,56 +322,6 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 
 		/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUserOrigin() {
-		return userOriginEClass;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserOrigin_Identifier() {
-		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(0);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserOrigin_Name() {
-		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(1);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserOrigin_Description() {
-		return (EAttribute)userOriginEClass.getEStructuralFeatures().get(2);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getUserOrigin_Users() {
-		return (EReference)userOriginEClass.getEStructuralFeatures().get(3);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -501,26 +339,9 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		userOriginDescriptorEClass = createEClass(USER_ORIGIN_DESCRIPTOR);
-
-		userDescriptorEClass = createEClass(USER_DESCRIPTOR);
-
 		licensePackDescriptorEClass = createEClass(LICENSE_PACK_DESCRIPTOR);
 
 		licenseGrantDescriptorEClass = createEClass(LICENSE_GRANT_DESCRIPTOR);
-
-		userOriginEClass = createEClass(USER_ORIGIN);
-		createEAttribute(userOriginEClass, USER_ORIGIN__IDENTIFIER);
-		createEAttribute(userOriginEClass, USER_ORIGIN__NAME);
-		createEAttribute(userOriginEClass, USER_ORIGIN__DESCRIPTION);
-		createEReference(userOriginEClass, USER_ORIGIN__USERS);
-
-		userEClass = createEClass(USER);
-		createEAttribute(userEClass, USER__IDENTIFIER);
-		createEAttribute(userEClass, USER__EMAIL);
-		createEAttribute(userEClass, USER__FULL_NAME);
-		createEAttribute(userEClass, USER__DESCRIPTION);
-		createEReference(userEClass, USER__USER_ORIGIN);
 
 		licensePackEClass = createEClass(LICENSE_PACK);
 		createEAttribute(licensePackEClass, LICENSE_PACK__IDENTIFIER);
@@ -570,32 +391,13 @@ public class LicPackageImpl extends EPackageImpl implements LicPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
-		userEClass.getESuperTypes().add(this.getUserDescriptor());
 		licensePackEClass.getESuperTypes().add(this.getLicensePackDescriptor());
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(licensePackDescriptorEClass, LicensePackDescriptor.class, "LicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(licenseGrantDescriptorEClass, LicenseGrantDescriptor.class, "LicenseGrantDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUserOrigin_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getUserOrigin_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getUserOrigin_Description(), ecorePackage.getEString(), "description", null, 0, 1, UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_UserOrigin(), "users", null, 0, -1, UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUser_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email", null, 1, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getUser_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getUser_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getUser_UserOrigin(), this.getUserOrigin(), this.getUserOrigin_Users(), "userOrigin", null, 1, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(licensePackEClass, LicensePack.class, "LicensePack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getLicensePack_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, LicensePack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

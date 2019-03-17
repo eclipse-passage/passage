@@ -14,10 +14,10 @@ package org.eclipse.passage.loc.internal.users.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
-import org.eclipse.passage.lic.model.api.User;
-import org.eclipse.passage.lic.model.api.UserOrigin;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> {
 
@@ -31,10 +31,10 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		if (notifier instanceof UserOrigin) {
 			UserOrigin userOrigin = (UserOrigin) notifier;
 			switch (notification.getFeatureID(UserOrigin.class)) {
-			case LicPackage.USER_ORIGIN__IDENTIFIER:
+			case UsersPackage.USER_ORIGIN__IDENTIFIER:
 				processUserOriginIdentifier(userOrigin, notification);
 				break;
-			case LicPackage.USER_ORIGIN__USERS:
+			case UsersPackage.USER_ORIGIN__USERS:
 				processUserOriginUsers(userOrigin, notification);
 				break;
 			default:
@@ -43,7 +43,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		} else if (notifier instanceof User) {
 			User user = (User) notifier;
 			switch (notification.getFeatureID(User.class)) {
-			case LicPackage.USER__EMAIL:
+			case UsersPackage.USER__EMAIL:
 				processUserEmail(user, notification);
 				break;
 			default:

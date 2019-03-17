@@ -19,8 +19,6 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.model.api.*;
 import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,18 +77,6 @@ public class LicSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case LicPackage.USER_ORIGIN_DESCRIPTOR: {
-				UserOriginDescriptor userOriginDescriptor = (UserOriginDescriptor)theEObject;
-				T result = caseUserOriginDescriptor(userOriginDescriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LicPackage.USER_DESCRIPTOR: {
-				UserDescriptor userDescriptor = (UserDescriptor)theEObject;
-				T result = caseUserDescriptor(userDescriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case LicPackage.LICENSE_PACK_DESCRIPTOR: {
 				LicensePackDescriptor licensePackDescriptor = (LicensePackDescriptor)theEObject;
 				T result = caseLicensePackDescriptor(licensePackDescriptor);
@@ -100,20 +86,6 @@ public class LicSwitch<T> extends Switch<T> {
 			case LicPackage.LICENSE_GRANT_DESCRIPTOR: {
 				LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor)theEObject;
 				T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LicPackage.USER_ORIGIN: {
-				UserOrigin userOrigin = (UserOrigin)theEObject;
-				T result = caseUserOrigin(userOrigin);
-				if (result == null) result = caseUserOriginDescriptor(userOrigin);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case LicPackage.USER: {
-				User user = (User)theEObject;
-				T result = caseUser(user);
-				if (result == null) result = caseUserDescriptor(user);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,36 +108,6 @@ public class LicSwitch<T> extends Switch<T> {
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>User Origin Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User Origin Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUserOriginDescriptor(UserOriginDescriptor object) {
-		return null;
-	}
-
-		/**
-	 * Returns the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUserDescriptor(UserDescriptor object) {
-		return null;
-	}
-
-		/**
 	 * Returns the result of interpreting the object as an instance of '<em>License Pack Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -192,36 +134,6 @@ public class LicSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
-		return null;
-	}
-
-		/**
-	 * Returns the result of interpreting the object as an instance of '<em>User Origin</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User Origin</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUserOrigin(UserOrigin object) {
-		return null;
-	}
-
-		/**
-	 * Returns the result of interpreting the object as an instance of '<em>User</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>User</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUser(User object) {
 		return null;
 	}
 

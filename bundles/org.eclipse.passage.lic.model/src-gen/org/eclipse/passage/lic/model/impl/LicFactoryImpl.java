@@ -67,8 +67,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
   @Override
   public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LicPackage.USER_ORIGIN: return createUserOrigin();
-			case LicPackage.USER: return createUser();
 			case LicPackage.LICENSE_PACK: return createLicensePack();
 			case LicPackage.LICENSE_GRANT: return createLicenseGrant();
 			default:
@@ -77,28 +75,6 @@ public class LicFactoryImpl extends EFactoryImpl implements LicFactory {
 	}
 
   /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public UserOrigin createUserOrigin() {
-		UserOriginImpl userOrigin = new UserOriginImpl();
-		return userOrigin;
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public User createUser() {
-		UserImpl user = new UserImpl();
-		return user;
-	}
-
-		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

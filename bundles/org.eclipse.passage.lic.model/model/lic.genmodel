@@ -15,23 +15,8 @@
       interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="model.edit.providers"
       presentationPackageSuffix="model.editor" testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#/">
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOriginDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicensePackDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicenseGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/name"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/description"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//UserOrigin/users"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User/email"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User/fullName"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User/description"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//User/userOrigin"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicensePack">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicensePack/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.model.ecore/model/lic.ecore#//LicensePack/issueDate"/>

@@ -16,9 +16,9 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.model.meta.LicPackage;
-import org.eclipse.passage.lic.users.registry.Users;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.Users;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -38,10 +38,10 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
 	@Override
 	public String getSelectionTitle(String classifier) {
-		if (LicPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
+		if (UsersPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
 			return "Select User Origin";
 		}
-		if (LicPackage.eINSTANCE.getUser().getName().equals(classifier)) {
+		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return "Select User";
 		}
 		return null;
@@ -52,10 +52,10 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 		if (registry == null) {
 			return Collections.emptyList();
 		}
-		if (LicPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
+		if (UsersPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
 			return registry.getUserOrigins();
 		}
-		if (LicPackage.eINSTANCE.getUser().getName().equals(classifier)) {
+		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return registry.getUsers();
 		}
 		return Collections.emptyList();
