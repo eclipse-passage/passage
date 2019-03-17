@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.passage.lic.features.edit.FeaturesEditPlugin;
-
+import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
@@ -124,11 +124,16 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	@Override
 	public String getText(Object object) {
 		FeatureVersion featureVersion = (FeatureVersion)object;
-		String version = featureVersion.getVersion();
-		if (version == null || version.length() == 0) {
+		Feature feature = featureVersion.getFeature();
+		if (feature == null) {
 			return getString("_UI_FeatureVersion_type"); //$NON-NLS-1$
 		}
-		return version;
+		String version = featureVersion.getVersion();
+		String featureName = feature.getName();
+		if (version == null || version.length() == 0) {
+			return featureName;
+		}
+		return getString("_UI_FeatureVersion_text_pattern", new Object[] {featureName, version}); //$NON-NLS-1$
 	}
 
 	/**

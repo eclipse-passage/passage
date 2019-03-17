@@ -16,19 +16,14 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.features.FeatureDescriptor;
-import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public class DomainRegistryLabelProvider extends LabelProvider {
-	
+
 	private final AdapterFactoryLabelProvider delegate;
-	
+
 	public DomainRegistryLabelProvider(AdapterFactory adapterFactory) {
 		super();
 		this.delegate = new AdapterFactoryLabelProvider(adapterFactory);
@@ -41,34 +36,17 @@ public class DomainRegistryLabelProvider extends LabelProvider {
 		}
 		return delegate.getImage(element);
 	}
-	
+
 	@Override
 	public String getText(Object element) {
-		//FIXME: provide "name" feature for ProductVersion
-		if (element instanceof ProductVersionDescriptor) {
-			ProductVersionDescriptor productVersion = (ProductVersionDescriptor) element;
-			ProductDescriptor product = productVersion.getProduct();
-			return product.getName() + ' ' + productVersion.getVersion();
-		}
+		// FIXME: move to lic.products.edit
 		if (element instanceof ProductVersionFeatureDescriptor) {
 			ProductVersionFeatureDescriptor productVersionFeature = (ProductVersionFeatureDescriptor) element;
 			String text = getText(productVersionFeature.getProductVersion());
-			return text + ' ' + ':' + ' ' + productVersionFeature.getFeatureIdentifier() + ' ' + productVersionFeature.getFeatureVersion();
+			return text + ' ' + ':' + ' ' + productVersionFeature.getFeatureIdentifier() + ' '
+					+ productVersionFeature.getFeatureVersion();
 		}
 
-		//FIXME: AF: move to LIC
-		if (element instanceof FeatureVersionDescriptor) {
-			FeatureVersionDescriptor productVersion = (FeatureVersionDescriptor) element;
-			FeatureDescriptor feature = productVersion.getFeature();
-			return feature.getName() + ' ' + productVersion.getVersion();
-		}
-		if (element instanceof LicensePack) {
-			LicensePack pack = (LicensePack) element;
-			String packId = pack.getIdentifier();
-			String productId = pack.getProductIdentifier();
-			String productVersion = pack.getProductVersion();
-			return packId + ' ' + '(' + productId + ' ' + productVersion + ')';
-		}
 		return delegate.getText(element);
 	}
 

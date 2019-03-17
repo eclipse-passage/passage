@@ -33,7 +33,7 @@ import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;

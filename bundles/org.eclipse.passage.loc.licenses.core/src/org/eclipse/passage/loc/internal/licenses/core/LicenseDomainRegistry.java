@@ -21,16 +21,16 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.registry.Licenses;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -204,12 +204,12 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 
 	@Override
 	public EClass getContentClassifier() {
-		return LicPackage.eINSTANCE.getLicensePack();
+		return LicensesPackage.eINSTANCE.getLicensePack();
 	}
 
 	@Override
 	public EStructuralFeature getContentIdentifierAttribute() {
-		return LicPackage.eINSTANCE.getLicensePack_Identifier();
+		return LicensesPackage.eINSTANCE.getLicensePack_Identifier();
 	}
 
 	@Override

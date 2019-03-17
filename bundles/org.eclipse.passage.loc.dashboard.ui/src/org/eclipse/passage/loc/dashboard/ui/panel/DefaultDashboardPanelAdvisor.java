@@ -21,9 +21,9 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.Licenses;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.Products;
@@ -346,14 +346,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	protected DashboardPanelBlock createLicensePackBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		String label = "License Packs:";
-		Image image = getImage(LicPackage.eINSTANCE.getLicensePack());
+		EClass eClass = LicensesPackage.eINSTANCE.getLicensePack();
+		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		String info = "You have %s License Pack(s) defined.\nUse it define the License Grants";
 		String warning = "You have no License Packs defined.\nPlease create or load License Pack definitions";
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Licenses.DOMAIN_NAME;
-		String classifier = LicPackage.eINSTANCE.getLicensePack().getName();
+		String classifier = eClass.getName();
 		block.configureEdit("Select License Pack to edit", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

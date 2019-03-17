@@ -17,9 +17,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.model.api.LicenseGrant;
-import org.eclipse.passage.lic.model.api.LicensePack;
-import org.eclipse.passage.lic.model.meta.LicFactory;
+import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -59,7 +59,7 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testExtractConditionsDecryptedPositive() throws Exception {
-		LicFactory factory = LicFactory.eINSTANCE;
+		LicensesFactory factory = LicensesFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();
@@ -78,7 +78,7 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testExtractConditionsEncryptedPositive() throws Exception {
-		LicFactory factory = LicFactory.eINSTANCE;
+		LicensesFactory factory = LicensesFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();
@@ -97,7 +97,7 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 
 	@Test
 	public void testExtractConditionsServerPositive() throws Exception {
-		LicFactory factory = LicFactory.eINSTANCE;
+		LicensesFactory factory = LicensesFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 		LicenseGrant conditionBundle = factory.createLicenseGrant();

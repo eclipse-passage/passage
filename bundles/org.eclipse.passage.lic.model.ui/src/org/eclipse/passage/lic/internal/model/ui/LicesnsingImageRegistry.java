@@ -22,8 +22,8 @@ import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.passage.lic.features.edit.FeaturesEditPlugin;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.model.edit.LicEditPlugin;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.edit.ProductsEditPlugin;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
@@ -88,10 +88,10 @@ public class LicesnsingImageRegistry {
 
 	private void registerLicenses(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
-		LicPackage licenses = LicPackage.eINSTANCE;
+		LicensesPackage licenses = LicensesPackage.eINSTANCE;
 		paths.put(licenses.getLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicenseGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
-		LicensingImages.declareImages(LicEditPlugin.class, paths);
+		LicensingImages.declareImages(LicensesEditPlugin.class, paths);
 	}
 
 }

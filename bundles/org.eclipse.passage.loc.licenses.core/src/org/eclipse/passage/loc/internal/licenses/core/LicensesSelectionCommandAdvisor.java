@@ -16,17 +16,17 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.licenses.registry.Licenses;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME })
 public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor {
-	
+
 	private LicenseRegistry registry;
-	
+
 	@Reference
 	public void bindDomainRegistry(LicenseRegistry registry) {
 		this.registry = registry;
@@ -38,7 +38,7 @@ public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 
 	@Override
 	public String getSelectionTitle(String classifier) {
-		if (LicPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
+		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
 			return "Select License Pack";
 		}
 		return null;
@@ -49,7 +49,7 @@ public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 		if (registry == null) {
 			return Collections.emptyList();
 		}
-		if (LicPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
+		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
 			return registry.getLicensePacks();
 		}
 		return Collections.emptyList();

@@ -30,7 +30,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
-import org.eclipse.passage.lic.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.junit.AfterClass;

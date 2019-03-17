@@ -69,15 +69,13 @@
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.model</module>
+		<module>../../bundles/org.eclipse.passage.lic.licenses.migration</module>
+		<module>../../bundles/org.eclipse.passage.lic.licenses.edit</module>
 
-		<module>../../bundles/org.eclipse.passage.lic.model.ecore</module>
-		<module>../../bundles/org.eclipse.passage.lic.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.model.core</module>
 		<module>../../features/org.eclipse.passage.lic.model.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.jface</module>
 		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
-		<module>../../bundles/org.eclipse.passage.lic.model.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.model.ui</module>
 		<module>../../features/org.eclipse.passage.lic.ui.feature</module>
 
@@ -93,7 +91,7 @@
 		<module>../../tests/org.eclipse.passage.lic.features.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.model.core.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
 
 		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
 

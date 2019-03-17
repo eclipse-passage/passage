@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.passage.lic.products.edit.ProductsEditPlugin;
-
+import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 
 import org.eclipse.passage.lic.products.model.meta.ProductsFactory;
@@ -190,12 +190,18 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	 */
 	@Override
 	public String getText(Object object) {
+		// FIXME: provide "name" feature for ProductVersion
 		ProductVersion productVersion = (ProductVersion)object;
-		String version = productVersion.getVersion();
-		if (version == null || version.length() == 0) {
+		Product product = productVersion.getProduct();
+		if (product == null) {
 			return getString("_UI_ProductVersion_type"); //$NON-NLS-1$
 		}
-		return version;
+		String productName = product.getName();
+		String version = productVersion.getVersion();
+		if (version == null || version.length() == 0) {
+			return productName;
+		}
+		return getString("_UI_ProductVersion_text_pattern", new Object[] {productName, version}); //$NON-NLS-1$
 	}
 
 	/**

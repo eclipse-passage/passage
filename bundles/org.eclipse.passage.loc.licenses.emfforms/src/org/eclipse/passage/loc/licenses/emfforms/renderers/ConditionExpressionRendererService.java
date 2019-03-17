@@ -16,16 +16,17 @@ import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
-import org.eclipse.passage.lic.model.meta.LicPackage;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRendererService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component
-public class ConditionExpressionRendererService extends StructuredFeatureRendererService implements EMFFormsDIRendererService<VControl> {
+public class ConditionExpressionRendererService extends StructuredFeatureRendererService
+		implements EMFFormsDIRendererService<VControl> {
 
 	public ConditionExpressionRendererService() {
-		super(ConditionExpressionRenderer.class, LicPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
+		super(ConditionExpressionRenderer.class, LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
 	}
 
 	@Reference
@@ -33,18 +34,18 @@ public class ConditionExpressionRendererService extends StructuredFeatureRendere
 	public void bindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
 		super.bindEMFFormsDatabinding(databindingService);
 	}
-	
+
 	@Override
 	public void unbindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
 		super.unbindEMFFormsDatabinding(databindingService);
 	}
-	
+
 	@Reference
 	@Override
 	public void bindReportService(ReportService reportService) {
 		super.bindReportService(reportService);
 	}
-	
+
 	@Override
 	public void unbindReportService(ReportService reportService) {
 		super.unbindReportService(reportService);

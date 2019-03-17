@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
-import org.eclipse.passage.lic.model.meta.LicPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -26,7 +25,6 @@ public class UsersMigrator {
 
 	@Activate
 	public void activate() {
-		LicPackage.eINSTANCE.toString();// init existing
 		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		UsersPackage delegate = UsersPackage.eINSTANCE;
 		List<String> classifiers = new ArrayList<>();

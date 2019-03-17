@@ -22,7 +22,7 @@ import java.util.HashMap;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.eclipse.passage.lic.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 @SuppressWarnings("restriction")
