@@ -1,5 +1,15 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2018-2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.products.edit.providers;
 
 import java.util.Collection;
@@ -7,9 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,25 +28,23 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.passage.lic.products.edit.ProductsEditPlugin;
-
 import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
-
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.products.model.api.ProductVersionFeature} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link org.eclipse.passage.lic.products.model.api.ProductVersionFeature}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProductVersionFeatureItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProductVersionFeatureItemProvider(AdapterFactory adapterFactory) {
@@ -46,9 +52,9 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,9 +70,9 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Feature Identifier feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFeatureIdentifierPropertyDescriptor(Object object) {
@@ -80,9 +86,9 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature Version feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Feature Version feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFeatureVersionPropertyDescriptor(Object object) {
@@ -96,9 +102,9 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Restriction Level feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Restriction Level feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRestrictionLevelPropertyDescriptor(Object object) {
@@ -112,9 +118,8 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This returns Product.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns Product.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -123,8 +128,8 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,14 +138,14 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		ProductVersionFeature productVersionFeature = (ProductVersionFeature)object;
+		ProductVersionFeature productVersionFeature = (ProductVersionFeature) object;
 		String identifier = productVersionFeature.getFeatureIdentifier();
 		if (identifier == null || identifier.length() == 0) {
 			return getString("_UI_ProductVersionFeature_type"); //$NON-NLS-1$
@@ -149,10 +154,10 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,10 +175,10 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,9 +187,9 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
