@@ -47,37 +47,39 @@
 		<module>../../features/org.eclipse.passage.lic.oshi.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.emf</module>
+		<module>../../bundles/org.eclipse.passage.lic.jface</module>
+		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
+		<module>../../features/org.eclipse.passage.lic.ui.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.features</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.features.e4.ui</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.products.e4.ui</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.users</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.users.e4.ui</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.licenses.e4.ui</module>
 
 		<module>../../features/org.eclipse.passage.lic.model.feature</module>
-
-		<module>../../bundles/org.eclipse.passage.lic.jface</module>
-		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
-		<module>../../bundles/org.eclipse.passage.lic.model.ui</module>
-		<module>../../features/org.eclipse.passage.lic.ui.feature</module>
 
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 		<module>../../features/org.eclipse.passage.lic.execute.feature</module>

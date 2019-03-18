@@ -78,6 +78,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.passage.lic.features.e4.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.lic.products"
          download-size="0"
          install-size="0"
@@ -107,6 +114,13 @@
 
    <plugin
          id="org.eclipse.passage.lic.products.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.products.e4.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -148,6 +162,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.passage.lic.users.e4.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.lic.licenses"
          download-size="0"
          install-size="0"
@@ -177,6 +198,13 @@
 
    <plugin
          id="org.eclipse.passage.lic.licenses.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.lic.licenses.e4.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
