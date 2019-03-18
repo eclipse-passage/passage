@@ -87,6 +87,7 @@
 
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 		<module>../../features/org.eclipse.passage.lic.execute.feature</module>
+		<module>../../features/org.eclipse.passage.lic.define.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>
