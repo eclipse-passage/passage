@@ -12,7 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="org.eclipse.passage.lic.compile.feature"
+      id="org.eclipse.passage.lic.e4.ui.feature"
       label="%featureName"
       version="0.4.0.qualifier"
       provider-name="%providerName"
@@ -31,16 +31,22 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.passage.lic.equinox.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="org.eclipse.passage.lic.equinox.feature" version="0.0.0"/>
+   </requires>
 
-   <includes
-         id="org.eclipse.passage.lic.emf.feature"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.passage.lic.jface"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <includes
-         id="org.eclipse.passage.lic.e4.ui.feature"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.passage.lic.e4.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

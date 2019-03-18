@@ -26,16 +26,6 @@
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
-		id="org.eclipse.passage.lic.model.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.lic.ui.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.lic.category" />
-	</feature>
-	<feature
 		id="org.eclipse.passage.lic.json.feature"
 		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
@@ -47,6 +37,36 @@
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.oshi.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.e4.ui.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.emf.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.features.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.products.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.users.feature"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.licenses.feature"
 		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>

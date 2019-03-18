@@ -47,4 +47,8 @@
          id="org.eclipse.passage.lic.json.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.passage.lic.licenses.feature"
+         version="0.0.0"/>
+
 </feature>
