@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
-import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -33,15 +32,14 @@ public class ConditionTypePage extends LicensingRegistryPage<PermissionEmitterRe
 		Iterable<String> conditionTypes = registry.getSupportedConditionTypes();
 		GridDataFactory groupData = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false);
 		for (String type : conditionTypes) {
-			PermissionEmitter evaluator = registry.getPermissionEmitter(type);
 			Group group = new Group(parent, SWT.NONE);
-			group.setText(evaluator.getConditionName());
-			group.setData(evaluator);
+			group.setText(registry.getConditionTypeName(type));
+			group.setData(type);
 			group.setLayout(new GridLayout(1, false));
 			group.setLayoutData(groupData.create());
 
 			Label description = new Label(group, SWT.WRAP);
-			description.setText(evaluator.getConditionDescription());
+			description.setText(registry.getConditionTypeDescription(type));
 		}
 	}
 

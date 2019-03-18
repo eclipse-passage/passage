@@ -18,6 +18,10 @@ public interface PermissionEmitterRegistry {
 
 	Iterable<String> getSupportedConditionTypes();
 
+	String getConditionTypeName(String conditionType);
+
+	String getConditionTypeDescription(String conditionType);
+
 	PermissionEmitter getPermissionEmitter(String conditionType);
 
 	Iterable<? extends PermissionEmitter> getPermissionEmitters();

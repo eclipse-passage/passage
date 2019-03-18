@@ -29,7 +29,8 @@ public class OshiHardwareInspectorTest {
 	
 	@Test
 	public void testKnownProperties() {
-		HardwareInspector inspector = new OshiHardwareInspector();
+		OshiHardwareInspector inspector = new OshiHardwareInspector();
+		inspector.activate();
 		Iterable<String> knownProperties = inspector.getKnownProperties();
 		assertTrue(knownProperties.iterator().hasNext());
 		for (String name : knownProperties) {
@@ -40,7 +41,8 @@ public class OshiHardwareInspectorTest {
 
 	@Test
 	public void testDump() throws IOException {
-		HardwareInspector inspector = new OshiHardwareInspector();
+		OshiHardwareInspector inspector = new OshiHardwareInspector();
+		inspector.activate();
 		StringBuilder infoBuilder = new StringBuilder();
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()){
 			inspector.dumpHardwareInfo(baos);

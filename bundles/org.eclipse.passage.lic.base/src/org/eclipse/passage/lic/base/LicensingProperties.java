@@ -35,7 +35,10 @@ public final class LicensingProperties {
 	public static final String LICENSING_LEASE_TIME = "licensing.lease.time"; //$NON-NLS-1$
 	public static final String LICENSING_EXPIRE_TIME = "licensing.expire.time"; //$NON-NLS-1$
 
-	public static final String LICENSING_CONDITION_TYPE = "licensing.condition.type"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_TYPE_ID = "licensing.condition.type.id"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_TYPE_NAME = "licensing.condition.type.name"; //$NON-NLS-1$
+	public static final String LICENSING_CONDITION_TYPE_DESCRIPTION = "licensing.condition.type.description"; //$NON-NLS-1$
+
 	public static final String LICENSING_CONDITION_AREA = "licensing.condition.area"; //$NON-NLS-1$
 	public static final String LICENSING_CONDITION_URI = "licensing.condition.uri"; //$NON-NLS-1$
 

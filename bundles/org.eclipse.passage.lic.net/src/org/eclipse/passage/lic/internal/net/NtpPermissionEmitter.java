@@ -18,8 +18,6 @@ import org.eclipse.passage.lic.net.TimeConditions;
 public class NtpPermissionEmitter extends BasePermissionEmitter {
 
 	public NtpPermissionEmitter() {
-		setConditionName("Time");
-		setConditionDescription("Time-based conditions evaluations");
 	}
 
 	@Override

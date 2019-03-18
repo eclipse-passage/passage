@@ -12,23 +12,43 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.oshi;
 
-import org.eclipse.passage.lic.base.LicensingProperties;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_DESCRIPTION;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_NAME;
+
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { LicensingProperties.LICENSING_CONDITION_TYPE + '=' + OshiHal.CONDITION_TYPE_HARDWARE })
+@Component(property = { LICENSING_CONDITION_TYPE_ID + '=' + OshiHal.CONDITION_TYPE_HARDWARE,
+		LICENSING_CONDITION_TYPE_NAME + '=' + "Hardware", LICENSING_CONDITION_TYPE_DESCRIPTION + '='
+				+ "Evaluates node-locked conditions using runtime hardware information" })
 public class OshiPermissionEmitter extends BasePermissionEmitter implements PermissionEmitter {
 
+	private HardwareInspector hardwareInspector;
+
 	public OshiPermissionEmitter() {
-		setConditionName("Hardware");
-		setConditionDescription("Evaluates node-locked conditions using runtime hardware information");
+	}
+
+	@Reference
+	public void bindHardwareInspector(HardwareInspector inspector) {
+		hardwareInspector = inspector;
+	}
+
+	public void unbindHardwareInspector(HardwareInspector inspector) {
+		if (hardwareInspector == inspector) {
+			hardwareInspector = null;
+		}
 	}
 
 	@Override
-	protected boolean evaluateSegment(String key, String value) {
-		return OshiHal.evaluateProperty(key, value);
+	protected boolean evaluateSegment(String key, String expected) {
+		String actual = hardwareInspector.inspectProperty(key);
+		return LicensingConditions.evaluateSegmentValue(expected, actual);
 	}
 
 }

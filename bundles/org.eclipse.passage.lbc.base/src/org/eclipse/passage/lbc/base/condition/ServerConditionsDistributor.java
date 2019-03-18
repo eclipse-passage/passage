@@ -124,16 +124,4 @@ public class ServerConditionsDistributor extends BaseComponent implements Permis
 		}
 	}
 
-	@Override
-	public String getConditionName() {
-		// TODO Auto-generated method stub
-		return "Server";
-	}
-
-	@Override
-	public String getConditionDescription() {
-		// TODO Auto-generated method stub
-		return "Server condition evaluator";
-	}
-
 }

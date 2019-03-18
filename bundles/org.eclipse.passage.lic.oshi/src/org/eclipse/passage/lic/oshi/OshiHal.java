@@ -14,103 +14,100 @@ package org.eclipse.passage.lic.oshi;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 
-import oshi.SystemInfo;
-import oshi.hardware.Baseboard;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.ComputerSystem;
-import oshi.hardware.Firmware;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.software.os.OperatingSystem;
-import oshi.software.os.OperatingSystemVersion;
-
 public class OshiHal {
-	
+
 	public static final String CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$
-	
-	private static SystemInfo staticSI = new SystemInfo();
 
-	private static Set<String> knownProperties = new LinkedHashSet<>();
-	
+	private static Set<String> osProperties = new LinkedHashSet<>();
+	private static Set<String> systemProperties = new LinkedHashSet<>();
+	private static Set<String> baseboardProperties = new LinkedHashSet<>();
+	private static Set<String> firmwareProperties = new LinkedHashSet<>();
+	private static Set<String> cpuProperties = new LinkedHashSet<>();
+	private static Set<String> hwdiskProperties = new LinkedHashSet<>();
+
 	static {
-		knownProperties.add(HardwareInspector.PROPERTY_OS_MANUFACTURER);
-		knownProperties.add(HardwareInspector.PROPERTY_OS_FAMILY);
-		knownProperties.add(HardwareInspector.PROPERTY_OS_VERSION);
-		knownProperties.add(HardwareInspector.PROPERTY_OS_BUILDNUMBER);
+		osProperties.add(HardwareInspector.PROPERTY_OS_MANUFACTURER);
+		osProperties.add(HardwareInspector.PROPERTY_OS_FAMILY);
+		osProperties.add(HardwareInspector.PROPERTY_OS_VERSION);
+		osProperties.add(HardwareInspector.PROPERTY_OS_BUILDNUMBER);
 
-		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER);
-		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_MODEL);
-		knownProperties.add(HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER);
+		systemProperties.add(HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER);
+		systemProperties.add(HardwareInspector.PROPERTY_SYSTEM_MODEL);
+		systemProperties.add(HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER);
 
-		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER);
-		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MODEL);
-		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_VERSION);
-		knownProperties.add(HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER);
+		baseboardProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER);
+		baseboardProperties.add(HardwareInspector.PROPERTY_BASEBOARD_MODEL);
+		baseboardProperties.add(HardwareInspector.PROPERTY_BASEBOARD_VERSION);
+		baseboardProperties.add(HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER);
 
-		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER);
-		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_VERSION);
-		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE);
-		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_NAME);
-		knownProperties.add(HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION);
+		firmwareProperties.add(HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER);
+		firmwareProperties.add(HardwareInspector.PROPERTY_FIRMWARE_VERSION);
+		firmwareProperties.add(HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE);
+		firmwareProperties.add(HardwareInspector.PROPERTY_FIRMWARE_NAME);
+		firmwareProperties.add(HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION);
 
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_VENDOR);
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_FAMILY);
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_MODEL);
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_NAME);
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_IDENTIFIER);
-		knownProperties.add(HardwareInspector.PROPERTY_CPU_PROCESSORID);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_VENDOR);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_FAMILY);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_MODEL);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_NAME);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_IDENTIFIER);
+		cpuProperties.add(HardwareInspector.PROPERTY_CPU_PROCESSORID);
+
+		hwdiskProperties.add(HardwareInspector.PROPERTY_HWDISK_MODEL);
+		hwdiskProperties.add(HardwareInspector.PROPERTY_HWDISK_NAME);
+		hwdiskProperties.add(HardwareInspector.PROPERTY_HWDISK_SERIAL);
 	}
-	
+
 	private OshiHal() {
-		//block
+		// block
 	}
 
-	public static void dumpOperatingSystem(OutputStream output) throws IOException {
-		OperatingSystem os = staticSI.getOperatingSystem();
-		dumpProperty(output, HardwareInspector.PROPERTY_OS_MANUFACTURER, os.getManufacturer());
-		dumpProperty(output, HardwareInspector.PROPERTY_OS_FAMILY, os.getFamily());
-		OperatingSystemVersion version = os.getVersion();
-		dumpProperty(output, HardwareInspector.PROPERTY_OS_VERSION, version.getVersion());
-		dumpProperty(output, HardwareInspector.PROPERTY_OS_BUILDNUMBER, version.getBuildNumber());
+	public static void dumpHardwareInfo(OutputStream output, Map<String, String> values) throws IOException {
+		dumpOperatingSystem(output, values);
+		output.write('\n');
+
+		dumpComputerSystem(output, values);
+		output.write('\n');
+
+		dumpCentralProcessor(output, values);
+		output.write('\n');
+
+		dumpDiskStores(output, values);
 	}
 
-	public static void dumpComputerSystem(OutputStream output) throws IOException {
-		HardwareAbstractionLayer hal = staticSI.getHardware();
-		ComputerSystem computerSystem = hal.getComputerSystem();
-		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER, computerSystem.getManufacturer());
-		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_MODEL, computerSystem.getModel());
-		dumpProperty(output, HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER, computerSystem.getSerialNumber());
-
-		Baseboard baseboard = computerSystem.getBaseboard();
-		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER, baseboard.getManufacturer());
-		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_MODEL, baseboard.getModel());
-		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_VERSION, baseboard.getVersion());
-		dumpProperty(output, HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER, baseboard.getSerialNumber());
-
-		Firmware firmware = computerSystem.getFirmware();
-		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER, firmware.getManufacturer());
-		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_VERSION, firmware.getVersion());
-		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE, firmware.getReleaseDate());
-		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_NAME, firmware.getName());
-		dumpProperty(output, HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION, firmware.getDescription());
-	
+	public static void dumpOperatingSystem(OutputStream output, Map<String, String> values) throws IOException {
+		dumpProperties(output, osProperties, values);
 	}
 
-	public static void dumpCentralProcessor(OutputStream output) throws IOException {
-		HardwareAbstractionLayer hal = staticSI.getHardware();
-		CentralProcessor processor = hal.getProcessor();
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_VENDOR, processor.getVendor());
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_FAMILY, processor.getFamily());
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_MODEL, processor.getModel());
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_NAME, processor.getName());
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_IDENTIFIER, processor.getIdentifier());
-		dumpProperty(output, HardwareInspector.PROPERTY_CPU_PROCESSORID, processor.getProcessorID());
+	public static void dumpComputerSystem(OutputStream output, Map<String, String> values) throws IOException {
+		dumpProperties(output, systemProperties, values);
+		dumpProperties(output, baseboardProperties, values);
+		dumpProperties(output, firmwareProperties, values);
+	}
+
+	public static void dumpCentralProcessor(OutputStream output, Map<String, String> values) throws IOException {
+		dumpProperties(output, cpuProperties, values);
+	}
+
+	public static void dumpDiskStores(OutputStream output, Map<String, String> values) throws IOException {
+		dumpProperties(output, hwdiskProperties, values);
+	}
+
+	private static void dumpProperties(OutputStream output, Iterable<String> keys, Map<String, String> values)
+			throws IOException {
+		for (String key : keys) {
+			String value = values.get(key);
+			if (value == null) {
+				continue;
+			}
+			dumpProperty(output, key, value);
+		}
 	}
 
 	private static void dumpProperty(OutputStream output, String name, String value) throws IOException {
@@ -118,81 +115,6 @@ public class OshiHal {
 		output.write('=');
 		output.write(value.getBytes());
 		output.write('\n');
-	}
-
-	public static String extractProperty(String name) {
-		if (name == null) {
-			return null;
-		}
-		OperatingSystem os = staticSI.getOperatingSystem();
-		HardwareAbstractionLayer hardware = staticSI.getHardware();
-		ComputerSystem computerSystem = hardware.getComputerSystem();
-		Baseboard baseboard = computerSystem.getBaseboard();
-		Firmware firmware = computerSystem.getFirmware();
-		CentralProcessor processor = hardware.getProcessor();
-
-		switch (name) {
-		case HardwareInspector.PROPERTY_OS_MANUFACTURER:
-			return os.getManufacturer();
-		case HardwareInspector.PROPERTY_OS_FAMILY:
-			return os.getFamily();
-		case HardwareInspector.PROPERTY_OS_VERSION:
-			return os.getVersion().getVersion();
-		case HardwareInspector.PROPERTY_OS_BUILDNUMBER:
-			return os.getVersion().getBuildNumber();
-
-		case HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER:
-			return computerSystem.getManufacturer();
-		case HardwareInspector.PROPERTY_SYSTEM_MODEL:
-			return computerSystem.getModel();
-		case HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER:
-			return computerSystem.getSerialNumber();
-
-		case HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER:
-			return baseboard.getManufacturer();
-		case HardwareInspector.PROPERTY_BASEBOARD_MODEL:
-			return baseboard.getModel();
-		case HardwareInspector.PROPERTY_BASEBOARD_VERSION:
-			return baseboard.getVersion();
-		case HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER:
-			return baseboard.getSerialNumber();
-
-		case HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER:
-			return firmware.getManufacturer();
-		case HardwareInspector.PROPERTY_FIRMWARE_VERSION:
-			return firmware.getVersion();
-		case HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE:
-			return firmware.getReleaseDate();
-		case HardwareInspector.PROPERTY_FIRMWARE_NAME:
-			return firmware.getName();
-		case HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION:
-			return firmware.getDescription();
-
-		case HardwareInspector.PROPERTY_CPU_VENDOR:
-			return processor.getVendor();
-		case HardwareInspector.PROPERTY_CPU_FAMILY:
-			return processor.getFamily();
-		case HardwareInspector.PROPERTY_CPU_MODEL:
-			return processor.getModel();
-		case HardwareInspector.PROPERTY_CPU_NAME:
-			return processor.getName();
-		case HardwareInspector.PROPERTY_CPU_IDENTIFIER:
-			return processor.getIdentifier();
-		case HardwareInspector.PROPERTY_CPU_PROCESSORID:
-			return processor.getProcessorID();
-
-		default:
-			return null;
-		}
-	}
-
-	public static boolean evaluateProperty(String name, String expected) {
-		String actual = extractProperty(name);
-		return LicensingConditions.evaluateSegmentValue(expected, actual);
-	}
-
-	public static Iterable<String> getKnownProperties() {
-		return new ArrayList<>(knownProperties);
 	}
 
 }

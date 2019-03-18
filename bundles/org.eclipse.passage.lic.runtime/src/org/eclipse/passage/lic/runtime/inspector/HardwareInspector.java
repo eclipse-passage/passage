@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public interface HardwareInspector {
-	
+
 	String PROPERTY_OS_FAMILY = "os.family"; //$NON-NLS-1$
 	String PROPERTY_OS_MANUFACTURER = "os.manufacturer"; //$NON-NLS-1$
 	String PROPERTY_OS_VERSION = "os.version"; //$NON-NLS-1$
@@ -37,12 +37,16 @@ public interface HardwareInspector {
 	String PROPERTY_FIRMWARE_NAME = "firmware.name"; //$NON-NLS-1$
 	String PROPERTY_FIRMWARE_DESCRIPTION = "firmware.description"; //$NON-NLS-1$
 
-	String PROPERTY_CPU_VENDOR = "cpu.vendor"; //$NON-NLS-1$;
+	String PROPERTY_CPU_VENDOR = "cpu.vendor"; //$NON-NLS-1$ ;
 	String PROPERTY_CPU_FAMILY = "cpu.family"; //$NON-NLS-1$
 	String PROPERTY_CPU_MODEL = "cpu.model"; //$NON-NLS-1$
 	String PROPERTY_CPU_NAME = "cpu.name"; //$NON-NLS-1$
 	String PROPERTY_CPU_IDENTIFIER = "cpu.identifier"; //$NON-NLS-1$
 	String PROPERTY_CPU_PROCESSORID = "cpu.processorid"; //$NON-NLS-1$
+
+	String PROPERTY_HWDISK_MODEL = "hwdisk.model"; //$NON-NLS-1$ ;
+	String PROPERTY_HWDISK_NAME = "hwdisk.name"; //$NON-NLS-1$
+	String PROPERTY_HWDISK_SERIAL = "hwdisk.serial"; //$NON-NLS-1$
 
 	void dumpHardwareInfo(OutputStream output) throws IOException;
 

@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.oshi.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -24,6 +23,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
+import org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector;
 import org.eclipse.passage.lic.internal.oshi.OshiPermissionEmitter;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -67,6 +67,9 @@ public class OshiPermissionEmitterTest {
 	@Test
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiPermissionEmitter evaluator = new OshiPermissionEmitter();
+		OshiHardwareInspector inspector = new OshiHardwareInspector();
+		inspector.activate();
+		evaluator.bindHardwareInspector(inspector);
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
 		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(future, null).iterator();
 		assertTrue(iterator.hasNext());
@@ -76,6 +79,8 @@ public class OshiPermissionEmitterTest {
 		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
 		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
 		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
+		evaluator.unbindHardwareInspector(null);
+		evaluator.unbindHardwareInspector(inspector);
 	}
 
 	@Test
@@ -86,10 +91,6 @@ public class OshiPermissionEmitterTest {
 		assertEquals(OSHI_HARDWARE_FEATURE_ID, condition.getFeatureIdentifier());
 		assertEquals(OSHI_HARDWARE_MATCH_RULE, condition.getMatchRule());
 		assertEquals(OSHI_HARDWARE_MATCH_VERSION, condition.getMatchVersion());
-	}
-
-	private void assertEmpty(Iterable<FeaturePermission> iterable) {
-		assertFalse(iterable.iterator().hasNext());
 	}
 
 	public static LicensingCondition createOshiCondition(String expression) {

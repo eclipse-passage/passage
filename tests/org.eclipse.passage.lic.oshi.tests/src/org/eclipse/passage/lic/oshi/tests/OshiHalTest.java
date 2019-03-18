@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi.tests;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.junit.Test;
@@ -22,9 +24,11 @@ public class OshiHalTest {
 
 	@Test
 	public void testExtractPropertyNegative() throws Exception {
-		assertNull(OshiHal.extractProperty(null));
-		assertNull(OshiHal.extractProperty(new String()));
-		assertFalse(OshiHal.evaluateProperty(null, null));
+		try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+			OshiHal.dumpOperatingSystem(baos, new HashMap<String, String>());
+			byte[] byteArray = baos.toByteArray();
+			assertEquals(0, byteArray.length);
+		}
 	}
 
 }

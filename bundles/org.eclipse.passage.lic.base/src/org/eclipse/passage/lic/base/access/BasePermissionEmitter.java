@@ -28,27 +28,6 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public abstract class BasePermissionEmitter implements PermissionEmitter {
 
-	private String conditionName = ""; //$NON-NLS-1$
-	private String conditionDescription = ""; //$NON-NLS-1$
-
-	@Override
-	public String getConditionName() {
-		return conditionName;
-	}
-
-	public void setConditionName(String name) {
-		this.conditionName = name;
-	}
-
-	@Override
-	public String getConditionDescription() {
-		return conditionDescription;
-	}
-
-	public void setConditionDescription(String description) {
-		this.conditionDescription = description;
-	}
-
 	@Override
 	public Iterable<FeaturePermission> emitPermissions(Iterable<LicensingCondition> conditions,
 			LicensingConfiguration configuration) throws LicensingException {

@@ -84,7 +84,7 @@ public class BaseLicensingCondition implements LicensingCondition {
 		sb.append("rule").append('=').append(matchRule).append(';'); //$NON-NLS-1$
 		sb.append("validFrom").append('=').append(validFrom).append(';'); //$NON-NLS-1$
 		sb.append("validUntil").append('=').append(validUntil).append(';'); //$NON-NLS-1$
-		sb.append(LICENSING_CONDITION_TYPE).append('=').append(conditionType).append(';');
+		sb.append(LICENSING_CONDITION_TYPE_ID).append('=').append(conditionType).append(';');
 		sb.append("expression").append('=').append(conditionExpression); //$NON-NLS-1$
 		return sb.toString();
 	}

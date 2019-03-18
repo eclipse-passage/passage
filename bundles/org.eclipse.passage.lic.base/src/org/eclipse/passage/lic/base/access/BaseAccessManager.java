@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.access;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,14 +84,14 @@ public abstract class BaseAccessManager implements AccessManager {
 	}
 
 	protected void bindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
-		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
+		Object conditionType = properties.get(LICENSING_CONDITION_TYPE_ID);
 		String type = String.valueOf(conditionType);
 		// FIXME: check permissions
 		permissionEmitters.put(type, permissionEmitter);
 	}
 
 	protected void unbindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
-		Object conditionType = properties.get(LICENSING_CONDITION_TYPE);
+		Object conditionType = properties.get(LICENSING_CONDITION_TYPE_ID);
 		String type = String.valueOf(conditionType);
 		PermissionEmitter removed = permissionEmitters.remove(type);
 		if (permissionEmitter != removed) {
