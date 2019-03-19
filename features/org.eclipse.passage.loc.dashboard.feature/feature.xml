@@ -31,6 +31,34 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
+   </requires>
+
+   <includes
+         id="org.eclipse.passage.loc.workbench.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.passage.loc.edit.ui.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.passage.loc.features.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.passage.loc.products.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.passage.loc.users.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.passage.loc.licenses.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.passage.loc.dashboard.ui"
          download-size="0"

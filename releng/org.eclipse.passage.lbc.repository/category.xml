@@ -13,9 +13,10 @@
 <site>
 	<category-def
 		name="org.eclipse.passage.lbc.category"
-		label="Passage Licensing Back-end Components (Incubation)">
+		label="Passage LBC (Incubation)">
 		<description>
-			Passage Licensing Back-end Components: OSGi-based server to manage licensing data" 
+			Passage Licensing Back-end Components: 
+				OSGi-based server to manage licensing data" 
 		</description>
 	</category-def>
 	<feature 
@@ -23,12 +24,12 @@
 		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lbc.category" />
 	</feature>
-<!--
 	<category-def
 		name="org.eclipse.passage.lbc.category.source"
-		label="Passage Licensing Back-end Components (Incubation) Developer Resources">
+		label="Passage LBC (Incubation) Developer Resources">
 		<description>
-			Passage Licensing Back-end Components Developer Resources: OSGi-based server to manage licensing data" 
+			Passage Licensing Back-end Components Developer Resources: 
+				OSGi-based server to manage licensing data" 
 		</description>
 	</category-def>
 	<feature 
@@ -36,5 +37,4 @@
 		version="0.4.0.qualifier">
 		<category name="org.eclipse.passage.lbc.category.source" />
 	</feature>
--->
 </site>

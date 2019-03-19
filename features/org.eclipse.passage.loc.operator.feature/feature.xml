@@ -31,6 +31,14 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
+   </requires>
+
+   <includes
+         id="org.eclipse.passage.loc.dashboard.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.passage.loc.operator"
          download-size="0"

@@ -12,36 +12,13 @@
 		ArSysOp - initial API and implementation
 -->
 <site>
-	<feature
-		id="org.eclipse.passage.loc.edit.ui.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.loc.workbench.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.loc.features.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.loc.products.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.loc.users.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
-	<feature
-		id="org.eclipse.passage.loc.licenses.feature"
-		version="0.4.0.qualifier">
-		<category name="org.eclipse.passage.loc.category" />
-	</feature>
+	<category-def
+		name="org.eclipse.passage.loc.category"
+		label="Passage LOC (Incubation)">
+		<description>
+			Passage Licensing Operator Components includes: Dashboard, EMF Forms editors, operator services
+		</description>
+	</category-def>
 	<feature
 		id="org.eclipse.passage.loc.dashboard.feature"
 		version="0.4.0.qualifier">
@@ -53,10 +30,20 @@
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<category-def
-		name="org.eclipse.passage.loc.category"
-		label="Passage Licensing Operator Components (Incubation)">
+		name="org.eclipse.passage.loc.category.source"
+		label="Passage LOC (Incubation) Developer Resources">
 		<description>
-			Passage Licensing Operator Components
+			Passage Licensing Operator Components Developer Resources includes: Dashboard, EMF Forms editors, operator services
 		</description>
 	</category-def>
+	<feature
+		id="org.eclipse.passage.loc.dashboard.feature.source"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.loc.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.loc.operator.feature.source"
+		version="0.4.0.qualifier">
+		<category name="org.eclipse.passage.loc.category.source" />
+	</feature>
 </site>

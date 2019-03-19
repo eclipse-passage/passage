@@ -44,12 +44,6 @@
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.ecp.emfforms.runtime.feature"/>
       <feature id="org.eclipse.passage.lic.define.feature"/>
-      <feature id="org.eclipse.passage.loc.workbench.feature"/>
-      <feature id="org.eclipse.passage.loc.features.feature"/>
-      <feature id="org.eclipse.passage.loc.products.feature"/>
-      <feature id="org.eclipse.passage.loc.users.feature"/>
-      <feature id="org.eclipse.passage.loc.licenses.feature"/>
-      <feature id="org.eclipse.passage.loc.dashboard.feature"/>
       <feature id="org.eclipse.passage.loc.operator.feature"/>
    </features>
 
