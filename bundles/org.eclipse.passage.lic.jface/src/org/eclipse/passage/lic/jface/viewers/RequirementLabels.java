@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface;
+package org.eclipse.passage.lic.jface.viewers;
 
 import java.util.Iterator;
 

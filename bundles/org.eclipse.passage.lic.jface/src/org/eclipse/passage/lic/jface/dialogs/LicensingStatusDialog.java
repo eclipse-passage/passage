@@ -21,11 +21,12 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
-import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
@@ -51,17 +52,6 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 
 	public static final int SHOW_CONFIGURATION_ID = IDialogConstants.CLIENT_ID + 3;
 
-	private static String defaultContacts = ""; //$NON-NLS-1$
-
-	// FIXME: AF: implement https://bugs.eclipse.org/bugs/show_bug.cgi?id=544387
-	public static String getDefaultContacts() {
-		return defaultContacts;
-	}
-
-	public static void setDefaultContacts(String defaultContacts) {
-		LicensingStatusDialog.defaultContacts = defaultContacts;
-	}
-
 	private final AccessManager accessManager;
 	private final FeatureInspector featureInspector;
 	private final HardwareInspector hardwareInspector;
@@ -83,7 +73,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Licensing");
-		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
+		newShell.setImage(getDefaultImage());
 	}
 
 	@Override
@@ -91,9 +81,9 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		setTitle("Licensing status");
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(featureCase.getRestrictions());
 		if (last == null) {
-			setMessage(RestrictionLabels.resolveSummary(last));
+			setMessage(RestrictionRepresenters.resolveSummary(last));
 		} else {
-			setErrorMessage(RestrictionLabels.resolveSummary(last));
+			setErrorMessage(RestrictionRepresenters.resolveSummary(last));
 		}
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
@@ -117,7 +107,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		contactsGroup.setLayout(new GridLayout());
 		StyledText contactsText = new StyledText(contactsGroup, SWT.READ_ONLY | SWT.MULTI);
 		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		contactsText.setText(defaultContacts);
+		contactsText.setText(ApplicationConfigurations.getLicensingContacts());
 		contactsText.setFont(JFaceResources.getDialogFont());
 
 		if (preferences != null) {

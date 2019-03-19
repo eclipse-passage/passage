@@ -72,8 +72,8 @@ class BaseLicensingConfiguration implements LicensingConfiguration {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LICENSING_PRODUCT_IDENTIFIER).append('=').append(productIdentifier).append(';');
-		sb.append(LICENSING_PRODUCT_VERSION).append('=').append(productVersion);
+		sb.append(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER).append('=').append(productIdentifier).append(';');
+		sb.append(LicensingConfigurations.LICENSING_PRODUCT_VERSION).append('=').append(productVersion);
 		return sb.toString();
 	}
 	

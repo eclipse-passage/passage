@@ -17,10 +17,10 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
 import org.eclipse.swt.SWT;
@@ -57,12 +57,12 @@ public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecu
 			group.setLayoutData(groupData.create());
 
 			Label image = new Label(group, SWT.NONE);
-			String imageKey = RestrictionLabels.resolveImageKey(identifier);
+			String imageKey = RestrictionRepresenters.resolveImageKey(identifier);
 			image.setImage(LicensingImages.getImage(imageKey));
 			image.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
 			Label color = new Label(group, SWT.NONE);
-			String colorKey = RestrictionLabels.resolveColorKey(identifier);
+			String colorKey = RestrictionRepresenters.resolveColorKey(identifier);
 			color.setBackground(LicensingColors.getColorRegistry().get(colorKey));
 			color.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 

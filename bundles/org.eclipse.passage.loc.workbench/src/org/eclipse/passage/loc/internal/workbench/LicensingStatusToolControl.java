@@ -19,9 +19,10 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
+import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
 import org.eclipse.passage.lic.runtime.access.AccessManagerEvents;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.SWT;
@@ -32,12 +33,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
 public class LicensingStatusToolControl {
-	
+
 	private Button button;
+	private LicensingLabelProvider labelProvider;
 
 	@Inject
 	@Optional
-	public void restrictionsExecuted(@UIEventTopic(AccessManagerEvents.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
+	public void restrictionsExecuted(
+			@UIEventTopic(AccessManagerEvents.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(actions);
 		updateButton(last);
 	}
@@ -49,8 +52,6 @@ public class LicensingStatusToolControl {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String contacts = "Eclipse Passage \nhttps://www.eclipse.org/passage";
-				LicensingStatusDialog.setDefaultContacts(contacts);
 				Shell activeShell = button.getDisplay().getActiveShell();
 				LicensingStatusDialog dialog = new LicensingStatusDialog(activeShell);
 				dialog.open();
@@ -58,13 +59,13 @@ public class LicensingStatusToolControl {
 		});
 		button.setImage(LicensingImages.getImage(LicensingImages.IMG_LEVEL_OK));
 		button.setText("Undefined");
+		labelProvider = new LicensingLabelProvider();
 	}
 
 	protected void updateButton(RestrictionVerdict last) {
-		String key = RestrictionLabels.resolveImageKey(last);
-		button.setImage(LicensingImages.getImage(key));
-		button.setText(RestrictionLabels.resolveLabel(last));
-		button.setToolTipText(RestrictionLabels.resolveSummary(last));
+		button.setImage(labelProvider.getImage(last));
+		button.setText(labelProvider.getText(last));
+		button.setToolTipText(RestrictionRepresenters.resolveSummary(last));
 	}
 
 }

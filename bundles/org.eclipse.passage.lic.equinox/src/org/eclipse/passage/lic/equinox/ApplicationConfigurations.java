@@ -16,7 +16,6 @@ import java.util.Collection;
 
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
@@ -28,6 +27,23 @@ import org.osgi.framework.Version;
 
 public class ApplicationConfigurations {
 
+	public static String findProductIdentifier(String[] args) {
+		if (args == null) {
+			return null;
+		}
+		for (int i = 0; i < args.length; i++) {
+			String arg = args[i];
+			if ("-product".equals(arg)) {
+				int index = i + 1;
+				if (index < args.length) {
+					return args[index];
+				}
+
+			}
+		}
+		return null;
+	}
+
 	public static IApplicationContext getApplicationContext() {
 		Bundle bundle = FrameworkUtil.getBundle(ApplicationConfigurations.class);
 		if (bundle == null) {
@@ -36,7 +52,8 @@ public class ApplicationConfigurations {
 		BundleContext context = bundle.getBundleContext();
 		Collection<ServiceReference<IApplicationContext>> references;
 		try {
-			references = context.getServiceReferences(IApplicationContext.class, "(eclipse.application.type=main.thread)"); //$NON-NLS-1$
+			references = context.getServiceReferences(IApplicationContext.class,
+					"(eclipse.application.type=main.thread)"); //$NON-NLS-1$
 		} catch (InvalidSyntaxException e) {
 			return null;
 		}
@@ -52,7 +69,7 @@ public class ApplicationConfigurations {
 		}
 		return null;
 	}
-	
+
 	public static LicensingConfiguration getLicensingConfiguration() {
 		IApplicationContext applicationContext = getApplicationContext();
 		return getLicensingConfiguration(applicationContext);
@@ -72,18 +89,34 @@ public class ApplicationConfigurations {
 		if (application == null) {
 			return LicensingConfigurations.INVALID.getProductIdentifier();
 		}
-		String property = application.getBrandingProperty(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER);
+		String property = application.getBrandingProperty(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
 		if (property != null) {
 			return property;
 		}
 		return application.getBrandingId();
 	}
 
+	public static String getLicensingContacts() {
+		return getLicensingContacts(getApplicationContext());
+	}
+
+	public static String getLicensingContacts(IApplicationContext application) {
+		String contantDefaults = "Eclipse Passage \nhttps://www.eclipse.org/passage";
+		if (application == null) {
+			return contantDefaults;
+		}
+		String contant = application.getBrandingProperty(LicensingConfigurations.LICENSING_PRODUCT_CONTACTS);
+		if (contant == null) {
+			return contantDefaults;
+		}
+		return contant;
+	}
+
 	public static String getLicensingProductVersion(IApplicationContext application) {
 		if (application == null) {
 			return LicensingConfigurations.INVALID.getProductVersion();
 		}
-		String property = application.getBrandingProperty(LicensingProperties.LICENSING_PRODUCT_VERSION);
+		String property = application.getBrandingProperty(LicensingConfigurations.LICENSING_PRODUCT_VERSION);
 		if (property != null) {
 			return property;
 		}

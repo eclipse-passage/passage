@@ -18,7 +18,7 @@ import java.util.Map;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
-import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -46,7 +46,7 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Licensing Configuration");
-		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
+		newShell.setImage(Window.getDefaultImage());
 	}
 
 	@Override

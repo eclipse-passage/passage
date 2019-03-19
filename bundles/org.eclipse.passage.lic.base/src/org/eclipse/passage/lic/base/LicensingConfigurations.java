@@ -18,6 +18,10 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 public class LicensingConfigurations {
 
+	public static final String LICENSING_PRODUCT_IDENTIFIER = "licensing.product.identifier"; //$NON-NLS-1$
+	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
+	public static final String LICENSING_PRODUCT_CONTACTS = "licensing.product.contacts"; //$NON-NLS-1$
+
 	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration("invalid",
 			LicensingVersions.VERSION_DEFAULT);
 
@@ -26,26 +30,9 @@ public class LicensingConfigurations {
 	}
 
 	public static LicensingConfiguration create(Map<String, Object> properties) {
-		String product = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_IDENTIFIER));
-		String version = String.valueOf(properties.get(LicensingProperties.LICENSING_PRODUCT_VERSION));
+		String product = String.valueOf(properties.get(LICENSING_PRODUCT_IDENTIFIER));
+		String version = String.valueOf(properties.get(LICENSING_PRODUCT_VERSION));
 		return new BaseLicensingConfiguration(product, version);
-	}
-
-	public static String findProductIdentifier(String[] args) {
-		if (args == null) {
-			return null;
-		}
-		for (int i = 0; i < args.length; i++) {
-			String arg = args[i];
-			if ("-product".equals(arg)) {
-				int index = i + 1;
-				if (index < args.length) {
-					return args[index];
-				}
-
-			}
-		}
-		return null;
 	}
 
 }

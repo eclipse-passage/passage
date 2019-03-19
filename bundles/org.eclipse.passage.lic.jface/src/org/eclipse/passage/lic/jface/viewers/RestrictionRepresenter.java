@@ -10,18 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.e4.ui.handlers;
+package org.eclipse.passage.lic.jface.viewers;
 
-import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
-public class InspectLicenseHandler {
+public interface RestrictionRepresenter {
 
-	@Execute
-	public void execute(Shell shell) {
-		LicensingStatusDialog dialog = new LicensingStatusDialog(shell);
-		dialog.open();
-	}
+	String getSummary(Iterable<RestrictionVerdict> verdicts);
+
+	String getSummary(RestrictionVerdict verdict);
 
 }

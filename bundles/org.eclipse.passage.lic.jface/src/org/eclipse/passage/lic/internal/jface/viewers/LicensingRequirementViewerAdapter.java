@@ -13,9 +13,9 @@
 package org.eclipse.passage.lic.internal.jface.viewers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.passage.lic.jface.RestrictionLabels;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerBasis;
+import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
@@ -72,7 +72,7 @@ public class LicensingRequirementViewerAdapter extends LicensingViewerBasis {
 		if (element instanceof LicensingRequirement) {
 			LicensingRequirement requirement = (LicensingRequirement) element;
 			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
-			String imageKey = RestrictionLabels.resolveImageKey(restrictions);
+			String imageKey = RestrictionRepresenters.resolveImageKey(restrictions);
 			switch (columnIndex) {
 			case INDEX_STATUS:
 				return LicensingImages.getImageDescriptor(imageKey);
@@ -88,7 +88,7 @@ public class LicensingRequirementViewerAdapter extends LicensingViewerBasis {
 		if (element instanceof LicensingRequirement) {
 			LicensingRequirement requirement = (LicensingRequirement) element;
 			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
-			return RestrictionLabels.resolveRGB(restrictions);
+			return RestrictionRepresenters.resolveRGB(restrictions);
 		}
 		return super.getBackground(element);
 	}
