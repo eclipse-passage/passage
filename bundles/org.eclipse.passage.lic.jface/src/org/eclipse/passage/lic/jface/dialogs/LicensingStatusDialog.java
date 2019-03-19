@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -21,6 +24,7 @@ import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
 import org.eclipse.passage.lic.jface.RestrictionLabels;
+import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
@@ -39,7 +43,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
-public class LicensingStatusDialog extends TitleAreaDialog {
+public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenceChangeListener {
 
 	public static final int HARDWARE_INSPECTOR_ID = IDialogConstants.CLIENT_ID + 1;
 
@@ -65,6 +69,7 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 	private final FeatureCase featureCase;
 
 	private TableViewer tableViewer;
+	IEclipsePreferences preferences = LicensingColors.getPreferences();
 
 	public LicensingStatusDialog(Shell shell, String... features) {
 		super(shell);
@@ -114,6 +119,10 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		contactsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		contactsText.setText(defaultContacts);
 		contactsText.setFont(JFaceResources.getDialogFont());
+
+		if (preferences != null) {
+			preferences.addPreferenceChangeListener(this);
+		}
 	}
 
 	@Override
@@ -179,4 +188,18 @@ public class LicensingStatusDialog extends TitleAreaDialog {
 		return true;
 	}
 
+	@Override
+	public void preferenceChange(PreferenceChangeEvent event) {
+		if (tableViewer != null && tableViewer.getTable() != null && !tableViewer.getTable().isDisposed()) {
+			tableViewer.refresh();
+		}
+	}
+
+	@Override
+	public boolean close() {
+		if (preferences != null) {
+			preferences.removePreferenceChangeListener(this);
+		}
+		return super.close();
+	}
 }

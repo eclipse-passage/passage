@@ -86,10 +86,10 @@ public class LicensingColors {
 	 * Note that the static convenience methods <code>getColor</code> and
 	 * <code>getColorDescriptor</code> are also provided on this class.
 	 * </p>
-	 * 
+	 *
 	 * @see LicensingColors#getColor(String)
 	 * @see LicensingColors#getColorDescriptor(String)
-	 * 
+	 *
 	 * @return the Licensing color registry
 	 */
 	public static ColorRegistry getColorRegistry() {
@@ -119,10 +119,10 @@ public class LicensingColors {
 	/**
 	 * Declares a Licensing colors for the key-> RGB {@link Map}. May only be called
 	 * from a UI thread.
-	 * 
+	 *
 	 * @param location the {@link Class} where the image is relative to
 	 * @param rgbs     the the key-> RGB {@link Map}
-	 * 
+	 *
 	 * @return the status of the operation
 	 */
 	public static IStatus declareColors(Class<?> location, Map<String, RGB> rgbs) {
@@ -155,7 +155,7 @@ public class LicensingColors {
 	}
 
 	public static IStatus loadColors() {
-		IEclipsePreferences node = ConfigurationScope.INSTANCE.getNode(BUNDLE_ID);
+		IEclipsePreferences node = getPreferences();
 		if (node == null) {
 			return Status.CANCEL_STATUS;
 		}
@@ -201,4 +201,7 @@ public class LicensingColors {
 		return Status.OK_STATUS;
 	}
 
+	public static IEclipsePreferences getPreferences() {
+		return ConfigurationScope.INSTANCE.getNode(BUNDLE_ID);
+	}
 }
