@@ -10,11 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.products.registry;
+package org.eclipse.passage.loc.products.core;
 
 public class Products {
-	
+
 	public static final String DOMAIN_NAME = "products"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_products"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "products_xmi"; //$NON-NLS-1$
 
 }

@@ -15,26 +15,23 @@ package org.eclipse.passage.loc.edit.ui;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.features.registry.Features;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.lic.licenses.registry.Licenses;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.lic.products.registry.Products;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
-import org.eclipse.passage.lic.users.registry.Users;
+import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.licenses.core.Licenses;
+import org.eclipse.passage.loc.products.core.Products;
+import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
-
-	public DomainRegistryLabelProvider(LicensingImages images) {
-	}
 
 	@Override
 	public String getText(Object element) {
@@ -60,8 +57,8 @@ class DomainRegistryLabelProvider extends LabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof BaseDomainRegistry) {
-			BaseDomainRegistry registry = (BaseDomainRegistry) element;
+		if (element instanceof EditingDomainRegistry<?>) {
+			EditingDomainRegistry<?> registry = (EditingDomainRegistry<?>) element;
 			return LicensingImages.getImage(registry.getContentClassifier().getName());
 		}
 		if (element instanceof Resource) {
@@ -77,16 +74,16 @@ class DomainRegistryLabelProvider extends LabelProvider {
 			return null;
 		}
 		String lastSegment = uri.lastSegment();
-		if (lastSegment.endsWith(Features.FILE_EXTENSION_XMI)) {
+		if (lastSegment.contains(Features.DOMAIN_NAME)) {
 			return LicensingImages.getImage(FeaturesPackage.eINSTANCE.getFeatureSet().getName());
 		}
-		if (lastSegment.endsWith(Products.FILE_EXTENSION_XMI)) {
+		if (lastSegment.contains(Products.DOMAIN_NAME)) {
 			return LicensingImages.getImage(ProductsPackage.eINSTANCE.getProductLine().getName());
 		}
-		if (lastSegment.endsWith(Users.FILE_EXTENSION_XMI)) {
+		if (lastSegment.contains(Users.DOMAIN_NAME)) {
 			return LicensingImages.getImage(UsersPackage.eINSTANCE.getUserOrigin().getName());
 		}
-		if (lastSegment.endsWith(Licenses.FILE_EXTENSION_XMI)) {
+		if (lastSegment.contains(Licenses.DOMAIN_NAME)) {
 			return LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName());
 		}
 		return null;

@@ -10,11 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.features.registry;
+package org.eclipse.passage.loc.features.core;
 
 public class Features {
-	
+
 	public static final String DOMAIN_NAME = "features"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_features"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "features_xmi"; //$NON-NLS-1$
 
 }

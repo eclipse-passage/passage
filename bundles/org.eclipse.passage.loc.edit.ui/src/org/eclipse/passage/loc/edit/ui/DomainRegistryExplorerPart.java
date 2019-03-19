@@ -29,16 +29,15 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
-import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -48,8 +47,7 @@ public class DomainRegistryExplorerPart {
 
 	private List<Object> registries = new ArrayList<>();
 
-	private TreeViewer treeView;
-	private LicensingImages licensingImages;
+	private TreeViewer treeViewer;
 
 	@Inject
 	public DomainRegistryExplorerPart(IEclipseContext context) {
@@ -57,7 +55,6 @@ public class DomainRegistryExplorerPart {
 		this.registries.add(context.get(ProductRegistry.class));
 		this.registries.add(context.get(UserRegistry.class));
 		this.registries.add(context.get(LicenseRegistry.class));
-		this.licensingImages = context.get(LicensingImages.class);
 	}
 
 	@PostConstruct
@@ -66,9 +63,9 @@ public class DomainRegistryExplorerPart {
 		Composite area = new Composite(parent, SWT.NONE);
 		area.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		area.setLayout(new GridLayout(1, false));
-		treeView = createRegistryTree(area);
+		treeViewer = createRegistryTree(area);
 		ESelectionService selectionService = context.get(ESelectionService.class);
-		treeView.addSelectionChangedListener(e -> {
+		treeViewer.addSelectionChangedListener(e -> {
 			ISelection selection = e.getSelection();
 			if (selection instanceof IStructuredSelection) {
 				IStructuredSelection structured = (IStructuredSelection) selection;
@@ -79,7 +76,7 @@ public class DomainRegistryExplorerPart {
 				}
 			}
 		});
-		treeView.setInput(registries);
+		treeViewer.setInput(registries);
 	}
 
 	private TreeViewer createRegistryTree(Composite area) {
@@ -87,7 +84,7 @@ public class DomainRegistryExplorerPart {
 		treeView.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		treeView.setAutoExpandLevel(2);
 		treeView.setContentProvider(new DomainRegistryContentProvider());
-		treeView.setLabelProvider(new DomainRegistryLabelProvider(licensingImages));
+		treeView.setLabelProvider(new DomainRegistryLabelProvider());
 		return treeView;
 	}
 
@@ -95,78 +92,81 @@ public class DomainRegistryExplorerPart {
 	@Optional
 	public void createFeatureSet(
 			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void deleteFeatureSet(
 			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void updateFeatureSet(
 			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_UPDATE) FeatureSetDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void createProductLine(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void deleteProductLine(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void updatedProductLine(
 			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_UPDATE) ProductLineDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void createUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOriginDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void deleteUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOriginDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
 	public void updateUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_UPDATE) UserOriginDescriptor descriptor) {
-		treeView.refresh();
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void createLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor descriptor) {
-		treeView.refresh();
+	public void createLicensePack(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor descriptor) {
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void deleteLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor descriptor) {
-		treeView.refresh();
+	public void deleteLicensePack(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor descriptor) {
+		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void updateLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePackDescriptor descriptor) {
-		treeView.refresh();
+	public void updateLicensePack(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePackDescriptor descriptor) {
+		treeViewer.refresh();
 	}
 
 }

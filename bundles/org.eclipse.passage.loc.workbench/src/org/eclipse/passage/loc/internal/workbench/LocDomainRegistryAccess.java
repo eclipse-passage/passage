@@ -27,23 +27,23 @@ import org.slf4j.LoggerFactory;
 
 @Component
 public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
-	
+
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());;
 
-	private final Map<String, EditingDomainRegistry> domainRegistries = new HashMap<>();
+	private final Map<String, EditingDomainRegistry<?>> domainRegistries = new HashMap<>();
 	private final Map<String, String> fileExtensions = new HashMap<>();
 	private final Map<String, ClassifierInitializer> classifierInitializers = new HashMap<>();
 	private final Map<String, SelectionCommandAdvisor> selectionAdvisors = new HashMap<>();
-	
+
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void registerEditingDomainRegistry(EditingDomainRegistry instance, Map<String, Object> properties) {
+	public void registerEditingDomainRegistry(EditingDomainRegistry<?> instance, Map<String, Object> properties) {
 		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
 		registerEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
 		registerEntry(fileExtensions, domain, extension);
 	}
 
-	public void unregisterEditingDomainRegistry(EditingDomainRegistry instance, Map<String, Object> properties) {
+	public void unregisterEditingDomainRegistry(EditingDomainRegistry<?> instance, Map<String, Object> properties) {
 		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
 		unregisterEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
@@ -89,7 +89,7 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	}
 
 	@Override
-	public EditingDomainRegistry getDomainRegistry(String domain) {
+	public EditingDomainRegistry<?> getDomainRegistry(String domain) {
 		return domainRegistries.get(domain);
 	}
 
@@ -97,12 +97,12 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	public String getFileExtension(String domain) {
 		return fileExtensions.get(domain);
 	}
-	
+
 	@Override
 	public ClassifierInitializer getClassifierInitializer(String domain) {
 		return classifierInitializers.get(domain);
 	}
-	
+
 	@Override
 	public SelectionCommandAdvisor getSelectionCommandAdvisor(String domain) {
 		return selectionAdvisors.get(domain);

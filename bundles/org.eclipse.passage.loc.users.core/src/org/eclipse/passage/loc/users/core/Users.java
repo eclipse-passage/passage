@@ -10,11 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.registry;
+package org.eclipse.passage.loc.users.core;
 
-public class Licenses {
-	
-	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "lic_licenses"; //$NON-NLS-1$
+public class Users {
+
+	public static final String DOMAIN_NAME = "users"; //$NON-NLS-1$
+	public static final String FILE_EXTENSION_XMI = "users_xmi"; //$NON-NLS-1$
 
 }

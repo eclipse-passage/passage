@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.loc.internal.features.core.FeatureDomainRegistry">
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="features"/>
-   <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="lic_features"/>
+   <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="features_xmi"/>
    <service>
       <provide interface="org.eclipse.passage.lic.features.registry.FeatureRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>

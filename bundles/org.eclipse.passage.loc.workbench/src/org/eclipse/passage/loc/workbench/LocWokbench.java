@@ -106,9 +106,9 @@ public class LocWokbench {
 	public static void loadDomainResource(IEclipseContext eclipseContext, String domain, String perspectiveId) {
 		EditingDomainRegistryAccess access = eclipseContext.get(EditingDomainRegistryAccess.class);
 		EditingDomainRegistry<?> registry = access.getDomainRegistry(domain);
-		String fileExtension = access.getFileExtension(domain);
+		String fileExtension = domain + "_xmi";
 		Shell shell = eclipseContext.get(Shell.class);
-		String selected = selectLoadPath(shell, fileExtension);
+		String selected = selectLoadPath(shell, fileExtension, "lic_" + domain);
 		if (selected == null) {
 			return;
 		}
