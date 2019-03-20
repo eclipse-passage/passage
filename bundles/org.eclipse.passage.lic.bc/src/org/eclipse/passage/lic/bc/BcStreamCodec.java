@@ -266,6 +266,10 @@ public class BcStreamCodec implements StreamCodec {
 
 			PGPObjectFactory pgpFactory = new JcaPGPObjectFactory(decoderInputStream);
 			final PGPCompressedData firstCompressed = (PGPCompressedData) pgpFactory.nextObject();
+			if (firstCompressed == null) {
+				String message = String.format("Invalid compressed data for configuration %s", configuration);
+				throw new IOException(message);
+			}
 			pgpFactory = new JcaPGPObjectFactory(firstCompressed.getDataStream());
 			final PGPOnePassSignatureList slist1 = (PGPOnePassSignatureList) pgpFactory.nextObject();
 			final PGPOnePassSignature slist1s1 = slist1.get(0);

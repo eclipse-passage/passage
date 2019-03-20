@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.FeaturePermissionAggregator;
 import org.eclipse.passage.lic.internal.json.FeaturePermissionMixln;
-import org.eclipse.passage.lic.internal.json.JsonFeaturePermissionTransport;
+import org.eclipse.passage.lic.internal.json.JsonPermissionTransport;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -55,8 +55,8 @@ public class JsonFeaturePermissionTransportTest {
 		try {
 			byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
 			ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-			JsonFeaturePermissionTransport transport = new JsonFeaturePermissionTransport();
-			Iterable<FeaturePermission> permissions = transport.readFeaturePermissions(bis);
+			JsonPermissionTransport transport = new JsonPermissionTransport();
+			Iterable<FeaturePermission> permissions = transport.readPermissions(bis);
 			assertNotNull(permissions);
 			for (FeaturePermission permission : permissions) {
 				LicensingCondition condition = permission.getLicensingCondition();

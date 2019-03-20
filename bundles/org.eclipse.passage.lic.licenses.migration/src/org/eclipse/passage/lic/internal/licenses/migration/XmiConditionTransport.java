@@ -28,14 +28,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })
-public class XmiLicensingConditionExtractor implements LicensingConditionTransport {
+public class XmiConditionTransport implements ConditionTransport {
 
 	@Override
-	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {
+	public Iterable<LicensingCondition> readConditions(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
 		resource.load(input, new HashMap<>());
 		List<LicensingCondition> extracted = new ArrayList<>();
@@ -51,7 +51,7 @@ public class XmiLicensingConditionExtractor implements LicensingConditionTranspo
 	}
 
 	@Override
-	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
+	public void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
 		Resource resource = new XMIResourceImpl();
 		EList<EObject> contents = resource.getContents();

@@ -22,17 +22,17 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component(property = {LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_JSON})
-public class JsonLicensingConditionTransport implements LicensingConditionTransport {
+public class JsonConditionTransport implements ConditionTransport {
 
 	@Override
-	public Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException {
+	public Iterable<LicensingCondition> readConditions(InputStream input) throws IOException {
 		Collection<LicensingCondition> descriptors = new ArrayList<>();
 		if (input != null) {
 			ObjectMapper mapper = new ObjectMapper();
@@ -46,7 +46,7 @@ public class JsonLicensingConditionTransport implements LicensingConditionTransp
 	}
 
 	@Override
-	public void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output)
+	public void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output)
 			throws IOException {
 		if (conditions == null) {
 			return;

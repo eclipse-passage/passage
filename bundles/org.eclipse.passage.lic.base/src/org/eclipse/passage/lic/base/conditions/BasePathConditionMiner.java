@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
@@ -39,7 +39,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 	private LicensingReporter licensingReporter;
 	private KeyKeeperRegistry keyKeeperRegistry;
 	private StreamCodecRegistry streamCodecRegistry;
-	private final Map<String, LicensingConditionTransport> conditionTransports = new HashMap<>();
+	private final Map<String, ConditionTransport> conditionTransports = new HashMap<>();
 
 	protected void bindLicensingReporter(LicensingReporter reporter) {
 		this.licensingReporter = reporter;
@@ -71,16 +71,16 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		}
 	}
 
-	protected void bindConditionDescriptorTransport(LicensingConditionTransport transport,
+	protected void bindConditionTransport(ConditionTransport transport,
 			Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		conditionTransports.put(contentType, transport);
 	}
 
-	protected void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
+	protected void unbindConditionTransport(ConditionTransport transport,
 			Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
-		LicensingConditionTransport current = conditionTransports.get(contentType);
+		ConditionTransport current = conditionTransports.get(contentType);
 		if (transport == current) {
 			conditionTransports.remove(contentType);
 		}
@@ -92,7 +92,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		if (configuration == null) {
 			return mined;
 		}
-		LicensingConditionTransport transport = conditionTransports.get(LicensingProperties.LICENSING_CONTENT_TYPE_XML);
+		ConditionTransport transport = conditionTransports.get(LicensingProperties.LICENSING_CONTENT_TYPE_XML);
 		if (transport == null) {
 			return mined;
 		}

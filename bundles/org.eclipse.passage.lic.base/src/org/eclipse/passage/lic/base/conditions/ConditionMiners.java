@@ -32,13 +32,13 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public class ConditionMiners {
 
-	public static LicensingResult mineDecrypted(LicensingConditionTransport transport, Path configurationPath,
+	public static LicensingResult mineDecrypted(ConditionTransport transport, Path configurationPath,
 			List<LicensingCondition> mined, String source) {
 		String task = String.format("Mining licensing conditions from %s", configurationPath);
 		BaseLicensingResult holder = LicensingResults.createHolder(task, source);
@@ -51,7 +51,7 @@ public class ConditionMiners {
 		}
 		for (Path path : licenseFiles) {
 			try (FileInputStream raw = new FileInputStream(path.toFile())) {
-				Iterable<LicensingCondition> extracted = transport.readConditionDescriptors(raw);
+				Iterable<LicensingCondition> extracted = transport.readConditions(raw);
 				for (LicensingCondition condition : extracted) {
 					mined.add(condition);
 				}
@@ -63,7 +63,7 @@ public class ConditionMiners {
 		return holder;
 	}
 
-	public static LicensingResult mineEncrypted(LicensingConditionTransport transport,
+	public static LicensingResult mineEncrypted(ConditionTransport transport,
 			LicensingConfiguration configuration, Path configurationPath, StreamCodec streamCodec, KeyKeeper keyKeeper,
 			List<LicensingCondition> mined, String source) {
 		String task = String.format("Mining licensing conditions from %s", configurationPath);
@@ -82,7 +82,7 @@ public class ConditionMiners {
 				streamCodec.decodeStream(encoded, decoded, keyRing, null);
 				byte[] byteArray = decoded.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					Iterable<LicensingCondition> extracted = transport.readConditionDescriptors(input);
+					Iterable<LicensingCondition> extracted = transport.readConditions(input);
 					for (LicensingCondition condition : extracted) {
 						mined.add(condition);
 					}

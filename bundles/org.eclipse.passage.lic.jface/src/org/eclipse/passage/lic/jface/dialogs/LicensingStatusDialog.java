@@ -121,9 +121,10 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, "&Configuration...", false);
 		detailsButton.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
 		detailsButton.setEnabled(accessManager != null);
-		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
-		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
-		importButton.setEnabled(accessManager != null);
+		// not ready yet
+//		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
+//		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
+//		importButton.setEnabled(accessManager != null);
 		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "&Hardware...", false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);

@@ -24,7 +24,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.licenses.migration.XmiLicensingConditionExtractor;
+import org.eclipse.passage.lic.internal.licenses.migration.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -63,7 +63,7 @@ public class XmiLicensingConditionExtractorTest {
 	
 	@Test
 	public void testExtractorPositive() throws Exception {
-		XmiLicensingConditionExtractor extractor = new XmiLicensingConditionExtractor();
+		XmiConditionTransport extractor = new XmiConditionTransport();
 		
 		LicensesFactory factory = LicensesFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
@@ -88,7 +88,7 @@ public class XmiLicensingConditionExtractorTest {
 
 		List<LicensingCondition> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
-			Iterable<LicensingCondition> extracted = extractor.readConditionDescriptors(fis);
+			Iterable<LicensingCondition> extracted = extractor.readConditions(fis);
 			for (LicensingCondition descriptor : extracted) {
 				actual.add(descriptor);
 			}

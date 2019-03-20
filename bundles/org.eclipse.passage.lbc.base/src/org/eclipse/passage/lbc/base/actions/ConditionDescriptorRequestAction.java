@@ -31,14 +31,19 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.log.LoggerFactory;
 
 /**
  * According to AccessManager specification implementation of
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
  * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
+@Component
 public class ConditionDescriptorRequestAction extends BaseComponent implements ServerRequestAction {
 
 	private static final String SERVER_MINER_TYPE = "server.miner"; // NLS-$1
@@ -47,7 +52,7 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 	private static final String MINER_TYPE_KEY = "miner.type";// NLS-$1
 
 	private List<ConditionMiner> licenseConditionMiners = new ArrayList<>();
-	private Map<String, LicensingConditionTransport> mapCondition2Transport = new HashMap<>();
+	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
 
 	@Override
 	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
@@ -71,13 +76,13 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 				resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
 			}
 			String contentType = request.getParameter(LicensingRequests.CONTENT_TYPE);
-			LicensingConditionTransport transport = mapCondition2Transport.get(contentType);
+			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
 				logger.error(String.format("LicensingConditionTransport not defined for contentType: %s", contentType));
 				return false;
 			}
 
-			transport.writeConditionDescriptors(resultConditions, response.getOutputStream());
+			transport.writeConditions(resultConditions, response.getOutputStream());
 			response.setContentType(APPLICATION_JSON);
 
 			return true;
@@ -87,6 +92,13 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 		return false;
 	}
 
+	@Override
+	@Reference
+	protected void bindLogger(LoggerFactory loggerFactory) {
+		super.bindLogger(loggerFactory);
+	}
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindConditionMiner(ConditionMiner conditionMiner, Map<String, String> context) {
 
 		String minerType = context.get(MINER_TYPE_KEY);
@@ -99,14 +111,15 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 		this.licenseConditionMiners.remove(conditionMiner);
 	}
 
-	public void bindLicensingConditionTransport(LicensingConditionTransport transport, Map<String, String> context) {
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
 		String conditionType = context.get(LICENSING_CONTENT_TYPE);
 		if (conditionType != null) {
 			mapCondition2Transport.put(conditionType, transport);
 		}
 	}
 
-	public void unbindLicensingConditionTransport(LicensingConditionTransport transport, Map<String, String> context) {
+	public void unbindConditionTransport(ConditionTransport transport, Map<String, String> context) {
 		String conditionType = context.get(LICENSING_CONTENT_TYPE);
 		if (conditionType != null) {
 			mapCondition2Transport.remove(conditionType, transport);

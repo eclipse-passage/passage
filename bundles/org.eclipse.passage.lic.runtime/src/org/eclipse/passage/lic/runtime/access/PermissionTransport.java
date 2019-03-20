@@ -10,27 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.conditions;
+package org.eclipse.passage.lic.runtime.access;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Transport interface for {@link LicensingCondition}(s)
+ * Transport interface for {@link FeaturePermission}(s)
  */
-public interface LicensingConditionTransport {
+public interface PermissionTransport {
 
 	/**
-	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}. 
+	 * Reads {@link FeaturePermission}(s) from the given {@link InputStream}. 
 	 *
 	 */
-	Iterable<LicensingCondition> readConditionDescriptors(InputStream input) throws IOException;
+	Iterable<FeaturePermission> readPermissions(InputStream input) throws IOException;
 
 	/**
-	 * Writes {@link LicensingCondition}(s) from the given {@link OutputStream}. 
+	 * Writes {@link FeaturePermission}(s) from the given {@link OutputStream}. 
 	 *
 	 */
-	void writeConditionDescriptors(Iterable<LicensingCondition> conditions, OutputStream output) throws IOException;
+	void writePermissions(Iterable<FeaturePermission> conditions, OutputStream output) throws IOException;
 
 }

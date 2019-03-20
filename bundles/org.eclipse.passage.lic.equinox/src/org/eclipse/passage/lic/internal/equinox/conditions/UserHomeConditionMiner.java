@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.base.conditions.BasePathConditionMiner;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 import org.osgi.service.component.annotations.Component;
@@ -66,15 +66,15 @@ public class UserHomeConditionMiner extends BasePathConditionMiner implements Co
 
 	@Override
 	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void bindConditionDescriptorTransport(LicensingConditionTransport transport,
+	public void bindConditionTransport(ConditionTransport transport,
 			Map<String, Object> properties) {
-		super.bindConditionDescriptorTransport(transport, properties);
+		super.bindConditionTransport(transport, properties);
 	}
 
 	@Override
-	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
+	public void unbindConditionTransport(ConditionTransport transport,
 			Map<String, Object> properties) {
-		super.unbindConditionDescriptorTransport(transport, properties);
+		super.unbindConditionTransport(transport, properties);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import java.util.Date;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.ConditionDescriptorAggregator;
-import org.eclipse.passage.lic.internal.json.JsonLicensingConditionTransport;
+import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.json.LicensingConditionMixIn;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.Test;
@@ -51,8 +51,8 @@ public class NetConditionDescriptorTransportTest {
 		try {
 			byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
 			ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-			JsonLicensingConditionTransport transport = new JsonLicensingConditionTransport();
-			Iterable<LicensingCondition> conditions = transport.readConditionDescriptors(bis);
+			JsonConditionTransport transport = new JsonConditionTransport();
+			Iterable<LicensingCondition> conditions = transport.readConditions(bis);
 			assertNotNull(conditions);
 			for (LicensingCondition condition : conditions) {
 				assertTrue(condition.getFeatureIdentifier().equals(FEATURE_TEST_ID));

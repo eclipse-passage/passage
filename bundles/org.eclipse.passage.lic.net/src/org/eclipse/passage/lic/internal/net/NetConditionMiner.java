@@ -40,8 +40,8 @@ import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 @Component
@@ -56,7 +56,7 @@ public class NetConditionMiner implements ConditionMiner {
 	private static String HOST_KEY = "passage.server.host";
 	private static String PORT_KEY = "passage.server.port";
 
-	private final Map<String, org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport> contentType2ConditionDescriptorTransport = new HashMap<>();
+	private final Map<String, org.eclipse.passage.lic.runtime.conditions.ConditionTransport> contentType2ConditionTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -130,10 +130,10 @@ public class NetConditionMiner implements ConditionMiner {
 					String contentType = header.getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
-						org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport transport = getConditionDescriptorTransport(
+						org.eclipse.passage.lic.runtime.conditions.ConditionTransport transport = getConditionTransport(
 								contentType);
 						Iterable<LicensingCondition> conditionDescriptors = transport
-								.readConditionDescriptors(entity.getContent());
+								.readConditions(entity.getContent());
 						return conditionDescriptors;
 					} else {
 						logger.log(Level.FINE, "Could not recieve a inputStream from request");
@@ -149,25 +149,24 @@ public class NetConditionMiner implements ConditionMiner {
 		return conditions;
 	}
 
-	private org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport getConditionDescriptorTransport(
-			String typeOfContent) {
-		return contentType2ConditionDescriptorTransport.get(typeOfContent);
+	private ConditionTransport getConditionTransport(String typeOfContent) {
+		return contentType2ConditionTransport.get(typeOfContent);
 	}
 
-	public void bindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, String> context) {
+	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
 		String contentType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
 		if (contentType != null) {
-			if (!contentType2ConditionDescriptorTransport.containsKey(contentType)) {
-				contentType2ConditionDescriptorTransport.put(contentType, transport);
+			if (!contentType2ConditionTransport.containsKey(contentType)) {
+				contentType2ConditionTransport.put(contentType, transport);
 			}
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport, Map<String, String> context) {
+	public void unbindConditionTransport(ConditionTransport transport, Map<String, String> context) {
 		String contentType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
 		if (contentType != null) {
-			if (contentType2ConditionDescriptorTransport.containsKey(contentType)) {
-				contentType2ConditionDescriptorTransport.remove(contentType, transport);
+			if (contentType2ConditionTransport.containsKey(contentType)) {
+				contentType2ConditionTransport.remove(contentType, transport);
 			}
 		}
 	}

@@ -20,12 +20,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.passage.lic.net.LicensingRequests;
-
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lic.net.LicensingRequests;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LoggerFactory;
 
+@Component
 public class ClientRequestExecutor extends BaseComponent implements ServerRequestExecutor {
 
 	private static Map<String, ServerRequestAction> mapActionRequest = new HashMap<>();
@@ -38,6 +41,12 @@ public class ClientRequestExecutor extends BaseComponent implements ServerReques
 	private static final String MSG_REQUEST_ACTION_NOT_FOUND_ERROR = "Action executor with id: [%s] not registered";
 
 	private String accessModeId = "";
+
+	@Override
+	@Reference
+	protected void bindLogger(LoggerFactory loggerFactory) {
+		super.bindLogger(loggerFactory);
+	}
 
 	@Override
 	public void executeRequest(HttpServletRequest request, HttpServletResponse response)

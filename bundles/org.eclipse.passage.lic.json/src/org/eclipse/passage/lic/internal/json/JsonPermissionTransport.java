@@ -23,7 +23,7 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
-import org.eclipse.passage.lic.runtime.access.FeaturePermissionTransport;
+import org.eclipse.passage.lic.runtime.access.PermissionTransport;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -31,10 +31,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_JSON })
-public class JsonFeaturePermissionTransport implements FeaturePermissionTransport {
+public class JsonPermissionTransport implements PermissionTransport {
 
 	@Override
-	public Iterable<FeaturePermission> readFeaturePermissions(InputStream input) throws IOException {
+	public Iterable<FeaturePermission> readPermissions(InputStream input) throws IOException {
 		Collection<FeaturePermission> descriptors = new ArrayList<>();
 		if (input != null) {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class JsonFeaturePermissionTransport implements FeaturePermissionTranspor
 	}
 
 	@Override
-	public void writeFeaturePermissions(Iterable<FeaturePermission> permissions, OutputStream output)
+	public void writePermissions(Iterable<FeaturePermission> permissions, OutputStream output)
 			throws IOException {
 		if (permissions == null) {
 			return;

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.viewers;
 
-import org.eclipse.core.runtime.Adapters;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ColorDescriptor;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -166,7 +166,16 @@ public class LicensingLabelProvider extends LabelProvider implements ITableLabel
 	 *         defined or the object is not adaptable.
 	 */
 	protected final LicensingViewerAdapter getAdapter(Object o) {
-		return Adapters.adapt(o, LicensingViewerAdapter.class);
+		Class<LicensingViewerAdapter> adapter = LicensingViewerAdapter.class;
+		if (o == null) {
+			return null;
+		}
+		if (adapter.isInstance(o)) {
+			return adapter.cast(o);
+		}
+		return Platform.getAdapterManager().getAdapter(o, adapter);
+		// Restore after dropping Mars support
+//		return Adapters.adapt(o, adapter);
 	}
 
 	/**

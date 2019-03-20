@@ -25,7 +25,12 @@ import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.log.LoggerFactory;
 
+@Component
 public class ServerConditionsDistributor extends BaseComponent implements PermissionEmitter {
 
 	private final List<ConditionMiner> miners = new ArrayList<>();
@@ -112,6 +117,13 @@ public class ServerConditionsDistributor extends BaseComponent implements Permis
 		return false;
 	}
 
+	@Override
+	@Reference
+	protected void bindLogger(LoggerFactory loggerFactory) {
+		super.bindLogger(loggerFactory);
+	}
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindConditionMiner(ConditionMiner miner) {
 		if (!miners.contains(miner)) {
 			miners.add(miner);

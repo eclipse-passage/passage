@@ -17,10 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.ServerRequestAction;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.log.LoggerFactory;
 
+@Component
 public class ValidateActionRequest extends BaseComponent implements ServerRequestAction {
 
 	private static final String MSG_LOG = "Execute action class:";
+
+	@Override
+	@Reference
+	protected void bindLogger(LoggerFactory loggerFactory) {
+		// TODO Auto-generated method stub
+		super.bindLogger(loggerFactory);
+	}
 
 	@Override
 	public boolean execute(HttpServletRequest request, HttpServletResponse response) {

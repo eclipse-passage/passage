@@ -34,19 +34,31 @@ import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.LicensingConditionTransport;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.log.LoggerFactory;
 
+@Component
 public class ServerConditionsStorage extends BaseComponent implements LicensingConditionStorage {
 
 	private static final String TRANSPORT_NOT_FOUND = "Transport for license descriptors not found";
 	private EnvironmentInfo environmentInfo;
 	private StreamCodec streamCodec;
 	private String CONDITION_EXTENSION = ".licen";
-	private LicensingConditionTransport conditionDescriptorTransport;
+	private ConditionTransport conditionTransport;
 	private ServerConditionsArbitr conditionArbitr;
 
+	@Override
+	@Reference
+	protected void bindLogger(LoggerFactory loggerFactory) {
+		super.bindLogger(loggerFactory);
+	}
+
+	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
 		this.environmentInfo = environmentInfo;
 	}
@@ -55,31 +67,31 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 		this.environmentInfo = null;
 	}
 
+	@Reference
 	public void bindStreamCodec(StreamCodec codec) {
 		this.streamCodec = codec;
-	}
-
-	public void bindServerConditionsArbitr(ServerConditionsArbitr conditionArbitr) {
-		this.conditionArbitr = conditionArbitr;
 	}
 
 	public void unbindStreamCodec(StreamCodec codec) {
 		this.streamCodec = null;
 	}
 
-	public void bindConditionDescriptorTransport(LicensingConditionTransport transport,
-			Map<String, Object> properties) {
+	public void bindServerConditionsArbitr(ServerConditionsArbitr conditionArbitr) {
+		this.conditionArbitr = conditionArbitr;
+	}
+
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	public void bindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
-			this.conditionDescriptorTransport = transport;
+			this.conditionTransport = transport;
 		}
 	}
 
-	public void unbindConditionDescriptorTransport(LicensingConditionTransport transport,
-			Map<String, Object> properties) {
+	public void unbindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		if (LicensingProperties.LICENSING_CONTENT_TYPE_XML.equals(contentType)) {
-			this.conditionDescriptorTransport = null;
+			this.conditionTransport = null;
 		}
 	}
 
@@ -144,9 +156,9 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 				streamCodec.decodeStream(productConditionStream, decodedTokenStream, productTokenStream, null);
 				byte[] byteArray = decodedTokenStream.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
-					if (conditionDescriptorTransport != null) {
-						Iterable<LicensingCondition> extractedConditions = conditionDescriptorTransport
-								.readConditionDescriptors(input);
+					if (conditionTransport != null) {
+						Iterable<LicensingCondition> extractedConditions = conditionTransport
+								.readConditions(input);
 
 						for (LicensingCondition condition : extractedConditions) {
 							if (conditionArbitr.addConditionToReserv(condition)) {
