@@ -55,6 +55,14 @@ xmlns="http://maven.apache.org/POM/4.0.0"
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<products>
+						<product>
+							<id>${project.artifactId}</id>
+							<archiveFileName>${project.artifactId}-${build.label}-incubation</archiveFileName>
+						</product>
+					</products>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -29,8 +29,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<qualifier.format>'v'yyyyMMdd-HHmm</qualifier.format>
+		<build.label>${unqualifiedVersion}.${buildQualifier}</build.label>
+
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/p/passage/passage.git</tycho.scmUrl>
 		<tycho.version>1.4.0-SNAPSHOT</tycho.version>
+
 		<tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
 		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
@@ -111,6 +115,40 @@
 				<artifactId>tycho-maven-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
+					</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<format>${qualifier.format}</format>
+					<sourceReferences>
+						<generate>true</generate>
+					</sourceReferences>
+					<timestampProvider>jgit</timestampProvider>
+					<jgit.ignore>pom.xml</jgit.ignore>
+					<jgit.dirtyWorkingTree>warning</jgit.dirtyWorkingTree>
+					<additionalFileSets>
+						<fileSet>
+							<directory>${project.build.outputDirectory}</directory>
+							<includes>
+								<include>about.mappings</include>
+							</includes>
+						</fileSet>
+					</additionalFileSets>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-sourceref-jgit</artifactId>
+						<version>${tycho.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-buildtimestamp-jgit</artifactId>
+						<version>${tycho.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
