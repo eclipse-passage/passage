@@ -94,6 +94,8 @@
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
+
 
 		<module>../../tests/org.eclipse.passage.lic.features.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>

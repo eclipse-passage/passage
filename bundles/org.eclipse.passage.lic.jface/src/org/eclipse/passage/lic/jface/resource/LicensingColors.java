@@ -20,9 +20,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ColorDescriptor;
 import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -44,11 +47,22 @@ public class LicensingColors {
 	public static final RGB RGB_LEVEL_ERROR = new RGB(255, 0, 0);
 	public static final RGB RGB_LEVEL_FATAL = new RGB(128, 0, 0);
 
-	public static final String BUNDLE_ID = "org.eclipse.passage.lic.jface"; //$NON-NLS-1$
+	private static final String BUNDLE_ID = "org.eclipse.passage.lic.jface"; //$NON-NLS-1$
 	/**
 	 * The Licensing color registry; <code>null</code> until lazily initialized.
 	 */
 	private static ColorRegistry colorRegistry = null;
+
+	private static Map<String, RGB> colorToRgb = new HashMap<>();
+	static {
+		colorToRgb.put(COLOR_LEVEL_OK, RGB_LEVEL_OK);
+		colorToRgb.put(COLOR_LEVEL_INFO, RGB_LEVEL_INFO);
+		colorToRgb.put(COLOR_LEVEL_WARN, RGB_LEVEL_WARN);
+		colorToRgb.put(COLOR_LEVEL_ERROR, RGB_LEVEL_ERROR);
+		colorToRgb.put(COLOR_LEVEL_FATAL, RGB_LEVEL_FATAL);
+	}
+
+	private static IScopeContext[] context = new IScopeContext[] { DefaultScope.INSTANCE, InstanceScope.INSTANCE };
 
 	/**
 	 * Returns the color in Licensing color registry with the given key, or
@@ -106,14 +120,7 @@ public class LicensingColors {
 	 *
 	 */
 	private static void initializeDefaultColors() {
-		Map<String, RGB> paths = new HashMap<>();
-		paths.put(COLOR_LEVEL_OK, RGB_LEVEL_OK);
-		paths.put(COLOR_LEVEL_INFO, RGB_LEVEL_INFO);
-		paths.put(COLOR_LEVEL_WARN, RGB_LEVEL_WARN);
-		paths.put(COLOR_LEVEL_ERROR, RGB_LEVEL_ERROR);
-		paths.put(COLOR_LEVEL_FATAL, RGB_LEVEL_FATAL);
-
-		declareColors(LicensingColors.class, paths);
+		declareColors(LicensingColors.class, colorToRgb);
 	}
 
 	/**
@@ -137,7 +144,7 @@ public class LicensingColors {
 	}
 
 	public static IStatus storeColors() {
-		IEclipsePreferences node = ConfigurationScope.INSTANCE.getNode(BUNDLE_ID);
+		IEclipsePreferences node = getPreferences();
 		if (node == null) {
 			return Status.CANCEL_STATUS;
 		}
@@ -155,13 +162,10 @@ public class LicensingColors {
 	}
 
 	public static IStatus loadColors() {
-		IEclipsePreferences node = getPreferences();
-		if (node == null) {
-			return Status.CANCEL_STATUS;
-		}
+
 		ColorRegistry registry = getColorRegistry();
 		for (String colorKey : registry.getKeySet()) {
-			String storedValue = node.get(colorKey, "");
+			String storedValue = getLicensingColor(colorKey);
 			if (storedValue != null && !storedValue.isEmpty()) {
 				registry.put(colorKey, stringToRgb(storedValue));
 			}
@@ -201,7 +205,15 @@ public class LicensingColors {
 		return Status.OK_STATUS;
 	}
 
+	public static String getLicensingColor(String colorKey) {
+		String colorDefault = "";
+		if (colorToRgb.containsKey(colorKey)) {
+			colorDefault = colorToRgb.get(colorKey).toString();
+		}
+		return Platform.getPreferencesService().getString(BUNDLE_ID, colorKey, colorDefault, context);
+	}
+
 	public static IEclipsePreferences getPreferences() {
-		return ConfigurationScope.INSTANCE.getNode(BUNDLE_ID);
+		return InstanceScope.INSTANCE.getNode(BUNDLE_ID);
 	}
 }
