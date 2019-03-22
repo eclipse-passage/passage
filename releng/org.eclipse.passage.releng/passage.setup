@@ -46,7 +46,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="2018-12"
+      defaultValue="2019-03"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
@@ -55,7 +55,7 @@
     <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2018-12"/>
+        url="http://download.eclipse.org/releases/2019-03"/>
     <repository
         url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
@@ -127,6 +127,15 @@
       <sourceLocator
           rootFolder="${git.clone.passage.location}"
           locateNestedProjects="true"/>
+      <repositoryList
+          name="2019-03">
+        <repository
+            url="http://download.eclipse.org/releases/2019-03"/>
+        <repository
+            url="http://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="http://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
       <repositoryList
           name="2018-12">
         <repository
