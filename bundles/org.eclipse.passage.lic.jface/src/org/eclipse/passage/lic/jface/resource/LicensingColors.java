@@ -42,7 +42,7 @@ public class LicensingColors {
 	public static final String COLOR_LEVEL_FATAL = "COLOR_LEVEL_FATAL"; //$NON-NLS-1$
 
 	public static final RGB RGB_LEVEL_OK = new RGB(0, 128, 0);
-	public static final RGB RGB_LEVEL_INFO = new RGB(0, 128, 0);
+	public static final RGB RGB_LEVEL_INFO = new RGB(0, 0, 255);
 	public static final RGB RGB_LEVEL_WARN = new RGB(255, 255, 0);
 	public static final RGB RGB_LEVEL_ERROR = new RGB(255, 0, 0);
 	public static final RGB RGB_LEVEL_FATAL = new RGB(128, 0, 0);

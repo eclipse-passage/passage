@@ -26,25 +26,16 @@ public class BaseRestrictionLevelDescriptor implements RestrictionLevelDescripto
 		this.description = description;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.passage.lic.base.restrictions.RestrictionLevelDescriptor#getIdentifier()
-	 */
 	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.passage.lic.base.restrictions.RestrictionLevelDescriptor#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.passage.lic.base.restrictions.RestrictionLevelDescriptor#getDescription()
-	 */
 	@Override
 	public String getDescription() {
 		return description;

@@ -27,14 +27,18 @@ public class EquinoxRestrictionExecutorRegistry implements RestrictionExecutorRe
 	private final Map<String, RestrictionLevelDescriptor> supportedLevels = new LinkedHashMap<>();
 
 	public EquinoxRestrictionExecutorRegistry() {
+		String info = LicensingNamespaces.ATTRIBUTE_LEVEL_INFO;
+		supportedLevels.put(info, new BaseRestrictionLevelDescriptor(info, "Info",
+				"Inform about functionality restriction without pausing the execution flow"));
 		String warn = LicensingNamespaces.ATTRIBUTE_LEVEL_WARN;
-		String error = LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR;
 		supportedLevels.put(warn, new BaseRestrictionLevelDescriptor(warn, "Warning",
-				"Warn about issues with licensing, but allow to proceed without functionality blocking"));
+				"Pause the execution flow with warning, but allow to proceed without functionality blocking"));
+		String error = LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR;
 		supportedLevels.put(error, new BaseRestrictionLevelDescriptor(error, "Error",
-				"Block the restricted functionality, but allow to use other scenarios"));
+				"Interrupt the execution for the restricted functionality with error, but allow to use other scenarios"));
 		String fatal = LicensingNamespaces.ATTRIBUTE_LEVEL_FATAL;
-		supportedLevels.put(fatal, new BaseRestrictionLevelDescriptor(fatal, "Fatal", "Terminate the application"));
+		supportedLevels.put(fatal,
+				new BaseRestrictionLevelDescriptor(fatal, "Fatal", "Terminate the execution with fatal error"));
 	}
 
 	@Override
