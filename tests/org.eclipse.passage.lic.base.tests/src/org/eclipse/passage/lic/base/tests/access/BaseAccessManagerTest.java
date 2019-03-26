@@ -14,11 +14,13 @@ package org.eclipse.passage.lic.base.tests.access;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
@@ -33,6 +35,8 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
@@ -47,6 +51,8 @@ public class BaseAccessManagerTest {
 	private static final String PRODUCT_VERSION = "0.1.0"; //$NON-NLS-1$
 	private static final String FEATURE_ID = "feature.id"; //$NON-NLS-1$
 	private static final String FEATURE_VERSION = "0.1.0"; //$NON-NLS-1$
+	private static final String CONDITION_TYPE = "condition.type"; //$NON-NLS-1$
+	private static final String CONDITION_EXPRESSION = "condition.type=*"; //$NON-NLS-1$
 
 	private List<LicensingResult> sent = new ArrayList<>();
 	private List<LicensingResult> posted = new ArrayList<>();
@@ -199,7 +205,8 @@ public class BaseAccessManagerTest {
 		LicensingCondition condition = LicensingConditions.create("identifier", "version", "rule", new Date(),
 				new Date(), "type", "expression");
 		Iterable<LicensingCondition> create = Collections.singleton(condition);
-		registry.registerConditionMiner(LicensningBaseTests.createConditionMiner(create), null);
+		ConditionMiner miner = LicensningBaseTests.createConditionMiner(create);
+		registry.registerConditionMiner(miner, null);
 		manager.unbindConditionMinerRegistry(registry);
 		manager.bindConditionMinerRegistry(registry);
 		List<LicensingCondition> resolved = new ArrayList<>();
@@ -208,6 +215,7 @@ public class BaseAccessManagerTest {
 		int errors = 0;
 		int events = 1;
 		checkMaps(errors, events);
+		registry.unregisterConditionMiner(miner, null);
 		manager.unbindConditionMinerRegistry(registry);
 	}
 
@@ -276,8 +284,43 @@ public class BaseAccessManagerTest {
 		checkMaps(++logSize, ++eventSize);
 	}
 
+	@Test
+	public void testEvaluateConditionBindUnbind() {
+		int logSize = 0;
+		int eventSize = 0;
+		Map<String, Object> properties = Collections.singletonMap(LicensingProperties.LICENSING_CONDITION_TYPE_ID,
+				CONDITION_TYPE);
+		Map<String, String> values = Collections.singletonMap(CONDITION_TYPE, "*");
+		Iterable<FeaturePermission> permissions = Collections.emptyList();
+		Date before = new Date(System.currentTimeMillis() - 100500);
+		Date after = new Date(System.currentTimeMillis() + 100500);
+
+		PermissionEmitter emitter = LicensningBaseTests.createPermissionEmitter(values);
+		LicensingCondition condition = createCondition(before, after);
+
+		permissions = manager.evaluateConditions(Collections.singleton(condition), null);
+		assertFalse(permissions.iterator().hasNext());
+		checkMaps(++logSize, ++eventSize);
+		manager.bindPermissionEmitter(emitter, properties);
+
+		LicensingConfiguration configuration = LicensingConfigurations.INVALID;
+		permissions = manager.evaluateConditions(Collections.singleton(condition), configuration);
+		FeaturePermission next = permissions.iterator().next();
+		assertEquals(condition, next.getLicensingCondition());
+		assertEquals(configuration, next.getLicensingConfiguration());
+		assertTrue(next.getLeaseDate().before(after));
+		assertTrue(next.getExpireDate().after(before));
+		checkMaps(logSize, ++eventSize);
+
+		manager.unbindPermissionEmitter(emitter, properties);
+		permissions = manager.evaluateConditions(Collections.singleton(condition), null);
+		assertFalse(permissions.iterator().hasNext());
+		checkMaps(++logSize, ++eventSize);
+	}
+
 	protected LicensingCondition createCondition(Date from, Date until) {
-		return LicensingConditions.create(FEATURE_ID, FEATURE_VERSION, null, from, until, null, null);
+		return LicensingConditions.create(FEATURE_ID, FEATURE_VERSION, null, from, until, CONDITION_TYPE,
+				CONDITION_EXPRESSION);
 	}
 
 	@Test

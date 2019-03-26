@@ -13,8 +13,12 @@
 package org.eclipse.passage.lic.base.tests;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Objects;
 
+import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
@@ -57,6 +61,16 @@ public class LicensningBaseTests {
 			@Override
 			public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
 				return mined;
+			}
+		};
+	}
+
+	public static PermissionEmitter createPermissionEmitter(Map<String, String> values) {
+		return new BasePermissionEmitter() {
+
+			@Override
+			protected boolean evaluateSegment(String key, String value) {
+				return Objects.equals(value, values.get(key));
 			}
 		};
 	}

@@ -102,10 +102,7 @@ public class BaseAccessManager implements AccessManager {
 	public void unbindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE_ID);
 		String type = String.valueOf(conditionType);
-		PermissionEmitter removed = permissionEmitters.remove(type);
-		if (permissionEmitter != removed) {
-			// FIXME: error
-		}
+		permissionEmitters.remove(type, permissionEmitter);
 	}
 
 	public void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
@@ -200,7 +197,6 @@ public class BaseAccessManager implements AccessManager {
 			licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, empty, error));
 			return empty;
 		}
-		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
@@ -243,6 +239,7 @@ public class BaseAccessManager implements AccessManager {
 						.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
 			}
 		}
+		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
 		licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, unmodifiable));
 		return unmodifiable;
 	}
