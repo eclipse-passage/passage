@@ -13,6 +13,9 @@
 package org.eclipse.passage.lic.base.access;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
+import static org.eclipse.passage.lic.base.LicensingResults.createError;
+import static org.eclipse.passage.lic.base.LicensingResults.createEvent;
+import static org.eclipse.passage.lic.base.LicensingResults.createOK;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,16 +25,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.BaseLicensingResult;
+import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.runtime.access.AccessEvents;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
-import org.eclipse.passage.lic.runtime.access.AccessManagerEvents;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
@@ -40,13 +45,14 @@ import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.runtime.requirements.RequirementEvents;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
-public abstract class BaseAccessManager implements AccessManager {
+public class BaseAccessManager implements AccessManager {
 
-	private LicensingReporter licensingReporter;
+	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
 	private final List<RequirementResolver> requirementResolvers = new ArrayList<>();
 	private ConditionMinerRegistry conditionMinerRegistry = new BaseConditionMinerRegistry();
@@ -55,42 +61,46 @@ public abstract class BaseAccessManager implements AccessManager {
 
 	private PermissionExaminer examiner;
 
-	protected void bindLicensingReporter(LicensingReporter desk) {
-		this.licensingReporter = desk;
+	public void bindLicensingReporter(LicensingReporter reporter) {
+		this.licensingReporter = reporter;
 	}
 
-	protected void unbindLicensingReporter(LicensingReporter desk) {
-		if (this.licensingReporter == desk) {
-			this.licensingReporter = null;
+	public void unbindLicensingReporter(LicensingReporter reporter) {
+		if (this.licensingReporter == reporter) {
+			this.licensingReporter = SystemReporter.INSTANCE;
 		}
 	}
 
-	protected void bindRequirementResolver(RequirementResolver requirementResolver) {
+	public LicensingReporter getLicensingReporter() {
+		return licensingReporter;
+	}
+
+	public void bindRequirementResolver(RequirementResolver requirementResolver) {
 		requirementResolvers.add(requirementResolver);
 	}
 
-	protected void unbindRequirementResolver(RequirementResolver configurationResolver) {
+	public void unbindRequirementResolver(RequirementResolver configurationResolver) {
 		requirementResolvers.remove(configurationResolver);
 	}
 
-	protected void bindConditionMinerRegistry(ConditionMinerRegistry registry) {
+	public void bindConditionMinerRegistry(ConditionMinerRegistry registry) {
 		this.conditionMinerRegistry = registry;
 	}
 
-	protected void unbindConditionMinerRegistry(ConditionMinerRegistry registry) {
+	public void unbindConditionMinerRegistry(ConditionMinerRegistry registry) {
 		if (this.conditionMinerRegistry == registry) {
 			this.conditionMinerRegistry = null;
 		}
 	}
 
-	protected void bindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
+	public void bindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE_ID);
 		String type = String.valueOf(conditionType);
 		// FIXME: check permissions
 		permissionEmitters.put(type, permissionEmitter);
 	}
 
-	protected void unbindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
+	public void unbindPermissionEmitter(PermissionEmitter permissionEmitter, Map<String, Object> properties) {
 		Object conditionType = properties.get(LICENSING_CONDITION_TYPE_ID);
 		String type = String.valueOf(conditionType);
 		PermissionEmitter removed = permissionEmitters.remove(type);
@@ -99,11 +109,11 @@ public abstract class BaseAccessManager implements AccessManager {
 		}
 	}
 
-	protected void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
+	public void bindPermissionExaminer(PermissionExaminer permissionExaminer) {
 		this.examiner = permissionExaminer;
 	}
 
-	protected void unbindPermissionExaminer(PermissionExaminer permissionExaminer) {
+	public void unbindPermissionExaminer(PermissionExaminer permissionExaminer) {
 		if (permissionExaminer == examiner) {
 			this.examiner = null;
 		} else {
@@ -112,11 +122,11 @@ public abstract class BaseAccessManager implements AccessManager {
 		}
 	}
 
-	protected void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	public void bindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.add(restrictionExecutor);
 	}
 
-	protected void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
+	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		restrictionExecutors.remove(restrictionExecutor);
 	}
 
@@ -132,31 +142,42 @@ public abstract class BaseAccessManager implements AccessManager {
 	@Override
 	public Iterable<LicensingRequirement> resolveRequirements(LicensingConfiguration configuration) {
 		List<LicensingRequirement> result = new ArrayList<>();
-		for (RequirementResolver configurationResolver : requirementResolvers) {
-			Iterable<LicensingRequirement> requirements = configurationResolver
-					.resolveLicensingRequirements(configuration);
-			for (LicensingRequirement requirement : requirements) {
-				result.add(requirement);
+		String source = getClass().getName();
+		if (configuration == null) {
+			String featureId = LicensingConfigurations.IDENTIFIER_INVALID;
+			result.add(LicensingRequirements.createConfigurationError(featureId, source));
+		} else {
+			if (requirementResolvers.isEmpty()) {
+				String featureId = configuration.getProductIdentifier();
+				result.add(LicensingRequirements.createConfigurationError(featureId, source));
+			} else {
+				for (RequirementResolver configurationResolver : requirementResolvers) {
+					Iterable<LicensingRequirement> requirements = configurationResolver
+							.resolveLicensingRequirements(configuration);
+					for (LicensingRequirement requirement : requirements) {
+						result.add(requirement);
+					}
+				}
 			}
 		}
 		List<LicensingRequirement> unmodifiable = Collections.unmodifiableList(result);
-		postEvent(AccessManagerEvents.REQUIREMENTS_RESOLVED, unmodifiable);
+		licensingReporter.postResult(createEvent(RequirementEvents.REQUIREMENTS_RESOLVED, unmodifiable));
 		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
-		BaseLicensingResult holder = LicensingResults.createHolder("Extract conditions operation",
-				getClass().getName());
+		LicensingResult holder = createOK("Extract conditions operation", getClass().getName());
 		List<LicensingCondition> mined = new ArrayList<>();
 		Iterable<ConditionMiner> conditionMiners = conditionMinerRegistry.getConditionMiners();
+		List<LicensingResult> errors = new ArrayList<>();
 		for (ConditionMiner conditionMiner : conditionMiners) {
 			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
 			if (conditions == null) {
 				String source = conditionMiner.getClass().getName();
 				String message = "Invalid condition miner";
-				BaseLicensingResult error = LicensingResults.createError(message, source, new NullPointerException());
-				holder.addChild(error);
+				LicensingResult error = createError(message, source, new NullPointerException());
+				errors.add(error);
 				continue;
 			}
 			for (LicensingCondition condition : conditions) {
@@ -164,10 +185,10 @@ public abstract class BaseAccessManager implements AccessManager {
 			}
 		}
 		Iterable<LicensingResult> children = holder.getChildren();
-		postEvent(ConditionEvents.CONDITIONS_IGNORED, children);
+		licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_IGNORED, children));
 
 		List<LicensingCondition> unmodifiable = Collections.unmodifiableList(mined);
-		postEvent(AccessManagerEvents.CONDITIONS_EXTRACTED, unmodifiable);
+		licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EXTRACTED, unmodifiable));
 		return unmodifiable;
 	}
 
@@ -175,11 +196,13 @@ public abstract class BaseAccessManager implements AccessManager {
 	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
 			LicensingConfiguration configuration) {
 		List<FeaturePermission> result = new ArrayList<>();
+		String source = getClass().getName();
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
-			logError(message, new IllegalArgumentException());
+			LicensingResult error = createError(message, source, new IllegalArgumentException());
+			licensingReporter.logResult(error);
 			List<FeaturePermission> empty = Collections.emptyList();
-			postEvent(AccessManagerEvents.CONDITIONS_EVALUATED, empty);
+			licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, empty, error));
 			return empty;
 		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
@@ -188,7 +211,8 @@ public abstract class BaseAccessManager implements AccessManager {
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
 				String message = "Evaluation rejected for invalid condition";
-				logError(message, new NullPointerException());
+				LicensingResult error = createError(message, source, new NullPointerException());
+				licensingReporter.logResult(error);
 				continue;
 			}
 			String validate = validate(condition);
@@ -197,7 +221,8 @@ public abstract class BaseAccessManager implements AccessManager {
 				List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
 				list.add(condition);
 			} else {
-				logError(validate, null);
+				LicensingResult error = createError(validate, source, (Throwable) null);
+				licensingReporter.logResult(error);
 				invalid.add(condition);
 			}
 		}
@@ -206,7 +231,8 @@ public abstract class BaseAccessManager implements AccessManager {
 			PermissionEmitter emitter = permissionEmitters.get(type);
 			if (emitter == null) {
 				String message = String.format("No permission emitter available for type %s", type);
-				logError(message, new NullPointerException());
+				LicensingResult error = createError(message, source, new NullPointerException());
+				licensingReporter.logResult(error);
 				continue;
 			}
 			List<LicensingCondition> mappedConditions = map.get(type);
@@ -216,65 +242,81 @@ public abstract class BaseAccessManager implements AccessManager {
 					result.add(permission);
 				}
 			} catch (LicensingException e) {
-				logError("Failed to evaluate conditions", e);
-				postEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions);
+				LicensingResult error = e.getResult();
+				licensingReporter.logResult(error);
+				licensingReporter
+						.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
 			}
 		}
-		postEvent(AccessManagerEvents.CONDITIONS_EVALUATED, unmodifiable);
+		licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, unmodifiable));
 		return unmodifiable;
 	}
 
 	@Override
 	public Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements,
 			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration) {
+		String source = getClass().getName();
 		if (configuration == null) {
-			logError("Invalid configuration", new NullPointerException());
+			String message = "Invalid configuration";
+			LicensingResult error = createError(message, source, new NullPointerException());
+			licensingReporter.logResult(error);
 			List<RestrictionVerdict> examined = Collections.emptyList();
-			postEvent(AccessManagerEvents.PERMISSIONS_EXAMINED, examined);
+			licensingReporter.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, examined));
 			return examined;
 		}
 		if (requirements == null) {
-			logError("Invalid configuration requirements", new NullPointerException());
+			String message = "Invalid configuration requirements";
+			LicensingResult error = createError(message, source, new NullPointerException());
+			licensingReporter.logResult(error);
 			List<RestrictionVerdict> examined = Collections.emptyList();
-			postEvent(AccessManagerEvents.PERMISSIONS_EXAMINED, examined);
+			licensingReporter.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, examined));
 			return examined;
 		}
 		if (examiner == null) {
 			String message = String.format("No permission examiner defined, rejecting all %s", requirements);
-			logError(message, new NullPointerException());
+			LicensingResult error = createError(message, source, new NullPointerException());
+			licensingReporter.logResult(error);
 			List<RestrictionVerdict> verdicts = new ArrayList<>();
 			for (LicensingRequirement requirement : requirements) {
 				if (requirement == null) {
-					logError("Invalid configuration requirement ignored", new NullPointerException());
+					// FIXME: rework to children?
+					String message2 = "Invalid configuration requirement ignored";
+					LicensingResult error2 = createError(message2, source, new NullPointerException());
+					licensingReporter.logResult(error2);
 					continue;
 				}
 				RestrictionVerdict verdict = RestrictionVerdicts.createError(requirement,
 						RestrictionVerdicts.CODE_CONFIGURATION_ERROR);
 				verdicts.add(verdict);
 			}
-			postEvent(AccessManagerEvents.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts));
+			licensingReporter
+					.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts)));
 			return verdicts;
 		}
 		Iterable<RestrictionVerdict> examined = examiner.examine(requirements, permissions);
-		postEvent(AccessManagerEvents.PERMISSIONS_EXAMINED, examined);
+		licensingReporter.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, examined));
 		return examined;
 	}
 
 	@Override
 	public LicensingResult executeRestrictions(Iterable<RestrictionVerdict> restrictions) {
 		String source = getClass().getName();
-		BaseLicensingResult result = LicensingResults.createHolder("Executing restrinctions", source);
+		String task = "Executing restrinctions";
+		List<LicensingResult> errors = new ArrayList<>();
 		for (RestrictionExecutor executor : restrictionExecutors) {
 			try {
 				executor.execute(restrictions);
 			} catch (Exception e) {
 				String message = String.format("%s failed to execute %s", executor, restrictions);
-				BaseLicensingResult error = LicensingResults.createError(message, source, e);
-				result.addChild(error);
+				LicensingResult error = createError(message, source, e);
+				errors.add(error);
 			}
 		}
-		postEvent(AccessManagerEvents.RESTRICTIONS_EXECUTED, restrictions);
-		return result;
+		licensingReporter.postResult(createEvent(AccessEvents.RESTRICTIONS_EXECUTED, restrictions));
+		if (errors.isEmpty()) {
+			return LicensingResults.createOK(task, source);
+		}
+		return LicensingResults.createError(task, source, errors);
 	}
 
 	protected String validate(LicensingCondition condition) {
@@ -299,9 +341,5 @@ public abstract class BaseAccessManager implements AccessManager {
 		}
 		return null;
 	}
-
-	protected abstract void postEvent(String topic, Object data);
-
-	protected abstract void logError(String message, Throwable e);
 
 }

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.tests;
+package org.eclipse.passage.lic.base.tests.access;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_PROVIDER_DEFAULT;
 import static org.junit.Assert.assertEquals;
@@ -28,8 +28,7 @@ import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
 import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
 import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
-import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
-import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -60,10 +59,10 @@ public class BasePermissionExaminerTest {
 
 		String provider = LICENSING_FEATURE_PROVIDER_DEFAULT;
 
-		BaseConfigurationRequirement fooRequirement = ConfigurationRequirements.createDefault(FOO_FEATURE_ID,
-				FOO_FEATURE_VERSION, FOO_FEATURE_ID, provider, source);
-		BaseConfigurationRequirement barRequirement = ConfigurationRequirements.createDefault(BAR_FEATURE_ID,
-				BAR_FEATURE_VERSION, BAR_FEATURE_ID, provider, source);
+		LicensingRequirement fooRequirement = LicensingRequirements.createDefault(FOO_FEATURE_ID, FOO_FEATURE_VERSION,
+				FOO_FEATURE_ID, provider, source);
+		LicensingRequirement barRequirement = LicensingRequirements.createDefault(BAR_FEATURE_ID, BAR_FEATURE_VERSION,
+				BAR_FEATURE_ID, provider, source);
 		Iterable<LicensingRequirement> requirements = Arrays.asList(fooRequirement, barRequirement);
 
 		Date fooFrom = null;
@@ -75,7 +74,8 @@ public class BasePermissionExaminerTest {
 		LicensingCondition bazCondition = LicensingConditions.create(BAZ_FEATURE_ID, "1.0.0", //$NON-NLS-1$
 				LicensingVersions.RULE_GREATER_OR_EQUAL, bazFrom, bazUntil, null, null);
 		BaseFeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition, configuration);
-		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0), new Date(0));
+		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0),
+				new Date(0));
 		Iterable<FeaturePermission> permissions = Arrays.asList(fooPermission, bazPermission);
 
 		Iterable<RestrictionVerdict> verdicts = examiner.examine(requirements, permissions);

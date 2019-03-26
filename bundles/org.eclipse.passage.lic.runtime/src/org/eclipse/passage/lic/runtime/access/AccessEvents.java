@@ -17,28 +17,22 @@ import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_BASE;
 import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_SEP;
 
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 
-public final class AccessManagerEvents {
+public final class AccessEvents {
 
-	private AccessManagerEvents() {
+	private AccessEvents() {
 		// block
 	}
 
 	/**
 	 * Base name for all access management cycle events
 	 */
-	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "AccessManagerEvents"; //$NON-NLS-1$
+	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "AccessEvents"; //$NON-NLS-1$
 
 	/**
 	 * Name for all access management events
 	 */
 	public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
-
-	/**
-	 * Sent when {@link LicensingRequirement}(s) are resolved
-	 */
-	public static final String REQUIREMENTS_RESOLVED = TOPIC + TOPIC_SEP + "requirementsResolved"; //$NON-NLS-1$
 
 	/**
 	 * Sent when {@link LicensingCondition}(s) are extracted

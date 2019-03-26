@@ -21,21 +21,21 @@ import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 
 public class BasePageRegistry implements LicensingPageRegistry {
 
-	private Map<String, LicensingPageContributor> pageContributors = new LinkedHashMap<>();
+	private Map<String, LicensingPageContributor<?>> pageContributors = new LinkedHashMap<>();
 
 	@Override
-	public Iterable<LicensingPageContributor> getPageContributors() {
+	public Iterable<LicensingPageContributor<?>> getPageContributors() {
 		return pageContributors.values();
 	}
 
 	@Override
-	public void registerPageContributor(LicensingPageContributor contributor) {
+	public <R> void registerPageContributor(LicensingPageContributor<R> contributor) {
 		pageContributors.put(contributor.getPageIdentifier(), contributor);
 	}
 
-	public void registerPageContributor(Class<? extends LicensingRegistryPage<?>> pageClass, String pageName) {
+	public <R> void registerPageContributor(Class<? extends LicensingRegistryPage<R>> pageClass, String pageName) {
 		String pageIdentifier = pageClass.getName();
-		BasePageContributor contributor = new BasePageContributor(pageIdentifier, pageName, pageClass);
+		BasePageContributor<R> contributor = new BasePageContributor<R>(pageIdentifier, pageName, pageClass);
 		registerPageContributor(contributor);
 	}
 

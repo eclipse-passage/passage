@@ -24,11 +24,12 @@ import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
@@ -71,14 +72,12 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		}
 	}
 
-	protected void bindConditionTransport(ConditionTransport transport,
-			Map<String, Object> properties) {
+	protected void bindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		conditionTransports.put(contentType, transport);
 	}
 
-	protected void unbindConditionTransport(ConditionTransport transport,
-			Map<String, Object> properties) {
+	protected void unbindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		String contentType = String.valueOf(properties.get(LicensingProperties.LICENSING_CONTENT_TYPE));
 		ConditionTransport current = conditionTransports.get(contentType);
 		if (transport == current) {
@@ -104,15 +103,23 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		}
 		KeyKeeper keyKeeper = keyKeeperRegistry.getKeyKeeper(configuration);
 		StreamCodec streamCodec = streamCodecRegistry.getStreamCodec(configuration);
-		String source = getClass().getName();
-		LicensingResult result;
+		String extension;
 		if (NullKeyKeeper.INSTANCE == keyKeeper && NullStreamCodec.INSTANCE == streamCodec) {
-			result = ConditionMiners.mineDecrypted(transport, configurationPath, mined, source);
+			extension = LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
+//			ConditionMiners.mineDecrypted(transport, configurationPath, mined);
 		} else {
-			result = ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper,
-					mined, source);
+			extension = LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
+//			ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper, mined);
 		}
-		licensingReporter.logResult(result);
+		try {
+			List<Path> packs = ConditionMiners.collectPacks(configurationPath, extension);
+			LicensingResult result = ConditionMiners.mine(configuration, mined, keyKeeper, streamCodec, transport,
+					packs);
+			licensingReporter.logResult(result);
+		} catch (LicensingException e) {
+			licensingReporter.logResult(e.getResult());
+		}
+
 		return mined;
 	}
 

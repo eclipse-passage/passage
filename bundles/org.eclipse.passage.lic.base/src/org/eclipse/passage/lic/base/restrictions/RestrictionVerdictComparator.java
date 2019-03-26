@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.base.restrictions;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_FATAL;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_INFO;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_WARN;
 
 import java.util.Comparator;
@@ -21,7 +22,8 @@ import java.util.Comparator;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class RestrictionVerdictComparator implements Comparator<RestrictionVerdict> {
-	
+
+	private static final Integer VALUE_INFO = Integer.valueOf(1);
 	private static final Integer VALUE_WARN = Integer.valueOf(2);
 	private static final Integer VALUE_ERROR = Integer.valueOf(4);
 	private static final Integer VALUE_FATAL = Integer.valueOf(8);
@@ -54,6 +56,8 @@ public class RestrictionVerdictComparator implements Comparator<RestrictionVerdi
 			return VALUE_DEFAULT;
 		}
 		switch (level) {
+		case LICENSING_RESTRICTION_LEVEL_INFO:
+			return VALUE_INFO;
 		case LICENSING_RESTRICTION_LEVEL_WARN:
 			return VALUE_WARN;
 		case LICENSING_RESTRICTION_LEVEL_ERROR:

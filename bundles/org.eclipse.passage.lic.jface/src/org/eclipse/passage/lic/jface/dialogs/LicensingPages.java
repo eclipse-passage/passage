@@ -40,7 +40,7 @@ public class LicensingPages {
 		return basePageRegistry;
 	}
 
-	public static Iterable<LicensingPageContributor> getPageContributors() {
+	public static Iterable<LicensingPageContributor<?>> getPageContributors() {
 		return INSTANCE.pageRegistry.getPageContributors();
 	}
 

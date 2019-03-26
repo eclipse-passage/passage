@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
-import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -53,11 +53,11 @@ public class EquinoxRequirements {
 			LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
 			if (featureIds.length == 0) {
 				String id = configuration.getProductIdentifier();
-				return Collections.singletonList(ConfigurationRequirements.createConfigurationError(id, configuration));
+				return Collections.singletonList(LicensingRequirements.createConfigurationError(id, configuration));
 			}
 			List<LicensingRequirement> errors = new ArrayList<>();
 			for (String id : featureIds) {
-				errors.add(ConfigurationRequirements.createConfigurationError(id, configuration));
+				errors.add(LicensingRequirements.createConfigurationError(id, configuration));
 			}
 			return errors;
 		}

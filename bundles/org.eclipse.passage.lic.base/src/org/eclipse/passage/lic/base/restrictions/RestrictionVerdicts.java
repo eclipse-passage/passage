@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
@@ -34,7 +34,7 @@ public class RestrictionVerdicts {
 
 
 	public static BaseRestrictionVerdict createConfigurationError(String featureId, Object source) {
-		LicensingRequirement requirement = ConfigurationRequirements.createConfigurationError(featureId, source);
+		LicensingRequirement requirement = LicensingRequirements.createConfigurationError(featureId, source);
 		int code = CODE_CONFIGURATION_ERROR;
 		return createError(requirement, code);
 	}

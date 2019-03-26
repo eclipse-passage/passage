@@ -57,6 +57,9 @@ public final class LicensingProperties {
 	public static String toRestrictionLevelProperty(Object object) {
 		if (object instanceof String) {
 			String level = (String) object;
+			if (LICENSING_RESTRICTION_LEVEL_INFO.equalsIgnoreCase(level)) {
+				return LICENSING_RESTRICTION_LEVEL_INFO;
+			}
 			if (LICENSING_RESTRICTION_LEVEL_WARN.equalsIgnoreCase(level)) {
 				return LICENSING_RESTRICTION_LEVEL_WARN;
 			}

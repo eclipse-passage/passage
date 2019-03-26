@@ -22,7 +22,9 @@ public class LicensingConfigurations {
 	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
 	public static final String LICENSING_PRODUCT_CONTACTS = "licensing.product.contacts"; //$NON-NLS-1$
 
-	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration("invalid",
+	public static final String IDENTIFIER_INVALID = "org.eclipse.passage.lic.runtime.invalid"; //$NON-NLS-1$
+
+	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration(IDENTIFIER_INVALID,
 			LicensingVersions.VERSION_DEFAULT);
 
 	public static LicensingConfiguration create(String product, String version) {

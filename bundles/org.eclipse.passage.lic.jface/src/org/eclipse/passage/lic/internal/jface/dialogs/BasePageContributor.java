@@ -13,19 +13,20 @@
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
+import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 
-public class BasePageContributor implements LicensingPageContributor {
+public class BasePageContributor<R> implements LicensingPageContributor<R> {
 
 	private final String pageIdentifier;
 	private final String pageName;
-	private final Class<? extends LicensingRegistryPage> pageClass;
+	private final Class<? extends LicensingRegistryPage<R>> pageClass;
 
-	public BasePageContributor(String pageIdentifier, String pageName, Class<? extends LicensingRegistryPage> pageClass) {
+	public BasePageContributor(String pageIdentifier, String pageName,
+			Class<? extends LicensingRegistryPage<R>> pageClass) {
 		this.pageIdentifier = pageIdentifier;
 		this.pageName = pageName;
 		this.pageClass = pageClass;
@@ -42,12 +43,12 @@ public class BasePageContributor implements LicensingPageContributor {
 	}
 
 	@Override
-	public LicensingRegistryPage createPage() throws LicensingException {
+	public LicensingRegistryPage<R> createPage() throws LicensingException {
 		try {
 			return pageClass.newInstance();
 		} catch (Exception e) {
 			String message = NLS.bind("Unable to create new instance of {0}", pageClass);
-			BaseLicensingResult error = LicensingResults.createError(message, pageIdentifier, e);
+			LicensingResult error = LicensingResults.createError(message, pageIdentifier, e);
 			throw new LicensingException(error);
 		}
 	}

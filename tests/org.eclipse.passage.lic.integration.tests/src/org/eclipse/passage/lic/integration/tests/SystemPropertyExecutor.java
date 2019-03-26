@@ -28,7 +28,7 @@ public class SystemPropertyExecutor implements RestrictionExecutor {
 			String restrictionLevel = verdict.getRestrictionLevel();
 			System.setProperty(featureIdentifier, restrictionLevel);
 		}
-		return LicensingResults.createOK("");
+		return LicensingResults.createOK();
 	}
 
 }

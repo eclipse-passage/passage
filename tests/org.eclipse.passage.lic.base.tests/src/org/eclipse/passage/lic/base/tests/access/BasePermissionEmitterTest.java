@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.tests;
+package org.eclipse.passage.lic.base.tests.access;
 
 import static org.junit.Assert.fail;
 
@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.After;
 import org.junit.Test;
 
-public class BaseConditionEvaluatorTest {
+public class BasePermissionEmitterTest {
 
 	private Map<String, Object> segments = new HashMap<>();
 

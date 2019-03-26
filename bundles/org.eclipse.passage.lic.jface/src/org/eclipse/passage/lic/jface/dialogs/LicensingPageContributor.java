@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.jface.dialogs;
 
 import org.eclipse.passage.lic.runtime.LicensingException;
 
-public interface LicensingPageContributor {
+public interface LicensingPageContributor<R> {
 
 	String getPageIdentifier();
 
 	String getPageName();
 
-	LicensingRegistryPage createPage() throws LicensingException;
+	LicensingRegistryPage<R> createPage() throws LicensingException;
 
 }

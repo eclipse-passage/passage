@@ -15,7 +15,9 @@ package org.eclipse.passage.lic.runtime;
 public class LicensingEvents {
 
 	public static final String PROPERTY_TOPIC = "org.eclipse.passage.lic.runtime.topic"; //$NON-NLS-1$
+	public static final String PROPERTY_SOURCE = "org.eclipse.passage.lic.runtime.source"; //$NON-NLS-1$
 	public static final String PROPERTY_DATA = "org.eclipse.passage.lic.runtime.data"; //$NON-NLS-1$
+	public static final String PROPERTY_MESSAGE = "org.eclipse.passage.lic.runtime.message"; //$NON-NLS-1$
 	/**
 	 * Segment for events of type <code>create</code>
 	 */

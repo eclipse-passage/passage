@@ -16,42 +16,82 @@ import static org.eclipse.passage.lic.base.BaseLicensingResult.CODE_NOMINAL;
 import static org.eclipse.passage.lic.runtime.LicensingResult.ERROR;
 import static org.eclipse.passage.lic.runtime.LicensingResult.OK;
 
-import org.eclipse.passage.lic.runtime.LicensingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.passage.lic.runtime.LicensingEvents;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class LicensingResults {
 
-	public static BaseLicensingResult createOK(String message) {
+	public static LicensingResult createOK() {
+		return new BaseLicensingResult(OK, "", LicensingResults.class.getName()); //$NON-NLS-1$
+	}
+
+	public static LicensingResult createOK(String message) {
 		return new BaseLicensingResult(OK, message, LicensingResults.class.getName());
 	}
 
-	public static BaseLicensingResult createHolder(String message) {
-		return new BaseLicensingResult(OK, message, LicensingResults.class.getName());
-	}
-
-	public static BaseLicensingResult createHolder(String message, String source) {
+	public static LicensingResult createOK(String message, String source) {
 		return new BaseLicensingResult(OK, message, source);
 	}
 
-	public static BaseLicensingResult createError(String message, Throwable e) {
+	public static LicensingResult createEvent(String topic, Object data) {
+		String source = LicensingResult.class.getName();
+		return createEvent(topic, data, source, ""); //$NON-NLS-1$
+	}
+
+	public static LicensingResult createEvent(String topic, Object data, String source, String message) {
+		LicensingResult basis = createOK(message, source);
+		return createEvent(topic, data, basis);
+	}
+
+	public static LicensingResult createEvent(String topic, Object data, LicensingResult basis) {
+		int severity = basis.getSeverity();
+		String message = basis.getMessage();
+		int code = basis.getCode();
+		String source = basis.getSource();
+		Throwable exception = basis.getException();
+
+		List<LicensingResult> details = new ArrayList<>();
+		Iterable<LicensingResult> children = basis.getChildren();
+		for (LicensingResult child : children) {
+			details.add(child);
+		}
+		Map<String, Object> attachments = new HashMap<String, Object>();
+		Iterable<String> attachmentKeys = basis.getAttachmentKeys();
+		for (String key : attachmentKeys) {
+			attachments.put(key, basis.getAttachment(key));
+		}
+		attachments.put(LicensingEvents.PROPERTY_TOPIC, topic);
+		attachments.put(LicensingEvents.PROPERTY_SOURCE, source);
+		attachments.put(LicensingEvents.PROPERTY_DATA, data);
+		attachments.put(LicensingEvents.PROPERTY_MESSAGE, message);
+		return new BaseLicensingResult(severity, message, code, source, exception, details, attachments);
+	}
+
+	public static LicensingResult createError(String message, Throwable e) {
 		String source = LicensingResults.class.getName();
 		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e);
 	}
 
-	public static BaseLicensingResult createError(String message, String source, Throwable e) {
+	public static LicensingResult createError(String message, String source, Throwable e) {
 		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e);
 	}
 
-	public static BaseLicensingResult createError(String message, int code, Throwable e) {
+	public static LicensingResult createError(String message, String source, Iterable<LicensingResult> children) {
+		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, null, children, null);
+	}
+
+	public static LicensingResult createError(String message, int code, Throwable e) {
 		String source = LicensingResults.class.getName();
 		return new BaseLicensingResult(ERROR, message, code, source, e);
 	}
 
-	public static BaseLicensingResult createError(String message, int code, String source, Throwable e) {
+	public static LicensingResult createError(String message, int code, String source, Throwable e) {
 		return new BaseLicensingResult(ERROR, message, code, source, e);
-	}
-
-	public static void throwError(String message, String source, Throwable e) throws LicensingException {
-		throw new LicensingException(new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e));
 	}
 
 }

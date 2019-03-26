@@ -22,7 +22,7 @@ import java.util.Map;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
-import org.eclipse.passage.lic.runtime.access.AccessManagerEvents;
+import org.eclipse.passage.lic.runtime.access.AccessEvents;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
@@ -35,7 +35,7 @@ import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 
-@Component(property = EventConstants.EVENT_TOPIC + "=" + AccessManagerEvents.TOPIC_ALL)
+@Component(property = EventConstants.EVENT_TOPIC + "=" + AccessEvents.TOPIC_ALL)
 public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 
 	private final Map<String, List<EquinoxFeatureCase>> cases = new HashMap<>();

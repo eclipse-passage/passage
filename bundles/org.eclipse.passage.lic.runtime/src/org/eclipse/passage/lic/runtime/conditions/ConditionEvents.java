@@ -23,30 +23,30 @@ public final class ConditionEvents {
 	}
 
 	/**
-	 * Base name for all licensing condition events
+	 * Base name for all {@link LicensingCondition}(s) events
 	 */
 	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "ConditionEvents"; //$NON-NLS-1$
 
 	/**
-	 * Name for all licensing condition events
+	 * Name for all {@link LicensingCondition}(s) events
 	 */
 	public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
 
 	/**
-	 * Sent when conditions are ignored
+	 * Sent when {@link LicensingCondition}(s) are ignored
 	 */
 	public static final String CONDITIONS_IGNORED = TOPIC + TOPIC_SEP + "conditionsIgnored"; //$NON-NLS-1$
 
 	/**
-	 * Sent when conditions are rejected as not valid
+	 * Sent when {@link LicensingCondition}(s) are rejected as not valid
 	 */
 	public static final String CONDITIONS_NOT_VALID = TOPIC + TOPIC_SEP + "conditionsNotValid"; //$NON-NLS-1$
 	/**
-	 * Sent when conditions are rejected as invalid
+	 * Sent when {@link LicensingCondition}(s) are rejected as invalid
 	 */
 	public static final String CONDITIONS_NOT_EVALUATED = TOPIC + TOPIC_SEP + "conditionsNotEvaluated"; //$NON-NLS-1$
 	/**
-	 * Sent when conditions are leased
+	 * Sent when {@link LicensingCondition}(s) are leased
 	 */
 	public static final String CONDITIONS_LEASED = TOPIC + TOPIC_SEP + "conditionsLeased"; //$NON-NLS-1$
 

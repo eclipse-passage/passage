@@ -19,8 +19,8 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRIC
 
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 
-public class BaseConfigurationRequirement implements LicensingRequirement {
-	
+class BaseLicensingRequirement implements LicensingRequirement {
+
 	private final String featureIdentifier;
 	private final String featureVersion;
 	private final String featureName;
@@ -28,7 +28,7 @@ public class BaseConfigurationRequirement implements LicensingRequirement {
 	private final String restrictionLevel;
 	private final Object source;
 
-	BaseConfigurationRequirement(String id, String version, String name, String provider, String level, Object source) {
+	BaseLicensingRequirement(String id, String version, String name, String provider, String level, Object source) {
 		this.featureIdentifier = id;
 		this.featureVersion = version;
 		this.featureName = name;
@@ -36,7 +36,7 @@ public class BaseConfigurationRequirement implements LicensingRequirement {
 		this.restrictionLevel = level;
 		this.source = source;
 	}
-	
+
 	@Override
 	public String getFeatureProvider() {
 		return featureProvider;
@@ -61,12 +61,12 @@ public class BaseConfigurationRequirement implements LicensingRequirement {
 	public String getRestrictionLevel() {
 		return restrictionLevel;
 	}
-	
+
 	@Override
 	public Object getRequirementSource() {
 		return source;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

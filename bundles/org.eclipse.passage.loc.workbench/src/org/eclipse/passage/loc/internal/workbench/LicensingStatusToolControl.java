@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
-import org.eclipse.passage.lic.runtime.access.AccessManagerEvents;
+import org.eclipse.passage.lic.runtime.access.AccessEvents;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -40,7 +40,7 @@ public class LicensingStatusToolControl {
 	@Inject
 	@Optional
 	public void restrictionsExecuted(
-			@UIEventTopic(AccessManagerEvents.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
+			@UIEventTopic(AccessEvents.RESTRICTIONS_EXECUTED) Iterable<RestrictionVerdict> actions) {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(actions);
 		updateButton(last);
 	}

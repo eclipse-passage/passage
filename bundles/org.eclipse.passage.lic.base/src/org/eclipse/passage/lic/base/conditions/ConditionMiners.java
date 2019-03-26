@@ -25,57 +25,24 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public class ConditionMiners {
 
-	public static LicensingResult mineDecrypted(ConditionTransport transport, Path configurationPath,
-			List<LicensingCondition> mined, String source) {
-		String task = String.format("Mining licensing conditions from %s", configurationPath);
-		BaseLicensingResult holder = LicensingResults.createHolder(task, source);
-		List<Path> licenseFiles;
-		try {
-			licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_DECRYPTED, source);
-		} catch (LicensingException e) {
-			holder.addChild(e.getResult());
-			return holder;
-		}
-		for (Path path : licenseFiles) {
-			try (FileInputStream raw = new FileInputStream(path.toFile())) {
-				Iterable<LicensingCondition> extracted = transport.readConditions(raw);
-				for (LicensingCondition condition : extracted) {
-					mined.add(condition);
-				}
-			} catch (Exception e) {
-				String message = String.format("Failed to mine packs at %s", configurationPath);
-				holder.addChild(LicensingResults.createError(message, e));
-			}
-		}
-		return holder;
-	}
-
-	public static LicensingResult mineEncrypted(ConditionTransport transport,
-			LicensingConfiguration configuration, Path configurationPath, StreamCodec streamCodec, KeyKeeper keyKeeper,
-			List<LicensingCondition> mined, String source) {
-		String task = String.format("Mining licensing conditions from %s", configurationPath);
-		BaseLicensingResult holder = LicensingResults.createHolder(task, source);
-		List<Path> licenseFiles;
-		try {
-			licenseFiles = collectPacks(configurationPath, LicensingPaths.EXTENSION_LICENSE_ENCRYPTED, source);
-		} catch (LicensingException e) {
-			holder.addChild(e.getResult());
-			return holder;
-		}
-		for (Path path : licenseFiles) {
+	public static LicensingResult mine(LicensingConfiguration configuration, List<LicensingCondition> mined,
+			KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport, Iterable<Path> packs)
+			throws LicensingException {
+		String task = String.format("Mining licensing conditions for %s", configuration);
+		String source = ConditionMiners.class.getName();
+		List<LicensingResult> errors = new ArrayList<>();
+		for (Path path : packs) {
 			try (FileInputStream encoded = new FileInputStream(path.toFile());
 					ByteArrayOutputStream decoded = new ByteArrayOutputStream();
 					InputStream keyRing = keyKeeper.openKeyStream(configuration)) {
@@ -90,14 +57,22 @@ public class ConditionMiners {
 			} catch (Exception e) {
 				String message = String.format("Failed to to extract conditions from %s for configuration %s", path,
 						configuration);
-				holder.addChild(LicensingResults.createError(message, e));
+				errors.add(LicensingResults.createError(message, e));
 			}
 		}
-		return holder;
+		if (errors.isEmpty()) {
+			return LicensingResults.createOK(task, source);
+		}
+		return LicensingResults.createError(task, source, errors);
 	}
 
-	public static List<Path> collectPacks(Path configurationPath, String extension, String source)
-			throws LicensingException {
+	public static List<Path> collectPacks(Path configurationPath, String... extensions) throws LicensingException {
+		String message = String.format("Failed to collect packs at %s", configurationPath);
+		String source = ConditionMiners.class.getName();
+		if (configurationPath == null) {
+			IllegalArgumentException e = new IllegalArgumentException();
+			throw new LicensingException(LicensingResults.createError(message, source, e));
+		}
 		List<Path> licenseFiles = new ArrayList<>();
 		try {
 			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
@@ -105,16 +80,17 @@ public class ConditionMiners {
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 					String lowerCase = file.toString().toLowerCase();
-					if (lowerCase.endsWith(extension)) {
-						licenseFiles.add(file);
+					for (String extension : extensions) {
+						if (lowerCase.endsWith(extension)) {
+							licenseFiles.add(file);
+						}
 					}
 					return FileVisitResult.CONTINUE;
 				}
 
 			});
 		} catch (IOException e) {
-			String message = String.format("Failed to collect packs at %s", configurationPath);
-			LicensingResults.throwError(message, source, e);
+			throw new LicensingException(LicensingResults.createError(message, source, e));
 		}
 		return licenseFiles;
 	}

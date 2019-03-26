@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.tests;
+package org.eclipse.passage.lic.base.tests.conditions;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

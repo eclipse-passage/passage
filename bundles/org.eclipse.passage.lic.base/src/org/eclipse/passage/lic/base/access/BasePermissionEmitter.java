@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -36,7 +36,7 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 		if (conditions == null) {
 			String message = "Evaluation rejected for invalid conditions";
 			Exception e = new IllegalArgumentException();
-			BaseLicensingResult error = LicensingResults.createError(message, source, e);
+			LicensingResult error = LicensingResults.createError(message, source, e);
 			throw new LicensingException(error);
 		}
 		for (LicensingCondition condition : conditions) {
@@ -45,7 +45,7 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 			if (checks.isEmpty()) {
 				String message = String.format("Expression checks are empty for condition %s", condition);
 				Exception e = new IllegalArgumentException();
-				BaseLicensingResult error = LicensingResults.createError(message, source, e);
+				LicensingResult error = LicensingResults.createError(message, source, e);
 				throw new LicensingException(error);
 			}
 			Set<String> keySet = checks.keySet();
@@ -59,13 +59,13 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 					passed = false;
 					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition,
 							key, value);
-					BaseLicensingResult error = LicensingResults.createError(message, source, e);
+					LicensingResult error = LicensingResults.createError(message, source, e);
 					throw new LicensingException(error);
 				}
 				if (!passed) {
 					String message = String.format("Condition %s rejected: key=%s, value=%s", condition, key, value);
 					Exception e = new IllegalArgumentException();
-					BaseLicensingResult error = LicensingResults.createError(message, source, e);
+					LicensingResult error = LicensingResults.createError(message, source, e);
 					throw new LicensingException(error);
 				}
 			}

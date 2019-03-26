@@ -34,16 +34,29 @@ public class BaseLicensingResult implements LicensingResult {
 	private final List<LicensingResult> children = new ArrayList<>();
 
 	public BaseLicensingResult(int severity, String message, String source) {
-		this(severity, message, CODE_NOMINAL, source, null);
+		this(severity, message, CODE_NOMINAL, source, null, null, null);
 	}
 
 	public BaseLicensingResult(int severity, String message, int code, String source, Throwable exception) {
+		this(severity, message, code, source, exception, null, null);
+	}
+
+	public BaseLicensingResult(int severity, String message, int code, String source, Throwable exception,
+			Iterable<LicensingResult> details, Map<String, Object> data) {
 		super();
 		this.severity = severity;
 		this.message = message;
 		this.source = source;
 		this.code = code;
 		this.exception = exception;
+		if (details != null) {
+			for (LicensingResult result : details) {
+				addChild(result);
+			}
+		}
+		if (data != null) {
+			attachments.putAll(data);
+		}
 	}
 
 	@Override
@@ -86,11 +99,7 @@ public class BaseLicensingResult implements LicensingResult {
 		return Collections.unmodifiableList(children);
 	}
 
-	public void attach(String key, Object data) {
-		attachments.put(key, data);
-	}
-
-	public void addChild(LicensingResult result) {
+	protected void addChild(LicensingResult result) {
 		int newSev = result.getSeverity();
 		if (newSev > getSeverity()) {
 			this.severity = newSev;

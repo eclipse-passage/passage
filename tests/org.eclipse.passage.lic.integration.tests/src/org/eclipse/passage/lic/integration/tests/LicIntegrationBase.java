@@ -35,9 +35,7 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -58,23 +56,6 @@ public abstract class LicIntegrationBase {
 	static final String EXECUTOR_1 = "executor.1"; //$NON-NLS-1$
 	static final String EXECUTOR_2 = "executor.2"; //$NON-NLS-1$
 	static final String EXECUTOR_3 = "executor.3"; //$NON-NLS-1$
-
-	/**
-	 * Passed through maven-surefire-plugin configuration
-	 */
-	private static final String MVN_PROJECT_OUTPUT_PROPERTY = "project.build.directory"; //$NON-NLS-1$
-
-	private static final String MVN_PROJECT_OUTPUT_VALUE = "target"; //$NON-NLS-1$
-
-	@Rule
-	public TemporaryFolder baseFolder = new TemporaryFolder(new File(resolveOutputDirName()));
-
-	public static String resolveOutputDirName() {
-		String userDir = System.getProperty("user.dir"); //$NON-NLS-1$
-		String defaultValue = userDir + File.separator + MVN_PROJECT_OUTPUT_VALUE;
-		String outDir = System.getProperty(MVN_PROJECT_OUTPUT_PROPERTY, defaultValue);
-		return outDir;
-	}
 
 	private static ServiceReference<AccessManager> accessManagerReference;
 	protected static AccessManager accessManager;

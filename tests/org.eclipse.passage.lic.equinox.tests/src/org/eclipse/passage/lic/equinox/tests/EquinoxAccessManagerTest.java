@@ -12,11 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.tests;
 
+import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.internal.equinox.access.EquinoxAccessManager;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.osgi.service.event.EventAdmin;
-import org.osgi.service.log.LogService;
 
 @SuppressWarnings("restriction")
 public class EquinoxAccessManagerTest {
@@ -24,8 +22,7 @@ public class EquinoxAccessManagerTest {
 	@Test
 	public void testExecuteRestrictions() {
 		EquinoxAccessManager accessManager = new EquinoxAccessManager();
-		accessManager.bindEventAdmin(Mockito.mock(EventAdmin.class));
-		accessManager.bindLogService(Mockito.mock(LogService.class));
+		accessManager.bindLicensingReporter(SystemReporter.INSTANCE);
 		accessManager.executeAccessRestrictions(null);
 	}
 

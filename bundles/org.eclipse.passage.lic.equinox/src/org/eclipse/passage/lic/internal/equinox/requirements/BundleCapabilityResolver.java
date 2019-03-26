@@ -23,8 +23,7 @@ import java.util.logging.Logger;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
-import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
@@ -60,7 +59,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (bundleContext == null) {
 			logger.severe("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		List<LicensingRequirement> result = new ArrayList<>();
@@ -74,15 +73,14 @@ public class BundleCapabilityResolver implements RequirementResolver {
 				Map<String, Object> attributes = capability.getAttributes();
 				Map<String, String> directives = capability.getDirectives();
 				BundleRevision resource = capability.getResource();
-				BaseConfigurationRequirement extracted = ConfigurationRequirements.extractFromCapability(name, vendor,
-						attributes, directives, resource);
+				LicensingRequirement extracted = LicensingRequirements.extractFromCapability(name, vendor, attributes,
+						directives, resource);
 				if (extracted != null) {
 					result.add(extracted);
 				} else {
 					logger.severe(String.format("Unable to extract configuration requirements: %s", resource));
-					result.add(
-							ConfigurationRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
-									LicensingVersions.VERSION_DEFAULT, name, providerLicensing, resource));
+					result.add(LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+							LicensingVersions.VERSION_DEFAULT, name, providerLicensing, resource));
 					return result;
 				}
 			}

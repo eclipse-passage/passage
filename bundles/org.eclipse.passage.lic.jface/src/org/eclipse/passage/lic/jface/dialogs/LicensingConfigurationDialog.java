@@ -91,8 +91,8 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	}
 
 	protected void createFolderItems(TabFolder folder) {
-		Iterable<LicensingPageContributor> contributors = LicensingPages.getPageContributors();
-		for (LicensingPageContributor pageContributor : contributors) {
+		Iterable<LicensingPageContributor<?>> contributors = LicensingPages.getPageContributors();
+		for (LicensingPageContributor<?> pageContributor : contributors) {
 			TabItem item = new TabItem(folder, SWT.NONE);
 			item.setText(pageContributor.getPageName());
 			item.setData(pageContributor);
@@ -106,7 +106,7 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	protected void tabSelected(TabItem item) {
 		Object data = item.getData();
 		if (data instanceof LicensingPageContributor) {
-			final LicensingPageContributor element = (LicensingPageContributor) data;
+			final LicensingPageContributor<?> element = (LicensingPageContributor<?>) data;
 			Composite pageComposite = (Composite) item.getControl();
 			try {
 				final LicensingRegistryPage<?> page = element.createPage();

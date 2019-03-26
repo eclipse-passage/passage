@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.base.access.BaseAccessManager;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
-import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
@@ -33,16 +32,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.event.Event;
-import org.osgi.service.event.EventAdmin;
-import org.osgi.service.log.LogService;
 
 @Component
 public class EquinoxAccessManager extends BaseAccessManager implements AccessManager, BundleListener {
-
-	private EventAdmin eventAdmin;
-
-	private LogService logService;
 
 	@Activate
 	public void activate(BundleContext bundleContext) {
@@ -129,39 +121,6 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	@Override
 	public void unbindRestrictionExecutor(RestrictionExecutor restrictionExecutor) {
 		super.unbindRestrictionExecutor(restrictionExecutor);
-	}
-
-	@Reference
-	public void bindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = admin;
-	}
-
-	public void unbindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = admin;
-	}
-
-	@Override
-	protected void postEvent(String topic, Object data) {
-		Event event = EquinoxEvents.createEvent(topic, data);
-		eventAdmin.postEvent(event);
-	}
-
-	@Reference
-	public void bindLogService(LogService log) {
-		this.logService = log;
-	}
-
-	public void unbindLogService(LogService log) {
-		if (this.logService == log) {
-			this.logService = null;
-		}
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	protected void logError(String message, Throwable e) {
-		// FIXME: rework after removing Eclipse Mars support
-		logService.log(LogService.LOG_ERROR, message, e);
 	}
 
 }

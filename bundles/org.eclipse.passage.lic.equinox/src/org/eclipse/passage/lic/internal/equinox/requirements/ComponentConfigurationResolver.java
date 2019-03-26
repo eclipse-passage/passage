@@ -22,8 +22,7 @@ import java.util.List;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.base.requirements.BaseConfigurationRequirement;
-import org.eclipse.passage.lic.base.requirements.ConfigurationRequirements;
+import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
@@ -84,12 +83,12 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (scr == null) {
 			logger.audit("Unable to extract configuration requirements: invalid ServiceComponentRuntime");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		if (bundleContext == null) {
 			logger.audit("Unable to extract configuration requirements: invalid BundleContext");
-			return ConfigurationRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		List<LicensingRequirement> result = new ArrayList<>();
@@ -100,7 +99,7 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 			Dictionary<String, String> headers = bundle.getHeaders();
 			String name = headers.get(Constants.BUNDLE_NAME);
 			String vendor = headers.get(Constants.BUNDLE_VENDOR);
-			BaseConfigurationRequirement requirement = ConfigurationRequirements.extractFromProperties(name, vendor,
+			LicensingRequirement requirement = LicensingRequirements.extractFromProperties(name, vendor,
 					component.properties, component);
 			if (requirement != null) {
 				result.add(requirement);
