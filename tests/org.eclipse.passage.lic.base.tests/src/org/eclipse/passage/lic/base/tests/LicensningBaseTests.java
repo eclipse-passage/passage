@@ -15,6 +15,8 @@ package org.eclipse.passage.lic.base.tests;
 import java.io.File;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
 import org.junit.Rule;
@@ -45,6 +47,16 @@ public class LicensningBaseTests {
 			@Override
 			public Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration) {
 				return resolved;
+			}
+		};
+	}
+
+	public static ConditionMiner createConditionMiner(Iterable<LicensingCondition> mined) {
+		return new ConditionMiner() {
+
+			@Override
+			public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
+				return mined;
 			}
 		};
 	}

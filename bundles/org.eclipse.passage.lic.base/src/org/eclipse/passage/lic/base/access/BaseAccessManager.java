@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.base.access;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
 import static org.eclipse.passage.lic.base.LicensingResults.createError;
 import static org.eclipse.passage.lic.base.LicensingResults.createEvent;
-import static org.eclipse.passage.lic.base.LicensingResults.createOK;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -167,7 +166,6 @@ public class BaseAccessManager implements AccessManager {
 
 	@Override
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
-		LicensingResult holder = createOK("Extract conditions operation", getClass().getName());
 		List<LicensingCondition> mined = new ArrayList<>();
 		Iterable<ConditionMiner> conditionMiners = conditionMinerRegistry.getConditionMiners();
 		List<LicensingResult> errors = new ArrayList<>();
@@ -184,9 +182,6 @@ public class BaseAccessManager implements AccessManager {
 				mined.add(condition);
 			}
 		}
-		Iterable<LicensingResult> children = holder.getChildren();
-		licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_IGNORED, children));
-
 		List<LicensingCondition> unmodifiable = Collections.unmodifiableList(mined);
 		licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EXTRACTED, unmodifiable));
 		return unmodifiable;

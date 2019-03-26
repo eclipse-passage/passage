@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.base.access;
 import java.util.Date;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public class FeaturePermissions {
@@ -23,13 +24,14 @@ public class FeaturePermissions {
 		// block
 	}
 
-	public static BaseFeaturePermission createDefault(LicensingCondition condition, LicensingConfiguration configuration) {
+	public static FeaturePermission createDefault(LicensingCondition condition, LicensingConfiguration configuration) {
 		Date leaseTime = new Date();
 		Date expireTime = condition.getValidUntil();
 		return new BaseFeaturePermission(condition, configuration, leaseTime, expireTime);
 	}
 
-	public static BaseFeaturePermission create(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+	public static FeaturePermission create(LicensingCondition condition, LicensingConfiguration configuration,
+			Date lease, Date expire) {
 		return new BaseFeaturePermission(condition, configuration, lease, expire);
 	}
 

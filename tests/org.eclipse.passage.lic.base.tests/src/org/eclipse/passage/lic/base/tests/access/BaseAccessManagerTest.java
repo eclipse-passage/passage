@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.base.access.BaseAccessManager;
-import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.tests.LicensningBaseTests;
@@ -33,6 +33,7 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
@@ -192,10 +193,29 @@ public class BaseAccessManagerTest {
 	}
 
 	@Test
+	public void testExtractConditionsNullConfiguration() {
+		BaseConditionMinerRegistry registry = new BaseConditionMinerRegistry();
+		registry.registerConditionMiner(LicensningBaseTests.createConditionMiner(null), null);
+		LicensingCondition condition = LicensingConditions.create("identifier", "version", "rule", new Date(),
+				new Date(), "type", "expression");
+		Iterable<LicensingCondition> create = Collections.singleton(condition);
+		registry.registerConditionMiner(LicensningBaseTests.createConditionMiner(create), null);
+		manager.unbindConditionMinerRegistry(registry);
+		manager.bindConditionMinerRegistry(registry);
+		List<LicensingCondition> resolved = new ArrayList<>();
+		manager.extractConditions(null).forEach(resolved::add);
+		assertEquals(1, resolved.size());
+		int errors = 0;
+		int events = 1;
+		checkMaps(errors, events);
+		manager.unbindConditionMinerRegistry(registry);
+	}
+
+	@Test
 	public void testExecuteAccessRestrictionsNegative() {
 		manager.executeAccessRestrictions(null);
 		int errors = 1;
-		int events = 6;
+		int events = 5;
 		checkMaps(errors, events);
 	}
 
@@ -256,7 +276,7 @@ public class BaseAccessManagerTest {
 		checkMaps(++logSize, ++eventSize);
 	}
 
-	protected BaseLicensingCondition createCondition(Date from, Date until) {
+	protected LicensingCondition createCondition(Date from, Date until) {
 		return LicensingConditions.create(FEATURE_ID, FEATURE_VERSION, null, from, until, null, null);
 	}
 

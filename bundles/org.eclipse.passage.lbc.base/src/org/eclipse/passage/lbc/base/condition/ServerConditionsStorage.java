@@ -32,7 +32,6 @@ import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -96,9 +95,9 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 	}
 
 	@Override
-	public List<BaseLicensingCondition> getLicensingCondition(String productId, String productVersion) {
+	public List<LicensingCondition> getLicensingCondition(String productId, String productVersion) {
 
-		List<BaseLicensingCondition> descriptors = new ArrayList<>();
+		List<LicensingCondition> descriptors = new ArrayList<>();
 		Path areaPath = EquinoxPaths.resolveInstallBasePath();
 
 		if (!Files.isDirectory(areaPath)) {
@@ -157,12 +156,11 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 				byte[] byteArray = decodedTokenStream.toByteArray();
 				try (ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
 					if (conditionTransport != null) {
-						Iterable<LicensingCondition> extractedConditions = conditionTransport
-								.readConditions(input);
+						Iterable<LicensingCondition> extractedConditions = conditionTransport.readConditions(input);
 
 						for (LicensingCondition condition : extractedConditions) {
 							if (conditionArbitr.addConditionToReserv(condition)) {
-								descriptors.add((BaseLicensingCondition) condition);
+								descriptors.add(condition);
 							}
 						}
 					} else {

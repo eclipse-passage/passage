@@ -16,28 +16,30 @@ package org.eclipse.passage.lbc.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public class ConditionsArbitr {
 
 	/**
 	 * Descriptors reserved on a minute
 	 */
-	List<BaseLicensingCondition> reservedDescriptors = new ArrayList<>();
+	private final List<LicensingCondition> reservedDescriptors = new ArrayList<>();
 
 	/**
 	 * Descriptors in lease on an hour
 	 */
-	List<BaseLicensingCondition> leasedDescriptors = new ArrayList<>();
+	private final List<LicensingCondition> leasedDescriptors = new ArrayList<>();
 
-	public boolean reservCondition(BaseLicensingCondition descriptor) {
-
-		return false;
+	public LicensingResult reserveCondition(LicensingCondition descriptor) {
+		reservedDescriptors.add(descriptor);
+		return LicensingResults.createOK();
 	}
 
-	public boolean leaseCondition(BaseLicensingCondition descriptor) {
-
-		return false;
+	public LicensingResult leaseCondition(LicensingCondition descriptor) {
+		leasedDescriptors.add(descriptor);
+		return LicensingResults.createOK();
 	}
 
 }

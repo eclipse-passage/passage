@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.json;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -29,14 +29,11 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
-import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class RequestProducer {
 
@@ -47,20 +44,18 @@ public class RequestProducer {
 
 	public static final String PARAMETER_CONFIGURATION = "configuration"; // NLS-$1
 
-
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
-		Iterable<BaseFeaturePermission> permissions = new ArrayList<>();
 		try {
 			requestAttributes.put(LicensingRequests.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = LicensingRequests.createRequestUriBuilder(requestAttributes);
 			FeaturePermissionAggregator transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);
-			permissions = transferObject.getFeaturePermissions();
+			return transferObject.getFeaturePermissions();
 		} catch (Exception e) {
 			Logger.getLogger(RequestProducer.class.getName()).info(e.getMessage());
 		}
-		return permissions;
+		return Collections.emptyList();
 	}
 
 	private FeaturePermissionAggregator processingEvaluateConditions(CloseableHttpClient httpClient, HttpHost host,
@@ -68,14 +63,11 @@ public class RequestProducer {
 			throws URISyntaxException, ClientProtocolException, IOException {
 
 		HttpPost httpPost = new HttpPost(builder.build());
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		ObjectMapper mapper = JsonTransport.createObjectMapper();
 
-		ConditionDescriptorAggregator transferObject = new ConditionDescriptorAggregator();
+		LicensingConditionAggregator transferObject = new LicensingConditionAggregator();
 		for (LicensingCondition d : conditions) {
-			if (d instanceof BaseLicensingCondition) {
-				transferObject.addLicensingCondition((BaseLicensingCondition) d);
-			}
+			transferObject.addLicensingCondition(d);
 		}
 
 		String objectAsString = mapper.writeValueAsString(transferObject);
@@ -89,7 +81,7 @@ public class RequestProducer {
 			public FeaturePermissionAggregator handleResponse(HttpResponse response)
 					throws ClientProtocolException, IOException {
 				HttpEntity entity = response.getEntity();
-				ObjectMapper mapper = new ObjectMapper();
+				ObjectMapper mapper = JsonTransport.createObjectMapper();
 				try (InputStream inputContext = entity.getContent()) {
 					FeaturePermissionAggregator transferObject = null;
 					transferObject = mapper.readValue(inputContext, FeaturePermissionAggregator.class);

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
-public class BaseFeaturePermission implements FeaturePermission {
+class BaseFeaturePermission implements FeaturePermission {
 
 	private final LicensingCondition licensingCondition;
 	private final LicensingConfiguration licensingConfiguration;

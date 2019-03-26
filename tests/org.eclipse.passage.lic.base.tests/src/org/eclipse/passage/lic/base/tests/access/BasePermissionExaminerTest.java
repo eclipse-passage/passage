@@ -24,7 +24,6 @@ import java.util.Iterator;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
 import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
 import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
@@ -73,8 +72,8 @@ public class BasePermissionExaminerTest {
 				LicensingVersions.RULE_GREATER_OR_EQUAL, fooFrom, foorUntil, null, null);
 		LicensingCondition bazCondition = LicensingConditions.create(BAZ_FEATURE_ID, "1.0.0", //$NON-NLS-1$
 				LicensingVersions.RULE_GREATER_OR_EQUAL, bazFrom, bazUntil, null, null);
-		BaseFeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition, configuration);
-		BaseFeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0),
+		FeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition, configuration);
+		FeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0),
 				new Date(0));
 		Iterable<FeaturePermission> permissions = Arrays.asList(fooPermission, bazPermission);
 

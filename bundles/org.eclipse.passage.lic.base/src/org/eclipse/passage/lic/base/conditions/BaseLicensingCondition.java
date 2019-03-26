@@ -12,18 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.*;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_IDENTIFIER;
 
 import java.util.Date;
 
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
-public class BaseLicensingCondition implements LicensingCondition {
+class BaseLicensingCondition implements LicensingCondition {
 
 	private final String featureIdentifier;
 	private final String matchVersion;
 	private final String matchRule;
-	
+
 	private final Date validFrom;
 	private final Date validUntil;
 
@@ -55,12 +56,12 @@ public class BaseLicensingCondition implements LicensingCondition {
 	public String getMatchRule() {
 		return matchRule;
 	}
-	
+
 	@Override
 	public Date getValidFrom() {
 		return validFrom;
 	}
-	
+
 	@Override
 	public Date getValidUntil() {
 		return validUntil;

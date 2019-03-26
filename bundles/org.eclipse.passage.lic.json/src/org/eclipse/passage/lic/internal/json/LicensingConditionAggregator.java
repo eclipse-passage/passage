@@ -12,12 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.json;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
 
-public class FeaturePermissionMixln {
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
-	public FeaturePermissionMixln(@JsonProperty("featureIdentifier") String featureIdentifier,
-			@JsonProperty("matchVersion") String matchVersion, @JsonProperty("matchRule") String matchRule,
-			@JsonProperty("leaseTime") String leaseTime, @JsonProperty("expireTime") String expireTime) {
+public class LicensingConditionAggregator {
+
+	private final List<LicensingConditionMixIn> licensingConditions = new ArrayList<>();
+
+	public Iterable<LicensingConditionMixIn> getLicensingConditions() {
+		return licensingConditions;
 	}
+
+	public void addLicensingCondition(LicensingCondition d) {
+		LicensingConditionMixIn mixIn = LicensingConditionMixIn.create(d);
+		licensingConditions.add(mixIn);
+	}
+
 }

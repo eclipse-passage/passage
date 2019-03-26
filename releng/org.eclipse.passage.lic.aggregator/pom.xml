@@ -92,8 +92,9 @@
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.json.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
 
 

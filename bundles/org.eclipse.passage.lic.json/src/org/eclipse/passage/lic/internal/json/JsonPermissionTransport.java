@@ -21,14 +21,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionTransport;
 import org.osgi.service.component.annotations.Component;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_JSON })
 public class JsonPermissionTransport implements PermissionTransport {
@@ -36,33 +33,23 @@ public class JsonPermissionTransport implements PermissionTransport {
 	@Override
 	public Iterable<FeaturePermission> readPermissions(InputStream input) throws IOException {
 		Collection<FeaturePermission> descriptors = new ArrayList<>();
-		if (input != null) {
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			FeaturePermissionAggregator transferAgregatorObject = mapper.readValue(input,
-					FeaturePermissionAggregator.class);
-			descriptors.addAll(transferAgregatorObject.getFeaturePermissions());
-		}
+		ObjectMapper mapper = JsonTransport.createObjectMapper();
+		FeaturePermissionAggregator transfer = mapper.readValue(input, FeaturePermissionAggregator.class);
+		transfer.getFeaturePermissions().forEach(descriptors::add);
 		return descriptors;
 	}
 
 	@Override
-	public void writePermissions(Iterable<FeaturePermission> permissions, OutputStream output)
-			throws IOException {
+	public void writePermissions(Iterable<FeaturePermission> permissions, OutputStream output) throws IOException {
 		if (permissions == null) {
 			return;
 		}
 		FeaturePermissionAggregator aggregator = new FeaturePermissionAggregator();
 		for (FeaturePermission permission : permissions) {
-			if (permission instanceof BaseFeaturePermission) {
-				BaseFeaturePermission base = (BaseFeaturePermission) permission;
-				aggregator.addFeaturePermission(base);
-			}
+			aggregator.addFeaturePermission(permission);
 		}
 
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
-		mapper.addMixIn(BaseFeaturePermission.class, FeaturePermissionMixln.class);
+		ObjectMapper mapper = JsonTransport.createObjectMapper();
 		output.write(mapper.writeValueAsBytes(aggregator));
 
 	}

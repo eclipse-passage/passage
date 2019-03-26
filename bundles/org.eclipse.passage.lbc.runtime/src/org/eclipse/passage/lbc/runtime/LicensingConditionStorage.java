@@ -14,10 +14,10 @@ package org.eclipse.passage.lbc.runtime;
 
 import java.util.List;
 
-import org.eclipse.passage.lic.base.conditions.BaseLicensingCondition;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public interface LicensingConditionStorage {
 
-	List<BaseLicensingCondition> getLicensingCondition(String productId , String productVersion);
+	List<LicensingCondition> getLicensingCondition(String productId, String productVersion);
 
 }

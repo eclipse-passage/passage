@@ -15,17 +15,18 @@ package org.eclipse.passage.lic.internal.json;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.access.BaseFeaturePermission;
+import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 
 public class FeaturePermissionAggregator {
 
-	private final List<BaseFeaturePermission> featurePermissions = new ArrayList<>();
+	private final List<FeaturePermissionMixIn> featurePermissions = new ArrayList<>();
 
-	public void addFeaturePermission(BaseFeaturePermission p) {
-		featurePermissions.add(p);
+	public void addFeaturePermission(FeaturePermission d) {
+		FeaturePermissionMixIn mixIn = FeaturePermissionMixIn.create(d);
+		featurePermissions.add(mixIn);
 	}
 
-	public List<BaseFeaturePermission> getFeaturePermissions() {
+	public Iterable<FeaturePermissionMixIn> getFeaturePermissions() {
 		return featurePermissions;
 	}
 
