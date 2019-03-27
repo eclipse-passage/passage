@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.*;
-
 import java.util.Objects;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -72,11 +70,10 @@ class BaseLicensingConfiguration implements LicensingConfiguration {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER).append('=').append(productIdentifier).append(';');
+		sb.append(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER).append('=').append(productIdentifier)
+				.append(';');
 		sb.append(LicensingConfigurations.LICENSING_PRODUCT_VERSION).append('=').append(productVersion);
 		return sb.toString();
 	}
-	
-	
 
 }

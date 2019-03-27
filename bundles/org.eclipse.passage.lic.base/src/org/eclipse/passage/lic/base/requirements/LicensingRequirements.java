@@ -43,6 +43,9 @@ public class LicensingRequirements {
 
 	public static LicensingRequirement extractFromCapability(String bundleName, String bundleVendor,
 			Map<String, Object> attributes, Map<String, String> directives, Object source) {
+		if (attributes == null) {
+			return null;
+		}
 		Object feature = attributes.get(CAPABILITY_LICENSING_FEATURE);
 		if (feature instanceof String) {
 			String featureId = (String) feature;
@@ -60,6 +63,9 @@ public class LicensingRequirements {
 
 	public static LicensingRequirement extractFromProperties(String bundleName, String bundleVendor,
 			Map<String, Object> properties, Object source) {
+		if (properties == null) {
+			return null;
+		}
 		Object feature = properties.get(LICENSING_FEATURE_IDENTIFIER);
 		if (feature instanceof String) {
 			String featureId = (String) feature;

@@ -12,15 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.tests.conditions;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.conditions.ConditionMiners;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.tests.LicensningBaseTests;
 import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.junit.Test;
 
 public class ConditionMinersTest extends LicensningBaseTests {
@@ -44,8 +49,16 @@ public class ConditionMinersTest extends LicensningBaseTests {
 
 	@Test
 	public void testCollectPacks() throws LicensingException {
-		ConditionMiners.collectPacks(Paths.get(baseFolder.getRoot().getAbsolutePath()), (String) null);
-		ConditionMiners.collectPacks(Paths.get(baseFolder.getRoot().getAbsolutePath()), (String[]) null);
+		Path root = Paths.get(baseFolder.getRoot().getAbsolutePath());
+		assertEquals(0, ConditionMiners.collectPacks(root, (String) null).size());
+		assertEquals(0, ConditionMiners.collectPacks(root, (String[]) null).size());
+	}
+
+	@Test
+	public void testMineNegative() {
+		List<String> paths = Collections.emptyList();
+		LicensingResult nothing = ConditionMiners.mine(LicensingConfigurations.INVALID, null, null, null, null, paths);
+		assertEquals(LicensingResult.OK, nothing.getSeverity());
 	}
 
 }

@@ -290,7 +290,7 @@ public class BaseAccessManagerTest {
 		int eventSize = 0;
 		Map<String, Object> properties = Collections.singletonMap(LicensingProperties.LICENSING_CONDITION_TYPE_ID,
 				CONDITION_TYPE);
-		Map<String, String> values = Collections.singletonMap(CONDITION_TYPE, "*");
+		Map<String, String> values = Collections.singletonMap(CONDITION_TYPE, "*"); //$NON-NLS-1$
 		Iterable<FeaturePermission> permissions = Collections.emptyList();
 		Date before = new Date(System.currentTimeMillis() - 100500);
 		Date after = new Date(System.currentTimeMillis() + 100500);
