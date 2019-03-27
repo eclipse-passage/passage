@@ -13,15 +13,31 @@
 package org.eclipse.passage.lic.jface.dialogs;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.conditions.ConditionMiners;
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.runtime.access.AccessManager;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
+import org.eclipse.passage.lic.runtime.conditions.ConditionTransportRegistry;
+import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.runtime.io.KeyKeeper;
+import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.runtime.io.StreamCodec;
+import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -37,15 +53,28 @@ import org.eclipse.swt.widgets.Table;
 
 public class ImportLicenseDialog extends TitleAreaDialog {
 
-	private final AccessManager accessManager;
+	private final ConditionMinerRegistry conditionMinerRegistry;
+	private final LicensingConfiguration configuration;
+	private final KeyKeeper keyKeeper;
+	private final StreamCodec streamCodec;
+	private final ConditionTransport transport;
+
+	private final List<LicensingCondition> mined = new ArrayList<>();
+
 	private Combo sourceText;
 	private Button sourceButton;
 	private String currentMessage;
 	private TableViewer tableViewer;
 
-	public ImportLicenseDialog(Shell shell, AccessManager accessManager) {
+	public ImportLicenseDialog(Shell shell, LicensingConfiguration configuration) {
 		super(shell);
-		this.accessManager = accessManager;
+		this.configuration = configuration;
+		this.conditionMinerRegistry = LicensingEquinox.getLicensingService(ConditionMinerRegistry.class);
+		this.keyKeeper = LicensingEquinox.getLicensingService(KeyKeeperRegistry.class).getKeyKeeper(configuration);
+		this.streamCodec = LicensingEquinox.getLicensingService(StreamCodecRegistry.class)
+				.getStreamCodec(configuration);
+		this.transport = LicensingEquinox.getLicensingService(ConditionTransportRegistry.class)
+				.getConditionTransportForContentType(LicensingProperties.LICENSING_CONTENT_TYPE_XML);
 	}
 
 	@Override
@@ -106,14 +135,22 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 			handleBrowseButtonPressed();
 		}
 		updateCompletion();
+		tableViewer.setInput(mined);
 	}
 
 	protected void updateCompletion() {
 		boolean pageComplete = determineCompletion();
-		getButton(IDialogConstants.OK_ID).setEnabled(pageComplete);
+		mined.clear();
 		if (pageComplete) {
-			setMessage(null);
+			LicensingResult mining = mine(sourceText.getText().trim());
+			setMessage(mining.getMessage());
 		}
+		getButton(IDialogConstants.OK_ID).setEnabled(!mined.isEmpty());
+	}
+
+	protected LicensingResult mine(String pack) {
+		Set<String> paths = Collections.singleton(pack);
+		return ConditionMiners.mine(configuration, mined, keyKeeper, streamCodec, transport, paths);
 	}
 
 	protected boolean determineCompletion() {
@@ -136,9 +173,16 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	}
 
 	protected boolean validSource() {
-		String trim = sourceText.getText().trim();
-		File fromFile = new File(trim);
+		String source = sourceText.getText().trim();
+		File fromFile = new File(source);
 		return fromFile.exists() && !fromFile.isDirectory();
+	}
+
+	@Override
+	protected void okPressed() {
+		String source = sourceText.getText().trim();
+		conditionMinerRegistry.importConditions(source, configuration);
+		super.okPressed();
 	}
 
 	@Override

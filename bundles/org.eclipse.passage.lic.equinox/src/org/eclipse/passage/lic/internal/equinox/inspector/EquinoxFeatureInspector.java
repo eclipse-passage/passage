@@ -21,8 +21,8 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.access.AccessEvents;
+import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
@@ -116,10 +116,10 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 		List<RestrictionVerdict> result = new ArrayList<>();
 		for (String featureId : featureIdentifiers) {
 			List<RestrictionVerdict> found = restrictions.computeIfAbsent(featureId, list -> new ArrayList<>());
-			if (found.isEmpty()) {
-				Iterable<RestrictionVerdict> examined = examineFeaturePermissons(featureId, configuration);
-				examined.forEach(found::add);
-			}
+			// FIXME: implement event-based cache
+			found.clear();
+			Iterable<RestrictionVerdict> examined = examineFeaturePermissons(featureId, configuration);
+			examined.forEach(found::add);
 			found.forEach(result::add);
 		}
 		return result;

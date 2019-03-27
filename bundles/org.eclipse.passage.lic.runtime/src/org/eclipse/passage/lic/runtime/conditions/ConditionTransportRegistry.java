@@ -14,17 +14,14 @@ package org.eclipse.passage.lic.runtime.conditions;
 
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingResult;
+public interface ConditionTransportRegistry {
 
-public interface ConditionMinerRegistry {
+	Iterable<ConditionTransport> getConditionTransports();
 
-	Iterable<ConditionMiner> getConditionMiners();
+	ConditionTransport getConditionTransportForContentType(String contentType);
 
-	void registerConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
+	void registerConditionTransport(ConditionTransport transport, Map<String, Object> properties);
 
-	void unregisterConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
-
-	LicensingResult importConditions(String source, LicensingConfiguration configuration);
+	void unregisterConditionTransport(ConditionTransport transport, Map<String, Object> properties);
 
 }

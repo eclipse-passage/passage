@@ -112,7 +112,8 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 //			ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper, mined);
 		}
 		try {
-			List<Path> packs = ConditionMiners.collectPacks(configurationPath, extension);
+			List<String> packs = ConditionMiners.collectPacks(configurationPath, extension);
+
 			LicensingResult result = ConditionMiners.mine(configuration, mined, keyKeeper, streamCodec, transport,
 					packs);
 			licensingReporter.logResult(result);

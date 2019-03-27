@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.viewers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerBasis;
 import org.eclipse.passage.lic.jface.viewers.RequirementLabels;
@@ -41,9 +42,9 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 
 	@Override
 	public String getLabel(Object element) {
-		if (element instanceof LicensingRequirement) {
-			LicensingRequirement requirement = (LicensingRequirement) element;
-			return requirement.getFeatureName();
+		if (element instanceof LicensingCondition) {
+			LicensingCondition condition = (LicensingCondition) element;
+			return condition.getFeatureIdentifier();
 		}
 		return super.getLabel(element);
 	}
@@ -64,11 +65,9 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 			case INDEX_IDENTIFIER:
 				return condition.getFeatureIdentifier();
 			case INDEX_VALID_FROM:
-				// FIXME: format
-				return condition.getValidFrom().toString();
+				return LicensingProperties.DATE_FORMAT.format(condition.getValidFrom());
 			case INDEX_VALID_UNTIL:
-				// FIXME: format
-				return condition.getValidUntil().toString();
+				return LicensingProperties.DATE_FORMAT.format(condition.getValidUntil());
 			case INDEX_MATCH_VERSION:
 				// FIXME: human readable
 				return condition.getMatchVersion();
@@ -87,9 +86,9 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 
 	@Override
 	public ImageDescriptor getImageDescriptor(Object element, int columnIndex) {
-		if (element instanceof LicensingRequirement) {
-			LicensingRequirement requirement = (LicensingRequirement) element;
-			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
+		if (element instanceof LicensingCondition) {
+			LicensingCondition condition = (LicensingCondition) element;
+			Iterable<RestrictionVerdict> restrictions = getRestrictions(condition.getFeatureIdentifier());
 			String imageKey = RestrictionRepresenters.resolveImageKey(restrictions);
 			switch (columnIndex) {
 			case INDEX_STATUS:
@@ -103,10 +102,11 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 
 	@Override
 	public RGB getBackground(Object element) {
-		if (element instanceof LicensingRequirement) {
-			LicensingRequirement requirement = (LicensingRequirement) element;
-			Iterable<RestrictionVerdict> restrictions = getRestrictions(requirement.getFeatureIdentifier());
-			return RestrictionRepresenters.resolveRGB(restrictions);
+		if (element instanceof LicensingCondition) {
+			// FIXME: revisit, condition colors should depend on validFrom/validUntil
+//			LicensingCondition condition = (LicensingCondition) element;
+//			Iterable<RestrictionVerdict> restrictions = getRestrictions(condition.getFeatureIdentifier());
+//			return RestrictionRepresenters.resolveRGB(restrictions);
 		}
 		return super.getBackground(element);
 	}

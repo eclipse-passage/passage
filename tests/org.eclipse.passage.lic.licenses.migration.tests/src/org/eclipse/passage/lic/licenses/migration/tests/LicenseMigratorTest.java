@@ -15,15 +15,13 @@ package org.eclipse.passage.lic.licenses.migration.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.junit.Test;
@@ -56,8 +54,7 @@ public class LicenseMigratorTest {
 		assertEquals("org.eclipse.passage.lic.product", g0.getFeatureIdentifier());
 		assertEquals("perfect", g0.getMatchRule());
 		assertEquals("0.4.0", g0.getMatchVersion());
-		final DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'SSSZ", Locale.ENGLISH);
-		assertEquals(dateFormat.parse("2019-03-14T00:00:00.000+0300"), g0.getValidFrom());
-		assertEquals(dateFormat.parse("2019-06-14T00:00:00.000+0300"), g0.getValidUntil());
+		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-03-14T00:00:00.000+0300"), g0.getValidFrom());
+		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-06-14T00:00:00.000+0300"), g0.getValidUntil());
 	}
 }

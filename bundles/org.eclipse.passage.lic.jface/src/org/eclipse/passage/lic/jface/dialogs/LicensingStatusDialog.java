@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
@@ -27,6 +28,7 @@ import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
@@ -79,16 +81,22 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setTitle("Licensing status");
+		Composite area = (Composite) super.createDialogArea(parent);
+		createAreaContent(area);
+		computeStatus();
+		Dialog.applyDialogFont(area);
+		return area;
+	}
+
+	protected void computeStatus() {
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(featureCase.getRestrictions());
 		if (last == null) {
+			setErrorMessage(null);
 			setMessage(RestrictionRepresenters.resolveSummary(last));
 		} else {
 			setErrorMessage(RestrictionRepresenters.resolveSummary(last));
 		}
-		Composite area = (Composite) super.createDialogArea(parent);
-		createAreaContent(area);
-		Dialog.applyDialogFont(area);
-		return area;
+		updateTable();
 	}
 
 	protected void createAreaContent(Composite area) {
@@ -121,10 +129,9 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, "&Configuration...", false);
 		detailsButton.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
 		detailsButton.setEnabled(accessManager != null);
-		// not ready yet
-//		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
-//		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
-//		importButton.setEnabled(accessManager != null);
+		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
+		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
+		importButton.setEnabled(accessManager != null);
 		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "&Hardware...", false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);
@@ -165,8 +172,11 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	}
 
 	protected void importLicensePressed() {
-		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), accessManager);
-		dialog.open();
+		LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
+		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), configuration);
+		if (Window.OK == dialog.open()) {
+			computeStatus();
+		}
 	}
 
 	protected void hardwareInspectorPressed() {
@@ -181,6 +191,10 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 
 	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
+		updateTable();
+	}
+
+	protected void updateTable() {
 		if (tableViewer != null && tableViewer.getTable() != null && !tableViewer.getTable().isDisposed()) {
 			tableViewer.refresh();
 		}

@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.base.conditions;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,13 +38,13 @@ import org.eclipse.passage.lic.runtime.io.StreamCodec;
 public class ConditionMiners {
 
 	public static LicensingResult mine(LicensingConfiguration configuration, List<LicensingCondition> mined,
-			KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport, Iterable<Path> packs)
-			throws LicensingException {
-		String task = String.format("Mining licensing conditions for %s", configuration);
+			KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport, Iterable<String> packs) {
+		String task = String.format("Mined licensing conditions for configuration: %s (%s)",
+				configuration.getProductIdentifier(), configuration.getProductVersion());
 		String source = ConditionMiners.class.getName();
 		List<LicensingResult> errors = new ArrayList<>();
-		for (Path path : packs) {
-			try (FileInputStream encoded = new FileInputStream(path.toFile());
+		for (String path : packs) {
+			try (FileInputStream encoded = new FileInputStream(path);
 					ByteArrayOutputStream decoded = new ByteArrayOutputStream();
 					InputStream keyRing = keyKeeper.openKeyStream(configuration)) {
 				streamCodec.decodeStream(encoded, decoded, keyRing, null);
@@ -66,23 +67,25 @@ public class ConditionMiners {
 		return LicensingResults.createError(task, source, errors);
 	}
 
-	public static List<Path> collectPacks(Path configurationPath, String... extensions) throws LicensingException {
+	public static List<String> collectPacks(Path configurationPath, String... extensions) throws LicensingException {
 		String message = String.format("Failed to collect packs at %s", configurationPath);
 		String source = ConditionMiners.class.getName();
 		if (configurationPath == null) {
 			IllegalArgumentException e = new IllegalArgumentException();
 			throw new LicensingException(LicensingResults.createError(message, source, e));
 		}
-		List<Path> licenseFiles = new ArrayList<>();
+		List<String> licenseFiles = new ArrayList<>();
 		try {
 			Files.walkFileTree(configurationPath, new SimpleFileVisitor<Path>() {
 
 				@Override
-				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					String lowerCase = file.toString().toLowerCase();
+				public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
+					File file = path.toFile();
+					String filePath = file.getPath();
+					String lowerCase = filePath.toLowerCase();
 					for (String extension : extensions) {
 						if (lowerCase.endsWith(extension)) {
-							licenseFiles.add(file);
+							licenseFiles.add(filePath);
 						}
 					}
 					return FileVisitResult.CONTINUE;

@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public final class LicensingProperties {
 
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
@@ -49,6 +53,8 @@ public final class LicensingProperties {
 	public static final String LICENSING_SECURITY_KEY_SIZE = "licensing.security.key.size"; //$NON-NLS-1$
 	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
 	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
+
+	public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'SSSZ", Locale.ENGLISH); //$NON-NLS-1$
 
 	private LicensingProperties() {
 		// block

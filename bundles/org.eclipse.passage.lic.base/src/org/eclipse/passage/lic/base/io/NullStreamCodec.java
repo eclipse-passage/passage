@@ -54,7 +54,7 @@ public class NullStreamCodec implements StreamCodec {
 		return null;
 	}
 
-	static void transfer(InputStream in, OutputStream out) throws IOException {
+	public static void transfer(InputStream in, OutputStream out) throws IOException {
 		byte[] buffer = new byte[1024];
 		int len;
 		while ((len = in.read(buffer)) != -1) {
