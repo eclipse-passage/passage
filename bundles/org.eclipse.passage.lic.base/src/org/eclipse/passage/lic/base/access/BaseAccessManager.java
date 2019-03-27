@@ -18,7 +18,6 @@ import static org.eclipse.passage.lic.base.LicensingResults.createEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,7 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
+import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -130,9 +130,9 @@ public class BaseAccessManager implements AccessManager {
 	public LicensingResult executeAccessRestrictions(LicensingConfiguration configuration) {
 		Iterable<LicensingRequirement> requirements = resolveRequirements(configuration);
 		Iterable<LicensingCondition> conditions = extractConditions(configuration);
-		Iterable<FeaturePermission> permissions = evaluateConditions(conditions, configuration);
-		Iterable<RestrictionVerdict> verdicts = examinePermissons(requirements, permissions, configuration);
-		return executeRestrictions(verdicts);
+		Iterable<FeaturePermission> permissions = evaluateConditions(configuration, conditions);
+		Iterable<RestrictionVerdict> verdicts = examinePermissons(configuration, requirements, permissions);
+		return executeRestrictions(configuration, verdicts);
 	}
 
 	@Override
@@ -185,8 +185,8 @@ public class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration) {
+	public Iterable<FeaturePermission> evaluateConditions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions) {
 		List<FeaturePermission> result = new ArrayList<>();
 		String source = getClass().getName();
 		if (conditions == null) {
@@ -206,14 +206,13 @@ public class BaseAccessManager implements AccessManager {
 				licensingReporter.logResult(error);
 				continue;
 			}
-			String validate = validate(condition);
-			if (validate == null) {
+			LicensingResult validate = LicensingConditions.validate(condition, source);
+			if (validate.getSeverity() == LicensingResult.OK) {
 				String type = condition.getConditionType();
 				List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
 				list.add(condition);
 			} else {
-				LicensingResult error = createError(validate, source, (Throwable) null);
-				licensingReporter.logResult(error);
+				licensingReporter.logResult(validate);
 				invalid.add(condition);
 			}
 		}
@@ -228,7 +227,7 @@ public class BaseAccessManager implements AccessManager {
 			}
 			List<LicensingCondition> mappedConditions = map.get(type);
 			try {
-				Iterable<FeaturePermission> permissions = emitter.emitPermissions(mappedConditions, configuration);
+				Iterable<FeaturePermission> permissions = emitter.emitPermissions(configuration, mappedConditions);
 				for (FeaturePermission permission : permissions) {
 					result.add(permission);
 				}
@@ -245,8 +244,8 @@ public class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements,
-			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration) {
+	public Iterable<RestrictionVerdict> examinePermissons(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
 		String source = getClass().getName();
 		if (configuration == null) {
 			String message = "Invalid configuration";
@@ -277,7 +276,7 @@ public class BaseAccessManager implements AccessManager {
 					licensingReporter.logResult(error2);
 					continue;
 				}
-				RestrictionVerdict verdict = RestrictionVerdicts.createError(requirement,
+				RestrictionVerdict verdict = RestrictionVerdicts.createError(configuration, requirement,
 						RestrictionVerdicts.CODE_CONFIGURATION_ERROR);
 				verdicts.add(verdict);
 			}
@@ -285,13 +284,14 @@ public class BaseAccessManager implements AccessManager {
 					.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, Collections.unmodifiableList(verdicts)));
 			return verdicts;
 		}
-		Iterable<RestrictionVerdict> examined = examiner.examine(requirements, permissions);
+		Iterable<RestrictionVerdict> examined = examiner.examine(configuration, requirements, permissions);
 		licensingReporter.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, examined));
 		return examined;
 	}
 
 	@Override
-	public LicensingResult executeRestrictions(Iterable<RestrictionVerdict> restrictions) {
+	public LicensingResult executeRestrictions(LicensingConfiguration configuration,
+			Iterable<RestrictionVerdict> restrictions) {
 		String source = getClass().getName();
 		String task = "Executing restrinctions";
 		List<LicensingResult> errors = new ArrayList<>();
@@ -309,29 +309,6 @@ public class BaseAccessManager implements AccessManager {
 			return LicensingResults.createOK(task, source);
 		}
 		return LicensingResults.createError(task, source, errors);
-	}
-
-	protected String validate(LicensingCondition condition) {
-		Date validFrom = condition.getValidFrom();
-		if (validFrom == null) {
-			String format = "Valid from not specified for condition %s";
-			return String.format(format, condition);
-		}
-		Date now = new Date();
-		if (validFrom.after(now)) {
-			String format = "Valid from starts in the future for condition %s";
-			return String.format(format, condition);
-		}
-		Date validUntil = condition.getValidUntil();
-		if (validUntil == null) {
-			String format = "Valid until not specified for condition %s";
-			return String.format(format, condition);
-		}
-		if (validUntil.before(now)) {
-			String format = "Valid until ends in the past for condition %s";
-			return String.format(format, condition);
-		}
-		return null;
 	}
 
 }

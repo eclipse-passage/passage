@@ -87,6 +87,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 
 	@Override
 	public final Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
+		String source = getClass().getName();
 		List<LicensingCondition> mined = new ArrayList<>();
 		if (configuration == null) {
 			return mined;
@@ -106,16 +107,14 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 		String extension;
 		if (NullKeyKeeper.INSTANCE == keyKeeper && NullStreamCodec.INSTANCE == streamCodec) {
 			extension = LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
-//			ConditionMiners.mineDecrypted(transport, configurationPath, mined);
 		} else {
 			extension = LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
-//			ConditionMiners.mineEncrypted(transport, configuration, configurationPath, streamCodec, keyKeeper, mined);
 		}
 		try {
 			List<String> packs = ConditionMiners.collectPacks(configurationPath, extension);
 
-			LicensingResult result = ConditionMiners.mine(configuration, mined, keyKeeper, streamCodec, transport,
-					packs);
+			LicensingResult result = ConditionMiners.mine(source, configuration, mined, keyKeeper, streamCodec,
+					transport, packs);
 			licensingReporter.logResult(result);
 		} catch (LicensingException e) {
 			licensingReporter.logResult(e.getResult());

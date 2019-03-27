@@ -24,9 +24,9 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
  */
 public interface FeaturePermission {
 
-	LicensingCondition getLicensingCondition();
-
 	LicensingConfiguration getLicensingConfiguration();
+
+	LicensingCondition getLicensingCondition();
 
 	Date getLeaseDate();
 

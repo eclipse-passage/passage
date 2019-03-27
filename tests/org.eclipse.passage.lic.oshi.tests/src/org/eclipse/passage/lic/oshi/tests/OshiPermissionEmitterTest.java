@@ -57,7 +57,7 @@ public class OshiPermissionEmitterTest {
 
 	private void evaluate(PermissionEmitter emitter, Set<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		try {
-			emitter.emitPermissions(conditions, configuration);
+			emitter.emitPermissions(configuration, conditions);
 			fail("Should not accept invalid arguments");
 		} catch (LicensingException e) {
 			// expected
@@ -71,7 +71,7 @@ public class OshiPermissionEmitterTest {
 		inspector.activate();
 		evaluator.bindHardwareInspector(inspector);
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
-		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(future, null).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(null, future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
 		LicensingCondition condition = permission.getLicensingCondition();

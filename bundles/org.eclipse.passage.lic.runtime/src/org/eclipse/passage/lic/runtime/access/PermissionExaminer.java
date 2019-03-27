@@ -12,18 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.access;
 
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 /**
  * Examines how {@link FeaturePermission}(s) cover the
- * {@link LicensingRequirement}(s) and produce {@link RestrictionVerdict}(s)
- * to be consumed by {@link RestrictionExecutor}(s)
+ * {@link LicensingRequirement}(s) and produce {@link RestrictionVerdict}(s) to
+ * be consumed by {@link RestrictionExecutor}(s)
  */
 public interface PermissionExaminer {
 
-	Iterable<RestrictionVerdict> examine(Iterable<LicensingRequirement> requirements,
-			Iterable<FeaturePermission> permissions);
+	Iterable<RestrictionVerdict> examine(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions);
 
 }

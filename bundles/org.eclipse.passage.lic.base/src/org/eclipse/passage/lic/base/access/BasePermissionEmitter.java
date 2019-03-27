@@ -29,8 +29,8 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 public abstract class BasePermissionEmitter implements PermissionEmitter {
 
 	@Override
-	public Iterable<FeaturePermission> emitPermissions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration) throws LicensingException {
+	public Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions) throws LicensingException {
 		List<FeaturePermission> result = new ArrayList<>();
 		String source = getClass().getName();
 		if (conditions == null) {
@@ -78,7 +78,7 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 	}
 
 	protected FeaturePermission createPermission(LicensingCondition condition, LicensingConfiguration configuration) {
-		return FeaturePermissions.createDefault(condition, configuration);
+		return FeaturePermissions.createDefault(configuration, condition);
 	}
 
 	protected abstract boolean evaluateSegment(String key, String value);

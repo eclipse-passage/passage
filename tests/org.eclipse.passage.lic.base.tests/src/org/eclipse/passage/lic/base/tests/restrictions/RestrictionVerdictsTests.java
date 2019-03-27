@@ -18,7 +18,6 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.restrictions.BaseRestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.junit.Test;
@@ -33,8 +32,8 @@ public class RestrictionVerdictsTests {
 
 	@Test
 	public void testResolveLastVerdictsPositive() {
-		BaseRestrictionVerdict error1 = RestrictionVerdicts.createConfigurationError(null, null);
-		BaseRestrictionVerdict error2 = RestrictionVerdicts.createConfigurationError(null, null);
+		RestrictionVerdict error1 = RestrictionVerdicts.createConfigurationError(null, (String) null);
+		RestrictionVerdict error2 = RestrictionVerdicts.createConfigurationError(null, (String) null);
 		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
 		verdicts.add(error1);
 		verdicts.add(error2);

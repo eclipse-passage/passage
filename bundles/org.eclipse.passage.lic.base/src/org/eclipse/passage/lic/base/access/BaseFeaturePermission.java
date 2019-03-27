@@ -23,12 +23,12 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 class BaseFeaturePermission implements FeaturePermission {
 
-	private final LicensingCondition licensingCondition;
 	private final LicensingConfiguration licensingConfiguration;
+	private final LicensingCondition licensingCondition;
 	private final Date leaseDate;
 	private final Date expireDate;
 
-	BaseFeaturePermission(LicensingCondition condition, LicensingConfiguration configuration, Date lease, Date expire) {
+	BaseFeaturePermission(LicensingConfiguration configuration, LicensingCondition condition, Date lease, Date expire) {
 		this.licensingCondition = condition;
 		this.licensingConfiguration = configuration;
 		this.leaseDate = lease;
@@ -36,13 +36,13 @@ class BaseFeaturePermission implements FeaturePermission {
 	}
 
 	@Override
-	public LicensingCondition getLicensingCondition() {
-		return licensingCondition;
+	public LicensingConfiguration getLicensingConfiguration() {
+		return licensingConfiguration;
 	}
 
 	@Override
-	public LicensingConfiguration getLicensingConfiguration() {
-		return licensingConfiguration;
+	public LicensingCondition getLicensingCondition() {
+		return licensingCondition;
 	}
 
 	@Override

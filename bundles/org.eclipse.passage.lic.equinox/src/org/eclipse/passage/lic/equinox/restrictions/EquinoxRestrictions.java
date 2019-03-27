@@ -37,11 +37,11 @@ public class EquinoxRestrictions {
 			LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
 			if (featureIds.length == 0) {
 				String id = configuration.getProductIdentifier();
-				return Collections.singletonList(RestrictionVerdicts.createConfigurationError(id, configuration));
+				return Collections.singletonList(RestrictionVerdicts.createConfigurationError(configuration, id));
 			}
 			List<RestrictionVerdict> errors = new ArrayList<>();
 			for (String id : featureIds) {
-				errors.add(RestrictionVerdicts.createConfigurationError(id, configuration));
+				errors.add(RestrictionVerdicts.createConfigurationError(configuration, id));
 			}
 			return errors;
 		}

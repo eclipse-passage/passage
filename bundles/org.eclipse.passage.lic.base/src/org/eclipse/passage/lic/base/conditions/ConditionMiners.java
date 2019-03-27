@@ -37,11 +37,11 @@ import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public class ConditionMiners {
 
-	public static LicensingResult mine(LicensingConfiguration configuration, List<LicensingCondition> mined,
-			KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport, Iterable<String> packs) {
+	public static LicensingResult mine(String source, LicensingConfiguration configuration,
+			List<LicensingCondition> mined, KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport,
+			Iterable<String> packs) {
 		String task = String.format("Mined licensing conditions for configuration: %s (%s)",
 				configuration.getProductIdentifier(), configuration.getProductVersion());
-		String source = ConditionMiners.class.getName();
 		List<LicensingResult> errors = new ArrayList<>();
 		for (String path : packs) {
 			try (FileInputStream encoded = new FileInputStream(path);
@@ -58,7 +58,7 @@ public class ConditionMiners {
 			} catch (Exception e) {
 				String message = String.format("Failed to to extract conditions from %s for configuration %s", path,
 						configuration);
-				errors.add(LicensingResults.createError(message, e));
+				errors.add(LicensingResults.createError(message, source, e));
 			}
 		}
 		if (errors.isEmpty()) {

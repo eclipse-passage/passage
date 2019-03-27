@@ -81,8 +81,8 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 			String productId = request.getParameter(PRODUCT);
 			String productVersion = request.getParameter(VERSION);
 			LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
-			Iterable<FeaturePermission> evaluatePermissions = conditionEvaluator.emitPermissions(descriptors,
-					configuration);
+			Iterable<FeaturePermission> evaluatePermissions = conditionEvaluator.emitPermissions(configuration,
+					descriptors);
 
 			PermissionTransport transportPermission = mapPermission2Transport.get(contentType);
 			if (transportPermission == null) {

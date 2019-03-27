@@ -141,11 +141,11 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 				conditions.add(condition);
 			}
 		}
-		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
+		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(configuration, conditions);
 
 		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
-		Iterable<RestrictionVerdict> examined = accessManager.examinePermissons(featureRequirements, permissions,
-				configuration);
+		Iterable<RestrictionVerdict> examined = accessManager.examinePermissons(configuration, featureRequirements,
+				permissions);
 		examined.forEach(verdicts::add);
 		return verdicts;
 	}

@@ -57,7 +57,8 @@ public class ConditionMinersTest extends LicensningBaseTests {
 	@Test
 	public void testMineNegative() {
 		List<String> paths = Collections.emptyList();
-		LicensingResult nothing = ConditionMiners.mine(LicensingConfigurations.INVALID, null, null, null, null, paths);
+		LicensingResult nothing = ConditionMiners.mine(null, LicensingConfigurations.INVALID, null, null, null, null,
+				paths);
 		assertEquals(LicensingResult.OK, nothing.getSeverity());
 	}
 

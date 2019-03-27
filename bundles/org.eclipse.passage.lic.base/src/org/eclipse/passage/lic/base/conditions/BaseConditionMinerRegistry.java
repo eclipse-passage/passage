@@ -67,7 +67,7 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 			return LicensingResults.createOK();
 		} catch (Exception e) {
 			String message = String.format("Failed to import licensing condition from %s", source);
-			return LicensingResults.createError(message, e);
+			return LicensingResults.createError(message, source, e);
 		}
 
 	}

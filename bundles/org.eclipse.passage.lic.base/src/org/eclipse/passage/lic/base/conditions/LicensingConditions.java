@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public class LicensingConditions {
@@ -56,6 +58,33 @@ public class LicensingConditions {
 	public static LicensingCondition create(String identifier, String version, String rule, Date from, Date until,
 			String type, String expression) {
 		return new BaseLicensingCondition(identifier, version, rule, from, until, type, expression);
+	}
+
+	public static LicensingResult validate(LicensingCondition condition, String source) {
+		Date validFrom = condition.getValidFrom();
+		if (validFrom == null) {
+			String format = "Valid from not specified for condition %s";
+			String message = String.format(format, condition);
+			return LicensingResults.createError(message, source);
+		}
+		Date now = new Date();
+		if (validFrom.after(now)) {
+			String format = "Valid from starts in the future for condition %s";
+			String message = String.format(format, condition);
+			return LicensingResults.createError(message, source);
+		}
+		Date validUntil = condition.getValidUntil();
+		if (validUntil == null) {
+			String format = "Valid until not specified for condition %s";
+			String message = String.format(format, condition);
+			return LicensingResults.createError(message, source);
+		}
+		if (validUntil.before(now)) {
+			String format = "Valid until ends in the past for condition %s";
+			String message = String.format(format, condition);
+			return LicensingResults.createError(message, source);
+		}
+		return LicensingResults.createOK("", source); //$NON-NLS-1$
 	}
 
 }

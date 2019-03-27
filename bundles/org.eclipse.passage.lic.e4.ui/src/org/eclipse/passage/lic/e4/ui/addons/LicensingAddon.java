@@ -10,22 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
-
-import java.util.List;
+package org.eclipse.passage.lic.e4.ui.addons;
 
 import javax.inject.Inject;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
-import org.eclipse.e4.ui.model.application.MApplication;
-import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.AccessManager;
-import org.osgi.framework.Version;
 import org.osgi.service.event.Event;
 
 public class LicensingAddon {
@@ -41,20 +36,9 @@ public class LicensingAddon {
 
 	@Inject
 	@Optional
-	public void applicationStarted(@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) Event event, MApplication application) {
-		String brandingName = applicationContext.getBrandingName();
-		List<MWindow> children = application.getChildren();
-		for (MWindow window : children) {
-			window.setLabel(brandingName);
-		}
-		String productId = applicationContext.getBrandingId();
-		Version version = applicationContext.getBrandingBundle().getVersion();
-		StringBuilder sb = new StringBuilder();
-		sb.append(version.getMajor()).append('.');
-		sb.append(version.getMinor()).append('.');
-		sb.append(version.getMicro());
-		String productVersion = sb.toString();
-		LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
+	public void applicationStarted(
+			@SuppressWarnings("unused") @UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) Event event) {
+		LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration(applicationContext);
 		accessManager.executeAccessRestrictions(configuration);
 	}
 

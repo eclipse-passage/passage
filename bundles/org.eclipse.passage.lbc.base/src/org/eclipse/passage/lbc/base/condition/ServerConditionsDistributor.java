@@ -38,8 +38,8 @@ public class ServerConditionsDistributor extends BaseComponent implements Permis
 	private final List<ConditionTimerTask> conditionTasks = new ArrayList<>();
 
 	@Override
-	public Iterable<FeaturePermission> emitPermissions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration) throws LicensingException {
+	public Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions) throws LicensingException {
 		List<FeaturePermission> permissionsResult = new ArrayList<>();
 
 		for (LicensingCondition condition : conditions) {
@@ -100,7 +100,7 @@ public class ServerConditionsDistributor extends BaseComponent implements Permis
 		long expireTime = leaseTime + 60 * 60 * 1000;
 		Date lease = new Date(leaseTime);
 		Date expire = new Date(expireTime);
-		FeaturePermission permission = FeaturePermissions.create(condition, configuration, lease, expire);
+		FeaturePermission permission = FeaturePermissions.create(configuration, condition, lease, expire);
 		return permission;
 
 	}

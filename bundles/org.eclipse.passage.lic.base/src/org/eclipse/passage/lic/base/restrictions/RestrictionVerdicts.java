@@ -13,17 +13,21 @@
 package org.eclipse.passage.lic.base.restrictions;
 
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_FATAL;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_WARN;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class RestrictionVerdicts {
-	
+
 	public static final int CODE_NOT_AUTHORIZED = 401;
 
 	public static final int CODE_CONFIGURATION_ERROR = 500;
@@ -32,31 +36,33 @@ public class RestrictionVerdicts {
 		// block
 	}
 
-
-	public static BaseRestrictionVerdict createConfigurationError(String featureId, Object source) {
-		LicensingRequirement requirement = LicensingRequirements.createConfigurationError(featureId, source);
+	public static BaseRestrictionVerdict createConfigurationError(LicensingConfiguration configuration,
+			String featureId) {
+		LicensingRequirement requirement = LicensingRequirements.createConfigurationError(featureId, configuration);
 		int code = CODE_CONFIGURATION_ERROR;
-		return createError(requirement, code);
+		return createError(configuration, requirement, code);
 	}
 
-	public static BaseRestrictionVerdict create(LicensingRequirement requirement, int code) {
+	public static BaseRestrictionVerdict create(LicensingConfiguration configuration, LicensingRequirement requirement,
+			int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		if (requirement != null) {
 			policy = requirement.getRestrictionLevel();
 		}
-		return new BaseRestrictionVerdict(requirement, policy, code);
+		return new BaseRestrictionVerdict(configuration, requirement, policy, code);
 	}
 
-	public static BaseRestrictionVerdict createError(LicensingRequirement requirement, int code) {
+	public static BaseRestrictionVerdict createError(LicensingConfiguration configuration,
+			LicensingRequirement requirement, int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
-		return new BaseRestrictionVerdict(requirement, policy, code);
+		return new BaseRestrictionVerdict(configuration, requirement, policy, code);
 	}
 
-	public static Iterable<BaseRestrictionVerdict> createConfigurationError(LicensingRequirement requirement) {
+	public static Iterable<BaseRestrictionVerdict> createConfigurationError(LicensingConfiguration configuration,
+			LicensingRequirement requirement) {
 		int code = CODE_CONFIGURATION_ERROR;
-		return Collections.singletonList(createError(requirement, code));
+		return Collections.singletonList(createError(configuration, requirement, code));
 	}
-
 
 	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts) {
 		if (verdicts == null) {
@@ -68,9 +74,45 @@ public class RestrictionVerdicts {
 			return null;
 		}
 		Collections.sort(list, new RestrictionVerdictComparator());
-		RestrictionVerdict last = list.get(list.size()-1);
+		RestrictionVerdict last = list.get(list.size() - 1);
 		return last;
 	}
 
+	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts, String featureId) {
+		if (featureId == null) {
+			return resolveLastVerdict(verdicts);
+		}
+		if (verdicts == null) {
+			return null;
+		}
+		List<RestrictionVerdict> candidates = new ArrayList<>();
+		for (RestrictionVerdict verdict : verdicts) {
+			LicensingRequirement requirement = verdict.getLicensingRequirement();
+			if (requirement == null) {
+				continue;
+			}
+			if (Objects.equals(featureId, requirement.getFeatureIdentifier())) {
+				candidates.add(verdict);
+			}
+		}
+		return resolveLastVerdict(candidates);
+	}
+
+	public static boolean shouldPauseExecution(RestrictionVerdict verdict) {
+		if (verdict == null) {
+			return false;
+		}
+		String level = verdict.getRestrictionLevel();
+		return LICENSING_RESTRICTION_LEVEL_WARN.equals(level) || LICENSING_RESTRICTION_LEVEL_ERROR.equals(level)
+				|| LICENSING_RESTRICTION_LEVEL_FATAL.equals(level);
+	}
+
+	public static boolean shouldInterruptExecution(RestrictionVerdict verdict) {
+		if (verdict == null) {
+			return false;
+		}
+		String level = verdict.getRestrictionLevel();
+		return LICENSING_RESTRICTION_LEVEL_ERROR.equals(level) || LICENSING_RESTRICTION_LEVEL_FATAL.equals(level);
+	}
 
 }

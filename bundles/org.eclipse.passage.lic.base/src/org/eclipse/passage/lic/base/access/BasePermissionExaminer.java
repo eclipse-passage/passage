@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
 import org.eclipse.passage.lic.runtime.conditions.ConditionEvents;
@@ -32,22 +33,22 @@ import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
-	public Iterable<RestrictionVerdict> examine(Iterable<LicensingRequirement> requirements,
-			Iterable<FeaturePermission> permissions) {
+	public Iterable<RestrictionVerdict> examine(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
 		Map<String, List<LicensingRequirement>> required = new HashMap<>();
 		for (LicensingRequirement requirement : requirements) {
 			String featureId = requirement.getFeatureIdentifier();
 			List<LicensingRequirement> list = required.computeIfAbsent(featureId, key -> new ArrayList<>());
 			list.add(requirement);
 		}
-		
+
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
-		
+
 		Set<String> features = required.keySet();
 		List<LicensingCondition> leased = new ArrayList<>();
 		for (String featureId : features) {
 			List<LicensingRequirement> requirementList = required.get(featureId);
-			List<RestrictionVerdict> examined = examineFeatures(requirementList, permissions, leased);
+			List<RestrictionVerdict> examined = examineFeatures(configuration, requirementList, permissions, leased);
 			verdicts.addAll(examined);
 		}
 		if (!leased.isEmpty()) {
@@ -55,8 +56,10 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		}
 		return Collections.unmodifiableList(verdicts);
 	}
-	
-	protected List<RestrictionVerdict> examineFeatures(List<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions, List<LicensingCondition> conditions) {
+
+	protected List<RestrictionVerdict> examineFeatures(LicensingConfiguration configuration,
+			List<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions,
+			List<LicensingCondition> conditions) {
 		List<LicensingRequirement> unsatisfied = new ArrayList<>(requirements);
 		for (FeaturePermission permission : permissions) {
 			List<LicensingRequirement> covered = new ArrayList<>();
@@ -68,18 +71,19 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 			}
 			unsatisfied.removeAll(covered);
 		}
-		
+
 		List<RestrictionVerdict> verdicts = new ArrayList<>();
 		for (LicensingRequirement requirement : unsatisfied) {
-			verdicts.add(createVerdict(requirement, RestrictionVerdicts.CODE_NOT_AUTHORIZED));
+			verdicts.add(createVerdict(configuration, requirement, RestrictionVerdicts.CODE_NOT_AUTHORIZED));
 		}
 		return Collections.unmodifiableList(verdicts);
 	}
 
-	protected RestrictionVerdict createVerdict(LicensingRequirement requirement, int code) {
-		return RestrictionVerdicts.create(requirement, code);
+	protected RestrictionVerdict createVerdict(LicensingConfiguration configuration, LicensingRequirement requirement,
+			int code) {
+		return RestrictionVerdicts.create(configuration, requirement, code);
 	}
-	
+
 	protected boolean isCovered(LicensingRequirement requirement, FeaturePermission permission) {
 		LicensingCondition condition = permission.getLicensingCondition();
 		if (condition == null) {
@@ -88,7 +92,8 @@ public abstract class BasePermissionExaminer implements PermissionExaminer {
 		if (!Objects.equals(requirement.getFeatureIdentifier(), condition.getFeatureIdentifier())) {
 			return false;
 		}
-		return LicensingVersions.isMatch(requirement.getFeatureVersion(), condition.getMatchVersion(), condition.getMatchRule());
+		return LicensingVersions.isMatch(requirement.getFeatureVersion(), condition.getMatchVersion(),
+				condition.getMatchRule());
 	}
 
 	protected abstract void postEvent(String topic, Object data);

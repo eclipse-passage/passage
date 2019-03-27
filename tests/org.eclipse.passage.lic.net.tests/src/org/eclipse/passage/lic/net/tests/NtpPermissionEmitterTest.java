@@ -61,7 +61,7 @@ public class NtpPermissionEmitterTest {
 
 	private void evaluate(PermissionEmitter emitter, Set<LicensingCondition> conditions, LicensingConfiguration configuration) {
 		try {
-			emitter.emitPermissions(conditions, configuration);
+			emitter.emitPermissions(configuration, conditions);
 			fail("Should not accept invalid arguments");
 		} catch (LicensingException e) {
 			// expected
@@ -72,7 +72,7 @@ public class NtpPermissionEmitterTest {
 	public void testEvaluateConditionPositive() throws Exception {
 		NtpPermissionEmitter evaluator = new NtpPermissionEmitter();
 		Set<LicensingCondition> future = Collections.singleton(createNetCondition(EXPRESSION_FUTURE));
-		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(future, null).iterator();
+		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(null, future).iterator();
 		assertTrue(iterator.hasNext());
 		FeaturePermission permission = iterator.next();
 		LicensingCondition condition = permission.getLicensingCondition();

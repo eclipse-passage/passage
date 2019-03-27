@@ -25,6 +25,6 @@ import org.eclipse.passage.lic.runtime.LicensingResult;
  */
 public interface RestrictionExecutor {
 
-	LicensingResult execute(Iterable<RestrictionVerdict> actions);
+	LicensingResult execute(Iterable<RestrictionVerdict> verdicts);
 
 }

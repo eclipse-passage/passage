@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
+import java.util.Collections;
+
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
@@ -63,6 +65,8 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	private TableViewer tableViewer;
 	IEclipsePreferences preferences = LicensingColors.getPreferences();
 
+	private Iterable<RestrictionVerdict> restrictions = Collections.emptyList();
+
 	public LicensingStatusDialog(Shell shell, String... features) {
 		super(shell);
 		accessManager = LicensingEquinox.getAccessManager();
@@ -89,7 +93,8 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	}
 
 	protected void computeStatus() {
-		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(featureCase.getRestrictions());
+		restrictions = featureCase.getRestrictions();
+		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(restrictions);
 		if (last == null) {
 			setErrorMessage(null);
 			setMessage(RestrictionRepresenters.resolveSummary(last));
@@ -205,6 +210,11 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		if (preferences != null) {
 			preferences.removePreferenceChangeListener(this);
 		}
+		featureCase.close();
 		return super.close();
+	}
+
+	public Iterable<RestrictionVerdict> getRestrictions() {
+		return restrictions;
 	}
 }

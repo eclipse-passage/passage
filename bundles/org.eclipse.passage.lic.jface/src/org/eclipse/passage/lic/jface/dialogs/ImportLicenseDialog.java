@@ -149,8 +149,9 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	}
 
 	protected LicensingResult mine(String pack) {
+		String source = getClass().getName();
 		Set<String> paths = Collections.singleton(pack);
-		return ConditionMiners.mine(configuration, mined, keyKeeper, streamCodec, transport, paths);
+		return ConditionMiners.mine(source, configuration, mined, keyKeeper, streamCodec, transport, paths);
 	}
 
 	protected boolean determineCompletion() {

@@ -43,12 +43,13 @@ public interface AccessManager {
 
 	Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration);
 
-	Iterable<FeaturePermission> evaluateConditions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration);
+	Iterable<FeaturePermission> evaluateConditions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions);
 
-	Iterable<RestrictionVerdict> examinePermissons(Iterable<LicensingRequirement> requirements,
-			Iterable<FeaturePermission> permissions, LicensingConfiguration configuration);
+	Iterable<RestrictionVerdict> examinePermissons(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions);
 
-	LicensingResult executeRestrictions(Iterable<RestrictionVerdict> restrictions);
+	LicensingResult executeRestrictions(LicensingConfiguration configuration,
+			Iterable<RestrictionVerdict> restrictions);
 
 }

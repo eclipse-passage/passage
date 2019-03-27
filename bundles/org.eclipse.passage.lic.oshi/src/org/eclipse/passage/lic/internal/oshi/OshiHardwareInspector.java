@@ -95,7 +95,8 @@ public class OshiHardwareInspector implements HardwareInspector {
 				break;
 			}
 		} catch (Throwable e) {
-			LicensingResult result = LicensingResults.createError("Unable to read hardware", e);
+			String source = getClass().getName();
+			LicensingResult result = LicensingResults.createError("Unable to read hardware", source, e);
 			licensingReporter.logResult(result);
 		}
 	}

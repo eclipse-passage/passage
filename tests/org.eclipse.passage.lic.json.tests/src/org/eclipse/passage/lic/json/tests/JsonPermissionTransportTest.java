@@ -86,7 +86,7 @@ public class JsonPermissionTransportTest {
 		String type = FEATURE_TEST_CONDITION_TYPE;
 		String expression = FEATURE_TEST_EXPRESSION;
 		LicensingCondition condition = LicensingConditions.create(FEATURE_TEST_ID, FEATURE_TEST_VERSION, FEATURE_TEST_RULE, from, until, type, expression);
-		FeaturePermission permission = FeaturePermissions.create(condition, configuration, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
+		FeaturePermission permission = FeaturePermissions.create(configuration, condition, FEATURE_TEST_LEASE_TIME, FEATURE_TEST_EXPIRE_TIME);
 		permissionAggregator.addFeaturePermission(permission);
 		return permissionAggregator;
 

@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
  */
 public interface PermissionEmitter {
 
-	Iterable<FeaturePermission> emitPermissions(Iterable<LicensingCondition> conditions,
-			LicensingConfiguration configuration) throws LicensingException;
+	Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions) throws LicensingException;
 
 }

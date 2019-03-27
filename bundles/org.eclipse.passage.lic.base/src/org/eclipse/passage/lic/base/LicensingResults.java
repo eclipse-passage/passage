@@ -72,9 +72,8 @@ public class LicensingResults {
 		return new BaseLicensingResult(severity, message, code, source, exception, details, attachments);
 	}
 
-	public static LicensingResult createError(String message, Throwable e) {
-		String source = LicensingResults.class.getName();
-		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e);
+	public static LicensingResult createError(String message, String source) {
+		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, null);
 	}
 
 	public static LicensingResult createError(String message, String source, Throwable e) {

@@ -72,12 +72,12 @@ public class BasePermissionExaminerTest {
 				LicensingVersions.RULE_GREATER_OR_EQUAL, fooFrom, foorUntil, null, null);
 		LicensingCondition bazCondition = LicensingConditions.create(BAZ_FEATURE_ID, "1.0.0", //$NON-NLS-1$
 				LicensingVersions.RULE_GREATER_OR_EQUAL, bazFrom, bazUntil, null, null);
-		FeaturePermission fooPermission = FeaturePermissions.createDefault(fooCondition, configuration);
-		FeaturePermission bazPermission = FeaturePermissions.create(bazCondition, configuration, new Date(0),
+		FeaturePermission fooPermission = FeaturePermissions.createDefault(configuration, fooCondition);
+		FeaturePermission bazPermission = FeaturePermissions.create(configuration, bazCondition, new Date(0),
 				new Date(0));
 		Iterable<FeaturePermission> permissions = Arrays.asList(fooPermission, bazPermission);
 
-		Iterable<RestrictionVerdict> verdicts = examiner.examine(requirements, permissions);
+		Iterable<RestrictionVerdict> verdicts = examiner.examine(configuration, requirements, permissions);
 		Iterator<RestrictionVerdict> iterator = verdicts.iterator();
 		RestrictionVerdict next = iterator.next();
 		assertNotNull(next);

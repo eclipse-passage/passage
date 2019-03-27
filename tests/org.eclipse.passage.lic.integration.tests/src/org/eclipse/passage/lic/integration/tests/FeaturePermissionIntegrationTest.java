@@ -37,7 +37,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		Iterable<FeaturePermission> permissionsNull = accessManager.evaluateConditions(null, null);
 		assertFalse(permissionsNull.iterator().hasNext());
 
-		Iterable<FeaturePermission> permissionsEmpty = accessManager.evaluateConditions(Collections.emptyList(), null);
+		Iterable<FeaturePermission> permissionsEmpty = accessManager.evaluateConditions(null, Collections.emptyList());
 		assertFalse(permissionsEmpty.iterator().hasNext());
 
 	}
@@ -60,7 +60,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		createProductLicense(configuration, license, false);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
+		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(configuration, conditions);
 		assertTrue(permissions.iterator().hasNext());
 		deleteProductLicense(configuration, false);
 	}
@@ -83,7 +83,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		createProductLicense(configuration, license, true);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
-		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(conditions, configuration);
+		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(configuration, conditions);
 		assertTrue(permissions.iterator().hasNext());
 		deleteProductLicense(configuration, true);
 	}

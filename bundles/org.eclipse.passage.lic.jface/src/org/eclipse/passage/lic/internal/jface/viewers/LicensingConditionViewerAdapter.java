@@ -15,13 +15,12 @@ package org.eclipse.passage.lic.internal.jface.viewers;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.lic.jface.viewers.ConditionRepresenters;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerBasis;
 import org.eclipse.passage.lic.jface.viewers.RequirementLabels;
-import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.graphics.RGB;
 
 public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
@@ -88,8 +87,7 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 	public ImageDescriptor getImageDescriptor(Object element, int columnIndex) {
 		if (element instanceof LicensingCondition) {
 			LicensingCondition condition = (LicensingCondition) element;
-			Iterable<RestrictionVerdict> restrictions = getRestrictions(condition.getFeatureIdentifier());
-			String imageKey = RestrictionRepresenters.resolveImageKey(restrictions);
+			String imageKey = ConditionRepresenters.resolveImageKey(condition);
 			switch (columnIndex) {
 			case INDEX_STATUS:
 				return LicensingImages.getImageDescriptor(imageKey);
@@ -103,10 +101,8 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 	@Override
 	public RGB getBackground(Object element) {
 		if (element instanceof LicensingCondition) {
-			// FIXME: revisit, condition colors should depend on validFrom/validUntil
-//			LicensingCondition condition = (LicensingCondition) element;
-//			Iterable<RestrictionVerdict> restrictions = getRestrictions(condition.getFeatureIdentifier());
-//			return RestrictionRepresenters.resolveRGB(restrictions);
+			LicensingCondition condition = (LicensingCondition) element;
+			return ConditionRepresenters.resolveRGB(condition);
 		}
 		return super.getBackground(element);
 	}

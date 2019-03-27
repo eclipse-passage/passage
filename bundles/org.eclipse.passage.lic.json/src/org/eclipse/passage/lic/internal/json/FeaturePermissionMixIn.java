@@ -27,22 +27,22 @@ final class FeaturePermissionMixIn implements FeaturePermission {
 				.create(d.getLicensingConfiguration());
 		Date leaseDate = d.getLeaseDate();
 		Date expireDate = d.getExpireDate();
-		FeaturePermissionMixIn mixIn = new FeaturePermissionMixIn(licensingCondition, licensingConfiguration, leaseDate,
+		FeaturePermissionMixIn mixIn = new FeaturePermissionMixIn(licensingConfiguration, licensingCondition, leaseDate,
 				expireDate);
 		return mixIn;
 	}
 
-	private final LicensingConditionMixIn licensingCondition;
 	private final LicensingConfigurationMixIn licensingConfiguration;
+	private final LicensingConditionMixIn licensingCondition;
 	private final Date leaseDate;
 	private final Date expireDate;
 
 	@JsonCreator
-	FeaturePermissionMixIn(@JsonProperty("licensingCondition") LicensingConditionMixIn licensingCondition,
-			@JsonProperty("licensingConfiguration") LicensingConfigurationMixIn licensingConfiguration,
+	FeaturePermissionMixIn(@JsonProperty("licensingConfiguration") LicensingConfigurationMixIn licensingConfiguration,
+			@JsonProperty("licensingCondition") LicensingConditionMixIn licensingCondition,
 			@JsonProperty("leaseDate") Date leaseDate, @JsonProperty("expireDate") Date expireDate) {
-		this.licensingCondition = licensingCondition;
 		this.licensingConfiguration = licensingConfiguration;
+		this.licensingCondition = licensingCondition;
 		this.leaseDate = leaseDate;
 		this.expireDate = expireDate;
 	}

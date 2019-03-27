@@ -24,15 +24,15 @@ public class FeaturePermissions {
 		// block
 	}
 
-	public static FeaturePermission createDefault(LicensingCondition condition, LicensingConfiguration configuration) {
+	public static FeaturePermission createDefault(LicensingConfiguration configuration, LicensingCondition condition) {
 		Date leaseTime = new Date();
 		Date expireTime = condition.getValidUntil();
-		return new BaseFeaturePermission(condition, configuration, leaseTime, expireTime);
+		return new BaseFeaturePermission(configuration, condition, leaseTime, expireTime);
 	}
 
-	public static FeaturePermission create(LicensingCondition condition, LicensingConfiguration configuration,
+	public static FeaturePermission create(LicensingConfiguration configuration, LicensingCondition condition,
 			Date lease, Date expire) {
-		return new BaseFeaturePermission(condition, configuration, lease, expire);
+		return new BaseFeaturePermission(configuration, condition, lease, expire);
 	}
 
 }

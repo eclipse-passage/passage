@@ -39,12 +39,13 @@ public class EquinoxPaths {
 	}
 
 	public static Path extractPath(String property, String value) throws LicensingException {
+		String source = EquinoxPaths.class.getName();
 		try {
 			return Paths.get(URIUtil.fromString(value));
 		} catch (URISyntaxException e) {
 			String pattern = "Failed to retrieve URI from value \"{0}\" (property \"{1}\")";
 			String message = NLS.bind(pattern, value, property);
-			LicensingResult result = LicensingResults.createError(message, e);
+			LicensingResult result = LicensingResults.createError(message, source, e);
 			throw new LicensingException(result);
 		}
 	}

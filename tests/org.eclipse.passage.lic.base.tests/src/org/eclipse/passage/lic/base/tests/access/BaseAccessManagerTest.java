@@ -238,12 +238,12 @@ public class BaseAccessManagerTest {
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(new ArrayList<>(), null);
+		permissions = manager.evaluateConditions(null, new ArrayList<>());
 		assertFalse(permissions.iterator().hasNext());
 		eventSize++;
 		checkMaps(logSize, eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(null), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(null));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 	}
@@ -253,33 +253,33 @@ public class BaseAccessManagerTest {
 		int logSize = 0;
 		int eventSize = 0;
 		Iterable<FeaturePermission> permissions = Collections.emptyList();
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(null, null)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(null, null)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(new Date(), null)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(new Date(), null)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(null, new Date())), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(null, new Date())));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
 		Date before = new Date(System.currentTimeMillis() - 100500);
 		Date after = new Date(System.currentTimeMillis() + 100500);
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, after)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(after, after)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, before)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(before, before)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(after, before)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(after, before)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		permissions = manager.evaluateConditions(Collections.singleton(createCondition(before, after)), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(createCondition(before, after)));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 	}
@@ -298,13 +298,13 @@ public class BaseAccessManagerTest {
 		PermissionEmitter emitter = LicensningBaseTests.createPermissionEmitter(values);
 		LicensingCondition condition = createCondition(before, after);
 
-		permissions = manager.evaluateConditions(Collections.singleton(condition), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(condition));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 		manager.bindPermissionEmitter(emitter, properties);
 
 		LicensingConfiguration configuration = LicensingConfigurations.INVALID;
-		permissions = manager.evaluateConditions(Collections.singleton(condition), configuration);
+		permissions = manager.evaluateConditions(configuration, Collections.singleton(condition));
 		FeaturePermission next = permissions.iterator().next();
 		assertEquals(condition, next.getLicensingCondition());
 		assertEquals(configuration, next.getLicensingConfiguration());
@@ -313,7 +313,7 @@ public class BaseAccessManagerTest {
 		checkMaps(logSize, ++eventSize);
 
 		manager.unbindPermissionEmitter(emitter, properties);
-		permissions = manager.evaluateConditions(Collections.singleton(condition), null);
+		permissions = manager.evaluateConditions(null, Collections.singleton(condition));
 		assertFalse(permissions.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 	}
@@ -332,15 +332,15 @@ public class BaseAccessManagerTest {
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		verdicts = manager.examinePermissons(null, null, conf);
+		verdicts = manager.examinePermissons(conf, null, null);
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		verdicts = manager.examinePermissons(new ArrayList<>(), null, conf);
+		verdicts = manager.examinePermissons(conf, new ArrayList<>(), null);
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		verdicts = manager.examinePermissons(Collections.singleton(null), null, conf);
+		verdicts = manager.examinePermissons(conf, Collections.singleton(null), null);
 		assertFalse(verdicts.iterator().hasNext());
 		logSize++;
 		checkMaps(++logSize, ++eventSize);
