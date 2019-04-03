@@ -25,28 +25,28 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class HardwareInspectorDialog extends TrayDialog {
-	
+
 	private final HardwareInspector hardwareInspector;
 
 	public HardwareInspectorDialog(Shell shell, HardwareInspector inspector) {
 		super(shell);
 		this.hardwareInspector = inspector;
 	}
-	
+
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Hardware Inspector");
 		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 	}
-	
+
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
-		Text text = new Text(area, SWT.MULTI);
+		Text text = new Text(area, SWT.MULTI | SWT.READ_ONLY);
 		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		StringBuilder infoBuilder = new StringBuilder();
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()){
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 			hardwareInspector.dumpHardwareInfo(baos);
 			infoBuilder.append(new String(baos.toByteArray()));
 		} catch (Exception e) {
