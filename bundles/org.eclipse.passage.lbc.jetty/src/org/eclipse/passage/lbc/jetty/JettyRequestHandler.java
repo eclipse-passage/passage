@@ -34,7 +34,7 @@ public class JettyRequestHandler extends AbstractHandler implements ServerReques
 			throws IOException, ServletException {
 
 		for (ServerRequestExecutor requestExecutor : serverRequestExecutors) {
-			if (requestExecutor.checkAccesstMode(baseRequest)) {
+			if (requestExecutor.supportsMode(baseRequest)) {
 				requestExecutor.executeRequest(request, response);
 				baseRequest.setHandled(true);
 			}
@@ -42,14 +42,14 @@ public class JettyRequestHandler extends AbstractHandler implements ServerReques
 	}
 
 	@Override
-	public void addRequestExecutor(ServerRequestExecutor executor) {
+	public void registerRequestExecutor(ServerRequestExecutor executor) {
 		if (!serverRequestExecutors.contains(executor)) {
 			serverRequestExecutors.add(executor);
 		}
 	}
 
 	@Override
-	public void remRequestExecutor(ServerRequestExecutor executor) {
+	public void unregisterRequestExecutor(ServerRequestExecutor executor) {
 		if (serverRequestExecutors.contains(executor)) {
 			serverRequestExecutors.remove(executor);
 		}

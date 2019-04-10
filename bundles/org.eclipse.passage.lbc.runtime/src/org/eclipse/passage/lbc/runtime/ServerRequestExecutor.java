@@ -28,6 +28,6 @@ public interface ServerRequestExecutor {
 
 	void setAccessModeId(String setAccessModeId);
 
-	boolean checkAccesstMode(HttpServletRequest baseRequest);
+	boolean supportsMode(HttpServletRequest baseRequest);
 
 }

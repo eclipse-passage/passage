@@ -92,7 +92,7 @@ public class ServerRunnerImpl implements ServerRunner {
 			if (!requestExecutors.containsKey(requestExecutorModeId)) {
 				requestExecutors.put(requestExecutorModeId, serverRequestExecutor);
 				for (Entry<String, ServerRequestHandler> entry : requestHandlers.entrySet()) {
-					entry.getValue().addRequestExecutor(serverRequestExecutor);
+					entry.getValue().registerRequestExecutor(serverRequestExecutor);
 				}
 			}
 		} else {
@@ -107,7 +107,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		if (requestExecutorModeId != null) {
 			requestExecutors.remove(requestExecutorModeId, serverRequestExecutor);
 			for (Entry<String, ServerRequestHandler> entry : requestHandlers.entrySet()) {
-				entry.getValue().addRequestExecutor(serverRequestExecutor);
+				entry.getValue().registerRequestExecutor(serverRequestExecutor);
 			}
 		}
 	}
@@ -119,7 +119,7 @@ public class ServerRunnerImpl implements ServerRunner {
 			ServerRequestHandler requestHandler = mapHandlers.get(keyExecutor);
 
 			for (Entry<String, ServerRequestExecutor> iter : mapExecutors.entrySet()) {
-				requestHandler.addRequestExecutor(iter.getValue());
+				requestHandler.registerRequestExecutor(iter.getValue());
 			}
 		}
 	}

@@ -57,7 +57,7 @@ public class AdminRequestExecutor extends BaseComponent implements ServerRequest
 	}
 
 	@Override
-	public boolean checkAccesstMode(HttpServletRequest baseRequest) {
+	public boolean supportsMode(HttpServletRequest baseRequest) {
 		String requestAccessMode = baseRequest.getParameter(LicensingRequests.MODE);
 		if (requestAccessMode != null && requestAccessMode.equals(accessModeId)) {
 			return true;
