@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
@@ -45,7 +45,6 @@ import org.osgi.service.log.LoggerFactory;
 public class ServerConditionsStorage extends BaseComponent implements LicensingConditionStorage {
 
 	private static final String TRANSPORT_NOT_FOUND = "Transport for license descriptors not found";
-	private EnvironmentInfo environmentInfo;
 	private StreamCodec streamCodec;
 	private String CONDITION_EXTENSION = ".licen";
 	private ConditionTransport conditionTransport;
@@ -55,15 +54,6 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 	@Reference
 	protected void bindLogger(LoggerFactory loggerFactory) {
 		super.bindLogger(loggerFactory);
-	}
-
-	@Reference
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = environmentInfo;
-	}
-
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = null;
 	}
 
 	@Reference
@@ -95,7 +85,7 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 	}
 
 	@Override
-	public List<LicensingCondition> getLicensingCondition(String productId, String productVersion) {
+	public Iterable<LicensingCondition> getLicensingCondition(LicensingConfiguration configuration) {
 
 		List<LicensingCondition> descriptors = new ArrayList<>();
 		Path areaPath = EquinoxPaths.resolveInstallBasePath();
@@ -103,6 +93,8 @@ public class ServerConditionsStorage extends BaseComponent implements LicensingC
 		if (!Files.isDirectory(areaPath)) {
 			return descriptors;
 		}
+		String productId = configuration.getProductIdentifier();
+		String productVersion = configuration.getProductVersion();
 
 		Map<Path, File> producKeyMap2TokenPath = new HashMap<>();
 		try {

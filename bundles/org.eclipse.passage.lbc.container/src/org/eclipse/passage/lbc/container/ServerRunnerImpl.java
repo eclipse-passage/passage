@@ -20,12 +20,15 @@ import org.eclipse.passage.lbc.runtime.ServerHandler;
 import org.eclipse.passage.lbc.runtime.ServerRequestAction;
 import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
 import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
-import org.eclipse.passage.lbc.runtime.ServerRunner;
 import org.eclipse.passage.lic.net.LicensingRequests;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
-public class ServerRunnerImpl implements ServerRunner {
+@Component
+public class ServerRunnerImpl {
 
 	private static final String REGISTERED = "[Registered]  %s";
 	private static final String REQUEST_HANDLER_NOT_FOUND = "Request handler not registrated for component ";
@@ -45,6 +48,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		}
 	}
 
+	@Reference
 	public void bindLogger(LoggerFactory loggerFactory) {
 		this.logger = loggerFactory.getLogger(ServerRunnerImpl.class);
 	}
@@ -53,6 +57,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		this.logger = null;
 	}
 
+	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
 	public void bindServerHandler(ServerHandler serverHandler) {
 		logger.info(String.format(REGISTERED, serverHandler.toString()));
 		this.serverHandler = serverHandler;
@@ -63,6 +68,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		this.serverHandler = null;
 	}
 
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindServerRequestHandler(ServerRequestHandler serverRequestHandler, Map<String, String> context) {
 		logger.debug(String.format(REGISTERED, serverRequestHandler.getClass().getName()));
 		String requestHandlerId = context.get(LicensingRequests.HANDLER);
@@ -84,6 +90,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		}
 	}
 
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindServerRequestExecutor(ServerRequestExecutor serverRequestExecutor, Map<String, String> context) {
 		logger.debug(String.format(REGISTERED, serverRequestExecutor.getClass().getName()));
 		String requestExecutorModeId = context.get(LicensingRequests.MODE);
@@ -96,8 +103,8 @@ public class ServerRunnerImpl implements ServerRunner {
 				}
 			}
 		} else {
-			logger.error(REQUEST_HANDLER_NOT_FOUND + serverRequestExecutor.toString()
-					+ LicensingRequests.MODE + requestExecutorModeId);
+			logger.error(REQUEST_HANDLER_NOT_FOUND + serverRequestExecutor.toString() + LicensingRequests.MODE
+					+ requestExecutorModeId);
 			;
 		}
 	}
@@ -131,6 +138,7 @@ public class ServerRunnerImpl implements ServerRunner {
 		}
 	}
 
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindServerRequestActions(ServerRequestAction action, Map<String, String> context) {
 		logger.debug(String.format(REGISTERED, action.getClass().getName()));
 

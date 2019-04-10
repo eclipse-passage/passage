@@ -8,13 +8,13 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: javax.servlet;bundle-version="0.0.0",
- org.eclipse.osgi;bundle-version="0.0.0",
- org.apache.httpcomponents.httpclient;bundle-version="0.0.0",
  org.apache.httpcomponents.httpcore;bundle-version="0.0.0",
- org.eclipse.passage.lbc.runtime;bundle-version="0.0.0",
- org.eclipse.passage.lic.net
-Export-Package: org.eclipse.passage.lbc.container,
- org.eclipse.passage.lbc.container.params
+ org.apache.httpcomponents.httpclient;bundle-version="0.0.0",
+ org.eclipse.osgi;bundle-version="0.0.0",
+ org.eclipse.osgi.services;bundle-version="0.0.0",
+ org.eclipse.passage.lic.net;bundle-version="0.0.0",
+ org.eclipse.passage.lbc.runtime;bundle-version="0.0.0"
+Export-Package: org.eclipse.passage.lbc.container
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
 

@@ -20,12 +20,13 @@ import java.util.logging.Logger;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-
-import org.eclipse.passage.lbc.container.params.ServerPrams;
 import org.eclipse.passage.lbc.runtime.ServerHandler;
 import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 
 public class JettyServerHandler implements ServerHandler {
+
+	private static final int JETTY_PORT_DEFAULT = 8080;
+
 	private static Logger LOG = Logger.getLogger(JettyServerHandler.class.getName());
 	private List<ServerRequestHandler> serverHandlers = new ArrayList<>();
 
@@ -33,7 +34,7 @@ public class JettyServerHandler implements ServerHandler {
 
 	@Override
 	public void launch() {
-		server = new Server(ServerPrams.DEFAULT_SERVER_PORT);
+		server = new Server(JETTY_PORT_DEFAULT);
 		try {
 
 			HandlerList handlers = new HandlerList();

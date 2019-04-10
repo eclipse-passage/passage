@@ -15,7 +15,6 @@ package org.eclipse.passage.lbc.base.condition;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
@@ -23,41 +22,40 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;;
 
-@Component
-public class ServerConditionsMiner extends BaseComponent implements ConditionMiner {
+@Component(service = ConditionMiner.class)
+public class ServerConditionsMiner implements ConditionMiner {
+
+	LoggerFactory factory;
+	Logger logger;
 
 	private final List<LicensingConditionStorage> conditionStorages = new ArrayList<>();
 
-	public boolean checkProductById(String productId) {
-		return false;
+	@Reference
+	void bindLogger(LoggerFactory loggerFactory) {
+		this.factory = loggerFactory;
+		this.logger = loggerFactory.getLogger(getClass());
 	}
 
-	@Override
-	@Reference
-	protected void bindLogger(LoggerFactory loggerFactory) {
-		super.bindLogger(loggerFactory);
+	void unbindLogger(LoggerFactory loggerFactory) {
+		if (this.factory == loggerFactory) {
+			this.factory = null;
+			this.logger = null;
+		}
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindLicensingConditionStorage(LicensingConditionStorage conditionStorage) {
-		logger.debug(conditionStorage.getClass().getName());
-		if (conditionStorage != null) {
-			if (!conditionStorages.contains(conditionStorage)) {
-				conditionStorages.add(conditionStorage);
-			}
-
+		if (!conditionStorages.contains(conditionStorage)) {
+			conditionStorages.add(conditionStorage);
 		}
 	}
 
 	public void unbindLicensingConditionStorage(LicensingConditionStorage conditionStorage) {
-		logger.debug(conditionStorage.getClass().getName());
-
-		if (conditionStorage != null) {
-			if (conditionStorages.contains(conditionStorage)) {
-				conditionStorages.remove(conditionStorage);
-			}
+		if (conditionStorages.contains(conditionStorage)) {
+			conditionStorages.remove(conditionStorage);
 		}
 	}
 
@@ -80,7 +78,7 @@ public class ServerConditionsMiner extends BaseComponent implements ConditionMin
 			return result;
 		}
 		for (LicensingConditionStorage storage : conditionStorages) {
-			result.addAll(storage.getLicensingCondition(productIdentifier, productVersion));
+			storage.getLicensingCondition(configuration).forEach(result::add);
 		}
 		return result;
 	}

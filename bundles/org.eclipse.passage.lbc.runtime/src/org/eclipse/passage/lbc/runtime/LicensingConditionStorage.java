@@ -12,12 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.runtime;
 
-import java.util.List;
-
+import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public interface LicensingConditionStorage {
 
-	List<LicensingCondition> getLicensingCondition(String productId, String productVersion);
+	Iterable<LicensingCondition> getLicensingCondition(LicensingConfiguration configuration);
 
 }

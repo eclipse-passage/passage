@@ -5,7 +5,6 @@
       <provide interface="org.eclipse.passage.lbc.runtime.LicensingConditionStorage"/>
    </service>
    <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
-   <reference bind="bindEnvironmentInfo" cardinality="1..1" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" policy="static" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger"/>
    <reference bind="bindStreamCodec" cardinality="1..1" interface="org.eclipse.passage.lic.runtime.io.StreamCodec" name="StreamCodec" policy="static" unbind="unbindStreamCodec"/>
 </scr:component>
