@@ -13,7 +13,7 @@
 		ArSysOp - initial API and implementation
 -->
 
-<product name="Passage Licensing Operator Workbench (Incubation)" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.4.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Licensing Operator Workbench (Incubation)" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.5.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
    </aboutInfo>

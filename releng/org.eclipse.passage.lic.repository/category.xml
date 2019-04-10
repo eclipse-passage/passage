@@ -22,22 +22,22 @@
 	</category-def>
 	<feature
 		id="org.eclipse.passage.lic.compile.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.execute.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.define.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.bc.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
 
@@ -51,22 +51,22 @@
 	</category-def>
 	<feature
 		id="org.eclipse.passage.lic.compile.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.execute.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.define.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.bc.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 </site>

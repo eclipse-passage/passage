@@ -21,12 +21,12 @@
 	</category-def>
 	<feature
 		id="org.eclipse.passage.loc.dashboard.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.loc.operator.feature"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<category-def
@@ -38,12 +38,12 @@
 	</category-def>
 	<feature
 		id="org.eclipse.passage.loc.dashboard.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.loc.category.source" />
 	</feature>
 	<feature
 		id="org.eclipse.passage.loc.operator.feature.source"
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.loc.category.source" />
 	</feature>
 </site>

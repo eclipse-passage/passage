@@ -21,7 +21,7 @@
 	</category-def>
 	<feature 
 		id="org.eclipse.passage.lbc.feature" 
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lbc.category" />
 	</feature>
 	<category-def
@@ -34,7 +34,7 @@
 	</category-def>
 	<feature 
 		id="org.eclipse.passage.lbc.feature.source" 
-		version="0.4.0.qualifier">
+		version="0.5.0.qualifier">
 		<category name="org.eclipse.passage.lbc.category.source" />
 	</feature>
 </site>
