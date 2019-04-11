@@ -22,34 +22,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 
 public class JettyRequestHandler extends AbstractHandler implements ServerRequestHandler {
 
-	private List<ServerRequestExecutor> serverRequestExecutors = new ArrayList<>();
+	private List<BackendRequestDispatcher> serverRequestExecutors = new ArrayList<>();
 
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		for (ServerRequestExecutor requestExecutor : serverRequestExecutors) {
-			if (requestExecutor.supportsMode(baseRequest)) {
-				requestExecutor.executeRequest(request, response);
+		for (BackendRequestDispatcher requestExecutor : serverRequestExecutors) {
+			if (requestExecutor.canDispatchRequest(baseRequest)) {
+				requestExecutor.dispatchRequest(request, response);
 				baseRequest.setHandled(true);
 			}
 		}
 	}
 
 	@Override
-	public void registerRequestExecutor(ServerRequestExecutor executor) {
+	public void registerRequestExecutor(BackendRequestDispatcher executor) {
 		if (!serverRequestExecutors.contains(executor)) {
 			serverRequestExecutors.add(executor);
 		}
 	}
 
 	@Override
-	public void unregisterRequestExecutor(ServerRequestExecutor executor) {
+	public void unregisterRequestExecutor(BackendRequestDispatcher executor) {
 		if (serverRequestExecutors.contains(executor)) {
 			serverRequestExecutors.remove(executor);
 		}

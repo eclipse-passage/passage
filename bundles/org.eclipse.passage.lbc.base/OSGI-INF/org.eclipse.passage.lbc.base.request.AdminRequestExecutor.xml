@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.base.request.AdminRequestExecutor">
    <implementation class="org.eclipse.passage.lbc.base.request.AdminRequestExecutor"/>
    <service>
-      <provide interface="org.eclipse.passage.lbc.runtime.ServerRequestExecutor"/>
+      <provide interface="org.eclipse.passage.lbc.runtime.BackendRequestDispatcher"/>
    </service>
    <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger"/>
 </scr:component>

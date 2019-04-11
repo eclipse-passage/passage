@@ -21,19 +21,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
-import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
+import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.log.LoggerFactory;
 
 @Component
-public class AdminRequestExecutor extends BaseComponent implements ServerRequestExecutor {
+public class AdminRequestExecutor extends BaseComponent implements BackendRequestDispatcher {
 
 	private static final String MSG_REQUEST_ACTION_NOT_FOUND_ERROR = "Action id: %s not found";
 
-	private static Map<String, ServerRequestAction> mapActionRequest = new HashMap<>();
+	private static Map<String, BackendActionExecutor> mapActionRequest = new HashMap<>();
 
 	private String accessModeId = "";
 
@@ -44,20 +44,20 @@ public class AdminRequestExecutor extends BaseComponent implements ServerRequest
 	}
 
 	@Override
-	public void executeRequest(HttpServletRequest request, HttpServletResponse response)
+	public void dispatchRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		String actionId = request.getParameter(LicensingRequests.ACTION);
-		ServerRequestAction requestAction = mapActionRequest.get(actionId);
+		BackendActionExecutor requestAction = mapActionRequest.get(actionId);
 		if (requestAction != null) {
-			requestAction.execute(request, response);
+			requestAction.executeAction(request, response);
 		} else {
 			logger.info(String.format(MSG_REQUEST_ACTION_NOT_FOUND_ERROR, requestAction));
 		}
 	}
 
 	@Override
-	public boolean supportsMode(HttpServletRequest baseRequest) {
+	public boolean canDispatchRequest(HttpServletRequest baseRequest) {
 		String requestAccessMode = baseRequest.getParameter(LicensingRequests.MODE);
 		if (requestAccessMode != null && requestAccessMode.equals(accessModeId)) {
 			return true;
@@ -66,7 +66,7 @@ public class AdminRequestExecutor extends BaseComponent implements ServerRequest
 	}
 
 	@Override
-	public void setRequestAction(Map<String, ServerRequestAction> mapActions) {
+	public void setRequestAction(Map<String, BackendActionExecutor> mapActions) {
 		mapActionRequest.putAll(mapActions);
 	}
 

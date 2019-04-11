@@ -26,10 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -43,8 +45,8 @@ import org.osgi.service.log.LoggerFactory;
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
  * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
-@Component
-public class ConditionDescriptorRequestAction extends BaseComponent implements ServerRequestAction {
+@Component(property = LicensingRequests.ACTION + '=' + "extractConditions")
+public class ConditionDescriptorRequestAction extends BaseComponent implements BackendActionExecutor {
 
 	private static final String SERVER_MINER_TYPE = "server.miner"; // NLS-$1
 	private static final String APPLICATION_JSON = "application/json"; // NLS-$1
@@ -55,14 +57,13 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
 
 	@Override
-	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
-		if (logger == null) {
-			return false;
-		}
-		logger.info(String.format("Executing action request from class: %s", this.getClass().getName()));
+	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
+		String source = getClass().getName();
+		logger.info(String.format("Executing action request from class: %s", source));
 		if (licenseConditionMiners.isEmpty()) {
-			logger.error("No condition miners available");
-			return false;
+			String error = "No condition miners available";
+			logger.error(error);
+			return LicensingResults.createError(error, source);
 		}
 		try {
 			String productId = request.getParameter(PRODUCT);
@@ -78,18 +79,21 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements S
 			String contentType = request.getParameter(LicensingRequests.CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				logger.error(String.format("LicensingConditionTransport not defined for contentType: %s", contentType));
-				return false;
+				String error = String.format("LicensingConditionTransport not defined for contentType: %s",
+						contentType);
+				logger.error(error);
+				return LicensingResults.createError(error, source);
 			}
 
 			transport.writeConditions(resultConditions, response.getOutputStream());
 			response.setContentType(APPLICATION_JSON);
 
-			return true;
+			return LicensingResults.createOK("Conditions mined", source);
 		} catch (IOException e) {
 			logger.error(e.getMessage());
+			String error = "Condition mining failed";
+			return LicensingResults.createError(error, source, e);
 		}
-		return false;
 	}
 
 	@Override

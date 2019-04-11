@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.passage.lbc.runtime.ServerHandler;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
-import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.BackendLauncher;
+import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
+import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.osgi.service.component.annotations.Component;
@@ -33,16 +33,16 @@ public class ServerRunnerImpl {
 	private static final String REGISTERED = "[Registered]  %s";
 	private static final String REQUEST_HANDLER_NOT_FOUND = "Request handler not registrated for component ";
 
-	private ServerHandler serverHandler;
+	private BackendLauncher serverHandler;
 	private Map<String, ServerRequestHandler> requestHandlers = new HashMap<>();
-	private Map<String, ServerRequestExecutor> requestExecutors = new HashMap<>();
-	private Map<String, ServerRequestAction> requestActions = new HashMap<>();
+	private Map<String, BackendRequestDispatcher> requestExecutors = new HashMap<>();
+	private Map<String, BackendActionExecutor> requestActions = new HashMap<>();
 
 	private Logger logger;
 
 	public void activate() {
 		if (serverHandler != null) {
-			serverHandler.launch();
+			serverHandler.launch(new HashMap<String, Object>());
 		} else {
 			logger.error("Server not registrated");
 		}
@@ -58,13 +58,13 @@ public class ServerRunnerImpl {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void bindServerHandler(ServerHandler serverHandler) {
+	public void bindServerHandler(BackendLauncher serverHandler) {
 		logger.info(String.format(REGISTERED, serverHandler.toString()));
 		this.serverHandler = serverHandler;
 
 	}
 
-	public void unbindServerHandler(ServerHandler serverHandler) {
+	public void unbindServerHandler(BackendLauncher serverHandler) {
 		this.serverHandler = null;
 	}
 
@@ -91,7 +91,7 @@ public class ServerRunnerImpl {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void bindServerRequestExecutor(ServerRequestExecutor serverRequestExecutor, Map<String, String> context) {
+	public void bindServerRequestExecutor(BackendRequestDispatcher serverRequestExecutor, Map<String, String> context) {
 		logger.debug(String.format(REGISTERED, serverRequestExecutor.getClass().getName()));
 		String requestExecutorModeId = context.get(LicensingRequests.MODE);
 		if (requestExecutorModeId != null) {
@@ -109,7 +109,7 @@ public class ServerRunnerImpl {
 		}
 	}
 
-	public void unbindServerRequestExecutor(ServerRequestExecutor serverRequestExecutor, Map<String, String> context) {
+	public void unbindServerRequestExecutor(BackendRequestDispatcher serverRequestExecutor, Map<String, String> context) {
 		String requestExecutorModeId = context.get(LicensingRequests.MODE);
 		if (requestExecutorModeId != null) {
 			requestExecutors.remove(requestExecutorModeId, serverRequestExecutor);
@@ -120,18 +120,18 @@ public class ServerRunnerImpl {
 	}
 
 	public void bindExecutorByRequest(Map<String, ServerRequestHandler> mapHandlers,
-			Map<String, Map<String, ServerRequestExecutor>> mapRequestExecutors) {
+			Map<String, Map<String, BackendRequestDispatcher>> mapRequestExecutors) {
 		for (String keyExecutor : mapRequestExecutors.keySet()) {
-			Map<String, ServerRequestExecutor> mapExecutors = mapRequestExecutors.get(keyExecutor);
+			Map<String, BackendRequestDispatcher> mapExecutors = mapRequestExecutors.get(keyExecutor);
 			ServerRequestHandler requestHandler = mapHandlers.get(keyExecutor);
 
-			for (Entry<String, ServerRequestExecutor> iter : mapExecutors.entrySet()) {
+			for (Entry<String, BackendRequestDispatcher> iter : mapExecutors.entrySet()) {
 				requestHandler.registerRequestExecutor(iter.getValue());
 			}
 		}
 	}
 
-	public void bindHandlerByServer(ServerHandler serverHandler,
+	public void bindHandlerByServer(BackendLauncher serverHandler,
 			Map<String, ServerRequestHandler> serverRequestHandlers) {
 		for (ServerRequestHandler requestHandler : serverRequestHandlers.values()) {
 			serverHandler.addServerRequestHandler(requestHandler);
@@ -139,7 +139,7 @@ public class ServerRunnerImpl {
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void bindServerRequestActions(ServerRequestAction action, Map<String, String> context) {
+	public void bindServerRequestActions(BackendActionExecutor action, Map<String, String> context) {
 		logger.debug(String.format(REGISTERED, action.getClass().getName()));
 
 		String actionId = context.get(LicensingRequests.ACTION);
@@ -151,7 +151,7 @@ public class ServerRunnerImpl {
 		}
 	}
 
-	public void unbindServerRequestActions(ServerRequestAction action, Map<String, String> context) {
+	public void unbindServerRequestActions(BackendActionExecutor action, Map<String, String> context) {
 		logger.debug(action.getClass().getName());
 
 		String actionId = context.get(LicensingRequests.ACTION);

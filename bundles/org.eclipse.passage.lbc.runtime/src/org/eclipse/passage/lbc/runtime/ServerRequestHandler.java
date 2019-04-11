@@ -14,8 +14,8 @@ package org.eclipse.passage.lbc.runtime;
 
 public interface ServerRequestHandler {
 
-	void registerRequestExecutor(ServerRequestExecutor executor);
+	void registerRequestExecutor(BackendRequestDispatcher executor);
 
-	void unregisterRequestExecutor(ServerRequestExecutor executor);
+	void unregisterRequestExecutor(BackendRequestDispatcher executor);
 
 }

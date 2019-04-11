@@ -21,17 +21,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
-import org.eclipse.passage.lbc.runtime.ServerRequestExecutor;
+import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
+import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
 import org.eclipse.passage.lic.net.LicensingRequests;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.log.LoggerFactory;
 
 @Component
-public class ClientRequestExecutor extends BaseComponent implements ServerRequestExecutor {
+public class ClientRequestExecutor extends BaseComponent implements BackendRequestDispatcher {
 
-	private static Map<String, ServerRequestAction> mapActionRequest = new HashMap<>();
+	private static Map<String, BackendActionExecutor> mapActionRequest = new HashMap<>();
 
 	private static final String EXECUTION_ACTION_ERROR = "Execution action: [%s] result [FALSE]";
 	private static final String RECIEVED_ACTION_TXT = "Recieved action id [%s]";
@@ -49,18 +50,18 @@ public class ClientRequestExecutor extends BaseComponent implements ServerReques
 	}
 
 	@Override
-	public void executeRequest(HttpServletRequest request, HttpServletResponse response)
+	public void dispatchRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		String actionId = request.getParameter(LicensingRequests.ACTION);
 		logger.info(String.format(RECIEVED_ACTION_TXT, actionId));
 		if (clientRecognition(request)) {
-			ServerRequestAction requestAction = mapActionRequest.get(actionId);
+			BackendActionExecutor requestAction = mapActionRequest.get(actionId);
 			if (requestAction == null) {
 				logger.info(String.format(MSG_REQUEST_ACTION_NOT_FOUND_ERROR, actionId));
 				return;
 			}
-			if (!requestAction.execute(request, response)) {
+			if (requestAction.executeAction(request, response).getSeverity() != LicensingResult.OK) {
 				logger.info(EXECUTION_ACTION_ERROR, requestAction.getClass().getName());
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			}
@@ -79,7 +80,7 @@ public class ClientRequestExecutor extends BaseComponent implements ServerReques
 	}
 
 	@Override
-	public boolean supportsMode(HttpServletRequest baseRequest) {
+	public boolean canDispatchRequest(HttpServletRequest baseRequest) {
 		String requestAccessMode = baseRequest.getParameter(LicensingRequests.MODE);
 		if (requestAccessMode != null && requestAccessMode.equals(accessModeId)) {
 			return true;
@@ -88,7 +89,7 @@ public class ClientRequestExecutor extends BaseComponent implements ServerReques
 	}
 
 	@Override
-	public void setRequestAction(Map<String, ServerRequestAction> mapActions) {
+	public void setRequestAction(Map<String, BackendActionExecutor> mapActions) {
 		mapActionRequest.putAll(mapActions);
 	}
 

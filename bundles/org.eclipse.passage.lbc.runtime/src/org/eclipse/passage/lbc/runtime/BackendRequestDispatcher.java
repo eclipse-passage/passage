@@ -12,14 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.runtime;
 
-public interface ServerHandler {
+import java.io.IOException;
+import java.util.Map;
 
-	void launch();
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	void terminate();
+public interface BackendRequestDispatcher {
 
-	void addServerRequestHandler(ServerRequestHandler handler);
+	boolean canDispatchRequest(HttpServletRequest baseRequest);
 
-	void remServerRequestHandler(ServerRequestHandler handler);
+	void dispatchRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+
+	void setRequestAction(Map<String, BackendActionExecutor> mapActions);
+
+	void setAccessModeId(String setAccessModeId);
 
 }

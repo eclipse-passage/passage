@@ -15,15 +15,18 @@ package org.eclipse.passage.lbc.jetty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.passage.lbc.runtime.ServerHandler;
+import org.eclipse.passage.lbc.runtime.BackendLauncher;
 import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
+import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 
-public class JettyServerHandler implements ServerHandler {
+public class JettyServerHandler implements BackendLauncher {
 
 	private static final int JETTY_PORT_DEFAULT = 8080;
 
@@ -33,8 +36,14 @@ public class JettyServerHandler implements ServerHandler {
 	private Server server;
 
 	@Override
-	public void launch() {
-		server = new Server(JETTY_PORT_DEFAULT);
+	public LicensingResult launch(Map<String, Object> arguments) {
+		String source = JettyServerHandler.class.getName();
+		if (server != null) {
+			return LicensingResults.createError("Jetty start: already exists", source, new IllegalStateException());
+		}
+		// FIXME: extract from arguments
+		int port = JETTY_PORT_DEFAULT;
+		server = new Server(port);
 		try {
 
 			HandlerList handlers = new HandlerList();
@@ -46,20 +55,27 @@ public class JettyServerHandler implements ServerHandler {
 			server.setHandler(handlers);
 			server.start();
 			LOG.info(server.getState());
+			return LicensingResults.createOK("Jetty start: OK", source);
 		} catch (Exception e) {
-			LOG.info(e.getMessage());
+			LOG.severe(e.getMessage());
+			return LicensingResults.createError("Jetty start: Error", source, e);
 		}
 	}
 
 	@Override
-	public void terminate() {
-		if (server != null) {
-			try {
-				server.stop();
-				LOG.info(server.getState());
-			} catch (Exception e) {
-				LOG.info(e.getMessage());
-			}
+	public LicensingResult terminate() {
+		String source = JettyServerHandler.class.getName();
+		if (server == null) {
+			return LicensingResults.createError("Jetty stop: not started", source, new IllegalStateException());
+		}
+		try {
+			server.stop();
+			LOG.info(server.getState());
+			server = null;
+			return LicensingResults.createOK("Jetty stop: OK", source);
+		} catch (Exception e) {
+			LOG.severe(e.getMessage());
+			return LicensingResults.createError("Jetty stop: Error", source, e);
 		}
 	}
 

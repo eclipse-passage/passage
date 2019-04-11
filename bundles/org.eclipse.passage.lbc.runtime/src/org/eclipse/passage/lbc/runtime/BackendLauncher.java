@@ -12,11 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.runtime;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-public interface ServerRequestAction {
+import org.eclipse.passage.lic.runtime.LicensingResult;
 
-	public boolean execute(HttpServletRequest request, HttpServletResponse response);
+public interface BackendLauncher {
+
+	LicensingResult launch(Map<String, Object> arguments);
+
+	LicensingResult terminate();
+
+	void addServerRequestHandler(ServerRequestHandler handler);
+
+	void remServerRequestHandler(ServerRequestHandler handler);
 
 }

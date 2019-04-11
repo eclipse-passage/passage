@@ -7,13 +7,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: javax.servlet,
- org.apache.httpcomponents.httpclient,
- org.apache.httpcomponents.httpcore,
- org.eclipse.passage.lic.runtime,
- com.fasterxml.jackson.core.jackson-databind,
- com.fasterxml.jackson.core.jackson-core;bundle-version="2.9.2",
- org.eclipse.passage.lic.net,
- org.eclipse.passage.lic.base
+Require-Bundle: javax.servlet;bundle-version="0.0.0",
+ org.eclipse.passage.lic.runtime;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lbc.runtime
 Bundle-ActivationPolicy: lazy

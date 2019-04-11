@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.container.ServerRunnerImpl">
    <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger" unbind="unbindLogger"/>
-   <reference bind="bindServerHandler" cardinality="1..n" interface="org.eclipse.passage.lbc.runtime.ServerHandler" name="ServerHandler" unbind="unbindServerHandler"/>
-   <reference bind="bindServerRequestActions" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.ServerRequestAction" name="ServerRequestActions" unbind="unbindServerRequestActions"/>
-   <reference bind="bindServerRequestExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.ServerRequestExecutor" name="ServerRequestExecutor" unbind="unbindServerRequestExecutor"/>
+   <reference bind="bindServerHandler" cardinality="1..n" interface="org.eclipse.passage.lbc.runtime.BackendLauncher" name="ServerHandler" unbind="unbindServerHandler"/>
+   <reference bind="bindServerRequestActions" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.BackendActionExecutor" name="ServerRequestActions" unbind="unbindServerRequestActions"/>
+   <reference bind="bindServerRequestExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.BackendRequestDispatcher" name="ServerRequestExecutor" unbind="unbindServerRequestExecutor"/>
    <reference bind="bindServerRequestHandler" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.ServerRequestHandler" name="ServerRequestHandler" unbind="unbindServerRequestHandler"/>
    <implementation class="org.eclipse.passage.lbc.container.ServerRunnerImpl"/>
 </scr:component>

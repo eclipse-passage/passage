@@ -25,9 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.base.condition.ServerConditionsDistributor;
-import org.eclipse.passage.lbc.runtime.ServerRequestAction;
+import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
 import org.eclipse.passage.lic.runtime.access.PermissionTransport;
@@ -44,7 +46,7 @@ import org.osgi.service.log.LoggerFactory;
  * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
 @Component
-public class ConditionCheckoutRequestAction extends BaseComponent implements ServerRequestAction {
+public class ConditionCheckoutRequestAction extends BaseComponent implements BackendActionExecutor {
 
 	private static final String CHARSET_UTF_8 = "UTF-8"; // NLS-$1
 	private static final String APPLICATION_JSON = "application/json"; // NLS-$1
@@ -60,22 +62,26 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
 
 	@Override
-	public boolean execute(HttpServletRequest request, HttpServletResponse response) {
-		logger.info(String.format(PASSAGE_EXECUTE_TXT, this.getClass().getName()));
+	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
+		String source = getClass().getName();
+		logger.info(String.format(PASSAGE_EXECUTE_TXT, source));
 		try {
 
 			String contentType = request.getContentType();
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				logger.error(String.format("LicensingConditionTransport not defined for contentType: %s", contentType));
-				return false;
+				String error = String.format("LicensingConditionTransport not defined for contentType: %s",
+						contentType);
+				logger.error(error);
+				return LicensingResults.createError(error, source);
 			}
 			Iterable<LicensingCondition> descriptors = transport.readConditions(request.getInputStream());
 
 			if (descriptors == null) {
-				response.getWriter().println(CONDITIONS_FOR_EVALUATE_NOT_DEFINED_ERROR);
-				logger.error(CONDITIONS_FOR_EVALUATE_NOT_DEFINED_ERROR);
-				return false;
+				String error = CONDITIONS_FOR_EVALUATE_NOT_DEFINED_ERROR;
+				response.getWriter().println(error);
+				logger.error(error);
+				return LicensingResults.createError(error, source);
 			}
 
 			String productId = request.getParameter(PRODUCT);
@@ -86,8 +92,9 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 
 			PermissionTransport transportPermission = mapPermission2Transport.get(contentType);
 			if (transportPermission == null) {
-				logger.error(String.format("FeaturePermissionTransport not defined for contentType: %s", contentType));
-				return false;
+				String error = String.format("FeaturePermissionTransport not defined for contentType: %s", contentType);
+				logger.error(error);
+				return LicensingResults.createError(error, source);
 			}
 			transportPermission.writePermissions(evaluatePermissions, response.getOutputStream());
 
@@ -97,9 +104,9 @@ public class ConditionCheckoutRequestAction extends BaseComponent implements Ser
 			printerWriter.flush();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return false;
+			return LicensingResults.createError("Conditions checkout failure", source, e);
 		}
-		return true;
+		return LicensingResults.createOK("Conditions checked out", source);
 	}
 
 	@Override

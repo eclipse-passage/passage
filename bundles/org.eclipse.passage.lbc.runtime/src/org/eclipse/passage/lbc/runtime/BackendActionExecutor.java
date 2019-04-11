@@ -12,6 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.runtime;
 
-public interface ServerRequestMode {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.eclipse.passage.lic.runtime.LicensingResult;
+
+public interface BackendActionExecutor {
+
+	LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response);
 
 }
