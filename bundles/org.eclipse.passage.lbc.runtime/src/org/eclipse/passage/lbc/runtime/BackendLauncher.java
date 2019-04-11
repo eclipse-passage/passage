@@ -22,8 +22,4 @@ public interface BackendLauncher {
 
 	LicensingResult terminate();
 
-	void addServerRequestHandler(ServerRequestHandler handler);
-
-	void remServerRequestHandler(ServerRequestHandler handler);
-
 }

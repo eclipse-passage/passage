@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.jetty;
+package org.eclipse.passage.lbc.internal.jetty;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,17 +23,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.runtime.ServerRequestHandler;
 
-public class JettyRequestHandler extends AbstractHandler implements ServerRequestHandler {
+class JettyRequestHandler extends AbstractHandler {
 
-	private List<BackendRequestDispatcher> serverRequestExecutors = new ArrayList<>();
+	private final List<BackendRequestDispatcher> requestDispatchers = new ArrayList<>();
+
+	JettyRequestHandler(Iterable<BackendRequestDispatcher> dispatchers) {
+		dispatchers.forEach(requestDispatchers::add);
+	}
 
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		for (BackendRequestDispatcher requestExecutor : serverRequestExecutors) {
+		for (BackendRequestDispatcher requestExecutor : requestDispatchers) {
 			if (requestExecutor.canDispatchRequest(baseRequest)) {
 				requestExecutor.dispatchRequest(request, response);
 				baseRequest.setHandled(true);
@@ -41,17 +43,4 @@ public class JettyRequestHandler extends AbstractHandler implements ServerReques
 		}
 	}
 
-	@Override
-	public void registerRequestExecutor(BackendRequestDispatcher executor) {
-		if (!serverRequestExecutors.contains(executor)) {
-			serverRequestExecutors.add(executor);
-		}
-	}
-
-	@Override
-	public void unregisterRequestExecutor(BackendRequestDispatcher executor) {
-		if (serverRequestExecutors.contains(executor)) {
-			serverRequestExecutors.remove(executor);
-		}
-	}
 }

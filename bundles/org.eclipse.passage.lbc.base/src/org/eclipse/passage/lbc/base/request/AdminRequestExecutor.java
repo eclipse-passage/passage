@@ -35,8 +35,6 @@ public class AdminRequestExecutor extends BaseComponent implements BackendReques
 
 	private static Map<String, BackendActionExecutor> mapActionRequest = new HashMap<>();
 
-	private String accessModeId = "";
-
 	@Override
 	@Reference
 	protected void bindLogger(LoggerFactory loggerFactory) {
@@ -59,19 +57,10 @@ public class AdminRequestExecutor extends BaseComponent implements BackendReques
 	@Override
 	public boolean canDispatchRequest(HttpServletRequest baseRequest) {
 		String requestAccessMode = baseRequest.getParameter(LicensingRequests.MODE);
-		if (requestAccessMode != null && requestAccessMode.equals(accessModeId)) {
+		if (requestAccessMode != null && requestAccessMode.equals("admin")) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public void setRequestAction(Map<String, BackendActionExecutor> mapActions) {
-		mapActionRequest.putAll(mapActions);
-	}
-
-	@Override
-	public void setAccessModeId(String accessModeId) {
-		this.accessModeId = accessModeId;
-	}
 }

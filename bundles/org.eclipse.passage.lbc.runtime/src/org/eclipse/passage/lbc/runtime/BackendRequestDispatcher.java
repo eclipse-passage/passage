@@ -13,7 +13,6 @@
 package org.eclipse.passage.lbc.runtime;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +23,5 @@ public interface BackendRequestDispatcher {
 	boolean canDispatchRequest(HttpServletRequest baseRequest);
 
 	void dispatchRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-
-	void setRequestAction(Map<String, BackendActionExecutor> mapActions);
-
-	void setAccessModeId(String setAccessModeId);
 
 }

@@ -15,8 +15,9 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.jetty.http;bundle-version="0.0.0",
  org.eclipse.jetty.util;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
+ org.eclipse.passage.lic.net;bundle-version="0.0.0",
  org.eclipse.passage.lbc.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lbc.container;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.lbc.jetty
+Export-Package: org.eclipse.passage.lbc.internal.jetty
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

@@ -41,8 +41,6 @@ public class ClientRequestExecutor extends BaseComponent implements BackendReque
 	private static final String RESPONSE_ERROR_UNTRUSTED = "Recieved unttrusted client";
 	private static final String MSG_REQUEST_ACTION_NOT_FOUND_ERROR = "Action executor with id: [%s] not registered";
 
-	private String accessModeId = "";
-
 	@Override
 	@Reference
 	protected void bindLogger(LoggerFactory loggerFactory) {
@@ -58,15 +56,16 @@ public class ClientRequestExecutor extends BaseComponent implements BackendReque
 		if (clientRecognition(request)) {
 			BackendActionExecutor requestAction = mapActionRequest.get(actionId);
 			if (requestAction == null) {
-				logger.info(String.format(MSG_REQUEST_ACTION_NOT_FOUND_ERROR, actionId));
+				logger.error(String.format(MSG_REQUEST_ACTION_NOT_FOUND_ERROR, actionId));
+				response.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED);
 				return;
 			}
 			if (requestAction.executeAction(request, response).getSeverity() != LicensingResult.OK) {
-				logger.info(EXECUTION_ACTION_ERROR, requestAction.getClass().getName());
+				logger.error(EXECUTION_ACTION_ERROR, requestAction.getClass().getName());
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			}
 		} else {
-			logger.info(RESPONSE_ERROR_UNTRUSTED);
+			logger.error(RESPONSE_ERROR_UNTRUSTED);
 		}
 
 	}
@@ -82,19 +81,10 @@ public class ClientRequestExecutor extends BaseComponent implements BackendReque
 	@Override
 	public boolean canDispatchRequest(HttpServletRequest baseRequest) {
 		String requestAccessMode = baseRequest.getParameter(LicensingRequests.MODE);
-		if (requestAccessMode != null && requestAccessMode.equals(accessModeId)) {
+		if (requestAccessMode != null && requestAccessMode.equals("client")) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public void setRequestAction(Map<String, BackendActionExecutor> mapActions) {
-		mapActionRequest.putAll(mapActions);
-	}
-
-	@Override
-	public void setAccessModeId(String accessModeId) {
-		this.accessModeId = accessModeId;
-	}
 }
