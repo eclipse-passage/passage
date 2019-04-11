@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2018-2019 ArSysOp and others
+	Copyright (c) 2019 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>org.eclipse.passage.lbc.agregator</artifactId>
-	<packaging>pom</packaging>
+	<artifactId>org.eclipse.passage.ldc.repository</artifactId>
+	<packaging>eclipse-repository</packaging>
 
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
@@ -26,19 +26,28 @@
 		<version>0.5.0-SNAPSHOT</version>
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
-	<modules>
-		<module>../../bundles/org.eclipse.passage.lbc.runtime</module>
-		<module>../../bundles/org.eclipse.passage.lbc.base</module>
-		<module>../../bundles/org.eclipse.passage.lbc.equinox</module>
-		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
-		<module>../../bundles/org.eclipse.passage.lbc.server</module>
-		<module>../../features/org.eclipse.passage.lbc.feature</module>
-
-		<module>../../tests/org.eclipse.passage.lbc.server.test</module>
-
-		<module>../../releng/org.eclipse.passage.lbc.repository</module>
-
-		<module>../../products/org.eclipse.passage.lbc.server.product</module>
-	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<inherited>true</inherited>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<id>archive-repository</id>
+						<goals>
+							<goal>archive-repository</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.artifactId}-${build.label}-incubation</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.container;
+package org.eclipse.passage.lbc.equinox;
 
 import java.util.HashMap;
 

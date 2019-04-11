@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.pde.ui.pluginContent">
+      <wizard
+            class="org.eclipse.passage.ldc.internal.pde.ui.templates.LicensedE3ProductContentWizard"
+            icon="platform:/plugin/org.eclipse.passage.lic.jface/$nl$/icons/obj16/passage.png"
+            id="org.eclipse.passage.ldc.pde.ui.pluginContent.rcp3"
+            java="true"
+            name="%pluginContent.LicensedE3Product.name"
+            pureOSGi="false"
+            rcp="true"
+            requiresActivator="false"
+            ui-content="true">
+         <description>
+            %pluginContent.LicensedE3Product.description
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>

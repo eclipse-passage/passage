@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2018-2019 ArSysOp and others
+	Copyright (c) 2019 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -14,27 +14,23 @@
 <project
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
->
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>org.eclipse.passage.root</artifactId>
+	<artifactId>org.eclipse.passage.ldc.agregator</artifactId>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
 		<artifactId>org.eclipse.passage.parent</artifactId>
 		<version>0.5.0-SNAPSHOT</version>
-		<relativePath>./releng/org.eclipse.passage.parent</relativePath>
+		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
-
 	<modules>
-		<module>./releng/org.eclipse.passage.target</module>
+		<module>../../bundles/org.eclipse.passage.ldc.pde.ui.templates</module>
+		<module>../../features/org.eclipse.passage.ldc.feature</module>
 
-		<module>./releng/org.eclipse.passage.lic.aggregator</module>
-		<module>./releng/org.eclipse.passage.loc.aggregator</module>
-		<module>./releng/org.eclipse.passage.lbc.aggregator</module>
-		<module>./releng/org.eclipse.passage.ldc.aggregator</module>
+		<module>../../releng/org.eclipse.passage.ldc.repository</module>
 	</modules>
 
 </project>
