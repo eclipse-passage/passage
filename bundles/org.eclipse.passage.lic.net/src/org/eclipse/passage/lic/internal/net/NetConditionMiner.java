@@ -37,8 +37,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -50,11 +52,6 @@ public class NetConditionMiner implements ConditionMiner {
 	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
 
 	private static final String SETTINGS_EXTENSION = ".settings";
-	private static final String MODE = "client";
-	private static final String MINER_LICENSING_CONDITION_TYPE = "extractConditions";
-
-	private static String HOST_KEY = "passage.server.host";
-	private static String PORT_KEY = "passage.server.port";
 
 	private final Map<String, org.eclipse.passage.lic.runtime.conditions.ConditionTransport> contentType2ConditionTransport = new HashMap<>();
 
@@ -99,22 +96,22 @@ public class NetConditionMiner implements ConditionMiner {
 
 		try {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
-			String hostValue = settingsMap.get(HOST_KEY);
+			String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 			if (hostValue == null || hostValue.isEmpty()) {
 				logger.log(Level.FINEST, NetConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
-			String portValue = settingsMap.get(PORT_KEY);
+			String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
 			if (portValue == null || portValue.isEmpty()) {
 				logger.log(Level.FINEST, NetConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
 
-			Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, MODE,
-					"product.1", "1.0.0");
+			Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue,
+					LicensingNet.ROLE, "product.1", "1.0.0");
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			URIBuilder requestBulder = LicensingRequests.createRequestURI(httpClient, host, requestAttributes,
-					MINER_LICENSING_CONDITION_TYPE);
+			URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes,
+					ConditionActions.ACQUIRE);
 			if (requestBulder == null) {
 				logger.log(Level.FINEST, "Could not create URI for request");
 			}

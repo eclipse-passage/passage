@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.base.actions.ConditionDescriptorRequestAction">
-   <property name="action" value="extractConditions"/>
+   <property name="action" value="acquire"/>
    <implementation class="org.eclipse.passage.lbc.base.actions.ConditionDescriptorRequestAction"/>
    <service>
       <provide interface="org.eclipse.passage.lbc.runtime.BackendActionExecutor"/>

@@ -18,9 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
-import org.apache.http.HttpHost;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.eclipse.passage.lic.base.LicensingProperties;
 
 public class LicensingRequests {
@@ -28,12 +26,6 @@ public class LicensingRequests {
 	public static final String PRODUCT = "product"; //$NON-NLS-1$
 	public static final String VERSION = "version"; //$NON-NLS-1$
 	public static final String USER = "user"; //$NON-NLS-1$
-
-	public static final String ACTION = "action";
-	public static final String MODE = "mode";
-	public static final String MODE_ADMIN = "admin";
-	public static final String MODE_LICENSEE = "licensee";
-	public static final String MODE_OPERATOR = "operator";
 
 	public static final String HANDLER = "handler";
 
@@ -44,14 +36,14 @@ public class LicensingRequests {
 
 	private static Logger logger = Logger.getLogger(LicensingRequests.class.getName());
 
-	public static Map<String, String> initRequestParams(String host, String port, String modeId, String productId,
+	public static Map<String, String> initRequestParams(String host, String port, String roleId, String productId,
 			String productVersion) {
 		Map<String, String> requestAttributes = new HashMap<>();
 		requestAttributes.put(HOST, host);
 		requestAttributes.put(PORT, port);
 
 		requestAttributes.put(USER, "12345678");
-		requestAttributes.put(MODE, modeId);
+		requestAttributes.put(LicensingNet.ROLE, roleId);
 		requestAttributes.put(PRODUCT, productId);
 		requestAttributes.put(VERSION, productVersion);
 		return requestAttributes;
@@ -94,9 +86,8 @@ public class LicensingRequests {
 		return null;
 	}
 
-	public static URIBuilder createRequestURI(CloseableHttpClient httpClient, HttpHost host,
-			Map<String, String> attributes, String action) {
-		attributes.put(ACTION, action);
+	public static URIBuilder createRequestURI(Map<String, String> attributes, String action) {
+		attributes.put(LicensingNet.ACTION, action);
 		attributes.put(CONTENT_TYPE, LicensingProperties.LICENSING_CONTENT_TYPE_XML);
 		return createRequestUriBuilder(attributes);
 	}

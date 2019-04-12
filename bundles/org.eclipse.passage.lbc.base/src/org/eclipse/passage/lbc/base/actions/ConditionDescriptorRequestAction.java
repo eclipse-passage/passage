@@ -29,9 +29,11 @@ import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -45,7 +47,7 @@ import org.osgi.service.log.LoggerFactory;
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
  * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
-@Component(property = LicensingRequests.ACTION + '=' + "extractConditions")
+@Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
 public class ConditionDescriptorRequestAction extends BaseComponent implements BackendActionExecutor {
 
 	private static final String APPLICATION_JSON = "application/json"; // NLS-$1

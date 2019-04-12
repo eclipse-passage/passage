@@ -44,18 +44,18 @@ import org.apache.http.impl.client.HttpClients;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ServerConditionMinerTests {
 	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
-	private static final String PASSAGE_SERVER_PORT_DEF = "passage.server.port=8080";
-	private static final String PASSAGE_SERVER_HOST_DEF = "passage.server.host=localhost";
-	private static final String HOST_KEY = "passage.server.host";
-	private static final String PORT_KEY = "passage.server.port";
+	private static final String PASSAGE_SERVER_HOST_DEF = LicensingNet.LICENSING_SERVER_HOST + "=localhost";
+	private static final String PASSAGE_SERVER_PORT_DEF = LicensingNet.LICENSING_SERVER_PORT + "=8080";
 	private static final String HOST_PORT = "%s:%s";
 	private static final String PRODUCT_ID_TEST = "product.test";
 
@@ -63,7 +63,6 @@ public class ServerConditionMinerTests {
 	 * Passed through maven-surefire-plugin configuration
 	 */
 	private static final String MVN_PROJECT_OUTPUT_PROPERTY = "project.build.directory"; //$NON-NLS-1$
-	private static final String MINER_LICENSING_CONDITION_TYPE = "extractConditions";
 	private static final String MVN_PROJECT_OUTPUT_VALUE = "target"; //$NON-NLS-1$
 
 	public static String resolveOutputDirName() {
@@ -133,19 +132,18 @@ public class ServerConditionMinerTests {
 		}
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		String hostValue = settingsMap.get(HOST_KEY);
+		String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 		assertNotNull(hostValue);
 		assertFalse(hostValue.isEmpty());
 
-		String portValue = settingsMap.get(PORT_KEY);
+		String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
 		assertNotNull(portValue);
 		assertFalse(portValue.isEmpty());
 
-		Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, LicensingRequests.MODE_LICENSEE,
+		Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, LicensingNet.ROLE_LICENSEE,
 				"product1.id", "1.0.0");
 		HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-		URIBuilder requestBulder = LicensingRequests.createRequestURI(httpClient, host, requestAttributes,
-				MINER_LICENSING_CONDITION_TYPE);
+		URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 
 		assertNotNull(requestBulder);
 

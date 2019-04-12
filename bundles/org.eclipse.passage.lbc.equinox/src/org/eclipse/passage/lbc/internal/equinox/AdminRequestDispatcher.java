@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.equinox;
 
-import static org.eclipse.passage.lic.net.LicensingRequests.MODE;
-import static org.eclipse.passage.lic.net.LicensingRequests.MODE_ADMIN;
+import static org.eclipse.passage.lic.net.LicensingNet.ROLE;
+import static org.eclipse.passage.lic.net.LicensingNet.ROLE_ADMIN;
 
 import java.util.Map;
 
@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-@Component(service = BackendRequestDispatcher.class, property = MODE + '=' + MODE_ADMIN)
+@Component(service = BackendRequestDispatcher.class, property = ROLE + '=' + ROLE_ADMIN)
 public class AdminRequestDispatcher extends BaseRequestDispatcher {
 
 	@Activate

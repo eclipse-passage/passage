@@ -29,6 +29,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -47,7 +48,7 @@ public class RequestProducer {
 	public Iterable<? extends FeaturePermission> evaluateConditionsRequest(CloseableHttpClient httpClient,
 			HttpHost host, Map<String, String> requestAttributes, Iterable<LicensingCondition> conditions) {
 		try {
-			requestAttributes.put(LicensingRequests.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
+			requestAttributes.put(LicensingNet.ACTION, REQUEST_ACTION_CONDITIONS_EVALUATE);
 			URIBuilder builder = LicensingRequests.createRequestUriBuilder(requestAttributes);
 			FeaturePermissionAggregator transferObject = processingEvaluateConditions(httpClient, host, builder,
 					conditions);
