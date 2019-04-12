@@ -25,15 +25,18 @@ import org.eclipse.passage.lic.base.LicensingProperties;
 
 public class LicensingRequests {
 
-	
 	public static final String PRODUCT = "product"; //$NON-NLS-1$
 	public static final String VERSION = "version"; //$NON-NLS-1$
 	public static final String USER = "user"; //$NON-NLS-1$
-	
+
 	public static final String ACTION = "action";
 	public static final String MODE = "mode";
+	public static final String MODE_ADMIN = "admin";
+	public static final String MODE_LICENSEE = "licensee";
+	public static final String MODE_OPERATOR = "operator";
+
 	public static final String HANDLER = "handler";
-	
+
 	public static final String PROTOCOL_TYPE_ID = "http";
 	public static final String HOST = "host";
 	public static final String PORT = "port";
@@ -46,7 +49,7 @@ public class LicensingRequests {
 		Map<String, String> requestAttributes = new HashMap<>();
 		requestAttributes.put(HOST, host);
 		requestAttributes.put(PORT, port);
-	
+
 		requestAttributes.put(USER, "12345678");
 		requestAttributes.put(MODE, modeId);
 		requestAttributes.put(PRODUCT, productId);
@@ -65,14 +68,14 @@ public class LicensingRequests {
 			logger.info("Host value undefined.");
 			return null;
 		}
-	
+
 		if (portAttr instanceof String) {
 			port = (String) portAttr;
 		} else {
 			logger.info("Port value undefined.");
 			return null;
 		}
-	
+
 		String requestHead = String.format("%s://%s:%s", PROTOCOL_TYPE_ID, host, port);
 		URIBuilder builder;
 		try {
@@ -84,7 +87,7 @@ public class LicensingRequests {
 				builder.setParameter(entry.getKey(), entry.getValue());
 			}
 			return builder;
-	
+
 		} catch (URISyntaxException e) {
 			logger.info(e.getMessage());
 		}
@@ -97,5 +100,5 @@ public class LicensingRequests {
 		attributes.put(CONTENT_TYPE, LicensingProperties.LICENSING_CONTENT_TYPE_XML);
 		return createRequestUriBuilder(attributes);
 	}
-	
+
 }

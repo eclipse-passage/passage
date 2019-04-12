@@ -141,7 +141,7 @@ public class ServerConditionMinerTests {
 		assertNotNull(portValue);
 		assertFalse(portValue.isEmpty());
 
-		Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, "client",
+		Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, LicensingRequests.MODE_LICENSEE,
 				"product1.id", "1.0.0");
 		HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
 		URIBuilder requestBulder = LicensingRequests.createRequestURI(httpClient, host, requestAttributes,
