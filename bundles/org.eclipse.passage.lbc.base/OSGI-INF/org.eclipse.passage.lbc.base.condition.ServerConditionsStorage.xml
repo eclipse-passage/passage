@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" enabled="true" name="org.eclipse.passage.lbc.base.condition.ServerConditionsStorage">
    <implementation class="org.eclipse.passage.lbc.base.condition.ServerConditionsStorage"/>
    <service>
-      <provide interface="org.eclipse.passage.lbc.runtime.LicensingConditionStorage"/>
+      <provide interface="org.eclipse.passage.lbc.runtime.conditions.LicensingConditionStorage"/>
    </service>
    <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
    <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger"/>

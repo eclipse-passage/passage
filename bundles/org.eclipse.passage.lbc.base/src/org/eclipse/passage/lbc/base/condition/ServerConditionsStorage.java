@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.passage.lbc.base.BaseComponent;
-import org.eclipse.passage.lbc.runtime.LicensingConditionStorage;
+import org.eclipse.passage.lbc.runtime.conditions.LicensingConditionStorage;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
