@@ -48,10 +48,8 @@ import org.osgi.service.log.LoggerFactory;
 @Component(property = LicensingRequests.ACTION + '=' + "extractConditions")
 public class ConditionDescriptorRequestAction extends BaseComponent implements BackendActionExecutor {
 
-	private static final String SERVER_MINER_TYPE = "server.miner"; // NLS-$1
 	private static final String APPLICATION_JSON = "application/json"; // NLS-$1
 	private static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; // NLS-$1
-	private static final String MINER_TYPE_KEY = "miner.type";// NLS-$1
 
 	private List<ConditionMiner> licenseConditionMiners = new ArrayList<>();
 	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
@@ -104,11 +102,7 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements B
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindConditionMiner(ConditionMiner conditionMiner, Map<String, String> context) {
-
-		String minerType = context.get(MINER_TYPE_KEY);
-		if (minerType != null && minerType.equals(SERVER_MINER_TYPE)) {
-			this.licenseConditionMiners.add(conditionMiner);
-		}
+		this.licenseConditionMiners.add(conditionMiner);
 	}
 
 	public void unbindConditionMiner(ConditionMiner conditionMiner, Map<String, String> context) {

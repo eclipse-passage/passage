@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
@@ -37,7 +38,7 @@ import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 
 public abstract class BasePathConditionMiner implements ConditionMiner {
 
-	private LicensingReporter licensingReporter;
+	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 	private KeyKeeperRegistry keyKeeperRegistry;
 	private StreamCodecRegistry streamCodecRegistry;
 	private final Map<String, ConditionTransport> conditionTransports = new HashMap<>();
@@ -48,7 +49,7 @@ public abstract class BasePathConditionMiner implements ConditionMiner {
 
 	protected void unbindLicensingReporter(LicensingReporter reporter) {
 		if (this.licensingReporter == reporter) {
-			this.licensingReporter = null;
+			this.licensingReporter = SystemReporter.INSTANCE;
 		}
 	}
 
