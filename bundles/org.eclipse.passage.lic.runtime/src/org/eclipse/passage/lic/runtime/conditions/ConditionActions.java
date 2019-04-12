@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.runtime.conditions;
 
 /**
+ * Actions to be performed with {@link LicensingCondition}(s)
  * 
  * @since 0.5.0
  *
@@ -23,10 +24,20 @@ public class ConditionActions {
 		// block
 	}
 
+	/**
+	 * Acquire the {@link LicensingCondition} for the future use, the usage needs to
+	 * be periodically confirmed with {@link #KEEP} action
+	 */
 	public static final String ACQUIRE = "acquire"; //$NON-NLS-1$
 
-	public static final String CONFIRM = "confirm"; //$NON-NLS-1$
+	/**
+	 * Keep the {@link LicensingCondition} for the usage
+	 */
+	public static final String KEEP = "keep"; //$NON-NLS-1$
 
+	/**
+	 * Release the {@link LicensingCondition} to be available for others
+	 */
 	public static final String RELEASE = "release"; //$NON-NLS-1$
 
 }

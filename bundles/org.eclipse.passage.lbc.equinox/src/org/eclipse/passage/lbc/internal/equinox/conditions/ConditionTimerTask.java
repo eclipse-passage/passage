@@ -10,12 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.condition;
+package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.util.TimerTask;
+
 import org.eclipse.passage.lic.net.TimeConditions;
 
-public abstract class ConditionTimerTask extends TimerTask {
+abstract class ConditionTimerTask extends TimerTask {
 
 	private boolean isStopped = false;
 	private String timeToLive = "";

@@ -10,22 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.condition;
+package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.passage.lbc.runtime.conditions.ConditionArbiter;
+import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
-public class ServerConditionsArbitr {
+public class ServerConditionArbiter implements ConditionArbiter {
 
 	List<LicensingCondition> reservedConditions = new ArrayList<>();
 	List<LicensingCondition> leaseConditions = new ArrayList<>();
 	List<ConditionTimerTask> reservedConditionTasks = new ArrayList<>();
 	List<ConditionTimerTask> leasedConditionTasks = new ArrayList<>();
-	Logger logger = Logger.getLogger(ServerConditionsArbitr.class.getName());
+
+	Logger logger = Logger.getLogger(ServerConditionArbiter.class.getName());
 
 	public boolean addConditionToReserv(LicensingCondition condition) {
 		boolean isReserved = false;
@@ -101,5 +105,23 @@ public class ServerConditionsArbitr {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public LicensingResult acquireConditions(Iterable<LicensingCondition> conditions) {
+		// TODO Auto-generated method stub
+		return LicensingResults.createOK();
+	}
+
+	@Override
+	public LicensingResult keepConditions(Iterable<LicensingCondition> conditions) {
+		// TODO Auto-generated method stub
+		return LicensingResults.createOK();
+	}
+
+	@Override
+	public LicensingResult releaseConditions(Iterable<LicensingCondition> conditions) {
+		// TODO Auto-generated method stub
+		return LicensingResults.createOK();
 	}
 }

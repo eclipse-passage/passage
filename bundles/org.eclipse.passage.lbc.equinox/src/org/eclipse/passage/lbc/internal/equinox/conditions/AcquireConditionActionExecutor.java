@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.actions;
+package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import static org.eclipse.passage.lic.net.LicensingRequests.PRODUCT;
 import static org.eclipse.passage.lic.net.LicensingRequests.VERSION;
@@ -25,9 +25,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.passage.lbc.base.BaseComponent;
 import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.net.LicensingRequests;
@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
 /**
@@ -48,10 +49,9 @@ import org.osgi.service.log.LoggerFactory;
  * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
  */
 @Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
-public class ConditionDescriptorRequestAction extends BaseComponent implements BackendActionExecutor {
+public class AcquireConditionActionExecutor implements BackendActionExecutor {
 
-	private static final String APPLICATION_JSON = "application/json"; // NLS-$1
-	private static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; // NLS-$1
+	protected Logger logger;
 
 	private List<ConditionMiner> licenseConditionMiners = new ArrayList<>();
 	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
@@ -86,7 +86,7 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements B
 			}
 
 			transport.writeConditions(resultConditions, response.getOutputStream());
-			response.setContentType(APPLICATION_JSON);
+			response.setContentType(request.getContentType());
 
 			return LicensingResults.createOK("Conditions mined", source);
 		} catch (IOException e) {
@@ -96,10 +96,13 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements B
 		}
 	}
 
-	@Override
 	@Reference
 	protected void bindLogger(LoggerFactory loggerFactory) {
-		super.bindLogger(loggerFactory);
+		logger = loggerFactory.getLogger(this.getClass().getName());
+	}
+
+	protected void unbindLogger(LoggerFactory loggerFactory) {
+		logger = null;
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
@@ -113,16 +116,12 @@ public class ConditionDescriptorRequestAction extends BaseComponent implements B
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String conditionType = context.get(LICENSING_CONTENT_TYPE);
-		if (conditionType != null) {
-			mapCondition2Transport.put(conditionType, transport);
-		}
+		String conditionType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
+		mapCondition2Transport.put(conditionType, transport);
 	}
 
 	public void unbindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String conditionType = context.get(LICENSING_CONTENT_TYPE);
-		if (conditionType != null) {
-			mapCondition2Transport.remove(conditionType, transport);
-		}
+		String conditionType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
+		mapCondition2Transport.remove(conditionType, transport);
 	}
 }

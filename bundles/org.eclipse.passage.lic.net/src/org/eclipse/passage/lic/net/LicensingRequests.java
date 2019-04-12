@@ -27,8 +27,6 @@ public class LicensingRequests {
 	public static final String VERSION = "version"; //$NON-NLS-1$
 	public static final String USER = "user"; //$NON-NLS-1$
 
-	public static final String HANDLER = "handler";
-
 	public static final String PROTOCOL_TYPE_ID = "http";
 	public static final String HOST = "host";
 	public static final String PORT = "port";

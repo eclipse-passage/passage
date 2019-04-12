@@ -53,7 +53,7 @@ public class NetConditionMiner implements ConditionMiner {
 
 	private static final String SETTINGS_EXTENSION = ".settings";
 
-	private final Map<String, org.eclipse.passage.lic.runtime.conditions.ConditionTransport> contentType2ConditionTransport = new HashMap<>();
+	private final Map<String, ConditionTransport> contentType2ConditionTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -110,8 +110,7 @@ public class NetConditionMiner implements ConditionMiner {
 			Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue,
 					LicensingNet.ROLE, "product.1", "1.0.0");
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes,
-					ConditionActions.ACQUIRE);
+			URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 			if (requestBulder == null) {
 				logger.log(Level.FINEST, "Could not create URI for request");
 			}
