@@ -40,6 +40,20 @@
 		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
+
+		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
+			The properties are declared empty by default and are overridden by automatic 
+			activation of specific configuration in modules. -->
+		<!-- any additional surefire args; to be defined by a test-plugin -->
+		<surefire.testArgLine></surefire.testArgLine>
+		<!-- platform/OS specific JVM args -->
+		<surefire.platformSystemProperties></surefire.platformSystemProperties>
+		<!-- properties related to Java modules on Java 9+ -->
+		<surefire.moduleProperties></surefire.moduleProperties>
+		<!-- system specific JVM args; if needed provided by system properties to 
+			the build command -->
+		<surefire.systemProperties></surefire.systemProperties>
+	
 	</properties>
 
 	<organization>
@@ -190,6 +204,8 @@
 				<artifactId>tycho-source-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
+					<distinctSourceRoots>true</distinctSourceRoots>
+					<strictSrcIncludes>false</strictSrcIncludes>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
 					</archive>
@@ -259,7 +275,55 @@
 				<version>${tycho.version}</version>
 			</plugin>
 
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<argLine>${surefire.testArgLine} ${surefire.platformSystemProperties}
+						${surefire.systemProperties} ${surefire.moduleProperties}</argLine>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.3.0.603</version>
+			</plugin>
+
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>coverage</id>
+			<properties>
+				<!-- Since we append output of various tests, write to a common folder besides tests -->
+				<!-- it's recommended to override that to an absolute value in specific Jenkins configurations and Sonar integration -->
+				<jacoco.destFile>${project.basedir}/../target/jacoco.exec</jacoco.destFile>
+				<sonar.jacoco.reportPath>${jacoco.destFile}</sonar.jacoco.reportPath>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.3</version>
+						<executions>
+							<execution>
+								<id>jacoco-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<append>true</append>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
