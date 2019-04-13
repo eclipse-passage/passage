@@ -170,17 +170,17 @@ public class LocWokbench {
 		}
 		LabelSearchFilter filter = new LabelSearchFilter();
 
-		FilteredSelectionDialog dialog = new FilteredSelectionDialog(shell, false, filter);
+		FilteredSelectionDialog<C> dialog = new FilteredSelectionDialog<C>(shell, false, filter);
 		dialog.setTitle(title);
 		dialog.setImage(LicensingImages.getImage(classifier));
 
 		dialog.setLabelProvider(new DomainRegistryLabelProvider(factory));
 		dialog.setInput(input);
 		if (initial != null) {
-			dialog.setInitial(initial);
+			dialog.setInitialSelection(initial);
 		}
 		if (dialog.open() == Dialog.OK) {
-			return dialog.getFirstResult();
+			return dialog.getFirstResult().orElse(null);
 		}
 		return null;
 	}
