@@ -27,6 +27,6 @@ public class LicensingNet {
 	public static final String ROLE_LICENSEE = "licensee"; //$NON-NLS-1$
 	public static final String ROLE_OPERATOR = "operator"; //$NON-NLS-1$
 
-	public static final String ACTION = "action";
+	public static final String ACTION = "action"; //$NON-NLS-1$
 
 }

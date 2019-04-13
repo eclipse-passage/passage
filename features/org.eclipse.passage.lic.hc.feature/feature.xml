@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2018-2019 ArSysOp and others
+	Copyright (c) 2019 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="org.eclipse.passage.lic.execute.feature"
+      id="org.eclipse.passage.lic.hc.feature"
       label="%featureName"
       version="0.5.0.qualifier"
       provider-name="%providerName"
@@ -31,28 +31,16 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.passage.lic.compile.feature"
-         version="0.0.0"/>
+   <requires>
+      <import feature="org.eclipse.passage.lic.net.feature" version="0.0.0"/>
+      <import feature="org.eclipse.passage.lic.equinox.feature" version="0.0.0"/>
+   </requires>
 
-   <includes
-         id="org.eclipse.passage.lic.oshi.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.net.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.hc.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.json.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.lic.licenses.feature"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.passage.lic.hc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

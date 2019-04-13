@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.internal.hc;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
@@ -37,8 +37,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.hc.HttpRequests;
 import org.eclipse.passage.lic.net.LicensingNet;
-import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
@@ -47,7 +47,7 @@ import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 
 @Component
-public class NetConditionMiner implements ConditionMiner {
+public class HcConditionMiner implements ConditionMiner {
 
 	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
 
@@ -57,7 +57,7 @@ public class NetConditionMiner implements ConditionMiner {
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
-	Logger logger = Logger.getLogger(NetConditionMiner.class.getName());
+	Logger logger = Logger.getLogger(HcConditionMiner.class.getName());
 
 	@Override
 	public Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration) {
@@ -98,19 +98,19 @@ public class NetConditionMiner implements ConditionMiner {
 			CloseableHttpClient httpClient = HttpClients.createDefault();
 			String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 			if (hostValue == null || hostValue.isEmpty()) {
-				logger.log(Level.FINEST, NetConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, HcConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
 			String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
 			if (portValue == null || portValue.isEmpty()) {
-				logger.log(Level.FINEST, NetConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, HcConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
 
-			Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue,
+			Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue,
 					LicensingNet.ROLE, "product.1", "1.0.0");
 			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-			URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
+			URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 			if (requestBulder == null) {
 				logger.log(Level.FINEST, "Could not create URI for request");
 			}

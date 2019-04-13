@@ -10,18 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.internal.hc;
 
 import org.eclipse.osgi.util.NLS;
 
-public class NetConditionMsg extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.net.NetConditionMessages"; //$NON-NLS-1$
+public class HcConditionMsg extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.HcConditionMessages"; //$NON-NLS-1$
 
 	public static String PORT_VALUE_NOT_SPECIFIED_ERROR;
 	public static String HOST_VALUE_NOT_SPECIFIED_ERROR;
 
 	static {
 		// initialize resource bundles
-		NLS.initializeMessages(BUNDLE_NAME, NetConditionMsg.class);
+		NLS.initializeMessages(BUNDLE_NAME, HcConditionMsg.class);
 	}
 }

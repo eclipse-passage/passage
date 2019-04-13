@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.net;
+package org.eclipse.passage.lic.hc;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -19,20 +19,18 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.apache.http.client.utils.URIBuilder;
+import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.net.LicensingNet;
 
-public class LicensingRequests {
+public class HttpRequests {
 
-	public static final String PRODUCT = "product"; //$NON-NLS-1$
-	public static final String VERSION = "version"; //$NON-NLS-1$
-	public static final String USER = "user"; //$NON-NLS-1$
+	private static final String PROTOCOL_TYPE_ID = "http"; //$NON-NLS-1$
+	private static final String USER = "user"; //$NON-NLS-1$
+	private static final String HOST = "host"; //$NON-NLS-1$
+	private static final String PORT = "port"; //$NON-NLS-1$
 
-	public static final String PROTOCOL_TYPE_ID = "http";
-	public static final String HOST = "host";
-	public static final String PORT = "port";
-	public static final String CONTENT_TYPE = "content.type";
-
-	private static Logger logger = Logger.getLogger(LicensingRequests.class.getName());
+	private static Logger logger = Logger.getLogger(HttpRequests.class.getName());
 
 	public static Map<String, String> initRequestParams(String host, String port, String roleId, String productId,
 			String productVersion) {
@@ -42,14 +40,14 @@ public class LicensingRequests {
 
 		requestAttributes.put(USER, "12345678");
 		requestAttributes.put(LicensingNet.ROLE, roleId);
-		requestAttributes.put(PRODUCT, productId);
-		requestAttributes.put(VERSION, productVersion);
+		requestAttributes.put(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER, productId);
+		requestAttributes.put(LicensingConfigurations.LICENSING_PRODUCT_VERSION, productVersion);
 		return requestAttributes;
 	}
 
 	public static URIBuilder createRequestUriBuilder(Map<String, String> attributes) {
-		String host = "";
-		String port = "";
+		String host = null;
+		String port = null;
 		Object hostAttr = attributes.get(HOST);
 		Object portAttr = attributes.get(PORT);
 		if (hostAttr instanceof String) {
@@ -86,7 +84,7 @@ public class LicensingRequests {
 
 	public static URIBuilder createRequestURI(Map<String, String> attributes, String action) {
 		attributes.put(LicensingNet.ACTION, action);
-		attributes.put(CONTENT_TYPE, LicensingProperties.LICENSING_CONTENT_TYPE_XML);
+		attributes.put(LicensingProperties.LICENSING_CONTENT_TYPE, LicensingProperties.LICENSING_CONTENT_TYPE_XML);
 		return createRequestUriBuilder(attributes);
 	}
 

@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.equinox.conditions;
 
-import static org.eclipse.passage.lic.net.LicensingRequests.PRODUCT;
-import static org.eclipse.passage.lic.net.LicensingRequests.VERSION;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +27,6 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.net.LicensingNet;
-import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
@@ -66,8 +62,8 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			return LicensingResults.createError(error, source);
 		}
 		try {
-			String productId = request.getParameter(PRODUCT);
-			String productVersion = request.getParameter(VERSION);
+			String productId = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
+			String productVersion = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
 			LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
 
 			Collection<LicensingCondition> resultConditions = new ArrayList<>();
@@ -76,7 +72,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 				Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
 				resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
 			}
-			String contentType = request.getParameter(LicensingRequests.CONTENT_TYPE);
+			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
 				String error = String.format("LicensingConditionTransport not defined for contentType: %s",

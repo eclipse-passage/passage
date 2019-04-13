@@ -44,8 +44,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.hc.HttpRequests;
 import org.eclipse.passage.lic.net.LicensingNet;
-import org.eclipse.passage.lic.net.LicensingRequests;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -140,10 +140,10 @@ public class ServerConditionMinerTests {
 		assertNotNull(portValue);
 		assertFalse(portValue.isEmpty());
 
-		Map<String, String> requestAttributes = LicensingRequests.initRequestParams(hostValue, portValue, LicensingNet.ROLE_LICENSEE,
+		Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue, LicensingNet.ROLE_LICENSEE,
 				"product1.id", "1.0.0");
 		HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
-		URIBuilder requestBulder = LicensingRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
+		URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 
 		assertNotNull(requestBulder);
 
