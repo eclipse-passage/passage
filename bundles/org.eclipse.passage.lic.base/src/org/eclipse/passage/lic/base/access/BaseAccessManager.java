@@ -163,6 +163,9 @@ public class BaseAccessManager implements AccessManager {
 
 	@Override
 	public Iterable<LicensingCondition> extractConditions(LicensingConfiguration configuration) {
+		if (conditionMinerRegistry == null) {
+			return Collections.emptyList();
+		}
 		List<LicensingCondition> mined = new ArrayList<>();
 		Iterable<ConditionMiner> conditionMiners = conditionMinerRegistry.getConditionMiners();
 		List<LicensingResult> errors = new ArrayList<>();

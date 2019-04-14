@@ -12,7 +12,7 @@
 -->
 <site>
 	<category-def
-		name="org.eclipse.passage.lbc.category"
+		name="org.eclipse.passage.ldc.category"
 		label="Passage LDC (Incubation)">
 		<description>
 			Passage Licensing Development Components: 

@@ -4,14 +4,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
+import org.eclipse.pde.core.plugin.ISharedPluginModel;
+import org.eclipse.pde.internal.core.ibundle.IBundle;
+import org.eclipse.pde.internal.core.ibundle.IBundleModel;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginBase;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 import org.eclipse.pde.internal.ui.templates.IHelpContextIds;
 import org.eclipse.pde.internal.ui.templates.PDETemplateMessages;
 import org.eclipse.pde.ui.IFieldData;
+import org.osgi.framework.Constants;
 
 @SuppressWarnings("restriction")
 public class LicensedE3ProductTemplateSection extends BaseTemplateSection {
@@ -59,9 +66,30 @@ public class LicensedE3ProductTemplateSection extends BaseTemplateSection {
 
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
+		createLicensingCapability();
 		createApplicationExtension();
 		createPerspectiveExtension();
 		createProductExtension();
+	}
+
+	private void createLicensingCapability() {
+		IPluginBase plugin = model.getPluginBase();
+		if (plugin instanceof IBundlePluginBase) {
+			IBundlePluginBase bpBase = (IBundlePluginBase) plugin;
+			ISharedPluginModel spm = bpBase.getModel();
+			if (spm instanceof IBundlePluginModelBase) {
+				IBundlePluginModelBase bpmb = (IBundlePluginModelBase) spm;
+				IBundleModel bundleModel = bpmb.getBundleModel();
+				IBundle bundle = bundleModel.getBundle();
+				String productFqn = getStringOption(KEY_PACKAGE_NAME) + '.' + VALUE_PRODUCT_ID;
+				StringBuilder sb = new StringBuilder();
+				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append(';');
+				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append('=');
+				sb.append('"').append(productFqn).append('"');
+				bundle.setHeader(Constants.PROVIDE_CAPABILITY, sb.toString());
+			}
+		}
+
 	}
 
 	private void createApplicationExtension() throws CoreException {
@@ -79,8 +107,9 @@ public class LicensedE3ProductTemplateSection extends BaseTemplateSection {
 		run.setAttribute("class", getStringOption(KEY_PACKAGE_NAME) + "." + getStringOption(KEY_APPLICATION_CLASS)); //$NON-NLS-1$ //$NON-NLS-2$
 		element.add(run);
 
-		if (!extension.isInTheModel())
+		if (!extension.isInTheModel()) {
 			plugin.add(extension);
+		}
 	}
 
 	private void createPerspectiveExtension() throws CoreException {
@@ -94,8 +123,9 @@ public class LicensedE3ProductTemplateSection extends BaseTemplateSection {
 		element.setAttribute("id", plugin.getId() + ".perspective"); //$NON-NLS-1$ //$NON-NLS-2$
 		extension.add(element);
 
-		if (!extension.isInTheModel())
+		if (!extension.isInTheModel()) {
 			plugin.add(extension);
+		}
 	}
 
 	private void createProductExtension() throws CoreException {
@@ -110,8 +140,9 @@ public class LicensedE3ProductTemplateSection extends BaseTemplateSection {
 
 		extension.add(element);
 
-		if (!extension.isInTheModel())
+		if (!extension.isInTheModel()) {
 			plugin.add(extension);
+		}
 	}
 
 	@Override

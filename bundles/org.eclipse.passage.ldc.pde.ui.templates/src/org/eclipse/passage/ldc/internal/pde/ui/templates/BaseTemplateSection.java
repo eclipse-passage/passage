@@ -50,6 +50,11 @@ public abstract class BaseTemplateSection extends OptionTemplateSection {
 		return Platform.getResourceBundle(bundle);
 	}
 
+	@Override
+	protected String getTemplateDirectory() {
+		return "templates"; //$NON-NLS-1$
+	}
+
 	protected String getFormattedPackageName(String id) {
 		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < id.length(); i++) {
@@ -66,12 +71,13 @@ public abstract class BaseTemplateSection extends OptionTemplateSection {
 	}
 
 	protected IPluginReference[] getRCP3xDependencies() {
-		IPluginReference[] dep = new IPluginReference[5];
-		dep[0] = new PluginReference("org.eclipse.core.runtime"); //$NON-NLS-1$
-		dep[1] = new PluginReference("org.eclipse.ui"); //$NON-NLS-1$
-		dep[2] = new PluginReference("org.eclipse.equinox.ds"); //$NON-NLS-1$
-		dep[3] = new PluginReference("org.eclipse.equinox.util"); //$NON-NLS-1$
-		dep[4] = new PluginReference("org.eclipse.equinox.event"); //$NON-NLS-1$
+		IPluginReference[] dep = new IPluginReference[6];
+		dep[0] = new PluginReference("org.eclipse.equinox.ds"); //$NON-NLS-1$
+		dep[1] = new PluginReference("org.eclipse.equinox.util"); //$NON-NLS-1$
+		dep[2] = new PluginReference("org.eclipse.equinox.event"); //$NON-NLS-1$
+		dep[3] = new PluginReference("org.eclipse.core.runtime"); //$NON-NLS-1$
+		dep[4] = new PluginReference("org.eclipse.ui"); //$NON-NLS-1$
+		dep[5] = new PluginReference("org.eclipse.passage.lic.equinox"); //$NON-NLS-1$
 		return dep;
 	}
 
