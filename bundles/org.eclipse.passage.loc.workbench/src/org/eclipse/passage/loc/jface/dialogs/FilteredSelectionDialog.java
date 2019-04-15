@@ -24,6 +24,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -34,11 +35,12 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
+public class FilteredSelectionDialog<T> extends ObjectSelectionStatusDialog<T> {
 
 	private static final int DIALOG_HEIGHT = 500;
 	private static final int DIALOG_WIDTH = 400;
 	private final boolean multi;
+	private Image image;
 	private Text filteringField;
 	private Label resultingField;
 	private TableViewer tableViewItems;
@@ -51,7 +53,10 @@ public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
 		super(parent);
 		this.multi = multi;
 		this.filter = filter;
+	}
 
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public void setInput(Iterable<?> objects) {
@@ -66,7 +71,7 @@ public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
 
 	@Override
 	protected void computeResult() {
-		List<?> selectedElements = tableViewItems.getStructuredSelection().toList();
+		List<T> selectedElements = tableViewItems.getStructuredSelection().toList();
 		setResult(selectedElements);
 	}
 
@@ -132,7 +137,7 @@ public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
 		tableViewItems.setContentProvider(ArrayContentProvider.getInstance());
 		tableViewItems.setLabelProvider(labelProvider);
 		tableViewItems.setInput(input);
-		tableViewItems.setSelection(new StructuredSelection(getInitial().toArray()));
+		tableViewItems.setSelection(new StructuredSelection(getInitialSelection().toArray()));
 		tableViewItems.getTable().addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -175,6 +180,9 @@ public class FilteredSelectionDialog extends ObjectSelectionStatusDialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		shell.setMinimumSize(DIALOG_WIDTH, DIALOG_HEIGHT);
+		if (image != null) {
+			shell.setImage(image);
+		}
 		super.configureShell(shell);
 	}
 }

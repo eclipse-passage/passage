@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.jface.dialogs;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.dialogs.AbstractSelectionDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.passage.lic.jface.widgets.StatusLine;
 import org.eclipse.swt.SWT;
@@ -24,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-public abstract class ObjectSelectionStatusDialog extends ObjectSelectionDialog {
+public abstract class ObjectSelectionStatusDialog<T> extends AbstractSelectionDialog<T> {
 
 	private StatusLine statusLine;
 
@@ -98,5 +99,4 @@ public abstract class ObjectSelectionStatusDialog extends ObjectSelectionDialog 
 		setHelpAvailable(helpAvailable);
 		return composite;
 	}
-
 }
