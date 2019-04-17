@@ -17,6 +17,20 @@
             %pluginContent.LicensedE3Product.description
          </description>
       </wizard>
+      <wizard
+            class="org.eclipse.passage.ldc.internal.pde.ui.templates.LicensedE4ProductContentWizard"
+            icon="platform:/plugin/org.eclipse.passage.lic.jface/$nl$/icons/obj16/passage.png"
+            id="org.eclipse.passage.ldc.pde.ui.pluginContent.rcp4"
+            java="true"
+            name="%pluginContent.LicensedE4Product.name"
+            pureOSGi="false"
+            rcp="true"
+            requiresActivator="false"
+            ui-content="true">
+         <description>
+            %pluginContent.LicensedE4Product.description
+         </description>
+      </wizard>
    </extension>
 
 </plugin>
