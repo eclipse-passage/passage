@@ -13,11 +13,12 @@ import org.eclipse.pde.internal.ui.templates.IHelpContextIds;
 import org.eclipse.pde.internal.ui.templates.PDETemplateMessages;
 import org.eclipse.pde.ui.IFieldData;
 
-public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSection {
+public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSection {
 
-	private static final String LICENSED_E3_PRODUCT = "LicensedE3Product"; //$NON-NLS-1$
+	private static final String LICENSED_E4_PRODUCT = "LicensedE4Product"; //$NON-NLS-1$
+	private static final String E4_SWT_APPLICATION_ID = "org.eclipse.e4.ui.workbench.swt.E4Application"; //$NON-NLS-1$
 
-	public LicensedE3ProductTemplateSection() {
+	public LicensedE4ProductTemplateSection() {
 		setPageCount(1);
 		createOptions();
 	}
@@ -53,34 +54,14 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	@Override
 	public String getSectionId() {
-		return LICENSED_E3_PRODUCT;
+		return LICENSED_E4_PRODUCT;
 	}
 
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		String productFqn = getStringOption(KEY_PACKAGE_NAME) + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
-		String classValue = getStringOption(KEY_PACKAGE_NAME) + '.' + getStringOption(KEY_APPLICATION_CLASS);
-		createApplicationExtension(VALUE_APPLICATION_ID, classValue);
-		createPerspectiveExtension();
 		createProductExtension();
-		createProcessorExtension(VALUE_PROCESSOR_LICENSING_ID, VALUE_PROCESSOR_LICENSING_CLASS);
-	}
-
-	private void createPerspectiveExtension() throws CoreException {
-		IPluginBase plugin = model.getPluginBase();
-
-		IPluginExtension extension = createExtension("org.eclipse.ui.perspectives", true); //$NON-NLS-1$
-		IPluginElement element = model.getPluginFactory().createElement(extension);
-		element.setName("perspective"); //$NON-NLS-1$
-		element.setAttribute("class", getStringOption(KEY_PACKAGE_NAME) + ".Perspective"); //$NON-NLS-1$ //$NON-NLS-2$
-		element.setAttribute("name", VALUE_PERSPECTIVE_NAME); //$NON-NLS-1$
-		element.setAttribute("id", plugin.getId() + ".perspective"); //$NON-NLS-1$ //$NON-NLS-2$
-		extension.add(element);
-
-		if (!extension.isInTheModel()) {
-			plugin.add(extension);
-		}
 	}
 
 	private void createProductExtension() throws CoreException {
@@ -90,19 +71,31 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 
 		IPluginElement element = model.getFactory().createElement(extension);
 		element.setName("product"); //$NON-NLS-1$
-		element.setAttribute("name", getStringOption(KEY_WINDOW_TITLE)); //$NON-NLS-1$
-		element.setAttribute("application", plugin.getId() + "." + VALUE_APPLICATION_ID); //$NON-NLS-1$ //$NON-NLS-2$
+		element.setAttribute("application", E4_SWT_APPLICATION_ID); //$NON-NLS-1$
+		element.setAttribute("name", getStringOption(KEY_PACKAGE_NAME)); //$NON-NLS-1$
+
+		IPluginElement property;
+
+		property = model.getFactory().createElement(element);
+		property.setName("property"); //$NON-NLS-1$
+		property.setAttribute("name", "applicationCSS");//$NON-NLS-1$ //$NON-NLS-2$
+		property.setAttribute("value", "platform:/plugin/" + getValue(KEY_PLUGIN_ID) + "/css/default.css"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		element.add(property);
 
 		extension.add(element);
 
-		if (!extension.isInTheModel()) {
+		if (!extension.isInTheModel())
 			plugin.add(extension);
-		}
 	}
 
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
-		return getDependencies(getRCP3xDependencies());
+		return getDependencies(getRCP4Dependencies());
+	}
+
+	@Override
+	public String[] getNewFiles() {
+		return new String[] { "css/default.css", "Application.e4xmi" }; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }
