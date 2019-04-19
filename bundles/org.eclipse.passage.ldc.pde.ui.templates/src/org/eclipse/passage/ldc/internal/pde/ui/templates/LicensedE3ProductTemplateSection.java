@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2019 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
 import org.eclipse.core.runtime.CoreException;
@@ -23,16 +35,20 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 	@Override
 	public void addPages(Wizard wizard) {
 		WizardPage page = createPage(0, HelpContexts.TEMPLATE_E3_PRODUCT);
-		page.setTitle("Licensed E3 RCP");
-		page.setDescription("This template creates a minimal Eclipse 3 RCP application with licensing support.");
+		page.setTitle(PdeUiTemplatesMessages.LicensedE3ProductTemplateSection_page_title);
+		page.setDescription(PdeUiTemplatesMessages.LicensedE3ProductTemplateSection_page_description);
 		wizard.addPage(page);
 		markPagesAdded();
 	}
 
 	private void createOptions() {
-		addOption(KEY_WINDOW_TITLE, "Application window &title:", "Licensed E3 RCP", 0); //$NON-NLS-1$
-		addOption(KEY_PACKAGE_NAME, "Pa&ckage name:", (String) null, 0);
-		addOption(KEY_APPLICATION_CLASS, "App&lication class:", "LicensedApplication", 0); //$NON-NLS-1$
+		addOption(KEY_WINDOW_TITLE, PdeUiTemplatesMessages.LicensedE3ProductTemplateSection_key_window_title_label,
+				"Licensed E3 RCP", 0); //$NON-NLS-1$
+		addOption(KEY_PACKAGE_NAME, PdeUiTemplatesMessages.LicensedE3ProductTemplateSection_key_package_name_label,
+				(String) null, 0);
+		addOption(KEY_APPLICATION_CLASS,
+				PdeUiTemplatesMessages.LicensedE3ProductTemplateSection_key_application_class_label,
+				"LicensedApplication", 0); //$NON-NLS-1$
 	}
 
 	@Override
