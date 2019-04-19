@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -67,7 +68,7 @@ public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecu
 			color.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 
 			Button selectColor = new Button(group, SWT.PUSH);
-			selectColor.setText("Select");
+			selectColor.setText(JFaceMessages.RestrictionLevelPage_select_btn_text);
 			selectColor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 			selectColor.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -88,7 +89,7 @@ public class RestrictionLevelPage extends LicensingRegistryPage<RestrictionExecu
 
 	@Override
 	protected String getConfigurationErrorMessage() {
-		return "Restriction levels definitions are not available.\nPlease check the product configuration";
+		return JFaceMessages.RestrictionLevelPage_e_not_available;
 	}
 
 	@Override

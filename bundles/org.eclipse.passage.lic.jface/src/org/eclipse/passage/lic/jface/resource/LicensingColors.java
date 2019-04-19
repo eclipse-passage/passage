@@ -41,6 +41,8 @@ public class LicensingColors {
 	public static final String COLOR_LEVEL_ERROR = "COLOR_LEVEL_ERROR"; //$NON-NLS-1$
 	public static final String COLOR_LEVEL_FATAL = "COLOR_LEVEL_FATAL"; //$NON-NLS-1$
 
+	public static final RGB RGB_DEFAULT = new RGB(255, 255, 255);
+
 	public static final RGB RGB_LEVEL_OK = new RGB(0, 128, 0);
 	public static final RGB RGB_LEVEL_INFO = new RGB(0, 0, 255);
 	public static final RGB RGB_LEVEL_WARN = new RGB(255, 255, 0);
@@ -174,9 +176,11 @@ public class LicensingColors {
 	}
 
 	private static RGB stringToRgb(String storedValue) {
-		String pattern = "\\d{1,3}";
+		String pattern = "\\d{1,3}"; //$NON-NLS-1$
 		Matcher matcher = Pattern.compile(pattern).matcher(storedValue);
-		int red = 255, green = 255, blue = 255;
+		int red = RGB_DEFAULT.red;
+		int green = RGB_DEFAULT.green;
+		int blue = RGB_DEFAULT.blue;
 		try {
 			if (matcher.find()) {
 				red = Integer.valueOf(matcher.group(0));
@@ -206,7 +210,7 @@ public class LicensingColors {
 	}
 
 	public static String getLicensingColor(String colorKey) {
-		String colorDefault = "";
+		String colorDefault = RGB_DEFAULT.toString();
 		if (colorToRgb.containsKey(colorKey)) {
 			colorDefault = colorToRgb.get(colorKey).toString();
 		}

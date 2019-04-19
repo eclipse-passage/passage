@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 import org.eclipse.swt.widgets.Composite;
@@ -30,7 +31,7 @@ public class ConditionLocationPage extends LicensingRegistryPage<ConditionMinerR
 
 	@Override
 	protected String getConfigurationErrorMessage() {
-		return "Licensing locations definitions are not available.\nPlease check the product configuration";
+		return JFaceMessages.ConditionLocationPage_e_not_available;
 	}
 
 }

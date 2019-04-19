@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.runtime.LicensingException;
@@ -47,7 +48,7 @@ public class BasePageContributor<R> implements LicensingPageContributor<R> {
 		try {
 			return pageClass.newInstance();
 		} catch (Exception e) {
-			String message = NLS.bind("Unable to create new instance of {0}", pageClass);
+			String message = NLS.bind(JFaceMessages.BasePageContributor_e_create_page_instance, pageClass);
 			LicensingResult error = LicensingResults.createError(message, pageIdentifier, e);
 			throw new LicensingException(error);
 		}

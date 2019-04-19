@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
 import org.eclipse.swt.SWT;
@@ -45,7 +46,7 @@ public class ConditionTypePage extends LicensingRegistryPage<PermissionEmitterRe
 
 	@Override
 	protected String getConfigurationErrorMessage() {
-		return "Condition types definitions are not available.\nPlease check the product configuration";
+		return JFaceMessages.ConditionTypePage_e_not_available;
 	}
 
 }
