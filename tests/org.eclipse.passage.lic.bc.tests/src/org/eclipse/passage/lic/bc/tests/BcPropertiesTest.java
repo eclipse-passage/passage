@@ -19,7 +19,6 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public class BcPropertiesTest {
 	
 	@Test
