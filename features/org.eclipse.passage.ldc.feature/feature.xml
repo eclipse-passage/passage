@@ -31,6 +31,11 @@
       %license
    </license>
 
+   <includes
+         id="org.eclipse.passage.lic.define.feature"
+         version="0.0.0"
+         name="Passage LIC Define (Incubation)"/>
+
    <plugin
          id="org.eclipse.passage.ldc.pde.ui.templates"
          download-size="0"
