@@ -9,8 +9,6 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
-import org.eclipse.pde.internal.ui.templates.IHelpContextIds;
-import org.eclipse.pde.internal.ui.templates.PDETemplateMessages;
 import org.eclipse.pde.ui.IFieldData;
 
 public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSection {
@@ -25,17 +23,16 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	@Override
 	public void addPages(Wizard wizard) {
-		WizardPage page = createPage(0, IHelpContextIds.TEMPLATE_RCP_MAIL);
-		page.setTitle(PDETemplateMessages.HelloRCPTemplate_title);
-		page.setDescription(PDETemplateMessages.HelloRCPTemplate_desc);
+		WizardPage page = createPage(0, HelpContexts.TEMPLATE_E4_PRODUCT);
+		page.setTitle("Licensed E4 RCP");
+		page.setDescription("This template creates a minimal Eclipse 4 RCP application with licensing support.");
 		wizard.addPage(page);
 		markPagesAdded();
 	}
 
 	private void createOptions() {
-		addOption(KEY_WINDOW_TITLE, PDETemplateMessages.HelloRCPTemplate_windowTitle, "Licensed RCP", 0); //$NON-NLS-1$
-		addOption(KEY_PACKAGE_NAME, PDETemplateMessages.MailTemplate_packageName, (String) null, 0);
-		addOption(KEY_APPLICATION_CLASS, PDETemplateMessages.HelloRCPTemplate_appClass, "LicensedApplication", 0); //$NON-NLS-1$
+		addOption(KEY_WINDOW_TITLE, "Application window &title:", "Licensed E4 RCP", 0); //$NON-NLS-1$
+		addOption(KEY_PACKAGE_NAME, "Pa&ckage name:", (String) null, 0);
 	}
 
 	@Override
