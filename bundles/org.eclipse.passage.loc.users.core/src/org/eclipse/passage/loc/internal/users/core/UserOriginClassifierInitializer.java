@@ -22,12 +22,12 @@ public final class UserOriginClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectIdentifier() {
-		return "new.user.origin";
+		return "new.user.origin"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String newObjectName() {
-		return "New User Origin";
+		return UsersCoreMessages.UserOriginClassifierInitializer_object_name;
 	}
 
 	@Override
@@ -37,16 +37,16 @@ public final class UserOriginClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectTitle() {
-		return "User Origin";
+		return UsersCoreMessages.UserOriginClassifierInitializer_object_title;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return "New User Origin";
+		return UsersCoreMessages.UserOriginClassifierInitializer_object_message;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return "Please specify a file name to store user data";
+		return UsersCoreMessages.UserOriginClassifierInitializer_new_file_message;
 	}
 }

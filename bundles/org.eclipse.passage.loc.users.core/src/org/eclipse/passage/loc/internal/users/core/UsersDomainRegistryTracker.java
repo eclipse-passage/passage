@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.core;
 
+import java.util.Objects;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -77,18 +79,28 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		case Notification.ADD:
 			if (newValue instanceof User) {
 				User user = (User) newValue;
+				if (Objects.equals(userOrigin, user.getUserOrigin())) {
+					// FIXME: warning
+				}
 				String email = user.getEmail();
 				if (email != null) {
 					registry.registerUser(user);
+				} else {
+					// FIXME: warning
 				}
 			}
 			break;
 		case Notification.REMOVE:
 			if (oldValue instanceof User) {
 				User user = (User) oldValue;
+				if (Objects.equals(userOrigin, user.getUserOrigin())) {
+					// FIXME: warning
+				}
 				String email = user.getEmail();
 				if (email != null) {
 					registry.unregisterUser(email);
+				} else {
+					// FIXME: warning
 				}
 			}
 			break;

@@ -25,38 +25,40 @@ import org.osgi.service.component.annotations.Reference;
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME })
 public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private UserRegistry registry;
+	private UserRegistry userRegistry;
 
 	@Reference
 	public void bindDomainRegistry(UserRegistry registry) {
-		this.registry = registry;
+		this.userRegistry = registry;
 	}
 
 	public void unbindDomainRegistry(UserRegistry registry) {
-		this.registry = null;
+		if (this.userRegistry == registry) {
+			this.userRegistry = null;
+		}
 	}
 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (UsersPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
-			return "Select User Origin";
+			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user_origin;
 		}
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
-			return "Select User";
+			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user;
 		}
 		return null;
 	}
 
 	@Override
 	public Iterable<?> getSelectionInput(String classifier) {
-		if (registry == null) {
+		if (userRegistry == null) {
 			return Collections.emptyList();
 		}
 		if (UsersPackage.eINSTANCE.getUserOrigin().getName().equals(classifier)) {
-			return registry.getUserOrigins();
+			return userRegistry.getUserOrigins();
 		}
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
-			return registry.getUsers();
+			return userRegistry.getUsers();
 		}
 		return Collections.emptyList();
 	}
