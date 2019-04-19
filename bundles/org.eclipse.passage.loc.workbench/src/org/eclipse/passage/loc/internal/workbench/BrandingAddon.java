@@ -22,7 +22,6 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.osgi.service.event.Event;
 
 public class BrandingAddon {
 
@@ -35,8 +34,7 @@ public class BrandingAddon {
 
 	@Inject
 	@Optional
-	public void applicationStarted(@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) Event event,
-			MApplication application) {
+	public void applicationStarted(@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) MApplication application) {
 		String brandingName = applicationContext.getBrandingName();
 		List<MWindow> children = application.getChildren();
 		for (MWindow window : children) {

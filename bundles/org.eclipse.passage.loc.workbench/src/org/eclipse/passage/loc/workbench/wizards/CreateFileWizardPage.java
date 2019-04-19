@@ -20,7 +20,6 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -40,19 +39,15 @@ public class CreateFileWizardPage extends WizardPage {
 	protected Text txtName;
 	private Button resourceURIBrowseFileSystemButton;
 
-	protected ModifyListener validator = new ModifyListener() {
-		public void modifyText(ModifyEvent e) {
-			setPageComplete(validatePage());
-		}
-	};
+	protected ModifyListener validator = e -> setPageComplete(validatePage());
 
 	private String extension;
 	private ClassifierInitializer initializer;
 	private boolean createName;
 	private boolean createId;
 
-	public CreateFileWizardPage(String pageName, EObject eObject, String extension, ClassifierInitializer initializer, boolean createId,
-			boolean createName) {
+	public CreateFileWizardPage(String pageName, EObject eObject, String extension, ClassifierInitializer initializer,
+			boolean createId, boolean createName) {
 		super(pageName);
 
 		this.extension = extension;
@@ -208,6 +203,7 @@ public class CreateFileWizardPage extends WizardPage {
 		return txtId.getText();
 	}
 
+	@Override
 	public String getName() {
 		if (txtName == null) {
 			return "";
@@ -242,6 +238,6 @@ public class CreateFileWizardPage extends WizardPage {
 	}
 
 	protected void createOtherControls(Composite composite) {
-		//nothing by default
+		// nothing by default
 	}
 }
