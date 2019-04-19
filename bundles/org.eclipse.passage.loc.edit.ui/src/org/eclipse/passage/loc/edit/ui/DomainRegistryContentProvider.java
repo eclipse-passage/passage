@@ -46,7 +46,7 @@ public class DomainRegistryContentProvider implements ITreeContentProvider {
 			return list.toArray();
 		}
 		if (parentElement instanceof BaseDomainRegistry) {
-			BaseDomainRegistry baseRegistry = (BaseDomainRegistry) parentElement;
+			BaseDomainRegistry<?> baseRegistry = (BaseDomainRegistry<?>) parentElement;
 			ResourceSet resourceSet = baseRegistry.getEditingDomain().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			return resources.toArray();

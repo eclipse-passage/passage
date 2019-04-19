@@ -22,19 +22,18 @@ import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.passage.loc.workbench.LocWokbench;
-import org.eclipse.swt.widgets.Shell;
 
 public class DomainRegistryCreateHandler {
 
-	private static final String PERSPECTIVE_DASHBOARD_ID = "org.eclipse.passage.loc.dashboard.perspective.main";
-	private static final String REGISTRY_RESOURCE_CREATE = "org.eclipse.passage.loc.edit.ui.commandparameter.domain.resource.create";
-	private static final String REGISTRY_RESOURCE_CREATE_FEATURE = REGISTRY_RESOURCE_CREATE + ".feature";
-	private static final String REGISTRY_RESOURCE_CREATE_PRODUCT = REGISTRY_RESOURCE_CREATE + ".product";
-	private static final String REGISTRY_RESOURCE_CREATE_USER = REGISTRY_RESOURCE_CREATE + ".user";
-	private static final String REGISTRY_RESOURCE_CREATE_LICENSE = REGISTRY_RESOURCE_CREATE + ".license";
+	private static final String PERSPECTIVE_DASHBOARD_ID = "org.eclipse.passage.loc.dashboard.perspective.main"; //$NON-NLS-1$
+	private static final String REGISTRY_RESOURCE_CREATE = "org.eclipse.passage.loc.edit.ui.commandparameter.domain.resource.create"; //$NON-NLS-1$
+	private static final String REGISTRY_RESOURCE_CREATE_FEATURE = REGISTRY_RESOURCE_CREATE + ".feature"; //$NON-NLS-1$
+	private static final String REGISTRY_RESOURCE_CREATE_PRODUCT = REGISTRY_RESOURCE_CREATE + ".product"; //$NON-NLS-1$
+	private static final String REGISTRY_RESOURCE_CREATE_USER = REGISTRY_RESOURCE_CREATE + ".user"; //$NON-NLS-1$
+	private static final String REGISTRY_RESOURCE_CREATE_LICENSE = REGISTRY_RESOURCE_CREATE + ".license"; //$NON-NLS-1$
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell, IEclipseContext context,
+	public void execute(@Named(IServiceConstants.ACTIVE_SHELL) IEclipseContext context,
 			@Named(REGISTRY_RESOURCE_CREATE) String domainRegistryId) {
 
 		String domain = null;
@@ -51,6 +50,7 @@ public class DomainRegistryCreateHandler {
 		case REGISTRY_RESOURCE_CREATE_LICENSE:
 			domain = Licenses.DOMAIN_NAME;
 			break;
+		default:
 		}
 
 		if (domain != null) {
