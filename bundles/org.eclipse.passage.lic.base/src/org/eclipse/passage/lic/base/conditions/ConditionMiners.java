@@ -26,7 +26,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.base.LicBaseMessages;
+import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
@@ -41,7 +41,7 @@ public class ConditionMiners {
 	public static LicensingResult mine(String source, LicensingConfiguration configuration,
 			List<LicensingCondition> mined, KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport,
 			Iterable<String> packs) {
-		String task = String.format(LicBaseMessages.getConditionsString("ConditionMiners_mine_task_name"), //$NON-NLS-1$
+		String task = String.format(BaseMessages.getString("ConditionMiners_mine_task_name"), //$NON-NLS-1$
 				configuration.getProductIdentifier(), configuration.getProductVersion());
 		List<LicensingResult> errors = new ArrayList<>();
 		for (String path : packs) {
@@ -58,7 +58,7 @@ public class ConditionMiners {
 				}
 			} catch (Exception e) {
 				String message = String.format(
-						LicBaseMessages.getConditionsString("ConditionMiners_mine_error_extracting_conditions"), path, //$NON-NLS-1$
+						BaseMessages.getString("ConditionMiners_mine_error_extracting_conditions"), path, //$NON-NLS-1$
 						configuration);
 				errors.add(LicensingResults.createError(message, source, e));
 			}
@@ -70,7 +70,7 @@ public class ConditionMiners {
 	}
 
 	public static List<String> collectPacks(Path configurationPath, String... extensions) throws LicensingException {
-		String message = String.format(LicBaseMessages.getConditionsString("ConditionMiners_collect_packs_error"), //$NON-NLS-1$
+		String message = String.format(BaseMessages.getString("ConditionMiners_collect_packs_error"), //$NON-NLS-1$
 				configurationPath);
 		String source = ConditionMiners.class.getName();
 		if (configurationPath == null) {

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.LicBaseMessages;
+import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
@@ -67,7 +67,7 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 			NullStreamCodec.transfer(fis, fos);
 			return LicensingResults.createOK();
 		} catch (Exception e) {
-			String message = String.format(LicBaseMessages.getConditionsString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
+			String message = String.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
 			return LicensingResults.createError(message, source, e);
 		}
 

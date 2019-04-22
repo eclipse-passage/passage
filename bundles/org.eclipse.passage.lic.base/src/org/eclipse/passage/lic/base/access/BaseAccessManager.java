@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.base.LicBaseMessages;
+import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
@@ -174,7 +174,7 @@ public class BaseAccessManager implements AccessManager {
 			Iterable<LicensingCondition> conditions = conditionMiner.extractLicensingConditions(configuration);
 			if (conditions == null) {
 				String source = conditionMiner.getClass().getName();
-				String message = LicBaseMessages.getAccessString("BaseAccessManager_invalid_condition_miner"); //$NON-NLS-1$
+				String message = BaseMessages.getString("BaseAccessManager_invalid_condition_miner"); //$NON-NLS-1$
 				LicensingResult error = createError(message, source, new NullPointerException());
 				errors.add(error);
 				continue;
@@ -194,7 +194,7 @@ public class BaseAccessManager implements AccessManager {
 		List<FeaturePermission> result = new ArrayList<>();
 		String source = getClass().getName();
 		if (conditions == null) {
-			String message = LicBaseMessages.getAccessString("BaseAccessManager_evaluation_error_invalid_condition"); //$NON-NLS-1$
+			String message = BaseMessages.getString("BaseAccessManager_evaluation_error_invalid_condition"); //$NON-NLS-1$
 			LicensingResult error = createError(message, source, new IllegalArgumentException());
 			licensingReporter.logResult(error);
 			List<FeaturePermission> empty = Collections.emptyList();
@@ -205,7 +205,7 @@ public class BaseAccessManager implements AccessManager {
 		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
-				String message = LicBaseMessages.getAccessString("BaseAccessManager_evaluation_error_invalid_condition"); //$NON-NLS-1$
+				String message = BaseMessages.getString("BaseAccessManager_evaluation_error_invalid_condition"); //$NON-NLS-1$
 				LicensingResult error = createError(message, source, new NullPointerException());
 				licensingReporter.logResult(error);
 				continue;
@@ -225,7 +225,7 @@ public class BaseAccessManager implements AccessManager {
 			PermissionEmitter emitter = permissionEmitters.get(type);
 			if (emitter == null) {
 				String message = String
-						.format(LicBaseMessages.getAccessString("BaseAccessManager__evaluation_error_no_emitter"), type); //$NON-NLS-1$
+						.format(BaseMessages.getString("BaseAccessManager__evaluation_error_no_emitter"), type); //$NON-NLS-1$
 				LicensingResult error = createError(message, source, new NullPointerException());
 				licensingReporter.logResult(error);
 				continue;
@@ -253,8 +253,8 @@ public class BaseAccessManager implements AccessManager {
 			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
 		String source = getClass().getName();
 		if (configuration == null) {
-			String message = LicBaseMessages
-					.getAccessString("BaseAccessManager_permission_examine_error_invalida_configuration"); //$NON-NLS-1$
+			String message = BaseMessages
+					.getString("BaseAccessManager_permission_examine_error_invalida_configuration"); //$NON-NLS-1$
 			LicensingResult error = createError(message, source, new NullPointerException());
 			licensingReporter.logResult(error);
 			List<RestrictionVerdict> examined = Collections.emptyList();
@@ -262,8 +262,8 @@ public class BaseAccessManager implements AccessManager {
 			return examined;
 		}
 		if (requirements == null) {
-			String message = LicBaseMessages
-					.getAccessString("BaseAccessManager_permission_examine_error_invalid_configuration_requirements"); //$NON-NLS-1$
+			String message = BaseMessages
+					.getString("BaseAccessManager_permission_examine_error_invalid_configuration_requirements"); //$NON-NLS-1$
 			LicensingResult error = createError(message, source, new NullPointerException());
 			licensingReporter.logResult(error);
 			List<RestrictionVerdict> examined = Collections.emptyList();
@@ -272,15 +272,15 @@ public class BaseAccessManager implements AccessManager {
 		}
 		if (examiner == null) {
 			String message = String.format(
-					LicBaseMessages.getAccessString("BaseAccessManager_permission_examine_error_no_examiner"), requirements); //$NON-NLS-1$
+					BaseMessages.getString("BaseAccessManager_permission_examine_error_no_examiner"), requirements); //$NON-NLS-1$
 			LicensingResult error = createError(message, source, new NullPointerException());
 			licensingReporter.logResult(error);
 			List<RestrictionVerdict> verdicts = new ArrayList<>();
 			for (LicensingRequirement requirement : requirements) {
 				if (requirement == null) {
 					// FIXME: rework to children?
-					String message2 = LicBaseMessages
-							.getAccessString("BaseAccessManager_permission_examine_error_invalid_config_req_ingnored"); //$NON-NLS-1$
+					String message2 = BaseMessages
+							.getString("BaseAccessManager_permission_examine_error_invalid_config_req_ingnored"); //$NON-NLS-1$
 					LicensingResult error2 = createError(message2, source, new NullPointerException());
 					licensingReporter.logResult(error2);
 					continue;
@@ -302,14 +302,14 @@ public class BaseAccessManager implements AccessManager {
 	public LicensingResult executeRestrictions(LicensingConfiguration configuration,
 			Iterable<RestrictionVerdict> restrictions) {
 		String source = getClass().getName();
-		String task = LicBaseMessages.getAccessString("BaseAccessManager_execute_restriction_task_name"); //$NON-NLS-1$
+		String task = BaseMessages.getString("BaseAccessManager_execute_restriction_task_name"); //$NON-NLS-1$
 		List<LicensingResult> errors = new ArrayList<>();
 		for (RestrictionExecutor executor : restrictionExecutors) {
 			try {
 				executor.execute(restrictions);
 			} catch (Exception e) {
 				String message = String.format(
-						LicBaseMessages.getAccessString("BaseAccessManager_execute_restriction_execution_error"), executor, //$NON-NLS-1$
+						BaseMessages.getString("BaseAccessManager_execute_restriction_execution_error"), executor, //$NON-NLS-1$
 						restrictions);
 				LicensingResult error = createError(message, source, e);
 				errors.add(error);
