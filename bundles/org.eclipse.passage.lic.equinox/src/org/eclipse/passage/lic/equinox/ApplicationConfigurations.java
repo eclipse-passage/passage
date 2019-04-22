@@ -33,7 +33,7 @@ public class ApplicationConfigurations {
 		}
 		for (int i = 0; i < args.length; i++) {
 			String arg = args[i];
-			if ("-product".equals(arg)) {
+			if ("-product".equals(arg)) { //$NON-NLS-1$
 				int index = i + 1;
 				if (index < args.length) {
 					return args[index];
@@ -101,7 +101,7 @@ public class ApplicationConfigurations {
 	}
 
 	public static String getLicensingContacts(IApplicationContext application) {
-		String contantDefaults = "Eclipse Passage \nhttps://www.eclipse.org/passage";
+		String contantDefaults = "Eclipse Passage \nhttps://www.eclipse.org/passage"; //$NON-NLS-1$
 		if (application == null) {
 			return contantDefaults;
 		}

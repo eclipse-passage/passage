@@ -44,7 +44,7 @@ public class BasePermissionEmitterTest {
 	public void testEvaluateConditions() {
 		try {
 			evaluator.emitPermissions(null, null);
-			fail("Should not accept invalid arguments");
+			fail("Should not accept invalid arguments"); //$NON-NLS-1$
 		} catch (LicensingException e) {
 			// expected
 		}

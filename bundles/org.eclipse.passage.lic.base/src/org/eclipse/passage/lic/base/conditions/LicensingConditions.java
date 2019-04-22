@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.base.LicBaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
@@ -63,24 +64,24 @@ public class LicensingConditions {
 	public static LicensingResult validate(LicensingCondition condition, String source) {
 		Date validFrom = condition.getValidFrom();
 		if (validFrom == null) {
-			String format = "Valid from not specified for condition %s";
+			String format = LicBaseMessages.getConditionsString("LicensingConditions_validation_no_from"); //$NON-NLS-1$
 			String message = String.format(format, condition);
 			return LicensingResults.createError(message, source);
 		}
 		Date now = new Date();
 		if (validFrom.after(now)) {
-			String format = "Valid from starts in the future for condition %s";
+			String format = LicBaseMessages.getConditionsString("LicensingConditions_validation_invalid_from"); //$NON-NLS-1$
 			String message = String.format(format, condition);
 			return LicensingResults.createError(message, source);
 		}
 		Date validUntil = condition.getValidUntil();
 		if (validUntil == null) {
-			String format = "Valid until not specified for condition %s";
+			String format = LicBaseMessages.getConditionsString("LicensingConditions_validation_no_until"); //$NON-NLS-1$
 			String message = String.format(format, condition);
 			return LicensingResults.createError(message, source);
 		}
 		if (validUntil.before(now)) {
-			String format = "Valid until ends in the past for condition %s";
+			String format = LicBaseMessages.getConditionsString("LicensingConditions_validation_invalid_until"); //$NON-NLS-1$
 			String message = String.format(format, condition);
 			return LicensingResults.createError(message, source);
 		}

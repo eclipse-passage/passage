@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
+import org.eclipse.passage.lic.internal.equinox.EquinoxInternalMessages;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
@@ -58,7 +59,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (bundleContext == null) {
-			logger.severe("Unable to extract configuration requirements: invalid BundleContext");
+			logger.severe(EquinoxInternalMessages.BundleCapabilityResolver_error_bundle_context);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
@@ -78,7 +79,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 				if (extracted != null) {
 					result.add(extracted);
 				} else {
-					logger.severe(String.format("Unable to extract configuration requirements: %s", resource));
+					logger.severe(String.format(EquinoxInternalMessages.BundleCapabilityResolver_error, resource));
 					result.add(LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 							LicensingVersions.VERSION_DEFAULT, name, providerLicensing, resource));
 					return result;

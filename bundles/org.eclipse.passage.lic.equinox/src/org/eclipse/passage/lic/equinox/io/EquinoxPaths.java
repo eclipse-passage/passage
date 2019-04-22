@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.equinox.EquinoxMessages;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
@@ -43,7 +44,7 @@ public class EquinoxPaths {
 		try {
 			return Paths.get(URIUtil.fromString(value));
 		} catch (URISyntaxException e) {
-			String pattern = "Failed to retrieve URI from value \"{0}\" (property \"{1}\")";
+			String pattern = EquinoxMessages.EquinoxPaths_uri_retrieval_error;
 			String message = NLS.bind(pattern, value, property);
 			LicensingResult result = LicensingResults.createError(message, source, e);
 			throw new LicensingException(result);

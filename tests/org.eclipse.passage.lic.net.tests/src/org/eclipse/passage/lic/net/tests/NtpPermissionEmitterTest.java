@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.net.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -90,10 +89,6 @@ public class NtpPermissionEmitterTest {
 		assertEquals(NET_TIME_FEATURE_ID, netCondition.getFeatureIdentifier());
 		assertEquals(NET_TIME_MATCH_RULE, netCondition.getMatchRule());
 		assertEquals(NET_TIME_MATCH_VERSION, netCondition.getMatchVersion());
-	}
-
-	private void assertEmpty(Iterable<FeaturePermission> iterable) {
-		assertFalse(iterable.iterator().hasNext());
 	}
 
 	public static LicensingCondition createNetCondition(String expression) {

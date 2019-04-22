@@ -76,7 +76,7 @@ public class LicensingRequirements {
 			}
 			String provider = getStringValue(properties, LICENSING_FEATURE_PROVIDER, bundleVendor);
 			if (provider == null) {
-				provider = "";
+				provider = ""; //$NON-NLS-1$
 			}
 			String level = toRestrictionLevelProperty(properties.get(LICENSING_RESTRICTION_LEVEL));
 			return new BaseLicensingRequirement(featureId, version, name, provider, level, source);

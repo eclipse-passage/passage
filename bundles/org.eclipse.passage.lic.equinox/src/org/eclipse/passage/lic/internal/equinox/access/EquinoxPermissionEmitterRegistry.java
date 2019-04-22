@@ -68,7 +68,7 @@ public class EquinoxPermissionEmitterRegistry implements PermissionEmitterRegist
 	@Override
 	public String getDefaultConditionType() {
 		// TODO configure via property?
-		return "<undefined>";
+		return "<undefined>"; //$NON-NLS-1$
 	}
 
 	@Override

@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
+import org.eclipse.passage.lic.equinox.EquinoxMessages;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
@@ -53,17 +54,15 @@ public class EquinoxRestrictions {
 	public static IStatus getRestrictionStatus(Iterable<RestrictionVerdict> verdicts, String featureName) {
 		String pluginId = LicensingEquinox.PI_LIC_EQUINOX;
 		if (!verdicts.iterator().hasNext()) {
-			String message = NLS.bind("Feature \"{0}\" is licensed properly", featureName);
+			String message = NLS.bind(EquinoxMessages.EquinoxRestrictions_feature_is_licensed, featureName);
 			return new Status(IStatus.OK, pluginId, message);
 		}
-		String title = "Issues with licensing";
+		String title = EquinoxMessages.EquinoxRestrictions_title;
 		MultiStatus status = new MultiStatus(pluginId, RestrictionVerdicts.CODE_CONFIGURATION_ERROR, title, null);
 		for (RestrictionVerdict verdict : verdicts) {
 			LicensingRequirement requirement = verdict.getLicensingRequirement();
-			if (requirement != null) {
-				featureName = requirement.getFeatureName();
-			}
-			String message = NLS.bind("Feature \"{0}\" is not licensed properly", featureName);
+			String featureNameToReport = (requirement != null) ? requirement.getFeatureName() : featureName;
+			String message = NLS.bind(EquinoxMessages.EquinoxRestrictions_feature_is_not_licensed, featureNameToReport);
 			status.add(new Status(IStatus.ERROR, pluginId, message));
 		}
 		return status;

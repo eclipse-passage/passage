@@ -202,8 +202,11 @@ public class BaseAccessManagerTest {
 	public void testExtractConditionsNullConfiguration() {
 		BaseConditionMinerRegistry registry = new BaseConditionMinerRegistry();
 		registry.registerConditionMiner(LicensningBaseTests.createConditionMiner(null), null);
-		LicensingCondition condition = LicensingConditions.create("identifier", "version", "rule", new Date(),
-				new Date(), "type", "expression");
+		LicensingCondition condition = LicensingConditions.create("identifier", //$NON-NLS-1$
+				"version", //$NON-NLS-1$
+				"rule", //$NON-NLS-1$
+				new Date(), new Date(), "type", //$NON-NLS-1$
+				"expression"); //$NON-NLS-1$
 		Iterable<LicensingCondition> create = Collections.singleton(condition);
 		ConditionMiner miner = LicensningBaseTests.createConditionMiner(create);
 		registry.registerConditionMiner(miner, null);

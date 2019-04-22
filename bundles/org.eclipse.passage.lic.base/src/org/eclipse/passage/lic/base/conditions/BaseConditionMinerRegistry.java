@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.eclipse.passage.lic.base.LicBaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
@@ -59,14 +60,14 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 		String value = new File(property).getAbsolutePath();
 		Path from = Paths.get(value, LicensingPaths.FOLDER_LICENSING_BASE);
 		Path configurationPath = LicensingPaths.resolveConfigurationPath(from, configuration);
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.ENGLISH);
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.ENGLISH); //$NON-NLS-1$
 		String fileName = dateFormat.format(new Date()) + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
 		File dest = configurationPath.resolve(fileName).toFile();
 		try (FileInputStream fis = new FileInputStream(source); FileOutputStream fos = new FileOutputStream(dest)) {
 			NullStreamCodec.transfer(fis, fos);
 			return LicensingResults.createOK();
 		} catch (Exception e) {
-			String message = String.format("Failed to import licensing condition from %s", source);
+			String message = String.format(LicBaseMessages.getConditionsString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
 			return LicensingResults.createError(message, source, e);
 		}
 

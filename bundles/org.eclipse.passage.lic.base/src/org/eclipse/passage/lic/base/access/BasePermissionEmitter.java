@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.base.LicBaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
@@ -34,7 +35,7 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 		List<FeaturePermission> result = new ArrayList<>();
 		String source = getClass().getName();
 		if (conditions == null) {
-			String message = "Evaluation rejected for invalid conditions";
+			String message = LicBaseMessages.getAccessString("BasePermissionEmitter_prem_emit_error_invalid_consitions"); //$NON-NLS-1$
 			Exception e = new IllegalArgumentException();
 			LicensingResult error = LicensingResults.createError(message, source, e);
 			throw new LicensingException(error);
@@ -43,7 +44,7 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 			String expression = condition.getConditionExpression();
 			Map<String, String> checks = LicensingConditions.parseExpression(expression);
 			if (checks.isEmpty()) {
-				String message = String.format("Expression checks are empty for condition %s", condition);
+				String message = String.format(LicBaseMessages.getAccessString("BasePermissionEmitter_prem_emit_error_no_expression_checks"), condition); //$NON-NLS-1$
 				Exception e = new IllegalArgumentException();
 				LicensingResult error = LicensingResults.createError(message, source, e);
 				throw new LicensingException(error);
@@ -57,13 +58,13 @@ public abstract class BasePermissionEmitter implements PermissionEmitter {
 					passed = evaluateSegment(key, value);
 				} catch (Exception e) {
 					passed = false;
-					String message = String.format("Failed for evaluate condition %s : key=%s, value=%s", condition,
+					String message = String.format(LicBaseMessages.getAccessString("BasePermissionEmitter_prem_emit_error_condition_evaluation_error"), condition, //$NON-NLS-1$
 							key, value);
 					LicensingResult error = LicensingResults.createError(message, source, e);
 					throw new LicensingException(error);
 				}
 				if (!passed) {
-					String message = String.format("Condition %s rejected: key=%s, value=%s", condition, key, value);
+					String message = String.format(LicBaseMessages.getAccessString("BasePermissionEmitter_prem_emit_error_condition_rejected"), condition, key, value); //$NON-NLS-1$
 					Exception e = new IllegalArgumentException();
 					LicensingResult error = LicensingResults.createError(message, source, e);
 					throw new LicensingException(error);

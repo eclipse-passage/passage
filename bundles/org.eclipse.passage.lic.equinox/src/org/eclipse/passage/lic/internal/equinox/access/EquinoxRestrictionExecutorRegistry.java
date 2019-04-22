@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.restrictions.BaseRestrictionLevelDescriptor;
+import org.eclipse.passage.lic.internal.equinox.EquinoxInternalMessages;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
 import org.osgi.service.component.annotations.Component;
@@ -28,17 +29,17 @@ public class EquinoxRestrictionExecutorRegistry implements RestrictionExecutorRe
 
 	public EquinoxRestrictionExecutorRegistry() {
 		String info = LicensingNamespaces.ATTRIBUTE_LEVEL_INFO;
-		supportedLevels.put(info, new BaseRestrictionLevelDescriptor(info, "Info",
-				"Inform about functionality restriction without pausing the execution flow"));
+		supportedLevels.put(info, new BaseRestrictionLevelDescriptor(info, EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_info_name,
+				EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_info_title));
 		String warn = LicensingNamespaces.ATTRIBUTE_LEVEL_WARN;
-		supportedLevels.put(warn, new BaseRestrictionLevelDescriptor(warn, "Warning",
-				"Pause the execution flow with warning, but allow to proceed without functionality blocking"));
+		supportedLevels.put(warn, new BaseRestrictionLevelDescriptor(warn, EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_warning_name,
+				EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_warning_title));
 		String error = LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR;
-		supportedLevels.put(error, new BaseRestrictionLevelDescriptor(error, "Error",
-				"Interrupt the execution for the restricted functionality with error, but allow to use other scenarios"));
+		supportedLevels.put(error, new BaseRestrictionLevelDescriptor(error, EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_error_name,
+				EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_error_title));
 		String fatal = LicensingNamespaces.ATTRIBUTE_LEVEL_FATAL;
 		supportedLevels.put(fatal,
-				new BaseRestrictionLevelDescriptor(fatal, "Fatal", "Terminate the execution with fatal error"));
+				new BaseRestrictionLevelDescriptor(fatal, EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_fatal_name, EquinoxInternalMessages.EquinoxRestrictionExecutorRegistry_fatal_title));
 	}
 
 	@Override

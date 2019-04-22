@@ -146,7 +146,7 @@ public class BcStreamCodec implements StreamCodec {
 
 			keyRingGen.addSubKey(pgpKeyPair);
 		} catch (Exception e) {
-			throw new IOException("Error working with key ring", e);
+			throw new IOException(BcMessages.getString("BcStreamCodec_create_keys_error_ring"), e); //$NON-NLS-1$
 		}
 
 		PGPPublicKeyRing keyRingPublic = keyRingGen.generatePublicKeyRing();
@@ -158,7 +158,7 @@ public class BcStreamCodec implements StreamCodec {
 				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
 			keyRingSecret.encode(output);
 		} catch (IOException e) {
-			throw new IOException("Error writing private key", e);
+			throw new IOException(BcMessages.getString("BcStreamCodec_create_keys_error_private"), e); //$NON-NLS-1$
 		}
 
 		File publicKey = pathPublicKey.toFile();
@@ -166,7 +166,7 @@ public class BcStreamCodec implements StreamCodec {
 				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
 			keyRingPublic.encode(output);
 		} catch (IOException e) {
-			throw new IOException("Error writing public key", e);
+			throw new IOException(BcMessages.getString("BcStreamCodec_create_keys_error_public"), e); //$NON-NLS-1$
 		}
 	}
 
@@ -199,7 +199,7 @@ public class BcStreamCodec implements StreamCodec {
 			signatureGenerator.generateOnePassVersion(false).encode(generated);
 			final PGPLiteralDataGenerator literalDataGenerator = new PGPLiteralDataGenerator();
 			final OutputStream literalDataStream = literalDataGenerator.open(generated, PGPLiteralData.BINARY,
-					"ignored", new Date(), new byte[1024]);
+					"ignored", new Date(), new byte[1024]); //$NON-NLS-1$
 			int ch;
 			while ((ch = input.read()) >= 0) {
 				literalDataStream.write(ch);
@@ -208,9 +208,11 @@ public class BcStreamCodec implements StreamCodec {
 			literalDataGenerator.close();
 			signatureGenerator.generate().encode(generated);
 			generator.close();
+			generated.close();
+			literalDataStream.close();
 			aos.close();
 		} catch (Exception e) {
-			String message = String.format("Encoding error for configuration %s", configuration);
+			String message = String.format(BcMessages.getString("BcStreamCodec_enconde_error"), configuration); //$NON-NLS-1$
 			throw new IOException(message, e);
 		}
 	}
@@ -237,9 +239,9 @@ public class BcStreamCodec implements StreamCodec {
 				}
 			}
 		} catch (Exception e) {
-			throw new IOException("Unable to find signing key", e);
+			throw new IOException(BcMessages.getString("BcStreamCodec_encode_error_no_key"), e); //$NON-NLS-1$
 		}
-		throw new IOException("Unable to find signing key");
+		throw new IOException(BcMessages.getString("BcStreamCodec_encode_error_no_key")); //$NON-NLS-1$
 	}
 
 	@Override
@@ -255,7 +257,7 @@ public class BcStreamCodec implements StreamCodec {
 			final byte[] calculatedDigest = BcDigest.calculateDigest(publicKeyRing);
 			for (int i = 0; i < calculatedDigest.length; i++) {
 				if (calculatedDigest[i] != (digest[i])) {
-					String message = String.format("Key ring digest does not match for configuration %s",
+					String message = String.format(BcMessages.getString("BcStreamCodec_encode_error_digest"), //$NON-NLS-1$
 							configuration);
 					throw new IOException(message);
 				}
@@ -267,7 +269,7 @@ public class BcStreamCodec implements StreamCodec {
 			PGPObjectFactory pgpFactory = new JcaPGPObjectFactory(decoderInputStream);
 			final PGPCompressedData firstCompressed = (PGPCompressedData) pgpFactory.nextObject();
 			if (firstCompressed == null) {
-				String message = String.format("Invalid compressed data for configuration %s", configuration);
+				String message = String.format(BcMessages.getString("BcStreamCodec_encode_error_data"), configuration); //$NON-NLS-1$
 				throw new IOException(message);
 			}
 			pgpFactory = new JcaPGPObjectFactory(firstCompressed.getDataStream());
@@ -282,7 +284,8 @@ public class BcStreamCodec implements StreamCodec {
 
 				final PGPPublicKey decodeKey = pgpRing.getPublicKey(decodeKeyId);
 				if (decodeKey == null) {
-					String message = String.format("Public key invalid for configuration %s", configuration);
+					String message = String.format(BcMessages.getString("BcStreamCodec_encode_error_public_key"), //$NON-NLS-1$
+							configuration);
 					throw new IOException(message);
 				}
 				final PGPContentVerifierBuilderProvider cvBuilder = new JcaPGPContentVerifierBuilderProvider();
@@ -305,7 +308,7 @@ public class BcStreamCodec implements StreamCodec {
 		} catch (IOException e) {
 			throw e;
 		} catch (Exception e) {
-			String message = String.format("Decoding error for configuration %s", configuration);
+			String message = String.format(BcMessages.getString("BcStreamCodec_deconde_error"), configuration); //$NON-NLS-1$
 			throw new IOException(message, e);
 		}
 	}
