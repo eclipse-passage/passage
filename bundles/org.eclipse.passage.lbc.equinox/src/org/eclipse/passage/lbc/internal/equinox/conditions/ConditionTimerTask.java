@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.net.TimeConditions;
 abstract class ConditionTimerTask extends TimerTask {
 
 	private boolean isStopped = false;
-	private String timeToLive = "";
+	private String timeToLive = ""; //$NON-NLS-1$
 
 	public ConditionTimerTask(String timeToLive) {
 		this.timeToLive = timeToLive;

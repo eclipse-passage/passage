@@ -22,6 +22,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
 import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
@@ -55,9 +56,9 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	@Override
 	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String source = getClass().getName();
-		logger.info(String.format("Executing action request from class: %s", source));
+		logger.info(String.format(EquinoxMessages.AcquireConditionActionExecutor_log_execute_action, source));
 		if (licenseConditionMiners.isEmpty()) {
-			String error = "No condition miners available";
+			String error = "No condition miners available"; //$NON-NLS-1$
 			logger.error(error);
 			return LicensingResults.createError(error, source);
 		}
@@ -75,7 +76,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				String error = String.format("LicensingConditionTransport not defined for contentType: %s",
+				String error = String.format("LicensingConditionTransport not defined for contentType: %s", //$NON-NLS-1$
 						contentType);
 				logger.error(error);
 				return LicensingResults.createError(error, source);
@@ -84,10 +85,10 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			transport.writeConditions(resultConditions, response.getOutputStream());
 			response.setContentType(request.getContentType());
 
-			return LicensingResults.createOK("Conditions mined", source);
+			return LicensingResults.createOK("Conditions mined", source); //$NON-NLS-1$
 		} catch (IOException e) {
 			logger.error(e.getMessage());
-			String error = "Condition mining failed";
+			String error = "Condition mining failed"; //$NON-NLS-1$
 			return LicensingResults.createError(error, source, e);
 		}
 	}

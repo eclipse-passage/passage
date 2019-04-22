@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
 import org.eclipse.passage.lbc.runtime.conditions.ConditionArbiter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingResult;
@@ -34,11 +35,11 @@ public class ServerConditionArbiter implements ConditionArbiter {
 	public boolean addConditionToReserv(LicensingCondition condition) {
 		boolean isReserved = false;
 		if (leaseConditions.contains(condition)) {
-			logger.info("Condition in lease");
+			logger.info(EquinoxMessages.ServerConditionArbiter_log_lease);
 			return isReserved;
 		}
 		if (reservedConditions.contains(condition)) {
-			logger.info("Condition in reserv");
+			logger.info(EquinoxMessages.ServerConditionArbiter_log_reserv);
 			return isReserved;
 		}
 		isReserved = createTaskForReserving(condition);
@@ -52,7 +53,7 @@ public class ServerConditionArbiter implements ConditionArbiter {
 	public boolean addConditionToLease(LicensingCondition condition) {
 		boolean isLeased = false;
 		if (leaseConditions.contains(condition)) {
-			logger.info("Condition already in lease");
+			logger.info(EquinoxMessages.ServerConditionArbiter_log_already_lease);
 			return isLeased;
 		}
 		if (reservedConditions.contains(condition)) {
@@ -61,7 +62,7 @@ public class ServerConditionArbiter implements ConditionArbiter {
 				isLeased = leaseConditions.add(condition);
 			}
 		} else {
-			logger.info("Condition was not reserved");
+			logger.info(EquinoxMessages.ServerConditionArbiter_log_not_reserved);
 		}
 		return isLeased;
 	}
