@@ -28,24 +28,24 @@ public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 	private FeatureRegistry registry;
 
 	@Reference
-	public void bindDomainRegistry(FeatureRegistry registry) {
-		this.registry = registry;
+	public void bindDomainRegistry(FeatureRegistry featureRegistry) {
+		this.registry = featureRegistry;
 	}
 
-	public void unbindDomainRegistry(FeatureRegistry registry) {
+	public void unbindDomainRegistry(FeatureRegistry featureRegistry) {
 		this.registry = null;
 	}
 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (FeaturesPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
-			return "Select Feature Set";
+			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature_set;
 		}
 		if (FeaturesPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
-			return "Select Feature";
+			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature;
 		}
 		if (FeaturesPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
-			return "Select Feature Version";
+			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature_version;
 		}
 		return null;
 	}

@@ -26,7 +26,7 @@ public final class FeatureSetClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectName() {
-		return "New Feature Set";
+		return CoreMessages.FeatureSetClassifierInitializer_new_feature_set_name;
 	}
 
 	@Override
@@ -36,16 +36,16 @@ public final class FeatureSetClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectTitle() {
-		return "Feature Set";
+		return CoreMessages.FeatureSetClassifierInitializer_feature_set;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return "New Feature Set";
+		return CoreMessages.FeatureSetClassifierInitializer_new_feature_set_messahe;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return "Please specify a file name to store feature data";
+		return CoreMessages.FeatureSetClassifierInitializer_new_file_message;
 	}
 }
