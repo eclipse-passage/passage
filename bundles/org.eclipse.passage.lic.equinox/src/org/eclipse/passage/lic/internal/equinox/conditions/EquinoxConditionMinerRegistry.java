@@ -21,8 +21,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-@Component
-public class EquinoxConditionMinerRegistry extends BaseConditionMinerRegistry implements ConditionMinerRegistry {
+@Component(service = ConditionMinerRegistry.class)
+public class EquinoxConditionMinerRegistry extends BaseConditionMinerRegistry {
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override

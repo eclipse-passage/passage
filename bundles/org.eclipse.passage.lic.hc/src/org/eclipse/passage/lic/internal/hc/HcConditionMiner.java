@@ -35,7 +35,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.base.conditions.BaseConditionMiner;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.hc.HttpRequests;
 import org.eclipse.passage.lic.net.LicensingNet;
@@ -46,14 +46,12 @@ import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 
-@Component
-public class HcConditionMiner implements ConditionMiner {
+@Component(service = ConditionMiner.class)
+public class HcConditionMiner extends BaseConditionMiner {
 
 	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
 
 	private static final String SETTINGS_EXTENSION = ".settings";
-
-	private final Map<String, ConditionTransport> contentType2ConditionTransport = new HashMap<>();
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -95,7 +93,6 @@ public class HcConditionMiner implements ConditionMiner {
 		}
 
 		try {
-			CloseableHttpClient httpClient = HttpClients.createDefault();
 			String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 			if (hostValue == null || hostValue.isEmpty()) {
 				logger.log(Level.FINEST, HcConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
@@ -106,13 +103,15 @@ public class HcConditionMiner implements ConditionMiner {
 				logger.log(Level.FINEST, HcConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
 				return conditions;
 			}
+			String location = String.format(HOST_PORT, hostValue, portValue);
 
 			Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue,
 					LicensingNet.ROLE, "product.1", "1.0.0");
-			HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
+			HttpHost host = HttpHost.create(location);
 			URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 			if (requestBulder == null) {
 				logger.log(Level.FINEST, "Could not create URI for request");
+				return conditions;
 			}
 			HttpPost httpPost = new HttpPost(requestBulder.build());
 
@@ -126,8 +125,7 @@ public class HcConditionMiner implements ConditionMiner {
 					String contentType = header.getValue();
 					HttpEntity entity = response.getEntity();
 					if (entity != null && entity.getContent() != null) {
-						org.eclipse.passage.lic.runtime.conditions.ConditionTransport transport = getConditionTransport(
-								contentType);
+						ConditionTransport transport = conditionTransports.get(contentType);
 						Iterable<LicensingCondition> conditionDescriptors = transport
 								.readConditions(entity.getContent());
 						return conditionDescriptors;
@@ -137,45 +135,31 @@ public class HcConditionMiner implements ConditionMiner {
 					return null;
 				}
 			};
-			httpClient.execute(host, httpPost, responseHandler);
-
+			try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+				httpClient.execute(host, httpPost, responseHandler);
+			}
 		} catch (Exception e) {
 			logger.log(Level.FINER, e.getMessage());
 		}
 		return conditions;
 	}
 
-	private ConditionTransport getConditionTransport(String typeOfContent) {
-		return contentType2ConditionTransport.get(typeOfContent);
-	}
-
-	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String contentType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
-		if (contentType != null) {
-			if (!contentType2ConditionTransport.containsKey(contentType)) {
-				contentType2ConditionTransport.put(contentType, transport);
-			}
-		}
-	}
-
-	public void unbindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String contentType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
-		if (contentType != null) {
-			if (contentType2ConditionTransport.containsKey(contentType)) {
-				contentType2ConditionTransport.remove(contentType, transport);
-			}
-		}
-	}
-
 	private Map<String, String> loadIstallationAreaSettings(List<String> readAllLines) {
 		Map<String, String> settings = new HashMap<>();
 		for (String iter : readAllLines) {
-			String[] setting = iter.split("=");
+			String[] setting = iter.split("="); //$NON-NLS-1$
 			if (setting.length == 2) {
 				settings.put(setting[0], setting[1]);
 			}
 		}
 		return settings;
+	}
+
+	@Override
+	protected String getBaseLocation() {
+		String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
+		String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
+		return String.format(HOST_PORT, hostValue, portValue);
 	}
 
 }

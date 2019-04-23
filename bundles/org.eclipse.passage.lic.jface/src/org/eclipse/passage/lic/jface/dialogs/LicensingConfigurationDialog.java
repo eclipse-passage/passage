@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -35,7 +34,7 @@ public class LicensingConfigurationDialog extends TrayDialog {
 
 	private static final String TAB_ID = "TAB_ID"; //$NON-NLS-1$
 	private static String lastTabId = null;
-	private Map<TabItem, LicensingRegistryPage<?>> mapRegistryPages = new HashMap<TabItem, LicensingRegistryPage<?>>();
+	private Map<TabItem, LicensingPage> tab2page = new HashMap<TabItem, LicensingPage>();
 	private TabFolder tabFolder;
 
 	public LicensingConfigurationDialog(Shell shell) {
@@ -91,8 +90,8 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	}
 
 	protected void createFolderItems(TabFolder folder) {
-		Iterable<LicensingPageContributor<?>> contributors = LicensingPages.getPageContributors();
-		for (LicensingPageContributor<?> pageContributor : contributors) {
+		Iterable<LicensingPageContributor> contributors = LicensingPages.getPageContributors();
+		for (LicensingPageContributor pageContributor : contributors) {
 			TabItem item = new TabItem(folder, SWT.NONE);
 			item.setText(pageContributor.getPageName());
 			item.setData(pageContributor);
@@ -106,11 +105,11 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	protected void tabSelected(TabItem item) {
 		Object data = item.getData();
 		if (data instanceof LicensingPageContributor) {
-			final LicensingPageContributor<?> element = (LicensingPageContributor<?>) data;
+			final LicensingPageContributor element = (LicensingPageContributor) data;
 			Composite pageComposite = (Composite) item.getControl();
 			try {
-				final LicensingRegistryPage<?> page = element.createPage();
-				mapRegistryPages.put(item, page);
+				final LicensingPage page = element.createPage();
+				tab2page.put(item, page);
 				page.createControl(pageComposite);
 				Dialog.applyDialogFont(pageComposite);
 				item.setData(page);
@@ -132,14 +131,17 @@ public class LicensingConfigurationDialog extends TrayDialog {
 	}
 
 	@Override
-	protected void buttonPressed(int buttonId) {
-		if (IDialogConstants.OK_ID == buttonId) {
-			for (LicensingRegistryPage<?> page : mapRegistryPages.values()) {
-				page.accept();
-			}
+	protected void okPressed() {
+		for (LicensingPage page : tab2page.values()) {
+			page.accept();
 		}
-		super.buttonPressed(buttonId);
-		mapRegistryPages.clear();
+		super.okPressed();
+	}
+
+	@Override
+	public boolean close() {
+		tab2page.clear();
+		return super.close();
 	}
 
 }

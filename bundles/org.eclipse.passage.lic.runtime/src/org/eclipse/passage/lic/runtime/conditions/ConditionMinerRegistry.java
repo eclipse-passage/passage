@@ -27,4 +27,6 @@ public interface ConditionMinerRegistry {
 
 	LicensingResult importConditions(String source, LicensingConfiguration configuration);
 
+	String getConditionMinerTarget(ConditionMiner miner);
+
 }

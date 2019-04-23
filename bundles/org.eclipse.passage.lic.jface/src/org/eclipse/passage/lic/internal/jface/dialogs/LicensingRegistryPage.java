@@ -10,23 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs;
+package org.eclipse.passage.lic.internal.jface.dialogs;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.passage.lic.jface.dialogs.LicensingPage;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
-public abstract class LicensingRegistryPage<R> extends DialogPage {
+public abstract class LicensingRegistryPage<R> extends LicensingPage {
 
 	private BundleContext bundleContext;
 	private ServiceReference<R> registryReference;
@@ -56,16 +49,6 @@ public abstract class LicensingRegistryPage<R> extends DialogPage {
 
 	protected abstract String getConfigurationErrorMessage();
 
-	protected void createErrorContent(Composite parent, String message) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
-		composite.setLayout(new GridLayout(2, false));
-		Label image = new Label(composite, SWT.NONE);
-		image.setImage(LicensingImages.getImage(LicensingImages.IMG_LEVEL_ERROR));
-		Label text = new Label(composite, SWT.NONE);
-		text.setText(message);
-	}
-
 	@Override
 	public void dispose() {
 		if (registryService != null) {
@@ -78,9 +61,4 @@ public abstract class LicensingRegistryPage<R> extends DialogPage {
 		}
 		super.dispose();
 	}
-
-	protected IStatus accept() {
-		return Status.OK_STATUS;
-	}
-
 }

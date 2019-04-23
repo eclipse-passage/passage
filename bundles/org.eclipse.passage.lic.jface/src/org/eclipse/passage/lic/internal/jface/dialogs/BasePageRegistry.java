@@ -15,27 +15,27 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.jface.dialogs.LicensingPage;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageRegistry;
-import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 
 public class BasePageRegistry implements LicensingPageRegistry {
 
-	private Map<String, LicensingPageContributor<?>> pageContributors = new LinkedHashMap<>();
+	private Map<String, LicensingPageContributor> pageContributors = new LinkedHashMap<>();
 
 	@Override
-	public Iterable<LicensingPageContributor<?>> getPageContributors() {
+	public Iterable<LicensingPageContributor> getPageContributors() {
 		return pageContributors.values();
 	}
 
 	@Override
-	public <R> void registerPageContributor(LicensingPageContributor<R> contributor) {
+	public void registerPageContributor(LicensingPageContributor contributor) {
 		pageContributors.put(contributor.getPageIdentifier(), contributor);
 	}
 
-	public <R> void registerPageContributor(Class<? extends LicensingRegistryPage<R>> pageClass, String pageName) {
+	public void registerPageContributor(Class<? extends LicensingPage> pageClass, String pageName) {
 		String pageIdentifier = pageClass.getName();
-		BasePageContributor<R> contributor = new BasePageContributor<R>(pageIdentifier, pageName, pageClass);
+		BasePageContributor contributor = new BasePageContributor(pageIdentifier, pageName, pageClass);
 		registerPageContributor(contributor);
 	}
 
