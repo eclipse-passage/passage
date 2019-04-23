@@ -17,6 +17,7 @@ import java.util.Collection;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -101,7 +102,7 @@ public class ApplicationConfigurations {
 	}
 
 	public static String getLicensingContacts(IApplicationContext application) {
-		String contantDefaults = "Eclipse Passage \nhttps://www.eclipse.org/passage"; //$NON-NLS-1$
+		String contantDefaults = EquinoxMessages.ApplicationConfigurations_contact_defaults;
 		if (application == null) {
 			return contantDefaults;
 		}
