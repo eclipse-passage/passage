@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,11 +23,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -33,13 +37,12 @@ import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.loc.products.core.Products;
-import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Products.FILE_EXTENSION_XMI })
@@ -53,13 +56,13 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 
 	@Reference
 	@Override
-	public void bindEventAdmin(EventAdmin admin) {
-		super.bindEventAdmin(admin);
+	public void bindLicensingReporter(LicensingReporter admin) {
+		super.bindLicensingReporter(admin);
 	}
 
 	@Override
-	public void unbindEventAdmin(EventAdmin admin) {
-		super.unbindEventAdmin(admin);
+	public void unbindLicensingReporter(LicensingReporter admin) {
+		super.unbindLicensingReporter(admin);
 	}
 
 	@Reference
@@ -205,7 +208,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine));
+		licensingReporter
+				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine));
 		productLine.getProducts().forEach(p -> registerProduct(p));
 	}
 
@@ -216,7 +220,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_CREATE, product));
+		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_CREATE, product));
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
 	}
 
@@ -230,7 +234,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion));
+		licensingReporter
+				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion));
 	}
 
 	@Override
@@ -247,15 +252,16 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(
-				OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature));
+		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE,
+				productVersionFeature));
 	}
 
 	@Override
 	public void unregisterProductLine(String productLineId) {
 		ProductLineDescriptor removed = productLineIndex.remove(productLineId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed));
+			licensingReporter
+					.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed));
 			removed.getProducts().forEach(p -> unregisterProduct(p.getIdentifier()));
 		}
 	}
@@ -264,7 +270,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	public void unregisterProduct(String productId) {
 		ProductDescriptor removed = productIndex.remove(productId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_DELETE, removed));
+			licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_DELETE, removed));
 			removed.getProductVersions().forEach(pv -> unregisterProductVersion(productId, pv.getVersion()));
 		}
 	}
@@ -275,7 +281,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (versions != null) {
 			ProductVersionDescriptor removed = versions.remove(version);
 			if (removed != null) {
-				eventAdmin.postEvent(OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed));
+				licensingReporter.postResult(
+						LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed));
 				removed.getProductVersionFeatures().forEach(
 						pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
 			}
@@ -293,8 +300,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 			if (features != null) {
 				ProductVersionFeatureDescriptor removed = features.remove(featureId);
 				if (removed != null) {
-					eventAdmin.postEvent(
-							OperatorEvents.create(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
+					licensingReporter.postResult(LicensingResults
+							.createEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
 				}
 				if (features.isEmpty()) {
 					versions.remove(version);
@@ -329,6 +336,14 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	@Override
 	public void unregisterContent(String identifier) {
 		unregisterProductLine(identifier);
+	}
+
+	@Override
+	protected Path getResourceSetPath() throws Exception {
+		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Files.createDirectories(passagePath);
+		Path domainPath = passagePath.resolve(domainName);
+		return domainPath;
 	}
 
 }

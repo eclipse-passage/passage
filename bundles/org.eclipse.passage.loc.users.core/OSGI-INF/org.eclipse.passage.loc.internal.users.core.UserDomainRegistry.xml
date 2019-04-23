@@ -6,7 +6,7 @@
       <provide interface="org.eclipse.passage.lic.users.registry.UserRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>
    </service>
-   <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>
+   <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <implementation class="org.eclipse.passage.loc.internal.users.core.UserDomainRegistry"/>
 </scr:component>

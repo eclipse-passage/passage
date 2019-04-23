@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.features.core;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,24 +23,25 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.loc.features.core.Features;
-import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI })
@@ -51,13 +54,13 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 
 	@Reference
 	@Override
-	public void bindEventAdmin(EventAdmin admin) {
-		super.bindEventAdmin(admin);
+	public void bindLicensingReporter(LicensingReporter admin) {
+		super.bindLicensingReporter(admin);
 	}
 
 	@Override
-	public void unbindEventAdmin(EventAdmin admin) {
-		super.unbindEventAdmin(admin);
+	public void unbindLicensingReporter(LicensingReporter admin) {
+		super.unbindLicensingReporter(admin);
 	}
 
 	@Reference
@@ -176,7 +179,8 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet));
+		licensingReporter
+				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet));
 		Iterable<? extends FeatureDescriptor> features = featureSet.getFeatures();
 		for (FeatureDescriptor feature : features) {
 			registerFeature(feature);
@@ -190,7 +194,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_CREATE, feature));
+		licensingReporter.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_CREATE, feature));
 		Iterable<? extends FeatureVersionDescriptor> featureVersions = feature.getFeatureVersions();
 		for (FeatureVersionDescriptor featureVersion : featureVersions) {
 			registerFeatureVersion(feature, featureVersion);
@@ -207,14 +211,16 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion));
+		licensingReporter
+				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion));
 	}
 
 	@Override
 	public void unregisterFeatureSet(String featureSetId) {
 		FeatureSetDescriptor removed = featureSetIndex.remove(featureSetId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_SET_DELETE, removed));
+			licensingReporter
+					.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed));
 			Iterable<? extends FeatureDescriptor> features = removed.getFeatures();
 			for (FeatureDescriptor feature : features) {
 				unregisterFeature(feature.getIdentifier());
@@ -226,7 +232,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	public void unregisterFeature(String featureId) {
 		FeatureDescriptor removed = featureIndex.remove(featureId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_DELETE, removed));
+			licensingReporter.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_DELETE, removed));
 			Iterable<? extends FeatureVersionDescriptor> featureVersions = removed.getFeatureVersions();
 			for (FeatureVersionDescriptor featureVersion : featureVersions) {
 				unregisterFeatureVersion(featureId, featureVersion.getVersion());
@@ -240,7 +246,8 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (map != null) {
 			FeatureVersionDescriptor removed = map.remove(version);
 			if (removed != null) {
-				eventAdmin.postEvent(OperatorEvents.create(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed));
+				licensingReporter.postResult(
+						LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed));
 			}
 			if (map.isEmpty()) {
 				featureVersionIndex.remove(version);
@@ -271,6 +278,14 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	@Override
 	public void unregisterContent(String identifier) {
 		unregisterFeatureSet(identifier);
+	}
+
+	@Override
+	protected Path getResourceSetPath() throws Exception {
+		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Files.createDirectories(passagePath);
+		Path domainPath = passagePath.resolve(domainName);
+		return domainPath;
 	}
 
 }

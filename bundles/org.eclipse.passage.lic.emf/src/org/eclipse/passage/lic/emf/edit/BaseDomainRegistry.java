@@ -31,16 +31,16 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
-import org.osgi.service.event.EventAdmin;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
 
-	protected EventAdmin eventAdmin;
+	protected LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
-	private String domainName;
+	protected String domainName;
 
 	private ComposedAdapterFactory composedAdapterFactory;
 
@@ -56,12 +56,14 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 				new HashMap<Resource, Boolean>());
 	}
 
-	protected void bindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = admin;
+	protected void bindLicensingReporter(LicensingReporter reporter) {
+		this.licensingReporter = reporter;
 	}
 
-	protected void unbindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = null;
+	protected void unbindLicensingReporter(LicensingReporter reporter) {
+		if (this.licensingReporter == reporter) {
+			this.licensingReporter = SystemReporter.INSTANCE;
+		}
 	}
 
 	protected void bindFactoryProvider(ComposedAdapterFactoryProvider factoryProvider) {
@@ -77,7 +79,8 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	protected void activate(Map<String, Object> properties) {
 		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
 		contentAdapter = createContentAdapter();
-		editingDomain.getResourceSet().eAdapters().add(contentAdapter);
+		ResourceSet resourceSet = editingDomain.getResourceSet();
+		resourceSet.eAdapters().add(contentAdapter);
 		loadResourceSet();
 	}
 
@@ -97,12 +100,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		}
 	}
 
-	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = EquinoxPaths.resolveInstallBasePath();
-		Files.createDirectories(passagePath);
-		Path domainPath = passagePath.resolve(domainName);
-		return domainPath;
-	}
+	protected abstract Path getResourceSetPath() throws Exception;
 
 	protected abstract DomainContentAdapter<I, ? extends EditingDomainRegistry<I>> createContentAdapter();
 

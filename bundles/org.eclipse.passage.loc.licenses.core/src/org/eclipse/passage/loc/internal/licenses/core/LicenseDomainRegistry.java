@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,22 +23,23 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.loc.licenses.core.Licenses;
-import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
@@ -49,13 +52,13 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 
 	@Reference
 	@Override
-	public void bindEventAdmin(EventAdmin admin) {
-		super.bindEventAdmin(admin);
+	public void bindLicensingReporter(LicensingReporter admin) {
+		super.bindLicensingReporter(admin);
 	}
 
 	@Override
-	public void unbindEventAdmin(EventAdmin admin) {
-		super.unbindEventAdmin(admin);
+	public void unbindLicensingReporter(LicensingReporter admin) {
+		super.unbindLicensingReporter(admin);
 	}
 
 	@Reference
@@ -155,7 +158,8 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(LicenseRegistryEvents.LICENSE_PACK_CREATE, licensePack));
+		licensingReporter
+				.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PACK_CREATE, licensePack));
 		String userIdentifier = licensePack.getUserIdentifier();
 		List<LicensePackDescriptor> userPackList = userPackIndex.computeIfAbsent(userIdentifier,
 				key -> new ArrayList<>());
@@ -172,7 +176,8 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 	public void unregisterLicensePack(String identifier) {
 		LicensePackDescriptor removed = licensePackIndex.remove(identifier);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(LicenseRegistryEvents.LICENSE_PACK_DELETE, removed));
+			licensingReporter
+					.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PACK_DELETE, removed));
 			String userIdentifier = removed.getUserIdentifier();
 
 			List<LicensePackDescriptor> userPackList = userPackIndex.get(userIdentifier);
@@ -225,6 +230,14 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 	@Override
 	public void unregisterContent(String identifier) {
 		unregisterLicensePack(identifier);
+	}
+
+	@Override
+	protected Path getResourceSetPath() throws Exception {
+		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Files.createDirectories(passagePath);
+		Path domainPath = passagePath.resolve(domainName);
+		return domainPath;
 	}
 
 }

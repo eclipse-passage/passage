@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.core;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,23 +21,24 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
-import org.eclipse.passage.loc.runtime.OperatorEvents;
 import org.eclipse.passage.loc.users.core.Users;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Users.FILE_EXTENSION_XMI })
@@ -47,13 +50,13 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	@Reference
 	@Override
-	public void bindEventAdmin(EventAdmin admin) {
-		super.bindEventAdmin(admin);
+	public void bindLicensingReporter(LicensingReporter admin) {
+		super.bindLicensingReporter(admin);
 	}
 
 	@Override
-	public void unbindEventAdmin(EventAdmin admin) {
-		super.unbindEventAdmin(admin);
+	public void unbindLicensingReporter(LicensingReporter admin) {
+		super.unbindLicensingReporter(admin);
 	}
 
 	@Reference
@@ -137,7 +140,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin));
+		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin));
 		userOrigin.getUsers().forEach(u -> {
 			registerUser(u);
 		});
@@ -150,14 +153,14 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		if (existing != null) {
 			// FIXME: warning
 		}
-		eventAdmin.postEvent(OperatorEvents.create(UserRegistryEvents.USER_CREATE, user));
+		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_CREATE, user));
 	}
 
 	@Override
 	public void unregisterUserOrigin(String userOriginId) {
 		UserOriginDescriptor removed = userOriginIndex.remove(userOriginId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(UserRegistryEvents.USER_ORIGIN_DELETE, removed));
+			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed));
 			removed.getUsers().forEach(u -> {
 				unregisterUser(u.getEmail());
 			});
@@ -168,7 +171,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	public void unregisterUser(String userId) {
 		UserDescriptor removed = userIndex.remove(userId);
 		if (removed != null) {
-			eventAdmin.postEvent(OperatorEvents.create(UserRegistryEvents.USER_DELETE, removed));
+			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_DELETE, removed));
 		}
 	}
 
@@ -195,6 +198,14 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	@Override
 	public void unregisterContent(String identifier) {
 		unregisterUserOrigin(identifier);
+	}
+
+	@Override
+	protected Path getResourceSetPath() throws Exception {
+		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Files.createDirectories(passagePath);
+		Path domainPath = passagePath.resolve(domainName);
+		return domainPath;
 	}
 
 }
