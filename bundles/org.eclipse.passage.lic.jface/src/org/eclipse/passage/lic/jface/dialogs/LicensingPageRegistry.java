@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.jface.dialogs;
 
 public interface LicensingPageRegistry {
 
-	Iterable<LicensingPageContributor<?>> getPageContributors();
+	Iterable<LicensingPageContributor> getPageContributors();
 
-	<R> void registerPageContributor(LicensingPageContributor<R> contributor);
+	<R> void registerPageContributor(LicensingPageContributor contributor);
 
 }

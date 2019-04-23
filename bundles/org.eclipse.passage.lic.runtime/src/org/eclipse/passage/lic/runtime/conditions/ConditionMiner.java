@@ -19,13 +19,19 @@ import org.eclipse.passage.lic.runtime.LicensingConfiguration;
  * <li>local file system</li>
  * <li>network server</li>
  * <li>etc</li>
+ * 
+ * @since 0.4.0
  */
 public interface ConditionMiner {
 
 	/**
+	 * Extracts {@link LicensingCondition}(s) for given
+	 * {@link LicensingConfiguration}
 	 * 
-	 * @param configuration
-	 * @return
+	 * @param configuration the {@link LicensingConfiguration}
+	 * @return the {@link Iterable}<{@link LicensingCondition}>, may be empty
+	 * 
+	 * @since 0.4.0
 	 */
 	Iterable<LicensingCondition> extractLicensingConditions(LicensingConfiguration configuration);
 

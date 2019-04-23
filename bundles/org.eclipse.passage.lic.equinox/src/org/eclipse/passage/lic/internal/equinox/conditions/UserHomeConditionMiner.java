@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.conditions.BasePathConditionMiner;
+import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
@@ -28,10 +28,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-@Component
-public class UserHomeConditionMiner extends BasePathConditionMiner implements ConditionMiner {
+@Component(service = ConditionMiner.class)
+public class UserHomeConditionMiner extends PathConditionMiner {
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
 	@Override
 	public void bindLicensingReporter(LicensingReporter reporter) {
 		super.bindLicensingReporter(reporter);
@@ -42,7 +42,7 @@ public class UserHomeConditionMiner extends BasePathConditionMiner implements Co
 		super.unbindLicensingReporter(reporter);
 	}
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
 	@Override
 	public void bindKeyKeeperRegistry(KeyKeeperRegistry registry) {
 		super.bindKeyKeeperRegistry(registry);
@@ -53,7 +53,7 @@ public class UserHomeConditionMiner extends BasePathConditionMiner implements Co
 		super.unbindKeyKeeperRegistry(registry);
 	}
 
-	@Reference
+	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
 	@Override
 	public void bindStreamCodecRegistry(StreamCodecRegistry registry) {
 		super.bindStreamCodecRegistry(registry);
@@ -64,16 +64,14 @@ public class UserHomeConditionMiner extends BasePathConditionMiner implements Co
 		super.unbindStreamCodecRegistry(registry);
 	}
 
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	@Override
-	@Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void bindConditionTransport(ConditionTransport transport,
-			Map<String, Object> properties) {
+	public void bindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		super.bindConditionTransport(transport, properties);
 	}
 
 	@Override
-	public void unbindConditionTransport(ConditionTransport transport,
-			Map<String, Object> properties) {
+	public void unbindConditionTransport(ConditionTransport transport, Map<String, Object> properties) {
 		super.unbindConditionTransport(transport, properties);
 	}
 

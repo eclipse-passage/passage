@@ -18,13 +18,13 @@ import static org.junit.Assert.assertFalse;
 import java.nio.file.Path;
 
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
-import org.eclipse.passage.lic.base.conditions.BasePathConditionMiner;
+import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.junit.Test;
 
 public class BaseConditionMinerRegistryTest {
 
-	private static final ConditionMiner MINER1 = new BasePathConditionMiner() {
+	private static final ConditionMiner MINER1 = new PathConditionMiner() {
 
 		@Override
 		protected Path getBasePath() {
@@ -32,7 +32,7 @@ public class BaseConditionMinerRegistryTest {
 		}
 	};
 
-	private static final ConditionMiner MINER2 = new BasePathConditionMiner() {
+	private static final ConditionMiner MINER2 = new PathConditionMiner() {
 
 		@Override
 		protected Path getBasePath() {

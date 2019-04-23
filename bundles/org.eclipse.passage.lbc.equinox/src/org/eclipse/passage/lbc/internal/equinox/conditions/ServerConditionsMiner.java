@@ -15,7 +15,7 @@ package org.eclipse.passage.lbc.internal.equinox.conditions;
 import java.nio.file.Path;
 import java.util.Map;
 
-import org.eclipse.passage.lic.base.conditions.BasePathConditionMiner;
+import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;;
 
 @Component(service = ConditionMiner.class)
-public class ServerConditionsMiner extends BasePathConditionMiner {
+public class ServerConditionsMiner extends PathConditionMiner {
 
 	@Override
 	public void bindLicensingReporter(LicensingReporter reporter) {

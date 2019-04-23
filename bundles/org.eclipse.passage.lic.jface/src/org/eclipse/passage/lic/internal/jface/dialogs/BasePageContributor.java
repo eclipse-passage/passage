@@ -15,19 +15,18 @@ package org.eclipse.passage.lic.internal.jface.dialogs;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.jface.dialogs.LicensingPage;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
-import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
 import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 
-public class BasePageContributor<R> implements LicensingPageContributor<R> {
+public class BasePageContributor implements LicensingPageContributor {
 
 	private final String pageIdentifier;
 	private final String pageName;
-	private final Class<? extends LicensingRegistryPage<R>> pageClass;
+	private final Class<? extends LicensingPage> pageClass;
 
-	public BasePageContributor(String pageIdentifier, String pageName,
-			Class<? extends LicensingRegistryPage<R>> pageClass) {
+	public BasePageContributor(String pageIdentifier, String pageName, Class<? extends LicensingPage> pageClass) {
 		this.pageIdentifier = pageIdentifier;
 		this.pageName = pageName;
 		this.pageClass = pageClass;
@@ -44,7 +43,7 @@ public class BasePageContributor<R> implements LicensingPageContributor<R> {
 	}
 
 	@Override
-	public LicensingRegistryPage<R> createPage() throws LicensingException {
+	public LicensingPage createPage() throws LicensingException {
 		try {
 			return pageClass.newInstance();
 		} catch (Exception e) {

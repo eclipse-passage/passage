@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.jface.dialogs;
 
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.jface.dialogs.BasePageRegistry;
+import org.eclipse.passage.lic.internal.jface.dialogs.ConditionLocationPage;
 import org.eclipse.passage.lic.internal.jface.dialogs.ConditionTypePage;
 import org.eclipse.passage.lic.internal.jface.dialogs.RestrictionLevelPage;
 
@@ -33,14 +34,13 @@ public class LicensingPages {
 
 	private BasePageRegistry createDefaultContributor() {
 		BasePageRegistry basePageRegistry = new BasePageRegistry();
-		// not ready yet
-//		basePageRegistry.registerPageContributor(ConditionLocationPage.class, "License Locations");
+		basePageRegistry.registerPageContributor(ConditionLocationPage.class, "License Locations");
 		basePageRegistry.registerPageContributor(ConditionTypePage.class, "Condition Types");
 		basePageRegistry.registerPageContributor(RestrictionLevelPage.class, "Restriction Levels");
 		return basePageRegistry;
 	}
 
-	public static Iterable<LicensingPageContributor<?>> getPageContributors() {
+	public static Iterable<LicensingPageContributor> getPageContributors() {
 		return INSTANCE.pageRegistry.getPageContributors();
 	}
 

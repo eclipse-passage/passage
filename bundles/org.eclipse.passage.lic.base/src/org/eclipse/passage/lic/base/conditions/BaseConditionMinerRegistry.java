@@ -67,10 +67,20 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 			NullStreamCodec.transfer(fis, fos);
 			return LicensingResults.createOK();
 		} catch (Exception e) {
-			String message = String.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
+			String message = String
+					.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
 			return LicensingResults.createError(message, source, e);
 		}
 
+	}
+
+	@Override
+	public String getConditionMinerTarget(ConditionMiner miner) {
+		if (miner instanceof BaseConditionMiner) {
+			BaseConditionMiner basePathMiner = (BaseConditionMiner) miner;
+			return basePathMiner.getBaseLocation();
+		}
+		return null;
 	}
 
 }

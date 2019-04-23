@@ -12,10 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.internal.jface.JFaceMessages;
-import org.eclipse.passage.lic.jface.dialogs.LicensingRegistryPage;
+import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 
 public class ConditionLocationPage extends LicensingRegistryPage<ConditionMinerRegistry> {
 
@@ -25,8 +30,20 @@ public class ConditionLocationPage extends LicensingRegistryPage<ConditionMinerR
 
 	@Override
 	protected void createContent(Composite parent, ConditionMinerRegistry registry) {
-		// TODO Auto-generated method stub
+		Iterable<ConditionMiner> conditionTypes = registry.getConditionMiners();
+		GridDataFactory groupData = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false);
+		for (ConditionMiner miner : conditionTypes) {
+			Group group = new Group(parent, SWT.NONE);
+			group.setData(miner);
+			group.setLayout(new GridLayout(1, false));
+			group.setLayoutData(groupData.create());
 
+			Label description = new Label(group, SWT.WRAP);
+			String target = registry.getConditionMinerTarget(miner);
+			if (target != null) {
+				description.setText(target);
+			}
+		}
 	}
 
 	@Override
