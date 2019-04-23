@@ -37,11 +37,10 @@ public class ConditionMinersTest extends LicensningBaseTests {
 		collectPacksInvalid(null, LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
 	}
 
-	@SuppressWarnings("nls")
 	private void collectPacksInvalid(Path path, String... extension) {
 		try {
 			ConditionMiners.collectPacks(path, extension);
-			fail("Invalid arguments accepted");
+			fail("Invalid arguments accepted"); //$NON-NLS-1$
 		} catch (LicensingException e) {
 			// expected
 		}

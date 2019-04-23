@@ -19,16 +19,15 @@ import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.junit.Test;
 
 public class LicensingConditionsTest {
-	
-	@SuppressWarnings("nls")
+
 	@Test
 	public void testEvaluateSegmentValuePositive() {
-		assertTrue(LicensingConditions.evaluateSegmentValue("*some*", "something"));
-		assertTrue(LicensingConditions.evaluateSegmentValue("some*", "something"));
-		assertFalse(LicensingConditions.evaluateSegmentValue("*some*", "anotherthing"));
-		assertFalse(LicensingConditions.evaluateSegmentValue("*Thin*", "anotherthing"));
-		assertTrue(LicensingConditions.evaluateSegmentValue("*Thin*", "anotherThing"));
-		assertTrue(LicensingConditions.evaluateSegmentValue("A*the*Some*", "Another Something"));
+		assertTrue(LicensingConditions.evaluateSegmentValue("*some*", "something")); //$NON-NLS-1$//$NON-NLS-2$
+		assertTrue(LicensingConditions.evaluateSegmentValue("some*", "something")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertFalse(LicensingConditions.evaluateSegmentValue("*some*", "anotherthing")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertFalse(LicensingConditions.evaluateSegmentValue("*Thin*", "anotherthing")); //$NON-NLS-1$//$NON-NLS-2$
+		assertTrue(LicensingConditions.evaluateSegmentValue("*Thin*", "anotherThing")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(LicensingConditions.evaluateSegmentValue("A*the*Some*", "Another Something")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }
