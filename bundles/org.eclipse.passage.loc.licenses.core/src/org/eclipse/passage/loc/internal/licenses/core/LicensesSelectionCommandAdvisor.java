@@ -39,7 +39,7 @@ public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
-			return "Select License Pack";
+			return CoreMessages.LicensesSelectionCommandAdvisor_select_lic_pack;
 		}
 		return null;
 	}

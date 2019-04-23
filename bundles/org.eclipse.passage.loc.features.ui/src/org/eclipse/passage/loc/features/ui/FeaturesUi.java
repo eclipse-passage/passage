@@ -29,7 +29,7 @@ public class FeaturesUi {
 	public static FeatureDescriptor selectFeatureDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
 			FeatureRegistry registry, FeatureDescriptor initial) {
 		String classifier = FeaturesPackage.eINSTANCE.getFeature().getName();
-		String title = "Select Feature";
+		String title = FeatureUiMessages.FeaturesUi_select_feature_title;
 		Iterable<? extends FeatureDescriptor> input = registry.getFeatures();
 		Class<FeatureDescriptor> clazz = FeatureDescriptor.class;
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();

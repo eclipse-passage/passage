@@ -26,7 +26,7 @@ public final class LicensePackClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectName() {
-		return "New License Pack";
+		return CoreMessages.LicensePackClassifierInitializer_new_lic_pack_name;
 	}
 
 	@Override
@@ -36,16 +36,16 @@ public final class LicensePackClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectTitle() {
-		return "License Pack";
+		return CoreMessages.LicensePackClassifierInitializer_lic_pack_title;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return "New License Pack";
+		return CoreMessages.LicensePackClassifierInitializer_new_lic_pack_message;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return "Please specify a file name to store license data";
+		return CoreMessages.LicensePackClassifierInitializer_file_name_message;
 	}
 }

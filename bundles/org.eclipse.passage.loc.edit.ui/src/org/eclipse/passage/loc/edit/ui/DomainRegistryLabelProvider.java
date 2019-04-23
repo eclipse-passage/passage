@@ -36,16 +36,16 @@ class DomainRegistryLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 		if (element instanceof FeatureRegistry) {
-			return "Features";
+			return EditUiMessages.DomainRegistryLabelProvider_features;
 		}
 		if (element instanceof ProductRegistry) {
-			return "Products";
+			return EditUiMessages.DomainRegistryLabelProvider_products;
 		}
 		if (element instanceof UserRegistry) {
-			return "Users";
+			return EditUiMessages.DomainRegistryLabelProvider_users;
 		}
 		if (element instanceof LicenseRegistry) {
-			return "Licenses";
+			return EditUiMessages.DomainRegistryLabelProvider_licenses;
 		}
 		if (element instanceof Resource) {
 			Resource resource = (Resource) element;

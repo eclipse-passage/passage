@@ -23,6 +23,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.loc.licenses.ui.LicensesUiMessages;
 import org.eclipse.passage.loc.runtime.LicenseOperatorService;
 import org.eclipse.swt.widgets.Shell;
 
@@ -35,9 +36,11 @@ public class LicenseExportHandler {
 		Shell shell = context.get(Shell.class);
 		IStatus status = licenseService.issueLicensePack(licensePack);
 		if (status.isOK()) {
-			MessageDialog.openInformation(shell, "License Pack Issued", status.getMessage());
+			MessageDialog.openInformation(shell, LicensesUiMessages.LicenseExportHandler_success_title,
+					status.getMessage());
 		} else {
-			ErrorDialog.openError(shell, "Error", "Error during license pack export", status);
+			ErrorDialog.openError(shell, LicensesUiMessages.LicenseExportHandler_error_title,
+					LicensesUiMessages.LicenseExportHandler_error_message, status);
 		}
 	}
 

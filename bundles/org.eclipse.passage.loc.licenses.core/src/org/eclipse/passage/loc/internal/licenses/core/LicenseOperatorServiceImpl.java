@@ -115,7 +115,8 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 			pack = (LicensePack) descriptor;
 		}
 		if (pack == null) {
-			return new Status(IStatus.ERROR, pluginId, "Invalid License Pack");
+			return new Status(IStatus.ERROR, pluginId,
+					CoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack);
 		}
 		LicensePack license = EcoreUtil.copy(pack);
 		String errors = LicensingEcore.extractValidationError(license);
@@ -142,11 +143,11 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 			resource.save(null);
 			eventAdmin.postEvent(LicenseOperatorEvents.decodedIssued(licenseIn));
 		} catch (IOException e) {
-			return new Status(IStatus.ERROR, pluginId, "License Pack export error", e);
+			return new Status(IStatus.ERROR, pluginId, CoreMessages.LicenseOperatorServiceImpl_export_error, e);
 		}
 
 		if (streamCodec == null) {
-			String format = "License pack exported succesfully: \n\n %s \n";
+			String format = CoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseIn);
 			return new Status(IStatus.OK, pluginId, message);
 		}
@@ -156,7 +157,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 				+ ProductOperatorService.EXTENSION_KEY_PRIVATE;
 		File privateProductToken = new File(privateKeyPath);
 		if (!privateProductToken.exists()) {
-			String pattern = "Product private key not found: \n %s";
+			String pattern = CoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
 			String message = String.format(pattern, privateProductToken.getAbsolutePath());
 			return new Status(IStatus.ERROR, pluginId, message);
 		}
@@ -171,11 +172,11 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 			String password = productOperatorService.createPassword(pvd);
 			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
 			eventAdmin.postEvent(LicenseOperatorEvents.encodedIssued(licenseOut));
-			String format = "License pack exported succesfully: \n\n %s \n";
+			String format = CoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
 			return new Status(IStatus.OK, pluginId, message);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, "License Pack export error", e);
+			return new Status(IStatus.ERROR, pluginId, CoreMessages.LicenseOperatorServiceImpl_export_error, e);
 		}
 	}
 

@@ -22,6 +22,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.passage.loc.edit.ui.EditUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class DomainRegistryRemoveHandler {
@@ -31,8 +32,8 @@ public class DomainRegistryRemoveHandler {
 		ResourceSet resourceSet = resource.getResourceSet();
 		if (resourceSet != null) {
 			Shell shell = context.get(Shell.class);
-			String message = String.format("Unregister domain resource: '%s' ?", resource.getURI());
-			String title = "Unregister Resource";
+			String message = String.format(EditUiMessages.DomainRegistryRemoveHandler_mesage, resource.getURI());
+			String title = EditUiMessages.DomainRegistryRemoveHandler_title;
 			if (MessageDialog.openConfirm(shell, title, message)) {
 				resource.unload();
 				resourceSet.getResources().remove(resource);
