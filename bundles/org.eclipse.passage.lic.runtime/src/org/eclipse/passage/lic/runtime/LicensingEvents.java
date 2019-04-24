@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime;
 
-public class LicensingEvents {
+public final class LicensingEvents {
 
 	public static final String PROPERTY_TOPIC = "org.eclipse.passage.lic.runtime.topic"; //$NON-NLS-1$
 	public static final String PROPERTY_SOURCE = "org.eclipse.passage.lic.runtime.source"; //$NON-NLS-1$
@@ -35,10 +35,6 @@ public class LicensingEvents {
 	 */
 	public static final String DELETE = "delete"; //$NON-NLS-1$
 
-	private LicensingEvents() {
-		// block
-	}
-
 	/**
 	 * Topic separator character
 	 */
@@ -53,5 +49,9 @@ public class LicensingEvents {
 	 * Base name of all Licensing events
 	 */
 	public static final String TOPIC_BASE = "org/eclipse/passage/lic/runtime"; //$NON-NLS-1$
+
+	private LicensingEvents() {
+		// block
+	}
 
 }

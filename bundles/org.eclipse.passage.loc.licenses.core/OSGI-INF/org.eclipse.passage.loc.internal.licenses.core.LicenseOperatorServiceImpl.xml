@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.loc.internal.licenses.core.LicenseOperatorServiceImpl">
    <service>
-      <provide interface="org.eclipse.passage.loc.runtime.LicenseOperatorService"/>
+      <provide interface="org.eclipse.passage.loc.api.OperatorLicenseService"/>
    </service>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
-   <reference bind="bindProductOperatorService" interface="org.eclipse.passage.loc.runtime.ProductOperatorService" name="ProductOperatorService" unbind="unbindProductOperatorService"/>
+   <reference bind="bindProductOperatorService" interface="org.eclipse.passage.loc.api.OperatorProductService" name="ProductOperatorService" unbind="unbindProductOperatorService"/>
    <reference bind="bindProductRegistry" interface="org.eclipse.passage.lic.products.registry.ProductRegistry" name="ProductRegistry" unbind="unbindProductRegistry"/>
    <reference bind="bindStreamCodec" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.io.StreamCodec" name="StreamCodec" unbind="unbindStreamCodec"/>
    <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseOperatorServiceImpl"/>

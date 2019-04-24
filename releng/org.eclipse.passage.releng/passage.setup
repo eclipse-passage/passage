@@ -256,7 +256,7 @@
           xsi:type="predicates:AndPredicate">
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.loc.runtime"/>
+            project="org.eclipse.passage.loc.api"/>
         <operand
             xsi:type="predicates:NamePredicate"
             pattern=".*\.loc\..*"/>

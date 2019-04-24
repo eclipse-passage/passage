@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.users.model;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.loc.runtime;bundle-version="0.0.0"
+ org.eclipse.passage.loc.api;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.users.core
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy

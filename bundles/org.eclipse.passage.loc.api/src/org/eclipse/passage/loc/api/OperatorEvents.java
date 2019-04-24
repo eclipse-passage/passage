@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.runtime;
+package org.eclipse.passage.loc.api;
 
 import java.util.HashMap;
 import java.util.Map;

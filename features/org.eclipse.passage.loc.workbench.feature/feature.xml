@@ -32,7 +32,7 @@
    </license>
 
    <plugin
-         id="org.eclipse.passage.loc.runtime"
+         id="org.eclipse.passage.loc.api"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -10,21 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.runtime;
+package org.eclipse.passage.loc.api;
+
+import static org.eclipse.passage.loc.api.OperatorEvents.TOPIC_SEP;
+import static org.eclipse.passage.loc.api.OperatorEvents.create;
 
 import org.osgi.service.event.Event;
 
-public class ProductOperatorEvents extends OperatorEvents {
+public final class OperatorProductEvents {
 
-	private ProductOperatorEvents() {
-		//block
+	private OperatorProductEvents() {
+		// block
 	}
 
 	/**
 	 * Base name of all License Operator events
 	 */
-	public static final String TOPIC = "org/eclipse/passage/loc/runtime/ProductOperatorEvents"; //$NON-NLS-1$
-	
+	public static final String TOPIC = "org/eclipse/passage/loc/api/OperatorProductEvents"; //$NON-NLS-1$
+
 	/**
 	 * Sent when {@link LicensePack} is issued in decoded form
 	 */
@@ -34,7 +37,7 @@ public class ProductOperatorEvents extends OperatorEvents {
 	 * Sent when {@link LicensePack} is issued in encoded form
 	 */
 	public static final String PRIVATE_CREATED = TOPIC + TOPIC_SEP + "privateCreated"; //$NON-NLS-1$
-	
+
 	public static Event publicCreated(String path) {
 		return create(PUBLIC_CREATED, path);
 	}

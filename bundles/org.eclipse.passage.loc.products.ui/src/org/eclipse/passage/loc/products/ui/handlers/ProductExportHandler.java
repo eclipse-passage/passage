@@ -23,7 +23,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.loc.runtime.ProductOperatorService;
+import org.eclipse.passage.loc.api.OperatorProductService;
 import org.eclipse.swt.widgets.Shell;
 
 public class ProductExportHandler {
@@ -31,7 +31,7 @@ public class ProductExportHandler {
 	@Execute
 	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) ProductVersionDescriptor productVersion,
 			IEclipseContext context) {
-		ProductOperatorService service = context.get(ProductOperatorService.class);
+		OperatorProductService service = context.get(OperatorProductService.class);
 		IStatus status = service.createProductKeys(productVersion);
 		Shell shell = context.get(Shell.class);
 		if (status.isOK()) {

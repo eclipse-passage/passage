@@ -23,8 +23,8 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.licenses.ui.LicensesUiMessages;
-import org.eclipse.passage.loc.runtime.LicenseOperatorService;
 import org.eclipse.swt.widgets.Shell;
 
 public class LicenseExportHandler {
@@ -32,7 +32,7 @@ public class LicenseExportHandler {
 	@Execute
 	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) LicensePackDescriptor licensePack,
 			IEclipseContext context) {
-		LicenseOperatorService licenseService = context.get(LicenseOperatorService.class);
+		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		Shell shell = context.get(Shell.class);
 		IStatus status = licenseService.issueLicensePack(licensePack);
 		if (status.isOK()) {
@@ -47,7 +47,7 @@ public class LicenseExportHandler {
 	@CanExecute
 	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePackDescriptor licensePack,
 			IEclipseContext context) {
-		LicenseOperatorService licenseService = context.get(LicenseOperatorService.class);
+		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		if (licenseService == null) {
 			return false;
 		}

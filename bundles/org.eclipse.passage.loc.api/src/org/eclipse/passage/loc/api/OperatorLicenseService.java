@@ -10,18 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.runtime;
+package org.eclipse.passage.loc.api;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 
-public interface ProductOperatorService {
-
-	// FIXME: find better place
-	public static final String EXTENSION_KEY_PRIVATE = ".scr"; //$NON-NLS-1$
-
-	String createPassword(ProductVersionDescriptor productVersion);
-
-	IStatus createProductKeys(ProductVersionDescriptor descriptor);
+public interface OperatorLicenseService {
+	
+	IStatus issueLicensePack(LicensePackDescriptor licensePack);
 
 }

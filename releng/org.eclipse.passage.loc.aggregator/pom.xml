@@ -29,7 +29,7 @@
 	</parent>
 
 	<modules>
-		<module>../../bundles/org.eclipse.passage.loc.runtime</module>
+		<module>../../bundles/org.eclipse.passage.loc.api</module>
 		<module>../../bundles/org.eclipse.passage.loc.workbench</module>
 		<module>../../bundles/org.eclipse.passage.loc.workbench.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.workbench.feature</module>

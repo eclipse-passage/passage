@@ -37,9 +37,9 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.loc.runtime.LicenseOperatorEvents;
-import org.eclipse.passage.loc.runtime.LicenseOperatorService;
-import org.eclipse.passage.loc.runtime.ProductOperatorService;
+import org.eclipse.passage.loc.api.OperatorLicenseEvents;
+import org.eclipse.passage.loc.api.OperatorLicenseService;
+import org.eclipse.passage.loc.api.OperatorProductService;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -48,14 +48,14 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @Component
-public class LicenseOperatorServiceImpl implements LicenseOperatorService {
+public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
 	private String pluginId;
 
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
 	private ProductRegistry productRegistry;
-	private ProductOperatorService productOperatorService;
+	private OperatorProductService productOperatorService;
 	private StreamCodec streamCodec;
 
 	@Activate
@@ -91,11 +91,11 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 	}
 
 	@Reference
-	public void bindProductOperatorService(ProductOperatorService productOperatorService) {
+	public void bindProductOperatorService(OperatorProductService productOperatorService) {
 		this.productOperatorService = productOperatorService;
 	}
 
-	public void unbindProductOperatorService(ProductOperatorService productOperatorService) {
+	public void unbindProductOperatorService(OperatorProductService productOperatorService) {
 		this.productOperatorService = null;
 	}
 
@@ -141,7 +141,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 		resource.getContents().add(license);
 		try {
 			resource.save(null);
-			eventAdmin.postEvent(LicenseOperatorEvents.decodedIssued(licenseIn));
+			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(licenseIn));
 		} catch (IOException e) {
 			return new Status(IStatus.ERROR, pluginId, CoreMessages.LicenseOperatorServiceImpl_export_error, e);
 		}
@@ -154,7 +154,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 
 		String keyFileName = productIdentifier + '_' + productVersion;
 		String privateKeyPath = storageKeyFolder + File.separator + keyFileName
-				+ ProductOperatorService.EXTENSION_KEY_PRIVATE;
+				+ OperatorProductService.EXTENSION_KEY_PRIVATE;
 		File privateProductToken = new File(privateKeyPath);
 		if (!privateProductToken.exists()) {
 			String pattern = CoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
@@ -171,7 +171,7 @@ public class LicenseOperatorServiceImpl implements LicenseOperatorService {
 			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
 			String password = productOperatorService.createPassword(pvd);
 			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
-			eventAdmin.postEvent(LicenseOperatorEvents.encodedIssued(licenseOut));
+			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = CoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
 			return new Status(IStatus.OK, pluginId, message);

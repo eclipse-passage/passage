@@ -28,8 +28,8 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.loc.runtime.ProductOperatorEvents;
-import org.eclipse.passage.loc.runtime.ProductOperatorService;
+import org.eclipse.passage.loc.api.OperatorProductEvents;
+import org.eclipse.passage.loc.api.OperatorProductService;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @Component
-public class ProductOperatorServiceImpl implements ProductOperatorService {
+public class ProductOperatorServiceImpl implements OperatorProductService {
 
 	private String pluginId;
 
@@ -146,8 +146,8 @@ public class ProductOperatorServiceImpl implements ProductOperatorService {
 			streamCodec.createKeyPair(publicKeyPath, privateKeyPath, identifier, createPassword(productVersion));
 			productVersion.setInstallationToken(publicKeyPath);
 			productVersion.setSecureToken(privateKeyPath);
-			eventAdmin.postEvent(ProductOperatorEvents.publicCreated(publicKeyPath));
-			eventAdmin.postEvent(ProductOperatorEvents.privateCreated(privateKeyPath));
+			eventAdmin.postEvent(OperatorProductEvents.publicCreated(publicKeyPath));
+			eventAdmin.postEvent(OperatorProductEvents.privateCreated(privateKeyPath));
 			String format = "Product keys exported succesfully: \n\n %s \n %s \n";
 			String message = String.format(format, publicKeyPath, privateKeyPath);
 			return new Status(IStatus.OK, pluginId, message);
