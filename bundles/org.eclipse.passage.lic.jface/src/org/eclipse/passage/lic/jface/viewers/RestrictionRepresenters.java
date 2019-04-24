@@ -28,10 +28,10 @@ import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_O
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_WARN;
 
 import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.eclipse.swt.graphics.RGB;
 
 public class RestrictionRepresenters {

@@ -10,16 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.restrictions;
+package org.eclipse.passage.lic.api.restrictions;
 
-public interface RestrictionExecutorRegistry {
+import org.eclipse.passage.lic.runtime.LicensingResult;
 
-	String getDefaultRestrictionLevelIdentifier();
+/**
+ * 
+ * Realize the {@link RestrictionVerdict}(s) for the licensed feature:
+ * <li>early exit from command line tools with notice</li>
+ * <li>blocking dialogs for UI application</li>
+ * <li>filtering out the UI</li>
+ * <li>blocking of bundles using OSGi level</li>
+ *
+ */
+public interface RestrictionExecutor {
 
-	Iterable<String> getRestrictionLevelIdentifiers();
-
-	RestrictionLevelDescriptor getRestrictionLevel(String identifier);
-
-	Iterable<? extends RestrictionLevelDescriptor> getRestrictionLevels();
+	LicensingResult execute(Iterable<RestrictionVerdict> verdicts);
 
 }

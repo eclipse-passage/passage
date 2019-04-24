@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchRestrictionExecutor">
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor"/>
+      <provide interface="org.eclipse.passage.lic.api.restrictions.RestrictionExecutor"/>
    </service>
    <reference bind="bindApplication" interface="org.eclipse.equinox.app.IApplicationContext" name="Application"/>
    <implementation class="org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchRestrictionExecutor"/>

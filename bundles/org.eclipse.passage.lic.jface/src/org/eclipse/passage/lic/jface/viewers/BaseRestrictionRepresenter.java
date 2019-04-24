@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.viewers;
 
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class BaseRestrictionRepresenter implements RestrictionRepresenter {
 

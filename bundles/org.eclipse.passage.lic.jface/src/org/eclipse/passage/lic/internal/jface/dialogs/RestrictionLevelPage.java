@@ -17,12 +17,12 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.passage.lic.api.restrictions.RestrictionExecutorRegistry;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevelDescriptor;
 import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

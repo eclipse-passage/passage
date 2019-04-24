@@ -18,8 +18,8 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 import org.junit.Test;
 
 public class RestrictionVerdictsTests {

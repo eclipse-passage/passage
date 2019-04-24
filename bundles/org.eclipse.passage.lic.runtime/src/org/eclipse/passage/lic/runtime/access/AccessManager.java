@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.runtime.access;
 
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingResult;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 /**
  * The main entry point to the licensing

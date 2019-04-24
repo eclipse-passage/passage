@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevelDescriptor;
 
 public class BaseRestrictionLevelDescriptor implements RestrictionLevelDescriptor {
 

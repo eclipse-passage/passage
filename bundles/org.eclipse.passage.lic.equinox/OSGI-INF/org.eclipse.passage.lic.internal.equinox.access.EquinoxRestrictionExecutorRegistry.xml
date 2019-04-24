@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.access.EquinoxRestrictionExecutorRegistry">
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry"/>
+      <provide interface="org.eclipse.passage.lic.api.restrictions.RestrictionExecutorRegistry"/>
    </service>
    <implementation class="org.eclipse.passage.lic.internal.equinox.access.EquinoxRestrictionExecutorRegistry"/>
 </scr:component>

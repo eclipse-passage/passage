@@ -1,4 +1,4 @@
-package org.eclipse.passage.lic.runtime.restrictions;
+package org.eclipse.passage.lic.api.restrictions;
 
 public interface RestrictionLevelDescriptor {
 

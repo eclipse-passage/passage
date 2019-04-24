@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.internal.equinox.access;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.restrictions.RestrictionExecutorRegistry;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevelDescriptor;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.restrictions.BaseRestrictionLevelDescriptor;
 import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutorRegistry;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionLevelDescriptor;
 import org.osgi.service.component.annotations.Component;
 
 @Component

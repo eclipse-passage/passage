@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public class RestrictionVerdicts {
 

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.viewers;
 
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
 public interface RestrictionRepresenter {
 

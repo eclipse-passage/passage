@@ -19,7 +19,7 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRIC
 
 import java.util.Comparator;
 
-import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
 public class RestrictionVerdictComparator implements Comparator<RestrictionVerdict> {
 
