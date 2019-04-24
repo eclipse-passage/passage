@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.LicensingEvents;
-import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.api.LicensingEvents;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.osgi.service.event.Event;
 
 public class EquinoxEvents {

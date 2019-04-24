@@ -23,11 +23,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
+import org.eclipse.passage.lic.api.LicensingReporter;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.net.LicensingNet;
-import org.eclipse.passage.lic.runtime.LicensingReporter;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class BaseRequestDispatcher implements BackendRequestDispatcher {
 

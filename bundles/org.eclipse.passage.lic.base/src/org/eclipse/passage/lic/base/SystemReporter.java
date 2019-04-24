@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.runtime.LicensingReporter;
-import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.api.LicensingReporter;
+import org.eclipse.passage.lic.api.LicensingResult;
 
 public class SystemReporter implements LicensingReporter {
 

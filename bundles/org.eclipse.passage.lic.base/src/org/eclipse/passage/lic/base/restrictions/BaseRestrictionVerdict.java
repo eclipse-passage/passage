@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.restrictions;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 class BaseRestrictionVerdict implements RestrictionVerdict {
 

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.base;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 class BaseLicensingConfiguration implements LicensingConfiguration {
 

@@ -17,8 +17,8 @@ import static org.junit.Assert.fail;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
-import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.After;
 import org.junit.Test;
 

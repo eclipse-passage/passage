@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
@@ -32,7 +33,6 @@ import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
 import org.eclipse.passage.lic.base.access.FeaturePermissions;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.Test;
 
 public class BasePermissionExaminerTest {

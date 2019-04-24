@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.integration.tests;
 
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.osgi.service.component.annotations.Component;
 
 @Component

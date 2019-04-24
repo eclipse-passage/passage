@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.base.conditions;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.SystemReporter;
-import org.eclipse.passage.lic.runtime.LicensingReporter;
 
 public abstract class BaseConditionMiner implements ConditionMiner {
 

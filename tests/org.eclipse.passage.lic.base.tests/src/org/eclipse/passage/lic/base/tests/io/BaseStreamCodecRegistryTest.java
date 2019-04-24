@@ -17,11 +17,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.io.BaseStreamCodecRegistry;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

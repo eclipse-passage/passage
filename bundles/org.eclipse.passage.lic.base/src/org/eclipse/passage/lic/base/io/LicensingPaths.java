@@ -17,7 +17,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 public class LicensingPaths {
 

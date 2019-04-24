@@ -87,7 +87,7 @@
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
-      <plugin id="org.eclipse.passage.lic.runtime"/>
+      <plugin id="org.eclipse.passage.lic.api"/>
       <plugin id="org.eclipse.passage.lic.base"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
       <plugin id="org.eclipse.passage.lic.jface"/>

@@ -22,14 +22,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.net.NtpPermissionEmitter;
 import org.eclipse.passage.lic.net.TimeConditions;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
-import org.eclipse.passage.lic.runtime.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 
 public interface LicensingPageContributor {
 

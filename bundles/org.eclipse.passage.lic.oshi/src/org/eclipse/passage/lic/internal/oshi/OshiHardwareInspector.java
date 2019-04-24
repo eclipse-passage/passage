@@ -17,12 +17,12 @@ import java.io.OutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingReporter;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.oshi.OshiHal;
-import org.eclipse.passage.lic.runtime.LicensingReporter;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

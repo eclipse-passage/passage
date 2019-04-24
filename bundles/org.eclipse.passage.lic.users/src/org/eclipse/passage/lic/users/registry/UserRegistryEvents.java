@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users.registry;
 
-import static org.eclipse.passage.lic.runtime.LicensingEvents.CREATE;
-import static org.eclipse.passage.lic.runtime.LicensingEvents.DELETE;
-import static org.eclipse.passage.lic.runtime.LicensingEvents.READ;
-import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_SEP;
-import static org.eclipse.passage.lic.runtime.LicensingEvents.UPDATE;
+import static org.eclipse.passage.lic.api.LicensingEvents.CREATE;
+import static org.eclipse.passage.lic.api.LicensingEvents.DELETE;
+import static org.eclipse.passage.lic.api.LicensingEvents.READ;
+import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
+import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
 
 public class UserRegistryEvents {
 

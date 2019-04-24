@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
@@ -25,7 +26,6 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.base;
 
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 public class LicensingConfigurations {
 
@@ -22,7 +22,7 @@ public class LicensingConfigurations {
 	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
 	public static final String LICENSING_PRODUCT_CONTACTS = "licensing.product.contacts"; //$NON-NLS-1$
 
-	public static final String IDENTIFIER_INVALID = "org.eclipse.passage.lic.runtime.invalid"; //$NON-NLS-1$
+	public static final String IDENTIFIER_INVALID = "org.eclipse.passage.lic.api.configuration.invalid"; //$NON-NLS-1$
 
 	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration(IDENTIFIER_INVALID,
 			LicensingVersions.VERSION_DEFAULT);

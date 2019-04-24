@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.api.conditions;
 
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionActions;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 /**
  * Performs {@link ConditionActions} on {@link LicensingCondition}(s)

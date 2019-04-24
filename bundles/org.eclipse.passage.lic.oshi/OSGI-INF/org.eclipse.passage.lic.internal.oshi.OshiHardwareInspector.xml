@@ -4,5 +4,5 @@
    <service>
       <provide interface="org.eclipse.passage.lic.api.inspector.HardwareInspector"/>
    </service>
-   <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
+   <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.api.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
 </scr:component>

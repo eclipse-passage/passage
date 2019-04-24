@@ -26,15 +26,15 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class ConditionMiners {
 

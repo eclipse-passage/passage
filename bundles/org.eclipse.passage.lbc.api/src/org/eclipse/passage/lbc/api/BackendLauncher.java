@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.api;
 
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.api.LicensingResult;
 
 public interface BackendLauncher {
 

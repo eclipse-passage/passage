@@ -19,9 +19,9 @@ import java.util.logging.Logger;
 
 import org.eclipse.passage.lbc.api.conditions.ConditionArbiter;
 import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class ServerConditionArbiter implements ConditionArbiter {
 

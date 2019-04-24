@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingReporter;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.access.AccessEvents;
 import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
@@ -45,10 +49,6 @@ import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.LicensingReporter;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class BaseAccessManager implements AccessManager {
 

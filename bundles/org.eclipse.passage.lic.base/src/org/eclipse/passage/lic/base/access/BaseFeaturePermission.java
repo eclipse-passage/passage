@@ -17,9 +17,9 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_LEASE_T
 
 import java.util.Date;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
 class BaseFeaturePermission implements FeaturePermission {
 

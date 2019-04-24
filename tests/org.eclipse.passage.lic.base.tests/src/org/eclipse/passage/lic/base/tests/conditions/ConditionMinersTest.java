@@ -20,12 +20,12 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.conditions.ConditionMiners;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.tests.LicensningBaseTests;
-import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.junit.Test;
 
 public class ConditionMinersTest extends LicensningBaseTests {

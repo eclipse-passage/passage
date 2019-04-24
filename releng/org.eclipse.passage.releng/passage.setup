@@ -244,7 +244,7 @@
           xsi:type="predicates:AndPredicate">
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lic.runtime"/>
+            project="org.eclipse.passage.lic.api"/>
         <operand
             xsi:type="predicates:NamePredicate"
             pattern=".*\.lic\..*"/>

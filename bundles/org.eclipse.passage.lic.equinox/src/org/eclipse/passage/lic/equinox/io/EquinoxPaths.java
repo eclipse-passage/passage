@@ -20,12 +20,12 @@ import java.nio.file.Paths;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 
 public class EquinoxPaths {
 

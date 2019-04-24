@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.base.tests;
 
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.Test;
 
 public class LicensingConfigurationsTest {

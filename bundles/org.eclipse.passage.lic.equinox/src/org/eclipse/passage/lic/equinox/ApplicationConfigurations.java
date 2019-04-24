@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.equinox;
 import java.util.Collection;
 
 import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;

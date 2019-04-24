@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.emf.ecore;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.api.LicensingResult;
 
 /**
  * The service to (re)store {@link ResourceSet} {@link URI}(s)

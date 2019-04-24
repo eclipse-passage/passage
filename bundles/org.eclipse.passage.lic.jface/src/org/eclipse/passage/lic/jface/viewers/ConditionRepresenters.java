@@ -24,10 +24,10 @@ import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_O
 import static org.eclipse.passage.lic.jface.resource.LicensingImages.IMG_LEVEL_WARN;
 
 import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.swt.graphics.RGB;
 
 public class ConditionRepresenters {

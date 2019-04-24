@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.AccessEvents;
 import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
@@ -28,7 +29,6 @@ import org.eclipse.passage.lic.api.inspector.FeatureInspector;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;

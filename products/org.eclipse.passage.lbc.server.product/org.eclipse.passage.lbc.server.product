@@ -82,7 +82,7 @@
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.util"/>
-      <plugin id="org.eclipse.passage.lic.runtime"/>
+      <plugin id="org.eclipse.passage.lic.api"/>
       <plugin id="org.eclipse.passage.lic.base"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
       <plugin id="org.eclipse.passage.lic.net"/>

@@ -12,17 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
+import static org.eclipse.passage.lic.api.LicensingResult.ERROR;
+import static org.eclipse.passage.lic.api.LicensingResult.OK;
 import static org.eclipse.passage.lic.base.BaseLicensingResult.CODE_NOMINAL;
-import static org.eclipse.passage.lic.runtime.LicensingResult.ERROR;
-import static org.eclipse.passage.lic.runtime.LicensingResult.OK;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.LicensingEvents;
-import org.eclipse.passage.lic.runtime.LicensingResult;
+import org.eclipse.passage.lic.api.LicensingEvents;
+import org.eclipse.passage.lic.api.LicensingResult;
 
 public class LicensingResults {
 

@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionActions;
 import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
@@ -32,8 +34,6 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.net.LicensingNet;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

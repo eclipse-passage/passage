@@ -18,9 +18,9 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.osgi.service.event.Event;
 
 public class LicensingAddon {

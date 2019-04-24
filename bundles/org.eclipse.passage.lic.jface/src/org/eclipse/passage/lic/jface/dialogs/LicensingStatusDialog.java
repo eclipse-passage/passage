@@ -23,6 +23,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.api.inspector.FeatureCase;
 import org.eclipse.passage.lic.api.inspector.FeatureInspector;
@@ -35,7 +36,6 @@ import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;

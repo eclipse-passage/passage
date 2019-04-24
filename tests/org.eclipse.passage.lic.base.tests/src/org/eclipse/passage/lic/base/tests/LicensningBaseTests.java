@@ -16,13 +16,13 @@ import java.io.File;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
 import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.requirements.RequirementResolver;
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
-import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
