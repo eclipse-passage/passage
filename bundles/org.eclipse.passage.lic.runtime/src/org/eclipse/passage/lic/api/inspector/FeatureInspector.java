@@ -1,4 +1,4 @@
-package org.eclipse.passage.lic.runtime.inspector;
+package org.eclipse.passage.lic.api.inspector;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 

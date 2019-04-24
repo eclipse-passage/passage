@@ -17,10 +17,10 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITI
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_NAME;
 
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
+import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.oshi.OshiHal;
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

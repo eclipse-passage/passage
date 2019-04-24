@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.inspector;
 
+import org.eclipse.passage.lic.api.inspector.FeatureCase;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
-import org.eclipse.passage.lic.runtime.inspector.FeatureCase;
 
 public class EquinoxFeatureCase implements FeatureCase {
 

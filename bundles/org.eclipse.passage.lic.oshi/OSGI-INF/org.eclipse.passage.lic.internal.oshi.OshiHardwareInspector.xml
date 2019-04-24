@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector">
    <implementation class="org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.inspector.HardwareInspector"/>
+      <provide interface="org.eclipse.passage.lic.api.inspector.HardwareInspector"/>
    </service>
    <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
 </scr:component>

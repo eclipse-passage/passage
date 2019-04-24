@@ -17,13 +17,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
+import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.junit.Test;
 
 public class LicensingConditionIntegrationTest extends LicIntegrationBase {

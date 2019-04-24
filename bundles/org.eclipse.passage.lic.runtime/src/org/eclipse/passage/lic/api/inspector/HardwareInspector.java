@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.inspector;
+package org.eclipse.passage.lic.api.inspector;
 
 import java.io.IOException;
 import java.io.OutputStream;

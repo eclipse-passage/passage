@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
+import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 
 public class OshiHal {
 

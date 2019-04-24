@@ -6,6 +6,6 @@
    <service>
       <provide interface="org.eclipse.passage.lic.api.access.PermissionEmitter"/>
    </service>
-   <reference bind="bindHardwareInspector" interface="org.eclipse.passage.lic.runtime.inspector.HardwareInspector" name="HardwareInspector" unbind="unbindHardwareInspector"/>
+   <reference bind="bindHardwareInspector" interface="org.eclipse.passage.lic.api.inspector.HardwareInspector" name="HardwareInspector" unbind="unbindHardwareInspector"/>
    <implementation class="org.eclipse.passage.lic.internal.oshi.OshiPermissionEmitter"/>
 </scr:component>

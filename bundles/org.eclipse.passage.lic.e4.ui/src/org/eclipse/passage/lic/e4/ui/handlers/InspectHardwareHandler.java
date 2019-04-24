@@ -13,8 +13,8 @@
 package org.eclipse.passage.lic.e4.ui.handlers;
 
 import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.jface.dialogs.HardwareInspectorDialog;
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.widgets.Shell;
 
 public class InspectHardwareHandler {

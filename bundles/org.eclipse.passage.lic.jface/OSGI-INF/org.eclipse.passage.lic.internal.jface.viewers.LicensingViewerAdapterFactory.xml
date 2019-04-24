@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" immediate="true" name="org.eclipse.passage.lic.internal.jface.viewers.LicensingViewerAdapterFactory">
    <reference bind="bindAdapterManager" interface="org.eclipse.core.runtime.IAdapterManager" name="AdapterManager" unbind="unbindAdapterManager"/>
-   <reference bind="bindInspectorOffice" interface="org.eclipse.passage.lic.runtime.inspector.FeatureInspector" name="InspectorOffice" unbind="unbindInspectorOffice"/>
+   <reference bind="bindInspectorOffice" interface="org.eclipse.passage.lic.api.inspector.FeatureInspector" name="InspectorOffice" unbind="unbindInspectorOffice"/>
    <service>
       <provide interface="org.eclipse.core.runtime.IAdapterFactory"/>
    </service>

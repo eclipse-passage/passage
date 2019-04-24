@@ -16,8 +16,8 @@ import java.io.ByteArrayOutputStream;
 
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;

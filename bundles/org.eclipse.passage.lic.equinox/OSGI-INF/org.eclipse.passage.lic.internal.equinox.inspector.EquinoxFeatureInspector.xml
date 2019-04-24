@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.inspector.EquinoxFeatureInspector">
    <property name="event.topics" value="org/eclipse/passage/lic/runtime/AccessEvents/*"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.inspector.FeatureInspector"/>
+      <provide interface="org.eclipse.passage.lic.api.inspector.FeatureInspector"/>
       <provide interface="org.osgi.service.event.EventHandler"/>
    </service>
    <reference bind="bindAccessManager" interface="org.eclipse.passage.lic.api.access.AccessManager" name="AccessManager" unbind="unbindAccessManager"/>
