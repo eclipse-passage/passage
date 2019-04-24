@@ -4,7 +4,7 @@
    <property name="licensing.condition.type.name" value="Hardware"/>
    <property name="licensing.condition.type.description" value="Evaluates node-locked conditions using runtime hardware information"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.access.PermissionEmitter"/>
+      <provide interface="org.eclipse.passage.lic.api.access.PermissionEmitter"/>
    </service>
    <reference bind="bindHardwareInspector" interface="org.eclipse.passage.lic.runtime.inspector.HardwareInspector" name="HardwareInspector" unbind="unbindHardwareInspector"/>
    <implementation class="org.eclipse.passage.lic.internal.oshi.OshiPermissionEmitter"/>

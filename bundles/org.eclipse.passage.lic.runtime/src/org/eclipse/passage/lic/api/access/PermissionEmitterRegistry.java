@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.access;
+package org.eclipse.passage.lic.api.access;
 
 public interface PermissionEmitterRegistry {
 

@@ -18,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.util.Date;
 
+import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.access.FeaturePermissions;
@@ -26,7 +27,6 @@ import org.eclipse.passage.lic.internal.json.FeaturePermissionAggregator;
 import org.eclipse.passage.lic.internal.json.JsonPermissionTransport;
 import org.eclipse.passage.lic.internal.json.JsonTransport;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

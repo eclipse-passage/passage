@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.base.access;
 
 import java.util.Date;
 
+import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 
 public class FeaturePermissions {
 

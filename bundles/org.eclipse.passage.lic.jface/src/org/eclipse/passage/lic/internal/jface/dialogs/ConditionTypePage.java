@@ -13,8 +13,8 @@
 package org.eclipse.passage.lic.internal.jface.dialogs;
 
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.passage.lic.api.access.PermissionEmitterRegistry;
 import org.eclipse.passage.lic.internal.jface.JFaceMessages;
-import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;

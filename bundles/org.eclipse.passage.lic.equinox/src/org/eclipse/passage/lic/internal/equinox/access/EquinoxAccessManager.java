@@ -14,15 +14,15 @@ package org.eclipse.passage.lic.internal.equinox.access;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.access.AccessManager;
+import org.eclipse.passage.lic.api.access.PermissionEmitter;
+import org.eclipse.passage.lic.api.access.PermissionExaminer;
 import org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.api.requirements.RequirementResolver;
 import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.base.access.BaseAccessManager;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
-import org.eclipse.passage.lic.runtime.access.AccessManager;
-import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
-import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;

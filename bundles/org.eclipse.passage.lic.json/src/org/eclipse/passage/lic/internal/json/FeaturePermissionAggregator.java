@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.json;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.api.access.FeaturePermission;
 
 public class FeaturePermissionAggregator {
 

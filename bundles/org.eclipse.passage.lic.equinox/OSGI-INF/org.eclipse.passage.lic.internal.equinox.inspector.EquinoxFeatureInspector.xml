@@ -5,6 +5,6 @@
       <provide interface="org.eclipse.passage.lic.runtime.inspector.FeatureInspector"/>
       <provide interface="org.osgi.service.event.EventHandler"/>
    </service>
-   <reference bind="bindAccessManager" interface="org.eclipse.passage.lic.runtime.access.AccessManager" name="AccessManager" unbind="unbindAccessManager"/>
+   <reference bind="bindAccessManager" interface="org.eclipse.passage.lic.api.access.AccessManager" name="AccessManager" unbind="unbindAccessManager"/>
    <implementation class="org.eclipse.passage.lic.internal.equinox.inspector.EquinoxFeatureInspector"/>
 </scr:component>

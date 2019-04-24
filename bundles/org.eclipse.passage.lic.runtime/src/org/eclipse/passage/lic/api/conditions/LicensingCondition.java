@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.conditions;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
+import org.eclipse.passage.lic.api.access.PermissionEmitter;
 
 /**
  * 

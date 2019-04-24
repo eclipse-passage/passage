@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.json;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
+import org.eclipse.passage.lic.api.access.FeaturePermission;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

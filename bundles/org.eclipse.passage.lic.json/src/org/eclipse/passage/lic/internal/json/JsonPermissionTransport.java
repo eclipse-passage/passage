@@ -21,8 +21,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
-import org.eclipse.passage.lic.runtime.access.PermissionTransport;
+import org.eclipse.passage.lic.api.access.FeaturePermission;
+import org.eclipse.passage.lic.api.access.PermissionTransport;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -10,25 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.access;
-
-import java.util.Date;
+package org.eclipse.passage.lic.api.access;
 
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
+import org.eclipse.passage.lic.runtime.LicensingException;
 
 /**
- * Permission to use the component of given name and version range obtained from
- * {@link PermissionEmitter} as a result of evaluation for
- * {@link LicensingCondition}
+ * Evaluates the collection of {@link LicensingCondition} to emit a collection
+ * of {@link FeaturePermission}
+ *
  */
-public interface FeaturePermission {
+public interface PermissionEmitter {
 
-	LicensingConfiguration getLicensingConfiguration();
+	Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
+			Iterable<LicensingCondition> conditions) throws LicensingException;
 
-	LicensingCondition getLicensingCondition();
-
-	Date getLeaseDate();
-
-	Date getExpireDate();
 }

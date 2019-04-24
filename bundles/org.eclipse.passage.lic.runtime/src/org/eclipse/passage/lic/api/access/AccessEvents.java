@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.access;
+package org.eclipse.passage.lic.api.access;
 
 import static org.eclipse.passage.lic.runtime.LicensingEvents.ALL_SUB_TOPICS;
 import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_BASE;

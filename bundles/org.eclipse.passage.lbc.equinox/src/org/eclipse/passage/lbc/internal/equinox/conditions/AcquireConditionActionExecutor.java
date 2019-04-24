@@ -43,7 +43,7 @@ import org.osgi.service.log.LoggerFactory;
 /**
  * According to AccessManager specification implementation of
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
- * {@link org.eclipse.passage.lic.runtime.access.AccessManager}
+ * {@link org.eclipse.passage.lic.api.access.AccessManager}
  */
 @Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
 public class AcquireConditionActionExecutor implements BackendActionExecutor {

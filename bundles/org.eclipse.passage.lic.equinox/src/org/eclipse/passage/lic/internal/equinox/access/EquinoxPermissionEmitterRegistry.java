@@ -20,8 +20,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
-import org.eclipse.passage.lic.runtime.access.PermissionEmitterRegistry;
+import org.eclipse.passage.lic.api.access.PermissionEmitter;
+import org.eclipse.passage.lic.api.access.PermissionEmitterRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

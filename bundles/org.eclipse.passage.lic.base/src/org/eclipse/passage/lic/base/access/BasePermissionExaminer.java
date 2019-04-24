@@ -20,6 +20,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.access.FeaturePermission;
+import org.eclipse.passage.lic.api.access.PermissionExaminer;
 import org.eclipse.passage.lic.api.conditions.ConditionEvents;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
@@ -27,8 +29,6 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.access.FeaturePermission;
-import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
 
 public abstract class BasePermissionExaminer implements PermissionExaminer {
 

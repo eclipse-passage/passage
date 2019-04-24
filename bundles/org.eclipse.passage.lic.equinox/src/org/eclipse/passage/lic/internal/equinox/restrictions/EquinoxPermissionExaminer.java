@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.restrictions;
 
+import org.eclipse.passage.lic.api.access.PermissionExaminer;
 import org.eclipse.passage.lic.base.access.BasePermissionExaminer;
 import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
-import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
