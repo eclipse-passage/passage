@@ -37,27 +37,20 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getFeatures
- * <em>Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureSetImpl extends MinimalEObjectImpl.Container implements FeatureSet {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute.
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -65,13 +58,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute.
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -80,11 +70,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -93,11 +81,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -105,13 +91,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute.
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -119,13 +102,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute.
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -133,13 +113,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}'
-	 * containment reference list.
-	 * 
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
@@ -150,7 +127,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureSetImpl() {
@@ -161,19 +137,17 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FeaturesPackage.Literals.FEATURE_SET;
+		return FeaturesPackage.eINSTANCE.getFeatureSet();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +159,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +174,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,7 +185,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +199,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,7 +210,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +225,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -272,7 +240,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -289,7 +256,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,7 +271,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,7 +292,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -355,7 +319,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -381,7 +344,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -403,7 +365,6 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

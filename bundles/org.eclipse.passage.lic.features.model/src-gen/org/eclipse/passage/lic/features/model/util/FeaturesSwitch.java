@@ -33,29 +33,24 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  * a non-null result is returned, which is the result of the switch.
  * 
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage
  * @generated
  */
 public class FeaturesSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static FeaturesPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeaturesSwitch() {
@@ -66,11 +61,9 @@ public class FeaturesSwitch<T> extends Switch<T> {
 
 	/**
 	 * Checks whether this is a switch for the given package.
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -81,13 +74,10 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a
-	 * non null result; it yields that result.
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -148,19 +138,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature
-	 * Set Descriptor</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Set Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature
-	 *         Set Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Set Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -169,19 +155,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature
-	 * Descriptor</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature
-	 *         Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -190,19 +172,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature
-	 * Version Descriptor</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Version Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature
-	 *         Version Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Version Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -211,19 +189,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature
-	 * Set</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature
-	 *         Set</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -232,19 +206,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of
-	 * '<em>Feature</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of
-	 *         '<em>Feature</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -253,19 +223,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature
-	 * Version</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Version</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature
-	 *         Version</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Version</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -274,19 +240,15 @@ public class FeaturesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of
-	 * '<em>EObject</em>'.
-	 * 
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * This implementation returns null; returning a non-null result will terminate
 	 * the switch, but this is the last case anyway.
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of
-	 *         '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

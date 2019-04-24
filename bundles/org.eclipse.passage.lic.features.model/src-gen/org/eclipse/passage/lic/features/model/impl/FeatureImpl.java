@@ -39,29 +39,21 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getFeatureSet
- * <em>Feature Set</em>}</li>
- * <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getFeatureVersions
- * <em>Feature Versions</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getFeatureSet <em>Feature Set</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getFeatureVersions <em>Feature Versions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute.
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -69,13 +61,10 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute.
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -94,11 +83,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * 
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -106,13 +93,10 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute.
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -120,13 +104,10 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute.
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -134,13 +115,10 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFeatureVersions() <em>Feature
-	 * Versions</em>}' containment reference list.
-	 * 
+	 * The cached value of the '{@link #getFeatureVersions() <em>Feature Versions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFeatureVersions()
 	 * @generated
 	 * @ordered
@@ -151,7 +129,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureImpl() {
@@ -162,19 +139,17 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FeaturesPackage.Literals.FEATURE;
+		return FeaturesPackage.eINSTANCE.getFeature();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +161,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,7 +176,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +187,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,7 +201,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +212,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -257,7 +227,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,7 +240,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetFeatureSet(FeatureSet newFeatureSet, NotificationChain msgs) {
@@ -283,7 +251,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,7 +277,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -326,7 +292,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -347,7 +312,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -365,7 +329,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -382,7 +345,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -406,7 +368,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -437,7 +398,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -466,7 +426,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -490,7 +449,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

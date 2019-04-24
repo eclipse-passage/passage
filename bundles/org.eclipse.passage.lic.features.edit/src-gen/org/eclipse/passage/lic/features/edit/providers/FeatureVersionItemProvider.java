@@ -34,18 +34,19 @@ import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.passage.lic.features.model.api.FeatureVersion} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.features.model.api.FeatureVersion} object.
+ * <!-- begin-user-doc -->
  * 
+ * <!-- end-user-doc -->
  * @generated
  */
 public class FeatureVersionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FeatureVersionItemProvider(AdapterFactory adapterFactory) {
@@ -53,9 +54,10 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,9 +72,10 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Version feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Version feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVersionPropertyDescriptor(Object object) {
@@ -81,14 +84,15 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_FeatureVersion_version_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_FeatureVersion_version_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FeatureVersion_type"), //$NON-NLS-1$
-						FeaturesPackage.Literals.FEATURE_VERSION__VERSION, true, false, false,
+						FeaturesPackage.eINSTANCE.getFeatureVersion_Version(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the News feature. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the News feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewsPropertyDescriptor(Object object) {
@@ -97,12 +101,16 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_FeatureVersion_news_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_FeatureVersion_news_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FeatureVersion_type"), //$NON-NLS-1$
-						FeaturesPackage.Literals.FEATURE_VERSION__NEWS, true, true, false,
+						FeaturesPackage.eINSTANCE.getFeatureVersion_News(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns Feature.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Feature.gif.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -112,8 +120,9 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -122,7 +131,10 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -143,10 +155,11 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,10 +176,11 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,9 +189,10 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
