@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.UiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.passage.loc.users.core.Users;
@@ -69,7 +70,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		label.setLayoutData(
 				GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false).create());
 		label.setFont(JFaceResources.getBannerFont());
-		label.setText("Licensing data overview");
+		label.setText(UiMessages.DefaultDashboardPanelAdvisor_overview);
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText("Features");
+		group.setText(UiMessages.DefaultDashboardPanelAdvisor_feature_group);
 
 		createLinks(group, Features.DOMAIN_NAME);
 
@@ -90,17 +91,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureSetBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Feature Sets:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_set_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureSet();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Feature Set(s) defined.\nUse it define the Features";
-		String warning = "You have no Feature Sets defined.\nPlease create or load Feature Set definitions";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_set_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_set_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Feature Set to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_set_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -111,17 +112,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Features:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeature();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Feature(s) defined.\nUse it define the Feature Version(s)";
-		String warning = "You have no Features defined.\nPlease create it for the Feature Set(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Feature to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -132,17 +133,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Feature Versions:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_version_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureVersion();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Feature Version(s) defined.\nUse it define the Product Version(s)";
-		String warning = "You have no Feature Versions defined.\nPlease create it for the Feature(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_version_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_version_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Feature Version to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_version_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -163,7 +164,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText("Products");
+		group.setText(UiMessages.DefaultDashboardPanelAdvisor_product_group);
 
 		createLinks(group, Products.DOMAIN_NAME);
 
@@ -177,17 +178,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductLineBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Product Lines:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_product_line_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductLine();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Product Line(s) defined.\nUse it define the Products";
-		String warning = "You have no Product Lines defined.\nPlease create or load Product Line definitions";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_product_line_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_line_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Product Line to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_line_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -198,17 +199,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductBlock(Composite parent, ProductRegistry registry) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Products:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_product_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProduct();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Product(s) defined.\nUse it define the Product Versions";
-		String warning = "You have no Products defined.\nPlease create it for the Product Line(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_product_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Product to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -219,17 +220,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Product Versions:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_product_version_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersion();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Product Version (s) defined.\nUse it define the Product Version Features";
-		String warning = "You have no Product Versions defined.\nPlease create it for the Product(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_product_version_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_version_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Product Version to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_version_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -240,17 +241,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductVersionFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Product Features:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_product_feature_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersionFeature();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s Product Version Feature(s) defined.\nUse it define License Grants";
-		String warning = "You have no Product Version Features defined.\nPlease create it for the Product Verion(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_product_feature_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_feature_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select Product Version Feature to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_feature_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -272,7 +273,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText("Users");
+		group.setText(UiMessages.DefaultDashboardPanelAdvisor_user_group);
 
 		createLinks(group, Users.DOMAIN_NAME);
 
@@ -284,17 +285,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createUserOriginBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "User Origins:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_user_origin_title;
 		EClass eClass = UsersPackage.eINSTANCE.getUserOrigin();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s User Origin(s) defined.\nUse it define the Users";
-		String warning = "You have no User Origins defined.\nPlease create or load User Origin definitions";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_user_origin_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_user_origin_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select User Origin to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_user_origin_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -305,17 +306,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createUserBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "Users:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_user_title;
 		EClass eClass = UsersPackage.eINSTANCE.getUser();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s User(s) defined.\nUse it define the License Packs";
-		String warning = "You have no Users defined.\nPlease create it for the User Origin(s)";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_user_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_user_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select User to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_user_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -335,7 +336,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText("Licenses");
+		group.setText(UiMessages.DefaultDashboardPanelAdvisor_license_group);
 
 		createLinks(group, Licenses.DOMAIN_NAME);
 
@@ -345,17 +346,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createLicensePackBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = "License Packs:";
+		String label = UiMessages.DefaultDashboardPanelAdvisor_license_pack_title;
 		EClass eClass = LicensesPackage.eINSTANCE.getLicensePack();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = "You have %s License Pack(s) defined.\nUse it define the License Grants";
-		String warning = "You have no License Packs defined.\nPlease create or load License Pack definitions";
+		String info = UiMessages.DefaultDashboardPanelAdvisor_license_pack_info;
+		String warning = UiMessages.DefaultDashboardPanelAdvisor_license_pack_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Licenses.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit("Select License Pack to edit", new SelectionAdapter() {
+		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_license_pack_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -374,12 +375,12 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Label label = new Label(parent, SWT.NONE);
 		label.setLayoutData(
 				GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false).create());
-		label.setText("Licensing data summary");
+		label.setText(UiMessages.DefaultDashboardPanelAdvisor_summary);
 	}
 
 	protected void createLinks(Group group, String domain) {
 		Link create = new Link(group, SWT.NONE);
-		create.setText("<a>Create</a>");
+		create.setText(String.format("<a>%s<a>", UiMessages.DefaultDashboardPanelAdvisor_create_link)); //$NON-NLS-1$
 		create.setLayoutData(GridDataFactory.fillDefaults().align(SWT.END, SWT.CENTER).span(2, 1).create());
 		create.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -388,7 +389,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 			}
 		});
 		Link open = new Link(group, SWT.NONE);
-		open.setText("<a>Load</a>");
+		open.setText(String.format("<a>%s<a>", UiMessages.DefaultDashboardPanelAdvisor_load_link)); //$NON-NLS-1$
 		open.setLayoutData(GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).span(2, 1).create());
 		open.addSelectionListener(new SelectionAdapter() {
 			@Override
