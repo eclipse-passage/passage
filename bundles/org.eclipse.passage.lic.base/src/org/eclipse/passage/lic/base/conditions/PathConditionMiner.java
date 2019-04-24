@@ -17,6 +17,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingResults;
@@ -28,8 +30,6 @@ import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.io.KeyKeeper;
-import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
 public abstract class PathConditionMiner extends BaseConditionMiner {
 

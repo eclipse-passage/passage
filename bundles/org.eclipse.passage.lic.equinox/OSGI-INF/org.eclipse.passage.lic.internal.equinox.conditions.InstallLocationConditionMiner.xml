@@ -4,8 +4,8 @@
       <provide interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner"/>
    </service>
    <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
-   <reference bind="bindKeyKeeperRegistry" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry" name="KeyKeeperRegistry" unbind="unbindKeyKeeperRegistry"/>
+   <reference bind="bindKeyKeeperRegistry" cardinality="0..1" interface="org.eclipse.passage.lic.api.io.KeyKeeperRegistry" name="KeyKeeperRegistry" unbind="unbindKeyKeeperRegistry"/>
    <reference bind="bindLicensingReporter" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
-   <reference bind="bindStreamCodecRegistry" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.io.StreamCodecRegistry" name="StreamCodecRegistry" unbind="unbindStreamCodecRegistry"/>
+   <reference bind="bindStreamCodecRegistry" cardinality="0..1" interface="org.eclipse.passage.lic.api.io.StreamCodecRegistry" name="StreamCodecRegistry" unbind="unbindStreamCodecRegistry"/>
    <implementation class="org.eclipse.passage.lic.internal.equinox.conditions.InstallLocationConditionMiner"/>
 </scr:component>

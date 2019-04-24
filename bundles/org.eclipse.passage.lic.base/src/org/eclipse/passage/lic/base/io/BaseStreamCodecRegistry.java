@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.base.io;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.io.StreamCodec;
+import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 
 public class BaseStreamCodecRegistry implements StreamCodecRegistry {
 

@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.integration.tests.SomeStreamCodec">
    <implementation class="org.eclipse.passage.lic.bc.BcStreamCodec"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.io.StreamCodec"/>
+      <provide interface="org.eclipse.passage.lic.api.io.StreamCodec"/>
    </service>
    <property name="licensing.product.identifier" type="String" value="some.encrypted.product"/>
    <property name="licensing.security.key.algo" type="String" value="RSA"/>

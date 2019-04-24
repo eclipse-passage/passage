@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.eclipse.passage.lic.runtime.io.StreamCodec;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 
 public class NullStreamCodec implements StreamCodec {
 

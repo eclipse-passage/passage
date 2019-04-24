@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.base.io;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.io.KeyKeeper;
 
 public class NullKeyKeeper implements KeyKeeper {
 

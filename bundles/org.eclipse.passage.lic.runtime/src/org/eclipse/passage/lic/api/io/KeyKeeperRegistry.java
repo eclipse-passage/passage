@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.io;
+package org.eclipse.passage.lic.api.io;
 
 import java.util.Map;
 

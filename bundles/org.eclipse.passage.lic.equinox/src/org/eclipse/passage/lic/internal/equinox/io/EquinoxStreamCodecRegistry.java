@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.equinox.io;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.io.StreamCodec;
+import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.io.BaseStreamCodecRegistry;
-import org.eclipse.passage.lic.runtime.io.StreamCodec;
-import org.eclipse.passage.lic.runtime.io.StreamCodecRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

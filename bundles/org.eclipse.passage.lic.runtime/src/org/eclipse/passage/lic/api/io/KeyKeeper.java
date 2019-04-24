@@ -10,18 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.io;
+package org.eclipse.passage.lic.api.io;
 
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 
-public interface StreamCodecRegistry {
-
-	StreamCodec getStreamCodec(LicensingConfiguration configuration);
-
-	void registerStreamCodec(StreamCodec streamCodec, Map<String, Object> properties);
-
-	void unregisterStreamCodec(StreamCodec streamCodec, Map<String, Object> properties);
+/**
+ * Provides the key required for given configuration
+ *
+ */
+public interface KeyKeeper {
+	
+	/**
+	 * 
+	 * @param configuration
+	 * @return the stream to read the key
+	 * @throws IOException
+	 */
+	
+	InputStream openKeyStream(LicensingConfiguration configuration) throws IOException;
 
 }

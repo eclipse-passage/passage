@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.equinox.io;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.base.io.BaseKeyKeeperRegistry;
-import org.eclipse.passage.lic.runtime.io.KeyKeeper;
-import org.eclipse.passage.lic.runtime.io.KeyKeeperRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
