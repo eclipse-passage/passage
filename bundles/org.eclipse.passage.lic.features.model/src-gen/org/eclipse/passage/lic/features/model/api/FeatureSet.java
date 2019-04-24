@@ -17,8 +17,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature
- * Set</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * A representation of the model object '<em><b>Feature Set</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -40,8 +43,9 @@ import org.eclipse.passage.lic.features.FeatureSetDescriptor;
  */
 public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear, there
 	 * really should be more of a description here...
@@ -60,8 +64,11 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getIdentifier
-	 * <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * <em>Identifier</em>}' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
@@ -70,8 +77,9 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
 	 * should be more of a description here...
@@ -90,7 +98,11 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getName
-	 * <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>Name</em>}' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -99,8 +111,9 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there
 	 * really should be more of a description here...
@@ -119,8 +132,11 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getDescription
-	 * <em>Description</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * <em>Description</em>}' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
@@ -134,7 +150,9 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * {@link org.eclipse.passage.lic.features.model.api.Feature}. It is
 	 * bidirectional and its opposite is
 	 * '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureSet
-	 * <em>Feature Set</em>}'. <!-- begin-user-doc -->
+	 * <em>Feature Set</em>}'.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Features</em>' containment reference list isn't
 	 * clear, there really should be more of a description here...

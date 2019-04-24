@@ -24,15 +24,21 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesFactory;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * An implementation of the model <b>Factory</b>.
+ * 
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
 public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -50,8 +56,11 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Creates an instance of the factory.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -60,7 +69,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -79,7 +90,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -90,7 +103,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -101,7 +116,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -112,7 +129,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -122,7 +141,9 @@ public class FeaturesFactoryImpl extends EFactoryImpl implements FeaturesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @deprecated
 	 * @generated

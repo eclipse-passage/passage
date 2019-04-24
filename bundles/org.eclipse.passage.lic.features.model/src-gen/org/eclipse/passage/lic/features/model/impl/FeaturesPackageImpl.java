@@ -27,49 +27,64 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesFactory;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * An implementation of the model <b>Package</b>.
+ * 
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
 public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage {
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EClass featureSetDescriptorEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EClass featureDescriptorEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EClass featureVersionDescriptorEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EClass featureSetEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EClass featureEClass = null;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -82,8 +97,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * <p>
 	 * Note: the correct way to create the package is via the static factory method
 	 * {@link #init init()}, which also performs initialization of the package, or
-	 * returns the registered package, if one already exists. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * returns the registered package, if one already exists.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#eNS_URI
@@ -95,7 +113,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -108,8 +128,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * <p>
 	 * This method is used to initialize {@link FeaturesPackage#eINSTANCE} when that
 	 * field is accessed. Clients should not invoke it directly. Instead, they
-	 * should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * should simply access that field to obtain the package.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -143,7 +166,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -153,7 +178,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -163,7 +190,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -173,7 +202,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -183,7 +214,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -193,7 +226,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -203,7 +238,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -213,7 +250,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -223,7 +262,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -233,7 +274,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -243,7 +286,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -253,7 +298,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -263,7 +310,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -273,7 +322,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -283,7 +334,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -293,7 +346,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -303,7 +358,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -313,7 +370,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -323,7 +382,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -333,7 +394,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -341,8 +404,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * have no affect on any invocation but its first.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -378,7 +444,9 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -386,8 +454,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * Complete the initialization of the package and its meta-model. This method is
-	 * guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * guarded to have no affect on any invocation but its first.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

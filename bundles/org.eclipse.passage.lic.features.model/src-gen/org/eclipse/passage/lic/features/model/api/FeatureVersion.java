@@ -16,8 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature
- * Version</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * A representation of the model object '<em><b>Feature Version</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -37,8 +40,9 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
  */
 public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Version</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Version</em>' attribute isn't clear, there really
 	 * should be more of a description here...
@@ -57,7 +61,11 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion
-	 * <em>Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>Version</em>}' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Version</em>' attribute.
 	 * @see #getVersion()
@@ -69,7 +77,9 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * Returns the value of the '<em><b>Feature</b></em>' container reference. It is
 	 * bidirectional and its opposite is
 	 * '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureVersions
-	 * <em>Feature Versions</em>}'. <!-- begin-user-doc -->
+	 * <em>Feature Versions</em>}'.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature</em>' container reference isn't clear,
 	 * there really should be more of a description here...
@@ -89,8 +99,11 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature
-	 * <em>Feature</em>}' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <em>Feature</em>}' container reference.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Feature</em>' container reference.
 	 * @see #getFeature()
@@ -99,8 +112,9 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	void setFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>News</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>News</b></em>' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>News</em>' attribute isn't clear, there really
 	 * should be more of a description here...
@@ -119,7 +133,11 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the
 	 * '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews
-	 * <em>News</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <em>News</em>}' attribute.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>News</em>' attribute.
 	 * @see #getNews()
