@@ -20,10 +20,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.junit.Test;
 
 public class LicensingRequirementsTest {

@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.restrictions;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.PermissionExaminer;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 
 /**
  * 

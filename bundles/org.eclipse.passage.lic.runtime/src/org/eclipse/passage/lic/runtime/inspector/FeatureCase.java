@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.inspector;
 
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 public interface FeatureCase extends AutoCloseable {

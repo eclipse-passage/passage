@@ -32,8 +32,8 @@ import static org.eclipse.passage.lic.base.LicensingProperties.toRestrictionLeve
 import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 
 public class LicensingRequirements {
 

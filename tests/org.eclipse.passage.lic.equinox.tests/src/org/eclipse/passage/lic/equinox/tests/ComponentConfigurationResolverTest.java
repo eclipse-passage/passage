@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.equinox.tests;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentConfigurationResolver;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.framework.BundleContext;

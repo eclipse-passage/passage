@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.requirements.RequirementEvents;
+import org.eclipse.passage.lic.api.requirements.RequirementResolver;
 import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
@@ -44,9 +47,6 @@ import org.eclipse.passage.lic.runtime.conditions.ConditionEvents;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.runtime.requirements.RequirementEvents;
-import org.eclipse.passage.lic.runtime.requirements.RequirementResolver;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.requirements;
+package org.eclipse.passage.lic.api.requirements;
 
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 

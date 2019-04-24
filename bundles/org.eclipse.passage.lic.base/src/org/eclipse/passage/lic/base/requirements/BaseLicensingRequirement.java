@@ -17,7 +17,7 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_VERSION;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL;
 
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 
 class BaseLicensingRequirement implements LicensingRequirement {
 

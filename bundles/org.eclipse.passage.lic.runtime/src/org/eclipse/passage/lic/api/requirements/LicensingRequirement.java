@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.requirements;
+package org.eclipse.passage.lic.api.requirements;
 
 /**
  * The usage constraint defined for specific feature identifier with given

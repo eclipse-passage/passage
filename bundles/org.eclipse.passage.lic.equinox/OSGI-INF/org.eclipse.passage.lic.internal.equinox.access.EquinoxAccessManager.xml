@@ -9,6 +9,6 @@
    <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <reference bind="bindPermissionEmitter" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.access.PermissionEmitter" name="PermissionEmitter" unbind="unbindPermissionEmitter"/>
    <reference bind="bindPermissionExaminer" cardinality="1..1" interface="org.eclipse.passage.lic.runtime.access.PermissionExaminer" name="PermissionExaminer" policy="static" unbind="unbindPermissionExaminer"/>
-   <reference bind="bindRequirementResolver" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.requirements.RequirementResolver" name="RequirementResolver" unbind="unbindRequirementResolver"/>
+   <reference bind="bindRequirementResolver" cardinality="0..n" interface="org.eclipse.passage.lic.api.requirements.RequirementResolver" name="RequirementResolver" unbind="unbindRequirementResolver"/>
    <reference bind="bindRestrictionExecutor" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor" name="RestrictionExecutor" policy="static" unbind="unbindRestrictionExecutor"/>
 </scr:component>

@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.access;
 
+import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
