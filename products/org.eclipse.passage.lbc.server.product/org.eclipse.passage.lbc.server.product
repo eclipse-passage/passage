@@ -86,7 +86,7 @@
       <plugin id="org.eclipse.passage.lic.base"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
       <plugin id="org.eclipse.passage.lic.net"/>
-      <plugin id="org.eclipse.passage.lbc.runtime"/>
+      <plugin id="org.eclipse.passage.lbc.api"/>
       <plugin id="org.eclipse.passage.lbc.base"/>
       <plugin id="org.eclipse.passage.lbc.equinox"/>
       <plugin id="org.eclipse.passage.lbc.jetty"/>

@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.equinox;
 
 import java.util.HashMap;
 
-import org.eclipse.passage.lbc.runtime.BackendLauncher;
+import org.eclipse.passage.lbc.api.BackendLauncher;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

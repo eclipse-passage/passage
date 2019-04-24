@@ -27,7 +27,7 @@
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 	<modules>
-		<module>../../bundles/org.eclipse.passage.lbc.runtime</module>
+		<module>../../bundles/org.eclipse.passage.lbc.api</module>
 		<module>../../bundles/org.eclipse.passage.lbc.base</module>
 		<module>../../bundles/org.eclipse.passage.lbc.equinox</module>
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.passage.lbc.api.conditions.ConditionArbiter;
 import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
-import org.eclipse.passage.lbc.runtime.conditions.ConditionArbiter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;

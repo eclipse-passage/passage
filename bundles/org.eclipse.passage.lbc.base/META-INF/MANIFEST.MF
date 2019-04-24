@@ -11,6 +11,6 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.net;bundle-version="0.0.0",
- org.eclipse.passage.lbc.runtime;bundle-version="0.0.0";visibility:=reexport
+ org.eclipse.passage.lbc.api;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lbc.base
 Bundle-ActivationPolicy: lazy

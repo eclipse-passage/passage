@@ -2,9 +2,9 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lbc.internal.equinox.OperatorRequestDispatcher">
    <property name="role" value="operator"/>
    <service>
-      <provide interface="org.eclipse.passage.lbc.runtime.BackendRequestDispatcher"/>
+      <provide interface="org.eclipse.passage.lbc.api.BackendRequestDispatcher"/>
    </service>
-   <reference bind="bindBackendActionExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.BackendActionExecutor" name="BackendActionExecutor" unbind="unbindBackendActionExecutor"/>
+   <reference bind="bindBackendActionExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.api.BackendActionExecutor" name="BackendActionExecutor" unbind="unbindBackendActionExecutor"/>
    <reference bind="bindLicensingReporter" cardinality="0..1" interface="org.eclipse.passage.lic.runtime.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <implementation class="org.eclipse.passage.lbc.internal.equinox.OperatorRequestDispatcher"/>
 </scr:component>

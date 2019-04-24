@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.internal.jetty.JettyServerLauncher">
    <implementation class="org.eclipse.passage.lbc.internal.jetty.JettyServerLauncher"/>
    <service>
-      <provide interface="org.eclipse.passage.lbc.runtime.BackendLauncher"/>
+      <provide interface="org.eclipse.passage.lbc.api.BackendLauncher"/>
    </service>
-   <reference bind="bindBackendRequestDispatcher" cardinality="0..n" interface="org.eclipse.passage.lbc.runtime.BackendRequestDispatcher" name="BackendRequestDispatcher" unbind="unbindBackendRequestDispatcher"/>
+   <reference bind="bindBackendRequestDispatcher" cardinality="0..n" interface="org.eclipse.passage.lbc.api.BackendRequestDispatcher" name="BackendRequestDispatcher" unbind="unbindBackendRequestDispatcher"/>
 </scr:component>

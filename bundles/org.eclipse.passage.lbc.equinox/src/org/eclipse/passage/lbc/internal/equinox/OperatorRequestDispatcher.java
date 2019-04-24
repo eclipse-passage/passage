@@ -17,9 +17,9 @@ import static org.eclipse.passage.lic.net.LicensingNet.ROLE_OPERATOR;
 
 import java.util.Map;
 
+import org.eclipse.passage.lbc.api.BackendActionExecutor;
+import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.base.BaseRequestDispatcher;
-import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
-import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
 import org.eclipse.passage.lic.runtime.LicensingReporter;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
+import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 
 class JettyRequestHandler extends AbstractHandler {
 

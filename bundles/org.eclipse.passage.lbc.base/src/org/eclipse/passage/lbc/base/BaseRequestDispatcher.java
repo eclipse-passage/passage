@@ -21,8 +21,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.passage.lbc.runtime.BackendActionExecutor;
-import org.eclipse.passage.lbc.runtime.BackendRequestDispatcher;
+import org.eclipse.passage.lbc.api.BackendActionExecutor;
+import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.net.LicensingNet;

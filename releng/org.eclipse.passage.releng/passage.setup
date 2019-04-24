@@ -268,7 +268,7 @@
           xsi:type="predicates:AndPredicate">
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lbc.runtime"/>
+            project="org.eclipse.passage.lbc.api"/>
         <operand
             xsi:type="predicates:NamePredicate"
             pattern=".*\.lbc\..*"/>

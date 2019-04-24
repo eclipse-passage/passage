@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.runtime;
+package org.eclipse.passage.lbc.api;
 
 import java.util.Map;
 
