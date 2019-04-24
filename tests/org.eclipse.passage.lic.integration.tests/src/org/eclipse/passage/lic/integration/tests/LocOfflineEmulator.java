@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.runtime.io.StreamCodec;
 
-@SuppressWarnings("restriction")
 public class LocOfflineEmulator {
 	
 	private LocOfflineEmulator() {

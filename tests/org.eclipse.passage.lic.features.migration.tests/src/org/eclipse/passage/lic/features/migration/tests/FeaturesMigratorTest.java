@@ -30,7 +30,7 @@ public class FeaturesMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_features");
+		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_features");  //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(null);
@@ -38,31 +38,31 @@ public class FeaturesMigratorTest {
 		EObject eObject = contents.get(0);
 
 		FeatureSet featureSet = FeatureSet.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic", featureSet.getIdentifier());
-		assertEquals("Eclipse Passage LIC", featureSet.getName());
-		assertEquals("Eclipse Passage Licensing Integration Components", featureSet.getDescription());
+		assertEquals("org.eclipse.passage.lic", featureSet.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage LIC", featureSet.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Licensing Integration Components", featureSet.getDescription()); //$NON-NLS-1$
 
 		EList<Feature> features = featureSet.getFeatures();
 		assertEquals(2, features.size());
 
 		Feature f0 = features.get(0);
-		assertEquals("org.eclipse.passage.lic.launch", f0.getIdentifier());
-		assertEquals("Eclipse Passage Launch", f0.getName());
-		assertEquals("Eclipse Passage startup feature", f0.getDescription());
+		assertEquals("org.eclipse.passage.lic.launch", f0.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Launch", f0.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage startup feature", f0.getDescription()); //$NON-NLS-1$
 		
 		EList<FeatureVersion> f0vs = f0.getFeatureVersions();
 		assertEquals(1, f0vs.size());
 		FeatureVersion f0v0 = f0vs.get(0);
-		assertEquals("0.3.3", f0v0.getVersion());
+		assertEquals("0.3.3", f0v0.getVersion()); //$NON-NLS-1$
 
 		Feature f1 = features.get(1);
-		assertEquals("org.eclipse.passage.lic.product", f1.getIdentifier());
-		assertEquals("Eclipse Passage Product", f1.getName());
-		assertEquals("Eclipse Passage product feature", f1.getDescription());
+		assertEquals("org.eclipse.passage.lic.product", f1.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Product", f1.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage product feature", f1.getDescription()); //$NON-NLS-1$
 
 		EList<FeatureVersion> f1vs = f1.getFeatureVersions();
 		assertEquals(1, f1vs.size());
 		FeatureVersion f1v1 = f1vs.get(0);
-		assertEquals("0.4.0", f1v1.getVersion());
+		assertEquals("0.4.0", f1v1.getVersion()); //$NON-NLS-1$
 	}
 }

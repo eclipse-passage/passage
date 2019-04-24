@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public class LicensingEcore {
 
@@ -80,7 +81,7 @@ public class LicensingEcore {
 
 	public static String extractValidationError(EObject eObject) {
 		if (eObject == null) {
-			return "Input is invalid";
+			return EmfMessages.LicensingEcore_input_invalid;
 		}
 		final Diagnostic result = Diagnostician.INSTANCE.validate(eObject);
 		if (result.getSeverity() == Diagnostic.OK) {
@@ -88,20 +89,16 @@ public class LicensingEcore {
 		}
 		// Get the error count and create an appropriate Error message:
 		final int errorCount = result.getChildren().size();
-
-		final String header = "%s error(s) occured while analyzing your inputs:";
-		final String entry = "%s. %s";
-
+		final String header = EmfMessages.LicensingEcore_inpur_header;
+		final String entry = EmfMessages.LicensingEcore_input_entry;
 		final StringBuilder sb = new StringBuilder();
 		sb.append(String.format(header, errorCount));
 		sb.append('\n');
-
 		int messageCount = 0;
 		for (final Diagnostic d : result.getChildren()) {
 			sb.append('\n');
 			sb.append(String.format(entry, ++messageCount, d.getMessage()));
 		}
-
 		return sb.toString();
 	}
 
