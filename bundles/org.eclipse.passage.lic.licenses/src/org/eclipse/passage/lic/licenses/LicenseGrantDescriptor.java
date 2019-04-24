@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 public interface LicenseGrantDescriptor extends LicensingCondition {
 

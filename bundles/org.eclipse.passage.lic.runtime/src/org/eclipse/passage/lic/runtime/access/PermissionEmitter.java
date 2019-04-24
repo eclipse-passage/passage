@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.access;
 
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingException;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 /**
  * Evaluates the collection of {@link LicensingCondition} to emit a collection

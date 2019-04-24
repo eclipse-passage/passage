@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -26,7 +27,6 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.HardwareInspector;
 import org.junit.Test;
 

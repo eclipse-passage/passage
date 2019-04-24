@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
@@ -25,7 +26,6 @@ import org.eclipse.passage.lic.runtime.LicensingException;
 import org.eclipse.passage.lic.runtime.LicensingResult;
 import org.eclipse.passage.lic.runtime.access.FeaturePermission;
 import org.eclipse.passage.lic.runtime.access.PermissionEmitter;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 
 public abstract class BasePermissionEmitter implements PermissionEmitter {
 

@@ -13,13 +13,13 @@
 package org.eclipse.passage.lic.internal.jface.viewers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.ConditionRepresenters;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerBasis;
 import org.eclipse.passage.lic.jface.viewers.RequirementLabels;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.eclipse.swt.graphics.RGB;
 

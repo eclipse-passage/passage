@@ -18,11 +18,11 @@ import static org.junit.Assert.assertNotNull;
 import java.io.ByteArrayInputStream;
 import java.util.Date;
 
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.json.JsonTransport;
 import org.eclipse.passage.lic.internal.json.LicensingConditionAggregator;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.jface.viewers;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.IAdapterManager;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerAdapter;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.inspector.FeatureInspector;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

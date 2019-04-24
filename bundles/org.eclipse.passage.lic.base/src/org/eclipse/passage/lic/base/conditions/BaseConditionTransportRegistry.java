@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.base.conditions;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.conditions.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.ConditionTransportRegistry;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
-import org.eclipse.passage.lic.runtime.conditions.ConditionTransportRegistry;
 
 public class BaseConditionTransportRegistry implements ConditionTransportRegistry {
 

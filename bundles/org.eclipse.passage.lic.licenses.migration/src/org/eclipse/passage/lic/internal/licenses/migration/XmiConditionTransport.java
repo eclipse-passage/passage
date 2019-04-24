@@ -26,9 +26,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.api.conditions.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
-import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_XML })

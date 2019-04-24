@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.internal.equinox.conditions.ServerConditionsMiner">
    <implementation class="org.eclipse.passage.lbc.internal.equinox.conditions.ServerConditionsMiner"/>
-   <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.runtime.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
+   <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner"/>
+      <provide interface="org.eclipse.passage.lic.api.conditions.ConditionMiner"/>
    </service>
 </scr:component>

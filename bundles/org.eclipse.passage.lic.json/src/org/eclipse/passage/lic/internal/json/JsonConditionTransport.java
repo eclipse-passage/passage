@@ -21,8 +21,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.api.conditions.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

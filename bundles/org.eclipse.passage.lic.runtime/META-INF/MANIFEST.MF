@@ -7,10 +7,10 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.passage.lic.api.io,
+Export-Package: org.eclipse.passage.lic.api.conditions,
+ org.eclipse.passage.lic.api.io,
  org.eclipse.passage.lic.api.requirements,
  org.eclipse.passage.lic.runtime,
  org.eclipse.passage.lic.runtime.access,
- org.eclipse.passage.lic.runtime.conditions,
  org.eclipse.passage.lic.runtime.inspector,
  org.eclipse.passage.lic.runtime.restrictions

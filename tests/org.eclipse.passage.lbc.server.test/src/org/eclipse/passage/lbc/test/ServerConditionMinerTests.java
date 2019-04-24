@@ -41,14 +41,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.eclipse.passage.lic.api.conditions.ConditionActions;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.hc.HttpRequests;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

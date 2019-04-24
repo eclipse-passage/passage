@@ -26,14 +26,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiner;
+import org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingResult;
-import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
-import org.eclipse.passage.lic.runtime.conditions.ConditionMinerRegistry;
 
 public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 

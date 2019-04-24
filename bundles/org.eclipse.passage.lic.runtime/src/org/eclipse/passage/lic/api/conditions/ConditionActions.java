@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.runtime.conditions;
+package org.eclipse.passage.lic.api.conditions;
 
 /**
  * Actions to be performed with {@link LicensingCondition}(s)

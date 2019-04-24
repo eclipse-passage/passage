@@ -35,15 +35,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.eclipse.passage.lic.api.conditions.ConditionActions;
+import org.eclipse.passage.lic.api.conditions.ConditionMiner;
+import org.eclipse.passage.lic.api.conditions.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMiner;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.hc.HttpRequests;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
-import org.eclipse.passage.lic.runtime.conditions.ConditionActions;
-import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
-import org.eclipse.passage.lic.runtime.conditions.ConditionTransport;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.osgi.service.component.annotations.Component;
 
 @Component(service = ConditionMiner.class)

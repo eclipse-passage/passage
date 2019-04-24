@@ -16,7 +16,7 @@ import static org.eclipse.passage.lic.runtime.LicensingEvents.ALL_SUB_TOPICS;
 import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_BASE;
 import static org.eclipse.passage.lic.runtime.LicensingEvents.TOPIC_SEP;
 
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 public final class AccessEvents {
 

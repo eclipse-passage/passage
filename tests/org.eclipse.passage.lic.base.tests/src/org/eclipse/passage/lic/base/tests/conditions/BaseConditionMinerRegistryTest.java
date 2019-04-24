@@ -17,9 +17,9 @@ import static org.junit.Assert.assertFalse;
 
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
-import org.eclipse.passage.lic.runtime.conditions.ConditionMiner;
 import org.junit.Test;
 
 public class BaseConditionMinerRegistryTest {

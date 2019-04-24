@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.runtime.access;
 
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.runtime.LicensingConfiguration;
 import org.eclipse.passage.lic.runtime.LicensingResult;
-import org.eclipse.passage.lic.runtime.conditions.LicensingCondition;
 import org.eclipse.passage.lic.runtime.restrictions.RestrictionVerdict;
 
 /**

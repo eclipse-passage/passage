@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.hc.HcConditionMiner">
    <service>
-      <provide interface="org.eclipse.passage.lic.runtime.conditions.ConditionMiner"/>
+      <provide interface="org.eclipse.passage.lic.api.conditions.ConditionMiner"/>
    </service>
    <implementation class="org.eclipse.passage.lic.internal.hc.HcConditionMiner"/>
 </scr:component>
