@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.features.model.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -31,9 +30,7 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model object '<em><b>Feature</b></em>'.
- * 
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -52,7 +49,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
@@ -63,7 +59,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
@@ -72,9 +67,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -84,7 +79,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
@@ -95,7 +89,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
@@ -106,7 +99,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
@@ -117,7 +109,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	/**
 	 * The cached value of the '{@link #getFeatureVersions() <em>Feature Versions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getFeatureVersions()
 	 * @generated
@@ -127,7 +118,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -137,7 +127,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -148,7 +137,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -159,7 +147,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -174,7 +161,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -185,7 +171,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -199,7 +184,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -210,7 +194,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -225,7 +208,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -238,7 +220,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -249,7 +230,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -275,7 +255,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -290,7 +269,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -311,7 +289,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -329,7 +306,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -346,7 +322,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -370,7 +345,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -396,12 +370,12 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			return;
 		default:
 			super.eSet(featureID, newValue);
+			return;
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -431,7 +405,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -455,7 +428,6 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -475,4 +447,4 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		return result.toString();
 	}
 
-} // FeatureImpl
+} //FeatureImpl

@@ -25,9 +25,7 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model object '<em><b>Feature Version</b></em>'.
- * 
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -44,7 +42,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getVersion()
 	 * @generated
@@ -55,7 +52,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getVersion()
 	 * @generated
@@ -66,7 +62,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The default value of the '{@link #getNews() <em>News</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getNews()
 	 * @generated
@@ -77,7 +72,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The cached value of the '{@link #getNews() <em>News</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getNews()
 	 * @generated
@@ -87,7 +81,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -97,7 +90,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -108,7 +100,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -119,7 +110,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -134,7 +124,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,7 +136,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -158,7 +146,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -184,7 +171,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -195,7 +181,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -210,7 +195,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -228,7 +212,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -244,7 +227,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -261,7 +243,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -281,7 +262,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -299,12 +279,12 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return;
 		default:
 			super.eSet(featureID, newValue);
+			return;
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -328,7 +308,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -348,7 +327,6 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -366,4 +344,4 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		return result.toString();
 	}
 
-} // FeatureVersionImpl
+} //FeatureVersionImpl
