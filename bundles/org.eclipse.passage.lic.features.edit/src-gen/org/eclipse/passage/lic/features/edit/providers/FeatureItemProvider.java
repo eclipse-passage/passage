@@ -224,8 +224,10 @@ public class FeatureItemProvider extends ItemProviderAdapter implements IEditing
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

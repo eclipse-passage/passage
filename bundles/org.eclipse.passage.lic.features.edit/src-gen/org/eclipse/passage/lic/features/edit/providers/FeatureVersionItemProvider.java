@@ -171,8 +171,10 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

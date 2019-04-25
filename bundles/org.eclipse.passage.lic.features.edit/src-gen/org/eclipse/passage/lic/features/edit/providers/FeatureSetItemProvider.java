@@ -225,8 +225,10 @@ public class FeatureSetItemProvider extends ItemProviderAdapter implements IEdit
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**
