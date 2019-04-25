@@ -36,18 +36,19 @@ import org.eclipse.passage.lic.products.model.meta.ProductsFactory;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.passage.lic.products.model.api.ProductVersion} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.products.model.api.ProductVersion} object.
+ * <!-- begin-user-doc -->
  * 
+ * <!-- end-user-doc -->
  * @generated
  */
 public class ProductVersionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProductVersionItemProvider(AdapterFactory adapterFactory) {
@@ -55,9 +56,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,9 +76,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Version feature. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Version feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addVersionPropertyDescriptor(Object object) {
@@ -90,9 +93,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Installation Token feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Installation Token feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInstallationTokenPropertyDescriptor(Object object) {
@@ -106,9 +110,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Secure Token feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Secure Token feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSecureTokenPropertyDescriptor(Object object) {
@@ -122,9 +127,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the News feature. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the News feature.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNewsPropertyDescriptor(Object object) {
@@ -138,12 +144,12 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an
-	 * appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,21 +162,25 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to
-		// use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Product.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Product.gif.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -180,8 +190,9 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -190,7 +201,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * 
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -212,10 +226,11 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -237,10 +252,11 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -252,9 +268,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
