@@ -86,7 +86,7 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 						getResourceLocator(), getString("_UI_Product_identifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_Product_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_Product_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT__IDENTIFIER, true, false, false,
+						ProductsPackage.eINSTANCE.getProduct_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -102,7 +102,7 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_Product_name_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_Product_name_feature", "_UI_Product_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ProductsPackage.Literals.PRODUCT__NAME, true, false, false,
+						ProductsPackage.eINSTANCE.getProduct_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -119,7 +119,7 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 						getResourceLocator(), getString("_UI_Product_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_Product_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_Product_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT__DESCRIPTION, true, true, false,
+						ProductsPackage.eINSTANCE.getProduct_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -136,7 +136,7 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProductsPackage.Literals.PRODUCT__PRODUCT_VERSIONS);
+			childrenFeatures.add(ProductsPackage.eINSTANCE.getProduct_ProductVersions());
 		}
 		return childrenFeatures;
 	}
@@ -241,7 +241,7 @@ public class ProductItemProvider extends ItemProviderAdapter implements IEditing
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProductsPackage.Literals.PRODUCT__PRODUCT_VERSIONS,
+		newChildDescriptors.add(createChildParameter(ProductsPackage.eINSTANCE.getProduct_ProductVersions(),
 				ProductsFactory.eINSTANCE.createProductVersion()));
 	}
 

@@ -127,7 +127,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ProductsPackage.Literals.PRODUCT_VERSION_FEATURE;
+		return ProductsPackage.eINSTANCE.getProductVersionFeature();
 	}
 
 	/**

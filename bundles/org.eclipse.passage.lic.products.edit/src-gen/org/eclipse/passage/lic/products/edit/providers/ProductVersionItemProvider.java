@@ -88,7 +88,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_ProductVersion_version_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_version_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductVersion_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_VERSION__VERSION, true, false, false,
+						ProductsPackage.eINSTANCE.getProductVersion_Version(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -105,7 +105,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_ProductVersion_installationToken_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_installationToken_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductVersion_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_VERSION__INSTALLATION_TOKEN, true, false, false,
+						ProductsPackage.eINSTANCE.getProductVersion_InstallationToken(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -122,7 +122,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_ProductVersion_secureToken_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_secureToken_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductVersion_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_VERSION__SECURE_TOKEN, true, false, false,
+						ProductsPackage.eINSTANCE.getProductVersion_SecureToken(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -139,7 +139,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 						getResourceLocator(), getString("_UI_ProductVersion_news_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_news_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductVersion_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_VERSION__NEWS, true, true, false,
+						ProductsPackage.eINSTANCE.getProductVersion_News(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -156,7 +156,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProductsPackage.Literals.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES);
+			childrenFeatures.add(ProductsPackage.eINSTANCE.getProductVersion_ProductVersionFeatures());
 		}
 		return childrenFeatures;
 	}
@@ -263,8 +263,9 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProductsPackage.Literals.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES,
-				ProductsFactory.eINSTANCE.createProductVersionFeature()));
+		newChildDescriptors
+				.add(createChildParameter(ProductsPackage.eINSTANCE.getProductVersion_ProductVersionFeatures(),
+						ProductsFactory.eINSTANCE.createProductVersionFeature()));
 	}
 
 	/**

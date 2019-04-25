@@ -141,7 +141,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ProductsPackage.Literals.PRODUCT_LINE;
+		return ProductsPackage.eINSTANCE.getProductLine();
 	}
 
 	/**

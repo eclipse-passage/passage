@@ -84,7 +84,7 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 				getString("_UI_ProductVersionFeature_featureIdentifier_feature"), //$NON-NLS-1$
 				getString("_UI_PropertyDescriptor_description", "_UI_ProductVersionFeature_featureIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 						"_UI_ProductVersionFeature_type"), //$NON-NLS-1$
-				ProductsPackage.Literals.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER, true, false, false,
+				ProductsPackage.eINSTANCE.getProductVersionFeature_FeatureIdentifier(), true, false, false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -101,7 +101,7 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 						getResourceLocator(), getString("_UI_ProductVersionFeature_featureVersion_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
 								"_UI_ProductVersionFeature_featureVersion_feature", "_UI_ProductVersionFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						ProductsPackage.Literals.PRODUCT_VERSION_FEATURE__FEATURE_VERSION, true, false, false,
+						ProductsPackage.eINSTANCE.getProductVersionFeature_FeatureVersion(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -118,7 +118,7 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 						getResourceLocator(), getString("_UI_ProductVersionFeature_restrictionLevel_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
 								"_UI_ProductVersionFeature_restrictionLevel_feature", "_UI_ProductVersionFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$
-						ProductsPackage.Literals.PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL, true, false, false,
+						ProductsPackage.eINSTANCE.getProductVersionFeature_RestrictionLevel(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

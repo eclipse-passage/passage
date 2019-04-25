@@ -144,7 +144,7 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ProductsPackage.Literals.PRODUCT;
+		return ProductsPackage.eINSTANCE.getProduct();
 	}
 
 	/**

@@ -86,7 +86,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_ProductLine_identifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductLine_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_LINE__IDENTIFIER, true, false, false,
+						ProductsPackage.eINSTANCE.getProductLine_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -103,7 +103,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_ProductLine_name_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_name_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductLine_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_LINE__NAME, true, false, false,
+						ProductsPackage.eINSTANCE.getProductLine_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -120,7 +120,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_ProductLine_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductLine_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductLine_type"), //$NON-NLS-1$
-						ProductsPackage.Literals.PRODUCT_LINE__DESCRIPTION, true, true, false,
+						ProductsPackage.eINSTANCE.getProductLine_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -137,7 +137,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ProductsPackage.Literals.PRODUCT_LINE__PRODUCTS);
+			childrenFeatures.add(ProductsPackage.eINSTANCE.getProductLine_Products());
 		}
 		return childrenFeatures;
 	}
@@ -241,7 +241,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ProductsPackage.Literals.PRODUCT_LINE__PRODUCTS,
+		newChildDescriptors.add(createChildParameter(ProductsPackage.eINSTANCE.getProductLine_Products(),
 				ProductsFactory.eINSTANCE.createProduct()));
 	}
 

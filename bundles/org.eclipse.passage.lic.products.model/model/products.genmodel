@@ -15,7 +15,7 @@
   <genPackages prefix="Products" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
       interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
-      testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#/">
+      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductLineDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersionDescriptor"/>
