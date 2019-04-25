@@ -342,6 +342,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 			return;
 		default:
 			super.eUnset(featureID);
+			return;
 		}
 	}
 

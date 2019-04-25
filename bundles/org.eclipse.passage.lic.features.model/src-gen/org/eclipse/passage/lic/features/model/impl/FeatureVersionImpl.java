@@ -322,6 +322,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return;
 		default:
 			super.eUnset(featureID);
+			return;
 		}
 	}
 
