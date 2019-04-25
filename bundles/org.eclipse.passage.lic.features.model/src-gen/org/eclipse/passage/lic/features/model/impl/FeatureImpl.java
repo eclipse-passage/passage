@@ -304,8 +304,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			return basicSetFeatureSet((FeatureSet) otherEnd, msgs);
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatureVersions()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -321,8 +322,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			return basicSetFeatureSet(null, msgs);
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			return ((InternalEList<?>) getFeatureVersions()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -337,8 +339,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		case FeaturesPackage.FEATURE__FEATURE_SET:
 			return eInternalContainer().eInverseRemove(this, FeaturesPackage.FEATURE_SET__FEATURES, FeatureSet.class,
 					msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -360,8 +363,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			return getFeatureSet();
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			return getFeatureVersions();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -390,8 +394,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			getFeatureVersions().clear();
 			getFeatureVersions().addAll((Collection<? extends FeatureVersion>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -418,8 +423,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			getFeatureVersions().clear();
 			return;
+		default:
+			super.eUnset(featureID);
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -441,8 +447,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 			return getFeatureSet() != null;
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			return featureVersions != null && !featureVersions.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

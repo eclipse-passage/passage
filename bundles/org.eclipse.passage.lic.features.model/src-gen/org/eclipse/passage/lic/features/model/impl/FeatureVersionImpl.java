@@ -221,8 +221,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetFeature((Feature) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -236,8 +237,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 		case FeaturesPackage.FEATURE_VERSION__FEATURE:
 			return basicSetFeature(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -252,8 +254,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		case FeaturesPackage.FEATURE_VERSION__FEATURE:
 			return eInternalContainer().eInverseRemove(this, FeaturesPackage.FEATURE__FEATURE_VERSIONS, Feature.class,
 					msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -271,8 +274,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return getFeature();
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			return getNews();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -293,8 +297,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			setNews((String) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -315,8 +320,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			setNews(NEWS_EDEFAULT);
 			return;
+		default:
+			super.eUnset(featureID);
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -334,8 +340,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			return getFeature() != null;
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
 			return NEWS_EDEFAULT == null ? news != null : !NEWS_EDEFAULT.equals(news);
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

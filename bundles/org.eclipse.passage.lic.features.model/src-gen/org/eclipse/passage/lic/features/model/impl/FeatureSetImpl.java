@@ -248,8 +248,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 		switch (featureID) {
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -263,8 +264,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 		switch (featureID) {
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -284,8 +286,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 			return getDescription();
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			return getFeatures();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -311,8 +314,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 			getFeatures().clear();
 			getFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -336,8 +340,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			getFeatures().clear();
 			return;
+		default:
+			super.eUnset(featureID);
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -357,8 +362,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			return features != null && !features.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
