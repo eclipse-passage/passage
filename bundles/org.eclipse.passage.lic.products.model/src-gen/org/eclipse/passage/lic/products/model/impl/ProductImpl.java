@@ -36,25 +36,19 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getProductLine
- * <em>Product Line</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getProductVersions
- * <em>Product Versions</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getProductLine <em>Product Line</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductImpl#getProductVersions <em>Product Versions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ProductImpl extends MinimalEObjectImpl.Container implements Product {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -62,9 +56,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -92,9 +85,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -102,9 +94,8 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -112,10 +103,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProductVersions() <em>Product
-	 * Versions</em>}' containment reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getProductVersions() <em>Product Versions</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getProductVersions()
 	 * @generated
 	 * @ordered
@@ -124,7 +114,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProductImpl() {
@@ -133,7 +122,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,7 +131,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +140,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,7 +153,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,7 +162,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +174,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +183,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +196,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,7 +207,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProductLine(ProductLine newProductLine, NotificationChain msgs) {
@@ -236,7 +216,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,7 +240,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,7 +253,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -294,7 +271,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -310,7 +286,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -325,7 +300,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -347,7 +321,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -376,7 +349,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -403,7 +375,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -425,7 +396,6 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

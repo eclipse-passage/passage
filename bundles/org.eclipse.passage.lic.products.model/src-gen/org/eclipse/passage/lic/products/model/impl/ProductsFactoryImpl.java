@@ -27,14 +27,13 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ProductsFactory init() {
@@ -62,7 +61,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +81,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,7 +91,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +101,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +111,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,7 +121,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +130,6 @@ public class ProductsFactoryImpl extends EFactoryImpl implements ProductsFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

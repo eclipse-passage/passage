@@ -34,23 +34,18 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getProducts
- * <em>Products</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductLineImpl#getProducts <em>Products</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ProductLineImpl extends MinimalEObjectImpl.Container implements ProductLine {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -58,9 +53,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -88,9 +82,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -98,9 +91,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -108,9 +100,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProducts() <em>Products</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getProducts() <em>Products</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProducts()
 	 * @generated
 	 * @ordered
@@ -119,7 +110,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProductLineImpl() {
@@ -128,7 +118,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +127,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +136,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,7 +149,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,7 +158,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +170,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,7 +179,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,7 +192,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,7 +205,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -238,7 +219,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -252,7 +232,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -272,7 +251,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -298,7 +276,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -322,7 +299,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,7 +318,6 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

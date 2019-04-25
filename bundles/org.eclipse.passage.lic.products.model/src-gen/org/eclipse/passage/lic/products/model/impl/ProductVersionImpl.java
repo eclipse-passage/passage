@@ -36,18 +36,12 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getVersion
- * <em>Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getInstallationToken
- * <em>Installation Token</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getSecureToken
- * <em>Secure Token</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getNews
- * <em>News</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getProduct
- * <em>Product</em>}</li>
- * <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getProductVersionFeatures
- * <em>Product Version Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getInstallationToken <em>Installation Token</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getSecureToken <em>Secure Token</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getNews <em>News</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getProductVersionFeatures <em>Product Version Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,7 +50,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -66,7 +59,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -74,9 +66,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected String version = VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getInstallationToken() <em>Installation
-	 * Token</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getInstallationToken()
 	 * @generated
 	 * @ordered
@@ -84,9 +75,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected static final String INSTALLATION_TOKEN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInstallationToken() <em>Installation
-	 * Token</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getInstallationToken()
 	 * @generated
 	 * @ordered
@@ -94,9 +84,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected String installationToken = INSTALLATION_TOKEN_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSecureToken() <em>Secure Token</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getSecureToken() <em>Secure Token</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSecureToken()
 	 * @generated
 	 * @ordered
@@ -104,9 +93,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected static final String SECURE_TOKEN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSecureToken() <em>Secure Token</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSecureToken() <em>Secure Token</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSecureToken()
 	 * @generated
 	 * @ordered
@@ -134,10 +122,9 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	protected String news = NEWS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProductVersionFeatures() <em>Product
-	 * Version Features</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProductVersionFeatures() <em>Product Version Features</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getProductVersionFeatures()
 	 * @generated
 	 * @ordered
@@ -146,7 +133,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProductVersionImpl() {
@@ -155,7 +141,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +150,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +159,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,7 +172,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +181,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,7 +194,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,7 +203,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,7 +216,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,7 +225,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,7 +238,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -273,7 +249,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProduct(Product newProduct, NotificationChain msgs) {
@@ -283,7 +258,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -308,7 +282,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -323,7 +296,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -343,7 +315,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -359,7 +330,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -374,7 +344,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,7 +367,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -430,7 +398,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -460,7 +427,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -485,7 +451,6 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
