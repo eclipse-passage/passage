@@ -31,7 +31,8 @@ public class ProductsMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_products");
+		File legacy = new File(
+				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_products"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(null);
@@ -39,40 +40,44 @@ public class ProductsMigratorTest {
 		EObject eObject = contents.get(0);
 
 		ProductLine productLine = ProductLine.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic", productLine.getIdentifier());
-		assertEquals("Eclipse Passage LIC", productLine.getName());
-		assertEquals("Eclipse Passage Licensing Integration Components", productLine.getDescription());
+		assertEquals("org.eclipse.passage.lic", productLine.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage LIC", productLine.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Licensing Integration Components", productLine.getDescription()); //$NON-NLS-1$
 
 		EList<Product> products = productLine.getProducts();
 		assertEquals(1, products.size());
 
 		Product p0 = products.get(0);
-		assertEquals("org.eclipse.passage.lic.product", p0.getIdentifier());
-		assertEquals("Eclipse Passage LIC", p0.getName());
-		assertEquals("Eclipse Passage Licensing Integration Components product", p0.getDescription());
+		assertEquals("org.eclipse.passage.lic.product", p0.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage LIC", p0.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Licensing Integration Components product", p0.getDescription()); //$NON-NLS-1$
 			
 		EList<ProductVersion> p0vs = p0.getProductVersions();
 		assertEquals(2, p0vs.size());
 		ProductVersion p0v0 = p0vs.get(0);
-		assertEquals("0.3.3", p0v0.getVersion());
-		assertEquals("./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.pub", p0v0.getInstallationToken());
-		assertEquals("./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.scr", p0v0.getSecureToken());
+		assertEquals("0.3.3", p0v0.getVersion()); //$NON-NLS-1$
+		assertEquals("./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.pub", //$NON-NLS-1$
+				p0v0.getInstallationToken());
+		assertEquals("./.passage/org.eclipse.passage.lic.product/0.3.3/org.eclipse.passage.lic.product_0.3.3.scr", //$NON-NLS-1$
+				p0v0.getSecureToken());
 		EList<ProductVersionFeature> p0v0pvfs = p0v0.getProductVersionFeatures();
 		assertEquals(1, p0v0pvfs.size());
 		ProductVersionFeature p0v0pvf0 = p0v0pvfs.get(0);
-		assertEquals("org.eclipse.passage.lic.launch", p0v0pvf0.getFeatureIdentifier());
-		assertEquals("0.3.3", p0v0pvf0.getFeatureVersion());
-		assertEquals("error", p0v0pvf0.getRestrictionLevel());
+		assertEquals("org.eclipse.passage.lic.launch", p0v0pvf0.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("0.3.3", p0v0pvf0.getFeatureVersion()); //$NON-NLS-1$
+		assertEquals("error", p0v0pvf0.getRestrictionLevel()); //$NON-NLS-1$
 
 		ProductVersion p0v1 = p0vs.get(1);
-		assertEquals("0.4.0", p0v1.getVersion());
-		assertEquals("./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.pub", p0v1.getInstallationToken());
-		assertEquals("./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.scr", p0v1.getSecureToken());
+		assertEquals("0.4.0", p0v1.getVersion()); //$NON-NLS-1$
+		assertEquals("./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.pub", //$NON-NLS-1$
+				p0v1.getInstallationToken());
+		assertEquals("./.passage/org.eclipse.passage.lic.product/0.4.0/org.eclipse.passage.lic.product_0.4.0.scr", //$NON-NLS-1$
+				p0v1.getSecureToken());
 		EList<ProductVersionFeature> p1v0pvfs = p0v1.getProductVersionFeatures();
 		assertEquals(1, p1v0pvfs.size());
 		ProductVersionFeature p1v0pvf0 = p1v0pvfs.get(0);
-		assertEquals("org.eclipse.passage.lic.product", p1v0pvf0.getFeatureIdentifier());
-		assertEquals("0.4.0", p1v0pvf0.getFeatureVersion());
-		assertEquals("error", p1v0pvf0.getRestrictionLevel());
+		assertEquals("org.eclipse.passage.lic.product", p1v0pvf0.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("0.4.0", p1v0pvf0.getFeatureVersion()); //$NON-NLS-1$
+		assertEquals("error", p1v0pvf0.getRestrictionLevel()); //$NON-NLS-1$
 	}
 }
