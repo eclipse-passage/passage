@@ -247,8 +247,10 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 		case ProductsPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

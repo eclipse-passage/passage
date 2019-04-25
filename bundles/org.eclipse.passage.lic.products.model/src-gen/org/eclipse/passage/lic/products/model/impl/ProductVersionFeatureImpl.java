@@ -274,8 +274,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetProductVersion((ProductVersion) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -289,8 +290,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			return basicSetProductVersion(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -305,8 +307,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			return eInternalContainer().eInverseRemove(this, ProductsPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES,
 					ProductVersion.class, msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -326,8 +329,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 			return getRestrictionLevel();
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			return getProductVersion();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -351,8 +355,10 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			setProductVersion((ProductVersion) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -376,8 +382,10 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			setProductVersion((ProductVersion) null);
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -400,8 +408,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 					: !RESTRICTION_LEVEL_EDEFAULT.equals(restrictionLevel);
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			return getProductVersion() != null;
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

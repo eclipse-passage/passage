@@ -184,8 +184,10 @@ public class ProductVersionFeatureItemProvider extends ItemProviderAdapter imple
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

@@ -305,8 +305,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			return basicSetProductLine((ProductLine) otherEnd, msgs);
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProductVersions()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -322,8 +323,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			return basicSetProductLine(null, msgs);
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 			return ((InternalEList<?>) getProductVersions()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -338,8 +340,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		case ProductsPackage.PRODUCT__PRODUCT_LINE:
 			return eInternalContainer().eInverseRemove(this, ProductsPackage.PRODUCT_LINE__PRODUCTS, ProductLine.class,
 					msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -361,8 +364,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			return getProductLine();
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 			return getProductVersions();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -391,8 +395,10 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			getProductVersions().clear();
 			getProductVersions().addAll((Collection<? extends ProductVersion>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -419,8 +425,10 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 			getProductVersions().clear();
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -442,8 +450,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			return getProductLine() != null;
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:
 			return productVersions != null && !productVersions.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -248,8 +248,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProducts()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -263,8 +264,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 			return ((InternalEList<?>) getProducts()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -284,8 +286,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 			return getDescription();
 		case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 			return getProducts();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -311,8 +314,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 			getProducts().clear();
 			getProducts().addAll((Collection<? extends Product>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -336,8 +341,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 		case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 			getProducts().clear();
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -357,8 +364,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case ProductsPackage.PRODUCT_LINE__PRODUCTS:
 			return products != null && !products.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

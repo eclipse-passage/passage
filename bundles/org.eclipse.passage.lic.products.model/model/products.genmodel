@@ -3,6 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.products.model/src-gen"
     creationIcons="false" editDirectory="org.eclipse.passage.lic.products.edit/src-gen"
     editorDirectory="org.eclipse.passage.lic.products.editor/src-gen" modelPluginID="org.eclipse.passage.lic.products.model"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates/" dynamicTemplates="true"
     modelName="Products" editPluginClass="org.eclipse.passage.lic.products.edit.ProductsEditPlugin"
     editorPluginClass="org.eclipse.passage.lic.products.editor.ProductsEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
