@@ -29,8 +29,11 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>License
- * Pack</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * An implementation of the model object '<em><b>License Pack</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -48,7 +51,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 public class LicensePackImpl extends MinimalEObjectImpl.Container implements LicensePack {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -57,7 +62,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -66,7 +73,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIssueDate()
 	 * @generated
 	 * @ordered
@@ -75,7 +84,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIssueDate()
 	 * @generated
 	 * @ordered
@@ -84,7 +95,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getProductIdentifier()
 	 * @generated
 	 * @ordered
@@ -93,7 +106,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getProductIdentifier()
 	 * @generated
 	 * @ordered
@@ -102,7 +117,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The default value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getProductVersion()
 	 * @generated
 	 * @ordered
@@ -111,7 +128,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getProductVersion()
 	 * @generated
 	 * @ordered
@@ -120,7 +139,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The default value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getUserIdentifier()
 	 * @generated
 	 * @ordered
@@ -129,7 +150,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getUserIdentifier()
 	 * @generated
 	 * @ordered
@@ -138,7 +161,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * The cached value of the '{@link #getLicenseGrants() <em>License Grants</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getLicenseGrants()
 	 * @generated
 	 * @ordered
@@ -146,7 +171,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	protected EList<LicenseGrant> licenseGrants;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected LicensePackImpl() {
@@ -154,7 +181,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,7 +192,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -172,7 +203,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -185,7 +218,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,7 +229,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -207,7 +244,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -216,7 +255,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -229,7 +270,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -238,7 +281,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -251,7 +296,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -260,7 +307,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -273,7 +322,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -286,7 +337,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -300,7 +353,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -313,7 +368,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -336,7 +393,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -367,7 +426,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -396,7 +457,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -422,7 +485,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
