@@ -30,7 +30,8 @@ public class LicenseMigratorTest {
 	
 	@Test
 	public void testMigratorPositive() throws Exception {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_licenses");
+		File legacy = new File(
+				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_licenses"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(null);
@@ -38,23 +39,23 @@ public class LicenseMigratorTest {
 		EObject eObject = contents.get(0);
 
 		LicensePack licensePack = LicensePack.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic.evaluation", licensePack.getIdentifier());
+		assertEquals("org.eclipse.passage.lic.evaluation", licensePack.getIdentifier()); //$NON-NLS-1$
 		assertEquals(null, licensePack.getIssueDate());
-		assertEquals("org.eclipse.passage.lic.product", licensePack.getProductIdentifier());
-		assertEquals("0.4.0", licensePack.getProductVersion());
-		assertEquals("", licensePack.getUserIdentifier());
+		assertEquals("org.eclipse.passage.lic.product", licensePack.getProductIdentifier()); //$NON-NLS-1$
+		assertEquals("0.4.0", licensePack.getProductVersion()); //$NON-NLS-1$
+		assertEquals("", licensePack.getUserIdentifier()); //$NON-NLS-1$
 
 		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
 		assertEquals(1, grants.size());
 
 		LicenseGrant g0 = grants.get(0);
 		assertEquals(1, g0.getCapacity());
-		assertEquals("os.family=*", g0.getConditionExpression());
-		assertEquals("hardware", g0.getConditionType());
-		assertEquals("org.eclipse.passage.lic.product", g0.getFeatureIdentifier());
-		assertEquals("perfect", g0.getMatchRule());
-		assertEquals("0.4.0", g0.getMatchVersion());
-		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-03-14T00:00:00.000+0300"), g0.getValidFrom());
-		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-06-14T00:00:00.000+0300"), g0.getValidUntil());
+		assertEquals("os.family=*", g0.getConditionExpression()); //$NON-NLS-1$
+		assertEquals("hardware", g0.getConditionType()); //$NON-NLS-1$
+		assertEquals("org.eclipse.passage.lic.product", g0.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("perfect", g0.getMatchRule()); //$NON-NLS-1$
+		assertEquals("0.4.0", g0.getMatchVersion()); //$NON-NLS-1$
+		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-03-14T00:00:00.000+0300"), g0.getValidFrom()); //$NON-NLS-1$
+		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-06-14T00:00:00.000+0300"), g0.getValidUntil()); //$NON-NLS-1$
 	}
 }
