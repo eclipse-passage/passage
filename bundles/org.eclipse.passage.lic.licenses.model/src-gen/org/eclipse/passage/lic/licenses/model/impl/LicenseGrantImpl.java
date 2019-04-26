@@ -517,8 +517,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetLicensePack((LicensePack) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -532,8 +533,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			return basicSetLicensePack(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -548,8 +550,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			return eInternalContainer().eInverseRemove(this, LicensesPackage.LICENSE_PACK__LICENSE_GRANTS,
 					LicensePack.class, msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -579,8 +582,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return getCapacity();
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			return getLicensePack();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -619,8 +623,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			setLicensePack((LicensePack) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -659,8 +665,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			setLicensePack((LicensePack) null);
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -693,8 +701,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return capacity != CAPACITY_EDEFAULT;
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			return getLicensePack() != null;
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

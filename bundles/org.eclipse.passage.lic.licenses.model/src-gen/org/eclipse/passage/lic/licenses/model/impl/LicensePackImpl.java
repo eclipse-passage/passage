@@ -348,8 +348,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getLicenseGrants()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -363,8 +364,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return ((InternalEList<?>) getLicenseGrants()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -388,8 +390,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			return getUserIdentifier();
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return getLicenseGrants();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -421,8 +424,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			getLicenseGrants().clear();
 			getLicenseGrants().addAll((Collection<? extends LicenseGrant>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -452,8 +457,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			getLicenseGrants().clear();
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -480,8 +487,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 					: !USER_IDENTIFIER_EDEFAULT.equals(userIdentifier);
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return licenseGrants != null && !licenseGrants.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

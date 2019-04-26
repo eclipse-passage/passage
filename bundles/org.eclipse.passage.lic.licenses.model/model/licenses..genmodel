@@ -3,6 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.licenses.model/src-gen"
     creationIcons="false" editDirectory="org.eclipse.passage.lic.licenses.edit/src-gen"
     editorDirectory="org.eclipse.passage.lic.licenses.editor/src-gen" modelPluginID="org.eclipse.passage.lic.licenses.model"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates" dynamicTemplates="true"
     modelName="Licenses" editPluginClass="org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin"
     editorPluginClass="org.eclipse.passage.lic.licenses.editor.LicensesEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"

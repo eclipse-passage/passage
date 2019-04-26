@@ -258,8 +258,10 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

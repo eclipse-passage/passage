@@ -284,8 +284,10 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**
