@@ -377,9 +377,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
-
+		}
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
