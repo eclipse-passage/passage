@@ -18,8 +18,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
- * accessors for the meta objects to represent
+ * <!-- begin-user-doc -->
+ * 
+ * The <b>Package</b> for the model. It contains accessors for the meta objects
+ * to represent
  * <ul>
  * <li>each class,</li>
  * <li>each feature of each class,</li>
@@ -35,36 +37,45 @@ import org.eclipse.emf.ecore.EReference;
 public interface UsersPackage extends EPackage {
 	/**
 	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "users"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/passage/lic/users/0.4.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.passage.lic"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	UsersPackage eINSTANCE = org.eclipse.passage.lic.users.model.impl.UsersPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserOriginDescriptor()
 	 * @generated
@@ -73,16 +84,19 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>User Origin Descriptor</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>User Origin Descriptor</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of operations of the '<em>User Origin Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -90,7 +104,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.users.UserDescriptor
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserDescriptor()
 	 * @generated
@@ -99,16 +115,19 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>User Descriptor</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER_DESCRIPTOR_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>User Descriptor</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of operations of the '<em>User Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -116,7 +135,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl <em>User Origin</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.users.model.impl.UserOriginImpl
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserOrigin()
 	 * @generated
@@ -124,9 +145,10 @@ public interface UsersPackage extends EPackage {
 	int USER_ORIGIN = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -134,17 +156,19 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER_ORIGIN__NAME = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -152,25 +176,29 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER_ORIGIN__USERS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>User Origin</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>User Origin</em>' class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER_ORIGIN_FEATURE_COUNT = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>User Origin</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of operations of the '<em>User Origin</em>' class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -178,7 +206,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserImpl <em>User</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.users.model.impl.UserImpl
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUser()
 	 * @generated
@@ -186,9 +216,10 @@ public interface UsersPackage extends EPackage {
 	int USER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -196,26 +227,29 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Email</b></em>' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__EMAIL = USER_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Full Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Full Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__FULL_NAME = USER_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -223,16 +257,19 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>User Origin</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int USER__USER_ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>User</em>' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>User</em>' class.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -240,8 +277,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -249,7 +287,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Origin Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.users.UserOriginDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.users.UserOriginDescriptor"
@@ -259,7 +299,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.users.UserDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.users.UserDescriptor"
@@ -269,7 +311,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.UserOrigin <em>User Origin</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Origin</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin
 	 * @generated
@@ -278,7 +322,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin#getIdentifier()
 	 * @see #getUserOrigin()
@@ -288,7 +334,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin#getName()
 	 * @see #getUserOrigin()
@@ -298,7 +346,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin#getDescription()
 	 * @see #getUserOrigin()
@@ -308,7 +358,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getUsers <em>Users</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Users</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin#getUsers()
 	 * @see #getUserOrigin()
@@ -317,10 +369,10 @@ public interface UsersPackage extends EPackage {
 	EReference getUserOrigin_Users();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.users.model.api.User <em>User</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.User <em>User</em>}'.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User
 	 * @generated
@@ -329,7 +381,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getIdentifier <em>Identifier</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User#getIdentifier()
 	 * @see #getUser()
@@ -339,7 +393,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getEmail <em>Email</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Email</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User#getEmail()
 	 * @see #getUser()
@@ -349,7 +405,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getFullName <em>Full Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Full Name</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User#getFullName()
 	 * @see #getUser()
@@ -359,7 +417,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User#getDescription()
 	 * @see #getUser()
@@ -369,7 +429,9 @@ public interface UsersPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>User Origin</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.User#getUserOrigin()
 	 * @see #getUser()
@@ -378,16 +440,19 @@ public interface UsersPackage extends EPackage {
 	EReference getUser_UserOrigin();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	UsersFactory getUsersFactory();
 
 	/**
-	 * <!-- begin-user-doc --> Defines literals for the meta objects that represent
+	 * <!-- begin-user-doc -->
+	 * 
+	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 * <li>each class,</li>
 	 * <li>each feature of each class,</li>

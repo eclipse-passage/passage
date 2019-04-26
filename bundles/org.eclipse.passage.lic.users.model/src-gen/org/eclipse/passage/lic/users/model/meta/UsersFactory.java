@@ -17,16 +17,21 @@ import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
- * create method for each non-abstract class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * The <b>Factory</b> for the model. It provides a create method for each
+ * non-abstract class of the model.
+ * 
+ * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage
  * @generated
  */
 public interface UsersFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	UsersFactory eINSTANCE = org.eclipse.passage.lic.users.model.impl.UsersFactoryImpl.init();
@@ -34,6 +39,7 @@ public interface UsersFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>User Origin</em>'.
 	 * <!-- begin-user-doc -->
+	 * 
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User Origin</em>'.
 	 * @generated
@@ -42,8 +48,9 @@ public interface UsersFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>User</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User</em>'.
 	 * @generated
 	 */
@@ -51,8 +58,9 @@ public interface UsersFactory extends EFactory {
 
 	/**
 	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
