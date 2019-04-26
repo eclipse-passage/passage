@@ -242,8 +242,10 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 		case UsersPackage.USER_ORIGIN__USERS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

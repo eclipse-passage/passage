@@ -248,8 +248,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		switch (featureID) {
 		case UsersPackage.USER_ORIGIN__USERS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsers()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -263,8 +264,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		switch (featureID) {
 		case UsersPackage.USER_ORIGIN__USERS:
 			return ((InternalEList<?>) getUsers()).basicRemove(otherEnd, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -284,8 +286,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 			return getDescription();
 		case UsersPackage.USER_ORIGIN__USERS:
 			return getUsers();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -311,8 +314,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 			getUsers().clear();
 			getUsers().addAll((Collection<? extends User>) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -336,8 +341,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		case UsersPackage.USER_ORIGIN__USERS:
 			getUsers().clear();
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -357,8 +364,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case UsersPackage.USER_ORIGIN__USERS:
 			return users != null && !users.isEmpty();
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**

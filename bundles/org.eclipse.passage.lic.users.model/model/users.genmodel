@@ -3,6 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.users.model/src-gen"
     creationIcons="false" editDirectory="org.eclipse.passage.lic.users.edit/src-gen"
     editorDirectory="org.eclipse.passage.lic.users.editor/src-gen" modelPluginID="org.eclipse.passage.lic.users.model"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates" dynamicTemplates="true"
     modelName="Users" editPluginClass="org.eclipse.passage.lic.users.edit.UsersEditPlugin"
     editorPluginClass="org.eclipse.passage.lic.users.editor.UsersEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"

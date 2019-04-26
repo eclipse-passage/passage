@@ -220,8 +220,10 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 		case UsersPackage.USER__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		default:
+			super.notifyChanged(notification);
+			return;
 		}
-		super.notifyChanged(notification);
 	}
 
 	/**

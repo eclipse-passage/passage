@@ -317,8 +317,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetUserOrigin((UserOrigin) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -332,8 +333,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (featureID) {
 		case UsersPackage.USER__USER_ORIGIN:
 			return basicSetUserOrigin(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -347,8 +349,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (eContainerFeatureID()) {
 		case UsersPackage.USER__USER_ORIGIN:
 			return eInternalContainer().eInverseRemove(this, UsersPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -370,8 +373,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return getDescription();
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin();
+		default:
+			return super.eGet(featureID, resolve, coreType);
 		}
-		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -398,8 +402,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) newValue);
 			return;
+		default:
+			super.eSet(featureID, newValue);
+			return;
 		}
-		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -426,8 +432,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) null);
 			return;
+		default:
+			super.eUnset(featureID);
+			return;
 		}
-		super.eUnset(featureID);
 	}
 
 	/**
@@ -449,8 +457,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin() != null;
+		default:
+			return super.eIsSet(featureID);
 		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
