@@ -29,7 +29,8 @@ public class UsersMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_users");
+		File legacy = new File(
+				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_users"); //$NON-NLS-1$ //$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(null);
@@ -37,23 +38,23 @@ public class UsersMigratorTest {
 		EObject eObject = contents.get(0);
 
 		UserOrigin userOrigin = UserOrigin.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic", userOrigin.getIdentifier());
-		assertEquals("Eclipse Passage LIC", userOrigin.getName());
-		assertEquals("Eclipse Passage Licensing Integration Components users", userOrigin.getDescription());
+		assertEquals("org.eclipse.passage.lic", userOrigin.getIdentifier()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage LIC", userOrigin.getName()); //$NON-NLS-1$
+		assertEquals("Eclipse Passage Licensing Integration Components users", userOrigin.getDescription()); //$NON-NLS-1$
 
 		EList<User> users = userOrigin.getUsers();
 		assertEquals(2, users.size());
 
 		User u0 = users.get(0);
 		assertEquals(null, u0.getIdentifier());
-		assertEquals("alexander.fedorov@arsysop.ru", u0.getEmail());
-		assertEquals("Alexander Fedorov", u0.getFullName());
+		assertEquals("alexander.fedorov@arsysop.ru", u0.getEmail()); //$NON-NLS-1$
+		assertEquals("Alexander Fedorov", u0.getFullName()); //$NON-NLS-1$
 		assertEquals(null, u0.getDescription());
 		
 		User u1 = users.get(1);
 		assertEquals(null, u1.getIdentifier());
-		assertEquals("sergei.kovalchuk@arsysop.ru", u1.getEmail());
-		assertEquals("Sergei Kovalchuk", u1.getFullName());
+		assertEquals("sergei.kovalchuk@arsysop.ru", u1.getEmail()); //$NON-NLS-1$
+		assertEquals("Sergei Kovalchuk", u1.getFullName()); //$NON-NLS-1$
 		assertEquals(null, u1.getDescription());
 	}
 }
