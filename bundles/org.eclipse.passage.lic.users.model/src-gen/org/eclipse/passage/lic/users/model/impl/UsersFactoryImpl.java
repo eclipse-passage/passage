@@ -23,16 +23,19 @@ import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
  * 
+ * An implementation of the model <b>Factory</b>.
+ * 
+ * <!-- end-user-doc -->
  * @generated
  */
 public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static UsersFactory init() {
@@ -48,9 +51,10 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UsersFactoryImpl() {
@@ -58,8 +62,9 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,8 +80,9 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,8 +92,9 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,8 +104,9 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -107,8 +115,9 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */

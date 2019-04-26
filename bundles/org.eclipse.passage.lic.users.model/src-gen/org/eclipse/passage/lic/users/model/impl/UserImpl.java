@@ -24,31 +24,30 @@ import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>User</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * An implementation of the model object '<em><b>User</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail
- * <em>Email</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName
- * <em>Full Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin
- * <em>User Origin</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail <em>Email</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -56,9 +55,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -66,9 +66,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -76,9 +77,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String EMAIL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -86,9 +88,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String email = EMAIL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFullName() <em>Full Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getFullName()
 	 * @generated
 	 * @ordered
@@ -96,9 +99,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String FULL_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFullName() <em>Full Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getFullName()
 	 * @generated
 	 * @ordered
@@ -106,9 +110,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String fullName = FULL_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -116,9 +121,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -126,8 +132,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UserImpl() {
@@ -135,8 +142,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -145,8 +153,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,8 +164,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -169,8 +179,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,8 +190,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -192,8 +204,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,8 +215,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -215,8 +229,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -225,8 +240,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -239,8 +255,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -251,8 +268,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetUserOrigin(UserOrigin newUserOrigin, NotificationChain msgs) {
@@ -261,8 +279,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -286,8 +305,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -302,8 +322,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -316,8 +337,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -330,8 +352,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -352,8 +375,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -379,8 +403,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -406,8 +431,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -428,8 +454,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

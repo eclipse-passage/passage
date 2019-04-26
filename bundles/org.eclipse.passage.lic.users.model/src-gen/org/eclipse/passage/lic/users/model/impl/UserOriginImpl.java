@@ -28,29 +28,29 @@ import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>User
- * Origin</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * An implementation of the model object '<em><b>User Origin</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getName
- * <em>Name</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getDescription
- * <em>Description</em>}</li>
- * <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getUsers
- * <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getUsers <em>Users</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UserOriginImpl extends MinimalEObjectImpl.Container implements UserOrigin {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -58,9 +58,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -68,9 +69,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -78,9 +80,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -88,9 +91,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -98,9 +102,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -108,9 +113,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @see #getUsers()
 	 * @generated
 	 * @ordered
@@ -118,8 +124,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected EList<User> users;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UserOriginImpl() {
@@ -127,8 +134,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,8 +145,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -147,8 +156,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,8 +171,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -171,8 +182,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -184,8 +196,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,8 +207,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -208,8 +222,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -222,8 +237,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -237,8 +253,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -251,8 +268,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,8 +289,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -297,8 +316,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -321,8 +341,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -341,8 +362,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
