@@ -2626,8 +2626,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
   <%}%>
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
-
+		if (eIsProxy()) {
+			return super.toString();
+		}
 		<%=genModel.useGenerics() ? "StringBuilder" : "StringBuffer"%> result = new <%=genModel.useGenerics() ? "StringBuilder" : "StringBuffer"%>(super.toString());
   <%{ boolean first = true;%>
     <%for (GenFeature genFeature : genClass.getToStringGenFeatures()) {%>

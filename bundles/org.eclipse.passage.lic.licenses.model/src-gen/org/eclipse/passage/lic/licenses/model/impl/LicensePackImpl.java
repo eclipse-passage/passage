@@ -500,9 +500,9 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
-
+		}
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);

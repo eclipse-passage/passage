@@ -714,9 +714,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
-
+		}
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (featureIdentifier: "); //$NON-NLS-1$
 		result.append(featureIdentifier);
