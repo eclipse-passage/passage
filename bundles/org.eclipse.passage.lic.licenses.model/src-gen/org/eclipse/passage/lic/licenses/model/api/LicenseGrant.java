@@ -18,31 +18,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>License
- * Grant</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * 
+ * A representation of the model object '<em><b>License Grant</b></em>'.
+ * 
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier
- * <em>Feature Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion
- * <em>Match Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule
- * <em>Match Rule</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom
- * <em>Valid From</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil
- * <em>Valid Until</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType
- * <em>Condition Type</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression
- * <em>Condition Expression</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity
- * <em>Capacity</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack
- * <em>License Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant()
@@ -51,14 +45,13 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
  */
 public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feature Identifier</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Feature Identifier</em>' attribute.
 	 * @see #setFeatureIdentifier(String)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_FeatureIdentifier()
@@ -69,11 +62,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getFeatureIdentifier();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier
-	 * <em>Feature Identifier</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature Identifier</em>' attribute.
 	 * @see #getFeatureIdentifier()
 	 * @generated
@@ -81,14 +73,14 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setFeatureIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Match Version</b></em>' attribute. The
-	 * default value is <code>"0.0.0"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Match Version</b></em>' attribute.
+	 * The default value is <code>"0.0.0"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Match Version</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Match Version</em>' attribute.
 	 * @see #setMatchVersion(String)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_MatchVersion()
@@ -99,11 +91,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getMatchVersion();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion
-	 * <em>Match Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Match Version</em>' attribute.
 	 * @see #getMatchVersion()
 	 * @generated
@@ -111,14 +102,13 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setMatchVersion(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Match Rule</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Match Rule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Match Rule</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Match Rule</em>' attribute.
 	 * @see #setMatchRule(String)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_MatchRule()
@@ -129,11 +119,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getMatchRule();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule
-	 * <em>Match Rule</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Match Rule</em>' attribute.
 	 * @see #getMatchRule()
 	 * @generated
@@ -141,14 +130,13 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setMatchRule(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Valid From</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Valid From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Valid From</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Valid From</em>' attribute.
 	 * @see #setValidFrom(Date)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ValidFrom()
@@ -159,11 +147,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	Date getValidFrom();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom
-	 * <em>Valid From</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Valid From</em>' attribute.
 	 * @see #getValidFrom()
 	 * @generated
@@ -171,14 +158,13 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setValidFrom(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Valid Until</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Valid Until</em>' attribute.
 	 * @see #setValidUntil(Date)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ValidUntil()
@@ -189,11 +175,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	Date getValidUntil();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil
-	 * <em>Valid Until</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Valid Until</em>' attribute.
 	 * @see #getValidUntil()
 	 * @generated
@@ -201,14 +186,13 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setValidUntil(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Condition Type</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Condition Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition Type</em>' attribute isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Condition Type</em>' attribute.
 	 * @see #setConditionType(String)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ConditionType()
@@ -219,11 +203,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getConditionType();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType
-	 * <em>Condition Type</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Type</em>' attribute.
 	 * @see #getConditionType()
 	 * @generated
@@ -238,7 +221,6 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Condition Expression</em>' attribute.
 	 * @see #setConditionExpression(String)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ConditionExpression()
@@ -249,11 +231,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getConditionExpression();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression
-	 * <em>Condition Expression</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Expression</em>' attribute.
 	 * @see #getConditionExpression()
 	 * @generated
@@ -261,14 +242,14 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setConditionExpression(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Capacity</b></em>' attribute. The default
-	 * value is <code>"1"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Capacity</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Capacity</em>' attribute isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Capacity</em>' attribute.
 	 * @see #setCapacity(int)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Capacity()
@@ -279,10 +260,10 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	int getCapacity();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity
-	 * <em>Capacity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * 
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Capacity</em>' attribute.
 	 * @see #getCapacity()
 	 * @generated
@@ -291,15 +272,13 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 
 	/**
 	 * Returns the value of the '<em><b>License Pack</b></em>' container reference.
-	 * It is bidirectional and its opposite is
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants
-	 * <em>License Grants</em>}'. <!-- begin-user-doc -->
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>License Pack</em>' container reference isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>License Pack</em>' container reference.
 	 * @see #setLicensePack(LicensePack)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_LicensePack()
@@ -311,13 +290,11 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	LicensePack getLicensePack();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack
-	 * <em>License Pack</em>}' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}' container reference.
+	 * <!-- begin-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>License Pack</em>' container
-	 *              reference.
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>License Pack</em>' container reference.
 	 * @see #getLicensePack()
 	 * @generated
 	 */

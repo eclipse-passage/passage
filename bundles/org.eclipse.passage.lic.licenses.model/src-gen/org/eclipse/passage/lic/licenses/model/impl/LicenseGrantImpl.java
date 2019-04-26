@@ -32,33 +32,23 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeatureIdentifier
- * <em>Feature Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchVersion
- * <em>Match Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchRule
- * <em>Match Rule</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidFrom
- * <em>Valid From</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidUntil
- * <em>Valid Until</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionType
- * <em>Condition Type</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionExpression
- * <em>Condition Expression</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getCapacity
- * <em>Capacity</em>}</li>
- * <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getLicensePack
- * <em>License Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchVersion <em>Match Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidFrom <em>Valid From</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidUntil <em>Valid Until</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionType <em>Condition Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getLicensePack <em>License Pack</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements LicenseGrant {
 	/**
-	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature
-	 * Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeatureIdentifier()
 	 * @generated
 	 * @ordered
@@ -66,9 +56,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final String FEATURE_IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature
-	 * Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeatureIdentifier()
 	 * @generated
 	 * @ordered
@@ -76,9 +65,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMatchVersion()
 	 * @generated
 	 * @ordered
@@ -86,9 +74,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final String MATCH_VERSION_EDEFAULT = "0.0.0"; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getMatchVersion() <em>Match Version</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMatchVersion()
 	 * @generated
 	 * @ordered
@@ -96,9 +83,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected String matchVersion = MATCH_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMatchRule()
 	 * @generated
 	 * @ordered
@@ -106,9 +92,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final String MATCH_RULE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMatchRule()
 	 * @generated
 	 * @ordered
@@ -116,9 +101,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected String matchRule = MATCH_RULE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getValidFrom()
 	 * @generated
 	 * @ordered
@@ -126,9 +110,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final Date VALID_FROM_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getValidFrom()
 	 * @generated
 	 * @ordered
@@ -136,9 +119,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected Date validFrom = VALID_FROM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getValidUntil()
 	 * @generated
 	 * @ordered
@@ -146,9 +128,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final Date VALID_UNTIL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getValidUntil()
 	 * @generated
 	 * @ordered
@@ -156,9 +137,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected Date validUntil = VALID_UNTIL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConditionType() <em>Condition
-	 * Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConditionType()
 	 * @generated
 	 * @ordered
@@ -166,9 +146,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final String CONDITION_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getConditionType() <em>Condition Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConditionType()
 	 * @generated
 	 * @ordered
@@ -176,9 +155,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected String conditionType = CONDITION_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConditionExpression() <em>Condition
-	 * Expression</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConditionExpression()
 	 * @generated
 	 * @ordered
@@ -186,9 +164,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected static final String CONDITION_EXPRESSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getConditionExpression() <em>Condition
-	 * Expression</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConditionExpression()
 	 * @generated
 	 * @ordered
@@ -196,9 +173,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	protected String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -208,7 +184,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -217,7 +192,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LicenseGrantImpl() {
@@ -226,7 +200,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +209,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,7 +218,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,7 +231,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -270,7 +240,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,7 +253,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,7 +262,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -308,7 +275,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -318,7 +284,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,7 +297,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,7 +306,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -356,7 +319,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -366,7 +328,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -380,7 +341,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -390,7 +350,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -404,7 +363,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -414,7 +372,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -428,7 +385,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -440,7 +396,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLicensePack(LicensePack newLicensePack, NotificationChain msgs) {
@@ -450,7 +405,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -475,7 +429,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -491,7 +444,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -505,7 +457,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -520,7 +471,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -550,7 +500,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -589,7 +538,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -628,7 +576,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -661,7 +608,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

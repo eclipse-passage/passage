@@ -25,14 +25,13 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static LicensesFactory init() {
@@ -60,7 +59,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +75,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -88,7 +85,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,7 +95,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +104,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -28,46 +28,43 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesFactory
  * @model kind="package"
  * @generated
  */
 public interface LicensesPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "licenses"; //$NON-NLS-1$
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.passage.lic"; //$NON-NLS-1$
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	LicensesPackage eINSTANCE = org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl.init();
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License
-	 * Pack Descriptor</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePackDescriptor()
 	 * @generated
@@ -75,9 +72,8 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PACK_DESCRIPTOR = 0;
 
 	/**
-	 * The number of structural features of the '<em>License Pack Descriptor</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>License Pack Descriptor</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -86,17 +82,14 @@ public interface LicensesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>License Pack Descriptor</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License
-	 * Grant Descriptor</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrantDescriptor()
 	 * @generated
@@ -104,9 +97,8 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT_DESCRIPTOR = 1;
 
 	/**
-	 * The number of structural features of the '<em>License Grant Descriptor</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>License Grant Descriptor</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -115,17 +107,14 @@ public interface LicensesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>License Grant Descriptor</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl
-	 * <em>License Pack</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl <em>License Pack</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePack()
 	 * @generated
@@ -178,9 +167,8 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PACK__USER_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>License Grants</b></em>' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>License Grants</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -205,10 +193,8 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PACK_OPERATION_COUNT = LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl
-	 * <em>License Grant</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl <em>License Grant</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrant()
 	 * @generated
@@ -290,7 +276,6 @@ public interface LicensesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>License Pack</b></em>' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -315,10 +300,8 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT_OPERATION_COUNT = LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License
-	 * Pack Descriptor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicensePackDescriptor"
@@ -327,10 +310,8 @@ public interface LicensesPackage extends EPackage {
 	EClass getLicensePackDescriptor();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License
-	 * Grant Descriptor</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Grant Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicenseGrantDescriptor"
@@ -339,10 +320,8 @@ public interface LicensesPackage extends EPackage {
 	EClass getLicenseGrantDescriptor();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack <em>License
-	 * Pack</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack
 	 * @generated
@@ -350,10 +329,8 @@ public interface LicensesPackage extends EPackage {
 	EClass getLicensePack();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier
-	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier()
 	 * @see #getLicensePack()
@@ -362,10 +339,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate
-	 * <em>Issue Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate <em>Issue Date</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Issue Date</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate()
 	 * @see #getLicensePack()
@@ -374,10 +349,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_IssueDate();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier
-	 * <em>Product Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Identifier</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier()
 	 * @see #getLicensePack()
@@ -386,10 +359,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_ProductIdentifier();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion
-	 * <em>Product Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product Version</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion()
 	 * @see #getLicensePack()
@@ -398,10 +369,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_ProductVersion();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier
-	 * <em>User Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>User Identifier</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier()
 	 * @see #getLicensePack()
@@ -410,12 +379,9 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_UserIdentifier();
 
 	/**
-	 * Returns the meta object for the containment reference list
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants
-	 * <em>License Grants</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>License
-	 *         Grants</em>'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>License Grants</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants()
 	 * @see #getLicensePack()
 	 * @generated
@@ -423,10 +389,8 @@ public interface LicensesPackage extends EPackage {
 	EReference getLicensePack_LicenseGrants();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant <em>License
-	 * Grant</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant <em>License Grant</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Grant</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant
 	 * @generated
@@ -434,10 +398,8 @@ public interface LicensesPackage extends EPackage {
 	EClass getLicenseGrant();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier
-	 * <em>Feature Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Feature Identifier</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier()
 	 * @see #getLicenseGrant()
@@ -446,10 +408,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_FeatureIdentifier();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion
-	 * <em>Match Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Match Version</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion()
 	 * @see #getLicenseGrant()
@@ -458,10 +418,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_MatchVersion();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule
-	 * <em>Match Rule</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Match Rule</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule()
 	 * @see #getLicenseGrant()
@@ -470,10 +428,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_MatchRule();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom
-	 * <em>Valid From</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Valid From</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom()
 	 * @see #getLicenseGrant()
@@ -482,10 +438,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_ValidFrom();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil
-	 * <em>Valid Until</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Valid Until</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil()
 	 * @see #getLicenseGrant()
@@ -494,10 +448,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_ValidUntil();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType
-	 * <em>Condition Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Condition Type</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType()
 	 * @see #getLicenseGrant()
@@ -519,10 +471,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_ConditionExpression();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity
-	 * <em>Capacity</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Capacity</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity()
 	 * @see #getLicenseGrant()
@@ -531,10 +481,8 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_Capacity();
 
 	/**
-	 * Returns the meta object for the container reference
-	 * '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack
-	 * <em>License Pack</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>License Pack</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack()
 	 * @see #getLicenseGrant()
@@ -561,15 +509,12 @@ public interface LicensesPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the
-		 * '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License
-		 * Pack Descriptor</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePackDescriptor()
 		 * @generated
@@ -577,10 +522,8 @@ public interface LicensesPackage extends EPackage {
 		EClass LICENSE_PACK_DESCRIPTOR = eINSTANCE.getLicensePackDescriptor();
 
 		/**
-		 * The meta object literal for the
-		 * '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License
-		 * Grant Descriptor</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrantDescriptor()
 		 * @generated
@@ -588,10 +531,8 @@ public interface LicensesPackage extends EPackage {
 		EClass LICENSE_GRANT_DESCRIPTOR = eINSTANCE.getLicenseGrantDescriptor();
 
 		/**
-		 * The meta object literal for the
-		 * '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl
-		 * <em>License Pack</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl <em>License Pack</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePack()
 		 * @generated
@@ -599,58 +540,50 @@ public interface LicensesPackage extends EPackage {
 		EClass LICENSE_PACK = eINSTANCE.getLicensePack();
 
 		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_PACK__IDENTIFIER = eINSTANCE.getLicensePack_Identifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Issue Date</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Issue Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_PACK__ISSUE_DATE = eINSTANCE.getLicensePack_IssueDate();
 
 		/**
-		 * The meta object literal for the '<em><b>Product Identifier</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Product Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_PACK__PRODUCT_IDENTIFIER = eINSTANCE.getLicensePack_ProductIdentifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Product Version</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Product Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_PACK__PRODUCT_VERSION = eINSTANCE.getLicensePack_ProductVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>User Identifier</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>User Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_PACK__USER_IDENTIFIER = eINSTANCE.getLicensePack_UserIdentifier();
 
 		/**
-		 * The meta object literal for the '<em><b>License Grants</b></em>' containment
-		 * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>License Grants</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference LICENSE_PACK__LICENSE_GRANTS = eINSTANCE.getLicensePack_LicenseGrants();
 
 		/**
-		 * The meta object literal for the
-		 * '{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl
-		 * <em>License Grant</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl <em>License Grant</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl
 		 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrant()
 		 * @generated
@@ -658,57 +591,50 @@ public interface LicensesPackage extends EPackage {
 		EClass LICENSE_GRANT = eINSTANCE.getLicenseGrant();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature Identifier</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Feature Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__FEATURE_IDENTIFIER = eINSTANCE.getLicenseGrant_FeatureIdentifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Match Version</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Match Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__MATCH_VERSION = eINSTANCE.getLicenseGrant_MatchVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Match Rule</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Match Rule</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__MATCH_RULE = eINSTANCE.getLicenseGrant_MatchRule();
 
 		/**
-		 * The meta object literal for the '<em><b>Valid From</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Valid From</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__VALID_FROM = eINSTANCE.getLicenseGrant_ValidFrom();
 
 		/**
-		 * The meta object literal for the '<em><b>Valid Until</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Valid Until</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__VALID_UNTIL = eINSTANCE.getLicenseGrant_ValidUntil();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Type</b></em>' attribute
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Condition Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__CONDITION_TYPE = eINSTANCE.getLicenseGrant_ConditionType();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Expression</b></em>'
-		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Condition Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__CONDITION_EXPRESSION = eINSTANCE.getLicenseGrant_ConditionExpression();
@@ -716,15 +642,13 @@ public interface LicensesPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Capacity</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LICENSE_GRANT__CAPACITY = eINSTANCE.getLicenseGrant_Capacity();
 
 		/**
-		 * The meta object literal for the '<em><b>License Pack</b></em>' container
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>License Pack</b></em>' container reference feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference LICENSE_GRANT__LICENSE_PACK = eINSTANCE.getLicenseGrant_LicensePack();
