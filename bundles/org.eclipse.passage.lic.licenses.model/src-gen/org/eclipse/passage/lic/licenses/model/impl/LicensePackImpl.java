@@ -188,7 +188,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LicensesPackage.Literals.LICENSE_PACK;
+		return LicensesPackage.eINSTANCE.getLicensePack();
 	}
 
 	/**

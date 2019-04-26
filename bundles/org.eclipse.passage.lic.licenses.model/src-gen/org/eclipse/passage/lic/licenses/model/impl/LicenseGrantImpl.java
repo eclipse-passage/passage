@@ -243,7 +243,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LicensesPackage.Literals.LICENSE_GRANT;
+		return LicensesPackage.eINSTANCE.getLicenseGrant();
 	}
 
 	/**

@@ -88,7 +88,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_LicensePack_identifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_PACK__IDENTIFIER, true, false, false,
+						LicensesPackage.eINSTANCE.getLicensePack_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -105,7 +105,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_LicensePack_issueDate_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_issueDate_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_PACK__ISSUE_DATE, true, false, false,
+						LicensesPackage.eINSTANCE.getLicensePack_IssueDate(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -122,7 +122,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_LicensePack_productIdentifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_PACK__PRODUCT_IDENTIFIER, true, false, false,
+						LicensesPackage.eINSTANCE.getLicensePack_ProductIdentifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -139,7 +139,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_LicensePack_productVersion_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productVersion_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_PACK__PRODUCT_VERSION, true, false, false,
+						LicensesPackage.eINSTANCE.getLicensePack_ProductVersion(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -156,7 +156,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getResourceLocator(), getString("_UI_LicensePack_userIdentifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_userIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_PACK__USER_IDENTIFIER, true, false, false,
+						LicensesPackage.eINSTANCE.getLicensePack_UserIdentifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -173,7 +173,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.Literals.LICENSE_PACK__LICENSE_GRANTS);
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePack_LicenseGrants());
 		}
 		return childrenFeatures;
 	}
@@ -274,7 +274,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.Literals.LICENSE_PACK__LICENSE_GRANTS,
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePack_LicenseGrants(),
 				LicensesFactory.eINSTANCE.createLicenseGrant()));
 	}
 

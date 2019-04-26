@@ -89,7 +89,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_featureIdentifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_featureIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__FEATURE_IDENTIFIER, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_FeatureIdentifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -106,7 +106,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_matchVersion_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchVersion_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__MATCH_VERSION, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_MatchVersion(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -123,7 +123,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_matchRule_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchRule_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__MATCH_RULE, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -140,7 +140,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_validFrom_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validFrom_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__VALID_FROM, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_ValidFrom(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -157,7 +157,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_validUntil_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validUntil_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__VALID_UNTIL, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_ValidUntil(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -174,7 +174,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_conditionType_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionType_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__CONDITION_TYPE, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_ConditionType(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -191,7 +191,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_conditionExpression_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionExpression_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__CONDITION_EXPRESSION, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -208,7 +208,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_LicenseGrant_capacity_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_capacity_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.Literals.LICENSE_GRANT__CAPACITY, true, false, false,
+						LicensesPackage.eINSTANCE.getLicenseGrant_Capacity(), true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
