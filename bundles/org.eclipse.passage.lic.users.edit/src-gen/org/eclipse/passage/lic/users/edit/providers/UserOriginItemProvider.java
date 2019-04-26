@@ -87,7 +87,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 						getResourceLocator(), getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.Literals.USER_ORIGIN__IDENTIFIER, true, false, false,
+						UsersPackage.eINSTANCE.getUserOrigin_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -104,7 +104,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 						getResourceLocator(), getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.Literals.USER_ORIGIN__NAME, true, false, false,
+						UsersPackage.eINSTANCE.getUserOrigin_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -121,7 +121,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 						getResourceLocator(), getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.Literals.USER_ORIGIN__DESCRIPTION, true, true, false,
+						UsersPackage.eINSTANCE.getUserOrigin_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -138,7 +138,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 						getResourceLocator(), getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.Literals.USER_ORIGIN__USERS, true, false, true, null, null, null));
+						UsersPackage.eINSTANCE.getUserOrigin_Users(), true, false, true, null, null, null));
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(UsersPackage.Literals.USER_ORIGIN__USERS);
+			childrenFeatures.add(UsersPackage.eINSTANCE.getUserOrigin_Users());
 		}
 		return childrenFeatures;
 	}
@@ -260,8 +260,8 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(
-				createChildParameter(UsersPackage.Literals.USER_ORIGIN__USERS, UsersFactory.eINSTANCE.createUser()));
+		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getUserOrigin_Users(),
+				UsersFactory.eINSTANCE.createUser()));
 	}
 
 	/**

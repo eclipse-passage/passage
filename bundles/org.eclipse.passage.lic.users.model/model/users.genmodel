@@ -5,18 +5,17 @@
     editorDirectory="org.eclipse.passage.lic.users.editor/src-gen" modelPluginID="org.eclipse.passage.lic.users.model"
     templateDirectory="/org.eclipse.passage.lic.emf/templates" dynamicTemplates="true"
     modelName="Users" editPluginClass="org.eclipse.passage.lic.users.edit.UsersEditPlugin"
-    editorPluginClass="org.eclipse.passage.lic.users.editor.UsersEditorPlugin"
-    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.users.tests.UsersAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    editPluginID="org.eclipse.passage.lic.users.edit" editorPluginID="org.eclipse.passage.lic.users.editor"
-    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
-    cleanup="true" oSGiCompatible="true">
+    editorPluginClass="org.eclipse.passage.lic.users.editor.UsersEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testSuiteClass="org.eclipse.passage.lic.users.tests.UsersAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" editPluginID="org.eclipse.passage.lic.users.edit"
+    editorPluginID="org.eclipse.passage.lic.users.editor" language="" operationReflection="true"
+    runtimePlatform="RCP" importOrganizing="true" cleanup="true" oSGiCompatible="true">
   <foreignModel>platform:/resource/org.eclipse.passage.lic.users.ecore/model/users.ecore</foreignModel>
   <genPackages prefix="Users" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
       interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
-      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
-      presentationPackageSuffix="editor" testsPackageSuffix="model.tests" ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
+      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
+      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin">

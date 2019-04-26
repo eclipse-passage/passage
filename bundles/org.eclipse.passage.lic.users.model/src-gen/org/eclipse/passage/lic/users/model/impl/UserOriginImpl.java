@@ -141,7 +141,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UsersPackage.Literals.USER_ORIGIN;
+		return UsersPackage.eINSTANCE.getUserOrigin();
 	}
 
 	/**

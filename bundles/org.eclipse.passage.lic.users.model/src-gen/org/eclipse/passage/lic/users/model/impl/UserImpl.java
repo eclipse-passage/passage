@@ -149,7 +149,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UsersPackage.Literals.USER;
+		return UsersPackage.eINSTANCE.getUser();
 	}
 
 	/**

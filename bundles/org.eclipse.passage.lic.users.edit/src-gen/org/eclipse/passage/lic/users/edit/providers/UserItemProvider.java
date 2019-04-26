@@ -85,7 +85,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_User_identifier_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_User_identifier_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.Literals.USER__IDENTIFIER, true, false, false,
+						UsersPackage.eINSTANCE.getUser_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -101,7 +101,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_User_email_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.Literals.USER__EMAIL, true, false, false,
+						UsersPackage.eINSTANCE.getUser_Email(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -117,7 +117,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_User_fullName_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_User_fullName_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.Literals.USER__FULL_NAME, true, false, false,
+						UsersPackage.eINSTANCE.getUser_FullName(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -134,7 +134,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 						getResourceLocator(), getString("_UI_User_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_User_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_User_type"), //$NON-NLS-1$
-						UsersPackage.Literals.USER__DESCRIPTION, true, true, false,
+						UsersPackage.eINSTANCE.getUser_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -150,7 +150,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						getResourceLocator(), getString("_UI_User_userOrigin_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_User_userOrigin_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.Literals.USER__USER_ORIGIN, true, false, true, null, null, null));
+						UsersPackage.eINSTANCE.getUser_UserOrigin(), true, false, true, null, null, null));
 	}
 
 	/**
