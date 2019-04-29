@@ -15,7 +15,7 @@
 		name="org.eclipse.passage.ldc.category"
 		label="Passage LDC (Incubation)">
 		<description>
-			Passage Licensing Development Components: 
+			Passage Licensing Definition Components: 
 				Eclipse PDE integration" 
 		</description>
 	</category-def>
@@ -28,7 +28,7 @@
 		name="org.eclipse.passage.ldc.category.source"
 		label="Passage LDC (Incubation) Developer Resources">
 		<description>
-			Passage Licensing Development Components Developer Resources: 
+			Passage Licensing Definition Components Developer Resources: 
 				Eclipse PDE integration" 
 		</description>
 	</category-def>
