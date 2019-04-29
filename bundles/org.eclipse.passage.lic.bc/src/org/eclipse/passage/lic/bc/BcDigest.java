@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.bc;
 
 import org.bouncycastle.crypto.digests.SHA512Digest;
 
-public class BcDigest {
-	
+public final class BcDigest {
+
 	private BcDigest() {
-		//block
+		// block
 	}
 
 	public static byte[] calculateDigest(byte[] source) {
