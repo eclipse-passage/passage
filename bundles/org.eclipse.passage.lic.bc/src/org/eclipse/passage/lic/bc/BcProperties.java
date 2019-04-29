@@ -16,23 +16,22 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.base.LicensingProperties;
 
-public class BcProperties {
-	
+public final class BcProperties {
+
 	public static final String KEY_ALGO_DEFAULT = LicensingProperties.LICENSING_SECURITY_KEY_ALGO_RSA;
 	public static final int KEY_SIZE_DEFAULT = LicensingProperties.LICENSING_SECURITY_KEY_SIZE_1024;
 
 	private BcProperties() {
-		//block
+		// block
 	}
-	
+
 	public static String extractKeyAlgo(Map<String, Object> properties) {
 		if (properties == null) {
 			return KEY_ALGO_DEFAULT;
 		}
 		Object object = properties.get(LicensingProperties.LICENSING_SECURITY_KEY_ALGO);
 		if (object instanceof String) {
-			String algo = (String) object;
-			return algo;
+			return (String) object;
 		}
 		return KEY_ALGO_DEFAULT;
 	}

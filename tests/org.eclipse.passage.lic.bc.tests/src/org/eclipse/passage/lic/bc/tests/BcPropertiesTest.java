@@ -12,7 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.bc.tests;
 
-import static org.eclipse.passage.lic.bc.BcProperties.*;
+import static org.eclipse.passage.lic.bc.BcProperties.KEY_ALGO_DEFAULT;
+import static org.eclipse.passage.lic.bc.BcProperties.KEY_SIZE_DEFAULT;
+import static org.eclipse.passage.lic.bc.BcProperties.extractKeyAlgo;
+import static org.eclipse.passage.lic.bc.BcProperties.extractKeySize;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
@@ -20,16 +23,16 @@ import java.util.HashMap;
 import org.junit.Test;
 
 public class BcPropertiesTest {
-	
+
 	@Test
 	public void testExtractKeyAlgo() {
-		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(null));
-		assertEquals(KEY_ALGO_DEFAULT, extractKeyAlgo(new HashMap<>()));
+		assertEquals("Key algo should match", KEY_ALGO_DEFAULT, extractKeyAlgo(null)); //$NON-NLS-1$
+		assertEquals("Key algo should match", KEY_ALGO_DEFAULT, extractKeyAlgo(new HashMap<>())); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testExtractKeySize() {
-		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(null));
-		assertEquals(KEY_SIZE_DEFAULT, extractKeySize(new HashMap<>()));
+		assertEquals("Key size should match", KEY_SIZE_DEFAULT, extractKeySize(null)); //$NON-NLS-1$
+		assertEquals("Key size should match", KEY_SIZE_DEFAULT, extractKeySize(new HashMap<>())); //$NON-NLS-1$
 	}
 }

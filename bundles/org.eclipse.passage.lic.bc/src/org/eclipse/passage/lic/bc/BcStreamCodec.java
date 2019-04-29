@@ -24,6 +24,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.Security;
 import java.util.Date;
 import java.util.Iterator;
@@ -37,6 +39,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openpgp.PGPCompressedData;
 import org.bouncycastle.openpgp.PGPCompressedDataGenerator;
 import org.bouncycastle.openpgp.PGPEncryptedData;
+import org.bouncycastle.openpgp.PGPException;
 import org.bouncycastle.openpgp.PGPKeyPair;
 import org.bouncycastle.openpgp.PGPKeyRingGenerator;
 import org.bouncycastle.openpgp.PGPLiteralData;
@@ -74,9 +77,12 @@ import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
+import org.eclipse.passage.lic.internal.bc.BcMessages;
 import org.osgi.service.component.annotations.Activate;
 
 public class BcStreamCodec implements StreamCodec {
+
+	private static final long EXPIRATION_TIME = 1000L;
 
 	static {
 		Security.addProvider(new BouncyCastleProvider());
@@ -109,9 +115,6 @@ public class BcStreamCodec implements StreamCodec {
 	public void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password)
 			throws IOException {
 
-		Path pathPublicKey = Paths.get(publicKeyPath);
-		Path pathPrivateKey = Paths.get(privateKeyPath);
-
 		PGPKeyRingGenerator keyRingGen;
 		try {
 			KeyPairGenerator generator = KeyPairGenerator.getInstance(keyAlgo, BouncyCastleProvider.PROVIDER_NAME);
@@ -137,7 +140,7 @@ public class BcStreamCodec implements StreamCodec {
 
 			PGPSignatureSubpacketVector subpacketVector = null;
 
-			subpacketGenerator.setKeyExpirationTime(false, 1000L);
+			subpacketGenerator.setKeyExpirationTime(false, EXPIRATION_TIME);
 
 			subpacketVector = subpacketGenerator.generate();
 
@@ -145,11 +148,11 @@ public class BcStreamCodec implements StreamCodec {
 					subpacketVector, null, certificationSignerBuilder, secretKeyEcriptor);
 
 			keyRingGen.addSubKey(pgpKeyPair);
-		} catch (Exception e) {
+		} catch (NoSuchProviderException | NoSuchAlgorithmException | PGPException e) {
 			throw new IOException(BcMessages.getString("BcStreamCodec_create_keys_error_ring"), e); //$NON-NLS-1$
 		}
 
-		PGPPublicKeyRing keyRingPublic = keyRingGen.generatePublicKeyRing();
+		Path pathPrivateKey = Paths.get(privateKeyPath);
 		PGPSecretKeyRing keyRingSecret = keyRingGen.generateSecretKeyRing();
 
 		File privateKey = pathPrivateKey.toFile();
@@ -161,6 +164,8 @@ public class BcStreamCodec implements StreamCodec {
 			throw new IOException(BcMessages.getString("BcStreamCodec_create_keys_error_private"), e); //$NON-NLS-1$
 		}
 
+		Path pathPublicKey = Paths.get(publicKeyPath);
+		PGPPublicKeyRing keyRingPublic = keyRingGen.generatePublicKeyRing();
 		File publicKey = pathPublicKey.toFile();
 		try (FileOutputStream fos = new FileOutputStream(publicKey);
 				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
@@ -174,74 +179,85 @@ public class BcStreamCodec implements StreamCodec {
 	public void encodeStream(InputStream input, OutputStream output, InputStream keyRing, String username,
 			String password) throws IOException {
 		PGPSecretKey key = findKey(keyRing, username);
-		try {
-			OutputStream aos = new ArmoredOutputStream(output);
+		try (OutputStream aos = new ArmoredOutputStream(output)) {
 			PGPCompressedDataGenerator generator = new PGPCompressedDataGenerator(PGPCompressedData.ZLIB);
-			BCPGOutputStream generated = new BCPGOutputStream(generator.open(aos));
-			PGPContentSignerBuilder csBuilder = new JcaPGPContentSignerBuilder(key.getPublicKey().getAlgorithm(),
-					hashAlgo);
+			try (BCPGOutputStream generated = new BCPGOutputStream(generator.open(aos))) {
+				PGPContentSignerBuilder csBuilder = new JcaPGPContentSignerBuilder(key.getPublicKey().getAlgorithm(),
+						hashAlgo);
 
-			PGPSignatureGenerator signatureGenerator = new PGPSignatureGenerator(csBuilder);
-			PGPDigestCalculatorProvider calcProvider = new JcaPGPDigestCalculatorProviderBuilder()
-					.setProvider(BouncyCastleProvider.PROVIDER_NAME).build();
-			PBESecretKeyDecryptor decryptor = new JcePBESecretKeyDecryptorBuilder(calcProvider)
-					.setProvider(BouncyCastleProvider.PROVIDER_NAME).build(password.toCharArray());
-			PGPPrivateKey privateKey = key.extractPrivateKey(decryptor);
-			signatureGenerator.init(PGPSignature.BINARY_DOCUMENT, privateKey);
+				PGPSignatureGenerator signatureGenerator = new PGPSignatureGenerator(csBuilder);
+				PGPDigestCalculatorProvider calcProvider = new JcaPGPDigestCalculatorProviderBuilder()
+						.setProvider(BouncyCastleProvider.PROVIDER_NAME).build();
+				PBESecretKeyDecryptor decryptor = new JcePBESecretKeyDecryptorBuilder(calcProvider)
+						.setProvider(BouncyCastleProvider.PROVIDER_NAME).build(password.toCharArray());
+				PGPPrivateKey privateKey = key.extractPrivateKey(decryptor);
+				signatureGenerator.init(PGPSignature.BINARY_DOCUMENT, privateKey);
 
-			final Iterator<String> it = key.getPublicKey().getUserIDs();
-			if (it.hasNext()) {
-				final PGPSignatureSubpacketGenerator generator1 = new PGPSignatureSubpacketGenerator();
-				generator1.setSignerUserID(false, it.next());
-				signatureGenerator.setHashedSubpackets(generator1.generate());
+				final Iterator<String> it = key.getPublicKey().getUserIDs();
+				if (it.hasNext()) {
+					final PGPSignatureSubpacketGenerator generator1 = new PGPSignatureSubpacketGenerator();
+					generator1.setSignerUserID(false, it.next());
+					signatureGenerator.setHashedSubpackets(generator1.generate());
+				}
+
+				signatureGenerator.generateOnePassVersion(false).encode(generated);
+				updateSignatureGenerator(input, generated, signatureGenerator);
+				signatureGenerator.generate().encode(generated);
+				generator.close();
 			}
-
-			signatureGenerator.generateOnePassVersion(false).encode(generated);
-			final PGPLiteralDataGenerator literalDataGenerator = new PGPLiteralDataGenerator();
-			final OutputStream literalDataStream = literalDataGenerator.open(generated, PGPLiteralData.BINARY,
-					"ignored", new Date(), new byte[1024]); //$NON-NLS-1$
-			int ch;
-			while ((ch = input.read()) >= 0) {
-				literalDataStream.write(ch);
-				signatureGenerator.update((byte) ch);
-			}
-			literalDataGenerator.close();
-			signatureGenerator.generate().encode(generated);
-			generator.close();
-			generated.close();
-			literalDataStream.close();
-			aos.close();
-		} catch (Exception e) {
+		} catch (IOException | PGPException e) {
 			String message = String.format(BcMessages.getString("BcStreamCodec_enconde_error"), configuration); //$NON-NLS-1$
 			throw new IOException(message, e);
 		}
 	}
 
-	private PGPSecretKey findKey(InputStream key, String username) throws IOException {
+	private static void updateSignatureGenerator(InputStream input, BCPGOutputStream generated,
+			PGPSignatureGenerator signatureGenerator) throws IOException {
+		final PGPLiteralDataGenerator literalDataGenerator = new PGPLiteralDataGenerator();
+		try (final OutputStream literalDataStream = literalDataGenerator.open(generated, PGPLiteralData.BINARY,
+				"ignored", new Date(), new byte[1024])) { //$NON-NLS-1$
+			int ch;
+			while ((ch = input.read()) >= 0) {
+				literalDataStream.write(ch);
+				signatureGenerator.update((byte) ch);
+			}
+		}
+		literalDataGenerator.close();
+	}
+
+	private static PGPSecretKey findKey(InputStream key, String username) throws IOException {
 		try (InputStream decoder = PGPUtil.getDecoderStream(key)) {
 			final PGPSecretKeyRingCollection keyRingCollection = new JcaPGPSecretKeyRingCollection(decoder);
 			Iterator<PGPSecretKeyRing> keyRings = keyRingCollection.getKeyRings();
 			while (keyRings.hasNext()) {
 				PGPSecretKeyRing keyRing = keyRings.next();
 				Iterator<PGPSecretKey> secretKeys = keyRing.getSecretKeys();
-				while (secretKeys.hasNext()) {
-					PGPSecretKey secretKey = secretKeys.next();
-					if (!secretKey.isSigningKey()) {
-						continue;
-					}
-					Iterator<?> userIDs = secretKey.getUserIDs();
-					while (userIDs.hasNext()) {
-						Object next = userIDs.next();
-						if (Objects.equals(username, next)) {
-							return secretKey;
-						}
-					}
+				PGPSecretKey found = findKey(secretKeys, username);
+				if (found != null) {
+					return found;
 				}
 			}
-		} catch (Exception e) {
+		} catch (IOException | PGPException e) {
 			throw new IOException(BcMessages.getString("BcStreamCodec_encode_error_no_key"), e); //$NON-NLS-1$
 		}
 		throw new IOException(BcMessages.getString("BcStreamCodec_encode_error_no_key")); //$NON-NLS-1$
+	}
+
+	private static PGPSecretKey findKey(Iterator<PGPSecretKey> secretKeys, String username) {
+		while (secretKeys.hasNext()) {
+			PGPSecretKey secretKey = secretKeys.next();
+			if (!secretKey.isSigningKey()) {
+				continue;
+			}
+			Iterator<?> userIDs = secretKey.getUserIDs();
+			while (userIDs.hasNext()) {
+				Object next = userIDs.next();
+				if (Objects.equals(username, next)) {
+					return secretKey;
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -264,12 +280,12 @@ public class BcStreamCodec implements StreamCodec {
 			}
 		}
 		try (final InputStream decoderInputStream = PGPUtil.getDecoderStream(input)) {
-			final ByteArrayInputStream keyIn = new ByteArrayInputStream(publicKeyRing);
 
 			PGPObjectFactory pgpFactory = new JcaPGPObjectFactory(decoderInputStream);
 			final PGPCompressedData firstCompressed = (PGPCompressedData) pgpFactory.nextObject();
 			if (firstCompressed == null) {
-				String message = String.format(BcMessages.getString("BcStreamCodec_encode_error_data"), configuration); //$NON-NLS-1$
+				String pattern = BcMessages.getString("BcStreamCodec_encode_error_data"); //$NON-NLS-1$
+				String message = String.format(pattern, configuration);
 				throw new IOException(message);
 			}
 			pgpFactory = new JcaPGPObjectFactory(firstCompressed.getDataStream());
@@ -277,6 +293,7 @@ public class BcStreamCodec implements StreamCodec {
 			final PGPOnePassSignature slist1s1 = slist1.get(0);
 			final PGPLiteralData literalData = (PGPLiteralData) pgpFactory.nextObject();
 
+			final ByteArrayInputStream keyIn = new ByteArrayInputStream(publicKeyRing);
 			try (final InputStream literalStream = literalData.getInputStream();
 					InputStream decoderStream = PGPUtil.getDecoderStream(keyIn)) {
 				final BcPGPPublicKeyRingCollection pgpRing = new BcPGPPublicKeyRingCollection(decoderStream);
@@ -307,7 +324,7 @@ public class BcStreamCodec implements StreamCodec {
 			}
 		} catch (IOException e) {
 			throw e;
-		} catch (Exception e) {
+		} catch (PGPException e) {
 			String message = String.format(BcMessages.getString("BcStreamCodec_deconde_error"), configuration); //$NON-NLS-1$
 			throw new IOException(message, e);
 		}

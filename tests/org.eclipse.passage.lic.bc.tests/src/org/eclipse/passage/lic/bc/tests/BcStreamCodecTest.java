@@ -43,7 +43,7 @@ public class BcStreamCodecTest {
 
 	private static final String TEST_CONTENT = "#some test content" + //$NON-NLS-1$
 			"my.product=cool one" + //$NON-NLS-1$
-			"my.feature.1=essential one" +//$NON-NLS-1$
+			"my.feature.1=essential one" + //$NON-NLS-1$
 			"my.feature.2=special one";//$NON-NLS-1$
 
 	@Rule
