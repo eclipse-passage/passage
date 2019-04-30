@@ -28,6 +28,7 @@
 	</parent>
 	<modules>
 		<module>../../bundles/org.eclipse.passage.ldc.pde.ui.templates</module>
+		<module>../../bundles/org.eclipse.passage.ldc</module>
 		<module>../../features/org.eclipse.passage.ldc.feature</module>
 
 		<module>../../releng/org.eclipse.passage.ldc.repository</module>
