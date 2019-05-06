@@ -239,6 +239,7 @@
 							<excludes>
 								<plugin id="org.eclipse.passage.loc.operator" />
 								<plugin id="org.eclipse.passage.lbc.server" />
+								<plugin id="org.eclipse.passage.ldc" />
 							</excludes>
 						</configuration>
 					</execution>
