@@ -12,14 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui;
 
+import static org.eclipse.passage.lic.e4.core.commands.E4CoreCommands.executeCommand;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ParameterizedCommand;
-import org.eclipse.e4.core.commands.ECommandService;
-import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
@@ -34,7 +32,6 @@ import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
-@SuppressWarnings("restriction")
 public class DashboardUi {
 
 	public static final String COMMAND_CREATE = "org.eclipse.passage.loc.dashboard.ui.command.create"; //$NON-NLS-1$
@@ -49,21 +46,6 @@ public class DashboardUi {
 	public static final String COMMANDPARAMETER_EDIT_DOMAIN = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.domain"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_EDIT_CLASSIFIER = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.classifier"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_EDIT_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.perspective"; //$NON-NLS-1$
-
-	public static Object executeCommand(IEclipseContext context, String commandId, String parameterId,
-			String parameterValue) {
-		Map<Object, Object> parameters = new HashMap<>();
-		parameters.put(parameterId, parameterValue);
-		return executeCommand(context, commandId, parameters);
-	}
-
-	public static Object executeCommand(IEclipseContext context, String commandId, Map<Object, Object> parameters) {
-		ECommandService commandService = context.get(ECommandService.class);
-		Command command = commandService.getCommand(commandId);
-		ParameterizedCommand parametrizedCommand = ParameterizedCommand.generateCommand(command, parameters);
-		EHandlerService eHandlerService = context.get(EHandlerService.class);
-		return eHandlerService.executeHandler(parametrizedCommand);
-	}
 
 	public static void editDomainResource(IEclipseContext context, String domain, String classifier,
 			String perspectiveId) {
@@ -115,7 +97,7 @@ public class DashboardUi {
 	}
 
 	public static void executeCreateCommand(IEclipseContext context, String domain) {
-		Map<Object, Object> parameters = new HashMap<>();
+		Map<String, Object> parameters = new HashMap<>();
 		parameters.put(COMMANDPARAMETER_CREATE_DOMAIN, domain);
 		String perspectiveId = resolvePerspectiveId(domain);
 		if (perspectiveId != null) {
@@ -125,7 +107,7 @@ public class DashboardUi {
 	}
 
 	public static void executeLoadCommand(IEclipseContext context, String domain) {
-		Map<Object, Object> parameters = new HashMap<>();
+		Map<String, Object> parameters = new HashMap<>();
 		parameters.put(COMMANDPARAMETER_LOAD_DOMAIN, domain);
 		String perspectiveId = resolvePerspectiveId(domain);
 		if (perspectiveId != null) {
@@ -135,7 +117,7 @@ public class DashboardUi {
 	}
 
 	public static void executeEditCommand(IEclipseContext context, String domain, String classifier) {
-		Map<Object, Object> parameters = new HashMap<>();
+		Map<String, Object> parameters = new HashMap<>();
 		parameters.put(COMMANDPARAMETER_EDIT_DOMAIN, domain);
 		parameters.put(COMMANDPARAMETER_EDIT_CLASSIFIER, classifier);
 		String perspectiveId = resolvePerspectiveId(domain);
