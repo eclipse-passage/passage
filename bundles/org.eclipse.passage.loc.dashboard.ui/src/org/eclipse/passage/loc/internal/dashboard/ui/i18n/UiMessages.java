@@ -38,6 +38,7 @@ public class UiMessages extends NLS {
 	public static String DashboardDetailsPart_user_origin_create;
 	public static String DashboardDetailsPart_user_origin_description;
 	public static String DashboardDetailsPart_welcome;
+	public static String DashboardPanelBlock_edit_text;
 	public static String DefaultDashboardPanelAdvisor_create_link;
 	public static String DefaultDashboardPanelAdvisor_feature_edit;
 	public static String DefaultDashboardPanelAdvisor_feature_group;

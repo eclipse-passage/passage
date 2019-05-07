@@ -380,7 +380,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected void createLinks(Group group, String domain) {
 		Link create = new Link(group, SWT.NONE);
-		create.setText(String.format("<a>%s<a>", UiMessages.DefaultDashboardPanelAdvisor_create_link)); //$NON-NLS-1$
+		create.setText(UiMessages.DefaultDashboardPanelAdvisor_create_link);
 		create.setLayoutData(GridDataFactory.fillDefaults().align(SWT.END, SWT.CENTER).span(2, 1).create());
 		create.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -389,7 +389,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 			}
 		});
 		Link open = new Link(group, SWT.NONE);
-		open.setText(String.format("<a>%s<a>", UiMessages.DefaultDashboardPanelAdvisor_load_link)); //$NON-NLS-1$
+		open.setText(UiMessages.DefaultDashboardPanelAdvisor_load_link);
 		open.setLayoutData(GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).span(2, 1).create());
 		open.addSelectionListener(new SelectionAdapter() {
 			@Override

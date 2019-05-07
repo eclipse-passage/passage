@@ -16,6 +16,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.UiMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -38,7 +39,7 @@ public class DashboardPanelBlock {
 		text = createTextBlock(parent, label, image);
 		decoration = new ControlDecoration(text, SWT.TOP | SWT.LEFT);
 		edit = new Link(parent, SWT.NONE);
-		edit.setText("<a>Edit</a>"); //$NON-NLS-1$
+		edit.setText(UiMessages.DashboardPanelBlock_edit_text);
 	}
 
 	public void configureEdit(String tooltip, SelectionListener listener) {
@@ -49,44 +50,44 @@ public class DashboardPanelBlock {
 	protected Text createTextBlock(Composite parent, String label, Image image) {
 		Label imageLabel = new Label(parent, SWT.NONE);
 		imageLabel.setImage(image);
-		Label textLabel = new Label(parent, SWT.NONE);
+		Label blockLabel = new Label(parent, SWT.NONE);
 		{
 			GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 			data.widthHint = 100;
-			textLabel.setLayoutData(data);
+			blockLabel.setLayoutData(data);
 		}
-		textLabel.setText(label);
-		Text text = new Text(parent, SWT.READ_ONLY);
+		blockLabel.setText(label);
+		Text blockText = new Text(parent, SWT.READ_ONLY);
 		{
 			GridData data = new GridData(SWT.FILL, SWT.FILL, false, false);
 			data.widthHint = 50;
 			data.horizontalIndent = 5;
-			text.setLayoutData(data);
+			blockText.setLayoutData(data);
 		}
-		return text;
+		return blockText;
 	}
 
-	protected void decorateTextBlock(String warning, String info, long count, ControlDecoration decoration) {
+	protected void decorateTextBlock(String warningPattern, String infoPattern, long count, ControlDecoration controlDecoration) {
 		FieldDecorationRegistry registry = FieldDecorationRegistry.getDefault();
 		if (count > 0) {
 			Image image = registry.getFieldDecoration(FieldDecorationRegistry.DEC_INFORMATION).getImage();
-			decoration.setImage(image);
-			decoration.setDescriptionText(String.format(info, count));
+			controlDecoration.setImage(image);
+			controlDecoration.setDescriptionText(String.format(infoPattern, count));
 		} else {
 			Image image = registry.getFieldDecoration(FieldDecorationRegistry.DEC_WARNING).getImage();
-			decoration.setImage(image);
-			decoration.setDescriptionText(String.format(warning, count));
+			controlDecoration.setImage(image);
+			controlDecoration.setDescriptionText(String.format(warningPattern, count));
 		}
 	}
 
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	
+
 	public void setWarning(String warning) {
 		this.warning = warning;
 	}
-	
+
 	public void update(Iterable<?> iterable) {
 		update(StreamSupport.stream(iterable.spliterator(), false).count());
 	}
