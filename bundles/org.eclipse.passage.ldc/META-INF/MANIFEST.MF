@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.ldc
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.passage.ldc
+Bundle-SymbolicName: org.eclipse.passage.ldc;singleton:=true
 Bundle-Version: 0.5.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui.intro;bundle-version="0.0.0"
