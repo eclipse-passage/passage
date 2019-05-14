@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" deactivate="deactivate" name="org.eclipse.passage.lbc.internal.equinox.ServerRunnerImpl">
+   <service>
+      <provide interface="org.eclipse.passage.lbc.equinox.ServerRunner"/>
+   </service>
+   <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger" unbind="unbindLogger"/>
+   <reference bind="bindServerHandler" cardinality="0..n" interface="org.eclipse.passage.lbc.api.BackendLauncher" name="ServerHandler" policy="dynamic" unbind="unbindServerHandler"/>
+   <implementation class="org.eclipse.passage.lbc.internal.equinox.ServerRunnerImpl"/>
+</scr:component>

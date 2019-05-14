@@ -17,7 +17,7 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.eclipse.passage.lbc.application"
+            application="org.eclipse.passage.lbc.server.application"
             name="Passage Licensing Data Server (Incubation)">
          <property
                name="appName"
