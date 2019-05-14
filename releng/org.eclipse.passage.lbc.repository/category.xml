@@ -20,8 +20,7 @@
 		</description>
 	</category-def>
 	<feature 
-		id="org.eclipse.passage.lbc.feature" 
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.lbc.feature">
 		<category name="org.eclipse.passage.lbc.category" />
 	</feature>
 	<category-def
@@ -33,8 +32,7 @@
 		</description>
 	</category-def>
 	<feature 
-		id="org.eclipse.passage.lbc.feature.source" 
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.lbc.feature.source">
 		<category name="org.eclipse.passage.lbc.category.source" />
 	</feature>
 </site>

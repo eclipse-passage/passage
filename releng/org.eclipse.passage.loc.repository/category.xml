@@ -20,13 +20,11 @@
 		</description>
 	</category-def>
 	<feature
-		id="org.eclipse.passage.loc.dashboard.feature"
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.loc.dashboard.feature">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<feature
-		id="org.eclipse.passage.loc.operator.feature"
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.loc.operator.feature">
 		<category name="org.eclipse.passage.loc.category" />
 	</feature>
 	<category-def
@@ -37,13 +35,11 @@
 		</description>
 	</category-def>
 	<feature
-		id="org.eclipse.passage.loc.dashboard.feature.source"
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.loc.dashboard.feature.source">
 		<category name="org.eclipse.passage.loc.category.source" />
 	</feature>
 	<feature
-		id="org.eclipse.passage.loc.operator.feature.source"
-		version="0.5.0.qualifier">
+		id="org.eclipse.passage.loc.operator.feature.source">
 		<category name="org.eclipse.passage.loc.category.source" />
 	</feature>
 </site>
