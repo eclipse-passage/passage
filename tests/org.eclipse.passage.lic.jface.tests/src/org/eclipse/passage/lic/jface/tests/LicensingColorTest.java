@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,15 +21,15 @@ import org.junit.Test;
 public class LicensingColorTest {
 
 	/**
-	 * excluded due swt dependency
-	 * private static final RGB RGB_1_TEST = new RGB(1, 1, 1);
+	 * excluded due swt dependency private static final RGB RGB_1_TEST = new RGB(1,
+	 * 1, 1);
 	 */
 
 	@Test
 	public void getLicenseColorTest() {
 		// value for color not defined
 		IEclipsePreferences preferences = LicensingColors.getPreferences();
-		String colorValue = preferences.get(LicensingColors.COLOR_LEVEL_ERROR, "");
+		String colorValue = preferences.get(LicensingColors.COLOR_LEVEL_ERROR, ""); //$NON-NLS-1$
 		assertTrue(colorValue.isEmpty());
 
 		// value for color matches with definition in code
