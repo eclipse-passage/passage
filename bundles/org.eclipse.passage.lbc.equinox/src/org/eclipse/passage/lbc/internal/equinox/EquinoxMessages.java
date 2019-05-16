@@ -16,12 +16,17 @@ import org.eclipse.osgi.util.NLS;
 
 public class EquinoxMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.equinox.EquinoxMessages"; //$NON-NLS-1$
-	public static String AcquireConditionActionExecutor_0;
-	public static String AcquireConditionActionExecutor_log_execute_action;
-	public static String ServerConditionArbiter_log_already_lease;
-	public static String ServerConditionArbiter_log_lease;
-	public static String ServerConditionArbiter_log_not_reserved;
-	public static String ServerConditionArbiter_log_reserv;
+	public static String AcquireConditionActionExecutor_e_mining_failed;
+	public static String AcquireConditionActionExecutor_e_no_miners;
+	public static String AcquireConditionActionExecutor_e_transport_not_defined;
+	public static String AcquireConditionActionExecutor_i_execute_action;
+	public static String AcquireConditionActionExecutor_k_mined;
+	public static String ServerConditionArbiter_i_already_leased;
+	public static String ServerConditionArbiter_i_lease;
+	public static String ServerConditionArbiter_i_not_reserved;
+	public static String ServerConditionArbiter_i_reserv;
+	public static String ServerRunnerImpl_i_launcher_bind;
+	public static String ServerRunnerImpl_i_launcher_unbind;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EquinoxMessages.class);

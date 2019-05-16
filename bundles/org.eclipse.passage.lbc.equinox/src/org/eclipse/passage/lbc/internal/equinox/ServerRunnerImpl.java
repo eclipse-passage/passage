@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendCluster;
 import org.eclipse.passage.lbc.api.BackendLauncher;
 import org.osgi.service.component.annotations.Activate;
@@ -62,7 +63,7 @@ public class ServerRunnerImpl implements BackendCluster {
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	public void bindServerHandler(BackendLauncher serverHandler, Map<String, Object> context) {
 		if (serverHandler != null) {
-			logger.info(String.format("Bind BackendLauncher %s", serverHandler));
+			logger.info(NLS.bind(EquinoxMessages.ServerRunnerImpl_i_launcher_bind, serverHandler));
 			serverHandler.launch(context);
 			backendLaunchers.add(serverHandler);
 		}
@@ -70,7 +71,7 @@ public class ServerRunnerImpl implements BackendCluster {
 
 	public void unbindServerHandler(BackendLauncher serverHandler) {
 		if (serverHandler != null) {
-			logger.info(String.format("Unbind BackendLauncher %s", serverHandler));
+			logger.info(NLS.bind(EquinoxMessages.ServerRunnerImpl_i_launcher_unbind, serverHandler));
 			serverHandler.terminate();
 			backendLaunchers.remove(serverHandler);
 		}

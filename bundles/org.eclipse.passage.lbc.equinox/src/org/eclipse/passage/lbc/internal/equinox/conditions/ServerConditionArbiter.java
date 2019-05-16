@@ -35,11 +35,11 @@ public class ServerConditionArbiter implements ConditionArbiter {
 	public boolean addConditionToReserv(LicensingCondition condition) {
 		boolean isReserved = false;
 		if (leaseConditions.contains(condition)) {
-			logger.info(EquinoxMessages.ServerConditionArbiter_log_lease);
+			logger.info(EquinoxMessages.ServerConditionArbiter_i_lease);
 			return isReserved;
 		}
 		if (reservedConditions.contains(condition)) {
-			logger.info(EquinoxMessages.ServerConditionArbiter_log_reserv);
+			logger.info(EquinoxMessages.ServerConditionArbiter_i_reserv);
 			return isReserved;
 		}
 		isReserved = createTaskForReserving(condition);
@@ -53,7 +53,7 @@ public class ServerConditionArbiter implements ConditionArbiter {
 	public boolean addConditionToLease(LicensingCondition condition) {
 		boolean isLeased = false;
 		if (leaseConditions.contains(condition)) {
-			logger.info(EquinoxMessages.ServerConditionArbiter_log_already_lease);
+			logger.info(EquinoxMessages.ServerConditionArbiter_i_already_leased);
 			return isLeased;
 		}
 		if (reservedConditions.contains(condition)) {
@@ -62,7 +62,7 @@ public class ServerConditionArbiter implements ConditionArbiter {
 				isLeased = leaseConditions.add(condition);
 			}
 		} else {
-			logger.info(EquinoxMessages.ServerConditionArbiter_log_not_reserved);
+			logger.info(EquinoxMessages.ServerConditionArbiter_i_not_reserved);
 		}
 		return isLeased;
 	}

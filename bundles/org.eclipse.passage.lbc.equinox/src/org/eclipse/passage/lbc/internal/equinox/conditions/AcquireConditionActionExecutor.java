@@ -22,6 +22,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
@@ -56,9 +57,9 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	@Override
 	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String source = getClass().getName();
-		LOG.info(String.format(EquinoxMessages.AcquireConditionActionExecutor_log_execute_action, source));
+		LOG.info(NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_i_execute_action, source));
 		if (licenseConditionMiners.isEmpty()) {
-			String error = "No condition miners available";
+			String error = EquinoxMessages.AcquireConditionActionExecutor_e_no_miners;
 			LOG.error(error);
 			return LicensingResults.createError(error, source);
 		}
@@ -76,8 +77,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				String error = String.format("LicensingConditionTransport not defined for contentType: %s",
-						contentType);
+				String error = NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_e_transport_not_defined, contentType);
 				LOG.error(error);
 				return LicensingResults.createError(error, source);
 			}
@@ -85,10 +85,10 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			transport.writeConditions(resultConditions, response.getOutputStream());
 			response.setContentType(request.getContentType());
 
-			return LicensingResults.createOK("Conditions mined", source);
+			return LicensingResults.createOK(EquinoxMessages.AcquireConditionActionExecutor_k_mined, source);
 		} catch (IOException e) {
 			LOG.error(e.getMessage());
-			String error = "Condition mining failed";
+			String error = EquinoxMessages.AcquireConditionActionExecutor_e_mining_failed;
 			return LicensingResults.createError(error, source, e);
 		}
 	}
