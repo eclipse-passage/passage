@@ -7,5 +7,4 @@
    </service>
    <reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionMiner" name="ConditionMiner" unbind="unbindConditionMiner"/>
    <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
-   <reference bind="bindLogger" interface="org.osgi.service.log.LoggerFactory" name="Logger" unbind="unbindLogger"/>
 </scr:component>

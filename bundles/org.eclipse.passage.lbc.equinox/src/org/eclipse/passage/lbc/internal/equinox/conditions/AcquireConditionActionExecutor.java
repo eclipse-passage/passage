@@ -37,8 +37,8 @@ import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.log.Logger;
-import org.osgi.service.log.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * According to AccessManager specification implementation of
@@ -48,7 +48,7 @@ import org.osgi.service.log.LoggerFactory;
 @Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
 public class AcquireConditionActionExecutor implements BackendActionExecutor {
 
-	protected Logger logger;
+	private static final Logger LOG = LoggerFactory.getLogger(AcquireConditionActionExecutor.class);
 
 	private List<ConditionMiner> licenseConditionMiners = new ArrayList<>();
 	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
@@ -56,10 +56,10 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	@Override
 	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String source = getClass().getName();
-		logger.info(String.format(EquinoxMessages.AcquireConditionActionExecutor_log_execute_action, source));
+		LOG.info(String.format(EquinoxMessages.AcquireConditionActionExecutor_log_execute_action, source));
 		if (licenseConditionMiners.isEmpty()) {
-			String error = "No condition miners available"; //$NON-NLS-1$
-			logger.error(error);
+			String error = "No condition miners available";
+			LOG.error(error);
 			return LicensingResults.createError(error, source);
 		}
 		try {
@@ -76,38 +76,29 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				String error = String.format("LicensingConditionTransport not defined for contentType: %s", //$NON-NLS-1$
+				String error = String.format("LicensingConditionTransport not defined for contentType: %s",
 						contentType);
-				logger.error(error);
+				LOG.error(error);
 				return LicensingResults.createError(error, source);
 			}
 
 			transport.writeConditions(resultConditions, response.getOutputStream());
 			response.setContentType(request.getContentType());
 
-			return LicensingResults.createOK("Conditions mined", source); //$NON-NLS-1$
+			return LicensingResults.createOK("Conditions mined", source);
 		} catch (IOException e) {
-			logger.error(e.getMessage());
-			String error = "Condition mining failed"; //$NON-NLS-1$
+			LOG.error(e.getMessage());
+			String error = "Condition mining failed";
 			return LicensingResults.createError(error, source, e);
 		}
 	}
 
-	@Reference
-	protected void bindLogger(LoggerFactory loggerFactory) {
-		logger = loggerFactory.getLogger(this.getClass().getName());
-	}
-
-	protected void unbindLogger(LoggerFactory loggerFactory) {
-		logger = null;
-	}
-
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void bindConditionMiner(ConditionMiner conditionMiner, Map<String, String> context) {
+	public void bindConditionMiner(ConditionMiner conditionMiner) {
 		this.licenseConditionMiners.add(conditionMiner);
 	}
 
-	public void unbindConditionMiner(ConditionMiner conditionMiner, Map<String, String> context) {
+	public void unbindConditionMiner(ConditionMiner conditionMiner) {
 		this.licenseConditionMiners.remove(conditionMiner);
 	}
 
