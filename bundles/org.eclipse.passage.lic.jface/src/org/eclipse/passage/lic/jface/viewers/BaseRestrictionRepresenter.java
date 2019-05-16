@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.jface.viewers;
 
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 
 public class BaseRestrictionRepresenter implements RestrictionRepresenter {
 
@@ -26,9 +27,9 @@ public class BaseRestrictionRepresenter implements RestrictionRepresenter {
 	@Override
 	public String getSummary(RestrictionVerdict verdict) {
 		if (verdict == null) {
-			return "The product in licensed properly";
+			return JFaceMessages.BaseRestrictionRepresenter_summary_ok;
 		}
-		return "There are issues with licensing";
+		return JFaceMessages.BaseRestrictionRepresenter_summary_issues;
 	}
 
 }

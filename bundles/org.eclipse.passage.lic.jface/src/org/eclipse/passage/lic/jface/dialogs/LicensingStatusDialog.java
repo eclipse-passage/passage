@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -78,13 +79,13 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText("Licensing");
+		newShell.setText(JFaceMessages.LicensingStatusDialog_shell);
 		newShell.setImage(getDefaultImage());
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		setTitle("Licensing status");
+		setTitle(JFaceMessages.LicensingStatusDialog_title);
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
 		computeStatus();
@@ -115,7 +116,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 
 		Group contactsGroup = new Group(area, SWT.NONE);
 		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		contactsGroup.setText("Please contact your Licensing Operator for details");
+		contactsGroup.setText(JFaceMessages.LicensingStatusDialog_contact_group);
 		contactsGroup.setFont(JFaceResources.getDialogFont());
 		contactsGroup.setLayout(new GridLayout());
 		StyledText contactsText = new StyledText(contactsGroup, SWT.READ_ONLY | SWT.MULTI);
@@ -131,13 +132,13 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		((GridLayout) parent.getLayout()).makeColumnsEqualWidth = false;
-		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, "&Configuration...", false);
+		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, JFaceMessages.LicensingStatusDialog_configuration_button, false);
 		detailsButton.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
 		detailsButton.setEnabled(accessManager != null);
-		Button importButton = createButton(parent, IMPORT_LICENSE_ID, "&Import...", false);
+		Button importButton = createButton(parent, IMPORT_LICENSE_ID, JFaceMessages.LicensingStatusDialog_import_button, false);
 		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
 		importButton.setEnabled(accessManager != null);
-		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, "&Hardware...", false);
+		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, JFaceMessages.LicensingStatusDialog_hardware_button, false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);

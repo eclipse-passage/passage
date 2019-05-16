@@ -60,16 +60,20 @@ public class LicensingViewerAdapterFactory implements IAdapterFactory {
 	}
 
 	public void unbindAdapterManager(IAdapterManager manager) {
-		this.adapterManager = null;
+		if (this.adapterManager == manager) {
+			this.adapterManager = null;
+		}
 	}
 
 	@Reference
-	public void bindInspectorOffice(FeatureInspector inspector) {
+	public void bindFeatureInspector(FeatureInspector inspector) {
 		this.featureInspector = inspector;
 	}
 
-	public void unbindInspectorOffice(FeatureInspector inspector) {
-		this.featureInspector = null;
+	public void unbindFeatureInspector(FeatureInspector inspector) {
+		if (this.featureInspector == inspector) {
+			this.featureInspector = null;
+		}
 	}
 
 	@Override

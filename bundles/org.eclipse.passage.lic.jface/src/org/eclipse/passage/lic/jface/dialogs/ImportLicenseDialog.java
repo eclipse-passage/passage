@@ -36,6 +36,7 @@ import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.ConditionMiners;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -80,13 +81,13 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText("Import License");
+		newShell.setText(JFaceMessages.ImportLicenseDialog_shell);
 		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		setTitle("Import license");
+		setTitle(JFaceMessages.ImportLicenseDialog_title);
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout(1, false));
@@ -102,12 +103,12 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		composite.setLayoutData(GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).create());
 		composite.setLayout(new GridLayout(3, false));
 		Label label = new Label(composite, SWT.NONE);
-		label.setText("From licensing file");
+		label.setText(JFaceMessages.ImportLicenseDialog_source_label);
 		sourceText = new Combo(composite, SWT.NONE);
 		sourceText.setLayoutData(new GridData(GridData.FILL_BOTH));
 		sourceText.addListener(SWT.Modify, e -> handleEvent(e));
 		sourceButton = new Button(composite, SWT.PUSH);
-		sourceButton.setText("B&rowse...");
+		sourceButton.setText(JFaceMessages.ImportLicenseDialog_source_button);
 		sourceButton.addListener(SWT.Selection, e -> handleEvent(e));
 		setButtonLayoutData(sourceButton);
 	}
@@ -120,7 +121,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 
 	protected void handleBrowseButtonPressed() {
 		FileDialog dialog = new FileDialog(getShell(), SWT.OPEN | SWT.SHEET);
-		dialog.setText("Import from File");
+		dialog.setText(JFaceMessages.ImportLicenseDialog_source_title);
 		dialog.setFilterPath(sourceText.getText().trim());
 		dialog.setFilterExtensions(new String[] { "*.licen", "*.*" }); //$NON-NLS-1$ //$NON-NLS-2$
 		String selectedFileName = dialog.open();
@@ -167,7 +168,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 
 	protected boolean validateSourceGroup() {
 		if (!validSource()) {
-			currentMessage = "Licensing file does not exist or is a directory.";
+			currentMessage = JFaceMessages.ImportLicenseDialog_source_invalid;
 			return false;
 		}
 		return true;

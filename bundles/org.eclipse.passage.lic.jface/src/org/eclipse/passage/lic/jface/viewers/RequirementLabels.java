@@ -15,11 +15,12 @@ package org.eclipse.passage.lic.jface.viewers;
 import java.util.Iterator;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 
 public class RequirementLabels {
 
-	public static final String PROVIDER_NOT_AVAILABLE = "N/A";
-	public static final String NAME_NOT_AVAILABLE = "N/A";
+	public static final String PROVIDER_NOT_AVAILABLE = JFaceMessages.RequirementLabels_provider_n_a;
+	public static final String NAME_NOT_AVAILABLE = JFaceMessages.RequirementLabels_name_n_a;
 
 	public static String getFeatureProvider(Iterable<LicensingRequirement> requirements) {
 		if (requirements == null) {

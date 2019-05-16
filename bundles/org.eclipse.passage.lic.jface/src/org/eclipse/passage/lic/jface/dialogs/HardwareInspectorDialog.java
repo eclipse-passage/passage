@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
+import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -36,7 +37,7 @@ public class HardwareInspectorDialog extends TrayDialog {
 	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
-		newShell.setText("Hardware Inspector");
+		newShell.setText(JFaceMessages.HardwareInspectorDialog_title);
 		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 	}
 
