@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,14 +14,17 @@ package org.eclipse.passage.lic.internal.hc;
 
 import org.eclipse.osgi.util.NLS;
 
-public class HcConditionMsg extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.HcConditionMessages"; //$NON-NLS-1$
+public class HcMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.HcMessages"; //$NON-NLS-1$
 
-	public static String PORT_VALUE_NOT_SPECIFIED_ERROR;
-	public static String HOST_VALUE_NOT_SPECIFIED_ERROR;
+	public static String HcConditionMiner_e_host_invalid;
+	public static String HcConditionMiner_e_port_invalid;
+
+	public static String HttpRequests_e_host_invalid;
+	public static String HttpRequests_e_port_invalid;
 
 	static {
 		// initialize resource bundles
-		NLS.initializeMessages(BUNDLE_NAME, HcConditionMsg.class);
+		NLS.initializeMessages(BUNDLE_NAME, HcMessages.class);
 	}
 }

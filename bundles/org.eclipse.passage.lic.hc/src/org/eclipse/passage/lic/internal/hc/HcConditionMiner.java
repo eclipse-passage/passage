@@ -51,7 +51,7 @@ public class HcConditionMiner extends BaseConditionMiner {
 
 	private static final String HOST_PORT = "%s:%s"; //$NON-NLS-1$
 
-	private static final String SETTINGS_EXTENSION = ".settings";
+	private static final String SETTINGS_EXTENSION = ".settings"; //$NON-NLS-1$
 
 	private final Map<String, String> settingsMap = new HashMap<>();
 
@@ -95,22 +95,27 @@ public class HcConditionMiner extends BaseConditionMiner {
 		try {
 			String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 			if (hostValue == null || hostValue.isEmpty()) {
-				logger.log(Level.FINEST, HcConditionMsg.HOST_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, HcMessages.HcConditionMiner_e_host_invalid);
 				return conditions;
 			}
 			String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
 			if (portValue == null || portValue.isEmpty()) {
-				logger.log(Level.FINEST, HcConditionMsg.PORT_VALUE_NOT_SPECIFIED_ERROR);
+				logger.log(Level.FINEST, HcMessages.HcConditionMiner_e_port_invalid);
 				return conditions;
 			}
 			String location = String.format(HOST_PORT, hostValue, portValue);
 
+			// FIXME: use LicensingConfiguration
+			String productId = "product.1"; //$NON-NLS-1$
+			String productVersion = "1.0.0"; //$NON-NLS-1$
 			Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue,
-					LicensingNet.ROLE, "product.1", "1.0.0");
+					LicensingNet.ROLE, productId, productVersion);
 			HttpHost host = HttpHost.create(location);
+
 			URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
+			// FIXME: rework API, it should never return null instead of builder instance
 			if (requestBulder == null) {
-				logger.log(Level.FINEST, "Could not create URI for request");
+				logger.log(Level.FINEST, "Could not create URI for request"); //$NON-NLS-1$
 				return conditions;
 			}
 			HttpPost httpPost = new HttpPost(requestBulder.build());
@@ -124,13 +129,14 @@ public class HcConditionMiner extends BaseConditionMiner {
 					Header header = response.getEntity().getContentType();
 					String contentType = header.getValue();
 					HttpEntity entity = response.getEntity();
+					// FIXME: revisit and improve error handling
 					if (entity != null && entity.getContent() != null) {
 						ConditionTransport transport = conditionTransports.get(contentType);
 						Iterable<LicensingCondition> conditionDescriptors = transport
 								.readConditions(entity.getContent());
 						return conditionDescriptors;
 					} else {
-						logger.log(Level.FINE, "Could not recieve a inputStream from request");
+						logger.log(Level.FINE, "Could not receive an InputStream from request"); //$NON-NLS-1$
 					}
 					return null;
 				}
