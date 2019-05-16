@@ -23,12 +23,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
+import org.eclipse.passage.lbc.internal.base.BaseMessages;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.net.LicensingNet;
 
+/**
+ * Base implementation for {@link BackendRequestDispatcher}
+ * 
+ * @since 0.5.0
+ *
+ */
 public class BaseRequestDispatcher implements BackendRequestDispatcher {
 
 	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
@@ -76,7 +83,7 @@ public class BaseRequestDispatcher implements BackendRequestDispatcher {
 			LicensingResult execution = requestAction.executeAction(request, response);
 			licensingReporter.logResult(execution);
 		} else {
-			String message = String.format("Action executor not available for id %s", requestAction);
+			String message = String.format(BaseMessages.BaseRequestDispatcher_e_executor_not_available, requestAction);
 			licensingReporter.logResult(LicensingResults.createError(message, getClass().getName()));
 			response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, message);
 		}
