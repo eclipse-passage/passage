@@ -94,9 +94,10 @@ public class OshiHardwareInspector implements HardwareInspector {
 				hardwareProperties.put(HardwareInspector.PROPERTY_HWDISK_SERIAL, hwDiskStore.getSerial());
 				break;
 			}
-		} catch (Throwable e) {
+		} catch (Exception | UnsatisfiedLinkError | NoClassDefFoundError e) {
 			String source = getClass().getName();
-			LicensingResult result = LicensingResults.createError("Unable to read hardware", source, e);
+			LicensingResult result = LicensingResults.createError(OshiMessages.OshiHardwareInspector_e_reading_hw,
+					source, e);
 			licensingReporter.logResult(result);
 		}
 	}

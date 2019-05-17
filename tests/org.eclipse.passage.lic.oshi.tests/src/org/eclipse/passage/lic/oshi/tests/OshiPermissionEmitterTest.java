@@ -55,10 +55,11 @@ public class OshiPermissionEmitterTest {
 		evaluate(evaluator, unknown, null);
 	}
 
-	private void evaluate(PermissionEmitter emitter, Set<LicensingCondition> conditions, LicensingConfiguration configuration) {
+	private void evaluate(PermissionEmitter emitter, Set<LicensingCondition> conditions,
+			LicensingConfiguration configuration) {
 		try {
 			emitter.emitPermissions(configuration, conditions);
-			fail("Should not accept invalid arguments");
+			fail("Should not accept invalid arguments"); //$NON-NLS-1$
 		} catch (LicensingException e) {
 			// expected
 		}

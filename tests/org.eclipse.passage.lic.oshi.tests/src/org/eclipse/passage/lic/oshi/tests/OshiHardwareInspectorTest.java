@@ -20,13 +20,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.internal.oshi.OshiHardwareInspector;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
 public class OshiHardwareInspectorTest {
-	
+
 	@Test
 	public void testKnownProperties() {
 		OshiHardwareInspector inspector = new OshiHardwareInspector();
@@ -44,7 +43,7 @@ public class OshiHardwareInspectorTest {
 		OshiHardwareInspector inspector = new OshiHardwareInspector();
 		inspector.activate();
 		StringBuilder infoBuilder = new StringBuilder();
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()){
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 			inspector.dumpHardwareInfo(baos);
 			infoBuilder.append(new String(baos.toByteArray()));
 		}
