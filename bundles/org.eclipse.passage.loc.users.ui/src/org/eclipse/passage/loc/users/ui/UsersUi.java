@@ -17,6 +17,7 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.ui.UsersUiMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
@@ -29,7 +30,7 @@ public class UsersUi {
 	public static UserDescriptor selectUserDescriptor(Shell shell, ComposedAdapterFactoryProvider provider,
 			UserRegistry registry, UserDescriptor initial) {
 		String classifier = UsersPackage.eINSTANCE.getUser().getName();
-		String title = "Select User";
+		String title = UsersUiMessages.UsersUi_select_user;
 		Iterable<? extends UserDescriptor> input = registry.getUsers();
 		Class<UserDescriptor> clazz = UserDescriptor.class;
 		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
