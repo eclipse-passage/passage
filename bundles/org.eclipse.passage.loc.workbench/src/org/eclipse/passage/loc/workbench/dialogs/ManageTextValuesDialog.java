@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class ManageTextValuesDialog extends Dialog {
-	
+
 	private final String splitter;
 
 	private final String initialValues;
@@ -47,9 +47,9 @@ public class ManageTextValuesDialog extends Dialog {
 	}
 
 	private String prepareResultValues() {
-		
+
 		StringBuilder builder = new StringBuilder();
-		for (String item : editor.getText().split("\n")) {
+		for (String item : editor.getText().split("\n")) { //$NON-NLS-1$
 			String filtred = item.trim();
 			if (filtred.isEmpty()) {
 				continue;
@@ -81,7 +81,7 @@ public class ManageTextValuesDialog extends Dialog {
 		editor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		if (initialValues != null) {
-			String replaced = initialValues.replace(splitter, "\n");
+			String replaced = initialValues.replace(splitter, "\n"); //$NON-NLS-1$
 			editor.setText(replaced);
 		}
 		return parent;

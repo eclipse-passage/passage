@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
 import org.eclipse.passage.loc.jface.dialogs.LabelSearchFilter;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -106,9 +107,10 @@ public class LocWokbench {
 	public static void loadDomainResource(IEclipseContext eclipseContext, String domain, String perspectiveId) {
 		EditingDomainRegistryAccess access = eclipseContext.get(EditingDomainRegistryAccess.class);
 		EditingDomainRegistry<?> registry = access.getDomainRegistry(domain);
-		String fileExtension = domain + "_xmi";
+		// FIXME: rework to remove legacy extensions
+		String fileExtension = domain + "_xmi"; //$NON-NLS-1$
 		Shell shell = eclipseContext.get(Shell.class);
-		String selected = selectLoadPath(shell, fileExtension, "lic_" + domain);
+		String selected = selectLoadPath(shell, fileExtension, "lic_" + domain); //$NON-NLS-1$
 		if (selected == null) {
 			return;
 		}
@@ -191,7 +193,7 @@ public class LocWokbench {
 			resource.save(null);
 			return Status.OK_STATUS;
 		} catch (IOException e) {
-			return new Status(IStatus.ERROR, BUNDLE_SYMBOLIC_NAME, "Error saving resource", e);
+			return new Status(IStatus.ERROR, BUNDLE_SYMBOLIC_NAME, WorkbenchMessages.LocWokbench_e_saving, e);
 		}
 	}
 

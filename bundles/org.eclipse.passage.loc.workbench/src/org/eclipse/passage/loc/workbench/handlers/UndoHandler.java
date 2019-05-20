@@ -20,6 +20,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class UndoHandler {
@@ -46,7 +47,7 @@ public class UndoHandler {
 
 
 	protected void updateLabel(IEclipseContext context, MHandledMenuItem item, CommandStack commandStack) {
-		String base = "Undo";
+		String base = WorkbenchMessages.UndoHandler_label_base;
 		Command undoCommand = commandStack.getUndoCommand();
 		if (undoCommand == null) {
 			return;
@@ -55,7 +56,7 @@ public class UndoHandler {
 		if (label == null) {
 			return;
 		}
-		String bind = NLS.bind("{0} {1}", base, label);
+		String bind = NLS.bind(WorkbenchMessages.UndoHandler_label_handler, base, label);
 		item.setLabel(bind);
 	}
 		

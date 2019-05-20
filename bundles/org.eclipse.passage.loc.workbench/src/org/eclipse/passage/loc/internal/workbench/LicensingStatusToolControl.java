@@ -58,7 +58,7 @@ public class LicensingStatusToolControl {
 			}
 		});
 		button.setImage(LicensingImages.getImage(LicensingImages.IMG_LEVEL_OK));
-		button.setText("Undefined");
+		button.setText(WorkbenchMessages.LicensingStatusToolControl_text_undefined);
 		labelProvider = new LicensingLabelProvider();
 	}
 

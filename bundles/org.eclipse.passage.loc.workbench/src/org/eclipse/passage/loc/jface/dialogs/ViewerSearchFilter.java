@@ -18,11 +18,11 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 public abstract class ViewerSearchFilter<T> extends ViewerFilter {
-	
+
 	protected final Class<T> elementClass;
-	
-	protected String searchText = "";
-	
+
+	protected String searchText = ""; //$NON-NLS-1$
+
 	protected ViewerSearchFilter(Class<T> elementClass) {
 		this.elementClass = elementClass;
 	}
@@ -38,11 +38,11 @@ public abstract class ViewerSearchFilter<T> extends ViewerFilter {
 
 	protected String getNotNullValue(String text) {
 		if (text == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return text;
 	}
-	
+
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		if (searchText.isEmpty()) {
@@ -54,13 +54,13 @@ public abstract class ViewerSearchFilter<T> extends ViewerFilter {
 		}
 		return false;
 	}
-	
+
 	protected T convertElement(Viewer viewer, Object parentElement, Object element, Class<T> elementClass) {
 		if (elementClass.isInstance(element)) {
 			return elementClass.cast(element);
 		}
 		return null;
 	}
-	
+
 	protected abstract boolean selectElement(Viewer viewer, Object parentElement, T element, String searchText);
 }

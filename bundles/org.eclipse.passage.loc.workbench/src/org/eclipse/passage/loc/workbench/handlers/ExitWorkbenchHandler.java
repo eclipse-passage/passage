@@ -22,12 +22,10 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class ExitWorkbenchHandler {
-	private static final String TITLE_DIALOG = "Exit dialog";
-	private static final String DIALOG_MSG = "Do you want to exit the product?";
-
 	@Inject
 	private IEclipseContext context;
 
@@ -37,7 +35,7 @@ public class ExitWorkbenchHandler {
 		if (!partService.saveAll(true)) {
 			return;
 		}
-		if (MessageDialog.openQuestion(shell, TITLE_DIALOG, DIALOG_MSG)) {
+		if (MessageDialog.openQuestion(shell, WorkbenchMessages.ExitWorkbenchHandler_exit_title, WorkbenchMessages.ExitWorkbenchHandler_exit_message)) {
 			Object workbench = context.get(IWorkbench.class.getName());
 			if (workbench != null && workbench instanceof IWorkbench) {
 				((IWorkbench) workbench).close();

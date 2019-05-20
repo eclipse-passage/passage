@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -77,16 +78,16 @@ public class FilteredSelectionDialog<T> extends ObjectSelectionStatusDialog<T> {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite dialogArea = (Composite) super.createDialogArea(parent);
+		Composite area = (Composite) super.createDialogArea(parent);
 
-		Composite content = new Composite(dialogArea, SWT.NONE);
+		Composite content = new Composite(area, SWT.NONE);
 		content.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		Label lblFilteringField = new Label(content, SWT.NONE);
 		{
 			GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 			lblFilteringField.setLayoutData(data);
-			lblFilteringField.setText("Matcher:");
+			lblFilteringField.setText(WorkbenchMessages.FilteredSelectionDialog_filtering_label);
 		}
 
 		filteringField = new Text(content, SWT.BORDER);
@@ -130,7 +131,7 @@ public class FilteredSelectionDialog<T> extends ObjectSelectionStatusDialog<T> {
 		{
 			GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 			lblListItems.setLayoutData(data);
-			lblListItems.setText("Matching items:");
+			lblListItems.setText(WorkbenchMessages.FilteredSelectionDialog_items_label);
 		}
 
 		tableViewItems = new TableViewer(content, (multi ? SWT.MULTI : SWT.SINGLE) | SWT.BORDER | SWT.V_SCROLL);
@@ -166,7 +167,7 @@ public class FilteredSelectionDialog<T> extends ObjectSelectionStatusDialog<T> {
 		}
 
 		applyDialogFont(content);
-		return dialogArea;
+		return area;
 	}
 
 	protected void handleDoubleClick() {

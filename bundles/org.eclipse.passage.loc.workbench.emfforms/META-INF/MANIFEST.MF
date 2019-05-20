@@ -30,7 +30,6 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.eclipse.passage.loc.workbench;bundle-version="0.0.0";visibility:=reexport
 Import-Package: javax.inject
 Export-Package: org.eclipse.passage.loc.workbench.emfforms,
- org.eclipse.passage.loc.workbench.emfforms.dialogs,
  org.eclipse.passage.loc.workbench.emfforms.parts,
  org.eclipse.passage.loc.workbench.emfforms.renderers,
  org.eclipse.passage.loc.workbench.emfforms.wizards

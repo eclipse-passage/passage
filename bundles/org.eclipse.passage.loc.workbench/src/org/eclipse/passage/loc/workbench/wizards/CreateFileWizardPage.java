@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
@@ -85,7 +86,7 @@ public class CreateFileWizardPage extends WizardPage {
 		if (createId) {
 			Label idFieldLabel = new Label(composite, SWT.LEFT);
 			{
-				idFieldLabel.setText("&Identifier:");
+				idFieldLabel.setText(WorkbenchMessages.CreateFileWizardPage_label_identifier);
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = false;
@@ -106,7 +107,7 @@ public class CreateFileWizardPage extends WizardPage {
 		if (createName) {
 			Label nameFieldILabel = new Label(composite, SWT.LEFT);
 			{
-				nameFieldILabel.setText("&Name:");
+				nameFieldILabel.setText(WorkbenchMessages.CreateFileWizardPage_label_name);
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = false;
@@ -125,7 +126,7 @@ public class CreateFileWizardPage extends WizardPage {
 		}
 		Label resourceURILabel = new Label(composite, SWT.LEFT);
 		{
-			resourceURILabel.setText("&File:");
+			resourceURILabel.setText(WorkbenchMessages.CreateFileWizardPage_label_file);
 			GridData data = new GridData();
 			data.horizontalAlignment = GridData.FILL;
 			data.grabExcessHorizontalSpace = false;
@@ -142,7 +143,7 @@ public class CreateFileWizardPage extends WizardPage {
 			txtResourceURI.setLayoutData(data);
 		}
 		resourceURIBrowseFileSystemButton = new Button(composite, SWT.PUSH);
-		resourceURIBrowseFileSystemButton.setText("Browse ...");
+		resourceURIBrowseFileSystemButton.setText(WorkbenchMessages.CreateFileWizardPage_button_browse);
 		txtResourceURI.addModifyListener(validator);
 		resourceURIBrowseFileSystemButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -169,27 +170,27 @@ public class CreateFileWizardPage extends WizardPage {
 	}
 
 	protected String getBasePath() {
-		return System.getProperty("user.home");
+		return System.getProperty("user.home"); //$NON-NLS-1$
 	}
 
 	protected boolean validatePage() {
 		URI fileURI = getFileURI();
 		boolean validationResult = true;
 		if (fileURI == null || fileURI.isEmpty()) {
-			setMessage("Please specify a file path");
+			setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_path);
 			validationResult = false;
 		}
 		if (createId) {
 			String textId = getIdentifier();
 			if (textId == null || textId.isEmpty()) {
-				setMessage("Please specify the identifier");
+				setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_identifier);
 				validationResult = false;
 			}
 		}
 		if (createName) {
 			String textName = getName();
 			if (textName == null || textName.isEmpty()) {
-				setMessage("Please specify the name");
+				setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_name);
 				validationResult = false;
 			}
 		}
@@ -198,7 +199,7 @@ public class CreateFileWizardPage extends WizardPage {
 
 	public String getIdentifier() {
 		if (txtId == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return txtId.getText();
 	}
@@ -206,7 +207,7 @@ public class CreateFileWizardPage extends WizardPage {
 	@Override
 	public String getName() {
 		if (txtName == null) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return txtName.getText();
 	}

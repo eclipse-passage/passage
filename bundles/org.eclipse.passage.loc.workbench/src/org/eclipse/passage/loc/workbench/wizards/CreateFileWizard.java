@@ -29,6 +29,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class CreateFileWizard extends Wizard {
@@ -76,8 +77,8 @@ public class CreateFileWizard extends Wizard {
 			if (file.exists()) {
 				String absolutePath = file.getAbsolutePath();
 				String message = String.format(
-						"The file \"%s\" already exists.  Do you want to replace the existing file?", absolutePath);
-				if (!MessageDialog.openQuestion(getShell(), "Question", message)) {
+						WorkbenchMessages.CreateFileWizard_q_exists_message, absolutePath);
+				if (!MessageDialog.openQuestion(getShell(), WorkbenchMessages.CreateFileWizard_q_exists_title, message)) {
 					filePage.selectFileField();
 					return false;
 				}
