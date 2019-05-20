@@ -52,30 +52,36 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	@Reference
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = environmentInfo;
+	public void bindEnvironmentInfo(EnvironmentInfo info) {
+		this.environmentInfo = info;
 	}
 
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = null;
+	public void unbindEnvironmentInfo(EnvironmentInfo info) {
+		if (environmentInfo == info) {
+			this.environmentInfo = null;
+		}
 	}
 
 	@Reference
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
+	public void bindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = null;
+	public void unbindEventAdmin(EventAdmin admin) {
+		if (this.eventAdmin == admin) {
+			this.eventAdmin = null;
+		}
 	}
 
 	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
-	public void bindStreamCodec(StreamCodec streamCodec) {
-		this.streamCodec = streamCodec;
+	public void bindStreamCodec(StreamCodec codec) {
+		this.streamCodec = codec;
 	}
 
-	public void unbindStreamCodec(StreamCodec streamCodec) {
-		this.streamCodec = null;
+	public void unbindStreamCodec(StreamCodec codec) {
+		if (this.streamCodec == codec) {
+			this.streamCodec = null;
+		}
 	}
 
 	@Override
@@ -101,13 +107,13 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			productVersion = (ProductVersion) descriptor;
 		}
 		if (productVersion == null) {
-			return new Status(IStatus.ERROR, pluginId, "Invalid Product Version");
+			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_invalid_product_version);
 		}
 		String installationToken = productVersion.getInstallationToken();
 		if (installationToken != null) {
 			File publicFile = new File(installationToken);
 			if (publicFile.exists()) {
-				String pattern = "Public key already defined: \n %s";
+				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_public_key_already_defined;
 				String message = String.format(pattern, publicFile.getAbsolutePath());
 				return new Status(IStatus.ERROR, pluginId, message);
 			}
@@ -116,7 +122,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		if (secureToken != null) {
 			File privateFile = new File(secureToken);
 			if (privateFile.exists()) {
-				String pattern = "Private key already defined: \n %s";
+				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined;
 				String message = String.format(pattern, privateFile.getAbsolutePath());
 				return new Status(IStatus.ERROR, pluginId, message);
 			}
@@ -130,7 +136,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		String identifier = product.getIdentifier();
 		String version = productVersion.getVersion();
 		if (streamCodec == null) {
-			String pattern = "Unable to create keys for version %s of %s : \n codec not found";
+			String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys;
 			String message = String.format(pattern, version, product.getName());
 			return new Status(IStatus.ERROR, pluginId, message);
 		}
@@ -148,11 +154,11 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			productVersion.setSecureToken(privateKeyPath);
 			eventAdmin.postEvent(OperatorProductEvents.publicCreated(publicKeyPath));
 			eventAdmin.postEvent(OperatorProductEvents.privateCreated(privateKeyPath));
-			String format = "Product keys exported succesfully: \n\n %s \n %s \n";
+			String format = ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported;
 			String message = String.format(format, publicKeyPath, privateKeyPath);
 			return new Status(IStatus.OK, pluginId, message);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, "Product key export error", e);
+			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
 		}
 	}
 

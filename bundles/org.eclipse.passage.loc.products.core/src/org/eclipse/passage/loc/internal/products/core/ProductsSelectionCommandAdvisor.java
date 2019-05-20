@@ -25,50 +25,52 @@ import org.osgi.service.component.annotations.Reference;
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Products.DOMAIN_NAME })
 public class ProductsSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private ProductRegistry registry;
+	private ProductRegistry productRegistry;
 
 	@Reference
 	public void bindDomainRegistry(ProductRegistry registry) {
-		this.registry = registry;
+		this.productRegistry = registry;
 	}
 
 	public void unbindDomainRegistry(ProductRegistry registry) {
-		this.registry = null;
+		if (this.productRegistry == registry) {
+			this.productRegistry = null;
+		}
 	}
 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (ProductsPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
-			return "Select Product Line";
+			return ProductsCoreMessages.ProductsSelectionCommandAdvisor_select_product_line;
 		}
 		if (ProductsPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
-			return "Select Product";
+			return ProductsCoreMessages.ProductsSelectionCommandAdvisor_select_product;
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
-			return "Select Product Version";
+			return ProductsCoreMessages.ProductsSelectionCommandAdvisor_select_product_version;
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
-			return "Select Product Version Feature";
+			return ProductsCoreMessages.ProductsSelectionCommandAdvisor_select_product_version_feature;
 		}
 		return null;
 	}
 
 	@Override
 	public Iterable<?> getSelectionInput(String classifier) {
-		if (registry == null) {
+		if (productRegistry == null) {
 			return Collections.emptyList();
 		}
 		if (ProductsPackage.eINSTANCE.getProductLine().getName().equals(classifier)) {
-			return registry.getProductLines();
+			return productRegistry.getProductLines();
 		}
 		if (ProductsPackage.eINSTANCE.getProduct().getName().equals(classifier)) {
-			return registry.getProducts();
+			return productRegistry.getProducts();
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersion().getName().equals(classifier)) {
-			return registry.getProductVersions();
+			return productRegistry.getProductVersions();
 		}
 		if (ProductsPackage.eINSTANCE.getProductVersionFeature().getName().equals(classifier)) {
-			return registry.getProductVersionFeatures();
+			return productRegistry.getProductVersionFeatures();
 		}
 		return Collections.emptyList();
 	}

@@ -24,6 +24,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.products.ui.ProductsUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class ProductExportHandler {
@@ -36,9 +37,9 @@ public class ProductExportHandler {
 		Shell shell = context.get(Shell.class);
 		if (status.isOK()) {
 			String message = status.getMessage();
-			MessageDialog.openInformation(shell, "Product Key Export", message);
+			MessageDialog.openInformation(shell, ProductsUiMessages.ProductExportHandler_title_ok, message);
 		} else {
-			ErrorDialog.openError(shell, "Error", "Error during product key export", status);
+			ErrorDialog.openError(shell, ProductsUiMessages.ProductExportHandler_title_error, ProductsUiMessages.ProductExportHandler_message_error, status);
 		}
 	}
 

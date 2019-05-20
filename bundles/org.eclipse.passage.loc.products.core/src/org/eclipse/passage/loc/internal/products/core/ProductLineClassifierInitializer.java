@@ -26,7 +26,7 @@ public final class ProductLineClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectName() {
-		return "New Product Line";
+		return ProductsCoreMessages.ProductLineClassifierInitializer_object_name;
 	}
 
 	@Override
@@ -36,16 +36,16 @@ public final class ProductLineClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectTitle() {
-		return "Product Line";
+		return ProductsCoreMessages.ProductLineClassifierInitializer_object_title;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return "New Product Line";
+		return ProductsCoreMessages.ProductLineClassifierInitializer_object_message;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return "Please specify a file name to store product data";
+		return ProductsCoreMessages.ProductLineClassifierInitializer_file_message;
 	}
 }
