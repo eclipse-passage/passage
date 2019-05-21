@@ -56,7 +56,7 @@ public class JettyServerLauncher implements BackendLauncher {
 	public LicensingResult launch(Map<String, Object> arguments) {
 		String source = JettyServerLauncher.class.getName();
 		if (server != null) {
-			return LicensingResults.createError("Jetty start: already exists", source, new IllegalStateException());
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_start_exists, source, new IllegalStateException());
 		}
 		// FIXME: extract from arguments
 		int port = JETTY_PORT_DEFAULT;
@@ -65,10 +65,10 @@ public class JettyServerLauncher implements BackendLauncher {
 			server.setHandler(new JettyRequestHandler(requestDispatchers.values()));
 			server.start();
 			logger.info(server.getState());
-			return LicensingResults.createOK("Jetty start: OK", source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_ok_start, source);
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
-			return LicensingResults.createError("Jetty start: Error", source, e);
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_start, source, e);
 		}
 	}
 
@@ -76,16 +76,16 @@ public class JettyServerLauncher implements BackendLauncher {
 	public LicensingResult terminate() {
 		String source = JettyServerLauncher.class.getName();
 		if (server == null) {
-			return LicensingResults.createError("Jetty stop: not started", source, new IllegalStateException());
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_stop_not_started, source, new IllegalStateException());
 		}
 		try {
 			server.stop();
 			logger.info(server.getState());
 			server = null;
-			return LicensingResults.createOK("Jetty stop: OK", source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_ok_stop, source);
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
-			return LicensingResults.createError("Jetty stop: Error", source, e);
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_stop, source, e);
 		}
 	}
 
