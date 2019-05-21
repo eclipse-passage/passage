@@ -13,18 +13,6 @@
 -->
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         id="product"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.eclipse.passage.lbc.server.application"
-            name="Passage Licensing Data Server (Incubation)">
-         <property
-               name="appName"
-               value="Passage Licensing Data Server (Incubation)">
-         </property>
-      </product>
-   </extension>
  <extension
        id="org.eclipse.passage.lbc.server.application"
        point="org.eclipse.core.runtime.applications">
@@ -39,10 +27,10 @@
        point="org.eclipse.core.runtime.products">
     <product
           application="org.eclipse.passage.lbc.server.application"
-          name="Passage Licensing Data Server (Incubation)">
+          name="%product.name">
        <property
              name="appName"
-             value="Passage Licensing Data Server (Incubation)">
+             value="%product.appName">
        </property>
     </product>
  </extension>

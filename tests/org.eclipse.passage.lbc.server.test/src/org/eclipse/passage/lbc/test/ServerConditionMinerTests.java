@@ -53,11 +53,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ServerConditionMinerTests {
-	private static final String EXTENSION_SERVER_SETTINGS = ".settings";
-	private static final String PASSAGE_SERVER_HOST_DEF = LicensingNet.LICENSING_SERVER_HOST + "=localhost";
-	private static final String PASSAGE_SERVER_PORT_DEF = LicensingNet.LICENSING_SERVER_PORT + "=8080";
-	private static final String HOST_PORT = "%s:%s";
-	private static final String PRODUCT_ID_TEST = "product.test";
+
+	private static final String EXTENSION_SERVER_SETTINGS = ".settings"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_HOST_DEF = LicensingNet.LICENSING_SERVER_HOST + "=localhost"; //$NON-NLS-1$
+	private static final String PASSAGE_SERVER_PORT_DEF = LicensingNet.LICENSING_SERVER_PORT + "=8080"; //$NON-NLS-1$
+	private static final String PRODUCT_ID_TEST = "product.test"; //$NON-NLS-1$
 
 	/**
 	 * Passed through maven-surefire-plugin configuration
@@ -140,9 +140,12 @@ public class ServerConditionMinerTests {
 		assertNotNull(portValue);
 		assertFalse(portValue.isEmpty());
 
-		Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue, LicensingNet.ROLE_LICENSEE,
-				"product1.id", "1.0.0");
-		HttpHost host = HttpHost.create(String.format(HOST_PORT, hostValue, portValue));
+		// FIXME: rework, currently it duplicates HcConditionMiner
+		String productId = "product1.id"; //$NON-NLS-1$
+		String productVersion = "1.0.0"; //$NON-NLS-1$
+		Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue,
+				LicensingNet.ROLE_LICENSEE, productId, productVersion);
+		HttpHost host = HttpHost.create(String.format("%s:%s", hostValue, portValue)); //$NON-NLS-1$
 		URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 
 		assertNotNull(requestBulder);
@@ -176,7 +179,7 @@ public class ServerConditionMinerTests {
 	private Map<String, String> loadIstallationAreaSettings(List<String> readAllLines) {
 		Map<String, String> settings = new HashMap<>();
 		for (String iter : readAllLines) {
-			String[] setting = iter.split("=");
+			String[] setting = iter.split("="); //$NON-NLS-1$
 			if (setting.length == 2) {
 				settings.put(setting[0], setting[1]);
 			}
