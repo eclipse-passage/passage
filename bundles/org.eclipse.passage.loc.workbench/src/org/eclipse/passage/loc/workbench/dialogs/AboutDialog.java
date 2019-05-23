@@ -25,6 +25,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.equinox.app.ApplicationBranding;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -40,7 +41,6 @@ import org.eclipse.swt.widgets.Shell;
 public class AboutDialog extends Dialog {
 
 	private static final String PRODUCT_NAME = "%product.name"; //$NON-NLS-1$
-	private static final String ABOUT_TEXT = "%aboutText"; //$NON-NLS-1$
 	private static final String ABOUT_IMAGE = "%aboutImage"; //$NON-NLS-1$
 	private static final String ABOUT_TITLE = "%aboutTitle"; //$NON-NLS-1$
 
@@ -66,7 +66,6 @@ public class AboutDialog extends Dialog {
 		String name = translations.translate(PRODUCT_NAME, bundleUrl);
 		newShell.setText(NLS.bind(pattern, name));
 		newShell.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
-		;
 	}
 
 	@Override
@@ -97,11 +96,11 @@ public class AboutDialog extends Dialog {
 		lblProductLogo.setLayoutData(lblGridData);
 
 		GridData txtData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		String productDesription = translations.translate(ABOUT_TEXT, bundleUrl);
+		String aboutText = ApplicationBranding.getAboutText(applicationContext);
 
 		StyledText txtProductDescription = new StyledText(base, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		txtProductDescription.setLayoutData(txtData);
-		txtProductDescription.setText(productDesription);
+		txtProductDescription.setText(aboutText);
 		txtProductDescription.setEditable(false);
 
 		return parent;

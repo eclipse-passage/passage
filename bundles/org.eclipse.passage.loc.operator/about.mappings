@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2018-2019 ArSysOp and others
+# Copyright (c) 2019 ArSysOp and others
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License 2.0 which is available at
@@ -11,11 +11,6 @@
 #     ArSysOp - initial API and implementation
 ###############################################################################
 
-bin.includes = META-INF/,\
-               OSGI-INF/,\
-               plugin.xml,\
-               css/,\
-               about.html,\
-               about.mappings
-
-generateSourceReferences = true
+0=${build.label}
+1=${build.id}
+2=${commit.id}

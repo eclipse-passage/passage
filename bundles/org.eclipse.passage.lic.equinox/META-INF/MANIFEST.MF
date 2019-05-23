@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.equinox,
+ org.eclipse.passage.lic.equinox.app,
  org.eclipse.passage.lic.equinox.conditions,
  org.eclipse.passage.lic.equinox.io,
  org.eclipse.passage.lic.equinox.requirements,
