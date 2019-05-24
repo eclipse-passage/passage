@@ -14,4 +14,4 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.io,
  org.eclipse.passage.lic.base.requirements,
  org.eclipse.passage.lic.base.restrictions,
- org.eclipse.passage.lic.internal.base;x-internal:=true
+ org.eclipse.passage.lic.internal.base.i18n;x-internal:=true

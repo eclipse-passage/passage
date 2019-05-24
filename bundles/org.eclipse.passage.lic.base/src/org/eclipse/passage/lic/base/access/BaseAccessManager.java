@@ -48,7 +48,7 @@ import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
-import org.eclipse.passage.lic.internal.base.BaseMessages;
+import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public class BaseAccessManager implements AccessManager {
 

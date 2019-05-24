@@ -16,7 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import org.eclipse.passage.lic.internal.base.BaseMessages;
+import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public final class LicensingProperties {
 

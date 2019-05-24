@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
-import org.eclipse.passage.lic.internal.base.BaseMessages;
+import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public abstract class PathConditionMiner extends BaseConditionMiner {
 
