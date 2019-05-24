@@ -41,7 +41,6 @@ import org.eclipse.passage.lic.api.requirements.RequirementEvents;
 import org.eclipse.passage.lic.api.requirements.RequirementResolver;
 import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
-import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
@@ -49,6 +48,7 @@ import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.internal.base.BaseMessages;
 
 public class BaseAccessManager implements AccessManager {
 

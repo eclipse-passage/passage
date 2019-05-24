@@ -33,8 +33,8 @@ import org.eclipse.passage.lic.api.conditions.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
-import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.internal.base.BaseMessages;
 
 public class ConditionMiners {
 

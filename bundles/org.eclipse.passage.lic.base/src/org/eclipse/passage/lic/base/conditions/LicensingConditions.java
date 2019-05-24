@@ -18,8 +18,8 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.base.BaseMessages;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.internal.base.BaseMessages;
 
 public class LicensingConditions {
 

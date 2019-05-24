@@ -10,13 +10,13 @@
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.internal.base;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class BaseMessages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.base.BaseMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.base.BaseMessages"; //$NON-NLS-1$
 	private static final ResourceBundle ACCESS_RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private BaseMessages() {
