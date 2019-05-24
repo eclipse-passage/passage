@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -39,13 +40,13 @@ public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (FeaturesPackage.eINSTANCE.getFeatureSet().getName().equals(classifier)) {
-			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature_set;
+			return FeaturesCoreMessages.FeaturesSelectionCommandAdvisor_select_feature_set;
 		}
 		if (FeaturesPackage.eINSTANCE.getFeature().getName().equals(classifier)) {
-			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature;
+			return FeaturesCoreMessages.FeaturesSelectionCommandAdvisor_select_feature;
 		}
 		if (FeaturesPackage.eINSTANCE.getFeatureVersion().getName().equals(classifier)) {
-			return CoreMessages.FeaturesSelectionCommandAdvisor_select_feature_version;
+			return FeaturesCoreMessages.FeaturesSelectionCommandAdvisor_select_feature_version;
 		}
 		return null;
 	}

@@ -10,12 +10,12 @@
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.features.core;
+package org.eclipse.passage.loc.internal.features.core.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class CoreMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.features.core.FeaturesCoreInternalMessages"; //$NON-NLS-1$
+public class FeaturesCoreMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages"; //$NON-NLS-1$
 	public static String FeatureSetClassifierInitializer_feature_set;
 	public static String FeatureSetClassifierInitializer_new_feature_set_messahe;
 	public static String FeatureSetClassifierInitializer_new_feature_set_name;
@@ -25,9 +25,9 @@ public class CoreMessages extends NLS {
 	public static String FeaturesSelectionCommandAdvisor_select_feature_version;
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, CoreMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, FeaturesCoreMessages.class);
 	}
 
-	private CoreMessages() {
+	private FeaturesCoreMessages() {
 	}
 }

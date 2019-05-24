@@ -16,4 +16,5 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.passage.loc.features.core,
- org.eclipse.passage.loc.internal.features.core;x-internal:=true
+ org.eclipse.passage.loc.internal.features.core;x-internal:=true,
+ org.eclipse.passage.loc.internal.features.core.i18n;x-internal:=true

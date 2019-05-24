@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.features.core;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME })
@@ -26,7 +27,7 @@ public final class FeatureSetClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectName() {
-		return CoreMessages.FeatureSetClassifierInitializer_new_feature_set_name;
+		return FeaturesCoreMessages.FeatureSetClassifierInitializer_new_feature_set_name;
 	}
 
 	@Override
@@ -36,16 +37,16 @@ public final class FeatureSetClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectTitle() {
-		return CoreMessages.FeatureSetClassifierInitializer_feature_set;
+		return FeaturesCoreMessages.FeatureSetClassifierInitializer_feature_set;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return CoreMessages.FeatureSetClassifierInitializer_new_feature_set_messahe;
+		return FeaturesCoreMessages.FeatureSetClassifierInitializer_new_feature_set_messahe;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return CoreMessages.FeatureSetClassifierInitializer_new_file_message;
+		return FeaturesCoreMessages.FeatureSetClassifierInitializer_new_file_message;
 	}
 }
