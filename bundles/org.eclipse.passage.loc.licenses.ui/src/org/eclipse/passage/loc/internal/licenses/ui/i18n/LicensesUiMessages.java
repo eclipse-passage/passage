@@ -9,13 +9,14 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.ui;
+package org.eclipse.passage.loc.internal.licenses.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class LicensesUiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.licenses.ui.LicensesUiMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages"; //$NON-NLS-1$
 	public static String LicenseExportHandler_error_message;
 	public static String LicenseExportHandler_error_title;
 	public static String LicenseExportHandler_success_title;

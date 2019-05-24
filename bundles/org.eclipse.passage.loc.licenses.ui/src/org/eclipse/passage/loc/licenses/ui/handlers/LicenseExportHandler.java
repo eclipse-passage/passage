@@ -24,7 +24,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
-import org.eclipse.passage.loc.licenses.ui.LicensesUiMessages;
+import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class LicenseExportHandler {
