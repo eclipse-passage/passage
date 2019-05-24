@@ -144,7 +144,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		mined.clear();
 		if (pageComplete) {
 			LicensingResult mining = mine(sourceText.getText().trim());
-			setMessage(mining.getMessage());
+			LicensingResultDialogs.updateTitleDialog(this, mining);
 		}
 		getButton(IDialogConstants.OK_ID).setEnabled(!mined.isEmpty());
 	}

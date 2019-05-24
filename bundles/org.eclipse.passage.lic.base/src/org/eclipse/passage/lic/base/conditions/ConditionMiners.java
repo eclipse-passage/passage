@@ -41,8 +41,6 @@ public class ConditionMiners {
 	public static LicensingResult mine(String source, LicensingConfiguration configuration,
 			List<LicensingCondition> mined, KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport,
 			Iterable<String> packs) {
-		String task = String.format(BaseMessages.getString("ConditionMiners_mine_task_name"), //$NON-NLS-1$
-				configuration.getProductIdentifier(), configuration.getProductVersion());
 		List<LicensingResult> errors = new ArrayList<>();
 		for (String path : packs) {
 			try (FileInputStream encoded = new FileInputStream(path);
@@ -59,13 +57,17 @@ public class ConditionMiners {
 			} catch (Exception e) {
 				String message = String.format(
 						BaseMessages.getString("ConditionMiners_mine_error_extracting_conditions"), path, //$NON-NLS-1$
-						configuration);
+						configuration.getProductIdentifier(), configuration.getProductVersion());
 				errors.add(LicensingResults.createError(message, source, e));
 			}
 		}
 		if (errors.isEmpty()) {
+			String task = String.format(BaseMessages.getString("ConditionMiners_mine_task_name"), //$NON-NLS-1$
+					configuration.getProductIdentifier(), configuration.getProductVersion());
 			return LicensingResults.createOK(task, source);
 		}
+		String task = String.format(BaseMessages.getString("ConditionMiners.e_mining_failed"), //$NON-NLS-1$
+				configuration.getProductIdentifier(), configuration.getProductVersion());
 		return LicensingResults.createError(task, source, errors);
 	}
 

@@ -65,12 +65,12 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 		File dest = configurationPath.resolve(fileName).toFile();
 		try (FileInputStream fis = new FileInputStream(source); FileOutputStream fos = new FileOutputStream(dest)) {
 			NullStreamCodec.transfer(fis, fos);
-			String message = String.format(BaseMessages.getString("BaseConditionMinerRegistry.ok_import"), source); //$NON-NLS-1$
+			String message = String.format(BaseMessages.getString("BaseConditionMinerRegistry.ok_import"), dest); //$NON-NLS-1$
 			return LicensingResults.createOK(message);
 		} catch (Exception e) {
 			String message = String
 					.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
-			return LicensingResults.createError(message, source, e);
+			return LicensingResults.createError(message, getClass().getName(), e);
 		}
 
 	}
