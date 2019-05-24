@@ -183,8 +183,12 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		String source = sourceText.getText().trim();
-		conditionMinerRegistry.importConditions(source, configuration);
-		super.okPressed();
+		LicensingResult result = conditionMinerRegistry.importConditions(source, configuration);
+		LicensingResultDialogs.openMessageDialog(getShell(), JFaceMessages.ImportLicenseDialog_shell, result);
+		int severity = result.getSeverity();
+		if (severity <= LicensingResult.INFO) {
+			super.okPressed();
+		}
 	}
 
 	@Override
