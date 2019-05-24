@@ -63,6 +63,15 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.ENGLISH); //$NON-NLS-1$
 		String fileName = dateFormat.format(new Date()) + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
 		File dest = configurationPath.resolve(fileName).toFile();
+		File destParent = dest.getParentFile();
+		if (!destParent.exists()) {
+			boolean mkdirs = destParent.mkdirs();
+			if (!mkdirs) {
+				String message = String
+						.format(BaseMessages.getString("BaseConditionMinerRegistry.e_dest_create_failed"), destParent); //$NON-NLS-1$
+				return LicensingResults.createError(message, getClass().getName());
+			}
+		}
 		try (FileInputStream fis = new FileInputStream(source); FileOutputStream fos = new FileOutputStream(dest)) {
 			NullStreamCodec.transfer(fis, fos);
 			String message = String.format(BaseMessages.getString("BaseConditionMinerRegistry.ok_import"), dest); //$NON-NLS-1$
@@ -72,7 +81,6 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 					.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
 			return LicensingResults.createError(message, getClass().getName(), e);
 		}
-
 	}
 
 	@Override

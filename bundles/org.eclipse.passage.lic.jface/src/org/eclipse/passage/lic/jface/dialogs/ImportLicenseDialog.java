@@ -24,6 +24,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
@@ -54,17 +55,18 @@ import org.eclipse.swt.widgets.Table;
 
 public class ImportLicenseDialog extends TitleAreaDialog {
 
-	private final ConditionMinerRegistry conditionMinerRegistry;
 	private final LicensingConfiguration configuration;
+	private final ConditionMinerRegistry conditionMinerRegistry;
 	private final KeyKeeper keyKeeper;
 	private final StreamCodec streamCodec;
 	private final ConditionTransport transport;
+	private final LicensingReporter reporter;
 
 	private final List<LicensingCondition> mined = new ArrayList<>();
 
 	private Combo sourceText;
 	private Button sourceButton;
-	private String currentMessage;
+	private String currentError;
 	private TableViewer tableViewer;
 
 	public ImportLicenseDialog(Shell shell, LicensingConfiguration configuration) {
@@ -76,6 +78,7 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 				.getStreamCodec(configuration);
 		this.transport = LicensingEquinox.getLicensingService(ConditionTransportRegistry.class)
 				.getConditionTransportForContentType(LicensingProperties.LICENSING_CONTENT_TYPE_XML);
+		this.reporter = LicensingEquinox.getLicensingService(LicensingReporter.class);
 	}
 
 	@Override
@@ -125,7 +128,6 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		dialog.setFilterPath(sourceText.getText().trim());
 		dialog.setFilterExtensions(new String[] { "*.licen", "*.*" }); //$NON-NLS-1$ //$NON-NLS-2$
 		String selectedFileName = dialog.open();
-
 		if (selectedFileName != null) {
 			sourceText.setText(selectedFileName);
 		}
@@ -160,15 +162,14 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		if (complete) {
 			setErrorMessage(null);
 		} else {
-			setErrorMessage(currentMessage);
+			setErrorMessage(currentError);
 		}
-
 		return complete;
 	}
 
 	protected boolean validateSourceGroup() {
 		if (!validSource()) {
-			currentMessage = JFaceMessages.ImportLicenseDialog_source_invalid;
+			currentError = JFaceMessages.ImportLicenseDialog_source_invalid;
 			return false;
 		}
 		return true;
@@ -188,6 +189,8 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 		int severity = result.getSeverity();
 		if (severity <= LicensingResult.INFO) {
 			super.okPressed();
+		} else {
+			reporter.logResult(result);
 		}
 	}
 
