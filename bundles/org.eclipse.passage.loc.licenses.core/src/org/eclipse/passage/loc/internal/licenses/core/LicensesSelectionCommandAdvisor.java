@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -39,7 +40,7 @@ public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor 
 	@Override
 	public String getSelectionTitle(String classifier) {
 		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
-			return CoreMessages.LicensesSelectionCommandAdvisor_select_lic_pack;
+			return LicensesCoreMessages.LicensesSelectionCommandAdvisor_select_lic_pack;
 		}
 		return null;
 	}

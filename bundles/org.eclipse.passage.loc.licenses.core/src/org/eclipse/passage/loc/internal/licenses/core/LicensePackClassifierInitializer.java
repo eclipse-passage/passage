@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.service.component.annotations.Component;
 
@@ -26,7 +27,7 @@ public final class LicensePackClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectName() {
-		return CoreMessages.LicensePackClassifierInitializer_new_lic_pack_name;
+		return LicensesCoreMessages.LicensePackClassifierInitializer_new_lic_pack_name;
 	}
 
 	@Override
@@ -36,16 +37,16 @@ public final class LicensePackClassifierInitializer implements ClassifierInitial
 
 	@Override
 	public String newObjectTitle() {
-		return CoreMessages.LicensePackClassifierInitializer_lic_pack_title;
+		return LicensesCoreMessages.LicensePackClassifierInitializer_lic_pack_title;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return CoreMessages.LicensePackClassifierInitializer_new_lic_pack_message;
+		return LicensesCoreMessages.LicensePackClassifierInitializer_new_lic_pack_message;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return CoreMessages.LicensePackClassifierInitializer_file_name_message;
+		return LicensesCoreMessages.LicensePackClassifierInitializer_file_name_message;
 	}
 }

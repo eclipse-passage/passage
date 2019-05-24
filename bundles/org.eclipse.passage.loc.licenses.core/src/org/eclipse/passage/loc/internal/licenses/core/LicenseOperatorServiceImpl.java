@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -116,7 +117,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		}
 		if (pack == null) {
 			return new Status(IStatus.ERROR, pluginId,
-					CoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack);
+					LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack);
 		}
 		LicensePack license = EcoreUtil.copy(pack);
 		String errors = LicensingEcore.extractValidationError(license);
@@ -143,11 +144,11 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			resource.save(null);
 			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(licenseIn));
 		} catch (IOException e) {
-			return new Status(IStatus.ERROR, pluginId, CoreMessages.LicenseOperatorServiceImpl_export_error, e);
+			return new Status(IStatus.ERROR, pluginId, LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e);
 		}
 
 		if (streamCodec == null) {
-			String format = CoreMessages.LicenseOperatorServiceImpl_export_success;
+			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseIn);
 			return new Status(IStatus.OK, pluginId, message);
 		}
@@ -157,7 +158,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 				+ OperatorProductService.EXTENSION_KEY_PRIVATE;
 		File privateProductToken = new File(privateKeyPath);
 		if (!privateProductToken.exists()) {
-			String pattern = CoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
+			String pattern = LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
 			String message = String.format(pattern, privateProductToken.getAbsolutePath());
 			return new Status(IStatus.ERROR, pluginId, message);
 		}
@@ -172,11 +173,11 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			String password = productOperatorService.createPassword(pvd);
 			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
-			String format = CoreMessages.LicenseOperatorServiceImpl_export_success;
+			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
 			return new Status(IStatus.OK, pluginId, message);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, CoreMessages.LicenseOperatorServiceImpl_export_error, e);
+			return new Status(IStatus.ERROR, pluginId, LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e);
 		}
 	}
 

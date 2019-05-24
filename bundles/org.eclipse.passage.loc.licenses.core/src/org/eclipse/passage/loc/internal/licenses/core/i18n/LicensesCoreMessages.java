@@ -10,12 +10,12 @@
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.licenses.core;
+package org.eclipse.passage.loc.internal.licenses.core.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class CoreMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.LicensesCoreMessages"; //$NON-NLS-1$
+public class LicensesCoreMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages"; //$NON-NLS-1$
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
 	public static String LicenseOperatorServiceImpl_private_key_not_found;
@@ -27,9 +27,9 @@ public class CoreMessages extends NLS {
 	public static String LicensesSelectionCommandAdvisor_select_lic_pack;
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, CoreMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);
 	}
 
-	private CoreMessages() {
+	private LicensesCoreMessages() {
 	}
 }
