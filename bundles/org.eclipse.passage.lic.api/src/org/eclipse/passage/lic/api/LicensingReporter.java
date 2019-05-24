@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.api;
 /**
  * Licensing reporting service used to report the result of licensing activity.
  *
+ * @since 0.4.0
  */
 public interface LicensingReporter {
 

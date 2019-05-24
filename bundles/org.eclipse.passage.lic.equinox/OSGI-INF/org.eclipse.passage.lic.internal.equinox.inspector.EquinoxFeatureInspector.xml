@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.inspector.EquinoxFeatureInspector">
-   <property name="event.topics" value="org/eclipse/passage/lic/runtime/AccessEvents/*"/>
+   <property name="event.topics" value="org/eclipse/passage/lic/api/AccessEvents/*"/>
    <service>
       <provide interface="org.eclipse.passage.lic.api.inspector.FeatureInspector"/>
       <provide interface="org.osgi.service.event.EventHandler"/>

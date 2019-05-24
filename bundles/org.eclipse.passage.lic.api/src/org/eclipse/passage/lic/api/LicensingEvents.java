@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
+/**
+ * 
+ * @since 0.4.0
+ *
+ */
 public final class LicensingEvents {
 
 	public static final String PROPERTY_TOPIC = "org.eclipse.passage.lic.api.event.topic"; //$NON-NLS-1$
@@ -48,7 +53,7 @@ public final class LicensingEvents {
 	/**
 	 * Base name of all Licensing events
 	 */
-	public static final String TOPIC_BASE = "org/eclipse/passage/lic/runtime"; //$NON-NLS-1$
+	public static final String TOPIC_BASE = "org/eclipse/passage/lic/api"; //$NON-NLS-1$
 
 	private LicensingEvents() {
 		// block

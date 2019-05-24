@@ -12,8 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
+/**
+ * Runtime descriptor for the configuration being examined for restrictions.
+ * <p>
+ * It represents the pair <code>{id, version</code>} for the running product.
+ * </p>
+ */
 public interface LicensingConfiguration {
-	
+
 	String getProductIdentifier();
 
 	String getProductVersion();
