@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.LicensingException;
@@ -201,7 +200,6 @@ public class BaseAccessManager implements AccessManager {
 			licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, empty, error));
 			return empty;
 		}
-		Map<String, List<LicensingCondition>> map = new HashMap<>();
 		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
@@ -213,34 +211,29 @@ public class BaseAccessManager implements AccessManager {
 			LicensingResult validate = LicensingConditions.validate(condition, source);
 			if (validate.getSeverity() == LicensingResult.OK) {
 				String type = condition.getConditionType();
-				List<LicensingCondition> list = map.computeIfAbsent(type, key -> new ArrayList<>());
-				list.add(condition);
+				PermissionEmitter emitter = permissionEmitters.get(type);
+				if (emitter == null) {
+					String message = String
+							.format(BaseMessages.getString("BaseAccessManager__evaluation_error_no_emitter"), type); //$NON-NLS-1$
+					LicensingResult error = createError(message, source, new NullPointerException());
+					licensingReporter.logResult(error);
+					continue;
+				}
+				List<LicensingCondition> mappedConditions = Collections.singletonList(condition);
+				try {
+					Iterable<FeaturePermission> permissions = emitter.emitPermissions(configuration, mappedConditions);
+					for (FeaturePermission permission : permissions) {
+						result.add(permission);
+					}
+				} catch (LicensingException e) {
+					LicensingResult error = e.getResult();
+					licensingReporter.logResult(error);
+					licensingReporter
+							.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
+				}
 			} else {
 				licensingReporter.logResult(validate);
 				invalid.add(condition);
-			}
-		}
-		Set<String> types = map.keySet();
-		for (String type : types) {
-			PermissionEmitter emitter = permissionEmitters.get(type);
-			if (emitter == null) {
-				String message = String
-						.format(BaseMessages.getString("BaseAccessManager__evaluation_error_no_emitter"), type); //$NON-NLS-1$
-				LicensingResult error = createError(message, source, new NullPointerException());
-				licensingReporter.logResult(error);
-				continue;
-			}
-			List<LicensingCondition> mappedConditions = map.get(type);
-			try {
-				Iterable<FeaturePermission> permissions = emitter.emitPermissions(configuration, mappedConditions);
-				for (FeaturePermission permission : permissions) {
-					result.add(permission);
-				}
-			} catch (LicensingException e) {
-				LicensingResult error = e.getResult();
-				licensingReporter.logResult(error);
-				licensingReporter
-						.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
 			}
 		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);
