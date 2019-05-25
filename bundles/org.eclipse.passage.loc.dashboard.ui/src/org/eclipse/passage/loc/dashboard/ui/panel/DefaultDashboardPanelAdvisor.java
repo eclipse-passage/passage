@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.passage.loc.features.core.Features;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.UiMessages;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.passage.loc.users.core.Users;
@@ -70,7 +70,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		label.setLayoutData(
 				GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false).create());
 		label.setFont(JFaceResources.getBannerFont());
-		label.setText(UiMessages.DefaultDashboardPanelAdvisor_overview);
+		label.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_overview);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText(UiMessages.DefaultDashboardPanelAdvisor_feature_group);
+		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_group);
 
 		createLinks(group, Features.DOMAIN_NAME);
 
@@ -91,17 +91,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureSetBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_set_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureSet();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_set_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_set_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_set_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -112,17 +112,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeature();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -133,17 +133,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createFeatureVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_feature_version_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureVersion();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_feature_version_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_feature_version_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_feature_version_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -164,7 +164,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText(UiMessages.DefaultDashboardPanelAdvisor_product_group);
+		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_group);
 
 		createLinks(group, Products.DOMAIN_NAME);
 
@@ -178,17 +178,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductLineBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_product_line_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductLine();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_product_line_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_line_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_line_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -199,17 +199,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductBlock(Composite parent, ProductRegistry registry) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_product_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProduct();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_product_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -220,17 +220,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductVersionBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_product_version_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersion();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_product_version_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_version_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_version_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -241,17 +241,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createProductVersionFeatureBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_product_feature_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersionFeature();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_product_feature_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_product_feature_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_product_feature_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -273,7 +273,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText(UiMessages.DefaultDashboardPanelAdvisor_user_group);
+		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_user_group);
 
 		createLinks(group, Users.DOMAIN_NAME);
 
@@ -285,17 +285,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createUserOriginBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_user_origin_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_title;
 		EClass eClass = UsersPackage.eINSTANCE.getUserOrigin();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_user_origin_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_user_origin_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_user_origin_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -306,17 +306,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createUserBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_user_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_title;
 		EClass eClass = UsersPackage.eINSTANCE.getUser();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_user_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_user_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Users.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_user_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_user_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -336,7 +336,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Group group = new Group(parent, SWT.NONE);
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
-		group.setText(UiMessages.DefaultDashboardPanelAdvisor_license_group);
+		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_license_group);
 
 		createLinks(group, Licenses.DOMAIN_NAME);
 
@@ -346,17 +346,17 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	protected DashboardPanelBlock createLicensePackBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = UiMessages.DefaultDashboardPanelAdvisor_license_pack_title;
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_title;
 		EClass eClass = LicensesPackage.eINSTANCE.getLicensePack();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = UiMessages.DefaultDashboardPanelAdvisor_license_pack_info;
-		String warning = UiMessages.DefaultDashboardPanelAdvisor_license_pack_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Licenses.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(UiMessages.DefaultDashboardPanelAdvisor_license_pack_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -375,12 +375,12 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		Label label = new Label(parent, SWT.NONE);
 		label.setLayoutData(
 				GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false).create());
-		label.setText(UiMessages.DefaultDashboardPanelAdvisor_summary);
+		label.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_summary);
 	}
 
 	protected void createLinks(Group group, String domain) {
 		Link create = new Link(group, SWT.NONE);
-		create.setText(UiMessages.DefaultDashboardPanelAdvisor_create_link);
+		create.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_create_link);
 		create.setLayoutData(GridDataFactory.fillDefaults().align(SWT.END, SWT.CENTER).span(2, 1).create());
 		create.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -389,7 +389,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 			}
 		});
 		Link open = new Link(group, SWT.NONE);
-		open.setText(UiMessages.DefaultDashboardPanelAdvisor_load_link);
+		open.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_load_link);
 		open.setLayoutData(GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).span(2, 1).create());
 		open.addSelectionListener(new SelectionAdapter() {
 			@Override

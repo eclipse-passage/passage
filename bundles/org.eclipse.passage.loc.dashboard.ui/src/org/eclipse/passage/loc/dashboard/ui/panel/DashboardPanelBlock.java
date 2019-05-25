@@ -16,7 +16,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.UiMessages;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -39,7 +39,7 @@ public class DashboardPanelBlock {
 		text = createTextBlock(parent, label, image);
 		decoration = new ControlDecoration(text, SWT.TOP | SWT.LEFT);
 		edit = new Link(parent, SWT.NONE);
-		edit.setText(UiMessages.DashboardPanelBlock_edit_text);
+		edit.setText(DashboardUiMessages.DashboardPanelBlock_edit_text);
 	}
 
 	public void configureEdit(String tooltip, SelectionListener listener) {

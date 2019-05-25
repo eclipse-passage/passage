@@ -9,13 +9,14 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.dashboard.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class UiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.dashboard.ui.i18n.UiMessages"; //$NON-NLS-1$
+public class DashboardUiMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages"; //$NON-NLS-1$
 	public static String DashboardDetailsPart_feature_create;
 	public static String DashboardDetailsPart_feature_description;
 	public static String DashboardDetailsPart_feature_set_create;
@@ -89,9 +90,9 @@ public class UiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_user_warning;
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, UiMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, DashboardUiMessages.class);
 	}
 
-	private UiMessages() {
+	private DashboardUiMessages() {
 	}
 }
