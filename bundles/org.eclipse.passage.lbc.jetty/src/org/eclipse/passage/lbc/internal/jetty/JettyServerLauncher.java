@@ -21,6 +21,7 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.passage.lbc.api.BackendLauncher;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
+import org.eclipse.passage.lbc.internal.jetty.i18n.JettyMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.net.LicensingNet;

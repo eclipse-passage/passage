@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.jetty.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class JettyMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.jetty.JettyMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.jetty.i18n.JettyMessages"; //$NON-NLS-1$
 	public static String JettyServerLauncher_e_start;
 	public static String JettyServerLauncher_e_start_exists;
 	public static String JettyServerLauncher_e_stop;
