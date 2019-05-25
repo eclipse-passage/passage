@@ -20,7 +20,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class UndoHandler {

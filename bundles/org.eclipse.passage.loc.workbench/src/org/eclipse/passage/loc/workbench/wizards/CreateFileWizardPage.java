@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;

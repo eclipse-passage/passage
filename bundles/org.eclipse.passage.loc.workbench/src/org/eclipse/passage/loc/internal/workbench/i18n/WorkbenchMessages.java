@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
+package org.eclipse.passage.loc.internal.workbench.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class WorkbenchMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.WorkbenchMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages"; //$NON-NLS-1$
 	public static String CreateFileWizard_q_exists_message;
 	public static String CreateFileWizard_q_exists_title;
 	public static String CreateFileWizardPage_button_browse;

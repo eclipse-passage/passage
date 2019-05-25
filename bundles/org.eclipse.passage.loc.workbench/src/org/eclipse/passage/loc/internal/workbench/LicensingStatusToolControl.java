@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

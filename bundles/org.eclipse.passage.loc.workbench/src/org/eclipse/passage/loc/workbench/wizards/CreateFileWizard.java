@@ -29,7 +29,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.loc.internal.workbench.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class CreateFileWizard extends Wizard {
