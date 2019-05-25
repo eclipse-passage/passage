@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
+import org.eclipse.passage.lic.internal.oshi.i18n.OshiMessages;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

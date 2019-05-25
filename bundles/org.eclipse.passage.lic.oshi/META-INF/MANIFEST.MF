@@ -15,6 +15,7 @@ Require-Bundle: com.sun.jna;bundle-version="4.5.1",
  org.eclipse.passage.lic.api;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.internal.oshi;x-internal:=true,
+ org.eclipse.passage.lic.internal.oshi.i18n;x-internal:=true,
  org.eclipse.passage.lic.oshi
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
