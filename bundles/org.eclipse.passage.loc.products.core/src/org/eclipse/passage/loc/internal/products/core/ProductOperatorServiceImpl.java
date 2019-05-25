@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.api.OperatorProductEvents;
 import org.eclipse.passage.loc.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

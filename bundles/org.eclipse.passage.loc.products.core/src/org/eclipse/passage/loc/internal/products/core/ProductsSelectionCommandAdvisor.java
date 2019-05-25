@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.eclipse.passage.loc.products.core.Products;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

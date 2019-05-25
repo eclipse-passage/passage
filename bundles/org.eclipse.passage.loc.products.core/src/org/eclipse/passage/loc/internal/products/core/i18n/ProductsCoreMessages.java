@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.products.core;
+package org.eclipse.passage.loc.internal.products.core.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class ProductsCoreMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.core.ProductsCoreMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages"; //$NON-NLS-1$
 	public static String ProductLineClassifierInitializer_file_message;
 	public static String ProductLineClassifierInitializer_object_message;
 	public static String ProductLineClassifierInitializer_object_name;
