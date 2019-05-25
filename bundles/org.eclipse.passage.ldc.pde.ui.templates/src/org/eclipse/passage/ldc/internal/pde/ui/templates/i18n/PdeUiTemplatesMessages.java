@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates;
+package org.eclipse.passage.ldc.internal.pde.ui.templates.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class PdeUiTemplatesMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.ldc.internal.pde.ui.templates.PdeUiTemplatesMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages"; //$NON-NLS-1$
 	public static String LicensedE3ProductTemplateSection_key_application_class_label;
 	public static String LicensedE3ProductTemplateSection_key_package_name_label;
 	public static String LicensedE3ProductTemplateSection_key_window_title_label;
