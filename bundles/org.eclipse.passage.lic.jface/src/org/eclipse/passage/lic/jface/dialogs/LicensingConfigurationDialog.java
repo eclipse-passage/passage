@@ -18,7 +18,7 @@ import java.util.Map;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

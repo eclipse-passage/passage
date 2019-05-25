@@ -37,7 +37,7 @@ import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.ConditionMiners;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;

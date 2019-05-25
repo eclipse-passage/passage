@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.api.restrictions.RestrictionExecutorRegistry;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevelDescriptor;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;

@@ -16,7 +16,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPage;
 import org.eclipse.passage.lic.jface.dialogs.LicensingPageContributor;
 

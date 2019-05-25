@@ -13,11 +13,11 @@
 package org.eclipse.passage.lic.jface.dialogs;
 
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.dialogs.BasePageRegistry;
 import org.eclipse.passage.lic.internal.jface.dialogs.ConditionLocationPage;
 import org.eclipse.passage.lic.internal.jface.dialogs.ConditionTypePage;
 import org.eclipse.passage.lic.internal.jface.dialogs.RestrictionLevelPage;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 
 public class LicensingPages {
 

@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;

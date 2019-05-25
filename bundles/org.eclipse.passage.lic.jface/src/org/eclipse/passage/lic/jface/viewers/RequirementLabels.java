@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.jface.viewers;
 import java.util.Iterator;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.internal.jface.JFaceMessages;
+import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 
 public class RequirementLabels {
 

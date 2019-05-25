@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface;
+package org.eclipse.passage.lic.internal.jface.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
