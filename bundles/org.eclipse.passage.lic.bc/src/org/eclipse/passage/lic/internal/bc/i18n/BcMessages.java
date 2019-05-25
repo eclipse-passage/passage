@@ -9,8 +9,9 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.bc;
+package org.eclipse.passage.lic.internal.bc.i18n;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

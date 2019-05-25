@@ -77,7 +77,7 @@ import org.bouncycastle.openpgp.operator.jcajce.JcePBESecretKeyEncryptorBuilder;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.internal.bc.BcMessages;
+import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
 import org.osgi.service.component.annotations.Activate;
 
 public class BcStreamCodec implements StreamCodec {
