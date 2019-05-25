@@ -9,19 +9,20 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.emfforms;
+package org.eclipse.passage.loc.internal.licenses.emfforms;
 
 import org.eclipse.osgi.util.NLS;
 
-public class EmfFormsMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.licenses.emfforms.EmfFormsMessages"; //$NON-NLS-1$
+public class LicensesEmfFormsMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.emfforms.LicensesEmfFormsMessages"; //$NON-NLS-1$
 	public static String ConditionExpressionRenderer_condition_expression;
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, EmfFormsMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, LicensesEmfFormsMessages.class);
 	}
 
-	private EmfFormsMessages() {
+	private LicensesEmfFormsMessages() {
 	}
 }

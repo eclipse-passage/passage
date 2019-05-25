@@ -22,7 +22,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.loc.licenses.emfforms.EmfFormsMessages;
+import org.eclipse.passage.loc.internal.licenses.emfforms.LicensesEmfFormsMessages;
 import org.eclipse.passage.loc.workbench.dialogs.ManageTextValuesDialog;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -55,7 +55,7 @@ public class ConditionExpressionRenderer extends TextWithButtonRenderer {
 				ManageTextValuesDialog dialog = new ManageTextValuesDialog(shell, getCurrentValue(), EXPRESSION_SEPARATOR);
 				dialog.create();
 				Shell dialogShell = dialog.getShell();
-				dialogShell.setText(EmfFormsMessages.ConditionExpressionRenderer_condition_expression);
+				dialogShell.setText(LicensesEmfFormsMessages.ConditionExpressionRenderer_condition_expression);
 				Image image = LicensingImages.getImage(LicensingImages.IMG_DEFAULT);
 				dialogShell.setImage(image);
 				if (dialog.open() == Dialog.OK) {
