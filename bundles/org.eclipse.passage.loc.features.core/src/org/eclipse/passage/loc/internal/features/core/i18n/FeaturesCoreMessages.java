@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.features.core.i18n;
 
