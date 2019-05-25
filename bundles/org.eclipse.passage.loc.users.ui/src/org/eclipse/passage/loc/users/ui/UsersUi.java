@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
-import org.eclipse.passage.loc.internal.users.ui.UsersUiMessages;
+import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 

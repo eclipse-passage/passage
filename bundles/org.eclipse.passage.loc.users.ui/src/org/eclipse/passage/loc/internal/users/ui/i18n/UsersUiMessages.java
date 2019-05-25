@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.users.ui;
+package org.eclipse.passage.loc.internal.users.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class UsersUiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.users.ui.UsersUiMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages"; //$NON-NLS-1$
 	public static String UsersUi_select_user;
 	static {
 		// initialize resource bundle
