@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.internal.base.BaseMessages;
+import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
