@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
-import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
+import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 
 public class EquinoxPaths {
 

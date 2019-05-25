@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
-import org.eclipse.passage.lic.internal.equinox.EquinoxMessages;
+import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 
 public class EquinoxRestrictions {
 

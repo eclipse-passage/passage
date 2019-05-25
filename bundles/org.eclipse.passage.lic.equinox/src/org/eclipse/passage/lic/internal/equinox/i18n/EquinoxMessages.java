@@ -9,8 +9,9 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.equinox.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
