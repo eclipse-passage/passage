@@ -5,6 +5,7 @@
       <provide interface="org.eclipse.passage.lic.api.io.StreamCodec"/>
    </service>
    <property name="licensing.product.identifier" type="String" value="some.encrypted.product"/>
+   <property name="licensing.product.version" type="String" value="0.1.0"/>
    <property name="licensing.security.key.algo" type="String" value="RSA"/>
    <property name="licensing.security.key.size" type="Integer" value="1024"/>
 </scr:component>

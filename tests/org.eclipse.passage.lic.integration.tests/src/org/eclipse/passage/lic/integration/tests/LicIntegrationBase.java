@@ -52,6 +52,7 @@ public abstract class LicIntegrationBase {
 
 	static final String SOME_DECRYPTED_PRODUCT = "some.decrypted.product"; //$NON-NLS-1$
 	static final String SOME_ENCRYPTED_PRODUCT = "some.encrypted.product"; //$NON-NLS-1$
+	static final String SOME_PRODUCT_VERSION = "0.1.0"; //$NON-NLS-1$
 
 	static final String EXECUTOR_1 = "executor.1"; //$NON-NLS-1$
 	static final String EXECUTOR_2 = "executor.2"; //$NON-NLS-1$
@@ -107,13 +108,14 @@ public abstract class LicIntegrationBase {
 		Files.deleteIfExists(settings);
 	}
 
-	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license, boolean encrypted) throws IOException {
+	protected void createProductLicense(LicensingConfiguration configuration, LicensePack license, boolean encrypted)
+			throws IOException {
 		Path path = EquinoxPaths.resolveInstallConfigurationPath(configuration);
 		Files.createDirectories(path);
 
 		File licFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_DECRYPTED)).toFile();
 		LocOfflineEmulator.storeLicense(license, licFile);
-		
+
 		if (encrypted) {
 			String publicFileName = composeFileName(configuration, EXTENSION_PRODUCT_PUBLIC);
 			String privateFileName = composeFileName(configuration, ".scr"); //$NON-NLS-1$
@@ -122,7 +124,7 @@ public abstract class LicIntegrationBase {
 			File publicFile = osgiInf.resolve(publicFileName).toFile();
 			File privateFile = osgiInf.resolve(privateFileName).toFile();
 			File licenFile = path.resolve(composeFileName(configuration, EXTENSION_LICENSE_ENCRYPTED)).toFile();
-			
+
 			LocOfflineEmulator.encodeLicense(license, publicFile, privateFile, licFile, licenFile);
 		}
 	}

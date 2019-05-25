@@ -30,9 +30,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AccessManagerIntegrationTest extends LicIntegrationBase {
-	
+
 	private static final String UNDEFINED = "undefined"; //$NON-NLS-1$
-	
+
 	@Before
 	public void beforeTest() {
 		System.setProperty(SOME_BUNDLE_ID, UNDEFINED);
@@ -47,12 +47,13 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_WARN, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
 	}
-	
+
 	@Test
 	public void testAccessManagerNoLicenseEncrypted() {
 		assertEquals(UNDEFINED, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 		assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
-		accessManager.executeAccessRestrictions(LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null));
+		accessManager.executeAccessRestrictions(
+				LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, SOME_PRODUCT_VERSION));
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 		assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_WARN, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
 	}
@@ -70,16 +71,16 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
 		licenseGrants.add(grant);
 		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_DECRYPTED_PRODUCT, null);
-	
+
 		try {
 			createProductLicense(configuration, license, false);
-			
+
 			assertEquals(UNDEFINED, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 			assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
 			accessManager.executeAccessRestrictions(configuration);
 			assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 			assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
-			
+
 		} finally {
 			deleteProductLicense(configuration, false);
 		}
@@ -97,17 +98,18 @@ public class AccessManagerIntegrationTest extends LicIntegrationBase {
 		grant.setValidFrom(new Date(System.currentTimeMillis() - 100500));
 		grant.setValidUntil(new Date(System.currentTimeMillis() + 100500));
 		licenseGrants.add(grant);
-		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT,
+				SOME_PRODUCT_VERSION);
 
 		try {
 			createProductLicense(configuration, license, true);
-			
+
 			assertEquals(UNDEFINED, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 			assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
 			accessManager.executeAccessRestrictions(configuration);
 			assertEquals(LicensingNamespaces.ATTRIBUTE_LEVEL_ERROR, System.getProperty(SOME_COMPONENT_ID, UNDEFINED));
 			assertEquals(UNDEFINED, System.getProperty(SOME_BUNDLE_ID, UNDEFINED));
-			
+
 		} finally {
 			deleteProductLicense(configuration, true);
 		}

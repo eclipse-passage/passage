@@ -33,26 +33,28 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		Iterable<LicensingCondition> conditionsNull = accessManager.extractConditions(null);
 		assertFalse(conditionsNull.iterator().hasNext());
 
-		
 		Iterable<LicensingCondition> conditionsProduct = accessManager
 				.extractConditions(LicensingConfigurations.create(null, null));
 		assertFalse(conditionsProduct.iterator().hasNext());
 
-		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT,
+				SOME_PRODUCT_VERSION);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertFalse(conditions.iterator().hasNext());
 	}
 
 	@Test
 	public void testExtractConditionsDecryptedNegative() {
-		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_DECRYPTED_PRODUCT, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_DECRYPTED_PRODUCT,
+				SOME_PRODUCT_VERSION);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertFalse(conditions.iterator().hasNext());
 	}
 
 	@Test
 	public void testExtractConditionsEncryptedNegative() {
-		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(SOME_ENCRYPTED_PRODUCT,
+				SOME_PRODUCT_VERSION);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertFalse(conditions.iterator().hasNext());
 	}
@@ -88,7 +90,7 @@ public class LicensingConditionIntegrationTest extends LicIntegrationBase {
 		licenseGrants.add(conditionBundle);
 
 		String identifier = SOME_ENCRYPTED_PRODUCT;
-		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, SOME_PRODUCT_VERSION);
 		createProductLicense(configuration, license, true);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());

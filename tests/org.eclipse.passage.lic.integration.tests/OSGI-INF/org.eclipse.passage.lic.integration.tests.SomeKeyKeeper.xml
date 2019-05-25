@@ -5,4 +5,5 @@
       <provide interface="org.eclipse.passage.lic.api.io.KeyKeeper"/>
    </service>
    <property name="licensing.product.identifier" type="String" value="some.encrypted.product"/>
+   <property name="licensing.product.version" type="String" value="0.1.0"/>
 </scr:component>

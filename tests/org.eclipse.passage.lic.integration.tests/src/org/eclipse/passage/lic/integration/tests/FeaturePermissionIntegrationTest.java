@@ -79,7 +79,7 @@ public class FeaturePermissionIntegrationTest extends LicIntegrationBase {
 		licenseGrants.add(grant);
 
 		String identifier = SOME_ENCRYPTED_PRODUCT;
-		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, null);
+		LicensingConfiguration configuration = LicensingConfigurations.create(identifier, SOME_PRODUCT_VERSION);
 		createProductLicense(configuration, license, true);
 		Iterable<LicensingCondition> conditions = accessManager.extractConditions(configuration);
 		assertTrue(conditions.iterator().hasNext());
