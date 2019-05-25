@@ -54,7 +54,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
-import org.eclipse.passage.loc.internal.workbench.emfforms.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.swt.SWT;
@@ -221,7 +221,7 @@ public class DetailsView {
 				part.setTooltip(String.valueOf(uri));
 			}
 		} else {
-			part.setLabel(WorkbenchMessages.DetailsView_label_details);
+			part.setLabel(WorkbenchEmfformsMessages.DetailsView_label_details);
 		}
 	}
 

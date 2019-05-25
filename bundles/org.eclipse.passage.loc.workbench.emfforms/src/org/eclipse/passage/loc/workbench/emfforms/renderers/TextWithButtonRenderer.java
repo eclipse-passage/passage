@@ -28,7 +28,7 @@ import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
-import org.eclipse.passage.loc.internal.workbench.emfforms.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.jface.LocImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -103,7 +103,7 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 
 	protected Button createButton(Composite parent) {
 		Button edit = new Button(parent, SWT.PUSH);
-		edit.setText(WorkbenchMessages.TextWithButtonRenderer_button_edit);
+		edit.setText(WorkbenchEmfformsMessages.TextWithButtonRenderer_button_edit);
 		edit.setImage(locImages.getImage(LocImages.IMG_TOOL_EDIT));
 		edit.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 		return edit;

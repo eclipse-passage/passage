@@ -10,19 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench.emfforms;
+package org.eclipse.passage.loc.internal.workbench.emfforms.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class WorkbenchMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.emfforms.WorkbenchMessages"; //$NON-NLS-1$
+public final class WorkbenchEmfformsMessages extends NLS {
+
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages"; //$NON-NLS-1$
+
 	public static String DetailsView_label_details;
 	public static String TextWithButtonRenderer_button_edit;
+
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, WorkbenchMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, WorkbenchEmfformsMessages.class);
 	}
 
-	private WorkbenchMessages() {
+	private WorkbenchEmfformsMessages() {
 	}
 }
