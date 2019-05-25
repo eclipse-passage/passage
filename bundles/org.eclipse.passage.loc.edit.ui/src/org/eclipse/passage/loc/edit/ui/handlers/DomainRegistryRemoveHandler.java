@@ -22,7 +22,7 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.loc.edit.ui.EditUiMessages;
+import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class DomainRegistryRemoveHandler {

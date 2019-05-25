@@ -10,12 +10,12 @@
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.edit.ui;
+package org.eclipse.passage.loc.internal.edit.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class EditUiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.edit.ui.EditUiMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages"; //$NON-NLS-1$
 	public static String DomainRegistryLabelProvider_features;
 	public static String DomainRegistryLabelProvider_licenses;
 	public static String DomainRegistryLabelProvider_products;

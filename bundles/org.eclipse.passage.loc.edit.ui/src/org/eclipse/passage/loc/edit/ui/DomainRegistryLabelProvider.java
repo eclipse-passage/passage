@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.passage.loc.users.core.Users;
