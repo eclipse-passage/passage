@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.internal.products.ui.ProductsUiMessages;
+import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 

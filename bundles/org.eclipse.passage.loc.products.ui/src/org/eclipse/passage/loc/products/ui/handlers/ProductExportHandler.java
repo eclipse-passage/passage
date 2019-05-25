@@ -24,7 +24,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.loc.api.OperatorProductService;
-import org.eclipse.passage.loc.internal.products.ui.ProductsUiMessages;
+import org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages;
 import org.eclipse.swt.widgets.Shell;
 
 public class ProductExportHandler {

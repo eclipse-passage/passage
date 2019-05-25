@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.products.ui;
+package org.eclipse.passage.loc.internal.products.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class ProductsUiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.ui.ProductsUiMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.ui.i18n.ProductsUiMessages"; //$NON-NLS-1$
 	public static String ProductExportHandler_message_error;
 	public static String ProductExportHandler_title_error;
 	public static String ProductExportHandler_title_ok;
