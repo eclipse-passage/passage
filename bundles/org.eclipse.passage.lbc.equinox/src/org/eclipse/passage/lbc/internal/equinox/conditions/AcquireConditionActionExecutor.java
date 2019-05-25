@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
-import org.eclipse.passage.lbc.internal.equinox.EquinoxMessages;
+import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionActions;

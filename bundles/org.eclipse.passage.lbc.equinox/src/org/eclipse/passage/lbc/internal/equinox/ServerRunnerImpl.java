@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendCluster;
 import org.eclipse.passage.lbc.api.BackendLauncher;
+import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

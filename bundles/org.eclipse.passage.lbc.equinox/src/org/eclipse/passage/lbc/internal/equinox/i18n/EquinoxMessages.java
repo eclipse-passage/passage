@@ -9,13 +9,14 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.equinox;
+package org.eclipse.passage.lbc.internal.equinox.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class EquinoxMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.equinox.EquinoxMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages"; //$NON-NLS-1$
 	public static String AcquireConditionActionExecutor_e_mining_failed;
 	public static String AcquireConditionActionExecutor_e_no_miners;
 	public static String AcquireConditionActionExecutor_e_transport_not_defined;
