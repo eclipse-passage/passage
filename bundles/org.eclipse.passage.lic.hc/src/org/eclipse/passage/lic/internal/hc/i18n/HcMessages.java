@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc;
+package org.eclipse.passage.lic.internal.hc.i18n;
 
 import org.eclipse.osgi.util.NLS;
 

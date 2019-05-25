@@ -43,6 +43,7 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMiner;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.hc.HttpRequests;
+import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 

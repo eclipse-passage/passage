@@ -21,7 +21,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.internal.hc.HcMessages;
+import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
