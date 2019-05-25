@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.internal.users.core;
 
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
 import org.eclipse.passage.loc.users.core.Users;
 import org.osgi.service.component.annotations.Component;
 
