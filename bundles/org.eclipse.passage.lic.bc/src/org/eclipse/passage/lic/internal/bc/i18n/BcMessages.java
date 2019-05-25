@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class BcMessages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.bc.BcMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.bc.i18n.BcMessages"; //$NON-NLS-1$
 
 	private static final Logger LOGGER = Logger.getLogger(BcMessages.class.getName());
 

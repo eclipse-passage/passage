@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.jface.i18n;
 import org.eclipse.osgi.util.NLS;
 
 public class JFaceMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.jface.JFaceMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages"; //$NON-NLS-1$
 	public static String BasePageContributor_e_create_page_instance;
 	public static String BaseRestrictionRepresenter_summary_issues;
 	public static String BaseRestrictionRepresenter_summary_ok;

@@ -17,7 +17,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class EquinoxMessages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.EquinoxMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages"; //$NON-NLS-1$
 
 	public static String ApplicationConfigurations_contact_defaults;
 

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.hc.i18n;
 import org.eclipse.osgi.util.NLS;
 
 public class HcMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.HcMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.HcMessages"; //$NON-NLS-1$
 
 	public static String HcConditionMiner_e_host_invalid;
 	public static String HcConditionMiner_e_port_invalid;
