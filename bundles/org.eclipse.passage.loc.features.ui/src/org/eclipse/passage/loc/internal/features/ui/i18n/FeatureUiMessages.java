@@ -9,13 +9,14 @@
  *
  * Contributors:
  *     Elena Parovyshnaya <elena.parovyshnaya@gmail.com> - initial API and implementation
+ *     ArSysOp - ongoing support
  *******************************************************************************/
-package org.eclipse.passage.loc.features.ui;
+package org.eclipse.passage.loc.internal.features.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public class FeatureUiMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.features.ui.FeatureUiMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.features.ui.i18n.FeatureUiMessages"; //$NON-NLS-1$
 	public static String FeaturesUi_select_feature_title;
 	static {
 		// initialize resource bundle
