@@ -262,12 +262,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_Name() {
+	public EAttribute getFeature_Provider() {
 		return (EAttribute) featureEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -278,7 +277,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_Description() {
+	public EAttribute getFeature_Name() {
 		return (EAttribute) featureEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -289,8 +288,19 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getFeature_Description() {
+		return (EAttribute) featureEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getFeature_FeatureSet() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(3);
+		return (EReference) featureEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -301,7 +311,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 */
 	@Override
 	public EReference getFeature_FeatureVersions() {
-		return (EReference) featureEClass.getEStructuralFeatures().get(4);
+		return (EReference) featureEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -395,6 +405,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__IDENTIFIER);
+		createEAttribute(featureEClass, FEATURE__PROVIDER);
 		createEAttribute(featureEClass, FEATURE__NAME);
 		createEAttribute(featureEClass, FEATURE__DESCRIPTION);
 		createEReference(featureEClass, FEATURE__FEATURE_SET);
@@ -467,6 +478,8 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getFeature_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, Feature.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_Provider(), ecorePackage.getEString(), "provider", null, 0, 1, Feature.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Feature.class, !IS_TRANSIENT, //$NON-NLS-1$
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

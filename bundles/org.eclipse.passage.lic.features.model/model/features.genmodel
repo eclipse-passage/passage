@@ -3,7 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.features.model/src-gen"
     creationIcons="false" editDirectory="org.eclipse.passage.lic.features.edit/src-gen"
     editorDirectory="org.eclipse.passage.lic.features.editor/src-gen" modelPluginID="org.eclipse.passage.lic.features.model"
-    templateDirectory="/org.eclipse.passage.lic.emf/templates/" dynamicTemplates="true" modelName="Features" editPluginClass="org.eclipse.passage.lic.features.edit.FeaturesEditPlugin"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates/" dynamicTemplates="true"
+    modelName="Features" editPluginClass="org.eclipse.passage.lic.features.edit.FeaturesEditPlugin"
     editorPluginClass="org.eclipse.passage.lic.features.editor.FeaturesEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.features.model.tests.FeaturesAllTests"
@@ -27,6 +28,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/provider"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/name"/>
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/description"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//Feature/featureSet"/>

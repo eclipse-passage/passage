@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getProvider <em>Provider</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl#getFeatureSet <em>Feature Set</em>}</li>
@@ -65,6 +66,26 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 * @ordered
 	 */
 	protected String identifier = IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROVIDER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProvider()
+	 * @generated
+	 * @ordered
+	 */
+	protected String provider = PROVIDER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -157,6 +178,30 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE__IDENTIFIER, oldIdentifier,
 					identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getProvider() {
+		return provider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setProvider(String newProvider) {
+		String oldProvider = provider;
+		provider = newProvider;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE__PROVIDER, oldProvider,
+					provider));
 	}
 
 	/**
@@ -330,6 +375,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		switch (featureID) {
 		case FeaturesPackage.FEATURE__IDENTIFIER:
 			return getIdentifier();
+		case FeaturesPackage.FEATURE__PROVIDER:
+			return getProvider();
 		case FeaturesPackage.FEATURE__NAME:
 			return getName();
 		case FeaturesPackage.FEATURE__DESCRIPTION:
@@ -354,6 +401,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		switch (featureID) {
 		case FeaturesPackage.FEATURE__IDENTIFIER:
 			setIdentifier((String) newValue);
+			return;
+		case FeaturesPackage.FEATURE__PROVIDER:
+			setProvider((String) newValue);
 			return;
 		case FeaturesPackage.FEATURE__NAME:
 			setName((String) newValue);
@@ -385,6 +435,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		case FeaturesPackage.FEATURE__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
+		case FeaturesPackage.FEATURE__PROVIDER:
+			setProvider(PROVIDER_EDEFAULT);
+			return;
 		case FeaturesPackage.FEATURE__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -413,6 +466,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		switch (featureID) {
 		case FeaturesPackage.FEATURE__IDENTIFIER:
 			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+		case FeaturesPackage.FEATURE__PROVIDER:
+			return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
 		case FeaturesPackage.FEATURE__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case FeaturesPackage.FEATURE__DESCRIPTION:
@@ -439,6 +494,8 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
+		result.append(", provider: "); //$NON-NLS-1$
+		result.append(provider);
 		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$

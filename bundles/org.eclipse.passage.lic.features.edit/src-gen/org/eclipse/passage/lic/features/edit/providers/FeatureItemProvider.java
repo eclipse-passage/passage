@@ -67,6 +67,7 @@ public class FeatureItemProvider extends ItemProviderAdapter implements IEditing
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
+			addProviderPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 		}
@@ -87,6 +88,22 @@ public class FeatureItemProvider extends ItemProviderAdapter implements IEditing
 						getString("_UI_PropertyDescriptor_description", "_UI_Feature_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_Feature_type"), //$NON-NLS-1$
 						FeaturesPackage.eINSTANCE.getFeature_Identifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Provider feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProviderPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Feature_provider_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Feature_provider_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Feature_type"), //$NON-NLS-1$
+						FeaturesPackage.eINSTANCE.getFeature_Provider(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -217,6 +234,7 @@ public class FeatureItemProvider extends ItemProviderAdapter implements IEditing
 
 		switch (notification.getFeatureID(Feature.class)) {
 		case FeaturesPackage.FEATURE__IDENTIFIER:
+		case FeaturesPackage.FEATURE__PROVIDER:
 		case FeaturesPackage.FEATURE__NAME:
 		case FeaturesPackage.FEATURE__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.features.FeatureDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.Feature#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.api.Feature#getProvider <em>Provider</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.Feature#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.Feature#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureSet <em>Feature Set</em>}</li>
@@ -66,6 +67,28 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @generated
 	 */
 	void setIdentifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Provider</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Provider</em>' attribute.
+	 * @see #setProvider(String)
+	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeature_Provider()
+	 * @model
+	 * @generated
+	 */
+	String getProvider();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.Feature#getProvider <em>Provider</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provider</em>' attribute.
+	 * @see #getProvider()
+	 * @generated
+	 */
+	void setProvider(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

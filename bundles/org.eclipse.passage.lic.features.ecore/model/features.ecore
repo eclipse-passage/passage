@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="features" nsURI="http://www.eclipse.org/passage/lic/features/0.4.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="features" nsURI="http://www.eclipse.org/passage/lic/features/0.5.0"
     nsPrefix="features">
   <eClassifiers xsi:type="ecore:EClass" name="FeatureSetDescriptor" instanceClassName="org.eclipse.passage.lic.features.FeatureSetDescriptor"
       abstract="true" interface="true"/>
@@ -19,6 +19,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//FeatureDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="provider" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureSet" lowerBound="1"
