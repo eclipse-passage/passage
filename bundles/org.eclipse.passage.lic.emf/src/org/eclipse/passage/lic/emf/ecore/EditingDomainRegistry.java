@@ -14,12 +14,13 @@ package org.eclipse.passage.lic.emf.ecore;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.passage.lic.api.LicensingResult;
 
 public interface EditingDomainRegistry<I> {
 
-	void registerSource(String source);
+	LicensingResult registerSource(String source);
 
-	void unregisterSource(String source);
+	LicensingResult unregisterSource(String source);
 
 	Iterable<String> getSources();
 

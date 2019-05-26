@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.edit;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,8 +20,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
@@ -31,10 +30,14 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingReporter;
+import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
+import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
 
@@ -92,7 +95,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			}
 			List<String> lines = Files.readAllLines(domainPath);
 			for (String line : lines) {
-				registerSource(line);
+				licensingReporter.logResult(registerSource(line));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -139,19 +142,26 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		return new HashMap<>();
 	}
 
-	public void loadSource(String source) throws Exception {
+	public LicensingResult loadSource(String source) {
 		URI uri = createURI(source);
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		Resource resource = resourceSet.createResource(uri);
-		resource.load(getLoadOptions());
+		try {
+			resource.load(getLoadOptions());
+			return LicensingResults.createOK(NLS.bind(EmfMessages.BaseDomainRegistry_ok_load, source));
+		} catch (IOException e) {
+			return LicensingResults.createError(NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, source),
+					getClass().getName(), e);
+		}
 	}
 
-	public void unloadSource(String source) throws Exception {
+	public LicensingResult unloadSource(String source) {
 		URI uri = createURI(source);
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		Resource resource = resourceSet.getResource(uri, false);
 		resource.unload();
 		resourceSet.getResources().remove(resource);
+		return LicensingResults.createOK(NLS.bind(EmfMessages.BaseDomainRegistry_ok_unload, source));
 	}
 
 	protected URI createURI(String source) {
@@ -159,23 +169,16 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	}
 
 	@Override
-	public void registerSource(String source) {
+	public LicensingResult registerSource(String source) {
 		sources.add(source);
-		try {
-			loadSource(source);
-		} catch (Exception e) {
-			Logger.getLogger(this.getClass().getName()).log(Level.FINER, e.getMessage(), e);
-		}
+		LicensingResult loadSource = loadSource(source);
+		return loadSource;
 	}
 
 	@Override
-	public void unregisterSource(String source) {
+	public LicensingResult unregisterSource(String source) {
 		sources.remove(source);
-		try {
-			unloadSource(source);
-		} catch (Exception e) {
-			Logger.getLogger(this.getClass().getName()).log(Level.FINER, e.getMessage(), e);
-		}
+		return unloadSource(source);
 	}
 
 	@Override
