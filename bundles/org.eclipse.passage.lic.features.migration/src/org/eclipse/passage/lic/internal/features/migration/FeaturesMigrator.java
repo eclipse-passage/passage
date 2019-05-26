@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.features.migration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.osgi.service.component.annotations.Activate;
@@ -25,6 +26,11 @@ public class FeaturesMigrator {
 
 	@Activate
 	public void activate() {
+		support033();
+		support040();
+	}
+
+	private void support033() {
 		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
 		List<String> classifiers = new ArrayList<>();
@@ -32,6 +38,12 @@ public class FeaturesMigrator {
 		classifiers.add(delegate.getFeature().getName());
 		classifiers.add(delegate.getFeatureVersion().getName());
 		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
+	}
+
+	private void support040() {
+		String nsUri = "http://www.eclipse.org/passage/lic/features/0.4.0"; //$NON-NLS-1$
+		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.put(nsUri, delegate);
 	}
 
 }
