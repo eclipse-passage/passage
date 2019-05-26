@@ -35,6 +35,15 @@ public interface FeatureDescriptor {
 	String getIdentifier();
 
 	/**
+	 * Returns the provider of this feature. This is the value of its
+	 * <code>"provider"</code> attribute.
+	 *
+	 * @return the provider
+	 * @since 0.5.0
+	 */
+	String getProvider();
+
+	/**
 	 * Returns the name of this feature. This is the value of its
 	 * <code>"name"</code> attribute.
 	 *

@@ -78,6 +78,7 @@ public interface Feature extends EObject, FeatureDescriptor {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getProvider();
 
 	/**
