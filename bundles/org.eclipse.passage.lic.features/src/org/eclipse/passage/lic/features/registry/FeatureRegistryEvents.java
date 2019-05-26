@@ -18,7 +18,7 @@ import static org.eclipse.passage.lic.api.LicensingEvents.READ;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
 
-public class FeatureRegistryEvents {
+public final class FeatureRegistryEvents {
 
 	/**
 	 * Base name of all Features events
@@ -99,5 +99,9 @@ public class FeatureRegistryEvents {
 	 * Feature Version <code>delete</code> event
 	 */
 	public static final String FEATURE_VERSION_DELETE = FEATURE_VERSION_TOPIC_BASE + TOPIC_SEP + DELETE;
+
+	private FeatureRegistryEvents() {
+		// block
+	}
 
 }

@@ -12,12 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features;
 
+/**
+ * <p>
+ * The <code>"Feature Version"</code> is a state of your <code>"Feature"</code>
+ * that included to the <code>"Product Version"</code>.The
+ * <code>"version"</code> attribute of the <code>"Feature Version"</code> is
+ * important for the <code>"Licensing Configuration"</code>.
+ * <p>
+ *
+ */
 public interface FeatureVersionDescriptor {
 
-	public String getVersion();
+	/**
+	 * Returns the version of this feature version. This is the value of its
+	 * <code>"version"</code> attribute.
+	 *
+	 * @return the version
+	 */
+	String getVersion();
 
-	public String getNews();
+	/**
+	 * Returns the "what's new" of this feature version. This is the value of its
+	 * <code>"news"</code> attribute.
+	 *
+	 * @return the news
+	 */
+	String getNews();
 
-	public FeatureDescriptor getFeature();
+	FeatureDescriptor getFeature();
 
 }
