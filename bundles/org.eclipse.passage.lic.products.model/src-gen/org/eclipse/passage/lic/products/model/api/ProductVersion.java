@@ -79,6 +79,7 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getName();
 
 	/**

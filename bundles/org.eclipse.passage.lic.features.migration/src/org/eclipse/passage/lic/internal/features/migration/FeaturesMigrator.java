@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,11 +26,11 @@ public class FeaturesMigrator {
 
 	@Activate
 	public void activate() {
-		support033();
-		support040();
+		migrate033();
+		migrate040();
 	}
 
-	private void support033() {
+	private void migrate033() {
 		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
 		List<String> classifiers = new ArrayList<>();
@@ -40,7 +40,7 @@ public class FeaturesMigrator {
 		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
 	}
 
-	private void support040() {
+	private void migrate040() {
 		String nsUri = "http://www.eclipse.org/passage/lic/features/0.4.0"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.put(nsUri, delegate);

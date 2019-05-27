@@ -36,6 +36,14 @@ public interface ProductVersionDescriptor {
 	String getVersion();
 
 	/**
+	 * Returns the name of this product version. This is the value of its
+	 * <code>"name"</code> attribute.
+	 *
+	 * @return the name
+	 */
+	String getName();
+
+	/**
 	 * Returns the "what's new" of this product version. This is the value of its
 	 * <code>"news"</code> attribute.
 	 *
