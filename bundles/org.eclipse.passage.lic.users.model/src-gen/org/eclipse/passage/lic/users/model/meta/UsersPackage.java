@@ -51,7 +51,7 @@ public interface UsersPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/users/0.4.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/users/0.5.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -256,6 +256,24 @@ public interface UsersPackage extends EPackage {
 	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Preferred Condition Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PREFERRED_CONDITION_TYPE = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Preferred Condition Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PREFERRED_CONDITION_EXPRESSION = USER_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>User Origin</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -263,7 +281,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__USER_ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER__USER_ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -273,7 +291,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 5;
+	int USER_FEATURE_COUNT = USER_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -426,6 +444,28 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUser_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType <em>Preferred Condition Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Preferred Condition Type</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_PreferredConditionType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression <em>Preferred Condition Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Preferred Condition Expression</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_PreferredConditionExpression();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}'.

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="users" nsURI="http://www.eclipse.org/passage/lic/users/0.4.0" nsPrefix="org.eclipse.passage.lic">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="users" nsURI="http://www.eclipse.org/passage/lic/users/0.5.0"
+    nsPrefix="org.eclipse.passage.lic">
   <eClassifiers xsi:type="ecore:EClass" name="UserOriginDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserOriginDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserDescriptor"
@@ -18,6 +19,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredConditionType"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredConditionExpression"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userOrigin" lowerBound="1"
         eType="#//UserOrigin" eOpposite="#//UserOrigin/users"/>
   </eClassifiers>

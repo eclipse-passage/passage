@@ -40,6 +40,7 @@ public interface ProductVersionDescriptor {
 	 * <code>"name"</code> attribute.
 	 *
 	 * @return the name
+	 * @since 0.5.0
 	 */
 	String getName();
 

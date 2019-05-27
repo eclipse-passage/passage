@@ -30,6 +30,8 @@ import org.eclipse.passage.lic.users.UserDescriptor;
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getEmail <em>Email</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getFullName <em>Full Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType <em>Preferred Condition Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression <em>Preferred Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
@@ -149,6 +151,50 @@ public interface User extends EObject, UserDescriptor {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Preferred Condition Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Preferred Condition Type</em>' attribute.
+	 * @see #setPreferredConditionType(String)
+	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUser_PreferredConditionType()
+	 * @model
+	 * @generated
+	 */
+	String getPreferredConditionType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType <em>Preferred Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Preferred Condition Type</em>' attribute.
+	 * @see #getPreferredConditionType()
+	 * @generated
+	 */
+	void setPreferredConditionType(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Preferred Condition Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Preferred Condition Expression</em>' attribute.
+	 * @see #setPreferredConditionExpression(String)
+	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUser_PreferredConditionExpression()
+	 * @model
+	 * @generated
+	 */
+	String getPreferredConditionExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression <em>Preferred Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Preferred Condition Expression</em>' attribute.
+	 * @see #getPreferredConditionExpression()
+	 * @generated
+	 */
+	void setPreferredConditionExpression(String value);
 
 	/**
 	 * Returns the value of the '<em><b>User Origin</b></em>' container reference.

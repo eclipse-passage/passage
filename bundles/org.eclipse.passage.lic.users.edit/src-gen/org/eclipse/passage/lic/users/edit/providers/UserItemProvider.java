@@ -68,6 +68,8 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 			addEmailPropertyDescriptor(object);
 			addFullNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addPreferredConditionTypePropertyDescriptor(object);
+			addPreferredConditionExpressionPropertyDescriptor(object);
 			addUserOriginPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -135,6 +137,38 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 						getString("_UI_PropertyDescriptor_description", "_UI_User_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_User_type"), //$NON-NLS-1$
 						UsersPackage.eINSTANCE.getUser_Description(), true, true, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Preferred Condition Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreferredConditionTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_User_preferredConditionType_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_User_preferredConditionType_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_User_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getUser_PreferredConditionType(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Preferred Condition Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPreferredConditionExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_User_preferredConditionExpression_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_User_preferredConditionExpression_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_User_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getUser_PreferredConditionExpression(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -218,6 +252,8 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 		case UsersPackage.USER__EMAIL:
 		case UsersPackage.USER__FULL_NAME:
 		case UsersPackage.USER__DESCRIPTION:
+		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
+		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		default:

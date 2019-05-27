@@ -37,6 +37,8 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail <em>Email</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionType <em>Preferred Condition Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionExpression <em>Preferred Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
  * </ul>
  *
@@ -130,6 +132,46 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPreferredConditionType() <em>Preferred Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferredConditionType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PREFERRED_CONDITION_TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPreferredConditionType() <em>Preferred Condition Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferredConditionType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String preferredConditionType = PREFERRED_CONDITION_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPreferredConditionExpression() <em>Preferred Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferredConditionExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PREFERRED_CONDITION_EXPRESSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPreferredConditionExpression() <em>Preferred Condition Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferredConditionExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected String preferredConditionExpression = PREFERRED_CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,6 +298,54 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getPreferredConditionType() {
+		return preferredConditionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPreferredConditionType(String newPreferredConditionType) {
+		String oldPreferredConditionType = preferredConditionType;
+		preferredConditionType = newPreferredConditionType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_TYPE,
+					oldPreferredConditionType, preferredConditionType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getPreferredConditionExpression() {
+		return preferredConditionExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPreferredConditionExpression(String newPreferredConditionExpression) {
+		String oldPreferredConditionExpression = preferredConditionExpression;
+		preferredConditionExpression = newPreferredConditionExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION,
+					oldPreferredConditionExpression, preferredConditionExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -371,6 +461,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return getFullName();
 		case UsersPackage.USER__DESCRIPTION:
 			return getDescription();
+		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
+			return getPreferredConditionType();
+		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
+			return getPreferredConditionExpression();
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin();
 		default:
@@ -398,6 +492,12 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return;
 		case UsersPackage.USER__DESCRIPTION:
 			setDescription((String) newValue);
+			return;
+		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
+			setPreferredConditionType((String) newValue);
+			return;
+		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
+			setPreferredConditionExpression((String) newValue);
 			return;
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) newValue);
@@ -429,6 +529,12 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
+		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
+			setPreferredConditionType(PREFERRED_CONDITION_TYPE_EDEFAULT);
+			return;
+		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
+			setPreferredConditionExpression(PREFERRED_CONDITION_EXPRESSION_EDEFAULT);
+			return;
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) null);
 			return;
@@ -455,6 +561,12 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
 		case UsersPackage.USER__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
+			return PREFERRED_CONDITION_TYPE_EDEFAULT == null ? preferredConditionType != null
+					: !PREFERRED_CONDITION_TYPE_EDEFAULT.equals(preferredConditionType);
+		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
+			return PREFERRED_CONDITION_EXPRESSION_EDEFAULT == null ? preferredConditionExpression != null
+					: !PREFERRED_CONDITION_EXPRESSION_EDEFAULT.equals(preferredConditionExpression);
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin() != null;
 		default:
@@ -482,6 +594,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		result.append(fullName);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
+		result.append(", preferredConditionType: "); //$NON-NLS-1$
+		result.append(preferredConditionType);
+		result.append(", preferredConditionExpression: "); //$NON-NLS-1$
+		result.append(preferredConditionExpression);
 		result.append(')');
 		return result.toString();
 	}

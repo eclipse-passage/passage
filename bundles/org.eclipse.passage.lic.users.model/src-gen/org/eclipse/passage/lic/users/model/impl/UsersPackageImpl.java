@@ -266,13 +266,33 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUser_PreferredConditionType() {
+		return (EAttribute) userEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUser_PreferredConditionExpression() {
+		return (EAttribute) userEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EReference getUser_UserOrigin() {
-		return (EReference) userEClass.getEStructuralFeatures().get(4);
+		return (EReference) userEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -323,6 +343,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		createEAttribute(userEClass, USER__EMAIL);
 		createEAttribute(userEClass, USER__FULL_NAME);
 		createEAttribute(userEClass, USER__DESCRIPTION);
+		createEAttribute(userEClass, USER__PREFERRED_CONDITION_TYPE);
+		createEAttribute(userEClass, USER__PREFERRED_CONDITION_EXPRESSION);
 		createEReference(userEClass, USER__USER_ORIGIN);
 	}
 
@@ -390,6 +412,12 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUser_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_PreferredConditionType(), ecorePackage.getEString(), "preferredConditionType", null, 0, //$NON-NLS-1$
+				1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_PreferredConditionExpression(), ecorePackage.getEString(),
+				"preferredConditionExpression", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUser_UserOrigin(), this.getUserOrigin(), this.getUserOrigin_Users(), "userOrigin", null, 1, 1, //$NON-NLS-1$
 				User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
