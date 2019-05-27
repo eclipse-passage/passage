@@ -36,6 +36,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion/installationToken"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion/secureToken"/>
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.products.ecore/model/products.ecore#//ProductVersion/news"/>

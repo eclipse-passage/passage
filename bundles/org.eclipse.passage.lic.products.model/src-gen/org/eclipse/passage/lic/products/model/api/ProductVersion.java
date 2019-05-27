@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getInstallationToken <em>Installation Token</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getSecureToken <em>Secure Token</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getNews <em>News</em>}</li>
@@ -67,6 +68,28 @@ public interface ProductVersion extends EObject, ProductVersionDescriptor {
 	 * @generated
 	 */
 	void setVersion(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.passage.lic.products.model.meta.ProductsPackage#getProductVersion_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Installation Token</b></em>' attribute.

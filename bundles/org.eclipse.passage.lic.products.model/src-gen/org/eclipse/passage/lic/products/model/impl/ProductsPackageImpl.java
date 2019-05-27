@@ -355,12 +355,11 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProductVersion_InstallationToken() {
+	public EAttribute getProductVersion_Name() {
 		return (EAttribute) productVersionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -371,7 +370,7 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProductVersion_SecureToken() {
+	public EAttribute getProductVersion_InstallationToken() {
 		return (EAttribute) productVersionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -382,7 +381,7 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProductVersion_News() {
+	public EAttribute getProductVersion_SecureToken() {
 		return (EAttribute) productVersionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -393,8 +392,19 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getProductVersion_News() {
+		return (EAttribute) productVersionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getProductVersion_Product() {
-		return (EReference) productVersionEClass.getEStructuralFeatures().get(4);
+		return (EReference) productVersionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -405,7 +415,7 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 	 */
 	@Override
 	public EReference getProductVersion_ProductVersionFeatures() {
-		return (EReference) productVersionEClass.getEStructuralFeatures().get(5);
+		return (EReference) productVersionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -519,6 +529,7 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 
 		productVersionEClass = createEClass(PRODUCT_VERSION);
 		createEAttribute(productVersionEClass, PRODUCT_VERSION__VERSION);
+		createEAttribute(productVersionEClass, PRODUCT_VERSION__NAME);
 		createEAttribute(productVersionEClass, PRODUCT_VERSION__INSTALLATION_TOKEN);
 		createEAttribute(productVersionEClass, PRODUCT_VERSION__SECURE_TOKEN);
 		createEAttribute(productVersionEClass, PRODUCT_VERSION__NEWS);
@@ -614,6 +625,8 @@ public class ProductsPackageImpl extends EPackageImpl implements ProductsPackage
 		initEAttribute(getProductVersion_Version(), ecorePackage.getEString(), "version", null, 1, 1, //$NON-NLS-1$
 				ProductVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProductVersion_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProductVersion.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProductVersion_InstallationToken(), ecorePackage.getEString(), "installationToken", null, 0, //$NON-NLS-1$
 				1, ProductVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);

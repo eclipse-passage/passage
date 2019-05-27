@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="products" nsURI="http://www.eclipse.org/passage/lic/products/0.4.0" nsPrefix="org.eclipse.passage.lic">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="products" nsURI="http://www.eclipse.org/passage/lic/products/0.5.0"
+    nsPrefix="org.eclipse.passage.lic">
   <eClassifiers xsi:type="ecore:EClass" name="ProductLineDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductLineDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProductDescriptor" instanceClassName="org.eclipse.passage.lic.products.ProductDescriptor"
@@ -30,6 +31,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProductVersion" eSuperTypes="#//ProductVersionDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="installationToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secureToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="news" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -51,7 +51,7 @@ public interface ProductsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/products/0.4.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/products/0.5.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -369,6 +369,15 @@ public interface ProductsPackage extends EPackage {
 	int PRODUCT_VERSION__VERSION = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRODUCT_VERSION__NAME = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Installation Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -376,7 +385,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__INSTALLATION_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PRODUCT_VERSION__INSTALLATION_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Secure Token</b></em>' attribute.
@@ -386,7 +395,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__SECURE_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PRODUCT_VERSION__SECURE_TOKEN = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>News</b></em>' attribute.
@@ -396,7 +405,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__NEWS = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+	int PRODUCT_VERSION__NEWS = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' container reference.
@@ -406,7 +415,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__PRODUCT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
+	int PRODUCT_VERSION__PRODUCT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Product Version Features</b></em>' containment reference list.
@@ -416,7 +425,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 5;
+	int PRODUCT_VERSION__PRODUCT_VERSION_FEATURES = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Product Version</em>' class.
@@ -426,7 +435,7 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_VERSION_FEATURE_COUNT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 6;
+	int PRODUCT_VERSION_FEATURE_COUNT = PRODUCT_VERSION_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Product Version</em>' class.
@@ -709,6 +718,17 @@ public interface ProductsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProductVersion_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.products.model.api.ProductVersion#getName()
+	 * @see #getProductVersion()
+	 * @generated
+	 */
+	EAttribute getProductVersion_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.products.model.api.ProductVersion#getInstallationToken <em>Installation Token</em>}'.

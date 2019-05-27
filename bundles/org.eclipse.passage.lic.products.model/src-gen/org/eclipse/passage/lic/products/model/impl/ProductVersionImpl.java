@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getInstallationToken <em>Installation Token</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getSecureToken <em>Secure Token</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.products.model.impl.ProductVersionImpl#getNews <em>News</em>}</li>
@@ -71,6 +72,26 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String version = VERSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
@@ -194,6 +215,30 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__VERSION, oldVersion,
 					version));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__NAME, oldName,
+					name));
 	}
 
 	/**
@@ -408,6 +453,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
 			return getVersion();
+		case ProductsPackage.PRODUCT_VERSION__NAME:
+			return getName();
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 			return getInstallationToken();
 		case ProductsPackage.PRODUCT_VERSION__SECURE_TOKEN:
@@ -435,6 +482,9 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
 			setVersion((String) newValue);
+			return;
+		case ProductsPackage.PRODUCT_VERSION__NAME:
+			setName((String) newValue);
 			return;
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 			setInstallationToken((String) newValue);
@@ -470,6 +520,9 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
 			setVersion(VERSION_EDEFAULT);
 			return;
+		case ProductsPackage.PRODUCT_VERSION__NAME:
+			setName(NAME_EDEFAULT);
+			return;
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 			setInstallationToken(INSTALLATION_TOKEN_EDEFAULT);
 			return;
@@ -502,6 +555,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
 			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+		case ProductsPackage.PRODUCT_VERSION__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 			return INSTALLATION_TOKEN_EDEFAULT == null ? installationToken != null
 					: !INSTALLATION_TOKEN_EDEFAULT.equals(installationToken);
@@ -532,6 +587,8 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (version: "); //$NON-NLS-1$
 		result.append(version);
+		result.append(", name: "); //$NON-NLS-1$
+		result.append(name);
 		result.append(", installationToken: "); //$NON-NLS-1$
 		result.append(installationToken);
 		result.append(", secureToken: "); //$NON-NLS-1$

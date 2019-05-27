@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated products -->
       <factory
-            uri="http://www.eclipse.org/passage/lic/products/0.4.0"
+            uri="http://www.eclipse.org/passage/lic/products/0.5.0"
             class="org.eclipse.passage.lic.products.edit.providers.ProductsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

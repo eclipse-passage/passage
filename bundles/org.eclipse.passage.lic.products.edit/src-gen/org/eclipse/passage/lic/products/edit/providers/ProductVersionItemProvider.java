@@ -68,6 +68,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 			super.getPropertyDescriptors(object);
 
 			addVersionPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addInstallationTokenPropertyDescriptor(object);
 			addSecureTokenPropertyDescriptor(object);
 			addNewsPropertyDescriptor(object);
@@ -89,6 +90,22 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_version_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductVersion_type"), //$NON-NLS-1$
 						ProductsPackage.eINSTANCE.getProductVersion_Version(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_ProductVersion_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_ProductVersion_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_ProductVersion_type"), //$NON-NLS-1$
+						ProductsPackage.eINSTANCE.getProductVersion_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -239,6 +256,7 @@ public class ProductVersionItemProvider extends ItemProviderAdapter implements I
 
 		switch (notification.getFeatureID(ProductVersion.class)) {
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
+		case ProductsPackage.PRODUCT_VERSION__NAME:
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
 		case ProductsPackage.PRODUCT_VERSION__SECURE_TOKEN:
 		case ProductsPackage.PRODUCT_VERSION__NEWS:
