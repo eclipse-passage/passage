@@ -18,6 +18,11 @@ import static org.eclipse.passage.lic.api.LicensingEvents.READ;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
 
+/**
+ * Feature registry events and event topic definitions.
+ *
+ * @since 0.4.0
+ */
 public final class FeatureRegistryEvents {
 
 	/**

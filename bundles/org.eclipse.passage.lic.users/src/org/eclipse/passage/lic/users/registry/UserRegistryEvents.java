@@ -18,7 +18,12 @@ import static org.eclipse.passage.lic.api.LicensingEvents.READ;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
 
-public class UserRegistryEvents {
+/**
+ * User registry events and event topic definitions.
+ *
+ * @since 0.4.0
+ */
+public final class UserRegistryEvents {
 
 	/**
 	 * Base name of all Users events
@@ -74,5 +79,9 @@ public class UserRegistryEvents {
 	 * User <code>delete</code> event
 	 */
 	public static final String USER_DELETE = USER_TOPIC_BASE + TOPIC_SEP + DELETE;
+
+	private UserRegistryEvents() {
+		// block
+	}
 
 }
