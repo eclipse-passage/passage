@@ -12,12 +12,39 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users;
 
+/**
+ * <p>
+ * A <code>"User Origin"</code> provides access to <code>"User"</code>
+ * descriptors. The typical example of the <code>"User Origin"</code> is the
+ * list of users registered on your web site to download
+ * <code>"Product Version"</code>.
+ * <p>
+ *
+ */
 public interface UserOriginDescriptor {
 
+	/**
+	 * Returns the identifier of this user origin. This is the value of its
+	 * <code>"identifier"</code> attribute.
+	 *
+	 * @return the identifier
+	 */
 	String getIdentifier();
 
+	/**
+	 * Returns the name of this user origin. This is the value of its
+	 * <code>"name"</code> attribute.
+	 *
+	 * @return the name
+	 */
 	String getName();
 
+	/**
+	 * Returns the description of this user origin. This is the value of its
+	 * <code>"description"</code> attribute.
+	 *
+	 * @return the description
+	 */
 	String getDescription();
 
 	Iterable<? extends UserDescriptor> getUsers();

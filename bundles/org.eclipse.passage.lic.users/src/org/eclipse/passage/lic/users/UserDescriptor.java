@@ -12,14 +12,44 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users;
 
+/**
+ * <p>
+ * A <code>"User"</code> describes the licensee of your functionality.
+ * <p>
+ *
+ */
 public interface UserDescriptor {
 
+	/**
+	 * Returns the identifier of this user. This is the value of its
+	 * <code>"identifier"</code> attribute.
+	 *
+	 * @return the identifier
+	 */
 	String getIdentifier();
 
+	/**
+	 * Returns the email of this user. This is the value of its <code>"email"</code>
+	 * attribute.
+	 *
+	 * @return the email
+	 */
 	String getEmail();
 
+	/**
+	 * Returns the full name of this user. This is the value of its
+	 * <code>"fullName"</code> attribute.
+	 *
+	 * @return the full name
+	 */
 	String getFullName();
 
+	/**
+	 * Returns the description of this user. This is the value of its
+	 * <code>"description"</code> attribute.
+	 *
+	 * @return the description
+	 */
 	String getDescription();
 
 	UserOriginDescriptor getUserOrigin();
