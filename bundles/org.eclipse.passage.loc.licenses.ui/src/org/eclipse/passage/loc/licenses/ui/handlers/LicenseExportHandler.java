@@ -26,7 +26,10 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
@@ -63,10 +66,31 @@ public class LicenseExportHandler {
 		if (productVersion == null) {
 			return;
 		}
-		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime year = now.plusYears(1);
-		Date from = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
-		Date until = Date.from(year.atZone(ZoneId.systemDefault()).toInstant());
+		long months = 12;
+		InputDialog durationDialog = new InputDialog(shell, LicensesUiMessages.LicenseExportHandler_period_title, LicensesUiMessages.LicenseExportHandler_period_message,
+				String.valueOf(months), new IInputValidator() {
+					@Override
+					public String isValid(String newText) {
+						String invalidInput = LicensesUiMessages.LicenseExportHandler_e_period_invalid;
+						try {
+							long parsed = Long.parseLong(newText);
+							if (parsed <= 0) {
+								return invalidInput;
+							}
+						} catch (Exception e) {
+							return invalidInput;
+						}
+						return null;
+					}
+				});
+		if (durationDialog.open() != Window.OK) {
+			return;
+		}
+		months = Long.parseLong(durationDialog.getValue());
+		LocalDateTime fromLocal = LocalDateTime.now();
+		LocalDateTime untilLocal = fromLocal.plusMonths(months);
+		Date from = Date.from(fromLocal.atZone(ZoneId.systemDefault()).toInstant());
+		Date until = Date.from(untilLocal.atZone(ZoneId.systemDefault()).toInstant());
 
 		LicensePack licensePack = createLicensePack(licensePlan, user, productVersion, from, until);
 		IStatus status = licenseService.issueLicensePack(licensePack);

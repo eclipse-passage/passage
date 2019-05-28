@@ -17,8 +17,11 @@ import org.eclipse.osgi.util.NLS;
 
 public class LicensesUiMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages"; //$NON-NLS-1$
+	public static String LicenseExportHandler_e_period_invalid;
 	public static String LicenseExportHandler_error_message;
 	public static String LicenseExportHandler_error_title;
+	public static String LicenseExportHandler_period_message;
+	public static String LicenseExportHandler_period_title;
 	public static String LicenseExportHandler_success_title;
 	static {
 		// initialize resource bundle
