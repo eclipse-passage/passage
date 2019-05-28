@@ -21,11 +21,11 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseOperatorServiceImpl_export_success;
 	public static String LicenseOperatorServiceImpl_private_key_not_found;
 	public static String LicenseOperatorServiceImpl_status_invalid_license_pack;
-	public static String LicensePackClassifierInitializer_file_name_message;
-	public static String LicensePackClassifierInitializer_lic_pack_title;
-	public static String LicensePackClassifierInitializer_new_lic_pack_message;
-	public static String LicensePackClassifierInitializer_new_lic_pack_name;
-	public static String LicensesSelectionCommandAdvisor_select_lic_pack;
+	public static String LicensePlanClassifierInitializer_file_name_message;
+	public static String LicensePlanClassifierInitializer_lic_plan_title;
+	public static String LicensePlanClassifierInitializer_new_lic_plan_message;
+	public static String LicensePlanClassifierInitializer_new_lic_plan_name;
+	public static String LicensesSelectionCommandAdvisor_select_lic_plan;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);

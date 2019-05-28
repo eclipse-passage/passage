@@ -19,34 +19,34 @@ import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.service.component.annotations.Component;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME })
-public final class LicensePackClassifierInitializer implements ClassifierInitializer {
+public final class LicensePlanClassifierInitializer implements ClassifierInitializer {
 	@Override
 	public String newObjectIdentifier() {
-		return "new.license.pack"; //$NON-NLS-1$
+		return "new.license.plan"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String newObjectName() {
-		return LicensesCoreMessages.LicensePackClassifierInitializer_new_lic_pack_name;
+		return LicensesCoreMessages.LicensePlanClassifierInitializer_new_lic_plan_name;
 	}
 
 	@Override
 	public String newFileName() {
-		return "new_license_pack"; //$NON-NLS-1$
+		return "new_license_plan"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String newObjectTitle() {
-		return LicensesCoreMessages.LicensePackClassifierInitializer_lic_pack_title;
+		return LicensesCoreMessages.LicensePlanClassifierInitializer_lic_plan_title;
 	}
 
 	@Override
 	public String newObjectMessage() {
-		return LicensesCoreMessages.LicensePackClassifierInitializer_new_lic_pack_message;
+		return LicensesCoreMessages.LicensePlanClassifierInitializer_new_lic_plan_message;
 	}
 
 	@Override
 	public String newFileMessage() {
-		return LicensesCoreMessages.LicensePackClassifierInitializer_file_name_message;
+		return LicensesCoreMessages.LicensePlanClassifierInitializer_file_name_message;
 	}
 }

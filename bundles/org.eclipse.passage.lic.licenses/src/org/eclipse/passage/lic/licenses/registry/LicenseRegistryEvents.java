@@ -31,6 +31,41 @@ public final class LicenseRegistryEvents {
 	public static final String LICENSES_TOPIC_BASE = "org/eclipse/passage/lic/licenses/registry"; //$NON-NLS-1$
 
 	/**
+	 * Base name of all License Plan events
+	 * 
+	 * @since 0.5.0
+	 */
+	public static final String LICENSE_PLAN_TOPIC_BASE = LICENSES_TOPIC_BASE + TOPIC_SEP + "LicensePlan"; //$NON-NLS-1$
+
+	/**
+	 * License Plan <code>create</code> event
+	 * 
+	 * @since 0.5.0
+	 */
+	public static final String LICENSE_PLAN_CREATE = LICENSE_PLAN_TOPIC_BASE + TOPIC_SEP + CREATE;
+
+	/**
+	 * License Plan <code>read</code> event
+	 * 
+	 * @since 0.5.0
+	 */
+	public static final String LICENSE_PLAN_READ = LICENSE_PLAN_TOPIC_BASE + TOPIC_SEP + READ;
+
+	/**
+	 * License Plan <code>update</code> event
+	 * 
+	 * @since 0.5.0
+	 */
+	public static final String LICENSE_PLAN_UPDATE = LICENSE_PLAN_TOPIC_BASE + TOPIC_SEP + UPDATE;
+
+	/**
+	 * License Plan <code>delete</code> event
+	 * 
+	 * @since 0.5.0
+	 */
+	public static final String LICENSE_PLAN_DELETE = LICENSE_PLAN_TOPIC_BASE + TOPIC_SEP + DELETE;
+
+	/**
 	 * Base name of all License Pack events
 	 */
 	public static final String LICENSE_PACK_TOPIC_BASE = LICENSES_TOPIC_BASE + TOPIC_SEP + "LicensePack"; //$NON-NLS-1$

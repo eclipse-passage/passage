@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1170" xmi:id="_93su0AOQEemTl7jmLgGAOg" name="LicenseGrant">
-  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant"/>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_93su0AOQEemTl7jmLgGAOg" name="LicenseGrant">
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant"/>
   <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_dnQ34AOREemTl7jmLgGAOg" name="Feature">
     <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KMAOQEemTl7jmLgGAOg" name="Control featureIdentifier">
       <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KMQOQEemTl7jmLgGAOg">
-        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/featureIdentifier"/>
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/featureIdentifier"/>
       </domainModelReference>
     </children>
     <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_D2cIsAOSEemTl7jmLgGAOg">
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KMgOQEemTl7jmLgGAOg" name="Control matchVersion">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KMwOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/matchVersion"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/matchVersion"/>
         </domainModelReference>
       </children>
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KNAOQEemTl7jmLgGAOg" name="Control matchRule">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KNQOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/matchRule"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/matchRule"/>
         </domainModelReference>
       </children>
     </children>
@@ -24,12 +24,12 @@
     <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_O8aNAAOREemTl7jmLgGAOg">
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KNgOQEemTl7jmLgGAOg" name="Control validFrom">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KNwOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/validFrom"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/validFrom"/>
         </domainModelReference>
       </children>
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KOAOQEemTl7jmLgGAOg" name="Control validUntil">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KOQOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/validUntil"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/validUntil"/>
         </domainModelReference>
       </children>
     </children>
@@ -38,18 +38,18 @@
     <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_A-HQsAOSEemTl7jmLgGAOg">
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KOgOQEemTl7jmLgGAOg" name="Control conditionType">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KOwOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/conditionType"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/conditionType"/>
         </domainModelReference>
       </children>
       <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KPgOQEemTl7jmLgGAOg" name="Control capacity">
         <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KPwOQEemTl7jmLgGAOg">
-          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/capacity"/>
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/capacity"/>
         </domainModelReference>
       </children>
     </children>
     <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_936KPAOQEemTl7jmLgGAOg" name="Control conditionExpression">
       <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_936KPQOQEemTl7jmLgGAOg">
-        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.4.0#//LicenseGrant/conditionExpression"/>
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/0.5.0#//LicenseGrant/conditionExpression"/>
       </domainModelReference>
     </children>
   </children>

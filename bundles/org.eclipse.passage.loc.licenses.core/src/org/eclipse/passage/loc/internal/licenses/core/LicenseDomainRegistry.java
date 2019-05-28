@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
@@ -43,9 +44,10 @@ import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
-public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescriptor>
-		implements LicenseRegistry, EditingDomainRegistry<LicensePackDescriptor> {
+public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescriptor>
+		implements LicenseRegistry, EditingDomainRegistry<LicensePlanDescriptor> {
 
+	private final Map<String, LicensePlanDescriptor> licensePlanIndex = new HashMap<>();
 	private final Map<String, LicensePackDescriptor> licensePackIndex = new HashMap<>();
 	private final Map<String, List<LicensePackDescriptor>> userPackIndex = new HashMap<>();
 	private final Map<String, Map<String, List<LicensePackDescriptor>>> productVersionPackIndex = new HashMap<>();
@@ -105,13 +107,44 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 	}
 
 	@Override
-	public Class<LicensePackDescriptor> getContentClass() {
-		return LicensePackDescriptor.class;
+	public Class<LicensePlanDescriptor> getContentClass() {
+		return LicensePlanDescriptor.class;
 	}
 
 	@Override
-	public String resolveIdentifier(LicensePackDescriptor content) {
+	public String resolveIdentifier(LicensePlanDescriptor content) {
 		return content.getIdentifier();
+	}
+
+	@Override
+	public Iterable<LicensePlanDescriptor> getLicensePlans() {
+		return new ArrayList<>(licensePlanIndex.values());
+	}
+
+	@Override
+	public LicensePlanDescriptor getLicensePlan(String identifier) {
+		return licensePlanIndex.get(identifier);
+	}
+
+	@Override
+	public void registerLicensePlan(LicensePlanDescriptor licensePlan) {
+		String identifier = licensePlan.getIdentifier();
+		LicensePlanDescriptor existing = licensePlanIndex.put(identifier, licensePlan);
+		if (existing != null) {
+			// FIXME: warning
+		}
+		licensingReporter
+				.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan));
+	}
+
+	@Override
+	public void unregisterLicensePlan(String identifier) {
+		LicensePlanDescriptor removed = licensePlanIndex.remove(identifier);
+		if (removed != null) {
+			licensingReporter
+					.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed));
+
+		}
 	}
 
 	@Override
@@ -147,7 +180,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 	}
 
 	@Override
-	protected DomainContentAdapter<LicensePackDescriptor, LicenseDomainRegistry> createContentAdapter() {
+	protected DomainContentAdapter<LicensePlanDescriptor, LicenseDomainRegistry> createContentAdapter() {
 		return new LicensesDomainRegistryTracker(this);
 	}
 
@@ -209,12 +242,12 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 
 	@Override
 	public EClass getContentClassifier() {
-		return LicensesPackage.eINSTANCE.getLicensePack();
+		return LicensesPackage.eINSTANCE.getLicensePlan();
 	}
 
 	@Override
 	public EStructuralFeature getContentIdentifierAttribute() {
-		return LicensesPackage.eINSTANCE.getLicensePack_Identifier();
+		return LicensesPackage.eINSTANCE.getLicensePlan_Identifier();
 	}
 
 	@Override
@@ -223,8 +256,8 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePackDescrip
 	}
 
 	@Override
-	public void registerContent(LicensePackDescriptor content) {
-		registerLicensePack(content);
+	public void registerContent(LicensePlanDescriptor content) {
+		registerLicensePlan(content);
 	}
 
 	@Override

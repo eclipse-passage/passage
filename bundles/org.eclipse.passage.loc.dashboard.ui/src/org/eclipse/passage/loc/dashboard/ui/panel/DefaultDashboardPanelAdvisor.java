@@ -43,7 +43,7 @@ import org.eclipse.swt.widgets.Link;
 
 public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
-	private IEclipseContext context;
+	private IEclipseContext eclipseContext;
 
 	private DashboardPanelBlock featureSets;
 	private DashboardPanelBlock features;
@@ -57,11 +57,11 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	private DashboardPanelBlock userOrigins;
 	private DashboardPanelBlock users;
 
-	private DashboardPanelBlock licensePacks;
+	private DashboardPanelBlock licensePlans;
 
 	@Override
 	public void init(IEclipseContext context) {
-		this.context = context;
+		this.eclipseContext = context;
 	}
 
 	@Override
@@ -143,12 +143,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		block.setWarning(warning);
 		String domain = Features.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_edit, new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				executeEditCommand(domain, classifier);
-			}
-		});
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_edit,
+				new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						executeEditCommand(domain, classifier);
+					}
+				});
 		return block;
 	}
 
@@ -230,12 +231,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_edit, new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				executeEditCommand(domain, classifier);
-			}
-		});
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_edit,
+				new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						executeEditCommand(domain, classifier);
+					}
+				});
 		return block;
 	}
 
@@ -251,12 +253,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		block.setWarning(warning);
 		String domain = Products.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_edit, new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				executeEditCommand(domain, classifier);
-			}
-		});
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_edit,
+				new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						executeEditCommand(domain, classifier);
+					}
+				});
 		return block;
 	}
 
@@ -340,23 +343,23 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 		createLinks(group, Licenses.DOMAIN_NAME);
 
-		licensePacks = createLicensePackBlock(group);
+		licensePlans = createLicensePlanBlock(group);
 		updateLicenseInfo(licenseRegistry);
 	}
 
-	protected DashboardPanelBlock createLicensePackBlock(Composite parent) {
+	protected DashboardPanelBlock createLicensePlanBlock(Composite parent) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
-		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_title;
-		EClass eClass = LicensesPackage.eINSTANCE.getLicensePack();
+		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_title;
+		EClass eClass = LicensesPackage.eINSTANCE.getLicensePlan();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
-		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_info;
-		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_warning;
+		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_info;
+		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_warning;
 		block.setInfo(info);
 		block.setWarning(warning);
 		String domain = Licenses.DOMAIN_NAME;
 		String classifier = eClass.getName();
-		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_license_pack_edit, new SelectionAdapter() {
+		block.configureEdit(DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_edit, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				executeEditCommand(domain, classifier);
@@ -367,7 +370,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void updateLicenseInfo(LicenseRegistry licenseRegistry) {
-		licensePacks.update(licenseRegistry.getLicensePacks());
+		licensePlans.update(licenseRegistry.getLicensePlans());
 	}
 
 	@Override
@@ -400,15 +403,15 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected void executeCreateCommand(String domain) {
-		DashboardUi.executeCreateCommand(this.context, domain);
+		DashboardUi.executeCreateCommand(this.eclipseContext, domain);
 	}
 
 	protected void executeLoadCommand(String domain) {
-		DashboardUi.executeLoadCommand(this.context, domain);
+		DashboardUi.executeLoadCommand(this.eclipseContext, domain);
 	}
 
 	protected void executeEditCommand(String domain, String classifier) {
-		DashboardUi.executeEditCommand(this.context, domain, classifier);
+		DashboardUi.executeEditCommand(this.eclipseContext, domain, classifier);
 	}
 
 	protected Image getImage(EClass eClass) {
@@ -417,7 +420,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void dispose(IEclipseContext context) {
-		this.context = null;
+		this.eclipseContext = null;
 	}
 
 }

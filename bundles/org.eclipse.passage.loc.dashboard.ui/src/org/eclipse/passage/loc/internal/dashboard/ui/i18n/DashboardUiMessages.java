@@ -55,10 +55,10 @@ public class DashboardUiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_feature_version_warning;
 	public static String DefaultDashboardPanelAdvisor_feature_warning;
 	public static String DefaultDashboardPanelAdvisor_license_group;
-	public static String DefaultDashboardPanelAdvisor_license_pack_edit;
-	public static String DefaultDashboardPanelAdvisor_license_pack_info;
-	public static String DefaultDashboardPanelAdvisor_license_pack_title;
-	public static String DefaultDashboardPanelAdvisor_license_pack_warning;
+	public static String DefaultDashboardPanelAdvisor_license_plan_edit;
+	public static String DefaultDashboardPanelAdvisor_license_plan_info;
+	public static String DefaultDashboardPanelAdvisor_license_plan_title;
+	public static String DefaultDashboardPanelAdvisor_license_plan_warning;
 	public static String DefaultDashboardPanelAdvisor_load_link;
 	public static String DefaultDashboardPanelAdvisor_overview;
 	public static String DefaultDashboardPanelAdvisor_product_edit;

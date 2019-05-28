@@ -26,32 +26,34 @@ import org.osgi.service.component.annotations.Reference;
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Licenses.DOMAIN_NAME })
 public class LicensesSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
-	private LicenseRegistry registry;
+	private LicenseRegistry licenseRegistry;
 
 	@Reference
 	public void bindDomainRegistry(LicenseRegistry registry) {
-		this.registry = registry;
+		this.licenseRegistry = registry;
 	}
 
 	public void unbindDomainRegistry(LicenseRegistry registry) {
-		this.registry = null;
+		if (this.licenseRegistry == registry) {
+			this.licenseRegistry = null;
+		}
 	}
 
 	@Override
 	public String getSelectionTitle(String classifier) {
-		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
-			return LicensesCoreMessages.LicensesSelectionCommandAdvisor_select_lic_pack;
+		if (LicensesPackage.eINSTANCE.getLicensePlan().getName().equals(classifier)) {
+			return LicensesCoreMessages.LicensesSelectionCommandAdvisor_select_lic_plan;
 		}
 		return null;
 	}
 
 	@Override
 	public Iterable<?> getSelectionInput(String classifier) {
-		if (registry == null) {
+		if (licenseRegistry == null) {
 			return Collections.emptyList();
 		}
-		if (LicensesPackage.eINSTANCE.getLicensePack().getName().equals(classifier)) {
-			return registry.getLicensePacks();
+		if (LicensesPackage.eINSTANCE.getLicensePlan().getName().equals(classifier)) {
+			return licenseRegistry.getLicensePlans();
 		}
 		return Collections.emptyList();
 	}

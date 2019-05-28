@@ -29,7 +29,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
@@ -150,22 +150,22 @@ public class DomainRegistryExplorerPart {
 
 	@Inject
 	@Optional
-	public void createLicensePack(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor descriptor) {
+	public void createLicensePlan(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePlanDescriptor descriptor) {
 		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void deleteLicensePack(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor descriptor) {
+	public void deleteLicensePlan(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePlanDescriptor descriptor) {
 		treeViewer.refresh();
 	}
 
 	@Inject
 	@Optional
-	public void updateLicensePack(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePackDescriptor descriptor) {
+	public void updateLicensePlan(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePlanDescriptor descriptor) {
 		treeViewer.refresh();
 	}
 

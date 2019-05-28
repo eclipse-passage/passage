@@ -85,7 +85,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 			return LicensingImages.getImage(UsersPackage.eINSTANCE.getUserOrigin().getName());
 		}
 		if (lastSegment.contains(Licenses.DOMAIN_NAME)) {
-			return LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName());
+			return LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName());
 		}
 		return null;
 	}

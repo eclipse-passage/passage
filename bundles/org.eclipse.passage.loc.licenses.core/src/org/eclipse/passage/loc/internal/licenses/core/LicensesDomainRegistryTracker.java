@@ -14,11 +14,11 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
-public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePackDescriptor, LicenseDomainRegistry> {
+public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePlanDescriptor, LicenseDomainRegistry> {
 
 	public LicensesDomainRegistryTracker(LicenseDomainRegistry registry) {
 		super(registry);
@@ -27,11 +27,11 @@ public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicenseP
 	@Override
 	public void notifyChanged(Notification notification) {
 		Object notifier = notification.getNotifier();
-		if (notifier instanceof LicensePack) {
-			LicensePack licensePack = (LicensePack) notifier;
-			switch (notification.getFeatureID(LicensePack.class)) {
-			case LicensesPackage.LICENSE_PACK__IDENTIFIER:
-				processLicensePackIdentifier(licensePack, notification);
+		if (notifier instanceof LicensePlan) {
+			LicensePlan licensePlan = (LicensePlan) notifier;
+			switch (notification.getFeatureID(LicensePlan.class)) {
+			case LicensesPackage.LICENSE_PLAN__IDENTIFIER:
+				processLicensePlanIdentifier(licensePlan, notification);
 				break;
 			// FIXME: over identifiers
 			default:
@@ -41,17 +41,18 @@ public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicenseP
 		super.notifyChanged(notification);
 	}
 
-	protected void processLicensePackIdentifier(LicensePack licensePack, Notification notification) {
+	protected void processLicensePlanIdentifier(LicensePlan licensePlan, Notification notification) {
 		String oldValue = notification.getOldStringValue();
 		String newValue = notification.getNewStringValue();
 		switch (notification.getEventType()) {
 		case Notification.SET:
 			if (oldValue != null) {
-				registry.unregisterLicensePack(oldValue);
+				registry.unregisterLicensePlan(oldValue);
 			}
 			if (newValue != null) {
-				registry.registerLicensePack(licensePack);
+				registry.registerLicensePlan(licensePlan);
 			}
+			break;
 		default:
 			break;
 		}
