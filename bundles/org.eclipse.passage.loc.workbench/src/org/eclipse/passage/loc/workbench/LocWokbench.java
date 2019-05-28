@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.workbench;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -179,7 +180,7 @@ public class LocWokbench {
 		dialog.setLabelProvider(new DomainRegistryLabelProvider(factory));
 		dialog.setInput(input);
 		if (initial != null) {
-			dialog.setInitialSelection(initial);
+			dialog.setInitialSelection(Collections.singletonList(initial));
 		}
 		if (dialog.open() == Dialog.OK) {
 			return dialog.getFirstResult().orElse(null);

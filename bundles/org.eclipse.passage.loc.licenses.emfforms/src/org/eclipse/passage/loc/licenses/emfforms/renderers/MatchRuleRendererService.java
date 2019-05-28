@@ -27,7 +27,8 @@ public class MatchRuleRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
 	public MatchRuleRendererService() {
-		super(MatchRuleRenderer.class, LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule());
+		super(MatchRuleRenderer.class, LicensesPackage.eINSTANCE.getLicensePlanFeature_MatchRule(),
+				LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule());
 	}
 
 	@Reference

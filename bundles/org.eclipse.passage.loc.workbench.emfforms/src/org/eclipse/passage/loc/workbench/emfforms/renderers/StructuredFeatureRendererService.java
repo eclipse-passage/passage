@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench.emfforms.renderers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.view.spi.context.ViewModelContext;
@@ -27,7 +31,7 @@ import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
 public class StructuredFeatureRendererService implements EMFFormsDIRendererService<VControl> {
 
 	private final Class<? extends AbstractSWTRenderer<VControl>> renderer;
-	private final EStructuralFeature feature;
+	private final Iterable<EStructuralFeature> features;
 
 	private double priority = 10;
 
@@ -35,9 +39,22 @@ public class StructuredFeatureRendererService implements EMFFormsDIRendererServi
 	private ReportService reportService;
 
 	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer,
-			EStructuralFeature feature) {
+			EStructuralFeature... features) {
 		this.renderer = renderer;
-		this.feature = feature;
+		this.features = Arrays.asList(features);
+	}
+
+	/**
+	 * 
+	 * @param renderer
+	 * @param features
+	 * 
+	 * @since 0.5.0
+	 */
+	protected StructuredFeatureRendererService(Class<? extends AbstractSWTRenderer<VControl>> renderer,
+			Collection<EStructuralFeature> features) {
+		this.renderer = renderer;
+		this.features = new ArrayList<EStructuralFeature>(features);
 	}
 
 	@Override
@@ -61,8 +78,10 @@ public class StructuredFeatureRendererService implements EMFFormsDIRendererServi
 		Object valueType = valueProperty.getValueType();
 		if (valueType instanceof EStructuralFeature) {
 			EStructuralFeature structuralFeature = (EStructuralFeature) valueType;
-			if (structuralFeature.equals(feature)) {
-				return priority;
+			for (EStructuralFeature f : features) {
+				if (structuralFeature.equals(f)) {
+					return priority;
+				}
 			}
 		}
 		return NOT_APPLICABLE;
@@ -73,20 +92,24 @@ public class StructuredFeatureRendererService implements EMFFormsDIRendererServi
 		return renderer;
 	}
 
-	protected void bindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
-		this.databindingService = databindingService;
+	protected void bindEMFFormsDatabinding(EMFFormsDatabinding service) {
+		this.databindingService = service;
 	}
 
-	protected void unbindEMFFormsDatabinding(EMFFormsDatabinding databindingService) {
-		this.databindingService = null;
+	protected void unbindEMFFormsDatabinding(EMFFormsDatabinding service) {
+		if (this.databindingService == service) {
+			this.databindingService = null;
+		}
 	}
 
-	protected void bindReportService(ReportService reportService) {
-		this.reportService = reportService;
+	protected void bindReportService(ReportService service) {
+		this.reportService = service;
 	}
 
-	protected void unbindReportService(ReportService reportService) {
-		this.reportService = null;
+	protected void unbindReportService(ReportService service) {
+		if (this.reportService == service) {
+			this.reportService = null;
+		}
 	}
 
 }
