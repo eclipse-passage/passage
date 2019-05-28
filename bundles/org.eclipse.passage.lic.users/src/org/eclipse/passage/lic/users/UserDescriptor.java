@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users;
 
+import org.eclipse.passage.lic.api.conditions.LicensingCondition;
+
 /**
  * <p>
  * A <code>"User"</code> describes the licensee of your functionality.
@@ -21,16 +23,18 @@ package org.eclipse.passage.lic.users;
 public interface UserDescriptor {
 
 	/**
-	 * Returns the identifier of this user. This is the value of its
+	 * Returns the identifier of this user. Currently identification is performed
+	 * via <code>"email"</code> attribute This is the value of its
 	 * <code>"identifier"</code> attribute.
 	 *
 	 * @return the identifier
+	 * @see #getEmail()
 	 */
 	String getIdentifier();
 
 	/**
-	 * Returns the email of this user. This is the value of its <code>"email"</code>
-	 * attribute.
+	 * Returns the email of this user, currently used as an identifier. This is the
+	 * value of its <code>"email"</code> attribute.
 	 *
 	 * @return the email
 	 */
@@ -51,6 +55,26 @@ public interface UserDescriptor {
 	 * @return the description
 	 */
 	String getDescription();
+
+	/**
+	 * Returns the preferred condition type of this user. This is the value of its
+	 * <code>"preferredConditionType"</code> attribute.
+	 *
+	 * @return the preferred condition type
+	 * @since 0.5.0
+	 * @see LicensingCondition#getConditionType()
+	 */
+	String getPreferredConditionType();
+
+	/**
+	 * Returns the preferred condition expression of this user. This is the value of
+	 * its <code>"preferredConditionExpression"</code> attribute.
+	 *
+	 * @return the preferred condition expression
+	 * @since 0.5.0
+	 * @see LicensingCondition#getConditionExpression()
+	 */
+	String getPreferredConditionExpression();
 
 	UserOriginDescriptor getUserOrigin();
 

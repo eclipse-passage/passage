@@ -162,6 +162,7 @@ public interface User extends EObject, UserDescriptor {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getPreferredConditionType();
 
 	/**
@@ -184,6 +185,7 @@ public interface User extends EObject, UserDescriptor {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getPreferredConditionExpression();
 
 	/**
