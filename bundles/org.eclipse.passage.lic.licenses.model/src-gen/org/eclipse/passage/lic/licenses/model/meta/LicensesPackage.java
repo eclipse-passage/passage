@@ -51,7 +51,7 @@ public interface LicensesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -72,6 +72,62 @@ public interface LicensesPackage extends EPackage {
 	LicensesPackage eINSTANCE = org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePlanDescriptor <em>License Plan Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanDescriptor
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlanDescriptor()
+	 * @generated
+	 */
+	int LICENSE_PLAN_DESCRIPTOR = 0;
+
+	/**
+	 * The number of structural features of the '<em>License Plan Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>License Plan Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor <em>License Plan Feature Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlanFeatureDescriptor()
+	 * @generated
+	 */
+	int LICENSE_PLAN_FEATURE_DESCRIPTOR = 1;
+
+	/**
+	 * The number of structural features of the '<em>License Plan Feature Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>License Plan Feature Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -80,7 +136,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePackDescriptor()
 	 * @generated
 	 */
-	int LICENSE_PACK_DESCRIPTOR = 0;
+	int LICENSE_PACK_DESCRIPTOR = 2;
 
 	/**
 	 * The number of structural features of the '<em>License Pack Descriptor</em>' class.
@@ -111,7 +167,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrantDescriptor()
 	 * @generated
 	 */
-	int LICENSE_GRANT_DESCRIPTOR = 1;
+	int LICENSE_GRANT_DESCRIPTOR = 3;
 
 	/**
 	 * The number of structural features of the '<em>License Grant Descriptor</em>' class.
@@ -134,6 +190,134 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl <em>License Plan</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlan()
+	 * @generated
+	 */
+	int LICENSE_PLAN = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN__IDENTIFIER = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN__NAME = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN__DESCRIPTION = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>License Plan Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN__LICENSE_PLAN_FEATURES = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>License Plan</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE_COUNT = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>License Plan</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_OPERATION_COUNT = LICENSE_PLAN_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl <em>License Plan Feature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlanFeature()
+	 * @generated
+	 */
+	int LICENSE_PLAN_FEATURE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Match Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__MATCH_VERSION = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Match Rule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__MATCH_RULE = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>License Plan</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__LICENSE_PLAN = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>License Plan Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE_FEATURE_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>License Plan Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE_OPERATION_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl <em>License Pack</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -142,7 +326,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePack()
 	 * @generated
 	 */
-	int LICENSE_PACK = 2;
+	int LICENSE_PACK = 6;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -233,7 +417,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrant()
 	 * @generated
 	 */
-	int LICENSE_GRANT = 3;
+	int LICENSE_GRANT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
@@ -346,6 +530,28 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT_OPERATION_COUNT = LICENSE_GRANT_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePlanDescriptor <em>License Plan Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Plan Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicensePlanDescriptor"
+	 * @generated
+	 */
+	EClass getLicensePlanDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor <em>License Plan Feature Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Plan Feature Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor"
+	 * @generated
+	 */
+	EClass getLicensePlanFeatureDescriptor();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -368,6 +574,114 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLicenseGrantDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan <em>License Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Plan</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan
+	 * @generated
+	 */
+	EClass getLicensePlan();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getIdentifier()
+	 * @see #getLicensePlan()
+	 * @generated
+	 */
+	EAttribute getLicensePlan_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getName()
+	 * @see #getLicensePlan()
+	 * @generated
+	 */
+	EAttribute getLicensePlan_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getDescription()
+	 * @see #getLicensePlan()
+	 * @generated
+	 */
+	EAttribute getLicensePlan_Description();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getLicensePlanFeatures <em>License Plan Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>License Plan Features</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getLicensePlanFeatures()
+	 * @see #getLicensePlan()
+	 * @generated
+	 */
+	EReference getLicensePlan_LicensePlanFeatures();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature <em>License Plan Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Plan Feature</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature
+	 * @generated
+	 */
+	EClass getLicensePlanFeature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeatureIdentifier <em>Feature Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Feature Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeatureIdentifier()
+	 * @see #getLicensePlanFeature()
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_FeatureIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchVersion <em>Match Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Match Version</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchVersion()
+	 * @see #getLicensePlanFeature()
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_MatchVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchRule <em>Match Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Match Rule</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchRule()
+	 * @see #getLicensePlanFeature()
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_MatchRule();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan <em>License Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>License Plan</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan()
+	 * @see #getLicensePlanFeature()
+	 * @generated
+	 */
+	EReference getLicensePlanFeature_LicensePlan();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack <em>License Pack</em>}'.

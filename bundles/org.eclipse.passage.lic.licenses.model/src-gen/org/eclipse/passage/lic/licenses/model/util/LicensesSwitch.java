@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -82,6 +85,20 @@ public class LicensesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+		case LicensesPackage.LICENSE_PLAN_DESCRIPTOR: {
+			LicensePlanDescriptor licensePlanDescriptor = (LicensePlanDescriptor) theEObject;
+			T result = caseLicensePlanDescriptor(licensePlanDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.LICENSE_PLAN_FEATURE_DESCRIPTOR: {
+			LicensePlanFeatureDescriptor licensePlanFeatureDescriptor = (LicensePlanFeatureDescriptor) theEObject;
+			T result = caseLicensePlanFeatureDescriptor(licensePlanFeatureDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.LICENSE_PACK_DESCRIPTOR: {
 			LicensePackDescriptor licensePackDescriptor = (LicensePackDescriptor) theEObject;
 			T result = caseLicensePackDescriptor(licensePackDescriptor);
@@ -92,6 +109,24 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.LICENSE_GRANT_DESCRIPTOR: {
 			LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor) theEObject;
 			T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.LICENSE_PLAN: {
+			LicensePlan licensePlan = (LicensePlan) theEObject;
+			T result = caseLicensePlan(licensePlan);
+			if (result == null)
+				result = caseLicensePlanDescriptor(licensePlan);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.LICENSE_PLAN_FEATURE: {
+			LicensePlanFeature licensePlanFeature = (LicensePlanFeature) theEObject;
+			T result = caseLicensePlanFeature(licensePlanFeature);
+			if (result == null)
+				result = caseLicensePlanFeatureDescriptor(licensePlanFeature);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -117,6 +152,36 @@ public class LicensesSwitch<T> extends Switch<T> {
 		default:
 			return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Plan Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Plan Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicensePlanDescriptor(LicensePlanDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Plan Feature Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Plan Feature Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicensePlanFeatureDescriptor(LicensePlanFeatureDescriptor object) {
+		return null;
 	}
 
 	/**
@@ -150,6 +215,36 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Plan</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Plan</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicensePlan(LicensePlan object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Plan Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Plan Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicensePlanFeature(LicensePlanFeature object) {
 		return null;
 	}
 

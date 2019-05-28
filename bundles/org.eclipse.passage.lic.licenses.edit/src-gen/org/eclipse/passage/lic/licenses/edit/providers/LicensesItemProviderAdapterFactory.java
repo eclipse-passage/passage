@@ -86,6 +86,52 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicensePlan} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LicensePlanItemProvider licensePlanItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicensePlan}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLicensePlanAdapter() {
+		if (licensePlanItemProvider == null) {
+			licensePlanItemProvider = new LicensePlanItemProvider(this);
+		}
+
+		return licensePlanItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LicensePlanFeatureItemProvider licensePlanFeatureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLicensePlanFeatureAdapter() {
+		if (licensePlanFeatureItemProvider == null) {
+			licensePlanFeatureItemProvider = new LicensePlanFeatureItemProvider(this);
+		}
+
+		return licensePlanFeatureItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -249,6 +295,10 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 */
 	@Override
 	public void dispose() {
+		if (licensePlanItemProvider != null)
+			licensePlanItemProvider.dispose();
+		if (licensePlanFeatureItemProvider != null)
+			licensePlanFeatureItemProvider.dispose();
 		if (licensePackItemProvider != null)
 			licensePackItemProvider.dispose();
 		if (licenseGrantItemProvider != null)

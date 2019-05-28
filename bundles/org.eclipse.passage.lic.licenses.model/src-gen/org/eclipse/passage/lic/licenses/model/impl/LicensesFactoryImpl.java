@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -71,6 +72,10 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case LicensesPackage.LICENSE_PLAN:
+			return createLicensePlan();
+		case LicensesPackage.LICENSE_PLAN_FEATURE:
+			return createLicensePlanFeature();
 		case LicensesPackage.LICENSE_PACK:
 			return createLicensePack();
 		case LicensesPackage.LICENSE_GRANT:
@@ -78,6 +83,28 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LicensePlan createLicensePlan() {
+		LicensePlanImpl licensePlan = new LicensePlanImpl();
+		return licensePlan;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LicensePlanFeature createLicensePlanFeature() {
+		LicensePlanFeatureImpl licensePlanFeature = new LicensePlanFeatureImpl();
+		return licensePlanFeature;
 	}
 
 	/**

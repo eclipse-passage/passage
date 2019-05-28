@@ -18,6 +18,9 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -86,6 +89,16 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected LicensesSwitch<Adapter> modelSwitch = new LicensesSwitch<Adapter>() {
 		@Override
+		public Adapter caseLicensePlanDescriptor(LicensePlanDescriptor object) {
+			return createLicensePlanDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseLicensePlanFeatureDescriptor(LicensePlanFeatureDescriptor object) {
+			return createLicensePlanFeatureDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseLicensePackDescriptor(LicensePackDescriptor object) {
 			return createLicensePackDescriptorAdapter();
 		}
@@ -93,6 +106,16 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
 			return createLicenseGrantDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseLicensePlan(LicensePlan object) {
+			return createLicensePlanAdapter();
+		}
+
+		@Override
+		public Adapter caseLicensePlanFeature(LicensePlanFeature object) {
+			return createLicensePlanFeatureAdapter();
 		}
 
 		@Override
@@ -126,6 +149,34 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePlanDescriptor <em>License Plan Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanDescriptor
+	 * @generated
+	 */
+	public Adapter createLicensePlanDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor <em>License Plan Feature Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor
+	 * @generated
+	 */
+	public Adapter createLicensePlanFeatureDescriptorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -156,6 +207,34 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseGrantDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan <em>License Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan
+	 * @generated
+	 */
+	public Adapter createLicensePlanAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature <em>License Plan Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature
+	 * @generated
+	 */
+	public Adapter createLicensePlanFeatureAdapter() {
 		return null;
 	}
 
