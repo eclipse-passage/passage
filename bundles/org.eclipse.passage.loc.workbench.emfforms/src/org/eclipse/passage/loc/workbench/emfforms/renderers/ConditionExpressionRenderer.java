@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.emfforms.renderers;
+package org.eclipse.passage.loc.workbench.emfforms.renderers;
 
 import javax.inject.Inject;
 
@@ -22,9 +22,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.loc.internal.licenses.emfforms.LicensesEmfFormsMessages;
+import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.workbench.dialogs.ManageTextValuesDialog;
-import org.eclipse.passage.loc.workbench.emfforms.renderers.TextWithButtonRenderer;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -37,7 +36,7 @@ public class ConditionExpressionRenderer extends TextWithButtonRenderer {
 
 	private static final String EXPRESSION_EMPTY = ""; //$NON-NLS-1$
 	private static final String EXPRESSION_SEPARATOR = ";"; //$NON-NLS-1$
-	
+
 	@Inject
 	public ConditionExpressionRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
@@ -52,10 +51,11 @@ public class ConditionExpressionRenderer extends TextWithButtonRenderer {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Shell shell = Display.getDefault().getActiveShell();
-				ManageTextValuesDialog dialog = new ManageTextValuesDialog(shell, getCurrentValue(), EXPRESSION_SEPARATOR);
+				ManageTextValuesDialog dialog = new ManageTextValuesDialog(shell, getCurrentValue(),
+						EXPRESSION_SEPARATOR);
 				dialog.create();
 				Shell dialogShell = dialog.getShell();
-				dialogShell.setText(LicensesEmfFormsMessages.ConditionExpressionRenderer_condition_expression);
+				dialogShell.setText(WorkbenchEmfformsMessages.ConditionExpressionRenderer_condition_expression);
 				Image image = LicensingImages.getImage(LicensingImages.IMG_DEFAULT);
 				dialogShell.setImage(image);
 				if (dialog.open() == Dialog.OK) {
@@ -66,7 +66,7 @@ public class ConditionExpressionRenderer extends TextWithButtonRenderer {
 
 		return control;
 	}
-	
+
 	@Override
 	protected String getUnsetText() {
 		return EXPRESSION_EMPTY;

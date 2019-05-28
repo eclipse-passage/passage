@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018-2019 ArSysOp
+ * Copyright (c) 2019 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,24 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.emfforms.renderers;
+package org.eclipse.passage.loc.users.emfforms.renderers;
 
 import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.loc.workbench.emfforms.renderers.ConditionExpressionRenderer;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.workbench.emfforms.renderers.ConditionTypeRenderer;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRendererService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component
-public class ConditionExpressionRendererService extends StructuredFeatureRendererService
+public class ConditionTypeRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
-	public ConditionExpressionRendererService() {
-		super(ConditionExpressionRenderer.class, LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
+	public ConditionTypeRendererService() {
+		super(ConditionTypeRenderer.class, UsersPackage.eINSTANCE.getUser_PreferredConditionType());
 	}
 
 	@Reference

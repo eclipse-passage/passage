@@ -20,6 +20,7 @@ public final class WorkbenchEmfformsMessages extends NLS {
 
 	public static String DetailsView_label_details;
 	public static String TextWithButtonRenderer_button_edit;
+	public static String ConditionExpressionRenderer_condition_expression;
 
 	static {
 		// initialize resource bundle
