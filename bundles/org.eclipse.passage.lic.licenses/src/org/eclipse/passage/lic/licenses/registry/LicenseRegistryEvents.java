@@ -18,7 +18,12 @@ import static org.eclipse.passage.lic.api.LicensingEvents.READ;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
 
-public class LicenseRegistryEvents {
+/**
+ * License registry events and event topic definitions.
+ *
+ * @since 0.4.0
+ */
+public final class LicenseRegistryEvents {
 
 	/**
 	 * Base name of all Licenses events
@@ -74,5 +79,9 @@ public class LicenseRegistryEvents {
 	 * License Grant <code>delete</code> event
 	 */
 	public static final String LICENSE_GRANT_DELETE = LICENSE_GRANT_TOPIC_BASE + TOPIC_SEP + DELETE;
+
+	private LicenseRegistryEvents() {
+		// block
+	}
 
 }

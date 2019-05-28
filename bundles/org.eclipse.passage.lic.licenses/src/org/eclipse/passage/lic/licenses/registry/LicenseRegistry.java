@@ -14,6 +14,11 @@ package org.eclipse.passage.lic.licenses.registry;
 
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 
+/**
+ * 
+ * @since 0.4.0
+ *
+ */
 public interface LicenseRegistry {
 
 	Iterable<? extends LicensePackDescriptor> getLicensePacks();

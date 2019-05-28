@@ -14,10 +14,31 @@ package org.eclipse.passage.lic.licenses;
 
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
+/**
+ * <p>
+ * A <code>"License Grant"</code> is a unit inside the
+ * <code>"License Pack"</code> with all the information required to decide
+ * regarding permissions for the particular <code>"Feature Version"</code>.
+ * <p>
+ * 
+ * @since 0.4.0
+ * @see LicensePackDescriptor
+ */
 public interface LicenseGrantDescriptor extends LicensingCondition {
 
+	/**
+	 * Returns the capacity of this license grant. Used for floating licensing. This
+	 * is the value of its <code>"capacity"</code> attribute.
+	 *
+	 * @return the capacity
+	 */
 	int getCapacity();
-	
+
+	/**
+	 * Returns the containing license pack capacity of this license grant.
+	 *
+	 * @return the license pack
+	 */
 	LicensePackDescriptor getLicensePack();
-	
+
 }
