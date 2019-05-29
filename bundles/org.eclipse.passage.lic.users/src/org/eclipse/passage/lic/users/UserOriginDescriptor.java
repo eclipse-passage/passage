@@ -47,6 +47,12 @@ public interface UserOriginDescriptor {
 	 */
 	String getDescription();
 
+	/**
+	 * Returns the <code>"User"</code>(s) contained in this user origin. This is the
+	 * value of its <code>"users"</code> reference.
+	 *
+	 * @return the users
+	 */
 	Iterable<? extends UserDescriptor> getUsers();
 
 }

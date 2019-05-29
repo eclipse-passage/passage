@@ -76,7 +76,18 @@ public interface UserDescriptor {
 	 */
 	String getPreferredConditionExpression();
 
+	/**
+	 * Returns the containing origin of this user.
+	 *
+	 * @return the user origin
+	 */
 	UserOriginDescriptor getUserOrigin();
 
+	/**
+	 * Returns the <code>"User License"</code>(s) issued for this user plan. This is
+	 * the value of its <code>"userLicenses"</code> reference.
+	 *
+	 * @return the user licenses
+	 */
 	Iterable<? extends UserLicenseDescriptor> getUserLicenses();
 }
