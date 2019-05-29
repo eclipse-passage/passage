@@ -136,6 +136,29 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserLicense} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserLicenseItemProvider userLicenseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserLicense}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserLicenseAdapter() {
+		if (userLicenseItemProvider == null) {
+			userLicenseItemProvider = new UserLicenseItemProvider(this);
+		}
+
+		return userLicenseItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -253,6 +276,8 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 			userOriginItemProvider.dispose();
 		if (userItemProvider != null)
 			userItemProvider.dispose();
+		if (userLicenseItemProvider != null)
+			userLicenseItemProvider.dispose();
 	}
 
 }

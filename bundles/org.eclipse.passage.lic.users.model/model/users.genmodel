@@ -18,6 +18,7 @@
       testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicenseDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/name"/>
@@ -32,6 +33,21 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredConditionType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredConditionExpression"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/userOrigin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/userLicenses"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense"
+        labelFeature="#//users/UserLicense/packIdentifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/planIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/productIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/productVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/validFrom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/validUntil"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/conditionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/conditionExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/issueDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/operatorIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/packIdentifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/user"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

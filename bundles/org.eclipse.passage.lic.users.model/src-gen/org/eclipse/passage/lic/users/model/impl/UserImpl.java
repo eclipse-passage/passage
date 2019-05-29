@@ -12,14 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users.model.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
@@ -40,6 +45,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionType <em>Preferred Condition Type</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionExpression <em>Preferred Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserLicenses <em>User Licenses</em>}</li>
  * </ul>
  *
  * @generated
@@ -172,6 +178,16 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @ordered
 	 */
 	protected String preferredConditionExpression = PREFERRED_CONDITION_EXPRESSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getUserLicenses() <em>User Licenses</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserLicenses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UserLicense> userLicenses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -396,10 +412,25 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<UserLicense> getUserLicenses() {
+		if (userLicenses == null) {
+			userLicenses = new EObjectContainmentWithInverseEList<UserLicense>(UserLicense.class, this,
+					UsersPackage.USER__USER_LICENSES, UsersPackage.USER_LICENSE__USER);
+		}
+		return userLicenses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -407,6 +438,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetUserOrigin((UserOrigin) otherEnd, msgs);
+		case UsersPackage.USER__USER_LICENSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUserLicenses()).basicAdd(otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -423,6 +456,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (featureID) {
 		case UsersPackage.USER__USER_ORIGIN:
 			return basicSetUserOrigin(null, msgs);
+		case UsersPackage.USER__USER_LICENSES:
+			return ((InternalEList<?>) getUserLicenses()).basicRemove(otherEnd, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -467,6 +502,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return getPreferredConditionExpression();
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin();
+		case UsersPackage.USER__USER_LICENSES:
+			return getUserLicenses();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -478,6 +515,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -501,6 +539,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			return;
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) newValue);
+			return;
+		case UsersPackage.USER__USER_LICENSES:
+			getUserLicenses().clear();
+			getUserLicenses().addAll((Collection<? extends UserLicense>) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -538,6 +580,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__USER_ORIGIN:
 			setUserOrigin((UserOrigin) null);
 			return;
+		case UsersPackage.USER__USER_LICENSES:
+			getUserLicenses().clear();
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -569,6 +614,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 					: !PREFERRED_CONDITION_EXPRESSION_EDEFAULT.equals(preferredConditionExpression);
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin() != null;
+		case UsersPackage.USER__USER_LICENSES:
+			return userLicenses != null && !userLicenses.isEmpty();
 		default:
 			return super.eIsSet(featureID);
 		}

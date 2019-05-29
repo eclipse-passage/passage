@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users.model.api;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.users.UserDescriptor;
 
@@ -33,6 +34,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType <em>Preferred Condition Type</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression <em>Preferred Condition Expression</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.api.User#getUserLicenses <em>User Licenses</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUser()
@@ -227,5 +229,20 @@ public interface User extends EObject, UserDescriptor {
 	 * @generated
 	 */
 	void setUserOrigin(UserOrigin value);
+
+	/**
+	 * Returns the value of the '<em><b>User Licenses</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.users.model.api.UserLicense}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.users.model.api.UserLicense#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Licenses</em>' containment reference list.
+	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUser_UserLicenses()
+	 * @see org.eclipse.passage.lic.users.model.api.UserLicense#getUser
+	 * @model opposite="user" containment="true"
+	 * @generated
+	 */
+	@Override
+	EList<UserLicense> getUserLicenses();
 
 } // User

@@ -78,4 +78,5 @@ public interface UserDescriptor {
 
 	UserOriginDescriptor getUserOrigin();
 
+	Iterable<? extends UserLicenseDescriptor> getUserLicenses();
 }

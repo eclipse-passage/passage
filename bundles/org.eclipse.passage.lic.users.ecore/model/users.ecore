@@ -6,6 +6,8 @@
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserDescriptor"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserLicenseDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserLicenseDescriptor"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserOrigin" eSuperTypes="#//UserOriginDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -25,5 +27,28 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userOrigin" lowerBound="1"
         eType="#//UserOrigin" eOpposite="#//UserOrigin/users"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userLicenses" upperBound="-1"
+        eType="#//UserLicense" containment="true" eOpposite="#//UserLicense/user"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserLicense" eSuperTypes="#//UserLicenseDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="planIdentifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="productIdentifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="productVersion" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionExpression" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issueDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" lowerBound="1" eType="#//User"
+        eOpposite="#//User/userLicenses"/>
   </eClassifiers>
 </ecore:EPackage>

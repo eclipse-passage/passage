@@ -18,8 +18,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -51,6 +53,13 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userLicenseDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -64,6 +73,13 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	private EClass userEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userLicenseEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -152,6 +168,16 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	@Override
 	public EClass getUserDescriptor() {
 		return userDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUserLicenseDescriptor() {
+		return userLicenseDescriptorEClass;
 	}
 
 	/**
@@ -297,6 +323,136 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getUser_UserLicenses() {
+		return (EReference) userEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUserLicense() {
+		return userLicenseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_PlanIdentifier() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ProductIdentifier() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ProductVersion() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ValidFrom() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ValidUntil() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ConditionType() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_ConditionExpression() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_IssueDate() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_OperatorIdentifier() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserLicense_PackIdentifier() {
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getUserLicense_User() {
+		return (EReference) userLicenseEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -332,6 +488,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 		userDescriptorEClass = createEClass(USER_DESCRIPTOR);
 
+		userLicenseDescriptorEClass = createEClass(USER_LICENSE_DESCRIPTOR);
+
 		userOriginEClass = createEClass(USER_ORIGIN);
 		createEAttribute(userOriginEClass, USER_ORIGIN__IDENTIFIER);
 		createEAttribute(userOriginEClass, USER_ORIGIN__NAME);
@@ -346,6 +504,20 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		createEAttribute(userEClass, USER__PREFERRED_CONDITION_TYPE);
 		createEAttribute(userEClass, USER__PREFERRED_CONDITION_EXPRESSION);
 		createEReference(userEClass, USER__USER_ORIGIN);
+		createEReference(userEClass, USER__USER_LICENSES);
+
+		userLicenseEClass = createEClass(USER_LICENSE);
+		createEAttribute(userLicenseEClass, USER_LICENSE__PLAN_IDENTIFIER);
+		createEAttribute(userLicenseEClass, USER_LICENSE__PRODUCT_IDENTIFIER);
+		createEAttribute(userLicenseEClass, USER_LICENSE__PRODUCT_VERSION);
+		createEAttribute(userLicenseEClass, USER_LICENSE__VALID_FROM);
+		createEAttribute(userLicenseEClass, USER_LICENSE__VALID_UNTIL);
+		createEAttribute(userLicenseEClass, USER_LICENSE__CONDITION_TYPE);
+		createEAttribute(userLicenseEClass, USER_LICENSE__CONDITION_EXPRESSION);
+		createEAttribute(userLicenseEClass, USER_LICENSE__ISSUE_DATE);
+		createEAttribute(userLicenseEClass, USER_LICENSE__OPERATOR_IDENTIFIER);
+		createEAttribute(userLicenseEClass, USER_LICENSE__PACK_IDENTIFIER);
+		createEReference(userLicenseEClass, USER_LICENSE__USER);
 	}
 
 	/**
@@ -381,6 +553,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Add supertypes to classes
 		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
 		userEClass.getESuperTypes().add(this.getUserDescriptor());
+		userLicenseEClass.getESuperTypes().add(this.getUserLicenseDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, //$NON-NLS-1$
@@ -388,6 +561,9 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
 				!IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(userLicenseDescriptorEClass, UserLicenseDescriptor.class, "UserLicenseDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -420,6 +596,43 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUser_UserOrigin(), this.getUserOrigin(), this.getUserOrigin_Users(), "userOrigin", null, 1, 1, //$NON-NLS-1$
 				User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_UserLicenses(), this.getUserLicense(), this.getUserLicense_User(), "userLicenses", null, //$NON-NLS-1$
+				0, -1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userLicenseEClass, UserLicense.class, "UserLicense", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUserLicense_PlanIdentifier(), ecorePackage.getEString(), "planIdentifier", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ProductIdentifier(), ecorePackage.getEString(), "productIdentifier", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ProductVersion(), ecorePackage.getEString(), "productVersion", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ValidFrom(), ecorePackage.getEDate(), "validFrom", null, 1, 1, UserLicense.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ValidUntil(), ecorePackage.getEDate(), "validUntil", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ConditionType(), ecorePackage.getEString(), "conditionType", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_ConditionExpression(), ecorePackage.getEString(), "conditionExpression", null, 1, //$NON-NLS-1$
+				1, UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_IssueDate(), ecorePackage.getEDate(), "issueDate", null, 0, 1, UserLicense.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_OperatorIdentifier(), ecorePackage.getEString(), "operatorIdentifier", null, 0, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_PackIdentifier(), ecorePackage.getEString(), "packIdentifier", null, 0, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getUserLicense_User(), this.getUser(), this.getUser_UserLicenses(), "user", null, 1, 1, //$NON-NLS-1$
+				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

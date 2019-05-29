@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.passage.lic.users.model.api.*;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
@@ -74,6 +75,8 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 			return createUserOrigin();
 		case UsersPackage.USER:
 			return createUser();
+		case UsersPackage.USER_LICENSE:
+			return createUserLicense();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -101,6 +104,17 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UserLicense createUserLicense() {
+		UserLicenseImpl userLicense = new UserLicenseImpl();
+		return userLicense;
 	}
 
 	/**

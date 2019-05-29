@@ -17,7 +17,9 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.*;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -96,6 +98,11 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseUserLicenseDescriptor(UserLicenseDescriptor object) {
+			return createUserLicenseDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseUserOrigin(UserOrigin object) {
 			return createUserOriginAdapter();
 		}
@@ -103,6 +110,11 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseUser(User object) {
 			return createUserAdapter();
+		}
+
+		@Override
+		public Adapter caseUserLicense(UserLicense object) {
+			return createUserLicenseAdapter();
 		}
 
 		@Override
@@ -160,6 +172,20 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserLicenseDescriptor <em>User License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.UserLicenseDescriptor
+	 * @generated
+	 */
+	public Adapter createUserLicenseDescriptorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.model.api.UserOrigin <em>User Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -190,6 +216,20 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.model.api.UserLicense <em>User License</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.model.api.UserLicense
+	 * @generated
+	 */
+	public Adapter createUserLicenseAdapter() {
 		return null;
 	}
 
