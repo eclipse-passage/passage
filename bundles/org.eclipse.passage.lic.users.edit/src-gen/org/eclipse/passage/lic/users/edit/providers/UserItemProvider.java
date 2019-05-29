@@ -220,7 +220,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	}
 
 	/**
-	 * This returns User.gif.
+	 * This returns user.png.
 	 * 
 	 * <!-- begin-user-doc -->
 	 * 

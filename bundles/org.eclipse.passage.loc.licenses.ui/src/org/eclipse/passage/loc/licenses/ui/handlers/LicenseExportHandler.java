@@ -39,6 +39,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
@@ -67,8 +70,8 @@ public class LicenseExportHandler {
 			return;
 		}
 		long months = 12;
-		InputDialog durationDialog = new InputDialog(shell, LicensesUiMessages.LicenseExportHandler_period_title, LicensesUiMessages.LicenseExportHandler_period_message,
-				String.valueOf(months), new IInputValidator() {
+		InputDialog durationDialog = new InputDialog(shell, LicensesUiMessages.LicenseExportHandler_period_title,
+				LicensesUiMessages.LicenseExportHandler_period_message, String.valueOf(months), new IInputValidator() {
 					@Override
 					public String isValid(String newText) {
 						String invalidInput = LicensesUiMessages.LicenseExportHandler_e_period_invalid;
@@ -107,7 +110,8 @@ public class LicenseExportHandler {
 			ProductVersionDescriptor productVersion, Date from, Date until) {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicensePack licensePack = licenseFactory.createLicensePack();
-		licensePack.setProductIdentifier(productVersion.getProduct().getIdentifier());
+		String productIdentifier = productVersion.getProduct().getIdentifier();
+		licensePack.setProductIdentifier(productIdentifier);
 		licensePack.setProductVersion(productVersion.getVersion());
 		licensePack.setUserIdentifier(userDescriptor.getEmail());
 		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
@@ -115,18 +119,38 @@ public class LicenseExportHandler {
 		String conditionType = userDescriptor.getPreferredConditionType();
 		String expression = userDescriptor.getPreferredConditionExpression();
 		for (LicensePlanFeatureDescriptor planFeature : features) {
-			LicenseGrant grant = licenseFactory.createLicenseGrant();
-			grant.setFeatureIdentifier(planFeature.getFeatureIdentifier());
-			grant.setMatchVersion(planFeature.getMatchVersion());
-			grant.setMatchRule(planFeature.getMatchRule());
-			grant.setCapacity(1);
-			grant.setConditionExpression(expression);
-			grant.setConditionType(conditionType);
-			grant.setValidFrom(from);
-			grant.setValidUntil(until);
+			LicenseGrant grant = createLicenseGrant(planFeature, from, until, conditionType, expression);
 			grants.add(grant);
 		}
+		if (userDescriptor instanceof User) {
+			User user = (User) userDescriptor;
+			UserLicense userLicense = UsersFactory.eINSTANCE.createUserLicense();
+			userLicense.setPlanIdentifier(licensePlan.getIdentifier());
+			userLicense.setValidFrom(from);
+			userLicense.setValidUntil(until);
+			userLicense.setConditionExpression(expression);
+			userLicense.setConditionType(conditionType);
+			userLicense.setProductIdentifier(productIdentifier);
+			userLicense.setProductVersion(productVersion.getVersion());
+			user.getUserLicenses().add(userLicense);
+		}
+
 		return licensePack;
+	}
+
+	private LicenseGrant createLicenseGrant(LicensePlanFeatureDescriptor planFeature, Date from, Date until,
+			String conditionType, String expression) {
+		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
+		LicenseGrant grant = licenseFactory.createLicenseGrant();
+		grant.setFeatureIdentifier(planFeature.getFeatureIdentifier());
+		grant.setMatchVersion(planFeature.getMatchVersion());
+		grant.setMatchRule(planFeature.getMatchRule());
+		grant.setCapacity(1);
+		grant.setConditionExpression(expression);
+		grant.setConditionType(conditionType);
+		grant.setValidFrom(from);
+		grant.setValidUntil(until);
+		return grant;
 	}
 
 	@CanExecute

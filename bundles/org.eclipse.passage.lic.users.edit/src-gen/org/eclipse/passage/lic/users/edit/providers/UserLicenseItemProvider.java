@@ -236,8 +236,22 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
+	 * This returns license.png.
+	 * 
 	 * <!-- begin-user-doc -->
+	 * 
 	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,13 +263,16 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserLicense) object).getPackIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_UserLicense_type") : //$NON-NLS-1$
-				getString("_UI_UserLicense_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		UserLicense userLicense = (UserLicense) object;
+		String planId = userLicense.getPlanIdentifier();
+		String productId = userLicense.getProductIdentifier();
+		String productVersion = userLicense.getProductVersion();
+		Object[] substitutions = new Object[] { planId, productId, productVersion };
+		return getString("_UI_UserLicense_label", substitutions); //$NON-NLS-1$
 	}
 
 	/**

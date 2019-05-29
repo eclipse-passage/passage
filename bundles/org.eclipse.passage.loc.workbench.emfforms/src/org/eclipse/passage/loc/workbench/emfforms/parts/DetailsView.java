@@ -175,14 +175,16 @@ public class DetailsView {
 
 	protected TreeMasterDetailComposite createTreeMasterDetail(final Composite composite, Object editorInput,
 			final CreateElementCallback createElementCallback) {
-		MenuProvider menuProvider = createMenuProvider(createElementCallback);
+		ChildrenDescriptorCollector childrenDescriptorCollector = createChildrenDescriptorCollector();
+		MenuProvider menuProvider = createMenuProvider(childrenDescriptorCollector, createElementCallback);
 		final TreeMasterDetailComposite treeMasterDetail = TreeMasterDetailSWTFactory
 				.fillDefaults(composite, SWT.NONE, editorInput).customizeCildCreation(createElementCallback)
 				.customizeMenu(menuProvider).create();
 		return treeMasterDetail;
 	}
 
-	protected MenuProvider createMenuProvider(final CreateElementCallback createElementCallback) {
+	protected MenuProvider createMenuProvider(ChildrenDescriptorCollector childrenDescriptorCollector,
+			final CreateElementCallback createElementCallback) {
 		MenuProvider menuProvider = new MenuProvider() {
 			@Override
 			public Menu getMenu(TreeViewer treeViewer, EditingDomain editingDomain) {
@@ -191,7 +193,7 @@ public class DetailsView {
 				final List<MasterDetailAction> masterDetailActions = ActionCollector.newList()
 						.addCutAction(editingDomain).addCopyAction(editingDomain).addPasteAction(editingDomain)
 						.getList();
-				menuMgr.addMenuListener(new TreeMasterDetailMenuListener(new ChildrenDescriptorCollector(), menuMgr,
+				menuMgr.addMenuListener(new TreeMasterDetailMenuListener(childrenDescriptorCollector, menuMgr,
 						treeViewer, editingDomain, masterDetailActions, createElementCallback,
 						new DefaultDeleteActionBuilder()));
 				final Menu menu = menuMgr.createContextMenu(treeViewer.getControl());
@@ -203,7 +205,8 @@ public class DetailsView {
 	}
 
 	protected void configurePart(Resource resource, IEclipseContext context) {
-		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(LicensingEcore.extractEObject(resource));
+		EditingDomain editingDomain = AdapterFactoryEditingDomain
+				.getEditingDomainFor(LicensingEcore.extractEObject(resource));
 		context.set(EditingDomain.class, editingDomain);
 		if (editingDomain instanceof AdapterFactoryEditingDomain) {
 			AdapterFactory adapterFactory = ((AdapterFactoryEditingDomain) editingDomain).getAdapterFactory();
@@ -249,6 +252,16 @@ public class DetailsView {
 				}
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 
+	 * @since 0.5.0
+	 */
+	protected ChildrenDescriptorCollector createChildrenDescriptorCollector() {
+		return new ChildrenDescriptorCollector();
 	}
 
 	protected CreateElementCallback getCreateElementCallback() {
