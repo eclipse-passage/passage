@@ -82,6 +82,10 @@ public class DashboardUiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_user_edit;
 	public static String DefaultDashboardPanelAdvisor_user_group;
 	public static String DefaultDashboardPanelAdvisor_user_info;
+	public static String DefaultDashboardPanelAdvisor_user_license_edit;
+	public static String DefaultDashboardPanelAdvisor_user_license_info;
+	public static String DefaultDashboardPanelAdvisor_user_license_title;
+	public static String DefaultDashboardPanelAdvisor_user_license_warning;
 	public static String DefaultDashboardPanelAdvisor_user_origin_edit;
 	public static String DefaultDashboardPanelAdvisor_user_origin_info;
 	public static String DefaultDashboardPanelAdvisor_user_origin_title;

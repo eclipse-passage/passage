@@ -47,6 +47,9 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user;
 		}
+		if (UsersPackage.eINSTANCE.getUserLicense().getName().equals(classifier)) {
+			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user_license;
+		}
 		return null;
 	}
 
@@ -60,6 +63,9 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 		}
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return userRegistry.getUsers();
+		}
+		if (UsersPackage.eINSTANCE.getUserLicense().getName().equals(classifier)) {
+			return userRegistry.getUserLicenses();
 		}
 		return Collections.emptyList();
 	}

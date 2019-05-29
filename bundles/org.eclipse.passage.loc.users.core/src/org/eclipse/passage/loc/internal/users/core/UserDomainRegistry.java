@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
@@ -47,6 +48,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
 	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
+	private final Map<String, UserLicenseDescriptor> userLicenseIndex = new HashMap<>();
 
 	@Reference
 	@Override
@@ -114,7 +116,6 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		return new ArrayList<>(userIndex.values());
 	}
 
-	@Override
 	public Iterable<? extends UserDescriptor> getUsers(String userOriginId) {
 		UserOriginDescriptor userOrigin = userOriginIndex.get(userOriginId);
 		if (userOrigin == null) {
@@ -129,11 +130,15 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	@Override
+	public Iterable<? extends UserLicenseDescriptor> getUserLicenses() {
+		return new ArrayList<>(userLicenseIndex.values());
+	}
+
+	@Override
 	protected DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> createContentAdapter() {
 		return new UsersDomainRegistryTracker(this);
 	}
 
-	@Override
 	public void registerUserOrigin(UserOriginDescriptor userOrigin) {
 		String identifier = userOrigin.getIdentifier();
 		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
@@ -141,12 +146,9 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 			// FIXME: warning
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin));
-		userOrigin.getUsers().forEach(u -> {
-			registerUser(u);
-		});
+		userOrigin.getUsers().forEach(u -> registerUser(u));
 	}
 
-	@Override
 	public void registerUser(UserDescriptor user) {
 		String identifier = user.getEmail();
 		UserDescriptor existing = userIndex.put(identifier, user);
@@ -154,9 +156,18 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 			// FIXME: warning
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_CREATE, user));
+		user.getUserLicenses().forEach(u -> registerUserLicense(u));
 	}
 
-	@Override
+	public void registerUserLicense(UserLicenseDescriptor userLicense) {
+		String identifier = userLicense.getPackIdentifier();
+		UserLicenseDescriptor existing = userLicenseIndex.put(identifier, userLicense);
+		if (existing != null) {
+			// FIXME: warning
+		}
+		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_LICENSE_CREATE, userLicense));
+	}
+
 	public void unregisterUserOrigin(String userOriginId) {
 		UserOriginDescriptor removed = userOriginIndex.remove(userOriginId);
 		if (removed != null) {
@@ -167,11 +178,17 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		}
 	}
 
-	@Override
 	public void unregisterUser(String userId) {
 		UserDescriptor removed = userIndex.remove(userId);
 		if (removed != null) {
 			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_DELETE, removed));
+		}
+	}
+
+	public void unregisterUserLicense(String packId) {
+		UserLicenseDescriptor removed = userLicenseIndex.remove(packId);
+		if (removed != null) {
+			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_LICENSE_DELETE, removed));
 		}
 	}
 

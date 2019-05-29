@@ -21,6 +21,7 @@ public class UsersCoreMessages extends NLS {
 	public static String UserOriginClassifierInitializer_object_name;
 	public static String UserOriginClassifierInitializer_object_title;
 	public static String UsersSelectionCommandAdvisor_select_user;
+	public static String UsersSelectionCommandAdvisor_select_user_license;
 	public static String UsersSelectionCommandAdvisor_select_user_origin;
 	static {
 		// initialize resource bundle

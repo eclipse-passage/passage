@@ -80,6 +80,31 @@ public final class UserRegistryEvents {
 	 */
 	public static final String USER_DELETE = USER_TOPIC_BASE + TOPIC_SEP + DELETE;
 
+	/**
+	 * Base name of all User License events
+	 */
+	public static final String USER_LICENSE_TOPIC_BASE = USERS_TOPIC_BASE + TOPIC_SEP + "UserLicense"; //$NON-NLS-1$
+
+	/**
+	 * User License <code>create</code> event
+	 */
+	public static final String USER_LICENSE_CREATE = USER_LICENSE_TOPIC_BASE + TOPIC_SEP + CREATE;
+
+	/**
+	 * User License <code>read</code> event
+	 */
+	public static final String USER_LICENSE_READ = USER_LICENSE_TOPIC_BASE + TOPIC_SEP + READ;
+
+	/**
+	 * User License <code>update</code> event
+	 */
+	public static final String USER_LICENSE_UPDATE = USER_LICENSE_TOPIC_BASE + TOPIC_SEP + UPDATE;
+
+	/**
+	 * User License <code>delete</code> event
+	 */
+	public static final String USER_LICENSE_DELETE = USER_LICENSE_TOPIC_BASE + TOPIC_SEP + DELETE;
+
 	private UserRegistryEvents() {
 		// block
 	}
