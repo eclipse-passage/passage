@@ -20,6 +20,8 @@ import org.eclipse.passage.lic.api.access.PermissionEmitter;
  * 
  * Defines the condition to be evaluated by {@link PermissionEmitter} <br/>
  * Obtained from {@link ConditionMiner}
+ * 
+ * @since 0.5.0
  *
  */
 public interface LicensingCondition {
@@ -30,8 +32,20 @@ public interface LicensingCondition {
 
 	String getMatchRule();
 
+	/**
+	 * Returns the validity period start date of this licensing condition. This is
+	 * the value of its <code>"validFrom"</code> attribute.
+	 *
+	 * @return the valid from
+	 */
 	Date getValidFrom();
 
+	/**
+	 * Returns the validity period end date of this licensing condition. This is the
+	 * value of its <code>"validUntil"</code> attribute.
+	 *
+	 * @return the valid until
+	 */
 	Date getValidUntil();
 
 	/**
