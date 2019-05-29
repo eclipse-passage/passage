@@ -21,6 +21,9 @@
       <file
             filePath="viewmodels/User.view">
       </file>
+      <file
+            filePath="viewmodels/UserLicense.view">
+      </file>
    </extension>
 
    <extension
