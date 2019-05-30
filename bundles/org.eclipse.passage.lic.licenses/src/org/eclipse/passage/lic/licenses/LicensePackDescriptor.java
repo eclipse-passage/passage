@@ -41,6 +41,16 @@ public interface LicensePackDescriptor {
 	 */
 	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
 
+//	/**
+//	 * Returns the <code>"License Plan"</code>" identifier of this license pack.
+//	 * This is the value of its <code>"planIdentifier"</code> attribute.
+//	 *
+//	 * @return the plan identifier
+//	 * 
+//	 * @since 0.5.0
+//	 */
+//	String getPlanIdentifier();
+
 	/**
 	 * Returns the <code>"User"</code>" identifier of this license pack. This is the
 	 * value of its <code>"userIdentifier"</code> attribute.

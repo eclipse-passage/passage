@@ -28,9 +28,9 @@ import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -38,9 +38,10 @@ import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
@@ -221,25 +222,27 @@ public class DashboardPanelPart {
 
 	@Inject
 	@Optional
-	public void createdLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePackDescriptor input) {
+	public void createdUserLicense(@UIEventTopic(UserRegistryEvents.USER_LICENSE_CREATE) UserLicenseDescriptor input) {
+		dashboardAdvisor.updateUserInfo(userRegistry);
+	}
+
+	@Inject
+	@Optional
+	public void deletedUserLicense(@UIEventTopic(UserRegistryEvents.USER_LICENSE_DELETE) UserLicenseDescriptor input) {
+		dashboardAdvisor.updateUserInfo(userRegistry);
+	}
+
+	@Inject
+	@Optional
+	public void createdLicensePlan(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_CREATE) LicensePlanDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 
 	@Inject
 	@Optional
-	public void deletedLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePackDescriptor input) {
-		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
-	}
-
-	@Inject
-	@Optional
-	public void createdLicenseGrant(@UIEventTopic(LicenseRegistryEvents.LICENSE_GRANT_CREATE) LicensePackDescriptor input) {
-		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
-	}
-
-	@Inject
-	@Optional
-	public void deletedLicenseGrant(@UIEventTopic(LicenseRegistryEvents.LICENSE_GRANT_DELETE) LicensePackDescriptor input) {
+	public void deletedLicensePlan(
+			@UIEventTopic(LicenseRegistryEvents.LICENSE_PLAN_DELETE) LicensePlanDescriptor input) {
 		dashboardAdvisor.updateLicenseInfo(licenseRegistry);
 	}
 

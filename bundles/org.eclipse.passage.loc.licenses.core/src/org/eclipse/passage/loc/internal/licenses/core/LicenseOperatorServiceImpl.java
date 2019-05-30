@@ -20,23 +20,42 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.io.StreamCodec;
+import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.lic.users.model.meta.UsersFactory;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.loc.api.OperatorEvents;
 import org.eclipse.passage.loc.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.api.OperatorProductService;
@@ -56,7 +75,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
 	private ProductRegistry productRegistry;
-	private OperatorProductService productOperatorService;
+	private UserRegistry userRegistry;
+	private OperatorProductService operatorProductService;
 	private StreamCodec streamCodec;
 
 	@Activate
@@ -65,64 +85,85 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Reference
-	public void bindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = environmentInfo;
+	public void bindEnvironmentInfo(EnvironmentInfo environment) {
+		this.environmentInfo = environment;
 	}
 
-	public void unbindEnvironmentInfo(EnvironmentInfo environmentInfo) {
-		this.environmentInfo = null;
-	}
-
-	@Reference
-	public void bindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = eventAdmin;
-	}
-
-	public void unbindEventAdmin(EventAdmin eventAdmin) {
-		this.eventAdmin = null;
+	public void unbindEnvironmentInfo(EnvironmentInfo environment) {
+		if (Objects.equals(this.environmentInfo, environment)) {
+			this.environmentInfo = null;
+		}
 	}
 
 	@Reference
-	public void bindProductRegistry(ProductRegistry productRegistry) {
-		this.productRegistry = productRegistry;
+	public void bindEventAdmin(EventAdmin admin) {
+		this.eventAdmin = admin;
 	}
 
-	public void unbindProductRegistry(ProductRegistry productRegistry) {
-		this.productRegistry = null;
+	public void unbindEventAdmin(EventAdmin admin) {
+		if (Objects.equals(this.eventAdmin, admin)) {
+			this.eventAdmin = null;
+		}
 	}
 
 	@Reference
-	public void bindProductOperatorService(OperatorProductService productOperatorService) {
-		this.productOperatorService = productOperatorService;
+	public void bindProductRegistry(ProductRegistry registry) {
+		this.productRegistry = registry;
 	}
 
-	public void unbindProductOperatorService(OperatorProductService productOperatorService) {
-		this.productOperatorService = null;
+	public void unbindProductRegistry(ProductRegistry registry) {
+		if (Objects.equals(this.productRegistry, registry)) {
+			this.productRegistry = null;
+		}
+	}
+
+	@Reference
+	public void bindUserRegistry(UserRegistry registry) {
+		this.userRegistry = registry;
+	}
+
+	public void unbindUserRegistry(UserRegistry registry) {
+		if (Objects.equals(this.userRegistry, registry)) {
+			this.userRegistry = null;
+		}
+	}
+
+	@Reference
+	public void bindProductOperatorService(OperatorProductService productService) {
+		this.operatorProductService = productService;
+	}
+
+	public void unbindProductOperatorService(OperatorProductService productService) {
+		if (Objects.equals(this.operatorProductService, productService)) {
+			this.operatorProductService = null;
+		}
 	}
 
 	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
-	public void bindStreamCodec(StreamCodec streamCodec) {
-		this.streamCodec = streamCodec;
+	public void bindStreamCodec(StreamCodec codec) {
+		this.streamCodec = codec;
 	}
 
-	public void unbindStreamCodec(StreamCodec streamCodec) {
-		this.streamCodec = null;
+	public void unbindStreamCodec(StreamCodec codec) {
+		if (Objects.equals(this.streamCodec, codec)) {
+			this.streamCodec = null;
+		}
 	}
 
 	@Override
-	public IStatus issueLicensePack(LicensePackDescriptor descriptor) {
+	public LicensingResult issueLicensePack(LicensePackDescriptor descriptor) {
 		LicensePack pack = null;
 		if (descriptor instanceof LicensePack) {
 			pack = (LicensePack) descriptor;
 		}
 		if (pack == null) {
-			return new Status(IStatus.ERROR, pluginId,
-					LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack);
+			return LicensingResults
+					.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack, pluginId);
 		}
 		LicensePack license = EcoreUtil.copy(pack);
 		String errors = LicensingEcore.extractValidationError(license);
 		if (errors != null) {
-			return new Status(IStatus.ERROR, pluginId, errors);
+			return LicensingResults.createError(errors, pluginId);
 		}
 		String productIdentifier = license.getProductIdentifier();
 		String productVersion = license.getProductVersion();
@@ -131,9 +172,44 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		String storageKeyFolder = path.toFile().getAbsolutePath();
 
 		String uuid = UUID.randomUUID().toString();
-		Date value = new Date();
+		Date issueDate = new Date();
 		license.setIdentifier(uuid);
-		license.setIssueDate(value);
+		license.setIssueDate(issueDate);
+		String userIdentifier = descriptor.getUserIdentifier();
+		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
+		if (userDescriptor instanceof User) {
+			User user = (User) userDescriptor;
+			String conditionType = userDescriptor.getPreferredConditionType();
+			String expression = userDescriptor.getPreferredConditionExpression();
+			UserLicense userLicense = UsersFactory.eINSTANCE.createUserLicense();
+			userLicense.setPackIdentifier(uuid);
+			userLicense.setIssueDate(issueDate);
+//			userLicense.setPlanIdentifier(licensePlan.getIdentifier());
+//			userLicense.setValidFrom(from);
+//			userLicense.setValidUntil(until);
+			userLicense.setConditionExpression(expression);
+			userLicense.setConditionType(conditionType);
+			userLicense.setProductIdentifier(productIdentifier);
+			userLicense.setProductVersion(productVersion);
+			if (userRegistry instanceof IEditingDomainProvider) {
+				IEditingDomainProvider edp = (IEditingDomainProvider) userRegistry;
+				EditingDomain editingDomain = edp.getEditingDomain();
+				EReference structured = UsersPackage.eINSTANCE.getUser_UserLicenses();
+				CommandStack stack = editingDomain.getCommandStack();
+				stack.execute(AddCommand.create(editingDomain, user, structured, userLicense));
+			} else {
+				user.getUserLicenses().add(userLicense);
+			}
+			eventAdmin.postEvent(OperatorEvents.create(UserRegistryEvents.USER_LICENSE_CREATE, userLicense));
+			try {
+				// FIXME: define parameters
+				user.eResource().save(null);
+			} catch (IOException e) {
+				return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error,
+						pluginId, e);
+			}
+		}
+
 		String licenseIn = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
 
 		URI uri = URI.createFileURI(licenseIn);
@@ -144,13 +220,14 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			resource.save(null);
 			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(licenseIn));
 		} catch (IOException e) {
-			return new Status(IStatus.ERROR, pluginId, LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e);
+			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
+					e);
 		}
 
 		if (streamCodec == null) {
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseIn);
-			return new Status(IStatus.OK, pluginId, message);
+			return LicensingResults.createOK(message);
 		}
 
 		String keyFileName = productIdentifier + '_' + productVersion;
@@ -160,7 +237,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		if (!privateProductToken.exists()) {
 			String pattern = LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
 			String message = String.format(pattern, privateProductToken.getAbsolutePath());
-			return new Status(IStatus.ERROR, pluginId, message);
+			return LicensingResults.createError(message, pluginId);
 		}
 
 		String licenseOut = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
@@ -170,14 +247,15 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 				FileInputStream keyStream = new FileInputStream(privateProductToken)) {
 			String username = productIdentifier;
 			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
-			String password = productOperatorService.createPassword(pvd);
+			String password = operatorProductService.createPassword(pvd);
 			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
-			return new Status(IStatus.OK, pluginId, message);
+			return LicensingResults.createOK(message, pluginId);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e);
+			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
+					e);
 		}
 	}
 
@@ -191,6 +269,41 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			e.printStackTrace();
 		}
 		return passagePath;
+	}
+
+	@Override
+	public LicensePackDescriptor createLicensePack(LicensePlanDescriptor licensePlan, UserDescriptor user,
+			ProductVersionDescriptor productVersion, Date from, Date until) {
+		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
+		LicensePack licensePack = licenseFactory.createLicensePack();
+		String productIdentifier = productVersion.getProduct().getIdentifier();
+		licensePack.setUserIdentifier(user.getEmail());
+		licensePack.setProductIdentifier(productIdentifier);
+		licensePack.setProductVersion(productVersion.getVersion());
+		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
+		Iterable<? extends LicensePlanFeatureDescriptor> features = licensePlan.getLicensePlanFeatures();
+		String conditionType = user.getPreferredConditionType();
+		String expression = user.getPreferredConditionExpression();
+		for (LicensePlanFeatureDescriptor planFeature : features) {
+			LicenseGrant grant = createLicenseGrant(planFeature, from, until, conditionType, expression);
+			grants.add(grant);
+		}
+		return licensePack;
+	}
+
+	private LicenseGrant createLicenseGrant(LicensePlanFeatureDescriptor planFeature, Date from, Date until,
+			String conditionType, String expression) {
+		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
+		LicenseGrant grant = licenseFactory.createLicenseGrant();
+		grant.setFeatureIdentifier(planFeature.getFeatureIdentifier());
+		grant.setMatchVersion(planFeature.getMatchVersion());
+		grant.setMatchRule(planFeature.getMatchRule());
+		grant.setCapacity(1);
+		grant.setConditionExpression(expression);
+		grant.setConditionType(conditionType);
+		grant.setValidFrom(from);
+		grant.setValidUntil(until);
+		return grant;
 	}
 
 }

@@ -164,9 +164,9 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 				if (Objects.equals(user, userLicense.getUser())) {
 					// FIXME: warning
 				}
-				String email = userLicense.getPackIdentifier();
-				if (email != null) {
-					registry.unregisterUser(email);
+				String packIdentifier = userLicense.getPackIdentifier();
+				if (packIdentifier != null) {
+					registry.unregisterUserLicense(packIdentifier);
 				} else {
 					// FIXME: warning
 				}
