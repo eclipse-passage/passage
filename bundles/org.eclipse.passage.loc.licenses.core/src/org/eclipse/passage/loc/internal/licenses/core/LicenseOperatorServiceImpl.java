@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
@@ -46,6 +47,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -76,6 +78,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	private EventAdmin eventAdmin;
 	private ProductRegistry productRegistry;
 	private UserRegistry userRegistry;
+	private LicenseRegistry licenseRegistry;
 	private OperatorProductService operatorProductService;
 	private StreamCodec streamCodec;
 
@@ -118,6 +121,17 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Reference
+	public void bindLicenseRegistry(LicenseRegistry registry) {
+		this.licenseRegistry = registry;
+	}
+
+	public void unbindLicenseRegistry(LicenseRegistry registry) {
+		if (Objects.equals(this.licenseRegistry, registry)) {
+			this.licenseRegistry = null;
+		}
+	}
+
+	@Reference
 	public void bindUserRegistry(UserRegistry registry) {
 		this.userRegistry = registry;
 	}
@@ -151,14 +165,16 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensingResult issueLicensePack(LicensePackDescriptor descriptor) {
-		LicensePack pack = null;
-		if (descriptor instanceof LicensePack) {
-			pack = (LicensePack) descriptor;
+	public LicensingResult issueLicensePack(LicensingRequest request, LicensePackDescriptor template) {
+		if (request == null) {
+			return LicensingResults.createError(
+					LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_licensing_request, pluginId);
 		}
-		if (pack == null) {
-			return LicensingResults
-					.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_license_pack, pluginId);
+		LicensePack pack = null;
+		if (template instanceof LicensePack) {
+			pack = (LicensePack) template;
+		} else {
+			pack = createLicensePack(request);
 		}
 		LicensePack license = EcoreUtil.copy(pack);
 		String errors = LicensingEcore.extractValidationError(license);
@@ -175,7 +191,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Date issueDate = new Date();
 		license.setIdentifier(uuid);
 		license.setIssueDate(issueDate);
-		String userIdentifier = descriptor.getUserIdentifier();
+		String userIdentifier = template.getUserIdentifier();
 		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
 		if (userDescriptor instanceof User) {
 			User user = (User) userDescriptor;
@@ -184,9 +200,9 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			UserLicense userLicense = UsersFactory.eINSTANCE.createUserLicense();
 			userLicense.setPackIdentifier(uuid);
 			userLicense.setIssueDate(issueDate);
-//			userLicense.setPlanIdentifier(licensePlan.getIdentifier());
-//			userLicense.setValidFrom(from);
-//			userLicense.setValidUntil(until);
+			userLicense.setPlanIdentifier(request.getPlanIdentifier());
+			userLicense.setValidFrom(request.getValidFrom());
+			userLicense.setValidUntil(request.getValidUntil());
 			userLicense.setConditionExpression(expression);
 			userLicense.setConditionType(conditionType);
 			userLicense.setProductIdentifier(productIdentifier);
@@ -272,18 +288,26 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensePackDescriptor createLicensePack(LicensePlanDescriptor licensePlan, UserDescriptor user,
-			ProductVersionDescriptor productVersion, Date from, Date until) {
+	public LicensePack createLicensePack(LicensingRequest request) {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicensePack licensePack = licenseFactory.createLicensePack();
-		String productIdentifier = productVersion.getProduct().getIdentifier();
-		licensePack.setUserIdentifier(user.getEmail());
-		licensePack.setProductIdentifier(productIdentifier);
-		licensePack.setProductVersion(productVersion.getVersion());
+		if (request == null) {
+			return licensePack;
+		}
+		licensePack.setUserIdentifier(request.getUserIdentifier());
+		licensePack.setProductIdentifier(request.getProductIdentifier());
+		licensePack.setProductVersion(request.getProductVersion());
 		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
+		String planIdentifier = request.getPlanIdentifier();
+		LicensePlanDescriptor licensePlan = licenseRegistry.getLicensePlan(planIdentifier);
+		if (licensePlan == null) {
+			return licensePack;
+		}
 		Iterable<? extends LicensePlanFeatureDescriptor> features = licensePlan.getLicensePlanFeatures();
-		String conditionType = user.getPreferredConditionType();
-		String expression = user.getPreferredConditionExpression();
+		Date from = request.getValidFrom();
+		Date until = request.getValidUntil();
+		String conditionType = request.getConditionType();
+		String expression = request.getConditionExpression();
 		for (LicensePlanFeatureDescriptor planFeature : features) {
 			LicenseGrant grant = createLicenseGrant(planFeature, from, until, conditionType, expression);
 			grants.add(grant);

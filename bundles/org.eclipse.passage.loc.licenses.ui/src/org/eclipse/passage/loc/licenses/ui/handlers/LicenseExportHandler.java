@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.licenses.ui.handlers;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.inject.Named;
 
@@ -30,6 +31,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -90,10 +92,11 @@ public class LicenseExportHandler {
 		Date from = Date.from(fromLocal.atZone(ZoneId.systemDefault()).toInstant());
 		Date until = Date.from(untilLocal.atZone(ZoneId.systemDefault()).toInstant());
 
-		LicensePackDescriptor licensePack = licenseService.createLicensePack(licensePlan, userDescriptor,
-				productVersion, from, until);
+		LicensingRequest request = createLicensingRequest(userDescriptor, licensePlan, productVersion, from, until);
 
-		LicensingResult result = licenseService.issueLicensePack(licensePack);
+		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
+
+		LicensingResult result = licenseService.issueLicensePack(request, licensePack);
 		if (result.getSeverity() == LicensingResult.OK) {
 			MessageDialog.openInformation(shell, LicensesUiMessages.LicenseExportHandler_success_title,
 					result.getMessage());
@@ -112,6 +115,64 @@ public class LicenseExportHandler {
 			return false;
 		}
 		return licensePlan != null;
+	}
+
+	private LicensingRequest createLicensingRequest(UserDescriptor userDescriptor, LicensePlanDescriptor licensePlan,
+			ProductVersionDescriptor productVersion, Date from, Date until) {
+		String uuid = UUID.randomUUID().toString();
+		Date creationDate = new Date();
+		return new LicensingRequest() {
+
+			@Override
+			public Date getValidUntil() {
+				return until;
+			}
+
+			@Override
+			public Date getValidFrom() {
+				return from;
+			}
+
+			@Override
+			public String getUserIdentifier() {
+				return userDescriptor.getEmail();
+			}
+
+			@Override
+			public String getProductVersion() {
+				return productVersion.getVersion();
+			}
+
+			@Override
+			public String getProductIdentifier() {
+				return productVersion.getProduct().getIdentifier();
+			}
+
+			@Override
+			public String getPlanIdentifier() {
+				return licensePlan.getIdentifier();
+			}
+
+			@Override
+			public String getIdentifier() {
+				return uuid;
+			}
+
+			@Override
+			public Date getCreationDate() {
+				return creationDate;
+			}
+
+			@Override
+			public String getConditionType() {
+				return userDescriptor.getPreferredConditionType();
+			}
+
+			@Override
+			public String getConditionExpression() {
+				return userDescriptor.getPreferredConditionExpression();
+			}
+		};
 	}
 
 }

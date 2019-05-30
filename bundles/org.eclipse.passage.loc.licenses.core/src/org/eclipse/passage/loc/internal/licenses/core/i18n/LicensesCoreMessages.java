@@ -20,7 +20,7 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
 	public static String LicenseOperatorServiceImpl_private_key_not_found;
-	public static String LicenseOperatorServiceImpl_status_invalid_license_pack;
+	public static String LicenseOperatorServiceImpl_status_invalid_licensing_request;
 	public static String LicensePlanClassifierInitializer_file_name_message;
 	public static String LicensePlanClassifierInitializer_lic_plan_title;
 	public static String LicensePlanClassifierInitializer_new_lic_plan_message;
