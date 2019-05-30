@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.registry;
 
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 
 /**
@@ -25,21 +24,5 @@ public interface LicenseRegistry {
 	Iterable<? extends LicensePlanDescriptor> getLicensePlans();
 
 	LicensePlanDescriptor getLicensePlan(String licensePlanId);
-
-	void registerLicensePlan(LicensePlanDescriptor licensePlan);
-
-	void unregisterLicensePlan(String identifier);
-
-	Iterable<? extends LicensePackDescriptor> getLicensePacks();
-
-	Iterable<? extends LicensePackDescriptor> getUserLicensePacks(String userId);
-
-	Iterable<? extends LicensePackDescriptor> getProductVersionLicensePacks(String productId, String version);
-
-	LicensePackDescriptor getLicensePack(String licensePackId);
-
-	void registerLicensePack(LicensePackDescriptor licensePack);
-
-	void unregisterLicensePack(String identifier);
 
 }
