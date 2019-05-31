@@ -19,19 +19,19 @@ import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 
-public class DashboardEditHandler {
+public class DashboardShowHandler {
 
 	@Execute
 	public void execute(IEclipseContext eclipseContext,
-			@Named(DashboardUi.COMMANDPARAMETER_EDIT_DOMAIN) String domain,
-			@Named(DashboardUi.COMMANDPARAMETER_EDIT_CLASSIFIER) String classifier,
-			@Named(DashboardUi.COMMANDPARAMETER_EDIT_PERSPECTIVE) String perspectiveId) {
-		DashboardUi.editDomainResource(eclipseContext, domain, classifier, perspectiveId);
+			@Named(DashboardUi.COMMANDPARAMETER_SHOW_DOMAIN) String domain,
+			@Named(DashboardUi.COMMANDPARAMETER_SHOW_CLASSIFIER) String classifier,
+			@Named(DashboardUi.COMMANDPARAMETER_SHOW_PERSPECTIVE) String perspectiveId) {
+		DashboardUi.showDetails(eclipseContext, domain, classifier, perspectiveId);
 	}
 
 
 	@CanExecute
-	public boolean canExecute(@Named(DashboardUi.COMMANDPARAMETER_EDIT_DOMAIN) String domain) {
+	public boolean canExecute(@Named(DashboardUi.COMMANDPARAMETER_SHOW_DOMAIN) String domain) {
 		return domain != null;
 	}
 

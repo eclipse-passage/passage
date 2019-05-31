@@ -33,18 +33,18 @@ public class DashboardPanelBlock {
 
 	private Text text;
 	private ControlDecoration decoration;
-	private Link edit;
+	private Link show;
 
 	public void createControl(Composite parent, String label, Image image) {
 		text = createTextBlock(parent, label, image);
 		decoration = new ControlDecoration(text, SWT.TOP | SWT.LEFT);
-		edit = new Link(parent, SWT.NONE);
-		edit.setText(DashboardUiMessages.DashboardPanelBlock_edit_text);
+		show = new Link(parent, SWT.NONE);
+		show.setText(DashboardUiMessages.DashboardPanelBlock_show_text);
 	}
 
-	public void configureEdit(String tooltip, SelectionListener listener) {
-		edit.setToolTipText(tooltip);
-		edit.addSelectionListener(listener);
+	public void configureShow(String tooltip, SelectionListener listener) {
+		show.setToolTipText(tooltip);
+		show.addSelectionListener(listener);
 	}
 
 	protected Text createTextBlock(Composite parent, String label, Image image) {
@@ -98,7 +98,7 @@ public class DashboardPanelBlock {
 			return;
 		}
 		text.setText(value);
-		edit.setEnabled(count > 0);
+		show.setEnabled(count > 0);
 		decorateTextBlock(warning, info, count, decoration);
 	}
 

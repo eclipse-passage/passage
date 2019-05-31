@@ -42,13 +42,12 @@ public class DashboardUi {
 	public static final String COMMANDPARAMETER_LOAD_DOMAIN = "org.eclipse.passage.loc.dashboard.ui.commandparameter.load.domain"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_LOAD_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.load.perspective"; //$NON-NLS-1$
 
-	public static final String COMMAND_EDIT = "org.eclipse.passage.loc.dashboard.ui.command.edit"; //$NON-NLS-1$
-	public static final String COMMANDPARAMETER_EDIT_DOMAIN = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.domain"; //$NON-NLS-1$
-	public static final String COMMANDPARAMETER_EDIT_CLASSIFIER = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.classifier"; //$NON-NLS-1$
-	public static final String COMMANDPARAMETER_EDIT_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.edit.perspective"; //$NON-NLS-1$
+	public static final String COMMAND_SHOW = "org.eclipse.passage.loc.dashboard.ui.command.show"; //$NON-NLS-1$
+	public static final String COMMANDPARAMETER_SHOW_DOMAIN = "org.eclipse.passage.loc.dashboard.ui.commandparameter.show.domain"; //$NON-NLS-1$
+	public static final String COMMANDPARAMETER_SHOW_CLASSIFIER = "org.eclipse.passage.loc.dashboard.ui.commandparameter.show.classifier"; //$NON-NLS-1$
+	public static final String COMMANDPARAMETER_SHOW_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.show.perspective"; //$NON-NLS-1$
 
-	public static void editDomainResource(IEclipseContext context, String domain, String classifier,
-			String perspectiveId) {
+	public static void showDetails(IEclipseContext context, String domain, String classifier, String perspectiveId) {
 		Iterable<?> input = resolveInput(context, domain, classifier);
 		String title = resolveTitle(context, domain, classifier);
 		Object selectedClassifier = LocWokbench.selectClassifier(context, classifier, title, input, null);
@@ -116,15 +115,15 @@ public class DashboardUi {
 		executeCommand(context, COMMAND_LOAD, parameters);
 	}
 
-	public static void executeEditCommand(IEclipseContext context, String domain, String classifier) {
+	public static void executeShowCommand(IEclipseContext context, String domain, String classifier) {
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put(COMMANDPARAMETER_EDIT_DOMAIN, domain);
-		parameters.put(COMMANDPARAMETER_EDIT_CLASSIFIER, classifier);
+		parameters.put(COMMANDPARAMETER_SHOW_DOMAIN, domain);
+		parameters.put(COMMANDPARAMETER_SHOW_CLASSIFIER, classifier);
 		String perspectiveId = resolvePerspectiveId(domain);
 		if (perspectiveId != null) {
-			parameters.put(COMMANDPARAMETER_EDIT_PERSPECTIVE, perspectiveId);
+			parameters.put(COMMANDPARAMETER_SHOW_PERSPECTIVE, perspectiveId);
 		}
-		executeCommand(context, COMMAND_EDIT, parameters);
+		executeCommand(context, COMMAND_SHOW, parameters);
 	}
 
 }

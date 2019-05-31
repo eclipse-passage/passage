@@ -93,8 +93,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createFeatureBlock(Composite parent) {
@@ -103,8 +103,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createFeatureVersionBlock(Composite parent) {
@@ -113,8 +113,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureVersion();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	@Override
@@ -144,8 +144,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createProductBlock(Composite parent) {
@@ -154,8 +154,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createProductVersionBlock(Composite parent) {
@@ -164,8 +164,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createProductVersionFeatureBlock(Composite parent) {
@@ -174,8 +174,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersionFeature();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	@Override
@@ -205,8 +205,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createUserBlock(Composite parent) {
@@ -215,8 +215,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createUserLicenseBlock(Composite parent) {
@@ -225,8 +225,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	@Override
@@ -253,22 +253,22 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		EClass eClass = LicensesPackage.eINSTANCE.getLicensePlan();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_info;
 		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_warning;
-		String edit = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_edit;
-		return createBlock(parent, domain, eClass, label, info, warning, edit);
+		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_show;
+		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
 	protected DashboardPanelBlock createBlock(Composite parent, String domain, EClass eClass, String label, String info,
-			String warning, String edit) {
+			String warning, String show) {
 		DashboardPanelBlock block = new DashboardPanelBlock();
 		Image image = getImage(eClass);
 		block.createControl(parent, label, image);
 		block.setInfo(info);
 		block.setWarning(warning);
 		String classifier = eClass.getName();
-		block.configureEdit(edit, new SelectionAdapter() {
+		block.configureShow(show, new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				executeEditCommand(domain, classifier);
+				executeShowCommand(domain, classifier);
 			}
 		});
 		return block;
@@ -316,8 +316,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		DashboardUi.executeLoadCommand(this.eclipseContext, domain);
 	}
 
-	protected void executeEditCommand(String domain, String classifier) {
-		DashboardUi.executeEditCommand(this.eclipseContext, domain, classifier);
+	protected void executeShowCommand(String domain, String classifier) {
+		DashboardUi.executeShowCommand(this.eclipseContext, domain, classifier);
 	}
 
 	protected Image getImage(EClass eClass) {
