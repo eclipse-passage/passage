@@ -17,9 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,11 +28,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
-
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -165,13 +160,20 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicensePlanFeature) object).getFeatureIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_LicensePlanFeature_type") : //$NON-NLS-1$
-				getString("_UI_LicensePlanFeature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		LicensePlanFeature licensePlanFeature = (LicensePlanFeature) object;
+		String identifier = licensePlanFeature.getFeatureIdentifier();
+		if (identifier == null || identifier.length() == 0) {
+			identifier = getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
+		}
+		String version = licensePlanFeature.getMatchVersion();
+		if (version == null || version.length() == 0) {
+			return identifier;
+		}
+		return getString("_UI_LicensePlanFeature_text_pattern", new Object[] { identifier, version }); //$NON-NLS-1$
 	}
 
 	/**
