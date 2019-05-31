@@ -40,9 +40,12 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getIssueDate <em>Issue Date</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getUserIdentifier <em>User Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getUserFullName <em>User Full Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getRequestIdentifier <em>Request Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getPlanIdentifier <em>Plan Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getProductIdentifier <em>Product Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getProductVersion <em>Product Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getUserIdentifier <em>User Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getLicenseGrants <em>License Grants</em>}</li>
  * </ul>
  *
@@ -94,6 +97,88 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	protected Date issueDate = ISSUE_DATE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @see #getUserIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String USER_IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @see #getUserIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String userIdentifier = USER_IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUserFullName() <em>User Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserFullName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String USER_FULL_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUserFullName() <em>User Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserFullName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String userFullName = USER_FULL_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRequestIdentifier() <em>Request Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequestIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REQUEST_IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRequestIdentifier() <em>Request Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequestIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String requestIdentifier = REQUEST_IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPlanIdentifier() <em>Plan Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlanIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PLAN_IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPlanIdentifier() <em>Plan Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlanIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -136,28 +221,6 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @ordered
 	 */
 	protected String productVersion = PRODUCT_VERSION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see #getUserIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String USER_IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see #getUserIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String userIdentifier = USER_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLicenseGrants() <em>License Grants</em>}' containment reference list.
@@ -323,6 +386,78 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getUserFullName() {
+		return userFullName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUserFullName(String newUserFullName) {
+		String oldUserFullName = userFullName;
+		userFullName = newUserFullName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__USER_FULL_NAME,
+					oldUserFullName, userFullName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getRequestIdentifier() {
+		return requestIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRequestIdentifier(String newRequestIdentifier) {
+		String oldRequestIdentifier = requestIdentifier;
+		requestIdentifier = newRequestIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER,
+					oldRequestIdentifier, requestIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getPlanIdentifier() {
+		return planIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPlanIdentifier(String newPlanIdentifier) {
+		String oldPlanIdentifier = planIdentifier;
+		planIdentifier = newPlanIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER,
+					oldPlanIdentifier, planIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -382,12 +517,18 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			return getIdentifier();
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
 			return getIssueDate();
+		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
+			return getUserIdentifier();
+		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
+			return getUserFullName();
+		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
+			return getRequestIdentifier();
+		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
+			return getPlanIdentifier();
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 			return getProductIdentifier();
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
 			return getProductVersion();
-		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
-			return getUserIdentifier();
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return getLicenseGrants();
 		default:
@@ -411,14 +552,23 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
 			setIssueDate((Date) newValue);
 			return;
+		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
+			setUserIdentifier((String) newValue);
+			return;
+		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
+			setUserFullName((String) newValue);
+			return;
+		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
+			setRequestIdentifier((String) newValue);
+			return;
+		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
+			setPlanIdentifier((String) newValue);
+			return;
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 			setProductIdentifier((String) newValue);
 			return;
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
 			setProductVersion((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
-			setUserIdentifier((String) newValue);
 			return;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			getLicenseGrants().clear();
@@ -445,14 +595,23 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
 			setIssueDate(ISSUE_DATE_EDEFAULT);
 			return;
+		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
+			setUserIdentifier(USER_IDENTIFIER_EDEFAULT);
+			return;
+		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
+			setUserFullName(USER_FULL_NAME_EDEFAULT);
+			return;
+		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
+			setRequestIdentifier(REQUEST_IDENTIFIER_EDEFAULT);
+			return;
+		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
+			setPlanIdentifier(PLAN_IDENTIFIER_EDEFAULT);
+			return;
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 			setProductIdentifier(PRODUCT_IDENTIFIER_EDEFAULT);
 			return;
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
 			setProductVersion(PRODUCT_VERSION_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
-			setUserIdentifier(USER_IDENTIFIER_EDEFAULT);
 			return;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			getLicenseGrants().clear();
@@ -476,15 +635,24 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
 			return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
+		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
+			return USER_IDENTIFIER_EDEFAULT == null ? userIdentifier != null
+					: !USER_IDENTIFIER_EDEFAULT.equals(userIdentifier);
+		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
+			return USER_FULL_NAME_EDEFAULT == null ? userFullName != null
+					: !USER_FULL_NAME_EDEFAULT.equals(userFullName);
+		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
+			return REQUEST_IDENTIFIER_EDEFAULT == null ? requestIdentifier != null
+					: !REQUEST_IDENTIFIER_EDEFAULT.equals(requestIdentifier);
+		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
+			return PLAN_IDENTIFIER_EDEFAULT == null ? planIdentifier != null
+					: !PLAN_IDENTIFIER_EDEFAULT.equals(planIdentifier);
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 			return PRODUCT_IDENTIFIER_EDEFAULT == null ? productIdentifier != null
 					: !PRODUCT_IDENTIFIER_EDEFAULT.equals(productIdentifier);
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
 			return PRODUCT_VERSION_EDEFAULT == null ? productVersion != null
 					: !PRODUCT_VERSION_EDEFAULT.equals(productVersion);
-		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
-			return USER_IDENTIFIER_EDEFAULT == null ? userIdentifier != null
-					: !USER_IDENTIFIER_EDEFAULT.equals(userIdentifier);
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return licenseGrants != null && !licenseGrants.isEmpty();
 		default:
@@ -508,12 +676,18 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		result.append(identifier);
 		result.append(", issueDate: "); //$NON-NLS-1$
 		result.append(issueDate);
+		result.append(", userIdentifier: "); //$NON-NLS-1$
+		result.append(userIdentifier);
+		result.append(", userFullName: "); //$NON-NLS-1$
+		result.append(userFullName);
+		result.append(", requestIdentifier: "); //$NON-NLS-1$
+		result.append(requestIdentifier);
+		result.append(", planIdentifier: "); //$NON-NLS-1$
+		result.append(planIdentifier);
 		result.append(", productIdentifier: "); //$NON-NLS-1$
 		result.append(productIdentifier);
 		result.append(", productVersion: "); //$NON-NLS-1$
 		result.append(productVersion);
-		result.append(", userIdentifier: "); //$NON-NLS-1$
-		result.append(userIdentifier);
 		result.append(')');
 		return result.toString();
 	}

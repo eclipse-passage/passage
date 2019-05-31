@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
+import java.util.Date;
+
+import org.eclipse.passage.lic.api.access.LicensingRequest;
+
 /**
  * <p>
  * A <code>"License Pack"</code> is a container for
@@ -34,22 +38,14 @@ public interface LicensePackDescriptor {
 	String getIdentifier();
 
 	/**
-	 * Returns the <code>"License Grant"</code>(s) contained in this license pack.
-	 * This is the value of its <code>"licenseGrants"</code> reference.
+	 * Returns the date of issue of this license pack. This is the value of its
+	 * <code>"issueDate"</code> attribute.
 	 *
-	 * @return the license grants
+	 * @return the issue date
+	 * 
+	 * @since 0.5.0
 	 */
-	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
-
-//	/**
-//	 * Returns the <code>"License Plan"</code>" identifier of this license pack.
-//	 * This is the value of its <code>"planIdentifier"</code> attribute.
-//	 *
-//	 * @return the plan identifier
-//	 * 
-//	 * @since 0.5.0
-//	 */
-//	String getPlanIdentifier();
+	Date getIssueDate();
 
 	/**
 	 * Returns the <code>"User"</code>" identifier of this license pack. This is the
@@ -58,6 +54,36 @@ public interface LicensePackDescriptor {
 	 * @return the user identifier
 	 */
 	String getUserIdentifier();
+
+	/**
+	 * Returns the <code>"User"</code>" full name of this license pack. This is the
+	 * value of its <code>"userFullName"</code> attribute.
+	 *
+	 * @return the user full name
+	 */
+	String getUserFullName();
+
+	/**
+	 * Returns the request identifier of this license pack, i.e. the initial request
+	 * to obtain this license pack. This is the value of its
+	 * <code>"requestIdentifier"</code> attribute.
+	 *
+	 * @return the request identifier
+	 * @see LicensingRequest
+	 * 
+	 * @since 0.5.0
+	 */
+	String getRequestIdentifier();
+
+	/**
+	 * Returns the <code>"License Plan"</code>" identifier of this license pack.
+	 * This is the value of its <code>"planIdentifier"</code> attribute.
+	 *
+	 * @return the plan identifier
+	 * 
+	 * @since 0.5.0
+	 */
+	String getPlanIdentifier();
 
 	/**
 	 * Returns the <code>"Product"</code>" identifier of this license pack. This is
@@ -74,5 +100,13 @@ public interface LicensePackDescriptor {
 	 * @return the product version
 	 */
 	String getProductVersion();
+
+	/**
+	 * Returns the <code>"License Grant"</code>(s) contained in this license pack.
+	 * This is the value of its <code>"licenseGrants"</code> reference.
+	 *
+	 * @return the license grants
+	 */
+	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
 
 }

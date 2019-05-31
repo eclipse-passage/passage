@@ -349,6 +349,43 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PACK__ISSUE_DATE = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>User Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PACK__USER_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>User Full Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PACK__USER_FULL_NAME = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Request Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PACK__REQUEST_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Plan Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PACK__PLAN_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Product Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -356,7 +393,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__PRODUCT_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_PACK__PRODUCT_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Product Version</b></em>' attribute.
@@ -366,17 +403,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__PRODUCT_VERSION = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>User Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__USER_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_PACK__PRODUCT_VERSION = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>License Grants</b></em>' containment reference list.
@@ -386,7 +413,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>License Pack</em>' class.
@@ -396,7 +423,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
+	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>License Pack</em>' class.
@@ -753,6 +780,39 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLicensePack_UserIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName <em>User Full Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Full Name</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName()
+	 * @see #getLicensePack()
+	 * @generated
+	 */
+	EAttribute getLicensePack_UserFullName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier <em>Request Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Request Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier()
+	 * @see #getLicensePack()
+	 * @generated
+	 */
+	EAttribute getLicensePack_RequestIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier <em>Plan Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plan Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier()
+	 * @see #getLicensePack()
+	 * @generated
+	 */
+	EAttribute getLicensePack_PlanIdentifier();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.

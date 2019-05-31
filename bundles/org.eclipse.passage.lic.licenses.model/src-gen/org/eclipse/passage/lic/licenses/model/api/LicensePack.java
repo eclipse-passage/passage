@@ -31,9 +31,12 @@ import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate <em>Issue Date</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName <em>User Full Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier <em>Request Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier <em>Plan Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}</li>
  * </ul>
  *
@@ -84,6 +87,7 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	Date getIssueDate();
 
 	/**
@@ -180,6 +184,75 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @generated
 	 */
 	void setUserIdentifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>User Full Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Full Name</em>' attribute.
+	 * @see #setUserFullName(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_UserFullName()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	String getUserFullName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName <em>User Full Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User Full Name</em>' attribute.
+	 * @see #getUserFullName()
+	 * @generated
+	 */
+	void setUserFullName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Request Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Request Identifier</em>' attribute.
+	 * @see #setRequestIdentifier(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_RequestIdentifier()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	String getRequestIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier <em>Request Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Request Identifier</em>' attribute.
+	 * @see #getRequestIdentifier()
+	 * @generated
+	 */
+	void setRequestIdentifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Plan Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plan Identifier</em>' attribute.
+	 * @see #setPlanIdentifier(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_PlanIdentifier()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	String getPlanIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier <em>Plan Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plan Identifier</em>' attribute.
+	 * @see #getPlanIdentifier()
+	 * @generated
+	 */
+	void setPlanIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>License Grants</b></em>' containment reference list.

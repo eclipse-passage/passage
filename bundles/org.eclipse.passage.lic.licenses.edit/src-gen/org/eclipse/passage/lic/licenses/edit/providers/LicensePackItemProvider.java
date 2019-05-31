@@ -68,9 +68,12 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 
 			addIdentifierPropertyDescriptor(object);
 			addIssueDatePropertyDescriptor(object);
+			addUserIdentifierPropertyDescriptor(object);
+			addUserFullNamePropertyDescriptor(object);
+			addRequestIdentifierPropertyDescriptor(object);
+			addPlanIdentifierPropertyDescriptor(object);
 			addProductIdentifierPropertyDescriptor(object);
 			addProductVersionPropertyDescriptor(object);
-			addUserIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -157,6 +160,54 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_userIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicensePack_UserIdentifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the User Full Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUserFullNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePack_userFullName_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_userFullName_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePack_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePack_UserFullName(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Request Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequestIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePack_requestIdentifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_requestIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePack_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePack_RequestIdentifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Plan Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlanIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePack_planIdentifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_planIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePack_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePack_PlanIdentifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -250,9 +301,12 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 		switch (notification.getFeatureID(LicensePack.class)) {
 		case LicensesPackage.LICENSE_PACK__IDENTIFIER:
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
+		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
+		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
+		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
+		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
