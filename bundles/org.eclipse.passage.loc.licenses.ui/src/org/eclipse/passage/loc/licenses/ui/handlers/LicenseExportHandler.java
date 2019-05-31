@@ -139,6 +139,11 @@ public class LicenseExportHandler {
 			}
 
 			@Override
+			public String getUserFullName() {
+				return userDescriptor.getFullName();
+			}
+
+			@Override
 			public String getProductVersion() {
 				return productVersion.getVersion();
 			}

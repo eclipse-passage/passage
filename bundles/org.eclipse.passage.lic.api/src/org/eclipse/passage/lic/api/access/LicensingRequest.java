@@ -49,6 +49,14 @@ public interface LicensingRequest {
 	String getUserIdentifier();
 
 	/**
+	 * Returns the <code>"User"</code> full name of this licensing request. This is
+	 * the value of its <code>"userFullName"</code> attribute.
+	 *
+	 * @return the user full name
+	 */
+	String getUserFullName();
+
+	/**
 	 * Returns the <code>"Product"</code> identifier of this licensing request. This
 	 * is the value of its <code>"productIdentifier"</code> attribute.
 	 *

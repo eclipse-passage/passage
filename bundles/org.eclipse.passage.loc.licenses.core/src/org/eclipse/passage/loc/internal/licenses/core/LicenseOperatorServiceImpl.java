@@ -294,11 +294,13 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		if (request == null) {
 			return licensePack;
 		}
+		licensePack.setRequestIdentifier(request.getIdentifier());
 		licensePack.setUserIdentifier(request.getUserIdentifier());
+		licensePack.setUserFullName(request.getUserFullName());
 		licensePack.setProductIdentifier(request.getProductIdentifier());
 		licensePack.setProductVersion(request.getProductVersion());
-		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
 		String planIdentifier = request.getPlanIdentifier();
+		licensePack.setPlanIdentifier(planIdentifier);
 		LicensePlanDescriptor licensePlan = licenseRegistry.getLicensePlan(planIdentifier);
 		if (licensePlan == null) {
 			return licensePack;
@@ -308,6 +310,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Date until = request.getValidUntil();
 		String conditionType = request.getConditionType();
 		String expression = request.getConditionExpression();
+		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
 		for (LicensePlanFeatureDescriptor planFeature : features) {
 			LicenseGrant grant = createLicenseGrant(planFeature, from, until, conditionType, expression);
 			grants.add(grant);
