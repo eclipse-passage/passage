@@ -94,11 +94,11 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 	}
 
 	protected Text createText(Composite parent) {
-		Text text = new Text(parent, SWT.BORDER);
-		text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		text.setText(getCurrentValue());
-		text.setEditable(false);
-		return text;
+		Text value = new Text(parent, SWT.BORDER);
+		value.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		value.setText(getCurrentValue());
+		value.setEditable(false);
+		return value;
 	}
 
 	protected Button createButton(Composite parent) {

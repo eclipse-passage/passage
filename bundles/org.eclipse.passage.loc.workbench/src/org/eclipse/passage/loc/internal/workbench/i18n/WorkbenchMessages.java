@@ -27,6 +27,8 @@ public class WorkbenchMessages extends NLS {
 	public static String CreateFileWizardPage_label_name;
 	public static String ExitWorkbenchHandler_exit_message;
 	public static String ExitWorkbenchHandler_exit_title;
+	public static String FileContentDialog_e_unable_read;
+	public static String FileContentDialog_shell_text;
 	public static String FilteredSelectionDialog_filtering_label;
 	public static String FilteredSelectionDialog_items_label;
 	public static String LicensingStatusToolControl_text_undefined;

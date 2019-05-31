@@ -22,6 +22,12 @@ public final class WorkbenchEmfformsMessages extends NLS {
 	public static String TextWithButtonRenderer_button_edit;
 	public static String ConditionExpressionRenderer_condition_expression;
 
+	public static String FileContentRenderer_button_text;
+
+	public static String FileContentRenderer_e_content_message;
+
+	public static String FileContentRenderer_e_content_title;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, WorkbenchEmfformsMessages.class);
