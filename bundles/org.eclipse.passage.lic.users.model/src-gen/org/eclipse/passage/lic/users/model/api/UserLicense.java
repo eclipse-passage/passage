@@ -33,9 +33,8 @@ import org.eclipse.passage.lic.users.UserLicenseDescriptor;
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getValidUntil <em>Valid Until</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getConditionType <em>Condition Type</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getConditionExpression <em>Condition Expression</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getOperatorIdentifier <em>Operator Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getPackIdentifier <em>Pack Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getIssueDate <em>Issue Date</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserLicense#getUser <em>User</em>}</li>
  * </ul>
  *
@@ -227,29 +226,6 @@ public interface UserLicense extends EObject, UserLicenseDescriptor {
 	 * @generated
 	 */
 	void setIssueDate(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>Operator Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operator Identifier</em>' attribute.
-	 * @see #setOperatorIdentifier(String)
-	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserLicense_OperatorIdentifier()
-	 * @model
-	 * @generated
-	 */
-	@Override
-	String getOperatorIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.users.model.api.UserLicense#getOperatorIdentifier <em>Operator Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operator Identifier</em>' attribute.
-	 * @see #getOperatorIdentifier()
-	 * @generated
-	 */
-	void setOperatorIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Pack Identifier</b></em>' attribute.

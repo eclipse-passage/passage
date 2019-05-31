@@ -414,31 +414,22 @@ public interface UsersPackage extends EPackage {
 	int USER_LICENSE__CONDITION_EXPRESSION = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_LICENSE__ISSUE_DATE = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Operator Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER_LICENSE__OPERATOR_IDENTIFIER = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Pack Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_LICENSE__PACK_IDENTIFIER = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 9;
+	int USER_LICENSE__PACK_IDENTIFIER = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_LICENSE__ISSUE_DATE = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' container reference.
@@ -447,7 +438,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_LICENSE__USER = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 10;
+	int USER_LICENSE__USER = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>User License</em>' class.
@@ -456,7 +447,7 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_LICENSE_FEATURE_COUNT = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 11;
+	int USER_LICENSE_FEATURE_COUNT = USER_LICENSE_DESCRIPTOR_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>User License</em>' class.
@@ -762,17 +753,6 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUserLicense_IssueDate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.UserLicense#getOperatorIdentifier <em>Operator Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Operator Identifier</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.UserLicense#getOperatorIdentifier()
-	 * @see #getUserLicense()
-	 * @generated
-	 */
-	EAttribute getUserLicense_OperatorIdentifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.UserLicense#getPackIdentifier <em>Pack Identifier</em>}'.

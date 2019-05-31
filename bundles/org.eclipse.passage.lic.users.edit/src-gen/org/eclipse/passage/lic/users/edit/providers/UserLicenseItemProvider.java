@@ -68,9 +68,8 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 			addValidUntilPropertyDescriptor(object);
 			addConditionTypePropertyDescriptor(object);
 			addConditionExpressionPropertyDescriptor(object);
-			addIssueDatePropertyDescriptor(object);
-			addOperatorIdentifierPropertyDescriptor(object);
 			addPackIdentifierPropertyDescriptor(object);
+			addIssueDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -204,22 +203,6 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Operator Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOperatorIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserLicense_operatorIdentifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserLicense_operatorIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserLicense_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserLicense_OperatorIdentifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Pack Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -251,7 +234,6 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,9 +276,8 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 		case UsersPackage.USER_LICENSE__VALID_UNTIL:
 		case UsersPackage.USER_LICENSE__CONDITION_TYPE:
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
-		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-		case UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER:
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
+		case UsersPackage.USER_LICENSE__ISSUE_DATE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		default:

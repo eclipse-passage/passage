@@ -44,9 +44,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/validUntil"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/conditionType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/conditionExpression"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/issueDate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/operatorIdentifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/packIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/issueDate"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicense/user"/>
     </genClasses>
   </genPackages>

@@ -40,9 +40,8 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getValidUntil <em>Valid Until</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getConditionType <em>Condition Type</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getConditionExpression <em>Condition Expression</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getOperatorIdentifier <em>Operator Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getPackIdentifier <em>Pack Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getIssueDate <em>Issue Date</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserLicenseImpl#getUser <em>User</em>}</li>
  * </ul>
  *
@@ -190,46 +189,6 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	protected String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIssueDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date ISSUE_DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIssueDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date issueDate = ISSUE_DATE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getOperatorIdentifier() <em>Operator Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperatorIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OPERATOR_IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getOperatorIdentifier() <em>Operator Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperatorIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String operatorIdentifier = OPERATOR_IDENTIFIER_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getPackIdentifier() <em>Pack Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +207,26 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @ordered
 	 */
 	protected String packIdentifier = PACK_IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIssueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date ISSUE_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIssueDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date issueDate = ISSUE_DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -466,30 +445,6 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 */
 	@Override
-	public String getOperatorIdentifier() {
-		return operatorIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOperatorIdentifier(String newOperatorIdentifier) {
-		String oldOperatorIdentifier = operatorIdentifier;
-		operatorIdentifier = newOperatorIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER,
-					oldOperatorIdentifier, operatorIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getPackIdentifier() {
 		return packIdentifier;
 	}
@@ -623,12 +578,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 			return getConditionType();
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
 			return getConditionExpression();
-		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-			return getIssueDate();
-		case UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER:
-			return getOperatorIdentifier();
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
 			return getPackIdentifier();
+		case UsersPackage.USER_LICENSE__ISSUE_DATE:
+			return getIssueDate();
 		case UsersPackage.USER_LICENSE__USER:
 			return getUser();
 		default:
@@ -665,14 +618,11 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
 			setConditionExpression((String) newValue);
 			return;
-		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-			setIssueDate((Date) newValue);
-			return;
-		case UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER:
-			setOperatorIdentifier((String) newValue);
-			return;
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
 			setPackIdentifier((String) newValue);
+			return;
+		case UsersPackage.USER_LICENSE__ISSUE_DATE:
+			setIssueDate((Date) newValue);
 			return;
 		case UsersPackage.USER_LICENSE__USER:
 			setUser((User) newValue);
@@ -712,14 +662,11 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
 			setConditionExpression(CONDITION_EXPRESSION_EDEFAULT);
 			return;
-		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-			setIssueDate(ISSUE_DATE_EDEFAULT);
-			return;
-		case UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER:
-			setOperatorIdentifier(OPERATOR_IDENTIFIER_EDEFAULT);
-			return;
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
 			setPackIdentifier(PACK_IDENTIFIER_EDEFAULT);
+			return;
+		case UsersPackage.USER_LICENSE__ISSUE_DATE:
+			setIssueDate(ISSUE_DATE_EDEFAULT);
 			return;
 		case UsersPackage.USER_LICENSE__USER:
 			setUser((User) null);
@@ -757,14 +704,11 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
 			return CONDITION_EXPRESSION_EDEFAULT == null ? conditionExpression != null
 					: !CONDITION_EXPRESSION_EDEFAULT.equals(conditionExpression);
-		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-			return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
-		case UsersPackage.USER_LICENSE__OPERATOR_IDENTIFIER:
-			return OPERATOR_IDENTIFIER_EDEFAULT == null ? operatorIdentifier != null
-					: !OPERATOR_IDENTIFIER_EDEFAULT.equals(operatorIdentifier);
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
 			return PACK_IDENTIFIER_EDEFAULT == null ? packIdentifier != null
 					: !PACK_IDENTIFIER_EDEFAULT.equals(packIdentifier);
+		case UsersPackage.USER_LICENSE__ISSUE_DATE:
+			return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
 		case UsersPackage.USER_LICENSE__USER:
 			return getUser() != null;
 		default:
@@ -797,12 +741,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 		result.append(conditionType);
 		result.append(", conditionExpression: "); //$NON-NLS-1$
 		result.append(conditionExpression);
-		result.append(", issueDate: "); //$NON-NLS-1$
-		result.append(issueDate);
-		result.append(", operatorIdentifier: "); //$NON-NLS-1$
-		result.append(operatorIdentifier);
 		result.append(", packIdentifier: "); //$NON-NLS-1$
 		result.append(packIdentifier);
+		result.append(", issueDate: "); //$NON-NLS-1$
+		result.append(issueDate);
 		result.append(')');
 		return result.toString();
 	}

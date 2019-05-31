@@ -418,16 +418,6 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 */
 	@Override
 	public EAttribute getUserLicense_IssueDate() {
-		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUserLicense_OperatorIdentifier() {
 		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -438,7 +428,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 */
 	@Override
 	public EAttribute getUserLicense_PackIdentifier() {
-		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(9);
+		return (EAttribute) userLicenseEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -448,7 +438,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 */
 	@Override
 	public EReference getUserLicense_User() {
-		return (EReference) userLicenseEClass.getEStructuralFeatures().get(10);
+		return (EReference) userLicenseEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -514,9 +504,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		createEAttribute(userLicenseEClass, USER_LICENSE__VALID_UNTIL);
 		createEAttribute(userLicenseEClass, USER_LICENSE__CONDITION_TYPE);
 		createEAttribute(userLicenseEClass, USER_LICENSE__CONDITION_EXPRESSION);
-		createEAttribute(userLicenseEClass, USER_LICENSE__ISSUE_DATE);
-		createEAttribute(userLicenseEClass, USER_LICENSE__OPERATOR_IDENTIFIER);
 		createEAttribute(userLicenseEClass, USER_LICENSE__PACK_IDENTIFIER);
+		createEAttribute(userLicenseEClass, USER_LICENSE__ISSUE_DATE);
 		createEReference(userLicenseEClass, USER_LICENSE__USER);
 	}
 
@@ -623,14 +612,11 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		initEAttribute(getUserLicense_ConditionExpression(), ecorePackage.getEString(), "conditionExpression", null, 1, //$NON-NLS-1$
 				1, UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserLicense_IssueDate(), ecorePackage.getEDate(), "issueDate", null, 0, 1, UserLicense.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserLicense_OperatorIdentifier(), ecorePackage.getEString(), "operatorIdentifier", null, 0, 1, //$NON-NLS-1$
-				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUserLicense_PackIdentifier(), ecorePackage.getEString(), "packIdentifier", null, 0, 1, //$NON-NLS-1$
 				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserLicense_IssueDate(), ecorePackage.getEDate(), "issueDate", null, 0, 1, UserLicense.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUserLicense_User(), this.getUser(), this.getUser_UserLicenses(), "user", null, 1, 1, //$NON-NLS-1$
 				UserLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

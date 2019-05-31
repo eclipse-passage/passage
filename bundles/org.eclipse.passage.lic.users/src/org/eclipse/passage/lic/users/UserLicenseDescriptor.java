@@ -88,29 +88,20 @@ public interface UserLicenseDescriptor {
 	String getConditionExpression();
 
 	/**
-	 * Returns the issue date of this user license. This is the value of its
-	 * <code>"issueDate"</code> attribute.
-	 *
-	 * @return the issue date
-	 */
-	Date getIssueDate();
-
-	/**
-	 * Returns the identifier of <code>"Operator"</code> who issued this user
-	 * license. This is the value of its <code>"operatorIdentifier"</code>
-	 * attribute.
-	 *
-	 * @return the operator identifier
-	 */
-	String getOperatorIdentifier();
-
-	/**
 	 * Returns the <code>"License Pack"</code> identifier of this user license. This
 	 * is the value of its <code>"packIdentifier"</code> attribute.
 	 *
 	 * @return the pack identifier
 	 */
 	String getPackIdentifier();
+
+	/**
+	 * Returns the issue date of this user license. This is the value of its
+	 * <code>"issueDate"</code> attribute.
+	 *
+	 * @return the issue date
+	 */
+	Date getIssueDate();
 
 	/**
 	 * Returns the containing user of this user license.
