@@ -24,6 +24,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IInputValidator;
@@ -39,11 +40,14 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
+import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
 //FIXME: should be moved to reduce dependencies
@@ -100,6 +104,14 @@ public class LicenseExportHandler {
 		if (result.getSeverity() == LicensingResult.OK) {
 			MessageDialog.openInformation(shell, LicensesUiMessages.LicenseExportHandler_success_title,
 					result.getMessage());
+			Object attached = result.getAttachment(UsersPackage.eINSTANCE.getUserLicense().getName());
+			if (attached instanceof UserLicense) {
+				UserLicense userLicense = (UserLicense) attached;
+				String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
+				LocWokbench.switchPerspective(context, perspectiveId);
+				IEventBroker broker = context.get(IEventBroker.class);
+				broker.post(LocWokbench.TOPIC_SHOW, userLicense);
+			}
 		} else {
 			IStatus status = LicensingEquinox.toStatus(result);
 			ErrorDialog.openError(shell, LicensesUiMessages.LicenseExportHandler_error_title,

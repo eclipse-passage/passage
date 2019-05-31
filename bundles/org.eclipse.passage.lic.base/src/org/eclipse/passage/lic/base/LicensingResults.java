@@ -17,6 +17,7 @@ import static org.eclipse.passage.lic.api.LicensingResult.OK;
 import static org.eclipse.passage.lic.base.BaseLicensingResult.CODE_NOMINAL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,11 @@ public class LicensingResults {
 
 	public static LicensingResult createOK(String message, String source) {
 		return new BaseLicensingResult(OK, message, source);
+	}
+
+	public static LicensingResult createOK(String message, String source, Map<String, Object> attachments) {
+		return new BaseLicensingResult(OK, message, BaseLicensingResult.CODE_NOMINAL, source, null,
+				Collections.emptyList(), attachments);
 	}
 
 	public static LicensingResult createEvent(String topic, Object data) {

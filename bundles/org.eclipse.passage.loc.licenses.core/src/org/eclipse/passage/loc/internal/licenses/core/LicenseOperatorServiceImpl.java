@@ -20,6 +20,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -193,6 +195,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		license.setIssueDate(issueDate);
 		String userIdentifier = template.getUserIdentifier();
 		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
+		Map<String, Object> attachemnts = new HashMap<String, Object>();
 		if (userDescriptor instanceof User) {
 			User user = (User) userDescriptor;
 			String conditionType = userDescriptor.getPreferredConditionType();
@@ -220,6 +223,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			try {
 				// FIXME: define parameters
 				user.eResource().save(null);
+				attachemnts.put(userLicense.eClass().getName(), userLicense);
 			} catch (IOException e) {
 				return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error,
 						pluginId, e);
@@ -243,7 +247,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		if (streamCodec == null) {
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseIn);
-			return LicensingResults.createOK(message);
+			return LicensingResults.createOK(message, pluginId, attachemnts);
 		}
 
 		String keyFileName = productIdentifier + '_' + productVersion;
@@ -268,7 +272,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
-			return LicensingResults.createOK(message, pluginId);
+			return LicensingResults.createOK(message, pluginId, attachemnts);
 		} catch (Exception e) {
 			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
 					e);

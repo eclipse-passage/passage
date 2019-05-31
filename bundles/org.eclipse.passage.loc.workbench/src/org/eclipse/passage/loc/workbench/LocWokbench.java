@@ -55,7 +55,7 @@ public class LocWokbench {
 	public static final String COMMAND_VIEW_PERSPECTIVE = "org.eclipse.passage.loc.workbench.command.view.perspective"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_VIEW_PERSPECTIVE_ID = "org.eclipse.passage.loc.workbench.commandparameter.perspective.id"; //$NON-NLS-1$
 
-	public static final String TOPIC_SHOW = "ru/arsysop/passage/loc/workbench/show"; //$NON-NLS-1$
+	public static final String TOPIC_SHOW = "org/eclipse/passage/loc/workbench/show"; //$NON-NLS-1$
 
 	public static String selectSavePath(Shell shell, String extension) {
 		String[] array = maskFilters(extension);
