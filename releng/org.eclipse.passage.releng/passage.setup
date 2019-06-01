@@ -138,7 +138,7 @@
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190531194818/repository"/>
       </repositoryList>
       <repositoryList
           name="2019-03">
