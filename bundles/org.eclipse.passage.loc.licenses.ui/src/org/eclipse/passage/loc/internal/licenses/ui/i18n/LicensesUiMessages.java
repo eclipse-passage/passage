@@ -23,6 +23,7 @@ public class LicensesUiMessages extends NLS {
 	public static String LicenseExportHandler_period_message;
 	public static String LicenseExportHandler_period_title;
 	public static String LicenseExportHandler_success_title;
+	public static String LicensesUi_select_license_plan;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesUiMessages.class);
