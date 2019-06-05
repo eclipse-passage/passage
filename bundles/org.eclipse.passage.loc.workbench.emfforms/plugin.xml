@@ -20,5 +20,11 @@
             uri="fragment.e4xmi">
       </fragment>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecp.edit.swt.dialogWrapper">
+      <dialogWrapper
+            class="org.eclipse.passage.loc.internal.workbench.emfforms.OperatorDialogWrapper">
+      </dialogWrapper>
+   </extension>
 
 </plugin>
