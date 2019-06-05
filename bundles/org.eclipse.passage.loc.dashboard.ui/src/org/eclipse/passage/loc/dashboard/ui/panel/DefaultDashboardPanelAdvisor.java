@@ -12,11 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.panel;
 
+import java.util.Collections;
+
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.passage.lic.e4.core.commands.E4CoreCommands;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -35,7 +38,9 @@ import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -281,10 +286,23 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void createFooterInfo(Composite parent) {
-		Label label = new Label(parent, SWT.NONE);
-		label.setLayoutData(
-				GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false).create());
-		label.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_summary);
+		Label summary = new Label(parent, SWT.NONE);
+		GridDataFactory gdf = GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false);
+		summary.setLayoutData(gdf.create());
+		summary.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_summary);
+//		Label spacer = new Label(parent, SWT.NONE);
+//		spacer.setLayoutData(gdf.create());
+		Button issueLicense = new Button(parent, SWT.PUSH);
+		issueLicense.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		issueLicense.setLayoutData(gdf.create());
+		issueLicense.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_text);
+		issueLicense.setToolTipText(DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_description);
+		issueLicense.addSelectionListener(SelectionListener.widgetSelectedAdapter(c -> executeIssueLicenseCommand()));
+
+	}
+
+	protected void executeIssueLicenseCommand() {
+		E4CoreCommands.executeCommand(eclipseContext, DashboardUi.COMMAND_ISSUE_LICENSE, Collections.emptyMap());
 	}
 
 	protected void createLinks(Group group, String domain) {

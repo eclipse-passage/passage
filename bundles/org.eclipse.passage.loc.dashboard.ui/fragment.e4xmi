@@ -17,11 +17,13 @@
       <parameters xmi:id="_1BzAcA6ZEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.commandparameter.show.classifier" name="Command Parameter Show Classifier"/>
       <parameters xmi:id="_31JR0A6ZEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.commandparameter.show.perspective" name="Command Parameter Show Perspective"/>
     </elements>
+    <elements xsi:type="commands:Command" xmi:id="_4kU3UIbPEemHgffLhDrdUQ" elementId="org.eclipse.passage.loc.dashboard.ui.command.issue.license" commandName="Issue License"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_8eD6gA6VEemZZbTGyctv6w" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
     <elements xsi:type="commands:Handler" xmi:id="_EWXTgA6WEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.handler.create" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardCreateHandler" command="_Xou0sA6ZEemZZbTGyctv6w"/>
     <elements xsi:type="commands:Handler" xmi:id="_6a958AzrEem1Ya6RV5AKlw" elementId="org.eclipse.passage.loc.dashboard.ui.handler.load" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardLoadHandler" command="_b49TwA6ZEemZZbTGyctv6w"/>
     <elements xsi:type="commands:Handler" xmi:id="_CbBrYA6aEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.handler.show" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardShowHandler" command="_glc4EA6ZEemZZbTGyctv6w"/>
+    <elements xsi:type="commands:Handler" xmi:id="_N3kygIbQEemHgffLhDrdUQ" elementId="org.eclipse.passage.loc.dashboard.ui.handler.issue.license" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardIssueLicenseHandler" command="_4kU3UIbPEemHgffLhDrdUQ"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_kZSn8Ap5EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main" positionInList="first">
     <elements xsi:type="advanced:Perspective" xmi:id="_rrOkgAp5EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.dashboard.perspective.main" selectedElement="_yd-qsAp5EemYD4Lz_PRA6A" label="Dashboard" iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/obj16/passage.png">

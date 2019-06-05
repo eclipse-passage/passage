@@ -40,6 +40,8 @@ public class DashboardUiMessages extends NLS {
 	public static String DashboardDetailsPart_user_origin_description;
 	public static String DashboardDetailsPart_welcome;
 	public static String DashboardPanelBlock_show_text;
+	public static String DefaultDashboardPanelAdvisor_btn_issue_description;
+	public static String DefaultDashboardPanelAdvisor_btn_issue_text;
 	public static String DefaultDashboardPanelAdvisor_create_link;
 	public static String DefaultDashboardPanelAdvisor_feature_show;
 	public static String DefaultDashboardPanelAdvisor_feature_group;
@@ -92,6 +94,16 @@ public class DashboardUiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_user_origin_warning;
 	public static String DefaultDashboardPanelAdvisor_user_title;
 	public static String DefaultDashboardPanelAdvisor_user_warning;
+	public static String IssueLicenseRequestPage_e_no_license_plan;
+	public static String IssueLicenseRequestPage_e_no_product_version;
+	public static String IssueLicenseRequestPage_e_no_user;
+	public static String IssueLicenseRequestPage_license_block_label;
+	public static String IssueLicenseRequestPage_page_title;
+	public static String IssueLicenseRequestPage_page_description;
+	public static String IssueLicenseRequestPage_product_block_label;
+	public static String IssueLicenseRequestPage_user_block_label;
+	public static String IssueLicenseWizard_ok_licensed_title;
+	public static String IssueLicenseWizard_window_title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, DashboardUiMessages.class);
