@@ -44,7 +44,7 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 	protected Composite base;
 	protected Text text;
 	protected Button button;
-	
+
 	private final LicensingColorResolver licensingColors;
 	private final LocImages locImages;
 
@@ -56,11 +56,11 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 		this.licensingColors = viewContext.getService(LicensingColorResolver.class);
 		this.locImages = viewContext.getService(LocImages.class);
 	}
-	
+
 	public LicensingColorResolver getLicensingColors() {
 		return licensingColors;
 	}
-	
+
 	public LocImages getLocImages() {
 		return locImages;
 	}
@@ -70,8 +70,7 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 		if (control instanceof Text) {
 			ISWTObservableValue observe = WidgetProperties.text(SWT.Modify).observe(control);
 			UpdateValueStrategy target2model = withPreSetValidation(new UpdateValueStrategy());
-			final Binding binding = getDataBindingContext().bindValue(observe, getModelValue(),
-					target2model, null);
+			final Binding binding = getDataBindingContext().bindValue(observe, getModelValue(), target2model, null);
 			return new Binding[] { binding };
 		}
 
@@ -106,9 +105,10 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 		edit.setText(WorkbenchEmfformsMessages.TextWithButtonRenderer_button_edit);
 		edit.setImage(locImages.getImage(LocImages.IMG_TOOL_EDIT));
 		edit.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		edit.setEnabled(!getVElement().isReadonly());
 		return edit;
 	}
-	
+
 	@Override
 	protected void dispose() {
 		if (base != null && !base.isDisposed()) {

@@ -31,17 +31,22 @@ public class CreateFormWizardPage extends CreateFileWizardPage {
 			boolean createId, boolean createName) {
 		super(pageName, object, extension, initializer, createId, createName);
 	}
-	
+
 	@Override
+	protected void createFileControls(Composite composite) {
+		super.createFileControls(composite);
+		createOtherControls(composite);
+	}
+
 	protected void createOtherControls(Composite composite) {
 		Composite base = new Composite(composite, SWT.NONE);
-		
+
 		GridLayout layout = new GridLayout(1, false);
 		base.setLayout(layout);
-		
+
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1);
 		base.setLayoutData(data);
-		
+
 		final VViewModelProperties properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
 		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);

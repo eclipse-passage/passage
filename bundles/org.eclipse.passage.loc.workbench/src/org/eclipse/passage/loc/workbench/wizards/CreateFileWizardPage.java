@@ -16,6 +16,8 @@ import java.io.File;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
@@ -25,7 +27,6 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -43,7 +44,7 @@ public class CreateFileWizardPage extends WizardPage {
 	protected ModifyListener validator = e -> setPageComplete(validatePage());
 
 	private String extension;
-	private ClassifierInitializer initializer;
+	private ClassifierInitializer classifierInitializer;
 	private boolean createName;
 	private boolean createId;
 
@@ -52,7 +53,7 @@ public class CreateFileWizardPage extends WizardPage {
 		super(pageName);
 
 		this.extension = extension;
-		this.initializer = initializer;
+		this.classifierInitializer = initializer;
 		this.createId = createId;
 		this.createName = createName;
 		this.eObject = eObject;
@@ -61,23 +62,10 @@ public class CreateFileWizardPage extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
-		{
-			GridLayout layout = new GridLayout();
-			layout.numColumns = 3;
-			layout.verticalSpacing = 12;
-			composite.setLayout(layout);
-
-			GridData data = new GridData();
-			data.verticalAlignment = GridData.FILL;
-			data.grabExcessVerticalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			composite.setLayoutData(data);
-		}
-
+		composite.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
+		composite.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
 		createFileControls(composite);
-		createOtherControls(composite);
-		initControls(initializer);
-
+		initControls(classifierInitializer);
 		setPageComplete(validatePage());
 		setControl(composite);
 	}
@@ -85,14 +73,8 @@ public class CreateFileWizardPage extends WizardPage {
 	protected void createFileControls(Composite composite) {
 		if (createId) {
 			Label idFieldLabel = new Label(composite, SWT.LEFT);
-			{
-				idFieldLabel.setText(WorkbenchMessages.CreateFileWizardPage_label_identifier);
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = false;
-				data.horizontalSpan = 1;
-				idFieldLabel.setLayoutData(data);
-			}
+			idFieldLabel.setText(WorkbenchMessages.CreateFileWizardPage_label_identifier);
+			idFieldLabel.setLayoutData(GridDataFactory.fillDefaults().create());
 
 			txtId = new Text(composite, SWT.BORDER);
 			{
@@ -238,7 +220,4 @@ public class CreateFileWizardPage extends WizardPage {
 		txtResourceURI.setFocus();
 	}
 
-	protected void createOtherControls(Composite composite) {
-		// nothing by default
-	}
 }
