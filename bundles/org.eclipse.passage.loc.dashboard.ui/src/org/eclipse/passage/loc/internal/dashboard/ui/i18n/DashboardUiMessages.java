@@ -94,14 +94,21 @@ public class DashboardUiMessages extends NLS {
 	public static String DefaultDashboardPanelAdvisor_user_origin_warning;
 	public static String DefaultDashboardPanelAdvisor_user_title;
 	public static String DefaultDashboardPanelAdvisor_user_warning;
+	public static String IssueLicensePackPage_page_description;
+	public static String IssueLicensePackPage_page_title;
+	public static String IssueLicenseRequestPage_btn_select_text;
 	public static String IssueLicenseRequestPage_e_no_license_plan;
 	public static String IssueLicenseRequestPage_e_no_product_version;
 	public static String IssueLicenseRequestPage_e_no_user;
-	public static String IssueLicenseRequestPage_license_block_label;
+	public static String IssueLicenseRequestPage_lbl_valid_from;
+	public static String IssueLicenseRequestPage_lbl_valid_until;
+	public static String IssueLicenseRequestPage_lbl_license_plan;
 	public static String IssueLicenseRequestPage_page_title;
 	public static String IssueLicenseRequestPage_page_description;
-	public static String IssueLicenseRequestPage_product_block_label;
-	public static String IssueLicenseRequestPage_user_block_label;
+	public static String IssueLicenseRequestPage_lbl_product_version;
+	public static String IssueLicenseRequestPage_lbl_user;
+	public static String IssueLicenseRequestPage_valid_from_title;
+	public static String IssueLicenseRequestPage_valid_until_title;
 	public static String IssueLicenseWizard_ok_licensed_title;
 	public static String IssueLicenseWizard_window_title;
 	static {

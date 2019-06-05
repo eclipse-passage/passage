@@ -46,6 +46,12 @@ public class PackIdentifierRenderer extends FileContentRenderer<UserLicense> {
 		sb.append(File.separator).append(productIdentifier);
 		sb.append(File.separator).append(productVersion);
 		sb.append(File.separator).append(value).append(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
+		String encoded = sb.toString();
+		if (new File(encoded).exists()) {
+			return encoded;
+		}
+		int index = sb.lastIndexOf(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
+		sb.replace(index, sb.length(), LicensingPaths.EXTENSION_LICENSE_DECRYPTED);
 		return sb.toString();
 	}
 

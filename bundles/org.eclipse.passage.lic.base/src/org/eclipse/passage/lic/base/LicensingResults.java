@@ -13,7 +13,9 @@
 package org.eclipse.passage.lic.base;
 
 import static org.eclipse.passage.lic.api.LicensingResult.ERROR;
+import static org.eclipse.passage.lic.api.LicensingResult.INFO;
 import static org.eclipse.passage.lic.api.LicensingResult.OK;
+import static org.eclipse.passage.lic.api.LicensingResult.WARNING;
 import static org.eclipse.passage.lic.base.BaseLicensingResult.CODE_NOMINAL;
 
 import java.util.ArrayList;
@@ -76,6 +78,16 @@ public class LicensingResults {
 		attachments.put(LicensingEvents.PROPERTY_DATA, data);
 		attachments.put(LicensingEvents.PROPERTY_MESSAGE, message);
 		return new BaseLicensingResult(severity, message, code, source, exception, details, attachments);
+	}
+
+	public static LicensingResult createInfo(String message, String source, Map<String, Object> attachments) {
+		return new BaseLicensingResult(INFO, message, BaseLicensingResult.CODE_NOMINAL, source, null,
+				Collections.emptyList(), attachments);
+	}
+
+	public static LicensingResult createWarning(String message, String source, Map<String, Object> attachments) {
+		return new BaseLicensingResult(WARNING, message, BaseLicensingResult.CODE_NOMINAL, source, null,
+				Collections.emptyList(), attachments);
 	}
 
 	public static LicensingResult createError(String message, String source) {

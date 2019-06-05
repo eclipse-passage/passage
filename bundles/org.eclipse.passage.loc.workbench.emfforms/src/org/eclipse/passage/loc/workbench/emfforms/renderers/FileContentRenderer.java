@@ -32,6 +32,7 @@ import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfform
 import org.eclipse.passage.loc.workbench.dialogs.FileContentDialog;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -62,6 +63,13 @@ public abstract class FileContentRenderer<O> extends TextWithButtonRenderer {
 			}
 		});
 		return control;
+	}
+
+	@Override
+	protected Button createButton(Composite parent) {
+		Button created = super.createButton(parent);
+		created.setEnabled(true);
+		return created;
 	}
 
 	@Override

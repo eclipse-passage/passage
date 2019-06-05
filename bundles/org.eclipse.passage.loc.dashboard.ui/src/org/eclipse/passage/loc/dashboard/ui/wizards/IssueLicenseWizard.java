@@ -31,6 +31,7 @@ import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
+import org.eclipse.swt.SWT;
 
 public class IssueLicenseWizard extends Wizard {
 
@@ -78,22 +79,28 @@ public class IssueLicenseWizard extends Wizard {
 		LicensingRequest request = requestPage.getLicensingRequest();
 		LicensePackDescriptor licensePack = packPage.getLicensePack();
 		LicensingResult result = licenseService.issueLicensePack(request, licensePack);
-		if (result.getSeverity() == LicensingResult.OK) {
-			setErrorMessage(null);
-			MessageDialog.openInformation(getShell(), DashboardUiMessages.IssueLicenseWizard_ok_licensed_title,
-					result.getMessage());
-			Object attached = result.getAttachment(UsersPackage.eINSTANCE.getUserLicense().getName());
-			if (attached instanceof UserLicense) {
-				UserLicense userLicense = (UserLicense) attached;
-				String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
-				LocWokbench.switchPerspective(context, perspectiveId);
-				IEventBroker broker = context.get(IEventBroker.class);
-				broker.post(LocWokbench.TOPIC_SHOW, userLicense);
-			}
-			return true;
-		} else {
+		int severity = result.getSeverity();
+		if (severity >= LicensingResult.ERROR) {
 			setErrorMessage(result.getMessage());
 			return false;
+		} else {
+			setErrorMessage(null);
+			int kind = (severity == LicensingResult.WARNING) ? MessageDialog.WARNING : MessageDialog.INFORMATION;
+			MessageDialog.open(kind, getShell(), DashboardUiMessages.IssueLicenseWizard_ok_licensed_title,
+					result.getMessage(), SWT.NONE);
+			broadcastResult(result);
+			return true;
+		}
+	}
+
+	private void broadcastResult(LicensingResult result) {
+		Object attached = result.getAttachment(UsersPackage.eINSTANCE.getUserLicense().getName());
+		if (attached instanceof UserLicense) {
+			UserLicense userLicense = (UserLicense) attached;
+			String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
+			LocWokbench.switchPerspective(context, perspectiveId);
+			IEventBroker broker = context.get(IEventBroker.class);
+			broker.post(LocWokbench.TOPIC_SHOW, userLicense);
 		}
 	}
 

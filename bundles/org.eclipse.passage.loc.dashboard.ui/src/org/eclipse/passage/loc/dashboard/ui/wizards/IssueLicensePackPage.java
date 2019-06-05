@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -43,10 +44,16 @@ public class IssueLicensePackPage extends WizardPage {
 	protected IssueLicensePackPage(String pageName, IEclipseContext context) {
 		super(pageName);
 		this.context = context;
+		setTitle(DashboardUiMessages.IssueLicensePackPage_page_title);
+		setDescription(DashboardUiMessages.IssueLicensePackPage_page_description);
 	}
 
 	public void init(LicensingRequest request) {
 		if (licensePack != null) {
+			licensePack.setPlanIdentifier(request.getPlanIdentifier());
+			licensePack.setProductIdentifier(request.getProductIdentifier());
+			licensePack.setProductVersion(request.getProductVersion());
+			licensePack.setUserIdentifier(request.getUserIdentifier());
 			return;
 		}
 		OperatorLicenseService operatorLicenseService = context.get(OperatorLicenseService.class);

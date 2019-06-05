@@ -14,6 +14,8 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
 import java.util.function.Function;
@@ -23,6 +25,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
@@ -33,6 +36,7 @@ import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
+import org.eclipse.passage.loc.jface.dialogs.DateDialog;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
@@ -51,8 +55,8 @@ public class IssueLicenseRequestPage extends WizardPage {
 	private UserDescriptor userDescriptor;
 	private ProductVersionDescriptor productVersionDescriptor;
 
-	private Date validFrom;
-	private Date validUntil;
+	private LocalDate validFrom;
+	private LocalDate validUntil;
 
 	private final ComposedAdapterFactoryProvider provider;
 	private final LabelProvider labelProvider;
@@ -81,18 +85,39 @@ public class IssueLicenseRequestPage extends WizardPage {
 	}
 
 	private void createLicenseBlock(Composite composite) {
-		createBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_license_block_label,
+		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_license_plan,
 				t -> selectLicensePlan(t), licensePlanDescriptor);
 	}
 
 	private void createUserBlock(Composite composite) {
-		createBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_user_block_label, t -> selectUser(t),
+		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_user, t -> selectUser(t),
 				userDescriptor);
 	}
 
 	private void createProductBlock(Composite composite) {
-		createBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_product_block_label,
+		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_product_version,
 				t -> selectProductVersion(t), productVersionDescriptor);
+	}
+
+	private void createDatesBlock(Composite composite) {
+		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_valid_from,
+				t -> selectFromDate(t), validFrom);
+		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_valid_until,
+				t -> selectUntilDate(t), validUntil);
+	}
+
+	private void createTextButtonBlock(Composite composite, String labelText, Function<Text, String> s,
+			Object initial) {
+		Label label = new Label(composite, SWT.NONE);
+		label.setText(labelText);
+		Text text = new Text(composite, SWT.READ_ONLY);
+		text.setData(initial);
+		text.addModifyListener(m -> setPageComplete(validatePage()));
+		text.setText(labelProvider.getText(initial));
+		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
+		Button select = new Button(composite, SWT.PUSH);
+		select.setText(DashboardUiMessages.IssueLicenseRequestPage_btn_select_text);
+		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(s.apply(text))));
 	}
 
 	private String selectLicensePlan(Text text) {
@@ -136,22 +161,32 @@ public class IssueLicenseRequestPage extends WizardPage {
 		return labelProvider.getText(selected);
 	}
 
-	private void createBlock(Composite composite, String labelText, Function<Text, String> s, Object initial) {
-		Label label = new Label(composite, SWT.NONE);
-		label.setText(labelText);
-		Text text = new Text(composite, SWT.READ_ONLY);
-		text.setData(initial);
-		text.addModifyListener(m -> setPageComplete(validatePage()));
-		text.setText(labelProvider.getText(initial));
-		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
-		Button select = new Button(composite, SWT.PUSH);
-		select.setText("Select..."); //$NON-NLS-1$
-		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(s.apply(text))));
+	private String selectFromDate(Text text) {
+		LocalDate selected = selectDate(text, validFrom, DashboardUiMessages.IssueLicenseRequestPage_valid_from_title);
+		validFrom = selected;
+		return selected.toString();
 	}
 
-	private void createDatesBlock(Composite composite) {
-		// TODO Auto-generated method stub
+	private String selectUntilDate(Text text) {
+		LocalDate selected = selectDate(text, validUntil, DashboardUiMessages.IssueLicenseRequestPage_valid_until_title);
+		validUntil = selected;
+		return selected.toString();
+	}
 
+	private LocalDate selectDate(Text text, LocalDate initial, String title) {
+		LocalDate current = initial;
+		Object data = text.getData();
+		if (data instanceof LocalDate) {
+			current = (LocalDate) data;
+		}
+		DateDialog dialog = new DateDialog(getShell(), current);
+		dialog.create();
+		dialog.getShell().setText(title);
+		if (dialog.open() == Window.OK) {
+			current = dialog.getSelected();
+			text.setData(current);
+		}
+		return current;
 	}
 
 	protected boolean validatePage() {
@@ -177,6 +212,8 @@ public class IssueLicenseRequestPage extends WizardPage {
 		this.licensePlanDescriptor = plan;
 		this.userDescriptor = user;
 		this.productVersionDescriptor = version;
+		this.validFrom = LocalDate.now();
+		this.validUntil = validFrom.plusMonths(12);
 	}
 
 	public LicensingRequest getLicensingRequest() {
@@ -185,19 +222,20 @@ public class IssueLicenseRequestPage extends WizardPage {
 	}
 
 	private LicensingRequest createLicensingRequest(UserDescriptor user, LicensePlanDescriptor licensePlan,
-			ProductVersionDescriptor productVersion, Date from, Date until) {
+			ProductVersionDescriptor productVersion, LocalDate from, LocalDate until) {
+		ZoneId systemDefault = ZoneId.systemDefault();
 		String uuid = UUID.randomUUID().toString();
 		Date creationDate = new Date();
 		return new LicensingRequest() {
 
 			@Override
 			public Date getValidUntil() {
-				return until;
+				return Date.from(until.atStartOfDay(systemDefault).toInstant());
 			}
 
 			@Override
 			public Date getValidFrom() {
-				return from;
+				return Date.from(from.atStartOfDay(systemDefault).toInstant());
 			}
 
 			@Override
