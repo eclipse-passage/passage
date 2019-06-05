@@ -12,7 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.edit.providers;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -248,17 +251,22 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
+		String unknownDate = String.valueOf('?');
+		String from = unknownDate;
+		String until = unknownDate;
 		LicenseGrant licenseGrant = (LicenseGrant) object;
 		String feature = licenseGrant.getFeatureIdentifier();
-		if (feature == null || feature.length() == 0) {
-			return getString("_UI_LicenseGrant_type"); //$NON-NLS-1$
-
+		String version = licenseGrant.getMatchVersion();
+		String rule = licenseGrant.getMatchRule();
+		Date validFrom = licenseGrant.getValidFrom();
+		if (validFrom != null) {
+			from = LocalDateTime.ofInstant(validFrom.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
-		String type = licenseGrant.getConditionType();
-		if (type == null || type.length() == 0) {
-			return feature;
+		Date validUntil = licenseGrant.getValidUntil();
+		if (validUntil != null) {
+			until = LocalDateTime.ofInstant(validUntil.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
-		return getString("_UI_LicenseGrant_text_pattern", new Object[] { type, feature }); //$NON-NLS-1$
+		return getString("_UI_LicenseGrant_text_pattern_dates", new Object[] { from, until, feature, version }); //$NON-NLS-1$
 	}
 
 	/**
