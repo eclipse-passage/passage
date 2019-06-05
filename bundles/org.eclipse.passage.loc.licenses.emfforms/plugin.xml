@@ -16,6 +16,12 @@
    <extension
          point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
       <file
+            filePath="viewmodels/LicensePlan.view">
+      </file>
+      <file
+            filePath="viewmodels/LicensePlanFeature.view">
+      </file>
+      <file
             filePath="viewmodels/LicensePack.view">
       </file>
       <file
