@@ -58,10 +58,11 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	public static final int SHOW_CONFIGURATION_ID = IDialogConstants.CLIENT_ID + 3;
 
 	private final AccessManager accessManager;
-	private final FeatureInspector featureInspector;
 	private final HardwareInspector hardwareInspector;
+	private final FeatureInspector featureInspector;
+	private final String[] features;
 
-	private final FeatureCase featureCase;
+	private FeatureCase featureCase;
 
 	private TableViewer tableViewer;
 	IEclipsePreferences preferences = LicensingColors.getPreferences();
@@ -72,8 +73,9 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		super(shell);
 		accessManager = LicensingEquinox.getAccessManager();
 		featureInspector = LicensingEquinox.getFeatureInspector();
-		featureCase = featureInspector.inspectFeatures(features);
 		hardwareInspector = LicensingEquinox.getHardwareInspector();
+		this.features = new String[features.length];
+		System.arraycopy(features, 0, this.features, 0, features.length);
 	}
 
 	@Override
@@ -88,7 +90,6 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		setTitle(JFaceMessages.LicensingStatusDialog_title);
 		Composite area = (Composite) super.createDialogArea(parent);
 		createAreaContent(area);
-		computeStatus();
 		Dialog.applyDialogFont(area);
 		return area;
 	}
@@ -102,7 +103,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		} else {
 			setErrorMessage(RestrictionRepresenters.resolveSummary(last));
 		}
-		updateTable();
+		getContents().getDisplay().asyncExec(() -> updateTable());
 	}
 
 	protected void createAreaContent(Composite area) {
@@ -112,8 +113,8 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		Table tableDetails = new Table(contents, SWT.BORDER);
 		tableDetails.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tableViewer = LicensingRequirementViewer.createTableViewer(tableDetails);
-		tableViewer.setInput(featureCase.getRequirements());
-
+		setMessage(JFaceMessages.LicensingStatusDialog_ok_initilaizing);
+		area.getDisplay().asyncExec(() -> initializeFeatureCase());
 		Group contactsGroup = new Group(area, SWT.NONE);
 		contactsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		contactsGroup.setText(JFaceMessages.LicensingStatusDialog_contact_group);
@@ -129,16 +130,25 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		}
 	}
 
+	protected void initializeFeatureCase() {
+		featureCase = featureInspector.inspectFeatures(features);
+		tableViewer.setInput(featureCase.getRequirements());
+		computeStatus();
+	}
+
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		((GridLayout) parent.getLayout()).makeColumnsEqualWidth = false;
-		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID, JFaceMessages.LicensingStatusDialog_configuration_button, false);
+		Button detailsButton = createButton(parent, SHOW_CONFIGURATION_ID,
+				JFaceMessages.LicensingStatusDialog_configuration_button, false);
 		detailsButton.setImage(LicensingImages.getImage(LicensingImages.IMG_DEFAULT));
 		detailsButton.setEnabled(accessManager != null);
-		Button importButton = createButton(parent, IMPORT_LICENSE_ID, JFaceMessages.LicensingStatusDialog_import_button, false);
+		Button importButton = createButton(parent, IMPORT_LICENSE_ID, JFaceMessages.LicensingStatusDialog_import_button,
+				false);
 		importButton.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
 		importButton.setEnabled(accessManager != null);
-		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID, JFaceMessages.LicensingStatusDialog_hardware_button, false);
+		Button inspector = createButton(parent, HARDWARE_INSPECTOR_ID,
+				JFaceMessages.LicensingStatusDialog_hardware_button, false);
 		inspector.setImage(LicensingImages.getImage(LicensingImages.IMG_INSPECTOR));
 		inspector.setEnabled(hardwareInspector != null);
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);

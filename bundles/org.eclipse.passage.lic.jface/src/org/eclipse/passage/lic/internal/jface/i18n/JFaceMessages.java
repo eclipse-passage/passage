@@ -51,6 +51,7 @@ public class JFaceMessages extends NLS {
 	public static String LicensingStatusDialog_contact_group;
 	public static String LicensingStatusDialog_hardware_button;
 	public static String LicensingStatusDialog_import_button;
+	public static String LicensingStatusDialog_ok_initilaizing;
 	public static String LicensingStatusDialog_shell;
 	public static String LicensingStatusDialog_title;
 	public static String RequirementLabels_name_n_a;
