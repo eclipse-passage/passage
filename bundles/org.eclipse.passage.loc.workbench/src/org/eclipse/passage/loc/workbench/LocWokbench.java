@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -166,6 +167,7 @@ public class LocWokbench {
 		}
 		long count = StreamSupport.stream(input.spliterator(), false).count();
 		if (count == 0) {
+			MessageDialog.openInformation(shell, title, WorkbenchMessages.LocWokbench_e_nothing_to_select);
 			return null;
 		}
 		if (count == 1) {

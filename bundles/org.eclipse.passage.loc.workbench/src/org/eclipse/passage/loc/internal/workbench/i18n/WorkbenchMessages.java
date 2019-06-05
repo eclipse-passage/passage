@@ -32,6 +32,7 @@ public class WorkbenchMessages extends NLS {
 	public static String FilteredSelectionDialog_filtering_label;
 	public static String FilteredSelectionDialog_items_label;
 	public static String LicensingStatusToolControl_text_undefined;
+	public static String LocWokbench_e_nothing_to_select;
 	public static String LocWokbench_e_saving;
 	public static String RedoHandler_label_base;
 	public static String RedoHandler_label_pattern;
