@@ -24,6 +24,10 @@
                value="%application.name">
          </property>
          <property
+               name="aboutText"
+               value="%aboutText">
+         </property>
+         <property
                name="applicationCSS"
                value="platform:/plugin/org.eclipse.passage.loc.operator/css/default.css">
          </property>
