@@ -55,7 +55,7 @@
     <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
-        url="https://download.eclipse.org/staging/2019-06/"/>
+        url="https://download.eclipse.org/releases/2019-06/"/>
     <repository
         url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <repository
@@ -134,7 +134,7 @@
       <repositoryList
           name="2019-06">
         <repository
-            url="https://download.eclipse.org/staging/2019-06/"/>
+            url="https://download.eclipse.org/releases/2019-06/"/>
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository

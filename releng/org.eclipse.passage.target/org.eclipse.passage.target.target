@@ -21,13 +21,10 @@
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.emf.ecp.sdk.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/staging/2019-06/"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12RC2-201906051800/"/>
+			<repository location="https://download.eclipse.org/releases/2019-06/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
