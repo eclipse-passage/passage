@@ -43,14 +43,14 @@ public class DateDialog extends Dialog {
 		int year = calendar.getYear();
 		int month = calendar.getMonth();
 		int day = calendar.getDay();
-		return LocalDate.of(year, month, day);
+		return LocalDate.of(year, month + 1, day);
 	}
 
 	protected void showLocalDate(LocalDate localDate) {
 		int year = localDate.getYear();
 		int month = localDate.getMonthValue();
 		int day = localDate.getDayOfMonth();
-		calendar.setDate(year, month, day);
+		calendar.setDate(year, month - 1, day);
 	}
 
 	@Override

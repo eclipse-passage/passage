@@ -14,18 +14,21 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
 import org.eclipse.emf.ecp.ui.view.swt.ECPSWTViewRenderer;
 import org.eclipse.emf.ecp.view.spi.model.VViewFactory;
 import org.eclipse.emf.ecp.view.spi.model.VViewModelProperties;
 import org.eclipse.emfforms.swt.core.EMFFormsSWTConstants;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
@@ -54,6 +57,11 @@ public class IssueLicensePackPage extends WizardPage {
 			licensePack.setProductIdentifier(request.getProductIdentifier());
 			licensePack.setProductVersion(request.getProductVersion());
 			licensePack.setUserIdentifier(request.getUserIdentifier());
+			EList<LicenseGrant> licenseGrants = licensePack.getLicenseGrants();
+			for (LicenseGrant licenseGrant : licenseGrants) {
+				licenseGrant.setValidFrom(request.getValidFrom());
+				licenseGrant.setValidUntil(request.getValidUntil());
+			}
 			return;
 		}
 		OperatorLicenseService operatorLicenseService = context.get(OperatorLicenseService.class);
@@ -75,6 +83,7 @@ public class IssueLicensePackPage extends WizardPage {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
 		composite.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
+		setControl(composite);
 		base = new Composite(composite, SWT.NONE);
 		base.setLayout(new GridLayout(1, false));
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
@@ -83,7 +92,7 @@ public class IssueLicensePackPage extends WizardPage {
 		viewModelProperties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
 		updatePage();
-		setControl(composite);
+		Dialog.applyDialogFont(composite);
 	}
 
 	private void updatePage() {

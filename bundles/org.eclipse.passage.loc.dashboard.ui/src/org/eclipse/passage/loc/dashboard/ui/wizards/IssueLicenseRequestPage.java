@@ -75,12 +75,12 @@ public class IssueLicenseRequestPage extends WizardPage {
 		Composite container = new Composite(parent, SWT.NONE);
 		container.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
 		container.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
+		setControl(container);
 		createLicenseBlock(container);
 		createUserBlock(container);
 		createProductBlock(container);
 		createDatesBlock(container);
 		setPageComplete(validatePage());
-		setControl(container);
 		Dialog.applyDialogFont(container);
 	}
 
@@ -110,6 +110,7 @@ public class IssueLicenseRequestPage extends WizardPage {
 			Object initial) {
 		Label label = new Label(composite, SWT.NONE);
 		label.setText(labelText);
+		label.setLayoutData(GridDataFactory.fillDefaults().create());
 		Text text = new Text(composite, SWT.READ_ONLY);
 		text.setData(initial);
 		text.addModifyListener(m -> setPageComplete(validatePage()));
@@ -118,6 +119,7 @@ public class IssueLicenseRequestPage extends WizardPage {
 		Button select = new Button(composite, SWT.PUSH);
 		select.setText(DashboardUiMessages.IssueLicenseRequestPage_btn_select_text);
 		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(s.apply(text))));
+		select.setLayoutData(GridDataFactory.fillDefaults().create());
 	}
 
 	private String selectLicensePlan(Text text) {
@@ -168,7 +170,8 @@ public class IssueLicenseRequestPage extends WizardPage {
 	}
 
 	private String selectUntilDate(Text text) {
-		LocalDate selected = selectDate(text, validUntil, DashboardUiMessages.IssueLicenseRequestPage_valid_until_title);
+		LocalDate selected = selectDate(text, validUntil,
+				DashboardUiMessages.IssueLicenseRequestPage_valid_until_title);
 		validUntil = selected;
 		return selected.toString();
 	}
