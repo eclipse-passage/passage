@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.users.edit.providers;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -250,10 +251,10 @@ public class UserLicenseItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	public String getText(Object object) {
 		UserLicense userLicense = (UserLicense) object;
+		Date issueDate = userLicense.getIssueDate();
 		String planId = userLicense.getPlanIdentifier();
-		String productId = userLicense.getProductIdentifier();
-		String productVersion = userLicense.getProductVersion();
-		Object[] substitutions = new Object[] { planId, productId, productVersion };
+		String userFullName = userLicense.getUser().getFullName();
+		Object[] substitutions = new Object[] { issueDate, planId, userFullName };
 		return getString("_UI_UserLicense_label", substitutions); //$NON-NLS-1$
 	}
 
