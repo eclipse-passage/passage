@@ -52,18 +52,18 @@ public abstract class PathConditionMiner extends BaseConditionMiner {
 			licensingReporter.logResult(LicensingResults.createError(message, source));
 			return mined;
 		}
-		KeyKeeper keyKeeper = keyKeeperRegistry.getKeyKeeper(configuration);
 		if (keyKeeperRegistry == null) {
 			licensingReporter.logResult(LicensingResults
 					.createError(BaseMessages.getString("PathConditionMiner.e_no_key_keeper_registry"), source)); //$NON-NLS-1$
 			return mined;
 		}
-		StreamCodec streamCodec = streamCodecRegistry.getStreamCodec(configuration);
+		KeyKeeper keyKeeper = keyKeeperRegistry.getKeyKeeper(configuration);
 		if (streamCodecRegistry == null) {
 			licensingReporter.logResult(LicensingResults
 					.createError(BaseMessages.getString("PathConditionMiner.e_no_stream_codec_registry"), source)); //$NON-NLS-1$
 			return mined;
 		}
+		StreamCodec streamCodec = streamCodecRegistry.getStreamCodec(configuration);
 		String extension;
 		if (NullKeyKeeper.INSTANCE == keyKeeper && NullStreamCodec.INSTANCE == streamCodec) {
 			extension = LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
