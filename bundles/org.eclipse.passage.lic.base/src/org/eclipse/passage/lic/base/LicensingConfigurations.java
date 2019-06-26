@@ -16,7 +16,7 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
-public class LicensingConfigurations {
+public final class LicensingConfigurations {
 
 	public static final String LICENSING_PRODUCT_IDENTIFIER = "licensing.product.identifier"; //$NON-NLS-1$
 	public static final String LICENSING_PRODUCT_VERSION = "licensing.product.version"; //$NON-NLS-1$
@@ -26,6 +26,10 @@ public class LicensingConfigurations {
 
 	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration(IDENTIFIER_INVALID,
 			LicensingVersions.VERSION_DEFAULT);
+
+	private LicensingConfigurations() {
+		// block
+	}
 
 	public static LicensingConfiguration create(String product, String version) {
 		return new BaseLicensingConfiguration(String.valueOf(product), String.valueOf(version));
