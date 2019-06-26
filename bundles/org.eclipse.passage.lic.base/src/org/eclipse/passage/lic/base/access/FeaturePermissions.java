@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
-public class FeaturePermissions {
+public final class FeaturePermissions {
 
 	private FeaturePermissions() {
 		// block
