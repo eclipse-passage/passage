@@ -19,13 +19,17 @@ import java.nio.file.Paths;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
-public class LicensingPaths {
+public final class LicensingPaths {
 
-	public static String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
+	public static final String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
 
-	public static String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
-	public static String EXTENSION_LICENSE_ENCRYPTED = ".licen"; //$NON-NLS-1$
-	public static String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
+	public static final String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
+	public static final String EXTENSION_LICENSE_ENCRYPTED = ".licen"; //$NON-NLS-1$
+	public static final String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
+
+	private LicensingPaths() {
+		// block
+	}
 
 	public static Path resolveBasePath(URL url) {
 		File file = new File(url.getPath());
