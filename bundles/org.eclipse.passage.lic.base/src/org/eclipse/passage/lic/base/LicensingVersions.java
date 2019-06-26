@@ -14,8 +14,7 @@ package org.eclipse.passage.lic.base;
 
 import java.util.Objects;
 
-public class LicensingVersions {
-	
+public final class LicensingVersions {
 
 	public static final String VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 
@@ -28,7 +27,7 @@ public class LicensingVersions {
 	private static final String SEPARATOR_REGEX = "\\."; //$NON-NLS-1$
 
 	private LicensingVersions() {
-		//block
+		// block
 	}
 
 	public static String toVersionValue(Object object) {
@@ -60,7 +59,7 @@ public class LicensingVersions {
 		}
 		return VERSION_DEFAULT;
 	}
-	
+
 	private static int extractSegment(String[] split, int index) {
 		if (split.length > index) {
 			try {
@@ -71,7 +70,7 @@ public class LicensingVersions {
 		}
 		return 0;
 	}
-	
+
 	public static String toRuleValue(Object object) {
 		if (object instanceof String) {
 			String rule = (String) object;
@@ -110,7 +109,7 @@ public class LicensingVersions {
 		}
 		return Objects.equals(required, allowed);
 	}
-	
+
 	public static boolean isGreaterOrEqual(String required, String allowed) {
 		if (VERSION_DEFAULT.equals(allowed)) {
 			return true;

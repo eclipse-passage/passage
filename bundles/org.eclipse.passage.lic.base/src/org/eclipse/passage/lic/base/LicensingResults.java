@@ -27,7 +27,11 @@ import java.util.Map;
 import org.eclipse.passage.lic.api.LicensingEvents;
 import org.eclipse.passage.lic.api.LicensingResult;
 
-public class LicensingResults {
+public final class LicensingResults {
+
+	private LicensingResults() {
+		// block
+	}
 
 	public static LicensingResult createOK() {
 		return new BaseLicensingResult(OK, "", LicensingResults.class.getName()); //$NON-NLS-1$
