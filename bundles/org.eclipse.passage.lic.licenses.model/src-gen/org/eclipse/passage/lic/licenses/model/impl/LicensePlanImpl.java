@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.model.impl;
 
 import java.util.Collection;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -324,11 +325,11 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.LICENSE_PLAN__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			return !Objects.equals(NAME_EDEFAULT, name);
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
 			return licensePlanFeatures != null && !licensePlanFeatures.isEmpty();
 		default:

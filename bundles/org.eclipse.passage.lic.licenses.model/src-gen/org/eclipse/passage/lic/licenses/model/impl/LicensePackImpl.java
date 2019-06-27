@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.licenses.model.impl;
 import java.util.Collection;
 import java.util.Date;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -632,27 +633,21 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PACK__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.LICENSE_PACK__ISSUE_DATE:
-			return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
+			return !Objects.equals(ISSUE_DATE_EDEFAULT, issueDate);
 		case LicensesPackage.LICENSE_PACK__USER_IDENTIFIER:
-			return USER_IDENTIFIER_EDEFAULT == null ? userIdentifier != null
-					: !USER_IDENTIFIER_EDEFAULT.equals(userIdentifier);
+			return !Objects.equals(USER_IDENTIFIER_EDEFAULT, userIdentifier);
 		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
-			return USER_FULL_NAME_EDEFAULT == null ? userFullName != null
-					: !USER_FULL_NAME_EDEFAULT.equals(userFullName);
+			return !Objects.equals(USER_FULL_NAME_EDEFAULT, userFullName);
 		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
-			return REQUEST_IDENTIFIER_EDEFAULT == null ? requestIdentifier != null
-					: !REQUEST_IDENTIFIER_EDEFAULT.equals(requestIdentifier);
+			return !Objects.equals(REQUEST_IDENTIFIER_EDEFAULT, requestIdentifier);
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
-			return PLAN_IDENTIFIER_EDEFAULT == null ? planIdentifier != null
-					: !PLAN_IDENTIFIER_EDEFAULT.equals(planIdentifier);
+			return !Objects.equals(PLAN_IDENTIFIER_EDEFAULT, planIdentifier);
 		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-			return PRODUCT_IDENTIFIER_EDEFAULT == null ? productIdentifier != null
-					: !PRODUCT_IDENTIFIER_EDEFAULT.equals(productIdentifier);
+			return !Objects.equals(PRODUCT_IDENTIFIER_EDEFAULT, productIdentifier);
 		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-			return PRODUCT_VERSION_EDEFAULT == null ? productVersion != null
-					: !PRODUCT_VERSION_EDEFAULT.equals(productVersion);
+			return !Objects.equals(PRODUCT_VERSION_EDEFAULT, productVersion);
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return licenseGrants != null && !licenseGrants.isEmpty();
 		default:

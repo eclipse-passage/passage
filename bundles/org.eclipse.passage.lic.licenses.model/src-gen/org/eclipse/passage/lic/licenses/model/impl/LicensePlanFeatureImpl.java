@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -329,12 +330,11 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER:
-			return FEATURE_IDENTIFIER_EDEFAULT == null ? featureIdentifier != null
-					: !FEATURE_IDENTIFIER_EDEFAULT.equals(featureIdentifier);
+			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
 		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION:
-			return MATCH_VERSION_EDEFAULT == null ? matchVersion != null : !MATCH_VERSION_EDEFAULT.equals(matchVersion);
+			return !Objects.equals(MATCH_VERSION_EDEFAULT, matchVersion);
 		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE:
-			return MATCH_RULE_EDEFAULT == null ? matchRule != null : !MATCH_RULE_EDEFAULT.equals(matchRule);
+			return !Objects.equals(MATCH_RULE_EDEFAULT, matchRule);
 		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
 			return licensePlan != null;
 		default:

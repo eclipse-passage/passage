@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.model.impl;
 
 import java.util.Date;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -681,22 +682,19 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-			return FEATURE_IDENTIFIER_EDEFAULT == null ? featureIdentifier != null
-					: !FEATURE_IDENTIFIER_EDEFAULT.equals(featureIdentifier);
+			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
 		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-			return MATCH_VERSION_EDEFAULT == null ? matchVersion != null : !MATCH_VERSION_EDEFAULT.equals(matchVersion);
+			return !Objects.equals(MATCH_VERSION_EDEFAULT, matchVersion);
 		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-			return MATCH_RULE_EDEFAULT == null ? matchRule != null : !MATCH_RULE_EDEFAULT.equals(matchRule);
+			return !Objects.equals(MATCH_RULE_EDEFAULT, matchRule);
 		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-			return VALID_FROM_EDEFAULT == null ? validFrom != null : !VALID_FROM_EDEFAULT.equals(validFrom);
+			return !Objects.equals(VALID_FROM_EDEFAULT, validFrom);
 		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-			return VALID_UNTIL_EDEFAULT == null ? validUntil != null : !VALID_UNTIL_EDEFAULT.equals(validUntil);
+			return !Objects.equals(VALID_UNTIL_EDEFAULT, validUntil);
 		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-			return CONDITION_TYPE_EDEFAULT == null ? conditionType != null
-					: !CONDITION_TYPE_EDEFAULT.equals(conditionType);
+			return !Objects.equals(CONDITION_TYPE_EDEFAULT, conditionType);
 		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
-			return CONDITION_EXPRESSION_EDEFAULT == null ? conditionExpression != null
-					: !CONDITION_EXPRESSION_EDEFAULT.equals(conditionExpression);
+			return !Objects.equals(CONDITION_EXPRESSION_EDEFAULT, conditionExpression);
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
