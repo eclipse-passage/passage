@@ -2334,7 +2334,7 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
     <%}%>
   <%} else {//datatype%>
     <%if (genClass.isField(genFeature)) {%>
-				return <%=genFeature.getEDefault()%> == null ? <%=safeNameAccessor%> != null : !<%=genFeature.getEDefault()%>.equals(<%=safeNameAccessor%>);
+				return !<%=genModel.getImportedName("java.util.Objects")%>.equals(<%=genFeature.getEDefault()%>, <%=safeNameAccessor%>);
     <%} else {%>
       <%if (genFeature.isField() && genClass.getImplementingGenModel(genFeature).isVirtualDelegation()) {%>
 				<%=genFeature.getImportedType(genClass)%> <%=safeNameAccessor%> = (<%=genFeature.getImportedType(genClass)%>)eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%=genFeature.getEDefault()%>);
