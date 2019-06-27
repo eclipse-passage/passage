@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.products.model.impl;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -398,14 +399,11 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER:
-			return FEATURE_IDENTIFIER_EDEFAULT == null ? featureIdentifier != null
-					: !FEATURE_IDENTIFIER_EDEFAULT.equals(featureIdentifier);
+			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__FEATURE_VERSION:
-			return FEATURE_VERSION_EDEFAULT == null ? featureVersion != null
-					: !FEATURE_VERSION_EDEFAULT.equals(featureVersion);
+			return !Objects.equals(FEATURE_VERSION_EDEFAULT, featureVersion);
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL:
-			return RESTRICTION_LEVEL_EDEFAULT == null ? restrictionLevel != null
-					: !RESTRICTION_LEVEL_EDEFAULT.equals(restrictionLevel);
+			return !Objects.equals(RESTRICTION_LEVEL_EDEFAULT, restrictionLevel);
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
 			return getProductVersion() != null;
 		default:

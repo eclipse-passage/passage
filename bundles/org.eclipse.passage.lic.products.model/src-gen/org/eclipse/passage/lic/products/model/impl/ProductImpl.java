@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.products.model.impl;
 
 import java.util.Collection;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -441,11 +442,11 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ProductsPackage.PRODUCT__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case ProductsPackage.PRODUCT__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			return !Objects.equals(NAME_EDEFAULT, name);
 		case ProductsPackage.PRODUCT__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
 		case ProductsPackage.PRODUCT__PRODUCT_LINE:
 			return getProductLine() != null;
 		case ProductsPackage.PRODUCT__PRODUCT_VERSIONS:

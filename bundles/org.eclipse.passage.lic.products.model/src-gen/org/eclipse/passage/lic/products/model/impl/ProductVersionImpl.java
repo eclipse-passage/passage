@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.products.model.impl;
 
 import java.util.Collection;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -554,16 +555,15 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION__VERSION:
-			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+			return !Objects.equals(VERSION_EDEFAULT, version);
 		case ProductsPackage.PRODUCT_VERSION__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			return !Objects.equals(NAME_EDEFAULT, name);
 		case ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN:
-			return INSTALLATION_TOKEN_EDEFAULT == null ? installationToken != null
-					: !INSTALLATION_TOKEN_EDEFAULT.equals(installationToken);
+			return !Objects.equals(INSTALLATION_TOKEN_EDEFAULT, installationToken);
 		case ProductsPackage.PRODUCT_VERSION__SECURE_TOKEN:
-			return SECURE_TOKEN_EDEFAULT == null ? secureToken != null : !SECURE_TOKEN_EDEFAULT.equals(secureToken);
+			return !Objects.equals(SECURE_TOKEN_EDEFAULT, secureToken);
 		case ProductsPackage.PRODUCT_VERSION__NEWS:
-			return NEWS_EDEFAULT == null ? news != null : !NEWS_EDEFAULT.equals(news);
+			return !Objects.equals(NEWS_EDEFAULT, news);
 		case ProductsPackage.PRODUCT_VERSION__PRODUCT:
 			return getProduct() != null;
 		case ProductsPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES:
