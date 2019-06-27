@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.users.model.impl;
 
 import java.util.Date;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -686,29 +687,23 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case UsersPackage.USER_LICENSE__PLAN_IDENTIFIER:
-			return PLAN_IDENTIFIER_EDEFAULT == null ? planIdentifier != null
-					: !PLAN_IDENTIFIER_EDEFAULT.equals(planIdentifier);
+			return !Objects.equals(PLAN_IDENTIFIER_EDEFAULT, planIdentifier);
 		case UsersPackage.USER_LICENSE__PRODUCT_IDENTIFIER:
-			return PRODUCT_IDENTIFIER_EDEFAULT == null ? productIdentifier != null
-					: !PRODUCT_IDENTIFIER_EDEFAULT.equals(productIdentifier);
+			return !Objects.equals(PRODUCT_IDENTIFIER_EDEFAULT, productIdentifier);
 		case UsersPackage.USER_LICENSE__PRODUCT_VERSION:
-			return PRODUCT_VERSION_EDEFAULT == null ? productVersion != null
-					: !PRODUCT_VERSION_EDEFAULT.equals(productVersion);
+			return !Objects.equals(PRODUCT_VERSION_EDEFAULT, productVersion);
 		case UsersPackage.USER_LICENSE__VALID_FROM:
-			return VALID_FROM_EDEFAULT == null ? validFrom != null : !VALID_FROM_EDEFAULT.equals(validFrom);
+			return !Objects.equals(VALID_FROM_EDEFAULT, validFrom);
 		case UsersPackage.USER_LICENSE__VALID_UNTIL:
-			return VALID_UNTIL_EDEFAULT == null ? validUntil != null : !VALID_UNTIL_EDEFAULT.equals(validUntil);
+			return !Objects.equals(VALID_UNTIL_EDEFAULT, validUntil);
 		case UsersPackage.USER_LICENSE__CONDITION_TYPE:
-			return CONDITION_TYPE_EDEFAULT == null ? conditionType != null
-					: !CONDITION_TYPE_EDEFAULT.equals(conditionType);
+			return !Objects.equals(CONDITION_TYPE_EDEFAULT, conditionType);
 		case UsersPackage.USER_LICENSE__CONDITION_EXPRESSION:
-			return CONDITION_EXPRESSION_EDEFAULT == null ? conditionExpression != null
-					: !CONDITION_EXPRESSION_EDEFAULT.equals(conditionExpression);
+			return !Objects.equals(CONDITION_EXPRESSION_EDEFAULT, conditionExpression);
 		case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
-			return PACK_IDENTIFIER_EDEFAULT == null ? packIdentifier != null
-					: !PACK_IDENTIFIER_EDEFAULT.equals(packIdentifier);
+			return !Objects.equals(PACK_IDENTIFIER_EDEFAULT, packIdentifier);
 		case UsersPackage.USER_LICENSE__ISSUE_DATE:
-			return ISSUE_DATE_EDEFAULT == null ? issueDate != null : !ISSUE_DATE_EDEFAULT.equals(issueDate);
+			return !Objects.equals(ISSUE_DATE_EDEFAULT, issueDate);
 		case UsersPackage.USER_LICENSE__USER:
 			return getUser() != null;
 		default:

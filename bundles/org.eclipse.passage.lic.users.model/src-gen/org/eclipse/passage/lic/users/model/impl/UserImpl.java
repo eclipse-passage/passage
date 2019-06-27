@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.users.model.impl;
 
 import java.util.Collection;
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -599,19 +600,17 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case UsersPackage.USER__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case UsersPackage.USER__EMAIL:
-			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
+			return !Objects.equals(EMAIL_EDEFAULT, email);
 		case UsersPackage.USER__FULL_NAME:
-			return FULL_NAME_EDEFAULT == null ? fullName != null : !FULL_NAME_EDEFAULT.equals(fullName);
+			return !Objects.equals(FULL_NAME_EDEFAULT, fullName);
 		case UsersPackage.USER__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
 		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-			return PREFERRED_CONDITION_TYPE_EDEFAULT == null ? preferredConditionType != null
-					: !PREFERRED_CONDITION_TYPE_EDEFAULT.equals(preferredConditionType);
+			return !Objects.equals(PREFERRED_CONDITION_TYPE_EDEFAULT, preferredConditionType);
 		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
-			return PREFERRED_CONDITION_EXPRESSION_EDEFAULT == null ? preferredConditionExpression != null
-					: !PREFERRED_CONDITION_EXPRESSION_EDEFAULT.equals(preferredConditionExpression);
+			return !Objects.equals(PREFERRED_CONDITION_EXPRESSION_EDEFAULT, preferredConditionExpression);
 		case UsersPackage.USER__USER_ORIGIN:
 			return getUserOrigin() != null;
 		case UsersPackage.USER__USER_LICENSES:
