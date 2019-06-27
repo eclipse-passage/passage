@@ -17,12 +17,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 public class ImageFinder {
 
@@ -74,6 +79,89 @@ public class ImageFinder {
 			images[i] = ImageDescriptor.createFromURL(urls.get(i));
 		}
 		return images;
+	}
+
+	/**
+	 * Returns a URL for the given path in the given bundle. Returns
+	 * <code>null</code> if the URL could not be computed or created.
+	 *
+	 * @see FileLocator#find(Bundle, org.eclipse.core.runtime.IPath)
+	 *
+	 * @param container the {@link Bundle} or {@link Class} from the bundle
+	 * @param value     the path of the image file in the given bundle or the string
+	 *                  to parse the {@link URL} from
+	 * @return a URL for the given path or null. The actual form of the returned URL
+	 *         is not specified.
+	 */
+	public static URL locate(Object container, String value) {
+		try {
+			if (value != null) {
+				return new URL(value);
+			}
+		} catch (MalformedURLException e) {
+			Bundle bundle = null;
+			if (container instanceof Bundle) {
+				bundle = (Bundle) container;
+			} else if (container instanceof Class<?>) {
+				bundle = FrameworkUtil.getBundle((Class<?>) container);
+			}
+			if (bundle != null) {
+				return FileLocator.find(bundle, new Path(value));
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a {@link List}<{@link URL}> for the given value in the given bundle,
+	 * the value will be split with the given delimiter.
+	 *
+	 * @see ResourceLocator#createImageDescriptors(Object, String, String)
+	 *
+	 * @param container the {@link Bundle} or {@link Class} from the bundle
+	 * @param value     the string that contains delimited paths or URL strings
+	 * @param delimeter the delimiting regular expression
+	 * @return a list of URLs
+	 */
+	public static List<URL> locate(Object container, String value, String delimeter) {
+		if (value == null) {
+			return Collections.emptyList();
+		}
+		return Stream.of(value.split(delimeter)).map(v -> locate(container, v)).filter(Objects::nonNull)
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Creates and returns a new image descriptor for the given path in the given
+	 * bundle.
+	 *
+	 * @see ImageDescriptor#createFromURL(URL)
+	 *
+	 * @param container the {@link Bundle} or {@link Class} from the bundle
+	 * @param value     the path of the image file in the given bundle or the string
+	 *                  to parse the {@link URL} from
+	 * @return a new image descriptor
+	 */
+	public static Optional<ImageDescriptor> createImageDescriptor(Object container, String value) {
+		URL locate = locate(container, value);
+		return locate == null ? Optional.empty() : Optional.of(ImageDescriptor.createFromURL(locate));
+	}
+
+	/**
+	 * Creates and returns a {@link List}<{@link ImageDescriptor}> for the given
+	 * value in the given bundle, the value will be split with the given delimiter.
+	 *
+	 * @see ImageDescriptor#createFromURL(URL)
+	 * @see Window#setDefaultImages(org.eclipse.swt.graphics.Image[])
+	 *
+	 * @param container the {@link Bundle} or {@link Class} from the bundle
+	 * @param value     the string that contains delimited paths or URL strings
+	 * @param delimeter the delimiting regular expression
+	 * @return a list of new image descriptor
+	 */
+	public static List<ImageDescriptor> createImageDescriptors(Object container, String value, String delimeter) {
+		return locate(container, value, delimeter).stream().map(u -> ImageDescriptor.createFromURL(u))
+				.collect(Collectors.toList());
 	}
 
 }

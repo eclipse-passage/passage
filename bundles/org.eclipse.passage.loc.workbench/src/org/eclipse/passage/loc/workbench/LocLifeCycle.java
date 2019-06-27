@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.workbench;
 
 import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.jface.ImageFinder;
 import org.eclipse.swt.graphics.Image;
@@ -26,13 +25,8 @@ public class LocLifeCycle {
 	void postContextCreate(IApplicationContext context) {
 		String windowImages = context.getBrandingProperty("windowImages"); //$NON-NLS-1$
 		Bundle brandingBundle = context.getBrandingBundle();
-		ImageDescriptor[] descriptors = ImageFinder.getImages(windowImages, brandingBundle);
-
-		Image[] images = new Image[descriptors.length];
-		for (int i = 0; i < descriptors.length; ++i) {
-			images[i] = descriptors[i].createImage();
-		}
-		Window.setDefaultImages(images);
+		Window.setDefaultImages(ImageFinder.createImageDescriptors(brandingBundle, windowImages, ",").stream() //$NON-NLS-1$
+				.map(id -> id.createImage()).toArray(Image[]::new));
 	}
 
 }
