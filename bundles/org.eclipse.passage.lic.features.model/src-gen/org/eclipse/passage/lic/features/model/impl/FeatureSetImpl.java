@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.features.model.impl;
 
 import java.util.Collection;
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -332,11 +333,11 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FeaturesPackage.FEATURE_SET__IDENTIFIER:
-			return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case FeaturesPackage.FEATURE_SET__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			return !Objects.equals(NAME_EDEFAULT, name);
 		case FeaturesPackage.FEATURE_SET__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
 		case FeaturesPackage.FEATURE_SET__FEATURES:
 			return features != null && !features.isEmpty();
 		default:

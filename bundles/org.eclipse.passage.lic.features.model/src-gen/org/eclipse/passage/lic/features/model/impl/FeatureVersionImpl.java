@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features.model.impl;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -315,11 +316,11 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case FeaturesPackage.FEATURE_VERSION__VERSION:
-			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+			return !Objects.equals(VERSION_EDEFAULT, version);
 		case FeaturesPackage.FEATURE_VERSION__FEATURE:
 			return getFeature() != null;
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
-			return NEWS_EDEFAULT == null ? news != null : !NEWS_EDEFAULT.equals(news);
+			return !Objects.equals(NEWS_EDEFAULT, news);
 		default:
 			return super.eIsSet(featureID);
 		}
