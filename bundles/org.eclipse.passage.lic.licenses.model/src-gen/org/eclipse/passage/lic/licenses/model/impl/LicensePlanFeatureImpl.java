@@ -215,9 +215,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			InternalEObject oldLicensePlan = (InternalEObject) licensePlan;
 			licensePlan = (LicensePlan) eResolveProxy(oldLicensePlan);
 			if (licensePlan != oldLicensePlan) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 							LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN, oldLicensePlan, licensePlan));
+				}
 			}
 		}
 		return licensePlan;

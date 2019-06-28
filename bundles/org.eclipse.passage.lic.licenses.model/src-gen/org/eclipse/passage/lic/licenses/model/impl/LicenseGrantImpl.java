@@ -500,9 +500,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			msgs = basicSetLicensePack(newLicensePack, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__LICENSE_PACK,
 					newLicensePack, newLicensePack));
+		}
 	}
 
 	/**
