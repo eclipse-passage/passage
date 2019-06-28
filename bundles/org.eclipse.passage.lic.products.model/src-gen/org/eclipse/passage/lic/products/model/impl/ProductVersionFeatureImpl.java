@@ -152,10 +152,11 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	public void setFeatureIdentifier(String newFeatureIdentifier) {
 		String oldFeatureIdentifier = featureIdentifier;
 		featureIdentifier = newFeatureIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ProductsPackage.PRODUCT_VERSION_FEATURE__FEATURE_IDENTIFIER, oldFeatureIdentifier,
 					featureIdentifier));
+		}
 	}
 
 	/**
@@ -179,9 +180,10 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	public void setFeatureVersion(String newFeatureVersion) {
 		String oldFeatureVersion = featureVersion;
 		featureVersion = newFeatureVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ProductsPackage.PRODUCT_VERSION_FEATURE__FEATURE_VERSION, oldFeatureVersion, featureVersion));
+		}
 	}
 
 	/**
@@ -205,9 +207,10 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	public void setRestrictionLevel(String newRestrictionLevel) {
 		String oldRestrictionLevel = restrictionLevel;
 		restrictionLevel = newRestrictionLevel;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ProductsPackage.PRODUCT_VERSION_FEATURE__RESTRICTION_LEVEL, oldRestrictionLevel, restrictionLevel));
+		}
 	}
 
 	/**

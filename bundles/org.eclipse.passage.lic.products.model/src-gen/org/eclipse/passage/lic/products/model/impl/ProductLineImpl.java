@@ -166,9 +166,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_LINE__IDENTIFIER,
 					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -192,8 +193,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_LINE__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -217,9 +219,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_LINE__DESCRIPTION,
 					oldDescription, description));
+		}
 	}
 
 	/**

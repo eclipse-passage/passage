@@ -213,9 +213,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__VERSION, oldVersion,
 					version));
+		}
 	}
 
 	/**
@@ -237,9 +238,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__NAME, oldName,
 					name));
+		}
 	}
 
 	/**
@@ -263,9 +265,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setInstallationToken(String newInstallationToken) {
 		String oldInstallationToken = installationToken;
 		installationToken = newInstallationToken;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__INSTALLATION_TOKEN,
 					oldInstallationToken, installationToken));
+		}
 	}
 
 	/**
@@ -289,9 +292,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setSecureToken(String newSecureToken) {
 		String oldSecureToken = secureToken;
 		secureToken = newSecureToken;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__SECURE_TOKEN,
 					oldSecureToken, secureToken));
+		}
 	}
 
 	/**
@@ -315,9 +319,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setNews(String newNews) {
 		String oldNews = news;
 		news = newNews;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__NEWS, oldNews,
 					news));
+		}
 	}
 
 	/**
