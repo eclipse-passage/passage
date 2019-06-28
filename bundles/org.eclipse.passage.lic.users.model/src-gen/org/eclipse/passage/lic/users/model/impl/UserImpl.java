@@ -232,9 +232,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__IDENTIFIER, oldIdentifier,
 					identifier));
+		}
 	}
 
 	/**
@@ -258,8 +259,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setEmail(String newEmail) {
 		String oldEmail = email;
 		email = newEmail;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__EMAIL, oldEmail, email));
+		}
 	}
 
 	/**
@@ -283,8 +285,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setFullName(String newFullName) {
 		String oldFullName = fullName;
 		fullName = newFullName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__FULL_NAME, oldFullName, fullName));
+		}
 	}
 
 	/**
@@ -308,9 +311,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__DESCRIPTION, oldDescription,
 					description));
+		}
 	}
 
 	/**
@@ -332,9 +336,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setPreferredConditionType(String newPreferredConditionType) {
 		String oldPreferredConditionType = preferredConditionType;
 		preferredConditionType = newPreferredConditionType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_TYPE,
 					oldPreferredConditionType, preferredConditionType));
+		}
 	}
 
 	/**
@@ -356,9 +361,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setPreferredConditionExpression(String newPreferredConditionExpression) {
 		String oldPreferredConditionExpression = preferredConditionExpression;
 		preferredConditionExpression = newPreferredConditionExpression;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION,
 					oldPreferredConditionExpression, preferredConditionExpression));
+		}
 	}
 
 	/**

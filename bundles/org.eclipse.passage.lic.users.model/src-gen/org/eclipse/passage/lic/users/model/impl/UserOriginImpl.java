@@ -166,9 +166,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__IDENTIFIER, oldIdentifier,
 					identifier));
+		}
 	}
 
 	/**
@@ -192,8 +193,9 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -217,9 +219,10 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__DESCRIPTION, oldDescription,
 					description));
+		}
 	}
 
 	/**

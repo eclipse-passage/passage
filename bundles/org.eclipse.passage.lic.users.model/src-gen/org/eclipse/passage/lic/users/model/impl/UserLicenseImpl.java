@@ -267,9 +267,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setPlanIdentifier(String newPlanIdentifier) {
 		String oldPlanIdentifier = planIdentifier;
 		planIdentifier = newPlanIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__PLAN_IDENTIFIER,
 					oldPlanIdentifier, planIdentifier));
+		}
 	}
 
 	/**
@@ -291,9 +292,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setProductIdentifier(String newProductIdentifier) {
 		String oldProductIdentifier = productIdentifier;
 		productIdentifier = newProductIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__PRODUCT_IDENTIFIER,
 					oldProductIdentifier, productIdentifier));
+		}
 	}
 
 	/**
@@ -315,9 +317,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setProductVersion(String newProductVersion) {
 		String oldProductVersion = productVersion;
 		productVersion = newProductVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__PRODUCT_VERSION,
 					oldProductVersion, productVersion));
+		}
 	}
 
 	/**
@@ -339,9 +342,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setValidFrom(Date newValidFrom) {
 		Date oldValidFrom = validFrom;
 		validFrom = newValidFrom;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__VALID_FROM, oldValidFrom,
 					validFrom));
+		}
 	}
 
 	/**
@@ -363,9 +367,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setValidUntil(Date newValidUntil) {
 		Date oldValidUntil = validUntil;
 		validUntil = newValidUntil;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__VALID_UNTIL, oldValidUntil,
 					validUntil));
+		}
 	}
 
 	/**
@@ -387,9 +392,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setConditionType(String newConditionType) {
 		String oldConditionType = conditionType;
 		conditionType = newConditionType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__CONDITION_TYPE,
 					oldConditionType, conditionType));
+		}
 	}
 
 	/**
@@ -411,9 +417,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setConditionExpression(String newConditionExpression) {
 		String oldConditionExpression = conditionExpression;
 		conditionExpression = newConditionExpression;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__CONDITION_EXPRESSION,
 					oldConditionExpression, conditionExpression));
+		}
 	}
 
 	/**
@@ -435,9 +442,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setIssueDate(Date newIssueDate) {
 		Date oldIssueDate = issueDate;
 		issueDate = newIssueDate;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__ISSUE_DATE, oldIssueDate,
 					issueDate));
+		}
 	}
 
 	/**
@@ -459,9 +467,10 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setPackIdentifier(String newPackIdentifier) {
 		String oldPackIdentifier = packIdentifier;
 		packIdentifier = newPackIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__PACK_IDENTIFIER,
 					oldPackIdentifier, packIdentifier));
+		}
 	}
 
 	/**
