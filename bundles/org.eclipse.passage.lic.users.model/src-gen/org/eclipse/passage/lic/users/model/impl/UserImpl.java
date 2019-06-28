@@ -406,9 +406,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			msgs = basicSetUserOrigin(newUserOrigin, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__USER_ORIGIN, newUserOrigin,
 					newUserOrigin));
+		}
 	}
 
 	/**

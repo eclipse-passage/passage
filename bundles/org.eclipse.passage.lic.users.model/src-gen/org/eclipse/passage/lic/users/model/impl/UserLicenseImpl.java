@@ -506,8 +506,9 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 			msgs = basicSetUser(newUser, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_LICENSE__USER, newUser, newUser));
+		}
 	}
 
 	/**
