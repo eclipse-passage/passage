@@ -152,9 +152,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_SET__IDENTIFIER,
 					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -176,8 +177,9 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_SET__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -199,9 +201,10 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_SET__DESCRIPTION,
 					oldDescription, description));
+		}
 	}
 
 	/**

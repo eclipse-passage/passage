@@ -118,9 +118,10 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_VERSION__VERSION, oldVersion,
 					version));
+		}
 	}
 
 	/**
@@ -190,9 +191,10 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setNews(String newNews) {
 		String oldNews = news;
 		news = newNews;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_VERSION__NEWS, oldNews,
 					news));
+		}
 	}
 
 	/**
