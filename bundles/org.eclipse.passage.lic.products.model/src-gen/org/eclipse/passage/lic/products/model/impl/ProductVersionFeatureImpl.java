@@ -257,9 +257,10 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 			msgs = basicSetProductVersion(newProductVersion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION, newProductVersion, newProductVersion));
+		}
 	}
 
 	/**

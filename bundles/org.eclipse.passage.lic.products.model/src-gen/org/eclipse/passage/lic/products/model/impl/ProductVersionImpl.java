@@ -365,9 +365,10 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 			msgs = basicSetProduct(newProduct, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT_VERSION__PRODUCT, newProduct,
 					newProduct));
+		}
 	}
 
 	/**

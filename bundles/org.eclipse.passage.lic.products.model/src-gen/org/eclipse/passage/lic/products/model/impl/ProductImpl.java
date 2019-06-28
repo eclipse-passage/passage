@@ -270,9 +270,10 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 			msgs = basicSetProductLine(newProductLine, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ProductsPackage.PRODUCT__PRODUCT_LINE, newProductLine,
 					newProductLine));
+		}
 	}
 
 	/**
