@@ -276,9 +276,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__IDENTIFIER,
 					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -302,9 +303,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setIssueDate(Date newIssueDate) {
 		Date oldIssueDate = issueDate;
 		issueDate = newIssueDate;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__ISSUE_DATE,
 					oldIssueDate, issueDate));
+		}
 	}
 
 	/**
@@ -328,9 +330,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setProductIdentifier(String newProductIdentifier) {
 		String oldProductIdentifier = productIdentifier;
 		productIdentifier = newProductIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER,
 					oldProductIdentifier, productIdentifier));
+		}
 	}
 
 	/**
@@ -354,9 +357,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setProductVersion(String newProductVersion) {
 		String oldProductVersion = productVersion;
 		productVersion = newProductVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PRODUCT_VERSION,
 					oldProductVersion, productVersion));
+		}
 	}
 
 	/**
@@ -380,9 +384,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setUserIdentifier(String newUserIdentifier) {
 		String oldUserIdentifier = userIdentifier;
 		userIdentifier = newUserIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__USER_IDENTIFIER,
 					oldUserIdentifier, userIdentifier));
+		}
 	}
 
 	/**
@@ -404,9 +409,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setUserFullName(String newUserFullName) {
 		String oldUserFullName = userFullName;
 		userFullName = newUserFullName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__USER_FULL_NAME,
 					oldUserFullName, userFullName));
+		}
 	}
 
 	/**
@@ -428,9 +434,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setRequestIdentifier(String newRequestIdentifier) {
 		String oldRequestIdentifier = requestIdentifier;
 		requestIdentifier = newRequestIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER,
 					oldRequestIdentifier, requestIdentifier));
+		}
 	}
 
 	/**
@@ -452,9 +459,10 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setPlanIdentifier(String newPlanIdentifier) {
 		String oldPlanIdentifier = planIdentifier;
 		planIdentifier = newPlanIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER,
 					oldPlanIdentifier, planIdentifier));
+		}
 	}
 
 	/**

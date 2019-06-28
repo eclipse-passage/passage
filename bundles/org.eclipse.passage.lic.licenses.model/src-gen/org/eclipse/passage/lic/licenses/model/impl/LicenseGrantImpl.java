@@ -268,9 +268,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setFeatureIdentifier(String newFeatureIdentifier) {
 		String oldFeatureIdentifier = featureIdentifier;
 		featureIdentifier = newFeatureIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER,
 					oldFeatureIdentifier, featureIdentifier));
+		}
 	}
 
 	/**
@@ -294,9 +295,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setMatchVersion(String newMatchVersion) {
 		String oldMatchVersion = matchVersion;
 		matchVersion = newMatchVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__MATCH_VERSION,
 					oldMatchVersion, matchVersion));
+		}
 	}
 
 	/**
@@ -320,9 +322,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setMatchRule(String newMatchRule) {
 		String oldMatchRule = matchRule;
 		matchRule = newMatchRule;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__MATCH_RULE,
 					oldMatchRule, matchRule));
+		}
 	}
 
 	/**
@@ -346,9 +349,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setValidFrom(Date newValidFrom) {
 		Date oldValidFrom = validFrom;
 		validFrom = newValidFrom;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID_FROM,
 					oldValidFrom, validFrom));
+		}
 	}
 
 	/**
@@ -372,9 +376,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setValidUntil(Date newValidUntil) {
 		Date oldValidUntil = validUntil;
 		validUntil = newValidUntil;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID_UNTIL,
 					oldValidUntil, validUntil));
+		}
 	}
 
 	/**
@@ -398,9 +403,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setConditionType(String newConditionType) {
 		String oldConditionType = conditionType;
 		conditionType = newConditionType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CONDITION_TYPE,
 					oldConditionType, conditionType));
+		}
 	}
 
 	/**
@@ -424,9 +430,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setConditionExpression(String newConditionExpression) {
 		String oldConditionExpression = conditionExpression;
 		conditionExpression = newConditionExpression;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION,
 					oldConditionExpression, conditionExpression));
+		}
 	}
 
 	/**
@@ -450,9 +457,10 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setCapacity(int newCapacity) {
 		int oldCapacity = capacity;
 		capacity = newCapacity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CAPACITY, oldCapacity,
 					capacity));
+		}
 	}
 
 	/**

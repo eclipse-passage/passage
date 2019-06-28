@@ -151,9 +151,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public void setFeatureIdentifier(String newFeatureIdentifier) {
 		String oldFeatureIdentifier = featureIdentifier;
 		featureIdentifier = newFeatureIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER, oldFeatureIdentifier, featureIdentifier));
+		}
 	}
 
 	/**
@@ -175,9 +176,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public void setMatchVersion(String newMatchVersion) {
 		String oldMatchVersion = matchVersion;
 		matchVersion = newMatchVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION,
 					oldMatchVersion, matchVersion));
+		}
 	}
 
 	/**
@@ -199,9 +201,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public void setMatchRule(String newMatchRule) {
 		String oldMatchRule = matchRule;
 		matchRule = newMatchRule;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE,
 					oldMatchRule, matchRule));
+		}
 	}
 
 	/**
@@ -242,9 +245,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	public void setLicensePlan(LicensePlan newLicensePlan) {
 		LicensePlan oldLicensePlan = licensePlan;
 		licensePlan = newLicensePlan;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN,
 					oldLicensePlan, licensePlan));
+		}
 	}
 
 	/**

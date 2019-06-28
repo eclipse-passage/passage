@@ -160,9 +160,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN__IDENTIFIER,
 					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -184,8 +185,9 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -207,9 +209,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN__DESCRIPTION,
 					oldDescription, description));
+		}
 	}
 
 	/**
