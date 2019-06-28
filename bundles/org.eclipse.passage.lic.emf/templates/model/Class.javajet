@@ -1158,8 +1158,7 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
         <%}%>
       <%}%>
       <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
         <%if (genFeature.isUnsettable()) {%>
 			<%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%> notification = new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.SET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation()) {%>isSetChange ? null : old<%=genFeature.getCapName()%><%} else {%>old<%=genFeature.getCapName()%><%}%>, new<%=genFeature.getCapName()%>, <%if (genModel.isVirtualDelegation()) {%>isSetChange<%} else {%>!old<%=genFeature.getCapName()%>ESet<%}%>);
         <%} else {%>
@@ -1456,8 +1455,7 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 		<%=genFeature.getUncapName()%>ESet = false;
       <%}%>
         <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			<%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%> notification = new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation()) {%>isSetChange ? old<%=genFeature.getCapName()%> : null<%} else {%>old<%=genFeature.getCapName()%><%}%>, null, <%if (genModel.isVirtualDelegation()) {%>isSetChange<%} else {%>old<%=genFeature.getCapName()%>ESet<%}%>);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -1570,8 +1568,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 			<%=genFeature.getUncapName()%>ESet = false;
         <%}%>
         <%if (!genModel.isSuppressNotification()) {%>
-			if (eNotificationRequired())
+			if (eNotificationRequired()) {
 				eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, null, null, old<%=genFeature.getCapName()%>ESet));
+			}
         <%}%>
 		}
       <%} else {%>
@@ -1609,8 +1608,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
             <%}%>
           <%}%>
           <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation()) {%>isSetChange ? old<%=genFeature.getCapName()%> : null<%} else {%>old<%=genFeature.getCapName()%><%}%>, null, <%if (genModel.isVirtualDelegation()) {%>isSetChange<%} else {%>old<%=genFeature.getCapName()%>ESet<%}%>));
+		}
           <%}%>
         <%} else {%>
           <%if (genClass.isFlag(genFeature)) {%>
@@ -1630,8 +1630,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
             <%}%>
           <%}%>
           <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.UNSET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange ? old<%=genFeature.getCapName()%> : <%=genFeature.getEDefault()%><%} else {%>old<%=genFeature.getCapName()%><%}%>, <%=genFeature.getEDefault()%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange<%} else {%>old<%=genFeature.getCapName()%>ESet<%}%>));
+		}
           <%}%>
         <%}%>
       <%}%>
