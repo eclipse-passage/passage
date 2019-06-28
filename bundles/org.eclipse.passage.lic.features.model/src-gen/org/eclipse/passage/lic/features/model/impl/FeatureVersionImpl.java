@@ -165,9 +165,10 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 			msgs = basicSetFeature(newFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE_VERSION__FEATURE, newFeature,
 					newFeature));
+		}
 	}
 
 	/**
