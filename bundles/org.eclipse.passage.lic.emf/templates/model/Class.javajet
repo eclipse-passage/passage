@@ -1311,14 +1311,16 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 			<%=genFeature.getUncapName()%>ESet = true;
           <%}%>
           <%if (!genModel.isSuppressNotification()) {%>
-			if (eNotificationRequired())
+			if (eNotificationRequired()) {
 				eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.SET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, new<%=genFeature.getCapName()%>, new<%=genFeature.getCapName()%>, !old<%=genFeature.getCapName()%>ESet));
+			}
           <%}%>
 		}
         <%} else {%>
           <%if (!genModel.isSuppressNotification()) {%>
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.SET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, new<%=genFeature.getCapName()%>, new<%=genFeature.getCapName()%>));
+		}
           <%}%>
         <%}%>
       <%} else {%>
@@ -1374,13 +1376,15 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 		<%=genFeature.getUncapName()%>ESet = true;
           <%}%>
           <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.SET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange ? <%=genFeature.getEDefault()%> : old<%=genFeature.getCapName()%><%} else {%>old<%=genFeature.getCapName()%><%}%>, <%if (genClass.isFlag(genFeature)) {%>new<%=genFeature.getCapName()%><%} else {%><%=genFeature.getSafeName()%><%}%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>isSetChange<%} else {%>!old<%=genFeature.getCapName()%>ESet<%}%>));
+		}
           <%}%>
         <%} else {%>
           <%if (!genModel.isSuppressNotification()) {%>
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.ENotificationImpl")%>(this, <%=genModel.getImportedName("org.eclipse.emf.common.notify.Notification")%>.SET, <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>, <%if (genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>old<%=genFeature.getCapName()%> == EVIRTUAL_NO_VALUE ? <%=genFeature.getEDefault()%> : old<%=genFeature.getCapName()%><%} else {%>old<%=genFeature.getCapName()%><%}%>, <%if (genClass.isFlag(genFeature)) {%>new<%=genFeature.getCapName()%><%} else {%><%=genFeature.getSafeName()%><%}%>));
+		}
           <%}%>
         <%}%>
       <%}%>
