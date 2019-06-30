@@ -480,8 +480,9 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 */
 	@Override
 	public User getUser() {
-		if (eContainerFeatureID() != UsersPackage.USER_LICENSE__USER)
+		if (eContainerFeatureID() != UsersPackage.USER_LICENSE__USER) {
 			return null;
+		}
 		return (User) eInternalContainer();
 	}
 

@@ -375,8 +375,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	@Override
 	public UserOrigin getUserOrigin() {
-		if (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN)
+		if (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN) {
 			return null;
+		}
 		return (UserOrigin) eInternalContainer();
 	}
 
