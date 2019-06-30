@@ -70,7 +70,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
+	private String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
@@ -92,7 +92,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected String matchVersion = MATCH_VERSION_EDEFAULT;
+	private String matchVersion = MATCH_VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
@@ -114,7 +114,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected String matchRule = MATCH_RULE_EDEFAULT;
+	private String matchRule = MATCH_RULE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
@@ -136,7 +136,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected Date validFrom = VALID_FROM_EDEFAULT;
+	private Date validFrom = VALID_FROM_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
@@ -158,7 +158,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected Date validUntil = VALID_UNTIL_EDEFAULT;
+	private Date validUntil = VALID_UNTIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
@@ -180,7 +180,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected String conditionType = CONDITION_TYPE_EDEFAULT;
+	private String conditionType = CONDITION_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
@@ -202,7 +202,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
+	private String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
@@ -224,7 +224,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 * @ordered
 	 */
-	protected int capacity = CAPACITY_EDEFAULT;
+	private int capacity = CAPACITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->

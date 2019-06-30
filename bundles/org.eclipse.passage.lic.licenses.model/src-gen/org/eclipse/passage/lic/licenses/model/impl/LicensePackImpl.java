@@ -73,7 +73,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
+	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
@@ -95,7 +95,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected Date issueDate = ISSUE_DATE_EDEFAULT;
+	private Date issueDate = ISSUE_DATE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUserIdentifier() <em>User Identifier</em>}' attribute.
@@ -117,7 +117,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String userIdentifier = USER_IDENTIFIER_EDEFAULT;
+	private String userIdentifier = USER_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUserFullName() <em>User Full Name</em>}' attribute.
@@ -137,7 +137,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String userFullName = USER_FULL_NAME_EDEFAULT;
+	private String userFullName = USER_FULL_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRequestIdentifier() <em>Request Identifier</em>}' attribute.
@@ -157,7 +157,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String requestIdentifier = REQUEST_IDENTIFIER_EDEFAULT;
+	private String requestIdentifier = REQUEST_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPlanIdentifier() <em>Plan Identifier</em>}' attribute.
@@ -177,7 +177,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
+	private String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
@@ -199,7 +199,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String productIdentifier = PRODUCT_IDENTIFIER_EDEFAULT;
+	private String productIdentifier = PRODUCT_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
@@ -221,7 +221,7 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected String productVersion = PRODUCT_VERSION_EDEFAULT;
+	private String productVersion = PRODUCT_VERSION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLicenseGrants() <em>License Grants</em>}' containment reference list.

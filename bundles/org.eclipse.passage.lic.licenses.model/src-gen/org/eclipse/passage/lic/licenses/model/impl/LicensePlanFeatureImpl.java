@@ -61,7 +61,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
+	private String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
@@ -81,7 +81,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected String matchVersion = MATCH_VERSION_EDEFAULT;
+	private String matchVersion = MATCH_VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
@@ -101,7 +101,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected String matchRule = MATCH_RULE_EDEFAULT;
+	private String matchRule = MATCH_RULE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getLicensePlan() <em>License Plan</em>}' reference.
