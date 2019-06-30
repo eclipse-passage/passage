@@ -1266,8 +1266,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 				throw new <%=genModel.getImportedName("java.lang.IllegalArgumentException")%>("Recursive containment not allowed for " + toString());<%=genModel.getNonNLS()%>
 			}
 			<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (new<%=genFeature.getCapName()%> != null)
 				msgs = <%=genFeature.getAsInternalEObject("new" + genFeature.getCapName(), true)%>.eInverseAdd(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
 			msgs = basicSet<%=genFeature.getAccessorName()%>(<%=genFeature.getInternalTypeCast()%>new<%=genFeature.getCapName()%>, msgs);
