@@ -509,8 +509,9 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newUser != null)
 				msgs = ((InternalEObject) newUser).eInverseAdd(this, UsersPackage.USER__USER_LICENSES, User.class,
 						msgs);

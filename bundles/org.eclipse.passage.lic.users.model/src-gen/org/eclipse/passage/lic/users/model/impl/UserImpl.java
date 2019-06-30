@@ -406,8 +406,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newUserOrigin != null)
 				msgs = ((InternalEObject) newUserOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__USERS,
 						UserOrigin.class, msgs);
