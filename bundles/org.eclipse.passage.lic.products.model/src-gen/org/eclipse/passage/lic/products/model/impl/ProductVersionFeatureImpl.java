@@ -279,8 +279,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION:
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			return basicSetProductVersion((ProductVersion) otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
