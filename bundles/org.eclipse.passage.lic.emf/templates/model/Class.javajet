@@ -950,7 +950,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 		}
 		return <%=genFeature.getSafeName()%><%=genFeature.isMapType() && genFeature.isEffectiveSuppressEMFTypes() ? ".map()" : ""%>;
       <%} else if (genFeature.isContainer()) {%>
-		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) return null;
+		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) {
+			return null;
+		}
 		return (<%=genFeature.getImportedType(genClass)%>)<%if (genFeature.isResolveProxies()) {%>eContainer<%} else {%>eInternalContainer<%}%>();
       <%} else {%>
         <%if (genFeature.isResolveProxies()) {%>
