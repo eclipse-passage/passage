@@ -502,8 +502,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newLicensePack != null)
 				msgs = ((InternalEObject) newLicensePack).eInverseAdd(this,
 						LicensesPackage.LICENSE_PACK__LICENSE_GRANTS, LicensePack.class, msgs);
