@@ -67,7 +67,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
+	private String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
@@ -87,7 +87,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String productIdentifier = PRODUCT_IDENTIFIER_EDEFAULT;
+	private String productIdentifier = PRODUCT_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
@@ -107,7 +107,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String productVersion = PRODUCT_VERSION_EDEFAULT;
+	private String productVersion = PRODUCT_VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
@@ -127,7 +127,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected Date validFrom = VALID_FROM_EDEFAULT;
+	private Date validFrom = VALID_FROM_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
@@ -147,7 +147,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected Date validUntil = VALID_UNTIL_EDEFAULT;
+	private Date validUntil = VALID_UNTIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
@@ -167,7 +167,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String conditionType = CONDITION_TYPE_EDEFAULT;
+	private String conditionType = CONDITION_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
@@ -187,7 +187,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
+	private String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPackIdentifier() <em>Pack Identifier</em>}' attribute.
@@ -207,7 +207,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected String packIdentifier = PACK_IDENTIFIER_EDEFAULT;
+	private String packIdentifier = PACK_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
@@ -227,7 +227,7 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	 * @generated
 	 * @ordered
 	 */
-	protected Date issueDate = ISSUE_DATE_EDEFAULT;
+	private Date issueDate = ISSUE_DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->

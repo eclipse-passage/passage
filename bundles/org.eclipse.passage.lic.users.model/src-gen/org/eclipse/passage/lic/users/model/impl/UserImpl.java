@@ -72,7 +72,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
+	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
@@ -94,7 +94,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String email = EMAIL_EDEFAULT;
+	private String email = EMAIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
@@ -116,7 +116,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String fullName = FULL_NAME_EDEFAULT;
+	private String fullName = FULL_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -138,7 +138,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	private String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPreferredConditionType() <em>Preferred Condition Type</em>}' attribute.
@@ -158,7 +158,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String preferredConditionType = PREFERRED_CONDITION_TYPE_EDEFAULT;
+	private String preferredConditionType = PREFERRED_CONDITION_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPreferredConditionExpression() <em>Preferred Condition Expression</em>}' attribute.
@@ -178,7 +178,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected String preferredConditionExpression = PREFERRED_CONDITION_EXPRESSION_EDEFAULT;
+	private String preferredConditionExpression = PREFERRED_CONDITION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getUserLicenses() <em>User Licenses</em>}' containment reference list.
