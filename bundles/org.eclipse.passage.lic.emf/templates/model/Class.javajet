@@ -1076,7 +1076,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
     <%} else if (genFeature.hasSettingDelegate()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
     <%} else if (genFeature.isContainer()) {%>
-		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) return null;
+		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) {
+			return null;
+		}
 		return (<%=genFeature.getImportedType(genClass)%>)eInternalContainer();
     <%} else if (!genFeature.isVolatile()) {%>
       <%if (genModel.isVirtualDelegation()) {%>
