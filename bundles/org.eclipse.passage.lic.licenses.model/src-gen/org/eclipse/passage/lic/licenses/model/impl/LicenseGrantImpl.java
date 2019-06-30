@@ -471,8 +471,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public LicensePack getLicensePack() {
-		if (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__LICENSE_PACK)
+		if (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__LICENSE_PACK) {
 			return null;
+		}
 		return (LicensePack) eInternalContainer();
 	}
 
