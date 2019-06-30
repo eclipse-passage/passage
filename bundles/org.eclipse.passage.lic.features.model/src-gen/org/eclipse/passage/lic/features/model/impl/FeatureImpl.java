@@ -263,8 +263,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	 */
 	@Override
 	public FeatureSet getFeatureSet() {
-		if (eContainerFeatureID() != FeaturesPackage.FEATURE__FEATURE_SET)
+		if (eContainerFeatureID() != FeaturesPackage.FEATURE__FEATURE_SET) {
 			return null;
+		}
 		return (FeatureSet) eInternalContainer();
 	}
 

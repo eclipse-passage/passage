@@ -131,8 +131,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public Feature getFeature() {
-		if (eContainerFeatureID() != FeaturesPackage.FEATURE_VERSION__FEATURE)
+		if (eContainerFeatureID() != FeaturesPackage.FEATURE_VERSION__FEATURE) {
 			return null;
+		}
 		return (Feature) eInternalContainer();
 	}
 
