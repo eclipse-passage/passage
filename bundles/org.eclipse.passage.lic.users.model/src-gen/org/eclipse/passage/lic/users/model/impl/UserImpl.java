@@ -402,8 +402,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public void setUserOrigin(UserOrigin newUserOrigin) {
 		if (newUserOrigin != eInternalContainer()
 				|| (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
-			if (EcoreUtil.isAncestor(this, newUserOrigin))
+			if (EcoreUtil.isAncestor(this, newUserOrigin)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);

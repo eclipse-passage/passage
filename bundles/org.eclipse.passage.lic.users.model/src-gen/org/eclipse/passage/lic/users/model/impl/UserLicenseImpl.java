@@ -505,8 +505,9 @@ public class UserLicenseImpl extends MinimalEObjectImpl.Container implements Use
 	public void setUser(User newUser) {
 		if (newUser != eInternalContainer()
 				|| (eContainerFeatureID() != UsersPackage.USER_LICENSE__USER && newUser != null)) {
-			if (EcoreUtil.isAncestor(this, newUser))
+			if (EcoreUtil.isAncestor(this, newUser)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
