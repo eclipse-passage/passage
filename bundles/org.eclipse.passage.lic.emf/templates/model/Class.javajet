@@ -396,7 +396,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
         <%if (isJDK50 && genFeature.hasAPIDeprecatedTag()) {%>
 	@Deprecated
         <%}%>
-	protected <%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%><%if (genFeature.hasEDefault()) {%> = <%=genFeature.getEDefault()%><%}%>;
+	private <%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%><%if (genFeature.hasEDefault()) {%> = <%=genFeature.getEDefault()%><%}%>;
 
         <%}%>
       <%}%>
