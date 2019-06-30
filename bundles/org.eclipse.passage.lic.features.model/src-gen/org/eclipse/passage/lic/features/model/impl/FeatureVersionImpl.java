@@ -58,7 +58,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String version = VERSION_EDEFAULT;
+	private String version = VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getNews() <em>News</em>}' attribute.
@@ -78,7 +78,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String news = NEWS_EDEFAULT;
+	private String news = NEWS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->

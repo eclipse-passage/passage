@@ -62,7 +62,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 * @ordered
 	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
+	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -82,7 +82,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	private String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -102,7 +102,7 @@ public class FeatureSetImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 * @ordered
 	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	private String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
