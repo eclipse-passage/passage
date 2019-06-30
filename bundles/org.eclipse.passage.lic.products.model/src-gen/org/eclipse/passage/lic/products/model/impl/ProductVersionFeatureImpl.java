@@ -254,8 +254,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newProductVersion != null)
 				msgs = ((InternalEObject) newProductVersion).eInverseAdd(this,
 						ProductsPackage.PRODUCT_VERSION__PRODUCT_VERSION_FEATURES, ProductVersion.class, msgs);

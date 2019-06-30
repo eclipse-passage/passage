@@ -267,8 +267,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newProductLine != null)
 				msgs = ((InternalEObject) newProductLine).eInverseAdd(this, ProductsPackage.PRODUCT_LINE__PRODUCTS,
 						ProductLine.class, msgs);
