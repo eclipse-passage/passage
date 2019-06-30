@@ -263,8 +263,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	public void setProductLine(ProductLine newProductLine) {
 		if (newProductLine != eInternalContainer()
 				|| (eContainerFeatureID() != ProductsPackage.PRODUCT__PRODUCT_LINE && newProductLine != null)) {
-			if (EcoreUtil.isAncestor(this, newProductLine))
+			if (EcoreUtil.isAncestor(this, newProductLine)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);

@@ -250,8 +250,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 		if (newProductVersion != eInternalContainer()
 				|| (eContainerFeatureID() != ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION
 						&& newProductVersion != null)) {
-			if (EcoreUtil.isAncestor(this, newProductVersion))
+			if (EcoreUtil.isAncestor(this, newProductVersion)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
