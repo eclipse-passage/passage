@@ -527,8 +527,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			return basicSetLicensePack((LicensePack) otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
