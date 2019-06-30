@@ -498,8 +498,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	public void setLicensePack(LicensePack newLicensePack) {
 		if (newLicensePack != eInternalContainer()
 				|| (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__LICENSE_PACK && newLicensePack != null)) {
-			if (EcoreUtil.isAncestor(this, newLicensePack))
+			if (EcoreUtil.isAncestor(this, newLicensePack)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
