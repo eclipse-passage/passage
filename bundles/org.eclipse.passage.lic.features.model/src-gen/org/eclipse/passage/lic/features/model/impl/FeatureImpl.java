@@ -331,8 +331,9 @@ public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FeaturesPackage.FEATURE__FEATURE_SET:
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			return basicSetFeatureSet((FeatureSet) otherEnd, msgs);
 		case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatureVersions()).basicAdd(otherEnd, msgs);
