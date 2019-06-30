@@ -446,8 +446,9 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UsersPackage.USER__USER_ORIGIN:
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			return basicSetUserOrigin((UserOrigin) otherEnd, msgs);
 		case UsersPackage.USER__USER_LICENSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUserLicenses()).basicAdd(otherEnd, msgs);
