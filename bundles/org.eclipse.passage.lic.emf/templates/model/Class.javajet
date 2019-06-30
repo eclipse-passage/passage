@@ -1954,8 +1954,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 				return (<%=cast%><%=genFeature.getGetAccessor()%>()).basicAdd(otherEnd, msgs);
     <%}%>
   <%} else if (genFeature.isContainer()) {%>
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
     <%if (genFeature.isBasicSet()) {%>
 				return basicSet<%=genFeature.getAccessorName()%>((<%=genFeature.getImportedType(genClass)%>)otherEnd, msgs);
     <%} else {%>
