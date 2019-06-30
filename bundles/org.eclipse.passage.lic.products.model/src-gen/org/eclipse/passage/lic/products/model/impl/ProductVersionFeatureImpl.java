@@ -221,8 +221,9 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public ProductVersion getProductVersion() {
-		if (eContainerFeatureID() != ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION)
+		if (eContainerFeatureID() != ProductsPackage.PRODUCT_VERSION_FEATURE__PRODUCT_VERSION) {
 			return null;
+		}
 		return (ProductVersion) eInternalContainer();
 	}
 

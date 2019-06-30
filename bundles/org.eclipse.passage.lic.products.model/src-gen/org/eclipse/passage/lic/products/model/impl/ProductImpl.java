@@ -236,8 +236,9 @@ public class ProductImpl extends MinimalEObjectImpl.Container implements Product
 	 */
 	@Override
 	public ProductLine getProductLine() {
-		if (eContainerFeatureID() != ProductsPackage.PRODUCT__PRODUCT_LINE)
+		if (eContainerFeatureID() != ProductsPackage.PRODUCT__PRODUCT_LINE) {
 			return null;
+		}
 		return (ProductLine) eInternalContainer();
 	}
 
