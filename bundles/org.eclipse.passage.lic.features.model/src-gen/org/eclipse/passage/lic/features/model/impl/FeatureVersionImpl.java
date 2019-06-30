@@ -156,8 +156,9 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	public void setFeature(Feature newFeature) {
 		if (newFeature != eInternalContainer()
 				|| (eContainerFeatureID() != FeaturesPackage.FEATURE_VERSION__FEATURE && newFeature != null)) {
-			if (EcoreUtil.isAncestor(this, newFeature))
+			if (EcoreUtil.isAncestor(this, newFeature)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
