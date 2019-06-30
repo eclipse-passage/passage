@@ -64,7 +64,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 * @ordered
 	 */
-	protected String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
+	private String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFeatureVersion() <em>Feature Version</em>}' attribute.
@@ -86,7 +86,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 * @ordered
 	 */
-	protected String featureVersion = FEATURE_VERSION_EDEFAULT;
+	private String featureVersion = FEATURE_VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getRestrictionLevel() <em>Restriction Level</em>}' attribute.
@@ -108,7 +108,7 @@ public class ProductVersionFeatureImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 * @ordered
 	 */
-	protected String restrictionLevel = RESTRICTION_LEVEL_EDEFAULT;
+	private String restrictionLevel = RESTRICTION_LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->

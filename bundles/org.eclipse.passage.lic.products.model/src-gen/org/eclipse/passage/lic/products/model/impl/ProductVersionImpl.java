@@ -72,7 +72,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String version = VERSION_EDEFAULT;
+	private String version = VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -92,7 +92,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	private String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getInstallationToken() <em>Installation Token</em>}' attribute.
@@ -114,7 +114,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String installationToken = INSTALLATION_TOKEN_EDEFAULT;
+	private String installationToken = INSTALLATION_TOKEN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSecureToken() <em>Secure Token</em>}' attribute.
@@ -136,7 +136,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String secureToken = SECURE_TOKEN_EDEFAULT;
+	private String secureToken = SECURE_TOKEN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getNews() <em>News</em>}' attribute.
@@ -158,7 +158,7 @@ public class ProductVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String news = NEWS_EDEFAULT;
+	private String news = NEWS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getProductVersionFeatures() <em>Product Version Features</em>}' containment reference list.
