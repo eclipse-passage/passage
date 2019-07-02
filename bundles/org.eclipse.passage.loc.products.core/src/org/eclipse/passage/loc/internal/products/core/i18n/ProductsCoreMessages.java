@@ -30,6 +30,7 @@ public class ProductsCoreMessages extends NLS {
 	public static String ProductsSelectionCommandAdvisor_select_product_line;
 	public static String ProductsSelectionCommandAdvisor_select_product_version;
 	public static String ProductsSelectionCommandAdvisor_select_product_version_feature;
+	public static String ProductDomain_instance_duplication_message;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, ProductsCoreMessages.class);

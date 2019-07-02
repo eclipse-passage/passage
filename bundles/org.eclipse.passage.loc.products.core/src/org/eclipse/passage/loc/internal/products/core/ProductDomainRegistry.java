@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
@@ -38,6 +39,7 @@ import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
+import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.eclipse.passage.loc.products.core.Products;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -206,7 +208,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		String identifier = productLine.getIdentifier();
 		ProductLineDescriptor existing = productLineIndex.put(identifier, productLine);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
+					productLine);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
 		}
 		licensingReporter
 				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine));
@@ -218,7 +222,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		String identifier = product.getIdentifier();
 		ProductDescriptor existing = productIndex.put(identifier, product);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, product);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_CREATE, product));
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
@@ -232,7 +237,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		String version = productVersion.getVersion();
 		ProductVersionDescriptor existing = versions.put(version, productVersion);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
+					productVersion);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
 		}
 		licensingReporter
 				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion));
@@ -250,7 +257,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		String featureIdentifier = productVersionFeature.getFeatureIdentifier();
 		ProductVersionFeatureDescriptor existing = features.put(featureIdentifier, productVersionFeature);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
+					productVersionFeature);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, existing.getFeatureIdentifier(), null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE,
 				productVersionFeature));
@@ -342,8 +351,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	protected Path getResourceSetPath() throws Exception {
 		Path passagePath = EquinoxPaths.resolveInstallBasePath();
 		Files.createDirectories(passagePath);
-		Path domainPath = passagePath.resolve(domainName);
-		return domainPath;
+		return passagePath.resolve(domainName);
 	}
 
 }
