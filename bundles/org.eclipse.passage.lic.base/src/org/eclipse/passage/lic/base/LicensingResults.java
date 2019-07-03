@@ -43,10 +43,38 @@ public final class LicensingResults {
 		return new BaseLicensingResult(OK, message, LicensingResults.class.getName());
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#INFO} severity
+	 * for the given source, message data
+	 * 
+	 * @param message - text message for the outcome
+	 * @param source  - string source for the outcome
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createOK(String message, String source) {
 		return new BaseLicensingResult(OK, message, source);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#OK} severity
+	 * for the given source, message and attached data
+	 * 
+	 * @param message     a human-readable message, localized to the current locale
+	 * @param source      the unique identifier of the reporter
+	 * @param attachments a <code>Map&ltString,Object&gt</code> of attached data or
+	 *                    <code>null</code>
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createOK(String message, String source, Map<String, Object> attachments) {
 		return new BaseLicensingResult(OK, message, BaseLicensingResult.CODE_NOMINAL, source, null,
 				Collections.emptyList(), attachments);
@@ -74,7 +102,7 @@ public final class LicensingResults {
 		for (LicensingResult child : children) {
 			details.add(child);
 		}
-		Map<String, Object> attachments = new HashMap<String, Object>();
+		Map<String, Object> attachments = new HashMap<>();
 		Iterable<String> attachmentKeys = basis.getAttachmentKeys();
 		for (String key : attachmentKeys) {
 			attachments.put(key, basis.getAttachment(key));
@@ -86,41 +114,154 @@ public final class LicensingResults {
 		return new BaseLicensingResult(severity, message, code, source, exception, details, attachments);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#INFO} severity
+	 * for the given source, message and attached data
+	 * 
+	 * @param message     a human-readable message, localized to the current locale
+	 * @param source      the unique identifier of the reporter
+	 * @param attachments a <code>Map&ltString,Object&gt</code> of attached data or
+	 *                    <code>null</code>
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createInfo(String message, String source, Map<String, Object> attachments) {
 		return new BaseLicensingResult(INFO, message, BaseLicensingResult.CODE_NOMINAL, source, null,
 				Collections.emptyList(), attachments);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#WARNING}
+	 * severity for the given class, message and attached data
+	 * 
+	 * @param message     a human-readable message, localized to the current locale
+	 * @param source      the unique identifier of the reporter
+	 * @param attachments a <code>Map&ltString,Object&gt</code> of attached data or
+	 *                    <code>null</code>
+	 *
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createWarning(String message, String source, Map<String, Object> attachments) {
 		return new BaseLicensingResult(WARNING, message, BaseLicensingResult.CODE_NOMINAL, source, null,
 				Collections.emptyList(), attachments);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#WARNING}
+	 * severity for the given class, message and attached data
+	 * 
+	 * @param message     a human-readable message, localized to the current locale
+	 * @param source      the {@code Class} of the reporter
+	 * @param attachments - attachments for the outcome
+	 *
+	 * @return the licensing result object
+	 * 
+	 * @since 0.6.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createWarning(String message, Class<?> source, Map<String, Object> attachments) {
 		Bundle bundle = FrameworkUtil.getBundle(source);
 		return new BaseLicensingResult(WARNING, message, BaseLicensingResult.CODE_NOMINAL, bundle.getSymbolicName(),
 				null, Collections.emptyList(), attachments);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#ERROR} severity
+	 * for the given message and source data
+	 * 
+	 * @param message a human-readable message, localized to the current locale
+	 * @param source  the unique identifier of the reporter
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createError(String message, String source) {
 		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, null);
 	}
 
-	public static LicensingResult createError(String message, String source, Throwable e) {
-		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, e);
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#ERROR} severity
+	 * for the given message source and throwable data
+	 * 
+	 * @param message   a human-readable message, localized to the current locale
+	 * @param source    the unique identifier of the reporter
+	 * @param exception a low-level exception
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
+	public static LicensingResult createError(String message, String source, Throwable exception) {
+		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, exception);
 	}
 
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#ERROR} severity
+	 * for the given message, source, code and children result data
+	 * 
+	 * @param message  a human-readable message, localized to the current locale
+	 * @param source   the unique identifier of the reporter
+	 * @param children a child result
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
 	public static LicensingResult createError(String message, String source, Iterable<LicensingResult> children) {
 		return new BaseLicensingResult(ERROR, message, CODE_NOMINAL, source, null, children, null);
 	}
 
-	public static LicensingResult createError(String message, int code, Throwable e) {
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#ERROR} severity
+	 * for the given message, code and throwable data
+	 * 
+	 * @param message   a human-readable message, localized to the current locale
+	 * @param code      error code value
+	 * @param exception a low-level exception
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
+	public static LicensingResult createError(String message, int code, Throwable exception) {
 		String source = LicensingResults.class.getName();
-		return new BaseLicensingResult(ERROR, message, code, source, e);
+		return new BaseLicensingResult(ERROR, message, code, source, exception);
 	}
 
-	public static LicensingResult createError(String message, int code, String source, Throwable e) {
-		return new BaseLicensingResult(ERROR, message, code, source, e);
+	/**
+	 * Creates a {@link LicensingResult} with {@link LicensingResult#ERROR} severity
+	 * for the given message, source, code and throwable data
+	 * 
+	 * @param message   a human-readable message, localized to the current locale
+	 * @param source    the unique identifier of the reporter
+	 * @param exception a low-level exception
+	 * @param code      error code value
+	 * 
+	 * @return the licensing result object
+	 * 
+	 * @since 0.5.0
+	 * 
+	 * @see LicensingResult
+	 */
+	public static LicensingResult createError(String message, int code, String source, Throwable exception) {
+		return new BaseLicensingResult(ERROR, message, code, source, exception);
 	}
 
 }
