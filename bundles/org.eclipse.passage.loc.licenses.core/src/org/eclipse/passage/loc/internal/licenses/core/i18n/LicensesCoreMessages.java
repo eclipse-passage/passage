@@ -27,6 +27,7 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicensePlanClassifierInitializer_new_lic_plan_message;
 	public static String LicensePlanClassifierInitializer_new_lic_plan_name;
 	public static String LicensesSelectionCommandAdvisor_select_lic_plan;
+	public static String LicenseDomain_instance_duplication_message;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);

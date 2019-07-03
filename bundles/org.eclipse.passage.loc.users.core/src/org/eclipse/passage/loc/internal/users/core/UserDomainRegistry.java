@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
@@ -35,6 +36,7 @@ import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
 import org.eclipse.passage.loc.users.core.Users;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -143,7 +145,8 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		String identifier = userOrigin.getIdentifier();
 		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userOrigin);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin));
 		userOrigin.getUsers().forEach(u -> registerUser(u));
@@ -153,7 +156,8 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		String identifier = user.getEmail();
 		UserDescriptor existing = userIndex.put(identifier, user);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_CREATE, user));
 		user.getUserLicenses().forEach(u -> registerUserLicense(u));
@@ -163,7 +167,8 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		String identifier = userLicense.getPackIdentifier();
 		UserLicenseDescriptor existing = userLicenseIndex.put(identifier, userLicense);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userLicense);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_LICENSE_CREATE, userLicense));
 	}
@@ -221,8 +226,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	protected Path getResourceSetPath() throws Exception {
 		Path passagePath = EquinoxPaths.resolveInstallBasePath();
 		Files.createDirectories(passagePath);
-		Path domainPath = passagePath.resolve(domainName);
-		return domainPath;
+		return passagePath.resolve(domainName);
 	}
 
 }

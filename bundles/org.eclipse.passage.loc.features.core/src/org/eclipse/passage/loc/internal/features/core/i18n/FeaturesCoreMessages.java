@@ -18,12 +18,13 @@ import org.eclipse.osgi.util.NLS;
 public class FeaturesCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages"; //$NON-NLS-1$
 	public static String FeatureSetClassifierInitializer_feature_set;
-	public static String FeatureSetClassifierInitializer_new_feature_set_messahe;
+	public static String FeatureSetClassifierInitializer_new_feature_set_message;
 	public static String FeatureSetClassifierInitializer_new_feature_set_name;
 	public static String FeatureSetClassifierInitializer_new_file_message;
 	public static String FeaturesSelectionCommandAdvisor_select_feature;
 	public static String FeaturesSelectionCommandAdvisor_select_feature_set;
 	public static String FeaturesSelectionCommandAdvisor_select_feature_version;
+	public static String FeatureDomain_instance_duplication_message;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, FeaturesCoreMessages.class);

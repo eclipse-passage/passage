@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
@@ -38,6 +39,7 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
 import org.eclipse.passage.loc.features.core.Features;
+import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -177,7 +179,9 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		String identifier = featureSet.getIdentifier();
 		FeatureSetDescriptor existing = featureSetIndex.put(identifier, featureSet);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
+					featureSet);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter
 				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet));
@@ -192,7 +196,8 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		String identifier = feature.getIdentifier();
 		FeatureDescriptor existing = featureIndex.put(identifier, feature);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_CREATE, feature));
 		Iterable<? extends FeatureVersionDescriptor> featureVersions = feature.getFeatureVersions();
@@ -209,7 +214,9 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		String version = featureVersion.getVersion();
 		FeatureVersionDescriptor existing = map.put(version, featureVersion);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
+					featureVersion);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter
 				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion));
@@ -284,8 +291,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	protected Path getResourceSetPath() throws Exception {
 		Path passagePath = EquinoxPaths.resolveInstallBasePath();
 		Files.createDirectories(passagePath);
-		Path domainPath = passagePath.resolve(domainName);
-		return domainPath;
+		return passagePath.resolve(domainName);
 	}
 
 }

@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
@@ -32,6 +33,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -109,7 +111,9 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 		String identifier = licensePlan.getIdentifier();
 		LicensePlanDescriptor existing = licensePlanIndex.put(identifier, licensePlan);
 		if (existing != null) {
-			// FIXME: warning
+			String msg = NLS.bind(LicensesCoreMessages.LicenseDomain_instance_duplication_message, existing,
+					licensePlan);
+			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
 		}
 		licensingReporter
 				.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan));
@@ -158,8 +162,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	protected Path getResourceSetPath() throws Exception {
 		Path passagePath = EquinoxPaths.resolveInstallBasePath();
 		Files.createDirectories(passagePath);
-		Path domainPath = passagePath.resolve(domainName);
-		return domainPath;
+		return passagePath.resolve(domainName);
 	}
 
 }

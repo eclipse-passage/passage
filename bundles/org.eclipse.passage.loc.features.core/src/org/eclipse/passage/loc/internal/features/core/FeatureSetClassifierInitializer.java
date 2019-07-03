@@ -42,7 +42,7 @@ public final class FeatureSetClassifierInitializer implements ClassifierInitiali
 
 	@Override
 	public String newObjectMessage() {
-		return FeaturesCoreMessages.FeatureSetClassifierInitializer_new_feature_set_messahe;
+		return FeaturesCoreMessages.FeatureSetClassifierInitializer_new_feature_set_message;
 	}
 
 	@Override

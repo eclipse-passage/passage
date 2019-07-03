@@ -23,6 +23,7 @@ public class UsersCoreMessages extends NLS {
 	public static String UsersSelectionCommandAdvisor_select_user;
 	public static String UsersSelectionCommandAdvisor_select_user_license;
 	public static String UsersSelectionCommandAdvisor_select_user_origin;
+	public static String UserDomain_instance_duplication_message;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, UsersCoreMessages.class);
