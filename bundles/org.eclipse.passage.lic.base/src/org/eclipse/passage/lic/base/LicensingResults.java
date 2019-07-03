@@ -29,6 +29,11 @@ import org.eclipse.passage.lic.api.LicensingResult;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+/**
+ * 
+ * @since 0.5.0
+ *
+ */
 public final class LicensingResults {
 
 	private LicensingResults() {
@@ -51,8 +56,6 @@ public final class LicensingResults {
 	 * @param source  - string source for the outcome
 	 * 
 	 * @return the licensing result object
-	 * 
-	 * @since 0.5.0
 	 * 
 	 * @see LicensingResult
 	 */
@@ -183,8 +186,6 @@ public final class LicensingResults {
 	 * 
 	 * @return the licensing result object
 	 * 
-	 * @since 0.5.0
-	 * 
 	 * @see LicensingResult
 	 */
 	public static LicensingResult createError(String message, String source) {
@@ -199,8 +200,6 @@ public final class LicensingResults {
 	 * @param source    the unique identifier of the reporter
 	 * @param exception a low-level exception
 	 * @return the licensing result object
-	 * 
-	 * @since 0.5.0
 	 * 
 	 * @see LicensingResult
 	 */
@@ -218,8 +217,6 @@ public final class LicensingResults {
 	 * 
 	 * @return the licensing result object
 	 * 
-	 * @since 0.5.0
-	 * 
 	 * @see LicensingResult
 	 */
 	public static LicensingResult createError(String message, String source, Iterable<LicensingResult> children) {
@@ -235,8 +232,6 @@ public final class LicensingResults {
 	 * @param exception a low-level exception
 	 * 
 	 * @return the licensing result object
-	 * 
-	 * @since 0.5.0
 	 * 
 	 * @see LicensingResult
 	 */
@@ -255,8 +250,6 @@ public final class LicensingResults {
 	 * @param code      error code value
 	 * 
 	 * @return the licensing result object
-	 * 
-	 * @since 0.5.0
 	 * 
 	 * @see LicensingResult
 	 */
