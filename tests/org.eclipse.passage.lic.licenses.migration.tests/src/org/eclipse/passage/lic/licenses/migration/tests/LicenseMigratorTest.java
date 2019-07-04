@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.junit.Test;
 
 public class LicenseMigratorTest {
-	
+
 	@Test
 	public void testMigratorPositive() throws Exception {
 		File legacy = new File(
@@ -48,14 +48,16 @@ public class LicenseMigratorTest {
 		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
 		assertEquals(1, grants.size());
 
-		LicenseGrant g0 = grants.get(0);
-		assertEquals(1, g0.getCapacity());
-		assertEquals("os.family=*", g0.getConditionExpression()); //$NON-NLS-1$
-		assertEquals("hardware", g0.getConditionType()); //$NON-NLS-1$
-		assertEquals("org.eclipse.passage.lic.product", g0.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("perfect", g0.getMatchRule()); //$NON-NLS-1$
-		assertEquals("0.4.0", g0.getMatchVersion()); //$NON-NLS-1$
-		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-03-14T00:00:00.000+0300"), g0.getValidFrom()); //$NON-NLS-1$
-		assertEquals(LicensingProperties.DATE_FORMAT.parse("2019-06-14T00:00:00.000+0300"), g0.getValidUntil()); //$NON-NLS-1$
+		LicenseGrant licencecGrant = grants.get(0);
+		assertEquals(1, licencecGrant.getCapacity());
+		assertEquals("os.family=*", licencecGrant.getConditionExpression()); //$NON-NLS-1$
+		assertEquals("hardware", licencecGrant.getConditionType()); //$NON-NLS-1$
+		assertEquals("org.eclipse.passage.lic.product", licencecGrant.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("perfect", licencecGrant.getMatchRule()); //$NON-NLS-1$
+		assertEquals("0.4.0", licencecGrant.getMatchVersion()); //$NON-NLS-1$
+		assertEquals(LicensingProperties.getLicensingDateFormat().parse("2019-03-14T00:00:00.000+0300"), //$NON-NLS-1$
+				licencecGrant.getValidFrom());
+		assertEquals(LicensingProperties.getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
+				licencecGrant.getValidUntil());
 	}
 }

@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.base;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -24,10 +25,12 @@ public final class LicensingProperties {
 	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
 
 	public static final String LICENSING_FEATURE_NAME = "licensing.feature.name"; //$NON-NLS-1$
-	public static final String LICENSING_FEATURE_NAME_DEFAULT = BaseMessages.getString("LicensingProperties_license_management_title"); //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_NAME_DEFAULT = BaseMessages
+			.getString("LicensingProperties_license_management_title"); //$NON-NLS-1$
 
 	public static final String LICENSING_FEATURE_PROVIDER = "licensing.feature.provider"; //$NON-NLS-1$
-	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = BaseMessages.getString("LicensingProperties_eclipse_passage_title"); //$NON-NLS-1$
+	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = BaseMessages
+			.getString("LicensingProperties_eclipse_passage_title"); //$NON-NLS-1$
 
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
 	public static final String LICENSING_RESTRICTION_LEVEL_INFO = "info"; //$NON-NLS-1$
@@ -56,7 +59,7 @@ public final class LicensingProperties {
 	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
 	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
 
-	public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'SSSZ", Locale.ENGLISH); //$NON-NLS-1$
+	public static final String LICENSING_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'.'SSSZ"; //$NON-NLS-1$
 
 	private LicensingProperties() {
 		// block
@@ -81,4 +84,29 @@ public final class LicensingProperties {
 		return LICENSING_RESTRICTION_LEVEL_DEFAULT;
 	}
 
+	/**
+	 * Creates the licensing date format by pattern
+	 * <code>"yyyy-MM-dd'T'HH:mm:ss'.'SSSZ"</code>
+	 * 
+	 * @return {@link SimpleDateFormat} object as result
+	 * 
+	 * @since 0.6.0
+	 */
+	public static DateFormat getLicensingDateFormat() {
+		return new SimpleDateFormat(LICENSING_DATE_FORMAT, Locale.ENGLISH);
+	}
+
+	/**
+	 * Formats a Date into licensing date format by pattern
+	 * <code>"yyyy-MM-dd'T'HH:mm:ss'.'SSSZ"</code>
+	 * 
+	 * @param date the time value to be formatted into a time string.
+	 * @return the formatted time string.
+	 * 
+	 * @since 0.6.0
+	 */
+	public static String getLicensingDateFormat(Date date) {
+		DateFormat simpleDateFormat = getLicensingDateFormat();
+		return simpleDateFormat.format(date);
+	}
 }

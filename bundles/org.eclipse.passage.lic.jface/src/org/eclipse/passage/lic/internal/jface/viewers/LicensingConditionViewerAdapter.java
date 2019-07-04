@@ -64,9 +64,9 @@ public class LicensingConditionViewerAdapter extends LicensingViewerBasis {
 			case INDEX_IDENTIFIER:
 				return condition.getFeatureIdentifier();
 			case INDEX_VALID_FROM:
-				return LicensingProperties.DATE_FORMAT.format(condition.getValidFrom());
+				return LicensingProperties.getLicensingDateFormat(condition.getValidFrom());
 			case INDEX_VALID_UNTIL:
-				return LicensingProperties.DATE_FORMAT.format(condition.getValidUntil());
+				return LicensingProperties.getLicensingDateFormat(condition.getValidUntil());
 			case INDEX_MATCH_VERSION:
 				// FIXME: human readable
 				return condition.getMatchVersion();
