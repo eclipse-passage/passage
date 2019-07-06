@@ -46,12 +46,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      value="${eclipse.target.platform.latest}"
-      storageURI="scope://Workspace"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.api.baseline.target.platform"
-      value="${eclipse.api.baseline.target.platform.latest.released}"
+      defaultValue="2019-06"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
@@ -66,57 +61,6 @@
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.targlets:TargletTask"
-      targetName="Modular API Baseline Target"
-      activateTarget="false">
-    <targlet
-        name="Platform"
-        activeRepositoryList="${eclipse.api.baseline.target.platform}"
-        includeSources="false">
-      <requirement
-          name="org.eclipse.platform.feature.group"/>
-      <requirement
-          name="org.eclipse.jdt.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="org.eclipse.equinox.executable.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
-      <requirement
-          name="org.slf4j.api"/>
-      <requirement
-          name="com.sun.jna"/>
-      <requirement
-          name="com.sun.jna.platform"/>
-      <requirement
-          name="com.github.oshi.oshi-core"/>
-      <requirement
-          name="org.bouncycastle.bcpg"/>
-      <requirement
-          name="org.bouncycastle.bcpkix"/>
-      <requirement
-          name="org.bouncycastle.bcprov"/>
-      <requirement
-          name="com.fasterxml.jackson.core.jackson-annotations"/>
-      <requirement
-          name="com.fasterxml.jackson.core.jackson-core"/>
-      <requirement
-          name="com.fasterxml.jackson.core.jackson-databind"/>
-      <requirement
-          name="org.junit"/>
-      <requirement
-          name="org.mockito"/>
-      <requirement
-          name="*"/>
-      <sourceLocator
-          rootFolder="${git.clone.passage.location}"
-          locateNestedProjects="true"/>
-    </targlet>
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
@@ -187,6 +131,78 @@
       <sourceLocator
           rootFolder="${git.clone.passage.location}"
           locateNestedProjects="true"/>
+      <repositoryList
+          name="2019-06">
+        <repository
+            url="https://download.eclipse.org/releases/2019-06/"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2019-03">
+        <repository
+            url="https://download.eclipse.org/releases/2019-03"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2018-12">
+        <repository
+            url="https://download.eclipse.org/releases/2018-12"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2018-09">
+        <repository
+            url="https://download.eclipse.org/releases/2018-09"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Photon">
+        <repository
+            url="https://download.eclipse.org/releases/photon"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Oxygen">
+        <repository
+            url="https://download.eclipse.org/releases/oxygen"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Neon">
+        <repository
+            url="https://download.eclipse.org/releases/neon"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Mars">
+        <repository
+            url="https://download.eclipse.org/releases/mars"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
     </targlet>
   </setupTask>
   <setupTask
@@ -288,7 +304,7 @@
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>
     The Eclipse Passage project aims to provide 
-    rich and easily adaptable capabilities 
+    rich and easily adoptable capabilities 
     to define and control licensing constraints.
   </description>
 </setup:Project>
