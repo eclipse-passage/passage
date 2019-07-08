@@ -266,7 +266,12 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		if (validUntil != null) {
 			until = LocalDateTime.ofInstant(validUntil.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
-		return getString("_UI_LicenseGrant_text_pattern_dates", new Object[] { from, until, feature, version }); //$NON-NLS-1$
+		if (rule != null && !rule.isEmpty()) {
+			return getString("_UI_LicenseGrant_text_pattern_dates_rules", //$NON-NLS-1$
+					new Object[] { from, until, feature, version, rule });
+		}
+		return getString("_UI_LicenseGrant_text_pattern_dates", //$NON-NLS-1$
+				new Object[] { from, until, feature, version });
 	}
 
 	/**
