@@ -36,6 +36,14 @@
     <description>Set the heap space needed to work with the projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
+      xsi:type="setup:EclipseIniTask"
+      disabled="true"
+      option="-Doomph.redirection.passage"
+      value="=passage/passage.git/plain/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
+      vm="true">
+    <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
+  </setupTask>
+  <setupTask
       xsi:type="setup:ResourceCreationTask"
       excludedTriggers="STARTUP MANUAL"
       content="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;section name=&quot;Workbench&quot;>&#xD;&#xA;&#x9;&lt;section name=&quot;org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart&quot;>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;true&quot; key=&quot;group_libraries&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;false&quot; key=&quot;linkWithEditor&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; key=&quot;layout&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; key=&quot;rootMode&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;packageExplorer configured=&amp;quot;true&amp;quot; group_libraries=&amp;quot;1&amp;quot; layout=&amp;quot;2&amp;quot; linkWithEditor=&amp;quot;0&amp;quot; rootMode=&amp;quot;2&amp;quot; sortWorkingSets=&amp;quot;false&amp;quot; workingSetName=&amp;quot;&amp;quot;&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;workingSet editPageId=&amp;quot;org.eclipse.jdt.internal.ui.OthersWorkingSet&amp;quot; factoryID=&amp;quot;org.eclipse.ui.internal.WorkingSetFactory&amp;quot; id=&amp;quot;1382792884467_1&amp;quot; label=&amp;quot;Other Projects&amp;quot; name=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;activeWorkingSet workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;allWorkingSets workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/packageExplorer&amp;gt;&quot; key=&quot;memento&quot;/>&#xD;&#xA;&#x9;&lt;/section>&#xD;&#xA;&lt;/section>&#xD;&#xA;"
@@ -46,10 +54,17 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="2019-06"
+      value="${eclipse.target.platform.latest}"
+      defaultValue=""
       storageURI="scope://Workspace"/>
   <setupTask
-      xsi:type="setup.p2:P2Task">
+      xsi:type="setup:VariableTask"
+      name="eclipse.api.baseline.target.platform"
+      value="${eclipse.api.baseline.target.platform.latest.released}"
+      storageURI="scope://Workspace"/>
+  <setupTask
+      xsi:type="setup.p2:P2Task"
+      label="Passage">
     <requirement
         name="org.eclipse.emf.sdk.feature.group"/>
     <requirement
@@ -63,31 +78,123 @@
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
-      xsi:type="git:GitCloneTask"
-      id="git.clone.passage"
-      remoteURI="passage/passage">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>eclipse.git.gerrit.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>${scope.project.label} Git or Gerrit repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <configSections
-        name="gerrit">
-      <properties
-          key="createchangeid"
-          value="true"/>
-    </configSections>
-    <description>${scope.project.label}</description>
+      xsi:type="setup.targlets:TargletTask"
+      targetName="Modular API Baseline Target">
+    <targlet
+        name="${scope.project.label}"
+        activeRepositoryList="${eclipse.target.platform}">
+      <requirement
+          name="org.eclipse.passage.lic.feature.group"/>
+      <requirement
+          name="org.eclipse.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.pde.feature.group"/>
+      <requirement
+          name="org.eclipse.emf.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+      <requirement
+          name="org.slf4j.api"/>
+      <requirement
+          name="com.sun.jna"/>
+      <requirement
+          name="com.sun.jna.platform"/>
+      <requirement
+          name="com.github.oshi.oshi-core"/>
+      <requirement
+          name="org.bouncycastle.bcpg"/>
+      <requirement
+          name="org.bouncycastle.bcpkix"/>
+      <requirement
+          name="org.bouncycastle.bcprov"/>
+      <requirement
+          name="com.fasterxml.jackson.core.jackson-annotations"/>
+      <requirement
+          name="com.fasterxml.jackson.core.jackson-core"/>
+      <requirement
+          name="com.fasterxml.jackson.core.jackson-databind"/>
+      <requirement
+          name="org.junit"/>
+      <requirement
+          name="org.mockito"/>
+      <requirement
+          name="*"/>
+      <sourceLocator
+          rootFolder="${git.clone.passage.location}"
+          locateNestedProjects="true"/>
+      <repositoryList
+          name="2019-06">
+        <repository
+            url="https://download.eclipse.org/releases/2019-06/"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2019-03">
+        <repository
+            url="https://download.eclipse.org/releases/2019-03"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2018-12">
+        <repository
+            url="https://download.eclipse.org/releases/2018-12"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="2018-09">
+        <repository
+            url="https://download.eclipse.org/releases/2018-09"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Photon">
+        <repository
+            url="https://download.eclipse.org/releases/photon"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Oxygen">
+        <repository
+            url="https://download.eclipse.org/releases/oxygen"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Neon">
+        <repository
+            url="https://download.eclipse.org/releases/neon"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+      <repositoryList
+          name="Mars">
+        <repository
+            url="https://download.eclipse.org/releases/mars"/>
+        <repository
+            url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+      </repositoryList>
+    </targlet>
   </setupTask>
   <setupTask
       xsi:type="setup.targlets:TargletTask">
@@ -206,6 +313,33 @@
     </targlet>
   </setupTask>
   <setupTask
+      xsi:type="git:GitCloneTask"
+      id="git.clone.passage"
+      remoteURI="passage/passage">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/InducedChoices">
+      <detail
+          key="inherit">
+        <value>eclipse.git.gerrit.remoteURIs</value>
+      </detail>
+      <detail
+          key="label">
+        <value>${scope.project.label} Git or Gerrit repository</value>
+      </detail>
+      <detail
+          key="target">
+        <value>remoteURI</value>
+      </detail>
+    </annotation>
+    <configSections
+        name="gerrit">
+      <properties
+          key="createchangeid"
+          value="true"/>
+    </configSections>
+    <description>${scope.project.label}</description>
+  </setupTask>
+  <setupTask
       xsi:type="setup:CompoundTask"
       name="User Preferences">
     <annotation
@@ -235,7 +369,7 @@
             pattern=".*passage.*"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.8/@workingSets.1 //@setupTasks.8/@workingSets.2 //@setupTasks.8/@workingSets.3 //@setupTasks.8/@workingSets.4"/>
+            excludedWorkingSet="//@setupTasks.11/@workingSets.1 //@setupTasks.11/@workingSets.2 //@setupTasks.11/@workingSets.3 //@setupTasks.11/@workingSets.4"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -289,16 +423,7 @@
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
   <stream name="master"
-      label="Master">
-    <setupTask
-        xsi:type="setup:EclipseIniTask"
-        disabled="true"
-        option="-Doomph.redirection.passage"
-        value="=passage/passage.git/plain/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
-        vm="true">
-      <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
-    </setupTask>
-  </stream>
+      label="Master"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
