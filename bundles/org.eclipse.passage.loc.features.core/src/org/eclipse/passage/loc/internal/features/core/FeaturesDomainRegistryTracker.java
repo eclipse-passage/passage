@@ -46,6 +46,7 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 			switch (notification.getFeatureID(Feature.class)) {
 			case FeaturesPackage.FEATURE__IDENTIFIER:
 				processFeatureIdentifier(feature, notification);
+				break;
 			case FeaturesPackage.FEATURE__FEATURE_VERSIONS:
 				processFeatureFeatureVersions(feature, notification);
 				break;
