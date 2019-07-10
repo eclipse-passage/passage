@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.features.model" version="2">
+    <resource path="src-gen/org/eclipse/passage/lic/features/model/impl/FeatureImpl.java" type="org.eclipse.passage.lic.features.model.impl.FeatureImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureImpl"/>
+                <message_argument value="description"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureImpl"/>
+                <message_argument value="name"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureImpl"/>
+                <message_argument value="provider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/features/model/impl/FeatureSetImpl.java" type="org.eclipse.passage.lic.features.model.impl.FeatureSetImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureSetImpl"/>
+                <message_argument value="description"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureSetImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureSetImpl"/>
+                <message_argument value="name"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/features/model/impl/FeatureVersionImpl.java" type="org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl"/>
+                <message_argument value="news"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl"/>
+                <message_argument value="version"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
