@@ -36,14 +36,19 @@ public class RestrictionVerdicts {
 		// block
 	}
 
-	public static BaseRestrictionVerdict createConfigurationError(LicensingConfiguration configuration,
-			String featureId) {
+	/**
+	 * @since 0.6
+	 */
+	public static RestrictionVerdict createConfigurationError(LicensingConfiguration configuration, String featureId) {
 		LicensingRequirement requirement = LicensingRequirements.createConfigurationError(featureId, configuration);
 		int code = CODE_CONFIGURATION_ERROR;
 		return createError(configuration, requirement, code);
 	}
 
-	public static BaseRestrictionVerdict create(LicensingConfiguration configuration, LicensingRequirement requirement,
+	/**
+	 * @since 0.6
+	 */
+	public static RestrictionVerdict create(LicensingConfiguration configuration, LicensingRequirement requirement,
 			int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		if (requirement != null) {
@@ -52,13 +57,16 @@ public class RestrictionVerdicts {
 		return new BaseRestrictionVerdict(configuration, requirement, policy, code);
 	}
 
-	public static BaseRestrictionVerdict createError(LicensingConfiguration configuration,
-			LicensingRequirement requirement, int code) {
+	/**
+	 * @since 0.6
+	 */
+	public static RestrictionVerdict createError(LicensingConfiguration configuration, LicensingRequirement requirement,
+			int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		return new BaseRestrictionVerdict(configuration, requirement, policy, code);
 	}
 
-	public static Iterable<BaseRestrictionVerdict> createConfigurationError(LicensingConfiguration configuration,
+	public static Iterable<RestrictionVerdict> createConfigurationError(LicensingConfiguration configuration,
 			LicensingRequirement requirement) {
 		int code = CODE_CONFIGURATION_ERROR;
 		return Collections.singletonList(createError(configuration, requirement, code));

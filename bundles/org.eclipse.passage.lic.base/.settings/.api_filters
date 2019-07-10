@@ -77,4 +77,24 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/base/restrictions/RestrictionVerdicts.java" type="org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts">
+        <filter comment="Was not intended to expose internal type BaseRestrictionVerdict" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts"/>
+                <message_argument value="create(LicensingConfiguration, LicensingRequirement, int)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to expose internal type BaseRestrictionVerdict" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts"/>
+                <message_argument value="createConfigurationError(LicensingConfiguration, String)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to expose internal type BaseRestrictionVerdict" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts"/>
+                <message_argument value="createError(LicensingConfiguration, LicensingRequirement, int)"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>
