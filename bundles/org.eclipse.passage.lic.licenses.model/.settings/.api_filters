@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.licenses.model" version="2">
+    <resource path="src-gen/org/eclipse/passage/lic/licenses/model/impl/LicenseGrantImpl.java" type="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl">
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="capacity"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="conditionExpression"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="conditionType"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="featureIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="matchRule"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="matchVersion"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="validFrom"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl"/>
+                <message_argument value="validUntil"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/licenses/model/impl/LicensePackImpl.java" type="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl">
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="issueDate"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="planIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="productIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="productVersion"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="requestIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="userFullName"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl"/>
+                <message_argument value="userIdentifier"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/licenses/model/impl/LicensePlanFeatureImpl.java" type="org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl">
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl"/>
+                <message_argument value="featureIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl"/>
+                <message_argument value="matchRule"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl"/>
+                <message_argument value="matchVersion"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/licenses/model/impl/LicensePlanImpl.java" type="org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl">
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl"/>
+                <message_argument value="description"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be visible" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl"/>
+                <message_argument value="name"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
