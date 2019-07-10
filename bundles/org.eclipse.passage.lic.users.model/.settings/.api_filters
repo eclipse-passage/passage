@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.users.model" version="2">
+    <resource path="src-gen/org/eclipse/passage/lic/users/model/impl/UserImpl.java" type="org.eclipse.passage.lic.users.model.impl.UserImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="description"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="email"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="fullName"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="preferredConditionExpression"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserImpl"/>
+                <message_argument value="preferredConditionType"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/users/model/impl/UserLicenseImpl.java" type="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="conditionExpression"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="conditionType"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="issueDate"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="packIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="planIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="productIdentifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="productVersion"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="validFrom"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserLicenseImpl"/>
+                <message_argument value="validUntil"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/passage/lic/users/model/impl/UserOriginImpl.java" type="org.eclipse.passage.lic.users.model.impl.UserOriginImpl">
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserOriginImpl"/>
+                <message_argument value="description"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserOriginImpl"/>
+                <message_argument value="identifier"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be accessed" id="388018290">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.users.model.impl.UserOriginImpl"/>
+                <message_argument value="name"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
