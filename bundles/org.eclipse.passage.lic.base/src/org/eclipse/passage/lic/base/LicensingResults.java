@@ -167,7 +167,7 @@ public final class LicensingResults {
 	 *
 	 * @return the licensing result object
 	 * 
-	 * @since 0.6.0
+	 * @since 0.6
 	 * 
 	 * @see LicensingResult
 	 */

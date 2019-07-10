@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.base" version="2">
+    <resource path="src/org/eclipse/passage/lic/base/LicensingConfigurations.java" type="org.eclipse.passage.lic.base.LicensingConfigurations">
+        <filter comment="Was not intended to be extended" id="337768515">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.LicensingConfigurations"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be instantiated" id="354463860">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.LicensingConfigurations"/>
+                <message_argument value="LicensingConfigurations()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/base/LicensingResults.java" type="org.eclipse.passage.lic.base.LicensingResults">
+        <filter comment="Was not intended to be extended" id="337768515">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.LicensingResults"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be instantiated" id="354463860">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.LicensingResults"/>
+                <message_argument value="LicensingResults()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/base/LicensingVersions.java" type="org.eclipse.passage.lic.base.LicensingVersions">
+        <filter comment="Was not intended to be extended" id="337768515">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.LicensingVersions"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/base/access/FeaturePermissions.java" type="org.eclipse.passage.lic.base.access.FeaturePermissions">
+        <filter comment="Was not intended to be extended" id="337768515">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.access.FeaturePermissions"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/base/io/LicensingPaths.java" type="org.eclipse.passage.lic.base.io.LicensingPaths">
+        <filter comment="Was not intended to be extended" id="337768515">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be instantiated" id="354463860">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+                <message_argument value="LicensingPaths()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be modified" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+                <message_argument value="EXTENSION_LICENSE_DECRYPTED"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be modified" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+                <message_argument value="EXTENSION_LICENSE_ENCRYPTED"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be modified" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+                <message_argument value="EXTENSION_PRODUCT_PUBLIC"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Was not intended to be modified" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.base.io.LicensingPaths"/>
+                <message_argument value="FOLDER_LICENSING_BASE"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

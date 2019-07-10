@@ -55,11 +55,24 @@ public final class LicensingProperties {
 
 	public static final String LICENSING_SECURITY_KEY_ALGO = "licensing.security.key.algo"; //$NON-NLS-1$
 	public static final String LICENSING_SECURITY_KEY_ALGO_RSA = "RSA"; //$NON-NLS-1$
+
 	public static final String LICENSING_SECURITY_KEY_SIZE = "licensing.security.key.size"; //$NON-NLS-1$
 	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
+
 	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
 
+	/**
+	 * @since 0.6
+	 */
 	public static final String LICENSING_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'.'SSSZ"; //$NON-NLS-1$
+
+	/**
+	 * Use {@link LicensingProperties#getLicensingDateFormat()}
+	 * 
+	 * @deprecated
+	 */
+	@Deprecated
+	public static final DateFormat DATE_FORMAT = null;
 
 	private LicensingProperties() {
 		// block
@@ -90,7 +103,7 @@ public final class LicensingProperties {
 	 * 
 	 * @return {@link SimpleDateFormat} object as result
 	 * 
-	 * @since 0.6.0
+	 * @since 0.6
 	 */
 	public static DateFormat getLicensingDateFormat() {
 		return new SimpleDateFormat(LICENSING_DATE_FORMAT, Locale.ENGLISH);
@@ -103,7 +116,7 @@ public final class LicensingProperties {
 	 * @param date the time value to be formatted into a time string.
 	 * @return the formatted time string.
 	 * 
-	 * @since 0.6.0
+	 * @since 0.6
 	 */
 	public static String getLicensingDateFormat(Date date) {
 		DateFormat simpleDateFormat = getLicensingDateFormat();
