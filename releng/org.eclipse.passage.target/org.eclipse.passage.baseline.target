@@ -34,5 +34,9 @@
 			<unit id="org.eclipse.passage.loc.operator.feature.feature.group" version="0.0.0"/>
 			<repository location="https://download.eclipse.org/passage/updates/release/0.5.0/loc/"/>
 		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.eclipse.passage.lbc.feature.feature.group" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/0.5.0/lbc/"/>
+		</location>
 	</locations>
 </target>
