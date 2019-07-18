@@ -26,7 +26,7 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedRepor
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.jface.LocImages;
@@ -68,9 +68,10 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 	@Override
 	protected Binding[] createBindings(Control control) throws DatabindingFailedException {
 		if (control instanceof Text) {
-			ISWTObservableValue observe = WidgetProperties.text(SWT.Modify).observe(control);
-			UpdateValueStrategy target2model = withPreSetValidation(new UpdateValueStrategy());
-			final Binding binding = getDataBindingContext().bindValue(observe, getModelValue(), target2model, null);
+			ISWTObservableValue<String> observe = WidgetProperties.text(SWT.Modify).observe(control);
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			final Binding binding = getDataBindingContext().bindValue(observe, getModelValue(),
+					withPreSetValidation(new UpdateValueStrategy()), null);
 			return new Binding[] { binding };
 		}
 

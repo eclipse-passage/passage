@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiner;
  *
  */
 public interface StreamCodec {
-	
+
 	String getKeyAlgo();
 
 	int getKeySize();
@@ -35,5 +35,9 @@ public interface StreamCodec {
 			throws IOException;
 
 	Object decodeStream(InputStream input, OutputStream output, InputStream key, byte[] digest) throws IOException;
+
+//	LicensingResult decode(InputStream input, OutputStream output, InputStream key, byte[] digest);
+//
+//	LicensingResult encode(InputStream input, OutputStream output, InputStream key, String username, String password);
 
 }

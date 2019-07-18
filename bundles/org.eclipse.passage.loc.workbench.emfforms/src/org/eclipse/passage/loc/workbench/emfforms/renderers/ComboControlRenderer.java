@@ -28,7 +28,8 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
@@ -51,7 +52,9 @@ public abstract class ComboControlRenderer extends SimpleControlSWTControlSWTRen
 	@Override
 	protected Binding[] createBindings(Control control) throws DatabindingFailedException {
 		DataBindingContext context = getDataBindingContext();
-		final Binding binding = context.bindValue(WidgetProperties.selection().observe(control), getModelValue(),
+		ISWTObservableValue<String> observed = WidgetProperties.comboSelection().observe(combo);
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		final Binding binding = context.bindValue(observed, getModelValue(),
 				withPreSetValidation(new UpdateValueStrategy()), null);
 		return new Binding[] { binding };
 	}
