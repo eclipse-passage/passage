@@ -28,6 +28,20 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicensePlanClassifierInitializer_new_lic_plan_name;
 	public static String LicensesSelectionCommandAdvisor_select_lic_plan;
 	public static String LicenseDomain_instance_duplication_message;
+	public static String LicenseRequest_package_lbl;
+	public static String LicenseRequest_plan_lbl;
+	public static String LicenseRequest_request_lbl;
+	public static String LicenseRequest_product_lbl;
+	public static String LicenseRequest_product_version_lbl;
+	public static String LicenseRequest_feature_lbl;
+	public static String LicenseRequest_condition_expr_lbl;
+	public static String LicenseRequest_user_lbl;
+	public static String LicenseRequest_user_name_lbl;
+	public static String LicenseRequest_issue_date_lbl;
+	public static String LicenseRequest_mailto_subject_lbl;
+	public static String LicenseRequest_mailto_appeal_lbl;
+	public static String LicenseRequest_mailto_body_base_lbl;
+	public static String LicenseRequest_mailto_body_details_lbl;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);

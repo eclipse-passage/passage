@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
@@ -66,8 +66,8 @@ public class IssueLicenseRequestPage extends WizardPage {
 		this.context = context;
 		this.provider = context.get(ComposedAdapterFactoryProvider.class);
 		labelProvider = new DomainRegistryLabelProvider(provider.getComposedAdapterFactory());
-		setTitle(DashboardUiMessages.IssueLicenseRequestPage_page_title);
-		setDescription(DashboardUiMessages.IssueLicenseRequestPage_page_description);
+		setTitle(IssueLicensePageMessages.IssueLicenseRequestPage_page_title);
+		setDescription(IssueLicensePageMessages.IssueLicenseRequestPage_page_description);
 	}
 
 	@Override
@@ -85,24 +85,24 @@ public class IssueLicenseRequestPage extends WizardPage {
 	}
 
 	private void createLicenseBlock(Composite composite) {
-		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_license_plan,
+		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_license_plan,
 				t -> selectLicensePlan(t), licensePlanDescriptor);
 	}
 
 	private void createUserBlock(Composite composite) {
-		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_user, t -> selectUser(t),
+		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_user, t -> selectUser(t),
 				userDescriptor);
 	}
 
 	private void createProductBlock(Composite composite) {
-		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_product_version,
+		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_product_version,
 				t -> selectProductVersion(t), productVersionDescriptor);
 	}
 
 	private void createDatesBlock(Composite composite) {
-		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_valid_from,
+		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_from,
 				t -> selectFromDate(t), validFrom);
-		createTextButtonBlock(composite, DashboardUiMessages.IssueLicenseRequestPage_lbl_valid_until,
+		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_until,
 				t -> selectUntilDate(t), validUntil);
 	}
 
@@ -117,7 +117,7 @@ public class IssueLicenseRequestPage extends WizardPage {
 		text.setText(labelProvider.getText(initial));
 		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		Button select = new Button(composite, SWT.PUSH);
-		select.setText(DashboardUiMessages.IssueLicenseRequestPage_btn_select_text);
+		select.setText(IssueLicensePageMessages.IssueLicenseRequestPage_btn_select_text);
 		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(s.apply(text))));
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
 	}
@@ -164,14 +164,15 @@ public class IssueLicenseRequestPage extends WizardPage {
 	}
 
 	private String selectFromDate(Text text) {
-		LocalDate selected = selectDate(text, validFrom, DashboardUiMessages.IssueLicenseRequestPage_valid_from_title);
+		LocalDate selected = selectDate(text, validFrom,
+				IssueLicensePageMessages.IssueLicenseRequestPage_valid_from_title);
 		validFrom = selected;
 		return selected.toString();
 	}
 
 	private String selectUntilDate(Text text) {
 		LocalDate selected = selectDate(text, validUntil,
-				DashboardUiMessages.IssueLicenseRequestPage_valid_until_title);
+				IssueLicensePageMessages.IssueLicenseRequestPage_valid_until_title);
 		validUntil = selected;
 		return selected.toString();
 	}
@@ -195,15 +196,15 @@ public class IssueLicenseRequestPage extends WizardPage {
 	protected boolean validatePage() {
 		setErrorMessage(null);
 		if (licensePlanDescriptor == null) {
-			setErrorMessage(DashboardUiMessages.IssueLicenseRequestPage_e_no_license_plan);
+			setErrorMessage(IssueLicensePageMessages.IssueLicenseRequestPage_e_no_license_plan);
 			return false;
 		}
 		if (userDescriptor == null) {
-			setErrorMessage(DashboardUiMessages.IssueLicenseRequestPage_e_no_user);
+			setErrorMessage(IssueLicensePageMessages.IssueLicenseRequestPage_e_no_user);
 			return false;
 		}
 		if (productVersionDescriptor == null) {
-			setErrorMessage(DashboardUiMessages.IssueLicenseRequestPage_e_no_product_version);
+			setErrorMessage(IssueLicensePageMessages.IssueLicenseRequestPage_e_no_product_version);
 			return false;
 		}
 //validate dates

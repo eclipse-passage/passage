@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
@@ -43,10 +43,11 @@ public class IssueLicenseWizard extends Wizard {
 
 	private IssueLicenseRequestPage requestPage;
 	private IssueLicensePackPage packPage;
+	private IssueLicenseDetailsPage infoPage;
 
 	public IssueLicenseWizard(IEclipseContext context) {
 		this.context = context;
-		setWindowTitle(DashboardUiMessages.IssueLicenseWizard_window_title);
+		setWindowTitle(IssueLicensePageMessages.IssueLicenseWizard_window_title);
 	}
 
 	public void init(LicensePlanDescriptor plan, UserDescriptor user, ProductVersionDescriptor version) {
@@ -62,6 +63,8 @@ public class IssueLicenseWizard extends Wizard {
 		addPage(requestPage);
 		packPage = new IssueLicensePackPage(IssueLicensePackPage.class.getName(), context);
 		addPage(packPage);
+		infoPage = new IssueLicenseDetailsPage(IssueLicenseDetailsPage.class.getName());
+		addPage(infoPage);
 	}
 
 	@Override
@@ -69,6 +72,9 @@ public class IssueLicenseWizard extends Wizard {
 		IWizardPage nextPage = super.getNextPage(page);
 		if (packPage.equals(nextPage)) {
 			packPage.init(requestPage.getLicensingRequest());
+		}
+		if (infoPage.equals(nextPage)) {
+			infoPage.init(packPage.getLicensePack());
 		}
 		return nextPage;
 	}
@@ -86,7 +92,7 @@ public class IssueLicenseWizard extends Wizard {
 		} else {
 			setErrorMessage(null);
 			int kind = (severity == LicensingResult.WARNING) ? MessageDialog.WARNING : MessageDialog.INFORMATION;
-			MessageDialog.open(kind, getShell(), DashboardUiMessages.IssueLicenseWizard_ok_licensed_title,
+			MessageDialog.open(kind, getShell(), IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
 					result.getMessage(), SWT.NONE);
 			broadcastResult(result);
 			return true;
