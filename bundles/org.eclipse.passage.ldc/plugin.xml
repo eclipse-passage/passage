@@ -19,6 +19,37 @@
             configId="org.eclipse.ui.intro.universalConfig"
             content="$nl$/intro/overviewExtensionContent.xml">
       </configExtension>
+      <configExtension
+            configId="org.eclipse.ui.intro.universalConfig"
+            content="$nl$/intro/tutorialsExtensionContent.xml">
+      </configExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.eclipse.passage.ldc.cheatsheets"
+            name="License Management">
+      </category>
+      <cheatsheet
+            category="org.eclipse.passage.ldc.cheatsheets"
+            composite="true"
+            contentFile="$nl$/cheatsheets/rcp3x-composite.xml"
+            id="org.eclipse.passage.ldc.cheatsheets.rcp3x"
+            name="%cheatsheets.rcp3x.name">
+         <description>
+            %cheatsheets.rcp3x.description
+         </description>
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.passage.ldc.cheatsheets"
+            composite="true"
+            contentFile="$nl$/cheatsheets/rcp4x-composite.xml"
+            id="org.eclipse.passage.ldc.cheatsheets.rcp4x"
+            name="%cheatsheets.rcp4x.name">
+         <description>
+            %cheatsheets.rcp4x.description
+         </description>
+      </cheatsheet>
    </extension>
 
 </plugin>
