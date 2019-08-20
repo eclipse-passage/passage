@@ -12,13 +12,13 @@
 		ArSysOp - initial API and implementation
 -->
 <introContent>
-	<extensionContent id="org.eclipse.passage.ldc"
+	<extensionContent id="org.eclipse.passage.ldc.overview"
 		name="License Management" alt-style="css/overview.properties"
 		style="css/overview.css" path="overview/@">
-		<group style-id="content-group" id="content-group">
-			<link style-id="content-link" label="License Management"
-				url="http://org.eclipse.ui.intro/openBrowser?url=https://www.eclipse.org/passage"
-				id="passage">
+		<group id="passage" style-id="content-group">
+			<link id="passage" style-id="content-link"
+				label="License Management"
+				url="http://org.eclipse.ui.intro/openBrowser?url=https://www.eclipse.org/passage">
 				<text>Learn about Eclipse Passage - License Management solution</text>
 			</link>
 		</group>
