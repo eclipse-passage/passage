@@ -44,6 +44,7 @@
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.ecp.emfforms.runtime.feature"/>
       <feature id="org.eclipse.passage.lic.define.feature"/>
+      <feature id="org.eclipse.passage.lic.bc.feature"/>
       <feature id="org.eclipse.passage.loc.operator.feature"/>
    </features>
 
