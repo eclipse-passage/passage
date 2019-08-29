@@ -14,7 +14,7 @@
 <site>
 	<category-def
 		name="org.eclipse.passage.loc.category"
-		label="Passage LOC (Incubation)">
+		label="Passage LOC">
 		<description>
 			Passage Licensing Operator Components includes: Dashboard, EMF Forms editors, operator services
 		</description>
@@ -29,7 +29,7 @@
 	</feature>
 	<category-def
 		name="org.eclipse.passage.loc.category.source"
-		label="Passage LOC (Incubation) Developer Resources">
+		label="Passage LOC Developer Resources">
 		<description>
 			Passage Licensing Operator Components Developer Resources includes: Dashboard, EMF Forms editors, operator services
 		</description>
