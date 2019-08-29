@@ -60,7 +60,7 @@
 					<products>
 						<product>
 							<id>${project.artifactId}</id>
-							<archiveFileName>${project.artifactId}-${build.label}-incubation</archiveFileName>
+							<archiveFileName>${project.artifactId}-${build.label}</archiveFileName>
 						</product>
 					</products>
 				</configuration>
