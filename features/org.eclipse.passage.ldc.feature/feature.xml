@@ -35,7 +35,7 @@
    <includes
          id="org.eclipse.passage.lic.define.feature"
          version="0.0.0"
-         name="Passage LIC Define (Incubation)"/>
+         name="Passage LIC Define"/>
 
    <plugin
          id="org.eclipse.passage.ldc"

@@ -14,7 +14,7 @@
 <site>
 	<category-def
 		name="org.eclipse.passage.lic.category"
-		label="Passage LIC (Incubation)"
+		label="Passage LIC"
 	>
 		<description>
 			Passage Licensing Integration Components includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations
@@ -39,7 +39,7 @@
 
 	<category-def
 		name="org.eclipse.passage.lic.category.source"
-		label="Passage LIC (Incubation) Developer Resources"
+		label="Passage LIC Developer Resources"
 	>
 		<description>
 			Passage Licensing Integration Components Developer Resources includes: Licensing Runtime API and its implementation for Eclipse Equinox, Licensing JFace components, Licensing Metadata EMF API, License Management Integrations

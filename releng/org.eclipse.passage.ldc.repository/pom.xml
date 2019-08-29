@@ -42,7 +42,7 @@
 							<goal>archive-repository</goal>
 						</goals>
 						<configuration>
-							<finalName>${project.artifactId}-${build.label}-incubation</finalName>
+							<finalName>${project.artifactId}-${build.label}</finalName>
 						</configuration>
 					</execution>
 				</executions>
