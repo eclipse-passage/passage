@@ -46,8 +46,13 @@
 			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.mockito" version="0.0.0"/>
+<<<<<<< HEAD
 			<unit id="javax.mail" version="0.0.0"/>
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
+=======
+			<unit id="javax.mail" version="1.4.0"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+>>>>>>> 69f75e4... Bug 550956 - [Passage] Support mail attachment
 		</location>
 	</locations>
 </target>
