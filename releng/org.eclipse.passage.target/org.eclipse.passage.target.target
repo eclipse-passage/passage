@@ -46,7 +46,7 @@
 			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.mockito" version="0.0.0"/>
-			<unit id="javax.mail" version="1.4.0"/>
+			<unit id="javax.mail" version="0.0.0"/>
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
 		</location>
 	</locations>
