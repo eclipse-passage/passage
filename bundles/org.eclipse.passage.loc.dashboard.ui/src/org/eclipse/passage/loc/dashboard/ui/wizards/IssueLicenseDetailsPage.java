@@ -12,12 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.io.File;
+
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.licenses.core.LicenseMail;
+import org.eclipse.passage.loc.internal.licenses.core.LicenseMailSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -25,12 +27,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 public class IssueLicenseDetailsPage extends WizardPage {
 
 	private Text text;
-	private LicenseMail licenseMail;
+	private boolean createMail;
+	private boolean createEml;
+	private LicenseMailSupport licenseMailSupport;
 
 	protected IssueLicenseDetailsPage(String pageName) {
 		super(pageName);
@@ -45,26 +50,56 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		composite.setLayout(new GridLayout());
 		text = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		Button buttonPrepareMail = new Button(composite, SWT.PUSH);
-		buttonPrepareMail.setLayoutData(new GridData(SWT.RIGHT, SWT.FILL, false, false));
+
+		Group groupButtons = new Group(composite, SWT.NONE);
+		groupButtons.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_group_mail_text);
+		groupButtons.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		groupButtons.setLayout(new GridLayout(1, false));
+
+		Button buttonPrepareMail = new Button(groupButtons, SWT.CHECK);
+		buttonPrepareMail.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 		buttonPrepareMail.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_mail_text);
 		buttonPrepareMail.setSelection(true);
-		buttonPrepareMail.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> mailLicensingDetails()));
+		buttonPrepareMail.addSelectionListener(
+				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
+		createMail = buttonPrepareMail.getSelection();
+
+		Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
+		buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);
+		buttonPrepareEml.addSelectionListener(
+				SelectionListener.widgetSelectedAdapter(c -> createEml = buttonPrepareEml.getSelection()));
+		createEml = buttonPrepareEml.getSelection();
 		setControl(composite);
 		Dialog.applyDialogFont(composite);
 	}
 
 	public void init(LicensePackDescriptor licensePack) {
-		this.licenseMail = new LicenseMail(licensePack);
+		this.licenseMailSupport = new LicenseMailSupport(licensePack);
 		if (text != null && !text.isDisposed()) {
-			text.setText(licenseMail.getDetails());
+			text.setText(licenseMailSupport.getDetails());
 		}
 	}
 
-	private void mailLicensingDetails() {
-		if (licenseMail != null) {
-			Program.launch(licenseMail.getMailTo());
+	public void processingMailClient() {
+		if (isCreateMail() && licenseMailSupport != null) {
+			Program.launch(licenseMailSupport.getMailToString());
 		}
+	}
+
+	public File processingMailEml(File attachement) {
+		if (isCreateEml() && licenseMailSupport != null) {
+			return licenseMailSupport.createEmlFile(attachement);
+		}
+		return null;
+	}
+
+	private boolean isCreateMail() {
+		return createMail;
+	}
+
+	private boolean isCreateEml() {
+		return createEml;
 	}
 
 }

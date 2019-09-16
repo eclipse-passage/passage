@@ -36,6 +36,11 @@ public class IssueLicensePageMessages extends NLS {
 	public static String IssueLicenseDetailsPage_page_title;
 	public static String IssueLicenseDetailsPage_page_description;
 	public static String IssueLicenseDetailsPage_btn_mail_text;
+	public static String IssueLicenseDetailsPage_btn_eml_text;
+	public static String IssueLicenseDetailsPage_group_mail_text;
+	public static String IssueLicenseMailRequestDialog_text;
+	public static String IssueLicenseMailRequestDialog_title;
+	public static String IssueLicensingMailJob_task_text;
 
 	static {
 		// initialize resource bundle
