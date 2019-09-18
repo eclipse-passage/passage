@@ -40,6 +40,9 @@
 		<module>../../bundles/org.eclipse.passage.lic.net</module>
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.mail</module>
+		<module>../../features/org.eclipse.passage.lic.mail.feature</module>
+        
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
 		<module>../../features/org.eclipse.passage.lic.hc.feature</module>
 
