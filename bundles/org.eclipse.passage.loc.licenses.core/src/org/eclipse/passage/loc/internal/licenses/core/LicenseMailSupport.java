@@ -53,7 +53,7 @@ public class LicenseMailSupport {
 		return getDetails(System.lineSeparator());
 	}
 
-	public String getDetails(String separator) {
+	private String getDetails(String separator) {
 		if (licensePack == null) {
 			return ""; //$NON-NLS-1$
 		}
