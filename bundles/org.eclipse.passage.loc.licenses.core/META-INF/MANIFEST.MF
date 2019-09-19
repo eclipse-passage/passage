@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.users.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.loc.api;bundle-version="0.0.0",
- javax.mail;bundle-version="1.4.0"
+ org.eclipse.passage.lic.net,
+ org.eclipse.passage.lic.mail.core
 Export-Package: org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true,
  org.eclipse.passage.loc.licenses.core
