@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.mail.core;
 
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.internal.mail.LicensingMailDescriptorImpl;
+import org.eclipse.passage.lic.net.LicensingMail;
 import org.eclipse.passage.lic.net.LicensingMailDescriptor;
 
 public class LicensingMails {
@@ -22,5 +24,9 @@ public class LicensingMails {
 	public static LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
 			String attachment) {
 		return new LicensingMailDescriptorImpl(to, from, subject, body, attachment);
+	}
+
+	public static LicensingMail getLicensingEmlService() {
+		return LicensingEquinox.getLicensingService(LicensingMail.class);
 	}
 }
