@@ -10,18 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.mail;
+package org.eclipse.passage.lic.mail.core;
 
-/**
- * The interface for mail client support
- * 
- * @since 0.5.0
- */
-public interface LicenseMailBuilder {
+import org.eclipse.passage.lic.internal.mail.LicensingMailDescriptorImpl;
+import org.eclipse.passage.lic.net.LicensingMailDescriptor;
 
-	public String getLicensingMailDetails();
+public class LicensingMails {
+	private LicensingMails() {
+	}
 
-	public String getLicensingMailToText();
-
-	public String getLicensingMailToEml();
+	public static LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
+			String attachment) {
+		return new LicensingMailDescriptorImpl(to, from, subject, body, attachment);
+	}
 }

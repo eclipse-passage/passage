@@ -41,6 +41,7 @@
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.mail</module>
+		<module>../../bundles/org.eclipse.passage.lic.mail.core</module>
 		<module>../../features/org.eclipse.passage.lic.mail.feature</module>
         
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
