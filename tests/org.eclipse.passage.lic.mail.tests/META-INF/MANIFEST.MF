@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-SymbolicName: org.eclipse.passage.lic.mail.tests
+Bundle-Version: 0.5.0.qualifier
+Automatic-Module-Name: org.eclipse.passage.lic.mail.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.eclipse.passage.lic.mail.core;bundle-version="0.0.0",
+ org.eclipse.passage.lic.net;bundle-version="0.0.0",
+ org.eclipse.equinox.common;bundle-version="0.0.0"

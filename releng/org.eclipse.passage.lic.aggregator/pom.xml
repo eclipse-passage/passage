@@ -110,6 +110,7 @@
 		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
 
 		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
 
