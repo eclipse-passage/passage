@@ -26,10 +26,6 @@ import org.eclipse.passage.lic.mail.core.LicensingMails;
 import org.eclipse.passage.lic.net.LicensingMail;
 import org.eclipse.passage.lic.net.LicensingMailDescriptor;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
 
 public class LicenseMailSupport {
 
@@ -102,69 +98,28 @@ public class LicenseMailSupport {
 	}
 
 	public File createEmlFile(File attachment) {
+		LicensingMail service = LicensingMails.getLicensingEmlService();
+		if (service != null) {
+			if (attachment != null && attachment.exists()) {
+				File emlFile = new File(
+						System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 
-		Bundle bundle = FrameworkUtil.getBundle(this.getClass());
-		if (bundle != null) {
-			BundleContext context = bundle.getBundleContext();
-			ServiceReference<LicensingMail> serviceReference = context.getServiceReference(LicensingMail.class);
-			LicensingMail service = context.getService(serviceReference);
-			if (service != null) {
-				if (attachment != null && attachment.exists()) {
-					File emlFile = new File(
-							System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
+				try (FileOutputStream stream = new FileOutputStream(emlFile)) {
+					LicensingMailDescriptor descriptor = LicensingMails.getMailDescriptor(
+							licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+							LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
+							attachment.getPath());
 
-					try (FileOutputStream stream = new FileOutputStream(emlFile)) {
-						LicensingMailDescriptor descriptor = LicensingMails.getMailDescriptor(
-								licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
-								LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
-								attachment.getPath());
+					service.createEml(descriptor, stream);
 
-						service.createEml(descriptor, stream);
-
-					} catch (CoreException | IOException e) {
-						Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-					}
-				} else {
-					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
-							LicensesCoreMessages.LicenseRequest_mailto_error_attachment_not_exist);
+				} catch (CoreException | IOException e) {
+					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
 				}
+			} else {
+				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+						LicensesCoreMessages.LicenseRequest_mailto_error_attachment_not_exist);
 			}
 		}
 		return null;
 	}
-
-//	private File createEmlFile(String emlFileName, String to, String from, String subject, String body,
-//			File fileToAttache) throws MessagingException, IOException {
-//
-//		Message message = new MimeMessage(Session.getInstance(System.getProperties()));
-//		message.setFrom(new InternetAddress(from));
-//		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-//		message.setSubject(subject);
-//		MimeBodyPart content = new MimeBodyPart();
-//
-//		content.setText(body);
-//		Multipart multipart = new MimeMultipart();
-//		multipart.addBodyPart(content);
-//
-//		MimeBodyPart attachment = new MimeBodyPart();
-//		DataSource source = new FileDataSource(fileToAttache);
-//		attachment.setDataHandler(new DataHandler(source));
-//		attachment.setFileName(fileToAttache.getName());
-//		multipart.addBodyPart(attachment);
-//		message.setContent(multipart);
-//
-//		File emlFile = new File(System.getProperty("user.home") + File.separator + emlFileName + MAIL_EML_EXTENSION); //$NON-NLS-1$
-//		if (!emlFile.exists() && emlFile.createNewFile()) {
-//			try (FileOutputStream fileOutputStream = new FileOutputStream(emlFile)) {
-//				message.writeTo(fileOutputStream);
-//			}
-//		} else {
-//			String msg = NLS.bind(LicensesCoreMessages.LicenseRequest_mailto_error_file_already_exist,
-//					emlFile.getAbsolutePath());
-//			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, msg);
-//		}
-//
-//		return emlFile;
-//	}
-
 }
