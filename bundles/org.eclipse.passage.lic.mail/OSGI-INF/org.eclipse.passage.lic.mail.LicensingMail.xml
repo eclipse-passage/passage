@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.mail">
-	<implementation class="org.eclipse.passage.lic.internal.mail.LicenseMailManagerImpl"/>
-	<reference bind="bindLicenseMailBuilder" cardinality="0..1" interface="org.eclipse.passage.lic.api.mail.LicenseMailBuilder" name="LicenseMailBuilder" policy="static" unbind="unbindLicenseMailBuilder"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="false" name="org.eclipse.passage.lic.mail">
+	<implementation class="org.eclipse.passage.lic.internal.mail.LicensingMailImpl"/>
 	<service>
-		<provide interface="org.eclipse.passage.lic.mail.LicenseMailManager"/>
+		<provide interface="org.eclipse.passage.lic.net.LicensingMail"/>
 	</service>
 </scr:component>
