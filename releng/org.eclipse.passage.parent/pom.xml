@@ -88,13 +88,13 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
-		<!-- pluginRepository>
+		<pluginRepository>
 			<id>cbi-snapshots</id>
 			<url>${cbi-snapshots-repo.url}</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</pluginRepository -->
+		</pluginRepository>
 		<pluginRepository>
 			<id>eclipse</id>
 			<url>${eclipse-repo.url}</url>
