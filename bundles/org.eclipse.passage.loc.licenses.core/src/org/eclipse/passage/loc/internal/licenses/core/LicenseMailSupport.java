@@ -22,9 +22,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.mail.core.LicensingMails;
-import org.eclipse.passage.lic.net.LicensingMail;
-import org.eclipse.passage.lic.net.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
 public class LicenseMailSupport {
@@ -105,8 +105,8 @@ public class LicenseMailSupport {
 						System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 
 				try (FileOutputStream stream = new FileOutputStream(emlFile)) {
-					LicensingMailDescriptor descriptor = LicensingMails.getMailDescriptor(
-							licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+					LicensingMailDescriptor descriptor = service.getMailDescriptor(licensePack.getUserIdentifier(),
+							"From", //$NON-NLS-1$
 							LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 							attachment.getPath());
 

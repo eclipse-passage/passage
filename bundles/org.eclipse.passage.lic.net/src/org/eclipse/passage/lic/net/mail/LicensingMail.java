@@ -10,23 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+package org.eclipse.passage.lic.net.mail;
 
-package org.eclipse.passage.lic.net;
+import java.io.OutputStream;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * Interface for Licensing Mail Service
  * 
- * @since 0.5.0
+ * @since 0.7
  *
  */
-public interface LicensingMailDescriptor {
-	String getTo();
+public interface LicensingMail {
 
-	String getFrom();
+	public IStatus createEml(LicensingMailDescriptor descriptor, OutputStream output) throws CoreException;
 
-	String getSubject();
-
-	String getBody();
-
-	String getAttachment();
+	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
+			String attachment);
 }

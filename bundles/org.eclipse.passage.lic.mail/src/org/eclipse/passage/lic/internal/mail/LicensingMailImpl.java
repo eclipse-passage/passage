@@ -31,8 +31,9 @@ import javax.mail.internet.MimeMultipart;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.net.LicensingMail;
-import org.eclipse.passage.lic.net.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -80,4 +81,11 @@ public class LicensingMailImpl implements LicensingMail {
 		message.setContent(multipart);
 		message.writeTo(output);
 	}
+
+	@Override
+	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
+			String attachment) {
+		return new LicensingMailDescriptorImpl(to, from, subject, body, attachment);
+	}
+
 }

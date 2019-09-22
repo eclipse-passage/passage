@@ -29,9 +29,9 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.passage.lic.mail.core.LicensingMails;
-import org.eclipse.passage.lic.net.LicensingMail;
-import org.eclipse.passage.lic.net.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.junit.After;
 import org.junit.Test;
 
@@ -54,7 +54,7 @@ public class LicensingMailServiceTest {
 		assertTrue(licensingEmlService != null);
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		LicensingMailDescriptor mailDescriptor = LicensingMails.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
+		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, attachment);
 		assertTrue(mailDescriptor != null);
 
