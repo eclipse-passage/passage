@@ -6,9 +6,9 @@ Bundle-Version: 0.5.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Require-Bundle: javax.inject;bundle-version="0.0.0",
- org.eclipse.swt;bundle-version="0.0.0",
- org.eclipse.jface;bundle-version="0.0.0",
+Import-Package: javax.inject,
+ javax.annotation;version="1.2.0"
+Require-Bundle: org.eclipse.jface;bundle-version="0.0.0",
  org.eclipse.emf.ecore;bundle-version="0.0.0",
  org.eclipse.emf.edit.ui;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0",
