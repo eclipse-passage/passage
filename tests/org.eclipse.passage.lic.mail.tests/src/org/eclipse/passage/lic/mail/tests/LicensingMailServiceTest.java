@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -59,9 +60,17 @@ public class LicensingMailServiceTest {
 		assertTrue(mailDescriptor != null);
 
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			IStatus createEml = licensingEmlService.createEml(mailDescriptor, fileOutput);
-			assertTrue(createEml.isOK());
-		} catch (IOException | CoreException e) {
+			Consumer<IStatus> consumerStatus = new Consumer<IStatus>() {
+
+				@Override
+				public void accept(IStatus t) {
+					assertTrue(t.isOK());
+				}
+			};
+
+			licensingEmlService.createEml(mailDescriptor, fileOutput, consumerStatus);
+
+		} catch (IOException e) {
 			assumeNoException(e);
 		}
 	}

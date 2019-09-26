@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.mail;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.function.Consumer;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -28,12 +29,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
-
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -48,16 +47,14 @@ public class LicensingMailImpl implements LicensingMail {
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
-	public IStatus createEml(LicensingMailDescriptor descriptor, OutputStream output) throws CoreException {
+	public void createEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> consumerStatus) {
 		try {
 			createEmlFile(descriptor.getTo(), descriptor.getFrom(), descriptor.getSubject(), descriptor.getBody(),
 					descriptor.getAttachment(), output);
 		} catch (MessagingException | IOException e) {
 			IStatus status = new Status(IStatus.ERROR, BUNDLE_ID, e.getMessage(), e);
-			throw new CoreException(status);
+			consumerStatus.accept(status);
 		}
-
-		return Status.OK_STATUS;
 	}
 
 	private void createEmlFile(String to, String from, String subject, String body, String attacheFileName,
