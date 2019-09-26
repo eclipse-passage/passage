@@ -15,10 +15,11 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -110,9 +111,14 @@ public class LicenseMailSupport {
 							LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 							attachment.getPath());
 
-					service.createEml(descriptor, stream);
+					service.createEml(descriptor, stream, new Consumer<IStatus>() {
+						@Override
+						public void accept(IStatus t) {
+							Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, t.getMessage());
+						}
+					});
 
-				} catch (CoreException | IOException e) {
+				} catch (IOException e) {
 					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
 				}
 			} else {
