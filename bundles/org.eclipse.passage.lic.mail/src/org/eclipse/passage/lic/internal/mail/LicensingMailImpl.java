@@ -47,6 +47,7 @@ public class LicensingMailImpl implements LicensingMail {
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
+
 	public void createEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> consumerStatus) {
 		try {
 			createEmlFile(descriptor.getTo(), descriptor.getFrom(), descriptor.getSubject(), descriptor.getBody(),

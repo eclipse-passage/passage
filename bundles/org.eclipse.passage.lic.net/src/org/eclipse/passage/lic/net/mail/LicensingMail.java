@@ -13,21 +13,19 @@
 package org.eclipse.passage.lic.net.mail;
 
 import java.io.OutputStream;
-import java.util.function.Consumer;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 
 /**
  * Interface for Licensing Mail Service
- * 
- * @param <T>
  * 
  * @since 0.7
  *
  */
 public interface LicensingMail {
 
-	public void createEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
+	public IStatus createEml(LicensingMailDescriptor descriptor, OutputStream output) throws CoreException;
 
 	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
 			String attachment);
