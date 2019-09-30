@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * The Licensing mail service implementation
  * 
- * @since 0.5.0
+ * @since 0.7
  *
  */
 @Component
@@ -47,7 +47,6 @@ public class LicensingMailImpl implements LicensingMail {
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
-
 	public void createEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> consumerStatus) {
 		try {
 			createEmlFile(descriptor.getTo(), descriptor.getFrom(), descriptor.getSubject(), descriptor.getBody(),
