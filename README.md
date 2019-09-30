@@ -1,5 +1,7 @@
 ## Passage Licensing Integration Components (LIC) 
 
+[![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
+
 The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
 This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
