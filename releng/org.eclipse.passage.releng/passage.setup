@@ -334,7 +334,7 @@
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>
     The Eclipse Passage project aims to provide 
-    rich and easily adaptable capabilities 
+    rich and easily adaptable capabilities  
     to define and control licensing constraints.
   </description>
 </setup:Project>
