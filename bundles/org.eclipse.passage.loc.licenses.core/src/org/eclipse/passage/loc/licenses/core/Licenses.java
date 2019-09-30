@@ -16,6 +16,5 @@ public class Licenses {
 
 	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
 	public static final String FILE_EXTENSION_XMI = "licenses_xmi"; //$NON-NLS-1$
-	public static final String LICENSE_OUT = "licenseOut"; //$NON-NLS-1$
 
 }

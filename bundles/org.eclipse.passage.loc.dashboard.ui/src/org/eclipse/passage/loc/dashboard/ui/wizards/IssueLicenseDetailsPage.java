@@ -14,10 +14,11 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.io.File;
 
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.LicenseMailSupport;
 import org.eclipse.swt.SWT;
@@ -63,15 +64,16 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		buttonPrepareMail.addSelectionListener(
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
-
-		Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
-		buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);
-		buttonPrepareEml.addSelectionListener(
-				SelectionListener.widgetSelectedAdapter(c -> createEml = buttonPrepareEml.getSelection()));
-		createEml = buttonPrepareEml.getSelection();
+		LicensingMail licensingEmlService = LicensingMails.getLicensingEmlService();
+		if (licensingEmlService != null) {
+			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
+			buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+			buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);
+			buttonPrepareEml.addSelectionListener(
+					SelectionListener.widgetSelectedAdapter(c -> createEml = buttonPrepareEml.getSelection()));
+			createEml = buttonPrepareEml.getSelection();
+		}
 		setControl(composite);
-		Dialog.applyDialogFont(composite);
 	}
 
 	public void init(LicensePackDescriptor licensePack) {

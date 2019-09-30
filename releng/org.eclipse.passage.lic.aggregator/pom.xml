@@ -40,6 +40,9 @@
 		<module>../../bundles/org.eclipse.passage.lic.net</module>
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.mail</module>
+		<module>../../features/org.eclipse.passage.lic.mail.feature</module>
+        
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
 		<module>../../features/org.eclipse.passage.lic.hc.feature</module>
 
@@ -106,6 +109,7 @@
 		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
 
 		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
 

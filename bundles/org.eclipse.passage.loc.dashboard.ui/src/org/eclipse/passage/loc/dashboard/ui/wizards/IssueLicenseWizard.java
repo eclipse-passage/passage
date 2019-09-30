@@ -12,12 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
-import java.io.File;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -25,7 +19,6 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -36,11 +29,9 @@ import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
 
 public class IssueLicenseWizard extends Wizard {
 
@@ -104,38 +95,8 @@ public class IssueLicenseWizard extends Wizard {
 			MessageDialog.open(kind, getShell(), IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
 					result.getMessage(), SWT.NONE);
 			broadcastResult(result);
-			processingMail(result);
 			return true;
 		}
-	}
-
-	private void processingMail(LicensingResult result) {
-
-		Job mailPreparationJob = new Job(IssueLicensePageMessages.IssueLicensingMailJob_task_text) {
-
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				monitor.beginTask(IssueLicensePageMessages.IssueLicensingMailJob_task_text, IProgressMonitor.UNKNOWN);
-				infoPage.processingMailClient();
-				if (result != null) {
-					String licenseOut = (String) result.getAttachment(Licenses.LICENSE_OUT);
-					if (licenseOut != null && !licenseOut.isEmpty()) {
-						File emlFile = infoPage.processingMailEml(new File(licenseOut));
-						if (emlFile != null && emlFile.exists()) {
-							String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
-									emlFile.getAbsolutePath());
-							Display.getDefault().asyncExec(
-									() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-											IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
-						}
-					}
-				}
-				monitor.done();
-				return Status.OK_STATUS;
-			}
-		};
-		mailPreparationJob.schedule(1000);
-
 	}
 
 	private void broadcastResult(LicensingResult result) {

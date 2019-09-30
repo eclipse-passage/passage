@@ -42,7 +42,6 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseRequest_mailto_appeal_lbl;
 	public static String LicenseRequest_mailto_body_base_lbl;
 	public static String LicenseRequest_mailto_body_details_lbl;
-	public static String LicenseRequest_mailto_error_file_already_exist;
 	public static String LicenseRequest_mailto_error_attachment_not_exist;
 	static {
 		// initialize resource bundle
