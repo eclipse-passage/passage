@@ -36,7 +36,7 @@ import org.junit.After;
 import org.junit.Test;
 
 public class LicensingMailServiceTest {
-
+ 
 	private static final String MAIL_TO = "to.user@to.com"; //$NON-NLS-1$
 	private static final String MAIL_FROM = "from.user@from.com"; //$NON-NLS-1$
 	private static final String MAIL_SUBJECT = "mail.subject"; //$NON-NLS-1$
