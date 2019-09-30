@@ -124,7 +124,6 @@ public class LicenseMailSupport {
 			} else {
 				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
 						LicensesCoreMessages.LicenseRequest_mailto_error_attachment_not_exist);
-
 			}
 		}
 		return null;
