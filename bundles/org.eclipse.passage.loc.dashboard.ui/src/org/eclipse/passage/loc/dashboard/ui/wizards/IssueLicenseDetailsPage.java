@@ -65,7 +65,6 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		buttonPrepareMail.addSelectionListener(
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
-
 		LicensingMail licensingEmlService = LicensingMails.getLicensingEmlService();
 		if (licensingEmlService != null) {
 			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
