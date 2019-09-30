@@ -9,3 +9,4 @@
 			interface="org.eclipse.passage.lic.net.mail.LicensingMail" />
 	</service>
 </scr:component> 
+
