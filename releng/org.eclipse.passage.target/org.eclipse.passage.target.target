@@ -21,7 +21,7 @@
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/releases/2019-06/"/>
+			<repository location="https://download.eclipse.org/releases/2019-09/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
@@ -46,8 +46,8 @@
 			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.mockito" version="0.0.0"/>
-			<unit id="javax.mail" version="1.4.0"/>
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+			<unit id="javax.mail" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
 		</location>
 	</locations>
 </target>
