@@ -5,21 +5,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
-<<<<<<< HEAD
     xmlns:pde="http://www.eclipse.org/oomph/setup/pde/1.0"
-=======
->>>>>>> 95270e2... LNE converted for files
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
     xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0"
-<<<<<<< HEAD
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
-=======
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
->>>>>>> 95270e2... LNE converted for files
     name="passage"
     label="Passage">
   <annotation
@@ -54,20 +47,12 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-<<<<<<< HEAD
       value="${eclipse.target.platform.latest}"
-=======
-      defaultValue="2019-06"
->>>>>>> 95270e2... LNE converted for files
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.api.baseline.target.platform"
-<<<<<<< HEAD
       value="${eclipse.api.baseline.target.platform.latest.released}"
-=======
-      defaultValue="2019-06"
->>>>>>> 95270e2... LNE converted for files
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -77,11 +62,6 @@
     <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
-<<<<<<< HEAD
-=======
-        url="https://download.eclipse.org/releases/2019-06/"/>
-    <repository
->>>>>>> 95270e2... LNE converted for files
         url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
@@ -106,7 +86,6 @@
         <value>remoteURI</value>
       </detail>
     </annotation>
-<<<<<<< HEAD
     <description>${scope.project.label} GitHub</description>
   </setupTask>
   <setupTask
@@ -117,16 +96,6 @@
     <targlet
         name="${scope.project.label}"
         activeRepositoryList="Passage Latest Released">
-=======
-    <description>${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.targlets:TargletTask"
-      targetName="Modular API Baseline Target">
-    <targlet
-        name="${scope.project.label}"
-        activeRepositoryList="${eclipse.api.baseline.target.platform}">
->>>>>>> 95270e2... LNE converted for files
       <requirement
           name="org.eclipse.passage.ldc.feature.feature.group"/>
       <requirement
@@ -161,7 +130,6 @@
           name="org.junit"/>
       <requirement
           name="org.mockito"/>
-<<<<<<< HEAD
       <repositoryList
           name="Passage Latest Released">
         <repository
@@ -176,86 +144,6 @@
             url="https://download.eclipse.org/passage/updates/release/0.6.0/lbc/"/>
         <repository
             url="https://download.eclipse.org/passage/updates/release/0.6.0/ldc/"/>
-=======
-      <requirement
-          name="javax.mail"/>
-      <requirement
-          name="*"/>
-      <sourceLocator
-          rootFolder="${git.clone.passage.location}"
-          locateNestedProjects="true"/>
-      <repositoryList
-          name="2019-06">
-        <repository
-            url="https://download.eclipse.org/releases/2019-06/"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2019-03">
-        <repository
-            url="https://download.eclipse.org/releases/2019-03"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2018-12">
-        <repository
-            url="https://download.eclipse.org/releases/2018-12"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2018-09">
-        <repository
-            url="https://download.eclipse.org/releases/2018-09"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Photon">
-        <repository
-            url="https://download.eclipse.org/releases/photon"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Oxygen">
-        <repository
-            url="https://download.eclipse.org/releases/oxygen"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Neon">
-        <repository
-            url="https://download.eclipse.org/releases/neon"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Mars">
-        <repository
-            url="https://download.eclipse.org/releases/mars"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
->>>>>>> 95270e2... LNE converted for files
       </repositoryList>
     </targlet>
   </setupTask>
@@ -263,11 +151,7 @@
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
-<<<<<<< HEAD
         activeRepositoryList="2019-12">
-=======
-        activeRepositoryList="${eclipse.target.platform}">
->>>>>>> 95270e2... LNE converted for files
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement
@@ -306,7 +190,6 @@
           rootFolder="${git.clone.passage.location}"
           locateNestedProjects="true"/>
       <repositoryList
-<<<<<<< HEAD
           name="2019-12">
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
@@ -337,74 +220,6 @@
           name="2019-03">
         <repository
             url="https://download.eclipse.org/releases/2019-03"/>
-=======
-          name="2019-06">
-        <repository
-            url="https://download.eclipse.org/releases/2019-06/"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2019-03">
-        <repository
-            url="https://download.eclipse.org/releases/2019-03"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2018-12">
-        <repository
-            url="https://download.eclipse.org/releases/2018-12"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="2018-09">
-        <repository
-            url="https://download.eclipse.org/releases/2018-09"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Photon">
-        <repository
-            url="https://download.eclipse.org/releases/photon"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Oxygen">
-        <repository
-            url="https://download.eclipse.org/releases/oxygen"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Neon">
-        <repository
-            url="https://download.eclipse.org/releases/neon"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
-      </repositoryList>
-      <repositoryList
-          name="Mars">
-        <repository
-            url="https://download.eclipse.org/releases/mars"/>
->>>>>>> 95270e2... LNE converted for files
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
@@ -495,7 +310,6 @@
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
-<<<<<<< HEAD
   <setupTask
       xsi:type="pde:APIBaselineFromTargetTask"
       predecessor="api.baseline.targlet"
@@ -504,8 +318,6 @@
       version="0.0.0">
     <description>An API baseline based on the target platform named 'Modular API Baseline Target'</description>
   </setupTask>
-=======
->>>>>>> 95270e2... LNE converted for files
   <stream name="master"
       label="Master">
     <setupTask
@@ -521,16 +333,8 @@
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>
-<<<<<<< HEAD
-    The Eclipse Passage project aims to provide   
-    rich and easily adaptable capabilities
-    to define and control licensing constraints.
-  </description>
-</setup:Project>
-=======
     The Eclipse Passage project aims to provide 
-    rich and easily adoptable capabilities 
+    rich and easily adaptable capabilities    
     to define and control licensing constraints.
   </description>
 </setup:Project>
->>>>>>> 95270e2... LNE converted for files
