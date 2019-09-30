@@ -14,8 +14,7 @@ package org.eclipse.passage.lic.internal.mail;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;<<<<<<<HEAD
-import java.util.function.Consumer;=======>>>>>>>9e33590...Bug 550956-[Passage]Support mail attachment
+import java.io.OutputStream;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -29,14 +28,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-<<<<<<<HEAD=======
-import org.eclipse.core.runtime.CoreException;>>>>>>>9e33590...Bug 550956-[Passage]Support mail attachment
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;<<<<<<<HEAD=======
-
->>>>>>>9e33590...Bug 550956-[Passage]Support mail attachment
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 import org.osgi.service.component.annotations.Component;
 
 /**
