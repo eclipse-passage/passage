@@ -36,7 +36,7 @@ import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The Licensing mail service implementation
+ * The Licensing mail service implementation 
  * 
  * @since 0.7
  *
