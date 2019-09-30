@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.io.File;
 
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -75,7 +74,6 @@ public class IssueLicenseDetailsPage extends WizardPage {
 			createEml = buttonPrepareEml.getSelection();
 		}
 		setControl(composite);
-		Dialog.applyDialogFont(composite);
 	}
 
 	public void init(LicensePackDescriptor licensePack) {

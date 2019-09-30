@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="false" name="org.eclipse.passage.lic.mail">
 	<implementation class="org.eclipse.passage.lic.internal.mail.LicensingMailImpl"/>
@@ -5,3 +6,12 @@
 		<provide interface="org.eclipse.passage.lic.net.mail.LicensingMail"/>
 	</service>
 </scr:component>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="false" name="org.eclipse.passage.lic.mail">
+	<implementation class="org.eclipse.passage.lic.internal.mail.LicensingMailImpl"/>
+	<service>
+		<provide interface="org.eclipse.passage.lic.net.mail.LicensingMail"/>
+	</service>
+</scr:component>
+>>>>>>> 16e3691c152dd0f3359e7eb5553f264393c65583
