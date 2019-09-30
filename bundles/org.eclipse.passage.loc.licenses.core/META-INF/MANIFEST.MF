@@ -21,4 +21,3 @@ Export-Package: org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.e
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
 
-
