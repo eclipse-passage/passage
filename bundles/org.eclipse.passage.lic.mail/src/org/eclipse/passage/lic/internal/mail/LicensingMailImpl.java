@@ -84,5 +84,4 @@ public class LicensingMailImpl implements LicensingMail {
 			String attachment) {
 		return new LicensingMailDescriptorImpl(to, from, subject, body, attachment);
 	}
-
 }

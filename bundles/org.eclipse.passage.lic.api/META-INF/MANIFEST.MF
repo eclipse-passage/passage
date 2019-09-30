@@ -12,6 +12,5 @@ Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.conditions,
  org.eclipse.passage.lic.api.inspector,
  org.eclipse.passage.lic.api.io,
- org.eclipse.passage.lic.api.mail,
  org.eclipse.passage.lic.api.requirements,
  org.eclipse.passage.lic.api.restrictions

@@ -54,5 +54,4 @@ public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
 	public String getAttachment() {
 		return attachment;
 	}
-
 }
