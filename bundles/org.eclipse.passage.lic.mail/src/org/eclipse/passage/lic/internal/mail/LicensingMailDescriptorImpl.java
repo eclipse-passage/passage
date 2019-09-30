@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.mail;
 
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor; 
 
 public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
 	private String to;

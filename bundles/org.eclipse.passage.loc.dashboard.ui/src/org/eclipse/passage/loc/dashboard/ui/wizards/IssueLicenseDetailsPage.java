@@ -65,6 +65,10 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		buttonPrepareMail.addSelectionListener(
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 475f3e8937364af4ef5e6a2eea0ed3112ad71675
 		LicensingMail licensingEmlService = LicensingMails.getLicensingEmlService();
 		if (licensingEmlService != null) {
 			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
@@ -82,6 +86,14 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		this.licenseMailSupport = new LicenseMailSupport(licensePack);
 		if (text != null && !text.isDisposed()) {
 			text.setText(licenseMailSupport.getDetails());
+<<<<<<< HEAD
+		}
+	}
+
+	public void processingMailClient() {
+		if (isCreateMail() && licenseMailSupport != null) {
+			Program.launch(licenseMailSupport.getMailToString());
+=======
 		}
 	}
 
@@ -89,6 +101,22 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		if (isCreateMail() && licenseMailSupport != null) {
 			Program.launch(licenseMailSupport.getMailToString());
 		}
+	}
+
+	public File processingMailEml(File attachement) {
+		if (isCreateEml() && licenseMailSupport != null) {
+			return licenseMailSupport.createEmlFile(attachement);
+>>>>>>> 475f3e8937364af4ef5e6a2eea0ed3112ad71675
+		}
+		return null;
+	}
+
+	private boolean isCreateMail() {
+		return createMail;
+	}
+
+	private boolean isCreateEml() {
+		return createEml;
 	}
 
 	public File processingMailEml(File attachement) {
