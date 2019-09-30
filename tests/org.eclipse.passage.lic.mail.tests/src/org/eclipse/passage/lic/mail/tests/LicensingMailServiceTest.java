@@ -54,6 +54,7 @@ public class LicensingMailServiceTest {
 		assertTrue(licensingEmlService != null);
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
+
 		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, attachment);
 		assertTrue(mailDescriptor != null);
