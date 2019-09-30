@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
