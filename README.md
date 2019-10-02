@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
 
-[![Eclipse License](https://img.shields.io/badge/license-EPL%202.0-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+[![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
 
 The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
 This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
