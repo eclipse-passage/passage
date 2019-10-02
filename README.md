@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
 
+[![Eclipse License](https://img.shields.io/badge/license-Eclipse-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+
 The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
 This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
