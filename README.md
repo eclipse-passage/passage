@@ -2,8 +2,6 @@
 
 ## Passage Licensing Integration Components (LIC) 
 
-
-
 [![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
 
 [![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
