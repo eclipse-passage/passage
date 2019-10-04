@@ -12,21 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
-public class LicenseMail {
+public class LicenseMailSupport {
 
 	private static final String MAILTO = "mailto:"; //$NON-NLS-1$
 	private static final String MAILTO_SUBJECT = "?subject="; //$NON-NLS-1$
 	private static final String MAILTO_BODY = "&body="; //$NON-NLS-1$
 	private static final String MAILTO_SEPARATOR = "%0A"; //$NON-NLS-1$
+	private static final String MAIL_EML_EXTENSION = ".eml"; //$NON-NLS-1$
 
 	private final LicensePackDescriptor licensePack;
 
-	public LicenseMail(LicensePackDescriptor licensePack) {
+	public LicenseMailSupport(LicensePackDescriptor licensePack) {
 		this.licensePack = licensePack;
 	}
 
@@ -70,7 +82,7 @@ public class LicenseMail {
 		return builder.toString();
 	}
 
-	public String getMailTo() {
+	public String getMailToString() {
 		StringBuilder builder = new StringBuilder(MAILTO);
 		builder.append(licensePack.getUserIdentifier());
 		builder.append(MAILTO_SUBJECT);
@@ -84,6 +96,38 @@ public class LicenseMail {
 		builder.append(MAILTO_SEPARATOR);
 		builder.append(getDetails(MAILTO_SEPARATOR));
 		return builder.toString();
+	}
+
+	public File createEmlFile(File attachment) {
+		LicensingMail service = LicensingMails.getLicensingEmlService();
+		if (service == null) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+					LicensesCoreMessages.LicenseRequest_error_licensingMailService_unreachable);
+			return null;
+		}
+		if (attachment == null || !attachment.exists()) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+					LicensesCoreMessages.LicenseRequest_error_attachment_not_exist);
+			return null;
+		}
+		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
+		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
+			LicensingMailDescriptor descriptor = service.getMailDescriptor(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
+					attachment.getPath());
+
+			service.createEmlStream(descriptor, stream, new Consumer<IStatus>() {
+				@Override
+				public void accept(IStatus t) {
+					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, t.getMessage());
+				}
+			});
+
+		} catch (IOException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
+
+		return null;
 	}
 
 }

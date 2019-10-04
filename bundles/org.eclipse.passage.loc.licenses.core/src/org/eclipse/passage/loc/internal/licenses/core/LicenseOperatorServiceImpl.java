@@ -64,6 +64,7 @@ import org.eclipse.passage.loc.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
+import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -272,6 +273,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
+			attachments.put(Licenses.LICENSE_OUT, licenseOut);
 			return LicensingResults.createOK(message, pluginId, attachments);
 		} catch (Exception e) {
 			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
