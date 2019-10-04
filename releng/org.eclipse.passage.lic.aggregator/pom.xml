@@ -101,6 +101,7 @@
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.json.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
 
