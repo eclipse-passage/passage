@@ -1,4 +1,8 @@
+<img src="https://github.com/eclipse/passage/blob/master/bundles/org.eclipse.passage.ldc/images/topiclabel/menu_item.png" width="48px" height="48px" />
+
 ## Passage Licensing Integration Components (LIC) 
+
+
 
 [![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
 
