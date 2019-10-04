@@ -110,31 +110,29 @@ public class IssueLicenseWizard extends Wizard {
 	}
 
 	private void processingMail(LicensingResult result) {
-		Job mailPreparationJob = new Job(IssueLicensePageMessages.IssueLicensingMailJob_task_text) {
+		Job processingMail = new Job(IssueLicensePageMessages.IssueLicensingMailJob_task_text) {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				monitor.beginTask(IssueLicensePageMessages.IssueLicensingMailJob_task_text, IProgressMonitor.UNKNOWN);
-				infoPage.processingMailClient();
-				if (result != null) {
-					String licenseOut = (String) result.getAttachment(Licenses.LICENSE_OUT);
-					if (licenseOut != null && !licenseOut.isEmpty()) {
-						File emlFile = infoPage.processingMailEml(new File(licenseOut));
-						if (emlFile != null && emlFile.exists()) {
-							String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
-									emlFile.getAbsolutePath());
-							Display.getDefault().asyncExec(
-									() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-											IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
-						}
+				infoPage.processingToMailClient();
+				String licenseOut = (String) result.getAttachment(Licenses.LICENSE_OUT);
+				if (licenseOut != null && !licenseOut.isEmpty()) {
+					File licenseOutFile = new File(licenseOut);
+					File emlFile = infoPage.processingToMailEml(licenseOutFile);
+					if (emlFile != null && emlFile.exists()) {
+						String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
+								emlFile.getAbsolutePath());
+						Display.getDefault()
+								.asyncExec(() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
+										IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
 					}
 				}
 				monitor.done();
 				return Status.OK_STATUS;
 			}
 		};
-		mailPreparationJob.schedule(1000);
-
+		processingMail.schedule(1000);
 	}
 
 	private void broadcastResult(LicensingResult result) {

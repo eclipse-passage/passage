@@ -85,13 +85,13 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		}
 	}
 
-	public void processingMailClient() {
+	public void processingToMailClient() {
 		if (isCreateMail() && licenseMailSupport != null) {
 			Program.launch(licenseMailSupport.getMailToString());
 		}
 	}
 
-	public File processingMailEml(File attachement) {
+	public File processingToMailEml(File attachement) {
 		if (isCreateEml() && licenseMailSupport != null) {
 			return licenseMailSupport.createEmlFile(attachement);
 		}
