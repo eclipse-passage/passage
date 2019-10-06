@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.io.File;
+import java.util.Optional;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -65,8 +66,8 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		buttonPrepareMail.addSelectionListener(
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
-		LicensingMail licensingEmlService = LicensingMails.getLicensingEmlService();
-		if (licensingEmlService != null) {
+		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
+		if (optLicensingEmlService.isPresent()) {
 			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
 			buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 			buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);

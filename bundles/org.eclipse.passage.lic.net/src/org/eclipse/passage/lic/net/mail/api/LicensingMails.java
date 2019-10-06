@@ -12,18 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.net.mail.api;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
 
 /**
- * @since 0.7
+ * @since 0.1
  */
 public class LicensingMails {
 
 	private LicensingMails() {
 	}
 
-	public static LicensingMail getLicensingEmlService() {
-		return LicensingEquinox.getLicensingService(LicensingMail.class);
+	public static Optional<LicensingMail> getLicensingEmlService() {
+		return Optional.of(LicensingEquinox.getLicensingService(LicensingMail.class));
 	}
 }

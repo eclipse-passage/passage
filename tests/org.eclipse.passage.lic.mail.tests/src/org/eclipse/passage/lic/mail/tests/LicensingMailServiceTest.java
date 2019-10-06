@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IStatus;
@@ -48,8 +49,9 @@ public class LicensingMailServiceTest {
 
 	@Test
 	public void testCreateEmlByParametersPositive() {
-		LicensingMail licensingEmlService = LicensingMails.getLicensingEmlService();
-		assertTrue(licensingEmlService != null);
+		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
+		assertTrue(optLicensingEmlService.isPresent());
+		LicensingMail licensingEmlService = optLicensingEmlService.get();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,

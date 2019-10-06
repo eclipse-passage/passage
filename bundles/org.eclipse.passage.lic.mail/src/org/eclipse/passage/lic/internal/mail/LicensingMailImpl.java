@@ -37,8 +37,8 @@ import org.osgi.service.component.annotations.Component;
 
 /**
  * The Licensing mail service implementation
- * 
- * @since 0.7
+ *
+ * @since 0.1
  *
  */
 @Component

@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -99,8 +100,8 @@ public class LicenseMailSupport {
 	}
 
 	public File createEmlFile(File attachment) {
-		LicensingMail service = LicensingMails.getLicensingEmlService();
-		if (service == null) {
+		Optional<LicensingMail> optService = LicensingMails.getLicensingEmlService();
+		if (!optService.isPresent()) {
 			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
 					LicensesCoreMessages.LicenseRequest_error_licensingMailService_unreachable);
 			return null;
@@ -112,6 +113,7 @@ public class LicenseMailSupport {
 		}
 		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
+			LicensingMail service = optService.get();
 			LicensingMailDescriptor descriptor = service.getMailDescriptor(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 					attachment.getPath());
