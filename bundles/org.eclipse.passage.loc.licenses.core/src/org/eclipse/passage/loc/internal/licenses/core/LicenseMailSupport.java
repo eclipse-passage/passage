@@ -99,17 +99,18 @@ public class LicenseMailSupport {
 		return builder.toString();
 	}
 
-	public File createEmlFile(File attachment) {
+	public Optional<File> createEmlFile(File attachment) {
+		Optional<File> optionalResult = Optional.empty();
 		Optional<LicensingMail> optService = LicensingMails.getLicensingEmlService();
 		if (!optService.isPresent()) {
 			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
 					LicensesCoreMessages.LicenseRequest_error_licensingMailService_unreachable);
-			return null;
+			return optionalResult;
 		}
 		if (attachment == null || !attachment.exists()) {
 			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
 					LicensesCoreMessages.LicenseRequest_error_attachment_not_exist);
-			return null;
+			return optionalResult;
 		}
 		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
@@ -127,9 +128,10 @@ public class LicenseMailSupport {
 
 		} catch (IOException e) {
 			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+			return optionalResult;
 		}
 
-		return null;
+		return Optional.of(emlFile);
 	}
 
 }

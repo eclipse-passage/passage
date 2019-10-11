@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
-import java.io.File;
 import java.util.Optional;
 
 import org.eclipse.jface.dialogs.Dialog;
@@ -27,7 +26,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -86,24 +84,15 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		}
 	}
 
-	public void processingToMailClient() {
-		if (isCreateMail() && licenseMailSupport != null) {
-			Program.launch(licenseMailSupport.getMailToString());
-		}
-	}
-
-	public File processingToMailEml(File attachement) {
-		if (isCreateEml() && licenseMailSupport != null) {
-			return licenseMailSupport.createEmlFile(attachement);
-		}
-		return null;
-	}
-
-	private boolean isCreateMail() {
+	public boolean isCreateMail() {
 		return createMail;
 	}
 
-	private boolean isCreateEml() {
+	public boolean isCreateEml() {
 		return createEml;
+	}
+
+	public LicenseMailSupport getMailSupport() {
+		return licenseMailSupport;
 	}
 }

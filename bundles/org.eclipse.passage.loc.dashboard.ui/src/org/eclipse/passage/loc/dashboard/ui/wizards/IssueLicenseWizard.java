@@ -14,10 +14,8 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.io.File;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -36,7 +34,6 @@ import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
@@ -110,28 +107,22 @@ public class IssueLicenseWizard extends Wizard {
 	}
 
 	private void processingMail(LicensingResult result) {
-		Job processingMail = new Job(IssueLicensePageMessages.IssueLicensingMailJob_task_text) {
-
+		IssueLicenseMailJob processingMail = new IssueLicenseMailJob(
+				IssueLicensePageMessages.IssueLicensingMailJob_task_text, result, infoPage.getMailSupport(),
+				infoPage.isCreateMail(), infoPage.isCreateEml());
+		processingMail.addJobChangeListener(new JobChangeAdapter() {
 			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				monitor.beginTask(IssueLicensePageMessages.IssueLicensingMailJob_task_text, IProgressMonitor.UNKNOWN);
-				infoPage.processingToMailClient();
-				String licenseOut = (String) result.getAttachment(Licenses.LICENSE_OUT);
-				if (licenseOut != null && !licenseOut.isEmpty()) {
-					File licenseOutFile = new File(licenseOut);
-					File emlFile = infoPage.processingToMailEml(licenseOutFile);
-					if (emlFile != null && emlFile.exists()) {
-						String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
-								emlFile.getAbsolutePath());
-						Display.getDefault()
-								.asyncExec(() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
-										IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
-					}
+			public void done(IJobChangeEvent event) {
+				if (processingMail.getEmlFile().isPresent()) {
+					File emlFile = processingMail.getEmlFile().get();
+					String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
+							emlFile.getAbsolutePath());
+					Display.getDefault()
+							.asyncExec(() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
+									IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
 				}
-				monitor.done();
-				return Status.OK_STATUS;
 			}
-		};
+		});
 		processingMail.schedule(1000);
 	}
 
