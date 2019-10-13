@@ -20,12 +20,12 @@ import org.eclipse.core.runtime.IStatus;
 /**
  * Interface for Licensing Mail Service dedicated for preparation EML format.
  *
- * @since 0.1
+ * @since 0.1.0
  */
 
 public interface LicensingMail {
 
-	public void createEmlStream(LicensingMailDescriptor descriptor, OutputStream output,
+	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> statusHandler);
 
 	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,

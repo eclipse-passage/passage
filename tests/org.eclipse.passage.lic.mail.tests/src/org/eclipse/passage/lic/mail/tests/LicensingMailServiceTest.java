@@ -65,7 +65,7 @@ public class LicensingMailServiceTest {
 					assertTrue(t.isOK());
 				}
 			};
-			licensingEmlService.createEmlStream(mailDescriptor, fileOutput, consumerStatus);
+			licensingEmlService.emlToOutputStream(mailDescriptor, fileOutput, consumerStatus);
 		} catch (IOException e) {
 			assumeNoException(e);
 		}

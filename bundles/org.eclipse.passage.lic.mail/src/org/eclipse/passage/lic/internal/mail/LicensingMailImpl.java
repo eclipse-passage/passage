@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * The Licensing mail service implementation
  *
- * @since 0.1
+ * @since 0.1.0
  *
  */
 @Component
@@ -47,37 +47,31 @@ public class LicensingMailImpl implements LicensingMail {
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
-	public void createEmlStream(LicensingMailDescriptor descriptor, OutputStream output,
+	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> consumerStatus) {
 		try {
-			createEmlFile(descriptor.getTo(), descriptor.getFrom(), descriptor.getSubject(), descriptor.getBody(),
-					descriptor.getAttachment(), output);
+			File attache = new File(descriptor.getAttachment());
+			Message message = new MimeMessage(Session.getInstance(System.getProperties()));
+			message.setFrom(new InternetAddress(descriptor.getFrom()));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(descriptor.getTo()));
+			message.setSubject(descriptor.getSubject());
+			MimeBodyPart content = new MimeBodyPart();
+
+			content.setText(descriptor.getBody());
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(content);
+
+			MimeBodyPart attachment = new MimeBodyPart();
+			DataSource source = new FileDataSource(attache);
+			attachment.setDataHandler(new DataHandler(source));
+			attachment.setFileName(attache.getName());
+			multipart.addBodyPart(attachment);
+			message.setContent(multipart);
+			message.writeTo(output);
 		} catch (MessagingException | IOException e) {
 			IStatus status = new Status(IStatus.ERROR, BUNDLE_ID, e.getMessage(), e);
 			consumerStatus.accept(status);
 		}
-	}
-
-	private void createEmlFile(String to, String from, String subject, String body, String attacheFileName,
-			OutputStream output) throws MessagingException, IOException {
-		File attache = new File(attacheFileName);
-		Message message = new MimeMessage(Session.getInstance(System.getProperties()));
-		message.setFrom(new InternetAddress(from));
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-		message.setSubject(subject);
-		MimeBodyPart content = new MimeBodyPart();
-
-		content.setText(body);
-		Multipart multipart = new MimeMultipart();
-		multipart.addBodyPart(content);
-
-		MimeBodyPart attachment = new MimeBodyPart();
-		DataSource source = new FileDataSource(attache);
-		attachment.setDataHandler(new DataHandler(source));
-		attachment.setFileName(attache.getName());
-		multipart.addBodyPart(attachment);
-		message.setContent(multipart);
-		message.writeTo(output);
 	}
 
 	@Override

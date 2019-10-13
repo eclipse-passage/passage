@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2019 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
 <scr:component
 	xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="false"
 	name="org.eclipse.passage.lic.mail">

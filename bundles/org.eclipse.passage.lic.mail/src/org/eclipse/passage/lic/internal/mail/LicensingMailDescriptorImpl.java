@@ -14,6 +14,12 @@ package org.eclipse.passage.lic.internal.mail;
 
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 
+/**
+ * The Licensing mail descriptor implementation
+ *
+ * @since 0.1.0
+ *
+ */
 public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
 	private String to;
 	private String from;

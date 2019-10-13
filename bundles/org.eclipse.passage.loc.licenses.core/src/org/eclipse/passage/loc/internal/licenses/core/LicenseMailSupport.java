@@ -119,7 +119,7 @@ public class LicenseMailSupport {
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 					attachment.getPath());
 
-			service.createEmlStream(descriptor, stream, new Consumer<IStatus>() {
+			service.emlToOutputStream(descriptor, stream, new Consumer<IStatus>() {
 				@Override
 				public void accept(IStatus t) {
 					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, t.getMessage());
