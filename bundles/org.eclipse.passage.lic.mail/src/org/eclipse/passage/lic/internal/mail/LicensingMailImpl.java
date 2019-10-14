@@ -50,7 +50,7 @@ public class LicensingMailImpl implements LicensingMail {
 	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> consumerStatus) {
 		try {
-			File attache = new File(descriptor.getAttachment());
+			final File attache = new File(descriptor.getAttachment());
 			Message message = new MimeMessage(Session.getInstance(System.getProperties()));
 			message.setFrom(new InternetAddress(descriptor.getFrom()));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(descriptor.getTo()));
@@ -68,7 +68,7 @@ public class LicensingMailImpl implements LicensingMail {
 			multipart.addBodyPart(attachment);
 			message.setContent(multipart);
 			message.writeTo(output);
-		} catch (MessagingException | IOException e) {
+		} catch (MessagingException | IOException  | NullPointerException e) {
 			IStatus status = new Status(IStatus.ERROR, BUNDLE_ID, e.getMessage(), e);
 			consumerStatus.accept(status);
 		}

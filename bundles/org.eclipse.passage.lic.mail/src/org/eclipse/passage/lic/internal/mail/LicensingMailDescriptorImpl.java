@@ -21,11 +21,11 @@ import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
  *
  */
 public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
-	private String to;
-	private String from;
-	private String subject;
-	private String body;
-	private String attachment;
+	private final String to;
+	private final String from;
+	private final String subject;
+	private final String body;
+	private final String attachment;
 
 	public LicensingMailDescriptorImpl(String to, String from, String subject, String body, String attachment) {
 		super();

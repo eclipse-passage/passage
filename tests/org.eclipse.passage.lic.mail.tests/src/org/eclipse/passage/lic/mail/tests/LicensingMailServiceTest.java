@@ -14,6 +14,7 @@
 package org.eclipse.passage.lic.mail.tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeNoException;
 
@@ -30,6 +31,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 import org.eclipse.passage.lic.net.mail.api.LicensingMails;
@@ -45,10 +47,16 @@ public class LicensingMailServiceTest {
 	private static final String MAIL_ATTACHMENT = "mail.attachment"; //$NON-NLS-1$
 	private static final String MAIL_FILE_OUT = "test.file"; //$NON-NLS-1$
 	private static final String MAIL_ATTACHMENT_CONTENT = "Content by TimeStamp:"; //$NON-NLS-1$
-	private Path filePath;
+	private Path fileAttachmentPath;
 
 	@Test
-	public void testCreateEmlByParametersPositive() {
+	public void shouldGetLicensingMailServiceTest() {
+		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
+		assertTrue(optLicensingEmlService.isPresent());
+	}
+
+	@Test
+	public void shouldCreateEmlByParametersPositiveTest() {
 		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
 		assertTrue(optLicensingEmlService.isPresent());
 		LicensingMail licensingEmlService = optLicensingEmlService.get();
@@ -56,16 +64,45 @@ public class LicensingMailServiceTest {
 		assertFalse(attachment.isEmpty());
 		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, attachment);
-		assertTrue(mailDescriptor != null);
+		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			Consumer<IStatus> consumerStatus = new Consumer<IStatus>() {
+			IStatus okStatus = new Status(IStatus.OK, this.getClass().getCanonicalName(), 0, "", null);
+			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(okStatus);
+			licensingEmlService.emlToOutputStream(mailDescriptor, fileOutput, statusConsumer);
+		} catch (IOException e) {
+			assumeNoException(e);
+		}
+	}
 
-				@Override
-				public void accept(IStatus t) {
-					assertTrue(t.isOK());
-				}
-			};
-			licensingEmlService.emlToOutputStream(mailDescriptor, fileOutput, consumerStatus);
+	@Test
+	public void shouldCreateEmlByParametersNagativeTest() {
+		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
+		assertTrue(optLicensingEmlService.isPresent());
+		LicensingMail licensingEmlService = optLicensingEmlService.get();
+		String attachment = createAttachment();
+		assertFalse(attachment.isEmpty());
+		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor("", "", "", "", attachment);
+		assertNotNull(mailDescriptor);
+		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
+			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);
+			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(errorStatus);
+			licensingEmlService.emlToOutputStream(mailDescriptor, fileOutput, statusConsumer);
+		} catch (IOException e) {
+			assumeNoException(e);
+		}
+	}
+
+	@Test
+	public void shouldFailWithNullAttachmentTest() {
+		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
+		assertTrue(optLicensingEmlService.isPresent());
+		LicensingMail licensingEmlService = optLicensingEmlService.get();
+		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor("", "", "", "", null);
+		assertNotNull(mailDescriptor);
+		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
+			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);
+			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(errorStatus);
+			licensingEmlService.emlToOutputStream(mailDescriptor, fileOutput, statusConsumer);
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -78,8 +115,8 @@ public class LicensingMailServiceTest {
 			List<String> content = new ArrayList<>();
 			String attachmentContent = new String(MAIL_ATTACHMENT_CONTENT + System.currentTimeMillis());
 			content.add(attachmentContent);
-			filePath = Files.write(createFile, content, StandardCharsets.UTF_8, StandardOpenOption.WRITE);
-			return filePath.toString();
+			fileAttachmentPath = Files.write(createFile, content, StandardCharsets.UTF_8, StandardOpenOption.WRITE);
+			return fileAttachmentPath.toString();
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -88,8 +125,21 @@ public class LicensingMailServiceTest {
 
 	@After
 	public void removeAttachment() throws IOException {
-		if (filePath != null) {
-			Files.delete(filePath);
+		if (fileAttachmentPath != null) {
+			Files.delete(fileAttachmentPath);
+		}
+	}
+
+	class LicensingMailStatusConsumer implements Consumer<IStatus> {
+		private final IStatus expectedResult;
+
+		public LicensingMailStatusConsumer(IStatus status) {
+			expectedResult = status;
+		}
+
+		@Override
+		public void accept(IStatus t) {
+			assertTrue(expectedResult.getSeverity() == t.getSeverity());
 		}
 	}
 }
