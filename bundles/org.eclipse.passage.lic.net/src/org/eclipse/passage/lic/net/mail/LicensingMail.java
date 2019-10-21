@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 /**
  * Interface for Licensing Mail Service dedicated for preparation EML format.
  *
- * @since 0.1.0
+ * @since 0.6
  */
 
 public interface LicensingMail {

@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
 
 /**
- * @since 0.1.0
+ * @since 0.6
  */
 public class LicensingMails {
 
