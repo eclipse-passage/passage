@@ -24,6 +24,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -38,7 +39,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * The Licensing mail service implementation
  *
- * @since 0.1.0
+ * @since 0.1
  *
  */
 @Component
@@ -50,28 +51,44 @@ public class LicensingMailImpl implements LicensingMail {
 	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> consumerStatus) {
 		try {
-			final File attache = new File(descriptor.getAttachment());
-			Message message = new MimeMessage(Session.getInstance(System.getProperties()));
-			message.setFrom(new InternetAddress(descriptor.getFrom()));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(descriptor.getTo()));
-			message.setSubject(descriptor.getSubject());
-			MimeBodyPart content = new MimeBodyPart();
-
-			content.setText(descriptor.getBody());
-			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(content);
-
-			MimeBodyPart attachment = new MimeBodyPart();
-			DataSource source = new FileDataSource(attache);
-			attachment.setDataHandler(new DataHandler(source));
-			attachment.setFileName(attache.getName());
-			multipart.addBodyPart(attachment);
-			message.setContent(multipart);
+			Message message = createMessage(descriptor);
+			fulfillMessage(descriptor, message);
 			message.writeTo(output);
 		} catch (MessagingException | IOException  | NullPointerException e) {
 			IStatus status = new Status(IStatus.ERROR, BUNDLE_ID, e.getMessage(), e);
 			consumerStatus.accept(status);
 		}
+	}
+
+	private Message createMessage(LicensingMailDescriptor descriptor) throws MessagingException, AddressException {
+		Message message = new MimeMessage(Session.getInstance(System.getProperties()));
+		message.setFrom(new InternetAddress(descriptor.getFrom()));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(descriptor.getTo()));
+		message.setSubject(descriptor.getSubject());
+		return message;
+	}
+
+	private void fulfillMessage(LicensingMailDescriptor descriptor, Message message) throws MessagingException {
+		Multipart multipart = createBody(descriptor.getBody());
+		attachFiles(descriptor, multipart);
+		message.setContent(multipart);
+	}
+
+	private Multipart createBody(String body) throws MessagingException {
+		MimeBodyPart content = new MimeBodyPart();
+		content.setText(body);
+		Multipart multipart = new MimeMultipart();
+		multipart.addBodyPart(content);
+		return multipart;
+	}
+
+	private void attachFiles(LicensingMailDescriptor descriptor, Multipart multipart) throws MessagingException {
+		final File attache = new File(descriptor.getAttachment());
+		MimeBodyPart attachment = new MimeBodyPart();
+		DataSource source = new FileDataSource(attache);
+		attachment.setDataHandler(new DataHandler(source));
+		attachment.setFileName(attache.getName());
+		multipart.addBodyPart(attachment);
 	}
 
 	@Override
