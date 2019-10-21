@@ -175,6 +175,10 @@
       <requirement
           name="org.bouncycastle.bcprov"/>
       <requirement
+          name="javax.activation"/>
+      <requirement
+          name="javax.mail"/>
+      <requirement
           name="com.fasterxml.jackson.core.jackson-annotations"/>
       <requirement
           name="com.fasterxml.jackson.core.jackson-core"/>
