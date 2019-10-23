@@ -18,11 +18,12 @@ import java.util.Map;
  * Contract for a registry of {@link ConditionTransport}s.
  *
  * <p>As {@link LicensingCondition} can be persisted in any form, a {@link ConditionTransport}
- * is associated with a particular  <i>content type</i> (like <i>application/json</i> or <i>application/xmk</i>).
+ * is associated with a particular  <i>content type</i>.
  * </p>
  *
  * @see ConditionTransport
  * @see LicensingCondition
+ * @see #getConditionTransportForContentType(String) 
  * @since 0.4.0
  */
 public interface ConditionTransportRegistry {
@@ -40,7 +41,7 @@ public interface ConditionTransportRegistry {
      * {@link LicensingCondition}s in the given {@code contentType}. The value is nullable.
      * </p>
      *
-     * @param contentType string representation of
+     * @param contentType string representation of content type (like <i>application/json</i> or <i>application/xmk</i>)
      * @return a {@link ConditionTransport} registered for the given {@code contentType}, if any, and {@code null} otherwise.
      * @see #registerConditionTransport(ConditionTransport, Map)
      */
