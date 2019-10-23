@@ -70,9 +70,12 @@ public interface LicensingCondition {
 	String getConditionType();
 
 	/**
-     * Returns additional licensing requirements encoded in a single string value.
+     * Returns additional data encoded in a single string value.
+	 * The expression is utilized by {@link PermissionEmitter} in conjunction with {@code conditionType}
      *
-     * @return description of additional demands of this licencing condition
+     * @return enlistment of additional information of this licencing condition
+	 * @see PermissionEmitter
+	 * @see #getConditionType
      * */
 	String getConditionExpression();
 
