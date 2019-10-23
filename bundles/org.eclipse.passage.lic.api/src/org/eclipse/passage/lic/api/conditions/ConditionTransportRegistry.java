@@ -23,6 +23,8 @@ import java.util.Map;
  *
  * @see ConditionTransport
  * @see LicensingCondition
+ *
+ * @since 0.4.0
  * */
 public interface ConditionTransportRegistry {
 
