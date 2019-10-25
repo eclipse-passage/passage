@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @see ConditionTransport
  * @see LicensingCondition
- * @see #getConditionTransportForContentType(String) 
+ * @see #getConditionTransportForContentType(String)
  * @since 0.4.0
  */
 public interface ConditionTransportRegistry {
@@ -48,7 +48,7 @@ public interface ConditionTransportRegistry {
 	ConditionTransport getConditionTransportForContentType(String contentType);
 
     /**
-     * Appends the {@code transport} to the <i>registry</i> with the given set of properties.
+     * Adds the {@code transport} to the <i>registry</i> with the given set of properties.
      *
      * @param transport  a transport to be registered
      * @param properties the transport properties, like {@link ConditionMiner}s
