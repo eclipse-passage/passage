@@ -17,7 +17,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Transport interface for {@link LicensingCondition}(s)
+ * Transport interface for {@link LicensingCondition}(s).
+ *
+ * @since 0.4.0
  */
 public interface ConditionTransport {
 
