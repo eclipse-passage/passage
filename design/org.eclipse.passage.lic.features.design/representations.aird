@@ -5,13 +5,13 @@
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_6W8tQJ1REemk8q_ug33BDA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7mozgJ1REemk8q_ug33BDA" name="Features class diagram" repPath="#_7lzGAJ1REemk8q_ug33BDA">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7mozgJ1REemk8q_ug33BDA" name="Features Class Diagram" repPath="#_7lzGAJ1REemk8q_ug33BDA">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="platform:/resource/org.eclipse.passage.lic.features.ecore/model/features.ecore#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram uid="_7lzGAJ1REemk8q_ug33BDA" name="Features class diagram">
+  <diagram:DSemanticDiagram uid="_7lzGAJ1REemk8q_ug33BDA" name="Features Class Diagram">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_7mlwMJ1REemk8q_ug33BDA" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_7mlwMZ1REemk8q_ug33BDA">
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_8l7GQJ1REemk8q_ug33BDA" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
