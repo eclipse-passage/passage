@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Passage Licensing Data Server" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.server.application" version="0.6.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="Passage Licensing Data Server" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.server.application" version="0.6.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -99,16 +99,19 @@
    </plugins>
 
    <features>
-      <feature id="org.eclipse.passage.lbc.feature"/>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
       <feature id="org.eclipse.equinox.server.p2"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lbc.feature"/>
+      <feature id="org.eclispe.passage.lbc.runtime.feture" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
    </features>
 
    <configurations>
