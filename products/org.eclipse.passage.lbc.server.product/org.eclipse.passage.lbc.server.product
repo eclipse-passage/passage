@@ -112,6 +112,8 @@
       <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.execute.feature" version="0.6.0.qualifier"/>
+      <feature id="org.eclipse.equinox.core.feature" version="1.10.0.v20190830-1434"/>
+      <feature id="org.eclipse.equinox.executable" version="3.8.500.v20190907-0428"/>
    </features>
 
    <configurations>
