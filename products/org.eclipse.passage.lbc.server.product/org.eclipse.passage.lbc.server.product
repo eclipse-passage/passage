@@ -108,10 +108,10 @@
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.feature"/>
-      <feature id="org.eclispe.passage.lbc.runtime.feture" installMode="root"/>
       <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lbc.execute.feature" version="0.6.0.qualifier"/>
    </features>
 
    <configurations>

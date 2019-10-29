@@ -23,6 +23,10 @@
 		id="org.eclipse.passage.lbc.feature">
 		<category name="org.eclipse.passage.lbc.category" />
 	</feature>
+	<feature 
+		id="org.eclipse.passage.lbc.execute.feature">
+		<category name="org.eclipse.passage.lbc.category" />
+	</feature>
 	<category-def
 		name="org.eclipse.passage.lbc.category.source"
 		label="Passage LBC Developer Resources">
