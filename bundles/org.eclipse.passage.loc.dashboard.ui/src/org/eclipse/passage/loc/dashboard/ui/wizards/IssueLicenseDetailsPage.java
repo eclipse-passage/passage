@@ -12,14 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
-import java.util.Optional;
-
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.net.mail.LicensingMail;
-import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.LicenseMailSupport;
 import org.eclipse.swt.SWT;
@@ -64,8 +62,9 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		buttonPrepareMail.addSelectionListener(
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
-		Optional<LicensingMail> optLicensingEmlService = LicensingMails.getLicensingEmlService();
-		if (optLicensingEmlService.isPresent()) {
+		// FIXME: AF find another way to pass the service
+		LicensingMail optLicensingEmlService = LicensingEquinox.getLicensingService(LicensingMail.class);
+		if (optLicensingEmlService != null) {
 			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
 			buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 			buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);
@@ -78,7 +77,9 @@ public class IssueLicenseDetailsPage extends WizardPage {
 	}
 
 	public void init(LicensePackDescriptor licensePack) {
-		this.licenseMailSupport = new LicenseMailSupport(licensePack);
+		// FIXME: AF find another way to pass the service
+		LicensingMail optLicensingEmlService = LicensingEquinox.getLicensingService(LicensingMail.class);
+		this.licenseMailSupport = new LicenseMailSupport(optLicensingEmlService, licensePack);
 		if (text != null && !text.isDisposed()) {
 			text.setText(licenseMailSupport.getDetails());
 		}
