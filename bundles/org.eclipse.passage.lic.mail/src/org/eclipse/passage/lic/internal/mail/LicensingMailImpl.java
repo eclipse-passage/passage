@@ -83,17 +83,20 @@ public class LicensingMailImpl implements LicensingMail {
 	}
 
 	private void attachFiles(LicensingMailDescriptor descriptor, Multipart multipart) throws MessagingException {
-		final File attache = new File(descriptor.getAttachment());
-		MimeBodyPart attachment = new MimeBodyPart();
-		DataSource source = new FileDataSource(attache);
-		attachment.setDataHandler(new DataHandler(source));
-		attachment.setFileName(attache.getName());
-		multipart.addBodyPart(attachment);
+		Iterable<String> attachmentPaths = descriptor.getAttachmentPaths();
+		for (String path : attachmentPaths) {
+			final File attache = new File(path);
+			MimeBodyPart attachment = new MimeBodyPart();
+			DataSource source = new FileDataSource(attache);
+			attachment.setDataHandler(new DataHandler(source));
+			attachment.setFileName(attache.getName());
+			multipart.addBodyPart(attachment);
+		}
 	}
 
 	@Override
 	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
-			String attachment) {
-		return new LicensingMailDescriptorImpl(to, from, subject, body, attachment);
+			Iterable<String> attachments) {
+		return new LicensingMailDescriptorImpl(to, from, subject, body, attachments);
 	}
 }

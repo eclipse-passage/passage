@@ -26,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -63,7 +64,7 @@ public class LicensingMailServiceTest {
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
-				MAIL_BODY, attachment);
+				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
 			IStatus okStatus = new Status(IStatus.OK, this.getClass().getCanonicalName(), 0, "", null);
@@ -81,7 +82,7 @@ public class LicensingMailServiceTest {
 		LicensingMail licensingEmlService = optLicensingEmlService.get();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor("", "", "", "", attachment);
+		LicensingMailDescriptor mailDescriptor = licensingEmlService.getMailDescriptor("", "", "", "", Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
 			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);

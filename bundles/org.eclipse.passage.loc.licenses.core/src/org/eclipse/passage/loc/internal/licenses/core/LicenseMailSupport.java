@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -24,8 +25,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.net.mail.LicensingMail;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.LicensingMail;
 import org.eclipse.passage.lic.net.mail.api.LicensingMails;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
@@ -117,7 +118,7 @@ public class LicenseMailSupport {
 			LicensingMail service = optService.get();
 			LicensingMailDescriptor descriptor = service.getMailDescriptor(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
-					attachment.getPath());
+					Collections.singleton(attachment.getPath()));
 
 			service.emlToOutputStream(descriptor, stream, new Consumer<IStatus>() {
 				@Override

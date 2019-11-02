@@ -29,5 +29,5 @@ public interface LicensingMailDescriptor {
 
 	String getBody();
 
-	String getAttachment();
+	Iterable<String> getAttachmentPaths();
 }

@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.mail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 
 /**
@@ -21,19 +24,20 @@ import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
  *
  */
 public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
+
 	private final String to;
 	private final String from;
 	private final String subject;
 	private final String body;
-	private final String attachment;
+	private final List<String> attachmentPaths = new ArrayList<>();
 
-	public LicensingMailDescriptorImpl(String to, String from, String subject, String body, String attachment) {
+	public LicensingMailDescriptorImpl(String to, String from, String subject, String body, Iterable<String> attachments) {
 		super();
 		this.to = to;
 		this.from = from;
 		this.subject = subject;
 		this.body = body;
-		this.attachment = attachment;
+		attachments.forEach(this.attachmentPaths::add);
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
 	}
 
 	@Override
-	public String getAttachment() {
-		return attachment;
+	public Iterable<String> getAttachmentPaths() {
+		return attachmentPaths;
 	}
 }

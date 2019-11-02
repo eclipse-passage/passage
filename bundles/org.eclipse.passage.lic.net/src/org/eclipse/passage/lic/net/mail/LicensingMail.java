@@ -18,16 +18,15 @@ import java.util.function.Consumer;
 import org.eclipse.core.runtime.IStatus;
 
 /**
- * Interface for Licensing Mail Service dedicated for preparation EML format.
+ * EMail-related functionality.
  *
  * @since 0.6
  */
 
 public interface LicensingMail {
 
-	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
-			Consumer<IStatus> statusHandler);
+	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
 
 	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
-			String attachment);
+			Iterable<String> attachments);
 }
