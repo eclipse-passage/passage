@@ -11,7 +11,7 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.passage.lic.net.mail;
+package org.eclipse.passage.lic.email;
 
 /**
  * E-Mail Descriptor

@@ -34,9 +34,9 @@ import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.passage.lic.email.EmailDescriptor;
+import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.mail.MailImpl;
-import org.eclipse.passage.lic.net.mail.Mailing;
-import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.junit.After;
 import org.junit.Test;
 

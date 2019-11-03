@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.email.EmailDescriptor;
+import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.net.mail.Mailing;
-import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
 public class LicenseMailSupport {

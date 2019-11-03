@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.net.mail;
+package org.eclipse.passage.lic.email;
 
 import java.io.OutputStream;
 import java.util.function.Consumer;

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.mail;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.net.mail.EmailDescriptor;
+import org.eclipse.passage.lic.email.EmailDescriptor;
 
 /**
  * The e-mail descriptor implementation

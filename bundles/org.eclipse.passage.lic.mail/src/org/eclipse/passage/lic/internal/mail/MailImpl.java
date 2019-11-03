@@ -32,8 +32,8 @@ import javax.mail.internet.MimeMultipart;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.net.mail.EmailDescriptor;
-import org.eclipse.passage.lic.net.mail.Mailing;
+import org.eclipse.passage.lic.email.EmailDescriptor;
+import org.eclipse.passage.lic.email.Mailing;
 import org.osgi.service.component.annotations.Component;
 
 /**
