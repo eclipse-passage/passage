@@ -16,7 +16,7 @@ package org.eclipse.passage.lic.email;
 /**
  * E-Mail Descriptor
  *
- * @since 0.6
+ * @since 0.1
  *
  */
 public interface EmailDescriptor {

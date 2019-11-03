@@ -16,7 +16,6 @@ package org.eclipse.passage.lic.mail.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
 
@@ -30,10 +29,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
+import javax.mail.internet.AddressException;
+
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.mail.MailImpl;
@@ -60,9 +58,7 @@ public class MailImplTest {
 				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			IStatus okStatus = new Status(IStatus.OK, this.getClass().getCanonicalName(), 0, "", null);
-			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(okStatus);
-			mailing.writeEml(mailDescriptor, fileOutput, statusConsumer);
+			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> fail());
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -76,9 +72,7 @@ public class MailImplTest {
 		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);
-			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(errorStatus);
-			mailing.writeEml(mailDescriptor, fileOutput, statusConsumer);
+			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> assertEquals(AddressException.class, t.getClass()));
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -117,16 +111,4 @@ public class MailImplTest {
 		}
 	}
 
-	class LicensingMailStatusConsumer implements Consumer<IStatus> {
-		private final IStatus expectedResult;
-
-		public LicensingMailStatusConsumer(IStatus status) {
-			expectedResult = status;
-		}
-
-		@Override
-		public void accept(IStatus t) {
-			assertTrue(expectedResult.getSeverity() == t.getSeverity());
-		}
-	}
 }

@@ -17,11 +17,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
@@ -114,10 +113,10 @@ public class LicenseMailSupport {
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 					Collections.singleton(attachment.getPath()));
 
-			service.writeEml(descriptor, stream, new Consumer<IStatus>() {
+			service.writeEml(descriptor, stream, new BiConsumer<String, Throwable>() {
 				@Override
-				public void accept(IStatus t) {
-					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, t.getMessage());
+				public void accept(String message, Throwable t) {
+					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, message, t);
 				}
 			});
 

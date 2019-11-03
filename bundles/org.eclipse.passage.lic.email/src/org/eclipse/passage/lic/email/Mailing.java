@@ -13,19 +13,17 @@
 package org.eclipse.passage.lic.email;
 
 import java.io.OutputStream;
-import java.util.function.Consumer;
-
-import org.eclipse.core.runtime.IStatus;
+import java.util.function.BiConsumer;
 
 /**
  * EMail service
  *
- * @since 0.6
+ * @since 0.1
  */
 
 public interface Mailing {
 
-	public void writeEml(EmailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
+	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> statusHandler);
 
 	public EmailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments);

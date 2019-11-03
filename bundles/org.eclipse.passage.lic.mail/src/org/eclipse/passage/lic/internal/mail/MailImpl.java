@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.mail;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -30,8 +30,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.osgi.service.component.annotations.Component;
@@ -46,15 +44,13 @@ import org.osgi.service.component.annotations.Component;
 public class MailImpl implements Mailing {
 
 	@Override
-	public void writeEml(EmailDescriptor descriptor, OutputStream output, Consumer<IStatus> consumerStatus) {
+	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
 		try {
 			Message message = createMessage(descriptor);
 			fulfillMessage(descriptor, message);
 			message.writeTo(output);
 		} catch (MessagingException | IOException e) {
-			String pluginId = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
-			IStatus status = new Status(IStatus.ERROR, pluginId, e.getMessage(), e);
-			consumerStatus.accept(status);
+			consumerStatus.accept(e.getMessage(), e);
 		}
 	}
 
