@@ -26,7 +26,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.net.mail.Mailing;
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
 public class LicenseMailSupport {
@@ -110,7 +110,7 @@ public class LicenseMailSupport {
 		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
 			Mailing service = mailing;
-			LicensingMailDescriptor descriptor = service.createMail(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+			EmailDescriptor descriptor = service.createMail(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 					Collections.singleton(attachment.getPath()));
 

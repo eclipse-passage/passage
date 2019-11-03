@@ -25,8 +25,8 @@ import org.eclipse.core.runtime.IStatus;
 
 public interface Mailing {
 
-	public void writeEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
+	public void writeEml(EmailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
 
-	public LicensingMailDescriptor createMail(String to, String from, String subject, String body,
+	public EmailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments);
 }

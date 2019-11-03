@@ -19,7 +19,7 @@ package org.eclipse.passage.lic.net.mail;
  * @since 0.6
  *
  */
-public interface LicensingMailDescriptor {
+public interface EmailDescriptor {
 
 	String getTo();
 

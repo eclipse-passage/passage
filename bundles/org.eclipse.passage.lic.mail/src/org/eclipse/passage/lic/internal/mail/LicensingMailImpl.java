@@ -33,7 +33,7 @@ import javax.mail.internet.MimeMultipart;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.net.mail.Mailing;
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -48,7 +48,7 @@ public class LicensingMailImpl implements Mailing {
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
-	public void writeEml(LicensingMailDescriptor descriptor, OutputStream output,
+	public void writeEml(EmailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> consumerStatus) {
 		try {
 			Message message = createMessage(descriptor);
@@ -60,7 +60,7 @@ public class LicensingMailImpl implements Mailing {
 		}
 	}
 
-	private Message createMessage(LicensingMailDescriptor descriptor) throws MessagingException, AddressException {
+	private Message createMessage(EmailDescriptor descriptor) throws MessagingException, AddressException {
 		Message message = new MimeMessage(Session.getInstance(System.getProperties()));
 		message.setFrom(new InternetAddress(descriptor.getFrom()));
 		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(descriptor.getTo()));
@@ -68,7 +68,7 @@ public class LicensingMailImpl implements Mailing {
 		return message;
 	}
 
-	private void fulfillMessage(LicensingMailDescriptor descriptor, Message message) throws MessagingException {
+	private void fulfillMessage(EmailDescriptor descriptor, Message message) throws MessagingException {
 		Multipart multipart = createBody(descriptor.getBody());
 		attachFiles(descriptor, multipart);
 		message.setContent(multipart);
@@ -82,7 +82,7 @@ public class LicensingMailImpl implements Mailing {
 		return multipart;
 	}
 
-	private void attachFiles(LicensingMailDescriptor descriptor, Multipart multipart) throws MessagingException {
+	private void attachFiles(EmailDescriptor descriptor, Multipart multipart) throws MessagingException {
 		Iterable<String> attachmentPaths = descriptor.getAttachmentPaths();
 		for (String path : attachmentPaths) {
 			final File attache = new File(path);
@@ -95,7 +95,7 @@ public class LicensingMailImpl implements Mailing {
 	}
 
 	@Override
-	public LicensingMailDescriptor createMail(String to, String from, String subject, String body,
+	public EmailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments) {
 		return new LicensingMailDescriptorImpl(to, from, subject, body, attachments);
 	}

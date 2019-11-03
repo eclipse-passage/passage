@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.mail;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 
 /**
  * The Licensing mail descriptor implementation
@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
  * @since 0.1.0
  *
  */
-public class LicensingMailDescriptorImpl implements LicensingMailDescriptor {
+public class LicensingMailDescriptorImpl implements EmailDescriptor {
 
 	private final String to;
 	private final String from;

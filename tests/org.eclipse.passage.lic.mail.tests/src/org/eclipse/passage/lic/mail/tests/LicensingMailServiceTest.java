@@ -36,7 +36,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.internal.mail.LicensingMailImpl;
 import org.eclipse.passage.lic.net.mail.Mailing;
-import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
+import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.junit.After;
 import org.junit.Test;
 
@@ -56,7 +56,7 @@ public class LicensingMailServiceTest {
 		Mailing licensingEmlService = new LicensingMailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		LicensingMailDescriptor mailDescriptor = licensingEmlService.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
+		EmailDescriptor mailDescriptor = licensingEmlService.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
@@ -73,7 +73,7 @@ public class LicensingMailServiceTest {
 		Mailing licensingEmlService = new LicensingMailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		LicensingMailDescriptor mailDescriptor = licensingEmlService.createMail("", "", "", "", Collections.singleton(attachment));
+		EmailDescriptor mailDescriptor = licensingEmlService.createMail("", "", "", "", Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
 			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);
