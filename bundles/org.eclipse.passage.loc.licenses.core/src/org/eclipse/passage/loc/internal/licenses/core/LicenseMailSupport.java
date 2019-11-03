@@ -12,21 +12,35 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.email.EmailDescriptor;
+import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
-public class LicenseMail {
+public class LicenseMailSupport {
 
 	private static final String MAILTO = "mailto:"; //$NON-NLS-1$
 	private static final String MAILTO_SUBJECT = "?subject="; //$NON-NLS-1$
 	private static final String MAILTO_BODY = "&body="; //$NON-NLS-1$
 	private static final String MAILTO_SEPARATOR = "%0A"; //$NON-NLS-1$
+	private static final String MAIL_EML_EXTENSION = ".eml"; //$NON-NLS-1$
 
+	private final Mailing mailing;
 	private final LicensePackDescriptor licensePack;
 
-	public LicenseMail(LicensePackDescriptor licensePack) {
+	public LicenseMailSupport(Mailing mailing, LicensePackDescriptor licensePack) {
+		this.mailing = mailing;
 		this.licensePack = licensePack;
 	}
 
@@ -70,7 +84,7 @@ public class LicenseMail {
 		return builder.toString();
 	}
 
-	public String getMailTo() {
+	public String getMailToString() {
 		StringBuilder builder = new StringBuilder(MAILTO);
 		builder.append(licensePack.getUserIdentifier());
 		builder.append(MAILTO_SUBJECT);
@@ -84,6 +98,34 @@ public class LicenseMail {
 		builder.append(MAILTO_SEPARATOR);
 		builder.append(getDetails(MAILTO_SEPARATOR));
 		return builder.toString();
+	}
+
+	public Optional<File> createEmlFile(File attachment) {
+		if (attachment == null || !attachment.exists()) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+					LicensesCoreMessages.LicenseRequest_error_attachment_not_exist);
+			return Optional.empty();
+		}
+		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
+		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
+			Mailing service = mailing;
+			EmailDescriptor descriptor = service.createMail(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
+					Collections.singleton(attachment.getPath()));
+
+			service.writeEml(descriptor, stream, new BiConsumer<String, Throwable>() {
+				@Override
+				public void accept(String message, Throwable t) {
+					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, message, t);
+				}
+			});
+
+		} catch (IOException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+			return Optional.empty();
+		}
+
+		return Optional.of(emlFile);
 	}
 
 }

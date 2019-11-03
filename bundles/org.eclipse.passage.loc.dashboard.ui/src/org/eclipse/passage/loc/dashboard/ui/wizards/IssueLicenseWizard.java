@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.io.File;
+
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -19,6 +23,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -32,6 +37,7 @@ import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessag
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
 
 public class IssueLicenseWizard extends Wizard {
 
@@ -95,8 +101,29 @@ public class IssueLicenseWizard extends Wizard {
 			MessageDialog.open(kind, getShell(), IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
 					result.getMessage(), SWT.NONE);
 			broadcastResult(result);
+			processingMail(result);
 			return true;
 		}
+	}
+
+	private void processingMail(LicensingResult result) {
+		IssueLicenseMailJob processingMail = new IssueLicenseMailJob(
+				IssueLicensePageMessages.IssueLicensingMailJob_task_text, result, infoPage.getMailSupport(),
+				infoPage.isCreateMail(), infoPage.isCreateEml());
+		processingMail.addJobChangeListener(new JobChangeAdapter() {
+			@Override
+			public void done(IJobChangeEvent event) {
+				if (processingMail.getEmlFile().isPresent()) {
+					File emlFile = processingMail.getEmlFile().get();
+					String msg = NLS.bind(IssueLicensePageMessages.IssueLicenseMailRequestDialog_text,
+							emlFile.getAbsolutePath());
+					Display.getDefault()
+							.asyncExec(() -> MessageDialog.openInformation(Display.getDefault().getActiveShell(),
+									IssueLicensePageMessages.IssueLicenseMailRequestDialog_title, msg));
+				}
+			}
+		});
+		processingMail.schedule(1000);
 	}
 
 	private void broadcastResult(LicensingResult result) {

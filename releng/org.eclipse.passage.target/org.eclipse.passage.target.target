@@ -47,6 +47,8 @@
 			<unit id="com.fasterxml.jackson.core.jackson-core.source" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
+			<unit id="javax.activation" version="0.0.0"/>
+			<unit id="javax.mail" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.mockito" version="0.0.0"/>
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>

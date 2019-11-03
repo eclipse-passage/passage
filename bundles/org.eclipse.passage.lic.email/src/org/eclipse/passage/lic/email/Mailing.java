@@ -10,12 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.core;
+package org.eclipse.passage.lic.email;
 
-public class Licenses {
+import java.io.OutputStream;
+import java.util.function.BiConsumer;
 
-	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "licenses_xmi"; //$NON-NLS-1$
-	public static final String LICENSE_OUT = "licenses_out"; //$NON-NLS-1$ ;
+/**
+ * EMail service
+ *
+ * @since 0.1
+ */
 
+public interface Mailing {
+
+	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> statusHandler);
+
+	public EmailDescriptor createMail(String to, String from, String subject, String body,
+			Iterable<String> attachments);
 }

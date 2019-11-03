@@ -10,12 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.core;
 
-public class Licenses {
+package org.eclipse.passage.lic.email;
 
-	public static final String DOMAIN_NAME = "licenses"; //$NON-NLS-1$
-	public static final String FILE_EXTENSION_XMI = "licenses_xmi"; //$NON-NLS-1$
-	public static final String LICENSE_OUT = "licenses_out"; //$NON-NLS-1$ ;
+/**
+ * E-Mail Descriptor
+ *
+ * @since 0.1
+ *
+ */
+public interface EmailDescriptor {
 
+	String getTo();
+
+	String getFrom();
+
+	String getSubject();
+
+	String getBody();
+
+	Iterable<String> getAttachmentPaths();
 }
