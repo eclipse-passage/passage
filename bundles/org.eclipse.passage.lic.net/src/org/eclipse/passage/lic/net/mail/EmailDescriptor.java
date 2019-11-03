@@ -14,7 +14,7 @@
 package org.eclipse.passage.lic.net.mail;
 
 /**
- * Interface of Licensing Mail Descriptor
+ * E-Mail Descriptor
  *
  * @since 0.6
  *

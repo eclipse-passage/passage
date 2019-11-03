@@ -18,12 +18,12 @@ import java.util.List;
 import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 
 /**
- * The Licensing mail descriptor implementation
+ * The e-mail descriptor implementation
  *
  * @since 0.1.0
  *
  */
-public class LicensingMailDescriptorImpl implements EmailDescriptor {
+public class EmailDescriptorImpl implements EmailDescriptor {
 
 	private final String to;
 	private final String from;
@@ -31,7 +31,7 @@ public class LicensingMailDescriptorImpl implements EmailDescriptor {
 	private final String body;
 	private final List<String> attachmentPaths = new ArrayList<>();
 
-	public LicensingMailDescriptorImpl(String to, String from, String subject, String body, Iterable<String> attachments) {
+	public EmailDescriptorImpl(String to, String from, String subject, String body, Iterable<String> attachments) {
 		super();
 		this.to = to;
 		this.from = from;

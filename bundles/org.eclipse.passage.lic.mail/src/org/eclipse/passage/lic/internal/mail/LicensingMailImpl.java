@@ -97,6 +97,6 @@ public class LicensingMailImpl implements Mailing {
 	@Override
 	public EmailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments) {
-		return new LicensingMailDescriptorImpl(to, from, subject, body, attachments);
+		return new EmailDescriptorImpl(to, from, subject, body, attachments);
 	}
 }
