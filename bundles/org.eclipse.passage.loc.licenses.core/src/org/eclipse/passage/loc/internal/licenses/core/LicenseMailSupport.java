@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.Mailing;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
@@ -37,10 +37,10 @@ public class LicenseMailSupport {
 	private static final String MAILTO_SEPARATOR = "%0A"; //$NON-NLS-1$
 	private static final String MAIL_EML_EXTENSION = ".eml"; //$NON-NLS-1$
 
-	private final LicensingMail mailing;
+	private final Mailing mailing;
 	private final LicensePackDescriptor licensePack;
 
-	public LicenseMailSupport(LicensingMail mailing, LicensePackDescriptor licensePack) {
+	public LicenseMailSupport(Mailing mailing, LicensePackDescriptor licensePack) {
 		this.mailing = mailing;
 		this.licensePack = licensePack;
 	}
@@ -109,12 +109,12 @@ public class LicenseMailSupport {
 		}
 		File emlFile = new File(System.getProperty("user.home") + File.separator + attachment + MAIL_EML_EXTENSION); //$NON-NLS-1$
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
-			LicensingMail service = mailing;
-			LicensingMailDescriptor descriptor = service.getMailDescriptor(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
+			Mailing service = mailing;
+			LicensingMailDescriptor descriptor = service.createMail(licensePack.getUserIdentifier(), "From", //$NON-NLS-1$
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, getDetails(MAILTO_SEPARATOR),
 					Collections.singleton(attachment.getPath()));
 
-			service.emlToOutputStream(descriptor, stream, new Consumer<IStatus>() {
+			service.writeEml(descriptor, stream, new Consumer<IStatus>() {
 				@Override
 				public void accept(IStatus t) {
 					Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, t.getMessage());

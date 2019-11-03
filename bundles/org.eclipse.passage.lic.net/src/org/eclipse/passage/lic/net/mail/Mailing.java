@@ -18,15 +18,15 @@ import java.util.function.Consumer;
 import org.eclipse.core.runtime.IStatus;
 
 /**
- * EMail-related functionality.
+ * EMail service
  *
  * @since 0.6
  */
 
-public interface LicensingMail {
+public interface Mailing {
 
-	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
+	public void writeEml(LicensingMailDescriptor descriptor, OutputStream output, Consumer<IStatus> statusHandler);
 
-	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
+	public LicensingMailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments);
 }

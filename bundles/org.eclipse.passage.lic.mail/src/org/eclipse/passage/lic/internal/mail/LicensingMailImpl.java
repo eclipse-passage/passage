@@ -32,7 +32,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.Mailing;
 import org.eclipse.passage.lic.net.mail.LicensingMailDescriptor;
 import org.osgi.service.component.annotations.Component;
 
@@ -43,12 +43,12 @@ import org.osgi.service.component.annotations.Component;
  *
  */
 @Component
-public class LicensingMailImpl implements LicensingMail {
+public class LicensingMailImpl implements Mailing {
 
 	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
 
 	@Override
-	public void emlToOutputStream(LicensingMailDescriptor descriptor, OutputStream output,
+	public void writeEml(LicensingMailDescriptor descriptor, OutputStream output,
 			Consumer<IStatus> consumerStatus) {
 		try {
 			Message message = createMessage(descriptor);
@@ -95,7 +95,7 @@ public class LicensingMailImpl implements LicensingMail {
 	}
 
 	@Override
-	public LicensingMailDescriptor getMailDescriptor(String to, String from, String subject, String body,
+	public LicensingMailDescriptor createMail(String to, String from, String subject, String body,
 			Iterable<String> attachments) {
 		return new LicensingMailDescriptorImpl(to, from, subject, body, attachments);
 	}

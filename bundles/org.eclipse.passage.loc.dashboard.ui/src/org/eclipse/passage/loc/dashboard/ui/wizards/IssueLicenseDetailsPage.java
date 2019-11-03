@@ -17,7 +17,7 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.net.mail.LicensingMail;
+import org.eclipse.passage.lic.net.mail.Mailing;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.LicenseMailSupport;
 import org.eclipse.swt.SWT;
@@ -63,7 +63,7 @@ public class IssueLicenseDetailsPage extends WizardPage {
 				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
 		createMail = buttonPrepareMail.getSelection();
 		// FIXME: AF find another way to pass the service
-		LicensingMail optLicensingEmlService = LicensingEquinox.getLicensingService(LicensingMail.class);
+		Mailing optLicensingEmlService = LicensingEquinox.getLicensingService(Mailing.class);
 		if (optLicensingEmlService != null) {
 			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
 			buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
@@ -78,7 +78,7 @@ public class IssueLicenseDetailsPage extends WizardPage {
 
 	public void init(LicensePackDescriptor licensePack) {
 		// FIXME: AF find another way to pass the service
-		LicensingMail optLicensingEmlService = LicensingEquinox.getLicensingService(LicensingMail.class);
+		Mailing optLicensingEmlService = LicensingEquinox.getLicensingService(Mailing.class);
 		this.licenseMailSupport = new LicenseMailSupport(optLicensingEmlService, licensePack);
 		if (text != null && !text.isDisposed()) {
 			text.setText(licenseMailSupport.getDetails());
