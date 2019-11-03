@@ -20,7 +20,7 @@
 		</description>
 	</category-def>
 	<feature 
-		id="org.eclipse.passage.lbc.server.core.feature">
+		id="org.eclipse.passage.lbc.server.feature">
 		<category name="org.eclipse.passage.lbc.category" />
 	</feature>
 	<feature 
@@ -36,7 +36,7 @@
 		</description>
 	</category-def>
 	<feature 
-		id="org.eclipse.passage.lbc.server.core.feature.source">
+		id="org.eclipse.passage.lbc.server.feature.source">
 		<category name="org.eclipse.passage.lbc.category.source" />
 	</feature>
 </site>

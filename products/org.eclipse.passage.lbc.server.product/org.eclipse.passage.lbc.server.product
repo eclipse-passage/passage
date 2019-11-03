@@ -37,7 +37,7 @@
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
-      <feature id="org.eclipse.passage.lbc.server.core.feature"/>
+      <feature id="org.eclipse.passage.lbc.server.feature"/>
       <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
