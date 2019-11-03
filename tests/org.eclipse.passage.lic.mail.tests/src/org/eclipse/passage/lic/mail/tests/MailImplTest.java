@@ -34,13 +34,13 @@ import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.internal.mail.LicensingMailImpl;
+import org.eclipse.passage.lic.internal.mail.MailImpl;
 import org.eclipse.passage.lic.net.mail.Mailing;
 import org.eclipse.passage.lic.net.mail.EmailDescriptor;
 import org.junit.After;
 import org.junit.Test;
 
-public class LicensingMailServiceTest {
+public class MailImplTest {
 
 	private static final String MAIL_TO = "to.user@to.com"; //$NON-NLS-1$
 	private static final String MAIL_FROM = "from.user@from.com"; //$NON-NLS-1$
@@ -53,16 +53,16 @@ public class LicensingMailServiceTest {
 
 	@Test
 	public void shouldCreateEmlByParametersPositiveTest() {
-		Mailing licensingEmlService = new LicensingMailImpl();
+		Mailing mailing = new MailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		EmailDescriptor mailDescriptor = licensingEmlService.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
+		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
 			IStatus okStatus = new Status(IStatus.OK, this.getClass().getCanonicalName(), 0, "", null);
 			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(okStatus);
-			licensingEmlService.writeEml(mailDescriptor, fileOutput, statusConsumer);
+			mailing.writeEml(mailDescriptor, fileOutput, statusConsumer);
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -70,15 +70,15 @@ public class LicensingMailServiceTest {
 
 	@Test
 	public void shouldCreateEmlByParametersNagativeTest() {
-		Mailing licensingEmlService = new LicensingMailImpl();
+		Mailing mailing = new MailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		EmailDescriptor mailDescriptor = licensingEmlService.createMail("", "", "", "", Collections.singleton(attachment));
+		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
 			IStatus errorStatus = new Status(IStatus.ERROR, this.getClass().getCanonicalName(), 1, "", null);
 			LicensingMailStatusConsumer statusConsumer = new LicensingMailStatusConsumer(errorStatus);
-			licensingEmlService.writeEml(mailDescriptor, fileOutput, statusConsumer);
+			mailing.writeEml(mailDescriptor, fileOutput, statusConsumer);
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
@@ -86,9 +86,9 @@ public class LicensingMailServiceTest {
 
 	@Test
 	public void shouldFailWithNullAttachmentTest() {
-		Mailing licensingEmlService = new LicensingMailImpl();
+		Mailing mailing = new MailImpl();
 		try {
-			licensingEmlService.createMail("", "", "", "", null);
+			mailing.createMail("", "", "", "", null);
 			fail();
 		} catch (Exception e) {
 			assertEquals(NullPointerException.class, e.getClass());

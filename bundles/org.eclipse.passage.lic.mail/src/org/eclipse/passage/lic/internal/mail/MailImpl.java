@@ -32,30 +32,28 @@ import javax.mail.internet.MimeMultipart;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.net.mail.Mailing;
 import org.eclipse.passage.lic.net.mail.EmailDescriptor;
+import org.eclipse.passage.lic.net.mail.Mailing;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * The Licensing mail service implementation
+ * The Mailing service implementation based on javax.mail
  *
  * @since 0.1
  *
  */
 @Component
-public class LicensingMailImpl implements Mailing {
-
-	public static final String BUNDLE_ID = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
+public class MailImpl implements Mailing {
 
 	@Override
-	public void writeEml(EmailDescriptor descriptor, OutputStream output,
-			Consumer<IStatus> consumerStatus) {
+	public void writeEml(EmailDescriptor descriptor, OutputStream output, Consumer<IStatus> consumerStatus) {
 		try {
 			Message message = createMessage(descriptor);
 			fulfillMessage(descriptor, message);
 			message.writeTo(output);
-		} catch (MessagingException | IOException  | NullPointerException e) {
-			IStatus status = new Status(IStatus.ERROR, BUNDLE_ID, e.getMessage(), e);
+		} catch (MessagingException | IOException e) {
+			String pluginId = "org.eclipse.passage.lic.mail"; //$NON-NLS-1$
+			IStatus status = new Status(IStatus.ERROR, pluginId, e.getMessage(), e);
 			consumerStatus.accept(status);
 		}
 	}
