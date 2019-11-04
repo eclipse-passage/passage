@@ -152,6 +152,7 @@ public class ServerConditionMinerTests {
 
 		HttpPost httpPost = null;
 		try {
+			System.out.println(requestBulder.build().toString());
 			httpPost = new HttpPost(requestBulder.build());
 		} catch (URISyntaxException e) {
 			assumeNoException(e);

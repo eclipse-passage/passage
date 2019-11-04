@@ -16,12 +16,13 @@ import org.eclipse.osgi.util.NLS;
 
 public class JettyMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.jetty.i18n.JettyMessages"; //$NON-NLS-1$
-	public static String JettyServerLauncher_e_start;
-	public static String JettyServerLauncher_e_start_exists;
-	public static String JettyServerLauncher_e_stop;
-	public static String JettyServerLauncher_e_stop_not_started;
-	public static String JettyServerLauncher_ok_start;
-	public static String JettyServerLauncher_ok_stop;
+	public static String JettyServerLauncher_server_start_error;
+	public static String JettyServerLauncher_server_running_error;
+	public static String JettyServerLauncher_server_not_started_error;
+	public static String JettyServerLauncher_server_stop_error;
+
+	public static String JettyServerLauncher_server_start_succecss;
+	public static String JettyServerLauncher_server_stop_success;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, JettyMessages.class);

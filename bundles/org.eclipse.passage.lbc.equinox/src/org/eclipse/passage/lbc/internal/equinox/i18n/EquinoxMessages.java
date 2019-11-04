@@ -28,6 +28,7 @@ public class EquinoxMessages extends NLS {
 	public static String ServerConditionArbiter_i_reserv;
 	public static String ServerRunnerImpl_i_launcher_bind;
 	public static String ServerRunnerImpl_i_launcher_unbind;
+	public static String ServerRunnerImpl_error_launching;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EquinoxMessages.class);

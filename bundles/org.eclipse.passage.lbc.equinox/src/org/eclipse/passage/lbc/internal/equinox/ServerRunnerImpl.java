@@ -20,6 +20,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendCluster;
 import org.eclipse.passage.lbc.api.BackendLauncher;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
+import org.eclipse.passage.lic.api.LicensingResult;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -65,8 +66,15 @@ public class ServerRunnerImpl implements BackendCluster {
 	public void bindServerHandler(BackendLauncher serverHandler, Map<String, Object> context) {
 		if (serverHandler != null) {
 			logger.info(NLS.bind(EquinoxMessages.ServerRunnerImpl_i_launcher_bind, serverHandler));
-			serverHandler.launch(context);
-			backendLaunchers.add(serverHandler);
+			LicensingResult result = serverHandler.launch(context);
+			if (LicensingResult.ERROR == result.getSeverity()) {
+				logger.error(result.getMessage());
+				logger.error(
+						NLS.bind(EquinoxMessages.ServerRunnerImpl_error_launching, serverHandler.getClass().getName()));
+			} else {
+				backendLaunchers.add(serverHandler);
+			}
+
 		}
 	}
 
