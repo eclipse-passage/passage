@@ -18,10 +18,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lbc.api.BackendCluster;
 import org.eclipse.passage.lbc.api.BackendLauncher;
+import org.eclipse.passage.lic.api.LicensingResult;
+import org.junit.Before;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -31,21 +34,38 @@ import org.osgi.framework.ServiceReference;
 public class ServerBackendLauncherTests {
 
 	private static final int DEFAULT_CAPACITY = 2;
+	private BundleContext context;
+
+	@Before
+	public void getContext() {
+		Bundle bundle = FrameworkUtil.getBundle(ServerBackendLauncherTests.class);
+		context = bundle.getBundleContext();
+	}
 
 	@Test
-	public void checkServerRegistredComponents() {
-		Bundle bundle = FrameworkUtil.getBundle(ServerBackendLauncherTests.class);
-		BundleContext context = bundle.getBundleContext();
+	public void serverBackendLauncherTest() {
+		assertNotNull(context);
 		ServiceReference<BackendCluster> serviceReference = context.getServiceReference(BackendCluster.class);
 		assertNotNull(serviceReference);
 		BackendCluster service = context.getService(serviceReference);
 		assertNotNull(service);
 		Iterable<BackendLauncher> backendLaunchers = service.getBackendLaunchers();
 		assertNotNull(backendLaunchers);
-		List<BackendLauncher> launchers =  new ArrayList<>();
+		List<BackendLauncher> launchers = new ArrayList<>();
 		backendLaunchers.forEach(launchers::add);
 		assertNotNull(launchers);
 		assertFalse(launchers.isEmpty());
 		assertTrue(launchers.size() >= DEFAULT_CAPACITY);
+
+		launchers.stream().forEach(launcher -> {
+			LicensingResult result = launcher.launch(Collections.emptyMap());
+			assertTrue(result.getSeverity() == LicensingResult.OK);
+		});
+
+		launchers.stream().forEach(launcher -> {
+			LicensingResult result = launcher.terminate();
+			assertTrue(result.getSeverity() == LicensingResult.OK);
+		});
+
 	}
 }

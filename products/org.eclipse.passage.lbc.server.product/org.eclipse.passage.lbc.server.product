@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Passage Licensing Data Server" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.server.application" version="0.6.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="Passage Licensing Data Server" uid="org.eclipse.passage.lbc.server.product" id="org.eclipse.passage.lbc.server.product" application="org.eclipse.passage.lbc.server.application" version="0.6.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -26,96 +26,31 @@
    <vm>
    </vm>
 
-   <plugins>
-      <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
-      <plugin id="com.fasterxml.jackson.core.jackson-core"/>
-      <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
-      <plugin id="javax.inject"/>
-      <plugin id="javax.servlet"/>
-      <plugin id="org.apache.commons.codec"/>
-      <plugin id="org.apache.commons.logging"/>
-      <plugin id="org.apache.felix.gogo.runtime"/>
-      <plugin id="org.apache.felix.gogo.shell"/>
-      <plugin id="org.apache.felix.scr"/>
-      <plugin id="org.apache.httpcomponents.httpclient"/>
-      <plugin id="org.apache.httpcomponents.httpcore"/>
-      <plugin id="org.eclipse.core.contenttype"/>
-      <plugin id="org.eclipse.core.jobs"/>
-      <plugin id="org.eclipse.core.runtime"/>
-      <plugin id="org.eclipse.ecf"/>
-      <plugin id="org.eclipse.ecf.identity"/>
-      <plugin id="org.eclipse.ecf.ssl" fragment="true"/>
-      <plugin id="org.eclipse.equinox.app"/>
-      <plugin id="org.eclipse.equinox.common"/>
-      <plugin id="org.eclipse.equinox.concurrent"/>
-      <plugin id="org.eclipse.equinox.console"/>
-      <plugin id="org.eclipse.equinox.ds"/>
-      <plugin id="org.eclipse.equinox.event"/>
-      <plugin id="org.eclipse.equinox.frameworkadmin"/>
-      <plugin id="org.eclipse.equinox.frameworkadmin.equinox"/>
-      <plugin id="org.eclipse.equinox.http.jetty"/>
-      <plugin id="org.eclipse.equinox.http.servlet"/>
-      <plugin id="org.eclipse.equinox.p2.core"/>
-      <plugin id="org.eclipse.equinox.p2.director"/>
-      <plugin id="org.eclipse.equinox.p2.engine"/>
-      <plugin id="org.eclipse.equinox.p2.metadata"/>
-      <plugin id="org.eclipse.equinox.p2.metadata.repository"/>
-      <plugin id="org.eclipse.equinox.p2.repository"/>
-      <plugin id="org.eclipse.equinox.preferences"/>
-      <plugin id="org.eclipse.equinox.region" fragment="true"/>
-      <plugin id="org.eclipse.equinox.registry"/>
-      <plugin id="org.eclipse.equinox.security"/>
-      <plugin id="org.eclipse.equinox.security.macosx" fragment="true"/>
-      <plugin id="org.eclipse.equinox.simpleconfigurator"/>
-      <plugin id="org.eclipse.equinox.simpleconfigurator.manipulator"/>
-      <plugin id="org.eclipse.equinox.supplement"/>
-      <plugin id="org.eclipse.equinox.transforms.hook" fragment="true"/>
-      <plugin id="org.eclipse.equinox.useradmin.source"/>
-      <plugin id="org.eclipse.equinox.weaving.hook" fragment="true"/>
-      <plugin id="org.eclipse.jetty.http"/>
-      <plugin id="org.eclipse.jetty.io"/>
-      <plugin id="org.eclipse.jetty.security"/>
-      <plugin id="org.eclipse.jetty.server"/>
-      <plugin id="org.eclipse.jetty.servlet"/>
-      <plugin id="org.eclipse.jetty.util"/>
-      <plugin id="org.eclipse.osgi"/>
-      <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
-      <plugin id="org.eclipse.osgi.services"/>
-      <plugin id="org.eclipse.osgi.util"/>
-      <plugin id="org.eclipse.passage.lic.api"/>
-      <plugin id="org.eclipse.passage.lic.base"/>
-      <plugin id="org.eclipse.passage.lic.equinox"/>
-      <plugin id="org.eclipse.passage.lic.net"/>
-      <plugin id="org.eclipse.passage.lbc.api"/>
-      <plugin id="org.eclipse.passage.lbc.base"/>
-      <plugin id="org.eclipse.passage.lbc.equinox"/>
-      <plugin id="org.eclipse.passage.lbc.jetty"/>
-      <plugin id="org.eclipse.passage.lbc.server"/>
-      <plugin id="org.sat4j.core"/>
-      <plugin id="org.sat4j.pb"/>
-      <plugin id="org.tukaani.xz"/>
-   </plugins>
-
    <features>
-      <feature id="org.eclipse.passage.lbc.feature"/>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
       <feature id="org.eclipse.equinox.server.p2"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
+      <feature id="org.eclipse.equinox.core.feature"/>
+      <feature id="org.eclipse.equinox.executable"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-   </features>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
+      <feature id="org.eclipse.passage.lbc.target.feature"/>
+      <feature id="org.eclipse.passage.lbc.execute.feature"/>
+    </features>
 
    <configurations>
-      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
-      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
       <plugin id="org.eclipse.passage.lic.equinox" autoStart="true" startLevel="4" />
    </configurations>
 

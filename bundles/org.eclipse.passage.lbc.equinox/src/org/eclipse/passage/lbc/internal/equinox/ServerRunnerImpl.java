@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
-@Component
+@Component(immediate = true)
 public class ServerRunnerImpl implements BackendCluster {
 
 	private List<BackendLauncher> backendLaunchers = new ArrayList<>();
