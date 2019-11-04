@@ -14,10 +14,11 @@
 <feature
       id="org.eclipse.passage.lic.mail.feature"
       label="%featureName"
-      version="0.6.0.qualifier"
+      version="0.1.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
+
    <description>
       %description
    </description>
@@ -40,4 +41,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
 </feature>
