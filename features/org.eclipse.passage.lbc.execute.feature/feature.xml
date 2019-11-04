@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2019 ArSysOp and others
+	Copyright (c) 2018-2019 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -31,43 +31,40 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.eclipse.passage.lbc.target.feature"/>
+   </requires>
+
    <plugin
-         id="javax.inject"
+         id="org.eclipse.passage.lbc.api"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.tukaani.xz"
+         id="org.eclipse.passage.lbc.base"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.concurrent"
+         id="org.eclipse.passage.lbc.equinox"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.event"
+         id="org.eclipse.passage.lbc.jetty"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.core.runtime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.contenttype"
+         id="org.eclipse.passage.lbc.server"
          download-size="0"
          install-size="0"
          version="0.0.0"

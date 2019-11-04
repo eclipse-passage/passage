@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2018-2019 ArSysOp and others
+	Copyright (c) 2019 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="org.eclipse.passage.lbc.server.feature"
+      id="org.eclipse.passage.lbc.target.feature"
       label="%featureName"
       version="0.6.0.qualifier"
       provider-name="%providerName"
@@ -32,35 +32,42 @@
    </license>
 
    <plugin
-         id="org.eclipse.passage.lbc.api"
+         id="javax.inject"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lbc.base"
+         id="org.tukaani.xz"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lbc.equinox"
+         id="org.eclipse.equinox.concurrent"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lbc.jetty"
+         id="org.eclipse.equinox.event"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.passage.lbc.server"
+         id="org.eclipse.core.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.core.contenttype"
          download-size="0"
          install-size="0"
          version="0.0.0"
