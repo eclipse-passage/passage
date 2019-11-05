@@ -26,6 +26,9 @@
    <vm>
    </vm>
 
+   <plugins>
+   </plugins>
+
    <features>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
@@ -36,13 +39,11 @@
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
-      <feature id="org.eclipse.passage.lic.oshi.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.target.feature"/>
       <feature id="org.eclipse.passage.lbc.execute.feature"/>
-    </features>
+   </features>
 
    <configurations>
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />

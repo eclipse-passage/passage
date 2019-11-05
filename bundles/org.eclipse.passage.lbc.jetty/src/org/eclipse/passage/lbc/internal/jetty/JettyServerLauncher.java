@@ -56,10 +56,9 @@ public class JettyServerLauncher implements BackendLauncher {
 
 	@Override
 	public LicensingResult launch(Map<String, Object> arguments) {
-		String source = JettyServerLauncher.class.getName();
 		if (server != null) {
-			return LicensingResults.createError(JettyMessages.JettyServerLauncher_server_running_error, source,
-					new IllegalStateException());
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_server_running_error,
+					LicensingResult.ERROR, new IllegalStateException());
 		}
 		// FIXME: extract from arguments
 		int port = JETTY_PORT_DEFAULT;
@@ -67,15 +66,16 @@ public class JettyServerLauncher implements BackendLauncher {
 		try {
 			server.setHandler(new JettyRequestHandler(requestDispatchers.values()));
 			server.start();
-			logger.info(server.getState());
-			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_start_success, source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_start_success);
 		} catch (Exception e) {
-			String msg = e.getMessage();
+			String msg;
 			if (e.getCause() != null) {
 				msg = e.getCause().getMessage();
+			} else {
+				msg = e.getMessage();
 			}
 			return LicensingResults.createError(NLS.bind(JettyMessages.JettyServerLauncher_server_start_error, msg),
-					source, e);
+					LicensingResult.ERROR, e);
 		}
 	}
 
