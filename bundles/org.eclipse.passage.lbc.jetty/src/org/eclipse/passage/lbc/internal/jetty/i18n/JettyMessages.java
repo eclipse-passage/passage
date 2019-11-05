@@ -21,7 +21,7 @@ public class JettyMessages extends NLS {
 	public static String JettyServerLauncher_server_not_started_error;
 	public static String JettyServerLauncher_server_stop_error;
 
-	public static String JettyServerLauncher_server_start_succecss;
+	public static String JettyServerLauncher_server_start_success;
 	public static String JettyServerLauncher_server_stop_success;
 	static {
 		// initialize resource bundle

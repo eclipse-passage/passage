@@ -68,11 +68,14 @@ public class JettyServerLauncher implements BackendLauncher {
 			server.setHandler(new JettyRequestHandler(requestDispatchers.values()));
 			server.start();
 			logger.info(server.getState());
-			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_start_succecss, source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_start_success, source);
 		} catch (Exception e) {
-			String msg = NLS.bind(JettyMessages.JettyServerLauncher_server_start_error, e.getCause());
-			logger.warn(msg);
-			return LicensingResults.createError(msg, source, e);
+			String msg = e.getMessage();
+			if (e.getCause() != null) {
+				msg = e.getCause().getMessage();
+			}
+			return LicensingResults.createError(NLS.bind(JettyMessages.JettyServerLauncher_server_start_error, msg),
+					source, e);
 		}
 	}
 
