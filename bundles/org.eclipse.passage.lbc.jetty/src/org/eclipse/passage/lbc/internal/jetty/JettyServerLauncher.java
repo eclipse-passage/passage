@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lbc.api.BackendLauncher;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.jetty.i18n.JettyMessages;
@@ -55,9 +56,9 @@ public class JettyServerLauncher implements BackendLauncher {
 
 	@Override
 	public LicensingResult launch(Map<String, Object> arguments) {
-		String source = JettyServerLauncher.class.getName();
 		if (server != null) {
-			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_start_exists, source, new IllegalStateException());
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_server_running_error,
+					LicensingResult.ERROR, new IllegalStateException());
 		}
 		// FIXME: extract from arguments
 		int port = JETTY_PORT_DEFAULT;
@@ -65,11 +66,16 @@ public class JettyServerLauncher implements BackendLauncher {
 		try {
 			server.setHandler(new JettyRequestHandler(requestDispatchers.values()));
 			server.start();
-			logger.info(server.getState());
-			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_ok_start, source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_start_success);
 		} catch (Exception e) {
-			logger.warn(e.getMessage());
-			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_start, source, e);
+			String msg;
+			if (e.getCause() != null) {
+				msg = e.getCause().getMessage();
+			} else {
+				msg = e.getMessage();
+			}
+			return LicensingResults.createError(NLS.bind(JettyMessages.JettyServerLauncher_server_start_error, msg),
+					LicensingResult.ERROR, e);
 		}
 	}
 
@@ -77,16 +83,18 @@ public class JettyServerLauncher implements BackendLauncher {
 	public LicensingResult terminate() {
 		String source = JettyServerLauncher.class.getName();
 		if (server == null) {
-			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_stop_not_started, source, new IllegalStateException());
+			return LicensingResults.createError(JettyMessages.JettyServerLauncher_server_not_started_error, source,
+					new IllegalStateException());
 		}
 		try {
 			server.stop();
 			logger.info(server.getState());
 			server = null;
-			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_ok_stop, source);
+			return LicensingResults.createOK(JettyMessages.JettyServerLauncher_server_stop_success, source);
 		} catch (Exception e) {
-			logger.warn(e.getMessage());
-			return LicensingResults.createError(JettyMessages.JettyServerLauncher_e_stop, source, e);
+			String msg = NLS.bind(JettyMessages.JettyServerLauncher_server_stop_error, e.getMessage());
+			logger.warn(msg);
+			return LicensingResults.createError(msg, source, e);
 		}
 	}
 
