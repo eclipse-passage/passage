@@ -67,12 +67,18 @@ public class ServerRunnerImpl implements BackendCluster {
 		if (serverHandler != null) {
 			logger.info(NLS.bind(EquinoxMessages.ServerRunnerImpl_i_launcher_bind, serverHandler));
 			LicensingResult result = serverHandler.launch(context);
-			if (LicensingResult.ERROR == result.getSeverity()) {
+			switch (result.getSeverity()) {
+			case LicensingResult.ERROR:
 				logger.error(result.getMessage());
 				logger.error(
 						NLS.bind(EquinoxMessages.ServerRunnerImpl_error_launching, serverHandler.getClass().getName()));
-			} else {
+				break;
+			case LicensingResult.OK:
+				logger.info(result.getMessage());
 				backendLaunchers.add(serverHandler);
+				break;
+			default:
+				break;
 			}
 
 		}
