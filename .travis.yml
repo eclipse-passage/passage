@@ -16,4 +16,4 @@ before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc
 
 install: true
 
-script: mvn clean verify
+script: mvn clean verify -Pcoverage
