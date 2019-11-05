@@ -8,6 +8,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9b7ac68ec46a4d58b6e33c5d96a34d42)](https://www.codacy.com/manual/eclipse_2/passage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eclipse/passage&amp;utm_campaign=Badge_Grade)
 
+[![codecov](https://codecov.io/gh/eclipse/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse/passage)
+
 The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
 This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
