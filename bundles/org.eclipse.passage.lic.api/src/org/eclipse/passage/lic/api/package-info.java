@@ -13,25 +13,26 @@
 
 /**
  * <h1>Access Management</h1>
- * <h4> In a sentence</h4> <p>
+ * <h2> In a sentence</h2> <p>
  * AM serves the only purpose: a program under licence protection, been run, can ask AM,
  * if it is allowed to use a particular feature <i>now</i>,
  * and the answer will be more or less simple <i>yes</i> or <i>no</i>.
  * </p>
  * <p/>
- * <h4>In a paragraph</h4><p>
+ * <h2>In a paragraph</h2><p>
  * A program, been run, is asked by it's <b>user</b> to access a particular <b>feature</b>,
  * which has been implemented as a <i>feature under licence protection</i> by it's developers.<br/>
  * Here Passage invokes AM to define, can the user exploit the feature or not.
  * </p>
  *
  * <ul>
- * <li>AM uses <i>Requirement</i>s to define at runtime, which feature can be used under which circumstances.
- * These are given by this precise installation of the program under licence protection.
+ * <li>AM uses {@code Requirement}s to define at runtime, which feature in a <b>program</b> id under license protection.
+ * These {@code Requirement}s are given by the precise installation of a <b>program under licence protection</b>.
  * So the first thing AM does is finding out, is the actual program installation possesses any
  * <i>protect this feature</i> instructions in the first place.
- * To do this, AM appeals to all registered {@link org.eclipse.passage.lic.api.requirements.RequirementResolver}s and gets
- * a set of {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s</li>
+ * To do so, AM appeals to all registered {@code RequirementResolver}s and gets a set of {@code Requirement}s
+ * for further analysis</li>
+ *
  * <li>Then AM needs to figure out, what the <b>licence</b> that the <b>user</b> acquired, allows to do.
  * AM goes to each of {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s it have at ones disposal
  * and gets set of {@link org.eclipse.passage.lic.api.conditions.LicensingCondition}s.
@@ -59,85 +60,33 @@
  * </ul>
  *
  *
- * <h4>In details</h4>
+ * <br/><h2>In details</h2>
+ * <br/><h3>Requirements</h3>
+ * <br/><h4>Where do they come from?</h4>
+ * <p>
+ *     They come from a <b>program</b> installation. {@code Requirement}s are implemented by developers.
+ *     A {@code Requirement} says: a user can exploit this part (<b>feature</b>) of a <b>program</b> only if has a proper license,
+ *     unless the usage is <i>restricted</i>.
+ * </p>
+ * <br/><h4>How are they defined?</h4>
+ * <p>AM implements Requirement with {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement} class.</p>
+ * <ul> A Requirements is
+ *     <li>identification information of a <b>feature</b> under protection</li>
+ *     <li>restriction level (like <i>warn</i> or <i>fatal</i>) to be applied in case the terms of the <b>feature</b> usage are not met</li>
+ * </ul>
+ * <p>
+ * <br/><h4>How to get them?</h4>
+ * <p> Each implementation of {@link org.eclipse.passage.lic.api.requirements.RequirementResolver} interface,
+ * registered properly at the <b>program</b> runtime, provides Requirements it is responsible for.
+ * Each {@code Resolver} is designed to read a particular type of physical sources</p>
+ *
+ * <br/><h3>Conditions</h3>
+ * <br/><h4>Where do they come from?</h4>
  * <p></p>
- * <p>
- * Access manager:
- * input -> Requirements from runtime.
- * out -> Restriction ("no"). Positive solution is by default.
- * <p>
- * <p>
- * <p>
- * 1) Requirement - a unit under lic protection
- * == productFeatureId (featureId +version) additional data
- * <p>
- * <p>
- * 2) Condition (LIcensingCondition) - part of lic data, bought and send to you by operator.
- * "  по чевергам ноября на win32 ты можешь запускать эту фичу"
- * Connected with productFeatureId
- * <p>
- * 3) FeaturePermission = a condition evaluated against the current tuntime environment. Has binary answer: yes, you can use it; no, you cannot use it; And a timeout for "yes"
- * <p>
- * <p>
- * 4) PermissionExaminer.
- * Checks if all the given requirements can be covered by all the gained permissions. Return set of restrictions for those requirements, that have not been covered.
- * <p>
- * 5)  RestrictionVerdict:  "no". Positive verdict if the absence of verdict
- * <p>
- * =====================
- * Where conditions comes from
- * =====================
- * ConditionMiner (many instances) - all these guys are responsible for gaining granted Condition from all the source we support (file lic, floating server, etc)
- * <p>
- * =====
- * where requrements comes from
- * =====
- * RequirementResolver
- * A program under licensing comes to a particular place (like action), that is !implemented as the one that must be paid for!.
- * <p>
- * Here this !implementation! is asking: "can we use this (some feature id)"?
- * <p>
- * This request comes to AccessManager. This super-compoenents asks all registered RequrementResolvers: it there anybody who asked to protect this (the featureId)?
- * ReqResolvers (now) read theis sources (manifests, xmls) and returns the answer: Requirement instances. If there is none - the answer to the program is "yes"
- * <p>
- * <p>
- * ===
- * How conditions are evaludated against the current runtime
- * ===
- * LicCondition has a !type!: is it a hardware token permission.
- * <p>
- * Access manager survay all it's PermissionEmmiters to get the one Emitter is registered for this particular !type!. If there no Emitter - the AccessManagement will restrict the feture usage inally. Let's explore the case the Emitter for this !type! is found.
- * <p>
- * This emitter checks LicCondition ::conditionExpression: if each of them is satisfied at the current euntime environment. In case of success, it emitts a new FeaturePermission for this Condition.
- * <p>
- * <p>
- * <p>
- * <p>
- * ===
- * access manager frow
- * ===
- * input: productFeatureId: there is an action in the program under licensing, which !is implemented! as the one who must been bought. And the program flow comes to this action. And !the implementation! asks the AM: can we proceed?
- * <p>
- * out: let it go | no, you must do these (RestrictionVerdicts)
- * <p>
- * - ask RequirementResolvers (some outer registry), if anyone protects the feature at all. If any - they will return Requirement instance.
- * - ask ConditionMiners, if we have bought something for the feature. They return set of LicCondition
- * - evaluate LiConditions against the current runtime env, like grounding. All obsolete or unrelated LicConditions are filtered out here. Permissions are the output.
- * - examin is these permissions are enough to satisfy all the requirements.
- * - if enough - just let it go
- * - if not - set of RestrictionVerdict is the output.
- * <p>
- * <p>
- * ====
- * restruction executor
- * ===
- * verdict:
- * - info: message
- * - warning: pause the cycle (dialog), proceed
- * - error: block the scenario
- * - fatal: destroy the env
- * <p>
- * All executors are asked, no metadata is involved. To prohibit easing of executing, just
+ * <br/><h4>How are they defined?</h4>
+ * <p></p>
+ * <br/><h4>How to get them?</h4>
+ * <p></p>
  *
  * @since 0.4.0
  */
