@@ -17,3 +17,6 @@ before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc
 install: true
 
 script: mvn clean verify -Pcoverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
