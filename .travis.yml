@@ -12,8 +12,15 @@ cache:
   directories:
   - $HOME/.m2
 
+env:
+  global:
+    - CODECOV_TOKEN=:4cf87aa6-1952-4c72-bf0c-49d426909ea4
+
 before_install: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc
 
 install: true
 
 script: mvn clean verify -Pcoverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
