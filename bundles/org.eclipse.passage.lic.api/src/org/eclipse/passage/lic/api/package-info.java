@@ -33,12 +33,12 @@
  * To do so, AM appeals to all registered {@code RequirementResolver}s and gets a set of {@code Requirement}s
  * for further analysis</li>
  *
- * <li>Then AM needs to figure out, what the <b>license</b> that the <b>user</b> acquired, allows to do.
- * AM goes to each of {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s it have at ones disposal
- * and gets set of {@link org.eclipse.passage.lic.api.conditions.LicensingCondition}s.
- * {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s look for them in <i>the license</i> files,
- * on a <i>floating server</i> or mining sources of other types.
+ * <li>Then AM needs to figure out, what the <b>license</b> that the <b>user</b> has, allows to do.
+ * AM goes to each of {@code ConditionMiner}s it have at ones disposal
+ * and gets set of {@code LicensingCondition}s.
+ * {@code ConditionMiner}s look for them in <i>the license</i> files, on a <i>floating server</i> or mining sources of other types.
  * </li>
+ *
  * <li>These {@link org.eclipse.passage.lic.api.conditions.LicensingCondition}s are static definitions of what can be done under what conditions.
  * At <b>the program</b> runtime AM <i>evaluates</i> each <i>Condition</i> to a precise notion of
  * is this <i>Condition</i> is met at <b>the program</b> runtime or not. So, at this step, for each <i>Condition</i> AM asks
@@ -58,8 +58,8 @@
  * {@link org.eclipse.passage.lic.api.restrictions.RestrictionExecutor} is the service responsible for these actions execution:
  * if can popup a warning, expose license dialog or even shut the whole program down. </li>
  * </ul>
- *
- *
+ * <p>
+ * <p>
  * <br/><h2>In details</h2>
  * <br/><h3>Requirements</h3>
  * <br/><h4>Where do they come from?</h4>
@@ -69,7 +69,7 @@
  *     unless the usage is <i>restricted</i>.
  * </p>
  * <br/><h4>How are they defined?</h4>
- * <p>AM operates Requirement in the form of {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement} class.</p>
+ * <p>AM operates Requirement in the form of {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement} interface.</p>
  * <ul> A Requirements is
  *     <li>identification information of a <b>feature</b> under licensing</li>
  *     <li>restriction level (like <i>warn</i> or <i>fatal</i>) to be applied in case the terms of the <b>feature</b> usage are not met</li>
@@ -80,14 +80,27 @@
  * registered properly at the <b>program</b> runtime, provides Requirements it is responsible for.
  * Each {@code Resolver} is designed to read a particular type of physical sources.
  * For example MANIFEST.MF, OSGi components manifest or other forms of annotations. </p>
- *
+ * <p>
  * <br/><h3>Conditions</h3>
  * <br/><h4>Where do they come from?</h4>
- * <p></p>
+ * <p>{@code Condition}s are mined from a license information of sorts, like license file or floating server.
+ * In other words, {@code Condition}s are more or less those things that a user payed his money for. </p>
  * <br/><h4>How are they defined?</h4>
- * <p></p>
+ * <p>{@code Condition} notion is embodied in {@link org.eclipse.passage.lic.api.conditions.LicensingCondition} interface.
+ * It exhaustively describes what feture and under which circumstances can be used. </p>
+ * <ul>
+ *     <li>feature identifier and version matcher</li>
+ *     <li>general validity period </li>
+ *     <li>type of the condition: is it time-based condition, condition for a specific hardware set, or somethings else;
+ *     this type is crucial data, because defines the way the condition will be <i>evaluated</i> at the program runtime. </li>
+ *     <li>all additional information necessary for the condition evaluation, is highly type-dependant. </li>
+ * </ul>
  * <br/><h4>How to get them?</h4>
- * <p></p>
+ * <p>There should be number of {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s instances at the program runtime,
+ * collected in {@link org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry}.
+ * Each {@code Miner} quarries {@code Condition}s from it's particular source according to it's own logic.
+ * When AM collects @{code Condition}s, it queries all registered {@code Miner}s and aggregate all gained results.
+ * </p>
  *
  * @since 0.4.0
  */
