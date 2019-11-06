@@ -26,7 +26,7 @@
  * </p>
  *
  * <ul>
- * <li>AM uses {@code Requirement}s to define at runtime, which <b>feature</b> in a <b>program<b> is under licensing.
+ * <li>AM uses {@code Requirement}s to define at runtime, which <b>feature</b> in a <b>program</b> is under licensing.
  * These {@code Requirement}s are given by the precise installation of a <b>program under licensing</b>.
  * So the first thing AM does is finding out, is the actual program installation possesses any
  * <i>protect this feature</i> instructions in the first place.
