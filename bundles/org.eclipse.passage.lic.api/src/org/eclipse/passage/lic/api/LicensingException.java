@@ -21,7 +21,6 @@ package org.eclipse.passage.lic.api;
  * 
  * @since 0.4.0
  * @see LicensingResult
- *
  */
 public class LicensingException extends Exception {
 
