@@ -25,7 +25,7 @@
  * Here Passage invokes AM to define, can the user exploit the feature or not.
  * </p>
  *
- * <ul>
+ * <ol>
  * <li>AM uses {@code Requirement}s to define at runtime, which <b>feature</b> in a <b>program</b> is under licensing.
  * These {@code Requirement}s are given by the precise installation of a <b>program under licensing</b>.
  * So the first thing AM does is finding out, is the actual program installation possesses any
@@ -39,11 +39,13 @@
  * {@code ConditionMiner}s look for them in <i>the license</i> files, on a <i>floating server</i> or mining sources of other types.
  * </li>
  *
- * <li>These {@link org.eclipse.passage.lic.api.conditions.LicensingCondition}s are static definitions of what can be done under what conditions.
- * At <b>the program</b> runtime AM <i>evaluates</i> each <i>Condition</i> to a precise notion of
- * is this <i>Condition</i> is met at <b>the program</b> runtime or not. So, at this step, for each <i>Condition</i> AM asks
- * its {@link org.eclipse.passage.lic.api.access.PermissionEmitter}s if it can issue
- * a {@link org.eclipse.passage.lic.api.access.FeaturePermission} for this <i>Condition</i></li>
+ * <li>These {@code Condition}s are static definitions of which functions can be executed under which terms.
+ * At a <b>program</b> runtime AM <i>evaluates</i> each {@code Condition} to a precise notion of
+ * has this {@code Condition} been met at the <b>program</b> runtime or not.
+ * The fact <i>condition terms are currently met</i> is expressed by a time-limited {@code Permission}.
+ * So, at this step, for each {@code Condition} AM asks all {@code PermissionEmitter}s if someone can issue
+ * a {@code Permission} for this {@code Condition}. </li>
+ *
  * <li>At this point AM has both
  * actual {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s
  * and valid {@link org.eclipse.passage.lic.api.access.FeaturePermission}s.
@@ -53,20 +55,21 @@
  * {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}, the latter one is considered satisfied and does not participate in further actions.
  * All unsatisfied {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s left at the and of the work, are translated to a set of
  * {@link org.eclipse.passage.lic.api.restrictions.RestrictionVerdict}s. </li>
+ *
+ *
  * <li>If here AM has an empty set of {@link org.eclipse.passage.lic.api.restrictions.RestrictionVerdict}s (all {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s are satisfied),
  * then <b>the user</b> can access <b>the feature</b>. Otherwise, <i>some actions must be taken</i>, and each verdict describes such an action.
  * {@link org.eclipse.passage.lic.api.restrictions.RestrictionExecutor} is the service responsible for these actions execution:
  * if can popup a warning, expose license dialog or even shut the whole program down. </li>
- * </ul>
+ * </ol>
  * <p>
  * <p>
  * <br/><h2>In details</h2>
- * <br/><h3>Requirements</h3>
+ * <br/><h3>1. Requirements</h3>
  * <br/><h4>Where do they come from?</h4>
- * <p>
- *     They come from a <b>program</b> installation. {@code Requirement}s are declared by developers.
- *     A {@code Requirement} says: a user can exploit this part (<b>feature</b>) of a <b>program</b> only if has a proper license,
- *     unless the usage is <i>restricted</i>.
+ * <p> They come from a <b>program</b> installation. {@code Requirement}s are declared by developers.
+ * A {@code Requirement} says: a user can exploit this part (<b>feature</b>) of a <b>program</b> only if has a proper license,
+ * unless the usage is <i>restricted</i>.
  * </p>
  * <br/><h4>How are they defined?</h4>
  * <p>AM operates Requirement in the form of {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement} interface.</p>
@@ -76,18 +79,20 @@
  * </ul>
  * <p>
  * <br/><h4>How to get them?</h4>
- * <p> Each implementation of {@link org.eclipse.passage.lic.api.requirements.RequirementResolver} interface,
+ * <p>
+ *     Each implementation of {@link org.eclipse.passage.lic.api.requirements.RequirementResolver} interface,
  * registered properly at the <b>program</b> runtime, provides Requirements it is responsible for.
  * Each {@code Resolver} is designed to read a particular type of physical sources.
  * For example MANIFEST.MF, OSGi components manifest or other forms of annotations. </p>
- * <p>
- * <br/><h3>Conditions</h3>
+ * <p/>
+ * <p/>
+ * <br/><h3>2. Conditions</h3>
  * <br/><h4>Where do they come from?</h4>
  * <p>{@code Condition}s are mined from a license information of sorts, like license file or floating server.
  * In other words, {@code Condition}s are more or less those things that a user payed his money for. </p>
  * <br/><h4>How are they defined?</h4>
  * <p>{@code Condition} notion is embodied in {@link org.eclipse.passage.lic.api.conditions.LicensingCondition} interface.
- * It exhaustively describes what feture and under which circumstances can be used. </p>
+ * It exhaustively describes what feature and under which circumstances can be used. </p>
  * <ul>
  *     <li>feature identifier and version matcher</li>
  *     <li>general validity period </li>
@@ -96,11 +101,46 @@
  *     <li>all additional information necessary for the condition evaluation, is highly type-dependant. </li>
  * </ul>
  * <br/><h4>How to get them?</h4>
- * <p>There should be number of {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s instances at the program runtime,
+ * <p> There should be number of {@link org.eclipse.passage.lic.api.conditions.ConditionMiner}s instances at the program runtime,
  * collected in {@link org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry}.
  * Each {@code Miner} quarries {@code Condition}s from it's particular source according to it's own logic.
  * When AM collects @{code Condition}s, it queries all registered {@code Miner}s and aggregate all gained results.
  * </p>
+ * <p/>
+ * <p/>
+ * <br/><h3>3. Permissions</h3>
+ * <br/><h4>Where do they come from?</h4>
+ * <p>{@code Permission} are created by Passage at runtime as a result of a {@code Condition} <i>evaluation</i>.
+ * A {@code Condition} declares, what terms must be met, and <i>evaluation</i> finds out
+ * if these terms are actually  met under the current program runtime or not.
+ * If met - a {@code Permission} for this {@code Condition} is <i>emitted</i>.</p>
+ * <br/><h4>How are they defined?</h4>
+ * <p>{@code Permission} concept is shaped to {@link org.eclipse.passage.lic.api.access.FeaturePermission} interface.
+ * It points to the original {@code Condition} and has validity period. </p>
+ * <br/><h4>>How to get them?</h4>
+ * <p>An {@link org.eclipse.passage.lic.api.access.PermissionEmitter} interface
+ * is responsible for {@code Condition}s evaluation and {@code Permission} emission logic implementation.
+ * {@link org.eclipse.passage.lic.api.access.PermissionEmitterRegistry} aggregates all {@code Emitter}s
+ * in the system. AM communicates with the {@code Registry} and then asks all registered
+ * {@code Emitter}s to evaluate each of {@code Condition}s mined at the previous phase. </p>
+ * <p>
+ * <p>
+ * <br/><h3>4. Permission examining</h3>
+ * <br/><h4>Where do they come from?</h4>
+ * <p></p>
+ * <br/><h4>Where do they come from?</h4>
+ * <p></p>
+ * <br/><h4>>How to get them?</h4>
+ * <p></p>
+ * <p>
+ * <p>
+ * <br/><h3>4. Restriction execution</h3>
+ * <br/><h4>Where do they come from?</h4>
+ * <p></p>
+ * <br/><h4>Where do they come from?</h4>
+ * <p></p>
+ * <br/><h4>>How to get them?</h4>
+ * <p></p>
  *
  * @since 0.4.0
  */
