@@ -18,6 +18,9 @@ import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
+/**
+ * @since 0.4.0
+ */
 public final class AccessEvents {
 
 	private AccessEvents() {

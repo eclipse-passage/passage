@@ -18,9 +18,8 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 /**
  * Collects the data required to issue the license
- * 
- * @since 0.5.0
  *
+ * @since 0.5.0
  */
 public interface LicensingRequest {
 

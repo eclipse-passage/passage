@@ -12,6 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.access;
 
+/**
+ * Takes care of all {@link PermissionEmitter} services registered at runtime.
+ *
+ * @since 0.4.0
+ */
 public interface PermissionEmitterRegistry {
 
 	String getDefaultConditionType();

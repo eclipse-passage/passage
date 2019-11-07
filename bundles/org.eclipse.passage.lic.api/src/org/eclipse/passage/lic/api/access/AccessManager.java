@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 /**
  * The main entry point to the licensing
  *
+ * @since 0.4.0
  */
 public interface AccessManager {
 

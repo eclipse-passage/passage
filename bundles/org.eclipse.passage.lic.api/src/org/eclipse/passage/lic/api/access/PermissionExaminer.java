@@ -18,12 +18,31 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
 /**
- * Examines how {@link FeaturePermission}(s) cover the
- * {@link LicensingRequirement}(s) and produce {@link RestrictionVerdict}(s) to
- * be consumed by {@link RestrictionExecutor}(s)
+ * The contract for a service responsible for examining set of {@link FeaturePermission}s
+ * (runtime-evaluated {@code LicensingCondition}s)
+ * against all {@link LicensingRequirement}s for the same set of features.
+ * Examining reports which {@link LicensingRequirement}s are left unsatisfied.
+ *
+ * @see LicensingRequirement
+ * @see PermissionEmitter
+ * @see FeaturePermission
+ * @see RestrictionVerdict
+ * @since 0.4.0
  */
 public interface PermissionExaminer {
 
+	/**
+	 * Examines how {@link FeaturePermission}s cover the
+	 * {@link LicensingRequirement}s and produce {@link RestrictionVerdict}s to
+	 * be consumed by {@link RestrictionExecutor}s.
+	 * Each {@link RestrictionVerdict} describes uncovered {@link LicensingRequirement}
+	 *
+	 * @param configuration overall configuration
+	 * @param requirements  program licensing requirements to be covered by the {@code permissions}
+	 * @param permissions   feature permissions collected for the appropriate set of features
+	 * @return not null iterable structure of {@link RestrictionVerdict}s begotten by all the {@code requirements} unsatisfied
+	 * by the given {@code permissions}
+	 */
 	Iterable<RestrictionVerdict> examine(LicensingConfiguration configuration,
 			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions);
 
