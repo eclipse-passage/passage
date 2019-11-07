@@ -17,6 +17,8 @@ package org.eclipse.passage.lic.api;
  * <p>
  * It represents the pair <code>{id, version</code>} for the running product.
  * </p>
+ *
+ * @since 0.4.0
  */
 public interface LicensingConfiguration {
 

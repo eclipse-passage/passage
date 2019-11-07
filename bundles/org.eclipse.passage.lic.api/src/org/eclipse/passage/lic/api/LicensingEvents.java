@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.api;
 
 /**
- * 
  * @since 0.4.0
- *
  */
 public final class LicensingEvents {
 
