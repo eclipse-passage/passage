@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 /**
  * Coder and decoder for licensing data, used by {@link ConditionMiner}
  *
+ * @since 0.4.0
  */
 public interface StreamCodec {
 

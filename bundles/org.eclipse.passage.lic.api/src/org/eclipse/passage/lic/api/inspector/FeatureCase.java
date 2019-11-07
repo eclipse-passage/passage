@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.api.inspector;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
+/**
+ * @since 0.4.0
+ */
 public interface FeatureCase extends AutoCloseable {
 
 	Iterable<String> getFeatureIdentifiers();

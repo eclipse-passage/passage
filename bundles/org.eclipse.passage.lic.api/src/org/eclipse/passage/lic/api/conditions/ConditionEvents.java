@@ -16,6 +16,9 @@ import static org.eclipse.passage.lic.api.LicensingEvents.ALL_SUB_TOPICS;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_BASE;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 
+/**
+ * @since 0.4.0
+ */
 public final class ConditionEvents {
 
 	private ConditionEvents() {

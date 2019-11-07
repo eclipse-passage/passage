@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.api.inspector;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * @since 0.4.0
+ */
 public interface HardwareInspector {
 
 	String PROPERTY_OS_FAMILY = "os.family"; //$NON-NLS-1$
