@@ -17,7 +17,8 @@ import java.util.Date;
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
 
 /**
- * Defines the condition to be evaluated by {@link PermissionEmitter} <br/>
+ * Defines the set of terms under which the identified {@code Feature} can be used.
+ * to be evaluated by {@link PermissionEmitter} <br/>
  * Obtained from {@link ConditionMiner}
  *
  * @since 0.5.0
@@ -77,5 +78,4 @@ public interface LicensingCondition {
      * @see #getConditionType
      */
 	String getConditionExpression();
-
 }

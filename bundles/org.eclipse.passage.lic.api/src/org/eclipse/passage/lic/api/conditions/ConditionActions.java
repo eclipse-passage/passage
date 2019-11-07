@@ -16,7 +16,6 @@ package org.eclipse.passage.lic.api.conditions;
  * Actions to be performed with {@link LicensingCondition}(s)
  * 
  * @since 0.5.0
- *
  */
 public class ConditionActions {
 
