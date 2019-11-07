@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 /**
  * The contract for a service responsible for examining set of {@link FeaturePermission}s
  * (runtime-evaluated {@code LicensingCondition}s)
- * against all {@link LicensingRequirement}s for the sane set of features.
+ * against all {@link LicensingRequirement}s for the same set of features.
  * Examining reports which {@link LicensingRequirement}s are left unsatisfied.
  *
  * @see LicensingRequirement
