@@ -62,6 +62,7 @@ public interface LicensingCondition {
 
     /**
      * The type of condition like "time" or "hardware".
+     * Defines the way the condition will be evaluated in a running environment.
      *
      * @return condition type
      */
