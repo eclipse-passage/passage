@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 /**
  * Provides the key required for given configuration
  *
+ * @since 0.4.0
  */
 public interface KeyKeeper {
 	

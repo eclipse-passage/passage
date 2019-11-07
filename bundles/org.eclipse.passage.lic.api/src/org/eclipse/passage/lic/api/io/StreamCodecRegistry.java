@@ -16,6 +16,9 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
+/**
+ * @since 0.4.0
+ */
 public interface StreamCodecRegistry {
 
 	StreamCodec getStreamCodec(LicensingConfiguration configuration);
