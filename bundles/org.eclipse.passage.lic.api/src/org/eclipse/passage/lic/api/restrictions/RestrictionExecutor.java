@@ -16,12 +16,13 @@ import org.eclipse.passage.lic.api.LicensingResult;
 
 /**
  * 
- * Realize the {@link RestrictionVerdict}(s) for the licensed feature:
+ * Implement the {@link RestrictionVerdict}(s) for the licensed feature:
  * <li>early exit from command line tools with notice</li>
  * <li>blocking dialogs for UI application</li>
  * <li>filtering out the UI</li>
  * <li>blocking of bundles using OSGi level</li>
  *
+ * @since 0.4.0
  */
 public interface RestrictionExecutor {
 

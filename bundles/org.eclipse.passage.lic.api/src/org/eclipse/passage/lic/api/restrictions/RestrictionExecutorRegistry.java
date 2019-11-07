@@ -12,6 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.restrictions;
 
+/**
+ * Library of {@link RestrictionExecutor}s registered at a program runtime.
+ *
+ * @see RestrictionExecutor
+ * @since 0.4.0
+ */
 public interface RestrictionExecutorRegistry {
 
 	String getDefaultRestrictionLevelIdentifier();
