@@ -14,15 +14,24 @@ package org.eclipse.passage.lic.api.requirements;
 
 /**
  * The usage constraint defined for specific feature identifier with given
- * version. Obtained from {@link RequirementResolver}
+ * version. It is declared at a program development phase during creation of a feature under licensing.
+ * Accessed at the program runtime by {@link RequirementResolver}s.
  *
+ * @see RequirementResolver
+ * @since 0.4.0
  */
 public interface LicensingRequirement {
 
 	String getFeatureProvider();
-	
+
+	/**
+	 * Name of the feature under requirement
+	 */
 	String getFeatureName();
-	
+
+	/**
+	 * Version of the feature under requirement
+	 */
 	String getFeatureVersion();
 	
 	String getFeatureIdentifier();
@@ -36,6 +45,13 @@ public interface LicensingRequirement {
 	 */
 	String getRestrictionLevel();
 
+	/**
+	 * The original physical source under the program installation,
+	 * where this requirement has been read from by some {@code RequirementResolver}.
+	 *
+	 * @see RequirementResolver
+	 * @return physical source (like file) defined by a program under protection
+	 * */
 	Object getRequirementSource();
 	
 }

@@ -15,18 +15,28 @@ package org.eclipse.passage.lic.api.requirements;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 /**
- * 
- * Resolves the given configuration and produces
- * {@link LicensingRequirement}(s).
+ * <p>General contract for a service capable to obtain (resolve) {@link LicensingRequirement}s
+ * from a particular installation of a program under licensing. </p>
  *
+ * <p>During a program development some features are declared that the ones under licensing.
+ * Such a declarations can be reflected in a type of physical sources under a particular program installation.
+ * Example sources are <i>manifest.mf</i>, <i>OSGI component manifest</i>. </p>
+ *
+ * <p>At the program runtime a {@code RequirementResolver} reads particular type of physical sources and produce
+ * set of {@link LicensingRequirement}s that are defined there.</p>
+ *
+ * @see LicensingRequirement
+ * @since 0.4.0
  */
 public interface RequirementResolver {
 
-	/**
-	 * 
-	 * @param configuration
-	 * @return
-	 */
-	Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration);
+    /**
+     * Having access to a particular type of physical sources,
+     * reads them for {@link LicensingRequirement} declared there.
+     *
+     * @param configuration general configuration
+     * @return resolved set of {@link LicensingRequirement}s, not nullable
+     */
+    Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration);
 
 }
