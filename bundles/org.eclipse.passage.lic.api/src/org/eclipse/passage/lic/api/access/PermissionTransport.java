@@ -18,6 +18,8 @@ import java.io.OutputStream;
 
 /**
  * Transport interface for {@link FeaturePermission}(s)
+ *
+ * @since 0.4.0
  */
 public interface PermissionTransport {
 

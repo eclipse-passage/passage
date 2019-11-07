@@ -18,17 +18,37 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 /**
- * Permission to use the component of given name and version range obtained from
- * {@link PermissionEmitter} as a result of evaluation for
- * {@link LicensingCondition}
+ * Permission expresses runtime state of a satisfied {@link LicensingCondition}:
+ * all terms that {@link LicensingCondition} establishes are fulfilled and the
+ * permission to use the feature of given name and version range is issues by
+ * {@link PermissionEmitter}.
+ * <p>
+ * In other words, {@link PermissionEmitter} <i>evaluates</i> a {@link LicensingCondition} and <i>emits or not</i>
+ * corresponding {@link FeaturePermission}.
+ *
+ * @since 0.4.0
  */
 public interface FeaturePermission {
 
 	LicensingConfiguration getLicensingConfiguration();
 
+    /**
+     * The original {@code LicensingCondition} for which this {@link FeaturePermission} was emitted.
+     */
 	LicensingCondition getLicensingCondition();
 
+    /**
+     * In general case a {@link FeaturePermission} is time-limited.
+     * {@code LeaseDate} is timestamp of the permission emission.
+     *
+     * @see #getExpireDate()
+     */
 	Date getLeaseDate();
 
+    /**
+     * The date of the permission expiration. It is no longer valid after this date.
+     *
+     * @see #getLeaseDate()
+     */
 	Date getExpireDate();
 }
