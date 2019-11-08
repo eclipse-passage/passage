@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.api.LicensingResult;
 public interface RestrictionExecutor {
 
 	/**
-	 * <p>Applies the given {@link RestrictionVerdict}s for feature under licencing
+	 * <p>Applies the given {@link RestrictionVerdict}s for feature under licensing
 	 * to the current runtime of the program.</p>
 	 *
 	 * <p>Is capable to affect the program runtime environment the following ways:</p>
@@ -36,7 +36,7 @@ public interface RestrictionExecutor {
 	 *    <li>block of bundles using OSGi level</li>
 	 * </ol>
 	 *
-	 * @param verdicts restriction instructions gained at the pagse of <i>permission examining</i> phase of <i>access cycle</i>
+	 * @param verdicts restriction instructions gained at the <i>permission examining</i> phase of <i>access cycle</i>
 	 * @return the final result summary of the current <i>access cycle</i>
 	 *
 	 * @since 0.4.0
