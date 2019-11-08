@@ -20,12 +20,24 @@ package org.eclipse.passage.lic.api.restrictions;
  */
 public interface RestrictionExecutorRegistry {
 
+	/**
+	 * @since 0.4.0
+	 */
 	String getDefaultRestrictionLevelIdentifier();
 
+	/**
+	 * @since 0.4.0
+	 */
 	Iterable<String> getRestrictionLevelIdentifiers();
 
+	/**
+	 * @since 0.4.0
+	 */
 	RestrictionLevelDescriptor getRestrictionLevel(String identifier);
 
+	/**
+	 * @since 0.4.0
+	 */
 	Iterable<? extends RestrictionLevelDescriptor> getRestrictionLevels();
 
 }

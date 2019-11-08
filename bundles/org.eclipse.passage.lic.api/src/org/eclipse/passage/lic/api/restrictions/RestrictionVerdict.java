@@ -21,12 +21,15 @@ import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
  * The data required to execute the restriction, produced by
  * {@link PermissionExaminer} and consumed by {@link RestrictionExecutor}
  *
+ * @see RestrictionExecutor
  * @since 0.4.0
  */
 public interface RestrictionVerdict {
 
 	/**
 	 * General configuration
+	 *
+	 * @since 0.4.0
 	 */
 	LicensingConfiguration getLicensingConfiguration();
 
@@ -37,14 +40,22 @@ public interface RestrictionVerdict {
 	 * @see LicensingRequirement
 	 * @see org.eclipse.passage.lic.api.access.FeaturePermission
 	 * @see org.eclipse.passage.lic.api.access.PermissionExaminer
+	 * @since 0.4.0
 	 */
 	LicensingRequirement getLicensingRequirement();
 
 	/**
 	 * Level of restriction severity, described freely, like "warn" or "fatal"
+	 *
+	 * @since 0.4.0
 	 */
 	String getRestrictionLevel();
 
+	/**
+	 * Encoded reason of restriction, required for {@link RestrictionExecutor}
+	 *
+	 * @since 0.4.0
+	 */
 	int getRestrictionCode();
 
 }
