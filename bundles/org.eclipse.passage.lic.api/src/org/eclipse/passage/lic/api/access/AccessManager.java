@@ -19,24 +19,29 @@ import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
 /**
- * The main entry point to the licensing
+ * The main entry point to the licensing.
  *
  * @since 0.4.0
  */
 public interface AccessManager {
 
 	/**
-	 * Aggregated method to:
-	 * <li>resolve {@link LicensingRequirement}(s)</li>
-	 * <li>obtain {@link LicensingCondition}(s)</li>
-	 * <li>evaluate {@link LicensingCondition}(s) to emit
-	 * {@link FeaturePermission}(s)</li>
-	 * <li>examine requirements and permissions to compose
-	 * {@link RestrictionVerdict}(s)</li>
-	 * <li>execute {@link RestrictionVerdict}(s) to realize restrictions</li>
-	 * 
-	 * @param configuration
+	 * <p>Aggregating method for the full <i>access cycle</i>, which consists of the following steps:</p>
+	 * <ol><li>resolve {@link LicensingRequirement}s</li>
+	 *   <li>obtain {@link LicensingCondition}s</li>
+	 *   <li>evaluate {@link LicensingCondition}s to emit {@link FeaturePermission}s</li>
+	 *   <li>examine requirements and permissions to compose {@link RestrictionVerdict}s</li>
+	 *   <li>execute {@link RestrictionVerdict}s to realize restrictions</li>
+	 * </ol>
+	 *
+	 * @param configuration - general configuration for the licensing process
 	 * @return the composite result of execution
+	 * @see #resolveRequirements
+	 * @see #extractConditions
+	 * @see #evaluateConditions
+	 * @see #evaluateConditions
+	 * @see #examinePermissons
+	 * @see #executeRestrictions
 	 */
 	LicensingResult executeAccessRestrictions(LicensingConfiguration configuration);
 

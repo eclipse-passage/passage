@@ -17,12 +17,12 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 /**
- * Interface of a service responsible for {@link LicensingCondition}s evaluation against the current program runtime.
- * As a result of evaluation, for a {@link LicensingCondition} a {@code FeaturePermission} can be emitted,
- * in case all the {@link LicensingCondition}'s terms are met at the current program runtime.
+ * Interface of a service responsible for the third step of <i> access cycle</i>: condition evaluation.
+ * According to the contract, a server must be able to evaluate given {@link LicensingCondition}s against the current program runtime.
+ * As a result of evaluation, for a {@link LicensingCondition} a {@link FeaturePermission} must be emitted
+ * in the case all of the {@link LicensingCondition}'s terms are met at the current program runtime.
  *
- * @see LicensingCondition
- * @see FeaturePermission
+ * @see org.eclipse.passage.lic.api.conditions.ConditionMiner
  * @since 0.4.0
  */
 public interface PermissionEmitter {

@@ -17,20 +17,20 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Transport interface for {@link FeaturePermission}(s)
+ * Transport interface for {@link FeaturePermission}s
  *
  * @since 0.4.0
  */
 public interface PermissionTransport {
 
 	/**
-	 * Reads {@link FeaturePermission}(s) from the given {@link InputStream}. 
+	 * Reads {@link FeaturePermission}s from the given {@link InputStream}. 
 	 *
 	 */
 	Iterable<FeaturePermission> readPermissions(InputStream input) throws IOException;
 
 	/**
-	 * Writes {@link FeaturePermission}(s) from the given {@link OutputStream}. 
+	 * Writes {@link FeaturePermission}s from the given {@link OutputStream}. 
 	 *
 	 */
 	void writePermissions(Iterable<FeaturePermission> conditions, OutputStream output) throws IOException;
