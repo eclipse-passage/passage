@@ -14,7 +14,8 @@
 /**
  * <h1>Access Management</h1>
  * <h2> In a sentence</h2> <p>
- * AM serves the only purpose: a program under licensing, been run, can ask AM,
+ * {@link org.eclipse.passage.lic.api.access.AccessManager} serves the only purpose:
+ * a program under licensing, been run, can ask AM,
  * if it is allowed to use a particular feature <i>now</i>,
  * and the answer will be more or less simple <i>yes</i> or <i>no</i>.
  * </p>
@@ -25,41 +26,47 @@
  * Here Passage invokes AM to define, can the user exploit the feature or not.
  * </p>
  *
- * <ol>
- * <li>AM uses {@code Requirement}s to define at runtime, which <b>feature</b> in a <b>program</b> is under licensing.
+ * <ol> The whole process from <i>can the user use the feature</i> query to an answer is called <i>access cycle</i>,
+ * and it consists of 5 steps.
+ * <li><b>requirements resolution</b><br/>
+ * AM uses {@code Requirement}s to define at runtime, which <b>feature</b> in a <b>program</b> is under licensing.
  * These {@code Requirement}s are given by the precise installation of a <b>program under licensing</b>.
  * So the first thing AM does is finding out, is the actual program installation possesses any
  * <i>protect this feature</i> instructions in the first place.
  * To do so, AM appeals to all registered {@code RequirementResolver}s and gets a set of {@code Requirement}s
  * for further analysis</li>
  *
- * <li>Then AM needs to figure out, what the <b>license</b> that the <b>user</b> has, allows to do.
+ * <li><b>conditions mining</b><br/>
+ * Then AM needs to figure out, what the <b>license</b> that the <b>user</b> has, allows to do.
  * AM goes to each of {@code ConditionMiner}s it have at ones disposal
  * and gets set of {@code LicensingCondition}s.
  * {@code ConditionMiner}s look for them in <i>the license</i> files, on a <i>floating server</i> or mining sources of other types.
  * </li>
  *
- * <li>These {@code Condition}s are static definitions of which functions can be executed under which terms.
+ * <li><b>conditions evaluation</b><br/>
+ * These {@code Condition}s are static definitions of which functions can be executed under which terms.
  * At a <b>program</b> runtime AM <i>evaluates</i> each {@code Condition} to a precise notion of
  * has this {@code Condition} been met at the <b>program</b> runtime or not.
  * The fact <i>condition terms are currently met</i> is expressed by a time-limited {@code Permission}.
  * So, at this step, for each {@code Condition} AM asks all {@code PermissionEmitter}s if someone can issue
  * a {@code Permission} for this {@code Condition}. </li>
  *
- * <li>At this point AM has both
- * actual {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s
- * and valid {@link org.eclipse.passage.lic.api.access.FeaturePermission}s.
- * This information is enough to make a decision about the start-up question: can <b>the user</b> access to <b>the feature</b> <i>now</i>.
- * Here {@link org.eclipse.passage.lic.api.access.PermissionExaminer} comes to play: it goes through
- * {@link org.eclipse.passage.lic.api.access.FeaturePermission}s and if it satisfies any of
- * {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}, the latter one is considered satisfied and does not participate in further actions.
- * All unsatisfied {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s left at the and of the work, are translated to a set of
- * {@link org.eclipse.passage.lic.api.restrictions.RestrictionVerdict}s. </li>
+ * <li><b>permission examining</b><br/>
+ * At this point AM has both actual {@code LicensingRequirement}s and valid {@code FeaturePermission}s.
+ * This information is enough to make a decision about the start-up question:
+ * can <b>the user</b> access to <b>the feature</b> <i>now</i>. <br/>
+ * Here {@code PermissionExaminer} comes to play: it goes through
+ * {@code FeaturePermission}s and checks if any of them satisfies some of {@code LicensingRequirement},
+ * and then this latter ones are considered satisfied and do not participate in further actions.
+ * All unsatisfied {@code LicensingRequirement}s left at the end of the work, are translated to a set of
+ * {@code RestrictionVerdict}s. </li>
  *
  *
- * <li>If here AM has an empty set of {@link org.eclipse.passage.lic.api.restrictions.RestrictionVerdict}s (all {@link org.eclipse.passage.lic.api.requirements.LicensingRequirement}s are satisfied),
- * then <b>the user</b> can access <b>the feature</b>. Otherwise, <i>some actions must be taken</i>, and each verdict describes such an action.
- * {@link org.eclipse.passage.lic.api.restrictions.RestrictionExecutor} is the service responsible for these actions execution:
+ * <li><b>restriction execution</b><br/>
+ * If here AM has an empty set of {@code RestrictionVerdict}s (all {@code LicensingRequirement}s are satisfied),
+ * then the <b>user</b> can access the <b>feature</b>. Otherwise, <i>some actions must be taken</i>,
+ * and each {@code RestrictionVerdict} describes such an action.
+ * {@code RestrictionExecutor} is the service responsible for these actions execution:
  * if can popup a warning, expose license dialog or even shut the whole program down. </li>
  * </ol>
  * <p>
@@ -84,8 +91,8 @@
  * registered properly at the <b>program</b> runtime, provides Requirements it is responsible for.
  * Each {@code Resolver} is designed to read a particular type of physical sources.
  * For example MANIFEST.MF, OSGi components manifest or other forms of annotations. </p>
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * <br/><h3>2. Conditions</h3>
  * <br/><h4>Where do they come from?</h4>
  * <p>{@code Condition}s are mined from a license information of sorts, like license file or floating server.
@@ -106,8 +113,8 @@
  * Each {@code Miner} quarries {@code Condition}s from it's particular source according to it's own logic.
  * When AM collects @{code Condition}s, it queries all registered {@code Miner}s and aggregate all gained results.
  * </p>
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * <br/><h3>3. Permissions</h3>
  * <br/><h4>Where do they come from?</h4>
  * <p>{@code Permission} are created by Passage at runtime as a result of a {@code Condition} <i>evaluation</i>.
@@ -126,21 +133,39 @@
  * <p>
  * <p>
  * <br/><h3>4. Permission examining</h3>
- * <br/><h4>Where do they come from?</h4>
- * <p></p>
- * <br/><h4>Where do they come from?</h4>
- * <p></p>
- * <br/><h4>>How to get them?</h4>
- * <p></p>
+ * <br/><h4>Who does the examining?</h4>
+ * <p>The process of examining must be implemented by an instance of {@link org.eclipse.passage.lic.api.access.PermissionExaminer},
+ * registered in the system properly. </p>
+ * <br/><h4>How the examining is performed?</h4>
+ * <p>{@code PermissionExaminer} takes the {@code requirements} in one hand and the {@code permissions} in the other one
+ * and carefully checks those {@code requirement}s one by one, if each one is satisfied by the given set of {@code permissions}.</p>
+ * <p>A fully satisfied {@code requirement} falls out of the further consideration.
+ * Thus, at the end of the day, all unsatisfied {@code requirement}s are found.
+ * For each of those a {@link org.eclipse.passage.lic.api.restrictions.RestrictionVerdict} is created.</p>
+ * <br/><h4>What is the result of the examining?</h4>
+ * <p>A {@code restriction} describes exhaustively the case of license insufficiency.
+ * Examining ends up with the set of such {@code restriction}s, empty in the perfect case. </p>
+ * <p>Roughly speaking, the examine says if the given {@code permissions} suffice to cover the given {@code requirements} or not.</p>
  * <p>
  * <p>
  * <br/><h3>4. Restriction execution</h3>
- * <br/><h4>Where do they come from?</h4>
- * <p></p>
- * <br/><h4>Where do they come from?</h4>
- * <p></p>
- * <br/><h4>>How to get them?</h4>
- * <p></p>
+ * <br/><h4>Who does the execution?</h4>
+ * <p>There can be several instances of {@link org.eclipse.passage.lic.api.restrictions.RestrictionExecutor} interface. </p>
+ * <br/><h4>How the execution is performed?</h4>
+ * <p>For a single {@code restriction} each registered {@code executor} is involved.
+ * There should be no meta-information analysis before asking an {@code executor} to do it's work.
+ * Some {@code executor}s can appear to be ok with a particular {@code restriction},
+ * others (potentially several) can have something to do about it.
+ * Nevertheless, each registered {@code executor} will face each {@code restriction}.</p>
+ * <p>Such a behaviour is designed to prevent avoiding execution by registering a phony "i'm totally ok"-executor. </p>
+ * <br/><h4>What is the result of the execution?</h4>
+ * <p>{@code Executor} chose a behaviour according to the {@code restriction level} of the {@code restriction} under processing.</p>
+ * <ul> This can be, for example, one of the following
+ *     <li>{@code info} means an information message somehow will be exposed to the <b>user</b> without pausing the current user's workflow</li>
+ *     <li>{@code warn} will pause the user workflow and explain license insufficiency, for instance by a license dialog </li>
+ *     <li>{@code error} totally prohibits to use the <b>feature</b> under licensing, so the current workflow will be stopped</li>
+ *     <li>{@code fatal} prescribes to destroy the whole environment, close the <b>program</b></li>
+ * </ul>
  *
  * @since 0.4.0
  */
