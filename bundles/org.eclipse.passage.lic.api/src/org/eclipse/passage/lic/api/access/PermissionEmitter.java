@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
 /**
  * Interface of a service responsible for the third step of <i> access cycle</i>: condition evaluation.
- * According to the contract, a server must be able to evaluate given {@link LicensingCondition}s against the current program runtime.
+ * According to the contract, a service must be able to evaluate given {@link LicensingCondition}s against the current program runtime.
  * As a result of evaluation, for a {@link LicensingCondition} a {@link FeaturePermission} must be emitted
  * in the case all of the {@link LicensingCondition}'s terms are met at the current program runtime.
  *
@@ -27,9 +27,10 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
  */
 public interface PermissionEmitter {
 	/**
-	 * Evaluates the collection of {@link LicensingCondition} to emit a collection
-	 * of {@link FeaturePermission}
+	 * Evaluates the collection of {@link LicensingCondition}s to emit a collection  of {@link FeaturePermission}.
 	 *
+	 * @param configuration general configuration for the whole <i>access cycle</i>
+	 * @param conditions source conditions to be evaluated against the current program runtime
 	 */
 	Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
 			Iterable<LicensingCondition> conditions) throws LicensingException;
