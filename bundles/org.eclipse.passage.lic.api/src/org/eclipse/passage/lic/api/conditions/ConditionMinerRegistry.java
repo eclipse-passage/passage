@@ -31,6 +31,7 @@ public interface ConditionMinerRegistry {
      *
      * @return {@link Iterable} aggregate of {@link ConditionMiner}s. Can be empty. Cannot be {@code null}
      * @see #registerConditionMiner(ConditionMiner, Map)
+     * @since 0.4.0
      */
     Iterable<ConditionMiner> getConditionMiners();
 
@@ -39,6 +40,7 @@ public interface ConditionMinerRegistry {
      *
      * @param conditionMiner miner to be registered
      * @param properties     - reserved for metadata
+     * @since 0.4.0
      */
     void registerConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
 
@@ -49,11 +51,14 @@ public interface ConditionMinerRegistry {
      * @param conditionMiner the miner to be forgotten
      * @param properties     reserved for metadata
      * @see #getConditionMiners
+     * @since 0.4.0
      */
     void unregisterConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
 
     /**
      * To be extracted to a separate service and deprecated here: #552752 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=552752)
+     *
+     * @since 0.4.0
      */
     LicensingResult importConditions(String source, LicensingConfiguration configuration);
 
@@ -63,6 +68,7 @@ public interface ConditionMinerRegistry {
      * To be extracted from the interface and deprecated here: #552753 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=552753)
      *
      * @param miner to be examined for a target
+     * @since 0.4.0
      */
     String getConditionMinerTarget(ConditionMiner miner);
 }

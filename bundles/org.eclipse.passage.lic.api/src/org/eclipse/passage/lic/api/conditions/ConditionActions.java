@@ -26,16 +26,22 @@ public class ConditionActions {
 	/**
 	 * Acquire the {@link LicensingCondition} for the future use, the usage needs to
 	 * be periodically confirmed with {@link #KEEP} action
+	 *
+	 * @since 0.5.0
 	 */
 	public static final String ACQUIRE = "acquire"; //$NON-NLS-1$
 
 	/**
 	 * Keep the {@link LicensingCondition} for the usage
+	 *
+	 * @since 0.5.0
 	 */
 	public static final String KEEP = "keep"; //$NON-NLS-1$
 
 	/**
 	 * Release the {@link LicensingCondition} to be available for others
+	 *
+	 * @since 0.5.0
 	 */
 	public static final String RELEASE = "release"; //$NON-NLS-1$
 

@@ -26,12 +26,14 @@ public interface ConditionTransport {
 	/**
 	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}. 
 	 *
+	 * @since 0.4.0
 	 */
 	Iterable<LicensingCondition> readConditions(InputStream input) throws IOException;
 
 	/**
 	 * Writes {@link LicensingCondition}(s) from the given {@link OutputStream}. 
 	 *
+	 * @since 0.4.0
 	 */
 	void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output) throws IOException;
 

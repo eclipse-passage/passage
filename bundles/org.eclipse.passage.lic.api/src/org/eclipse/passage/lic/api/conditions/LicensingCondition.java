@@ -28,6 +28,7 @@ public interface LicensingCondition {
      * Returns unique identifier of a feature under licensing.
      *
      * @return feature identifier
+     * @since 0.5.0
      */
 	String getFeatureIdentifier();
 
@@ -35,6 +36,7 @@ public interface LicensingCondition {
      * Returns descriptor of the feature version allowed by this licensing condition.
      *
      * @return version descriptor
+     * @since 0.5.0
      */
 	String getMatchVersion();
 
@@ -42,6 +44,7 @@ public interface LicensingCondition {
      * Returns rule of version matching, like "perfect match" or "equal or greater".
      *
      * @return match rule
+     * @since 0.5.0
      */
 	String getMatchRule();
 
@@ -50,6 +53,7 @@ public interface LicensingCondition {
      * the value of its <code>"validFrom"</code> attribute.
      *
      * @return the valid from
+     * @since 0.5.0
      */
 	Date getValidFrom();
 
@@ -58,6 +62,7 @@ public interface LicensingCondition {
      * value of its <code>"validUntil"</code> attribute.
      *
      * @return the valid until
+     * @since 0.5.0
      */
 	Date getValidUntil();
 
@@ -66,6 +71,7 @@ public interface LicensingCondition {
      * Defines the way the condition will be evaluated in a running environment.
      *
      * @return condition type
+     * @since 0.5.0
      */
 	String getConditionType();
 
@@ -76,6 +82,7 @@ public interface LicensingCondition {
      * @return enlistment of additional information of this licencing condition
      * @see PermissionEmitter
      * @see #getConditionType
+     * @since 0.5.0
      */
 	String getConditionExpression();
 }
