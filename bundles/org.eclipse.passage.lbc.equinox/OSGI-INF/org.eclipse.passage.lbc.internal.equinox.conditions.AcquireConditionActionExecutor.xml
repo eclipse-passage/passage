@@ -5,6 +5,6 @@
    <service>
       <provide interface="org.eclipse.passage.lbc.api.BackendActionExecutor"/>
    </service>
-   <reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionMiner" name="ConditionMiner" unbind="unbindConditionMiner"/>
-   <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionTransport" name="ConditionTransport" unbind="unbindConditionTransport"/>
+   <reference bind="bindConditionMiner" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionMiner" name="ConditionMiner" policy="dynamic" unbind="unbindConditionMiner"/>
+   <reference bind="bindConditionTransport" cardinality="0..n" interface="org.eclipse.passage.lic.api.conditions.ConditionTransport" name="ConditionTransport" policy="dynamic" unbind="unbindConditionTransport"/>
 </scr:component>
