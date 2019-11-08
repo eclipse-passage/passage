@@ -16,7 +16,8 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 /**
  * <p>General contract for a service capable to obtain (resolve) {@link LicensingRequirement}s
- * from a particular installation of a program under licensing. </p>
+ * from a particular installation of a program under licensing.
+ * The contract serves the <i>requirements resolution phase</i> of <i>access cycle</i>. </p>
  *
  * <p>During a program development some features are declared that the ones under licensing.
  * Such a declarations can be reflected in a type of physical sources under a particular program installation.
@@ -26,6 +27,7 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
  * set of {@link LicensingRequirement}s that are defined there.</p>
  *
  * @see LicensingRequirement
+ * @see org.eclipse.passage.lic.api
  * @since 0.4.0
  */
 public interface RequirementResolver {
@@ -36,6 +38,7 @@ public interface RequirementResolver {
      *
      * @param configuration general configuration
      * @return resolved set of {@link LicensingRequirement}s, not nullable
+     * @since 0.4.0
      */
     Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration);
 

@@ -26,14 +26,23 @@ public interface LicensingRequirement {
 
 	/**
 	 * Name of the feature under requirement
+	 *
+	 * @since 0.4.0
 	 */
 	String getFeatureName();
 
 	/**
 	 * Version of the feature under requirement
+	 *
+	 * @since 0.4.0
 	 */
 	String getFeatureVersion();
-	
+
+	/**
+	 * Id of the feature under licencing
+	 *
+	 * @since 0.4.0
+	 * */
 	String getFeatureIdentifier();
 
 	/**
@@ -42,6 +51,7 @@ public interface LicensingRequirement {
 	 * <code>RestrictionExaminer</code>>
 	 * 
 	 * @return restriction level, <code>warn</code> by default
+	 * @since 0.4.0
 	 */
 	String getRestrictionLevel();
 
@@ -51,6 +61,7 @@ public interface LicensingRequirement {
 	 *
 	 * @see RequirementResolver
 	 * @return physical source (like file) defined by a program under protection
+	 * @since 0.4.0
 	 * */
 	Object getRequirementSource();
 	
