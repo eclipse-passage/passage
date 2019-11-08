@@ -32,6 +32,7 @@ public interface ConditionTransportRegistry {
      * Returns an aggregate of all registered {@link ConditionTransport}s.
      *
      * @return all registered {@link ConditionTransport}s.
+     * @since 0.4.0
      */
 	Iterable<ConditionTransport> getConditionTransports();
 
@@ -44,6 +45,7 @@ public interface ConditionTransportRegistry {
      * @param contentType string representation of content type (like <i>application/json</i> or <i>application/xmk</i>)
      * @return a {@link ConditionTransport} registered for the given {@code contentType}, if any, and {@code null} otherwise.
      * @see #registerConditionTransport(ConditionTransport, Map)
+     * @since 0.4.0
      */
 	ConditionTransport getConditionTransportForContentType(String contentType);
 
@@ -52,6 +54,7 @@ public interface ConditionTransportRegistry {
      *
      * @param transport  a transport to be registered
      * @param properties the transport properties, like {@link ConditionMiner}s
+     * @since 0.4.0
      */
 	void registerConditionTransport(ConditionTransport transport, Map<String, Object> properties);
 
@@ -60,6 +63,7 @@ public interface ConditionTransportRegistry {
      *
      * @param transport  a transport to be unregistered
      * @param properties the transport properties
+     * @since 0.4.0
      */
 	void unregisterConditionTransport(ConditionTransport transport, Map<String, Object> properties);
 
