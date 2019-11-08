@@ -23,14 +23,15 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
  * @since 0.4.0
  */
 public interface KeyKeeper {
-	
+
 	/**
-	 * 
-	 * @param configuration
+	 * Create a stream for key reading
+	 *
+	 * @param configuration general licensing configuration of a running product
 	 * @return the stream to read the key
-	 * @throws IOException
+	 * @throws IOException in case of any file system operation misbehaviour
+	 * @since 0.4.0
 	 */
-	
 	InputStream openKeyStream(LicensingConfiguration configuration) throws IOException;
 
 }
