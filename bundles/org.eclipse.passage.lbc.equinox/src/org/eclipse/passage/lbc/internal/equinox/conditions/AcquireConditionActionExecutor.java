@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,7 +66,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 		}
 		try {
 			String productId = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
-			String productVersion = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
+			String productVersion = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_VERSION);
 			LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
 
 			Collection<LicensingCondition> resultConditions = new ArrayList<>();
@@ -77,7 +78,8 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
 			ConditionTransport transport = mapCondition2Transport.get(contentType);
 			if (transport == null) {
-				String error = NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_e_transport_not_defined, contentType);
+				String error = NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_e_transport_not_defined,
+						contentType);
 				LOG.error(error);
 				return LicensingResults.createError(error, source);
 			}
@@ -93,7 +95,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 		}
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	public void bindConditionMiner(ConditionMiner conditionMiner) {
 		this.licenseConditionMiners.add(conditionMiner);
 	}
@@ -102,7 +104,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 		this.licenseConditionMiners.remove(conditionMiner);
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
 		String conditionType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
 		mapCondition2Transport.put(conditionType, transport);
