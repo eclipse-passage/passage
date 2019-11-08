@@ -13,6 +13,9 @@
 package org.eclipse.passage.lic.api;
 
 /**
+ *
+ * Codes of licensing events
+ *
  * @since 0.4.0
  */
 public final class LicensingEvents {
@@ -21,25 +24,43 @@ public final class LicensingEvents {
 	public static final String PROPERTY_SOURCE = "org.eclipse.passage.lic.api.event.source"; //$NON-NLS-1$
 	public static final String PROPERTY_DATA = "org.eclipse.passage.lic.api.event.data"; //$NON-NLS-1$
 	public static final String PROPERTY_MESSAGE = "org.eclipse.passage.lic.api.event.message"; //$NON-NLS-1$
+
+	private LicensingEvents() {
+		// block
+	}
+
 	/**
 	 * Segment for events of type <code>create</code>
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String CREATE = "create"; //$NON-NLS-1$
+
 	/**
 	 * Segment for events of type <code>read</code>
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String READ = "read"; //$NON-NLS-1$
+
 	/**
 	 * Segment for events of type <code>update</code>
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String UPDATE = "update"; //$NON-NLS-1$
+
 	/**
 	 * Segment for events of type <code>delete</code>
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String DELETE = "delete"; //$NON-NLS-1$
 
 	/**
 	 * Topic separator character
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC_SEP = "/"; //$NON-NLS-1$
 
@@ -50,11 +71,11 @@ public final class LicensingEvents {
 
 	/**
 	 * Base name of all Licensing events
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC_BASE = "org/eclipse/passage/lic/api"; //$NON-NLS-1$
 
-	private LicensingEvents() {
-		// block
-	}
+
 
 }
