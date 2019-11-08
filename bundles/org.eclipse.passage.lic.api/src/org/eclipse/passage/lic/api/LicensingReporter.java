@@ -23,6 +23,7 @@ public interface LicensingReporter {
 	 * Log the result
 	 * 
 	 * @param result
+	 * @since 0.4.0
 	 */
 	void logResult(LicensingResult result);
 
@@ -30,6 +31,7 @@ public interface LicensingReporter {
 	 * Post the result (asynchronous delivery)
 	 * 
 	 * @param result
+	 * @since 0.4.0
 	 */
 	void postResult(LicensingResult result);
 
@@ -37,6 +39,7 @@ public interface LicensingReporter {
 	 * Send the result (synchronous delivery)
 	 * 
 	 * @param result
+	 * @since 0.4.0
 	 */
 	void sendResult(LicensingResult result);
 

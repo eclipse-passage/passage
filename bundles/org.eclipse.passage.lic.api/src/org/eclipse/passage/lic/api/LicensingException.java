@@ -13,14 +13,11 @@
 package org.eclipse.passage.lic.api;
 
 /**
- * A checked exception representing a failure.
- * <p>
- * Licensing exceptions contain a result object describing the cause of the
- * exception.
- * </p>
+ * <p>A checked exception representing a failure.</p>
+ * <p> Licensing exceptions contain a result object describing the cause of the exception. </p>
  * 
- * @since 0.4.0
  * @see LicensingResult
+ * @since 0.4.0
  */
 public class LicensingException extends Exception {
 
@@ -28,11 +25,17 @@ public class LicensingException extends Exception {
 
 	private LicensingResult diagnostic;
 
+	/**
+	 * @since 0.4.0
+	 */
 	public LicensingException(LicensingResult result) {
 		super(result.getMessage(), result.getException());
 		this.diagnostic = result;
 	}
 
+	/**
+	 * @since 0.4.0
+	 */
 	public final LicensingResult getResult() {
 		return diagnostic;
 	}
