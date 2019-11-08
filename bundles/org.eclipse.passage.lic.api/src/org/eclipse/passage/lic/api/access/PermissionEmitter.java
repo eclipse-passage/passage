@@ -31,6 +31,7 @@ public interface PermissionEmitter {
 	 *
 	 * @param configuration general configuration for the whole <i>access cycle</i>
 	 * @param conditions source conditions to be evaluated against the current program runtime
+	 * @since 0.4.0
 	 */
 	Iterable<FeaturePermission> emitPermissions(LicensingConfiguration configuration,
 			Iterable<LicensingCondition> conditions) throws LicensingException;

@@ -31,31 +31,37 @@ public final class AccessEvents {
 
 	/**
 	 * Base name for all access management cycle events
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "AccessEvents"; //$NON-NLS-1$
 
 	/**
 	 * Name for all access management events
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
 
 	/**
 	 * Sent when {@link LicensingCondition}(s) are extracted
+	 * @since 0.4.0
 	 */
 	public static final String CONDITIONS_EXTRACTED = TOPIC + TOPIC_SEP + "conditionsExtracted"; //$NON-NLS-1$
 
 	/**
 	 * Sent when {@link LicensingCondition}(s) are evaluated
+	 * @since 0.4.0
 	 */
 	public static final String CONDITIONS_EVALUATED = TOPIC + TOPIC_SEP + "conditionsEvaluated"; //$NON-NLS-1$
 
 	/**
 	 * Sent when {@link FeaturePermission}(s) are examined
+	 * @since 0.4.0
 	 */
 	public static final String PERMISSIONS_EXAMINED = TOPIC + TOPIC_SEP + "permissionsExamined"; //$NON-NLS-1$
 
 	/**
 	 * Sent when restrictions are executed
+	 * @since 0.4.0
 	 */
 	public static final String RESTRICTIONS_EXECUTED = TOPIC + TOPIC_SEP + "restrictionsExecuted"; //$NON-NLS-1$
 

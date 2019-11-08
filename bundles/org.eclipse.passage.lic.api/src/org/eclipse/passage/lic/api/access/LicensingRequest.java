@@ -28,6 +28,7 @@ public interface LicensingRequest {
 	 * <code>"identifier"</code> attribute.
 	 *
 	 * @return the identifier
+	 * @since 0.5.0
 	 */
 	String getIdentifier();
 
@@ -36,6 +37,7 @@ public interface LicensingRequest {
 	 * <code>"creationDate"</code> attribute.
 	 *
 	 * @return the creation date
+	 * @since 0.5.0
 	 */
 	Date getCreationDate();
 
@@ -44,6 +46,7 @@ public interface LicensingRequest {
 	 * the value of its <code>"userIdentifier"</code> attribute.
 	 *
 	 * @return the user identifier
+	 * @since 0.5.0
 	 */
 	String getUserIdentifier();
 
@@ -52,6 +55,7 @@ public interface LicensingRequest {
 	 * the value of its <code>"userFullName"</code> attribute.
 	 *
 	 * @return the user full name
+	 * @since 0.5.0
 	 */
 	String getUserFullName();
 
@@ -60,6 +64,7 @@ public interface LicensingRequest {
 	 * is the value of its <code>"productIdentifier"</code> attribute.
 	 *
 	 * @return the product identifier
+	 * @since 0.5.0
 	 */
 	String getProductIdentifier();
 
@@ -68,6 +73,7 @@ public interface LicensingRequest {
 	 * This is the value of its <code>"productVersion"</code> attribute.
 	 *
 	 * @return the product version
+	 * @since 0.5.0
 	 */
 	String getProductVersion();
 
@@ -76,6 +82,7 @@ public interface LicensingRequest {
 	 * This is the value of its <code>"planIdentifier"</code> attribute.
 	 *
 	 * @return the plan identifier
+	 * @since 0.5.0
 	 */
 	String getPlanIdentifier();
 
@@ -85,6 +92,7 @@ public interface LicensingRequest {
 	 *
 	 * @return the valid from
 	 * @see LicensingCondition#getValidFrom()
+	 * @since 0.5.0
 	 */
 	Date getValidFrom();
 
@@ -94,6 +102,7 @@ public interface LicensingRequest {
 	 *
 	 * @return the valid until
 	 * @see LicensingCondition#getValidUntil()
+	 * @since 0.5.0
 	 */
 	Date getValidUntil();
 
@@ -103,6 +112,7 @@ public interface LicensingRequest {
 	 *
 	 * @return the condition type
 	 * @see LicensingCondition#getConditionType()
+	 * @since 0.5.0
 	 */
 	String getConditionType();
 
@@ -112,6 +122,7 @@ public interface LicensingRequest {
 	 *
 	 * @return the condition expression
 	 * @see LicensingCondition#getConditionExpression()
+	 * @since 0.5.0
 	 */
 	String getConditionExpression();
 
