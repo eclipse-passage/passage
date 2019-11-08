@@ -12,19 +12,44 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.io;
 
-import java.util.Map;
-
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
+import java.util.Map;
+
 /**
+ * Registry for {@link KeyKeeper} instances available at runtime.
+ *
  * @since 0.4.0
  */
 public interface KeyKeeperRegistry {
 
+	/**
+	 * Get a {@link KeyKeeper} for the {@code configuration}
+	 *
+	 * @param configuration general licensing configuration of running product
+	 * @since 0.4.0
+	 */
 	KeyKeeper getKeyKeeper(LicensingConfiguration configuration);
 
+	/**
+	 * Register the given {@code keyKeeper} for a {@code LicensingConfiguration},
+	 * created from the given {@code properties}.
+	 *
+	 * @param keyKeeper  instance to be registered
+	 * @param properties source information for {@code LicensingConfiguration} creation
+	 * @see LicensingConfiguration
+	 * @since 0.4.0
+	 */
 	void registerKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties);
 
+	/**
+	 * Unregister the given {@code keyKeeper}. The {@code keyKeeper} will no longer available on
+	 * {@link #getKeyKeeper(LicensingConfiguration)} invocation
+	 *
+	 * @param keyKeeper  instance to be unregistered
+	 * @see LicensingConfiguration
+	 * @since 0.4.0
+	 */
 	void unregisterKeyKeeper(KeyKeeper keyKeeper, Map<String, Object> properties);
 
 }
