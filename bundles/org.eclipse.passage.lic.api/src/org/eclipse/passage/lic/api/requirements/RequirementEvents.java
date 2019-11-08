@@ -17,6 +17,10 @@ import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_BASE;
 import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
 
 /**
+ * Codes of events that can e fired on the <i>requirements resolution</i> phase of <i>access cycle</i>.
+ *
+ * @see RequirementResolver
+ * @see org.eclipse.passage.lic.api
  * @since 0.4.0
  */
 public final class RequirementEvents {
@@ -27,16 +31,22 @@ public final class RequirementEvents {
 
 	/**
 	 * Base name for all {@link LicensingRequirement}(s) events
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC = TOPIC_BASE + TOPIC_SEP + "RequirementEvents"; //$NON-NLS-1$
 
 	/**
 	 * Name for all {@link LicensingRequirement}(s) events
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String TOPIC_ALL = TOPIC + TOPIC_SEP + ALL_SUB_TOPICS;
 
 	/**
 	 * Sent when {@link LicensingRequirement}(s) are resolved
+	 *
+	 * @since 0.4.0
 	 */
 	public static final String REQUIREMENTS_RESOLVED = TOPIC + TOPIC_SEP + "requirementsResolved"; //$NON-NLS-1$
 
