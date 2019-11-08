@@ -42,6 +42,7 @@ public interface PermissionExaminer {
 	 * @param permissions   feature permissions collected for the appropriate set of features
 	 * @return not null iterable structure of {@link RestrictionVerdict}s begotten by all the {@code requirements} unsatisfied
 	 * by the given {@code permissions}
+	 * @since 0.4.0
 	 */
 	Iterable<RestrictionVerdict> examine(LicensingConfiguration configuration,
 			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions);

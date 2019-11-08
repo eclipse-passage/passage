@@ -24,14 +24,16 @@ import java.io.OutputStream;
 public interface PermissionTransport {
 
 	/**
-	 * Reads {@link FeaturePermission}s from the given {@link InputStream}. 
+	 * Reads {@link FeaturePermission}s from the given {@link InputStream}.
 	 *
+	 * @since 0.4.0
 	 */
 	Iterable<FeaturePermission> readPermissions(InputStream input) throws IOException;
 
 	/**
-	 * Writes {@link FeaturePermission}s from the given {@link OutputStream}. 
+	 * Writes {@link FeaturePermission}s from the given {@link OutputStream}.
 	 *
+	 * @since 0.4.0
 	 */
 	void writePermissions(Iterable<FeaturePermission> conditions, OutputStream output) throws IOException;
 

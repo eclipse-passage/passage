@@ -32,23 +32,27 @@ public interface FeaturePermission {
 
 	LicensingConfiguration getLicensingConfiguration();
 
-    /**
-     * The original {@code LicensingCondition} for which this {@link FeaturePermission} was emitted.
-     */
+	/**
+	 * The original {@code LicensingCondition} for which this {@link FeaturePermission} was emitted.
+	 *
+	 * @since 0.4.0
+	 */
 	LicensingCondition getLicensingCondition();
 
-    /**
-     * In general case a {@link FeaturePermission} is time-limited.
-     * {@code LeaseDate} is timestamp of the permission emission.
-     *
-     * @see #getExpireDate()
-     */
+	/**
+	 * In general case a {@link FeaturePermission} is time-limited.
+	 * {@code LeaseDate} is timestamp of the permission emission.
+	 *
+	 * @see #getExpireDate()
+	 * @since 0.4.0
+	 */
 	Date getLeaseDate();
 
-    /**
-     * The date of the permission expiration. It is no longer valid after this date.
-     *
-     * @see #getLeaseDate()
-     */
+	/**
+	 * The date of the permission expiration. It is no longer valid after this date.
+	 *
+	 * @see #getLeaseDate()
+	 * @since 0.4.0
+	 */
 	Date getExpireDate();
 }
