@@ -36,7 +36,7 @@
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
 		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
 
-		<module>../../tests/org.eclipse.passage.lbc.server.test</module>
+		<module>../../tests/org.eclipse.passage.lbc.server.tests</module>
 
 		<module>../../releng/org.eclipse.passage.lbc.repository</module>
 
