@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.test;
+package org.eclipse.passage.lbc.server.tests;
 
 import java.util.Map;
 
@@ -20,8 +20,7 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.osgi.service.component.annotations.Component;
 
 @Component
-public class ServerLauncherComponentOne implements BackendLauncher {
-
+public class ServerLauncherComponentTwo implements BackendLauncher {
 	@Override
 	public LicensingResult launch(Map<String, Object> arguments) {
 		return LicensingResults.createOK("Test component launch"); //$NON-NLS-1$
@@ -31,5 +30,4 @@ public class ServerLauncherComponentOne implements BackendLauncher {
 	public LicensingResult terminate() {
 		return LicensingResults.createOK("Test component terminate"); //$NON-NLS-1$
 	}
-
 }

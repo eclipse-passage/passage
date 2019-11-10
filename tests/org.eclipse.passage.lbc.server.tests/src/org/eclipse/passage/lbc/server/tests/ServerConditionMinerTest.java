@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.test;
+package org.eclipse.passage.lbc.server.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -52,7 +52,7 @@ import org.eclipse.passage.lic.net.LicensingNet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ServerConditionMinerTests {
+public class ServerConditionMinerTest {
 
 	private static final String EXTENSION_SERVER_SETTINGS = ".settings"; //$NON-NLS-1$
 	private static final String PASSAGE_SERVER_HOST_DEF = LicensingNet.LICENSING_SERVER_HOST + "=localhost"; //$NON-NLS-1$

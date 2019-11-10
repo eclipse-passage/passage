@@ -11,7 +11,7 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.passage.lbc.test;
+package org.eclipse.passage.lbc.server.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -31,14 +31,14 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
-public class ServerBackendLauncherTests {
+public class ServerBackendLauncherTest {
 
 	private static final int DEFAULT_CAPACITY = 2;
 	private BundleContext context;
 
 	@Before
 	public void getContext() {
-		Bundle bundle = FrameworkUtil.getBundle(ServerBackendLauncherTests.class);
+		Bundle bundle = FrameworkUtil.getBundle(ServerBackendLauncherTest.class);
 		context = bundle.getBundleContext();
 	}
 
