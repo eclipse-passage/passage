@@ -51,7 +51,7 @@
 			<unit id="javax.mail" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.mockito" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20191115185527/repository"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/S20191118194249/repository"/>
 		</location>
 	</locations>
 </target>
