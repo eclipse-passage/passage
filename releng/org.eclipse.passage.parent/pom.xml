@@ -312,9 +312,11 @@
 			<properties>
 				<!-- Since we append output of various tests, write to a common folder besides tests -->
 				<!-- it's recommended to override that to an absolute value in specific Jenkins configurations and Sonar integration -->
+<!-- 
 				<jacoco.destFile>${project.basedir}/../target/jacoco.exec</jacoco.destFile>
 				<jacoco.dataFile>${jacoco.destFile}</jacoco.dataFile>
 				<sonar.jacoco.reportPath>${jacoco.destFile}</sonar.jacoco.reportPath>
+ -->
 			</properties>
 			<build>
 				<plugins>
