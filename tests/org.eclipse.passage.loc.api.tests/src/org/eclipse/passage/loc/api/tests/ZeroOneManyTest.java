@@ -31,7 +31,7 @@ public class ZeroOneManyTest {
 	public void testZero() throws Exception {
 		ZeroOneMany<Object> zom = new ZeroOneMany<>(Collections.emptyList());
 		Optional<Object> zero = zom.choose(() -> null, null);
-		assertEquals(true, zero.isEmpty());
+		assertEquals(false, zero.isPresent());
 	}
 
 	@Test
