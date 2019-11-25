@@ -36,11 +36,6 @@ final class TimeLimited implements Limited {
 	}
 
 	@Override
-	public String name() {
-		return id;
-	}
-
-	@Override
 	public boolean expired() {
 		ZonedDateTime now = ZonedDateTime.now();
 		return now.isBefore(start) || now.isAfter(end);
