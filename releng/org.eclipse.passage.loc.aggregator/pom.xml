@@ -63,6 +63,8 @@
 		<module>../../bundles/org.eclipse.passage.loc.operator</module>
 		<module>../../features/org.eclipse.passage.loc.operator.feature</module>
 
+		<module>../../tests/org.eclipse.passage.loc.api.tests</module>
+
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
