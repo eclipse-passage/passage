@@ -12,8 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.permission.observatory;
 
+/**
+ * <p>
+ * Describes the entry that can expire after some conditions in the outer world
+ * are met.
+ * </p>
+ * <p>
+ * Say, {@code BottleOfMilk} can easily implement the interface
+ * </p>
+ * 
+ * <pre>
+ * <{@code
+ * public final class BottleOfMilk implements Limited {
+ * 
+ * 	private final ZonedDateTime expirationDate;
+ * 
+ * 	public BottleOfMilk(ZonedDateTime expirationDate) {
+ * 		this.expirationDate = expirationDate;
+ * 	}
+ * 
+ * 	&#64;Override
+ * 	public boolean expired() {
+ * 		return ZonedDateTime.now().isBefore(expirationDate);
+ * 	}
+ * 
+ * }
+ * }
+ * </pre>
+ */
 public interface Limited {
-	String name();
 
 	boolean expired();
+
 }
