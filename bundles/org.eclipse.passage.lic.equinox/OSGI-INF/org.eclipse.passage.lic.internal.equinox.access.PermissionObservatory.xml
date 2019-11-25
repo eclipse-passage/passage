@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.internal.equinox.access.PermissionObservatory">
+   <property name="event.topics" value="org/eclipse/passage/lic/api/AccessEvents/conditionsEvaluated"/>
+   <service>
+      <provide interface="org.osgi.service.event.EventHandler"/>
+   </service>
+   <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.api.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
+   <implementation class="org.eclipse.passage.lic.internal.equinox.access.PermissionObservatory"/>
+</scr:component>
