@@ -36,6 +36,10 @@
                value="platform:/plugin/org.eclipse.passage.loc.workbench/LOC.e4xmi">
          </property>
          <property
+               name="windowImages"
+               value="images/loc16.png,images/loc32.png,images/loc48.png,images/loc64.png,images/loc128.png">
+         </property>
+         <property
                name="lifeCycleURI"
                value="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.workbench.LocLifeCycle">
          </property>
