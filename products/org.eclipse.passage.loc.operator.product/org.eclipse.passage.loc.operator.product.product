@@ -27,8 +27,24 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
+   
+   <windowImages 
+   				i16="/org.eclipse.passage.lco.operator/images/loc16.png" 
+   				i32="/org.eclipse.passage.lco.operator/images/loc32.png" 
+   				i48="/org.eclipse.passage.lco.operator/images/loc48.png" 
+   				i64="/org.eclipse.passage.lco.operator/images/loc64.png" 
+   				i128="/org.eclipse.passage.lco.operator/images/loc128.png"/>
 
    <launcher name="PassageOperator">
+   		<win useIco="false">
+   			<png
+   				winSmallHigh="./ico/16.png"
+            	winSmallLow="./ico/16_8.png"
+            	winMediumHigh="./ico/32.png"
+            	winMediumLow="./ico/32_8.png"
+            	winLargeHigh="./ico/48.png"
+            	winLargeLow="./ico/48_8.png"/>
+   		</win>
    </launcher>
 
 
