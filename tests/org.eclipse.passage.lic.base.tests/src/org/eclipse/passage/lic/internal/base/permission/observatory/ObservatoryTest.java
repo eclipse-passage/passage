@@ -20,6 +20,13 @@ import java.util.function.Consumer;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Test suite for {@linkplain GuardedObservatory}, which mostly intended to keep
+ * an eye on {@linkplain Limited} instances, given under it's watch and fire
+ * {@code expired} action when a {@linkplain Limited} expires.
+ * 
+ * @since 0.6
+ */
 @SuppressWarnings("restriction")
 public class ObservatoryTest {
 
@@ -110,5 +117,9 @@ public class ObservatoryTest {
 		if (countdown.complete())
 			fail("Some expired Limited are still active."); //$NON-NLS-1$
 	}
+
+	// multithreaded usage
+	// failing in Limited::expire implementation
+	// negative schedule
 
 }
