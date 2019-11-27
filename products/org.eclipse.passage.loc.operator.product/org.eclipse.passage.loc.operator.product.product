@@ -29,12 +29,13 @@
    </launcherArgs>
    
    <windowImages 
-   				i16="/org.eclipse.passage.lco.operator/images/loc16.png" 
-   				i32="/org.eclipse.passage.lco.operator/images/loc32.png" 
-   				i48="/org.eclipse.passage.lco.operator/images/loc48.png" 
-   				i64="/org.eclipse.passage.lco.operator/images/loc64.png" 
-   				i128="/org.eclipse.passage.lco.operator/images/loc128.png"/>
+   				i16="/org.eclipse.passage.loc.operator/images/loc16.png" 
+   				i32="/org.eclipse.passage.loc.operator/images/loc32.png" 
+   				i48="/org.eclipse.passage.loc.operator/images/loc48.png" 
+   				i64="/org.eclipse.passage.loc.operator/images/loc64.png"/>
 
+   <splash
+      location="org.eclipse.passage.loc.operator" />
    <launcher name="PassageOperator">
    		<win useIco="false">
    			<png
