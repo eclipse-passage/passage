@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Shell;
 public class AboutDialog extends Dialog {
 
 	private static final String PRODUCT_NAME = "%product.name"; //$NON-NLS-1$
-	private static final String ABOUT_IMAGE = "%aboutImage"; //$NON-NLS-1$
+	private static final String ABOUT_IMAGE = "aboutImage"; //$NON-NLS-1$
 	private static final String ABOUT_TITLE = "%aboutTitle"; //$NON-NLS-1$
 
 	private static final String PRODUCT_BUNDLE_URL = "platform:/plugin/%s"; //$NON-NLS-1$
@@ -75,7 +75,7 @@ public class AboutDialog extends Dialog {
 		base.setLayout(workLayout);
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		String productImg = translations.translate(ABOUT_IMAGE, bundleUrl);
+		String productImg = applicationContext.getBrandingProperty(ABOUT_IMAGE);
 
 		if (productImg != null) {
 			URL url = getUrl(productImg);

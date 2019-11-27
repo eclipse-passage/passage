@@ -24,6 +24,10 @@
                value="%application.name">
          </property>
          <property
+               name="aboutImage"
+               value="images/about.png">
+         </property>
+         <property
                name="aboutText"
                value="%aboutText">
          </property>
@@ -37,7 +41,7 @@
          </property>
          <property
                name="windowImages"
-               value="images/loc16.png,images/loc32.png,images/loc48.png,images/loc64.png,images/loc128.png">
+               value="images/loc16.png,images/loc32.png,images/loc48.png,images/loc64.png">
          </property>
          <property
                name="lifeCycleURI"
