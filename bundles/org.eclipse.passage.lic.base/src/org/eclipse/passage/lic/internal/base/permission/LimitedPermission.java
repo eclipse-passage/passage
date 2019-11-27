@@ -15,8 +15,15 @@ package org.eclipse.passage.lic.internal.base.permission;
 import java.util.Date;
 
 import org.eclipse.passage.lic.api.access.FeaturePermission;
+import org.eclipse.passage.lic.internal.base.permission.observatory.GuardedObservatory;
 import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
 
+/**
+ * Adapter for {@linkplain FeaturePermission} to implement {@linkplain Limited}
+ * interface to be properly tracked by {@linkplain GuardedObservatory}
+ * 
+ * @since 0.6
+ */
 public final class LimitedPermission implements Limited {
 	private final FeaturePermission permission;
 
@@ -30,4 +37,13 @@ public final class LimitedPermission implements Limited {
 		return now.before(permission.getLeaseDate()) || now.after(permission.getExpireDate());
 	}
 
+	@Override
+	public int hashCode() {
+		return permission.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		return permission.equals(object);
+	}
 }
