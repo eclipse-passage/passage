@@ -109,6 +109,7 @@ public class MailImplTest {
 		if (fileAttachmentPath != null) {
 			Files.delete(fileAttachmentPath);
 		}
+		Files.deleteIfExists(Paths.get(MAIL_FILE_OUT));
 	}
 
 }
