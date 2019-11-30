@@ -26,8 +26,6 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingEvents;
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
 /**
  * 
@@ -172,9 +170,8 @@ public final class LicensingResults {
 	 * @see LicensingResult
 	 */
 	public static LicensingResult createWarning(String message, Class<?> source, Map<String, Object> attachments) {
-		Bundle bundle = FrameworkUtil.getBundle(source);
-		return new BaseLicensingResult(WARNING, message, BaseLicensingResult.CODE_NOMINAL, bundle.getSymbolicName(),
-				null, Collections.emptyList(), attachments);
+		return new BaseLicensingResult(WARNING, message, BaseLicensingResult.CODE_NOMINAL, source.getName(), null,
+				Collections.emptyList(), attachments);
 	}
 
 	/**
