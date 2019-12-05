@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.equinox.access;
 
 import static org.eclipse.passage.lic.base.LicensingResults.createEvent;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.internal.base.permission.BasePermissionObservatory;
 import org.eclipse.passage.lic.internal.base.permission.LimitedPermission;
 import org.eclipse.passage.lic.internal.base.permission.PermissionObservatory;
+import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
 import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -50,7 +52,8 @@ public final class EquinoxPermissionObservatory implements EventHandler, Permiss
 	@Activate
 	public void activate(Map<String, Object> config) {
 		int schedule = (Integer) config.get("observatory.schedule"); //$NON-NLS-1$
-		observatory = new BasePermissionObservatory(schedule, this::fireExpiration);
+		observatory = new BasePermissionObservatory(new CheckSchedule(schedule, ChronoUnit.SECONDS),
+				this::fireExpiration);
 		observatory.open();
 	}
 

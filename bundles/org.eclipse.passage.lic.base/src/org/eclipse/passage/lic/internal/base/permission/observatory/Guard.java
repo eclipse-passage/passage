@@ -19,8 +19,8 @@ import java.util.function.Consumer;
 
 final class Guard<T extends Limited> implements Runnable {
 
-	private final int period;
-	private final Observatory<T> pool;
+	private final long period;
+	private final Pool<T> pool;
 	private final Consumer<Set<T>> onExpire;
 	private final Executor executor;
 
@@ -28,8 +28,8 @@ final class Guard<T extends Limited> implements Runnable {
 	 * @param onExpire never gets {@code null} or empty set. The callback is
 	 *                 expected to complete shortly.
 	 */
-	Guard(int seconds, Observatory<T> pool, Consumer<Set<T>> onExpire) {
-		this.period = seconds;
+	Guard(CheckSchedule schedule, Pool<T> pool, Consumer<Set<T>> onExpire) {
+		this.period = schedule.seconds();
 		this.pool = pool;
 		this.onExpire = onExpire;
 		executor = Executors.newSingleThreadExecutor();

@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.internal.base.permission;
 import java.util.Date;
 
 import org.eclipse.passage.lic.api.access.FeaturePermission;
-import org.eclipse.passage.lic.internal.base.permission.observatory.GuardedObservatory;
+import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
 import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
 
 /**
  * Adapter for {@linkplain FeaturePermission} to implement {@linkplain Limited}
- * interface to be properly tracked by {@linkplain GuardedObservatory}
+ * interface to be properly tracked by {@linkplain Observatory}
  * 
  * @since 0.6
  */
