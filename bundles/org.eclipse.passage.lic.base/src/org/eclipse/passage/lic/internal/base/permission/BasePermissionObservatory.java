@@ -39,11 +39,11 @@ public final class BasePermissionObservatory implements PermissionObservatory {
 	}
 
 	public void watch(Iterable<FeaturePermission> permissions) {
-		onEachPermission(permissions, limited -> observatory.watch(limited));
+		onEachPermission(permissions, observatory::watch);
 	}
 
 	public void forget(Iterable<FeaturePermission> permissions) {
-		onEachPermission(permissions, limited -> observatory.forget(limited));
+		onEachPermission(permissions, observatory::forget);
 	}
 
 	public void open() {
@@ -53,7 +53,7 @@ public final class BasePermissionObservatory implements PermissionObservatory {
 	private void onEachPermission(Iterable<FeaturePermission> permissions, Consumer<LimitedPermission> action) {
 		StreamSupport.stream(permissions.spliterator(), false)//
 				.map(LimitedPermission::new) //
-				.forEach(limited -> action.accept(limited));
+				.forEach(action::accept);
 	}
 
 }
