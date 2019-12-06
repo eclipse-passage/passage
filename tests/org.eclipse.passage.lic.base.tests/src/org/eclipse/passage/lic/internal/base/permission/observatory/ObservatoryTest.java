@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.permission.observatory;
 
 import static org.junit.Assert.fail;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -21,8 +22,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test suite for {@linkplain GuardedObservatory}, which mostly intended to keep
- * an eye on {@linkplain Limited} instances, given under it's watch and fire
+ * Test suite for {@linkplain Observatory}, which mostly intended to keep an eye
+ * on {@linkplain Limited} instances, given under it's watch and fire
  * {@code expired} action when a {@linkplain Limited} expires.
  * 
  * @since 0.6
@@ -46,7 +47,7 @@ public class ObservatoryTest {
 	@Test
 	public void twoSeconds() {
 		Countdown countdown = new Countdown(2);
-		GuardedObservatory<Limited> observatory = new GuardedObservatory<Limited>(1, countdown);
+		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown);
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		observatory.watch(new TimeLimited(1));
@@ -60,7 +61,7 @@ public class ObservatoryTest {
 	@Test
 	public void forget() {
 		Countdown countdown = new Countdown(1); // watch two entries, but then forget one of them
-		GuardedObservatory<Limited> observatory = new GuardedObservatory<Limited>(1, countdown);
+		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown);
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		TimeLimited toBeForgotten = new TimeLimited(1);
@@ -86,7 +87,7 @@ public class ObservatoryTest {
 
 	private void testGuardReliability(Consumer<Set<Limited>> sabotage) {
 		Countdown countdown = new Countdown(4);
-		GuardedObservatory<Limited> observatory = new GuardedObservatory<Limited>(1, countdown.andThen(sabotage));
+		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown.andThen(sabotage));
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		observatory.watch(new TimeLimited(1));
@@ -118,6 +119,9 @@ public class ObservatoryTest {
 			fail("Some expired Limited are still active."); //$NON-NLS-1$
 	}
 
+	private CheckSchedule buzy() {
+		return new CheckSchedule(1, ChronoUnit.SECONDS);
+	}
 	// multithreaded usage
 	// failing in Limited::expire implementation
 	// negative schedule

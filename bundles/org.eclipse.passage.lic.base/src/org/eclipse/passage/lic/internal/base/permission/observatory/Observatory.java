@@ -12,30 +12,95 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.permission.observatory;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.function.Consumer;
 
-final class Observatory<T extends Limited> {
-	private final Set<T> watched = new HashSet<>();
+/**
+ * <p>
+ * This observatory keeps an eye on any captured entry, that can say in a moment
+ * of time whether it is expired already or not yet.
+ * </p>
+ * 
+ * <p>
+ * Ones in a period of time the observatory checks all watched entries if they
+ * are expired already. And for the ones who do, a configured action is called.
+ * Since this moment an expired entry in not watched anymore.
+ * </p>
+ * 
+ * <p>
+ * There is no check on an observatory opening. The closest one takes place only
+ * after a scheduled period of time is over.
+ * </p>
+ * 
+ * <p>
+ * An entry can be put under the observatory control and removed from it
+ * preliminary, prior this is done by TTL.
+ * </p>
+ * 
+ * <p>
+ * To configure an observatory, you need only define
+ * <ul>
+ * <li><i>how often</i> it will check expiration and</li>
+ * <li>what will it do for expired entries</li>
+ * </ul>
+ * </p>
+ * 
+ * @since 0.6
+ */
+public final class Observatory<T extends Limited> {
+	private final Pool<T> pool;
+	private final Guard<T> guard;
 
-	void watch(T target) {
-		synchronized (watched) {
-			watched.add(target);
-		}
+	/**
+	 * <p>
+	 * When the time comes and an entry expires, {@code farewell} action is called
+	 * for it.
+	 * </p>
+	 * 
+	 * <p>
+	 * The observatory does the brushing checks each {@code schedule} seconds, so an
+	 * entry cannot be processed precisely in a moment it expires, but some time
+	 * like {@code schedule} seconds after.
+	 * </p>
+	 * 
+	 * @param schedule period (in seconds) between checks
+	 * @param farewell handler to be notified of expired entries. Is not intended to
+	 *                 work long. Never bothered for naught: never gets {@code null}
+	 *                 or empty set.
+	 * @since 0.6
+	 */
+	public Observatory(CheckSchedule schedule, Consumer<Set<T>> farewell) {
+		pool = new Pool<T>();
+		guard = new Guard<T>(schedule, pool, farewell);
 	}
 
-	void forget(T target) {
-		synchronized (watched) {
-			watched.remove(target);
-		}
+	/**
+	 * The observatory can accept entries to watch and dismiss them after, but
+	 * checks start only after it is open.
+	 * 
+	 * @since 0.6
+	 */
+	public void open() {
+		new Thread(guard).start();
 	}
 
-	Expired<T> popExpired() {
-		synchronized (watched) {
-			Set<T> expired = watched.stream().filter(Limited::expired).collect(Collectors.toSet());
-			watched.removeAll(expired);
-			return new Expired<T>(expired);
-		}
+	/**
+	 * Put a {@link Limited} entry under the observatory control.
+	 * 
+	 * @since 0.6
+	 */
+	public void watch(T limited) {
+		pool.watch(limited);
 	}
+
+	/**
+	 * Remove a {@link Limited} entry from the observatory control intentionally
+	 * prior it's expiration.
+	 * 
+	 * @since 0.6
+	 */
+	public void forget(T limited) {
+		pool.forget(limited);
+	}
+
 }
