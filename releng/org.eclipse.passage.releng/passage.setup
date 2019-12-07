@@ -133,17 +133,17 @@
       <repositoryList
           name="Passage Latest Released">
         <repository
-            url="https://download.eclipse.org/releases/2019-09/"/>
+            url="https://download.eclipse.org/releases/2019-12/"/>
         <repository
             url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
         <repository
-            url="https://download.eclipse.org/passage/updates/release/0.6.0/lic/"/>
+            url="https://download.eclipse.org/passage/updates/release/0.7.0/lic/"/>
         <repository
-            url="https://download.eclipse.org/passage/updates/release/0.6.0/loc/"/>
+            url="https://download.eclipse.org/passage/updates/release/0.7.0/loc/"/>
         <repository
-            url="https://download.eclipse.org/passage/updates/release/0.6.0/lbc/"/>
+            url="https://download.eclipse.org/passage/updates/release/0.7.0/lbc/"/>
         <repository
-            url="https://download.eclipse.org/passage/updates/release/0.6.0/ldc/"/>
+            url="https://download.eclipse.org/passage/updates/release/0.7.0/ldc/"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -198,7 +198,7 @@
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/S20191118194249/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
         <repository
             url="https://download.eclipse.org/releases/2019-12/"/>
       </repositoryList>
@@ -207,7 +207,7 @@
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
         <repository
             url="https://download.eclipse.org/releases/2019-09/"/>
       </repositoryList>
@@ -218,7 +218,7 @@
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
       </repositoryList>
       <repositoryList
           name="2019-03">
@@ -227,7 +227,7 @@
         <repository
             url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+            url="https://download.eclipse.org/tools/orbit/tools/orbit/downloads/2019-03"/>
       </repositoryList>
     </targlet>
   </setupTask>
