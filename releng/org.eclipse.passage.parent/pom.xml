@@ -43,8 +43,8 @@
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.14-I-builds/</eclipserun-repo>
-		<comparator.repo>https://download.eclipse.org/eclipse/updates/4.14-I-builds/</comparator.repo>
-		<previous-release.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/lic/</previous-release.baseline>
+		<comparator.repo>https://download.eclipse.org/passage/drops/integration/I250/ldc/</comparator.repo>
+		<previous-release.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</previous-release.baseline>
 
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
@@ -138,6 +138,37 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>org.eclipse.passage</groupId>
+							<artifactId>org.eclipse.passage.target</artifactId>
+							<version>${project.parent.version}</version>
+						</artifact>
+					</target>
+					<includePackedArtifacts>true</includePackedArtifacts>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin><plugin>
+				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
@@ -171,38 +202,7 @@
 				</dependencies>
 			</plugin>
 
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho.version}</version>
-				<configuration>
-					<target>
-						<artifact>
-							<groupId>org.eclipse.passage</groupId>
-							<artifactId>org.eclipse.passage.target</artifactId>
-							<version>${project.parent.version}</version>
-						</artifact>
-					</target>
-					<includePackedArtifacts>true</includePackedArtifacts>
-					<environments>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment>
-					</environments>
-				</configuration>
-			</plugin>
+			
 
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -351,7 +351,7 @@
 						<baselineReplace>all</baselineReplace>
 						<baselineRepositories>
 							<repository>
-								<url>https://download.eclipse.org/passage/updates/release/0.7.0/lic/</url>
+				                <url>${comparator.repo}</url>
 							</repository>
 						</baselineRepositories>
 						<ignoredPatterns>
