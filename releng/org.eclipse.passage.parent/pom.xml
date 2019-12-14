@@ -43,8 +43,8 @@
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.14-I-builds/</eclipserun-repo>
-		<comparator.repo>https://download.eclipse.org/passage/drops/integration/I250/ldc/</comparator.repo>
-		<previous-release.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</previous-release.baseline>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</released.baseline>
+		<staging.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</staging.baseline>
 
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
@@ -297,7 +297,7 @@
 						<configuration>
 							<skip>${compare-version-with-baselines.skip}</skip>
 							<baselines>
-								<baseline>${previous-release.baseline}</baseline>
+								<baseline>${released.baseline}</baseline>
 							</baselines>
 							<comparator>zip</comparator>
 						</configuration>
@@ -356,7 +356,7 @@
 						<baselineReplace>all</baselineReplace>
 						<baselineRepositories>
 							<repository>
-				                <url>${comparator.repo}</url>
+				                <url>${staging.baseline}</url>
 							</repository>
 						</baselineRepositories>
 						<ignoredPatterns>
@@ -545,7 +545,7 @@
 <target name="${project.artifactId}-apiBaseline" sequenceNumber="1">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-			<repository location="${previous-release.baseline}"/>
+			<repository location="${released.baseline}"/>
 			<unit id="${project.artifactId}" version="0.0.0"/>
 		</location>
 	</locations>
@@ -609,7 +609,7 @@
 									<repositories>
 										<repository>
 											<layout>p2</layout>
-											<url>${comparator.repo}</url>
+											<url>${staging.baseline}</url>
 										</repository>
 									</repositories>
 									<dependencies>
