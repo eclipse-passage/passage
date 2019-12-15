@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.equinox
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.equinox
-Bundle-Version: 0.5.0.qualifier
+Bundle-Version: 0.5.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -28,5 +28,5 @@ Export-Package: org.eclipse.passage.lic.equinox,
  org.eclipse.passage.lic.internal.equinox.restrictions;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
-Provide-Capability: licensing.management;licensing.management="equinox";version="0.4.0"
+Provide-Capability: licensing.management;licensing.management="equinox";version="0.5.0"
 
