@@ -45,7 +45,7 @@ public class BasePageContributor implements LicensingPageContributor {
 	@Override
 	public LicensingPage createPage() throws LicensingException {
 		try {
-			return pageClass.newInstance();
+			return pageClass.getDeclaredConstructor().newInstance();
 		} catch (Exception e) {
 			String message = NLS.bind(JFaceMessages.BasePageContributor_e_create_page_instance, pageClass);
 			LicensingResult error = LicensingResults.createError(message, pageIdentifier, e);
