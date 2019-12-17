@@ -40,7 +40,7 @@ class Csv implements ListMedia<ExportedEntry, String> {
 	}
 
 	@Override
-	public Csv nodeStart(ExportedEntry node) {
+	public Csv startNode(ExportedEntry node) {
 		builder.append("\n"); //$NON-NLS-1$
 		return this;
 	}

@@ -33,13 +33,13 @@ class Json implements ListMedia<ExportedEntry, String> {
 	}
 
 	@Override
-	public Json nodeStart(ExportedEntry node) {
+	public Json startNode(ExportedEntry node) {
 		builder.append("\t\"node\" : {\n"); //$NON-NLS-1$
 		return this;
 	}
 
 	@Override
-	public Json nodeFinish(ExportedEntry node) {
+	public Json finishNode(ExportedEntry node) {
 		builder.append("\t}\n"); //$NON-NLS-1$
 		return this;
 	}

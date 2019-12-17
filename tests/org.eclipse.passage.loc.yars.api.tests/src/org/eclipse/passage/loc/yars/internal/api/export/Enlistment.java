@@ -29,7 +29,7 @@ public class Enlistment<T> implements ListMedia<T, List<T>> {
 	}
 
 	@Override
-	public Enlistment<T> nodeStart(T root) {
+	public Enlistment<T> startNode(T root) {
 		content.add(root);
 		return this;
 	}
