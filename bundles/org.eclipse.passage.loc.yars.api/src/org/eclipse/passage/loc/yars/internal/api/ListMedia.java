@@ -22,11 +22,11 @@ public interface ListMedia<T, C> {
 		return this;
 	}
 
-	default ListMedia<T, C> nodeStart(@SuppressWarnings("unused") T node) {
+	default ListMedia<T, C> startNode(@SuppressWarnings("unused") T node) {
 		return this;
 	}
 
-	default ListMedia<T, C> nodeFinish(@SuppressWarnings("unused") T node) {
+	default ListMedia<T, C> finishNode(@SuppressWarnings("unused") T node) {
 		return this;
 	}
 
