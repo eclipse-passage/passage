@@ -70,6 +70,7 @@
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
 		
 		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
+	  	<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
 	
 	</modules>
 
