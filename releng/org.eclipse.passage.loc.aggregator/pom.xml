@@ -68,6 +68,9 @@
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
+		
+		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
+	
 	</modules>
 
 </project>

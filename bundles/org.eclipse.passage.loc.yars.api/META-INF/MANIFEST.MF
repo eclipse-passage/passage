@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.loc.yars.api
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.passage.loc.yars.api
+Bundle-Version: 0.1.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.passage.loc.yars.internal.api;x-internal:=true
