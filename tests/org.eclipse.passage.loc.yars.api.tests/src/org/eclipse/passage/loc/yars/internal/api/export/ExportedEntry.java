@@ -14,10 +14,11 @@ package org.eclipse.passage.loc.yars.internal.api.export;
 
 import java.util.Objects;
 
+import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-public class ExportedEntry {
+public class ExportedEntry implements ExportData<ExportedEntry> {
 
 	private String name;
 
@@ -25,6 +26,7 @@ public class ExportedEntry {
 		this.name = name;
 	}
 
+	@Override
 	public <T> void write(ListMedia<ExportedEntry, T> media) {
 		media.startNode(this)//
 				.inner(name, "name") //$NON-NLS-1$

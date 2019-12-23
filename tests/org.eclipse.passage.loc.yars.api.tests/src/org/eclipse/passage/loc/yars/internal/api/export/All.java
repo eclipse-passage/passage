@@ -31,7 +31,7 @@ public class All implements Query<InMemoryStorage, ExportedEntry, FetchParams> {
 	}
 
 	@Override
-	public FetchedData<InMemoryStorage, ExportedEntry> data(InMemoryStorage base, FetchParams params) {
+	public FetchedData<InMemoryStorage, ExportedEntry> fetch(InMemoryStorage base, FetchParams params) {
 		return new Fetch(base);
 	}
 

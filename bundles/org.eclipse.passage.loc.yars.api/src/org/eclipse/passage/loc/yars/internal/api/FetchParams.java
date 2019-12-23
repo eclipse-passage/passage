@@ -12,9 +12,30 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.yars.internal.api;
 
+/**
+ * <p>
+ * {@linkplain Query} - specific parameters for a fetcher.
+ * </p>
+ * 
+ * <p>
+ * For example, a pagination query can make use of {@code params} if each
+ * {@linkplain Query#fetch(Storage, FetchParams)} is requested for the next
+ * <i>page</i> parameter, like, say, {@code pageNumber} and {@code pageSize}.
+ * </p>
+ * 
+ * @see Query#fetch(Storage, FetchParams)
+ * 
+ * @since 0.1
+ */
 public interface FetchParams {
 
-	final class Empty implements FetchParams{
+	/**
+	 * In wide variety of cases there is no need in parameterization for a query.
+	 * This class implements the no-parameters instance.
+	 * 
+	 * @since 0.1
+	 */
+	final class Empty implements FetchParams {
 
 	}
 }

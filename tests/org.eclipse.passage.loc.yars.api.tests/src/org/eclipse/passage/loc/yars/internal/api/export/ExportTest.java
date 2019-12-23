@@ -17,7 +17,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
+import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
+import org.eclipse.passage.loc.yars.internal.api.Query;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 import org.eclipse.passage.loc.yars.internal.api.model.InMemoryStorage;
 import org.eclipse.passage.loc.yars.internal.api.model.StoredEntry;
@@ -25,30 +27,39 @@ import org.junit.Test;
 
 /**
  * <p>
- * Let's say, you have a domain class {@linkplain StoredEntry} and a
- * {@linkplain Storage} - some coverer, that can somehow provide access to all
- * existing instances.
- * </p>
- * <p>
- * You desire to
+ * Here we illustrate how to use {@linkplain org.eclipse.passage.loc.yars.api}
+ * in order to
  * </p>
  * <ul>
- * <li>have a look at all entries</li>
- * <li>get some information from each</li>
- * <li>and {@code write} this information to some output format.</li>
+ * <li>fetch something from a {@linkplain Storage},</li>
+ * <li>reorganize it to another type and</li>
+ * <li>finally end up in a {@code CSV} and {@code JSON} persistence or in a
+ * simple <i>enlistment</i> of the result.</li>
  * </ul>
  * 
+ * 
  * <p>
- * Here what you should do to make this happen
  * </p>
+ * 
  * <ul>
- * <li>implement a {@linkplain Query}</li>
- * <li>Form a new class to keep information of interest(here it is called
- * {@linkplain ExportedEntry}</li>
+ * <li>Our {@linkplain Storage} consists of a simple entries of
+ * {@linkplain StoredEntry} type - we emulate <i>in memory base</i>.</li>
+ * <li>We define a {@linkplain Query} - {@linkplain All} - which fetches all
+ * entries from our storage. It also emulates a <i>business logic</i> that is
+ * implemented as a conversion stored entries to entities of another type
+ * ({@linkplain ExportedEntry})<i></li>
+ * <li>When we as our <i>query</i> for {@linkplain Query#data()}, it actually
+ * does not interacts with the {@code storage}, but only instantiate a dedicated
+ * {@linkplain FetchedData} instance.</li>
+ * <li>We implement {@linkplain FetchedData} as {@linkplain Fetch} class. It is,
+ * by contract, aware of our particular storage type and knows how to get data
+ * from it.</li>
+ * <li>We have tree <i>target format definitions</i>: CSV, JSON (strings) and a
+ * runtime list. All of them are unaware of storing and fetching details.</li>
+ * 
  * <li></li>
  * <li></li>
  * </ul>
- * 
  */
 @SuppressWarnings("restriction")
 public class ExportTest {
@@ -85,7 +96,7 @@ public class ExportTest {
 	}
 
 	private <T> T queryResult(ListMedia<ExportedEntry, T> media) {
-		new Export(new All().data(//
+		new Export(new All().fetch(//
 				new InMemoryStorage( //
 						new StoredEntry("Gammy", "US"), //$NON-NLS-1$ //$NON-NLS-2$
 						new StoredEntry("Quami", "France"), //$NON-NLS-1$ //$NON-NLS-2$

@@ -46,7 +46,7 @@ public class PaginationTest {
 
 	@SuppressWarnings("restriction")
 	private List<StoredEntry> pageContent(int no) {
-		return new Page().data(base(), new PaginationSettings(no, 3)).get();
+		return new Page().fetch(base(), new PaginationSettings(no, 3)).get();
 	}
 
 	private InMemoryStorage base() {

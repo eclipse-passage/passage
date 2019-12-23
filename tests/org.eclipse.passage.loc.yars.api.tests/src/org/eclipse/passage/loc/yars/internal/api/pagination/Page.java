@@ -31,7 +31,7 @@ public class Page implements Query<InMemoryStorage, StoredEntry, PaginationSetti
 	}
 
 	@Override
-	public FetchedData<InMemoryStorage, StoredEntry> data(InMemoryStorage storage, PaginationSettings params) {
+	public FetchedData<InMemoryStorage, StoredEntry> fetch(InMemoryStorage storage, PaginationSettings params) {
 		return new Fetch(params, storage);
 	}
 
