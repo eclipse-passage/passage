@@ -27,7 +27,7 @@ class Json implements ListMedia<ExportedEntry, String> {
 	}
 
 	@Override
-	public ListMedia<ExportedEntry, String> finish() {
+	public Json finish() {
 		builder.append("}\n"); //$NON-NLS-1$
 		return this;
 	}

@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
+import org.eclipse.passage.loc.yars.internal.api.Export;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
@@ -33,14 +34,13 @@ import org.junit.Test;
  * <ul>
  * <li>fetch something from a {@linkplain Storage},</li>
  * <li>reorganize it to another type and</li>
- * <li>finally end up in a {@code CSV} and {@code JSON} persistence or in a
+ * <li>finally end up in a {@code CSV} or {@code JSON} persistence or in a
  * simple <i>enlistment</i> of the result.</li>
  * </ul>
  * 
- * 
  * <p>
+ * We implement api's interfaces in the following manner.
  * </p>
- * 
  * <ul>
  * <li>Our {@linkplain Storage} consists of a simple entries of
  * {@linkplain StoredEntry} type - we emulate <i>in memory base</i>.</li>
@@ -56,10 +56,6 @@ import org.junit.Test;
  * from it.</li>
  * <li>We have tree <i>target format definitions</i>: CSV, JSON (strings) and a
  * runtime list. All of them are unaware of storing and fetching details.</li>
- * 
- * <li></li>
- * <li></li>
- * </ul>
  */
 @SuppressWarnings("restriction")
 public class ExportTest {
@@ -96,7 +92,7 @@ public class ExportTest {
 	}
 
 	private <T> T queryResult(ListMedia<ExportedEntry, T> media) {
-		new Export(new All().fetch(//
+		new Export<InMemoryStorage, ExportedEntry>(new All().fetch(//
 				new InMemoryStorage( //
 						new StoredEntry("Gammy", "US"), //$NON-NLS-1$ //$NON-NLS-2$
 						new StoredEntry("Quami", "France"), //$NON-NLS-1$ //$NON-NLS-2$

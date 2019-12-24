@@ -28,9 +28,7 @@ public class ExportedEntry implements ExportData<ExportedEntry> {
 
 	@Override
 	public <T> void write(ListMedia<ExportedEntry, T> media) {
-		media.startNode(this)//
-				.inner(name, "name") //$NON-NLS-1$
-				.finishNode(this);
+		media.inner(name, "name"); //$NON-NLS-1$
 	}
 
 	@Override // generated
