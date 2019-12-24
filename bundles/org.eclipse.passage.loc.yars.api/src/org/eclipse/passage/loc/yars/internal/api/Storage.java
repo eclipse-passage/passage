@@ -14,19 +14,24 @@ package org.eclipse.passage.loc.yars.internal.api;
 
 /**
  * <p>
- * Base is an abstraction of an information storage.
+ * {@code Storage} is an abstraction of an information base.
  * </p>
  * <p>
  * The interface is parameterized with the type of a single unit of an
- * information.
+ * information ({@code E}).
  * </p>
  * <p>
- * A base can cover user registry or set of files, or be physically organized as
- * the author desires.
+ * A {@code storage} can cover user registry or set of files, or be physically
+ * organized as the author desires.
  * </p>
  * <p>
- * The only contract here is the type of core entity.
+ * The only contract here is the type of entity whose interests a
+ * {@code storage} protects.
  * </p>
+ * 
+ * @param E type of entries covered by the {@code storage}. Here we declare that
+ *          a storage is dedicated to a single data type and does not represent
+ *          a universal data base of sort.
  *
  * @since 0.1
  */

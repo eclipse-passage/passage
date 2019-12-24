@@ -21,6 +21,17 @@ import org.eclipse.passage.loc.yars.internal.api.model.InMemoryStorage;
 import org.eclipse.passage.loc.yars.internal.api.model.StoredEntry;
 import org.junit.Test;
 
+/**
+ * <p>
+ * The test is focused on the case when fetching requires context-dependent
+ * parameters.
+ * </p>
+ * <p>
+ * Here we define a base of elements enough to form three pages - two complete
+ * and the last partial. Then we appeal to the single query tree times with
+ * different pagination fetching parameters.
+ * </p>
+ */
 public class PaginationTest {
 
 	@Test
@@ -46,7 +57,7 @@ public class PaginationTest {
 
 	@SuppressWarnings("restriction")
 	private List<StoredEntry> pageContent(int no) {
-		return new Page().data(base(), new PaginationSettings(no, 3)).get();
+		return new Page().fetch(base(), new PaginationSettings(no, 3)).get();
 	}
 
 	private InMemoryStorage base() {
