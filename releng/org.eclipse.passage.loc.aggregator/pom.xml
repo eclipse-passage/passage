@@ -65,13 +65,15 @@
 
 		<module>../../tests/org.eclipse.passage.loc.api.tests</module>
 
+		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
+	  	<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
+
+		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
+
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
 		
-		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
-	  	<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
-	
 	</modules>
 
 </project>
