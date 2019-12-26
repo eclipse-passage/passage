@@ -14,8 +14,12 @@ package org.eclipse.passage.loc.yars.internal.api.export;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.DefaultDOSHandler;
 import org.eclipse.passage.loc.yars.internal.api.Export;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
@@ -62,21 +66,27 @@ public class ExportTest {
 
 	@Test
 	public void testCsv() {
+		StringBuilder output = new StringBuilder();
+		queryResult(new Csv(output, "name")); //$NON-NLS-1$
 		assertEquals("name;\nGammy;\nQuami;\nTsunami;", //$NON-NLS-1$
-				queryResult(new Csv("name"))); //$NON-NLS-1$
+				output.toString());
 	}
 
 	@Test
 	public void testEnlistment() {
+		List<ExportedEntry> output = new ArrayList<>();
+		queryResult(new Enlistment<ExportedEntry>(output));
 		assertEquals(Arrays.asList( //
 				new ExportedEntry("Gammy"), //$NON-NLS-1$
 				new ExportedEntry("Quami"), //$NON-NLS-1$
 				new ExportedEntry("Tsunami")), //$NON-NLS-1$
-				queryResult(new Enlistment<>()));
+				output);
 	}
 
 	@Test
 	public void testJson() {
+		StringBuilder output = new StringBuilder();
+		queryResult(new Json(output));
 		assertEquals("{\n" + //$NON-NLS-1$
 				"\t\"node\" : {\n" + //$NON-NLS-1$
 				"\t\t\"name\" : \"Gammy\"\n" + //$NON-NLS-1$
@@ -88,10 +98,10 @@ public class ExportTest {
 				"\t\t\"name\" : \"Tsunami\"\n" + //$NON-NLS-1$
 				"\t}\n" + //$NON-NLS-1$
 				"}\n", //$NON-NLS-1$
-				queryResult(new Json()));
+				output.toString());
 	}
 
-	private <T> T queryResult(ListMedia<ExportedEntry, T> media) {
+	private void queryResult(ListMedia<ExportedEntry> media) {
 		new Export<InMemoryStorage, ExportedEntry>(new All().fetch(//
 				new InMemoryStorage( //
 						new StoredEntry("Gammy", "US"), //$NON-NLS-1$ //$NON-NLS-2$
@@ -99,8 +109,7 @@ public class ExportTest {
 						new StoredEntry("Tsunami", "Japan")//$NON-NLS-1$ //$NON-NLS-2$
 				), //
 				new FetchParams.Empty()))//
-						.write(media);
-		return media.content();
+						.write(new DOSHandleMedia<ExportedEntry>(media, new DefaultDOSHandler()));
 	}
 
 }

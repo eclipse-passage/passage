@@ -21,62 +21,42 @@ package org.eclipse.passage.loc.yars.internal.api;
  * (something iterable) of a single type ({@code T})
  * </p>
  * <p>
- * ListMedia has at least two clients:
+ * ListMedia is designed to be used by {@linkplain ExportData} implementors. It
+ * has at least two kinds of clients:
  * </p>
- * <ul>
- * <li>Some target-format aware service: it creates a format-dedicated media and
- * iterates over a given <i>data</i>, writing each to the media. This client is
- * responsible for orchestrating media calls like {@linkplain #start()}.</li>
- * <li>Type {@code T}</li>
- * <li></li>
- * </ul>
  * 
  * @param T type of a single entity in a <i>list</i>
  * @param C output format type
+ * 
+ * @see ExportData
+ * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
-public interface ListMedia<T, C> {
+public interface ListMedia<T> {
 
 	/**
 	 * @since 0.1
 	 */
-	default ListMedia<T, C> start() {
-		return this;
-	}
+	void start() throws ReportException;
 
 	/**
 	 * @since 0.1
 	 */
-	default ListMedia<T, C> finish() {
-		return this;
-	}
+	void finish() throws ReportException;
 
 	/**
 	 * @since 0.1
 	 */
-	default ListMedia<T, C> startNode(@SuppressWarnings("unused") T node) {
-		return this;
-	}
+	void startNode(T node) throws ReportException;
 
 	/**
 	 * @since 0.1
 	 */
-	default ListMedia<T, C> finishNode(@SuppressWarnings("unused") T node) {
-		return this;
-	}
+	void finishNode(T node) throws ReportException;
 
 	/**
 	 * @since 0.1
 	 */
-	default ListMedia<T, C> inner(//
-			@SuppressWarnings("unused") String data, //
-			@SuppressWarnings("unused") String name) {
-		return this;
-	}
-
-	/**
-	 * @since 0.1
-	 */
-	C content();
+	void inner(String data, String name) throws ReportException;
 
 }

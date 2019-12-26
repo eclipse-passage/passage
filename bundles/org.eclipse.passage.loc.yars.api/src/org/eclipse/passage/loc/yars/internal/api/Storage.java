@@ -32,7 +32,7 @@ package org.eclipse.passage.loc.yars.internal.api;
  * @param E type of entries covered by the {@code storage}. Here we declare that
  *          a storage is dedicated to a single data type and does not represent
  *          a universal data base of sort.
- *
+ * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
 @SuppressWarnings("unused")

@@ -12,31 +12,39 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.yars.internal.api.export;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-public class Enlistment<T> implements ListMedia<T, List<T>> {
+public class Enlistment<T> implements ListMedia<T> {
 
-	private final List<T> content = new ArrayList<>();
+	private final List<T> content;
+
+	public Enlistment(List<T> content) {
+		this.content = content;
+	}
 
 	@Override
-	public Enlistment<T> start() {
+	public final void start() {
 		content.clear();
-		return this;
 	}
 
 	@Override
-	public Enlistment<T> startNode(T root) {
+	public final void startNode(T root) {
 		content.add(root);
-		return this;
 	}
 
 	@Override
-	public List<T> content() {
-		return content;
+	public final void finish() {
+	}
+
+	@Override
+	public final void finishNode(T node) {
+	}
+
+	@Override
+	public final void inner(String data, String name) {
 	}
 
 }

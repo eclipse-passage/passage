@@ -15,37 +15,37 @@ package org.eclipse.passage.loc.yars.internal.api.export;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-class Json implements ListMedia<ExportedEntry, String> {
+class Json implements ListMedia<ExportedEntry> {
 
-	private final StringBuilder builder = new StringBuilder();
+	private final StringBuilder builder;
+
+	Json(StringBuilder builder) {
+		this.builder = builder;
+	}
 
 	@Override
-	public Json start() {
+	public final void start() {
 		builder.delete(0, builder.length());
 		builder.append("{\n"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Json finish() {
+	public final void finish() {
 		builder.append("}\n"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Json startNode(ExportedEntry node) {
+	public final void startNode(ExportedEntry node) {
 		builder.append("\t\"node\" : {\n"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Json finishNode(ExportedEntry node) {
+	public final void finishNode(ExportedEntry node) {
 		builder.append("\t}\n"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Json inner(String data, String name) {
+	public final void inner(String data, String name) {
 		builder.append("\t\t") //$NON-NLS-1$
 				.append("\"") //$NON-NLS-1$
 				.append(name) //
@@ -53,12 +53,6 @@ class Json implements ListMedia<ExportedEntry, String> {
 				.append("\"") //$NON-NLS-1$
 				.append(data)//
 				.append("\"\n"); //$NON-NLS-1$
-		return this;
-	}
-
-	@Override
-	public String content() {
-		return builder.toString();
 	}
 
 }
