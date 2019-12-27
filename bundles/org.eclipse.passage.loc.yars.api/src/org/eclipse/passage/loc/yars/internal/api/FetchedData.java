@@ -30,6 +30,7 @@ import java.util.List;
  *          of stored entries. If the fetched data is intended to be further
  *          exported ({@code written}), then {@linkplain ExportData} is
  *          recommended to be used as {@code R}
+ * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
 @SuppressWarnings("unused")

@@ -41,9 +41,15 @@ package org.eclipse.passage.loc.yars.internal.api;
  *	 .write(new Json(file));
  * </pre>
  * 
+ * @param S type of storage
+ * @param T type of data ready for export, sub type of {@linkplain ExportData}
+ * @param M any sub type of {@linkplain ListMedia}
+ * 
+ * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
-public final class Export<S extends Storage<?>, T extends ExportData<T>> implements ExportData<T> {
+public final class Export<S extends Storage<?>, T extends ExportData<T, DOSHandleMedia<T>>>
+		implements ExportData<T, DOSHandleMedia<T>> {
 
 	private final FetchedData<S, T> query;
 
@@ -52,12 +58,12 @@ public final class Export<S extends Storage<?>, T extends ExportData<T>> impleme
 	}
 
 	@Override
-	public <C> void write(ListMedia<T, C> media) {
+	public void write(DOSHandleMedia<T> media) {
 		media.start();
-		query.get().forEach(d -> {
-			media.startNode(d);
-			d.write(media);
-			media.finishNode(d);
+		query.get().forEach(data -> {
+			media.startNode(data);
+			data.write(media);
+			media.finishNode(data);
 		});
 		media.finish();
 	}

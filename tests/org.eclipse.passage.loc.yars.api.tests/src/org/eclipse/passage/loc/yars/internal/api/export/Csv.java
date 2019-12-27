@@ -18,42 +18,38 @@ import java.util.List;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-class Csv implements ListMedia<ExportedEntry, String> {
+class Csv implements ListMedia<ExportedEntry> {
 
 	private final StringBuilder builder;
 	private final List<String> header;
 
-	private Csv(StringBuilder builder, List<String> header) {
+	public Csv(StringBuilder builder, String... header) {
 		this.builder = builder;
-		this.header = header;
-	}
-
-	Csv(String... header) {
-		this(new StringBuilder(), Arrays.asList(header));
+		this.header = Arrays.asList(header);
 	}
 
 	@Override
-	public Csv start() {
+	public final void start() {
 		builder.delete(0, builder.length());
 		header.forEach(facet -> builder.append(facet).append(";")); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Csv startNode(ExportedEntry node) {
+	public final void startNode(ExportedEntry node) {
 		builder.append("\n"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public Csv inner(String data, String name) {
+	public final void inner(String data, String name) {
 		builder.append(data).append(";"); //$NON-NLS-1$
-		return this;
 	}
 
 	@Override
-	public String content() {
-		return builder.toString();
+	public final void finish() {
+	}
+
+	@Override
+	public final void finishNode(ExportedEntry node) {
 	}
 
 }

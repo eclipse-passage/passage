@@ -32,6 +32,7 @@ package org.eclipse.passage.loc.yars.internal.api;
  *          produce.
  * @param P particular type of fetch parameters, can be specific both for the
  *          storage and for the query itself.
+ * @see org.eclipse.passage.loc.yars.internal.api
  * 
  * @since 0.1
  */

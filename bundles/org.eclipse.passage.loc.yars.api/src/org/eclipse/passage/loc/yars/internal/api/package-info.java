@@ -159,9 +159,8 @@
  *     < ... constructor for name and grade >
  *     
  *     <O> void write(ListMedia<AcademicRecord, O> media){
- *         media
- *         .inner(name, "student")
- *         .inner(grade, "grade"); 
+ *         media.inner(name, "student");
+ *         media.inner(grade, "grade"); 
  *     }
  * }
  * </pre>
@@ -172,14 +171,14 @@
  * orchestrator oneself, or exploit the {@linkplain Export} like this
  * 
  * <pre>
- *   Report report = new Report(); 
  *   FifthGradeStudents base = ...
+ *   StringBuilder output = new StringBuilder();
  *   new Export<FifthGradeStudents, AcademicRecord>(
  *        new MathProgress().fetch(
  *           base, 
  *           new AnalysisParams("math"))
- *     .write(report);
- *	 String reportText = report.content()
+ *     .write(new Report(output));
+ *	 String report = output.toString();
  * </pre>
  * 
  * </li>
@@ -189,49 +188,44 @@
  * footer, and list all records as well.
  * 
  * <pre>
- * class Report extends ListMedia<AcademicRecord, String> {
- * 		private final StringBuilder buffer = new StringBuilder();
+ * class Report extends ListMedia<AcademicRecord> {
+ * 		private final StringBuilder buffer;
  * 		private final File target;
  * 		private final Counter counter = new Counter(0); 
  *     
- * 		<... construct it>
+ * 		<... construct it with incoming buffer>
  *      
- *      public Report start(){ // here comes the header
+ *      public void start(){ // here comes the header
  *      	buffer.append("the report summarizes math academic records for 5th graders\n");
- *      	return this;
  *      }
  *      
- *      public Report finish(){ // and here is the footer
+ *      public void finish(){ // and here is the footer
  *      	buffer.append(counter + " 5th graders are presented\n");
  *      	saveBufferContentToTargetFile();
- *      	return this;
  *      }
  *      
- *      public Report startNode(AcademicRecord node) {
+ *      public void startNode(AcademicRecord node) {
  *      	buffer.append("5th grader math academic record: \n");
- *      	return this;
  *      }
  *      
- *      public Report finishNode(AcademicRecord node) {
+ *      public void finishNode(AcademicRecord node) {
  *      	buffer.append("\n");
- *      	return this;
  *      }
  *      
- *      public Report inner(String data, String name) {
+ *      public void inner(String data, String name) {
  *      	buffer
  *      		.append("\t")
  *      		.append(name)
  *      		.append(" = ")
  *      		.append(data)
  *      		.append("\n");
- *      	return this;
- *      }
+ *      }      
  * }
  * </pre>
  * 
  * </li>
  * <p>
- * You are going to get a {@code reportText} like this:
+ * You are going to get a {@code report} like this:
  * </p>
  * 
  * <pre>
