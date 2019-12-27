@@ -21,7 +21,8 @@ import org.eclipse.passage.loc.yars.internal.api.ExportData;
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public final class ProductCustomer implements ExportData<ProductCustomer, DOSHandleMedia<ProductCustomer>> {
+final class ProductCustomer implements ExportData<ProductCustomer, DOSHandleMedia<ProductCustomer>> {
+
 	private final String name;
 	private final String email;
 

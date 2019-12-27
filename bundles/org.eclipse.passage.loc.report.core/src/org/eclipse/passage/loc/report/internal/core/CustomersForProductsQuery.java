@@ -16,12 +16,12 @@ import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.Query;
 
 /**
- * FIXME
+ * FIXME doc
  * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public final class CustomersForProductsQuery implements Query<CustomerBase, ProductCustomer, ProductNames> {
+final class CustomersForProductsQuery implements Query<CustomerStorage, ProductCustomer, ProductNames> {
 
 	@Override
 	public String id() {
@@ -34,7 +34,7 @@ public final class CustomersForProductsQuery implements Query<CustomerBase, Prod
 	}
 
 	@Override
-	public FetchedData<CustomerBase, ProductCustomer> fetch(CustomerBase storage, ProductNames properties) {
+	public FetchedData<CustomerStorage, ProductCustomer> fetch(CustomerStorage storage, ProductNames properties) {
 		return new CustomersFetch(storage, properties.products());
 	}
 

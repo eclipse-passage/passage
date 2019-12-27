@@ -19,17 +19,17 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
 /**
- * FIXME
+ * FIXME doc
  * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public final class CustomersFetch implements FetchedData<CustomerBase, ProductCustomer> {
+final class CustomersFetch implements FetchedData<CustomerStorage, ProductCustomer> {
 
-	private final CustomerBase source;
+	private final CustomerStorage source;
 	private final Set<String> products;
 
-	public CustomersFetch(CustomerBase source, Set<String> products) {
+	public CustomersFetch(CustomerStorage source, Set<String> products) {
 		this.source = source;
 		this.products = products;
 	}

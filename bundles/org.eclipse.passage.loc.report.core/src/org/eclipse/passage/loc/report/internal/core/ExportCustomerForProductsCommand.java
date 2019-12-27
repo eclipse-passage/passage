@@ -12,25 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.nio.file.Path;
+import java.util.Set;
+
+import org.eclipse.passage.loc.yars.internal.api.ReportException;
 
 /**
+ * FIXME doc
+ * 
  * @since 0.1
  */
-final class Messages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.messages"; //$NON-NLS-1$
+@SuppressWarnings("restriction")
+public interface ExportCustomerForProductsCommand {
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+	public void execute(Set<String> products, Path target) throws ReportException;
 
-	private Messages() {
-	}
-
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
-	}
 }
