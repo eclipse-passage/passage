@@ -69,6 +69,7 @@
 	  	<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
+          	<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
 
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
