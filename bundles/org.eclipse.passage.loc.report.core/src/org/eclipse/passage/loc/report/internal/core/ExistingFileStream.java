@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -45,9 +47,9 @@ final class ExistingFileStream {
 		return path.toFile();
 	}
 
-	FileOutputStream stream() throws ReportException {
+	Appendable stream() throws ReportException {
 		try {
-			return new FileOutputStream(file());
+			return new OutputStreamWriter(new FileOutputStream(file()), StandardCharsets.UTF_8); // TODO: set encoding
 		} catch (FileNotFoundException e) {
 			throw new ReportException(String.format("file %s appears to be not-existing all of a sudden!", path), null); //$NON-NLS-1$
 		}

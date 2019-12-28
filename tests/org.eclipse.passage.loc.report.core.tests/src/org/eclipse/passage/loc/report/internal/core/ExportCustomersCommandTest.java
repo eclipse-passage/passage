@@ -17,6 +17,7 @@ import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -63,8 +64,11 @@ public class ExportCustomersCommandTest {
 	private void assertOutputLooksAsExpected() {
 		Set<String> result;
 		try {
-			result = new HashSet<>(Files.lines(output).collect(Collectors.toSet()));
-		} catch (IOException e) {
+			result = new HashSet<>(//
+					Files.lines(output, StandardCharsets.UTF_8)//
+							.collect(Collectors.toSet()));
+		} catch (Throwable e) {
+			e.printStackTrace();
 			fail("Output is broken"); //$NON-NLS-1$
 			return;
 		}

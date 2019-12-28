@@ -13,7 +13,6 @@
 package org.eclipse.passage.loc.report.internal.core;
 
 import java.io.IOException;
-import java.io.PrintStream;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -34,8 +33,9 @@ final class Csv implements ListMedia<ProductCustomer> {
 		try {
 			stream = //
 					new CSVPrinter( //
-							new PrintStream(target.stream()), //
-							CSVFormat.EXCEL.withHeader(header));
+							target.stream(), //
+							CSVFormat.EXCEL //
+									.withHeader(header));
 		} catch (IOException e) {
 			throw new ReportException(Messages.getString("Csv.action_printer_construction_failure"), e); //$NON-NLS-1$
 		}
