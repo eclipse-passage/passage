@@ -49,7 +49,7 @@ public final class ExportCustomersCommand implements ExportCustomerForProductsCo
 	}
 
 	@Reference
-	void installCustomers(CustomerStorage base) {
+	public void installCustomers(CustomerStorage base) {
 		source = base;
 	}
 }

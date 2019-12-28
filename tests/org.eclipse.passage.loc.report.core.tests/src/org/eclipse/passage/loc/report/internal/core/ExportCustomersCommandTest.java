@@ -41,15 +41,6 @@ public class ExportCustomersCommandTest {
 
 	private Path output;
 
-	public void readContext() {
-		Bundle bundle = FrameworkUtil.getBundle(ExportCustomersCommand.class);
-		BundleContext context = bundle.getBundleContext();
-		ServiceReference<ExportCustomerForProductsCommand> commandReference = context
-				.getServiceReference(ExportCustomerForProductsCommand.class);
-		ExportCustomerForProductsCommand command = context.getService(commandReference);
-		assertNotNull(command);
-	}
-
 	@Before
 	public void setUp() {
 		try {
@@ -70,9 +61,15 @@ public class ExportCustomersCommandTest {
 	}
 
 	private ExportCustomerForProductsCommand exportCommand() {
-		ExportCustomersCommand command = new ExportCustomersCommand();
+		Bundle bundle = FrameworkUtil.getBundle(ExportCustomersCommand.class);
+		BundleContext context = bundle.getBundleContext();
+		ServiceReference<ExportCustomerForProductsCommand> commandReference = context
+				.getServiceReference(ExportCustomerForProductsCommand.class);
+		ExportCustomersCommand command = (ExportCustomersCommand) context.getService(commandReference);
+		assertNotNull(command);
 		command.installCustomers(new FakeCustomersBase());
 		return command;
+
 	}
 
 	private Set<String> fakeProducts() {
