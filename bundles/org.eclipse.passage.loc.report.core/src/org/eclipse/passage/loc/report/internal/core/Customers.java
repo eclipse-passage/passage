@@ -40,9 +40,10 @@ public final class Customers implements CustomerStorage {
 				.collect(Collectors.toSet());
 	}
 
+	@Override
 	@Reference
-	public void setUserRegistry(UserRegistry reg) {
-		registry = reg;
+	public void installUserRegistry(UserRegistry userRegistry) {
+		this.registry = userRegistry;
 	}
 
 }

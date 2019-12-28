@@ -15,9 +15,6 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.nio.file.Path;
 import java.util.Set;
 
-import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
-import org.eclipse.passage.loc.yars.internal.api.DefaultDOSHandler;
-import org.eclipse.passage.loc.yars.internal.api.Export;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -29,27 +26,19 @@ import org.osgi.service.component.annotations.Reference;
  */
 @SuppressWarnings("restriction")
 @Component
-public final class ExportCustomersCommand implements ExportCustomerForProductsCommand {
+public final class CsvExportService implements ExportService {
 
 	private CustomerStorage source;
 
 	@Override
-	public void execute(Set<String> products, Path target) throws ReportException {
-		new Export<CustomerStorage, ProductCustomer>(//
-				new CustomersForProductsQuery()//
-						.fetch(source, //
-								new ProductNames(products)))//
-										.write(new DOSHandleMedia<ProductCustomer>( //
-												new Csv( //
-														new ExistingFileStream(target), //
-														"email", //$NON-NLS-1$
-														"name"), //$NON-NLS-1$
-												new DefaultDOSHandler()));
+	public void exportCustomersForProducts(Set<String> products, Path target) throws ReportException {
+		new ProductCustomersToCsv(source).export(products, target);
 
 	}
 
+	@Override
 	@Reference
-	public void installCustomers(CustomerStorage base) {
-		source = base;
+	public void installCustomerStorage(CustomerStorage storage) {
+		source = storage;
 	}
 }

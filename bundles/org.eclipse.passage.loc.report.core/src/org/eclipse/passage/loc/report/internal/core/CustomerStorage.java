@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.util.Set;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
 /**
@@ -25,6 +26,8 @@ import org.eclipse.passage.loc.yars.internal.api.Storage;
 @SuppressWarnings("restriction")
 public interface CustomerStorage extends Storage<UserDescriptor> {
 
-	public Set<UserDescriptor> forProducts(Set<String> products);
+	Set<UserDescriptor> forProducts(Set<String> products);
+
+	void installUserRegistry(UserRegistry userRegistry);
 
 }

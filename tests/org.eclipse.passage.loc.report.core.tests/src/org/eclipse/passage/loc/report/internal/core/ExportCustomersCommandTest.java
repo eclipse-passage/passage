@@ -13,7 +13,6 @@
 package org.eclipse.passage.loc.report.internal.core;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
 
@@ -28,10 +27,6 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.junit.Before;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.ServiceReference;
 
 // FIXME test all sort of expected failures
 // FIXME integration-test over emf-based user registry for encoding purposes
@@ -53,23 +48,12 @@ public class ExportCustomersCommandTest {
 	@Test
 	public void tesCsvExport() {
 		try {
-			exportCommand().execute(fakeProducts(), output);
+			new ProductCustomersToCsv(new FakeCustomersBase())//
+					.export(fakeProducts(), output);
 		} catch (ReportException e) {
 			fail("Export failed"); //$NON-NLS-1$
 		}
 		assertOutputLooksAsExpected();
-	}
-
-	private ExportCustomerForProductsCommand exportCommand() {
-		Bundle bundle = FrameworkUtil.getBundle(ExportCustomersCommand.class);
-		BundleContext context = bundle.getBundleContext();
-		ServiceReference<ExportCustomerForProductsCommand> commandReference = context
-				.getServiceReference(ExportCustomerForProductsCommand.class);
-		ExportCustomersCommand command = (ExportCustomersCommand) context.getService(commandReference);
-		assertNotNull(command);
-		command.installCustomers(new FakeCustomersBase());
-		return command;
-
 	}
 
 	private Set<String> fakeProducts() {

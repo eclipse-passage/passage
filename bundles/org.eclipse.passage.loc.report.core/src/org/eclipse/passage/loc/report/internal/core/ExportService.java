@@ -20,11 +20,14 @@ import org.eclipse.passage.loc.yars.internal.api.ReportException;
 /**
  * FIXME doc
  * 
+ * FIXME: append the rest of over-customers export commands here
+ * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public interface ExportCustomerForProductsCommand {
+public interface ExportService {
 
-	public void execute(Set<String> products, Path target) throws ReportException;
+	void exportCustomersForProducts(Set<String> products, Path target) throws ReportException;
 
+	void installCustomerStorage(CustomerStorage stogage);
 }
