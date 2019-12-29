@@ -42,7 +42,13 @@ public final class CsvExportService implements ExportService {
 
 	}
 
-	@Override
+	/**
+	 * It is required to install a {@linkplain CustomerStorage} to the service prior
+	 * any export action is asked as it is the base source of information to be
+	 * exported.
+	 * 
+	 * @since 0.1
+	 */
 	@Reference
 	public void installCustomerStorage(CustomerStorage storage) {
 		source = storage;

@@ -38,12 +38,4 @@ public interface CustomerStorage extends Storage<UserDescriptor> {
 	 */
 	Set<UserDescriptor> forProducts(Set<String> products);
 
-	/**
-	 * It is required to install {@code LIC} {@linkplain UserRegistry} as it is the
-	 * source of information provided.
-	 * 
-	 * @since 0.1
-	 */
-	void installUserRegistry(UserRegistry userRegistry);
-
 }

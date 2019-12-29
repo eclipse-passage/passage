@@ -47,7 +47,12 @@ public final class Customers implements CustomerStorage {
 				.collect(Collectors.toSet());
 	}
 
-	@Override
+	/**
+	 * It is required to install {@code LIC} {@linkplain UserRegistry} as it is the
+	 * source of information provided.
+	 * 
+	 * @since 0.1
+	 */
 	@Reference
 	public void installUserRegistry(UserRegistry userRegistry) {
 		this.registry = userRegistry;

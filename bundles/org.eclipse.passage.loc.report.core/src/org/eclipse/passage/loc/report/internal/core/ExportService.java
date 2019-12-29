@@ -38,12 +38,4 @@ public interface ExportService {
 	 */
 	void exportCustomersForProducts(Set<String> products, Path target) throws ReportException;
 
-	/**
-	 * It is required to install a {@linkplain CustomerStorage} to the service prior
-	 * any export action is asked as it is the base source of information to be
-	 * exported.
-	 * 
-	 * @since 0.1
-	 */
-	void installCustomerStorage(CustomerStorage stogage);
 }
