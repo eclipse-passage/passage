@@ -21,7 +21,7 @@ import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.eclipse.passage.loc.yars.internal.api.Unsafe;
 
 /**
- * FIXME doc
+ * {@linkplain ListMedia} implementation done by {@code apache.commons.csv}
  * 
  * @since 0.1
  */
@@ -29,6 +29,9 @@ import org.eclipse.passage.loc.yars.internal.api.Unsafe;
 final class Csv implements ListMedia<ProductCustomer> {
 	private final CSVPrinter stream;
 
+	/**
+	 * We require an existing
+	 */
 	public Csv(ExistingFileStream target, String... header) throws ReportException {
 		try {
 			stream = //

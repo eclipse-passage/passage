@@ -19,7 +19,10 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
 /**
- * FIXME doc
+ * <p>
+ * An implementation of {@code YARS}'s {@linkplain FetchedData} that lazily
+ * polls {@linkplain CustomerStorage} for user information.
+ * </p>
  * 
  * @since 0.1
  */
@@ -29,11 +32,20 @@ final class CustomersFetch implements FetchedData<CustomerStorage, ProductCustom
 	private final CustomerStorage source;
 	private final Set<String> products;
 
-	public CustomersFetch(CustomerStorage source, Set<String> products) {
+	CustomersFetch(CustomerStorage source, Set<String> products) {
 		this.source = source;
 		this.products = products;
 	}
 
+	/**
+	 * <p>
+	 * The information fetched and formed in a {@linkplain ProductCustomer}
+	 * instances and represent all customers that are interested in a product from
+	 * the given set.
+	 * </p>
+	 * 
+	 * @since 0.1
+	 */
 	@Override
 	public List<ProductCustomer> get() {
 		return source.forProducts(products).stream()//

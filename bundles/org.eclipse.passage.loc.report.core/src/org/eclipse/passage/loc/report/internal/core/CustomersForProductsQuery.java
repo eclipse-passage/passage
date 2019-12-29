@@ -16,7 +16,17 @@ import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.Query;
 
 /**
- * FIXME doc
+ * <p>
+ * {@code YARS}'s {@linkplain Query} defines <i>get info of all customers that
+ * can interested in any of the given products</i>.
+ * </p>
+ * 
+ * <p>
+ * Source of information is {@linkplain CustomerStorage}.
+ * </p>
+ * <p>
+ * Unit of output information is {@linkplain ProductCustomer}.
+ * </p>
  * 
  * @since 0.1
  */
@@ -33,6 +43,15 @@ final class CustomersForProductsQuery implements Query<CustomerStorage, ProductC
 		return Messages.getString("CustomersForProductsQuery.query_description"); //$NON-NLS-1$
 	}
 
+	/**
+	 * Creates a lazy fetcher for the information of interest. The fetcher to be
+	 * created is parameterized with an instance of {@linkplain ProductNames}.
+	 * 
+	 * @param storage    the source of information
+	 * @param properties fetcher settings to be used on a source querying
+	 * 
+	 * @since 0.1
+	 */
 	@Override
 	public FetchedData<CustomerStorage, ProductCustomer> fetch(CustomerStorage storage, ProductNames properties) {
 		return new CustomersFetch(storage, properties.products());

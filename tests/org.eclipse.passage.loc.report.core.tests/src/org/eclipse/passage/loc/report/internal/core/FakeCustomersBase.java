@@ -17,8 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
 
+@SuppressWarnings("restriction")
 final class FakeCustomersBase implements CustomerStorage {
 
 	@Override
@@ -37,11 +37,6 @@ final class FakeCustomersBase implements CustomerStorage {
 						"football-asia-cup-2007@gmail.com", //$NON-NLS-1$
 						"오범석 呉範錫") //$NON-NLS-1$
 		}).collect(Collectors.toSet());
-	}
-
-	@Override
-	public void installUserRegistry(UserRegistry userRegistry) {
-		throw new UnsupportedOperationException();
 	}
 
 }

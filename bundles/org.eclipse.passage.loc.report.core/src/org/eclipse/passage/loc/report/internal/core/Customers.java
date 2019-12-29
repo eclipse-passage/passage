@@ -23,7 +23,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * FIXME
+ * <p>
+ * OSGi {@code component} implementation for the {@linkplain CustomerStorage}
+ * interface.
+ * </p>
+ * 
+ * <p>
+ * {@linkplain UserRegistry} injection is intended to be done by OSGi.
+ * </p>
  * 
  * @since 0.1
  */
@@ -40,7 +47,12 @@ public final class Customers implements CustomerStorage {
 				.collect(Collectors.toSet());
 	}
 
-	@Override
+	/**
+	 * It is required to install {@code LIC} {@linkplain UserRegistry} as it is the
+	 * source of information provided.
+	 * 
+	 * @since 0.1
+	 */
 	@Reference
 	public void installUserRegistry(UserRegistry userRegistry) {
 		this.registry = userRegistry;

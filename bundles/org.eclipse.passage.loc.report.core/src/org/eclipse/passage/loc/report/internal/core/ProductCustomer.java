@@ -16,7 +16,22 @@ import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 
 /**
- * FIXME
+ * <p>
+ * Internal unit of information fetched during
+ * {@linkplain ExportService#exportCustomersForProducts(java.util.Set, java.nio.file.Path)}
+ * command execution.
+ * </p>
+ * 
+ * <p>
+ * Encapsulates agreed data to be exported. Currently it's hardcoded
+ * {@code email} and {@code name}, but a portion of flexibility should most
+ * probably appear here.
+ * </p>
+ * 
+ * <p>
+ * Represents an <i>exportable</i> unit (implements {@linkplain ExportData}
+ * interface).
+ * </p>
  * 
  * @since 0.1
  */
