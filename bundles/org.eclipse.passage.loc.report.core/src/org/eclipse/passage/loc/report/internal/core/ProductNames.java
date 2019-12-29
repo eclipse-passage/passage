@@ -20,7 +20,8 @@ import java.util.Set;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 
 /**
- * FIXME doc
+ * {@code YARS} {@linkplain FetchParams} implementation specifies set of product
+ * of interest.
  * 
  * @since 0.1
  */
@@ -29,14 +30,27 @@ final class ProductNames implements FetchParams {
 
 	private final Set<String> products;
 
+	/**
+	 * @param products set of product identifiers
+	 * @since 0.1
+	 */
 	public ProductNames(Collection<String> products) {
 		this.products = new HashSet<String>(products);
 	}
 
+	/**
+	 * @param products direct enlistment of product identifiers
+	 * @since 0.1
+	 */
 	public ProductNames(String... products) {
 		this(Arrays.asList(products));
 	}
 
+	/**
+	 * @return products set of product identifiers that the querying side is
+	 *         interested in
+	 * @since 0.1
+	 */
 	public Set<String> products() {
 		return products;
 	}

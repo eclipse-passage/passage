@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 
+@SuppressWarnings("restriction")
 final class FakeCustomersBase implements CustomerStorage {
 
 	@Override

@@ -21,7 +21,8 @@ import org.eclipse.passage.loc.yars.internal.api.Export;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 
 /**
- * FIXME doc
+ * OSGi-free final implementation of the <i>customers for these products</i>
+ * export command
  * 
  * @since 0.1
  */
@@ -34,6 +35,12 @@ public final class ProductCustomersToCsv {
 		this.source = storage;
 	}
 
+	/**
+	 * The <i>exporting</i> command to be called by the pachake's clients directly
+	 * or by means of OSGi {@code services
+	 * 
+	 * @since 0.1
+	 */
 	public void export(Set<String> products, Path target) throws ReportException {
 		new Export<CustomerStorage, ProductCustomer>(//
 				new CustomersForProductsQuery()//

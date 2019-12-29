@@ -20,7 +20,13 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * FIXME doc
+ * <p>
+ * OSGi {@code component} that implements the package central
+ * {@linkplain ExportService} interface with {@code csv}-targeted export.
+ * </p>
+ * <p>
+ * {@linkplain CustomerStorage} reference is intended to be injected by OSGi.
+ * </p>
  * 
  * @since 0.1
  */
@@ -41,4 +47,5 @@ public final class CsvExportService implements ExportService {
 	public void installCustomerStorage(CustomerStorage storage) {
 		source = storage;
 	}
+
 }

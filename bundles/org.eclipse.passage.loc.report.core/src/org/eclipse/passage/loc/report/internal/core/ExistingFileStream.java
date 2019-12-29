@@ -24,7 +24,17 @@ import java.nio.file.Path;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 
 /**
- * FIXME doc
+ * <p>
+ * Built over a {@linkplain Path} on a local file system, does one's best to
+ * build a {@code UTF-8}-encoded output stream on top of the corresponding file.
+ * </p>
+ * <ul>
+ * <li>If the file does not exist - it will be created</li>
+ * <li>If the given {@code path} appears to point at an existing directory -
+ * {@code ReportException} is thrown</li>
+ * <li>{@code ReportException} is fired in the case of any denial from OS (file
+ * creation, stream construction, whatever)</li>
+ * </ul>
  * 
  * @since 0.1
  */
@@ -33,11 +43,30 @@ final class ExistingFileStream {
 
 	private final Path path;
 
+	/**
+	 * Given {@code path} to be used to build an output stream on top of it.
+	 * 
+	 * @since 0.1
+	 */
 	ExistingFileStream(Path path) {
 		this.path = path;
 	}
 
-	File file() throws ReportException {
+	/**
+	 * Get a {@code UTF-8}-encoded output stream from a file where {@code path}
+	 * points
+	 * 
+	 * @since 0.1
+	 */
+	Appendable stream() throws ReportException {
+		try {
+			return new OutputStreamWriter(new FileOutputStream(file()), StandardCharsets.UTF_8); // TODO: set encoding
+		} catch (FileNotFoundException e) {
+			throw new ReportException(String.format("file %s appears to be not-existing all of a sudden!", path), null); //$NON-NLS-1$
+		}
+	}
+
+	private File file() throws ReportException {
 		if (Files.notExists(path)) {
 			return create().toFile();
 		} else if (Files.isDirectory(path)) {
@@ -45,14 +74,6 @@ final class ExistingFileStream {
 					String.format("path %s points to a directory, but we expect a file to export to", path), null); //$NON-NLS-1$
 		}
 		return path.toFile();
-	}
-
-	Appendable stream() throws ReportException {
-		try {
-			return new OutputStreamWriter(new FileOutputStream(file()), StandardCharsets.UTF_8); // TODO: set encoding
-		} catch (FileNotFoundException e) {
-			throw new ReportException(String.format("file %s appears to be not-existing all of a sudden!", path), null); //$NON-NLS-1$
-		}
 	}
 
 	private Path create() throws ReportException {
