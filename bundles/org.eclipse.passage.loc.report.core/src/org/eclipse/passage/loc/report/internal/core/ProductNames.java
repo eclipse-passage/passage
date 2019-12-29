@@ -20,12 +20,12 @@ import java.util.Set;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 
 /**
- * FIXME
+ * FIXME doc
  * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public final class ProductNames implements FetchParams {
+final class ProductNames implements FetchParams {
 
 	private final Set<String> products;
 

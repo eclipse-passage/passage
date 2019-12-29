@@ -13,32 +13,21 @@
 package org.eclipse.passage.loc.report.internal.core;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
 /**
- * FIXME
+ * FIXME doc
  * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-public abstract class CustomerBase implements Storage<UserDescriptor> {
-	private final UserRegistry registry;
+public interface CustomerStorage extends Storage<UserDescriptor> {
 
-	protected CustomerBase(UserRegistry registry) {
-		this.registry = registry;
-	}
+	Set<UserDescriptor> forProducts(Set<String> products);
 
-	public Set<UserDescriptor> forProducts(Set<String> products) {
-		return StreamSupport.stream(registry.getUserLicenses().spliterator(), false)//
-				.filter(lic -> products.contains(lic.getProductIdentifier())) //
-				.map(UserLicenseDescriptor::getUser) //
-				.collect(Collectors.toSet());
-	}
+	void installUserRegistry(UserRegistry userRegistry);
 
 }

@@ -12,29 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
-import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
-import org.eclipse.passage.loc.yars.internal.api.ExportData;
+import java.nio.file.Path;
+import java.util.Set;
+
+import org.eclipse.passage.loc.yars.internal.api.ReportException;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
- * FIXME
+ * FIXME doc
  * 
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-final class ProductCustomer implements ExportData<ProductCustomer, DOSHandleMedia<ProductCustomer>> {
+@Component
+public final class CsvExportService implements ExportService {
 
-	private final String name;
-	private final String email;
+	private CustomerStorage source;
 
-	public ProductCustomer(String name, String email) {
-		this.name = name;
-		this.email = email;
+	@Override
+	public void exportCustomersForProducts(Set<String> products, Path target) throws ReportException {
+		new ProductCustomersToCsv(source).export(products, target);
+
 	}
 
 	@Override
-	public void write(DOSHandleMedia<ProductCustomer> media) {
-		media.inner(email, "email"); //$NON-NLS-1$
-		media.inner(name, "name"); //$NON-NLS-1$
+	@Reference
+	public void installCustomerStorage(CustomerStorage storage) {
+		source = storage;
 	}
-
 }
