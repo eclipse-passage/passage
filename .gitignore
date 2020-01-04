@@ -17,6 +17,9 @@ target/
 # Compiled class file
 *.class
 
+# JDT output
+/*/*/bin/
+
 # Log file
 *.log
 
