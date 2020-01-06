@@ -1,4 +1,4 @@
-# Notices for Passage Licensing Integration Components
+# Notices for Eclipse Passage
 This content is produced and maintained by the Eclipse Passage project.
 
 * Project home: https://projects.eclipse.org/projects/technology.passage
@@ -25,7 +25,7 @@ SPDX-License-Identifier: EPL-2.0
 
 The project maintains the following source code repositories:
 
- * https://git.eclipse.org/c/passage 
+ * https://github.com/eclipse/passage/
 
 ## Third-party Content
 
