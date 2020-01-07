@@ -1,6 +1,6 @@
 <img src="https://github.com/eclipse/passage/blob/master/bundles/org.eclipse.passage.ldc/images/topiclabel/menu_item.png" width="48px" height="48px" />
 
-## Passage Licensing Integration Components (LIC) 
+## Eclipse Passage
 
 [![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
 
@@ -10,17 +10,16 @@
 
 [![codecov](https://codecov.io/gh/eclipse/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse/passage)
 
-The Passage LIC is a part of the [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) solution.
-This component verifies that the software has sufficient license grants in accordance with the specified licensing requirements.
+[Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
 
 ### How to use
 
-Just include the Passage LIC bundles in your product and declare licensing requirement for your features.
+Just include the "org.eclipse.passage.lic.execute.feature" in your product and declare licensing requirement for your features.
 
 ### How it works
 
-The Passage LIC works inside your product installed on the user side. Its basic steps are as follows:
+The Eclipse Passage works inside your product installed on the user side. Its basic steps are as follows:
 1. Get the system configuration specified in the Licensing Operator client: the feature identifiers and the respective usage restrictions.
 2. Get the license conditions. The LIC may be tuned to look through different locations like `user.home` and `osgi.instance.area`.
 3. Compare the license specified configuration with the current system state (the current date, node id, etc) to confirm the license is active and valid.
@@ -29,10 +28,10 @@ The Passage LIC works inside your product installed on the user side. Its basic 
 
 ### License
 
-Copyright (c) 2018-2019 ArSysOp and others
+Copyright (c) 2018-2020 ArSysOp and others
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
-[http://www.eclipse.org/legal/epl-2.0](http://www.eclipse.org/legal/epl-2.0).
+[https://www.eclipse.org/legal/epl-2.0/](https://www.eclipse.org/legal/epl-2.0/).
 
 SPDX-License-Identifier: EPL-2.0
