@@ -99,7 +99,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.execute.branding</module>
 		<module>../../features/org.eclipse.passage.lic.execute.feature</module>
 
-		<!--module>../../bundles/org.eclipse.passage.lic.define.branding</module-->
+		<module>../../bundles/org.eclipse.passage.lic.define.branding</module>
 		<module>../../features/org.eclipse.passage.lic.define.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
