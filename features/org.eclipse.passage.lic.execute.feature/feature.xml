@@ -16,7 +16,7 @@
       label="%featureName"
       version="0.8.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.passage.execute.branding"
+      plugin="org.eclipse.passage.lic.execute.branding"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
 
@@ -57,7 +57,7 @@
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.passage.execute.branding"
+         id="org.eclipse.passage.lic.execute.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
