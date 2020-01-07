@@ -93,7 +93,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.licenses.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.licenses.feature</module>
 
-		<!--module>../../bundles/org.eclipse.passage.lic.compile.branding</module-->
+		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.execute.branding</module>
