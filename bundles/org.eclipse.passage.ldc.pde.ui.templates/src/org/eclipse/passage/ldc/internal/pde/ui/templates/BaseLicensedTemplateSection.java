@@ -168,7 +168,6 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 	protected List<String> getRCP3xDependencies() {
 		return Arrays.asList(//
 				"org.apache.felix.scr", //$NON-NLS-1$
-				"org.eclipse.equinox.util", //$NON-NLS-1$
 				"org.eclipse.equinox.event", //$NON-NLS-1$
 				"org.eclipse.core.runtime", //$NON-NLS-1$
 				"org.eclipse.ui", //$NON-NLS-1$
