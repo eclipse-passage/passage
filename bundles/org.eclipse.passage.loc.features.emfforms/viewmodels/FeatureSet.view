@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1170" xmi:id="_SUWLYAbBEemNz8l9BTvo0A" name="FeatureSet">
-  <rootEClass href="http://www.eclipse.org/passage/lic/features/0.4.0#//FeatureSet"/>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_SUWLYAbBEemNz8l9BTvo0A" name="FeatureSet">
+  <rootEClass href="http://www.eclipse.org/passage/lic/features/0.5.0#//FeatureSet"/>
+  <ecorePaths>/org.eclipse.passage.lic.features.ecore/model/features.ecore</ecorePaths>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_SW6XMAbBEemNz8l9BTvo0A" name="Control identifier">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_SW6-QAbBEemNz8l9BTvo0A">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.4.0#//FeatureSet/identifier"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.5.0#//FeatureSet/identifier"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_SW6-QQbBEemNz8l9BTvo0A" name="Control name">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_SW6-QgbBEemNz8l9BTvo0A">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.4.0#//FeatureSet/name"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.5.0#//FeatureSet/name"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_SW6-QwbBEemNz8l9BTvo0A" name="Control description">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_SW6-RAbBEemNz8l9BTvo0A">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.4.0#//FeatureSet/description"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/features/0.5.0#//FeatureSet/description"/>
     </domainModelReference>
   </children>
-  <ecorePaths>/org.eclipse.passage.lic.features.ecore/model/features.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>
