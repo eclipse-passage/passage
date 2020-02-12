@@ -51,6 +51,8 @@
 		<module>../../bundles/org.eclipse.passage.loc.licenses.ui</module>
 		<module>../../bundles/org.eclipse.passage.loc.licenses.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.licenses.feature</module>
+		
+		<module>../../bundles/org.eclipse.passage.loc.billing.core</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.users.core</module>
 		<module>../../bundles/org.eclipse.passage.loc.users.ui</module>

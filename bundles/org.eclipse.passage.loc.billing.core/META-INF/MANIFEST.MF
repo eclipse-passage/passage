@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-SymbolicName: org.eclipse.passage.loc.billing.core
+Bundle-Version: 0.1.0.qualifier
+Automatic-Module-Name: org.eclipse.passage.loc.billing.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
