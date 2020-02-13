@@ -34,6 +34,10 @@
    <includes
          id="org.eclipse.passage.loc.dashboard.feature"
          version="0.0.0"/>
+         
+   <includes
+         id="org.eclipse.passage.loc.billing.feature"
+         version="0.0.0"/>
 
    <requires>
       <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
