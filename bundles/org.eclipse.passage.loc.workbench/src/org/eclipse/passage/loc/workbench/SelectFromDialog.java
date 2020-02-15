@@ -29,10 +29,12 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * Selects the classifier from the given input with
  * {@link FilteredSelectionDialog}
+ * 
+ * @since 0.6
  *
  * @param <C> classifier to be selected see {@link EClass#getName()}
  */
-public class SelectFromDialog<C> implements Function<Iterable<C>, Optional<C>> {
+public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional<C>> {
 
 	private final FilteredSelectionDialog<C> dialog;
 

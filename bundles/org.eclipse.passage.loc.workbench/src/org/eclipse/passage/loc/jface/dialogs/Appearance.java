@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
  * @since 0.6
  *
  */
-public class Appearance {
+public final class Appearance {
 
 	private final String title;
 	private final Image image;
