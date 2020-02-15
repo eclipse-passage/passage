@@ -44,7 +44,7 @@
 
 		<module>../../bundles/org.eclipse.passage.loc.billing.core</module>
 		<module>../../features/org.eclipse.passage.loc.billing.feature</module>
-		<module>../../tests/org.eclipse.passage.loc.billing.tests</module>
+		<module>../../tests/org.eclipse.passage.loc.billing.core.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.users.core</module>
 		<module>../../bundles/org.eclipse.passage.loc.users.ui</module>
