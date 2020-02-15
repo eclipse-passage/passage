@@ -24,13 +24,14 @@ import java.util.function.Supplier;
  */
 public final class ZeroOneMany<C> {
 
-	private final Iterable<C> input;
+	private final Supplier<Iterable<C>> supplier;
 
-	public ZeroOneMany(Iterable<C> input) {
-		this.input = input;
+	public ZeroOneMany(Supplier<Iterable<C>> input) {
+		this.supplier = input;
 	}
 
 	public Optional<C> choose(Supplier<C> create, Function<Iterable<C>, Optional<C>> select) {
+		Iterable<C> input = supplier.get();
 		Iterator<C> iterator = input.iterator();
 		if (!iterator.hasNext()) {
 			return Optional.ofNullable(create.get());

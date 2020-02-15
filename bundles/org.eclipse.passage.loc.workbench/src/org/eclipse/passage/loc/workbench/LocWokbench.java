@@ -134,15 +134,6 @@ public class LocWokbench {
 		}
 	}
 
-	public static <C> C selectClassifier(IEclipseContext context, String classifier, String title, Iterable<C> input,
-			C initial, Class<C> clazz) {
-		Object selected = selectClassifier(context, classifier, title, input, initial);
-		if (clazz.isInstance(selected)) {
-			return clazz.cast(selected);
-		}
-		return null;
-	}
-
 	public static <C> Object selectClassifier(IEclipseContext context, String classifier, String title,
 			Iterable<C> input, C initial) {
 		Shell shell = context.get(Shell.class);
