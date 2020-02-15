@@ -6,9 +6,11 @@
   <imports xsi:type="basic:PartSashContainer" xmi:id="_OeOboAp1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_hcMvEA83Eemq0ONZAqyi5g" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
     <elements xsi:type="commands:Command" xmi:id="_wC9kIA83Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.command.userorigin.create" commandName="User Origin" description="New User Origin"/>
+    <elements xsi:type="commands:Command" xmi:id="_wC9kIA83Eemq0ONZAqyi6g" elementId="org.eclipse.passage.loc.users.ui.command.export.customers" commandName="Export Customers" description="Export Customers to external resource"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Cn6GAA84Eemq0ONZAqyi5g" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
-    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.0" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.users.ui.handlers.CreateUserOriginHandler" command="_wC9kIA83Eemq0ONZAqyi5g"/>
+    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.userorigin.create" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.users.ui.handlers.CreateUserOriginHandler" command="_wC9kIA83Eemq0ONZAqyi5g"/>
+    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.export.customers" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.internal.users.ui.handlers.ExportCustomersHandler" command="_wC9kIA83Eemq0ONZAqyi6g"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_bDhvQAp1EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
     <elements xsi:type="advanced:Perspective" xmi:id="_iE1O0Ap1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.perspective.main" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png">
@@ -26,5 +28,14 @@
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_NsDI4A84Eemq0ONZAqyi5g" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
     <elements xsi:type="menu:HandledMenuItem" xmi:id="_S7Q_wA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handledmenuitem.userorigin" label="User Origin" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png" tooltip="New User Origin" command="_wC9kIA83Eemq0ONZAqyi5g"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_AthsoE--EeqvaIgEeXj4Hg" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main">
+    <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.handledtoolitem.view" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png" tooltip="View Users" command="_Hic8UAp1EemYD4Lz_PRA6A">
+      <tags>FORCE_TEXT</tags>
+      <parameters xmi:id="_9KfY0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.users.ui.perspective.main"/>
+    </elements>
+    <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.handledtoolitem.export.customers" label="Export Customers..." iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/etool16/export.png" tooltip="View Users" command="_wC9kIA83Eemq0ONZAqyi6g">
+      <tags>FORCE_TEXT</tags>
+    </elements>
   </fragments>
 </fragment:ModelFragments>
