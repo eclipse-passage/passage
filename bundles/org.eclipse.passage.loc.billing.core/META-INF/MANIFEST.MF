@@ -7,3 +7,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.eclipse.passage.lic.users
+Export-Package: org.eclipse.passage.loc.billing.internal.core
