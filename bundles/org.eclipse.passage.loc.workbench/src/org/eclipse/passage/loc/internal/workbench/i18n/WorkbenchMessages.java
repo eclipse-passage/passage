@@ -16,6 +16,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class WorkbenchMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages"; //$NON-NLS-1$
+	public static String Appearance_e_null_image;
+	public static String Appearance_e_null_labels;
+	public static String Appearance_e_null_title;
 	public static String CreateFileWizard_q_exists_message;
 	public static String CreateFileWizard_q_exists_title;
 	public static String CreateFileWizardPage_button_browse;
@@ -36,6 +39,9 @@ public class WorkbenchMessages extends NLS {
 	public static String LocWokbench_e_saving;
 	public static String RedoHandler_label_base;
 	public static String RedoHandler_label_pattern;
+	public static String SelectFromDialog_e_null_appearance;
+	public static String SelectFromDialog_e_null_initial;
+	public static String SelectFromDialog_e_null_shell;
 	public static String UndoHandler_label_base;
 	public static String UndoHandler_label_handler;
 	static {
