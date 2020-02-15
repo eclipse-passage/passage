@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	Copyright (c) 2018, 2020 ArSysOp and others
-
-	This program and the accompanying materials are made available under the
-	terms of the Eclipse Public License 2.0 which is available at
-	https://www.eclipse.org/legal/epl-2.0/.
-
-	SPDX-License-Identifier: EPL-2.0
-
-	Contributors:
-		ArSysOp - initial API and implementation
--->
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
+<!-- Copyright (c) 2018, 2020 ArSysOp and others This program and the accompanying 
+	materials are made available under the terms of the Eclipse Public License 
+	2.0 which is available at https://www.eclipse.org/legal/epl-2.0/. SPDX-License-Identifier: 
+	EPL-2.0 Contributors: ArSysOp - initial API and implementation -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
->
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>org.eclipse.passage.loc.aggregator</artifactId>
@@ -51,9 +41,10 @@
 		<module>../../bundles/org.eclipse.passage.loc.licenses.ui</module>
 		<module>../../bundles/org.eclipse.passage.loc.licenses.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.licenses.feature</module>
-		
+
 		<module>../../bundles/org.eclipse.passage.loc.billing.core</module>
 		<module>../../features/org.eclipse.passage.loc.billing.feature</module>
+		<module>../../tests/org.eclipse.passage.loc.billing.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.users.core</module>
 		<module>../../bundles/org.eclipse.passage.loc.users.ui</module>
@@ -62,22 +53,22 @@
 
 		<module>../../bundles/org.eclipse.passage.loc.dashboard.ui</module>
 		<module>../../features/org.eclipse.passage.loc.dashboard.feature</module>
-		
+
 		<module>../../bundles/org.eclipse.passage.loc.operator</module>
 		<module>../../features/org.eclipse.passage.loc.operator.feature</module>
 
 		<module>../../tests/org.eclipse.passage.loc.api.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
-	  	<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
+		<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
-          	<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
+		<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
 
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
-		
+
 	</modules>
 
 </project>
