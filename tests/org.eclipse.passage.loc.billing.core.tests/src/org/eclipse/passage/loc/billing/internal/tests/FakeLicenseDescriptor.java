@@ -8,9 +8,23 @@ import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 public class FakeLicenseDescriptor implements UserLicenseDescriptor {
 
 	private final String identifier;
+	private final Date validFrom;
+	private final Date validUntil;
+	private final Date issueDate;
+
+	public FakeLicenseDescriptor(String identifier, Date validFrom, Date validUntil, Date issueDate) {
+		this.validUntil = validUntil;
+		this.identifier = identifier;
+		this.validFrom = validFrom;
+		this.issueDate = issueDate;
+	}
+
+	public FakeLicenseDescriptor(String identifier, Date issueDate) {
+		this(identifier, new Date(), new Date(), issueDate);
+	}
 
 	public FakeLicenseDescriptor(String identifier) {
-		this.identifier = identifier;
+		this(identifier, new Date());
 	}
 
 	@Override
@@ -30,14 +44,12 @@ public class FakeLicenseDescriptor implements UserLicenseDescriptor {
 
 	@Override
 	public Date getValidFrom() {
-		// TODO Auto-generated method stub
-		return null;
+		return validFrom;
 	}
 
 	@Override
 	public Date getValidUntil() {
-		// TODO Auto-generated method stub
-		return null;
+		return validUntil;
 	}
 
 	@Override
@@ -57,7 +69,7 @@ public class FakeLicenseDescriptor implements UserLicenseDescriptor {
 
 	@Override
 	public Date getIssueDate() {
-		throw new UnsupportedOperationException();
+		return issueDate;
 	}
 
 	@Override
