@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.workbench.wizards;
 
 import java.io.File;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.e4.core.contexts.IEclipseContext;
@@ -39,15 +40,11 @@ public class CreateFileWizard extends Wizard {
 	protected final EStructuralFeature identifierFeature;
 	protected final EStructuralFeature nameFeature;
 
-	private final IEclipseContext eclipseContext;
 	private final EditingDomainRegistry<?> domainRegistry;
-	private final String perspectiveId;
 
 	private CreateFileWizardPage filePage;
 
-	public CreateFileWizard(IEclipseContext context, String domain, String perspectiveId) {
-		this.eclipseContext = context;
-		this.perspectiveId = perspectiveId;
+	public CreateFileWizard(IEclipseContext context, String domain) {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
 		EClass eClass = registry.getContentClassifier();
@@ -76,9 +73,9 @@ public class CreateFileWizard extends Wizard {
 			File file = new File(fileURI.toFileString());
 			if (file.exists()) {
 				String absolutePath = file.getAbsolutePath();
-				String message = String.format(
-						WorkbenchMessages.CreateFileWizard_q_exists_message, absolutePath);
-				if (!MessageDialog.openQuestion(getShell(), WorkbenchMessages.CreateFileWizard_q_exists_title, message)) {
+				String message = String.format(WorkbenchMessages.CreateFileWizard_q_exists_message, absolutePath);
+				if (!MessageDialog.openQuestion(getShell(), WorkbenchMessages.CreateFileWizard_q_exists_title,
+						message)) {
 					filePage.selectFileField();
 					return false;
 				}
@@ -98,7 +95,6 @@ public class CreateFileWizard extends Wizard {
 					Resource resource = resourceSet.createResource(fileURI);
 					resource.getContents().add(eObject);
 					LocWokbench.save(resource);
-					LocWokbench.switchPerspective(eclipseContext, perspectiveId);
 					domainRegistry.registerSource(fileURI.toFileString());
 				}
 			};
@@ -110,6 +106,11 @@ public class CreateFileWizard extends Wizard {
 			exception.printStackTrace();
 			return false;
 		}
+	}
+
+	// FIXME: rework
+	public Optional<EObject> created() {
+		return eObject.eResource() != null ? Optional.of(eObject) : Optional.empty();
 	}
 
 }

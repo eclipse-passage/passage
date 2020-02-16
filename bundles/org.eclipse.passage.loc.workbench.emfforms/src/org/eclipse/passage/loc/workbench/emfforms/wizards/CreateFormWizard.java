@@ -20,7 +20,7 @@ import org.eclipse.passage.loc.workbench.wizards.CreateFileWizardPage;
 public class CreateFormWizard extends CreateFileWizard {
 
 	public CreateFormWizard(IEclipseContext context, String domain, String perspectiveId) {
-		super(context, domain, perspectiveId);
+		super(context, domain);
 	}
 
 	@Override

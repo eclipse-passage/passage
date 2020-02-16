@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -92,7 +93,7 @@ public class LocWokbench {
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
 		EClass eClass = registry.getContentClassifier();
 
-		Wizard wizard = new CreateFileWizard(context, domain, perspectiveId);
+		Wizard wizard = new CreateFileWizard(context, domain);
 		Shell shell = context.get(Shell.class);
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
@@ -102,8 +103,10 @@ public class LocWokbench {
 		Shell createdShell = dialog.getShell();
 		createdShell.setText(initializer.newObjectMessage());
 		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
-
-		dialog.open();
+		int open = dialog.open();
+		if (open == Window.OK) {
+			LocWokbench.switchPerspective(context, perspectiveId);
+		}
 	}
 
 	public static void loadDomainResource(IEclipseContext eclipseContext, String domain, String perspectiveId) {

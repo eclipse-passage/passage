@@ -30,11 +30,11 @@ public final class ZeroOneMany<C> {
 		this.supplier = input;
 	}
 
-	public Optional<C> choose(Supplier<C> create, Function<Iterable<C>, Optional<C>> select) {
+	public Optional<C> choose(Supplier<Optional<C>> create, Function<Iterable<C>, Optional<C>> select) {
 		Iterable<C> input = supplier.get();
 		Iterator<C> iterator = input.iterator();
 		if (!iterator.hasNext()) {
-			return Optional.ofNullable(create.get());
+			return create.get();
 		}
 		C first = iterator.next();
 		if (iterator.hasNext()) {
