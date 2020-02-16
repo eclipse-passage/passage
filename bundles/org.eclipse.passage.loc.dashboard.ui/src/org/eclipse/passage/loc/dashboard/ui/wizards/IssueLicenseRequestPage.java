@@ -16,6 +16,8 @@ import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 import java.util.function.Function;
@@ -30,14 +32,13 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
+import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
-import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -47,7 +48,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class IssueLicenseRequestPage extends WizardPage {
+public final class IssueLicenseRequestPage extends WizardPage {
 
 	private final IEclipseContext context;
 
@@ -124,13 +125,11 @@ public class IssueLicenseRequestPage extends WizardPage {
 
 	private String selectLicensePlan(Text text) {
 		Object data = text.getData();
-		LicensePlanDescriptor initial = null;
+		Collection<LicensePlanDescriptor> initial = new ArrayList<>();
 		if (data instanceof LicensePlanDescriptor) {
-			initial = (LicensePlanDescriptor) data;
+			initial.add((LicensePlanDescriptor) data);
 		}
-		LicenseRegistry registry = context.get(LicenseRegistry.class);
-		LicensePlanDescriptor selected = LicensesUi.selectLicensePlanDescriptor(getShell(), provider, registry,
-				initial);
+		LicensePlanDescriptor selected = new SelectLicensePlan(context).get().orElse(null);
 		text.setData(selected);
 		licensePlanDescriptor = selected;
 		return labelProvider.getText(selected);

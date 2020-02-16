@@ -10,12 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.workbench;
+package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.Dialog;
@@ -36,42 +39,42 @@ import org.eclipse.swt.widgets.Shell;
  */
 public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional<C>> {
 
-	private final FilteredSelectionDialog<C> dialog;
+	private final Supplier<Shell> shellSupplier;
+	private final Appearance appearance;
+	private final Collection<C> initial;
 
 	/**
 	 * 
-	 * @param shell      the {@link Shell} to use for
+	 * @param shell      the supplier of {@link Shell} to use for
 	 *                   {@link FilteredSelectionDialog}, must not be
 	 *                   <code>null</code>
 	 * @param appearance the title, image and {@link LabelProvider} to use for
 	 *                   {@link FilteredSelectionDialog}, must not be
 	 *                   <code>null</code>
 	 */
-	public SelectFromDialog(Shell shell, Appearance appearance) {
-		Objects.requireNonNull(shell, WorkbenchMessages.SelectFromDialog_e_null_shell);
-		Objects.requireNonNull(appearance, WorkbenchMessages.SelectFromDialog_e_null_appearance);
-		this.dialog = new FilteredSelectionDialog<C>(shell, false, new LabelSearchFilter());
-		dialog.setTitle(appearance.title());
-		dialog.setImage(appearance.image());
-		dialog.setLabelProvider(appearance.labelProvider());
+	public SelectFromDialog(Supplier<Shell> supplier, Appearance appearance) {
+		this(supplier, appearance, Collections.emptyList());
 	}
 
 	/**
 	 * 
-	 * @param shell      the {@link Shell} to use for
+	 * @param shell      the supplier of {@link Shell} to use for
 	 *                   {@link FilteredSelectionDialog}, must not be
 	 *                   <code>null</code>
 	 * @param appearance the title, image and {@link LabelProvider} to use for
 	 *                   {@link FilteredSelectionDialog}, must not be
 	 *                   <code>null</code>
-	 * @param initial    the object to be a default choice for
+	 * @param initial    the collection of objects to be an initial selection for
 	 *                   {@link FilteredSelectionDialog}, must not be
 	 *                   <code>null</code>
 	 */
-	public SelectFromDialog(Shell shell, Appearance appearance, C initial) {
-		this(shell, appearance);
+	public SelectFromDialog(Supplier<Shell> supplier, Appearance appearance, Collection<C> initial) {
+		Objects.requireNonNull(supplier, WorkbenchMessages.SelectFromDialog_e_null_shell);
+		Objects.requireNonNull(appearance, WorkbenchMessages.SelectFromDialog_e_null_appearance);
 		Objects.requireNonNull(initial, WorkbenchMessages.SelectFromDialog_e_null_initial);
-		dialog.setInitialSelection(Collections.singletonList(initial));
+		this.shellSupplier = supplier;
+		this.appearance = appearance;
+		this.initial = new ArrayList<C>(initial);
 	}
 
 	/**
@@ -79,6 +82,12 @@ public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional
 	 */
 	@Override
 	public Optional<C> apply(Iterable<C> input) {
+		FilteredSelectionDialog<C> dialog = new FilteredSelectionDialog<C>(shellSupplier.get(), false,
+				new LabelSearchFilter());
+		dialog.setTitle(appearance.title());
+		dialog.setImage(appearance.image());
+		dialog.setLabelProvider(appearance.labelProvider());
+		dialog.setInitialSelection(initial);
 		dialog.setInput(input);
 		if (dialog.open() == Dialog.OK) {
 			return dialog.getFirstResult();
