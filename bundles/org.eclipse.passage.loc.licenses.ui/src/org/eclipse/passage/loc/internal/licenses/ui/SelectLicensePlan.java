@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.ui;
 
 import java.util.Optional;
@@ -16,7 +28,15 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.swt.widgets.Shell;
 
-public class SelectLicensePlan implements Supplier<Optional<LicensePlanDescriptor>> {
+/**
+ * Selects or creates {@link LicensePlanDescriptor}. Will return either
+ * {@link Optional} with selected/created license plan or
+ * {@link Optional#empty()}
+ * 
+ * @since 0.6
+ *
+ */
+public final class SelectLicensePlan implements Supplier<Optional<LicensePlanDescriptor>> {
 
 	private final IEclipseContext context;
 
@@ -34,8 +54,8 @@ public class SelectLicensePlan implements Supplier<Optional<LicensePlanDescripto
 		Appearance appearance = new Appearance(title);
 		SelectFromDialog<LicensePlanDescriptor> select = new SelectFromDialog<LicensePlanDescriptor>(
 				() -> context.get(Shell.class), appearance);
-		return zeroOneMany.choose(new CreateDomainResource<LicensePlanDescriptor>(context,
-				Licenses.DOMAIN_NAME, LicensePlanDescriptor.class), select);
+		return zeroOneMany.choose(new CreateDomainResource<LicensePlanDescriptor>(context, Licenses.DOMAIN_NAME,
+				LicensePlanDescriptor.class), select);
 	}
 
 }
