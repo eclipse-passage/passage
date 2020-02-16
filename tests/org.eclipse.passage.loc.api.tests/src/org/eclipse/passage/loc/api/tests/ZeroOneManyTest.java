@@ -39,7 +39,7 @@ public class ZeroOneManyTest {
 		Optional<Object> single = Optional.of(new Object());
 		ZeroOneMany<Object> zom = new ZeroOneMany<>(() -> Collections.emptyList());
 		Optional<Object> one = zom.choose(() -> single, null);
-		assertEquals(single, one.get());
+		assertEquals(single, one);
 	}
 
 	@Test

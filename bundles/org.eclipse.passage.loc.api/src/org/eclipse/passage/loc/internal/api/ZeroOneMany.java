@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 /**
  * 
- * Experimental API to select existing or create new instance of
+ * Experimental API to select existing or create new instance of given type.
  *
  */
 public final class ZeroOneMany<C> {
@@ -30,17 +30,28 @@ public final class ZeroOneMany<C> {
 		this.supplier = input;
 	}
 
+	/**
+	 * 
+	 * @param create the supplier of new instances
+	 * @param select the selector of existing instances from the given input
+	 * @return the {@link Optional} that contains an instance of requested type or
+	 *         {@link Optional#empty()}
+	 */
 	public Optional<C> choose(Supplier<Optional<C>> create, Function<Iterable<C>, Optional<C>> select) {
 		Iterable<C> input = supplier.get();
 		Iterator<C> iterator = input.iterator();
 		if (!iterator.hasNext()) {
-			return create.get();
+			return optional(create.get());
 		}
 		C first = iterator.next();
 		if (iterator.hasNext()) {
-			return select.apply(input);
+			return optional(select.apply(input));
 		}
 		return Optional.ofNullable(first);
+	}
+
+	private Optional<C> optional(Optional<C> untrasted) {
+		return Optional.ofNullable(untrasted).orElse(Optional.empty());
 	}
 
 }
