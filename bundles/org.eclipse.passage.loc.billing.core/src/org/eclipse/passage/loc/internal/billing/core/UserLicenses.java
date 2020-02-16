@@ -110,7 +110,7 @@ public class UserLicenses {
 	private interface Condition {
 
 		/**
-		 * Method would be implemented in order to provide some descriptor adding logic
+		 * Method can be implemented in order to provide some descriptor adding logic
 		 * 
 		 * @param descriptor license descriptor instance provides params to implement
 		 *                   adding logic
