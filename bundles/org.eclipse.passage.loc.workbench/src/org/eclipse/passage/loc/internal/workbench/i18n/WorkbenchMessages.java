@@ -19,6 +19,9 @@ public class WorkbenchMessages extends NLS {
 	public static String Appearance_e_null_image;
 	public static String Appearance_e_null_labels;
 	public static String Appearance_e_null_title;
+	public static String CreateDomainResource_e_null_classifier;
+	public static String CreateDomainResource_e_null_context;
+	public static String CreateDomainResource_e_null_domain;
 	public static String CreateFileWizard_q_exists_message;
 	public static String CreateFileWizard_q_exists_title;
 	public static String CreateFileWizardPage_button_browse;
