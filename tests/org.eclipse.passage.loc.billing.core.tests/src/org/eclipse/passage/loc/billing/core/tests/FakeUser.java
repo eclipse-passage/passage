@@ -10,9 +10,9 @@
  * Contributors:
  *     Nikifor Fedorov <zelenyhleb@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.billing.internal.tests;
+package org.eclipse.passage.loc.billing.core.tests;
 
-import java.util.Set;
+import java.util.List;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
@@ -20,9 +20,9 @@ import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 public class FakeUser implements UserDescriptor {
 	
-	private final Set<UserLicenseDescriptor> licenses;
+	private final List<UserLicenseDescriptor> licenses;
 	
-	public FakeUser(Set<UserLicenseDescriptor> licenses) {
+	public FakeUser(List<UserLicenseDescriptor> licenses) {
 		this.licenses = licenses;
 	}
 

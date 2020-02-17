@@ -10,7 +10,7 @@
  * Contributors:
  *     Nikifor Fedorov <zelenyhleb@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.billing.internal.tests;
+package org.eclipse.passage.loc.billing.core.tests;
 
 import java.util.Date;
 
@@ -19,39 +19,52 @@ import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 
 public class FakeLicenseDescriptor implements UserLicenseDescriptor {
 
-	private final String identifier;
+	private final String planIdentifier;
+	private final String productIdentifier;
+	private final String versionIdentifier;
 	private final Date validFrom;
 	private final Date validUntil;
 	private final Date issueDate;
 
-	public FakeLicenseDescriptor(String identifier, Date validFrom, Date validUntil, Date issueDate) {
+	public FakeLicenseDescriptor(String identifier, Date validFrom, Date validUntil, Date issueDate,
+			String productIdentifier, String versionIdentifier) {
 		this.validUntil = validUntil;
-		this.identifier = identifier;
+		this.productIdentifier = productIdentifier;
+		this.versionIdentifier = versionIdentifier;
+		this.planIdentifier = identifier;
 		this.validFrom = validFrom;
 		this.issueDate = issueDate;
 	}
 
-	public FakeLicenseDescriptor(String identifier, Date issueDate) {
-		this(identifier, new Date(), new Date(), issueDate);
+	public FakeLicenseDescriptor(String identifier, Date issueDate, String productIdentifier, String versionIdentifier) {
+		this(identifier, new Date(), new Date(), issueDate, productIdentifier, versionIdentifier);
 	}
 
-	public FakeLicenseDescriptor(String identifier) {
-		this(identifier, new Date());
+	public FakeLicenseDescriptor(String identifier, String productIdentifier, String versionIdentifier) {
+		this(identifier, new Date(), productIdentifier, versionIdentifier);
+	}
+	
+	public FakeLicenseDescriptor(String productIdentifier) {
+		this("", productIdentifier, ""); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+	
+	public FakeLicenseDescriptor(String productIdentifier, String versionIdentifier) {
+		this("", productIdentifier, versionIdentifier); //$NON-NLS-1$
 	}
 
 	@Override
 	public String getPlanIdentifier() {
-		return identifier;
+		return planIdentifier;
 	}
 
 	@Override
 	public String getProductIdentifier() {
-		throw new UnsupportedOperationException();
+		return productIdentifier;
 	}
 
 	@Override
 	public String getProductVersion() {
-		throw new UnsupportedOperationException();
+		return versionIdentifier;
 	}
 
 	@Override
