@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.billing.core;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
@@ -31,18 +33,19 @@ public class UserLicenses {
 	}
 
 	/**
-	 * Returns all licenses of all users 
+	 * Returns all licenses of all users
 	 * 
 	 * @return Linked list of licenses
 	 */
 	public final List<UserLicenseDescriptor> getAllLicenses() {
-		return getLicenses(new Condition() {
+		Predicate<UserLicenseDescriptor> any = new Predicate<UserLicenseDescriptor>() {
 			@Override
-			public boolean check(UserLicenseDescriptor descriptor) {
+			public boolean test(UserLicenseDescriptor t) {
 				// Add in any case
 				return true;
 			}
-		});
+		};
+		return getLicenses(any);
 	}
 
 	/**
@@ -53,71 +56,50 @@ public class UserLicenses {
 	 * @return Linked list of licenses
 	 */
 	public final List<UserLicenseDescriptor> getLicensesForProduct(String productIdentifier) {
-		return getLicenses(new Condition() {
+		Predicate<UserLicenseDescriptor> product = new Predicate<UserLicenseDescriptor>() {
 			@Override
-			public boolean check(UserLicenseDescriptor descriptor) {
+			public boolean test(UserLicenseDescriptor descriptor) {
 				// Add if product identifier is the same as needed
 				return descriptor.getProductIdentifier().equals(productIdentifier);
 			}
-		});
+		};
+		return getLicenses(product);
 	}
 
 	/**
 	 * Returns licenses filtered by product and version
 	 * 
 	 * @param productIdentifier identifier of product operator looks for
-	 * @param productVersio identifier of version operator looks for
+	 * @param productVersio     identifier of version operator looks for
 	 * 
 	 * @return Linked list of licenses
 	 */
 	public final List<UserLicenseDescriptor> getLicensesForProductVersion(String productIdentifier,
 			String versionIdentifier) {
-		return getLicenses(new Condition() {
+		Predicate<UserLicenseDescriptor> productAndVersion = new Predicate<UserLicenseDescriptor>() {
 			@Override
-			public boolean check(UserLicenseDescriptor descriptor) {
+			public boolean test(UserLicenseDescriptor descriptor) {
 				// Add if product identifier AND version is the same as needed
 				return descriptor.getProductIdentifier().equals(productIdentifier)
 						&& descriptor.getProductVersion().equals(versionIdentifier);
 			}
-		});
+		};
+		return getLicenses(productAndVersion);
 	}
 
 	/**
 	 * Returns licenses following condition provided through @param condition
 	 * 
-	 * @param condition adding logic, see {@code Condition}
+	 * @param condition adding logic
 	 * 
 	 * @return Linked list of licenses
 	 */
-	private final List<UserLicenseDescriptor> getLicenses(Condition condition) {
-		List<UserLicenseDescriptor> licenses = new LinkedList<UserLicenseDescriptor>();
-		for (UserDescriptor user : users) {
-			Iterable<? extends UserLicenseDescriptor> userLicenses = user.getUserLicenses();
-			for (UserLicenseDescriptor userLicenseDescriptor : userLicenses) {
-				if (condition.check(userLicenseDescriptor)) {
-					licenses.add(userLicenseDescriptor);
-				}
-			}
-		}
-		return licenses;
-	}
-
-	/**
-	 * <p>
-	 * Interface for condition to add license pack to output
-	 * </p>
-	 */
-	private interface Condition {
-
-		/**
-		 * Method can be implemented in order to provide some descriptor adding logic
-		 * 
-		 * @param descriptor license descriptor instance provides params to implement
-		 *                   adding logic
-		 * @return result of check
-		 */
-		boolean check(UserLicenseDescriptor descriptor);
-
+	private final List<UserLicenseDescriptor> getLicenses(Predicate<UserLicenseDescriptor> condition) {
+		return users.stream()
+				.map(UserDescriptor::getUserLicenses)
+				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false))
+				.filter(condition)
+				.collect(Collectors.toList());
 	}
 
 }
