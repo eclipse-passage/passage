@@ -35,8 +35,7 @@ public final class Appearance {
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
 	 * title, default image and default label provider will be used
 	 * 
-	 * @param title title for dialog, should not be <code>null</code>
-	 * @param image image for dialog, should not be <code>null</code>
+	 * @param title title for dialog, must not be <code>null</code>
 	 * 
 	 */
 	public Appearance(String title) {
@@ -47,8 +46,8 @@ public final class Appearance {
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
 	 * title and image, default label provider will be used
 	 * 
-	 * @param title title for dialog, should not be <code>null</code>
-	 * @param image image for dialog, should not be <code>null</code>
+	 * @param title title for dialog, must not be <code>null</code>
+	 * @param image image for dialog, must not be <code>null</code>
 	 * 
 	 */
 	public Appearance(String title, Image image) {
@@ -59,15 +58,15 @@ public final class Appearance {
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
 	 * title, image, and label provider
 	 * 
-	 * @param title  title for dialog, should not be <code>null</code>
-	 * @param image  image for dialog, should not be <code>null</code>
-	 * @param labels label provider for dialog, should not be <code>null</code>
+	 * @param title  title for dialog, must not be <code>null</code>
+	 * @param image  image for dialog, must not be <code>null</code>
+	 * @param labels label provider for dialog, must not be <code>null</code>
 	 * 
 	 */
 	public Appearance(String title, Image image, LabelProvider labels) {
 		Objects.requireNonNull(title, WorkbenchMessages.Appearance_e_null_title);
-		Objects.requireNonNull(title, WorkbenchMessages.Appearance_e_null_image);
-		Objects.requireNonNull(title, WorkbenchMessages.Appearance_e_null_labels);
+		Objects.requireNonNull(image, WorkbenchMessages.Appearance_e_null_image);
+		Objects.requireNonNull(labels, WorkbenchMessages.Appearance_e_null_labels);
 		this.title = title;
 		this.image = image;
 		this.labelProvider = labels;
