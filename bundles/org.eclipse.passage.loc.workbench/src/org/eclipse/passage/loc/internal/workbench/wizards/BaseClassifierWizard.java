@@ -24,12 +24,13 @@ import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
  * Creates new licensing object, either root of resource or not. Can be asked
  * for a reference to a created instance.
  * 
+ * @param <N> a sub-type of {@link BaseClassifierWizardPage} to be used
  * @since 0.6
  *
  */
-public abstract class BaseClassifierWizard extends Wizard {
+public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {
 
-	protected final BaseClassifierWizardPage newClassifierPage;
+	protected final N newClassifierPage;
 
 	/**
 	 * Creates a new wizard with given metadata and initializer
@@ -58,8 +59,7 @@ public abstract class BaseClassifierWizard extends Wizard {
 	 *                    not be <code>null</code>
 	 * @return a just created instance of the {@link WizardPage}
 	 */
-	protected abstract BaseClassifierWizardPage createNewClassifierPage(ClassifierMetadata metadata,
-			ClassifierInitializer initializer);
+	protected abstract N createNewClassifierPage(ClassifierMetadata metadata, ClassifierInitializer initializer);
 
 	/**
 	 * An optional reference to a created instance, may be empty in case of errors
@@ -68,7 +68,8 @@ public abstract class BaseClassifierWizard extends Wizard {
 	 * @return created {@link EObject} or {@link Optional#empty()}
 	 */
 	public Optional<EObject> created() {
-		return newClassifierPage.created();
+		return newClassifierPage.candidate().eResource() != null ? Optional.of(newClassifierPage.candidate())
+				: Optional.empty();
 	}
 
 }

@@ -25,7 +25,6 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -41,11 +40,12 @@ import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
+import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
 import org.eclipse.passage.loc.jface.dialogs.LabelSearchFilter;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
-import org.eclipse.passage.loc.workbench.wizards.CreateFileWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -91,18 +91,17 @@ public class LocWokbench {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
-		EClass eClass = registry.getContentClassifier();
-
-		Wizard wizard = new CreateFileWizard(context, domain);
+		ClassifierMetadata metadata = new ClassifierMetadata(registry.getContentClassifier(),
+				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
+		Wizard wizard = new RootClassifierWizard(metadata, initializer, registry);
 		Shell shell = context.get(Shell.class);
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
 		dialog.setMessage(initializer.newFileMessage());
-
 		Shell createdShell = dialog.getShell();
 		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
+		createdShell.setImage(LicensingImages.getImage(registry.getContentClassifier().getName()));
 		int open = dialog.open();
 		if (open == Window.OK) {
 			LocWokbench.switchPerspective(context, perspectiveId);
