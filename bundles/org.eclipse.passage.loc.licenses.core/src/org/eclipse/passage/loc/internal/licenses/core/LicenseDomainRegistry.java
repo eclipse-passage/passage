@@ -145,7 +145,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 
 	@Override
 	public EStructuralFeature getContentNameAttribute() {
-		return null;
+		return LicensesPackage.eINSTANCE.getLicensePlan_Name();
 	}
 
 	@Override

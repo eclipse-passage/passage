@@ -13,7 +13,6 @@
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +31,7 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * Provides UI to to fulfill the field values for an object to be created,
- * either root of resource or not. Can be asked for a reference to a created
+ * either root of resource or not. Can be asked for a reference to a candidate
  * instance.
  * 
  * @since 0.6
@@ -143,7 +142,7 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 	 * 
 	 * @see BaseClassifierWizard#created()
 	 */
-	protected Optional<EObject> created() {
-		return eObject.eResource() != null ? Optional.of(eObject) : Optional.empty();
+	protected EObject candidate() {
+		return eObject;
 	}
 }
