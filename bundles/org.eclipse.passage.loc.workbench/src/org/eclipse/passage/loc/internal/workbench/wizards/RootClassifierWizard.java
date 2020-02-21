@@ -23,18 +23,32 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
  */
 public final class RootClassifierWizard extends BaseClassifierWizard<RootClassifierWizardPage> {
 
-	private final EditingDomainRegistry<?> domainRegistry;
-
+	/**
+	 * Creates a new wizard for root licensing object with given metadata,
+	 * initializer and registry
+	 * 
+	 * @param metadata    describes EMF metadata for an object to be created, must
+	 *                    not be <code>null</code>
+	 * @param initializer describer initial values for an object to be created, must
+	 *                    not be <code>null</code>
+	 * @param registry    registry for an object to be created, must not be
+	 *                    <code>null</code>
+	 * 
+	 * @see BaseClassifierWizard
+	 * @see ClassifierMetadata
+	 * @see ClassifierInitializer
+	 * @see EditingDomainRegistry
+	 * 
+	 */
 	public RootClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
-		super(metadata, initializer);
-		this.domainRegistry = registry;
+		super(metadata, initializer, registry);
 	}
 
 	@Override
 	protected RootClassifierWizardPage createNewClassifierPage(ClassifierMetadata metadata,
 			ClassifierInitializer initializer) {
-		return new RootClassifierWizardPage(metadata, initializer, domainRegistry.getFileExtension());
+		return new RootClassifierWizardPage(metadata, initializer, registry.getFileExtension());
 	}
 
 	@Override
@@ -53,12 +67,12 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 		Resource resource = resourceSet().createResource(fileURI);
 		resource.getContents().add(candidate);
 		LocWokbench.save(resource);
-		domainRegistry.registerSource(fileURI.toFileString());
+		registry.registerSource(fileURI.toFileString());
 	}
 
 	protected ResourceSet resourceSet() {
-		if (domainRegistry instanceof IEditingDomainProvider) {
-			IEditingDomainProvider edProvider = (IEditingDomainProvider) domainRegistry;
+		if (registry instanceof IEditingDomainProvider) {
+			IEditingDomainProvider edProvider = (IEditingDomainProvider) registry;
 			return edProvider.getEditingDomain().getResourceSet();
 		}
 		return new ResourceSetImpl();

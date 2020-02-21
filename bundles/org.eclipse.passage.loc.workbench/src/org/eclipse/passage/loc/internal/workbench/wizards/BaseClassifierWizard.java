@@ -17,6 +17,7 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
 
@@ -30,6 +31,7 @@ import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
  */
 public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {
 
+	protected final EditingDomainRegistry<?> registry;
 	protected final N newClassifierPage;
 
 	/**
@@ -39,12 +41,17 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 *                    not be <code>null</code>
 	 * @param initializer describer initial values for an object to be created, must
 	 *                    not be <code>null</code>
+	 * @param registry    registry for an object to be created, must not be
+	 *                    <code>null</code>
 	 * 
 	 * @see ClassifierMetadata
 	 * @see ClassifierInitializer
+	 * @see EditingDomainRegistry
 	 * 
 	 */
-	protected BaseClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer) {
+	protected BaseClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+			EditingDomainRegistry<?> registry) {
+		this.registry = registry;
 		this.newClassifierPage = createNewClassifierPage(metadata, initializer);
 	}
 
@@ -60,6 +67,11 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 * @return a just created instance of the {@link WizardPage}
 	 */
 	protected abstract N createNewClassifierPage(ClassifierMetadata metadata, ClassifierInitializer initializer);
+
+	@Override
+	public void addPages() {
+		addPage(newClassifierPage);
+	}
 
 	/**
 	 * An optional reference to a created instance, may be empty in case of errors
