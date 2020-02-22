@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.loc.internal.api.ZeroOneMany;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
-import org.eclipse.passage.loc.internal.workbench.CreateDomainResource;
+import org.eclipse.passage.loc.internal.workbench.CreateRoot;
 import org.eclipse.passage.loc.internal.workbench.SelectFromDialog;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 import org.eclipse.passage.loc.licenses.core.Licenses;
@@ -54,7 +54,7 @@ public final class SelectLicensePlan implements Supplier<Optional<LicensePlanDes
 		Appearance appearance = new Appearance(title);
 		SelectFromDialog<LicensePlanDescriptor> select = new SelectFromDialog<LicensePlanDescriptor>(
 				() -> context.get(Shell.class), appearance);
-		return zeroOneMany.choose(new CreateDomainResource<LicensePlanDescriptor>(context, Licenses.DOMAIN_NAME,
+		return zeroOneMany.choose(new CreateRoot<LicensePlanDescriptor>(context, Licenses.DOMAIN_NAME,
 				LicensePlanDescriptor.class), select);
 	}
 

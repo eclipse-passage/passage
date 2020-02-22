@@ -94,8 +94,7 @@ public class LocWokbench {
 		ClassifierMetadata metadata = new ClassifierMetadata(registry.getContentClassifier(),
 				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
 		Wizard wizard = new RootClassifierWizard(metadata, initializer, registry);
-		Shell shell = context.get(Shell.class);
-		WizardDialog dialog = new WizardDialog(shell, wizard);
+		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
 		dialog.setMessage(initializer.newFileMessage());
