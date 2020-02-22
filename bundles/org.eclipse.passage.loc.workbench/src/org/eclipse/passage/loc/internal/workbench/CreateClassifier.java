@@ -18,23 +18,26 @@ import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
-import org.eclipse.passage.loc.workbench.wizards.CreateFileWizard;
+import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * Creates the resource for the given domain with {@link CreateFileWizard}. Will
- * return either root object of created resource or {@link Optional#empty()}
+ * Creates the resource for the given domain with {@link BaseClassifierWizard}.
+ * Will return either root object of created resource or
+ * {@link Optional#empty()}
  * 
  * @since 0.6
  *
  * @param <C> classifier to be selected see {@link EClass#getName()}
  */
-public class CreateDomainResource<C> implements Supplier<Optional<C>> {
+public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 
 	private final IEclipseContext context;
 	private final String domain;
@@ -51,7 +54,7 @@ public class CreateDomainResource<C> implements Supplier<Optional<C>> {
 	 * @param classifier the class of object to be created and stored in resource,
 	 *                   must not be <code>null</code>
 	 */
-	public CreateDomainResource(IEclipseContext context, String domain, Class<C> classifier) {
+	public CreateClassifier(IEclipseContext context, String domain, Class<C> classifier) {
 		Objects.requireNonNull(context, WorkbenchMessages.CreateDomainResource_e_null_context);
 		Objects.requireNonNull(domain, WorkbenchMessages.CreateDomainResource_e_null_domain);
 		Objects.requireNonNull(classifier, WorkbenchMessages.CreateDomainResource_e_null_classifier);
@@ -64,22 +67,28 @@ public class CreateDomainResource<C> implements Supplier<Optional<C>> {
 	public Optional<C> get() {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
-		EClass eClass = registryAccess.getDomainRegistry(domain).getContentClassifier();
-		CreateFileWizard wizard = showWizard(eClass, initializer);
-		return wizard.created().filter(classifierClass::isInstance).flatMap(e -> Optional.of(classifierClass.cast(e)));
+		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
+		return showWizard(initializer, registry)//
+				.filter(classifierClass::isInstance)//
+				.flatMap(e -> Optional.of(classifierClass.cast(e)));
 	}
 
-	private CreateFileWizard showWizard(EClass eClass, ClassifierInitializer initializer) {
-		CreateFileWizard wizard = new CreateFileWizard(context, domain);
+	protected Optional<EObject> showWizard(ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
+		ClassifierMetadata metadata = new ClassifierMetadata(registry.getContentClassifier(),
+				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
+		BaseClassifierWizard<?> wizard = createWizard(metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
 		dialog.setMessage(initializer.newFileMessage());
 		Shell createdShell = dialog.getShell();
 		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
+		createdShell.setImage(LicensingImages.getImage(registry.getContentClassifier().getName()));
 		dialog.open();
-		return wizard;
+		return wizard.created();
 	}
+
+	protected abstract BaseClassifierWizard<?> createWizard(ClassifierMetadata metadata,
+			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
 
 }
