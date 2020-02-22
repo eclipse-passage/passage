@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.api" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Bug 552819 - [Passage] org.eclipse.passage.lic.api.access.AccessManager#examinePermissons method name contains typo" id="926941240">
+            <message_arguments>
+                <message_argument value="0.7.0"/>
+                <message_argument value="0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lic/api/access/AccessManager.java" type="org.eclipse.passage.lic.api.access.AccessManager">
+        <filter comment="Bug 552819 - [Passage] org.eclipse.passage.lic.api.access.AccessManager#examinePermissons method name contains typo" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.api.access.AccessManager"/>
+                <message_argument value="examinePermissions(LicensingConfiguration, Iterable&lt;LicensingRequirement&gt;, Iterable&lt;FeaturePermission&gt;)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

@@ -131,7 +131,7 @@ public class BaseAccessManager implements AccessManager {
 		Iterable<LicensingRequirement> requirements = resolveRequirements(configuration);
 		Iterable<LicensingCondition> conditions = extractConditions(configuration);
 		Iterable<FeaturePermission> permissions = evaluateConditions(configuration, conditions);
-		Iterable<RestrictionVerdict> verdicts = examinePermissons(configuration, requirements, permissions);
+		Iterable<RestrictionVerdict> verdicts = examinePermissions(configuration, requirements, permissions);
 		return executeRestrictions(configuration, verdicts);
 	}
 
@@ -242,7 +242,7 @@ public class BaseAccessManager implements AccessManager {
 	}
 
 	@Override
-	public Iterable<RestrictionVerdict> examinePermissons(LicensingConfiguration configuration,
+	public Iterable<RestrictionVerdict> examinePermissions(LicensingConfiguration configuration,
 			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
 		String source = getClass().getName();
 		if (configuration == null) {
@@ -289,6 +289,12 @@ public class BaseAccessManager implements AccessManager {
 		Iterable<RestrictionVerdict> examined = examiner.examine(configuration, requirements, permissions);
 		licensingReporter.postResult(createEvent(AccessEvents.PERMISSIONS_EXAMINED, examined));
 		return examined;
+	}
+
+	@Override
+	public Iterable<RestrictionVerdict> examinePermissons(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
+		return examinePermissions(configuration, requirements, permissions);
 	}
 
 	@Override

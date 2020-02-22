@@ -331,18 +331,24 @@ public class BaseAccessManagerTest {
 		int logSize = 0;
 		int eventSize = 0;
 		Iterable<RestrictionVerdict> verdicts = Collections.emptyList();
-		verdicts = manager.examinePermissons(null, null, null);
+		verdicts = manager.examinePermissions(null, null, null);
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		verdicts = manager.examinePermissons(conf, null, null);
+		verdicts = manager.examinePermissions(conf, null, null);
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
-		verdicts = manager.examinePermissons(conf, new ArrayList<>(), null);
+		verdicts = manager.examinePermissions(conf, new ArrayList<>(), null);
 		assertFalse(verdicts.iterator().hasNext());
 		checkMaps(++logSize, ++eventSize);
 
+		verdicts = manager.examinePermissions(conf, Collections.singleton(null), null);
+		assertFalse(verdicts.iterator().hasNext());
+		logSize++;
+		checkMaps(++logSize, ++eventSize);
+
+		// To ensure coverage
 		verdicts = manager.examinePermissons(conf, Collections.singleton(null), null);
 		assertFalse(verdicts.iterator().hasNext());
 		logSize++;
