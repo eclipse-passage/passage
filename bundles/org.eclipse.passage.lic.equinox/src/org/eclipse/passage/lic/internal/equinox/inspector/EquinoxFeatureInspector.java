@@ -118,14 +118,14 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 			List<RestrictionVerdict> found = restrictions.computeIfAbsent(featureId, list -> new ArrayList<>());
 			// FIXME: implement event-based cache
 			found.clear();
-			Iterable<RestrictionVerdict> examined = examineFeaturePermissons(featureId, configuration);
+			Iterable<RestrictionVerdict> examined = examineFeaturePermissions(featureId, configuration);
 			examined.forEach(found::add);
 			found.forEach(result::add);
 		}
 		return result;
 	}
 
-	public Iterable<RestrictionVerdict> examineFeaturePermissons(String featureId,
+	public Iterable<RestrictionVerdict> examineFeaturePermissions(String featureId,
 			LicensingConfiguration configuration) {
 		List<LicensingRequirement> featureRequirements = new ArrayList<>();
 		Iterable<LicensingRequirement> resolved = accessManager.resolveRequirements(configuration);
@@ -144,7 +144,7 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 		Iterable<FeaturePermission> permissions = accessManager.evaluateConditions(configuration, conditions);
 
 		List<RestrictionVerdict> verdicts = new ArrayList<RestrictionVerdict>();
-		Iterable<RestrictionVerdict> examined = accessManager.examinePermissons(configuration, featureRequirements,
+		Iterable<RestrictionVerdict> examined = accessManager.examinePermissions(configuration, featureRequirements,
 				permissions);
 		examined.forEach(verdicts::add);
 		return verdicts;
