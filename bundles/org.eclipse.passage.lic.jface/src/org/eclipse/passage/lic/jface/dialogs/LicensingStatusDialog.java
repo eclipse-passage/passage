@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.jface.dialogs;
 
 import java.util.Collections;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
@@ -218,10 +219,8 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 
 	@Override
 	public boolean close() {
-		if (preferences != null) {
-			preferences.removePreferenceChangeListener(this);
-		}
-		featureCase.close();
+		Optional.ofNullable(preferences).ifPresent(p -> p.removePreferenceChangeListener(LicensingStatusDialog.this));
+		Optional.ofNullable(featureCase).ifPresent(fc -> fc.close());
 		return super.close();
 	}
 
