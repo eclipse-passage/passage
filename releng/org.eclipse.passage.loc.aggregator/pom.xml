@@ -72,6 +72,7 @@
 
 		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
 		<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
+		<module>../../bundles/org.eclipse.passage.loc.report.ui</module>
 
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
