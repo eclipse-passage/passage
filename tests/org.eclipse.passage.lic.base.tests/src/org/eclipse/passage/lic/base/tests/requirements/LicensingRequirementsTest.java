@@ -49,9 +49,13 @@ public class LicensingRequirementsTest {
 
 	@Test
 	public void testExtractFromCapabilityNegative() {
-		assertNull(LicensingRequirements.extractFromCapability(null, null, null, null, null));
-		assertNull(LicensingRequirements.extractFromCapability(null, null,
-				Collections.singletonMap(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE, new Object()), null, null));
+		LicensingRequirement allNulls = LicensingRequirements.extractFromCapability(null, null, null, null, null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, allNulls.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, allNulls.getFeatureIdentifier());
+		LicensingRequirement invalidAttributes = LicensingRequirements.extractFromCapability(null, null,
+				Collections.singletonMap(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE, new Object()), null, null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, invalidAttributes.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, invalidAttributes.getFeatureIdentifier());
 	}
 
 	@Test
