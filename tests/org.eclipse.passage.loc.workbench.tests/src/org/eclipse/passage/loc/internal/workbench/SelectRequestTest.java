@@ -29,17 +29,17 @@ public class SelectRequestTest {
 			() -> null/* sorry, we don't have any graphical facilities in our pipelines */);
 
 	@Test(expected = NullPointerException.class)
-	public void testNullType() {
+	public void testNullTarget() {
 		new SelectRequest<Object>(null, domain, input, appearance);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullId() {
+	public void testNullDomain() {
 		new SelectRequest<Object>(target, null, input, appearance);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullName() {
+	public void testNullInput() {
 		new SelectRequest<Object>(target, domain, null, appearance);
 	}
 
