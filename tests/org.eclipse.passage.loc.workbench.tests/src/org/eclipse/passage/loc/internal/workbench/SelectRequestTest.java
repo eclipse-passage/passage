@@ -18,14 +18,19 @@ import java.util.Collections;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
+import org.junit.AfterClass;
 import org.junit.Test;
 
 public class SelectRequestTest {
 
+	private final static Image image = new Image(Display.getDefault(), 10, 10);
+
 	private final Class<Object> target = Object.class;
 	private final String domain = new String();
 	private final Supplier<Iterable<Object>> input = () -> Collections.emptyList();
-	private final Appearance appearance = new Appearance(domain);
+	private final Appearance appearance = new Appearance(domain, image);
 
 	@Test(expected = NullPointerException.class)
 	public void testNullType() {
@@ -54,5 +59,10 @@ public class SelectRequestTest {
 		assertEquals(domain, request.domain());
 		assertEquals(input, request.input());
 		assertEquals(appearance, request.appearance());
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		image.dispose();
 	}
 }
