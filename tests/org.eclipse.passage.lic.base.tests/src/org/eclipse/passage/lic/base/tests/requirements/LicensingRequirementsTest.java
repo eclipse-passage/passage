@@ -30,14 +30,18 @@ public class LicensingRequirementsTest {
 	private static final String FEATURE_ID = "f1"; //$NON-NLS-1$
 
 	@Test
-	public void testExtractFromPropertiesNegative() {
-		LicensingRequirement allNulls = LicensingRequirements.extractFromProperties(null, null, null, null);
-		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, allNulls.getRestrictionLevel());
-		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, allNulls.getFeatureIdentifier());
-		LicensingRequirement invalidProperties = LicensingRequirements.extractFromProperties(null, null,
+	public void testExtractFromPropertiesNulls() {
+		LicensingRequirement req = LicensingRequirements.extractFromProperties(null, null, null, null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, req.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, req.getFeatureIdentifier());
+	}
+
+	@Test
+	public void testExtractFromPropertiesInvalid() {
+		LicensingRequirement req = LicensingRequirements.extractFromProperties(null, null,
 				Collections.singletonMap(LicensingProperties.LICENSING_FEATURE_IDENTIFIER, new Object()), null);
-		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, invalidProperties.getRestrictionLevel());
-		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, invalidProperties.getFeatureIdentifier());
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, req.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, req.getFeatureIdentifier());
 	}
 
 	@Test
@@ -51,14 +55,18 @@ public class LicensingRequirementsTest {
 	}
 
 	@Test
-	public void testExtractFromCapabilityNegative() {
-		LicensingRequirement allNulls = LicensingRequirements.extractFromCapability(null, null, null, null, null);
-		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, allNulls.getRestrictionLevel());
-		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, allNulls.getFeatureIdentifier());
-		LicensingRequirement invalidAttributes = LicensingRequirements.extractFromCapability(null, null,
+	public void testExtractFromCapabilityNulls() {
+		LicensingRequirement req = LicensingRequirements.extractFromCapability(null, null, null, null, null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, req.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, req.getFeatureIdentifier());
+	}
+
+	@Test
+	public void testExtractFromCapabilityInvalid() {
+		LicensingRequirement req = LicensingRequirements.extractFromCapability(null, null,
 				Collections.singletonMap(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE, new Object()), null, null);
-		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, invalidAttributes.getRestrictionLevel());
-		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, invalidAttributes.getFeatureIdentifier());
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, req.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, req.getFeatureIdentifier());
 	}
 
 	@Test
