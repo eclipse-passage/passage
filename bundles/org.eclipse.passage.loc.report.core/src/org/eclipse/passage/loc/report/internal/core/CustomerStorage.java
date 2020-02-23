@@ -38,4 +38,11 @@ public interface CustomerStorage extends Storage<UserDescriptor> {
 	 */
 	Set<UserDescriptor> forProducts(Set<String> products);
 
+	/**
+	 * Find all products for which any known user ever has got a license.
+	 * 
+	 * @return all products with licensed issued
+	 */
+	Set<String> allProducts();
+
 }
