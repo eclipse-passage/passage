@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 
 /**
@@ -43,6 +45,10 @@ public final class SelectRequest<R> {
 	 * @param appearance the appearance of UI dialog, must not be <code>null</code>
 	 */
 	public SelectRequest(Class<R> target, String domain, Supplier<Iterable<R>> input, Appearance appearance) {
+		Objects.requireNonNull(target, WorkbenchMessages.SelectRequest_e_target_null);
+		Objects.requireNonNull(domain, WorkbenchMessages.SelectRequest_e_domain_null);
+		Objects.requireNonNull(input, WorkbenchMessages.SelectRequest_e_input_null);
+		Objects.requireNonNull(appearance, WorkbenchMessages.SelectRequest_e_appearance_null);
 		this.target = target;
 		this.domain = domain;
 		this.input = input;
@@ -79,7 +85,7 @@ public final class SelectRequest<R> {
 	/**
 	 * The appearance to use for UI
 	 * 
-	 * @return non-<code>null</code> apperance
+	 * @return non-<code>null</code> appearance
 	 */
 	public Appearance appearance() {
 		return appearance;

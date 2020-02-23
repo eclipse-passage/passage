@@ -53,6 +53,10 @@ public class WorkbenchMessages extends NLS {
 	public static String SelectFromDialog_e_null_appearance;
 	public static String SelectFromDialog_e_null_initial;
 	public static String SelectFromDialog_e_null_shell;
+	public static String SelectRequest_e_appearance_null;
+	public static String SelectRequest_e_domain_null;
+	public static String SelectRequest_e_input_null;
+	public static String SelectRequest_e_target_null;
 	public static String UndoHandler_label_base;
 	public static String UndoHandler_label_handler;
 	static {
