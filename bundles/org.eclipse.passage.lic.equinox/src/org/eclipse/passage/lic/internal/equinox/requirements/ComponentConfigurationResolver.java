@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_IDENTIFIER;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_NAME_DEFAULT;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_PROVIDER_DEFAULT;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
@@ -97,8 +99,13 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 		Collection<ComponentDescriptionDTO> components = scr.getComponentDescriptionDTOs(bundles);
 		for (ComponentDescriptionDTO component : components) {
 			Dictionary<String, String> headers = bundleContext.getBundle(component.bundle.id).getHeaders();
-			result.add(LicensingRequirements.extractFromProperties(headers.get(Constants.BUNDLE_NAME), headers.get(Constants.BUNDLE_VENDOR),
-					component.properties, component));
+			Map<String, Object> properties = component.properties;
+			// FIXME: we need to get rid of LicensingRequirements to avoid this check;
+			if (!properties.containsKey(LICENSING_FEATURE_IDENTIFIER)) {
+				continue;
+			}
+			result.add(LicensingRequirements.extractFromProperties(headers.get(Constants.BUNDLE_NAME),
+					headers.get(Constants.BUNDLE_VENDOR), properties, component));
 		}
 		return result;
 	}
