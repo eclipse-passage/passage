@@ -31,8 +31,10 @@ import static org.eclipse.passage.lic.base.LicensingProperties.toRestrictionLeve
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
 
 public class LicensingRequirements {
@@ -43,8 +45,9 @@ public class LicensingRequirements {
 
 	public static LicensingRequirement extractFromCapability(String bundleName, String bundleVendor,
 			Map<String, Object> attributes, Map<String, String> directives, Object source) {
-		if (attributes == null) {
-			return null;
+		if (!Optional.ofNullable(attributes).isPresent()) {
+			return LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+					LicensingVersions.VERSION_DEFAULT, bundleName, LICENSING_FEATURE_PROVIDER_DEFAULT, source);
 		}
 		Object feature = attributes.get(CAPABILITY_LICENSING_FEATURE);
 		if (feature instanceof String) {
@@ -58,13 +61,15 @@ public class LicensingRequirements {
 			String level = toLevelAttribute(attributes.get(ATTRIBUTE_LEVEL));
 			return new BaseLicensingRequirement(featureId, version, name, provider, level, source);
 		}
-		return null;
+		return LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+				LicensingVersions.VERSION_DEFAULT, bundleName, LICENSING_FEATURE_PROVIDER_DEFAULT, source);
 	}
 
 	public static LicensingRequirement extractFromProperties(String bundleName, String bundleVendor,
 			Map<String, Object> properties, Object source) {
-		if (properties == null) {
-			return null;
+		if (!Optional.ofNullable(properties).isPresent()) {
+			return LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+					LicensingVersions.VERSION_DEFAULT, bundleName, LICENSING_FEATURE_PROVIDER_DEFAULT, source);
 		}
 		Object feature = properties.get(LICENSING_FEATURE_IDENTIFIER);
 		if (feature instanceof String) {
@@ -81,7 +86,8 @@ public class LicensingRequirements {
 			String level = toRestrictionLevelProperty(properties.get(LICENSING_RESTRICTION_LEVEL));
 			return new BaseLicensingRequirement(featureId, version, name, provider, level, source);
 		}
-		return null;
+		return LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
+				LicensingVersions.VERSION_DEFAULT, bundleName, LICENSING_FEATURE_PROVIDER_DEFAULT, source);
 	}
 
 	public static LicensingRequirement createConfigurationError(String featureId, Object source) {

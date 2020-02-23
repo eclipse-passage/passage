@@ -18,7 +18,6 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
@@ -33,7 +32,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.wiring.BundleCapability;
-import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -71,19 +69,10 @@ public class BundleCapabilityResolver implements RequirementResolver {
 			String name = headers.get(Constants.BUNDLE_NAME);
 			String vendor = headers.get(Constants.BUNDLE_VENDOR);
 			for (BundleCapability capability : capabilities) {
-				Map<String, Object> attributes = capability.getAttributes();
-				Map<String, String> directives = capability.getDirectives();
-				BundleRevision resource = capability.getResource();
-				LicensingRequirement extracted = LicensingRequirements.extractFromCapability(name, vendor, attributes,
-						directives, resource);
-				if (extracted != null) {
-					result.add(extracted);
-				} else {
-					logger.severe(String.format(EquinoxMessages.BundleCapabilityResolver_error, resource));
-					result.add(LicensingRequirements.createError(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
-							LicensingVersions.VERSION_DEFAULT, name, providerLicensing, resource));
-					return result;
-				}
+				result.add(LicensingRequirements.extractFromCapability(name, vendor, //
+						capability.getAttributes(), //
+						capability.getDirectives(), //
+						capability.getResource()));
 			}
 		}
 		return result;
