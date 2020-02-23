@@ -96,15 +96,9 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 		Bundle[] bundles = bundleContext.getBundles();
 		Collection<ComponentDescriptionDTO> components = scr.getComponentDescriptionDTOs(bundles);
 		for (ComponentDescriptionDTO component : components) {
-			Bundle bundle = bundleContext.getBundle(component.bundle.id);
-			Dictionary<String, String> headers = bundle.getHeaders();
-			String name = headers.get(Constants.BUNDLE_NAME);
-			String vendor = headers.get(Constants.BUNDLE_VENDOR);
-			LicensingRequirement requirement = LicensingRequirements.extractFromProperties(name, vendor,
-					component.properties, component);
-			if (requirement != null) {
-				result.add(requirement);
-			}
+			Dictionary<String, String> headers = bundleContext.getBundle(component.bundle.id).getHeaders();
+			result.add(LicensingRequirements.extractFromProperties(headers.get(Constants.BUNDLE_NAME), headers.get(Constants.BUNDLE_VENDOR),
+					component.properties, component));
 		}
 		return result;
 	}

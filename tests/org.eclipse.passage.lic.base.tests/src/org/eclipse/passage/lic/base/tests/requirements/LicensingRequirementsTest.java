@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.base.tests.requirements;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
@@ -32,9 +31,13 @@ public class LicensingRequirementsTest {
 
 	@Test
 	public void testExtractFromPropertiesNegative() {
-		assertNull(LicensingRequirements.extractFromProperties(null, null, null, null));
-		assertNull(LicensingRequirements.extractFromProperties(null, null,
-				Collections.singletonMap(LicensingProperties.LICENSING_FEATURE_IDENTIFIER, new Object()), null));
+		LicensingRequirement allNulls = LicensingRequirements.extractFromProperties(null, null, null, null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, allNulls.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, allNulls.getFeatureIdentifier());
+		LicensingRequirement invalidProperties = LicensingRequirements.extractFromProperties(null, null,
+				Collections.singletonMap(LicensingProperties.LICENSING_FEATURE_IDENTIFIER, new Object()), null);
+		assertEquals(LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR, invalidProperties.getRestrictionLevel());
+		assertEquals(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT, invalidProperties.getFeatureIdentifier());
 	}
 
 	@Test
