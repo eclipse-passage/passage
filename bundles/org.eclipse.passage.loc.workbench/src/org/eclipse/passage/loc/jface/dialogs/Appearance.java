@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.jface.dialogs;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -28,18 +29,18 @@ import org.eclipse.swt.graphics.Image;
 public final class Appearance {
 
 	private final String title;
-	private final Image image;
+	private final Supplier<Image> image;
 	private final LabelProvider labelProvider;
 
 	/**
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
-	 * title, default image and default label provider will be used
+	 * title, default image supplier and default label provider will be used
 	 * 
 	 * @param title title for dialog, must not be <code>null</code>
 	 * 
 	 */
 	public Appearance(String title) {
-		this(title, LicensingImages.getImageRegistry().get(LicensingImages.IMG_DEFAULT));
+		this(title, () -> LicensingImages.getImageRegistry().get(LicensingImages.IMG_DEFAULT));
 	}
 
 	/**
@@ -47,23 +48,23 @@ public final class Appearance {
 	 * title and image, default label provider will be used
 	 * 
 	 * @param title title for dialog, must not be <code>null</code>
-	 * @param image image for dialog, must not be <code>null</code>
+	 * @param image image supplier for dialog, must not be <code>null</code>
 	 * 
 	 */
-	public Appearance(String title, Image image) {
+	public Appearance(String title, Supplier<Image> image) {
 		this(title, image, new LabelProvider());
 	}
 
 	/**
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
-	 * title, image, and label provider
+	 * title, image supplier, and label provider
 	 * 
 	 * @param title  title for dialog, must not be <code>null</code>
-	 * @param image  image for dialog, must not be <code>null</code>
+	 * @param image  supplier of the image for dialog, must not be <code>null</code>
 	 * @param labels label provider for dialog, must not be <code>null</code>
 	 * 
 	 */
-	public Appearance(String title, Image image, LabelProvider labels) {
+	public Appearance(String title, Supplier<Image> image, LabelProvider labels) {
 		Objects.requireNonNull(title, WorkbenchMessages.Appearance_e_null_title);
 		Objects.requireNonNull(image, WorkbenchMessages.Appearance_e_null_image);
 		Objects.requireNonNull(labels, WorkbenchMessages.Appearance_e_null_labels);
@@ -82,11 +83,11 @@ public final class Appearance {
 	}
 
 	/**
-	 * The image to use for dialog's shell
+	 * The image supplier to use for dialog's shell
 	 * 
-	 * @return non-<code>null</code> image
+	 * @return non-<code>null</code> image supplier
 	 */
-	public Image image() {
+	public Supplier<Image> image() {
 		return image;
 	}
 
