@@ -12,31 +12,28 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.ui;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.loc.internal.api.ZeroOneMany;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
-import org.eclipse.passage.loc.internal.workbench.CreateRoot;
-import org.eclipse.passage.loc.internal.workbench.SelectFromDialog;
+import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
-import org.eclipse.passage.loc.licenses.core.Licenses;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.passage.loc.users.core.Users;
 
 /**
- * Selects or creates {@link LicensePlanDescriptor}. Will return either
- * {@link Optional} with selected/created license plan or
- * {@link Optional#empty()}
+ * Creates {@link SelectRequest} for {@link LicensePlanDescriptor} from the
+ * given {@link IEclipseContext}.
  * 
  * @since 0.6
  *
  */
-public final class SelectLicensePlan implements Supplier<Optional<LicensePlanDescriptor>> {
+public final class SelectLicensePlan implements Supplier<SelectRequest<LicensePlanDescriptor>> {
 
 	private final IEclipseContext context;
 
@@ -45,17 +42,22 @@ public final class SelectLicensePlan implements Supplier<Optional<LicensePlanDes
 	}
 
 	@Override
-	public Optional<LicensePlanDescriptor> get() {
-		LicenseRegistry registry = context.get(LicenseRegistry.class);
-		Supplier<Iterable<LicensePlanDescriptor>> input = () -> StreamSupport
-				.stream(registry.getLicensePlans().spliterator(), false).collect(Collectors.toList());
-		ZeroOneMany<LicensePlanDescriptor> zeroOneMany = new ZeroOneMany<>(input);
-		String title = LicensesUiMessages.LicensesUi_select_license_plan;
-		Appearance appearance = new Appearance(title);
-		SelectFromDialog<LicensePlanDescriptor> select = new SelectFromDialog<LicensePlanDescriptor>(
-				() -> context.get(Shell.class), appearance);
-		return zeroOneMany.choose(new CreateRoot<LicensePlanDescriptor>(context, Licenses.DOMAIN_NAME,
-				LicensePlanDescriptor.class), select);
+	public SelectRequest<LicensePlanDescriptor> get() {
+		return new SelectRequest<LicensePlanDescriptor>(LicensePlanDescriptor.class, domain(), input(), appearance());
+	}
+
+	private Supplier<Iterable<LicensePlanDescriptor>> input() {
+		return () -> StreamSupport.stream(context.get(LicenseRegistry.class).getLicensePlans().spliterator(), false)//
+				.collect(Collectors.toList());
+	}
+
+	private Appearance appearance() {
+		return new Appearance(LicensesUiMessages.LicensesUi_select_license_plan, //
+				() -> LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName()));
+	}
+
+	private String domain() {
+		return Users.DOMAIN_NAME;
 	}
 
 }

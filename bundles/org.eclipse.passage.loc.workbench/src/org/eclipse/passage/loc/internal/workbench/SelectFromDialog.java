@@ -85,7 +85,7 @@ public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional
 		FilteredSelectionDialog<C> dialog = new FilteredSelectionDialog<C>(shellSupplier.get(), false,
 				new LabelSearchFilter());
 		dialog.setTitle(appearance.title());
-		dialog.setImage(appearance.image());
+		dialog.setImage(appearance.image().get());
 		dialog.setLabelProvider(appearance.labelProvider());
 		dialog.setInitialSelection(initial);
 		dialog.setInput(input);

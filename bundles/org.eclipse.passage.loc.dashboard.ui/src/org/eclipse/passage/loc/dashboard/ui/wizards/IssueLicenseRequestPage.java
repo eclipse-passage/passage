@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
+import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
@@ -129,7 +130,8 @@ public final class IssueLicenseRequestPage extends WizardPage {
 		if (data instanceof LicensePlanDescriptor) {
 			initial.add((LicensePlanDescriptor) data);
 		}
-		LicensePlanDescriptor selected = new SelectLicensePlan(context).get().orElse(null);
+		LicensePlanDescriptor selected = new SelectRoot<>(new SelectLicensePlan(context).get(), context).get()
+				.orElse(null);
 		text.setData(selected);
 		licensePlanDescriptor = selected;
 		return labelProvider.getText(selected);
