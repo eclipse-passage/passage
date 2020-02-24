@@ -17,10 +17,12 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
+import org.eclipse.passage.loc.internal.billing.core.ProductVersionLicense;
 import org.eclipse.passage.loc.internal.billing.core.UserLicenses;
 import org.junit.Test;
 
@@ -83,6 +85,39 @@ public class UserLicensesTest {
 				Arrays.asList(new FakeUser[] { new FakeUser(licenses1), new FakeUser(licenses2) }));
 
 		assertEquals(Arrays.asList(license1), service.getLicensesForProductVersion(product, version));
+	}
+
+	@Test
+	public void countSameLicenses() {
+		String product1 = "product1"; //$NON-NLS-1$
+		String product2 = "product2"; //$NON-NLS-1$
+		String product3 = "product3"; //$NON-NLS-1$
+		String version1 = "v1"; //$NON-NLS-1$
+		String version2 = "v2"; //$NON-NLS-1$
+		String version3 = "v3"; //$NON-NLS-1$
+		FakeLicenseDescriptor fakeLicenseDescriptor1 = new FakeLicenseDescriptor(product1, version1);
+		FakeLicenseDescriptor fakeLicenseDescriptor2 = new FakeLicenseDescriptor(product2, version2);
+		FakeLicenseDescriptor fakeLicenseDescriptor3 = new FakeLicenseDescriptor(product3, version3);
+
+		List<UserLicenseDescriptor> licenses1 = Arrays.asList(fakeLicenseDescriptor1, fakeLicenseDescriptor3);
+
+		List<UserLicenseDescriptor> licenses2 = Arrays.asList(fakeLicenseDescriptor2, fakeLicenseDescriptor3);
+
+		List<UserLicenseDescriptor> licenses3 = Arrays.asList(fakeLicenseDescriptor1, fakeLicenseDescriptor2,
+				fakeLicenseDescriptor3);
+
+		UserLicenses service = new UserLicenses(
+				Arrays.asList(new FakeUser(licenses1), new FakeUser(licenses2), new FakeUser(licenses3)));
+
+		Map<ProductVersionLicense, Integer> map = service.getLicensesNumbers();
+
+		for (Map.Entry<ProductVersionLicense, Integer> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue()); //$NON-NLS-1$
+		}
+
+		assertEquals(new Integer(2), map.get(new ProductVersionLicense(fakeLicenseDescriptor1)));
+		assertEquals(new Integer(2), map.get(new ProductVersionLicense(fakeLicenseDescriptor2)));
+		assertEquals(new Integer(3), map.get(new ProductVersionLicense(fakeLicenseDescriptor3)));
 	}
 
 }

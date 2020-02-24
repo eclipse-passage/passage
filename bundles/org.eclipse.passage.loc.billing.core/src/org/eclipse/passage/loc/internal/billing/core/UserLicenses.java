@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.billing.core;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -95,11 +97,22 @@ public class UserLicenses {
 	 * @return Linked list of licenses
 	 */
 	private final List<UserLicenseDescriptor> getLicenses(Predicate<UserLicenseDescriptor> condition) {
-		return users.stream()
-				.map(UserDescriptor::getUserLicenses)
-				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false))
-				.filter(condition)
+		return users.stream().map(UserDescriptor::getUserLicenses)
+				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false)).filter(condition)
 				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Returns a number of issued licenses for each product-version
+	 * 
+	 * @return Map where ProductVersionLicense (single license descriptor) is a key
+	 *         and number of licenses is a value
+	 */
+	public final Map<ProductVersionLicense, Integer> getLicensesNumbers() {
+		List<ProductVersionLicense> licenses = getAllLicenses().stream()
+				.map(license -> new ProductVersionLicense(license)).collect(Collectors.toList());
+		return licenses.stream().collect(Collectors.toMap(license -> license,
+				license -> Collections.frequency(licenses, license), (l1, l2) -> l1));
 	}
 
 }
