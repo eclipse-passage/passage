@@ -27,11 +27,11 @@ package org.eclipse.passage.loc.yars.internal.api;
  * beget parameterized data requests.
  * </p>
  * 
- * @param S type of storage - the query is aware of a storage structure.
- * @param R type of resulting data that begotten {@linkplain FetchedData} will
- *          produce.
- * @param P particular type of fetch parameters, can be specific both for the
- *          storage and for the query itself.
+ * @param <S> type of storage - the query is aware of a storage structure.
+ * @param <R> type of resulting data that begotten {@linkplain FetchedData} will
+ *            produce.
+ * @param <P> particular type of fetch parameters, can be specific both for the
+ *            storage and for the query itself.
  * @see org.eclipse.passage.loc.yars.internal.api
  * 
  * @since 0.1
@@ -48,7 +48,7 @@ public interface Query<S extends Storage<?>, R, P extends FetchParams> {
 	/**
 	 * Human readable (under l10n) explanation of a query sense. Can be used in UI
 	 * interfaces, if there is a necessity to get a user know the difference between
-	 * several queries under disposal.
+	 * several queries in disposal.
 	 * 
 	 * @since 0.1
 	 */

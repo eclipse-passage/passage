@@ -34,21 +34,21 @@
  * <li>collection of some runtime data, like
  * 
  * <pre>
- *  class ShapesOnScreen implements Storage<Shape>
+ *  class ShapesOnScreen implements Storage&lt;Shape>
  * </pre>
  * 
  * </li>
  * <li>list of related data-files
  * 
  * <pre>
- *  class Snapshot implements Storage<java.io.File>
+ *  class Snapshots implements Storage&lt;java.io.File>
  * </pre>
  * 
  * </li>
  * <li>a single table or a view in a DB
  * 
  * <pre>
- *  class FifthGradeStudents implements Storage<Student>
+ *  class FifthGradeStudents implements Storage&lt;Student>
  * </pre>
  * 
  * </li>
@@ -70,19 +70,24 @@
  * <ul>
  * <li>identifies oneself,</li>
  * <li>describes a fetching idea and</li>
- * <li>supplies a way to construct an actual data fetchers, which are also
- * {@code storage}-aware and can be furnished with set of context-related
+ * <li>supplies a way to construct an actual data {@code fetch}ers, which are
+ * also {@code storage}-aware and can be furnished with set of context-related
  * parameters.</li>
  * </ul>
+ * 
+ * <p>
+ * {@code Fetch} is a querie's working unit, who's responsibility is to retrieve
+ * data from the storage. Such a unit should implement interface
+ * {@linkplain FetchedData}
  *
  * <p>
  * Say, you design a {@code PageQuery} over a {@code FifthGradeStudents} to
- * query N students a a time from a huge table from the actual DB. It can look
+ * query N students at a time from a huge table from the actual DB. It can look
  * like this
  * </p>
  * 
  * <pre>
- * class PageQuery implements Query<FifthGradeStudents, Student, PaginationSettings> {
+ * class PageQuery implements Query&lt;FifthGradeStudents, Student, PaginationSettings> {
  * 	&#64;Override
  * 	public String id() {
  * 		return "PAGE";
@@ -94,7 +99,7 @@
  * 	}
  *
  * 	&#64;Override
- * 	public FetchedData<FifthGradeStudents, Student> fetch(FifthGradeStudents storage, PaginationSettings params) {
+ * 	public FetchedData&lt;FifthGradeStudents, Student> fetch(FifthGradeStudents storage, PaginationSettings params) {
  * 		return new Fetch(params, storage);
  * 	}
  * }
@@ -120,7 +125,7 @@
  * PageQuery query = new PageQuery(); // does not fetch anything by it's own
  * List<Student> pageNo3Content =
  *    query
- *      .fetch(base, new PaginationSettings(3, 50))  // knows how fetch, but should not do this until demanded
+ *      .fetch(base, new PaginationSettings(3, 50))  //gain an instance of FetchedData, which knows how fetch, but should not do this until demanded
  *      .get()   // and here the actual fetching should happen
  * </pre>
  * 
@@ -141,10 +146,10 @@
  * our fifth-graders.
  * </p>
  * <ul>
- * <li>Define a analytic query:
+ * <li>Define an analytic query:
  * 
  * <pre>
- * class MathProgress implements Query<FifthGradeStudents, AcademicRecord, AnalysisParams>
+ * class MathProgress implements Query&lt;FifthGradeStudents, AcademicRecord, AnalysisParams>
  * </pre>
  * 
  * , and here {@code AnalysisParams} class will be responsible for a class title
@@ -153,7 +158,7 @@
  * we can design like this:
  * 
  * <pre>
- * class AcademicRecord implements ExportData<AcademicRecord> {
+ * class AcademicRecord implements ExportData&lt;AcademicRecord> {
  *     private final String name;  // student name, like Wednesday Addams
  *     private final String grade; // say, A+
  *     < ... constructor for name and grade >
@@ -168,7 +173,7 @@
  * </li>
  * <li>We have a single academic record been reported, but we also need the
  * whole report to be properly orchesterated. You can design such an
- * orchestrator oneself, or exploit the {@linkplain Export} like this
+ * orchestrator yourself, or exploit the {@linkplain Export} like this
  * 
  * <pre>
  *   FifthGradeStudents base = ...
@@ -178,17 +183,17 @@
  *           base, 
  *           new AnalysisParams("math"))
  *     .write(new Report(output));
- *	 String report = output.toString();
+ *	String report = output.toString();
  * </pre>
  * 
  * </li>
- * <li>And, finally, we should define the mechanics of the {@code Report}
- * recording. It's a {@linkplain ListMedia}, which can write
- * {@code AcademicRecord}s to a {@code File}. Let the report have a title, a
- * footer, and list all records as well.
+ * <li>And, finally, we should define an <i>output format</i>: define the
+ * mechanics of the {@code Report} recording. It's a {@linkplain ListMedia},
+ * which can write {@code AcademicRecord}s to a {@code File}. Let the report
+ * have a title, a footer, and list all records as well.
  * 
  * <pre>
- * class Report extends ListMedia<AcademicRecord> {
+ * class Report extends ListMedia&lt;AcademicRecord> {
  * 		private final StringBuilder buffer;
  * 		private final File target;
  * 		private final Counter counter = new Counter(0); 

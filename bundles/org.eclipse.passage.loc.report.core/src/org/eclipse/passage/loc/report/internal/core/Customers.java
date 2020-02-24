@@ -47,6 +47,13 @@ public final class Customers implements CustomerStorage {
 				.collect(Collectors.toSet());
 	}
 
+	@Override
+	public Set<String> allProducts() {
+		return StreamSupport.stream(registry.getUserLicenses().spliterator(), false)//
+				.map(UserLicenseDescriptor::getProductIdentifier) //
+				.collect(Collectors.toSet());
+	}
+
 	/**
 	 * It is required to install {@code LIC} {@linkplain UserRegistry} as it is the
 	 * source of information provided.

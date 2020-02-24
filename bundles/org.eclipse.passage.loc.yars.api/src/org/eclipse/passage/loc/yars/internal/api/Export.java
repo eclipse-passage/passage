@@ -41,9 +41,9 @@ package org.eclipse.passage.loc.yars.internal.api;
  *	 .write(new Json(file));
  * </pre>
  * 
- * @param S type of storage
- * @param T type of data ready for export, sub type of {@linkplain ExportData}
- * @param M any sub type of {@linkplain ListMedia}
+ * @param <S> type of storage
+ * @param <T> type of data ready for export, sub type of {@linkplain ExportData}
+ * @param <M> any sub type of {@linkplain ListMedia}
  * 
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1

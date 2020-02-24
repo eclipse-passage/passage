@@ -38,6 +38,7 @@ final class Csv implements ListMedia<ProductCustomer> {
 					new CSVPrinter( //
 							target.stream(), //
 							CSVFormat.EXCEL //
+									.withDelimiter(';')//
 									.withHeader(header));
 		} catch (IOException e) {
 			throw new ReportException(Messages.getString("Csv.action_printer_construction_failure"), e); //$NON-NLS-1$
