@@ -28,9 +28,9 @@ import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
  * 
  * @since 0.6
  *
- * @param <C> classifier to be selected see {@link EClass#getName()}
+ * @param <R> classifier to be selected see {@link EClass#getName()}
  */
-public final class CreateRoot<C> extends CreateClassifier<C> {
+public final class CreateRoot<R> extends CreateClassifier<R> {
 
 	/**
 	 * Constructs the new instance with given context, domain and classifier.
@@ -43,7 +43,7 @@ public final class CreateRoot<C> extends CreateClassifier<C> {
 	 * @param classifier the class of object to be created and stored in resource,
 	 *                   must not be <code>null</code>
 	 */
-	public CreateRoot(IEclipseContext context, String domain, Class<C> classifier) {
+	public CreateRoot(IEclipseContext context, String domain, Class<R> classifier) {
 		super(context, domain, classifier);
 	}
 

@@ -15,6 +15,9 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -31,8 +34,11 @@ import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
  */
 public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {
 
+	protected final ClassifierMetadata metadata;
+	protected final ClassifierInitializer initializer;
 	protected final EditingDomainRegistry<?> registry;
-	protected final N newClassifierPage;
+
+	protected N newClassifierPage;
 
 	/**
 	 * Creates a new wizard with given metadata and initializer
@@ -51,8 +57,9 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 */
 	protected BaseClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
+		this.metadata = metadata;
+		this.initializer = initializer;
 		this.registry = registry;
-		this.newClassifierPage = createNewClassifierPage(metadata, initializer);
 	}
 
 	/**
@@ -66,10 +73,11 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 *                    not be <code>null</code>
 	 * @return a just created instance of the {@link WizardPage}
 	 */
-	protected abstract N createNewClassifierPage(ClassifierMetadata metadata, ClassifierInitializer initializer);
+	protected abstract N createNewClassifierPage();
 
 	@Override
 	public void addPages() {
+		this.newClassifierPage = createNewClassifierPage();
 		addPage(newClassifierPage);
 	}
 
@@ -82,6 +90,14 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	public Optional<EObject> created() {
 		return newClassifierPage.candidate().eResource() != null ? Optional.of(newClassifierPage.candidate())
 				: Optional.empty();
+	}
+
+	protected ResourceSet resourceSet() {
+		if (registry instanceof IEditingDomainProvider) {
+			IEditingDomainProvider edProvider = (IEditingDomainProvider) registry;
+			return edProvider.getEditingDomain().getResourceSet();
+		}
+		return new ResourceSetImpl();
 	}
 
 }

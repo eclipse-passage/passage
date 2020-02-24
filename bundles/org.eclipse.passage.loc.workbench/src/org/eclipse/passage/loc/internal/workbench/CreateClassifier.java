@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 
-	private final IEclipseContext context;
+	protected final IEclipseContext context;
 	private final String domain;
 	private final Class<C> classifierClass;
 

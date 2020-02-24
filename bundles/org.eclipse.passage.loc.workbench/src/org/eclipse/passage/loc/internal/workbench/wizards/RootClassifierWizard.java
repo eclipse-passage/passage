@@ -3,9 +3,6 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
@@ -46,8 +43,7 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 	}
 
 	@Override
-	protected RootClassifierWizardPage createNewClassifierPage(ClassifierMetadata metadata,
-			ClassifierInitializer initializer) {
+	protected RootClassifierWizardPage createNewClassifierPage() {
 		return new RootClassifierWizardPage(metadata, initializer, registry.getFileExtension());
 	}
 
@@ -68,14 +64,6 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 		resource.getContents().add(candidate);
 		LocWokbench.save(resource);
 		registry.registerSource(fileURI.toFileString());
-	}
-
-	protected ResourceSet resourceSet() {
-		if (registry instanceof IEditingDomainProvider) {
-			IEditingDomainProvider edProvider = (IEditingDomainProvider) registry;
-			return edProvider.getEditingDomain().getResourceSet();
-		}
-		return new ResourceSetImpl();
 	}
 
 	protected void process(Exception exception) {

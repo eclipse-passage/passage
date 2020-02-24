@@ -78,7 +78,7 @@ public final class RootClassifierWizardPage extends BaseClassifierWizardPage {
 	protected boolean validatePage() {
 		// FIXME: further improvements required for diagnostic (!exists, etc.)
 		if (path().isEmpty()) {
-			setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_path);
+			setErrorMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_path);
 			return false;
 		}
 		return super.validatePage();
