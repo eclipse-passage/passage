@@ -10,49 +10,52 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.licenses.ui;
+package org.eclipse.passage.loc.internal.users.ui;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
+import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
 import org.eclipse.passage.loc.users.core.Users;
 
 /**
- * Creates {@link SelectRequest} for {@link LicensePlanDescriptor} from the
- * given {@link IEclipseContext}.
+ * Selects or creates {@link UserOriginDescriptor}. Will return either
+ * {@link Optional} with selected/created license plan or
+ * {@link Optional#empty()}
  * 
  * @since 0.6
  *
  */
-public final class SelectLicensePlan extends SupplySelectRequest<LicensePlanDescriptor> {
+public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
 
-	public SelectLicensePlan(IEclipseContext context) {
+	public SelectUser(IEclipseContext context) {
 		super(context);
 	}
 
 	@Override
-	public SelectRequest<LicensePlanDescriptor> get() {
-		return new SelectRequest<>(LicensePlanDescriptor.class, domain(), input(), appearance());
+	public SelectRequest<UserDescriptor> get() {
+		return new SelectRequest<>(UserDescriptor.class, domain(), input(), appearance());
 	}
 
-	private Supplier<Iterable<LicensePlanDescriptor>> input() {
-		return () -> StreamSupport.stream(context.get(LicenseRegistry.class).getLicensePlans().spliterator(), false)//
+	private Supplier<Iterable<UserDescriptor>> input() {
+		return () -> StreamSupport.stream(context.get(UserRegistry.class).getUsers().spliterator(), false)//
 				.collect(Collectors.toList());
 	}
 
 	private Appearance appearance() {
-		return new Appearance(LicensesUiMessages.LicensesUi_select_license_plan, //
-				() -> LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName()), labels());
+		return new Appearance(UsersUiMessages.SelectUser_title, //
+				() -> LicensingImages.getImage(UsersPackage.eINSTANCE.getUser().getName()), labels());
 	}
 
 	private String domain() {
