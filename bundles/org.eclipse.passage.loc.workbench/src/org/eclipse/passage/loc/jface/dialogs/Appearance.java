@@ -30,7 +30,7 @@ public final class Appearance {
 
 	private final String title;
 	private final Supplier<Image> image;
-	private final LabelProvider labelProvider;
+	private final LabelProvider labels;
 
 	/**
 	 * Creates the dialog appearance descriptor with the given non-<code>null</code>
@@ -70,7 +70,7 @@ public final class Appearance {
 		Objects.requireNonNull(labels, WorkbenchMessages.Appearance_e_null_labels);
 		this.title = title;
 		this.image = image;
-		this.labelProvider = labels;
+		this.labels = labels;
 	}
 
 	/**
@@ -96,8 +96,8 @@ public final class Appearance {
 	 * 
 	 * @return non-<code>null</code> label provider
 	 */
-	public LabelProvider labelProvider() {
-		return labelProvider;
+	public LabelProvider labels() {
+		return labels;
 	}
 
 }
