@@ -97,8 +97,10 @@ public class UserLicenses {
 	 * @return Linked list of licenses
 	 */
 	private final List<UserLicenseDescriptor> getLicenses(Predicate<UserLicenseDescriptor> condition) {
-		return users.stream().map(UserDescriptor::getUserLicenses)
-				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false)).filter(condition)
+		return users.stream()
+				.map(UserDescriptor::getUserLicenses)
+				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false))
+				.filter(condition)
 				.collect(Collectors.toList());
 	}
 
@@ -110,9 +112,12 @@ public class UserLicenses {
 	 */
 	public final Map<ProductVersionLicense, Integer> getLicensesNumbers() {
 		List<ProductVersionLicense> licenses = getAllLicenses().stream()
-				.map(license -> new ProductVersionLicense(license)).collect(Collectors.toList());
-		return licenses.stream().collect(Collectors.toMap(license -> license,
-				license -> Collections.frequency(licenses, license), (l1, l2) -> l1));
+				.map(license -> new ProductVersionLicense(license))
+				.collect(Collectors.toList());
+		return licenses.stream()
+				.collect(Collectors.toMap(license -> license, 
+						license -> Collections.frequency(licenses, license), 
+						(l1, l2) -> l1));
 	}
 
 }
