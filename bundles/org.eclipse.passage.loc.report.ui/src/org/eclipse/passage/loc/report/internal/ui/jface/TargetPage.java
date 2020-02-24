@@ -19,10 +19,7 @@ import java.util.Optional;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -71,12 +68,7 @@ final class TargetPage extends WizardPage {
 	private void createPath(Composite content) {
 		path = new Text(content, SWT.READ_ONLY | SWT.BORDER);
 		path.setLayoutData(new GridData(GridData.FILL, SWT.TOP, true, false));
-		path.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				updateControls();
-			}
-		});
+		path.addModifyListener(e -> updateControls());
 	}
 
 	private void updateControls() {
@@ -93,14 +85,11 @@ final class TargetPage extends WizardPage {
 		Button browse = new Button(content, SWT.PUSH);
 		browse.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		browse.setText(ExportCustomersWizardMessages.TargetPage_browse);
-		browse.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				DirectoryDialog dialog = new DirectoryDialog(getShell());
-				dialog.setFilterPath(path.getText());
-				Optional.ofNullable(dialog.open()).ifPresent(path::setText);
-			}
-		});
+		browse.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
+			DirectoryDialog dialog = new DirectoryDialog(getShell());
+			dialog.setFilterPath(path.getText());
+			Optional.ofNullable(dialog.open()).ifPresent(path::setText);
+		}));
 	}
 
 }

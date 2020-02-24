@@ -18,18 +18,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -109,32 +106,23 @@ final class ScopePage extends WizardPage {
 		all.setText(ExportCustomersWizardMessages.ScopePage_selectAll);
 		none = new Button(controls, SWT.PUSH);
 		none.setText(ExportCustomersWizardMessages.ScopePage_selctNone);
-		all.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				Arrays.stream(products).forEach(selected::add);
-				viewer.refresh();
-				updateControls();
+		all.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
+			Arrays.stream(products).forEach(selected::add);
+			viewer.refresh();
+			updateControls();
+		}));
+		none.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
+			selected.clear();
+			viewer.refresh();
+			updateControls();
+		}));
+		viewer.addCheckStateListener(e -> {
+			if (e.getChecked()) {
+				selected.add((ProductDescriptor) e.getElement());
+			} else {
+				selected.remove(e.getElement());
 			}
-		});
-		none.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				selected.clear();
-				viewer.refresh();
-				updateControls();
-			}
-		});
-		viewer.addCheckStateListener(new ICheckStateListener() {
-			@Override
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				if (event.getChecked()) {
-					selected.add((ProductDescriptor) event.getElement());
-				} else {
-					selected.remove(event.getElement());
-				}
-				updateControls();
-			}
+			updateControls();
 		});
 	}
 
