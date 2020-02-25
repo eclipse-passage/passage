@@ -46,8 +46,9 @@ public final class ProductVersionLicense {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!this.getClass().isInstance(obj))
+		if (!this.getClass().isInstance(obj)) {
 			return false;
+		}
 		ProductVersionLicense license = (ProductVersionLicense) obj;
 		return Objects.equals(getProduct(), license.getProduct()) && Objects.equals(getVersion(), license.getVersion());
 	}

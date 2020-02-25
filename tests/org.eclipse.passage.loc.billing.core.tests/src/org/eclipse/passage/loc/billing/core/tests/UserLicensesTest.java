@@ -31,12 +31,12 @@ public class UserLicensesTest {
 
 	@Test
 	public void allLicenses() {
-		List<UserLicenseDescriptor> licenses1 = getLicenses(getLicense(provider.randomString()),
-				getLicense(provider.randomString()));
-		List<UserLicenseDescriptor> licenses2 = getLicenses(getLicense(provider.randomString()),
-				getLicense(provider.randomString()));
+		List<UserLicenseDescriptor> licenses1 = licenses(license(provider.randomString()),
+				license(provider.randomString()));
+		List<UserLicenseDescriptor> licenses2 = licenses(license(provider.randomString()),
+				license(provider.randomString()));
 
-		UserLicenses service = getService(getUser(licenses1), getUser(licenses2));
+		UserLicenses service = service(user(licenses1), user(licenses2));
 
 		assertEquals(Stream.concat(licenses1.stream(), licenses2.stream()).collect(Collectors.toList()),
 				service.getAllLicenses());
@@ -45,12 +45,12 @@ public class UserLicensesTest {
 	@Test
 	public void licensesForProduct() {
 		String product = provider.randomString();
-		List<UserLicenseDescriptor> licenses1 = getLicenses(getLicense(product), getLicense(provider.randomString()));
-		List<UserLicenseDescriptor> licenses2 = getLicenses(getLicense(product), getLicense(provider.randomString()));
+		List<UserLicenseDescriptor> licenses1 = licenses(license(product), license(provider.randomString()));
+		List<UserLicenseDescriptor> licenses2 = licenses(license(product), license(provider.randomString()));
 
-		UserLicenses service = getService(getUser(licenses1), getUser(licenses2));
+		UserLicenses service = service(user(licenses1), user(licenses2));
 
-		assertEquals(Arrays.asList(getLicense(product), getLicense(product)), service.getLicensesForProduct(product));
+		assertEquals(Arrays.asList(license(product), license(product)), service.getLicensesForProduct(product));
 	}
 
 	@Test
@@ -58,48 +58,50 @@ public class UserLicensesTest {
 		String product = provider.randomString();
 		String version = provider.randomString();
 
-		UserLicenses service = getService(
-				getUser(getLicenses(getLicense(product, version), getLicense(provider.randomString()))),
-				getUser(getLicenses(getLicense(product), getLicense(provider.randomString()))));
+		UserLicenses service = service(
+				user(licenses(license(product, version), license(provider.randomString()))),
+				user(licenses(license(product), license(provider.randomString()))));
 
-		assertEquals(Arrays.asList(getLicense(product, version)),
+		assertEquals(Arrays.asList(license(product, version)),
 				service.getLicensesForProductVersion(product, version));
 	}
 
 	@Test
 	public void countSameLicenses() {
-		UserLicenseDescriptor license1 = getLicense(provider.randomString(), provider.randomString());
-		UserLicenseDescriptor license2 = getLicense(provider.randomString(), provider.randomString());
-		UserLicenseDescriptor license3 = getLicense(provider.randomString(), provider.randomString());
+		UserLicenseDescriptor license1 = license(provider.randomString(), provider.randomString());
+		UserLicenseDescriptor license2 = license(provider.randomString(), provider.randomString());
+		UserLicenseDescriptor license3 = license(provider.randomString(), provider.randomString());
 
-		UserLicenses service = getService(getUser(getLicenses(license1, license3)),
-				getUser(getLicenses(license2, license3)), getUser(getLicenses(license1, license2, license3)));
+		UserLicenses service = service(user(licenses(license1, license3)),
+				user(licenses(license2, license3)), user(licenses(license1, license2, license3)));
 
-		assertEquals(Arrays.asList(2, 2, 3), getNumbers(service, license1, license2, license3));
+		assertEquals(Arrays.asList(2, 2, 3), numbers(service, license1, license2, license3));
 	}
 
-	private List<Integer> getNumbers(UserLicenses service, UserLicenseDescriptor... descriptors) {
-		return Arrays.asList(descriptors).stream().map(ProductVersionLicense::new)
-				.map(license -> service.getLicensesNumbers().get(license)).collect(Collectors.toList());
+	private List<Integer> numbers(UserLicenses service, UserLicenseDescriptor... descriptors) {
+		return Arrays.asList(descriptors).stream()
+				.map(ProductVersionLicense::new)
+				.map(license -> service.getLicensesNumbers().get(license))
+				.collect(Collectors.toList());
 	}
 
-	private UserLicenseDescriptor getLicense(String product) {
+	private UserLicenseDescriptor license(String product) {
 		return new FakeLicenseDescriptor(product);
 	}
 
-	private UserLicenseDescriptor getLicense(String product, String version) {
+	private UserLicenseDescriptor license(String product, String version) {
 		return new FakeLicenseDescriptor(product, version);
 	}
 
-	private List<UserLicenseDescriptor> getLicenses(UserLicenseDescriptor... fakeLicenseDescriptors) {
+	private List<UserLicenseDescriptor> licenses(UserLicenseDescriptor... fakeLicenseDescriptors) {
 		return Arrays.asList(fakeLicenseDescriptors);
 	}
 
-	private UserDescriptor getUser(List<UserLicenseDescriptor> licenses) {
+	private UserDescriptor user(List<UserLicenseDescriptor> licenses) {
 		return new FakeUser(licenses);
 	}
 
-	private UserLicenses getService(UserDescriptor... users) {
+	private UserLicenses service(UserDescriptor... users) {
 		return new UserLicenses(Arrays.asList(users));
 	}
 
