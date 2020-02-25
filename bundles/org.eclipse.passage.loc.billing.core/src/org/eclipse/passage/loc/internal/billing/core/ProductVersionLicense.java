@@ -1,17 +1,39 @@
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Nikifor Fedorov <zelenyhleb@gmail.com> - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.loc.internal.billing.core;
 
 import java.util.Objects;
 
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 
-public class ProductVersionLicense {
+/**
+ * Local data class designed to sort licenses by product and version.
+ * 
+ */
+public final class ProductVersionLicense {
 
 	private final String product;
 	private final String version;
 
+	/**
+	 * @param license license descriptor
+	 */
 	public ProductVersionLicense(UserLicenseDescriptor license) {
-		this.product = license.getProductIdentifier();
-		this.version = license.getProductVersion();
+		// License must not be null
+		Objects.requireNonNull(license);
+
+		this.product = Objects.requireNonNull(license.getProductIdentifier());
+		this.version = Objects.requireNonNull(license.getProductVersion());
 	}
 
 	public String getProduct() {
@@ -24,9 +46,7 @@ public class ProductVersionLicense {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
+		if (!this.getClass().isInstance(obj))
 			return false;
 		ProductVersionLicense license = (ProductVersionLicense) obj;
 		return Objects.equals(getProduct(), license.getProduct()) && Objects.equals(getVersion(), license.getVersion());

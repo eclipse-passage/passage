@@ -22,7 +22,7 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 
-public class UserLicenses {
+public final class UserLicenses {
 
 	/**
 	 * All users list
@@ -112,7 +112,7 @@ public class UserLicenses {
 	 */
 	public final Map<ProductVersionLicense, Integer> getLicensesNumbers() {
 		List<ProductVersionLicense> licenses = getAllLicenses().stream()
-				.map(license -> new ProductVersionLicense(license))
+				.map(ProductVersionLicense::new)
 				.collect(Collectors.toList());
 		return licenses.stream()
 				.collect(Collectors.toMap(license -> license, 
