@@ -22,6 +22,12 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 
+/**
+ * Root class of the package. Contains methods that return license descriptors
+ * filtered by some parameters.
+ * 
+ * @since 0.1
+ */
 public final class UserLicenses {
 
 	/**
@@ -97,10 +103,8 @@ public final class UserLicenses {
 	 * @return Linked list of licenses
 	 */
 	private final List<UserLicenseDescriptor> getLicenses(Predicate<UserLicenseDescriptor> condition) {
-		return users.stream()
-				.map(UserDescriptor::getUserLicenses)
-				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false))
-				.filter(condition)
+		return users.stream().map(UserDescriptor::getUserLicenses)
+				.flatMap(iterable -> StreamSupport.stream(iterable.spliterator(), false)).filter(condition)
 				.collect(Collectors.toList());
 	}
 
@@ -111,13 +115,10 @@ public final class UserLicenses {
 	 *         and number of licenses is a value
 	 */
 	public final Map<ProductVersionLicense, Integer> getLicensesNumbers() {
-		List<ProductVersionLicense> licenses = getAllLicenses().stream()
-				.map(ProductVersionLicense::new)
+		List<ProductVersionLicense> licenses = getAllLicenses().stream().map(ProductVersionLicense::new)
 				.collect(Collectors.toList());
-		return licenses.stream()
-				.collect(Collectors.toMap(license -> license, 
-						license -> Collections.frequency(licenses, license), 
-						(l1, l2) -> l1));
+		return licenses.stream().collect(Collectors.toMap(license -> license,
+				license -> Collections.frequency(licenses, license), (l1, l2) -> l1));
 	}
 
 }
