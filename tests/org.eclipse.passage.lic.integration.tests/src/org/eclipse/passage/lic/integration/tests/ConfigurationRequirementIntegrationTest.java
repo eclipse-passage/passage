@@ -12,7 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.integration.tests;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.*;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_DEFAULT;
+import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL_ERROR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -27,8 +28,19 @@ import org.junit.Test;
 public class ConfigurationRequirementIntegrationTest extends LicIntegrationBase {
 
 	@Test
-	public void testResolveRequirementsPositive() {
+	public void testResolveRequirementsInvalid() {
 		Iterable<LicensingRequirement> resolved = accessManager.resolveRequirements(LicensingConfigurations.INVALID);
+		Map<String, LicensingRequirement> requirements = new HashMap<>();
+		for (LicensingRequirement cr : resolved) {
+			requirements.put(cr.getFeatureIdentifier(), cr);
+		}
+		assertEquals(1, requirements.size());
+	}
+
+	@Test
+	public void testResolveRequirementsPositive() {
+		Iterable<LicensingRequirement> resolved = accessManager
+				.resolveRequirements(LicensingConfigurations.create(SOME_DECRYPTED_PRODUCT, SOME_PRODUCT_VERSION));
 		Map<String, LicensingRequirement> requirements = new HashMap<>();
 		for (LicensingRequirement cr : resolved) {
 			requirements.put(cr.getFeatureIdentifier(), cr);
