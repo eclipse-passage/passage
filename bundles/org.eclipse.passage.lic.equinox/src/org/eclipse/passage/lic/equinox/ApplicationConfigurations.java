@@ -94,7 +94,16 @@ public class ApplicationConfigurations {
 		if (property != null) {
 			return property;
 		}
-		return application.getBrandingId();
+		String brandingId = application.getBrandingId();
+		if (brandingId != null) {
+			return brandingId;
+		}
+		String applicationId = application.getBrandingApplication();
+		if (applicationId != null) {
+			return applicationId;
+		}
+		// OK, no more ideas
+		return LicensingConfigurations.INVALID.getProductIdentifier();
 	}
 
 	public static String getLicensingContacts() {
