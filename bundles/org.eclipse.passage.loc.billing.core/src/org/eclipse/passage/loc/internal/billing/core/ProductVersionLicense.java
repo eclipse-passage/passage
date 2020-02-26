@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 /**
  * Local data class designed to sort licenses by product and version.
  * 
+ * @since 0.1
  */
 public final class ProductVersionLicense {
 
@@ -29,9 +30,7 @@ public final class ProductVersionLicense {
 	 * @param license license descriptor
 	 */
 	public ProductVersionLicense(UserLicenseDescriptor license) {
-		// License must not be null
 		Objects.requireNonNull(license);
-
 		this.product = Objects.requireNonNull(license.getProductIdentifier());
 		this.version = Objects.requireNonNull(license.getProductVersion());
 	}
