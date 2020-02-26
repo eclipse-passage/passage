@@ -27,7 +27,7 @@ public final class ProductVersionLicense {
 	private final String version;
 
 	/**
-	 * @param license license descriptor
+	 * @param license license descriptor (must not be null)
 	 */
 	public ProductVersionLicense(UserLicenseDescriptor license) {
 		Objects.requireNonNull(license);
