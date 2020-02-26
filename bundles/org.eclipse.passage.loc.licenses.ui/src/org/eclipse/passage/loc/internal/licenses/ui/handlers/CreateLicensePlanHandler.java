@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,21 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.emfforms.handlers;
+package org.eclipse.passage.loc.internal.licenses.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
-import org.eclipse.passage.loc.workbench.emfforms.LocWorkbenchEmfforms;
+import org.eclipse.passage.loc.workbench.LocWokbench;
 
-public class CreateLicensePackHandler {
+public class CreateLicensePlanHandler {
 
 	@Execute
 	public void execute(IEclipseContext context) {
 		String domain = Licenses.DOMAIN_NAME;
 		String perspectiveId = LicensesUi.PERSPECTIVE_MAIN;
-		LocWorkbenchEmfforms.createDomainContentObject(context, domain, perspectiveId);
+		LocWokbench.createDomainResource(context, domain, perspectiveId);
 	}
 
 }

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.ui.handlers;
+package org.eclipse.passage.loc.internal.licenses.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
@@ -18,7 +18,7 @@ import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
-public class LicenseOpenHandler {
+public class OpenLicensePlanHandler {
 
 	@Execute
 	public void execute(IEclipseContext eclipseContext) {
