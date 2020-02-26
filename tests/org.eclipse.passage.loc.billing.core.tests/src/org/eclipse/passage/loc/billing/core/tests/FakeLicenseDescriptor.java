@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.billing.core.tests;
 
 import java.util.Date;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
@@ -36,20 +37,36 @@ public class FakeLicenseDescriptor implements UserLicenseDescriptor {
 		this.issueDate = issueDate;
 	}
 
-	public FakeLicenseDescriptor(String identifier, Date issueDate, String productIdentifier, String versionIdentifier) {
+	public FakeLicenseDescriptor(String identifier, Date issueDate, String productIdentifier,
+			String versionIdentifier) {
 		this(identifier, new Date(), new Date(), issueDate, productIdentifier, versionIdentifier);
 	}
 
 	public FakeLicenseDescriptor(String identifier, String productIdentifier, String versionIdentifier) {
 		this(identifier, new Date(), productIdentifier, versionIdentifier);
 	}
-	
+
 	public FakeLicenseDescriptor(String productIdentifier) {
 		this("", productIdentifier, ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 	public FakeLicenseDescriptor(String productIdentifier, String versionIdentifier) {
 		this("", productIdentifier, versionIdentifier); //$NON-NLS-1$
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!this.getClass().isInstance(obj))
+			return false;
+		FakeLicenseDescriptor descriptor = (FakeLicenseDescriptor) obj;
+		return Objects.equals(planIdentifier, descriptor.planIdentifier) &&
+				Objects.equals(versionIdentifier, descriptor.versionIdentifier) &&
+				Objects.equals(productIdentifier, descriptor.productIdentifier);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(productIdentifier, versionIdentifier, planIdentifier);
 	}
 
 	@Override
