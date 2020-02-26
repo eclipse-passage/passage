@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.licenses.ui.handlers;
+package org.eclipse.passage.loc.internal.licenses.ui.handlers;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
