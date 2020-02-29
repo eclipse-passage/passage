@@ -63,7 +63,7 @@
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <repository
-        url="https://download.eclipse.org/releases/2019-12/"/>
+        url="https://download.eclipse.org/releases/2020-03/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -134,7 +134,7 @@
         <repository
             url="https://download.eclipse.org/releases/2019-12/"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
         <repository
             url="https://download.eclipse.org/passage/updates/release/0.7.0/lic/"/>
         <repository
@@ -150,7 +150,7 @@
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
-        activeRepositoryList="2019-12">
+        activeRepositoryList="2020-03">
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement
