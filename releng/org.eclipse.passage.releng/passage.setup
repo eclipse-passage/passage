@@ -5,14 +5,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
-    xmlns:pde="http://www.eclipse.org/oomph/setup/pde/1.0"
-    xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
-    xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
-    xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore"
     name="passage"
     label="Passage">
   <annotation
@@ -63,7 +59,7 @@
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <repository
-        url="https://download.eclipse.org/releases/2019-12/"/>
+        url="https://download.eclipse.org/releases/2020-03/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -134,7 +130,7 @@
         <repository
             url="https://download.eclipse.org/releases/2019-12/"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository"/>
+            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
         <repository
             url="https://download.eclipse.org/passage/updates/release/0.7.0/lic/"/>
         <repository
@@ -150,7 +146,7 @@
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
-        activeRepositoryList="2019-12">
+        activeRepositoryList="2020-03">
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement
@@ -203,152 +199,43 @@
             url="https://download.eclipse.org/tools/orbit/downloads/2020-03"/>
         <repository
             url="https://download.eclipse.org/releases/2020-03/"/>
-      <repositoryList
-          name="2019-12">
+        <repositoryList
+            name="2019-12">
         <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
+              url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
         <repository
-            url="https://download.eclipse.org/releases/2019-12/"/>
+              url="https://download.eclipse.org/releases/2019-12/"/>
       </repositoryList>
-      <repositoryList
-          name="2019-09">
+        <repositoryList
+            name="2019-09">
         <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
+              url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
         <repository
-            url="https://download.eclipse.org/releases/2019-09/"/>
+              url="https://download.eclipse.org/releases/2019-09/"/>
       </repositoryList>
-      <repositoryList
-          name="2019-06">
+        <repositoryList
+            name="2019-06">
         <repository
-            url="https://download.eclipse.org/releases/2019-06/"/>
+              url="https://download.eclipse.org/releases/2019-06/"/>
         <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
+              url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
       </repositoryList>
-      <repositoryList
-          name="2019-03">
+        <repositoryList
+            name="2019-03">
         <repository
-            url="https://download.eclipse.org/releases/2019-03"/>
+              url="https://download.eclipse.org/releases/2019-03"/>
         <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
+              url="https://download.eclipse.org/cbi/updates/license"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-03"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-03"/>
+      </repositoryList>
       </repositoryList>
     </targlet>
   </setupTask>
-  <setupTask
-      xsi:type="setup:CompoundTask"
-      name="User Preferences">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/UserPreferences"/>
-    <setupTask
-        xsi:type="setup:CompoundTask"
-        name="org.eclipse.core.resources">
-      <setupTask
-          xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.core.resources/missingNatureMarkerSeverity"
-          value="-1"/>
-      <setupTask
-          xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.core.resources/encoding"
-          value="UTF-8"/>
-    </setupTask>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.workingsets:WorkingSetTask"
-      prefix="org.eclipse.passage-">
-    <workingSet
-        name="${scope.project.label}">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*passage.*"/>
-        <operand
-            xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.10/@workingSets.1 //@setupTasks.10/@workingSets.2 //@setupTasks.10/@workingSets.3 //@setupTasks.10/@workingSets.4"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LIC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lic.api"/>
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*\.lic\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LOC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.loc.api"/>
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*\.loc\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LBC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lbc.api"/>
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*\.lbc\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LDC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.ldc.pde.ui.templates"/>
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*\.ldc\..*"/>
-      </predicate>
-    </workingSet>
-    <description>The dynamic working sets for ${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="pde:APIBaselineFromTargetTask"
-      predecessor="api.baseline.targlet"
-      name="Modular API Baseline"
-      targetName="Modular API Baseline Target"
-      version="0.0.0">
-    <description>An API baseline based on the target platform named 'Modular API Baseline Target'</description>
-  </setupTask>
-  <stream name="master"
-      label="Master">
-    <setupTask
-        xsi:type="setup:EclipseIniTask"
-        disabled="true"
-        option="-Doomph.redirection.passage"
-        value="=https://raw.githubusercontent.com/eclipse/passage/master/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
-        vm="true">
-      <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
-    </setupTask>
-  </stream>
-  <logicalProjectContainer
-      xsi:type="setup:ProjectCatalog"
-      href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
-  <description>
-    The Eclipse Passage project aims to provide 
-    rich and easily adoptable capabilities 
-    to define and control licensing constraints.
-  </description>
 </setup:Project>

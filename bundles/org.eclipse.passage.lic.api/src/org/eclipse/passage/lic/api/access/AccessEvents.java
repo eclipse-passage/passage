@@ -67,7 +67,7 @@ public final class AccessEvents {
 	/**
 	 * Sent when {@link FeaturePermission}s are expired
 	 * 
-	 * @since 0.6
+	 * @since 0.7
 	 */
 	public static final String PERMISSIONS_EXPIRED = TOPIC + TOPIC_SEP + "permissionsExpired"; //$NON-NLS-1$
 
