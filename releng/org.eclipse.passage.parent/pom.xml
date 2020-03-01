@@ -36,11 +36,9 @@
 		<tycho.version>1.5.1</tycho.version>
 		<cbi-plugins.version>1.1.8-SNAPSHOT</cbi-plugins.version>
 		<jarsigner.version>1.1.5</jarsigner.version>
-
+		
 		<tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
-		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
-		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
-		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
+		<cbi-releases-repo.url>https://repo.eclipse.org/content/repositories/cbi-releases/</cbi-releases-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.15-I-builds/</eclipserun-repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</released.baseline>
@@ -82,30 +80,9 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
-
 		<pluginRepository>
-			<id>cbi-jdt</id>
-			<url>${cbi-jdt-repo.url}</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>cbi-snapshots</id>
-			<url>${cbi-snapshots-repo.url}</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>eclipse</id>
-			<url>${eclipse-repo.url}</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
+			<id>cbi-releases</id>
+			<url>${cbi-releases-repo.url}</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -397,6 +374,7 @@
 	</build>
 
 	<profiles>
+	
 		<profile>
 			<id>coverage</id>
 			<properties>
@@ -647,6 +625,77 @@
 				</plugins>
 			</build>
 		</profile>
+
+		<profile>
+			<id>pack-and-sign</id>
+			<activation>
+				<property>
+					<name>PACK_AND_SIGN</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200a-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>pack200-normalize</id>
+								<goals>
+									<goal>normalize</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.cbi.maven.plugins</groupId>
+						<artifactId>eclipse-jarsigner-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign</id>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200b-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>pack200-pack</id>
+								<goals>
+									<goal>pack</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+								<phase>verify</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<defaultP2Metadata>false</defaultP2Metadata>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
 	</profiles>
 
 </project>
