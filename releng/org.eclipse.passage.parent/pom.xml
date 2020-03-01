@@ -148,7 +148,6 @@
 							<version>${project.parent.version}</version>
 						</artifact>
 					</target>
-					<includePackedArtifacts>true</includePackedArtifacts>
 					<environments>
 						<environment>
 							<os>linux</os>
@@ -659,6 +658,14 @@
 			</activation>
 			<build>
 				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<version>${tycho-version}</version>
+						<configuration>
+							<includePackedArtifacts>true</includePackedArtifacts>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200a-plugin</artifactId>
