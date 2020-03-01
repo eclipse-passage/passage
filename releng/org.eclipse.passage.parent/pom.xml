@@ -674,7 +674,7 @@
 								<goals>
 									<goal>normalize</goal>
 								</goals>
-								<phase>verify</phase>
+								<phase>package</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -687,7 +687,7 @@
 								<goals>
 									<goal>sign</goal>
 								</goals>
-								<phase>verify</phase>
+								<phase>package</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -700,7 +700,7 @@
 								<goals>
 									<goal>pack</goal>
 								</goals>
-								<phase>verify</phase>
+								<phase>package</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -709,11 +709,11 @@
 						<artifactId>tycho-p2-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>attach-p2-metadata</id>
+								<id>p2-metadata</id>
 								<goals>
 									<goal>p2-metadata</goal>
 								</goals>
-								<phase>verify</phase>
+								<phase>package</phase>
 							</execution>
 						</executions>
 						<configuration>
@@ -723,7 +723,6 @@
 				</plugins>
 			</build>
 		</profile>
-
 
 	</profiles>
 
