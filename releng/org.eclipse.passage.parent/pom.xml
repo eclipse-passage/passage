@@ -36,11 +36,13 @@
 		<tycho.version>1.6.0</tycho.version>
 		<cbi-plugins.version>1.1.8-SNAPSHOT</cbi-plugins.version>
 		<jarsigner.version>1.1.5</jarsigner.version>
-
+<!-- 
 		<tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
 		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
+ -->
+		<cbi-releases-repo.url>https://repo.eclipse.org/content/repositories/cbi-releases/</cbi-releases-repo.url>
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.15-I-builds/</eclipserun-repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</released.baseline>
@@ -73,6 +75,14 @@
 
 	<pluginRepositories>
 		<pluginRepository>
+			<id>cbi-releases</id>
+			<url>${cbi-releases-repo.url}</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+<!-- 
+		<pluginRepository>
 			<id>tycho-snapshots</id>
 			<url>${tycho-snapshot-repo.url}</url>
 			<releases>
@@ -82,7 +92,6 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
-
 		<pluginRepository>
 			<id>cbi-jdt</id>
 			<url>${cbi-jdt-repo.url}</url>
@@ -110,6 +119,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
+ -->
 	</pluginRepositories>
 
 	<repositories>
