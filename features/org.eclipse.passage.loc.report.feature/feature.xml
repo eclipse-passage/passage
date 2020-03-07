@@ -12,7 +12,7 @@
 		ArSysOp - initial API and implementation
 -->
 <feature
-      id="org.eclipse.passage.loc.dashboard.feature"
+      id="org.eclipse.passage.loc.report.feature"
       label="%featureName"
       version="0.6.0.qualifier"
       provider-name="%providerName"
@@ -32,42 +32,30 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
+      <import feature="org.eclipse.passage.lic.products.feature" version="0.0.0" match="equivalent"/>
+      <import feature="org.eclipse.passage.lic.users.feature" version="0.0.0" match="equivalent"/>
    </requires>
 
-   <includes
-         id="org.eclipse.passage.loc.workbench.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.report.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.edit.ui.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.features.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.products.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.users.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.passage.loc.licenses.feature"
-         version="0.0.0"/>
-
    <plugin
-         id="org.eclipse.passage.loc.dashboard.ui"
+         id="org.eclipse.passage.loc.yars.api"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.eclipse.passage.loc.report.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.loc.report.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+  
 </feature>

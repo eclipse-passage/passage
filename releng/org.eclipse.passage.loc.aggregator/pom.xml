@@ -37,6 +37,13 @@
 		<module>../../bundles/org.eclipse.passage.loc.edit.ui</module>
 		<module>../../features/org.eclipse.passage.loc.edit.ui.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
+		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
+		<module>../../bundles/org.eclipse.passage.loc.report.ui</module>
+		<module>../../features/org.eclipse.passage.loc.report.feature</module>
+		<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
+		<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
+
 		<module>../../bundles/org.eclipse.passage.loc.features.core</module>
 		<module>../../bundles/org.eclipse.passage.loc.features.ui</module>
 		<module>../../bundles/org.eclipse.passage.loc.features.emfforms</module>
@@ -66,13 +73,6 @@
 
 		<module>../../bundles/org.eclipse.passage.loc.operator</module>
 		<module>../../features/org.eclipse.passage.loc.operator.feature</module>
-
-		<module>../../bundles/org.eclipse.passage.loc.yars.api</module>
-		<module>../../tests/org.eclipse.passage.loc.yars.api.tests</module>
-
-		<module>../../bundles/org.eclipse.passage.loc.report.core</module>
-		<module>../../tests/org.eclipse.passage.loc.report.core.tests</module>
-		<module>../../bundles/org.eclipse.passage.loc.report.ui</module>
 
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
