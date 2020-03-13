@@ -48,6 +48,7 @@
 		<module>../../bundles/org.eclipse.passage.loc.features.ui</module>
 		<module>../../bundles/org.eclipse.passage.loc.features.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.features.feature</module>
+		<module>../../tests/org.eclipse.passage.loc.features.core.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.products.core</module>
 		<module>../../bundles/org.eclipse.passage.loc.products.ui</module>
