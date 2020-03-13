@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.baseline" sequenceNumber="83">
+<target name="org.eclipse.passage.baseline" sequenceNumber="85">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -24,23 +24,51 @@
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/releases/2019-09/"/>
+			<repository location="https://download.eclipse.org/releases/2020-03/"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.apache.commons.csv" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcpg.source" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcpkix.source" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
+			<unit id="org.bouncycastle.bcprov.source" version="0.0.0"/>
+			<unit id="org.slf4j.api" version="0.0.0"/>
+			<unit id="org.slf4j.api.source" version="0.0.0"/>
+			<unit id="com.sun.jna" version="0.0.0"/>
+			<unit id="com.sun.jna.source" version="0.0.0"/>
+			<unit id="com.sun.jna.platform" version="0.0.0"/>
+			<unit id="com.sun.jna.platform.source" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
+			<unit id="com.github.oshi.oshi-core.source" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-annotations.source" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-core" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-core.source" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
+			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
+			<unit id="javax.activation" version="0.0.0"/>
+			<unit id="javax.mail" version="0.0.0"/>
+			<unit id="org.junit" version="0.0.0"/>
+			<unit id="org.mockito" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-03/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.lic.define.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/0.6.0/lic/"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/0.8.0/lic/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.loc.operator.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/0.6.0/loc/"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/0.8.0/loc/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<unit id="org.eclipse.passage.lbc.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/0.6.0/lbc/"/>
+			<unit id="org.eclipse.passage.lbc.execute.feature.feature.group" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/0.8.0/lbc/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.ldc.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/0.6.0/ldc/"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/0.8.0/ldc/"/>
 		</location>
 	</locations>
 </target>
