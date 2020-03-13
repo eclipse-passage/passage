@@ -12,11 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.features.core.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
 
 import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.features.core.FeaturesCore;
-import org.junit.Test;
 
 public class ConstantsTest {
 
