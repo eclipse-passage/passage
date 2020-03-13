@@ -20,19 +20,9 @@ import org.junit.Test;
 
 public class ConstantsTest {
 
-	@Test
-	public void isDomainNameCorrect() {
-		assertEquals("features", Features.DOMAIN_NAME);
-	}
-
-	@Test
-	public void isFileExtensionXMICorrect() {
-		assertEquals("features_xmi", Features.FILE_EXTENSION_XMI);
-	}
-
-	@Test
-	public void isBundleNameCorrect() {
-		assertEquals("org.eclipse.passage.loc.features.core", FeaturesCore.BUNDLE_SYMBOLIC_NAME);
+	@Test 
+	public void forFurtherDevelopment() {
+	    assertNotNull("I'm a newborn test bundle, just let me grow.");
 	}
 	
 }
