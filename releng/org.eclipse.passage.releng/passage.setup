@@ -7,12 +7,13 @@
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
     xmlns:pde="http://www.eclipse.org/oomph/setup/pde/1.0"
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
+    xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
     xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
     name="passage"
     label="Passage">
   <annotation
@@ -47,45 +48,26 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      value="${eclipse.target.platform.latest}"
+      value="2020-03"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task"
       label="Passage">
     <requirement
+        name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+    <requirement
         name="org.eclipse.emf.sdk.feature.group"/>
     <requirement
-        name="org.sonatype.tycho.m2e.feature.feature.group"/>
+        name="org.eclipse.pde.api.tools.ee.feature.feature.group"/>
     <requirement
-        name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
-    <repository
-        url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
+        name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <repository
         url="https://download.eclipse.org/releases/2020-03/"/>
+    <repository
+        url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="git:GitCloneTask"
-      id="git.clone.passage"
-      remoteURI="eclipse/passage">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>${scope.project.label} GitHub repository protocol</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <description>${scope.project.label} GitHub</description>
   </setupTask>
   <setupTask
       xsi:type="setup.targlets:TargletTask"
@@ -96,251 +78,232 @@
         name="${scope.project.label}"
         activeRepositoryList="Passage Latest Released">
       <requirement
-          name="org.eclipse.passage.ldc.feature.feature.group"/>
-      <requirement
-          name="org.eclipse.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
-      <requirement
-          name="org.slf4j.api"/>
-      <requirement
-          name="com.sun.jna"/>
-      <requirement
-          name="com.sun.jna.platform"/>
-      <requirement
-          name="com.github.oshi.oshi-core"/>
-      <requirement
-          name="org.bouncycastle.bcpg"/>
-      <requirement
-          name="org.bouncycastle.bcpkix"/>
-      <requirement
-          name="org.bouncycastle.bcprov"/>
-      <requirement
           name="com.fasterxml.jackson.core.jackson-annotations"/>
       <requirement
           name="com.fasterxml.jackson.core.jackson-core"/>
       <requirement
           name="com.fasterxml.jackson.core.jackson-databind"/>
       <requirement
-          name="org.junit"/>
-      <requirement
-          name="org.mockito"/>
-      <repositoryList
-          name="Passage Latest Released">
-        <repository
-            url="https://download.eclipse.org/releases/2019-12/"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
-        <repository
-            url="https://download.eclipse.org/passage/updates/release/0.7.0/lic/"/>
-        <repository
-            url="https://download.eclipse.org/passage/updates/release/0.7.0/loc/"/>
-        <repository
-            url="https://download.eclipse.org/passage/updates/release/0.7.0/lbc/"/>
-        <repository
-            url="https://download.eclipse.org/passage/updates/release/0.7.0/ldc/"/>
-      </repositoryList>
-    </targlet>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.targlets:TargletTask">
-    <targlet
-        name="${scope.project.label}"
-        activeRepositoryList="2020-03">
-      <requirement
-          name="org.eclipse.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
-      <requirement
-          name="org.slf4j.api"/>
+          name="com.github.oshi.oshi-core"/>
       <requirement
           name="com.sun.jna"/>
       <requirement
           name="com.sun.jna.platform"/>
-      <requirement
-          name="com.github.oshi.oshi-core"/>
-      <requirement
-          name="org.apache.commons.csv"
-          versionRange="[1.4.0,2.0.0)"/>
-      <requirement
-          name="org.bouncycastle.bcpg"/>
-      <requirement
-          name="org.bouncycastle.bcpkix"/>
-      <requirement
-          name="org.bouncycastle.bcprov"/>
       <requirement
           name="javax.activation"/>
       <requirement
           name="javax.mail"/>
       <requirement
-          name="com.fasterxml.jackson.core.jackson-annotations"/>
+          name="org.apache.commons.csv"/>
       <requirement
-          name="com.fasterxml.jackson.core.jackson-core"/>
+          name="org.bouncycastle.bcpg"/>
       <requirement
-          name="com.fasterxml.jackson.core.jackson-databind"/>
+          name="org.bouncycastle.bcpkix"/>
+      <requirement
+          name="org.bouncycastle.bcprov"/>
+      <requirement
+          name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.emf.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.passage.lbc.execute.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.passage.ldc.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.passage.lic.bc.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.passage.lic.define.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.passage.loc.operator.feature.feature.group"/>
+      <requirement
+          name="org.eclipse.pde.feature.group"/>
+      <requirement
+          name="org.eclipse.sdk.feature.group"/>
       <requirement
           name="org.junit"/>
       <requirement
           name="org.mockito"/>
       <requirement
-          name="*"/>
-      <sourceLocator
-          rootFolder="${git.clone.passage.location}"
-          locateNestedProjects="true"/>
+          name="org.slf4j.api"/>
       <repositoryList
-          name="2020-03">
+          name="Passage Latest Released">
         <repository
-            url="https://download.eclipse.org/cbi/updates/license/"/>
+            url="https://download.eclipse.org/releases/2020-03/"/>
         <repository
             url="https://download.eclipse.org/tools/orbit/downloads/2020-03"/>
         <repository
-            url="https://download.eclipse.org/releases/2020-03/"/>
-      <repositoryList
-          name="2019-12">
+            url="https://download.eclipse.org/passage/updates/release/0.8.0/lic/"/>
         <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
+            url="https://download.eclipse.org/passage/updates/release/0.8.0/loc/"/>
         <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+            url="https://download.eclipse.org/passage/updates/release/0.8.0/lbc/"/>
         <repository
-            url="https://download.eclipse.org/releases/2019-12/"/>
-      </repositoryList>
-      <repositoryList
-          name="2019-09">
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
-        <repository
-            url="https://download.eclipse.org/releases/2019-09/"/>
-      </repositoryList>
-      <repositoryList
-          name="2019-06">
-        <repository
-            url="https://download.eclipse.org/releases/2019-06/"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
-      </repositoryList>
-      <repositoryList
-          name="2019-03">
-        <repository
-            url="https://download.eclipse.org/releases/2019-03"/>
-        <repository
-            url="https://download.eclipse.org/cbi/updates/license"/>
-        <repository
-            url="https://download.eclipse.org/tools/orbit/downloads/2019-03"/>
+            url="https://download.eclipse.org/passage/updates/release/0.8.0/ldc/"/>
       </repositoryList>
     </targlet>
   </setupTask>
-  <setupTask
-      xsi:type="setup:CompoundTask"
-      name="User Preferences">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/UserPreferences"/>
+  <stream name="master">
     <setupTask
-        xsi:type="setup:CompoundTask"
-        name="org.eclipse.core.resources">
-      <setupTask
-          xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.core.resources/missingNatureMarkerSeverity"
-          value="-1"/>
-      <setupTask
-          xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.core.resources/encoding"
-          value="UTF-8"/>
+        xsi:type="pde:APIBaselineFromTargetTask"
+        predecessor="api.baseline.targlet"
+        name="Modular API Baseline"
+        targetName="Modular API Baseline Target">
+      <description>An API baseline based on the target platform named 'Modular API Baseline Target'</description>
     </setupTask>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.workingsets:WorkingSetTask"
-      prefix="org.eclipse.passage-">
-    <workingSet
-        name="${scope.project.label}">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:NamePredicate"
-            pattern=".*passage.*"/>
-        <operand
+    <setupTask
+        xsi:type="git:GitCloneTask"
+        id="git.clone.passage"
+        remoteURI="eclipse-passage/passage">
+      <annotation
+          source="http://www.eclipse.org/oomph/setup/InducedChoices">
+        <detail
+            key="inherit">
+          <value>github.remoteURIs</value>
+        </detail>
+        <detail
+            key="label">
+          <value>${scope.project.label} GitHub repository protocol</value>
+        </detail>
+        <detail
+            key="target">
+          <value>remoteURI</value>
+        </detail>
+      </annotation>
+      <description>${scope.project.label} GitHub</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup.targlets:TargletTask">
+      <targlet
+          name="${scope.project.label}"
+          activeRepositoryList="2020-03">
+        <requirement
+            name="com.fasterxml.jackson.core.jackson-annotations"/>
+        <requirement
+            name="com.fasterxml.jackson.core.jackson-core"/>
+        <requirement
+            name="com.fasterxml.jackson.core.jackson-databind"/>
+        <requirement
+            name="com.github.oshi.oshi-core"/>
+        <requirement
+            name="com.sun.jna"/>
+        <requirement
+            name="com.sun.jna.platform"/>
+        <requirement
+            name="javax.activation"/>
+        <requirement
+            name="javax.mail"/>
+        <requirement
+            name="org.apache.commons.csv"
+            versionRange="[1.4.0,2.0.0)"/>
+        <requirement
+            name="org.bouncycastle.bcpg"/>
+        <requirement
+            name="org.bouncycastle.bcpkix"/>
+        <requirement
+            name="org.bouncycastle.bcprov"/>
+        <requirement
+            name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+        <requirement
+            name="org.eclipse.emf.sdk.feature.group"/>
+        <requirement
+            name="org.eclipse.pde.feature.group"/>
+        <requirement
+            name="org.eclipse.sdk.feature.group"/>
+        <requirement
+            name="org.junit"/>
+        <requirement
+            name="org.mockito"/>
+        <requirement
+            name="org.slf4j.api"/>
+        <requirement
+            name="*"/>
+        <sourceLocator
+            rootFolder="${git.clone.passage.location}"
+            locateNestedProjects="true"/>
+        <repositoryList
+            name="2020-03">
+          <repository
+              url="https://download.eclipse.org/cbi/updates/license/"/>
+          <repository
+              url="https://download.eclipse.org/releases/2020-03/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-03"/>
+          <repositoryList
+              name="2019-12">
+        <repository
+                url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+                url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+        <repository
+                url="https://download.eclipse.org/releases/2019-12/"/>
+      </repositoryList>
+          <repositoryList
+              name="2019-09">
+        <repository
+                url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+                url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
+        <repository
+                url="https://download.eclipse.org/releases/2019-09/"/>
+      </repositoryList>
+          <repositoryList
+              name="2019-06">
+        <repository
+                url="https://download.eclipse.org/releases/2019-06/"/>
+        <repository
+                url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+                url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
+      </repositoryList>
+          <repositoryList
+              name="2019-03">
+        <repository
+                url="https://download.eclipse.org/releases/2019-03"/>
+        <repository
+                url="https://download.eclipse.org/cbi/updates/license"/>
+        <repository
+                url="https://download.eclipse.org/tools/orbit/downloads/2019-03"/>
+      </repositoryList>
+        </repositoryList>
+      </targlet>
+    </setupTask>
+    <setupTask
+        xsi:type="projects:ProjectsImportTask">
+      <sourceLocator
+          rootFolder="${git.clone.passage.location}"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup.workingsets:WorkingSetTask">
+      <workingSet
+          name="${scope.project.label}">
+        <predicate
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.10/@workingSets.1 //@setupTasks.10/@workingSets.2 //@setupTasks.10/@workingSets.3 //@setupTasks.10/@workingSets.4"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LIC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lic.api"/>
-        <operand
+            excludedWorkingSet="//@streams[name='master']/@setupTasks.4/@workingSets[name='${scope.project.label}%20LBC'] //@streams[name='master']/@setupTasks.4/@workingSets[name='${scope.project.label}%20LDC'] //@streams[name='master']/@setupTasks.4/@workingSets[name='${scope.project.label}%20LIC'] //@streams[name='master']/@setupTasks.4/@workingSets[name='${scope.project.label}%20LOC']"/>
+      </workingSet>
+      <workingSet
+          name="${scope.project.label} LIC">
+        <predicate
             xsi:type="predicates:NamePredicate"
             pattern=".*\.lic\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LOC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.loc.api"/>
-        <operand
+      </workingSet>
+      <workingSet
+          name="${scope.project.label} LOC">
+        <predicate
             xsi:type="predicates:NamePredicate"
             pattern=".*\.loc\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LBC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.lbc.api"/>
-        <operand
+      </workingSet>
+      <workingSet
+          name="${scope.project.label} LBC">
+        <predicate
             xsi:type="predicates:NamePredicate"
             pattern=".*\.lbc\..*"/>
-      </predicate>
-    </workingSet>
-    <workingSet
-        name="${scope.project.label} LDC">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="org.eclipse.passage.ldc.pde.ui.templates"/>
-        <operand
+      </workingSet>
+      <workingSet
+          name="${scope.project.label} LDC">
+        <predicate
             xsi:type="predicates:NamePredicate"
             pattern=".*\.ldc\..*"/>
-      </predicate>
-    </workingSet>
-    <description>The dynamic working sets for ${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="pde:APIBaselineFromTargetTask"
-      predecessor="api.baseline.targlet"
-      name="Modular API Baseline"
-      targetName="Modular API Baseline Target"
-      version="0.0.0">
-    <description>An API baseline based on the target platform named 'Modular API Baseline Target'</description>
-  </setupTask>
-  <stream name="master"
-      label="Master">
-    <setupTask
-        xsi:type="setup:EclipseIniTask"
-        disabled="true"
-        option="-Doomph.redirection.passage"
-        value="=https://raw.githubusercontent.com/eclipse/passage/master/releng/org.eclipse.passage.releng/passage.setup->${git.clone.passage.location|uri}/releng/org.eclipse.passage.releng/passage.setup"
-        vm="true">
-      <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
+      </workingSet>
     </setupTask>
   </stream>
   <logicalProjectContainer
@@ -348,7 +311,7 @@
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>
     The Eclipse Passage project aims to provide 
-    rich and easily adoptable capabilities 
+    rich and easily adaptable capabilities 
     to define and control licensing constraints.
   </description>
 </setup:Project>
