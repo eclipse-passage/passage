@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.internal.registry;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * 
@@ -21,14 +21,14 @@ import java.util.List;
  */
 public interface Registry<S extends Service<?>> {
 
-	void register(Service<?> service);
+	void register(S service);
 
-	void unregister(Service<?> service);
+	void unregister(S service);
 
 	boolean hasService(ServiceId id);
 
-	Service<?> service(ServiceId id);
+	S service(ServiceId id);
 
-	List<Service<?>> services();
+	Collection<S> services();
 
 }
