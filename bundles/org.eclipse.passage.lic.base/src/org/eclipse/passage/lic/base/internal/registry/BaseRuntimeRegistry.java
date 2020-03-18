@@ -19,6 +19,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.api.internal.registry.Registry;
+import org.eclipse.passage.lic.api.internal.registry.RuntimeRegistry;
 import org.eclipse.passage.lic.api.internal.registry.Service;
 import org.eclipse.passage.lic.api.internal.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -40,7 +41,7 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * @param <S> type of {@linkplain Service} to keep
  */
 @SuppressWarnings("restriction")
-public final class RuntimeRegistry<S extends Service<?>> implements Registry<S> {
+public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeRegistry<S> {
 
 	private final Map<ServiceId, S> services;
 	private final Consumer<String> handler;
@@ -53,7 +54,7 @@ public final class RuntimeRegistry<S extends Service<?>> implements Registry<S> 
 	 * @param handler error handler
 	 * @since 0.6
 	 */
-	public RuntimeRegistry(Map<ServiceId, S> init, Consumer<String> handler) {
+	public BaseRuntimeRegistry(Map<ServiceId, S> init, Consumer<String> handler) {
 		this.services = init;
 		this.handler = handler;
 	}
@@ -64,15 +65,15 @@ public final class RuntimeRegistry<S extends Service<?>> implements Registry<S> 
 	 * 
 	 * @since 0.6
 	 */
-	public RuntimeRegistry() {
+	public BaseRuntimeRegistry() {
 		this(new HashMap<>(), System.err::println);
 	}
 
-	public RuntimeRegistry(Map<ServiceId, S> init) {
+	public BaseRuntimeRegistry(Map<ServiceId, S> init) {
 		this(init, System.err::println);
 	}
 
-	public RuntimeRegistry(Consumer<String> handler) {
+	public BaseRuntimeRegistry(Consumer<String> handler) {
 		this(new HashMap<>(), handler);
 	}
 

@@ -21,10 +21,6 @@ import java.util.Collection;
  */
 public interface Registry<S extends Service<?>> {
 
-	void register(S service);
-
-	void unregister(S service);
-
 	boolean hasService(ServiceId id);
 
 	S service(ServiceId id);
