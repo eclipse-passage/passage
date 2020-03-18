@@ -12,6 +12,5 @@
  *******************************************************************************/
 
 /**
- * @since 0.6
  */
 package org.eclipse.passage.lic.base.internal.registry;

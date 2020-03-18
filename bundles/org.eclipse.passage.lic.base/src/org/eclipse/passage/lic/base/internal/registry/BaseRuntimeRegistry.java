@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.api.internal.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
- * 
  * <p>
  * {@linkplain Registry} implementation that is filled and managed at runtime
  * programmatically.
@@ -41,9 +40,9 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * @param <S> type of {@linkplain Service} to keep
  */
 @SuppressWarnings("restriction")
-public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeRegistry<S> {
+public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I, ?>> implements RuntimeRegistry<I, S> {
 
-	private final Map<ServiceId, S> services;
+	private final Map<I, S> services;
 	private final Consumer<String> handler;
 
 	/**
@@ -52,9 +51,8 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 	 * @param init    {@linkplain Map} implementation to be used as service storing
 	 *                facility
 	 * @param handler error handler
-	 * @since 0.6
 	 */
-	public BaseRuntimeRegistry(Map<ServiceId, S> init, Consumer<String> handler) {
+	public BaseRuntimeRegistry(Map<I, S> init, Consumer<String> handler) {
 		this.services = init;
 		this.handler = handler;
 	}
@@ -62,14 +60,12 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 	/**
 	 * Convenience constructor, uses {@linkplain HashMap} as a storage and prints
 	 * errors into {@linkplain Stsrem.err} stream
-	 * 
-	 * @since 0.6
 	 */
 	public BaseRuntimeRegistry() {
 		this(new HashMap<>(), System.err::println);
 	}
 
-	public BaseRuntimeRegistry(Map<ServiceId, S> init) {
+	public BaseRuntimeRegistry(Map<I, S> init) {
 		this(init, System.err::println);
 	}
 
@@ -91,7 +87,7 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 	}
 
 	@Override
-	public boolean hasService(ServiceId id) {
+	public boolean hasService(I id) {
 		return services.containsKey(id);
 	}
 
@@ -103,10 +99,9 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 	 * </p>
 	 * 
 	 * @throws IllegalStateException if not yet registered service is requested
-	 * @since 0.6
 	 */
 	@Override
-	public S service(ServiceId id) {
+	public S service(I id) {
 		if (!hasService(id)) {
 			throw new IllegalStateException(String.format(//
 					BaseMessages.getString("RuntimeRegistry.retrieve_absent_exception"), //$NON-NLS-1$

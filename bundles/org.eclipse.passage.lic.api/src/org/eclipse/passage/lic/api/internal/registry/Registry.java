@@ -17,13 +17,12 @@ import java.util.Collection;
 /**
  * 
  * @param <S> sub type of {@linkplain Service}
- * @since 0.7
  */
-public interface Registry<S extends Service<?>> {
+public interface Registry<I extends ServiceId, S extends Service<I, ?>> {
 
-	boolean hasService(ServiceId id);
+	boolean hasService(I id);
 
-	S service(ServiceId id);
+	S service(I id);
 
 	Collection<S> services();
 

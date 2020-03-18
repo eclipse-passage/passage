@@ -13,8 +13,8 @@
 package org.eclipse.passage.lic.api.internal.registry;
 
 /**
- * 
- * @since 0.7
+ * Marker interface for {@linkplain Service} configuration - precise immutable
+ * set of values of a {@code service} configuring parameters, if any.
  */
 public interface Configuration {
 

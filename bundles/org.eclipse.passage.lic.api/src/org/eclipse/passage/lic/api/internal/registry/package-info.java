@@ -11,7 +11,5 @@
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
 /**
- * 
- * @since 0.7
  */
 package org.eclipse.passage.lic.api.internal.registry;

@@ -13,13 +13,18 @@
 package org.eclipse.passage.lic.api.internal.registry;
 
 /**
+ * <p>
+ * General notion of a {@code service} interface which can potentially have
+ * multiple implementations that need to be somehow <i>collected and managed
+ * together</i>.
+ * </p>
  * 
+ * @param <I> sub type of {@linkplain ServiceId}
  * @param <C> sub type of {@linkplain Configuration}
- * @since 0.7
  */
-public interface Service<C extends Configuration> {
+public interface Service<I extends ServiceId, C extends Configuration> {
 
-	ServiceId id();
+	I id();
 
 	C configuration();
 

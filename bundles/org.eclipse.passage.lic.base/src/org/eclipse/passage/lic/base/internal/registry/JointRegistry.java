@@ -22,20 +22,20 @@ import org.eclipse.passage.lic.api.internal.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")
-public final class JointRegistry<S extends Service<?>> implements Registry<S> {
-	private final List<Registry<S>> delegates;
+public final class JointRegistry<I extends ServiceId, S extends Service<I, ?>> implements Registry<I, S> {
+	private final List<Registry<I, S>> delegates;
 
-	public JointRegistry(List<Registry<S>> delegates) {
+	public JointRegistry(List<Registry<I, S>> delegates) {
 		this.delegates = delegates;
 	}
 
 	@Override
-	public boolean hasService(ServiceId id) {
+	public boolean hasService(I id) {
 		return delegates.stream().anyMatch(delegate -> delegate.hasService(id));
 	}
 
 	@Override
-	public S service(ServiceId id) {
+	public S service(I id) {
 		return delegates.stream()//
 				.filter(delgate -> delgate.hasService(id))//
 				.map(delgate -> delgate.service(id)) //
@@ -46,7 +46,7 @@ public final class JointRegistry<S extends Service<?>> implements Registry<S> {
 	@Override
 	public Collection<S> services() {
 		return delegates.stream()//
-				.map(Registry<S>::services) //
+				.map(Registry<I, S>::services) //
 				.flatMap(Collection<S>::stream) //
 				.collect(Collectors.toList());
 	}
