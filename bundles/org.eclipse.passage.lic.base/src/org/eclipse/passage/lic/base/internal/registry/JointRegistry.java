@@ -53,12 +53,12 @@ public final class JointRegistry<S extends Service<?>> implements Registry<S> {
 
 	private String notFoundMessage(ServiceId id) {
 		return String.format(//
-				BaseMessages.getString("JointRegistry.retrieve_absent"), // //$NON-NLS-1$
+				BaseMessages.getString("JointRegistry.retrieve_absent"), //$NON-NLS-1$
 				id, //
 				delegates.size(), //
 				delegates.stream()//
 						.map(Object::toString)//
-						.collect(Collectors.joining("\n\t")));//$NON-NLS-1$
+						.collect(Collectors.joining("\n\t"))); //$NON-NLS-1$
 	}
 
 }

@@ -109,7 +109,7 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 	public S service(ServiceId id) {
 		if (!hasService(id)) {
 			throw new IllegalStateException(String.format(//
-					BaseMessages.getString("RuntimeRegistry.retrieve_absent_exception"), // //$NON-NLS-1$
+					BaseMessages.getString("RuntimeRegistry.retrieve_absent_exception"), //$NON-NLS-1$
 					id));
 		}
 		return services.get(id);
@@ -125,7 +125,7 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 			return;
 		}
 		handler.accept(String.format(//
-				BaseMessages.getString("RuntimeRegistry.register_override"), // //$NON-NLS-1$
+				BaseMessages.getString("RuntimeRegistry.register_override"), //$NON-NLS-1$
 				service.id(), service(service.id()), service));
 	}
 
@@ -134,7 +134,7 @@ public final class BaseRuntimeRegistry<S extends Service<?>> implements RuntimeR
 			return;
 		}
 		handler.accept(String.format(//
-				BaseMessages.getString("RuntimeRegistry.unregister_absent"), // //$NON-NLS-1$
+				BaseMessages.getString("RuntimeRegistry.unregister_absent"), //$NON-NLS-1$
 				service));
 	}
 
