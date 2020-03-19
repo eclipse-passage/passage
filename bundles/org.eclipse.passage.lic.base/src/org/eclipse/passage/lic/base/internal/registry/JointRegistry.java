@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.internal.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")
-public final class JointRegistry<I extends ServiceId, S extends Service<I, ?>> implements Registry<I, S> {
+public final class JointRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 	private final List<Registry<I, S>> delegates;
 
 	public JointRegistry(List<Registry<I, S>> delegates) {

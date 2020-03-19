@@ -20,12 +20,9 @@ package org.eclipse.passage.lic.api.internal.registry;
  * </p>
  * 
  * @param <I> sub type of {@linkplain ServiceId}
- * @param <C> sub type of {@linkplain Configuration}
  */
-public interface Service<I extends ServiceId, C extends Configuration> {
+public interface Service<I extends ServiceId> {
 
 	I id();
-
-	C configuration();
 
 }

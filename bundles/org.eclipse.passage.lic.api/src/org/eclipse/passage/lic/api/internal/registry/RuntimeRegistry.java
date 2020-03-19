@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.internal.registry;
 
-public interface RuntimeRegistry<I extends ServiceId, S extends Service<I, ?>> extends Registry<I, S> {
+public interface RuntimeRegistry<I extends ServiceId, S extends Service<I>> extends Registry<I, S> {
 
 	void register(S service);
 

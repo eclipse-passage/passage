@@ -18,7 +18,7 @@ import java.util.Collection;
  * 
  * @param <S> sub type of {@linkplain Service}
  */
-public interface Registry<I extends ServiceId, S extends Service<I, ?>> {
+public interface Registry<I extends ServiceId, S extends Service<I>> {
 
 	boolean hasService(I id);
 

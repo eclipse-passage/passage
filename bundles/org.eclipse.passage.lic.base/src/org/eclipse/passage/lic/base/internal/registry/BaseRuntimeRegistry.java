@@ -40,7 +40,7 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * @param <S> type of {@linkplain Service} to keep
  */
 @SuppressWarnings("restriction")
-public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I, ?>> implements RuntimeRegistry<I, S> {
+public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>> implements RuntimeRegistry<I, S> {
 
 	private final Map<I, S> services;
 	private final Consumer<String> handler;
