@@ -1,9 +1,7 @@
 /*****************************************************************************************
- * Copyright (c) ArSysOp 2018, 2020
+ * Copyright (c) ArSysOp 2020
  *****************************************************************************************/
-package org.eclipse.passage.lic.e4.ui.addons;
-
-import java.util.List;
+package org.eclipse.passage.lic.internal.e4.ui.addons;
 
 import javax.inject.Inject;
 
@@ -12,8 +10,7 @@ import org.eclipse.e4.ui.model.application.MAddon;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.MApplicationFactory;
 
-@Deprecated
-public class LicensingProcessor {
+public final class E4LicensingProcessor {
 
 	@Inject
 	@Execute
@@ -22,20 +19,22 @@ public class LicensingProcessor {
 	}
 
 	private void ensureAddon(MApplication application) {
-		String addonId = LicensingAddon.class.getName();
-		List<MAddon> addons = application.getAddons();
-		for (MAddon addon : addons) {
-			if (addonId.equals(addon.getElementId())) {
-				// our addon was found
-				return;
-			}
+		String id = E4LicensingAddon.class.getName();
+		if (alreadyHas(application, id)) {
+			return;
 		}
+		register(application, id);
+	}
 
+	private boolean alreadyHas(MApplication application, String id) {
+		return application.getAddons().stream().anyMatch(a -> id.equals(a.getElementId()));
+	}
+
+	private void register(MApplication application, String id) {
 		MAddon addon = MApplicationFactory.INSTANCE.createAddon();
-		addon.setContributionURI(
-				"bundleclass://org.eclipse.passage.lic.e4.ui/org.eclipse.passage.lic.e4.ui.addons.LicensingAddon"); //$NON-NLS-1$
-		addon.setElementId(addonId);
-		addons.add(addon);
+		addon.setContributionURI("bundleclass://org.eclipse.passage.lic.e4.ui/" + id); //$NON-NLS-1$
+		addon.setElementId(id);
+		application.getAddons().add(addon);
 	}
 
 }

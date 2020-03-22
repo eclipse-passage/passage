@@ -10,15 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.internal.registry;
+package org.eclipse.passage.lic.internal.base.registry;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.api.internal.registry.Registry;
-import org.eclipse.passage.lic.api.internal.registry.Service;
-import org.eclipse.passage.lic.api.internal.registry.ServiceId;
+import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.registry.Service;
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")

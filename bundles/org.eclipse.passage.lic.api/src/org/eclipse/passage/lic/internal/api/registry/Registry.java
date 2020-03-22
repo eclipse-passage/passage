@@ -10,12 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.internal.registry;
+package org.eclipse.passage.lic.internal.api.registry;
 
-public interface RuntimeRegistry<I extends ServiceId, S extends Service<I>> extends Registry<I, S> {
+import java.util.Collection;
 
-	void register(S service);
+/**
+ * 
+ * @param <S> sub type of {@linkplain Service}
+ */
+public interface Registry<I extends ServiceId, S extends Service<I>> {
 
-	void unregister(S service);
+	boolean hasService(I id);
+
+	S service(I id);
+
+	Collection<S> services();
 
 }

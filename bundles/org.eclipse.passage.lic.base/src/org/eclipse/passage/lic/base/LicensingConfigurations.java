@@ -15,7 +15,16 @@ package org.eclipse.passage.lic.base;
 import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.BaseLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.BaseProductInfo;
+import org.eclipse.passage.lic.internal.base.ProductInfo;
 
+/**
+ * 
+ * @deprecated use {@linkplain ProductInfo}, {@linkplain BaseProductInfo} or
+ *             another implementations, {@linkplain BaseLicensingConfiguration}
+ */
+@Deprecated
 public final class LicensingConfigurations {
 
 	public static final String LICENSING_PRODUCT_IDENTIFIER = "licensing.product.identifier"; //$NON-NLS-1$

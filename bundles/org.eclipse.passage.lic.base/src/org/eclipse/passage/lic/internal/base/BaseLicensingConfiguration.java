@@ -10,39 +10,45 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.lic.internal.base;
 
+import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
-class BaseLicensingConfiguration implements LicensingConfiguration {
+public final class BaseLicensingConfiguration implements LicensingConfiguration {
 
-	private final String productIdentifier;
-	private final String productVersion;
+	private final String identifier;
+	private final String version;
 
-	BaseLicensingConfiguration(String product, String version) {
-		super();
-		this.productIdentifier = product;
-		this.productVersion = version;
+	public BaseLicensingConfiguration(String product, String version) {
+		this.identifier = product;
+		this.version = version;
+	}
+
+	public BaseLicensingConfiguration(Map<String, Object> values) {
+		this(//
+				new BaseProductInfo.Identifier(values).get(), //
+				new BaseProductInfo.Version(values).get());
 	}
 
 	@Override
 	public String getProductIdentifier() {
-		return productIdentifier;
+		return identifier;
 	}
 
 	@Override
 	public String getProductVersion() {
-		return productVersion;
+		return version;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((productIdentifier == null) ? 0 : productIdentifier.hashCode());
-		result = prime * result + ((productVersion == null) ? 0 : productVersion.hashCode());
+		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 
@@ -58,10 +64,10 @@ class BaseLicensingConfiguration implements LicensingConfiguration {
 			return false;
 		}
 		BaseLicensingConfiguration other = (BaseLicensingConfiguration) obj;
-		if (!Objects.equals(productIdentifier, other.productIdentifier)) {
+		if (!Objects.equals(identifier, other.identifier)) {
 			return false;
 		}
-		if (!Objects.equals(productVersion, other.productVersion)) {
+		if (!Objects.equals(version, other.version)) {
 			return false;
 		}
 		return true;
@@ -69,11 +75,11 @@ class BaseLicensingConfiguration implements LicensingConfiguration {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER).append('=').append(productIdentifier)
-				.append(';');
-		sb.append(LicensingConfigurations.LICENSING_PRODUCT_VERSION).append('=').append(productVersion);
-		return sb.toString();
+		StringBuilder output = new StringBuilder();
+		new BaseProductInfo.Identifier(identifier).write(output);
+		output.append(';');
+		new BaseProductInfo.Version(version).write(output);
+		return output.toString();
 	}
 
 }

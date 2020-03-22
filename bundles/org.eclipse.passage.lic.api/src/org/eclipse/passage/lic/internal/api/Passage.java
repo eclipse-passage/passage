@@ -1,4 +1,4 @@
-/** ****************************************************************************
+/*******************************************************************************
  * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
@@ -10,7 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+package org.eclipse.passage.lic.internal.api;
 
 /**
+ * <p>
+ * Main entry point for a code base under license protection.
+ * </p>
  */
-package org.eclipse.passage.lic.base.internal.registry;
+public interface Passage {
+
+	boolean canUse(String featureId);
+
+	void checkLicense(String featureId);
+}

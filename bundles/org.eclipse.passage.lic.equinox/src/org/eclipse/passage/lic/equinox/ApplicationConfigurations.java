@@ -18,6 +18,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.internal.equinox.ApplicationConfiguration;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -26,6 +27,7 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
+@Deprecated
 public class ApplicationConfigurations {
 
 	public static String findProductIdentifier(String[] args) {
@@ -39,7 +41,6 @@ public class ApplicationConfigurations {
 				if (index < args.length) {
 					return args[index];
 				}
-
 			}
 		}
 		return null;
@@ -76,6 +77,11 @@ public class ApplicationConfigurations {
 		return getLicensingConfiguration(applicationContext);
 	}
 
+	/**
+	 * 
+	 * @deprecated use {@linkplain ApplicationConfiguration}
+	 */
+	@Deprecated
 	public static LicensingConfiguration getLicensingConfiguration(IApplicationContext application) {
 		if (application == null) {
 			return LicensingConfigurations.INVALID;
