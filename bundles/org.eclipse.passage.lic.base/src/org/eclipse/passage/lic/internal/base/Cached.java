@@ -38,8 +38,8 @@ public final class Cached<S, T> {
 	 * @since 0.1
 	 */
 	public Cached(S source, Function<S, T> retrieve) {
-		Objects.requireNonNull(source);
-		Objects.requireNonNull(retrieve);
+		Objects.requireNonNull(source, "Source cannot be null"); //$NON-NLS-1$
+		Objects.requireNonNull(retrieve, "Retriever function cannot be null"); //$NON-NLS-1$
 		this.source = source;
 		this.retrieve = retrieve;
 	}

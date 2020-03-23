@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,7 +15,7 @@ package org.eclipse.passage.ldc.internal.pde.ui.templates;
 import org.eclipse.pde.ui.templates.ITemplateSection;
 import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
 
-public class LicensedE4FullFeatherProductContentWizard extends NewPluginTemplateWizard {
+public final class LicensedE4FullFeatherProductContentWizard extends NewPluginTemplateWizard {
 
 	@Override
 	public ITemplateSection[] createTemplateSections() {

@@ -12,6 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+/**
+ * <p>
+ * All the framework-relying constructions are to originate from this point this
+ * way or another. Major part of Passage code base should stay completely
+ * framework-agnostic, gaining all the data and services directly through
+ * constructors.
+ * </p>
+ * <p>
+ * Currently we use
+ * </p>
+ * <ul>
+ * <li>service implementation discovery</li>
+ * <li>IOC-wiring functionality</li>
+ * <li>event bus</li>
+ * </ul>
+ * <p>
+ * <p>
+ * Two implementation is currently planned: Equinox-based and Spring based.
+ * </p>
+ */
 public interface Framework {
 
 }

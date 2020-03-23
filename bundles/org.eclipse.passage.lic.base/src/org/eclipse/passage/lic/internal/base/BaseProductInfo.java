@@ -53,7 +53,7 @@ public abstract class BaseProductInfo implements ProductInfo {
 
 	public static final class Version extends BaseProductInfo {
 
-		private static final String key = "licensing.product.version";//$NON-NLS-1$
+		private static final String key = "licensing.product.version"; //$NON-NLS-1$
 
 		public Version(String value) {
 			super(value, key);
