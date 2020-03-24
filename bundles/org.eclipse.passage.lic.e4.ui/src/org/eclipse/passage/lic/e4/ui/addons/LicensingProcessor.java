@@ -12,6 +12,7 @@ import org.eclipse.e4.ui.model.application.MAddon;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.MApplicationFactory;
 
+@Deprecated
 public class LicensingProcessor {
 
 	@Inject

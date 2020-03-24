@@ -10,12 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.internal.registry;
+package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
-public interface RuntimeRegistry<I extends ServiceId, S extends Service<I>> extends Registry<I, S> {
+import org.eclipse.pde.ui.templates.ITemplateSection;
+import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
 
-	void register(S service);
+public final class LicensedE4FullFeatherProductContentWizard extends NewPluginTemplateWizard {
 
-	void unregister(S service);
+	@Override
+	public ITemplateSection[] createTemplateSections() {
+		return new ITemplateSection[] { new LicensedE4FullFeatherProductTemplateSection() };
+	}
 
 }

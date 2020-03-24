@@ -1,4 +1,4 @@
-/** ****************************************************************************
+/*******************************************************************************
  * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
@@ -10,7 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
+package org.eclipse.passage.lic.internal.base;
 
-/**
- */
-package org.eclipse.passage.lic.base.internal.registry;
+import java.util.Map;
+import java.util.function.Supplier;
+
+public interface ProductInfo extends Supplier<String> {
+
+	void write(Map<String, Object> target);
+
+	void write(StringBuilder target);
+
+}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,13 +24,12 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 
-@Deprecated
-public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSection {
+public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedTemplateSection {
 
-	private static final String LICENSED_E4_PRODUCT = "LicensedE4Product"; //$NON-NLS-1$
+	private static final String LICENSED_E4_PRODUCT = "LicensedE4FullFeatherProduct"; //$NON-NLS-1$
 	private static final String E4_SWT_APPLICATION_ID = "org.eclipse.e4.ui.workbench.swt.E4Application"; //$NON-NLS-1$
 
-	public LicensedE4ProductTemplateSection() {
+	public LicensedE4FullFeatherProductTemplateSection() {
 		setPageCount(1);
 		createOptions();
 	}

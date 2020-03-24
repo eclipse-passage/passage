@@ -12,4 +12,4 @@
  *******************************************************************************/
 /**
  */
-package org.eclipse.passage.lic.api.internal.registry;
+package org.eclipse.passage.lic.internal.api.registry;

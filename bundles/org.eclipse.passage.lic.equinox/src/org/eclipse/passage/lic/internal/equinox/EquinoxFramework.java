@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,17 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates;
+package org.eclipse.passage.lic.internal.equinox;
 
-import org.eclipse.pde.ui.templates.ITemplateSection;
-import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
+import org.eclipse.passage.lic.internal.api.Framework;
 
-@Deprecated
-public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
-
-	@Override
-	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] { new LicensedE4ProductTemplateSection() };
-	}
+@SuppressWarnings("restriction")
+public final class EquinoxFramework implements Framework {
 
 }

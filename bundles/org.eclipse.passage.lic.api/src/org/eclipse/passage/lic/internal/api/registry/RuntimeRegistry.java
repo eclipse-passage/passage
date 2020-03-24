@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.internal.registry;
+package org.eclipse.passage.lic.internal.api.registry;
 
-/**
- * Implementation is expected to represent <i>data class</i>: with
- * {@code hashCode} and {@code equals} overloaded basing on enclosed data.
- */
-public interface ServiceId {
+public interface RuntimeRegistry<I extends ServiceId, S extends Service<I>> extends Registry<I, S> {
+
+	void register(S service);
+
+	void unregister(S service);
 
 }
