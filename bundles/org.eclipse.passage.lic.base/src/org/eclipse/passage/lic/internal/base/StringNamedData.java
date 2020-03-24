@@ -13,12 +13,25 @@
 package org.eclipse.passage.lic.internal.base;
 
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public interface ProductInfo extends Supplier<String> {
+public abstract class StringNamedData extends BaseNamedData<String> {
 
-	void write(Map<String, Object> target);
+	protected StringNamedData(String value) {
+		super(key -> value);
+	}
 
-	void write(StringBuilder target);
+	protected StringNamedData(Function<String, String> retrieve) {
+		super(retrieve);
+	}
+
+	protected StringNamedData(Map<String, Object> container) {
+		super(key -> String.valueOf(container.get(key)));
+	}
+
+	@Override
+	public String printed(String value) {
+		return value;
+	}
 
 }

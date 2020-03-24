@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
+import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.internal.equinox.requirements.CapabilityLicensingFeature;
 import org.eclipse.pde.core.plugin.IMatchRules;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -119,9 +121,8 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				IBundleModel bundleModel = bpmb.getBundleModel();
 				IBundle ibundle = bundleModel.getBundle();
 				StringBuilder sb = new StringBuilder();
-				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append(';');
-				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append('=');
-				sb.append('"').append(identifier).append('"');
+				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append(';'); // LicensingFeaturesFromBundle
+				new NamedData.Smart<>(new CapabilityLicensingFeature(identifier)).write(sb);
 				ibundle.setHeader(Constants.PROVIDE_CAPABILITY, sb.toString());
 			}
 		}

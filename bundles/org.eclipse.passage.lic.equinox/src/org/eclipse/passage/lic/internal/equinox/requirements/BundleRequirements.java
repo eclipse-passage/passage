@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,17 +16,24 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_PROVIDER_DEFAULT;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.api.requirements.RequirementResolver;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
 import org.eclipse.passage.lic.equinox.requirements.EquinoxRequirements;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -35,44 +42,43 @@ import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * 
- * @deprecated use {@link BundleRequirements}
- */
-@Deprecated
+@SuppressWarnings("restriction")
 @Component
-public class BundleCapabilityResolver implements RequirementResolver {
+public class BundleRequirements implements ResolvedRequirements {
 
-	private Logger logger;
-	private BundleContext bundleContext;
+	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
+	private BundleContext context;
 
 	@Activate
-	public void activate(BundleContext context) {
-		this.bundleContext = context;
+	public void activate(BundleContext bundle) {
+		this.context = bundle;
 	}
 
 	@Deactivate
 	public void deactivate() {
-		this.bundleContext = null;
+		this.context = null;
 	}
 
 	@Override
 	public Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration) {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
-		if (bundleContext == null) {
-			logger.severe(EquinoxMessages.BundleCapabilityResolver_error_bundle_context);
+		if (context == null) {
+			logger.error(EquinoxMessages.BundleCapabilityResolver_error_bundle_context);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		List<LicensingRequirement> result = new ArrayList<>();
-		Bundle[] bundles = bundleContext.getBundles();
+		Bundle[] bundles = context.getBundles();
 		for (Bundle bundle : bundles) {
-			Iterable<BundleCapability> capabilities = EquinoxRequirements.extractLicensingFeatures(bundle);
 			Dictionary<String, String> headers = bundle.getHeaders();
 			String name = headers.get(Constants.BUNDLE_NAME);
 			String vendor = headers.get(Constants.BUNDLE_VENDOR);
+
+			Iterable<BundleCapability> capabilities = EquinoxRequirements.extractLicensingFeatures(bundle);
 			for (BundleCapability capability : capabilities) {
 				result.add(LicensingRequirements.extractFromCapability(name, vendor, //
 						capability.getAttributes(), //
@@ -81,6 +87,43 @@ public class BundleCapabilityResolver implements RequirementResolver {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public StringServiceId id() {
+		return new StringServiceId("manifest"); //$NON-NLS-1$
+	}
+
+	@Override
+	public Collection<Requirement> all(LicensingConfiguration configuration) {
+		if (sabotage()) {
+			return unsafisifiable();
+		}
+		return resolve();
+	}
+
+	private boolean sabotage() {
+		return context == null;
+	}
+
+	private Collection<Requirement> unsafisifiable() {
+		return Collections.singleton(//
+				new UnsatisfiableRequirement(//
+						"Bundle context for " + getClass().getName() + " OSGi-component", //$NON-NLS-1$ //$NON-NLS-2$
+						"Passag License Management", //$NON-NLS-1$
+						getClass())//
+								.get());
+	}
+
+	private Collection<Requirement> resolve() {
+		return Arrays.stream(context.getBundles())//
+				.map(RequirementsFromBundle::new)//
+				.map(RequirementsFromBundle::get) //
+				.filter(Optional::isPresent) //
+				.map(Optional<List<Requirement>>::get) //
+				.flatMap(List::stream) //
+				.collect(Collectors.toList());
+
 	}
 
 }

@@ -10,22 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.api.requirements;
 
-import org.eclipse.passage.lic.internal.api.Passage;
+/**
+ * Describes a <i> feature under licensing</i> in context of access cycle
+ * 
+ * @see Requirement
+ * @see org.eclipse.passage.lic.api
+ */
+public interface Feature {
 
-@SuppressWarnings("restriction")
-public final class EquinoxPassage implements Passage {
+	/**
+	 * Name of the feature under requirement
+	 */
+	String name();
 
-	@Override
-	public boolean canUse(String featureId) {
-		throw new UnsupportedOperationException();
-	}
+	/**
+	 * Version of the feature under requirement
+	 */
+	String version();
 
-	@Override
-	public void checkLicense(String featureId) {
-		// accessManager.executeAccessRestrictions(configuration);
-		throw new UnsupportedOperationException();
-	}
+	/**
+	 * Id of the feature under licensing
+	 */
+	String identifier();
+
+	String provider();
 
 }

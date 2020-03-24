@@ -12,11 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.BaseProductInfo;
 import org.eclipse.passage.lic.internal.base.InvalidLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 
 @SuppressWarnings("restriction")
 public final class ApplicationIdentifier implements Supplier<String> {
@@ -28,10 +29,9 @@ public final class ApplicationIdentifier implements Supplier<String> {
 
 	@Override
 	public String get() {
-
-		String property = new BaseProductInfo.Identifier(context::getBrandingProperty).get();
-		if (property != null) {
-			return property;
+		Optional<String> property = new ProductIdentifier(context::getBrandingProperty).get();
+		if (property.isPresent()) {
+			return property.get();
 		}
 		String brandingId = context.getBrandingId();
 		if (brandingId != null) {

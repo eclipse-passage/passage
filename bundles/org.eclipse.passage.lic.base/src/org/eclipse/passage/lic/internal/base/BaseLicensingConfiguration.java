@@ -29,8 +29,8 @@ public final class BaseLicensingConfiguration implements LicensingConfiguration 
 
 	public BaseLicensingConfiguration(Map<String, Object> values) {
 		this(//
-				new BaseProductInfo.Identifier(values).get(), //
-				new BaseProductInfo.Version(values).get());
+				new ProductInfo.Identifier(values).get(), //
+				new ProductInfo.Version(values).get());
 	}
 
 	@Override
@@ -76,9 +76,9 @@ public final class BaseLicensingConfiguration implements LicensingConfiguration 
 	@Override
 	public String toString() {
 		StringBuilder output = new StringBuilder();
-		new BaseProductInfo.Identifier(identifier).write(output);
+		new ProductInfo.Identifier(identifier).write(output);
 		output.append(';');
-		new BaseProductInfo.Version(version).write(output);
+		new ProductInfo.Version(version).write(output);
 		return output.toString();
 	}
 

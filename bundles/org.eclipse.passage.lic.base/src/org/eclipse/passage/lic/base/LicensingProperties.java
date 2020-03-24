@@ -32,11 +32,41 @@ public final class LicensingProperties {
 	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = BaseMessages
 			.getString("LicensingProperties_eclipse_passage_title"); //$NON-NLS-1$
 
+	/**
+	 * Use
+	 * {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel. META}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$
+	/**
+	 * @deprecated Use
+	 *             {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel.Info}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL_INFO = "info"; //$NON-NLS-1$
+	/**
+	 * @deprecated Use
+	 *             {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel.Warning}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL_WARN = "warn"; //$NON-NLS-1$
+	/**
+	 * @deprecated Use
+	 *             {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel.Error}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL_ERROR = "error"; //$NON-NLS-1$
+	/**
+	 * @deprecated Use
+	 *             {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel.Fatal}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL_FATAL = "fatal"; //$NON-NLS-1$
+	/**
+	 * Use
+	 * {@link org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel}
+	 */
+	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL_DEFAULT = LICENSING_RESTRICTION_LEVEL_WARN;
 
 	public static final String LICENSING_LEASE_TIME = "licensing.lease.time"; //$NON-NLS-1$
