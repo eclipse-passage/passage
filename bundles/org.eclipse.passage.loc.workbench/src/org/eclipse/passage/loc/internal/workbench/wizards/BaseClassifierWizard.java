@@ -12,17 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * Creates new licensing object, either root of resource or not. Can be asked
@@ -98,6 +107,38 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 			return edProvider.getEditingDomain().getResourceSet();
 		}
 		return new ResourceSetImpl();
+	}
+
+	@Override
+	public boolean performFinish() {
+		try {
+			getContainer().run(false, false, m -> store());
+			return true;
+		} catch (InvocationTargetException exception) {
+			failed(exception.getTargetException());
+			return false;
+		} catch (InterruptedException exception) {
+			cancelled();
+			return false;
+		}
+	}
+
+	protected abstract void store();
+
+	protected void failed(Throwable target) {
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
+		IStatus status = new Status(IStatus.ERROR, bundle.getSymbolicName(), //
+				Optional.ofNullable(target).map(t -> t.getMessage())//
+						.orElse(WorkbenchMessages.BaseClassifierWizard_message_e_create),
+				target);
+		Platform.getLog(getClass()).log(status);
+		ErrorDialog.openError(getShell(), WorkbenchMessages.BaseClassifierWizard_title_e_create,
+				WorkbenchMessages.BaseClassifierWizard_message_e_create, status);
+	}
+
+	protected void cancelled() {
+		MessageDialog.openError(getShell(), WorkbenchMessages.BaseClassifierWizard_title_e_create,
+				WorkbenchMessages.BaseClassifierWizard_message_e_create);
 	}
 
 }

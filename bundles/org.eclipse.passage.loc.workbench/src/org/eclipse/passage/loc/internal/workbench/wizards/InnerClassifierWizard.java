@@ -6,13 +6,10 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.lic.jface.dialogs.LicensingResultDialogs;
 import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
-import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 /**
@@ -58,32 +55,21 @@ public final class InnerClassifierWizard<C> extends BaseClassifierWizard<InnerCl
 	}
 
 	@Override
-	public boolean performFinish() {
-		try {
-			getContainer().run(false, false, m -> store(newClassifierPage.container(), newClassifierPage.candidate()));
-			return true;
-		} catch (Exception exception) {
-			process(exception);
-			return false;
-		}
+	protected void store() {
+		store(newClassifierPage.container(), newClassifierPage.candidate());
 	}
 
-	protected void store(Optional<C> optional, EObject candidate) {
-		if (!optional.isPresent()) {
+	protected void store(Optional<C> container, EObject candidate) {
+		if (!container.isPresent()) {
 			return;
 		}
 		EReference reference = candidate.eClass().getEAllReferences().stream()//
 				.filter(r -> r.isContainer())//
 				.findFirst()//
 				.get();
-		candidate.eSet(reference, optional.get());
+		candidate.eSet(reference, container.get());
 		Resource resource = candidate.eResource();
 		Optional.ofNullable(resource).ifPresent(r -> LocWokbench.save(r));
 	}
 
-	protected void process(Exception exception) {
-		LicensingResultDialogs.openMessageDialog(getShell(), WorkbenchMessages.RootClassifierWizard_title_e_create, //
-				LicensingResults.createError(WorkbenchMessages.RootClassifierWizard_message_e_create,
-						getClass().getName(), exception));
-	}
 }

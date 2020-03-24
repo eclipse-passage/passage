@@ -50,8 +50,9 @@ public class WorkbenchMessages extends NLS {
 	public static String BaseClassifierWizard_e_registry_null;
 	public static String InnerClassifierWizardPage_e_specify_container;
 	public static String InnerClassifierWizardPage_text_select;
-	public static String RootClassifierWizard_message_e_create;
-	public static String RootClassifierWizard_title_e_create;
+	public static String BaseClassifierWizard_message_e_cancelled;
+	public static String BaseClassifierWizard_message_e_create;
+	public static String BaseClassifierWizard_title_e_create;
 	public static String SelectFromDialog_e_null_appearance;
 	public static String SelectFromDialog_e_null_initial;
 	public static String SelectFromDialog_e_null_shell;
