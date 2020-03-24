@@ -61,7 +61,6 @@ final class RequirementsFromBundle implements Supplier<Optional<List<Requirement
 						bundle).get());
 				continue;
 			}
-			// FIXME: can be null -> beget UnsatisfiableRequirement
 			Optional<String> feature = new CapabilityLicensingFeature(attributes).get();
 
 			String version = LicensingVersions.toVersionValue(attributes.get(ATTRIBUTE_VERSION));
