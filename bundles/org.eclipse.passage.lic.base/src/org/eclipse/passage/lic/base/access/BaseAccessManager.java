@@ -139,7 +139,7 @@ public class BaseAccessManager implements AccessManager {
 	public Iterable<LicensingRequirement> resolveRequirements(LicensingConfiguration configuration) {
 		List<LicensingRequirement> result = new ArrayList<>();
 		String source = getClass().getName();
-		if (configuration == null) {
+		if (configuration == null || LicensingConfigurations.INVALID.equals(configuration)) {
 			String featureId = LicensingConfigurations.IDENTIFIER_INVALID;
 			result.add(LicensingRequirements.createConfigurationError(featureId, source));
 		} else {

@@ -2,7 +2,7 @@
 
 ## Eclipse Passage
 
-[![Build Status](https://travis-ci.com/eclipse/passage.svg?branch=master)](https://travis-ci.com/eclipse/passage)
+[![Build Status](https://github.com/eclipse-passage/passage/workflows/CI/badge.svg)](https://github.com/eclipse-passage/passage/actions)
 
 [![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
 

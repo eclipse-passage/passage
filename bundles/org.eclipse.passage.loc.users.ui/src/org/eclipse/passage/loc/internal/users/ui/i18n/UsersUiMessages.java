@@ -16,6 +16,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class UsersUiMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages"; //$NON-NLS-1$
+
+	public static String ExportCustomersHandler_unavailableMessage;
+	public static String ExportCustomersHandler_unavailableTitle;
 	public static String SelectUser_title;
 	public static String SelectUserOrigin_title;
 	public static String UsersUi_select_user;

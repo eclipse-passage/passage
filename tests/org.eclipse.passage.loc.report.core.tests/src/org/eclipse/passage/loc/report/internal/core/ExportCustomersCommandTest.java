@@ -86,8 +86,7 @@ public class ExportCustomersCommandTest {
 	}
 
 	private void export(Path output) throws ReportException {
-		new ProductCustomersToCsv(new FakeCustomersBase())//
-				.export(fakeProducts(), output);
+		new ProductCustomersToCsv(new FakeCustomersBase()).export(fakeProducts(), output);
 	}
 
 	private Set<String> fakeProducts() {
@@ -96,11 +95,11 @@ public class ExportCustomersCommandTest {
 
 	private void assertOutputLooksAsExpected(Path output) {
 		Set<String> expectation = new HashSet<>(Arrays.asList(//
-				"email,name", //$NON-NLS-1$
-				"erwin.schrodinger@gmail.com,Erwin Rudolf Josef Alexander Schrödinger", //$NON-NLS-1$
-				"football-asia-cup-2007@gmail.com,오범석 呉範錫", //$NON-NLS-1$
-				"lomonosov_1711@yandex.com,Михайло Васильевич Ломоносов", //$NON-NLS-1$
-				"reiner.maria.rilke@gmail.com,René Karl Wilhelm Johann Josef Maria Rilke")); //$NON-NLS-1$
+				"email;name", //$NON-NLS-1$
+				"erwin.schrodinger@gmail.com;Erwin Rudolf Josef Alexander Schrödinger", //$NON-NLS-1$
+				"football-asia-cup-2007@gmail.com;오범석 呉範錫", //$NON-NLS-1$
+				"lomonosov_1711@yandex.com;Михайло Васильевич Ломоносов", //$NON-NLS-1$
+				"reiner.maria.rilke@gmail.com;René Karl Wilhelm Johann Josef Maria Rilke")); //$NON-NLS-1$
 		assertEquals(expectation, results(output));
 	}
 

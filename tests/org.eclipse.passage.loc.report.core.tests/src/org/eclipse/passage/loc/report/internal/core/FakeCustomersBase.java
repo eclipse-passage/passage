@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,6 +38,11 @@ final class FakeCustomersBase implements CustomerStorage {
 						"football-asia-cup-2007@gmail.com", //$NON-NLS-1$
 						"오범석 呉範錫") //$NON-NLS-1$
 		}).collect(Collectors.toSet());
+	}
+
+	@Override
+	public Set<String> allProducts() {
+		return Collections.emptySet();
 	}
 
 }

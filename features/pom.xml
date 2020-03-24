@@ -24,40 +24,8 @@
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
 		<artifactId>org.eclipse.passage.parent</artifactId>
-		<version>0.8.0-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 		<relativePath>../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
-
-	<profiles>
-		<profile>
-			<id>pack-and-sign</id>
-			<activation>
-				<property>
-					<name>PACK_AND_SIGN</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.cbi.maven.plugins</groupId>
-						<artifactId>eclipse-jarsigner-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign</id>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>tycho-p2-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

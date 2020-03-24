@@ -74,7 +74,7 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
-		String productFqn = getStringOption(KEY_PACKAGE_NAME) + '.' + VALUE_PRODUCT_ID;
+		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
 		String classValue = getStringOption(KEY_PACKAGE_NAME) + '.' + getStringOption(KEY_APPLICATION_CLASS);
 		createApplicationExtension(VALUE_APPLICATION_ID, classValue);

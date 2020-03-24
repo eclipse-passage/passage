@@ -12,19 +12,53 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.ui.handlers;
 
+import java.util.Optional;
+
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
+import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.ExportService;
+import org.eclipse.passage.loc.report.internal.ui.jface.ExposedExportWizard;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class ExportCustomersHandler {
 
 	@Execute
-	public void execute(IEclipseContext eclipseContext) {
-		UserRegistry userRegistry = eclipseContext.get(UserRegistry.class);
-		Iterable<? extends UserDescriptor> users = userRegistry.getUsers();
-		MessageDialog.openInformation(eclipseContext.get(Shell.class), UserRegistry.class.getName(), users.toString());
+	public void execute(IEclipseContext context) {
+		Optional<ProductRegistry> products = service(ProductRegistry.class, context);
+		if (!products.isPresent()) {
+			return;
+		}
+		Optional<CustomerStorage> customers = service(CustomerStorage.class, context);
+		if (!customers.isPresent()) {
+			return;
+		}
+		Optional<ExportService> export = service(ExportService.class, context);
+		if (!export.isPresent()) {
+			return;
+		}
+		new ExposedExportWizard(//
+				products.get(), //
+				customers.get(), //
+				export.get()//
+		).accept(context.get(Shell.class));
 	}
+
+	private <S> Optional<S> service(Class<S> service, IEclipseContext context) {
+		Optional<S> implementation = Optional.ofNullable(context.get(service));
+		if (!implementation.isPresent()) {
+			MessageDialog.openError(//
+					context.get(Shell.class), //
+					UsersUiMessages.ExportCustomersHandler_unavailableTitle, //
+					NLS.bind(UsersUiMessages.ExportCustomersHandler_unavailableMessage, service.getName())//
+			);
+		}
+		return implementation;
+	}
+
 }

@@ -14,30 +14,29 @@ package org.eclipse.passage.loc.billing.core.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
+import org.eclipse.passage.loc.internal.billing.core.ProductVersionLicense;
 import org.eclipse.passage.loc.internal.billing.core.UserLicenses;
 import org.junit.Test;
 
 public class UserLicensesTest {
 
+	private final StringsProvider provider = new StringsProvider();
+
 	@Test
 	public void allLicenses() {
-		List<UserLicenseDescriptor> licenses1 = new ArrayList<UserLicenseDescriptor>();
-		licenses1.add(new FakeLicenseDescriptor("foo")); //$NON-NLS-1$
-		licenses1.add(new FakeLicenseDescriptor("bar")); //$NON-NLS-1$
+		List<UserLicenseDescriptor> licenses1 = licenses(license(provider.randomString()),
+				license(provider.randomString()));
+		List<UserLicenseDescriptor> licenses2 = licenses(license(provider.randomString()),
+				license(provider.randomString()));
 
-		List<UserLicenseDescriptor> licenses2 = new ArrayList<UserLicenseDescriptor>();
-		licenses2.add(new FakeLicenseDescriptor("baz")); //$NON-NLS-1$
-		licenses2.add(new FakeLicenseDescriptor("foo")); //$NON-NLS-1$
-
-		UserLicenses service = new UserLicenses(
-				Arrays.asList(new FakeUser[] { new FakeUser(licenses1), new FakeUser(licenses2) }));
+		UserLicenses service = service(user(licenses1), user(licenses2));
 
 		assertEquals(Stream.concat(licenses1.stream(), licenses2.stream()).collect(Collectors.toList()),
 				service.getAllLicenses());
@@ -45,44 +44,65 @@ public class UserLicensesTest {
 
 	@Test
 	public void licensesForProduct() {
-		String product = "product"; //$NON-NLS-1$
-		FakeLicenseDescriptor license1 = new FakeLicenseDescriptor(product);
-		FakeLicenseDescriptor license2 = new FakeLicenseDescriptor(product);
+		String product = provider.randomString();
+		List<UserLicenseDescriptor> licenses1 = licenses(license(product), license(provider.randomString()));
+		List<UserLicenseDescriptor> licenses2 = licenses(license(product), license(provider.randomString()));
 
-		List<UserLicenseDescriptor> licenses1 = new ArrayList<UserLicenseDescriptor>();
-		licenses1.add(license1);
-		licenses1.add(new FakeLicenseDescriptor("bar")); //$NON-NLS-1$
+		UserLicenses service = service(user(licenses1), user(licenses2));
 
-		List<UserLicenseDescriptor> licenses2 = new ArrayList<UserLicenseDescriptor>();
-		licenses2.add(new FakeLicenseDescriptor("baz")); //$NON-NLS-1$
-		licenses2.add(license2);
-
-		UserLicenses service = new UserLicenses(
-				Arrays.asList(new FakeUser[] { new FakeUser(licenses1), new FakeUser(licenses2) }));
-
-		assertEquals(Arrays.asList(license1, license2), service.getLicensesForProduct(product));
+		assertEquals(Arrays.asList(license(product), license(product)), service.getLicensesForProduct(product));
 	}
 
 	@Test
 	public void licensesForProductVersion() {
-		String product = "product"; //$NON-NLS-1$
-		String version = "version"; //$NON-NLS-1$
+		String product = provider.randomString();
+		String version = provider.randomString();
 
-		FakeLicenseDescriptor license1 = new FakeLicenseDescriptor(product, version);
-		FakeLicenseDescriptor license2 = new FakeLicenseDescriptor(product); // default version is empty string
+		UserLicenses service = service(
+				user(licenses(license(product, version), license(provider.randomString()))),
+				user(licenses(license(product), license(provider.randomString()))));
 
-		List<UserLicenseDescriptor> licenses1 = new ArrayList<UserLicenseDescriptor>();
-		licenses1.add(license1);
-		licenses1.add(new FakeLicenseDescriptor("bar")); //$NON-NLS-1$
+		assertEquals(Arrays.asList(license(product, version)),
+				service.getLicensesForProductVersion(product, version));
+	}
 
-		List<UserLicenseDescriptor> licenses2 = new ArrayList<UserLicenseDescriptor>();
-		licenses2.add(new FakeLicenseDescriptor("baz")); //$NON-NLS-1$
-		licenses2.add(license2);
+	@Test
+	public void countSameLicenses() {
+		UserLicenseDescriptor license1 = license(provider.randomString(), provider.randomString());
+		UserLicenseDescriptor license2 = license(provider.randomString(), provider.randomString());
+		UserLicenseDescriptor license3 = license(provider.randomString(), provider.randomString());
 
-		UserLicenses service = new UserLicenses(
-				Arrays.asList(new FakeUser[] { new FakeUser(licenses1), new FakeUser(licenses2) }));
+		UserLicenses service = service(user(licenses(license1, license3)),
+				user(licenses(license2, license3)), user(licenses(license1, license2, license3)));
 
-		assertEquals(Arrays.asList(license1), service.getLicensesForProductVersion(product, version));
+		assertEquals(Arrays.asList(2, 2, 3), numbers(service, license1, license2, license3));
+	}
+
+	private List<Integer> numbers(UserLicenses service, UserLicenseDescriptor... descriptors) {
+		return Arrays.asList(descriptors).stream()
+				.map(ProductVersionLicense::new)
+				.map(license -> service.getLicensesNumbers().get(license))
+				.collect(Collectors.toList());
+	}
+
+	private UserLicenseDescriptor license(String product) {
+		return new FakeLicenseDescriptor(product);
+	}
+
+	private UserLicenseDescriptor license(String product, String version) {
+		return new FakeLicenseDescriptor(product, version);
+	}
+
+	private List<UserLicenseDescriptor> licenses(UserLicenseDescriptor... fakeLicenseDescriptors) {
+		return Arrays.asList(fakeLicenseDescriptors);
+	}
+
+	private UserDescriptor user(List<UserLicenseDescriptor> licenses) {
+		return new FakeUser(licenses);
+	}
+
+	private UserLicenses service(UserDescriptor... users) {
+		return new UserLicenses(Arrays.asList(users));
 	}
 
 }

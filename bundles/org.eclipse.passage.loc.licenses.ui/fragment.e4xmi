@@ -6,7 +6,7 @@
   <imports xsi:type="commands:CommandParameter" xmi:id="_if128OjjEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.workbench.commandparameter.perspective.id"/>
   <imports xsi:type="basic:PartSashContainer" xmi:id="__5klkA85Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.workbench.partsashcontainer.explore"/>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_QouDcA86Eemq0ONZAqyi5g" featurename="commands" parentElementId="org.eclipse.passage.loc.workbench.application">
-    <elements xsi:type="commands:Command" xmi:id="_S15ssA86Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.licenses.ui.command.licensepack.create" commandName="License Pack" description="New License Pack"/>
+    <elements xsi:type="commands:Command" xmi:id="_S15ssA86Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.licenses.ui.command.licenseplan.create" commandName="License Plan" description="New License Plan"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_RRnF0OjiEeirQd2CUcYMjQ" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
     <elements xsi:type="advanced:Perspective" xmi:id="_VBf38OjiEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.licenses.ui.perspective.main" label="Licenses" iconURI="platform:/plugin/org.eclipse.passage.lic.licenses.edit/icons/full/obj16/license.png">
@@ -14,9 +14,9 @@
         <children xsi:type="advanced:Placeholder" xmi:id="_F6wE4A86Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.licenses.ui.placeholder.explore" containerData="30" ref="__5klkA85Eemq0ONZAqyi5g"/>
         <children xsi:type="basic:PartStack" xmi:id="_k2D84OjiEeirQd2CUcYMjQ" elementId="org.eclipse.passage.loc.licenses.ui.partstack.details" containerData="70"/>
       </children>
-      <handlers xmi:id="_HEOMkPIpEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.licenses.ui.handler.license.open" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.licenses.ui.handlers.LicenseOpenHandler" command="_LEzGEPIpEeiO9ZCh0caXIg"/>
-      <handlers xmi:id="_uF8WAPJoEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.licenses.ui.handler.license.export" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.licenses.ui.handlers.LicenseExportHandler" command="_B0LYAPJlEeiO9ZCh0caXIg"/>
-      <handlers xmi:id="_qU6lkBQAEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.licenses.ui.handler.0" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.licenses.ui.handlers.LicenseExportHandler" command="_B0LYAPJlEeiO9ZCh0caXIg"/>
+      <handlers xmi:id="_HEOMkPIpEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.licenses.ui.handler.license.open" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.internal.licenses.ui.handlers.OpenLicensePlanHandler" command="_LEzGEPIpEeiO9ZCh0caXIg"/>
+      <handlers xmi:id="_uF8WAPJoEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.licenses.ui.handler.license.export" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.internal.licenses.ui.handlers.LicenseExportHandler" command="_B0LYAPJlEeiO9ZCh0caXIg"/>
+      <handlers xmi:id="_qU6lkBQAEemRg8XCpeTHbg" elementId="org.eclipse.passage.loc.licenses.ui.handler.licenseplan.create" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.ui/org.eclipse.passage.loc.internal.licenses.ui.handlers.CreateLicensePlanHandler" command="_S15ssA86Eemq0ONZAqyi5g"/>
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_4yf2IOjiEeirQd2CUcYMjQ" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.view">
@@ -25,6 +25,6 @@
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_fLDEcA86Eemq0ONZAqyi5g" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
-    <elements xsi:type="menu:HandledMenuItem" xmi:id="_h9KmwA86Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.licenses.ui.handledmenuitem.licensepack" label="License Pack" iconURI="platform:/plugin/org.eclipse.passage.lic.licenses.edit/icons/full/obj16/license.png" tooltip="New License Pack" command="_S15ssA86Eemq0ONZAqyi5g"/>
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_h9KmwA86Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.licenses.ui.handledmenuitem.licensepack" label="License Plan" iconURI="platform:/plugin/org.eclipse.passage.lic.licenses.edit/icons/full/obj16/license.png" tooltip="New License Plan" command="_S15ssA86Eemq0ONZAqyi5g"/>
   </fragments>
 </fragment:ModelFragments>

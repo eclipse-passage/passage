@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.osgi.service.event.Event;
 
+@Deprecated
 public class LicensingAddon {
 
 	private final IApplicationContext applicationContext;

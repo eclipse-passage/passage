@@ -24,6 +24,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 
+@Deprecated
 public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSection {
 
 	private static final String LICENSED_E4_PRODUCT = "LicensedE4Product"; //$NON-NLS-1$
@@ -72,7 +73,7 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSectio
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
-		String productFqn = getStringOption(KEY_PACKAGE_NAME) + '.' + VALUE_PRODUCT_ID;
+		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
 		createProductExtension();
 	}

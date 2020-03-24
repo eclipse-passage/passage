@@ -38,7 +38,6 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;x-friends:="org.eclip
  org.eclipse.passage.loc.workbench.dialogs,
  org.eclipse.passage.loc.workbench.handlers,
  org.eclipse.passage.loc.workbench.parts,
- org.eclipse.passage.loc.workbench.viewers,
- org.eclipse.passage.loc.workbench.wizards
+ org.eclipse.passage.loc.workbench.viewers
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

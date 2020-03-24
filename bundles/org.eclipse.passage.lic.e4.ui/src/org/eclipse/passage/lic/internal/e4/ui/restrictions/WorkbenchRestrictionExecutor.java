@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
+import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.jface.dialogs.LicensingStatusDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.framework.BundleContext;
@@ -50,7 +51,7 @@ public class WorkbenchRestrictionExecutor implements RestrictionExecutor {
 
 	@Override
 	public LicensingResult execute(Iterable<RestrictionVerdict> verdicts) {
-		String featureId = applicationContext.getBrandingId();
+		String featureId = ApplicationConfigurations.getLicensingProductIdentifier(applicationContext);
 		RestrictionVerdict lastVerdict = RestrictionVerdicts.resolveLastVerdict(verdicts, featureId);
 		boolean showDialog = RestrictionVerdicts.shouldPauseExecution(lastVerdict);
 		IEclipseContext serviceContext = EclipseContextFactory.getServiceContext(bundleContext);

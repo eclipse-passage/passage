@@ -273,7 +273,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
-			attachments.put(Licenses.LICENSE_OUT, licenseOut);
+			attachments.put(Licenses.DOMAIN_NAME, licenseOut);
 			return LicensingResults.createOK(message, pluginId, attachments);
 		} catch (Exception e) {
 			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,

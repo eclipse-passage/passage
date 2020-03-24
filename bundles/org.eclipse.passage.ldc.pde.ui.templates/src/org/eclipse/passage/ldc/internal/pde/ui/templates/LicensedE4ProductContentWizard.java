@@ -15,6 +15,7 @@ package org.eclipse.passage.ldc.internal.pde.ui.templates;
 import org.eclipse.pde.ui.templates.ITemplateSection;
 import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
 
+@Deprecated
 public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
 
 	@Override

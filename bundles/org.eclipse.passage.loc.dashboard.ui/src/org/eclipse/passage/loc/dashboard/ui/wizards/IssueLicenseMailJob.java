@@ -50,7 +50,7 @@ public class IssueLicenseMailJob extends Job {
 		}
 
 		if (createEml) {
-			String licenseOut = (String) licensinResult.getAttachment(Licenses.LICENSE_OUT);
+			String licenseOut = (String) licensinResult.getAttachment(Licenses.DOMAIN_NAME);
 			if (licenseOut != null && !licenseOut.isEmpty()) {
 				optEmlFile = processingToMailEml(new File(licenseOut));
 			}

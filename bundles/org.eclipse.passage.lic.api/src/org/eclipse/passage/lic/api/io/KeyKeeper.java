@@ -29,7 +29,7 @@ public interface KeyKeeper {
 	 *
 	 * @param configuration general licensing configuration of a running product
 	 * @return the stream to read the key
-	 * @throws IOException in case of any file system operation misbehaviour
+	 * @throws IOException in case of any file system operation misbehavior
 	 * @since 0.4.0
 	 */
 	InputStream openKeyStream(LicensingConfiguration configuration) throws IOException;

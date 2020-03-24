@@ -40,6 +40,10 @@
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.passage.loc.report.feature"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.passage.loc.edit.ui.feature"
          version="0.0.0"/>
 
