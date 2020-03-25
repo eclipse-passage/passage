@@ -36,6 +36,11 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
+/**
+ * 
+ * @deprecated use {@link BundleRequirements}
+ */
+@Deprecated
 @Component
 public class BundleCapabilityResolver implements RequirementResolver {
 

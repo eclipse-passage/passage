@@ -14,16 +14,16 @@ package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 @SuppressWarnings("restriction")
-public final class EquinoxFramework implements Framework {
+public final class RequirementsSupplierRegistry implements Supplier<Registry<StringServiceId, ResolvedRequirements>> {
 
 	@Override
-	public Supplier<Registry<StringServiceId, ResolvedRequirements>> requirementsSupplierRegistry() {
+	public Registry<StringServiceId, ResolvedRequirements> get() {
 		throw new UnsupportedOperationException();
 	}
+
 }

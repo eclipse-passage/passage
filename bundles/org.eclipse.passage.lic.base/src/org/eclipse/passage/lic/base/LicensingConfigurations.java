@@ -16,12 +16,11 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.internal.base.BaseLicensingConfiguration;
-import org.eclipse.passage.lic.internal.base.BaseProductInfo;
-import org.eclipse.passage.lic.internal.base.ProductInfo;
+import org.eclipse.passage.lic.internal.base.NamedData;
 
 /**
  * 
- * @deprecated use {@linkplain ProductInfo}, {@linkplain BaseProductInfo} or
+ * @deprecated use {@linkplain NamedData}, {@linkplain ProductInfo} or
  *             another implementations, {@linkplain BaseLicensingConfiguration}
  */
 @Deprecated

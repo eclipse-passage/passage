@@ -10,22 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import org.eclipse.passage.lic.internal.api.Passage;
+import java.util.Map;
+
+import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 @SuppressWarnings("restriction")
-public final class EquinoxPassage implements Passage {
+public final class CapabilityLicFeatureLevel extends StringNamedData {
 
-	@Override
-	public boolean canUse(String featureId) {
-		throw new UnsupportedOperationException();
+	public CapabilityLicFeatureLevel(String version) {
+		super(version);
+	}
+
+	public CapabilityLicFeatureLevel(Map<String, Object> container) {
+		super(container);
 	}
 
 	@Override
-	public void checkLicense(String featureId) {
-		// accessManager.executeAccessRestrictions(configuration);
-		throw new UnsupportedOperationException();
+	public String key() {
+		return "level"; //$NON-NLS-1$
 	}
 
 }

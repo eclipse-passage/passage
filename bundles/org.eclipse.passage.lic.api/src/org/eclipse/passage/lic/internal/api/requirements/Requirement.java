@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,44 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.requirements;
+package org.eclipse.passage.lic.internal.api.requirements;
+
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * The usage constraint defined for specific feature identifier with given
  * version. It is declared at a program development phase during creation of a
  * feature under licensing. Accessed at the program runtime by
- * {@link RequirementResolver}s.
+ * {@link ResolvedRequirements}s.
  *
- * @see RequirementResolver
- * @deprecated use
- *             {@link org.eclipse.passage.lic.internal.api.requirements.Requirement}
- * @since 0.4.0
+ * @see ResolvedRequirements
  */
-@Deprecated
-public interface LicensingRequirement {
-
-	String getFeatureProvider();
+public interface Requirement {
 
 	/**
-	 * Name of the feature under requirement
-	 *
-	 * @since 0.4.0
+	 * Coordinates of a feature under licensing
 	 */
-	String getFeatureName();
-
-	/**
-	 * Version of the feature under requirement
-	 *
-	 * @since 0.4.0
-	 */
-	String getFeatureVersion();
-
-	/**
-	 * Id of the feature under licensing
-	 *
-	 * @since 0.4.0
-	 */
-	String getFeatureIdentifier();
+	Feature feature();
 
 	/**
 	 * The default restriction level, as defined by component vendor, may be
@@ -55,18 +35,15 @@ public interface LicensingRequirement {
 	 * <code>RestrictionExaminer</code>>
 	 * 
 	 * @return restriction level, <code>warn</code> by default
-	 * @since 0.4.0
 	 */
-	String getRestrictionLevel();
+	RestrictionLevel restrictionLevel();
 
 	/**
 	 * The original physical source under the program installation, where this
-	 * requirement has been read from by some {@code RequirementResolver}.
+	 * requirement has been read from by some {@code ResolvedRequirements} service.
 	 *
-	 * @see RequirementResolver
 	 * @return physical source (like file) defined by a program under protection
-	 * @since 0.4.0
 	 */
-	Object getRequirementSource();
+	Object source();
 
 }

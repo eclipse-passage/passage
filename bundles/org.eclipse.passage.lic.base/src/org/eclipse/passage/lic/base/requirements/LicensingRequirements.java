@@ -37,6 +37,13 @@ import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
 import org.eclipse.passage.lic.base.LicensingVersions;
 
+/**
+ * Construct
+ * {@link org.eclipse.passage.lic.internal.api.requirements.Requirement}s
+ * directly
+ */
+@SuppressWarnings("restriction")
+@Deprecated
 public class LicensingRequirements {
 
 	private LicensingRequirements() {

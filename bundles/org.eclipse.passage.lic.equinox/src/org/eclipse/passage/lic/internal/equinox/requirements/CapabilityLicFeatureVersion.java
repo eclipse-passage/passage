@@ -10,15 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Map;
-import java.util.function.Supplier;
 
-public interface ProductInfo extends Supplier<String> {
+import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-	void write(Map<String, Object> target);
+@SuppressWarnings("restriction")
+public final class CapabilityLicFeatureVersion extends StringNamedData {
 
-	void write(StringBuilder target);
+	public CapabilityLicFeatureVersion(String version) {
+		super(version);
+	}
+
+	public CapabilityLicFeatureVersion(Map<String, Object> container) {
+		super(container);
+	}
+
+	@Override
+	public String key() {
+		return "version"; //$NON-NLS-1$
+	}
 
 }

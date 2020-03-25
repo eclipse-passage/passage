@@ -39,6 +39,10 @@ public class EquinoxRequirements {
 		return Collections.emptyList();
 	}
 
+	/**
+	 * @deprecated Use {@linkplain LicensingFeaturesFromBundle}
+	 */
+	@Deprecated
 	public static Iterable<BundleCapability> extractLicensingFeatures(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {
@@ -61,9 +65,9 @@ public class EquinoxRequirements {
 			}
 			return errors;
 		}
-		try(FeatureCase inspection = featureInspector.inspectFeatures(featureIds)) {
+		try (FeatureCase inspection = featureInspector.inspectFeatures(featureIds)) {
 			return inspection.getRequirements();
 		}
 	}
-	
+
 }

@@ -17,12 +17,35 @@ public final class LicensingNamespaces {
 	public static final String CAPABILITY_LICENSING_MANAGEMENT = "licensing.management"; //$NON-NLS-1$
 
 	public static final String CAPABILITY_LICENSING_CONFIGURATION = "licensing.configuration"; //$NON-NLS-1$
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.CapabilityLicFeatureId}
+	 *             for capability property or
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.LicensingFeaturesFromBundle}
+	 *             for the whole capabilities space
+	 */
+	@Deprecated
 	public static final String CAPABILITY_LICENSING_FEATURE = "licensing.feature"; //$NON-NLS-1$
-
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.CapabilityLicFeatureVersion}
+	 */
+	@Deprecated
 	public static final String ATTRIBUTE_VERSION = "version"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@code CapabilityLicFeatureName}
+	 */
+	@Deprecated
 	public static final String ATTRIBUTE_NAME = "name"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@code CapabilityLicFeatureProvider}
+	 */
+	@Deprecated
 	public static final String ATTRIBUTE_PROVIDER = "provider"; //$NON-NLS-1$
-
+	/**
+	 * @deprecated use {@code CapabilityLicFeatureLevel}
+	 */
+	@Deprecated
 	public static final String ATTRIBUTE_LEVEL = "level"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_INFO = "info"; //$NON-NLS-1$
 	public static final String ATTRIBUTE_LEVEL_WARN = "warn"; //$NON-NLS-1$

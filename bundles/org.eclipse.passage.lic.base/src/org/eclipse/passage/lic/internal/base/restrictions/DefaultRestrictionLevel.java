@@ -10,20 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 @SuppressWarnings("restriction")
-public final class EquinoxFramework implements Framework {
+public final class DefaultRestrictionLevel implements Supplier<RestrictionLevel> {
 
 	@Override
-	public Supplier<Registry<StringServiceId, ResolvedRequirements>> requirementsSupplierRegistry() {
-		throw new UnsupportedOperationException();
+	public RestrictionLevel get() {
+		return new RestrictionLevel.Warning();
 	}
+
 }

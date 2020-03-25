@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * To be removed after arsysop.lang is approved
  * 
  */
-public final class Cached<S, T> {
+public final class Cached<S, T> implements Supplier<T> {
+
 	private final S source;
 	private final Function<S, T> retrieve;
 	private final List<T> value = new ArrayList<T>(1);
@@ -50,6 +52,7 @@ public final class Cached<S, T> {
 	 * 
 	 * @since 0.1
 	 */
+	@Override
 	public T get() {
 		if (value.isEmpty()) {
 			value.add(retrieve.apply(source));

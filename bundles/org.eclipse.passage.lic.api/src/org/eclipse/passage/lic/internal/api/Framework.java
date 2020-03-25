@@ -12,6 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import java.util.function.Supplier;
+
+import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+
 /**
  * <p>
  * All the framework-relying constructions are to originate from this point this
@@ -33,5 +39,7 @@ package org.eclipse.passage.lic.internal.api;
  * </p>
  */
 public interface Framework {
+
+	Supplier<Registry<StringServiceId, ResolvedRequirements>> requirementsSupplierRegistry();
 
 }
