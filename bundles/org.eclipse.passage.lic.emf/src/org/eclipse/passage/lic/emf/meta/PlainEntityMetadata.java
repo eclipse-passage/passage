@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
+package org.eclipse.passage.lic.emf.meta;
 
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
+import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 /**
  * Encapsulates the ECore metadata for the object to reduce the number of
@@ -25,7 +25,7 @@ import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
  * @since 0.6
  *
  */
-public class ClassifierMetadata {
+public final class PlainEntityMetadata implements EntityMetadata {
 
 	private final EClass eClass;
 	private final EStructuralFeature identification;
@@ -42,10 +42,10 @@ public class ClassifierMetadata {
 	 *             <code>null</code>
 	 * 
 	 */
-	public ClassifierMetadata(EClass type, EStructuralFeature id, EStructuralFeature name) {
-		Objects.requireNonNull(type, WorkbenchMessages.ClassifierMetadata_e_null_eclass);
-		Objects.requireNonNull(id, WorkbenchMessages.ClassifierMetadata_e_null_identification);
-		Objects.requireNonNull(name, WorkbenchMessages.ClassifierMetadata_e_null_naming);
+	public PlainEntityMetadata(EClass type, EStructuralFeature id, EStructuralFeature name) {
+		Objects.requireNonNull(type, EmfMessages.PlainEntityMetadata_e_null_eclass);
+		Objects.requireNonNull(id, EmfMessages.PlainEntityMetadata_e_null_identification);
+		Objects.requireNonNull(name, EmfMessages.PlainEntityMetadata_e_null_naming);
 		this.eClass = type;
 		this.identification = id;
 		this.naming = name;
@@ -55,6 +55,7 @@ public class ClassifierMetadata {
 	 * 
 	 * @return the {@link EClass} for the object of interest
 	 */
+	@Override
 	public EClass eClass() {
 		return eClass;
 	}
@@ -64,6 +65,7 @@ public class ClassifierMetadata {
 	 * 
 	 * @return non-<code>null</code> identification feature
 	 */
+	@Override
 	public EStructuralFeature identification() {
 		return identification;
 	}
@@ -73,6 +75,7 @@ public class ClassifierMetadata {
 	 * 
 	 * @return non-<code>null</code> naming feature
 	 */
+	@Override
 	public EStructuralFeature naming() {
 		return naming;
 	}

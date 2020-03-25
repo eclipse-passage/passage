@@ -9,8 +9,8 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.jface.dialogs.LicensingResultDialogs;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -35,18 +35,18 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 	 *                    <code>null</code>
 	 * 
 	 * @see BaseClassifierWizard
-	 * @see ClassifierMetadata
+	 * @see EntityMetadata
 	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public RootClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	public RootClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		super(metadata, initializer, registry);
 	}
 
 	@Override
-	protected RootClassifierWizardPage createNewClassifierPage(ClassifierMetadata metadata,
+	protected RootClassifierWizardPage createNewClassifierPage(EntityMetadata metadata,
 			ClassifierInitializer initializer) {
 		return new RootClassifierWizardPage(metadata, initializer, registry.getFileExtension());
 	}

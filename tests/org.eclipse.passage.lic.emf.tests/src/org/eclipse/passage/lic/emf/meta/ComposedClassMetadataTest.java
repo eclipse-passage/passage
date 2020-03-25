@@ -10,41 +10,43 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
+package org.eclipse.passage.lic.emf.meta;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Test;
 
-public class ClassifierMetadataTest {
+public class ComposedClassMetadataTest {
 
 	private final EClass type = EcoreFactory.eINSTANCE.createEClass();
 	private final EStructuralFeature id = EcoreFactory.eINSTANCE.createEAttribute();
 	private final EStructuralFeature name = EcoreFactory.eINSTANCE.createEReference();
+	private final EntityMetadata metadata = new PlainEntityMetadata(type, id, name);
+	private final ClassMetadata searcher = c -> Optional.of(metadata);
 
 	@Test(expected = NullPointerException.class)
-	public void testNullType() {
-		new ClassifierMetadata(null, id, name);
+	public void testNullConsider() {
+		new ComposedClassMetadata().consider(null);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullId() {
-		new ClassifierMetadata(type, null, name);
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void testNullName() {
-		new ClassifierMetadata(type, id, null);
+	public void testNullForget() {
+		new ComposedClassMetadata().forget(null);
 	}
 
 	@Test
-	public void testPositive() {
-		ClassifierMetadata metadata = new ClassifierMetadata(type, id, name);
-		assertEquals(type, metadata.eClass());
-		assertEquals(id, metadata.identification());
-		assertEquals(name, metadata.naming());
+	public void testConsider() {
+		ComposedClassMetadata composed = new ComposedClassMetadata();
+		assertFalse(composed.find(getClass()).isPresent());
+		composed.consider(searcher);
+		assertEquals(metadata, composed.find(getClass()).get());
+		composed.forget(searcher);
+		assertFalse(composed.find(getClass()).isPresent());
 	}
 }

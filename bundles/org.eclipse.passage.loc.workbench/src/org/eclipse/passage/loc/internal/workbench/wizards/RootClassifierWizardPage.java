@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
@@ -30,8 +30,7 @@ public final class RootClassifierWizardPage extends BaseClassifierWizardPage {
 	protected Text text;
 	private Button button;
 
-	protected RootClassifierWizardPage(ClassifierMetadata metadata, ClassifierInitializer initializer,
-			String extension) {
+	protected RootClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer, String extension) {
 		super(RootClassifierWizardPage.class.getSimpleName(), metadata, initializer);
 		this.extension = extension;
 	}
