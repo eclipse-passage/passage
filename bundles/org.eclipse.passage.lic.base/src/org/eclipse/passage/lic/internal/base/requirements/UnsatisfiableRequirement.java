@@ -54,9 +54,9 @@ public final class UnsatisfiableRequirement implements Supplier<Requirement> {
 	public Requirement get() {
 		Feature feature = new BaseFeature( //
 				Long.toHexString(System.currentTimeMillis()), //
-				"0.0.0", //$NON-NLS-1$
+				"0.0.0", //$NON-NLS-1$ // FIXME: rework on LicensingVersions elimination
 				description, //
-				"Passage License Management"); //$NON-NLS-1$
+				"Passage License Management"); //$NON-NLS-1$ // FIXME: i18n
 		return new BaseRequirement(feature, new RestrictionLevel.Error(), source);
 	}
 

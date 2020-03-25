@@ -21,10 +21,22 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleWiring;
 
+/**
+ * <p>
+ * Covers special <i>licensing</i> {@code capability} reading from the given
+ * {@code Bundle}'s manifest, where the bundle developers place inion for the
+ * feature under licensing.
+ * </p>
+ * <p>
+ * Never supplies empty {@code Optional}: it always contain either actual list
+ * of {@code capabilities} or empty list, if there is none declared in the given
+ * {@code bundle}.
+ * </p>
+ */
 @SuppressWarnings("restriction")
-final class LicensingFeaturesFromBundle extends BaseNamedData<List<BundleCapability>> {
+final class LicensingFeatureCapabilitiesFromBundle extends BaseNamedData<List<BundleCapability>> {
 
-	protected LicensingFeaturesFromBundle(Bundle bundle) {
+	protected LicensingFeatureCapabilitiesFromBundle(Bundle bundle) {
 		super(key -> //
 		Optional.ofNullable(bundle.adapt(BundleWiring.class))//
 				.map(wiring -> wiring.getCapabilities(key))//
@@ -34,11 +46,6 @@ final class LicensingFeaturesFromBundle extends BaseNamedData<List<BundleCapabil
 	@Override
 	public String key() {
 		return "licensing.feature"; //$NON-NLS-1$
-	}
-
-	@Override
-	public String printed(List<BundleCapability> value) {
-		throw new UnsupportedOperationException();
 	}
 
 }

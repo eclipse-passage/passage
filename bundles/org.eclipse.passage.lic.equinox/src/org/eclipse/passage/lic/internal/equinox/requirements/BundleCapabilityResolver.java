@@ -62,7 +62,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (bundleContext == null) {
-			logger.severe(EquinoxMessages.BundleCapabilityResolver_error_bundle_context);
+			logger.severe(EquinoxMessages.BundleRequirements_error_bundle_context);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}

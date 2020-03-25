@@ -40,7 +40,7 @@ public class EquinoxRequirements {
 	}
 
 	/**
-	 * @deprecated Use {@linkplain LicensingFeaturesFromBundle}
+	 * @deprecated Use {@linkplain LicensingFeatureCapabilitiesFromBundle}
 	 */
 	@Deprecated
 	public static Iterable<BundleCapability> extractLicensingFeatures(Bundle bundle) {
