@@ -21,12 +21,12 @@ public interface RestrictionLevel {
 
 	String META = "licensing.restriction.level"; //$NON-NLS-1$
 
-	String name();
+	String identifier();
 
 	final class Info implements RestrictionLevel {
 
 		@Override
-		public String name() {
+		public String identifier() {
 			return "info"; //$NON-NLS-1$
 		}
 
@@ -35,7 +35,7 @@ public interface RestrictionLevel {
 	final class Warning implements RestrictionLevel {
 
 		@Override
-		public String name() {
+		public String identifier() {
 			return "warn"; //$NON-NLS-1$
 		}
 
@@ -44,7 +44,7 @@ public interface RestrictionLevel {
 	final class Error implements RestrictionLevel {
 
 		@Override
-		public String name() {
+		public String identifier() {
 			return "error"; //$NON-NLS-1$
 		}
 
@@ -53,7 +53,7 @@ public interface RestrictionLevel {
 	final class Fatal implements RestrictionLevel {
 
 		@Override
-		public String name() {
+		public String identifier() {
 			return "fatal"; //$NON-NLS-1$
 		}
 
@@ -69,7 +69,7 @@ public interface RestrictionLevel {
 		}
 
 		@Override
-		public String name() {
+		public String identifier() {
 			return name;
 		}
 

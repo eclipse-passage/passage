@@ -23,8 +23,7 @@ public final class RequirementsSupplierRegistry implements Supplier<Registry<Str
 
 	@Override
 	public Registry<StringServiceId, ResolvedRequirements> get() {
-
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 }

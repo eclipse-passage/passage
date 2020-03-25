@@ -28,10 +28,10 @@ public final class BaseFeature implements Feature {
 	private final String provider;
 
 	public BaseFeature(String id, String version, String name, String provider) {
-		Objects.requireNonNull(id);
-		Objects.requireNonNull(version);
-		Objects.requireNonNull(name);
-		Objects.requireNonNull(provider);
+		Objects.requireNonNull(id, "Identifier is mandatory for a feature"); //$NON-NLS-1$
+		Objects.requireNonNull(version, "Version is mandatory for a feature"); //$NON-NLS-1$
+		Objects.requireNonNull(name, "Name is mandatory for a feature"); //$NON-NLS-1$
+		Objects.requireNonNull(provider, "Provider is mandatory for a feature"); //$NON-NLS-1$
 		this.id = id;
 		this.version = version;
 		this.name = name;

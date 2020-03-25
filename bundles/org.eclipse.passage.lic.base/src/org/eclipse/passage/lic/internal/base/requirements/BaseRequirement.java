@@ -26,9 +26,10 @@ public final class BaseRequirement implements Requirement {
 	private final Object source;
 
 	public BaseRequirement(Feature feature, RestrictionLevel restriction, Object source) {
-		Objects.requireNonNull(feature);
-		Objects.requireNonNull(restriction);
-		Objects.requireNonNull(source);
+		Objects.requireNonNull(feature, "Feature cannot be null on requirement definition"); //$NON-NLS-1$
+		Objects.requireNonNull(restriction,
+				"Restriction cannot be null on requirement definition. Use DefaultrestrictionLevel should the need arise"); //$NON-NLS-1$
+		Objects.requireNonNull(source, "Source is mandatory for requirement definition"); //$NON-NLS-1$
 		this.feature = feature;
 		this.restriction = restriction;
 		this.source = source;
