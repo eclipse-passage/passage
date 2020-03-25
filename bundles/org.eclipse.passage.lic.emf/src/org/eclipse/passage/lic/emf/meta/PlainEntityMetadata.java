@@ -32,7 +32,7 @@ public final class PlainEntityMetadata implements EntityMetadata {
 	private final EStructuralFeature naming;
 
 	/**
-	 * Creates the classifier metadata descriptor with the given
+	 * Creates a plain entity metadata descriptor with the given
 	 * non-<code>null</code> type, identification and naming
 	 * 
 	 * @param type type for the object of interest, should not be <code>null</code>
@@ -51,30 +51,16 @@ public final class PlainEntityMetadata implements EntityMetadata {
 		this.naming = name;
 	}
 
-	/**
-	 * 
-	 * @return the {@link EClass} for the object of interest
-	 */
 	@Override
 	public EClass eClass() {
 		return eClass;
 	}
 
-	/**
-	 * The {@link EStructuralFeature} to be used as identifier
-	 * 
-	 * @return non-<code>null</code> identification feature
-	 */
 	@Override
 	public EStructuralFeature identification() {
 		return identification;
 	}
 
-	/**
-	 * The {@link EStructuralFeature} to be used as name
-	 * 
-	 * @return non-<code>null</code> naming feature
-	 */
 	@Override
 	public EStructuralFeature naming() {
 		return naming;

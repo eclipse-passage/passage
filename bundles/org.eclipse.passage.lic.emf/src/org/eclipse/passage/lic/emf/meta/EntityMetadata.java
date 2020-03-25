@@ -20,10 +20,24 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  */
 public interface EntityMetadata {
 
+	/**
+	 * 
+	 * @return the {@link EClass} for the object of interest
+	 */
 	EClass eClass();
 
+	/**
+	 * The {@link EStructuralFeature} to be used as identifier
+	 * 
+	 * @return non-<code>null</code> identification feature
+	 */
 	EStructuralFeature identification();
 
+	/**
+	 * The {@link EStructuralFeature} to be used as name
+	 * 
+	 * @return non-<code>null</code> naming feature
+	 */
 	EStructuralFeature naming();
 
 }
