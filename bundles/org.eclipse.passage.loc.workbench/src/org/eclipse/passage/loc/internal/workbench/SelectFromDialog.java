@@ -86,7 +86,7 @@ public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional
 				new LabelSearchFilter());
 		dialog.setTitle(appearance.title());
 		dialog.setImage(appearance.image().get());
-		dialog.setLabelProvider(appearance.labels());
+		dialog.setLabelProvider(appearance.labelProvider());
 		dialog.setInitialSelection(initial);
 		dialog.setInput(input);
 		if (dialog.open() == Dialog.OK) {

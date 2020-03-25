@@ -96,7 +96,7 @@ public final class Appearance {
 	 * 
 	 * @return non-<code>null</code> label provider
 	 */
-	public LabelProvider labels() {
+	public LabelProvider labelProvider() {
 		return labels;
 	}
 

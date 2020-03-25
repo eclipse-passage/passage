@@ -70,7 +70,7 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 		if (optional.isPresent()) {
 			C present = optional.get();
 			text.setData(present);
-			text.setText(request.appearance().labels().getText(present));
+			text.setText(request.appearance().labelProvider().getText(present));
 		} else {
 			text.setData(null);
 			text.setText(""); //$NON-NLS-1$

@@ -47,7 +47,7 @@ public class AppearanceTest {
 		Appearance appearance = new Appearance(title, image, labels);
 		assertEquals(title, appearance.title());
 		assertEquals(image, appearance.image());
-		assertEquals(labels, appearance.labels());
+		assertEquals(labels, appearance.labelProvider());
 	}
 
 }
