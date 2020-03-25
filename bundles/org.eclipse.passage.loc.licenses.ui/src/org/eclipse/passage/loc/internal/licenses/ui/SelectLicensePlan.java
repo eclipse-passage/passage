@@ -25,7 +25,7 @@ import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
-import org.eclipse.passage.loc.users.core.Users;
+import org.eclipse.passage.loc.licenses.core.Licenses;
 
 /**
  * Creates {@link SelectRequest} for {@link LicensePlanDescriptor} from the
@@ -56,7 +56,7 @@ public final class SelectLicensePlan extends SupplySelectRequest<LicensePlanDesc
 	}
 
 	private String domain() {
-		return Users.DOMAIN_NAME;
+		return Licenses.DOMAIN_NAME;
 	}
 
 }
