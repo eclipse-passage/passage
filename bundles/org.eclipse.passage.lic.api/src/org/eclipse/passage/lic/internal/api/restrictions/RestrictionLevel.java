@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.restrictions;
 
+import java.util.Objects;
+
 /**
  * Severity of a licensing requirement and, accordingly, restriction verdict.
  */
@@ -53,6 +55,22 @@ public interface RestrictionLevel {
 		@Override
 		public String name() {
 			return "fatal"; //$NON-NLS-1$
+		}
+
+	}
+
+	final class Of implements RestrictionLevel {
+
+		private final String name;
+
+		public Of(String name) {
+			Objects.requireNonNull(name, "Name is mandatory for restriction level"); //$NON-NLS-1$
+			this.name = name.trim().toLowerCase();
+		}
+
+		@Override
+		public String name() {
+			return name;
 		}
 
 	}

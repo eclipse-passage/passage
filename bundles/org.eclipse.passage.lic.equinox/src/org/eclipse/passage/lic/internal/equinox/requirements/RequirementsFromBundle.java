@@ -12,14 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_LEVEL;
-import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_NAME;
-import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_PROVIDER;
-import static org.eclipse.passage.lic.base.LicensingNamespaces.ATTRIBUTE_VERSION;
-import static org.eclipse.passage.lic.base.LicensingNamespaces.toLevelAttribute;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,7 +20,11 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
+import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 import org.osgi.framework.wiring.BundleCapability;
@@ -47,31 +44,53 @@ final class RequirementsFromBundle implements Supplier<Optional<List<Requirement
 		if (capabilities.isPresent()) {
 			return Optional.empty();
 		}
-		Dictionary<String, String> headers = bundle.getHeaders();
-		String name = headers.get(Constants.BUNDLE_NAME);
-		String vendor = headers.get(Constants.BUNDLE_VENDOR);
+		String name = bundleName();
+		String vendor = bundleVendor();
 		List<Requirement> results = new ArrayList<>();
 		for (BundleCapability capability : capabilities.get()) {
 			Map<String, Object> attributes = capability.getAttributes();
 			if (attributes == null) {
 				results.add(new UnsatisfiableRequirement(//
 						"Attributes for " + licensingFeaturesFromBundle.key() + //$NON-NLS-1$
-								" capability of " + bundle.getBundleId() //$NON-NLS-1$
+								" capability of " + name //$NON-NLS-1$
 								+ " bundle", //$NON-NLS-1$
 						bundle).get());
 				continue;
 			}
-			Optional<String> feature = new CapabilityLicensingFeature(attributes).get();
-
-			String version = LicensingVersions.toVersionValue(attributes.get(ATTRIBUTE_VERSION));
-			String name = getStringValue(attributes, ATTRIBUTE_NAME, name);
-			if (name == null) {
-				name = featureId;
+			CapabilityLicFeatureId capabilityLicFeatureId = new CapabilityLicFeatureId(attributes);
+			Optional<String> feature = capabilityLicFeatureId.get();
+			if (!feature.isPresent()) {
+				results.add(new UnsatisfiableRequirement(//
+						licensingFeaturesFromBundle.key() + " capability attribute " + capabilityLicFeatureId.key() //$NON-NLS-1$
+								+ " for " + name //$NON-NLS-1$
+								+ " bundle", //$NON-NLS-1$
+						bundle).get());
+				continue;
 			}
-			String provider = getStringValue(attributes, ATTRIBUTE_PROVIDER, vendor);
-			String level = toLevelAttribute(attributes.get(ATTRIBUTE_LEVEL));
-			results.add(new BaseLicensingRequirement(featureId, version, name, provider, level, source));
+			String version = new CapabilityLicFeatureVersion(attributes).get()//
+					.map(LicensingVersions::toVersionValue)//
+					.orElse(LicensingVersions.VERSION_DEFAULT);
+
+			String featureName = new CapabilityLicFeatureName(attributes).get().orElse(feature.get());
+			String provider = new CapabilityLicFeatureProvider(attributes).get().orElse(vendor);
+			RestrictionLevel level = new CapabilityLicFeatureLevel(attributes).get()//
+					.<RestrictionLevel>map(RestrictionLevel.Of::new) //
+					.orElseGet(new DefaultRestrictionLevel());
+
+			results.add(new BaseRequirement(//
+					new BaseFeature(feature.get(), version, featureName, provider), //
+					level, //
+					capability.getResource()));
 		}
 		return Optional.of(results);
 	}
+
+	private String bundleName() {
+		return bundle.getHeaders().get(Constants.BUNDLE_NAME);
+	}
+
+	private String bundleVendor() {
+		return bundle.getHeaders().get(Constants.BUNDLE_VENDOR);
+	}
+
 }

@@ -63,33 +63,6 @@ public class BundleRequirements implements ResolvedRequirements {
 	}
 
 	@Override
-	public Iterable<LicensingRequirement> resolveLicensingRequirements(LicensingConfiguration configuration) {
-		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
-		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
-		if (context == null) {
-			logger.error(EquinoxMessages.BundleCapabilityResolver_error_bundle_context);
-			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
-					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
-		}
-		List<LicensingRequirement> result = new ArrayList<>();
-		Bundle[] bundles = context.getBundles();
-		for (Bundle bundle : bundles) {
-			Dictionary<String, String> headers = bundle.getHeaders();
-			String name = headers.get(Constants.BUNDLE_NAME);
-			String vendor = headers.get(Constants.BUNDLE_VENDOR);
-
-			Iterable<BundleCapability> capabilities = EquinoxRequirements.extractLicensingFeatures(bundle);
-			for (BundleCapability capability : capabilities) {
-				result.add(LicensingRequirements.extractFromCapability(name, vendor, //
-						capability.getAttributes(), //
-						capability.getDirectives(), //
-						capability.getResource()));
-			}
-		}
-		return result;
-	}
-
-	@Override
 	public StringServiceId id() {
 		return new StringServiceId("manifest"); //$NON-NLS-1$
 	}
@@ -110,9 +83,8 @@ public class BundleRequirements implements ResolvedRequirements {
 		return Collections.singleton(//
 				new UnsatisfiableRequirement(//
 						"Bundle context for " + getClass().getName() + " OSGi-component", //$NON-NLS-1$ //$NON-NLS-2$
-						"Passag License Management", //$NON-NLS-1$
-						getClass())//
-								.get());
+						getClass()//
+				).get());
 	}
 
 	private Collection<Requirement> resolve() {

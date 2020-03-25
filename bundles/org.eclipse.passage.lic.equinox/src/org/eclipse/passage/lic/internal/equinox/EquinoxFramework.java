@@ -24,6 +24,6 @@ public final class EquinoxFramework implements Framework {
 
 	@Override
 	public Supplier<Registry<StringServiceId, ResolvedRequirements>> requirementsSupplierRegistry() {
-
+		throw new UnsupportedOperationException();
 	}
 }

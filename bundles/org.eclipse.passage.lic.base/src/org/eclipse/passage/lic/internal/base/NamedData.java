@@ -20,12 +20,14 @@ public interface NamedData<T> extends Supplier<Optional<T>> {
 
 	String key();
 
-	String printed(T value);
+	default String printed(T value) {
+		return String.valueOf(value);
+	}
 
-	class Smart<T> {
+	class Writable<T> {
 		private final NamedData<T> data;
 
-		public Smart(NamedData<T> data) {
+		public Writable(NamedData<T> data) {
 			this.data = data;
 		}
 
