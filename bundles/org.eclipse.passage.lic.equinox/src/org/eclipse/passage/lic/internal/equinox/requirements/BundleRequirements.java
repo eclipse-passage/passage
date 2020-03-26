@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("restriction")
 @Component
-public class BundleRequirements implements ResolvedRequirements {
+public final class BundleRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
 	private Optional<BundleContext> context;
