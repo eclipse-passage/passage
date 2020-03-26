@@ -24,8 +24,8 @@ public final class ComposedClassMetadata implements ComposableClassMetadata {
 	public Optional<EntityMetadata> find(Class<?> clazz) {
 		return registry.stream()//
 				.map(m -> m.find(clazz))//
-				.filter(o -> o.isPresent())//
-				.map(o -> o.get())//
+				.filter(Optional::isPresent)//
+				.map(Optional::get)//
 				.findFirst();
 	}
 

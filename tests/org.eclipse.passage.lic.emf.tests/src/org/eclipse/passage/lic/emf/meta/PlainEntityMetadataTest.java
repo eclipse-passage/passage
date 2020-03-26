@@ -26,22 +26,22 @@ public class PlainEntityMetadataTest {
 	private final EStructuralFeature name = EcoreFactory.eINSTANCE.createEReference();
 
 	@Test(expected = NullPointerException.class)
-	public void testNullType() {
+	public void nullType() {
 		new PlainEntityMetadata(null, id, name);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullId() {
+	public void nullId() {
 		new PlainEntityMetadata(type, null, name);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullName() {
+	public void nullName() {
 		new PlainEntityMetadata(type, id, null);
 	}
 
 	@Test
-	public void testPositive() {
+	public void positive() {
 		PlainEntityMetadata metadata = new PlainEntityMetadata(type, id, name);
 		assertEquals(type, metadata.eClass());
 		assertEquals(id, metadata.identification());

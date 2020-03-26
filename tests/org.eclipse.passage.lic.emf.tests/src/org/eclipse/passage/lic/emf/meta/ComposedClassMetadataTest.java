@@ -31,17 +31,17 @@ public class ComposedClassMetadataTest {
 	private final ClassMetadata searcher = c -> Optional.of(metadata);
 
 	@Test(expected = NullPointerException.class)
-	public void testNullConsider() {
+	public void nullConsider() {
 		new ComposedClassMetadata().consider(null);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullForget() {
+	public void nullForget() {
 		new ComposedClassMetadata().forget(null);
 	}
 
 	@Test
-	public void testConsider() {
+	public void positive() {
 		ComposedClassMetadata composed = new ComposedClassMetadata();
 		assertFalse(composed.find(getClass()).isPresent());
 		composed.consider(searcher);
