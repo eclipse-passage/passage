@@ -57,7 +57,7 @@ final class RequirementsFromCapability implements Supplier<Requirement> {
 		String version = new CapabilityLicFeatureVersion(attributes).get()//
 				.map(LicensingVersions::toVersionValue)//
 				.orElse(LicensingVersions.VERSION_DEFAULT);
-		String featureName = new CapabilityLicFeatureName(attributes).get()//
+		String name = new CapabilityLicFeatureName(attributes).get()//
 				.orElse(feature);
 		String provider = new CapabilityLicFeatureProvider(attributes).get()//
 				.orElseGet(this::bundleVendor);
@@ -65,7 +65,7 @@ final class RequirementsFromCapability implements Supplier<Requirement> {
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
 		BaseRequirement requirement = new BaseRequirement(//
-				new BaseFeature(feature, version, featureName, provider), //
+				new BaseFeature(feature, version, name, provider), //
 				level, //
 				capability.getResource());
 		return requirement;
