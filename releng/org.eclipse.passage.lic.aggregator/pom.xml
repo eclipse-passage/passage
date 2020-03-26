@@ -33,33 +33,42 @@
 		<module>../../bundles/org.eclipse.passage.lic.base</module>
 		<module>../../bundles/org.eclipse.passage.lic.equinox</module>
 		<module>../../features/org.eclipse.passage.lic.equinox.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.bc</module>
 		<module>../../features/org.eclipse.passage.lic.bc.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.net</module>
 		<module>../../bundles/org.eclipse.passage.lic.email</module>
 		<module>../../features/org.eclipse.passage.lic.net.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
 	
 		<module>../../bundles/org.eclipse.passage.lic.mail</module>
 		<module>../../features/org.eclipse.passage.lic.mail.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
 		<module>../../features/org.eclipse.passage.lic.hc.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.json</module>
 		<module>../../features/org.eclipse.passage.lic.json.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.json.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.oshi</module>
 		<module>../../features/org.eclipse.passage.lic.oshi.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.emf</module>
 		<module>../../features/org.eclipse.passage.lic.emf.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.emf.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.jface</module>
 		<module>../../bundles/org.eclipse.passage.lic.e4.core</module>
 		<module>../../bundles/org.eclipse.passage.lic.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.e4.ui.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.features</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.ecore</module>
@@ -68,6 +77,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.features.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.features.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.features.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.ecore</module>
@@ -76,6 +86,8 @@
 		<module>../../bundles/org.eclipse.passage.lic.products.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.products.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
+
 
 		<module>../../bundles/org.eclipse.passage.lic.users</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.ecore</module>
@@ -84,6 +96,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.users.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.users.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>
@@ -92,6 +105,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.licenses.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.licenses.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
@@ -101,21 +115,6 @@
 
 		<module>../../bundles/org.eclipse.passage.lic.define.branding</module>
 		<module>../../features/org.eclipse.passage.lic.define.feature</module>
-
-		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.bc.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.net.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.mail.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.json.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.jface.tests</module>
-
-
-		<module>../../tests/org.eclipse.passage.lic.features.migration.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
 
 		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
 

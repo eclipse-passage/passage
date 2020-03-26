@@ -21,9 +21,6 @@ public class WorkbenchMessages extends NLS {
 	public static String Appearance_e_null_title;
 	public static String BaseClassifierWizardPage_e_null_initializer;
 	public static String BaseClassifierWizardPage_e_null_metadata;
-	public static String ClassifierMetadata_e_null_eclass;
-	public static String ClassifierMetadata_e_null_identification;
-	public static String ClassifierMetadata_e_null_naming;
 	public static String CreateDomainResource_e_null_classifier;
 	public static String CreateDomainResource_e_null_context;
 	public static String CreateDomainResource_e_null_domain;

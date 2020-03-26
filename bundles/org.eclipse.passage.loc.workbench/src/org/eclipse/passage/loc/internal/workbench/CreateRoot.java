@@ -18,6 +18,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 
@@ -48,7 +49,7 @@ public final class CreateRoot<C> extends CreateClassifier<C> {
 	}
 
 	@Override
-	protected BaseClassifierWizard<?> createWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	protected BaseClassifierWizard<?> createWizard(EntityMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		return new RootClassifierWizard(metadata, initializer, registry);
 	}
