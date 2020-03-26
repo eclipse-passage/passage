@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -32,21 +33,28 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * <p>
+ * {@linkplain ResolvedRequirements} service implementation which search for
+ * {@linkplain Requirement} declarations in an OSGi-bundles meta information:
+ * among <i>Provide-Capability</i> declarations.
+ * </p>
+ */
 @SuppressWarnings("restriction")
 @Component
-public class BundleRequirements implements ResolvedRequirements {
+public final class BundleRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
-	private BundleContext context;
+	private Optional<BundleContext> context;
 
 	@Activate
 	public void activate(BundleContext bundle) {
-		this.context = bundle;
+		this.context = Optional.ofNullable(bundle);
 	}
 
 	@Deactivate
 	public void deactivate() {
-		this.context = null;
+		this.context = Optional.empty();
 	}
 
 	@Override
@@ -63,24 +71,22 @@ public class BundleRequirements implements ResolvedRequirements {
 	}
 
 	private boolean sabotage() {
-		return context == null;
+		return !context.isPresent();
 	}
 
 	private Collection<Requirement> unsafisifiable() {
-		logger.error(EquinoxMessages.BundleCapabilityResolver_error_bundle_context);
+		logger.error(EquinoxMessages.BundleRequirements_error_bundle_context);
 		return Collections.singleton(//
 				new UnsatisfiableRequirement(//
-						"Bundle context for " + getClass().getName() + " OSGi-component", //$NON-NLS-1$ //$NON-NLS-2$
+						NLS.bind(EquinoxMessages.BundleRequirements_no_context, getClass().getName()), //
 						getClass()//
 				).get());
 	}
 
 	private Collection<Requirement> resolve() {
-		return Arrays.stream(context.getBundles())//
+		return Arrays.stream(context.get().getBundles())//
 				.map(RequirementsFromBundle::new)//
 				.map(RequirementsFromBundle::get) //
-				.filter(Optional::isPresent) //
-				.map(Optional<List<Requirement>>::get) //
 				.flatMap(List::stream) //
 				.collect(Collectors.toList());
 	}

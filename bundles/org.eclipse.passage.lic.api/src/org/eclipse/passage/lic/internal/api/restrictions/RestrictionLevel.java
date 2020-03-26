@@ -17,60 +17,74 @@ import java.util.Objects;
 /**
  * Severity of a licensing requirement and, accordingly, restriction verdict.
  */
-public interface RestrictionLevel {
+public abstract class RestrictionLevel {
 
-	String META = "licensing.restriction.level"; //$NON-NLS-1$
+	// FIXME: to be used further
+	// private final String meta = "licensing.restriction.level"; //$NON-NLS-1$
+	private final String identifier;
 
-	String identifier();
+	protected RestrictionLevel(String identifier) {
+		Objects.requireNonNull(identifier, "Identifier is mandatory for restriction level"); //$NON-NLS-1$
+		this.identifier = identifier.trim().toLowerCase();
+	}
 
-	final class Info implements RestrictionLevel {
+	public final String identifier() {
+		return identifier;
+	}
 
-		@Override
-		public String identifier() {
-			return "info"; //$NON-NLS-1$
+	@Override
+	public final int hashCode() {
+		return Objects.hash(identifier());
+	}
+
+	@Override
+	public final boolean equals(Object object) {
+		if (!RestrictionLevel.class.isInstance(object)) {
+			return false;
+		}
+		return identifier.equals(((RestrictionLevel) object).identifier);
+	}
+
+	@Override
+	public final String toString() {
+		return identifier;
+	}
+
+	public static final class Info extends RestrictionLevel {
+
+		public Info() {
+			super("info"); //$NON-NLS-1$
 		}
 
 	}
 
-	final class Warning implements RestrictionLevel {
+	public static final class Warning extends RestrictionLevel {
 
-		@Override
-		public String identifier() {
-			return "warn"; //$NON-NLS-1$
+		public Warning() {
+			super("warn"); //$NON-NLS-1$
+		}
+	}
+
+	public final static class Error extends RestrictionLevel {
+
+		public Error() {
+			super("error"); //$NON-NLS-1$
 		}
 
 	}
 
-	final class Error implements RestrictionLevel {
+	public static final class Fatal extends RestrictionLevel {
 
-		@Override
-		public String identifier() {
-			return "error"; //$NON-NLS-1$
+		public Fatal() {
+			super("fatal"); //$NON-NLS-1$
 		}
 
 	}
 
-	final class Fatal implements RestrictionLevel {
+	public static final class Of extends RestrictionLevel {
 
-		@Override
-		public String identifier() {
-			return "fatal"; //$NON-NLS-1$
-		}
-
-	}
-
-	final class Of implements RestrictionLevel {
-
-		private final String name;
-
-		public Of(String name) {
-			Objects.requireNonNull(name, "Name is mandatory for restriction level"); //$NON-NLS-1$
-			this.name = name.trim().toLowerCase();
-		}
-
-		@Override
-		public String identifier() {
-			return name;
+		public Of(String identifier) {
+			super(identifier);
 		}
 
 	}
