@@ -16,6 +16,14 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
+/**
+ * Default data-driven implementation of {@code LicensingConfiguration}. True
+ * {@code data-class}.
+ * 
+ * @see LicensingConfiguration
+ * @see ProductIdentifier
+ * @see ProductVersion
+ */
 public final class BaseLicensingConfiguration implements LicensingConfiguration {
 
 	private final String identifier;

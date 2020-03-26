@@ -23,9 +23,9 @@ import org.osgi.framework.wiring.BundleWiring;
 
 /**
  * <p>
- * Covers special <i>licensing</i> {@code capability} reading from the given
- * {@code Bundle}'s manifest, where the bundle developers place inion for the
- * feature under licensing.
+ * Searches for the special <i>licensing</i> {@code Capability} in the given
+ * {@code Bundle}'s manifest, where the bundle developers can place declarations
+ * for the feature under licensing.
  * </p>
  * <p>
  * Never supplies empty {@code Optional}: it always contain either actual list

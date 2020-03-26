@@ -14,6 +14,12 @@ package org.eclipse.passage.lic.internal.base;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
+/**
+ * {@linkplain LicensingConfiguration} is a key piece of data for an
+ * {@code access cycle}. For the cases any sabotage is detected this <i>
+ * knowingly invalid</i> configuration is used to make an {@code access cycle}
+ * fail.
+ */
 public final class InvalidLicensingConfiguration implements LicensingConfiguration {
 
 	private final BaseLicensingConfiguration delegate;
