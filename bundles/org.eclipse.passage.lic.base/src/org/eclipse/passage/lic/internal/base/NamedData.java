@@ -16,6 +16,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * <p>
+ * Orthodox OOP construction designed for <i>getting a value from some source by
+ * a {@code key}</i>. Main purpose is to encapsulate the {@code key} and avoid
+ * static string literals.
+ * </p>
+ * <p>
+ * Current contract is to have the any constructor light-weight and postpone
+ * actual value reading at all cost - to make it reasonable to construct such a
+ * data just to get the {@code key}. Yet debatable.
+ * </p>
+ * 
+ * @param <T> type of a value to be supplied
+ */
 public interface NamedData<T> extends Supplier<Optional<T>> {
 
 	String key();

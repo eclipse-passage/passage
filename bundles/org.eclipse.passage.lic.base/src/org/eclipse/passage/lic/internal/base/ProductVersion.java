@@ -15,6 +15,13 @@ package org.eclipse.passage.lic.internal.base;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * On a {@code licensing configuration declaration} we expect
+ * {@code product version} to be stored under a precise key, which is
+ * encapsulated here.
+ * 
+ * @see NamedData
+ */
 public final class ProductVersion extends StringNamedData {
 
 	public ProductVersion(String value) {

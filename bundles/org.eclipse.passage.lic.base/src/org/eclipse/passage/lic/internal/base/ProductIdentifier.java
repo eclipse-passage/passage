@@ -15,6 +15,12 @@ package org.eclipse.passage.lic.internal.base;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Supplies an {@code identifier} of a product under licensing, which is
+ * expected to be stored in a variety of sources under a special key.
+ * 
+ * @see NamedData
+ */
 public final class ProductIdentifier extends StringNamedData {
 
 	public ProductIdentifier(String value) {

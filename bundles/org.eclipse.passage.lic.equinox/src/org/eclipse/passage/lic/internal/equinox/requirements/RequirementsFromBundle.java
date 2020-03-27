@@ -19,6 +19,13 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.osgi.framework.Bundle;
 
+/**
+ * Looks for {@linkplain Requirement} declarations among all the
+ * licensing-namespaced {@code Capabilities} in the given {@code Bundle}
+ * 
+ * @see RequirementsFromCapability
+ * @see BundleRequirements
+ */
 @SuppressWarnings("restriction")
 final class RequirementsFromBundle implements Supplier<List<Requirement>> {
 

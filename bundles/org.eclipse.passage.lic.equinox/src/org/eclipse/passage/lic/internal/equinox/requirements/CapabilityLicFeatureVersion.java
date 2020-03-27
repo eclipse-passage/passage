@@ -14,8 +14,15 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
+/**
+ * Encapsulate reading of a raw string {@code version} value of a feature under
+ * licensing from a {@code Capability}'s attributes.
+ * 
+ * @see NamedData
+ */
 @SuppressWarnings("restriction")
 public final class CapabilityLicFeatureVersion extends StringNamedData {
 

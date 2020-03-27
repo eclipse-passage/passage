@@ -15,6 +15,12 @@ package org.eclipse.passage.lic.internal.base;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Auxiliary implementation for string valued data, as in the most cases we are
+ * interested in retrieving string data.
+ * 
+ * @see NamedData
+ */
 public abstract class StringNamedData extends BaseNamedData<String> {
 
 	protected StringNamedData(String value) {
