@@ -12,10 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,25 +28,31 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * <p>
- * {@linkplain ResolvedRequirements} service implementation which search for
- * {@linkplain Requirement} declarations in an OSGi-bundles meta information:
- * among <i>Provide-Capability</i> declarations.
- * </p>
+ * Looks for licensing {@linkplain Requirement} declarations among
+ * {@code OSGi-component}s.
  * 
  * @see Requirement
  * @see ResolvedRequirements
  */
 @SuppressWarnings("restriction")
 @Component
-public final class BundleRequirements implements ResolvedRequirements {
+public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
+
 	private Optional<BundleContext> context;
+	private Optional<ServiceComponentRuntime> runtime;
+
+	@Override
+	public StringServiceId id() {
+		return new StringServiceId("OSGi component"); //$NON-NLS-1$
+	}
 
 	@Activate
 	public void activate(BundleContext bundle) {
@@ -60,37 +64,47 @@ public final class BundleRequirements implements ResolvedRequirements {
 		this.context = Optional.empty();
 	}
 
-	@Override
-	public StringServiceId id() {
-		return new StringServiceId("manifest"); //$NON-NLS-1$
+	@Reference
+	public void bindRuntime(ServiceComponentRuntime input) {
+		this.runtime = Optional.ofNullable(input);
+	}
+
+	public void unbindRuntime(ServiceComponentRuntime input) {
+		if (!runtime.isPresent()) {
+			return;
+		}
+		if (runtime.get() == input) {
+			runtime = Optional.empty();
+		}
 	}
 
 	@Override
 	public Collection<Requirement> all(LicensingConfiguration configuration) {
-		if (sabotage()) {
-			return unsafisifiable();
+		if (!runtime.isPresent()) {
+			return unsafisifiable(ServiceComponentRuntime.class.getSimpleName());
+		}
+		if (!context.isPresent()) {
+			return unsafisifiable(BundleContext.class.getSimpleName());
 		}
 		return resolve();
 	}
 
-	private boolean sabotage() {
-		return !context.isPresent();
-	}
-
-	private Collection<Requirement> unsafisifiable() {
-		logger.error(EquinoxMessages.BundleRequirements_error_bundle_context);
+	private Collection<Requirement> unsafisifiable(String resource) {
+		logger.error(NLS.bind(EquinoxMessages.ComponentRequirements_error_no_resource, resource));
 		return Collections.singleton(//
 				new UnsatisfiableRequirement(//
-						NLS.bind(EquinoxMessages.BundleRequirements_no_context, getClass().getName()), //
+						NLS.bind(//
+								EquinoxMessages.ComponentRequirements_requirement_for_resource, //
+								resource, //
+								getClass().getName()), //
 						getClass()//
 				).get());
 	}
 
 	private Collection<Requirement> resolve() {
-		return Arrays.stream(context.get().getBundles())//
-				.map(RequirementsFromBundle::new)//
-				.map(RequirementsFromBundle::get) //
-				.flatMap(List::stream) //
+		return runtime.get().getComponentDescriptionDTOs(context.get().getBundles()).stream()//
+				.map(component -> new RequirementsFromComponent(component, context.get())) //
+				.map(RequirementsFromComponent::get) //
 				.collect(Collectors.toList());
 	}
 
