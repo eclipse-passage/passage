@@ -23,6 +23,8 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
@@ -74,7 +76,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	}
 
 	protected Optional<EObject> showWizard(ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
-		ClassifierMetadata metadata = new ClassifierMetadata(registry.getContentClassifier(),
+		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
 				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
 		BaseClassifierWizard<?> wizard = createWizard(metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
@@ -88,7 +90,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		return wizard.created();
 	}
 
-	protected abstract BaseClassifierWizard<?> createWizard(ClassifierMetadata metadata,
-			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
+	protected abstract BaseClassifierWizard<?> createWizard(EntityMetadata metadata, ClassifierInitializer initializer,
+			EditingDomainRegistry<?> registry);
 
 }

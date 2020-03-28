@@ -28,7 +28,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -43,7 +43,7 @@ import org.osgi.framework.FrameworkUtil;
  */
 public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {
 
-	protected final ClassifierMetadata metadata;
+	protected final EntityMetadata metadata;
 	protected final ClassifierInitializer initializer;
 	protected final EditingDomainRegistry<?> registry;
 
@@ -59,12 +59,12 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 * @param registry    registry for an object to be created, must not be
 	 *                    <code>null</code>
 	 * 
-	 * @see ClassifierMetadata
+	 * @see EntityMetadata
 	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	protected BaseClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	protected BaseClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		this.metadata = metadata;
 		this.initializer = initializer;
@@ -76,10 +76,6 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	 * to be created, implementors expected to return just constructed page object,
 	 * all the content initialization will be done later.
 	 * 
-	 * @param metadata    describes EMF metadata for an object to be created, must
-	 *                    not be <code>null</code>
-	 * @param initializer describer initial values for an object to be created, must
-	 *                    not be <code>null</code>
 	 * @return a just created instance of the {@link WizardPage}
 	 */
 	protected abstract N createNewClassifierPage();

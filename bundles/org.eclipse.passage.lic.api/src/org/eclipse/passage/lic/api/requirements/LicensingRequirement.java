@@ -14,12 +14,16 @@ package org.eclipse.passage.lic.api.requirements;
 
 /**
  * The usage constraint defined for specific feature identifier with given
- * version. It is declared at a program development phase during creation of a feature under licensing.
- * Accessed at the program runtime by {@link RequirementResolver}s.
+ * version. It is declared at a program development phase during creation of a
+ * feature under licensing. Accessed at the program runtime by
+ * {@link RequirementResolver}s.
  *
  * @see RequirementResolver
+ * @deprecated use
+ *             {@link org.eclipse.passage.lic.internal.api.requirements.Requirement}
  * @since 0.4.0
  */
+@Deprecated
 public interface LicensingRequirement {
 
 	String getFeatureProvider();
@@ -39,10 +43,10 @@ public interface LicensingRequirement {
 	String getFeatureVersion();
 
 	/**
-	 * Id of the feature under licencing
+	 * Id of the feature under licensing
 	 *
 	 * @since 0.4.0
-	 * */
+	 */
 	String getFeatureIdentifier();
 
 	/**
@@ -56,13 +60,13 @@ public interface LicensingRequirement {
 	String getRestrictionLevel();
 
 	/**
-	 * The original physical source under the program installation,
-	 * where this requirement has been read from by some {@code RequirementResolver}.
+	 * The original physical source under the program installation, where this
+	 * requirement has been read from by some {@code RequirementResolver}.
 	 *
 	 * @see RequirementResolver
 	 * @return physical source (like file) defined by a program under protection
 	 * @since 0.4.0
-	 * */
+	 */
 	Object getRequirementSource();
-	
+
 }

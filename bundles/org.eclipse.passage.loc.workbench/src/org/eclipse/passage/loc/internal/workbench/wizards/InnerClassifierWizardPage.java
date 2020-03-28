@@ -11,7 +11,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
@@ -38,7 +38,7 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 
 	private Text text;
 
-	protected InnerClassifierWizardPage(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	protected InnerClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer,
 			SelectRequest<C> request, IEclipseContext context) {
 		super(InnerClassifierWizardPage.class.getSimpleName(), metadata, initializer);
 		this.request = request;

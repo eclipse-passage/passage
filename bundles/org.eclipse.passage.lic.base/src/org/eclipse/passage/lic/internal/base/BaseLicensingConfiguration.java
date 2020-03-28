@@ -12,11 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base;
 
-import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
+/**
+ * Default data-driven implementation of {@code LicensingConfiguration}. True
+ * {@code data-class}.
+ * 
+ * @see LicensingConfiguration
+ * @see ProductIdentifier
+ * @see ProductVersion
+ */
 public final class BaseLicensingConfiguration implements LicensingConfiguration {
 
 	private final String identifier;
@@ -25,12 +32,6 @@ public final class BaseLicensingConfiguration implements LicensingConfiguration 
 	public BaseLicensingConfiguration(String product, String version) {
 		this.identifier = product;
 		this.version = version;
-	}
-
-	public BaseLicensingConfiguration(Map<String, Object> values) {
-		this(//
-				new BaseProductInfo.Identifier(values).get(), //
-				new BaseProductInfo.Version(values).get());
 	}
 
 	@Override
@@ -76,9 +77,9 @@ public final class BaseLicensingConfiguration implements LicensingConfiguration 
 	@Override
 	public String toString() {
 		StringBuilder output = new StringBuilder();
-		new BaseProductInfo.Identifier(identifier).write(output);
+		new NamedData.Writable<String>(new ProductIdentifier(identifier)).write(output);
 		output.append(';');
-		new BaseProductInfo.Version(version).write(output);
+		new NamedData.Writable<String>(new ProductVersion(version)).write(output);
 		return output.toString();
 	}
 

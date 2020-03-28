@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
+package org.eclipse.passage.lic.emf.meta;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,30 +19,30 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Test;
 
-public class ClassifierMetadataTest {
+public class PlainEntityMetadataTest {
 
 	private final EClass type = EcoreFactory.eINSTANCE.createEClass();
 	private final EStructuralFeature id = EcoreFactory.eINSTANCE.createEAttribute();
 	private final EStructuralFeature name = EcoreFactory.eINSTANCE.createEReference();
 
 	@Test(expected = NullPointerException.class)
-	public void testNullType() {
-		new ClassifierMetadata(null, id, name);
+	public void nullType() {
+		new PlainEntityMetadata(null, id, name);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullId() {
-		new ClassifierMetadata(type, null, name);
+	public void nullId() {
+		new PlainEntityMetadata(type, null, name);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testNullName() {
-		new ClassifierMetadata(type, id, null);
+	public void nullName() {
+		new PlainEntityMetadata(type, id, null);
 	}
 
 	@Test
-	public void testPositive() {
-		ClassifierMetadata metadata = new ClassifierMetadata(type, id, name);
+	public void positive() {
+		PlainEntityMetadata metadata = new PlainEntityMetadata(type, id, name);
 		assertEquals(type, metadata.eClass());
 		assertEquals(id, metadata.identification());
 		assertEquals(name, metadata.naming());

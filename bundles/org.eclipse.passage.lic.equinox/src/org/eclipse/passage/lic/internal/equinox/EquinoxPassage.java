@@ -19,11 +19,12 @@ public final class EquinoxPassage implements Passage {
 
 	@Override
 	public boolean canUse(String featureId) {
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void checkLicense(String featureId) {
+		// accessManager.executeAccessRestrictions(configuration);
 		throw new UnsupportedOperationException();
 	}
 

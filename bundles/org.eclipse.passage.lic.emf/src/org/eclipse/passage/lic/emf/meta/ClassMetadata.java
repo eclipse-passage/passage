@@ -10,15 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.emf.meta;
 
-import java.util.Map;
-import java.util.function.Supplier;
+import java.util.Optional;
 
-public interface ProductInfo extends Supplier<String> {
+/**
+ * 
+ * Searches for EMF metadata for a given java type
+ * 
+ * @since 0.6
+ *
+ */
+@FunctionalInterface
+public interface ClassMetadata {
 
-	void write(Map<String, Object> target);
-
-	void write(StringBuilder target);
+	Optional<EntityMetadata> find(Class<?> clazz);
 
 }

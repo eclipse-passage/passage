@@ -12,11 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.BaseProductInfo;
 import org.eclipse.passage.lic.internal.base.InvalidLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
@@ -30,9 +31,9 @@ public final class ApplicationVersion implements Supplier<String> {
 
 	@Override
 	public String get() {
-		String property = new BaseProductInfo.Version(context::getBrandingProperty).get();
-		if (property != null) {
-			return property;
+		Optional<String> property = new ProductVersion(context::getBrandingProperty).get();
+		if (property.isPresent()) {
+			return property.get();
 		}
 		Bundle bundle = context.getBrandingBundle();
 		if (bundle == null) {

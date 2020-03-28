@@ -21,7 +21,7 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
@@ -59,11 +59,10 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 	 * @param initializer describer initial values for an object to be created, must
 	 *                    not be <code>null</code>
 	 * 
-	 * @see ClassifierMetadata
+	 * @see EntityMetadata
 	 * @see ClassifierInitializer
 	 */
-	protected BaseClassifierWizardPage(String pageName, ClassifierMetadata metadata,
-			ClassifierInitializer initializer) {
+	protected BaseClassifierWizardPage(String pageName, EntityMetadata metadata, ClassifierInitializer initializer) {
 		super(pageName);
 		Objects.requireNonNull(metadata, WorkbenchMessages.BaseClassifierWizardPage_e_null_metadata);
 		Objects.requireNonNull(initializer, WorkbenchMessages.BaseClassifierWizardPage_e_null_initializer);

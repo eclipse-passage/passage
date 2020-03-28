@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 /**
@@ -29,12 +29,12 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 	 *                    <code>null</code>
 	 * 
 	 * @see BaseClassifierWizard
-	 * @see ClassifierMetadata
+	 * @see EntityMetadata
 	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public RootClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	public RootClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		super(metadata, initializer, registry);
 	}

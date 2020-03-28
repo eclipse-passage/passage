@@ -104,7 +104,7 @@ public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>
 	public S service(I id) {
 		if (!hasService(id)) {
 			throw new IllegalStateException(String.format(//
-					BaseMessages.getString("RuntimeRegistry.retrieve_absent_exception"), //$NON-NLS-1$
+					BaseMessages.getString("Registry.retrieve_absent_exception"), //$NON-NLS-1$
 					id));
 		}
 		return services.get(id);

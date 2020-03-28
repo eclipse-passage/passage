@@ -39,8 +39,8 @@ import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
@@ -91,7 +91,7 @@ public class LocWokbench {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
-		ClassifierMetadata metadata = new ClassifierMetadata(registry.getContentClassifier(),
+		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
 				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
 		Wizard wizard = new RootClassifierWizard(metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);

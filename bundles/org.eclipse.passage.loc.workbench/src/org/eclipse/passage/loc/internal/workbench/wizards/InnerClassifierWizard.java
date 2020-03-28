@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
-import org.eclipse.passage.loc.internal.workbench.ClassifierMetadata;
+import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -42,7 +42,7 @@ public final class InnerClassifierWizard<C> extends BaseClassifierWizard<InnerCl
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public InnerClassifierWizard(ClassifierMetadata metadata, ClassifierInitializer initializer,
+	public InnerClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry, SelectRequest<C> request, IEclipseContext context) {
 		super(metadata, initializer, registry);
 		this.request = request;
