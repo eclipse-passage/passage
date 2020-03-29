@@ -19,7 +19,7 @@ import org.osgi.framework.Constants;
 
 final class BundleVendor implements Supplier<String> {
 
-	private Bundle bundle;
+	private final Bundle bundle;
 
 	protected BundleVendor(Bundle bundle) {
 		this.bundle = bundle;

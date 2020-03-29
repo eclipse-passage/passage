@@ -46,8 +46,8 @@ public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
 
-	private Optional<BundleContext> context;
-	private Optional<ServiceComponentRuntime> runtime;
+	private Optional<BundleContext> context = Optional.empty();
+	private Optional<ServiceComponentRuntime> runtime = Optional.empty();
 
 	@Override
 	public StringServiceId id() {
