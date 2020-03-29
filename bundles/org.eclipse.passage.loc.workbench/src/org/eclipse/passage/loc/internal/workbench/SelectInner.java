@@ -27,29 +27,34 @@ import org.eclipse.swt.widgets.Shell;
  * 
  * @param <R> target type to be selected
  */
-public final class SelectRoot<R> implements Supplier<Optional<R>> {
+public final class SelectInner<I, R> implements Supplier<Optional<I>> {
 
-	private final SelectRequest<R> request;
+	private final SelectRequest<I> inner;
+	private final SelectRequest<R> root;
 	private final IEclipseContext context;
 
 	/**
 	 * Constructs the new instance with given select request and context.
 	 * 
-	 * @param request the {@link SelectRequest} select to process
+	 * @param inner   the {@link SelectRequest} to process for the classifier
+	 * @param root    the {@link SelectRequest} to process for the root classifier
 	 * @param context the {@link IEclipseContext} to resolve services, must not be
 	 *                <code>null</code>
 	 */
-	public SelectRoot(SelectRequest<R> request, IEclipseContext context) {
-		Objects.requireNonNull(request, WorkbenchMessages.SelectRoot_e_null_root_request);
+	public SelectInner(SelectRequest<I> inner, SelectRequest<R> root, IEclipseContext context) {
+		Objects.requireNonNull(inner, WorkbenchMessages.SelectRoot_e_null_inner_request);
+		Objects.requireNonNull(root, WorkbenchMessages.SelectRoot_e_null_root_request);
 		Objects.requireNonNull(context, WorkbenchMessages.SelectRoot_e_null_context);
-		this.request = request;
+		this.inner = inner;
+		this.root = root;
 		this.context = context;
 	}
 
 	@Override
-	public final Optional<R> get() {
-		return new ZeroOneMany<>(request.input()).choose(new CreateRoot<R>(context, request.domain(), request.target()),
-				new SelectFromDialog<>(() -> context.get(Shell.class), request.appearance()));
+	public final Optional<I> get() {
+		return new ZeroOneMany<>(inner.input()).choose(
+				new CreateInner<I, R>(context, root.domain(), inner.target(), root),
+				new SelectFromDialog<>(() -> context.get(Shell.class), inner.appearance()));
 	}
 
 }

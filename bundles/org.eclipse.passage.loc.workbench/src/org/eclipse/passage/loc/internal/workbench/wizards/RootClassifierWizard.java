@@ -3,23 +3,15 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
-import org.eclipse.passage.lic.jface.dialogs.LicensingResultDialogs;
-import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 /**
  * Creates new root licensing object. Can be asked for a reference to a created
  * instance.
  * 
- * @since 0.6
- *
  */
 public final class RootClassifierWizard extends BaseClassifierWizard<RootClassifierWizardPage> {
 
@@ -46,20 +38,13 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 	}
 
 	@Override
-	protected RootClassifierWizardPage createNewClassifierPage(EntityMetadata metadata,
-			ClassifierInitializer initializer) {
+	protected RootClassifierWizardPage createNewClassifierPage() {
 		return new RootClassifierWizardPage(metadata, initializer, registry.getFileExtension());
 	}
 
 	@Override
-	public boolean performFinish() {
-		try {
-			getContainer().run(false, false, m -> store(newClassifierPage.path(), newClassifierPage.candidate()));
-			return true;
-		} catch (Exception exception) {
-			process(exception);
-			return false;
-		}
+	protected void store() {
+		store(newClassifierPage.path(), newClassifierPage.candidate());
 	}
 
 	protected void store(String path, EObject candidate) {
@@ -70,17 +55,4 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 		registry.registerSource(fileURI.toFileString());
 	}
 
-	protected ResourceSet resourceSet() {
-		if (registry instanceof IEditingDomainProvider) {
-			IEditingDomainProvider edProvider = (IEditingDomainProvider) registry;
-			return edProvider.getEditingDomain().getResourceSet();
-		}
-		return new ResourceSetImpl();
-	}
-
-	protected void process(Exception exception) {
-		LicensingResultDialogs.openMessageDialog(getShell(), WorkbenchMessages.RootClassifierWizard_title_e_create, //
-				LicensingResults.createError(WorkbenchMessages.RootClassifierWizard_message_e_create,
-						getClass().getName(), exception));
-	}
 }

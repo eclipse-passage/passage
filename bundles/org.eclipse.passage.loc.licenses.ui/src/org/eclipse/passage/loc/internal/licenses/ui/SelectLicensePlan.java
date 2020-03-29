@@ -23,8 +23,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
+import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
-import org.eclipse.passage.loc.users.core.Users;
+import org.eclipse.passage.loc.licenses.core.Licenses;
 
 /**
  * Creates {@link SelectRequest} for {@link LicensePlanDescriptor} from the
@@ -33,17 +34,15 @@ import org.eclipse.passage.loc.users.core.Users;
  * @since 0.6
  *
  */
-public final class SelectLicensePlan implements Supplier<SelectRequest<LicensePlanDescriptor>> {
-
-	private final IEclipseContext context;
+public final class SelectLicensePlan extends SupplySelectRequest<LicensePlanDescriptor> {
 
 	public SelectLicensePlan(IEclipseContext context) {
-		this.context = context;
+		super(context);
 	}
 
 	@Override
 	public SelectRequest<LicensePlanDescriptor> get() {
-		return new SelectRequest<LicensePlanDescriptor>(LicensePlanDescriptor.class, domain(), input(), appearance());
+		return new SelectRequest<>(LicensePlanDescriptor.class, domain(), input(), appearance());
 	}
 
 	private Supplier<Iterable<LicensePlanDescriptor>> input() {
@@ -53,11 +52,11 @@ public final class SelectLicensePlan implements Supplier<SelectRequest<LicensePl
 
 	private Appearance appearance() {
 		return new Appearance(LicensesUiMessages.LicensesUi_select_license_plan, //
-				() -> LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName()));
+				() -> LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName()), labels());
 	}
 
 	private String domain() {
-		return Users.DOMAIN_NAME;
+		return Licenses.DOMAIN_NAME;
 	}
 
 }

@@ -34,8 +34,6 @@ import org.eclipse.swt.widgets.Text;
  * either root of resource or not. Can be asked for a reference to a candidate
  * instance.
  * 
- * @since 0.6
- *
  */
 public abstract class BaseClassifierWizardPage extends WizardPage {
 
@@ -118,15 +116,18 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 		// FIXME: databinding
 		eObject.eSet(identification, id);
 		if (id.isEmpty()) {
-			setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_identifier);
+			setErrorMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_identifier);
 			validationResult = false;
 		}
 		String name = textName.getText();
 		// FIXME: databinding
 		eObject.eSet(naming, name);
 		if (name.isEmpty()) {
-			setMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_name);
+			setErrorMessage(WorkbenchMessages.CreateFileWizardPage_e_specify_name);
 			validationResult = false;
+		}
+		if (validationResult) {
+			setErrorMessage(null);
 		}
 		return validationResult;
 	}

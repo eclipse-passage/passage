@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
+import org.eclipse.passage.loc.internal.workbench.wizards.InnerClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 
 /**
@@ -26,9 +27,12 @@ import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
  * with {@link RootClassifierWizard}. Will return either root object of created
  * resource or {@link Optional#empty()}
  * 
- * @param <R> root classifier to be created
+ * @param <I> inner classifier to be created
+ * @param <R> root classifier to store created if not present
  */
-public final class CreateRoot<R> extends CreateClassifier<R> {
+public final class CreateInner<I, R> extends CreateClassifier<I> {
+
+	private final SelectRequest<R> request;
 
 	/**
 	 * Constructs the new instance with given context, domain and classifier.
@@ -41,14 +45,15 @@ public final class CreateRoot<R> extends CreateClassifier<R> {
 	 * @param classifier the class of object to be created and stored in resource,
 	 *                   must not be <code>null</code>
 	 */
-	public CreateRoot(IEclipseContext context, String domain, Class<R> classifier) {
+	public CreateInner(IEclipseContext context, String domain, Class<I> classifier, SelectRequest<R> request) {
 		super(context, domain, classifier);
+		this.request = request;
 	}
 
 	@Override
-	protected BaseClassifierWizard<?> createWizard(Class<R> clazz, EntityMetadata metadata,
+	protected BaseClassifierWizard<?> createWizard(Class<I> clazz, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
-		return new RootClassifierWizard(metadata, initializer, registry);
+		return new InnerClassifierWizard<I, R>(clazz, metadata, initializer, registry, request, context);
 	}
 
 }

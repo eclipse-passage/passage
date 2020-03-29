@@ -45,8 +45,12 @@ public class WorkbenchMessages extends NLS {
 	public static String RedoHandler_label_base;
 	public static String RedoHandler_label_pattern;
 	public static String BaseClassifierWizard_e_registry_null;
-	public static String RootClassifierWizard_message_e_create;
-	public static String RootClassifierWizard_title_e_create;
+	public static String InnerClassifierWizardPage_e_specify_container;
+	public static String InnerClassifierWizardPage_label_container;
+	public static String InnerClassifierWizardPage_text_select;
+	public static String BaseClassifierWizard_message_e_cancelled;
+	public static String BaseClassifierWizard_message_e_create;
+	public static String BaseClassifierWizard_title_e_create;
 	public static String SelectFromDialog_e_null_appearance;
 	public static String SelectFromDialog_e_null_initial;
 	public static String SelectFromDialog_e_null_shell;
@@ -55,7 +59,8 @@ public class WorkbenchMessages extends NLS {
 	public static String SelectRequest_e_input_null;
 	public static String SelectRequest_e_target_null;
 	public static String SelectRoot_e_null_context;
-	public static String SelectRoot_e_null_request;
+	public static String SelectRoot_e_null_inner_request;
+	public static String SelectRoot_e_null_root_request;
 	public static String UndoHandler_label_base;
 	public static String UndoHandler_label_handler;
 	static {
