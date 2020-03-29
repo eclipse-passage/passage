@@ -34,8 +34,6 @@ import org.eclipse.swt.widgets.Text;
  * either root of resource or not. Can be asked for a reference to a candidate
  * instance.
  * 
- * @since 0.6
- *
  */
 public abstract class BaseClassifierWizardPage extends WizardPage {
 

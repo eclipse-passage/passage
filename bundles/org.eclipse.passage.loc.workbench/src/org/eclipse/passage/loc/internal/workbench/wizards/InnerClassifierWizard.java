@@ -20,8 +20,6 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
  * @param <I> inner classifier to be created
  * @param <R> root classifier to store created if not present
  * 
- * @since 0.6
- *
  */
 public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<I, R>> {
 

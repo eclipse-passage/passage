@@ -31,8 +31,6 @@ import org.eclipse.passage.loc.users.core.Users;
  * Creates {@link SelectRequest} for {@link UserOriginDescriptor} from the given
  * {@link IEclipseContext}.
  * 
- * @since 0.6
- *
  */
 public final class SelectUserOrigin extends SupplySelectRequest<UserOriginDescriptor> {
 

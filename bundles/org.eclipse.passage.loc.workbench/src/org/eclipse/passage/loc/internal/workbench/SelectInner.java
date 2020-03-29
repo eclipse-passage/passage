@@ -25,8 +25,6 @@ import org.eclipse.swt.widgets.Shell;
  * Selects the root classifier according to {@link SelectRequest} using
  * {@link CreateRoot} and {@link SelectFromDialog}
  * 
- * @since 0.6
- *
  * @param <R> target type to be selected
  */
 public final class SelectInner<I, R> implements Supplier<Optional<I>> {
@@ -44,7 +42,8 @@ public final class SelectInner<I, R> implements Supplier<Optional<I>> {
 	 *                <code>null</code>
 	 */
 	public SelectInner(SelectRequest<I> inner, SelectRequest<R> root, IEclipseContext context) {
-		Objects.requireNonNull(inner, WorkbenchMessages.SelectRoot_e_null_request);
+		Objects.requireNonNull(inner, WorkbenchMessages.SelectRoot_e_null_inner_request);
+		Objects.requireNonNull(root, WorkbenchMessages.SelectRoot_e_null_root_request);
 		Objects.requireNonNull(context, WorkbenchMessages.SelectRoot_e_null_context);
 		this.inner = inner;
 		this.root = root;

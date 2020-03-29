@@ -18,8 +18,6 @@ import org.eclipse.swt.widgets.Text;
  * Provides UI to to fulfill the field values for a root classifier to be
  * created, including path to store the new resource.
  * 
- * @since 0.6
- * 
  * @see BaseClassifierWizardPage
  *
  */

@@ -34,8 +34,6 @@ import org.eclipse.swt.widgets.Shell;
  * Will return either root object of created resource or
  * {@link Optional#empty()}
  * 
- * @since 0.6
- *
  * @param <C> classifier to be created
  */
 public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {

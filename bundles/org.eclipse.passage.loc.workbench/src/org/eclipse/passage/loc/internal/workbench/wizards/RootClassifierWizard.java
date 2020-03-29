@@ -12,8 +12,6 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
  * Creates new root licensing object. Can be asked for a reference to a created
  * instance.
  * 
- * @since 0.6
- *
  */
 public final class RootClassifierWizard extends BaseClassifierWizard<RootClassifierWizardPage> {
 

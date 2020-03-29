@@ -34,8 +34,6 @@ import org.eclipse.passage.loc.users.core.Users;
  * {@link Optional} with selected/created license plan or
  * {@link Optional#empty()}
  * 
- * @since 0.6
- *
  */
 public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
 

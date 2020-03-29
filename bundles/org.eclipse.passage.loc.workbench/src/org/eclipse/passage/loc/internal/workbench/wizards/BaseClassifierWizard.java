@@ -38,7 +38,6 @@ import org.osgi.framework.FrameworkUtil;
  * for a reference to a created instance.
  * 
  * @param <N> a sub-type of {@link BaseClassifierWizardPage} to be used
- * @since 0.6
  *
  */
 public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {

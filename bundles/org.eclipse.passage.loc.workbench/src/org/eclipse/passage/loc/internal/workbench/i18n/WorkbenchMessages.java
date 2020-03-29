@@ -59,7 +59,8 @@ public class WorkbenchMessages extends NLS {
 	public static String SelectRequest_e_input_null;
 	public static String SelectRequest_e_target_null;
 	public static String SelectRoot_e_null_context;
-	public static String SelectRoot_e_null_request;
+	public static String SelectRoot_e_null_inner_request;
+	public static String SelectRoot_e_null_root_request;
 	public static String UndoHandler_label_base;
 	public static String UndoHandler_label_handler;
 	static {

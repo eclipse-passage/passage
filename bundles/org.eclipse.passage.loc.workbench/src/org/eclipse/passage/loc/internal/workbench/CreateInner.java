@@ -27,8 +27,6 @@ import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
  * with {@link RootClassifierWizard}. Will return either root object of created
  * resource or {@link Optional#empty()}
  * 
- * @since 0.6
- *
  * @param <I> inner classifier to be created
  * @param <R> root classifier to store created if not present
  */

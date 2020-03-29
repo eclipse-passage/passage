@@ -30,8 +30,6 @@ import org.eclipse.swt.widgets.Text;
  * @param <I> inner classifier to be created
  * @param <R> root classifier to store created if not present
  * 
- * @since 0.6
- * 
  * @see BaseClassifierWizardPage
  *
  */

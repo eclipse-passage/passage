@@ -21,8 +21,6 @@ import org.eclipse.passage.loc.jface.dialogs.Appearance;
 /**
  * Encapsulates the information required to select the classifier
  * 
- * @since 0.6
- *
  * @param <R> target type to be selected
  */
 public final class SelectRequest<R> {

@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
@@ -33,9 +32,8 @@ import org.eclipse.swt.widgets.Shell;
  * Selects the classifier from the given input with
  * {@link FilteredSelectionDialog}
  * 
- * @since 0.6
- *
- * @param <C> classifier to be selected see {@link EClass#getName()}
+ * @param <C> classifier to be selected
+ * 
  */
 public final class SelectFromDialog<C> implements Function<Iterable<C>, Optional<C>> {
 

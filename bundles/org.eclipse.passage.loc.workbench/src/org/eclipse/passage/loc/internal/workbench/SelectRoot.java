@@ -25,8 +25,6 @@ import org.eclipse.swt.widgets.Shell;
  * Selects the root classifier according to {@link SelectRequest} using
  * {@link CreateRoot} and {@link SelectFromDialog}
  * 
- * @since 0.6
- *
  * @param <R> target type to be selected
  */
 public final class SelectRoot<R> implements Supplier<Optional<R>> {
@@ -42,7 +40,7 @@ public final class SelectRoot<R> implements Supplier<Optional<R>> {
 	 *                <code>null</code>
 	 */
 	public SelectRoot(SelectRequest<R> request, IEclipseContext context) {
-		Objects.requireNonNull(request, WorkbenchMessages.SelectRoot_e_null_request);
+		Objects.requireNonNull(request, WorkbenchMessages.SelectRoot_e_null_root_request);
 		Objects.requireNonNull(context, WorkbenchMessages.SelectRoot_e_null_context);
 		this.request = request;
 		this.context = context;
