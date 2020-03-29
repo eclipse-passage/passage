@@ -28,6 +28,9 @@ public class EquinoxMessages extends NLS {
 
 	public static String ComponentConfigurationResolver_error_invalid_bundle_context;
 	public static String ComponentConfigurationResolver_error_invalid_component_rt;
+
+	public static String ComponentRequirements_error_no_resource;
+	public static String ComponentRequirements_requirement_for_resource;
 	public static String BundleRequirements_error_bundle_context;
 
 	public static String BundleRequirements_no_context;
@@ -43,6 +46,10 @@ public class EquinoxMessages extends NLS {
 	public static String RequirementsFromCapability_no_attributes;
 
 	public static String RequirementsFromCapability_no_feature_id;
+
+	public static String RequirementsFromComponent_no_feature_id;
+
+	public static String RequirementsFromComponent_no_properties;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EquinoxMessages.class);

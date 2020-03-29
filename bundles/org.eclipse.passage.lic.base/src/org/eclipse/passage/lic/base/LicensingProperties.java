@@ -21,20 +21,38 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public final class LicensingProperties {
 
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.ComponentLicFeatureId}
+	 */
+	@Deprecated
 	public static final String LICENSING_FEATURE_IDENTIFIER = "licensing.feature.identifier"; //$NON-NLS-1$
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.ComponentLicFeatureVersion}
+	 */
+	@Deprecated
 	public static final String LICENSING_FEATURE_VERSION = "licensing.feature.version"; //$NON-NLS-1$
-
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.ComponentLicFeatureName}
+	 */
+	@Deprecated
 	public static final String LICENSING_FEATURE_NAME = "licensing.feature.name"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_NAME_DEFAULT = BaseMessages
 			.getString("LicensingProperties_license_management_title"); //$NON-NLS-1$
-
+	/**
+	 * @deprecated use
+	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.ComponentLicFeatureProvider}
+	 */
+	@Deprecated
 	public static final String LICENSING_FEATURE_PROVIDER = "licensing.feature.provider"; //$NON-NLS-1$
 	public static final String LICENSING_FEATURE_PROVIDER_DEFAULT = BaseMessages
 			.getString("LicensingProperties_eclipse_passage_title"); //$NON-NLS-1$
 
 	/**
 	 * Use
-	 * {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel. META}
+	 * {@link org.eclipse.passage.lic.internal.base.restrictions.RestrictionLevel}
 	 */
 	@Deprecated
 	public static final String LICENSING_RESTRICTION_LEVEL = "licensing.restriction.level"; //$NON-NLS-1$

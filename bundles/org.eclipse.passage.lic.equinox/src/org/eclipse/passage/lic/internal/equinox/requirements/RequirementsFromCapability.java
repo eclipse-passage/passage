@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequireme
 import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Constants;
 import org.osgi.framework.wiring.BundleCapability;
 
 /**
@@ -67,7 +66,7 @@ final class RequirementsFromCapability implements Supplier<Requirement> {
 		String name = new CapabilityLicFeatureName(attributes).get()//
 				.orElse(feature);
 		String provider = new CapabilityLicFeatureProvider(attributes).get()//
-				.orElseGet(this::bundleVendor);
+				.orElseGet(new BundleVendor(bundle));
 		RestrictionLevel level = new CapabilityLicFeatureLevel(attributes).get()//
 				.<RestrictionLevel>map(RestrictionLevel.Of::new) //
 				.orElseGet(new DefaultRestrictionLevel());
@@ -81,7 +80,7 @@ final class RequirementsFromCapability implements Supplier<Requirement> {
 	private Requirement requirementForAttributes() {
 		return new UnsatisfiableRequirement(//
 				NLS.bind(EquinoxMessages.RequirementsFromCapability_no_attributes, //
-						capability.getNamespace(), bundleName()), //
+						capability.getNamespace(), new BundleName(bundle).get()), //
 				bundle//
 		).get();
 	}
@@ -90,17 +89,9 @@ final class RequirementsFromCapability implements Supplier<Requirement> {
 		return new UnsatisfiableRequirement(//
 				NLS.bind(EquinoxMessages.RequirementsFromCapability_no_feature_id, //
 						capability.getNamespace(), //
-						bundleName()), //
+						new BundleName(bundle).get()), //
 				bundle //
 		).get();
-	}
-
-	private String bundleName() {
-		return bundle.getHeaders().get(Constants.BUNDLE_NAME);
-	}
-
-	private String bundleVendor() {
-		return bundle.getHeaders().get(Constants.BUNDLE_VENDOR);
 	}
 
 }

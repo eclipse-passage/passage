@@ -41,7 +41,11 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
+/**
+ * @deprecated use {@linkplain ComponentRequirements}
+ */
 @Component
+@Deprecated
 public class ComponentConfigurationResolver implements RequirementResolver {
 
 	private Logger logger;
