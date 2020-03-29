@@ -21,25 +21,29 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+//FIXME: AF: use or remove <I>
 /**
  * Provides UI to to fulfill the field values for an inner classifier to be
  * created, including container object.
+ * 
+ * @param <I> inner classifier to be created
+ * @param <R> root classifier to store created if not present
  * 
  * @since 0.6
  * 
  * @see BaseClassifierWizardPage
  *
  */
-public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage {
+public final class InnerClassifierWizardPage<I, R> extends BaseClassifierWizardPage {
 
-	private final SelectRequest<C> request;
+	private final SelectRequest<R> request;
 	private final IEclipseContext context;
 	private final String container = "Container"; //$NON-NLS-1$ //FIXME: we need to resolve EClass and get its label!!!
 
 	private Text text;
 
 	protected InnerClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer,
-			SelectRequest<C> request, IEclipseContext context) {
+			SelectRequest<R> request, IEclipseContext context) {
 		super(InnerClassifierWizardPage.class.getSimpleName(), metadata, initializer);
 		this.request = request;
 		this.context = context;
@@ -52,7 +56,7 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 		super.createFieldControls(composite);
 	}
 
-	private Text createTextButtonBlock(Composite composite, String labelText, Supplier<Optional<C>> supplier) {
+	private Text createTextButtonBlock(Composite composite, String labelText, Supplier<Optional<R>> supplier) {
 		Label label = new Label(composite, SWT.NONE);
 		label.setText(labelText);
 		label.setLayoutData(GridDataFactory.fillDefaults().create());
@@ -66,9 +70,9 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 		return parent;
 	}
 
-	private void updateText(Optional<C> optional) {
+	private void updateText(Optional<R> optional) {
 		if (optional.isPresent()) {
-			C present = optional.get();
+			R present = optional.get();
 			text.setData(present);
 			text.setText(request.appearance().labelProvider().getText(present));
 		} else {
@@ -84,8 +88,8 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 		Optional.ofNullable(eObject.eContainingFeature()).ifPresent(f -> updateText(container(eObject.eGet(f))));
 	}
 
-	private Optional<C> selectContainer() {
-		Collection<C> initial = new ArrayList<>();
+	private Optional<R> selectContainer() {
+		Collection<R> initial = new ArrayList<>();
 		container().ifPresent(initial::add);
 		return new SelectRoot<>(request, context).get();
 	}
@@ -99,11 +103,11 @@ public final class InnerClassifierWizardPage<C> extends BaseClassifierWizardPage
 		return super.validatePage();
 	}
 
-	protected Optional<C> container() {
+	protected Optional<R> container() {
 		return container(text.getData());
 	}
 
-	protected Optional<C> container(Object nullable) {
+	protected Optional<R> container(Object nullable) {
 		return Optional.ofNullable(nullable)//
 				.filter(request.target()::isInstance)//
 				.flatMap(d -> Optional.of(request.target().cast(d)));

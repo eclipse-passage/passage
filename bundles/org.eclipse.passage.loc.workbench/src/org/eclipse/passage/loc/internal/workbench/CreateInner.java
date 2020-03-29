@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.workbench;
 import java.util.Optional;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
@@ -30,7 +29,8 @@ import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
  * 
  * @since 0.6
  *
- * @param <I> classifier to be selected see {@link EClass#getName()}
+ * @param <I> inner classifier to be created
+ * @param <R> root classifier to store created if not present
  */
 public final class CreateInner<I, R> extends CreateClassifier<I> {
 
@@ -53,9 +53,9 @@ public final class CreateInner<I, R> extends CreateClassifier<I> {
 	}
 
 	@Override
-	protected BaseClassifierWizard<?> createWizard(EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry) {
-		return new InnerClassifierWizard<R>(metadata, initializer, registry, request, context);
+	protected BaseClassifierWizard<?> createWizard(Class<I> clazz, EntityMetadata metadata,
+			ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
+		return new InnerClassifierWizard<I, R>(clazz, metadata, initializer, registry, request, context);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
+import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.workbench.LocWokbench;
@@ -16,13 +17,17 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
  * Creates new root licensing object. Can be asked for a reference to a created
  * instance.
  * 
+ * @param <I> inner classifier to be created
+ * @param <R> root classifier to store created if not present
+ * 
  * @since 0.6
  *
  */
-public final class InnerClassifierWizard<C> extends BaseClassifierWizard<InnerClassifierWizardPage<C>> {
+public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<I, R>> {
 
+	private final Class<I> clazz;
 	private final IEclipseContext context;
-	private final SelectRequest<C> request;
+	private final SelectRequest<R> request;
 
 	/**
 	 * Creates a new wizard for root licensing object with given metadata,
@@ -42,16 +47,18 @@ public final class InnerClassifierWizard<C> extends BaseClassifierWizard<InnerCl
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public InnerClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry, SelectRequest<C> request, IEclipseContext context) {
+	public InnerClassifierWizard(Class<I> clazz, EntityMetadata metadata, ClassifierInitializer initializer,
+			EditingDomainRegistry<?> registry, SelectRequest<R> request, IEclipseContext context) {
 		super(metadata, initializer, registry);
+		this.clazz = clazz;
 		this.request = request;
 		this.context = context;
 	}
 
 	@Override
-	protected InnerClassifierWizardPage<C> createNewClassifierPage() {
-		return new InnerClassifierWizardPage<C>(metadata, initializer, request, context);
+	protected InnerClassifierWizardPage<I, R> createNewClassifierPage() {
+		return new InnerClassifierWizardPage<I, R>(context.get(ComposableClassMetadata.class).find(clazz).get(),
+				initializer, request, context);
 	}
 
 	@Override
@@ -59,7 +66,7 @@ public final class InnerClassifierWizard<C> extends BaseClassifierWizard<InnerCl
 		store(newClassifierPage.container(), newClassifierPage.candidate());
 	}
 
-	protected void store(Optional<C> container, EObject candidate) {
+	protected void store(Optional<R> container, EObject candidate) {
 		if (!container.isPresent()) {
 			return;
 		}

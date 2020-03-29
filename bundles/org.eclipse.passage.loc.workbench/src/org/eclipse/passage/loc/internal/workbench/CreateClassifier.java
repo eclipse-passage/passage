@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -37,13 +36,13 @@ import org.eclipse.swt.widgets.Shell;
  * 
  * @since 0.6
  *
- * @param <C> classifier to be selected see {@link EClass#getName()}
+ * @param <C> classifier to be created
  */
 public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 
 	protected final IEclipseContext context;
 	private final String domain;
-	private final Class<C> classifierClass;
+	private final Class<C> clazz;
 
 	/**
 	 * Constructs the new instance with given context, domain and classifier.
@@ -62,7 +61,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		Objects.requireNonNull(classifier, WorkbenchMessages.CreateDomainResource_e_null_classifier);
 		this.context = context;
 		this.domain = domain;
-		this.classifierClass = classifier;
+		this.clazz = classifier;
 	}
 
 	@Override
@@ -70,15 +69,16 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
 		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
-		return showWizard(initializer, registry)//
-				.filter(classifierClass::isInstance)//
-				.flatMap(e -> Optional.of(classifierClass.cast(e)));
+		return showWizard(clazz, initializer, registry)//
+				.filter(clazz::isInstance)//
+				.flatMap(e -> Optional.of(clazz.cast(e)));
 	}
 
-	protected Optional<EObject> showWizard(ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
+	protected Optional<EObject> showWizard(Class<C> clazz, ClassifierInitializer initializer,
+			EditingDomainRegistry<?> registry) {
 		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
 				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
-		BaseClassifierWizard<?> wizard = createWizard(metadata, initializer, registry);
+		BaseClassifierWizard<?> wizard = createWizard(clazz, metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
@@ -90,7 +90,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		return wizard.created();
 	}
 
-	protected abstract BaseClassifierWizard<?> createWizard(EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry);
+	protected abstract BaseClassifierWizard<?> createWizard(Class<C> clazz, EntityMetadata metadata,
+			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
 
 }
