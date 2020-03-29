@@ -11,6 +11,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
+import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
@@ -38,7 +39,6 @@ public final class InnerClassifierWizardPage<I, R> extends BaseClassifierWizardP
 
 	private final SelectRequest<R> request;
 	private final IEclipseContext context;
-	private final String container = "Container"; //$NON-NLS-1$ //FIXME: we need to resolve EClass and get its label!!!
 
 	private Text text;
 
@@ -51,9 +51,17 @@ public final class InnerClassifierWizardPage<I, R> extends BaseClassifierWizardP
 
 	@Override
 	protected void createFieldControls(Composite composite) {
-		String label = container;
-		text = createTextButtonBlock(composite, label, () -> selectContainer());
+		text = createTextButtonBlock(composite, labelForRoot(), () -> selectContainer());
 		super.createFieldControls(composite);
+	}
+
+	private String labelForRoot() {
+		Optional<EntityMetadata> found = context.get(ComposableClassMetadata.class).find(request.target());
+		if (found.isPresent()) {
+			// FIXME: AF: we need to employ EMF Edit resources here via generic access
+			return found.get().eClass().getName();
+		}
+		return WorkbenchMessages.InnerClassifierWizardPage_label_container;
 	}
 
 	private Text createTextButtonBlock(Composite composite, String labelText, Supplier<Optional<R>> supplier) {
@@ -97,7 +105,7 @@ public final class InnerClassifierWizardPage<I, R> extends BaseClassifierWizardP
 	@Override
 	protected boolean validatePage() {
 		if (!Optional.ofNullable(text.getData()).isPresent()) {
-			setErrorMessage(NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container, container));
+			setErrorMessage(NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container, labelForRoot()));
 			return false;
 		}
 		return super.validatePage();
