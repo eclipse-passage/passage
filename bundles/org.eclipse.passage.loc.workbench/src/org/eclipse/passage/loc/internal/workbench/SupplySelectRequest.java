@@ -14,16 +14,16 @@ package org.eclipse.passage.loc.internal.workbench;
 
 import java.util.function.Supplier;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 
 public abstract class SupplySelectRequest<C> implements Supplier<SelectRequest<C>> {
 
-	protected final IEclipseContext context;
+	protected final MandatoryService context;
 
-	public SupplySelectRequest(IEclipseContext context) {
+	public SupplySelectRequest(MandatoryService context) {
 		this.context = context;
 	}
 

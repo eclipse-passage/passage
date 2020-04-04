@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -29,12 +29,12 @@ import org.eclipse.passage.loc.users.core.Users;
 
 /**
  * Creates {@link SelectRequest} for {@link UserOriginDescriptor} from the given
- * {@link IEclipseContext}.
+ * {@link MandatoryService}.
  * 
  */
 public final class SelectUserOrigin extends SupplySelectRequest<UserOriginDescriptor> {
 
-	public SelectUserOrigin(IEclipseContext context) {
+	public SelectUserOrigin(MandatoryService context) {
 		super(context);
 	}
 

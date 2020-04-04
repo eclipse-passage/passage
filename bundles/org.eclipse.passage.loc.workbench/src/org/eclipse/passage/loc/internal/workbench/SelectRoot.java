@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ZeroOneMany;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.widgets.Shell;
@@ -30,16 +30,16 @@ import org.eclipse.swt.widgets.Shell;
 public final class SelectRoot<R> implements Supplier<Optional<R>> {
 
 	private final SelectRequest<R> request;
-	private final IEclipseContext context;
+	private final MandatoryService context;
 
 	/**
 	 * Constructs the new instance with given select request and context.
 	 * 
 	 * @param request the {@link SelectRequest} select to process
-	 * @param context the {@link IEclipseContext} to resolve services, must not be
+	 * @param context the {@link MandatoryService} to resolve services, must not be
 	 *                <code>null</code>
 	 */
-	public SelectRoot(SelectRequest<R> request, IEclipseContext context) {
+	public SelectRoot(SelectRequest<R> request, MandatoryService context) {
 		Objects.requireNonNull(request, WorkbenchMessages.SelectRoot_e_null_root_request);
 		Objects.requireNonNull(context, WorkbenchMessages.SelectRoot_e_null_context);
 		this.request = request;

@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ZeroOneMany;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.widgets.Shell;
@@ -31,17 +31,17 @@ public final class SelectInner<I, R> implements Supplier<Optional<I>> {
 
 	private final SelectRequest<I> inner;
 	private final SelectRequest<R> root;
-	private final IEclipseContext context;
+	private final MandatoryService context;
 
 	/**
 	 * Constructs the new instance with given select request and context.
 	 * 
 	 * @param inner   the {@link SelectRequest} to process for the classifier
 	 * @param root    the {@link SelectRequest} to process for the root classifier
-	 * @param context the {@link IEclipseContext} to resolve services, must not be
+	 * @param context the {@link MandatoryService} to resolve services, must not be
 	 *                <code>null</code>
 	 */
-	public SelectInner(SelectRequest<I> inner, SelectRequest<R> root, IEclipseContext context) {
+	public SelectInner(SelectRequest<I> inner, SelectRequest<R> root, MandatoryService context) {
 		Objects.requireNonNull(inner, WorkbenchMessages.SelectRoot_e_null_inner_request);
 		Objects.requireNonNull(root, WorkbenchMessages.SelectRoot_e_null_root_request);
 		Objects.requireNonNull(context, WorkbenchMessages.SelectRoot_e_null_context);

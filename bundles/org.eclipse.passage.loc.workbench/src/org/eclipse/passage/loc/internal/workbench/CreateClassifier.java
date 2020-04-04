@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -24,6 +23,7 @@ import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 
-	protected final IEclipseContext context;
+	protected final MandatoryService context;
 	private final String domain;
 	private final Class<C> clazz;
 
@@ -46,14 +46,14 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	 * Constructs the new instance with given context, domain and classifier.
 	 * Actually either domain or classifier should be enough - to be fixed later.
 	 * 
-	 * @param context    the {@link IEclipseContext} to resolve services, must not
+	 * @param context    the {@link MandatoryService} to resolve services, must not
 	 *                   be <code>null</code>
 	 * @param domain     the licensing domain to create resource for, must not be
 	 *                   <code>null</code>
 	 * @param classifier the class of object to be created and stored in resource,
 	 *                   must not be <code>null</code>
 	 */
-	public CreateClassifier(IEclipseContext context, String domain, Class<C> classifier) {
+	public CreateClassifier(MandatoryService context, String domain, Class<C> classifier) {
 		Objects.requireNonNull(context, WorkbenchMessages.CreateDomainResource_e_null_context);
 		Objects.requireNonNull(domain, WorkbenchMessages.CreateDomainResource_e_null_domain);
 		Objects.requireNonNull(classifier, WorkbenchMessages.CreateDomainResource_e_null_classifier);
@@ -72,11 +72,11 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 				.flatMap(e -> Optional.of(clazz.cast(e)));
 	}
 
-	protected Optional<EObject> showWizard(Class<C> clazz, ClassifierInitializer initializer,
+	protected Optional<EObject> showWizard(Class<C> type, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
 				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
-		BaseClassifierWizard<?> wizard = createWizard(clazz, metadata, initializer, registry);
+		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
@@ -88,7 +88,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		return wizard.created();
 	}
 
-	protected abstract BaseClassifierWizard<?> createWizard(Class<C> clazz, EntityMetadata metadata,
+	protected abstract BaseClassifierWizard<?> createWizard(Class<C> type, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
 
 }

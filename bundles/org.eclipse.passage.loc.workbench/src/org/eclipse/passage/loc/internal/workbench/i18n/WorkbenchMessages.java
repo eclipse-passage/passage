@@ -51,6 +51,7 @@ public class WorkbenchMessages extends NLS {
 	public static String BaseClassifierWizard_message_e_cancelled;
 	public static String BaseClassifierWizard_message_e_create;
 	public static String BaseClassifierWizard_title_e_create;
+	public static String MandatoryEclipseContext_e_null_context;
 	public static String SelectFromDialog_e_null_appearance;
 	public static String SelectFromDialog_e_null_initial;
 	public static String SelectFromDialog_e_null_shell;
