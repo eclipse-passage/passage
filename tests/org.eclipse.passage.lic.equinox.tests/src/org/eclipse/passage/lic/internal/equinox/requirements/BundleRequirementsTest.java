@@ -36,7 +36,7 @@ public final class BundleRequirementsTest {
 	@Test
 	public void allRequirements() throws InvalidSyntaxException {
 		Collection<Requirement> list = service().all();
-		assertTrue(list.size() > 2); // at least two are declared in our test data bundle
+		assertTrue(list.size() >= 2); // at least two are declared in our test data bundle
 	}
 
 	private Optional<ResolvedRequirements> mayBeService() throws InvalidSyntaxException {
