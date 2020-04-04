@@ -18,6 +18,7 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
+@SuppressWarnings("hiding")
 class FakeBundle implements Bundle {
 
 	final String name = "fake name"; //$NON-NLS-1$
