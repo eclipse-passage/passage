@@ -35,6 +35,8 @@
 		<module>../../features/org.eclipse.passage.lic.equinox.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.base.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.equinox.tests</module>
+		<module>../../tests/org.eclipse.passage.lic.equinox.tests.data.requirements</module>
+		
 
 		<module>../../bundles/org.eclipse.passage.lic.bc</module>
 		<module>../../features/org.eclipse.passage.lic.bc.feature</module>
