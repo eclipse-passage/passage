@@ -8,10 +8,9 @@ public final class BundleVendorTest {
 
 	@Test
 	public void readVendor() {
-		FakeBundle bundle = new FakeBundle();
 		assertEquals(//
-				bundle.vendor, // $NON-NLS-1$
-				new BundleVendor(bundle).get());
+				"Eclipse Passage", //$NON-NLS-1$
+				new BundleVendor(new DataBundle().get()).get());
 	}
 
 	@Test(expected = NullPointerException.class)

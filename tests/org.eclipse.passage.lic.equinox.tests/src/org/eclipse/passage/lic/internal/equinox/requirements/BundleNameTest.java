@@ -8,10 +8,9 @@ public final class BundleNameTest {
 
 	@Test
 	public void readName() {
-		FakeBundle bundle = new FakeBundle();
 		assertEquals(//
-				bundle.name, // $NON-NLS-1$
-				new BundleName(bundle).get());
+				"Data for Passage LIC Equinox requirements tests", //$NON-NLS-1$
+				new BundleName(new DataBundle().get()).get());
 	}
 
 	@Test(expected = NullPointerException.class)

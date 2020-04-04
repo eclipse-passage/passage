@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
@@ -79,7 +78,7 @@ public final class ComponentRequirements implements ResolvedRequirements {
 	}
 
 	@Override
-	public Collection<Requirement> all(LicensingConfiguration configuration) {
+	public Collection<Requirement> all() {
 		if (!runtime.isPresent()) {
 			return unsafisifiable(ServiceComponentRuntime.class.getSimpleName());
 		}

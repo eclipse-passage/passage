@@ -32,7 +32,7 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
  * Looks for {@linkplain Requirement} declarations in the given
  * {@code OSGi component} ({@linkplain ComponentDescriptionDTO}).
  * 
- * @see RequirementsFromCapability
+ * @see RequirementFromCapability
  * @see BundleRequirements
  */
 @SuppressWarnings("restriction")

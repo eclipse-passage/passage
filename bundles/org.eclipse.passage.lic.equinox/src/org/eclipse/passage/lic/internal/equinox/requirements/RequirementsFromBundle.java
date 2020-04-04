@@ -23,7 +23,7 @@ import org.osgi.framework.Bundle;
  * Looks for {@linkplain Requirement} declarations among all the
  * licensing-namespaced {@code Capabilities} in the given {@code Bundle}
  * 
- * @see RequirementsFromCapability
+ * @see RequirementFromCapability
  * @see BundleRequirements
  */
 @SuppressWarnings("restriction")
@@ -38,8 +38,8 @@ final class RequirementsFromBundle implements Supplier<List<Requirement>> {
 	@Override
 	public List<Requirement> get() {
 		return new LicensingFeatureCapabilitiesFromBundle(bundle).get().get().stream()//
-				.map(capability -> new RequirementsFromCapability(bundle, capability))//
-				.map(RequirementsFromCapability::get) //
+				.map(capability -> new RequirementFromCapability(bundle, capability))//
+				.map(RequirementFromCapability::get) //
 				.collect(Collectors.toList());
 	}
 
