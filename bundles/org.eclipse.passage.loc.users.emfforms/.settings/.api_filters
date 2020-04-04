@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.loc.users.emfforms" version="2">
     <resource path="META-INF/MANIFEST.MF">
-        <filter comment="Bug 561771 - removed functionality was not intended to be an API" id="923795461">
+        <filter comment="Bug 561771 - removed functionality was not intended to be an API" id="926941240">
             <message_arguments>
                 <message_argument value="0.6.0"/>
                 <message_argument value="0.5.0"/>
