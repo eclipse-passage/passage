@@ -40,11 +40,14 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
+import org.eclipse.passage.loc.internal.users.ui.SelectUser;
+import org.eclipse.passage.loc.internal.users.ui.SelectUserOrigin;
+import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
@@ -58,11 +61,11 @@ public class LicenseExportHandler {
 			IEclipseContext context) {
 		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		Shell shell = context.get(Shell.class);
-		UserRegistry userRegistry = context.get(UserRegistry.class);
 		ProductRegistry productRegistry = context.get(ProductRegistry.class);
 		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
-		UserDescriptor userDescriptor = UsersUi.selectUserDescriptor(shell, provider, userRegistry, null);
-		if (userDescriptor == null) {
+		java.util.Optional<UserDescriptor> user = new SelectInner<UserDescriptor, UserOriginDescriptor>(
+				new SelectUser(context).get(), new SelectUserOrigin(context).get(), context).get();
+		if (!user.isPresent()) {
 			return;
 		}
 		ProductVersionDescriptor productVersion = ProductsUi.selectProductVersionDescriptor(shell, provider,
@@ -96,7 +99,7 @@ public class LicenseExportHandler {
 		Date from = Date.from(fromLocal.atZone(ZoneId.systemDefault()).toInstant());
 		Date until = Date.from(untilLocal.atZone(ZoneId.systemDefault()).toInstant());
 
-		LicensingRequest request = createLicensingRequest(userDescriptor, licensePlan, productVersion, from, until);
+		LicensingRequest request = createLicensingRequest(user.get(), licensePlan, productVersion, from, until);
 
 		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
 
