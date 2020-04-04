@@ -28,12 +28,17 @@ import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
  */
 public final class MandatoryEclipseContext implements MandatoryService, Supplier<IEclipseContext> {
 
+	private final IEclipseContext context;
+
+	/**
+	 * Creates a new instance using given {@link IEclipseContext}
+	 * 
+	 * @param context an {@link IEclipseContext} to delegate service resolution to
+	 */
 	public MandatoryEclipseContext(IEclipseContext context) {
 		Objects.requireNonNull(context, WorkbenchMessages.MandatoryEclipseContext_e_null_context);
 		this.context = context;
 	}
-
-	private final IEclipseContext context;
 
 	@Override
 	public <T> T get(Class<T> type) {
