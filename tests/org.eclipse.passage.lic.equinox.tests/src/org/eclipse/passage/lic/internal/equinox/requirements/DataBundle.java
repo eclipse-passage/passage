@@ -12,28 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Constants;
 
-/**
- * Supplies {@linkplain Bundle} {@code name} reading from headers. Does not
- * tolerate {@code null} bundle.
- */
-final class BundleName implements Supplier<String> {
-
-	private final Bundle bundle;
-
-	protected BundleName(Bundle bundle) {
-		Objects.requireNonNull(bundle, "Cannot get name of a bundle if there is no bundle"); //$NON-NLS-1$
-		this.bundle = bundle;
-	}
+final class DataBundle implements Supplier<Bundle> {
 
 	@Override
-	public String get() {
-		return bundle.getHeaders().get(Constants.BUNDLE_NAME);
+	public Bundle get() {
+		return Platform.getBundle("org.eclipse.passage.lic.equinox.tests.data.requirements"); //$NON-NLS-1$
 	}
 
 }

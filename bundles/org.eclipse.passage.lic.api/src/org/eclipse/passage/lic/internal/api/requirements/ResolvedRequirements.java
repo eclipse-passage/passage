@@ -49,11 +49,10 @@ public interface ResolvedRequirements extends Service<StringServiceId> {
 	 * Having access to a particular type of physical sources, reads them for all
 	 * the {@link Requirement} declared there.
 	 *
-	 * @param configuration identifier of a feature under licensing
 	 * @return resolved collection of {@link Requirement}s, not nullable
 	 * @since 0.4.0
 	 */
-	Collection<Requirement> all(LicensingConfiguration configuration);
+	Collection<Requirement> all();
 
 	final class Smart {
 
@@ -74,8 +73,8 @@ public interface ResolvedRequirements extends Service<StringServiceId> {
 		 * @return collection of {@linkplain Requirement} only for the given
 		 *         {@code feature}
 		 */
-		public Collection<Requirement> forFeature(LicensingConfiguration configuration, String feature) {
-			return delegate.all(configuration).stream() //
+		public Collection<Requirement> forFeature(String feature) {
+			return delegate.all().stream() //
 					.filter(r -> feature.equals(r.feature().identifier())) //
 					.collect(Collectors.toList());
 		}

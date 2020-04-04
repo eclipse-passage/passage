@@ -36,12 +36,12 @@ import org.osgi.framework.wiring.BundleCapability;
  * @see BundleRequirements
  */
 @SuppressWarnings("restriction")
-final class RequirementsFromCapability implements Supplier<Requirement> {
+final class RequirementFromCapability implements Supplier<Requirement> {
 
 	private final Bundle bundle;
 	private final BundleCapability capability;
 
-	public RequirementsFromCapability(Bundle bundle, BundleCapability capability) {
+	public RequirementFromCapability(Bundle bundle, BundleCapability capability) {
 		this.bundle = bundle;
 		this.capability = capability;
 	}
