@@ -7,6 +7,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
+Fragment-Host: org.eclipse.passage.lic.equinox
 Require-Bundle: org.junit;bundle-version="0.0.0",
  net.bytebuddy.byte-buddy;bundle-version="0.0.0",
  org.objenesis;bundle-version="0.0.0",
