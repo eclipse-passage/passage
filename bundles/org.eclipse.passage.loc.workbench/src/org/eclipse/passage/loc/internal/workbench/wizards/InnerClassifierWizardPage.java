@@ -7,12 +7,12 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
@@ -36,12 +36,12 @@ import org.eclipse.swt.widgets.Text;
 public final class InnerClassifierWizardPage<I, R> extends BaseClassifierWizardPage {
 
 	private final SelectRequest<R> request;
-	private final IEclipseContext context;
+	private final MandatoryService context;
 
 	private Text text;
 
 	protected InnerClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer,
-			SelectRequest<R> request, IEclipseContext context) {
+			SelectRequest<R> request, MandatoryService context) {
 		super(InnerClassifierWizardPage.class.getSimpleName(), metadata, initializer);
 		this.request = request;
 		this.context = context;

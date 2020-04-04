@@ -31,6 +31,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
@@ -40,6 +41,7 @@ import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessag
 import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
 import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.users.ui.SelectUserOrigin;
+import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
@@ -53,7 +55,7 @@ import org.eclipse.swt.widgets.Text;
 
 public final class IssueLicenseRequestPage extends WizardPage {
 
-	private final IEclipseContext context;
+	private final MandatoryService context;
 
 	private LicensePlanDescriptor licensePlanDescriptor;
 	private UserDescriptor userDescriptor;
@@ -67,7 +69,7 @@ public final class IssueLicenseRequestPage extends WizardPage {
 
 	protected IssueLicenseRequestPage(String pageName, IEclipseContext context) {
 		super(pageName);
-		this.context = context;
+		this.context = new MandatoryEclipseContext(context);
 		this.provider = context.get(ComposedAdapterFactoryProvider.class);
 		labelProvider = new DomainRegistryLabelProvider(provider.getComposedAdapterFactory());
 		setTitle(IssueLicensePageMessages.IssueLicenseRequestPage_page_title);

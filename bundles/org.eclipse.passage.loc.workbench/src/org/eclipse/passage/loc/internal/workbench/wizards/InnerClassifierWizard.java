@@ -2,7 +2,6 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 
 import java.util.Optional;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -10,6 +9,7 @@ import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -24,7 +24,7 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
 public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<I, R>> {
 
 	private final Class<I> clazz;
-	private final IEclipseContext context;
+	private final MandatoryService context;
 	private final SelectRequest<R> request;
 
 	/**
@@ -46,7 +46,7 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 	 * 
 	 */
 	public InnerClassifierWizard(Class<I> clazz, EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry, SelectRequest<R> request, IEclipseContext context) {
+			EditingDomainRegistry<?> registry, SelectRequest<R> request, MandatoryService context) {
 		super(metadata, initializer, registry);
 		this.clazz = clazz;
 		this.request = request;

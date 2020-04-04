@@ -47,6 +47,7 @@ import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.users.ui.SelectUserOrigin;
+import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;
@@ -61,13 +62,14 @@ public class LicenseExportHandler {
 			IEclipseContext context) {
 		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		Shell shell = context.get(Shell.class);
-		ProductRegistry productRegistry = context.get(ProductRegistry.class);
-		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
+		MandatoryEclipseContext resolution = new MandatoryEclipseContext(context);
 		java.util.Optional<UserDescriptor> user = new SelectInner<UserDescriptor, UserOriginDescriptor>(
-				new SelectUser(context).get(), new SelectUserOrigin(context).get(), context).get();
+				new SelectUser(resolution).get(), new SelectUserOrigin(resolution).get(), resolution).get();
 		if (!user.isPresent()) {
 			return;
 		}
+		ProductRegistry productRegistry = context.get(ProductRegistry.class);
+		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
 		ProductVersionDescriptor productVersion = ProductsUi.selectProductVersionDescriptor(shell, provider,
 				productRegistry, null);
 		if (productVersion == null) {

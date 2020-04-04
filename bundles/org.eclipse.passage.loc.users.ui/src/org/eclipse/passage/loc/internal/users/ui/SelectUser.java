@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -37,7 +37,7 @@ import org.eclipse.passage.loc.users.core.Users;
  */
 public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
 
-	public SelectUser(IEclipseContext context) {
+	public SelectUser(MandatoryService context) {
 		super(context);
 	}
 

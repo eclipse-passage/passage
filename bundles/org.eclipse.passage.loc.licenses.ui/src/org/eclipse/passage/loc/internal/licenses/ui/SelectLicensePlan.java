@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -29,14 +29,14 @@ import org.eclipse.passage.loc.licenses.core.Licenses;
 
 /**
  * Creates {@link SelectRequest} for {@link LicensePlanDescriptor} from the
- * given {@link IEclipseContext}.
+ * given {@link MandatoryService}.
  * 
  * @since 0.6
  *
  */
 public final class SelectLicensePlan extends SupplySelectRequest<LicensePlanDescriptor> {
 
-	public SelectLicensePlan(IEclipseContext context) {
+	public SelectLicensePlan(MandatoryService context) {
 		super(context);
 	}
 
