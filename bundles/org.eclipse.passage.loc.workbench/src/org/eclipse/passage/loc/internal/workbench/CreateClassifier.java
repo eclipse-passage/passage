@@ -21,12 +21,13 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
-import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -74,16 +75,17 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 
 	protected Optional<EObject> showWizard(Class<C> type, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
-		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
-				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
+		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
 		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.setTitle(initializer.newObjectTitle());
 		dialog.setMessage(initializer.newFileMessage());
 		Shell createdShell = dialog.getShell();
+		Point location = createdShell.getLocation();
+		createdShell.setLocation(location.x + 40, location.y + 40);
 		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(LicensingImages.getImage(registry.getContentClassifier().getName()));
+		createdShell.setImage(LicensingImages.getImage(metadata.eClass().getName()));
 		dialog.open();
 		return wizard.created();
 	}
