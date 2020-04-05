@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
@@ -17,13 +18,16 @@ import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ComposableClassSupply;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
 import org.eclipse.passage.loc.internal.workbench.EClassName;
+import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * Provides UI to to fulfill the field values for an inner classifier to be
@@ -38,6 +42,7 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 
 	private final SelectRequest<R> request;
 	private final MandatoryService context;
+	private final MandatoryEclipseContext forward;
 
 	private Text text;
 
@@ -46,11 +51,14 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 		super(InnerClassifierWizardPage.class.getSimpleName(), metadata, initializer);
 		this.request = request;
 		this.context = context;
+		this.forward = new MandatoryEclipseContext(EclipseContextFactory
+				.createServiceContext(FrameworkUtil.getBundle(getClass()).getBundleContext()).createChild());
 	}
 
 	@Override
 	protected void createFieldControls(Composite composite) {
-		text = createTextButtonBlock(composite, new EClassName(containerMetadata().get().eClass()).get(), () -> selectContainer());
+		text = createTextButtonBlock(composite, new EClassName(containerMetadata().get().eClass()).get(),
+				() -> selectContainer());
 		super.createFieldControls(composite);
 	}
 
@@ -67,6 +75,7 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 		parent.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		Button select = new Button(composite, SWT.PUSH);
 		select.setText(WorkbenchMessages.InnerClassifierWizardPage_text_select);
+		forward.get().set(Shell.class, getShell());
 		select.addSelectionListener(widgetSelectedAdapter(event -> updateText(supplier.get())));
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
 		return parent;
@@ -93,7 +102,7 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 	private Optional<?> selectContainer() {
 		Collection<R> initial = new ArrayList<>();
 		container().ifPresent(initial::add);
-		Optional<InstanceSupply<?>> found = context.get(ComposableClassSupply.class).find(request.target(), context);
+		Optional<InstanceSupply<?>> found = context.get(ComposableClassSupply.class).find(request.target(), forward);
 		if (found.isPresent()) {
 			return found.get().supply();
 		}
@@ -103,8 +112,8 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 	@Override
 	protected boolean validatePage() {
 		if (!Optional.ofNullable(text.getData()).isPresent()) {
-			setErrorMessage(
-					NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container, new EClassName(containerMetadata().get().eClass()).get()));
+			setErrorMessage(NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container,
+					new EClassName(containerMetadata().get().eClass()).get()));
 			return false;
 		}
 		return super.validatePage();
