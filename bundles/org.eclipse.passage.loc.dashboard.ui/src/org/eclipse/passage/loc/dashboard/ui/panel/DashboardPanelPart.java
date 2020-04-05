@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
@@ -23,6 +24,7 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
@@ -42,8 +44,13 @@ import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.moveto.lic.internal.features.model.FeaturesClassMetadata;
+import org.eclipse.passage.moveto.lic.internal.licenses.model.LicensesClassMetadata;
+import org.eclipse.passage.moveto.lic.internal.products.model.ProductsClassMetadata;
+import org.eclipse.passage.moveto.lic.internal.users.model.UsersClassMetadata;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.osgi.framework.FrameworkUtil;
 
 public class DashboardPanelPart {
 
@@ -78,6 +85,14 @@ public class DashboardPanelPart {
 		createUserInfo(area);
 		createLicenseInfo(area);
 		createFooterInfo(area);
+		// FIXME: replace this with OSGi component registration
+		ComposableClassMetadata metadata = EclipseContextFactory
+				.getServiceContext(FrameworkUtil.getBundle(getClass()).getBundleContext())
+				.get(ComposableClassMetadata.class);
+		metadata.consider(new FeaturesClassMetadata());
+		metadata.consider(new ProductsClassMetadata());
+		metadata.consider(new UsersClassMetadata());
+		metadata.consider(new LicensesClassMetadata());
 	}
 
 	protected void createHeaderInfo(Composite parent) {

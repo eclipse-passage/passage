@@ -32,17 +32,13 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
+import org.eclipse.passage.loc.internal.workbench.CreateRoot;
+import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
-import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 import org.eclipse.passage.loc.jface.dialogs.FilteredSelectionDialog;
 import org.eclipse.passage.loc.jface.dialogs.LabelSearchFilter;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -89,20 +85,9 @@ public class LocWokbench {
 
 	public static void createDomainResource(IEclipseContext context, String domain, String perspectiveId) {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
-		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
-		PlainEntityMetadata metadata = new PlainEntityMetadata(registry.getContentClassifier(),
-				registry.getContentIdentifierAttribute(), registry.getContentNameAttribute());
-		Wizard wizard = new RootClassifierWizard(metadata, initializer, registry);
-		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
-		dialog.create();
-		dialog.setTitle(initializer.newObjectTitle());
-		dialog.setMessage(initializer.newFileMessage());
-		Shell createdShell = dialog.getShell();
-		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(LicensingImages.getImage(registry.getContentClassifier().getName()));
-		int open = dialog.open();
-		if (open == Window.OK) {
+		if (new CreateRoot<>(new MandatoryEclipseContext(context), domain, registry.getContentClass()).get()
+				.isPresent()) {
 			LocWokbench.switchPerspective(context, perspectiveId);
 		}
 	}
