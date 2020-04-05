@@ -14,10 +14,12 @@ package org.eclipse.passage.loc.internal.workbench;
 
 import java.util.Optional;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
 
@@ -49,6 +51,11 @@ public final class CreateRoot<R> extends CreateClassifier<R> {
 	protected BaseClassifierWizard<?> createWizard(Class<R> clazz, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
 		return new RootClassifierWizard(metadata, initializer, registry);
+	}
+
+	@Override
+	protected String dialogMessage(String typeName) {
+		return NLS.bind(WorkbenchMessages.CreateRoot_message_new_type, typeName);
 	}
 
 }

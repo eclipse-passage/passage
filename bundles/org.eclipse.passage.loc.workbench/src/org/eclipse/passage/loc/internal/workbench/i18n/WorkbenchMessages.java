@@ -21,6 +21,7 @@ public class WorkbenchMessages extends NLS {
 	public static String Appearance_e_null_title;
 	public static String BaseClassifierWizardPage_e_null_initializer;
 	public static String BaseClassifierWizardPage_e_null_metadata;
+	public static String CreateClassifier_text_new_type;
 	public static String CreateDomainResource_e_null_classifier;
 	public static String CreateDomainResource_e_null_context;
 	public static String CreateDomainResource_e_null_domain;
@@ -33,6 +34,8 @@ public class WorkbenchMessages extends NLS {
 	public static String CreateFileWizardPage_label_file;
 	public static String CreateFileWizardPage_label_identifier;
 	public static String CreateFileWizardPage_label_name;
+	public static String CreateInner_message_new_type;
+	public static String CreateRoot_message_new_type;
 	public static String ExitWorkbenchHandler_exit_message;
 	public static String ExitWorkbenchHandler_exit_title;
 	public static String FileContentDialog_e_unable_read;
