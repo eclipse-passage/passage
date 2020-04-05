@@ -1,5 +1,6 @@
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +22,7 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
  * @param <R> root classifier to store created if not present
  * 
  */
-public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<I, R>> {
+public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<R>> {
 
 	private final Class<I> clazz;
 	private final MandatoryService context;
@@ -54,9 +55,13 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 	}
 
 	@Override
-	protected InnerClassifierWizardPage<I, R> createNewClassifierPage() {
-		return new InnerClassifierWizardPage<I, R>(context.get(ComposableClassMetadata.class).find(clazz).get(),
-				initializer, request, context);
+	protected InnerClassifierWizardPage<R> createNewClassifierPage() {
+		Optional<EntityMetadata> find = context.get(ComposableClassMetadata.class).find(clazz);
+		if (find.isPresent()) {
+			return new InnerClassifierWizardPage<R>(find.get(), initializer, request, context);
+		}
+		// FIXME: AF: provide nice error page
+		throw new NoSuchElementException(clazz.getName());
 	}
 
 	@Override

@@ -33,19 +33,20 @@ import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
+import org.eclipse.passage.loc.internal.products.ui.SelectProduct;
+import org.eclipse.passage.loc.internal.products.ui.SelectProductVersion;
 import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.users.ui.SelectUserOrigin;
 import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
-import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -156,13 +157,12 @@ public final class IssueLicenseRequestPage extends WizardPage {
 
 	private String selectProductVersion(Text text) {
 		Object data = text.getData();
-		ProductVersionDescriptor initial = null;
+		Collection<ProductVersionDescriptor> initial = new ArrayList<>();
 		if (data instanceof ProductVersionDescriptor) {
-			initial = (ProductVersionDescriptor) data;
+			initial.add((ProductVersionDescriptor) data);
 		}
-		ProductRegistry registry = context.get(ProductRegistry.class);
-		ProductVersionDescriptor selected = ProductsUi.selectProductVersionDescriptor(getShell(), provider, registry,
-				initial);
+		ProductVersionDescriptor selected = new SelectInner<ProductVersionDescriptor, ProductDescriptor>(
+				new SelectProductVersion(context).get(), new SelectProduct(context).get(), context).get().orElse(null);
 		text.setData(selected);
 		productVersionDescriptor = selected;
 		return labelProvider.getText(selected);

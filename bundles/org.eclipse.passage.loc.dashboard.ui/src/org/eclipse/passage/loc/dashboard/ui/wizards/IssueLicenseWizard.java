@@ -38,6 +38,7 @@ import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
+import org.eclipse.passage.moveto.lic.internal.products.model.ProductsClassMetadata;
 import org.eclipse.passage.moveto.lic.internal.users.model.UsersClassMetadata;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -69,6 +70,7 @@ public class IssueLicenseWizard extends Wizard {
 				.getServiceContext(FrameworkUtil.getBundle(getClass()).getBundleContext())
 				.get(ComposableClassMetadata.class);
 		metadata.consider(new UsersClassMetadata());
+		metadata.consider(new ProductsClassMetadata());
 	}
 
 	@Override

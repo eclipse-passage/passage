@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.users.ui.UsersInstanceSupply">
+   <service>
+      <provide interface="org.eclipse.passage.loc.internal.api.ClassSupply"/>
+   </service>
+   <implementation class="org.eclipse.passage.loc.internal.users.ui.UsersInstanceSupply"/>
+</scr:component>

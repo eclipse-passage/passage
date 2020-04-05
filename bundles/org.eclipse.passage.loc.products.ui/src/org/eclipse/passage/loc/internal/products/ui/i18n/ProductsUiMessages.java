@@ -21,6 +21,7 @@ public class ProductsUiMessages extends NLS {
 	public static String ProductExportHandler_title_ok;
 	public static String ProductsUi_select_product;
 	public static String ProductsUi_select_product_line;
+	public static String ProductsUi_select_product_version;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, ProductsUiMessages.class);
