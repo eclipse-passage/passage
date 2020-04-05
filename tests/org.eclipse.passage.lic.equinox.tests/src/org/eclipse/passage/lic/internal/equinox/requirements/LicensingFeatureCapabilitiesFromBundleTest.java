@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -32,13 +33,23 @@ public final class LicensingFeatureCapabilitiesFromBundleTest {
 		Optional<List<BundleCapability>> capabilities = new LicensingFeatureCapabilitiesFromBundle(//
 				new DataBundle().get()).get();
 		assertTrue(capabilities.isPresent());
+		assertEquals(4, capabilities.get().size());
+		assertExpectedContent(capabilities);
+	}
+
+	private void assertExpectedContent(Optional<List<BundleCapability>> capabilities) {
 		String key = new CapabilityLicFeatureId("").key(); //$NON-NLS-1$
 		assertEquals(//
 				new HashSet<String>(Arrays.asList(//
+						"Incomplete", //$NON-NLS-1$
 						"PI", //$NON-NLS-1$
 						"E")), //$NON-NLS-1$
 				capabilities.get().stream() //
-						.map(c -> c.getAttributes().get(key))//
+						.filter(c -> Optional.ofNullable(c.getAttributes()).isPresent()) //
+						.map(c -> c.getAttributes())//
+						.filter(attributes -> attributes.containsKey(key))//
+						.map(attributes -> attributes.get(key))//
+						.filter(Objects::nonNull) //
 						.map(Object::toString) //
 						.collect(Collectors.toSet()));
 	}

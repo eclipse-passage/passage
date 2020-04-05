@@ -31,7 +31,8 @@ public final class CapabilityLicFeatureIdTest extends CapabilityLicFeatureInfoTe
 	protected Set<String> expectations() {
 		return new HashSet<String>(Arrays.asList(//
 				"PI", //$NON-NLS-1$
-				"E" //$NON-NLS-1$
+				"E", //$NON-NLS-1$
+				"Incomplete" //$NON-NLS-1$
 		));
 	}
 

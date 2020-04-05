@@ -60,6 +60,7 @@ final class RequirementFromCapability implements Supplier<Requirement> {
 	}
 
 	private Requirement requirementFromAttributes(String feature, Map<String, Object> attributes) {
+		System.out.println(">>" + attributes); //$NON-NLS-1$
 		String version = new CapabilityLicFeatureVersion(attributes).get()//
 				.map(LicensingVersions::toVersionValue)//
 				.orElse(LicensingVersions.VERSION_DEFAULT);

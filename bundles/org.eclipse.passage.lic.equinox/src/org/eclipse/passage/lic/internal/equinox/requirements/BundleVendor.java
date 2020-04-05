@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.osgi.framework.Bundle;
@@ -33,7 +34,8 @@ final class BundleVendor implements Supplier<String> {
 
 	@Override
 	public String get() {
-		return bundle.getHeaders().get(Constants.BUNDLE_VENDOR);
+		return Optional.ofNullable(bundle.getHeaders().get(Constants.BUNDLE_VENDOR))//
+				.orElse("Unknown vendor"); //$NON-NLS-1$
 	}
 
 }
