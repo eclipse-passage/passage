@@ -10,23 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.loc.internal.api;
+
+import java.util.Optional;
 
 /**
  * 
- * Resolves a service instance for a given type if present
+ * Supplies instance of the given type, typically
  *
+ * @param <T> a type of supplied instance
  */
 @FunctionalInterface
-public interface MandatoryService {
+public interface InstanceSupply<T> {
 
 	/**
-	 * Resolve a service instance by a given type class
+	 * Triggers a process of instance selection or instance creation that may
+	 * require user interaction
 	 * 
-	 * @param <T>  a type of a service to resolve
-	 * @param type a class of a service to resolve
-	 * @return a resolved service instance
+	 * @return a selected or created instance or empty {@link Optional}
 	 */
-	<T> T get(Class<T> type);
+	Optional<T> supply();
 
 }
