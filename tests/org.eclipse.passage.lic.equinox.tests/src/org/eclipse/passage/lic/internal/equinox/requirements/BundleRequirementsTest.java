@@ -71,10 +71,4 @@ public final class BundleRequirementsTest {
 		return service.get();
 	}
 
-	// BaseRequirement [feature=BaseFeature [id=PI, version=3.14.15, name=PI of
-	// version PI, provider=Eclipse Passage], restriction=error,
-	// source=org.eclipse.passage.lic.equinox.tests.data.requirements]]> but was:<[
-	// BaseRequirement [feature=BaseFeature [id=PI, version=3.14.15, name=PI of
-	// version PI, provider=null], restriction=error,
-	// source=org.eclipse.passage.lic.equinox.tests.data.requirements]]>
 }
