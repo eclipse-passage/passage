@@ -16,13 +16,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.EMFEditPlugin;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
@@ -84,8 +80,8 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 			EditingDomainRegistry<?> registry) {
 		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
 		EClass eClass = metadata.eClass();
-		String typeName = typeName(eClass);
-
+		ResourceLocator resourceLocator = new LocateResources(eClass).get();
+		String typeName = resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$
 		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
 		Shell parentShell = context.get(Shell.class);
 		WizardDialog dialog = new WizardDialog(parentShell, wizard);
@@ -101,25 +97,9 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 		return wizard.created();
 	}
 
-	private String typeName(EClass refType) {
-		ResourceLocator locator = resourceLocator(refType);
-		String typeName = locator.getString(NLS.bind("_UI_{0}_type", refType.getName())); //$NON-NLS-1$
-		return typeName;
-	}
-
 	protected abstract String dialogMessage(String typeName);
 
 	protected abstract BaseClassifierWizard<?> createWizard(Class<C> type, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
-
-	private ResourceLocator resourceLocator(EClass eClass) {
-		EObject eObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
-		Adapter adapt = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE).adapt(eObject,
-				IItemLabelProvider.class);
-		if (adapt instanceof ResourceLocator) {
-			return (ResourceLocator) adapt;
-		}
-		return EMFEditPlugin.INSTANCE;
-	}
 
 }

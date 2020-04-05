@@ -16,6 +16,7 @@ import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ComposableClassSupply;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
+import org.eclipse.passage.loc.internal.workbench.EClassName;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.SWT;
@@ -49,12 +50,8 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 
 	@Override
 	protected void createFieldControls(Composite composite) {
-		text = createTextButtonBlock(composite, labelForContainer(), () -> selectContainer());
+		text = createTextButtonBlock(composite, new EClassName(containerMetadata().get().eClass()).get(), () -> selectContainer());
 		super.createFieldControls(composite);
-	}
-
-	private String labelForContainer() {
-		return containerMetadata().get().eClass().getName();
 	}
 
 	private Optional<EntityMetadata> containerMetadata() {
@@ -107,7 +104,7 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 	protected boolean validatePage() {
 		if (!Optional.ofNullable(text.getData()).isPresent()) {
 			setErrorMessage(
-					NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container, labelForContainer()));
+					NLS.bind(WorkbenchMessages.InnerClassifierWizardPage_e_specify_container, new EClassName(containerMetadata().get().eClass()).get()));
 			return false;
 		}
 		return super.validatePage();
