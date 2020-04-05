@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 
@@ -35,7 +36,7 @@ final class BundleVendor implements Supplier<String> {
 	@Override
 	public String get() {
 		return Optional.ofNullable(bundle.getHeaders().get(Constants.BUNDLE_VENDOR))//
-				.orElse("Unknown vendor"); //$NON-NLS-1$
+				.orElse(EquinoxMessages.BundleVendor_unknown_vendor);
 	}
 
 }

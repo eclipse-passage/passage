@@ -20,20 +20,18 @@ public class EquinoxMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages"; //$NON-NLS-1$
 
 	public static String ApplicationConfigurations_contact_defaults;
-
 	public static String EquinoxPaths_uri_retrieval_error;
 	public static String EquinoxRestrictions_feature_is_licensed;
 	public static String EquinoxRestrictions_feature_is_not_licensed;
 	public static String EquinoxRestrictions_title;
-
 	public static String ComponentConfigurationResolver_error_invalid_bundle_context;
 	public static String ComponentConfigurationResolver_error_invalid_component_rt;
-
 	public static String ComponentRequirements_error_no_resource;
 	public static String ComponentRequirements_requirement_for_resource;
 	public static String BundleRequirements_error_bundle_context;
-
 	public static String BundleRequirements_no_context;
+
+	public static String BundleVendor_unknown_vendor;
 	public static String EquinoxRestrictionExecutorRegistry_error_name;
 	public static String EquinoxRestrictionExecutorRegistry_error_title;
 	public static String EquinoxRestrictionExecutorRegistry_fatal_name;
@@ -42,9 +40,7 @@ public class EquinoxMessages extends NLS {
 	public static String EquinoxRestrictionExecutorRegistry_info_title;
 	public static String EquinoxRestrictionExecutorRegistry_warning_name;
 	public static String EquinoxRestrictionExecutorRegistry_warning_title;
-
 	public static String RequirementsFromCapability_no_attributes;
-
 	public static String RequirementsFromCapability_no_feature_id;
 
 	public static String RequirementsFromComponent_no_feature_id;
