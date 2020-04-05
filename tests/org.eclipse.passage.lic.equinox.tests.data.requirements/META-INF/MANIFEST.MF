@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.passage.lic.equinox.tests.data.requirements;sin
 Bundle-Version: 0.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Name: Data for Passage LIC Equinox requirements tests
-Bundle-Vendor: Eclipse Passage
+Bundle-Vendor: Eclipse Passage 
 Bundle-Copyright: %Bundle-Copyright
-Provide-Capability: licensing.feature;licensing.feature="PI";licensing.verion="3.14.15",
- licensing.feature;licensing.feature="E";licensing.verion="2.71.82"
+Provide-Capability: licensing.feature;licensing.feature="PI";version="3.14.15";name="PI of version PI";level="error",
+ licensing.feature;licensing.feature="E";version="2.71.82";name="Euler number";level="info";provider="Euler"

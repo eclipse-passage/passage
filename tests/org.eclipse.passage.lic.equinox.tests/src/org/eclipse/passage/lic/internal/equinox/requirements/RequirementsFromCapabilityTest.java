@@ -12,14 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.stream.Collectors;
+
 import org.junit.Test;
-import org.osgi.framework.Bundle;
 
 public final class RequirementsFromCapabilityTest {
 
 	@Test
 	public void read() {
-		Bundle bundle = new DataBundle().get();
-		// FIXME: yet do be implemented
+		DataBundle data = new DataBundle();
+		assertEquals(//
+				data.requirements(), //
+				data.capabilities().stream() //
+						.map(c -> new RequirementFromCapability(data.get(), c)) //
+						.map(RequirementFromCapability::get) //
+						.collect(Collectors.toSet())//
+		);
 	}
+
 }

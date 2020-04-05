@@ -15,7 +15,12 @@ package org.eclipse.passage.lic.internal.api.restrictions;
 import java.util.Objects;
 
 /**
+ * <p>
  * Severity of a licensing requirement and, accordingly, restriction verdict.
+ * </p>
+ * <p>
+ * Designed to be a <i>data-class</i>.
+ * </p>
  */
 public abstract class RestrictionLevel {
 

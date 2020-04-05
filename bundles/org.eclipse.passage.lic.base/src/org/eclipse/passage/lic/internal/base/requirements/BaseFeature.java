@@ -17,7 +17,7 @@ import java.util.Objects;
 import org.eclipse.passage.lic.internal.api.requirements.Feature;
 
 /**
- * Base <i>data driven</i> implementation of a {@linkplain Feature} descriptor
+ * Base <i>data driven</i> implementation of a {@linkplain Feature} descriptor.
  */
 @SuppressWarnings("restriction")
 public final class BaseFeature implements Feature {
@@ -56,6 +56,23 @@ public final class BaseFeature implements Feature {
 	@Override
 	public String provider() {
 		return provider;
+	}
+
+	@Override
+	public boolean equals(Object another) {
+		if (!getClass().isInstance(another)) {
+			return false;
+		}
+		Feature feature = (Feature) another;
+		return id.equals(feature.identifier()) //
+				&& name.equals(feature.name()) //
+				&& version.equals(feature.version()) //
+				&& provider.equals(feature.provider()); //
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, version, id, provider);
 	}
 
 	@Override

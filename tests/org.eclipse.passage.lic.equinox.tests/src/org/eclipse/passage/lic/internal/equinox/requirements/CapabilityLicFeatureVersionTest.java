@@ -12,31 +12,27 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-/**
- * Encapsulate reading of a {@code provider} information for a feature under
- * licensing from a {@code Capability}'s attributes.
- * 
- * @see NamedData
- */
 @SuppressWarnings("restriction")
-public final class CapabilityLicFeatureProvider extends StringNamedData {
+public final class CapabilityLicFeatureVersionTest extends CapabilityLicFeatureInfoTest {
 
-	public CapabilityLicFeatureProvider(String provider) {
-		super(provider);
-	}
-
-	public CapabilityLicFeatureProvider(Map<String, Object> container) {
-		super(container);
+	@Override
+	protected StringNamedData infoSupplier(Map<String, Object> attributes) {
+		return new CapabilityLicFeatureVersion(attributes);
 	}
 
 	@Override
-	public String key() {
-		return "provider"; //$NON-NLS-1$
+	protected Set<String> expectations() {
+		return new HashSet<String>(Arrays.asList(//
+				"3.14.15", //$NON-NLS-1$
+				"2.71.82" //$NON-NLS-1$
+		));
 	}
 
 }

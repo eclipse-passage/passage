@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -32,7 +33,9 @@ public abstract class StringNamedData extends BaseNamedData<String> {
 	}
 
 	protected StringNamedData(Map<String, Object> container) {
-		super(key -> String.valueOf(container.get(key)));
+		super(key -> Optional.ofNullable(container.get(key))//
+				.map(String::valueOf) //
+				.orElse(null));
 	}
 
 	@Override

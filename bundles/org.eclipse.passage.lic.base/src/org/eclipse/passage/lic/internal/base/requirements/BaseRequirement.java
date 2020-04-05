@@ -18,6 +18,9 @@ import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
+/**
+ * Base <i>data-driven</i> implementation of a {@linkplain Requirement}.
+ */
 @SuppressWarnings("restriction")
 public final class BaseRequirement implements Requirement {
 
@@ -48,6 +51,29 @@ public final class BaseRequirement implements Requirement {
 	@Override
 	public Object source() {
 		return source;
+	}
+
+	@Override
+	public boolean equals(Object another) {
+		if (!getClass().isInstance(another)) {
+			return false;
+		}
+		Requirement requirement = (Requirement) another;
+		return feature.equals(requirement.feature()) //
+				&& restriction.equals(requirement.restrictionLevel()) //
+				&& source.equals(requirement.source());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(feature, restriction, source);
+	}
+
+	@Override
+	public String toString() {
+		return "BaseRequirement [feature=" + feature + // //$NON-NLS-1$
+				", restriction=" + restriction + // //$NON-NLS-1$
+				", source=" + source + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }

@@ -12,14 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -34,9 +39,22 @@ public final class BundleRequirementsTest {
 	}
 
 	@Test
+	@Ignore
 	public void allRequirements() throws InvalidSyntaxException {
 		Collection<Requirement> list = service().all();
-		assertTrue(list.size() >= 2); // at least two are declared in our test data bundle
+		assertTrue(list.stream() //
+				.collect(Collectors.toSet())//
+				.containsAll(//
+						new DataBundle().requirements()));
+	}
+
+	@Test
+	@Ignore
+	public void requirementsForFeature() throws InvalidSyntaxException {
+		Collection<Requirement> list = new ResolvedRequirements.Smart(service()).forFeature("PI"); //$NON-NLS-1$
+		assertEquals(//
+				Collections.singleton(new DataBundle().pi()), //
+				new HashSet<Requirement>(list));
 	}
 
 	private Optional<ResolvedRequirements> mayBeService() throws InvalidSyntaxException {
@@ -52,4 +70,5 @@ public final class BundleRequirementsTest {
 		assumeTrue(service.isPresent());
 		return service.get();
 	}
+
 }
