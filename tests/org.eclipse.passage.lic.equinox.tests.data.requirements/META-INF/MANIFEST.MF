@@ -8,4 +8,7 @@ Bundle-Name: Data for Passage LIC Equinox requirements tests
 Bundle-Vendor: Eclipse Passage 
 Bundle-Copyright: %Bundle-Copyright
 Provide-Capability: licensing.feature;licensing.feature="PI";version="3.14.15";name="PI of version PI";level="error",
- licensing.feature;licensing.feature="E";version="2.71.82";name="Euler number";level="info";provider="Euler"
+ licensing.feature;licensing.feature="E";version="2.71.82";name="Euler number";level="info";provider="Euler",
+ licensing.feature;licensing.feature="Incomplete",
+ licensing.feature
+ 

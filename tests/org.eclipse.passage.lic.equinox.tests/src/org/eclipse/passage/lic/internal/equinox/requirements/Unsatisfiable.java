@@ -12,28 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 
 @SuppressWarnings("restriction")
-public final class CapabilityLicFeatureIdTest extends CapabilityLicFeatureInfoTest {
+final class Unsatisfiable implements Predicate<Requirement> {
 
 	@Override
-	protected StringNamedData infoSupplier(Map<String, Object> attributes) {
-		return new CapabilityLicFeatureId(attributes);
-	}
-
-	@Override
-	protected Set<String> expectations() {
-		return new HashSet<String>(Arrays.asList(//
-				"PI", //$NON-NLS-1$
-				"E", //$NON-NLS-1$
-				"Incomplete" //$NON-NLS-1$
-		));
+	public boolean test(Requirement requirement) {
+		String identifier = requirement.feature().identifier();
+		if (identifier.length() < 4) {
+			return false;
+		}
+		return Long.toHexString(System.currentTimeMillis())//
+				.startsWith(identifier.substring(0, 4));
 	}
 
 }

@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -39,17 +38,15 @@ public final class BundleRequirementsTest {
 	}
 
 	@Test
-	@Ignore
 	public void allRequirements() throws InvalidSyntaxException {
-		Collection<Requirement> list = service().all();
-		assertTrue(list.stream() //
+		Collection<Requirement> requirements = service().all();
+		assertTrue(requirements.stream() //
 				.collect(Collectors.toSet())//
 				.containsAll(//
-						new DataBundle().requirements()));
+						new DataBundle().validRequirements()));
 	}
 
 	@Test
-	@Ignore
 	public void requirementsForFeature() throws InvalidSyntaxException {
 		Collection<Requirement> list = new ResolvedRequirements.Smart(service()).forFeature("PI"); //$NON-NLS-1$
 		assertEquals(//
