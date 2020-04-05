@@ -1,5 +1,6 @@
 package org.eclipse.passage.lic.internal.base;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -15,6 +16,7 @@ public abstract class BaseNamedData<T> implements NamedData<T> {
 	private final Function<String, T> retrieve;
 
 	protected BaseNamedData(Function<String, T> retrieve) {
+		Objects.requireNonNull(retrieve, "Retriever cannot be null"); //$NON-NLS-1$
 		this.retrieve = retrieve;
 	}
 

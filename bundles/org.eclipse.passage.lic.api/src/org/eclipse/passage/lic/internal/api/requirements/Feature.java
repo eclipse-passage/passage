@@ -13,7 +13,12 @@
 package org.eclipse.passage.lic.internal.api.requirements;
 
 /**
- * Describes a <i> feature under licensing</i> in context of access cycle
+ * <p>
+ * Describes a <i> feature under licensing</i> in context of access cycle.
+ * </p>
+ * <p>
+ * Intended to be implemented as a <i>data-class</i>.
+ * </p>
  * 
  * @see Requirement
  * @see org.eclipse.passage.lic.api
@@ -35,6 +40,9 @@ public interface Feature {
 	 */
 	String identifier();
 
+	/**
+	 * Freely named provider of the feature
+	 */
 	String provider();
 
 }

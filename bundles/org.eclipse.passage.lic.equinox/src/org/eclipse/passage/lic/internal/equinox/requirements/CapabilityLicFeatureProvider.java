@@ -26,8 +26,8 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
 @SuppressWarnings("restriction")
 public final class CapabilityLicFeatureProvider extends StringNamedData {
 
-	public CapabilityLicFeatureProvider(String version) {
-		super(version);
+	public CapabilityLicFeatureProvider(String provider) {
+		super(provider);
 	}
 
 	public CapabilityLicFeatureProvider(Map<String, Object> container) {

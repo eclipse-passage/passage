@@ -73,7 +73,7 @@ final class RequirementFromCapability implements Supplier<Requirement> {
 		BaseRequirement requirement = new BaseRequirement(//
 				new BaseFeature(feature, version, name, provider), //
 				level, //
-				capability.getResource());
+				capability.getResource().getBundle().getSymbolicName());
 		return requirement;
 	}
 
