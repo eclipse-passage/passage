@@ -22,7 +22,7 @@ public final class BundleNameTest {
 	public void readName() {
 		assertEquals(//
 				"Data for Passage LIC Equinox requirements tests", //$NON-NLS-1$
-				new BundleName(new DataBundle().get()).get());
+				new BundleName(new DataBundle().bundle()).get());
 	}
 
 	@Test(expected = NullPointerException.class)

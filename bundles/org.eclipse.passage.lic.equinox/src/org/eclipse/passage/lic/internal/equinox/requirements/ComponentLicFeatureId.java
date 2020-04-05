@@ -36,7 +36,7 @@ public final class ComponentLicFeatureId extends StringNamedData {
 
 	@Override
 	public String key() {
-		return "licensing.feature.identifie"; //$NON-NLS-1$
+		return "licensing.feature.identifier"; //$NON-NLS-1$
 	}
 
 }

@@ -43,9 +43,6 @@ public class EquinoxMessages extends NLS {
 	public static String RequirementsFromCapability_no_attributes;
 	public static String RequirementsFromCapability_no_feature_id;
 
-	public static String RequirementsFromComponent_no_feature_id;
-
-	public static String RequirementsFromComponent_no_properties;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EquinoxMessages.class);

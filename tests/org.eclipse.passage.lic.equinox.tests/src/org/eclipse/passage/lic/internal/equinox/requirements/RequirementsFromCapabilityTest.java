@@ -28,7 +28,7 @@ public final class RequirementsFromCapabilityTest {
 	public void read() {
 		DataBundle data = new DataBundle();
 		Set<Requirement> found = data.capabilities().stream() //
-				.map(c -> new RequirementFromCapability(data.get(), c)) //
+				.map(c -> new RequirementFromCapability(data.bundle(), c)) //
 				.map(RequirementFromCapability::get) //
 				.collect(Collectors.toSet());
 		assertContainsUnsatisfiableRequirement(found);
@@ -46,7 +46,7 @@ public final class RequirementsFromCapabilityTest {
 
 	private void assertContainsAllExpectedRequirements(DataBundle data, Set<Requirement> requirements) {
 		assertEquals(//
-				data.validRequirements(), //
+				data.validRequirementsFromCapabilities(), //
 				requirements.stream()//
 						.filter(r -> !new Unsatisfiable().test(r)) //
 						.collect(Collectors.toSet())//

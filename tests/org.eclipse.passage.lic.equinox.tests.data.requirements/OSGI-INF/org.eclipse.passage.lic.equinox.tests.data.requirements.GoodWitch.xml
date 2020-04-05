@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.equinox.tests.data.requirements.GoodWitch">
+   <property name="licensing.feature.identifier" value="GoodWitch"/>
+   <property name="licensing.restriction.level" value="fatal"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.equinox.tests.data.requirements.FrogToPrinceMagic"/>
+   </service>
+   <implementation class="org.eclipse.passage.lic.equinox.tests.data.requirements.GoodWitch"/>
+</scr:component>

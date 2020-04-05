@@ -12,60 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeTrue;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
-import org.junit.Test;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.InvalidSyntaxException;
 
 @SuppressWarnings("restriction")
-public final class BundleRequirementsTest {
+public final class BundleRequirementsTest extends ResolvedRequirementsServiceTest {
 
-	@Test
-	public void providedAsResolvedRequirementsImpl() throws InvalidSyntaxException {
-		assertTrue(mayBeService().isPresent());
+	@Override
+	protected Class<?> serviceClass() {
+		return BundleRequirements.class;
 	}
 
-	@Test
-	public void allRequirements() throws InvalidSyntaxException {
-		Collection<Requirement> requirements = service().all();
-		assertTrue(requirements.stream() //
-				.collect(Collectors.toSet())//
-				.containsAll(//
-						new DataBundle().validRequirements()));
+	@Override
+	protected Set<Requirement> expectations() {
+		return new DataBundle().validRequirementsFromCapabilities();
 	}
 
-	@Test
-	public void requirementsForFeature() throws InvalidSyntaxException {
-		Collection<Requirement> list = new ResolvedRequirements.Smart(service()).forFeature("PI"); //$NON-NLS-1$
-		assertEquals(//
-				Collections.singleton(new DataBundle().pi()), //
-				new HashSet<Requirement>(list));
-	}
-
-	private Optional<ResolvedRequirements> mayBeService() throws InvalidSyntaxException {
-		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
-		return context.getServiceReferences(ResolvedRequirements.class, null).stream() //
-				.map(s -> context.getService(s)) //
-				.filter(s -> s.getClass() == BundleRequirements.class) //
-				.findAny();
-	}
-
-	private ResolvedRequirements service() throws InvalidSyntaxException {
-		Optional<ResolvedRequirements> service = mayBeService();
-		assumeTrue(service.isPresent());
-		return service.get();
+	@Override
+	protected Requirement single() {
+		return new DataBundle().pi();
 	}
 
 }

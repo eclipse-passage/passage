@@ -22,7 +22,7 @@ public final class BundleVendorTest {
 	public void readVendor() {
 		assertEquals(//
 				"Eclipse Passage", //$NON-NLS-1$
-				new BundleVendor(new DataBundle().get()).get());
+				new BundleVendor(new DataBundle().bundle()).get());
 	}
 
 	@Test(expected = NullPointerException.class)
