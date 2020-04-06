@@ -42,6 +42,8 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
  org.eclipse.passage.loc.workbench.dialogs,
  org.eclipse.passage.loc.workbench.handlers,
  org.eclipse.passage.loc.workbench.parts,
- org.eclipse.passage.loc.workbench.viewers
+ org.eclipse.passage.loc.workbench.viewers,
+ org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true,
+ org.eclipse.passage.moveto.lic.internal.emf.edit.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

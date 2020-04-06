@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
+import org.eclipse.passage.moveto.lic.emf.edit.EClassResources;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 
@@ -80,7 +81,7 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 			EditingDomainRegistry<?> registry) {
 		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
 		EClass eClass = metadata.eClass();
-		ResourceLocator resourceLocator = new LocateResources(eClass).get();
+		ResourceLocator resourceLocator = new EClassResources(eClass).get();
 		String typeName = resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$
 		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
 		Shell parentShell = context.get(Shell.class);

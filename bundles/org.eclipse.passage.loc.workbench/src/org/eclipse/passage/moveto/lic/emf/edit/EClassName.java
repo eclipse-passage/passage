@@ -10,11 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.workbench;
+package org.eclipse.passage.moveto.lic.emf.edit;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.osgi.util.NLS;
 
@@ -25,16 +25,21 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EClassName implements Supplier<String> {
 
-	private final EClass eClass;
+	private final EClassResources resources;
+
+	public EClassName(EClassResources resources) {
+		Objects.requireNonNull(resources, "Null EClassResources"); //$NON-NLS-1$
+		this.resources = resources;
+	}
 
 	public EClassName(EClass eClass) {
-		this.eClass = eClass;
+		Objects.requireNonNull(eClass, "Null EClass"); //$NON-NLS-1$
+		this.resources = new EClassResources(eClass);
 	}
 
 	@Override
 	public String get() {
-		ResourceLocator resourceLocator = new LocateResources(eClass).get();
-		return resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$
+		return resources.get().getString(NLS.bind("_UI_{0}_type", resources.eClass().getName())); //$NON-NLS-1$
 	}
 
 }
