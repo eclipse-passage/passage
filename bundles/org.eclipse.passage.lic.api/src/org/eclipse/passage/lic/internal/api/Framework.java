@@ -12,11 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import java.util.function.Supplier;
-
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 
 /**
  * <p>
@@ -40,6 +36,6 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
  */
 public interface Framework {
 
-	Supplier<Registry<StringServiceId, ResolvedRequirements>> requirementsSupplierRegistry();
+	ResolvedRequirementsRegistry requirementsRegistry();
 
 }

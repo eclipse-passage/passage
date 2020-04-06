@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 
 /**
  * <p>
@@ -40,10 +40,10 @@ public interface Passage {
 	 * without proper license.
 	 * </p>
 	 * 
-	 * @param featureId string identifier of the feature under licensing.
+	 * @param feature string identifier of the feature under licensing.
 	 * @see org.eclipse.passage.lic.api
 	 */
-	void checkLicense(String featureId);
+	void checkLicense(String feature);
 
 	/**
 	 * FIXME: add `see` to dedicated parts of the new version of AccessManager
@@ -58,16 +58,16 @@ public interface Passage {
 	 * control flow. FIXME: samples
 	 * </p>
 	 * 
-	 * @param featureId string identifier of the feature under licensing.
+	 * @param feature string identifier of the feature under licensing.
 	 * @return true if license check found all licensing requirements satisfied and
 	 *         found no restrictions. Any restrictions discovered starting from
 	 *         {@code warning} up to {@code fatal} causes {@code false} to be
 	 *         returned here. FIXME explain where to get these codes.
 	 * 
-	 * @see LicensingRequirement
+	 * @see Requirement
 	 * @see RestrictionVerdict
 	 * @see org.eclipse.passage.lic.api
 	 */
-	boolean canUse(String featureId);
+	boolean canUse(String feature);
 
 }
