@@ -13,33 +13,33 @@
 package org.eclipse.passage.moveto.lic.emf.edit;
 
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * 
- * Retrieves localized name for a new {@link EObject}
+ * Retrieves name-based identifier for a new {@link EObject}
  *
  */
-public class EObjectDefaultIdentifier implements Supplier<String> {
+public class EObjectNameIdentifier implements Function<Character, String> {
 
 	private final EObjectDefaultName name;
 
-	public EObjectDefaultIdentifier(EClassResources resources) {
+	public EObjectNameIdentifier(EClassResources resources) {
 		Objects.requireNonNull(resources, "Null EClassResources"); //$NON-NLS-1$
 		this.name = new EObjectDefaultName(resources);
 	}
 
-	public EObjectDefaultIdentifier(EClass eClass) {
+	public EObjectNameIdentifier(EClass eClass) {
 		Objects.requireNonNull(eClass, "Null EClass"); //$NON-NLS-1$
 		this.name = new EObjectDefaultName(eClass);
 	}
 
 	@Override
-	public String get() {
-		return name.get().replace(' ', '.').toLowerCase();
+	public String apply(Character separator) {
+		return name.get().replace(' ', separator).toLowerCase();
 	}
 
 }

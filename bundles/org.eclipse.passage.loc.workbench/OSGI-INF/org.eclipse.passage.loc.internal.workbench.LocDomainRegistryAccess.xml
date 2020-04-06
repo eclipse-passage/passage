@@ -3,7 +3,6 @@
    <service>
       <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess"/>
    </service>
-   <reference bind="registerClassifierInitializer" cardinality="0..n" interface="org.eclipse.passage.lic.emf.edit.ClassifierInitializer" name="registerClassifierInitializer" unbind="unregisterClassifierInitializer"/>
    <reference bind="registerCommandAdvisor" cardinality="0..n" interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor" name="registerCommandAdvisor" unbind="unregisterCommandAdvisor"/>
    <reference bind="registerEditingDomainRegistry" cardinality="0..n" interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry" name="registerEditingDomainRegistry" unbind="unregisterEditingDomainRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess"/>

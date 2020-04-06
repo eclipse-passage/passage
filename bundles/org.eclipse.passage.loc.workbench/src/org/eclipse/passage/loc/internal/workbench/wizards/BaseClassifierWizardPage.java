@@ -20,11 +20,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
-import org.eclipse.passage.moveto.lic.emf.edit.EObjectDefaultIdentifier;
 import org.eclipse.passage.moveto.lic.emf.edit.EObjectDefaultName;
+import org.eclipse.passage.moveto.lic.emf.edit.EObjectNameIdentifier;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
@@ -42,7 +41,6 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 	protected final EClass eClass;
 	protected final EStructuralFeature identification;
 	protected final EStructuralFeature naming;
-	protected final ClassifierInitializer classifierInitializer;
 	protected final EObject eObject;
 
 	protected final ModifyListener validator = e -> setPageComplete(validatePage());
@@ -53,24 +51,18 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 	/**
 	 * Creates a new wizard page with given metadata and initializer.
 	 * 
-	 * @param pageName    the name of the page
-	 * @param metadata    describes EMF metadata for an object to be created, must
-	 *                    not be <code>null</code>
-	 * @param initializer describer initial values for an object to be created, must
-	 *                    not be <code>null</code>
-	 * 
+	 * @param pageName the name of the page
+	 * @param metadata describes EMF metadata for an object to be created, must not
+	 *                 be <code>null</code>
 	 * @see EntityMetadata
-	 * @see ClassifierInitializer
 	 */
-	protected BaseClassifierWizardPage(String pageName, EntityMetadata metadata, ClassifierInitializer initializer) {
+	protected BaseClassifierWizardPage(String pageName, EntityMetadata metadata) {
 		super(pageName);
 		Objects.requireNonNull(metadata, WorkbenchMessages.BaseClassifierWizardPage_e_null_metadata);
-		Objects.requireNonNull(initializer, WorkbenchMessages.BaseClassifierWizardPage_e_null_initializer);
 		this.eClass = metadata.eClass();
 		this.eObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		this.identification = metadata.identification();
 		this.naming = metadata.naming();
-		this.classifierInitializer = initializer;
 	}
 
 	@Override
@@ -79,7 +71,7 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 		composite.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
 		composite.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
 		createFieldControls(composite);
-		initControls(classifierInitializer);
+		initControls();
 		setPageComplete(validatePage());
 		setControl(composite);
 	}
@@ -107,8 +99,8 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 		textId.addModifyListener(validator);
 	}
 
-	protected void initControls(ClassifierInitializer initializer) {
-		textId.setText(new EObjectDefaultIdentifier(eClass).get());
+	protected void initControls() {
+		textId.setText(new EObjectNameIdentifier(eClass).apply('.'));
 		textName.setText(new EObjectDefaultName(eClass).get());
 	}
 

@@ -16,10 +16,6 @@ import org.eclipse.osgi.util.NLS;
 
 public class UsersCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages"; //$NON-NLS-1$
-	public static String UserOriginClassifierInitializer_new_file_message;
-	public static String UserOriginClassifierInitializer_object_message;
-	public static String UserOriginClassifierInitializer_object_name;
-	public static String UserOriginClassifierInitializer_object_title;
 	public static String UsersSelectionCommandAdvisor_select_user;
 	public static String UsersSelectionCommandAdvisor_select_user_license;
 	public static String UsersSelectionCommandAdvisor_select_user_origin;

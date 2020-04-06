@@ -4,7 +4,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -21,25 +20,20 @@ public final class RootClassifierWizard extends BaseClassifierWizard<RootClassif
 	 * 
 	 * @param metadata    describes EMF metadata for an object to be created, must
 	 *                    not be <code>null</code>
-	 * @param initializer describer initial values for an object to be created, must
-	 *                    not be <code>null</code>
 	 * @param registry    registry for an object to be created, must not be
 	 *                    <code>null</code>
-	 * 
 	 * @see BaseClassifierWizard
 	 * @see EntityMetadata
-	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public RootClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry) {
-		super(metadata, initializer, registry);
+	public RootClassifierWizard(EntityMetadata metadata, EditingDomainRegistry<?> registry) {
+		super(metadata, registry);
 	}
 
 	@Override
 	protected RootClassifierWizardPage createNewClassifierPage() {
-		return new RootClassifierWizardPage(metadata, initializer, registry.getFileExtension());
+		return new RootClassifierWizardPage(metadata, registry.getFileExtension());
 	}
 
 	@Override

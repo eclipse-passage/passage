@@ -18,26 +18,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.passage.moveto.lic.emf.edit.EClassResources;
-import org.eclipse.passage.moveto.lic.emf.edit.EObjectDefaultIdentifier;
+import org.eclipse.passage.moveto.lic.emf.edit.EObjectNameIdentifier;
 import org.junit.Test;
 
-public class EObjectDefaultIdentifierTest {
+public class EObjectNameIdentifierTest {
 
 	@Test(expected = NullPointerException.class)
 	public void nullEClass() {
-		new EObjectDefaultIdentifier((EClass) null);
+		new EObjectNameIdentifier((EClass) null);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void nullEClassResources() {
-		new EObjectDefaultIdentifier((EClassResources) null);
+		new EObjectNameIdentifier((EClassResources) null);
 	}
 
 	@Test
 	public void positive() {
 		EClassResources resources = new EClassResources(EcorePackage.eINSTANCE.getEReference());
 		resources.adapterFactory().addAdapterFactory(new EcoreItemProviderAdapterFactory());
-		assertEquals("new.ereference", new EObjectDefaultIdentifier(resources).get()); //$NON-NLS-1$
+		EObjectNameIdentifier identifier = new EObjectNameIdentifier(resources);
+		assertEquals("new.ereference", identifier.apply('.')); //$NON-NLS-1$
+		assertEquals("new_ereference", identifier.apply('_')); //$NON-NLS-1$
 	}
 
 }

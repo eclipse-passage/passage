@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
@@ -70,20 +69,18 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	@Override
 	public Optional<C> get() {
 		EditingDomainRegistryAccess registryAccess = context.get(EditingDomainRegistryAccess.class);
-		ClassifierInitializer initializer = registryAccess.getClassifierInitializer(domain);
 		EditingDomainRegistry<?> registry = registryAccess.getDomainRegistry(domain);
-		return showWizard(clazz, initializer, registry)//
+		return showWizard(clazz, registry)//
 				.filter(clazz::isInstance)//
 				.flatMap(e -> Optional.of(clazz.cast(e)));
 	}
 
-	protected Optional<EObject> showWizard(Class<C> type, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry) {
+	protected Optional<EObject> showWizard(Class<C> type, EditingDomainRegistry<?> registry) {
 		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
 		EClass eClass = metadata.eClass();
 		ResourceLocator resourceLocator = new EClassResources(eClass).get();
 		String typeName = resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$
-		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
+		BaseClassifierWizard<?> wizard = createWizard(type, metadata, registry);
 		Shell parentShell = context.get(Shell.class);
 		WizardDialog dialog = new WizardDialog(parentShell, wizard);
 		dialog.create();
@@ -101,6 +98,6 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	protected abstract String dialogMessage(String typeName);
 
 	protected abstract BaseClassifierWizard<?> createWizard(Class<C> type, EntityMetadata metadata,
-			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);
+			EditingDomainRegistry<?> registry);
 
 }

@@ -12,6 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.edit;
 
+/**
+ * Not used anymore since 0.9
+ * 
+ * @deprecated will be deleted at 1.0
+ *
+ */
+@Deprecated
 public interface ClassifierInitializer {
 
 	String newObjectIdentifier();

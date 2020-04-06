@@ -19,7 +19,6 @@ public class WorkbenchMessages extends NLS {
 	public static String Appearance_e_null_image;
 	public static String Appearance_e_null_labels;
 	public static String Appearance_e_null_title;
-	public static String BaseClassifierWizardPage_e_null_initializer;
 	public static String BaseClassifierWizardPage_e_null_metadata;
 	public static String CreateClassifier_text_new_type;
 	public static String CreateDomainResource_e_null_classifier;

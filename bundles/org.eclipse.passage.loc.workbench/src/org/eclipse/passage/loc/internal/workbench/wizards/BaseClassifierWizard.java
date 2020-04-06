@@ -27,7 +27,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.osgi.framework.Bundle;
@@ -43,7 +42,6 @@ import org.osgi.framework.FrameworkUtil;
 public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> extends Wizard {
 
 	protected final EntityMetadata metadata;
-	protected final ClassifierInitializer initializer;
 	protected final EditingDomainRegistry<?> registry;
 
 	protected N newClassifierPage;
@@ -51,22 +49,16 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 	/**
 	 * Creates a new wizard with given metadata and initializer
 	 * 
-	 * @param metadata    describes EMF metadata for an object to be created, must
-	 *                    not be <code>null</code>
-	 * @param initializer describer initial values for an object to be created, must
-	 *                    not be <code>null</code>
-	 * @param registry    registry for an object to be created, must not be
-	 *                    <code>null</code>
-	 * 
+	 * @param metadata describes EMF metadata for an object to be created, must not
+	 *                 be <code>null</code>
+	 * @param registry registry for an object to be created, must not be
+	 *                 <code>null</code>
 	 * @see EntityMetadata
-	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	protected BaseClassifierWizard(EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry) {
+	protected BaseClassifierWizard(EntityMetadata metadata, EditingDomainRegistry<?> registry) {
 		this.metadata = metadata;
-		this.initializer = initializer;
 		this.registry = registry;
 	}
 

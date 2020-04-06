@@ -16,7 +16,6 @@ import java.util.Optional;
 
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
@@ -54,8 +53,8 @@ public final class CreateInner<I, R> extends CreateClassifier<I> {
 
 	@Override
 	protected BaseClassifierWizard<?> createWizard(Class<I> clazz, EntityMetadata metadata,
-			ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
-		return new InnerClassifierWizard<I, R>(clazz, metadata, initializer, registry, request, context);
+			EditingDomainRegistry<?> registry) {
+		return new InnerClassifierWizard<I, R>(clazz, metadata, registry, request, context);
 	}
 
 	@Override
