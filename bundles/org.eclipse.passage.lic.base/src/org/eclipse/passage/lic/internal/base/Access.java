@@ -10,11 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.internal.base;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
@@ -22,6 +23,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
  * Top-level access cycle management is to be implemented here. Just started
  * with what we have for now: requirements resolution.
  */
+@SuppressWarnings("restriction")
 public final class Access {
 
 	private final Framework framework;
