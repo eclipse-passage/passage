@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.EquinoxFramework">
+   <service>
+      <provide interface="org.eclipse.passage.lic.internal.api.Framework"/>
+   </service>
+   <reference bind="bind" interface="org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry" unbind="unbind"/>
+   <implementation class="org.eclipse.passage.lic.internal.equinox.EquinoxFramework"/>
+</scr:component>

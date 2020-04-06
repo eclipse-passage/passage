@@ -10,20 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.api.requirements;
 
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
-@SuppressWarnings("restriction")
-public final class RequirementsSupplierRegistry implements Supplier<Registry<StringServiceId, ResolvedRequirements>> {
-
-	@Override
-	public Registry<StringServiceId, ResolvedRequirements> get() {
-		throw new UnsupportedOperationException();
-	}
+public interface ResolvedRequirementsRegistry extends Supplier<Registry<StringServiceId, ResolvedRequirements>> {
 
 }

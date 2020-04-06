@@ -20,6 +20,8 @@ public class EquinoxMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages"; //$NON-NLS-1$
 
 	public static String ApplicationConfigurations_contact_defaults;
+	public static String EquinoxPassage_no_framework;
+
 	public static String EquinoxPaths_uri_retrieval_error;
 	public static String EquinoxRestrictions_feature_is_licensed;
 	public static String EquinoxRestrictions_feature_is_not_licensed;

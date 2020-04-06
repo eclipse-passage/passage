@@ -31,6 +31,10 @@ import org.osgi.framework.wiring.BundleWiring;
 
 public class EquinoxRequirements {
 
+	/**
+	 * @deprecated not used
+	 */
+	@Deprecated
 	public static Iterable<BundleRequirement> extractLicensingManagementRequirements(Bundle bundle) {
 		BundleWiring wiring = bundle.adapt(BundleWiring.class);
 		if (wiring != null) {

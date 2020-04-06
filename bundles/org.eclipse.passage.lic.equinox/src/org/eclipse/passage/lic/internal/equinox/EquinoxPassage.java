@@ -12,18 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
+import java.util.Optional;
+
+import org.eclipse.passage.lic.internal.api.Access;
+import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.Passage;
 
 @SuppressWarnings("restriction")
 public final class EquinoxPassage implements Passage {
 
 	@Override
-	public boolean canUse(String featureId) {
-		throw new UnsupportedOperationException();
+	public boolean canUse(String feature) {
+		Optional<Framework> framework = new FrameworkSupplier().get();
+		if (!framework.isPresent()) {
+			return false;
+		}
+		return new Access(framework.get()).canUse(feature);
 	}
 
 	@Override
-	public void checkLicense(String featureId) {
+	public void checkLicense(String feature) {
 		// accessManager.executeAccessRestrictions(configuration);
 		throw new UnsupportedOperationException();
 	}
