@@ -23,6 +23,8 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
+import org.eclipse.passage.moveto.lic.emf.edit.EObjectDefaultIdentifier;
+import org.eclipse.passage.moveto.lic.emf.edit.EObjectDefaultName;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
@@ -106,8 +108,8 @@ public abstract class BaseClassifierWizardPage extends WizardPage {
 	}
 
 	protected void initControls(ClassifierInitializer initializer) {
-		textId.setText(initializer.newObjectIdentifier());
-		textName.setText(initializer.newObjectName());
+		textId.setText(new EObjectDefaultIdentifier(eClass).get());
+		textName.setText(new EObjectDefaultName(eClass).get());
 	}
 
 	protected boolean validatePage() {

@@ -16,8 +16,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
@@ -27,6 +30,7 @@ import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
+import org.eclipse.passage.moveto.lic.emf.edit.EClassResources;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 
@@ -76,19 +80,25 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	protected Optional<EObject> showWizard(Class<C> type, ClassifierInitializer initializer,
 			EditingDomainRegistry<?> registry) {
 		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
+		EClass eClass = metadata.eClass();
+		ResourceLocator resourceLocator = new EClassResources(eClass).get();
+		String typeName = resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$
 		BaseClassifierWizard<?> wizard = createWizard(type, metadata, initializer, registry);
-		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
+		Shell parentShell = context.get(Shell.class);
+		WizardDialog dialog = new WizardDialog(parentShell, wizard);
 		dialog.create();
-		dialog.setTitle(initializer.newObjectTitle());
-		dialog.setMessage(initializer.newFileMessage());
+		dialog.setTitle(typeName);
+		dialog.setMessage(dialogMessage(typeName));
 		Shell createdShell = dialog.getShell();
 		Point location = createdShell.getLocation();
 		createdShell.setLocation(location.x + 40, location.y + 40);
-		createdShell.setText(initializer.newObjectMessage());
-		createdShell.setImage(LicensingImages.getImage(metadata.eClass().getName()));
+		createdShell.setText(NLS.bind(WorkbenchMessages.CreateClassifier_text_new_type, typeName));
+		createdShell.setImage(LicensingImages.getImage(eClass.getName()));
 		dialog.open();
 		return wizard.created();
 	}
+
+	protected abstract String dialogMessage(String typeName);
 
 	protected abstract BaseClassifierWizard<?> createWizard(Class<C> type, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry);

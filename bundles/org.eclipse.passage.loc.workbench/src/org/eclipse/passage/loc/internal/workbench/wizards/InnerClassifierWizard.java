@@ -3,6 +3,7 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -73,13 +74,16 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 		if (!container.isPresent()) {
 			return;
 		}
-		EReference reference = candidate.eClass().getEAllReferences().stream()//
-				.filter(r -> r.isContainer())//
-				.findFirst()//
-				.get();
+		EReference reference = containerEReference(candidate.eClass()).get();
 		candidate.eSet(reference, container.get());
 		Resource resource = candidate.eResource();
-		Optional.ofNullable(resource).ifPresent(r -> LocWokbench.save(r));
+		Optional.ofNullable(resource).ifPresent(LocWokbench::save);
+	}
+
+	private Optional<EReference> containerEReference(EClass eClass) {
+		return eClass.getEAllReferences().stream()//
+				.filter(EReference::isContainer)//
+				.findFirst();
 	}
 
 }

@@ -14,10 +14,12 @@ package org.eclipse.passage.loc.internal.workbench;
 
 import java.util.Optional;
 
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.InnerClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;
@@ -54,6 +56,11 @@ public final class CreateInner<I, R> extends CreateClassifier<I> {
 	protected BaseClassifierWizard<?> createWizard(Class<I> clazz, EntityMetadata metadata,
 			ClassifierInitializer initializer, EditingDomainRegistry<?> registry) {
 		return new InnerClassifierWizard<I, R>(clazz, metadata, initializer, registry, request, context);
+	}
+
+	@Override
+	protected String dialogMessage(String typeName) {
+		return NLS.bind(WorkbenchMessages.CreateInner_message_new_type, typeName);
 	}
 
 }
