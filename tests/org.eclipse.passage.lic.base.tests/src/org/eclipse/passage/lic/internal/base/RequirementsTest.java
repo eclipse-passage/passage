@@ -12,31 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Set;
 
-import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.base.tests.requirements.Unsatisfiable;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.junit.Test;
 
-/**
- * Top-level access cycle management is to be implemented here. Just started
- * with what we have for now: requirements resolution.
- */
 @SuppressWarnings("restriction")
-public final class Access {
+public final class RequirementsTest {
 
-	private final Framework framework;
-
-	public Access(Framework framework) {
-		this.framework = framework;
-	}
-
-	public boolean canUse(String feature) {
-		Set<Requirement> requirements = new Requirements(framework.requirementsRegistry().get(), feature).get();
-		if (requirements.isEmpty()) {
-			return true;
-		}
-		// FIXME: EP: implement further
-		return false;
+	@Test
+	public void noResolversMeansNoAccess() {
+		Set<Requirement> requirements = new Requirements(//
+				new SabotagedFramework().requirementsRegistry().get(), //
+				"feature0" //$NON-NLS-1$
+		).get();
+		assertEquals(1, requirements.size());
+		assertTrue(new Unsatisfiable().test(requirements.iterator().next()));
 	}
 
 }
