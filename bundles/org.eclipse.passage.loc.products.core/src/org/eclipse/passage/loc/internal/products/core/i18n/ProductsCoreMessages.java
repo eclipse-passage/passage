@@ -16,10 +16,6 @@ import org.eclipse.osgi.util.NLS;
 
 public class ProductsCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages"; //$NON-NLS-1$
-	public static String ProductLineClassifierInitializer_file_message;
-	public static String ProductLineClassifierInitializer_object_message;
-	public static String ProductLineClassifierInitializer_object_name;
-	public static String ProductLineClassifierInitializer_object_title;
 	public static String ProductOperatorServiceImpl_e_export_error;
 	public static String ProductOperatorServiceImpl_e_invalid_product_version;
 	public static String ProductOperatorServiceImpl_e_private_key_already_defined;

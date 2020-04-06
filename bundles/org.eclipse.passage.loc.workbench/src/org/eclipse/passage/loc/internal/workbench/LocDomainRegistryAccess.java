@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.osgi.service.component.annotations.Component;
@@ -32,7 +31,6 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 
 	private final Map<String, EditingDomainRegistry<?>> domainRegistries = new HashMap<>();
 	private final Map<String, String> fileExtensions = new HashMap<>();
-	private final Map<String, ClassifierInitializer> classifierInitializers = new HashMap<>();
 	private final Map<String, SelectionCommandAdvisor> selectionAdvisors = new HashMap<>();
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
@@ -48,17 +46,6 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 		unregisterEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
 		unregisterEntry(fileExtensions, domain, extension);
-	}
-
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
-	public void registerClassifierInitializer(ClassifierInitializer instance, Map<String, Object> properties) {
-		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
-		registerEntry(classifierInitializers, domain, instance);
-	}
-
-	public void unregisterClassifierInitializer(ClassifierInitializer instance, Map<String, Object> properties) {
-		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
-		unregisterEntry(classifierInitializers, domain, instance);
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
@@ -96,11 +83,6 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	@Override
 	public String getFileExtension(String domain) {
 		return fileExtensions.get(domain);
-	}
-
-	@Override
-	public ClassifierInitializer getClassifierInitializer(String domain) {
-		return classifierInitializers.get(domain);
 	}
 
 	@Override

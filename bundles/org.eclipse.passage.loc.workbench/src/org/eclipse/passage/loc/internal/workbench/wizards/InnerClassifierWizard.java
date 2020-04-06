@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
@@ -33,23 +32,20 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 	 * Creates a new wizard for root licensing object with given metadata,
 	 * initializer and registry
 	 * 
-	 * @param metadata    describes EMF metadata for an object to be created, must
-	 *                    not be <code>null</code>
-	 * @param initializer describer initial values for an object to be created, must
-	 *                    not be <code>null</code>
+	 * @param metadata describes EMF metadata for an object to be created, must not
+	 *                 be <code>null</code>
 	 * @param registry
-	 * @param registry    registry for an object to be created, must not be
-	 *                    <code>null</code>
+	 * @param registry registry for an object to be created, must not be
+	 *                 <code>null</code>
 	 * 
 	 * @see BaseClassifierWizard
 	 * @see ClassifierMetadata
-	 * @see ClassifierInitializer
 	 * @see EditingDomainRegistry
 	 * 
 	 */
-	public InnerClassifierWizard(Class<I> clazz, EntityMetadata metadata, ClassifierInitializer initializer,
-			EditingDomainRegistry<?> registry, SelectRequest<R> request, MandatoryService context) {
-		super(metadata, initializer, registry);
+	public InnerClassifierWizard(Class<I> clazz, EntityMetadata metadata, EditingDomainRegistry<?> registry,
+			SelectRequest<R> request, MandatoryService context) {
+		super(metadata, registry);
 		this.clazz = clazz;
 		this.request = request;
 		this.context = context;
@@ -59,7 +55,7 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 	protected InnerClassifierWizardPage<R> createNewClassifierPage() {
 		Optional<EntityMetadata> find = context.get(ComposableClassMetadata.class).find(clazz);
 		if (find.isPresent()) {
-			return new InnerClassifierWizardPage<R>(find.get(), initializer, request, context);
+			return new InnerClassifierWizardPage<R>(find.get(), request, context);
 		}
 		// FIXME: AF: provide nice error page
 		throw new NoSuchElementException(clazz.getName());

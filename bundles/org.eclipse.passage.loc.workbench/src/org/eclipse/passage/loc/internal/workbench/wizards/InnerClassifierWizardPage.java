@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
@@ -46,9 +45,9 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 
 	private Text text;
 
-	protected InnerClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer,
-			SelectRequest<R> request, MandatoryService context) {
-		super(InnerClassifierWizardPage.class.getSimpleName(), metadata, initializer);
+	protected InnerClassifierWizardPage(EntityMetadata metadata, SelectRequest<R> request,
+			MandatoryService context) {
+		super(InnerClassifierWizardPage.class.getSimpleName(), metadata);
 		this.request = request;
 		this.context = context;
 		this.forward = new MandatoryEclipseContext(EclipseContextFactory
@@ -95,8 +94,8 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 	}
 
 	@Override
-	protected void initControls(ClassifierInitializer initializer) {
-		super.initControls(initializer);
+	protected void initControls() {
+		super.initControls();
 		Optional.ofNullable(eObject.eContainingFeature()).ifPresent(f -> updateText(container(eObject.eGet(f))));
 	}
 

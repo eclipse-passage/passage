@@ -3,10 +3,10 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import java.io.File;
 
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.passage.lic.emf.edit.ClassifierInitializer;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
+import org.eclipse.passage.moveto.lic.emf.edit.EObjectNameIdentifier;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
@@ -28,8 +28,8 @@ public final class RootClassifierWizardPage extends BaseClassifierWizardPage {
 	protected Text text;
 	private Button button;
 
-	protected RootClassifierWizardPage(EntityMetadata metadata, ClassifierInitializer initializer, String extension) {
-		super(RootClassifierWizardPage.class.getSimpleName(), metadata, initializer);
+	protected RootClassifierWizardPage(EntityMetadata metadata, String extension) {
+		super(RootClassifierWizardPage.class.getSimpleName(), metadata);
 		this.extension = extension;
 	}
 
@@ -54,9 +54,9 @@ public final class RootClassifierWizardPage extends BaseClassifierWizardPage {
 	}
 
 	@Override
-	protected void initControls(ClassifierInitializer initializer) {
-		super.initControls(initializer);
-		text.setText(basePath() + File.separator + initializer.newFileName() + '.' + extension);
+	protected void initControls() {
+		super.initControls();
+		text.setText(basePath() + File.separator + new EObjectNameIdentifier(eClass) + '.' + extension);
 	}
 
 	protected String basePath() {
