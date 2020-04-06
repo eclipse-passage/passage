@@ -77,12 +77,12 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 		EReference reference = containerEReference(candidate.eClass()).get();
 		candidate.eSet(reference, container.get());
 		Resource resource = candidate.eResource();
-		Optional.ofNullable(resource).ifPresent(r -> LocWokbench.save(r));
+		Optional.ofNullable(resource).ifPresent(LocWokbench::save);
 	}
 
 	private Optional<EReference> containerEReference(EClass eClass) {
 		return eClass.getEAllReferences().stream()//
-				.filter(r -> r.isContainer())//
+				.filter(EReference::isContainer)//
 				.findFirst();
 	}
 

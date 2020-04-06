@@ -57,8 +57,9 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 
 	@Override
 	protected void createFieldControls(Composite composite) {
-		text = createTextButtonBlock(composite, new EClassName(containerMetadata().get().eClass()).get(),
-				() -> selectContainer());
+		text = createTextButtonBlock(composite, //
+				new EClassName(containerMetadata().get().eClass()).get(), //
+				this::selectContainer);
 		super.createFieldControls(composite);
 	}
 
