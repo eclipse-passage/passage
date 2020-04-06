@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.base.tests.requirements.Unsatisfiable;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.junit.Test;
 

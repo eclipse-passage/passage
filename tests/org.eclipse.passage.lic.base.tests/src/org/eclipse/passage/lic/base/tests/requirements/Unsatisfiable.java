@@ -10,14 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.requirements;
+package org.eclipse.passage.lic.base.tests.requirements;
 
 import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 
 @SuppressWarnings("restriction")
-final class Unsatisfiable implements Predicate<Requirement> {
+public final class Unsatisfiable implements Predicate<Requirement> {
 
 	@Override
 	public boolean test(Requirement requirement) {

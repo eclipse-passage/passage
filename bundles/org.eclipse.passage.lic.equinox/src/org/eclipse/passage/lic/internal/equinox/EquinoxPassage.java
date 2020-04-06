@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.Access;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.Passage;
+import org.eclipse.passage.lic.internal.base.Access;
 
 @SuppressWarnings("restriction")
 public final class EquinoxPassage implements Passage {

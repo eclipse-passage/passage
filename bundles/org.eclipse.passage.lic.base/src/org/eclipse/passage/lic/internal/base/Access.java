@@ -10,18 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.internal.base;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 /**
  * Top-level access cycle management is to be implemented here. Just started
  * with what we have for now: requirements resolution.
  */
+@SuppressWarnings("restriction")
 public final class Access {
 
 	private final Framework framework;
@@ -31,10 +31,7 @@ public final class Access {
 	}
 
 	public boolean canUse(String feature) {
-		Set<Requirement> requirements = framework.requirementsRegistry().get().services().stream() //
-				.map(ResolvedRequirements.Smart::new) //
-				.flatMap(service -> service.forFeature(feature).stream()) //
-				.collect(Collectors.toSet());
+		Set<Requirement> requirements = new Requirements(framework.requirementsRegistry().get(), feature).get();
 		if (requirements.isEmpty()) {
 			return true;
 		}
