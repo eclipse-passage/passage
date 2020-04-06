@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.equinox.tests.data.requirements.EvilWitch">
+   <property name="licensing.feature.identifier" value="EvilWitch"/>
+   <property name="licensing.feature.name" value="Evil Witch"/>
+   <property name="licensing.restriction.level" value="info"/>
+   <property name="licensing.feature.version" value="13.4.1"/>
+   <property name="licensing.feature.provider" value="Universe"/>
+   <service>
+      <provide interface="org.eclipse.passage.lic.equinox.tests.data.requirements.PrinceToFrogMagic"/>
+   </service>
+   <implementation class="org.eclipse.passage.lic.equinox.tests.data.requirements.EvilWitch"/>
+</scr:component>

@@ -10,24 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.requirements;
+package org.eclipse.passage.lic.equinox.tests.data.requirements;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-public final class BundleVendorTest {
-
-	@Test
-	public void readVendor() {
-		assertEquals(//
-				"Eclipse Passage", //$NON-NLS-1$
-				new BundleVendor(new DataBundle().bundle()).get());
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void prohibitNull() {
-		new BundleVendor(null);
-	}
+public interface PrinceToFrogMagic {
 
 }

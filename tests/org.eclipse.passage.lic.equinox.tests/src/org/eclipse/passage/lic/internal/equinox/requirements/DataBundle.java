@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -29,18 +28,26 @@ import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleWiring;
 
 @SuppressWarnings("restriction")
-final class DataBundle implements Supplier<Bundle> {
+final class DataBundle {
 
 	private final String id = "org.eclipse.passage.lic.equinox.tests.data.requirements"; //$NON-NLS-1$
 	private final Cached<String, Bundle> bundle = new Cached<String, Bundle>(id, Platform::getBundle);
 
-	@Override
-	public Bundle get() {
+	Bundle bundle() {
 		return bundle.get();
 	}
 
-	Set<Requirement> validRequirements() {
+	List<BundleCapability> capabilities() {
+		return bundle().adapt(BundleWiring.class).getCapabilities(//
+				new LicensingFeatureCapabilitiesFromBundle(bundle()).key());
+	}
+
+	Set<Requirement> validRequirementsFromCapabilities() {
 		return new HashSet<Requirement>(Arrays.asList(pi(), e(), incomplete()));
+	}
+
+	Set<Requirement> validRequirementsFromComponents() {
+		return new HashSet<Requirement>(Arrays.asList(evilWitch(), goodWitch()));
 	}
 
 	BaseRequirement e() {
@@ -76,17 +83,28 @@ final class DataBundle implements Supplier<Bundle> {
 				id);
 	}
 
-	List<BundleCapability> capabilities() {
-		return get().adapt(BundleWiring.class).getCapabilities(//
-				new LicensingFeatureCapabilitiesFromBundle(get()).key());
+	BaseRequirement evilWitch() {
+		return new BaseRequirement(//
+				new BaseFeature(//
+						"EvilWitch", //$NON-NLS-1$
+						"13.4.1", //$NON-NLS-1$
+						"Evil Witch", //$NON-NLS-1$
+						"Universe"), //$NON-NLS-1$
+				new RestrictionLevel.Info(), //
+				"org.eclipse.passage.lic.equinox.tests.data.requirements.EvilWitch" //$NON-NLS-1$
+		);
 	}
-	// BaseRequirement [feature=BaseFeature [id=PI, version=3.14.15, name=PI of version PI, provider=Eclipse Passage], restriction=error, source=org.eclipse.passage.lic.equinox.tests.data.requirements], 
-	// BaseRequirement [feature=BaseFeature [id=Incomplete, version=0.0.0, name=Incomplete, provider=Eclipse Passage], restriction=warn, source=org.eclipse.passage.lic.equinox.tests.data.requirements], 
-	// BaseRequirement [feature=BaseFeature [id=E, version=2.71.82, name=Euler number, provider=Euler], restriction=info, source=org.eclipse.passage.lic.equinox.tests.data.requirements]]> but was:<[
-	
-	// BaseRequirement [feature=BaseFeature [id=PI, version=3.14.15, name=PI of version PI, provider=Eclipse Passage], restriction=error, source=org.eclipse.passage.lic.equinox.tests.data.requirements], 
-	// BaseRequirement [feature=BaseFeature [id=17149af8056, version=0.0.0, name=Configuration of a feature identifier in capability Data for Passage LIC Equinox requirements tests of bundle <missing argument> is required, provider=Passage License Management], restriction=error, source=org.eclipse.passage.lic.equinox.tests.data.requirements_0.1.0.qualifier [461]], 
-	// BaseRequirement [feature=BaseFeature [id=Incomplete, version=0.0.0, name=Incomplete, provider=Eclipse Passage], restriction=warn, source=org.eclipse.passage.lic.equinox.tests.data.requirements], 
-	// BaseRequirement [feature=BaseFeature [id=E, version=2.71.82, name=Euler number, provider=Euler], restriction=info, source=org.eclipse.passage.lic.equinox.tests.data.requirements
-	
+
+	BaseRequirement goodWitch() {
+		return new BaseRequirement(//
+				new BaseFeature(//
+						"GoodWitch", //$NON-NLS-1$
+						"0.0.0", //$NON-NLS-1$
+						"GoodWitch", //$NON-NLS-1$
+						"Eclipse Passage"), //$NON-NLS-1$
+				new RestrictionLevel.Fatal(), //
+				"org.eclipse.passage.lic.equinox.tests.data.requirements.GoodWitch" //$NON-NLS-1$
+		);
+	}
+
 }

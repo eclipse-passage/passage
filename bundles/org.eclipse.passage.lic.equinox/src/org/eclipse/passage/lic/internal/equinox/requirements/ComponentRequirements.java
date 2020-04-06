@@ -102,8 +102,10 @@ public final class ComponentRequirements implements ResolvedRequirements {
 
 	private Collection<Requirement> resolve() {
 		return runtime.get().getComponentDescriptionDTOs(context.get().getBundles()).stream()//
-				.map(component -> new RequirementsFromComponent(component, context.get())) //
-				.map(RequirementsFromComponent::get) //
+				.map(component -> new RequirementFromComponent(component, context.get())) //
+				.map(RequirementFromComponent::get) //
+				.filter(Optional::isPresent) //
+				.map(Optional::get) //
 				.collect(Collectors.toList());
 	}
 
