@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.features.model
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.features.model;singleton:=true
-Bundle-Version: 0.5.100.qualifier
+Bundle-Version: 0.5.200.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
@@ -10,10 +10,12 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.ecore;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.lic.features;bundle-version="0.0.0";visibility:=reexport
+ org.eclipse.passage.lic.features;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.lic.emf;bundle-version="0.6.0"
 Export-Package: org.eclipse.passage.lic.features.model.api,
  org.eclipse.passage.lic.features.model.impl,
  org.eclipse.passage.lic.features.model.meta,
- org.eclipse.passage.lic.features.model.util
+ org.eclipse.passage.lic.features.model.util,
+ org.eclipse.passage.lic.internal.features.model;x-internal:=true
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

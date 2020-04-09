@@ -7,4 +7,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Fragment-Host: org.eclipse.passage.lic.features.model
 Require-Bundle: org.junit;bundle-version="4.12.0"

@@ -10,9 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.moveto.lic.internal.features.model;
+package org.eclipse.passage.lic.internal.features.model;
 
-import java.beans.FeatureDescriptor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,14 +19,16 @@ import java.util.Optional;
 import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
+import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
+import org.eclipse.passage.lic.features.model.api.Feature;
+import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
-//FIXME: AF: remove restriction after moving to the right bundle
-@SuppressWarnings("restriction")
 public final class FeaturesClassMetadata implements ClassMetadata {
 
 	private final FeaturesPackage meta;
+	// FIXME: we need to employ Cached here
 	private final Map<Class<?>, EntityMetadata> map;
 
 	public FeaturesClassMetadata() {
@@ -38,11 +39,13 @@ public final class FeaturesClassMetadata implements ClassMetadata {
 						meta.getFeatureSet(), //
 						meta.getFeatureSet_Identifier(), //
 						meta.getFeatureSet_Name()));
+		map.put(FeatureSet.class, map.get(FeatureSetDescriptor.class));
 		map.put(FeatureDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getFeature(), //
 						meta.getFeature_Identifier(), //
 						meta.getFeature_Name()));
+		map.put(Feature.class, map.get(FeatureDescriptor.class));
 	}
 
 	@Override
