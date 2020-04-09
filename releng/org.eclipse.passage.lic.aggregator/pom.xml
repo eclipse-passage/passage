@@ -79,6 +79,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.features.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.features.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.features.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.features.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.features.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
