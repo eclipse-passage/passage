@@ -42,8 +42,6 @@ import oshi.software.os.OperatingSystemVersion;
 public class OshiHardwareInspector implements HardwareInspector {
 
 	private final Map<String, String> hardwareProperties = new LinkedHashMap<>();
-	private SystemInfo systemInfo;
-
 	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
 	@Activate
@@ -53,7 +51,7 @@ public class OshiHardwareInspector implements HardwareInspector {
 
 	private void initHardwareProperties() {
 		try {
-			systemInfo = new SystemInfo();
+			SystemInfo systemInfo = new SystemInfo();
 			OperatingSystem os = systemInfo.getOperatingSystem();
 			hardwareProperties.put(HardwareInspector.PROPERTY_OS_MANUFACTURER, os.getManufacturer());
 			hardwareProperties.put(HardwareInspector.PROPERTY_OS_FAMILY, os.getFamily());
