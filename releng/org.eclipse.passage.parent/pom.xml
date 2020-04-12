@@ -42,7 +42,7 @@
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
-		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.15-I-builds/</eclipserun-repo>
+		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.15/R-4.15-202003050155/</eclipserun-repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</staging.baseline>
 
