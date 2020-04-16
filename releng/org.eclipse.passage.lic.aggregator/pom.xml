@@ -89,6 +89,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.products.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.products.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.products.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
 
 
@@ -99,6 +100,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.users.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.users.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.users.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
@@ -108,6 +110,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.licenses.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.licenses.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.licenses.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
