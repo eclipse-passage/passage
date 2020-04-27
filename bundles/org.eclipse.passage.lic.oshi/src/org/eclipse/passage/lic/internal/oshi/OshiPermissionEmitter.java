@@ -16,17 +16,20 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITI
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_NAME;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.oshi.OshiHal;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import oshi.SystemInfo;
+import oshi.hardware.HWDiskStore;
 
 @Component(property = { LICENSING_CONDITION_TYPE_ID + '=' + OshiHal.CONDITION_TYPE_HARDWARE,
 		LICENSING_CONDITION_TYPE_NAME + '=' + "Hardware", LICENSING_CONDITION_TYPE_DESCRIPTION + '='
@@ -35,7 +38,18 @@ public class OshiPermissionEmitter extends BasePermissionEmitter implements Perm
 
 	private HardwareInspector hardwareInspector;
 
+	private final List<String> serials = new ArrayList<>();
+
 	public OshiPermissionEmitter() {
+	}
+
+	@Activate
+	public void activate() {
+		HWDiskStore[] diskStores = new SystemInfo().getHardware().getDiskStores();
+		for (HWDiskStore hwDiskStore : diskStores) {
+			serials.add(hwDiskStore.getSerial());
+		}
+
 	}
 
 	@Reference
@@ -54,8 +68,8 @@ public class OshiPermissionEmitter extends BasePermissionEmitter implements Perm
 		// FIXME: EP: fast hack for 562012,
 		// to be solved properly with formats alternations in 0.9
 		if (key.equals(HardwareInspector.PROPERTY_HWDISK_SERIAL)) {
-			return Arrays.stream(new SystemInfo().getHardware().getDiskStores()) //
-					.anyMatch(disk -> LicensingConditions.evaluateSegmentValue(expected, disk.getSerial()));
+			return serials.stream() //
+					.anyMatch(disk -> LicensingConditions.evaluateSegmentValue(expected, disk));
 		}
 		String actual = hardwareInspector.inspectProperty(key);
 		return LicensingConditions.evaluateSegmentValue(expected, actual);
