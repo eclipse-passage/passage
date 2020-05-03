@@ -230,6 +230,11 @@ public class BaseAccessManager implements AccessManager {
 					licensingReporter.logResult(error);
 					licensingReporter
 							.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
+				} catch (Throwable e) {
+					LicensingResult error = LicensingResults.createError(BaseMessages.getString("BaseAccessManager_permission_emitter_failure"), source, e); //$NON-NLS-1$
+					licensingReporter.logResult(error);
+					licensingReporter
+							.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
 				}
 			} else {
 				licensingReporter.logResult(validate);
