@@ -17,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 public class OshiMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.oshi.i18n.OshiMessages"; //$NON-NLS-1$
 	public static String OshiHardwareInspector_e_reading_hw;
+	public static String OshiPermissionEmitter_e_retrieve_disks;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, OshiMessages.class);
