@@ -24,7 +24,7 @@ package org.eclipse.passage.loc.yars.internal.api;
  * </p>
  * 
  * @see Query#fetch(Storage, FetchParams)
- * 
+ * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
 public interface FetchParams {
@@ -33,6 +33,8 @@ public interface FetchParams {
 	 * In wide variety of cases there is no need in parameterization for a query.
 	 * This class implements the no-parameters instance.
 	 * 
+	 * @see FetchParams
+	 * @see org.eclipse.passage.loc.yars.internal.api
 	 * @since 0.1
 	 */
 	final class Empty implements FetchParams {

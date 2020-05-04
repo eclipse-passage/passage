@@ -21,20 +21,18 @@ import java.util.List;
  * </p>
  * <p>
  * Fetching details are hidden and can be as complicated as a case required.
- * Type of final result type can differ from the original type of stored
- * entries.
+ * Type of final the result can differ from the original type of stored entries.
  * </p>
  *
- * @param B a precise type of {@linkplain Storage}
- * @param R type of processing result, is not obliged to be equal with the type
- *          of stored entries. If the fetched data is intended to be further
- *          exported ({@code written}), then {@linkplain ExportData} is
- *          recommended to be used as {@code R}
+ * @param <S> a precise type of {@linkplain Storage}
+ * @param <R> type of processing result, is not obliged to be equal with the
+ *            type of stored entries. If the fetched data is intended to be
+ *            further exported ({@code written}), then {@linkplain ExportData}
+ *            is recommended to be used as {@code R}
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
-@SuppressWarnings("unused")
-public interface FetchedData<B extends Storage<?>, R> {
+public interface FetchedData<S extends Storage<?>, R> {
 
 	List<R> get();
 

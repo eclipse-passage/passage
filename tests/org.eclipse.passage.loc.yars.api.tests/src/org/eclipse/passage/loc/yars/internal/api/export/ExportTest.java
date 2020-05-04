@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
-import org.eclipse.passage.loc.yars.internal.api.DefaultDOSHandler;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.DefaultDosHandler;
 import org.eclipse.passage.loc.yars.internal.api.Export;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
@@ -109,7 +109,7 @@ public class ExportTest {
 						new StoredEntry("Tsunami", "Japan")//$NON-NLS-1$ //$NON-NLS-2$
 				), //
 				new FetchParams.Empty()))//
-						.write(new DOSHandleMedia<ExportedEntry>(media, new DefaultDOSHandler()));
+						.write(new DosHandleMedia<ExportedEntry>(media, new DefaultDosHandler()));
 	}
 
 }

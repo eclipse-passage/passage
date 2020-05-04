@@ -14,7 +14,14 @@ package org.eclipse.passage.loc.yars.internal.api;
 
 import java.util.function.Consumer;
 
-public final class DefaultDOSHandler implements Consumer<ReportException> {
+/**
+ * Simple default handler of a {@linkplain ReportException} prints it's stack
+ * trace to the system error stream.
+ * 
+ * @see DosHandleMedia
+ * @since 0.1
+ */
+public final class DefaultDosHandler implements Consumer<ReportException> {
 
 	@Override
 	public void accept(ReportException t) {

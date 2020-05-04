@@ -12,6 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.yars.internal.api;
 
+/**
+ * Covers any error that can happen during a data into a format export.
+ * 
+ * @since 0.1
+ */
 @SuppressWarnings("serial") // not designed for serialization
 public final class ReportException extends Exception {
 

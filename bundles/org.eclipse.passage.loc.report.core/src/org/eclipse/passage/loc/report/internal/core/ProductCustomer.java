@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
-import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 
 /**
@@ -36,7 +36,7 @@ import org.eclipse.passage.loc.yars.internal.api.ExportData;
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-final class ProductCustomer implements ExportData<ProductCustomer, DOSHandleMedia<ProductCustomer>> {
+final class ProductCustomer implements ExportData<ProductCustomer, DosHandleMedia<ProductCustomer>> {
 
 	private final String name;
 	private final String email;
@@ -47,7 +47,7 @@ final class ProductCustomer implements ExportData<ProductCustomer, DOSHandleMedi
 	}
 
 	@Override
-	public void write(DOSHandleMedia<ProductCustomer> media) {
+	public void write(DosHandleMedia<ProductCustomer> media) {
 		media.inner(email, "email"); //$NON-NLS-1$
 		media.inner(name, "name"); //$NON-NLS-1$
 	}

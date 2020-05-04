@@ -21,13 +21,11 @@ package org.eclipse.passage.loc.yars.internal.api;
  * (something iterable) of a single type ({@code T})
  * </p>
  * <p>
- * ListMedia is designed to be used by {@linkplain ExportData} implementors. It
- * has at least two kinds of clients:
+ * {@code ListMedia} is designed to be used by {@linkplain ExportData}
+ * implementors.
  * </p>
  * 
  * @param T type of a single entity in a <i>list</i>
- * @param C output format type
- * 
  * @see ExportData
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
@@ -35,26 +33,52 @@ package org.eclipse.passage.loc.yars.internal.api;
 public interface ListMedia<T> {
 
 	/**
+	 * <p>
+	 * Intended to be called ones on the start of an export process, prior any data
+	 * is processed.
+	 * </p>
+	 * <p>
+	 * Implement a one-per-export actions here, like CSV header writing
+	 * </p>
+	 * 
 	 * @since 0.1
 	 */
 	void start() throws ReportException;
 
 	/**
+	 * <p>
+	 * Intended to be called ones after the actual data are all processed.
+	 * </p>
+	 * <p>
+	 * Implement a <i>post scriptum</i> actions invocation here, like analytics or
+	 * signature appending.
+	 * </p>
+	 * 
 	 * @since 0.1
 	 */
 	void finish() throws ReportException;
 
 	/**
+	 * <p>
+	 * Is called one per an data entry, prior it's processing.
+	 * </p>
+	 * 
 	 * @since 0.1
 	 */
 	void startNode(T node) throws ReportException;
 
 	/**
+	 * <p>
+	 * Is called one per an data entry, after it is processed.
+	 * </p>
+	 * 
 	 * @since 0.1
 	 */
 	void finishNode(T node) throws ReportException;
 
 	/**
+	 * Is called to each data property intended to be processed
+	 * 
 	 * @since 0.1
 	 */
 	void inner(String data, String name) throws ReportException;
