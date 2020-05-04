@@ -14,11 +14,11 @@ package org.eclipse.passage.loc.yars.internal.api.export;
 
 import java.util.Objects;
 
-import org.eclipse.passage.loc.yars.internal.api.DOSHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 
 @SuppressWarnings("restriction")
-public class ExportedEntry implements ExportData<ExportedEntry, DOSHandleMedia<ExportedEntry>> {
+public class ExportedEntry implements ExportData<ExportedEntry, DosHandleMedia<ExportedEntry>> {
 
 	private String name;
 
@@ -27,7 +27,7 @@ public class ExportedEntry implements ExportData<ExportedEntry, DOSHandleMedia<E
 	}
 
 	@Override
-	public void write(DOSHandleMedia<ExportedEntry> media) {
+	public void write(DosHandleMedia<ExportedEntry> media) {
 		media.inner(name, "name"); //$NON-NLS-1$
 	}
 

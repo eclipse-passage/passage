@@ -43,13 +43,12 @@ package org.eclipse.passage.loc.yars.internal.api;
  * 
  * @param <S> type of storage
  * @param <T> type of data ready for export, sub type of {@linkplain ExportData}
- * @param <M> any sub type of {@linkplain ListMedia}
  * 
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
-public final class Export<S extends Storage<?>, T extends ExportData<T, DOSHandleMedia<T>>>
-		implements ExportData<T, DOSHandleMedia<T>> {
+public final class Export<S extends Storage<?>, T extends ExportData<T, DosHandleMedia<T>>>
+		implements ExportData<T, DosHandleMedia<T>> {
 
 	private final FetchedData<S, T> query;
 
@@ -58,7 +57,7 @@ public final class Export<S extends Storage<?>, T extends ExportData<T, DOSHandl
 	}
 
 	@Override
-	public void write(DOSHandleMedia<T> media) {
+	public void write(DosHandleMedia<T> media) {
 		media.start();
 		query.get().forEach(data -> {
 			media.startNode(data);

@@ -12,7 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.yars.internal.api;
 
+/**
+ * @since 0.1
+ */
 @FunctionalInterface
 public interface Unsafe<T extends Exception> {
+
 	void call() throws T;
+
 }

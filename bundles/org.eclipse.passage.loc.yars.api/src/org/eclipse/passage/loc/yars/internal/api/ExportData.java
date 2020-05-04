@@ -42,13 +42,12 @@ package org.eclipse.passage.loc.yars.internal.api;
  * {@code write} one's innards to the output as well</li>
  * </ul>
  *
- * @param O represent the type of output format
- * @param T type of data intended to be exported ({@code written})
- *
+ * @param <T> is the type of elements to be exported
+ * @param <M> precise type of {@linkplain ListMedia} that can accept an element
+ *            of our type {@code T}
  * @see ListMedia
  * @see Export
  * @see org.eclipse.passage.loc.yars.internal.api
- * @param T is the type ready to be exported
  * @since 0.1
  */
 public interface ExportData<T, M extends ListMedia<T>> {

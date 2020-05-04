@@ -104,9 +104,17 @@
  * 	}
  * }
  * </pre>
- * 
+ * <p>
+ * Here {@code Fetch} implements {@linkplain FetchedData}: in the method
+ * {@linkplain FetchedData#get()} it interacts with the {@code storage} with the
+ * given pagination {@code params} using the actually db interaction API that
+ * our {@code FifthGradeStudents} storage supplies. Thus demanded
+ * {@code Student} records are gained.
+ * </p>
+ * <p>
  * And here you expect a particular {@linkplain FetchParams} instance, which
  * keeps page settings like
+ * </p>
  * 
  * <pre>
  * class PaginationSettings implements FetchParams {
