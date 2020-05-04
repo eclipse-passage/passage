@@ -65,23 +65,4 @@ public interface ExportData<T, M extends ListMedia<T>> {
 	 */
 	void write(M media, Progress<T> progress);
 
-	class Smart<T, M extends ListMedia<T>> implements ExportData<T, M> {
-
-		private final ExportData<T, M> delegate;
-
-		public Smart(ExportData<T, M> delegate) {
-			this.delegate = delegate;
-		}
-
-		@Override
-		public void write(M media, Progress<T> progress) {
-			delegate.write(media, progress);
-		}
-
-		public void write(M media) {
-			write(media, new Progress.Inane<T>());
-		}
-
-	}
-
 }

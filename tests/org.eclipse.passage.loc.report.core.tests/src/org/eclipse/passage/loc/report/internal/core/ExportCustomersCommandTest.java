@@ -40,7 +40,7 @@ public class ExportCustomersCommandTest {
 	public void tesCsvExport() {
 		Path output = outputFile(""); //$NON-NLS-1$
 		exportSilent(output);
-		assertOutputLooksAsExpected(output);
+		assertEquals(new TestCustomers().csv(), results(output));
 	}
 
 	@Test(expected = ReportException.class)
@@ -93,16 +93,6 @@ public class ExportCustomersCommandTest {
 
 	private Set<String> fakeProducts() {
 		return new HashSet<>(Arrays.asList("culture")); //$NON-NLS-1$
-	}
-
-	private void assertOutputLooksAsExpected(Path output) {
-		Set<String> expectation = new HashSet<>(Arrays.asList(//
-				"email;name", //$NON-NLS-1$
-				"erwin.schrodinger@gmail.com;Erwin Rudolf Josef Alexander SchrГ¶dinger", //$NON-NLS-1$
-				"football-asia-cup-2007@gmail.com;м�¤лІ”м„ќ е‘‰зЇ„йЊ«", //$NON-NLS-1$
-				"lomonosov_1711@yandex.com;РњРёС…Р°Р№Р»Рѕ Р’Р°СЃРёР»СЊРµРІРёС‡ Р›РѕРјРѕРЅРѕСЃРѕРІ", //$NON-NLS-1$
-				"reiner.maria.rilke@gmail.com;RenГ© Karl Wilhelm Johann Josef Maria Rilke")); //$NON-NLS-1$
-		assertEquals(expectation, results(output));
 	}
 
 	private Set<String> results(Path output) {

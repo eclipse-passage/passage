@@ -35,7 +35,7 @@ public interface Progress<T> {
 	 * Empty implementation of the {@linkplain Progress} interfaces, no action is
 	 * taken on any event.
 	 */
-	class Inane<T> implements Progress<T> {
+	final class Inane<T> implements Progress<T> {
 
 		@Override
 		public void estimate(int amount) {
