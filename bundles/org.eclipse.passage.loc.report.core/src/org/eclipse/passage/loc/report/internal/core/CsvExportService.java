@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.nio.file.Path;
 import java.util.Set;
 
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -37,8 +38,9 @@ public final class CsvExportService implements ExportService {
 	private CustomerStorage source;
 
 	@Override
-	public void exportCustomersForProducts(Set<String> products, Path target) throws ReportException {
-		new ProductCustomersToCsv(source).export(products, target);
+	public void exportCustomersForProducts(Set<String> products, Path target, Progress<ProductCustomer> progress)
+			throws ReportException {
+		new ProductCustomersToCsv(source).export(products, target, progress);
 	}
 
 	/**

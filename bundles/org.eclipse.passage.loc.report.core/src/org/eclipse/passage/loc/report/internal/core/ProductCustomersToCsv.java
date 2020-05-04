@@ -15,10 +15,11 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.nio.file.Path;
 import java.util.Set;
 
-import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.DefaultDosHandler;
-import org.eclipse.passage.loc.yars.internal.api.Export;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
+import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
 
 /**
  * OSGi-free final implementation of the <i>customers for these products</i>
@@ -37,21 +38,23 @@ public final class ProductCustomersToCsv {
 
 	/**
 	 * The <i>exporting</i> command to be called by the pachake's clients directly
-	 * or by means of OSGi {@code services
+	 * or by means of OSGi {@code services}.
 	 * 
 	 * @since 0.1
 	 */
-	public void export(Set<String> products, Path target) throws ReportException {
-		new Export<CustomerStorage, ProductCustomer>(//
+	public void export(Set<String> products, Path target, Progress<ProductCustomer> progress) throws ReportException {
+		new SingleSwoopExport<CustomerStorage, ProductCustomer>(//
 				new CustomersForProductsQuery()//
 						.fetch(source, //
 								new ProductNames(products)))//
-										.write(new DosHandleMedia<ProductCustomer>( //
-												new Csv( //
-														new ExistingFileStream(target), //
-														"email", //$NON-NLS-1$
-														"name"), //$NON-NLS-1$
-												new DefaultDosHandler()));
+										.write(//
+												new DosHandleMedia<ProductCustomer>( //
+														new Csv( //
+																new ExistingFileStream(target), //
+																"email", //$NON-NLS-1$
+																"name"), //$NON-NLS-1$
+														new DefaultDosHandler()), //
+												progress);
 
 	}
 

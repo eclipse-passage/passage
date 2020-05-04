@@ -12,11 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.yars.internal.api;
 
+import java.util.List;
+
 /**
  * <p>
  * Auxiliary exporter, based on a fetcher, which causes the actual fetch in a
  * lazy way and orcheterates the whole export of fetched data.
+ * </p>
  * <p>
+ * The unit is not designed for large amount of data as all the data is first
+ * fully fetched and only then exported entry by entry.
+ * </p>
  * 
  * <p>
  * Having
@@ -36,9 +42,9 @@ package org.eclipse.passage.loc.yars.internal.api;
  * </p>
  * 
  * <pre>
- *   new Export<Sto, Exportable>(
- *       new Que().fetch(getSto(), createParams())
- *	 .write(new Json(file));
+ * new SingleSwoopExport<Sto, Exportable>(//
+ * 		new Que().fetch(getSto(), createParams())//
+ * ).write(new Json(file), new Progress.Inane());
  * </pre>
  * 
  * @param <S> type of storage
@@ -47,22 +53,27 @@ package org.eclipse.passage.loc.yars.internal.api;
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
-public final class Export<S extends Storage<?>, T extends ExportData<T, DosHandleMedia<T>>>
+public final class SingleSwoopExport<S extends Storage<?>, T extends ExportData<T, DosHandleMedia<T>>>
 		implements ExportData<T, DosHandleMedia<T>> {
 
 	private final FetchedData<S, T> query;
 
-	public Export(FetchedData<S, T> query) {
+	public SingleSwoopExport(FetchedData<S, T> query) {
 		this.query = query;
 	}
 
 	@Override
-	public void write(DosHandleMedia<T> media) {
+	public void write(DosHandleMedia<T> media, Progress<T> progress) {
 		media.start();
-		query.get().forEach(data -> {
+		List<T> fetch = query.get();
+		progress.estimate(fetch.size());
+
+		fetch.forEach(data -> {
+			progress.reportNodeSrart(data);
 			media.startNode(data);
-			data.write(media);
+			data.write(media, progress);
 			media.finishNode(data);
+			progress.reportNodeFinish(data);
 		});
 		media.finish();
 	}

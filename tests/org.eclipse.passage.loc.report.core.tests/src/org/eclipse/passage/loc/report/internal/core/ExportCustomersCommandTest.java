@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.junit.Test;
 
@@ -86,7 +87,8 @@ public class ExportCustomersCommandTest {
 	}
 
 	private void export(Path output) throws ReportException {
-		new ProductCustomersToCsv(new FakeCustomersBase()).export(fakeProducts(), output);
+		new ProductCustomersToCsv(new FakeCustomersBase()).export(fakeProducts(), output,
+				new Progress.Inane<ProductCustomer>());
 	}
 
 	private Set<String> fakeProducts() {
@@ -96,10 +98,10 @@ public class ExportCustomersCommandTest {
 	private void assertOutputLooksAsExpected(Path output) {
 		Set<String> expectation = new HashSet<>(Arrays.asList(//
 				"email;name", //$NON-NLS-1$
-				"erwin.schrodinger@gmail.com;Erwin Rudolf Josef Alexander Schrödinger", //$NON-NLS-1$
-				"football-asia-cup-2007@gmail.com;오범석 呉範錫", //$NON-NLS-1$
-				"lomonosov_1711@yandex.com;Михайло Васильевич Ломоносов", //$NON-NLS-1$
-				"reiner.maria.rilke@gmail.com;René Karl Wilhelm Johann Josef Maria Rilke")); //$NON-NLS-1$
+				"erwin.schrodinger@gmail.com;Erwin Rudolf Josef Alexander SchrГ¶dinger", //$NON-NLS-1$
+				"football-asia-cup-2007@gmail.com;м�¤лІ”м„ќ е‘‰зЇ„йЊ«", //$NON-NLS-1$
+				"lomonosov_1711@yandex.com;РњРёС…Р°Р№Р»Рѕ Р’Р°СЃРёР»СЊРµРІРёС‡ Р›РѕРјРѕРЅРѕСЃРѕРІ", //$NON-NLS-1$
+				"reiner.maria.rilke@gmail.com;RenГ© Karl Wilhelm Johann Josef Maria Rilke")); //$NON-NLS-1$
 		assertEquals(expectation, results(output));
 	}
 

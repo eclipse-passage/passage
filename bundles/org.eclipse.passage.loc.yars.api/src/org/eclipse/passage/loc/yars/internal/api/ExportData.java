@@ -37,7 +37,7 @@ package org.eclipse.passage.loc.yars.internal.api;
  * iterates over a given <i>data</i>, {@code writing} each to this output. This
  * party is responsible for orchestrating media calls like {@linkplain #start()}
  * or {@linkplain #finish()}. There is a default implementation of such an
- * orchesterator {@linkplain Export}.</li>
+ * orchesterator {@linkplain SingleSwoopExport}.</li>
  * <li>each exportable entry {instance of @code T} should be able to
  * {@code write} one's innards to the output as well</li>
  * </ul>
@@ -46,7 +46,7 @@ package org.eclipse.passage.loc.yars.internal.api;
  * @param <M> precise type of {@linkplain ListMedia} that can accept an element
  *            of our type {@code T}
  * @see ListMedia
- * @see Export
+ * @see SingleSwoopExport
  * @see org.eclipse.passage.loc.yars.internal.api
  * @since 0.1
  */
@@ -58,9 +58,30 @@ public interface ExportData<T, M extends ListMedia<T>> {
 	 * data) to the {@linkplain ListMedia}.
 	 * </p>
 	 * 
-	 * @param M any sub type of {@linkplain ListMedia}
+	 * @param media    any sub type of {@linkplain ListMedia}
+	 * @param progress implementation of {@linkplain Progress} interface to report
+	 *                 the state of the export process
 	 * @since 0.1
 	 */
-	void write(M media);
+	void write(M media, Progress<T> progress);
+
+	class Smart<T, M extends ListMedia<T>> implements ExportData<T, M> {
+
+		private final ExportData<T, M> delegate;
+
+		public Smart(ExportData<T, M> delegate) {
+			this.delegate = delegate;
+		}
+
+		@Override
+		public void write(M media, Progress<T> progress) {
+			delegate.write(media, progress);
+		}
+
+		public void write(M media) {
+			write(media, new Progress.Inane<T>());
+		}
+
+	}
 
 }
