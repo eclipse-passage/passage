@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.yars.internal.api.export;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-class Json implements ListMedia<ExportedEntry> {
+final class Json implements ListMedia<ExportEntry> {
 
 	private final StringBuilder builder;
 
@@ -35,12 +35,12 @@ class Json implements ListMedia<ExportedEntry> {
 	}
 
 	@Override
-	public final void startNode(ExportedEntry node) {
+	public final void startNode(ExportEntry node) {
 		builder.append("\t\"node\" : {\n"); //$NON-NLS-1$
 	}
 
 	@Override
-	public final void finishNode(ExportedEntry node) {
+	public final void finishNode(ExportEntry node) {
 		builder.append("\t}\n"); //$NON-NLS-1$
 	}
 

@@ -65,17 +65,23 @@ public final class SingleSwoopExport<S extends Storage<?>, T extends ExportData<
 	@Override
 	public void write(DosHandleMedia<T> media, Progress<T> progress) {
 		media.start();
+		writeData(media, progress);
+		media.finish();
+	}
+
+	private void writeData(DosHandleMedia<T> media, Progress<T> progress) {
 		List<T> fetch = query.get();
 		progress.estimate(fetch.size());
-
-		fetch.forEach(data -> {
+		for (T data : fetch) {
+			if (progress.cancelDemanded()) {
+				break;
+			}
 			progress.reportNodeSrart(data);
 			media.startNode(data);
 			data.write(media, progress);
 			media.finishNode(data);
 			progress.reportNodeFinish(data);
-		});
-		media.finish();
+		}
 	}
 
 }

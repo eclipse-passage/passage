@@ -52,7 +52,7 @@ import org.junit.Test;
  * <li>We define a {@linkplain Query} - {@linkplain All} - which fetches all
  * entries from our storage. It also emulates a <i>business logic</i> that is
  * implemented as a conversion stored entries to entities of another type
- * ({@linkplain ExportedEntry})<i></li>
+ * ({@linkplain ExportEntry})<i></li>
  * <li>When we as our <i>query</i> for {@linkplain Query#data()}, it actually
  * does not interacts with the {@code storage}, but only instantiate a dedicated
  * {@linkplain FetchedData} instance.</li>
@@ -63,7 +63,7 @@ import org.junit.Test;
  * runtime list. All of them are unaware of storing and fetching details.</li>
  */
 @SuppressWarnings("restriction")
-public class ExportTest {
+public final class ExportTest {
 
 	@Test
 	public void testCsv() {
@@ -75,12 +75,12 @@ public class ExportTest {
 
 	@Test
 	public void testEnlistment() {
-		List<ExportedEntry> output = new ArrayList<>();
-		queryResult(new Enlistment<ExportedEntry>(output));
+		List<ExportEntry> output = new ArrayList<>();
+		queryResult(new Enlistment<ExportEntry>(output));
 		assertEquals(Arrays.asList( //
-				new ExportedEntry("Gammy"), //$NON-NLS-1$
-				new ExportedEntry("Quami"), //$NON-NLS-1$
-				new ExportedEntry("Tsunami")), //$NON-NLS-1$
+				new ExportEntry("Gammy"), //$NON-NLS-1$
+				new ExportEntry("Quami"), //$NON-NLS-1$
+				new ExportEntry("Tsunami")), //$NON-NLS-1$
 				output);
 	}
 
@@ -102,8 +102,8 @@ public class ExportTest {
 				output.toString());
 	}
 
-	private void queryResult(ListMedia<ExportedEntry> media) {
-		new SingleSwoopExport<InMemoryStorage, ExportedEntry>(new All().fetch(//
+	private void queryResult(ListMedia<ExportEntry> media) {
+		new SingleSwoopExport<InMemoryStorage, ExportEntry>(new All().fetch(//
 				new InMemoryStorage( //
 						new StoredEntry("Gammy", "US"), //$NON-NLS-1$ //$NON-NLS-2$
 						new StoredEntry("Quami", "France"), //$NON-NLS-1$ //$NON-NLS-2$
@@ -111,10 +111,10 @@ public class ExportTest {
 				), //
 				new FetchParams.Empty()))//
 						.write(//
-								new DosHandleMedia<ExportedEntry>(//
+								new DosHandleMedia<ExportEntry>(//
 										media, //
 										new DefaultDosHandler()), //
-								new Progress.Inane<ExportedEntry>());
+								new Progress.Inane<ExportEntry>());
 	}
 
 }
