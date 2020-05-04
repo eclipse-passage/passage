@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 
 @SuppressWarnings("restriction")
 public class ExportedEntry implements ExportData<ExportedEntry, DosHandleMedia<ExportedEntry>> {
@@ -27,7 +28,7 @@ public class ExportedEntry implements ExportData<ExportedEntry, DosHandleMedia<E
 	}
 
 	@Override
-	public void write(DosHandleMedia<ExportedEntry> media) {
+	public void write(DosHandleMedia<ExportedEntry> media, Progress<ExportedEntry> p) {
 		media.inner(name, "name"); //$NON-NLS-1$
 	}
 

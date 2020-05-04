@@ -181,7 +181,7 @@
  * </li>
  * <li>We have a single academic record been reported, but we also need the
  * whole report to be properly orchesterated. You can design such an
- * orchestrator yourself, or exploit the {@linkplain Export} like this
+ * orchestrator yourself, or exploit the {@linkplain SingleSwoopExport} like this
  * 
  * <pre>
  *   FifthGradeStudents base = ...

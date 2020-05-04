@@ -16,12 +16,12 @@ import java.nio.file.Path;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.core.ExportService;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
-import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
 
@@ -73,9 +73,13 @@ final class ExportCustomersWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		Path file = new FileForExport(data.target()).get();
+
 		try {
-			export.exportCustomersForProducts(data.products(), file);
-		} catch (ReportException e) {
+			new ProgressMonitorDialog(getShell()).run(//
+					true, //
+					true, //
+					new MonitoredExportOperation(export, data.products(), file));
+		} catch (Exception e) {
 			MessageDialog.openError(//
 					getShell(), //
 					ExportCustomersWizardMessages.ExportCustomersWizard_errorTitle, //

@@ -32,6 +32,7 @@ public class ExportCustomersWizardMessages extends NLS {
 	public static String TargetPage_description;
 	public static String TargetPage_open;
 	public static String TargetPage_title;
+	public static String VisibleProgress_task;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, ExportCustomersWizardMessages.class);

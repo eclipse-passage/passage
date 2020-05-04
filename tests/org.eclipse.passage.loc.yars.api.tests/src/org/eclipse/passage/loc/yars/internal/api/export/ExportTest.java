@@ -18,13 +18,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.DefaultDosHandler;
-import org.eclipse.passage.loc.yars.internal.api.Export;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.FetchParams;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.Query;
+import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 import org.eclipse.passage.loc.yars.internal.api.model.InMemoryStorage;
 import org.eclipse.passage.loc.yars.internal.api.model.StoredEntry;
@@ -102,14 +103,18 @@ public class ExportTest {
 	}
 
 	private void queryResult(ListMedia<ExportedEntry> media) {
-		new Export<InMemoryStorage, ExportedEntry>(new All().fetch(//
+		new SingleSwoopExport<InMemoryStorage, ExportedEntry>(new All().fetch(//
 				new InMemoryStorage( //
 						new StoredEntry("Gammy", "US"), //$NON-NLS-1$ //$NON-NLS-2$
 						new StoredEntry("Quami", "France"), //$NON-NLS-1$ //$NON-NLS-2$
 						new StoredEntry("Tsunami", "Japan")//$NON-NLS-1$ //$NON-NLS-2$
 				), //
 				new FetchParams.Empty()))//
-						.write(new DosHandleMedia<ExportedEntry>(media, new DefaultDosHandler()));
+						.write(//
+								new DosHandleMedia<ExportedEntry>(//
+										media, //
+										new DefaultDosHandler()), //
+								new Progress.Inane<ExportedEntry>());
 	}
 
 }

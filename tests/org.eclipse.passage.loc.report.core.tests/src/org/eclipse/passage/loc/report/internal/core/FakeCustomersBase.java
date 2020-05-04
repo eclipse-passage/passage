@@ -12,32 +12,23 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 
 @SuppressWarnings("restriction")
 final class FakeCustomersBase implements CustomerStorage {
 
+	private final TestCustomers customers;
+
+	public FakeCustomersBase() {
+		this.customers = new TestCustomers();
+	}
+
 	@Override
 	public Set<UserDescriptor> forProducts(Set<String> products) {
-		return Arrays.stream(new UserDescriptor[] { //
-				new FakeUserDescriptor(//
-						"reiner.maria.rilke@gmail.com", //$NON-NLS-1$
-						"René Karl Wilhelm Johann Josef Maria Rilke"), //$NON-NLS-1$
-				new FakeUserDescriptor(//
-						"erwin.schrodinger@gmail.com", //$NON-NLS-1$
-						"Erwin Rudolf Josef Alexander Schrödinger"), //$NON-NLS-1$
-				new FakeUserDescriptor(//
-						"lomonosov_1711@yandex.com", //$NON-NLS-1$
-						"Михайло Васильевич Ломоносов"), //$NON-NLS-1$
-				new FakeUserDescriptor(//
-						"football-asia-cup-2007@gmail.com", //$NON-NLS-1$
-						"오범석 呉範錫") //$NON-NLS-1$
-		}).collect(Collectors.toSet());
+		return customers.descriptors();
 	}
 
 	@Override

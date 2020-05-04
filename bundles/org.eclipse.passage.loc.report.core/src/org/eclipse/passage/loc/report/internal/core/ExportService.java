@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.nio.file.Path;
 import java.util.Set;
 
+import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 
 /**
@@ -33,9 +34,13 @@ public interface ExportService {
 	 * 
 	 * @param products set of {@code product} identifiers of interest
 	 * @param target   output file with exported data
-	 * 
+	 * @param progress tracker implementation to keep an eye on actual export
+	 *                 process.
+	 * @see Progress
+	 * @see Progress.Inane
 	 * @since 0.1
 	 */
-	void exportCustomersForProducts(Set<String> products, Path target) throws ReportException;
+	void exportCustomersForProducts(Set<String> products, Path target, Progress<ProductCustomer> progress)
+			throws ReportException;
 
 }
