@@ -12,32 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.email.Mailing;
-import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.licenses.core.LicenseMailSupport;
+import org.eclipse.passage.loc.internal.licenses.core.EmailTemplate;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 public class IssueLicenseDetailsPage extends WizardPage {
 
-	private Text text;
-	private boolean createMail;
-	private boolean createEml;
-	private LicenseMailSupport licenseMailSupport;
+	private final IEclipseContext context;
 
-	protected IssueLicenseDetailsPage(String pageName) {
+	private LicensePackDescriptor licensePack;
+	private Text info;
+	private Text from;
+	private String mailFrom = ""; //$NON-NLS-1$
+
+	protected IssueLicenseDetailsPage(String pageName, IEclipseContext context) {
 		super(pageName);
+		this.context = context;
 		setTitle(IssueLicensePageMessages.IssueLicenseDetailsPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicenseDetailsPage_page_description);
 	}
@@ -47,53 +51,47 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		composite.setLayout(new GridLayout());
-		text = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
-		text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-		Group groupButtons = new Group(composite, SWT.NONE);
-		groupButtons.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_group_mail_text);
-		groupButtons.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		groupButtons.setLayout(new GridLayout(1, false));
-
-		Button buttonPrepareMail = new Button(composite, SWT.PUSH);
-		buttonPrepareMail.setLayoutData(new GridData(SWT.RIGHT, SWT.FILL, false, false));
-		buttonPrepareMail.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_mail_text);
-		buttonPrepareMail.setSelection(true);
-		buttonPrepareMail.addSelectionListener(
-				SelectionListener.widgetSelectedAdapter(c -> createMail = buttonPrepareMail.getSelection()));
-		createMail = buttonPrepareMail.getSelection();
-		// FIXME: AF find another way to pass the service
-		Mailing optLicensingEmlService = LicensingEquinox.getLicensingService(Mailing.class);
-		if (optLicensingEmlService != null) {
-			Button buttonPrepareEml = new Button(groupButtons, SWT.CHECK);
-			buttonPrepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-			buttonPrepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_btn_eml_text);
-			buttonPrepareEml.addSelectionListener(
-					SelectionListener.widgetSelectedAdapter(c -> createEml = buttonPrepareEml.getSelection()));
-			createEml = buttonPrepareEml.getSelection();
-		}
+		info = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.WRAP);
+		info.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		Optional.ofNullable(context//
+				.get(Mailing.class))//
+				.ifPresent(m -> createEmlButton(composite));
 		setControl(composite);
 		Dialog.applyDialogFont(composite);
 	}
 
-	public void init(LicensePackDescriptor licensePack) {
-		// FIXME: AF find another way to pass the service
-		Mailing optLicensingEmlService = LicensingEquinox.getLicensingService(Mailing.class);
-		this.licenseMailSupport = new LicenseMailSupport(optLicensingEmlService, licensePack);
-		if (text != null && !text.isDisposed()) {
-			text.setText(licenseMailSupport.getDetails());
+	private void createEmlButton(Composite parent) {
+		Group prepareEml = new Group(parent, SWT.CHECK);
+		prepareEml.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		prepareEml.setText(IssueLicensePageMessages.IssueLicenseDetailsPage_lbl_eml_text);
+		prepareEml.setLayout(new GridLayout());
+		from = new Text(prepareEml, SWT.NONE);
+		from.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		from.addModifyListener(e -> mailFrom = from.getText().trim());
+	}
+
+	void init(LicensePackDescriptor pack) {
+		this.licensePack = pack;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if (visible) {
+			if (info == null || info.isDisposed()) {
+				return;
+			}
+			Mailing mailing = context.get(Mailing.class);
+			if (mailing == null) {
+				return;
+			}
+			info.setText(new EmailTemplate(mailing).details(licensePack).stream()//
+					.collect(Collectors.joining(System.lineSeparator())));
 		}
 	}
 
-	public boolean isCreateMail() {
-		return createMail;
+	public String mailFrom() {
+		return mailFrom;
 	}
 
-	public boolean isCreateEml() {
-		return createEml;
-	}
-
-	public LicenseMailSupport getMailSupport() {
-		return licenseMailSupport;
-	}
 }
