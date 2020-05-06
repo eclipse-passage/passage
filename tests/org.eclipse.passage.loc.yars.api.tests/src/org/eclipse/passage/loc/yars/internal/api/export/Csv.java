@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-class Csv implements ListMedia<ExportedEntry> {
+final class Csv implements ListMedia<ExportEntry> {
 
 	private final StringBuilder builder;
 	private final List<String> header;
@@ -35,7 +35,7 @@ class Csv implements ListMedia<ExportedEntry> {
 	}
 
 	@Override
-	public final void startNode(ExportedEntry node) {
+	public final void startNode(ExportEntry node) {
 		builder.append("\n"); //$NON-NLS-1$
 	}
 
@@ -49,7 +49,7 @@ class Csv implements ListMedia<ExportedEntry> {
 	}
 
 	@Override
-	public final void finishNode(ExportedEntry node) {
+	public final void finishNode(ExportEntry node) {
 	}
 
 }

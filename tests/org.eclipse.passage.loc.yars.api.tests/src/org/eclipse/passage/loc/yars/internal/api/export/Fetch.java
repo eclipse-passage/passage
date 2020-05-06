@@ -19,7 +19,7 @@ import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.model.InMemoryStorage;
 
 @SuppressWarnings("restriction")
-class Fetch implements FetchedData<InMemoryStorage, ExportedEntry> {
+final class Fetch implements FetchedData<InMemoryStorage, ExportEntry> {
 
 	private final InMemoryStorage source;
 
@@ -28,9 +28,9 @@ class Fetch implements FetchedData<InMemoryStorage, ExportedEntry> {
 	}
 
 	@Override
-	public List<ExportedEntry> get() {
+	public List<ExportEntry> get() {
 		return source.entries().stream()//
-				.map(dummy -> new ExportedEntry(dummy.name()))//
+				.map(dummy -> new ExportEntry(dummy.name()))//
 				.collect(Collectors.toList());
 	}
 

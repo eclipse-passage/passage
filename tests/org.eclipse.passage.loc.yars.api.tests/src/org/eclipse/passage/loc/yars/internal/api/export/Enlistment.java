@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 
 @SuppressWarnings("restriction")
-public class Enlistment<T> implements ListMedia<T> {
+final class Enlistment<T> implements ListMedia<T> {
 
 	private final List<T> content;
 

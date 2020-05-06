@@ -22,7 +22,7 @@ public class InMemoryStorage implements Storage<StoredEntry> {
 
 	private final List<StoredEntry> dummies;
 
-	InMemoryStorage(List<StoredEntry> dummies) {
+	public InMemoryStorage(List<StoredEntry> dummies) {
 		this.dummies = dummies;
 	}
 
@@ -32,6 +32,10 @@ public class InMemoryStorage implements Storage<StoredEntry> {
 
 	public List<StoredEntry> entries() {
 		return dummies;
+	}
+
+	public int size() {
+		return dummies.size();
 	}
 
 }

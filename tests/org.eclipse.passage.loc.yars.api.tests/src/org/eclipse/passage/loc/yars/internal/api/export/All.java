@@ -18,7 +18,7 @@ import org.eclipse.passage.loc.yars.internal.api.Query;
 import org.eclipse.passage.loc.yars.internal.api.model.InMemoryStorage;
 
 @SuppressWarnings("restriction")
-public class All implements Query<InMemoryStorage, ExportedEntry, FetchParams> {
+final class All implements Query<InMemoryStorage, ExportEntry, FetchParams> {
 
 	@Override
 	public String id() {
@@ -31,7 +31,7 @@ public class All implements Query<InMemoryStorage, ExportedEntry, FetchParams> {
 	}
 
 	@Override
-	public FetchedData<InMemoryStorage, ExportedEntry> fetch(InMemoryStorage base, FetchParams params) {
+	public FetchedData<InMemoryStorage, ExportEntry> fetch(InMemoryStorage base, FetchParams params) {
 		return new Fetch(base);
 	}
 

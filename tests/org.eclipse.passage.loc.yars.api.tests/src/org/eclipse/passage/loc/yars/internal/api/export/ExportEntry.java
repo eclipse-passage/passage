@@ -19,17 +19,18 @@ import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 
 @SuppressWarnings("restriction")
-public class ExportedEntry implements ExportData<ExportedEntry, DosHandleMedia<ExportedEntry>> {
+final class ExportEntry implements ExportData<ExportEntry, DosHandleMedia<ExportEntry>> {
 
 	private String name;
 
-	public ExportedEntry(String name) {
+	public ExportEntry(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public void write(DosHandleMedia<ExportedEntry> media, Progress<ExportedEntry> p) {
+	public void write(DosHandleMedia<ExportEntry> media, Progress<ExportEntry> progress) {
 		media.inner(name, "name"); //$NON-NLS-1$
+		progress.report(name);
 	}
 
 	@Override // generated
@@ -38,7 +39,7 @@ public class ExportedEntry implements ExportData<ExportedEntry, DosHandleMedia<E
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		ExportedEntry exportedEntry = (ExportedEntry) o;
+		ExportEntry exportedEntry = (ExportEntry) o;
 		return Objects.equals(name, exportedEntry.name);
 	}
 
