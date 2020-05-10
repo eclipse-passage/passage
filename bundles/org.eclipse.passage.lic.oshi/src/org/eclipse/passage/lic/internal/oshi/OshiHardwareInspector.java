@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
@@ -125,7 +127,13 @@ public class OshiHardwareInspector implements HardwareInspector {
 
 	private synchronized Map<String, String> hardware() {
 		if (hardware.isEmpty()) {
-			hardware.putAll(inspect());
+			try {
+				hardware.putAll(CompletableFuture.supplyAsync(this::inspect).get());
+			} catch (InterruptedException | ExecutionException e) {
+				licensingReporter.logResult(//
+						LicensingResults.createError(//
+								OshiMessages.OshiHardwareInspector_e_reading_hw, getClass().getName(), e));
+			}
 		}
 		return new LinkedHashMap<String, String>(hardware);
 	}
