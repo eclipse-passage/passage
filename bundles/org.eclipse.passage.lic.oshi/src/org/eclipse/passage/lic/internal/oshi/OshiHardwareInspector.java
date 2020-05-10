@@ -125,7 +125,7 @@ public class OshiHardwareInspector implements HardwareInspector {
 
 	private synchronized Map<String, String> hardware() {
 		if (hardware.isEmpty()) {
-			inspect();
+			hardware.putAll(inspect());
 		}
 		return new LinkedHashMap<String, String>(hardware);
 	}
