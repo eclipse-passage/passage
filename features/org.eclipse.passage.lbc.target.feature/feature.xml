@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lbc.target.feature"
       label="%featureName"
-      version="0.8.0.qualifier"
+      version="0.8.3.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
