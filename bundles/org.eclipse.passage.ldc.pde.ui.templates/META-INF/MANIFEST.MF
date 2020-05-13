@@ -1,17 +1,22 @@
 Manifest-Version: 1.0
-Automatic-Module-Name: org.eclipse.passage.ldc.pde.ui.templates
 Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.passage.ldc.pde.ui.templates;singleton:=true
 Bundle-Version: 0.5.200.qualifier
-Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.passage.ldc.internal.pde.ui.templates;x-internal:=true,
+ org.eclipse.passage.ldc.internal.pde.ui.templates.i18n;x-internal:=true
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.core.resources;bundle-version="0.0.0",
  org.eclipse.jface;bundle-version="0.0.0",
  org.eclipse.pde.ui;bundle-version="0.0.0",
  org.eclipse.pde.ui.templates;bundle-version="0.0.0",
- org.eclipse.passage.lic.equinox;bundle-version="0.0.0"
-Export-Package: org.eclipse.passage.ldc.internal.pde.ui.templates;x-internal:=true,
- org.eclipse.passage.ldc.internal.pde.ui.templates.i18n;x-internal:=true
+ org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
+ org.eclipse.e4.core.contexts,
+ org.eclipse.e4.core.di
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Copyright: %Bundle-Copyright
+Automatic-Module-Name: org.eclipse.passage.ldc.pde.ui.templates
+Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
+ javax.inject;version="1.0.0"
+Bundle-ActivationPolicy: lazy

@@ -7,7 +7,7 @@ import $packageName$.magic.Creatures;
 import $packageName$.magic.Shape;
 
 final class CreaturesContentProvider implements IStructuredContentProvider {
-	
+
 	private final Shape shape;
 
 	CreaturesContentProvider(Shape shape) {
