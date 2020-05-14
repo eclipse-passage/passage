@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$packageName$.magic.service.GoodWitch">
+   <property name="licensing.feature.identifier" value="GoodWitch"/>
+   <property name="licensing.restriction.level" value="fatal"/>
+   <service>
+      <provide interface="$packageName$.magic.service.FrogToPrinceMagic"/>
+   </service>
+   <reference bind="contractWithForces" interface="$packageName$.magic.service.MagicForces" name="contractWithForces"/>
+   <implementation class="$packageName$.magic.service.GoodWitch"/>
+</scr:component>

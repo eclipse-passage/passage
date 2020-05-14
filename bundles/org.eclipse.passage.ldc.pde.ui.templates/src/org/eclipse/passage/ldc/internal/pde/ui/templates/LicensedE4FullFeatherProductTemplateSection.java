@@ -26,9 +26,6 @@ import org.eclipse.pde.ui.IFieldData;
 
 public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedTemplateSection {
 
-	private static final String LICENSED_E4_PRODUCT = "LicensedE4FullFeatherProduct"; //$NON-NLS-1$
-	private static final String E4_SWT_APPLICATION_ID = "org.eclipse.e4.ui.workbench.swt.E4Application"; //$NON-NLS-1$
-
 	public LicensedE4FullFeatherProductTemplateSection() {
 		setPageCount(1);
 		createOptions();
@@ -41,13 +38,6 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 		page.setDescription(PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_page_description);
 		wizard.addPage(page);
 		markPagesAdded();
-	}
-
-	private void createOptions() {
-		addOption(KEY_WINDOW_TITLE, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_window_title_label,
-				"Licensed E4 RCP", 0); //$NON-NLS-1$
-		addOption(KEY_PACKAGE_NAME, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_package_name_label,
-				(String) null, 0);
 	}
 
 	@Override
@@ -66,39 +56,16 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 
 	@Override
 	public String getSectionId() {
-		return LICENSED_E4_PRODUCT;
+		return "LicensedE4FullFeatherProduct"; //$NON-NLS-1$
 	}
 
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
+		setManifestHeader("Service-Component", "OSGI-INF/*"); //$NON-NLS-1$ //$NON-NLS-2$
 		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
 		createProductExtension();
-	}
-
-	private void createProductExtension() throws CoreException {
-		IPluginBase plugin = model.getPluginBase();
-		IPluginExtension extension = createExtension("org.eclipse.core.runtime.products", true); //$NON-NLS-1$
-		extension.setId(VALUE_PRODUCT_ID);
-
-		IPluginElement element = model.getFactory().createElement(extension);
-		element.setName("product"); //$NON-NLS-1$
-		element.setAttribute("application", E4_SWT_APPLICATION_ID); //$NON-NLS-1$
-		element.setAttribute("name", getStringOption(KEY_PACKAGE_NAME)); //$NON-NLS-1$
-
-		IPluginElement property;
-
-		property = model.getFactory().createElement(element);
-		property.setName("property"); //$NON-NLS-1$
-		property.setAttribute("name", "applicationCSS");//$NON-NLS-1$ //$NON-NLS-2$
-		property.setAttribute("value", "platform:/plugin/" + getValue(KEY_PLUGIN_ID) + "/css/default.css"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		element.add(property);
-
-		extension.add(element);
-
-		if (!extension.isInTheModel())
-			plugin.add(extension);
 	}
 
 	@Override
@@ -108,7 +75,58 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 
 	@Override
 	public String[] getNewFiles() {
-		return new String[] { "css/default.css", "Application.e4xmi" }; //$NON-NLS-1$ //$NON-NLS-2$
+		return new String[] { //
+				"css/default.css", //$NON-NLS-1$
+				"e4xmi/Application.e4xmi", //$NON-NLS-1$
+				"OSGI-INF/" }; //$NON-NLS-1$
+	}
+
+	private void createOptions() {
+		addOption(KEY_WINDOW_TITLE, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_window_title_label,
+				"Full Feather Passage Licensed Product", 0); //$NON-NLS-1$
+		addOption(KEY_PACKAGE_NAME, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_package_name_label,
+				(String) null, 0);
+	}
+
+	private void createProductExtension() throws CoreException {
+		IPluginBase plugin = model.getPluginBase();
+		IPluginExtension extension = productRuntime();
+		IPluginElement product = product(extension);
+		addCssProperty(product);
+		addApplicationProperty(product);
+		extension.add(product);
+		plugin.add(extension);
+	}
+
+	private IPluginExtension productRuntime() throws CoreException {
+		IPluginExtension extension = createExtension("org.eclipse.core.runtime.products", true); //$NON-NLS-1$
+		extension.setId(VALUE_PRODUCT_ID);
+		return extension;
+	}
+
+	private void addApplicationProperty(IPluginElement element) throws CoreException {
+		IPluginElement property;
+		property = model.getFactory().createElement(element);
+		property.setName("property"); //$NON-NLS-1$
+		property.setAttribute("name", "applicationXMI");//$NON-NLS-1$ //$NON-NLS-2$
+		property.setAttribute("value", "platform:/plugin/" + getValue(KEY_PLUGIN_ID) + "/e4xmi/Application.e4xmi"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		element.add(property);
+	}
+
+	private void addCssProperty(IPluginElement element) throws CoreException {
+		IPluginElement property = model.getFactory().createElement(element);
+		property.setName("property"); //$NON-NLS-1$
+		property.setAttribute("name", "applicationCSS");//$NON-NLS-1$ //$NON-NLS-2$
+		property.setAttribute("value", "platform:/plugin/" + getValue(KEY_PLUGIN_ID) + "/css/default.css"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		element.add(property);
+	}
+
+	private IPluginElement product(IPluginExtension extension) throws CoreException {
+		IPluginElement element = model.getFactory().createElement(extension);
+		element.setName("product"); //$NON-NLS-1$
+		element.setAttribute("application", "org.eclipse.e4.ui.workbench.swt.E4Application"); //$NON-NLS-1$ //$NON-NLS-2$
+		element.setAttribute("name", getStringOption(KEY_PACKAGE_NAME)); //$NON-NLS-1$
+		return element;
 	}
 
 }
