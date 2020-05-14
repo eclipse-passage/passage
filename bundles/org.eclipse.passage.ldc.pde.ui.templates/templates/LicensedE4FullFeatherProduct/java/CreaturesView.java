@@ -30,6 +30,7 @@ public final class CreaturesView {
 	private final Magic magic;
 	private final String feature;
 
+	//FIXME: evolve constructor parameters: describe the magic by a single interface
 	CreaturesView(Creatures creatures, Shape shape, Magic magic, String feature) {
 		Objects.requireNonNull(creatures);
 		Objects.requireNonNull(shape);
