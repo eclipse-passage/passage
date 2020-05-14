@@ -1,10 +1,10 @@
-package org.eclipse.passage.ldc.internal.pde.ui.templates.temp.magic;
+package $packageName$.magic.service;
 
 import java.util.function.Predicate;
 
 public enum Shape {
 
-	PRINCE, FROG, NONE;
+	PRINCE, FROG;
 
 	public static final class Of implements Predicate<Creature> {
 		private final Shape shape;

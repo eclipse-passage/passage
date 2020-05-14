@@ -2,7 +2,7 @@ package $packageName$;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import $packageName$.magic.Creature;
+import $packageName$.magic.service.Creature;
 import org.eclipse.swt.graphics.Image;
 
 final class CreatureLabelProvider implements ILabelProvider {
@@ -24,8 +24,7 @@ final class CreatureLabelProvider implements ILabelProvider {
 
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
-		// do nothing
-		return false;
+		return false; // do nothing
 	}
 
 	@Override

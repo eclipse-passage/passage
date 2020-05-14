@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_c3AF0MjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.application" bindingContexts="_c3AF2cjYEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" selectedElement="__mq34I6rEeqezOuVdHH1Yg" label="Empty E4 Application" width="500" height="400">
-    <children xsi:type="basic:PartSashContainer" xmi:id="__mq34I6rEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.partsashcontainer.magic" selectedElement="_g1iQgI6sEeqezOuVdHH1Yg" horizontal="true">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" selectedElement="__mq34I6rEeqezOuVdHH1Yg" label="Passage E4 Application" width="500" height="400">
+    <children xsi:type="basic:PartSashContainer" xmi:id="__mq34I6rEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.partsashcontainer.magic" horizontal="true">
       <children xsi:type="basic:Part" xmi:id="_Aj-NoI6sEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.part.frogs" contributionURI="bundleclass://$pluginId$/$packageName$.FrogsPart" label="frogs">
         <toolbar xmi:id="_BiwxII6sEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.toolbar.0"/>
       </children>
-      <children xsi:type="basic:Part" xmi:id="_g1iQgI6sEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.part.magic" contributionURI="bundleclass://$pluginId$/$packageName$.MagicPart" label="magic"/>
       <children xsi:type="basic:Part" xmi:id="_D4TFII6sEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.part.princes" contributionURI="bundleclass://$pluginId$/$packageName$.PrincesPart" label="princes">
         <toolbar xmi:id="_GFcSII6sEeqezOuVdHH1Yg" elementId="org.eclipse.passage.ldc.pde.ui.templates.toolbar.1"/>
       </children>

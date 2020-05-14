@@ -1,11 +1,11 @@
-package $packageName$.magic;
+package $packageName$.magic.service;
 
 public final class Creature {
 
 	private final String name;
 	private final Shape shape;
 
-	Creature(String name, Shape shape) {
+	public Creature(String name, Shape shape) {
 		this.name = name;
 		this.shape = shape;
 	}
@@ -16,6 +16,11 @@ public final class Creature {
 
 	public Shape shape() {
 		return shape;
+	}
+
+	@Override
+	public String toString() {
+		return name + " the " + shape.name().toLowerCase(); //$NON-NLS-1$
 	}
 
 }

@@ -62,6 +62,7 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
+		setManifestHeader("Service-Component", "OSGI-INF/*"); //$NON-NLS-1$ //$NON-NLS-2$
 		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
 		createProductExtension();

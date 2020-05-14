@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="$packageName$.magic.Universe">
+   <service>
+      <provide interface="$packageName$.magic.Creatures"/>
+      <provide interface="$packageName$.magic.service.MagicForces"/>
+   </service>
+   <implementation class="$packageName$.magic.Universe"/>
+</scr:component>
