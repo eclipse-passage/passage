@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
  * Encapsulate reading of a {@code name} of a feature under licensing from a
@@ -24,10 +24,10 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * @see NamedData
  */
 @SuppressWarnings("restriction")
-public final class CapabilityLicFeatureName extends StringNamedData {
+public final class CapabilityLicFeatureName extends CapabilityLicFeatureInfo {
 
-	public CapabilityLicFeatureName(String version) {
-		super(version);
+	public CapabilityLicFeatureName(Requirement requirement) {
+		super(requirement.feature().name());
 	}
 
 	public CapabilityLicFeatureName(Map<String, Object> container) {

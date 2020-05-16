@@ -12,12 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.base.BaseNamedData;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.wiring.BundleWiring;
 
 /**
  * Looks for {@linkplain Requirement} declarations among all the
@@ -27,20 +30,22 @@ import org.osgi.framework.Bundle;
  * @see BundleRequirements
  */
 @SuppressWarnings("restriction")
-final class RequirementsFromBundle implements Supplier<List<Requirement>> {
-
-	private final Bundle bundle;
+final class RequirementsFromBundle extends BaseNamedData<List<Requirement>> {
 
 	public RequirementsFromBundle(Bundle bundle) {
-		this.bundle = bundle;
+		super(key -> //
+		Optional.ofNullable(bundle.adapt(BundleWiring.class))//
+				.map(wiring -> wiring.getCapabilities(key))//
+				.orElseGet(Collections::emptyList)//
+				.stream()//
+				.map(capability -> new RequirementFromCapability(bundle, capability))//
+				.map(RequirementFromCapability::get) //
+				.collect(Collectors.toList()));
 	}
 
 	@Override
-	public List<Requirement> get() {
-		return new LicensingFeatureCapabilitiesFromBundle(bundle).get().get().stream()//
-				.map(capability -> new RequirementFromCapability(bundle, capability))//
-				.map(RequirementFromCapability::get) //
-				.collect(Collectors.toList());
+	public String key() {
+		return new LicCapabilityNamespace().get();
 	}
 
 }

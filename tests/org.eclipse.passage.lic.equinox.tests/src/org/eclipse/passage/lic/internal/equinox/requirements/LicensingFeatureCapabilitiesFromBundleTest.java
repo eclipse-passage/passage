@@ -38,7 +38,7 @@ public final class LicensingFeatureCapabilitiesFromBundleTest {
 	}
 
 	private void assertExpectedContent(Optional<List<BundleCapability>> capabilities) {
-		String key = new CapabilityLicFeatureId("").key(); //$NON-NLS-1$
+		String key = new CapabilityLicFeatureId(new DataBundle().e()).key();
 		assertEquals(//
 				new HashSet<String>(Arrays.asList(//
 						"Incomplete", //$NON-NLS-1$
