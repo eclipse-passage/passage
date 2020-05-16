@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
  * Encapsulate reading of a {@code provider} information for a feature under
@@ -24,10 +24,10 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * @see NamedData
  */
 @SuppressWarnings("restriction")
-public final class CapabilityLicFeatureProvider extends StringNamedData {
+public final class CapabilityLicFeatureProvider extends CapabilityLicFeatureInfo {
 
-	public CapabilityLicFeatureProvider(String provider) {
-		super(provider);
+	public CapabilityLicFeatureProvider(Requirement requirement) {
+		super(requirement.feature().provider());
 	}
 
 	public CapabilityLicFeatureProvider(Map<String, Object> container) {

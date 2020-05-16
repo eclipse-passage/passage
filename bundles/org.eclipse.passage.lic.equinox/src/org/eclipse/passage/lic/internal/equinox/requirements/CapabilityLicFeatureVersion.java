@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
  * Encapsulate reading of a raw string {@code version} value of a feature under
@@ -24,10 +24,10 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * @see NamedData
  */
 @SuppressWarnings("restriction")
-public final class CapabilityLicFeatureVersion extends StringNamedData {
+public final class CapabilityLicFeatureVersion extends CapabilityLicFeatureInfo {
 
-	public CapabilityLicFeatureVersion(String version) {
-		super(version);
+	public CapabilityLicFeatureVersion(Requirement requirement) {
+		super(requirement.feature().version());
 	}
 
 	public CapabilityLicFeatureVersion(Map<String, Object> container) {

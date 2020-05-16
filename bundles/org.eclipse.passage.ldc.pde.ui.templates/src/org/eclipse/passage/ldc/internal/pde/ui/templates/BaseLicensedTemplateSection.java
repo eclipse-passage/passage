@@ -21,17 +21,17 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.lic.base.LicensingNamespaces;
-import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.equinox.requirements.CapabilityLicFeatureId;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.internal.equinox.requirements.RequirementsToBundle;
 import org.eclipse.pde.core.plugin.IMatchRules;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.core.plugin.ISharedPluginModel;
-import org.eclipse.pde.internal.core.ibundle.IBundle;
-import org.eclipse.pde.internal.core.ibundle.IBundleModel;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginBase;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 import org.eclipse.pde.ui.templates.OptionTemplateSection;
@@ -113,19 +113,28 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 
 	protected void createLicensingCapability(String identifier) {
 		IPluginBase plugin = model.getPluginBase();
-		if (plugin instanceof IBundlePluginBase) {
-			IBundlePluginBase bpBase = (IBundlePluginBase) plugin;
-			ISharedPluginModel spm = bpBase.getModel();
-			if (spm instanceof IBundlePluginModelBase) {
-				IBundlePluginModelBase bpmb = (IBundlePluginModelBase) spm;
-				IBundleModel bundleModel = bpmb.getBundleModel();
-				IBundle ibundle = bundleModel.getBundle();
-				StringBuilder sb = new StringBuilder();
-				sb.append(LicensingNamespaces.CAPABILITY_LICENSING_FEATURE).append(';'); // LicensingFeaturesFromBundle
-				new NamedData.Writable<>(new CapabilityLicFeatureId(identifier)).write(sb);
-				ibundle.setHeader(Constants.PROVIDE_CAPABILITY, sb.toString());
-			}
+		if (!(plugin instanceof IBundlePluginBase)) {
+			return;
 		}
+		ISharedPluginModel shared = ((IBundlePluginBase) plugin).getModel();
+		if (!(shared instanceof IBundlePluginModelBase)) {
+			return;
+		}
+		((IBundlePluginModelBase) shared).getBundleModel().getBundle()//
+				.setHeader(Constants.PROVIDE_CAPABILITY, //
+						new RequirementsToBundle()//
+								.printed(Arrays.asList(defaultRequirement(identifier))));
+	}
+
+	private Requirement defaultRequirement(String identifier) {
+		return new BaseRequirement(//
+				new BaseFeature(//
+						identifier, //
+						"1.0.0", //$NON-NLS-1$
+						identifier, //
+						"Eclipse Passage Template"), //$NON-NLS-1$
+				new RestrictionLevel.Warning(), //
+				this);
 	}
 
 	protected void createApplicationExtension(String identifier, String classValue) throws CoreException {

@@ -89,6 +89,8 @@ public final class BundleRequirements implements ResolvedRequirements {
 		return Arrays.stream(context.get().getBundles())//
 				.map(RequirementsFromBundle::new)//
 				.map(RequirementsFromBundle::get) //
+				.filter(Optional::isPresent)//
+				.map(Optional::get)//
 				.flatMap(List::stream) //
 				.collect(Collectors.toList());
 	}

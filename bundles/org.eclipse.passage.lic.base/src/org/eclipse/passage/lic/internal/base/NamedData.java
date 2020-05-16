@@ -38,7 +38,16 @@ public interface NamedData<T> extends Supplier<Optional<T>> {
 		return String.valueOf(value);
 	}
 
-	class Writable<T> {
+	default String keyValueSeparator() {
+		return "="; //$NON-NLS-1$
+	}
+
+	default String entrySeparator() {
+		return ""; //$NON-NLS-1$
+	}
+
+	public class Writable<T> {
+
 		private final NamedData<T> data;
 
 		public Writable(NamedData<T> data) {
@@ -50,11 +59,20 @@ public interface NamedData<T> extends Supplier<Optional<T>> {
 		}
 
 		public void write(StringBuilder target) {
+			write(target, data.keyValueSeparator(), data.entrySeparator());
+		}
+
+		public void write(StringBuilder target, String mediator, String separator) {
 			data.get().ifPresent(//
-					value -> target //
-							.append(data.key()) //
-							.append("=") //$NON-NLS-1$
-							.append(data.printed(value)));
+					value -> {
+						if (target.length() > 0) {
+							target.append(separator);
+						}
+						target //
+								.append(data.key()) //
+								.append(mediator) //
+								.append(data.printed(value));
+					});
 		}
 
 	}

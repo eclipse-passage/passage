@@ -18,11 +18,7 @@ public final class LicensingNamespaces {
 
 	public static final String CAPABILITY_LICENSING_CONFIGURATION = "licensing.configuration"; //$NON-NLS-1$
 	/**
-	 * @deprecated use
-	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.CapabilityLicFeatureId}
-	 *             for capability property or
-	 *             {@link org.eclipse.passage.lic.internal.equinox.requirements.LicensingFeaturesFromBundle}
-	 *             for the whole capabilities space
+	 * @deprecated use RequirementToCapability, RequirementsToBundle
 	 */
 	@Deprecated
 	public static final String CAPABILITY_LICENSING_FEATURE = "licensing.feature"; //$NON-NLS-1$

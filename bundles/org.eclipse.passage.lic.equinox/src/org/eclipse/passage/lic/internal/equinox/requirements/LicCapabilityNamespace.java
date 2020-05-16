@@ -12,30 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import java.util.Map;
+import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.NamedData;
-
-/**
- * Encapsulate reading of a {@code feature identifier} from a
- * {@code Capability}'s attributes.
- * 
- * @see NamedData
- */
-@SuppressWarnings("restriction")
-public final class CapabilityLicFeatureId extends CapabilityLicFeatureInfo {
-
-	public CapabilityLicFeatureId(Requirement requirement) {
-		super(requirement.feature().identifier());
-	}
-
-	public CapabilityLicFeatureId(Map<String, Object> container) {
-		super(container);
-	}
+final class LicCapabilityNamespace implements Supplier<String> {
 
 	@Override
-	public String key() {
+	public String get() {
 		return "licensing.feature"; //$NON-NLS-1$
 	}
 
