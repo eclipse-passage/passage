@@ -22,9 +22,6 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
-import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.equinox.requirements.RequirementsToBundle;
 import org.eclipse.pde.core.plugin.IMatchRules;
 import org.eclipse.pde.core.plugin.IPluginBase;
@@ -123,19 +120,10 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 		((IBundlePluginModelBase) shared).getBundleModel().getBundle()//
 				.setHeader(Constants.PROVIDE_CAPABILITY, //
 						new RequirementsToBundle()//
-								.printed(Arrays.asList(defaultRequirement(identifier))));
+								.printed(requirements(identifier)));
 	}
 
-	private Requirement defaultRequirement(String identifier) {
-		return new BaseRequirement(//
-				new BaseFeature(//
-						identifier, //
-						"1.0.0", //$NON-NLS-1$
-						identifier, //
-						"Eclipse Passage Template"), //$NON-NLS-1$
-				new RestrictionLevel.Warning(), //
-				this);
-	}
+	protected abstract List<Requirement> requirements(String product);
 
 	protected void createApplicationExtension(String identifier, String classValue) throws CoreException {
 		IPluginBase plugin = model.getPluginBase();
