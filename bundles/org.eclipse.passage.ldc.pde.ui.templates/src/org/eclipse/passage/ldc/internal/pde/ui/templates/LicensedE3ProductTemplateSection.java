@@ -12,11 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -24,6 +28,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 
+@SuppressWarnings("restriction")
 public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSection {
 
 	private static final String LICENSED_E3_PRODUCT = "LicensedE3Product"; //$NON-NLS-1$
@@ -81,6 +86,11 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 		createPerspectiveExtension();
 		createProductExtension();
 		createProcessorExtension(VALUE_PROCESSOR_LICENSING_ID, VALUE_PROCESSOR_LICENSING_CLASS);
+	}
+
+	@Override
+	protected List<Requirement> requirements(String product) {
+		return Arrays.asList(new DefaultProductRequirement(product).get());
 	}
 
 	private void createPerspectiveExtension() throws CoreException {

@@ -12,11 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.fullfeather.AntimagicShieldFeatureLicRequirement;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -24,6 +29,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 
+@SuppressWarnings("restriction")
 public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedTemplateSection {
 
 	public LicensedE4FullFeatherProductTemplateSection() {
@@ -66,6 +72,13 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
 		createLicensingCapability(productFqn);
 		createProductExtension();
+	}
+
+	@Override
+	protected List<Requirement> requirements(String product) {
+		return Arrays.asList(//
+				new DefaultProductRequirement(product).get(), //
+				new AntimagicShieldFeatureLicRequirement().get());
 	}
 
 	@Override
