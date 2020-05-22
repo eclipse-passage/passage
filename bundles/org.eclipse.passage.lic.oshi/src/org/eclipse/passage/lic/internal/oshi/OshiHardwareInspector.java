@@ -14,8 +14,12 @@ package org.eclipse.passage.lic.internal.oshi;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -43,10 +47,11 @@ import oshi.software.os.OperatingSystemVersion;
 public class OshiHardwareInspector implements HardwareInspector {
 
 	private final Map<String, String> hardware = new LinkedHashMap<>();
+	private final List<HWDiskStore> discs = new ArrayList<>();
 	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
-	private Map<String, String> inspect() {
-		Map<String, String> properties = new LinkedHashMap<>();
+	private Map<String, Object> inspect() {
+		Map<String, Object> properties = new LinkedHashMap<>();
 		try {
 			SystemInfo systemInfo = new SystemInfo();
 			OperatingSystem os = systemInfo.getOperatingSystem();
@@ -84,6 +89,7 @@ public class OshiHardwareInspector implements HardwareInspector {
 			properties.put(HardwareInspector.PROPERTY_CPU_PROCESSORID, processor.getProcessorID());
 
 			HWDiskStore[] diskStores = hal.getDiskStores();
+			properties.put(HWDiskStore[].class.getName(), diskStores);
 			for (HWDiskStore hwDiskStore : diskStores) {
 				properties.put(HardwareInspector.PROPERTY_HWDISK_MODEL, hwDiskStore.getModel());
 				properties.put(HardwareInspector.PROPERTY_HWDISK_NAME, hwDiskStore.getName());
@@ -128,7 +134,8 @@ public class OshiHardwareInspector implements HardwareInspector {
 	private synchronized Map<String, String> hardware() {
 		if (hardware.isEmpty()) {
 			try {
-				hardware.putAll(CompletableFuture.supplyAsync(this::inspect).get());
+				CompletableFuture.supplyAsync(this::inspect).get().entrySet().stream()//
+						.forEach(this::fill);
 			} catch (InterruptedException | ExecutionException e) {
 				licensingReporter.logResult(//
 						LicensingResults.createError(//
@@ -136,6 +143,21 @@ public class OshiHardwareInspector implements HardwareInspector {
 			}
 		}
 		return new LinkedHashMap<String, String>(hardware);
+	}
+
+	private void fill(Entry<String, Object> entry) {
+		Object value = entry.getValue();
+		if (value instanceof String) {
+			hardware.put(entry.getKey(), String.class.cast(value));
+		} else if (value instanceof HWDiskStore[]) {
+			discs.addAll(Arrays.asList(HWDiskStore[].class.cast(value)));
+		}
+
+	}
+
+	List<HWDiskStore> disks() {
+		hardware();
+		return new ArrayList<>(discs);
 	}
 
 }

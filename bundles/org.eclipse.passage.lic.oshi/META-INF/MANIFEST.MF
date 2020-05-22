@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.oshi
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.oshi
-Bundle-Version: 0.5.202.qualifier
+Bundle-Version: 0.5.204.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
