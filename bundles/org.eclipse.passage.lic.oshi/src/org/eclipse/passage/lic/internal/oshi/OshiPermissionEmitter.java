@@ -16,33 +16,22 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITI
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_ID;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONDITION_TYPE_NAME;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.access.PermissionEmitter;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
-import org.eclipse.passage.lic.internal.oshi.i18n.OshiMessages;
 import org.eclipse.passage.lic.oshi.OshiHal;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-import oshi.SystemInfo;
-import oshi.hardware.HWDiskStore;
 
 @Component(property = { LICENSING_CONDITION_TYPE_ID + '=' + OshiHal.CONDITION_TYPE_HARDWARE,
 		LICENSING_CONDITION_TYPE_NAME + '=' + "Hardware", LICENSING_CONDITION_TYPE_DESCRIPTION + '='
 				+ "Evaluates node-locked conditions using runtime hardware information" })
 public class OshiPermissionEmitter extends BasePermissionEmitter implements PermissionEmitter {
 
-	private HardwareInspector hardwareInspector;
+	private OshiHardwareInspector hardwareInspector;
 	private LicensingReporter licensingReporter = new SystemReporter();
 
 	@Reference
@@ -58,7 +47,8 @@ public class OshiPermissionEmitter extends BasePermissionEmitter implements Perm
 
 	@Reference
 	public void bindHardwareInspector(HardwareInspector inspector) {
-		hardwareInspector = inspector;
+		// FIXME: extend interface in 0.9.0
+		hardwareInspector = (OshiHardwareInspector) inspector;
 	}
 
 	public void unbindHardwareInspector(HardwareInspector inspector) {
@@ -72,23 +62,11 @@ public class OshiPermissionEmitter extends BasePermissionEmitter implements Perm
 		// FIXME: EP: fast hack for 562012,
 		// to be solved properly with formats alternations in 0.9
 		if (key.equals(HardwareInspector.PROPERTY_HWDISK_SERIAL)) {
-			return disks().stream() //
+			return hardwareInspector.disks().stream() //
 					.anyMatch(disk -> LicensingConditions.evaluateSegmentValue(expected, disk.getSerial()));
 		}
 		String actual = hardwareInspector.inspectProperty(key);
 		return LicensingConditions.evaluateSegmentValue(expected, actual);
-	}
-
-	private List<HWDiskStore> disks() {
-		try {
-			return Arrays.asList(CompletableFuture.supplyAsync(//
-					() -> new SystemInfo().getHardware().getDiskStores()).get());
-		} catch (InterruptedException | ExecutionException e) {
-			licensingReporter.logResult(//
-					LicensingResults.createError(//
-							OshiMessages.OshiPermissionEmitter_e_retrieve_disks, getClass().getName(), e));
-			return Collections.emptyList();
-		}
 	}
 
 }
