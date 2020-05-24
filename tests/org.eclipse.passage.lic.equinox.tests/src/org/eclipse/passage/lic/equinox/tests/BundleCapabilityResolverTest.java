@@ -15,24 +15,27 @@ package org.eclipse.passage.lic.equinox.tests;
 import static org.junit.Assert.assertNotNull;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.internal.equinox.requirements.ComponentConfigurationResolver;
+import org.eclipse.passage.lic.internal.equinox.requirements.BundleCapabilityResolver;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.log.LoggerFactory;
 
 @SuppressWarnings("restriction")
-public class ComponentConfigurationResolverTest {
+public class BundleCapabilityResolverTest {
 
 	@Test
 	public void testResolveRequirements() {
-		ComponentConfigurationResolver resolver = new ComponentConfigurationResolver();
+		BundleCapabilityResolver resolver = new BundleCapabilityResolver();
 		ServiceComponentRuntime src = Mockito.mock(ServiceComponentRuntime.class);
 		resolver.bindScr(src);
 		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
 		resolver.bindLoggerFactory(factory);
-		resolver.activate(Mockito.mock(BundleContext.class));
+		BundleContext mock = Mockito.mock(BundleContext.class);
+		Mockito.doReturn(new Bundle[0]).when(mock).getBundles();
+		resolver.activate(mock);
 		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
 		assertNotNull(requirements);
 		resolver.deactivate();

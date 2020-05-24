@@ -3,5 +3,7 @@
    <service>
       <provide interface="org.eclipse.passage.lic.api.requirements.RequirementResolver"/>
    </service>
+   <reference bind="bindLoggerFactory" interface="org.osgi.service.log.LoggerFactory" name="LoggerFactory" unbind="unbindLoggerFactory"/>
+   <reference bind="bindScr" interface="org.osgi.service.component.runtime.ServiceComponentRuntime" name="Scr" unbind="unbindScr"/>
    <implementation class="org.eclipse.passage.lic.internal.equinox.requirements.BundleCapabilityResolver"/>
 </scr:component>
