@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,16 +21,28 @@ import org.mockito.Mockito;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
+import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
 @SuppressWarnings("restriction")
 public class BundleCapabilityResolverTest {
 
 	@Test
+	public void testNoBundleContext() {
+		BundleCapabilityResolver resolver = new BundleCapabilityResolver();
+		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
+		Mockito.doReturn(Mockito.mock(Logger.class)).when(factory).getLogger(BundleCapabilityResolver.class);
+		resolver.bindLoggerFactory(factory);
+		resolver.activate(null);
+		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
+		assertNotNull(requirements);
+	}
+
+	@Test
 	public void testResolveRequirements() {
 		BundleCapabilityResolver resolver = new BundleCapabilityResolver();
-		ServiceComponentRuntime src = Mockito.mock(ServiceComponentRuntime.class);
-		resolver.bindScr(src);
+		ServiceComponentRuntime scr = Mockito.mock(ServiceComponentRuntime.class);
+		resolver.bindScr(scr);
 		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
 		resolver.bindLoggerFactory(factory);
 		BundleContext mock = Mockito.mock(BundleContext.class);
@@ -40,7 +52,9 @@ public class BundleCapabilityResolverTest {
 		assertNotNull(requirements);
 		resolver.deactivate();
 		resolver.unbindLoggerFactory(factory);
-		resolver.unbindScr(src);
+		resolver.unbindScr(scr);
+		resolver.unbindLoggerFactory(null);
+		resolver.unbindScr(null);
 	}
 
 }

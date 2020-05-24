@@ -20,10 +20,22 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
+import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
 @SuppressWarnings("restriction")
 public class ComponentConfigurationResolverTest {
+
+	@Test
+	public void testNoBundleContext() {
+		ComponentConfigurationResolver resolver = new ComponentConfigurationResolver();
+		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
+		Mockito.doReturn(Mockito.mock(Logger.class)).when(factory).getLogger(ComponentConfigurationResolver.class);
+		resolver.bindLoggerFactory(factory);
+		resolver.activate(null);
+		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
+		assertNotNull(requirements);
+	}
 
 	@Test
 	public void testResolveRequirements() {
@@ -38,6 +50,8 @@ public class ComponentConfigurationResolverTest {
 		resolver.deactivate();
 		resolver.unbindLoggerFactory(factory);
 		resolver.unbindScr(src);
+		resolver.unbindLoggerFactory(null);
+		resolver.unbindScr(null);
 	}
 
 }
