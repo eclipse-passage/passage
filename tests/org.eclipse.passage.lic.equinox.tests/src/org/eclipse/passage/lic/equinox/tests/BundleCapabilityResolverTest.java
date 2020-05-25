@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,22 +15,23 @@ package org.eclipse.passage.lic.equinox.tests;
 import static org.junit.Assert.assertNotNull;
 
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
-import org.eclipse.passage.lic.internal.equinox.requirements.ComponentConfigurationResolver;
+import org.eclipse.passage.lic.internal.equinox.requirements.BundleCapabilityResolver;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
 @SuppressWarnings("restriction")
-public class ComponentConfigurationResolverTest {
+public class BundleCapabilityResolverTest {
 
 	@Test
 	public void testNoBundleContext() {
-		ComponentConfigurationResolver resolver = new ComponentConfigurationResolver();
+		BundleCapabilityResolver resolver = new BundleCapabilityResolver();
 		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
-		Mockito.doReturn(Mockito.mock(Logger.class)).when(factory).getLogger(ComponentConfigurationResolver.class);
+		Mockito.doReturn(Mockito.mock(Logger.class)).when(factory).getLogger(BundleCapabilityResolver.class);
 		resolver.bindLoggerFactory(factory);
 		resolver.activate(null);
 		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
@@ -39,17 +40,19 @@ public class ComponentConfigurationResolverTest {
 
 	@Test
 	public void testResolveRequirements() {
-		ComponentConfigurationResolver resolver = new ComponentConfigurationResolver();
-		ServiceComponentRuntime src = Mockito.mock(ServiceComponentRuntime.class);
-		resolver.bindScr(src);
+		BundleCapabilityResolver resolver = new BundleCapabilityResolver();
+		ServiceComponentRuntime scr = Mockito.mock(ServiceComponentRuntime.class);
+		resolver.bindScr(scr);
 		LoggerFactory factory = Mockito.mock(LoggerFactory.class);
 		resolver.bindLoggerFactory(factory);
-		resolver.activate(Mockito.mock(BundleContext.class));
+		BundleContext mock = Mockito.mock(BundleContext.class);
+		Mockito.doReturn(new Bundle[0]).when(mock).getBundles();
+		resolver.activate(mock);
 		Iterable<LicensingRequirement> requirements = resolver.resolveLicensingRequirements(null);
 		assertNotNull(requirements);
 		resolver.deactivate();
 		resolver.unbindLoggerFactory(factory);
-		resolver.unbindScr(src);
+		resolver.unbindScr(scr);
 		resolver.unbindLoggerFactory(null);
 		resolver.unbindScr(null);
 	}
