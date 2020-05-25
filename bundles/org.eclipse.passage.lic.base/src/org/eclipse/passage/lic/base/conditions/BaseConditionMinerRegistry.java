@@ -89,7 +89,7 @@ public class BaseConditionMinerRegistry implements ConditionMinerRegistry {
 			BaseConditionMiner basePathMiner = (BaseConditionMiner) miner;
 			return basePathMiner.getBaseLocation();
 		}
-		return null;
+		return ""; //$NON-NLS-1$
 	}
 
 }
