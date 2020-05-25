@@ -30,19 +30,19 @@ public class ConditionLocationPage extends LicensingRegistryPage<ConditionMinerR
 
 	@Override
 	protected void createContent(Composite parent, ConditionMinerRegistry registry) {
-		Iterable<ConditionMiner> conditionTypes = registry.getConditionMiners();
+		Iterable<ConditionMiner> miners = registry.getConditionMiners();
 		GridDataFactory groupData = GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false);
-		for (ConditionMiner miner : conditionTypes) {
+		for (ConditionMiner miner : miners) {
+			String target = registry.getConditionMinerTarget(miner);
+			if (target.isEmpty()) {
+				continue;
+			}
 			Group group = new Group(parent, SWT.NONE);
 			group.setData(miner);
 			group.setLayout(new GridLayout(1, false));
 			group.setLayoutData(groupData.create());
-
 			Label description = new Label(group, SWT.WRAP);
-			String target = registry.getConditionMinerTarget(miner);
-			if (target != null) {
-				description.setText(target);
-			}
+			description.setText(target);
 		}
 	}
 

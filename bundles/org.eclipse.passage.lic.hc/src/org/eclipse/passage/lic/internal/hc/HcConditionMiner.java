@@ -164,8 +164,12 @@ public class HcConditionMiner extends BaseConditionMiner {
 
 	@Override
 	protected String getBaseLocation() {
-		String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
-		String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
+		String underfined = ""; //$NON-NLS-1$
+		String hostValue = settingsMap.getOrDefault(LicensingNet.LICENSING_SERVER_HOST, underfined);
+		String portValue = settingsMap.getOrDefault(LicensingNet.LICENSING_SERVER_PORT, underfined);
+		if (underfined.equals(hostValue) || underfined.equals(portValue)) {
+			return underfined;
+		}
 		return String.format(HOST_PORT, hostValue, portValue);
 	}
 
