@@ -23,19 +23,22 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.AccessEvents;
 import org.eclipse.passage.lic.api.access.AccessManager;
 import org.eclipse.passage.lic.api.access.FeaturePermission;
+import org.eclipse.passage.lic.api.conditions.ConditionEvents;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.inspector.FeatureCase;
 import org.eclipse.passage.lic.api.inspector.FeatureInspector;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
+import org.eclipse.passage.lic.internal.equinox.EquinoxEvents;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 
-@Component(property = EventConstants.EVENT_TOPIC + "=" + AccessEvents.TOPIC_ALL)
+@Component(property = { EventConstants.EVENT_TOPIC + "=" + AccessEvents.TOPIC_ALL,
+		EventConstants.EVENT_TOPIC + "=" + ConditionEvents.TOPIC_ALL, })
 public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 
 	private final Map<String, List<EquinoxFeatureCase>> cases = new HashMap<>();
@@ -57,6 +60,25 @@ public class EquinoxFeatureInspector implements FeatureInspector, EventHandler {
 
 	@Override
 	public void handleEvent(Event event) {
+		String topic = event.getTopic();
+		if (ConditionEvents.CONDITIONS_NOT_VALID.equals(topic)) {
+			Object data = event.getProperty(EquinoxEvents.PROPERTY_DATA);
+			if (data instanceof List<?>) {
+				List<?> list = (List<?>) data;
+				for (Object object : list) {
+					if (object instanceof LicensingCondition) {
+						LicensingCondition condition = (LicensingCondition) object;
+						String id = condition.getFeatureIdentifier();
+						Object code = event.getProperty("org.eclipse.passage.lic.api.event.code"); //$NON-NLS-1$
+						if (code instanceof Integer) {
+							cases.getOrDefault(id, Collections.emptyList())//
+									.forEach(c -> c.conditionNotValid(condition, (Integer) code));
+						}
+					}
+				}
+			}
+
+		}
 		// FIXME: should update cached info
 	}
 

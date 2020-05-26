@@ -17,6 +17,8 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_VERSION;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL;
 
+import java.util.Objects;
+
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 
 class BaseLicensingRequirement implements LicensingRequirement {
@@ -76,6 +78,52 @@ class BaseLicensingRequirement implements LicensingRequirement {
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
 		sb.append("source").append('=').append(source).append(';'); //$NON-NLS-1$
 		return sb.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((featureIdentifier == null) ? 0 : featureIdentifier.hashCode());
+		result = prime * result + ((featureName == null) ? 0 : featureName.hashCode());
+		result = prime * result + ((featureProvider == null) ? 0 : featureProvider.hashCode());
+		result = prime * result + ((featureVersion == null) ? 0 : featureVersion.hashCode());
+		result = prime * result + ((restrictionLevel == null) ? 0 : restrictionLevel.hashCode());
+		result = prime * result + ((source == null) ? 0 : source.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		BaseLicensingRequirement other = (BaseLicensingRequirement) obj;
+		if (!Objects.equals(featureIdentifier, other.featureIdentifier)) {
+			return false;
+		}
+		if (!Objects.equals(featureName, other.featureName)) {
+			return false;
+		}
+		if (!Objects.equals(featureProvider, other.featureProvider)) {
+			return false;
+		}
+		if (!Objects.equals(featureVersion, other.featureVersion)) {
+			return false;
+		}
+		if (!Objects.equals(restrictionLevel, other.restrictionLevel)) {
+			return false;
+		}
+		if (!Objects.equals(source, other.source)) {
+			return false;
+		}
+		return true;
 	}
 
 }
