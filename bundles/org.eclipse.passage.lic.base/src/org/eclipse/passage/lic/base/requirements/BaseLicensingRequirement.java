@@ -82,15 +82,7 @@ class BaseLicensingRequirement implements LicensingRequirement {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((featureIdentifier == null) ? 0 : featureIdentifier.hashCode());
-		result = prime * result + ((featureName == null) ? 0 : featureName.hashCode());
-		result = prime * result + ((featureProvider == null) ? 0 : featureProvider.hashCode());
-		result = prime * result + ((featureVersion == null) ? 0 : featureVersion.hashCode());
-		result = prime * result + ((restrictionLevel == null) ? 0 : restrictionLevel.hashCode());
-		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		return result;
+		return Objects.hash(featureIdentifier, featureName, featureProvider, featureVersion, restrictionLevel, source);
 	}
 
 	@Override
