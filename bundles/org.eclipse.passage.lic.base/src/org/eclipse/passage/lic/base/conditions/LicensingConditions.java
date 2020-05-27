@@ -12,12 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.conditions;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
+import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
@@ -62,28 +65,31 @@ public class LicensingConditions {
 	}
 
 	public static LicensingResult validate(LicensingCondition condition, String source) {
+		List<LicensingResult> details = new ArrayList<>();
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put(LicensingCondition.class.getName(), condition);
 		Date validFrom = condition.getValidFrom();
 		if (validFrom == null) {
 			String format = BaseMessages.getString("LicensingConditions_validation_no_from"); //$NON-NLS-1$
 			String message = String.format(format, condition);
-			return LicensingResults.createError(message, source);
+			return new BaseLicensingResult(LicensingResult.ERROR, message, 400, source, null, details, data);
 		}
 		Date now = new Date();
 		if (validFrom.after(now)) {
 			String format = BaseMessages.getString("LicensingConditions_validation_invalid_from"); //$NON-NLS-1$
 			String message = String.format(format, condition);
-			return LicensingResults.createError(message, source);
+			return new BaseLicensingResult(LicensingResult.ERROR, message, 416, source, null, details, data);
 		}
 		Date validUntil = condition.getValidUntil();
 		if (validUntil == null) {
 			String format = BaseMessages.getString("LicensingConditions_validation_no_until"); //$NON-NLS-1$
 			String message = String.format(format, condition);
-			return LicensingResults.createError(message, source);
+			return new BaseLicensingResult(LicensingResult.ERROR, message, 400, source, null, details, data);
 		}
 		if (validUntil.before(now)) {
 			String format = BaseMessages.getString("LicensingConditions_validation_invalid_until"); //$NON-NLS-1$
 			String message = String.format(format, condition);
-			return LicensingResults.createError(message, source);
+			return new BaseLicensingResult(LicensingResult.ERROR, message, 417, source, null, details, data);
 		}
 		return LicensingResults.createOK("", source); //$NON-NLS-1$
 	}

@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs;
 
-import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
@@ -26,15 +25,15 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.access.AccessManager;
-import org.eclipse.passage.lic.api.inspector.FeatureCase;
 import org.eclipse.passage.lic.api.inspector.FeatureInspector;
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
 import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
+import org.eclipse.passage.lic.internal.equinox.inspector.EquinoxFeatureCase;
 import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
-import org.eclipse.passage.lic.internal.jface.viewers.LicensingRequirementViewer;
+import org.eclipse.passage.lic.internal.jface.viewers.RestrictionVerdictViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingColors;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.jface.viewers.RestrictionRepresenters;
@@ -63,12 +62,10 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	private final FeatureInspector featureInspector;
 	private final String[] features;
 
-	private FeatureCase featureCase;
+	private EquinoxFeatureCase featureCase;
 
 	private TableViewer tableViewer;
 	IEclipsePreferences preferences = LicensingColors.getPreferences();
-
-	private Iterable<RestrictionVerdict> restrictions = Collections.emptyList();
 
 	public LicensingStatusDialog(Shell shell, String... features) {
 		super(shell);
@@ -96,7 +93,9 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	}
 
 	protected void computeStatus() {
-		restrictions = featureCase.getRestrictions();
+		featureCase.reset();
+		Iterable<RestrictionVerdict> restrictions = featureCase.getRestrictions();
+		tableViewer.setInput(featureCase.status());
 		RestrictionVerdict last = RestrictionVerdicts.resolveLastVerdict(restrictions);
 		if (last == null) {
 			setErrorMessage(null);
@@ -113,7 +112,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
 		Table tableDetails = new Table(contents, SWT.BORDER);
 		tableDetails.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		tableViewer = LicensingRequirementViewer.createTableViewer(tableDetails);
+		tableViewer = RestrictionVerdictViewer.createTableViewer(tableDetails);
 		setMessage(JFaceMessages.LicensingStatusDialog_ok_initilaizing);
 		area.getDisplay().asyncExec(() -> initializeFeatureCase());
 		Group contactsGroup = new Group(area, SWT.NONE);
@@ -132,8 +131,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	}
 
 	protected void initializeFeatureCase() {
-		featureCase = featureInspector.inspectFeatures(features);
-		tableViewer.setInput(featureCase.getRequirements());
+		featureCase = (EquinoxFeatureCase) featureInspector.inspectFeatures(features);
 		computeStatus();
 	}
 
@@ -208,6 +206,7 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 
 	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
+		featureCase.reset();
 		updateTable();
 	}
 
@@ -225,6 +224,6 @@ public class LicensingStatusDialog extends TitleAreaDialog implements IPreferenc
 	}
 
 	public Iterable<RestrictionVerdict> getRestrictions() {
-		return restrictions;
+		return featureCase.getRestrictions();
 	}
 }
