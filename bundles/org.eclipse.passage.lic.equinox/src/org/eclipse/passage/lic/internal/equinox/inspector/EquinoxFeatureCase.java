@@ -134,14 +134,14 @@ public class EquinoxFeatureCase implements FeatureCase {
 
 	@Override
 	public void close() {
-		query.clear();
-		requirements.clear();
-		verdicts.clear();
 		inspector.close(this);
 	}
 
 	public void reset() {
+		requirements.clear();
+		verdicts.clear();
 		failures.clear();
+		query.clear();
 		query.add(LicensingRequirement.class);
 		query.add(RestrictionVerdict.class);
 	}
