@@ -69,7 +69,6 @@ public class OshiPermissionEmitterTest {
 	public void testEvaluateConditionPositive() throws Exception {
 		OshiPermissionEmitter evaluator = new OshiPermissionEmitter();
 		OshiHardwareInspector inspector = new OshiHardwareInspector();
-		inspector.activate();
 		evaluator.bindHardwareInspector(inspector);
 		Set<LicensingCondition> future = Collections.singleton(createOshiCondition(EXPRESSION_OS_ANY));
 		Iterator<FeaturePermission> iterator = evaluator.emitPermissions(null, future).iterator();

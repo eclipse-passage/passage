@@ -14,8 +14,14 @@ package org.eclipse.passage.lic.internal.oshi;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
@@ -24,7 +30,6 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.internal.oshi.i18n.OshiMessages;
 import org.eclipse.passage.lic.oshi.OshiHal;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -41,56 +46,54 @@ import oshi.software.os.OperatingSystemVersion;
 @Component
 public class OshiHardwareInspector implements HardwareInspector {
 
-	private final Map<String, String> hardwareProperties = new LinkedHashMap<>();
+	private final Map<String, String> hardware = new LinkedHashMap<>();
+	private final List<HWDiskStore> discs = new ArrayList<>();
 	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
-	@Activate
-	public void activate() {
-		initHardwareProperties();
-	}
-
-	private void initHardwareProperties() {
+	private Map<String, Object> inspect() {
+		Map<String, Object> properties = new LinkedHashMap<>();
 		try {
 			SystemInfo systemInfo = new SystemInfo();
 			OperatingSystem os = systemInfo.getOperatingSystem();
-			hardwareProperties.put(HardwareInspector.PROPERTY_OS_MANUFACTURER, os.getManufacturer());
-			hardwareProperties.put(HardwareInspector.PROPERTY_OS_FAMILY, os.getFamily());
+			properties.put(HardwareInspector.PROPERTY_OS_MANUFACTURER, os.getManufacturer());
+			properties.put(HardwareInspector.PROPERTY_OS_FAMILY, os.getFamily());
 			OperatingSystemVersion version = os.getVersion();
-			hardwareProperties.put(HardwareInspector.PROPERTY_OS_VERSION, version.getVersion());
-			hardwareProperties.put(HardwareInspector.PROPERTY_OS_BUILDNUMBER, version.getBuildNumber());
+			properties.put(HardwareInspector.PROPERTY_OS_VERSION, version.getVersion());
+			properties.put(HardwareInspector.PROPERTY_OS_BUILDNUMBER, version.getBuildNumber());
 
 			HardwareAbstractionLayer hal = systemInfo.getHardware();
 			ComputerSystem computerSystem = hal.getComputerSystem();
-			hardwareProperties.put(HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER, computerSystem.getManufacturer());
-			hardwareProperties.put(HardwareInspector.PROPERTY_SYSTEM_MODEL, computerSystem.getModel());
-			hardwareProperties.put(HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER, computerSystem.getSerialNumber());
+			properties.put(HardwareInspector.PROPERTY_SYSTEM_MANUFACTURER, computerSystem.getManufacturer());
+			properties.put(HardwareInspector.PROPERTY_SYSTEM_MODEL, computerSystem.getModel());
+			properties.put(HardwareInspector.PROPERTY_SYSTEM_SERIALNUMBER, computerSystem.getSerialNumber());
 
 			Baseboard baseboard = computerSystem.getBaseboard();
-			hardwareProperties.put(HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER, baseboard.getManufacturer());
-			hardwareProperties.put(HardwareInspector.PROPERTY_BASEBOARD_MODEL, baseboard.getModel());
-			hardwareProperties.put(HardwareInspector.PROPERTY_BASEBOARD_VERSION, baseboard.getVersion());
-			hardwareProperties.put(HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER, baseboard.getSerialNumber());
+			properties.put(HardwareInspector.PROPERTY_BASEBOARD_MANUFACTURER, baseboard.getManufacturer());
+			properties.put(HardwareInspector.PROPERTY_BASEBOARD_MODEL, baseboard.getModel());
+			properties.put(HardwareInspector.PROPERTY_BASEBOARD_VERSION, baseboard.getVersion());
+			properties.put(HardwareInspector.PROPERTY_BASEBOARD_SERIALNUMBER, baseboard.getSerialNumber());
 
 			Firmware firmware = computerSystem.getFirmware();
-			hardwareProperties.put(HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER, firmware.getManufacturer());
-			hardwareProperties.put(HardwareInspector.PROPERTY_FIRMWARE_VERSION, firmware.getVersion());
-			hardwareProperties.put(HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE, firmware.getReleaseDate());
-			hardwareProperties.put(HardwareInspector.PROPERTY_FIRMWARE_NAME, firmware.getName());
-			hardwareProperties.put(HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION, firmware.getDescription());
+			properties.put(HardwareInspector.PROPERTY_FIRMWARE_MANUFACTURER, firmware.getManufacturer());
+			properties.put(HardwareInspector.PROPERTY_FIRMWARE_VERSION, firmware.getVersion());
+			properties.put(HardwareInspector.PROPERTY_FIRMWARE_RELEASEDATE, firmware.getReleaseDate());
+			properties.put(HardwareInspector.PROPERTY_FIRMWARE_NAME, firmware.getName());
+			properties.put(HardwareInspector.PROPERTY_FIRMWARE_DESCRIPTION, firmware.getDescription());
 
 			CentralProcessor processor = hal.getProcessor();
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_VENDOR, processor.getVendor());
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_FAMILY, processor.getFamily());
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_MODEL, processor.getModel());
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_NAME, processor.getName());
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_IDENTIFIER, processor.getIdentifier());
-			hardwareProperties.put(HardwareInspector.PROPERTY_CPU_PROCESSORID, processor.getProcessorID());
+			properties.put(HardwareInspector.PROPERTY_CPU_VENDOR, processor.getVendor());
+			properties.put(HardwareInspector.PROPERTY_CPU_FAMILY, processor.getFamily());
+			properties.put(HardwareInspector.PROPERTY_CPU_MODEL, processor.getModel());
+			properties.put(HardwareInspector.PROPERTY_CPU_NAME, processor.getName());
+			properties.put(HardwareInspector.PROPERTY_CPU_IDENTIFIER, processor.getIdentifier());
+			properties.put(HardwareInspector.PROPERTY_CPU_PROCESSORID, processor.getProcessorID());
 
 			HWDiskStore[] diskStores = hal.getDiskStores();
+			properties.put(HWDiskStore[].class.getName(), diskStores);
 			for (HWDiskStore hwDiskStore : diskStores) {
-				hardwareProperties.put(HardwareInspector.PROPERTY_HWDISK_MODEL, hwDiskStore.getModel());
-				hardwareProperties.put(HardwareInspector.PROPERTY_HWDISK_NAME, hwDiskStore.getName());
-				hardwareProperties.put(HardwareInspector.PROPERTY_HWDISK_SERIAL, hwDiskStore.getSerial());
+				properties.put(HardwareInspector.PROPERTY_HWDISK_MODEL, hwDiskStore.getModel());
+				properties.put(HardwareInspector.PROPERTY_HWDISK_NAME, hwDiskStore.getName());
+				properties.put(HardwareInspector.PROPERTY_HWDISK_SERIAL, hwDiskStore.getSerial());
 				break;
 			}
 		} catch (Exception | UnsatisfiedLinkError | NoClassDefFoundError e) {
@@ -99,6 +102,7 @@ public class OshiHardwareInspector implements HardwareInspector {
 					source, e);
 			licensingReporter.logResult(result);
 		}
+		return properties;
 	}
 
 	@Reference
@@ -114,17 +118,46 @@ public class OshiHardwareInspector implements HardwareInspector {
 
 	@Override
 	public void dumpHardwareInfo(OutputStream output) throws IOException {
-		OshiHal.dumpHardwareInfo(output, hardwareProperties);
+		OshiHal.dumpHardwareInfo(output, hardware());
 	}
 
 	@Override
 	public String inspectProperty(String name) {
-		return hardwareProperties.get(name);
+		return hardware().get(name);
 	}
 
 	@Override
 	public Iterable<String> getKnownProperties() {
-		return hardwareProperties.keySet();
+		return hardware().keySet();
+	}
+
+	private synchronized Map<String, String> hardware() {
+		if (hardware.isEmpty()) {
+			try {
+				CompletableFuture.supplyAsync(this::inspect).get().entrySet().stream()//
+						.forEach(this::fill);
+			} catch (InterruptedException | ExecutionException e) {
+				licensingReporter.logResult(//
+						LicensingResults.createError(//
+								OshiMessages.OshiHardwareInspector_e_reading_hw, getClass().getName(), e));
+			}
+		}
+		return new LinkedHashMap<String, String>(hardware);
+	}
+
+	private void fill(Entry<String, Object> entry) {
+		Object value = entry.getValue();
+		if (value instanceof String) {
+			hardware.put(entry.getKey(), String.class.cast(value));
+		} else if (value instanceof HWDiskStore[]) {
+			discs.addAll(Arrays.asList(HWDiskStore[].class.cast(value)));
+		}
+
+	}
+
+	List<HWDiskStore> disks() {
+		hardware();
+		return new ArrayList<>(discs);
 	}
 
 }
