@@ -72,13 +72,13 @@ public class RestrictionVerdictViewerAdapter extends LicensingViewerBasis {
 	private String getVerdictMessage(RestrictionVerdict verdict) {
 		int code = verdict.getRestrictionCode();
 		if (code == 0) {
-			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_properly_licensed;
+			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_valid_license;
 		}
 		if (code == 401) {
-			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_no_license;
+			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_invalid_license;
 		}
 		if (code == 416) {
-			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_not_yet;
+			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_not_started;
 		}
 		if (code == 417) {
 			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_expired;
