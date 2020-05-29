@@ -16,6 +16,6 @@ Export-Package: org.eclipse.passage.lic.features.model.api,
  org.eclipse.passage.lic.features.model.impl,
  org.eclipse.passage.lic.features.model.meta,
  org.eclipse.passage.lic.features.model.util,
- org.eclipse.passage.lic.internal.features.model;x-internal:=true
+ org.eclipse.passage.lic.internal.features.model;x-friends:="org.eclipse.passage.loc.dashboard.ui"
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

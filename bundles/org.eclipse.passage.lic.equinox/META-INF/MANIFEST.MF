@@ -23,7 +23,7 @@ Export-Package: org.eclipse.passage.lic.equinox,
  org.eclipse.passage.lic.internal.equinox.access;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.i18n;x-internal:=true,
- org.eclipse.passage.lic.internal.equinox.inspector;x-internal:=true,
+ org.eclipse.passage.lic.internal.equinox.inspector;x-friends:="org.eclipse.passage.lic.jface",
  org.eclipse.passage.lic.internal.equinox.io;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.requirements;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.restrictions;x-internal:=true
