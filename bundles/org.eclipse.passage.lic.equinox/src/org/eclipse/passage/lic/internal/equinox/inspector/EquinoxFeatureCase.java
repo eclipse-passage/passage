@@ -29,6 +29,14 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 
 public class EquinoxFeatureCase implements FeatureCase {
 
+	private final EquinoxFeatureInspector inspector;
+	private final List<LicensingRequirement> requirements;
+	private final List<RestrictionVerdict> verdicts;
+	private final Set<Class<?>> query;
+	private final Map<String, Integer> failures;
+
+	private final Iterable<String> featureIdentifiers;
+
 	private final class NoRestriction implements RestrictionVerdict {
 
 		private final LicensingRequirement requirement;
@@ -89,14 +97,6 @@ public class EquinoxFeatureCase implements FeatureCase {
 			return verdict.getLicensingConfiguration();
 		}
 	}
-
-	private final EquinoxFeatureInspector inspector;
-	private final List<LicensingRequirement> requirements;
-	private final List<RestrictionVerdict> verdicts;
-	private final Set<Class<?>> query;
-	private final Map<String, Integer> failures;
-
-	private final Iterable<String> featureIdentifiers;
 
 	EquinoxFeatureCase(EquinoxFeatureInspector inspector, Iterable<String> features) {
 		this.inspector = inspector;

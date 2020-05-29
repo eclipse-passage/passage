@@ -97,25 +97,13 @@ class BaseLicensingRequirement implements LicensingRequirement {
 			return false;
 		}
 		BaseLicensingRequirement other = (BaseLicensingRequirement) obj;
-		if (!Objects.equals(featureIdentifier, other.featureIdentifier)) {
-			return false;
-		}
-		if (!Objects.equals(featureName, other.featureName)) {
-			return false;
-		}
-		if (!Objects.equals(featureProvider, other.featureProvider)) {
-			return false;
-		}
-		if (!Objects.equals(featureVersion, other.featureVersion)) {
-			return false;
-		}
-		if (!Objects.equals(restrictionLevel, other.restrictionLevel)) {
-			return false;
-		}
-		if (!Objects.equals(source, other.source)) {
-			return false;
-		}
-		return true;
+		return Objects.equals(featureIdentifier, other.featureIdentifier) //
+				&& Objects.equals(featureName, other.featureName) //
+				&& Objects.equals(featureProvider, other.featureProvider) //
+				&& Objects.equals(featureVersion, other.featureVersion) //
+				&& Objects.equals(featureVersion, other.featureVersion) //
+				&& Objects.equals(restrictionLevel, other.restrictionLevel) //
+				&& Objects.equals(source, other.source);
 	}
 
 }
