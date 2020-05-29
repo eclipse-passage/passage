@@ -24,7 +24,6 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.loc.internal.api.ZeroOneMany;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public class ZeroOneManyTest {
 
 	@Test

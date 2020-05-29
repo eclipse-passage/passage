@@ -25,7 +25,6 @@ import org.junit.Test;
 
 public class ComposedClassMetadataTest {
 
-	@SuppressWarnings("restriction")
 	private final InstanceSupply<?> metadata = new InstanceSupply<Object>() {
 
 		@Override
