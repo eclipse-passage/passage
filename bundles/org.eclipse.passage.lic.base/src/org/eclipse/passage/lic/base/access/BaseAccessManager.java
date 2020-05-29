@@ -200,7 +200,6 @@ public class BaseAccessManager implements AccessManager {
 			licensingReporter.postResult(createEvent(AccessEvents.CONDITIONS_EVALUATED, empty, error));
 			return empty;
 		}
-		List<LicensingCondition> invalid = new ArrayList<>();
 		for (LicensingCondition condition : conditions) {
 			if (condition == null) {
 				String message = BaseMessages.getString("BaseAccessManager_evaluation_error_invalid_condition"); //$NON-NLS-1$
@@ -219,26 +218,30 @@ public class BaseAccessManager implements AccessManager {
 					licensingReporter.logResult(error);
 					continue;
 				}
-				List<LicensingCondition> mappedConditions = Collections.singletonList(condition);
 				try {
-					Iterable<FeaturePermission> permissions = emitter.emitPermissions(configuration, mappedConditions);
+					Iterable<FeaturePermission> permissions = emitter.emitPermissions(configuration,
+							Collections.singletonList(condition));
 					for (FeaturePermission permission : permissions) {
 						result.add(permission);
 					}
 				} catch (LicensingException e) {
 					LicensingResult error = e.getResult();
 					licensingReporter.logResult(error);
-					licensingReporter
-							.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
+					licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
+							Collections.singletonList(condition), error));
 				} catch (Throwable e) {
-					LicensingResult error = LicensingResults.createError(BaseMessages.getString("BaseAccessManager_permission_emitter_failure"), source, e); //$NON-NLS-1$
+					LicensingResult error = LicensingResults.createError(
+							BaseMessages.getString("BaseAccessManager_permission_emitter_failure"), source, e); //$NON-NLS-1$
 					licensingReporter.logResult(error);
-					licensingReporter
-							.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID, mappedConditions, error));
+					licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
+							Collections.singletonList(condition), error));
 				}
 			} else {
 				licensingReporter.logResult(validate);
-				invalid.add(condition);
+				// FIXME: we need to use "post", but the only receiver of this event
+				// ("Licensing Status" dialog) will need to much rework
+				licensingReporter.sendResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
+						Collections.singletonList(condition), validate));
 			}
 		}
 		List<FeaturePermission> unmodifiable = Collections.unmodifiableList(result);

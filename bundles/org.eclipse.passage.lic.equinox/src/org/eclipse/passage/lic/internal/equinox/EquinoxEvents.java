@@ -36,7 +36,11 @@ public class EquinoxEvents {
 		if (attachmentTopic instanceof String) {
 			String topic = (String) attachmentTopic;
 			Object data = result.getAttachment(LicensingEvents.PROPERTY_DATA);
-			return createEvent(topic, data);
+			Map<String, Object> properties = new HashMap<>();
+			properties.put(PROPERTY_DATA, data);
+			// FIXME: we may need more attributes from LicensingResult
+			properties.put("org.eclipse.passage.lic.api.event.code", result.getCode()); //$NON-NLS-1$
+			return new Event(topic, properties);
 		}
 		return null;
 	}

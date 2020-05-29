@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.api.inspector.FeatureInspector;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
+import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.jface.viewers.LicensingViewerAdapter;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -33,14 +34,16 @@ public class LicensingViewerAdapterFactory implements IAdapterFactory {
 
 	private LicensingRequirementViewerAdapter requirementViewerAdapter;
 	private LicensingConditionViewerAdapter conditionViewerAdapter;
+	private RestrictionVerdictViewerAdapter verdictViewerAdapter;
 
 	@Activate
 	public void activate() {
 		requirementViewerAdapter = new LicensingRequirementViewerAdapter(featureInspector);
 		adapterManager.registerAdapters(this, LicensingRequirement.class);
-
 		conditionViewerAdapter = new LicensingConditionViewerAdapter(featureInspector);
 		adapterManager.registerAdapters(this, LicensingCondition.class);
+		verdictViewerAdapter = new RestrictionVerdictViewerAdapter(featureInspector);
+		adapterManager.registerAdapters(this, RestrictionVerdict.class);
 	}
 
 	@Deactivate
@@ -48,10 +51,12 @@ public class LicensingViewerAdapterFactory implements IAdapterFactory {
 		adapterManager.unregisterAdapters(this, LicensingCondition.class);
 		conditionViewerAdapter.dispose();
 		conditionViewerAdapter = null;
-
 		adapterManager.unregisterAdapters(this, LicensingRequirement.class);
 		requirementViewerAdapter.dispose();
 		requirementViewerAdapter = null;
+		adapterManager.unregisterAdapters(this, RestrictionVerdict.class);
+		verdictViewerAdapter.dispose();
+		verdictViewerAdapter = null;
 	}
 
 	@Reference
@@ -84,6 +89,9 @@ public class LicensingViewerAdapterFactory implements IAdapterFactory {
 			}
 			if (LicensingCondition.class.isInstance(adaptableObject)) {
 				return adapterType.cast(conditionViewerAdapter);
+			}
+			if (RestrictionVerdict.class.isInstance(adaptableObject)) {
+				return adapterType.cast(verdictViewerAdapter);
 			}
 		}
 		return null;

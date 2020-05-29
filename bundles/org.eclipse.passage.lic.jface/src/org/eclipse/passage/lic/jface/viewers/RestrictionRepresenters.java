@@ -45,6 +45,9 @@ public class RestrictionRepresenters {
 		if (verdict == null) {
 			return IMG_LEVEL_OK;
 		}
+		if (verdict.getRestrictionCode() == 0) {
+			return IMG_LEVEL_OK;
+		}
 		return resolveImageKey(verdict.getRestrictionLevel());
 	}
 
@@ -93,6 +96,9 @@ public class RestrictionRepresenters {
 
 	public static RGB resolveRGB(RestrictionVerdict verdict) {
 		if (verdict == null) {
+			return LicensingColors.RGB_LEVEL_OK;
+		}
+		if (verdict.getRestrictionCode() == 0) {
 			return LicensingColors.RGB_LEVEL_OK;
 		}
 		return resolveRGB(verdict.getRestrictionLevel());
