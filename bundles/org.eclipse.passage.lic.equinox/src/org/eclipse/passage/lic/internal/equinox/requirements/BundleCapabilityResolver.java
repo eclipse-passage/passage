@@ -18,7 +18,6 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
@@ -35,6 +34,10 @@ import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.runtime.ServiceComponentRuntime;
+import org.osgi.service.log.Logger;
+import org.osgi.service.log.LoggerFactory;
 
 /**
  * 
@@ -46,6 +49,29 @@ public class BundleCapabilityResolver implements RequirementResolver {
 
 	private Logger logger;
 	private BundleContext bundleContext;
+	private ServiceComponentRuntime scr;
+
+	@Reference
+	public void bindLoggerFactory(LoggerFactory factory) {
+		this.logger = factory.getLogger(BundleCapabilityResolver.class);
+	}
+
+	public void unbindLoggerFactory(LoggerFactory factory) {
+		if (this.logger == factory) {
+			this.logger = null;
+		}
+	}
+
+	@Reference
+	public void bindScr(ServiceComponentRuntime runtime) {
+		this.scr = runtime;
+	}
+
+	public void unbindScr(ServiceComponentRuntime runtime) {
+		if (this.scr == runtime) {
+			this.scr = null;
+		}
+	}
 
 	@Activate
 	public void activate(BundleContext context) {
@@ -62,7 +88,7 @@ public class BundleCapabilityResolver implements RequirementResolver {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (bundleContext == null) {
-			logger.severe(EquinoxMessages.BundleRequirements_error_bundle_context);
+			logger.error(EquinoxMessages.BundleRequirements_error_bundle_context);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
