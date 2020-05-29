@@ -118,8 +118,10 @@ public interface AccessManager {
 	 * @see org.eclipse.passage.lic.api
 	 * @since 0.7
 	 */
-	Iterable<RestrictionVerdict> examinePermissions(LicensingConfiguration configuration,
-			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions);
+	default Iterable<RestrictionVerdict> examinePermissions(LicensingConfiguration configuration,
+			Iterable<LicensingRequirement> requirements, Iterable<FeaturePermission> permissions) {
+		return examinePermissons(configuration, requirements, permissions);
+	}
 
 	/**
 	 * Implementation of the fourth phase of <i>access cycle</i>: <i>permission
