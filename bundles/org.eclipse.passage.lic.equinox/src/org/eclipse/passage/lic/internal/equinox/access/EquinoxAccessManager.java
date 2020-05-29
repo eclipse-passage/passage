@@ -39,10 +39,6 @@ public class EquinoxAccessManager extends BaseAccessManager implements AccessMan
 	@Activate
 	public void activate(BundleContext bundleContext) {
 		bundleContext.addBundleListener(this);
-		Bundle[] bundles = bundleContext.getBundles();
-		for (Bundle bundle : bundles) {
-			EquinoxRequirements.extractLicensingManagementRequirements(bundle);
-		}
 	}
 
 	@Deactivate

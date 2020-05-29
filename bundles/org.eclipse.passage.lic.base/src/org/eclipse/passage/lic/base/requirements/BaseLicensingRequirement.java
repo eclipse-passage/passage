@@ -17,6 +17,8 @@ import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_FEATURE_VERSION;
 import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_RESTRICTION_LEVEL;
 
+import java.util.Objects;
+
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 
 class BaseLicensingRequirement implements LicensingRequirement {
@@ -76,6 +78,32 @@ class BaseLicensingRequirement implements LicensingRequirement {
 		sb.append(LICENSING_RESTRICTION_LEVEL).append('=').append(restrictionLevel).append(';');
 		sb.append("source").append('=').append(source).append(';'); //$NON-NLS-1$
 		return sb.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(featureIdentifier, featureName, featureProvider, featureVersion, restrictionLevel, source);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		BaseLicensingRequirement other = (BaseLicensingRequirement) obj;
+		return Objects.equals(featureIdentifier, other.featureIdentifier) //
+				&& Objects.equals(featureName, other.featureName) //
+				&& Objects.equals(featureProvider, other.featureProvider) //
+				&& Objects.equals(featureVersion, other.featureVersion) //
+				&& Objects.equals(featureVersion, other.featureVersion) //
+				&& Objects.equals(restrictionLevel, other.restrictionLevel) //
+				&& Objects.equals(source, other.source);
 	}
 
 }

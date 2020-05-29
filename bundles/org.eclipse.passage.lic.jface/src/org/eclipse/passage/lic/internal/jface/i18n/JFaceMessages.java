@@ -58,6 +58,15 @@ public class JFaceMessages extends NLS {
 	public static String RequirementLabels_provider_n_a;
 	public static String RestrictionLevelPage_e_not_available;
 	public static String RestrictionLevelPage_select_btn_text;
+	public static String RestrictionVerdictViewer_column_name;
+	public static String RestrictionVerdictViewer_column_provider;
+	public static String RestrictionVerdictViewer_column_status;
+	public static String RestrictionVerdictViewer_column_verdict;
+	public static String RestrictionVerdictViewer_column_version;
+	public static String RestrictionVerdictViewerAdapter_msg_expired;
+	public static String RestrictionVerdictViewerAdapter_msg_invalid_license;
+	public static String RestrictionVerdictViewerAdapter_msg_not_started;
+	public static String RestrictionVerdictViewerAdapter_msg_valid_license;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, JFaceMessages.class);
