@@ -89,12 +89,12 @@ public class ComponentConfigurationResolver implements RequirementResolver {
 		String nameLicensing = LICENSING_FEATURE_NAME_DEFAULT;
 		String providerLicensing = LICENSING_FEATURE_PROVIDER_DEFAULT;
 		if (scr == null) {
-			logger.audit(EquinoxMessages.ComponentConfigurationResolver_error_invalid_component_rt);
+			logger.error(EquinoxMessages.ComponentConfigurationResolver_error_invalid_component_rt);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
 		if (bundleContext == null) {
-			logger.audit(EquinoxMessages.ComponentConfigurationResolver_error_invalid_bundle_context);
+			logger.error(EquinoxMessages.ComponentConfigurationResolver_error_invalid_bundle_context);
 			return LicensingRequirements.createErrorIterable(LicensingNamespaces.CAPABILITY_LICENSING_MANAGEMENT,
 					LicensingVersions.VERSION_DEFAULT, nameLicensing, providerLicensing, configuration);
 		}
