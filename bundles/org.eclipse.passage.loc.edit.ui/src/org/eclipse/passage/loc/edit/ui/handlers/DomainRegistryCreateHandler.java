@@ -17,10 +17,10 @@ import javax.inject.Named;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
+import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
-import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class DomainRegistryCreateHandler {
@@ -45,7 +45,7 @@ public class DomainRegistryCreateHandler {
 			domain = Products.DOMAIN_NAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_USER:
-			domain = Users.DOMAIN_NAME;
+			domain = UsersPackage.eNAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_LICENSE:
 			domain = Licenses.DOMAIN_NAME;

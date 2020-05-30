@@ -19,11 +19,10 @@ import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
-import org.eclipse.passage.loc.users.core.Users;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Users.DOMAIN_NAME })
+@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME })
 public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
 	private UserRegistry userRegistry;

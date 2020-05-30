@@ -34,7 +34,6 @@ import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
-import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -197,7 +196,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_user_group);
-		createLinks(group, Users.DOMAIN_NAME);
+		createLinks(group, UsersPackage.eNAME);
 		userOrigins = createUserOriginBlock(group);
 		users = createUserBlock(group);
 		userLicenses = createUserLicenseBlock(group);
@@ -205,7 +204,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createUserOriginBlock(Composite parent) {
-		String domain = Users.DOMAIN_NAME;
+		String domain = UsersPackage.eNAME;
 		EClass eClass = UsersPackage.eINSTANCE.getUserOrigin();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_origin_info;
@@ -215,7 +214,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createUserBlock(Composite parent) {
-		String domain = Users.DOMAIN_NAME;
+		String domain = UsersPackage.eNAME;
 		EClass eClass = UsersPackage.eINSTANCE.getUser();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_info;
@@ -225,7 +224,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createUserLicenseBlock(Composite parent) {
-		String domain = Users.DOMAIN_NAME;
+		String domain = UsersPackage.eNAME;
 		EClass eClass = UsersPackage.eINSTANCE.getUserLicense();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_info;

@@ -27,7 +27,6 @@ import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;
 import org.eclipse.passage.loc.jface.dialogs.Appearance;
-import org.eclipse.passage.loc.users.core.Users;
 
 /**
  * Selects or creates {@link UserOriginDescriptor}. Will return either
@@ -57,7 +56,7 @@ public final class SelectUser extends SupplySelectRequest<UserDescriptor> {
 	}
 
 	private String domain() {
-		return Users.DOMAIN_NAME;
+		return UsersPackage.eNAME;
 	}
 
 }
