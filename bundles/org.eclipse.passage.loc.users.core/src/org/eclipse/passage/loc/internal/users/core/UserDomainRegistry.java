@@ -37,14 +37,13 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
 import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
-import org.eclipse.passage.loc.users.core.Users;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME,
-		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Users.FILE_EXTENSION_XMI })
+		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "users_xmi" })
 public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		implements UserRegistry, EditingDomainRegistry<UserOriginDescriptor> {
 
@@ -90,7 +89,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	@Override
 	public String getFileExtension() {
-		return Users.FILE_EXTENSION_XMI;
+		return "users_xmi"; //$NON-NLS-1$
 	}
 
 	@Override
