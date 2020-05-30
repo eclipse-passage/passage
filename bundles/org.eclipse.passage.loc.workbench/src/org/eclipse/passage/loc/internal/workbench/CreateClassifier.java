@@ -76,7 +76,11 @@ public abstract class CreateClassifier<C> implements Supplier<Optional<C>> {
 	}
 
 	protected Optional<EObject> showWizard(Class<C> type, EditingDomainRegistry<?> registry) {
-		EntityMetadata metadata = context.get(ComposableClassMetadata.class).find(type).get();
+		Optional<EntityMetadata> found = context.get(ComposableClassMetadata.class).find(type);
+		if (!found.isPresent()) {
+			return Optional.empty();
+		}
+		EntityMetadata metadata = found.get();
 		EClass eClass = metadata.eClass();
 		ResourceLocator resourceLocator = new EClassResources(eClass).get();
 		String typeName = resourceLocator.getString(NLS.bind("_UI_{0}_type", eClass.getName())); //$NON-NLS-1$

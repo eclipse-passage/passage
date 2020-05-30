@@ -56,7 +56,7 @@ public final class RootClassifierWizardPage extends BaseClassifierWizardPage {
 	@Override
 	protected void initControls() {
 		super.initControls();
-		text.setText(basePath() + File.separator + new EObjectNameIdentifier(eClass) + '.' + extension);
+		text.setText(basePath() + File.separator + new EObjectNameIdentifier(eClass).apply('.') + '.' + extension);
 	}
 
 	protected String basePath() {

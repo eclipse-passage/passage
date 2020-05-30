@@ -38,3 +38,4 @@ Export-Package: org.eclipse.passage.loc.dashboard.ui;x-internal:=true,
  org.eclipse.passage.loc.dashboard.ui.panel;x-internal:=true,
  org.eclipse.passage.loc.dashboard.ui.wizards;x-internal:=true,
  org.eclipse.passage.loc.internal.dashboard.ui.i18n;x-internal:=true
+Bundle-ActivationPolicy: lazy
