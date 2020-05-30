@@ -28,7 +28,7 @@ Import-Package: javax.inject;version="1.0.0"
 Export-Package: org.eclipse.passage.loc.internal.users.ui;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui",
  org.eclipse.passage.loc.internal.users.ui.handlers;x-internal:=true,
  org.eclipse.passage.loc.internal.users.ui.i18n;x-internal:=true,
- org.eclipse.passage.loc.users.ui,
- org.eclipse.passage.loc.users.ui.handlers
+ org.eclipse.passage.loc.users.ui;x-friends:="org.eclipse.passage.loc.licenses.ui,org.eclipse.passage.loc.dashboard.ui",
+ org.eclipse.passage.loc.users.ui.handlers;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/org.eclipse.passage.loc.internal.users.ui.UsersInstanceSupply.xml
