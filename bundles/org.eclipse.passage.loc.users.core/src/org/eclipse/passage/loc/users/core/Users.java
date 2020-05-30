@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.users.core;
 
 public class Users {
 
-	public static final String DOMAIN_NAME = "users"; //$NON-NLS-1$
 	public static final String FILE_EXTENSION_XMI = "users_xmi"; //$NON-NLS-1$
 
 }

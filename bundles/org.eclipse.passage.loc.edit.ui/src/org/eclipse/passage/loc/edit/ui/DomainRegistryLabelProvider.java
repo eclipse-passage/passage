@@ -29,7 +29,6 @@ import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
-import org.eclipse.passage.loc.users.core.Users;
 import org.eclipse.swt.graphics.Image;
 
 class DomainRegistryLabelProvider extends LabelProvider {
@@ -81,7 +80,7 @@ class DomainRegistryLabelProvider extends LabelProvider {
 		if (lastSegment.contains(Products.DOMAIN_NAME)) {
 			return LicensingImages.getImage(ProductsPackage.eINSTANCE.getProductLine().getName());
 		}
-		if (lastSegment.contains(Users.DOMAIN_NAME)) {
+		if (lastSegment.contains(UsersPackage.eNAME)) {
 			return LicensingImages.getImage(UsersPackage.eINSTANCE.getUserOrigin().getName());
 		}
 		if (lastSegment.contains(Licenses.DOMAIN_NAME)) {
