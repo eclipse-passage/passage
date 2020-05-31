@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.moveto.lic.internal.products.model;
+package org.eclipse.passage.lic.internal.products.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +22,11 @@ import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
+import org.eclipse.passage.lic.products.model.api.Product;
+import org.eclipse.passage.lic.products.model.api.ProductLine;
+import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
-//FIXME: AF: remove restriction after moving to the right bundle
-@SuppressWarnings("restriction")
 public final class ProductsClassMetadata implements ClassMetadata {
 
 	private final ProductsPackage meta;
@@ -39,16 +40,19 @@ public final class ProductsClassMetadata implements ClassMetadata {
 						meta.getProductLine(), //
 						meta.getProductLine_Identifier(), //
 						meta.getProductLine_Name()));
+		map.put(ProductLine.class, map.get(ProductLineDescriptor.class));
 		map.put(ProductDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getProduct(), //
 						meta.getProduct_Identifier(), //
 						meta.getProduct_Name()));
+		map.put(Product.class, map.get(ProductDescriptor.class));
 		map.put(ProductVersionDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getProductVersion(), //
 						meta.getProductVersion_Version(), //
 						meta.getProductVersion_Name()));
+		map.put(ProductVersion.class, map.get(ProductVersionDescriptor.class));
 	}
 
 	@Override
