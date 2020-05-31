@@ -31,7 +31,6 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
-import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -132,7 +131,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_product_group);
-		createLinks(group, Products.DOMAIN_NAME);
+		createLinks(group, ProductsPackage.eNAME);
 		productLines = createProductLineBlock(group);
 		products = createProductBlock(group);
 		productVersions = createProductVersionBlock(group);
@@ -141,7 +140,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createProductLineBlock(Composite parent) {
-		String domain = Products.DOMAIN_NAME;
+		String domain = ProductsPackage.eNAME;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductLine();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_line_info;
@@ -151,7 +150,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createProductBlock(Composite parent) {
-		String domain = Products.DOMAIN_NAME;
+		String domain = ProductsPackage.eNAME;
 		EClass eClass = ProductsPackage.eINSTANCE.getProduct();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_info;
@@ -161,7 +160,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createProductVersionBlock(Composite parent) {
-		String domain = Products.DOMAIN_NAME;
+		String domain = ProductsPackage.eNAME;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersion();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_version_info;
@@ -171,7 +170,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createProductVersionFeatureBlock(Composite parent) {
-		String domain = Products.DOMAIN_NAME;
+		String domain = ProductsPackage.eNAME;
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_title;
 		EClass eClass = ProductsPackage.eINSTANCE.getProductVersionFeature();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_product_feature_info;
