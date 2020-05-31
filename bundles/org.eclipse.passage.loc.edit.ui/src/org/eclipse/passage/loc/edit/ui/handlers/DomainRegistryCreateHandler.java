@@ -19,8 +19,8 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 public class DomainRegistryCreateHandler {
@@ -48,7 +48,7 @@ public class DomainRegistryCreateHandler {
 			domain = UsersPackage.eNAME;
 			break;
 		case REGISTRY_RESOURCE_CREATE_LICENSE:
-			domain = Licenses.DOMAIN_NAME;
+			domain = LicensesPackage.eNAME;
 			break;
 		default:
 		}

@@ -32,8 +32,8 @@ import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 
 public class EmailTemplate {
 
@@ -92,7 +92,7 @@ public class EmailTemplate {
 
 	public File createEmlFile(String from, LicensePackDescriptor licensePack, LicensingResult result)
 			throws IOException {
-		Optional<File> license = Optional.ofNullable(result.getAttachment(Licenses.DOMAIN_NAME))//
+		Optional<File> license = Optional.ofNullable(result.getAttachment(LicensesPackage.eNAME))//
 				.filter(String.class::isInstance)//
 				.map(String.class::cast)//
 				.filter(s -> !s.isEmpty())//
