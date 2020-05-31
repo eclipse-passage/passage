@@ -17,6 +17,7 @@ Export-Package: org.eclipse.passage.lic.emf.ecore,
   x-friends:="org.eclipse.passage.lic.features.model,
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.workbench,
-   org.eclipse.passage.lic.users.model",
+   org.eclipse.passage.lic.users.model,
+   org.eclipse.passage.lic.products.model",
  org.eclipse.passage.lic.internal.emf.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy
