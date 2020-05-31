@@ -34,14 +34,13 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
-		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Licenses.FILE_EXTENSION_XMI })
+		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
 public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescriptor>
 		implements LicenseRegistry, EditingDomainRegistry<LicensePlanDescriptor> {
 
@@ -84,7 +83,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 
 	@Override
 	public String getFileExtension() {
-		return Licenses.FILE_EXTENSION_XMI;
+		return "licenses_xmi"; //$NON-NLS-1$
 	}
 
 	@Override

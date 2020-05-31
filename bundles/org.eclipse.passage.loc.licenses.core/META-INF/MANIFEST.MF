@@ -16,7 +16,6 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.email;bundle-version="0.0.0",
  org.eclipse.passage.loc.api;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true,
- org.eclipse.passage.loc.licenses.core
+ org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
