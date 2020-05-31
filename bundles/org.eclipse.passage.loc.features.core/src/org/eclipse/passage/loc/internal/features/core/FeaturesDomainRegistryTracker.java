@@ -135,13 +135,19 @@ public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureS
 		case Notification.ADD:
 			if (newValue instanceof FeatureVersion) {
 				FeatureVersion featureVersion = (FeatureVersion) newValue;
-				registry.registerFeatureVersion(feature, featureVersion);
+				String version = featureVersion.getVersion();
+				if (version != null) {
+					registry.registerFeatureVersion(feature, featureVersion);
+				}
 			}
 			break;
 		case Notification.REMOVE:
 			if (oldValue instanceof FeatureVersion) {
 				FeatureVersion featureVersion = (FeatureVersion) oldValue;
-				registry.unregisterFeatureVersion(feature.getIdentifier(), featureVersion.getVersion());
+				String version = featureVersion.getVersion();
+				if (version != null) {
+					registry.unregisterFeatureVersion(feature.getIdentifier(), featureVersion.getVersion());
+				}
 			}
 			break;
 
