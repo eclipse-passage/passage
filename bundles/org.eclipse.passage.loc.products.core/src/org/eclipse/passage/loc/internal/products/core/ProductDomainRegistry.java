@@ -40,14 +40,13 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
 import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
-import org.eclipse.passage.loc.products.core.Products;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsPackage.eNAME,
-		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Products.FILE_EXTENSION_XMI })
+		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "products_xmi" })
 public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescriptor>
 		implements ProductRegistry, EditingDomainRegistry<ProductLineDescriptor> {
 
@@ -99,7 +98,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 
 	@Override
 	public String getFileExtension() {
-		return Products.FILE_EXTENSION_XMI;
+		return "products_xmi"; //$NON-NLS-1$
 	}
 
 	@Override
