@@ -30,7 +30,6 @@ import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
-import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
 import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.swt.SWT;
@@ -83,7 +82,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_group);
-		createLinks(group, Features.DOMAIN_NAME);
+		createLinks(group, FeaturesPackage.eNAME);
 		featureSets = createFeatureSetBlock(group);
 		features = createFeatureBlock(group);
 		featureVersions = createFeatureVersionBlock(group);
@@ -91,7 +90,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createFeatureSetBlock(Composite parent) {
-		String domain = Features.DOMAIN_NAME;
+		String domain = FeaturesPackage.eNAME;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureSet();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_set_info;
@@ -101,7 +100,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createFeatureBlock(Composite parent) {
-		String domain = Features.DOMAIN_NAME;
+		String domain = FeaturesPackage.eNAME;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeature();
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_title;
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_info;
@@ -111,7 +110,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected DashboardPanelBlock createFeatureVersionBlock(Composite parent) {
-		String domain = Features.DOMAIN_NAME;
+		String domain = FeaturesPackage.eNAME;
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_title;
 		EClass eClass = FeaturesPackage.eINSTANCE.getFeatureVersion();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_feature_version_info;
