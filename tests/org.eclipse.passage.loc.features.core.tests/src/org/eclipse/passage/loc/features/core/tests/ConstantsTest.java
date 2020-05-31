@@ -16,9 +16,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import org.eclipse.passage.loc.features.core.Features;
-import org.eclipse.passage.loc.features.core.FeaturesCore;
-
 public class ConstantsTest {
 
 	@Test 

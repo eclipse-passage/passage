@@ -18,12 +18,11 @@ import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME })
+@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME })
 public class FeaturesSelectionCommandAdvisor implements SelectionCommandAdvisor {
 
 	private FeatureRegistry registry;
