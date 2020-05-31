@@ -12,15 +12,25 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.tests;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import org.eclipse.passage.lic.internal.licenses.model.LicensesClassMetadata;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.junit.Test;
 
-public class PlaceholderTest {
+public class LicensesClassMetadataTest {
+
+	private final LicensesClassMetadata metadata;
+
+	public LicensesClassMetadataTest() {
+		metadata = new LicensesClassMetadata();
+	}
 
 	@Test
-	public void forFurtherDevelopment() {
-		assertNotNull("I'm a newborn test bundle, just let me grow."); //$NON-NLS-1$
+	public void licensePlanMetadata() {
+		assertTrue(metadata.find(LicensePlanDescriptor.class).isPresent());
+		assertTrue(metadata.find(LicensePlan.class).isPresent());
 	}
 
 }
