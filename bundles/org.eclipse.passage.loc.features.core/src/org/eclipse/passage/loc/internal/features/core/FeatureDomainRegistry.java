@@ -38,7 +38,6 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
-import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -46,7 +45,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
-		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI })
+		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "features_xmi" })
 public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescriptor>
 		implements FeatureRegistry, EditingDomainRegistry<FeatureSetDescriptor> {
 
@@ -97,7 +96,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 
 	@Override
 	public String getFileExtension() {
-		return Features.FILE_EXTENSION_XMI;
+		return "features_xmi"; //$NON-NLS-1$
 	}
 
 	@Override
