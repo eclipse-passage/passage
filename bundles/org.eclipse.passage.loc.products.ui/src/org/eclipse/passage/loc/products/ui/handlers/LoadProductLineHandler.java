@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.products.ui.handlers;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.passage.loc.products.core.Products;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
@@ -22,7 +22,7 @@ public class LoadProductLineHandler {
 
 	@Execute
 	public void execute(IEclipseContext eclipseContext) {
-		String domain = Products.DOMAIN_NAME;
+		String domain = ProductsPackage.eNAME;
 		String perspectiveId = ProductsUi.PERSPECTIVE_MAIN;
 		LocWokbench.loadDomainResource(eclipseContext, domain, perspectiveId);
 	}

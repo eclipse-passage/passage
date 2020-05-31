@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.products.core;
 
 public class Products {
 
-	public static final String DOMAIN_NAME = "products"; //$NON-NLS-1$
 	public static final String FILE_EXTENSION_XMI = "products_xmi"; //$NON-NLS-1$
 
 }
