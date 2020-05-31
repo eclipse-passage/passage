@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.moveto.lic.internal.users.model;
+package org.eclipse.passage.lic.internal.users.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,10 +21,10 @@ import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
-//FIXME: AF: remove restriction after moving to the right bundle
-@SuppressWarnings("restriction")
 public final class UsersClassMetadata implements ClassMetadata {
 
 	private final UsersPackage meta;
@@ -38,11 +38,13 @@ public final class UsersClassMetadata implements ClassMetadata {
 						meta.getUserOrigin(), //
 						meta.getUserOrigin_Identifier(), //
 						meta.getUserOrigin_Name()));
+		map.put(UserOrigin.class, map.get(UserOriginDescriptor.class));
 		map.put(UserDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getUser(), //
 						meta.getUser_Email(), //
 						meta.getUser_FullName()));
+		map.put(User.class, map.get(UserDescriptor.class));
 	}
 
 	@Override
