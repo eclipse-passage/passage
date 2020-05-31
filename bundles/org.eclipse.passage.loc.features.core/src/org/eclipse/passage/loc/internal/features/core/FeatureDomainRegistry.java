@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + Features.DOMAIN_NAME,
+@Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + Features.FILE_EXTENSION_XMI })
 public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescriptor>
 		implements FeatureRegistry, EditingDomainRegistry<FeatureSetDescriptor> {
