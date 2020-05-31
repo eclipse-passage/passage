@@ -32,7 +32,6 @@ import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.dashboard.ui.DashboardUi;
 import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.DashboardUiMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -246,13 +245,13 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		group.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		group.setLayout(GridLayoutFactory.swtDefaults().numColumns(4).create());
 		group.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_license_group);
-		createLinks(group, Licenses.DOMAIN_NAME);
+		createLinks(group, LicensesPackage.eNAME);
 		licensePlans = createLicensePlanBlock(group);
 		updateLicenseInfo(licenseRegistry);
 	}
 
 	protected DashboardPanelBlock createLicensePlanBlock(Composite parent) {
-		String domain = Licenses.DOMAIN_NAME;
+		String domain = LicensesPackage.eNAME;
 		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_title;
 		EClass eClass = LicensesPackage.eINSTANCE.getLicensePlan();
 		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_license_plan_info;

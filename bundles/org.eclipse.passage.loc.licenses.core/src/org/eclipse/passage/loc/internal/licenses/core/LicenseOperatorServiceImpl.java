@@ -49,6 +49,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
@@ -64,7 +65,6 @@ import org.eclipse.passage.loc.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -273,7 +273,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
-			attachments.put(Licenses.DOMAIN_NAME, licenseOut);
+			attachments.put(LicensesPackage.eNAME, licenseOut);
 			return LicensingResults.createOK(message, pluginId, attachments);
 		} catch (Exception e) {
 			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,

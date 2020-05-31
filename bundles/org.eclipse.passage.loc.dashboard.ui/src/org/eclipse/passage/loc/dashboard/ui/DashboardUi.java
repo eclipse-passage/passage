@@ -22,10 +22,10 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.features.core.Features;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
-import org.eclipse.passage.loc.licenses.core.Licenses;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.core.Products;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
@@ -89,7 +89,7 @@ public class DashboardUi {
 			return ProductsUi.PERSPECTIVE_MAIN;
 		case UsersPackage.eNAME:
 			return UsersUi.PERSPECTIVE_MAIN;
-		case Licenses.DOMAIN_NAME:
+		case LicensesPackage.eNAME:
 			return LicensesUi.PERSPECTIVE_MAIN;
 		default:
 			break;
