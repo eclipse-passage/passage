@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.moveto.lic.internal.licenses.model;
+package org.eclipse.passage.lic.internal.licenses.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,10 +20,9 @@ import org.eclipse.passage.lic.emf.meta.ClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.emf.meta.PlainEntityMetadata;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
-//FIXME: AF: remove restriction after moving to the right bundle
-@SuppressWarnings("restriction")
 public final class LicensesClassMetadata implements ClassMetadata {
 
 	private final LicensesPackage meta;
@@ -37,6 +36,7 @@ public final class LicensesClassMetadata implements ClassMetadata {
 						meta.getLicensePlan(), //
 						meta.getLicensePlan_Identifier(), //
 						meta.getLicensePlan_Name()));
+		map.put(LicensePlan.class, map.get(LicensePlanDescriptor.class));
 	}
 
 	@Override
