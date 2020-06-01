@@ -42,6 +42,7 @@ public class UsersE4UiProcessor {
 	private void registerUsers(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
 		UsersPackage users = UsersPackage.eINSTANCE;
+		paths.put(users.getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
 		paths.put(users.getUserOrigin().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
 		paths.put(users.getUser().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
 		paths.put(users.getUserLicense().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$

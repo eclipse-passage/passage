@@ -42,6 +42,7 @@ public class ProductsE4UiProcessor {
 	private void registerProducts(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
 		ProductsPackage products = ProductsPackage.eINSTANCE;
+		paths.put(products.getName(), String.format(pattern, "product.png")); //$NON-NLS-1$
 		paths.put(products.getProductLine().getName(), String.format(pattern, "product.png")); //$NON-NLS-1$
 		paths.put(products.getProduct().getName(), String.format(pattern, "product.png")); //$NON-NLS-1$
 		paths.put(products.getProductVersion().getName(), String.format(pattern, "product.png")); //$NON-NLS-1$

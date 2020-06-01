@@ -76,7 +76,7 @@ public class DomainRegistryExplorerPart {
 		TableViewer created = new TableViewer(area);
 		created.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		created.setContentProvider(ArrayContentProvider.getInstance());
-		created.setLabelProvider(new DomainRegistryLabelProvider());
+		created.setLabelProvider(new DomainRegistryLabelProvider(access));
 		return created;
 	}
 

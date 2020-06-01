@@ -96,8 +96,12 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 		return selectionAdvisors.get(domain);
 	}
 
+	public Optional<String> domainForExtension(String extension) {
+		return Optional.ofNullable(extension2domain.get(extension));
+	}
+
 	public Optional<EditingDomainRegistry<?>> domainRegistryForExtension(String extension) {
-		return Optional.ofNullable(extension2domain.get(extension))//
+		return domainForExtension(extension)//
 				.flatMap(d -> Optional.ofNullable(domainRegistries.get(d)));
 	}
 

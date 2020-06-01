@@ -12,56 +12,46 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.edit.ui;
 
+import java.util.Optional;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
-import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.swt.graphics.Image;
 
+//FIXME: rewrite to avoid restriction warnings
+@SuppressWarnings("restriction")
 class DomainRegistryLabelProvider extends LabelProvider {
+
+	private final LocDomainRegistryAccess access;
+
+	public DomainRegistryLabelProvider(LocDomainRegistryAccess access) {
+		this.access = access;
+	}
 
 	@Override
 	public String getText(Object element) {
-		if (element instanceof Resource) {
-			Resource resource = (Resource) element;
-			URI uri = resource.getURI();
-			return uri.toString();
-		}
-		return super.getText(element);
+		return uri(element)//
+				.map(URI::toFileString)//
+				.orElseGet(() -> super.getText(element));
 	}
 
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof Resource) {
-			Resource resource = (Resource) element;
-			URI uri = resource.getURI();
-			return getImageByUri(uri);
-		}
-		return super.getImage(element);
+		return uri(element)//
+				.flatMap(u -> Optional.ofNullable(u.fileExtension()))//
+				.flatMap(access::domainForExtension)//
+				.flatMap(d -> Optional.ofNullable(LicensingImages.getImage(d)))
+				.orElseGet(() -> super.getImage(element));
 	}
 
-	private Image getImageByUri(URI uri) {
-		if (uri == null) {
-			return null;
-		}
-		String lastSegment = uri.lastSegment();
-		if (lastSegment.contains(FeaturesPackage.eNAME)) {
-			return LicensingImages.getImage(FeaturesPackage.eINSTANCE.getFeatureSet().getName());
-		}
-		if (lastSegment.contains(ProductsPackage.eNAME)) {
-			return LicensingImages.getImage(ProductsPackage.eINSTANCE.getProductLine().getName());
-		}
-		if (lastSegment.contains(UsersPackage.eNAME)) {
-			return LicensingImages.getImage(UsersPackage.eINSTANCE.getUserOrigin().getName());
-		}
-		if (lastSegment.contains(LicensesPackage.eNAME)) {
-			return LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePlan().getName());
-		}
-		return null;
+	private Optional<URI> uri(Object element) {
+		return Optional.ofNullable(element)//
+				.filter(Resource.class::isInstance)//
+				.map(Resource.class::cast)//
+				.flatMap(r -> Optional.ofNullable(r.getURI()));
 	}
 
 }

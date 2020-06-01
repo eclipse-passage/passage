@@ -42,6 +42,7 @@ public class FeaturesE4UiProcessor {
 	private void registerFeatures(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
 		FeaturesPackage features = FeaturesPackage.eINSTANCE;
+		paths.put(features.getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
 		paths.put(features.getFeatureSet().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
 		paths.put(features.getFeature().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$
 		paths.put(features.getFeatureVersion().getName(), String.format(pattern, "feature.png")); //$NON-NLS-1$

@@ -42,6 +42,7 @@ public class LicensesE4UiProcessor {
 	private void registerLicenses(String pattern) {
 		Map<String, String> paths = new HashMap<String, String>();
 		LicensesPackage licenses = LicensesPackage.eINSTANCE;
+		paths.put(licenses.getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicensePlan().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicensePlanFeature().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
