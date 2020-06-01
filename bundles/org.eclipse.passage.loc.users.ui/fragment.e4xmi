@@ -29,12 +29,14 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_NsDI4A84Eemq0ONZAqyi5g" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.menu.file.new">
     <elements xsi:type="menu:HandledMenuItem" xmi:id="_S7Q_wA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handledmenuitem.userorigin" label="User Origin" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png" tooltip="New User Origin" command="_wC9kIA83Eemq0ONZAqyi5g"/>
   </fragments>
-  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_AthsoE--EeqvaIgEeXj4Hg" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_AthsoE--EeqvaIgEeXj4Hg" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main" positionInList="after:org.eclipse.passage.loc.products.ui.handledtoolitem.view">
     <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.handledtoolitem.view" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png" tooltip="View Users" command="_Hic8UAp1EemYD4Lz_PRA6A">
       <tags>FORCE_TEXT</tags>
       <parameters xmi:id="_9KfY0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.users.ui.perspective.main"/>
     </elements>
-    <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.handledtoolitem.export.customers" label="Export Customers..." iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/etool16/export.png" tooltip="View Users" command="_wC9kIA83Eemq0ONZAqyi6g">
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_AthsoE--EeqvaIgEeXj4Hg" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main" positionInList="after:org.eclipse.passage.loc.workbench.toolbarseparator.fie">
+    <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.users.ui.handledtoolitem.export.customers" label="Customers..." iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/etool16/export.png" tooltip="Export Customers to a File" command="_wC9kIA83Eemq0ONZAqyi6g">
       <tags>FORCE_TEXT</tags>
     </elements>
   </fragments>
