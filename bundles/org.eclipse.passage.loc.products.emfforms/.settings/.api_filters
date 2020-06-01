@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.loc.products.emfforms" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Unintentional API" id="923795461">
+            <message_arguments>
+                <message_argument value="0.6.0"/>
+                <message_argument value="0.5.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/parts/ProductsCreateElementCallback.java" type="org.eclipse.passage.loc.products.emfforms.parts.ProductsCreateElementCallback">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.parts.ProductsCreateElementCallback"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/parts/ProductsDetailsPart.java" type="org.eclipse.passage.loc.products.emfforms.parts.ProductsDetailsPart">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.parts.ProductsDetailsPart"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/FeatureIdentifierRendererService.java" type="org.eclipse.passage.loc.products.emfforms.renderers.FeatureIdentifierRendererService">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.FeatureIdentifierRendererService"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/PrivateKeyRenderer.java" type="org.eclipse.passage.loc.products.emfforms.renderers.PrivateKeyRenderer">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.PrivateKeyRenderer"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/PrivateKeyRendererService.java" type="org.eclipse.passage.loc.products.emfforms.renderers.PrivateKeyRendererService">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.PrivateKeyRendererService"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/ProductIdentifierRenderer.java" type="org.eclipse.passage.loc.products.emfforms.renderers.ProductIdentifierRenderer">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.ProductIdentifierRenderer"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/ProductVersionKeyRenderer.java" type="org.eclipse.passage.loc.products.emfforms.renderers.ProductVersionKeyRenderer">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.ProductVersionKeyRenderer"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/ProductVersionRenderer.java" type="org.eclipse.passage.loc.products.emfforms.renderers.ProductVersionRenderer">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.ProductVersionRenderer"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/PublicKeyRenderer.java" type="org.eclipse.passage.loc.products.emfforms.renderers.PublicKeyRenderer">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.PublicKeyRenderer"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/PublicKeyRendererService.java" type="org.eclipse.passage.loc.products.emfforms.renderers.PublicKeyRendererService">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.PublicKeyRendererService"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/loc/products/emfforms/renderers/RestrictionLevelRendererService.java" type="org.eclipse.passage.loc.products.emfforms.renderers.RestrictionLevelRendererService">
+        <filter comment="Unintentional API" id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms.renderers.RestrictionLevelRendererService"/>
+                <message_argument value="org.eclipse.passage.loc.products.emfforms_0.6.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
