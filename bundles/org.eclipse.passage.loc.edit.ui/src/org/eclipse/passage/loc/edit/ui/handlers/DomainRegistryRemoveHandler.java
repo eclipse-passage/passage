@@ -42,13 +42,14 @@ public class DomainRegistryRemoveHandler {
 		URI uri = resource.getURI();
 		if (uri != null) {
 			LocDomainRegistryAccess access = (LocDomainRegistryAccess) context.get(EditingDomainRegistryAccess.class);
-			access.domainRegistryForExtension(uri.fileExtension()).filter(BaseDomainRegistry.class::isInstance)
-					.map(BaseDomainRegistry.class::cast).ifPresent(r -> unregister(r, context, uri));
+			access.domainRegistryForExtension(uri.fileExtension())//
+					.filter(BaseDomainRegistry.class::isInstance)//
+					.map(BaseDomainRegistry.class::cast)//
+					.ifPresent(r -> unregister(r, uri, context.get(Shell.class)));
 		}
 	}
 
-	private void unregister(BaseDomainRegistry<?> registry, IEclipseContext context, URI uri) {
-		Shell shell = context.get(Shell.class);
+	private void unregister(BaseDomainRegistry<?> registry, URI uri, Shell shell) {
 		String message = String.format(EditUiMessages.DomainRegistryRemoveHandler_mesage, uri.toFileString());
 		String title = EditUiMessages.DomainRegistryRemoveHandler_title;
 		if (MessageDialog.openConfirm(shell, title, message)) {

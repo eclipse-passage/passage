@@ -22,7 +22,14 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -31,11 +38,15 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchActionConstants;
 
 //FIXME: rewrite to avoid restriction warnings
 @SuppressWarnings("restriction")
@@ -77,6 +88,7 @@ public class DomainRegistryExplorerPart {
 		created.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		created.setContentProvider(ArrayContentProvider.getInstance());
 		created.setLabelProvider(new DomainRegistryLabelProvider(access));
+		createContextMenu(created.getControl());
 		return created;
 	}
 
@@ -95,7 +107,45 @@ public class DomainRegistryExplorerPart {
 				.map(BaseDomainRegistry.class::cast).map(BaseDomainRegistry::getEditingDomain)//
 				.map(EditingDomain::getResourceSet)//
 				.flatMap(rs -> rs.getResources().stream())//
+				.filter(r -> r.getURI() != null)//
+				.sorted((r1, r2) -> r1.getURI().toString().compareTo(r2.getURI().toString()))//
 				.collect(Collectors.toList()));
+	}
+
+	private void createContextMenu(Control control) {
+		MenuManager contextMenu = new MenuManager("#ViewerMenu"); //$NON-NLS-1$
+		contextMenu.setRemoveAllWhenShown(true);
+		contextMenu.addMenuListener(this::fillContextMenu);
+		control.setMenu(contextMenu.createContextMenu(control));
+	}
+
+	private void fillContextMenu(IMenuManager contextMenu) {
+		contextMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		contextMenu.add(new Action(EditUiMessages.DomainRegistryRemoveHandler_title) {
+			@Override
+			public void run() {
+				// FIXME: duplicates DomainRegistryRemoveHandler
+				Object first = viewer.getStructuredSelection().getFirstElement();
+				if (first instanceof Resource) {
+					Resource resource = (Resource) first;
+					URI uri = resource.getURI();
+					if (uri != null) {
+						access.domainRegistryForExtension(uri.fileExtension())//
+								.filter(BaseDomainRegistry.class::isInstance)//
+								.map(BaseDomainRegistry.class::cast)//
+								.ifPresent(r -> unregister(r, uri, viewer.getControl().getShell()));
+					}
+				}
+			}
+		});
+	}
+
+	private void unregister(BaseDomainRegistry<?> registry, URI uri, Shell shell) {
+		String message = String.format(EditUiMessages.DomainRegistryRemoveHandler_mesage, uri.toFileString());
+		String title = EditUiMessages.DomainRegistryRemoveHandler_title;
+		if (MessageDialog.openConfirm(shell, title, message)) {
+			registry.unregisterSource(uri.toFileString());
+		}
 	}
 
 }
