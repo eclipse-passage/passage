@@ -12,8 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
@@ -30,7 +33,8 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());;
 
 	private final Map<String, EditingDomainRegistry<?>> domainRegistries = new HashMap<>();
-	private final Map<String, String> fileExtensions = new HashMap<>();
+	private final Map<String, String> domain2extension = new HashMap<>();
+	private final Map<String, String> extension2domain = new HashMap<>();
 	private final Map<String, SelectionCommandAdvisor> selectionAdvisors = new HashMap<>();
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
@@ -38,14 +42,16 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
 		registerEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
-		registerEntry(fileExtensions, domain, extension);
+		registerEntry(domain2extension, domain, extension);
+		registerEntry(extension2domain, extension, domain);
 	}
 
 	public void unregisterEditingDomainRegistry(EditingDomainRegistry<?> instance, Map<String, Object> properties) {
 		String domain = String.valueOf(properties.get(PROPERTY_DOMAIN_NAME));
 		unregisterEntry(domainRegistries, domain, instance);
 		String extension = String.valueOf(properties.get(PROPERTY_FILE_EXTENSION));
-		unregisterEntry(fileExtensions, domain, extension);
+		unregisterEntry(domain2extension, domain, extension);
+		unregisterEntry(extension2domain, extension, domain);
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
@@ -82,12 +88,21 @@ public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 
 	@Override
 	public String getFileExtension(String domain) {
-		return fileExtensions.get(domain);
+		return domain2extension.get(domain);
 	}
 
 	@Override
 	public SelectionCommandAdvisor getSelectionCommandAdvisor(String domain) {
 		return selectionAdvisors.get(domain);
+	}
+
+	public Optional<EditingDomainRegistry<?>> domainRegistryForExtension(String extension) {
+		return Optional.ofNullable(extension2domain.get(extension))//
+				.flatMap(d -> Optional.ofNullable(domainRegistries.get(d)));
+	}
+
+	public List<EditingDomainRegistry<?>> domainRegistryList() {
+		return new ArrayList<EditingDomainRegistry<?>>(domainRegistries.values());
 	}
 
 }
