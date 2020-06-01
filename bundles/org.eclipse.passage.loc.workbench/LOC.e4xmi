@@ -37,11 +37,11 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_7WOgYPGkEei3isMrv8wWOw" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.save" label="Save" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/save.png" command="_qIUC4PGkEei3isMrv8wWOw">
           <tags>FORCE_TEXT</tags>
         </children>
+        <children xsi:type="menu:ToolBarSeparator" xmi:id="_1tnR8Aa0EemNz8l9BTvo0A" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.view"/>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_IvR-YPJkEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.fie"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_LJ9REPJkEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.export" label="Export..." iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/etool16/export.png" command="_Us_jAPJjEeiO9ZCh0caXIg">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LJ9REPJkEeiO9ZCh0caXIg" elementId="org.eclipse.passage.loc.workbench.handledtoolitem.export" label="Keys..." iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/license-exported.png" tooltip="Generate Keys for Product Version" command="_Us_jAPJjEeiO9ZCh0caXIg">
           <tags>FORCE_TEXT</tags>
         </children>
-        <children xsi:type="menu:ToolBarSeparator" xmi:id="_1tnR8Aa0EemNz8l9BTvo0A" elementId="org.eclipse.passage.loc.workbench.toolbarseparator.view"/>
       </children>
     </trimBars>
   </children>

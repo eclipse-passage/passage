@@ -33,7 +33,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecp.common.spi.ChildrenDescriptorCollector;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -119,11 +118,7 @@ public class DetailsView {
 		if (input == null) {
 			return;
 		}
-		EObject eObject = LicensingEcore.extractEObject(input);
-		if (eObject != null) {
-			eObject = EcoreUtil.getRootContainer(eObject);
-		}
-		this.root = eObject;
+		this.root = LicensingEcore.extractEObject(input);
 		Resource resource = LicensingEcore.extractResource(input);
 		configurePart(resource, context);
 		Control[] children = content.getChildren();

@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.edit.ui;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -22,39 +22,43 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.passage.lic.features.FeatureSetDescriptor;
-import org.eclipse.passage.lic.features.registry.FeatureRegistry;
-import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistryEvents;
-import org.eclipse.passage.lic.products.ProductLineDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.lic.products.registry.ProductRegistryEvents;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
-import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
+import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
+import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchActionConstants;
 
+//FIXME: rewrite to avoid restriction warnings
+@SuppressWarnings("restriction")
 public class DomainRegistryExplorerPart {
 
-	private List<Object> registries = new ArrayList<>();
+	private final LocDomainRegistryAccess access;
 
-	private TreeViewer treeViewer;
+	private TableViewer viewer;
 
 	@Inject
 	public DomainRegistryExplorerPart(IEclipseContext context) {
-		this.registries.add(context.get(FeatureRegistry.class));
-		this.registries.add(context.get(ProductRegistry.class));
-		this.registries.add(context.get(UserRegistry.class));
-		this.registries.add(context.get(LicenseRegistry.class));
+		access = (LocDomainRegistryAccess) context.get(EditingDomainRegistryAccess.class);
 	}
 
 	@PostConstruct
@@ -63,9 +67,9 @@ public class DomainRegistryExplorerPart {
 		Composite area = new Composite(parent, SWT.NONE);
 		area.setLayoutData(GridDataFactory.fillDefaults().grab(true, true).create());
 		area.setLayout(new GridLayout(1, false));
-		treeViewer = createRegistryTree(area);
+		viewer = createRegistryTree(area);
 		ESelectionService selectionService = context.get(ESelectionService.class);
-		treeViewer.addSelectionChangedListener(e -> {
+		viewer.addSelectionChangedListener(e -> {
 			ISelection selection = e.getSelection();
 			if (selection instanceof IStructuredSelection) {
 				IStructuredSelection structured = (IStructuredSelection) selection;
@@ -76,97 +80,72 @@ public class DomainRegistryExplorerPart {
 				}
 			}
 		});
-		treeViewer.setInput(registries);
+		update(access.domainRegistryList());
 	}
 
-	private TreeViewer createRegistryTree(Composite area) {
-		TreeViewer treeView = new TreeViewer(area);
-		treeView.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		treeView.setAutoExpandLevel(2);
-		treeView.setContentProvider(new DomainRegistryContentProvider());
-		treeView.setLabelProvider(new DomainRegistryLabelProvider());
-		return treeView;
-	}
-
-	@Inject
-	@Optional
-	public void createFeatureSet(
-			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_CREATE) FeatureSetDescriptor descriptor) {
-		treeViewer.refresh();
+	private TableViewer createRegistryTree(Composite area) {
+		TableViewer created = new TableViewer(area);
+		created.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		created.setContentProvider(ArrayContentProvider.getInstance());
+		created.setLabelProvider(new DomainRegistryLabelProvider(access));
+		createContextMenu(created.getControl());
+		return created;
 	}
 
 	@Inject
 	@Optional
-	public void deleteFeatureSet(
-			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_DELETE) FeatureSetDescriptor descriptor) {
-		treeViewer.refresh();
+	public void changed(@SuppressWarnings("unused") @UIEventTopic("org/eclipse/passage/lic/*") Object unused) {
+		update(access.domainRegistryList());
 	}
 
-	@Inject
-	@Optional
-	public void updateFeatureSet(
-			@UIEventTopic(FeatureRegistryEvents.FEATURE_SET_UPDATE) FeatureSetDescriptor descriptor) {
-		treeViewer.refresh();
+	private void update(List<EditingDomainRegistry<?>> list) {
+		if (viewer == null && viewer.getControl().isDisposed()) {
+			return;
+		}
+		viewer.setInput(list.stream()//
+				.filter(BaseDomainRegistry.class::isInstance)//
+				.map(BaseDomainRegistry.class::cast).map(BaseDomainRegistry::getEditingDomain)//
+				.map(EditingDomain::getResourceSet)//
+				.flatMap(rs -> rs.getResources().stream())//
+				.filter(r -> r.getURI() != null)//
+				.sorted((r1, r2) -> r1.getURI().toString().compareTo(r2.getURI().toString()))//
+				.collect(Collectors.toList()));
 	}
 
-	@Inject
-	@Optional
-	public void createProductLine(
-			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_CREATE) ProductLineDescriptor descriptor) {
-		treeViewer.refresh();
+	private void createContextMenu(Control control) {
+		MenuManager contextMenu = new MenuManager("#ViewerMenu"); //$NON-NLS-1$
+		contextMenu.setRemoveAllWhenShown(true);
+		contextMenu.addMenuListener(this::fillContextMenu);
+		control.setMenu(contextMenu.createContextMenu(control));
 	}
 
-	@Inject
-	@Optional
-	public void deleteProductLine(
-			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_DELETE) ProductLineDescriptor descriptor) {
-		treeViewer.refresh();
+	private void fillContextMenu(IMenuManager contextMenu) {
+		contextMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		contextMenu.add(new Action(EditUiMessages.DomainRegistryRemoveHandler_title) {
+			@Override
+			public void run() {
+				// FIXME: duplicates DomainRegistryRemoveHandler
+				Object first = viewer.getStructuredSelection().getFirstElement();
+				if (first instanceof Resource) {
+					Resource resource = (Resource) first;
+					URI uri = resource.getURI();
+					if (uri != null) {
+						access.domainRegistryForExtension(uri.fileExtension())//
+								.filter(BaseDomainRegistry.class::isInstance)//
+								.map(BaseDomainRegistry.class::cast)//
+								.ifPresent(r -> unregister(r, uri, viewer.getControl().getShell()));
+					}
+				}
+			}
+		});
 	}
 
-	@Inject
-	@Optional
-	public void updatedProductLine(
-			@UIEventTopic(ProductRegistryEvents.PRODUCT_LINE_UPDATE) ProductLineDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void createUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_CREATE) UserOriginDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void deleteUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_DELETE) UserOriginDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void updateUserOrigin(@UIEventTopic(UserRegistryEvents.USER_ORIGIN_UPDATE) UserOriginDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void createLicensePlan(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePlanDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void deleteLicensePlan(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_DELETE) LicensePlanDescriptor descriptor) {
-		treeViewer.refresh();
-	}
-
-	@Inject
-	@Optional
-	public void updateLicensePlan(
-			@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_UPDATE) LicensePlanDescriptor descriptor) {
-		treeViewer.refresh();
+	private void unregister(BaseDomainRegistry<?> registry, URI uri, Shell shell) {
+		String message = String.format(EditUiMessages.DomainRegistryRemoveHandler_mesage, uri.toFileString());
+		String title = EditUiMessages.DomainRegistryRemoveHandler_title;
+		if (MessageDialog.openConfirm(shell, title, message)) {
+			registry.unregisterSource(uri.toFileString());
+		}
 	}
 
 }
