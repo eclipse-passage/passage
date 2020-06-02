@@ -77,6 +77,9 @@ public class RestrictionVerdictViewerAdapter extends LicensingViewerBasis {
 		if (code == 401) {
 			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_invalid_license;
 		}
+		if (code == 403) {
+			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_wrong_license;
+		}
 		if (code == 416) {
 			return JFaceMessages.RestrictionVerdictViewerAdapter_msg_not_started;
 		}
