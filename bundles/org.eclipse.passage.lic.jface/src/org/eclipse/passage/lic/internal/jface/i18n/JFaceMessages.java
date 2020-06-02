@@ -67,6 +67,7 @@ public class JFaceMessages extends NLS {
 	public static String RestrictionVerdictViewerAdapter_msg_invalid_license;
 	public static String RestrictionVerdictViewerAdapter_msg_not_started;
 	public static String RestrictionVerdictViewerAdapter_msg_valid_license;
+	public static String RestrictionVerdictViewerAdapter_msg_wrong_license;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, JFaceMessages.class);

@@ -227,13 +227,13 @@ public class BaseAccessManager implements AccessManager {
 				} catch (LicensingException e) {
 					LicensingResult error = e.getResult();
 					licensingReporter.logResult(error);
-					licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
+					licensingReporter.sendResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
 							Collections.singletonList(condition), error));
 				} catch (Throwable e) {
 					LicensingResult error = LicensingResults.createError(
 							BaseMessages.getString("BaseAccessManager_permission_emitter_failure"), source, e); //$NON-NLS-1$
 					licensingReporter.logResult(error);
-					licensingReporter.postResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
+					licensingReporter.sendResult(createEvent(ConditionEvents.CONDITIONS_NOT_VALID,
 							Collections.singletonList(condition), error));
 				}
 			} else {
