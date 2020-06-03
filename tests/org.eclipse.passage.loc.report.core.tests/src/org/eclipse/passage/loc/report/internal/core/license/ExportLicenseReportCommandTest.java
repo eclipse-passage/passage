@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Path;
 
-import org.eclipse.passage.loc.report.internal.core.ExportCommandTest;
+import org.eclipse.passage.loc.report.internal.core.BaseExportCommandTest;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import org.junit.Test;
  * plain unit test
  */
 @SuppressWarnings("restriction")
-public class ExportLicenseReportCommandTest extends ExportCommandTest<TestLicenses> {
+public class ExportLicenseReportCommandTest extends BaseExportCommandTest<TestLicenses> {
 
 	@Test
 	public void ñsvExport() {

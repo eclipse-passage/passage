@@ -11,8 +11,19 @@ import java.util.stream.IntStream;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.junit.Test;
 
+/**
+ * <p>
+ * Supplies two failure tests for each export operation. The one should fail if
+ * </p>
+ * <ul>
+ * <li>a target output file creation is denied by OS and</li>
+ * <li>if the target path is not a file</li>
+ * </ul>
+ * 
+ * @param <T> domain-specific subclass of {@linkplain TestData}
+ */
 @SuppressWarnings("restriction")
-public abstract class ExportCommandFailureTest<T extends TestData<?>> extends ExportCommandTest<T> {
+public abstract class ExportCommandFailureTest<T extends TestData<?>> extends BaseExportCommandTest<T> {
 
 	/**
 	 * Try to write to a file that cannot be created: most of practically used file

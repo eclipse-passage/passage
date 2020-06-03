@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.user;
 
-import static org.junit.Assert.assertEquals;
-
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,7 +20,6 @@ import java.util.Set;
 import org.eclipse.passage.loc.report.internal.core.ExportCommandTest;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
-import org.junit.Test;
 
 /**
  * plain unit test
@@ -30,12 +27,14 @@ import org.junit.Test;
 @SuppressWarnings("restriction")
 public class ExportCustomersCommandTest extends ExportCommandTest<TestCustomers> {
 
-	@Test
-	public void exportSome() {
-		Path output = outputFile(""); //$NON-NLS-1$
-		TestCustomers data = new TestCustomers.Some();
-		exportSilent(data, output);
-		assertEquals(data.csv(), results(output));
+	@Override
+	protected TestCustomers some() {
+		return new TestCustomers.Some();
+	}
+
+	@Override
+	protected TestCustomers none() {
+		return new TestCustomers.Empty();
 	}
 
 	@Override

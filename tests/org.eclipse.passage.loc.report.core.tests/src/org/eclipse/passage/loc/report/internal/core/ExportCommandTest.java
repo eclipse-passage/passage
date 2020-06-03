@@ -1,50 +1,42 @@
 package org.eclipse.passage.loc.report.internal.core;
 
-import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeNoException;
+import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.eclipse.passage.loc.yars.internal.api.ReportException;
+import org.junit.Test;
 
-@SuppressWarnings("restriction")
-public abstract class ExportCommandTest<T extends TestData<?>> {
-
-	protected final Path outputFile(String prefix) {
-		try {
-			return Files.createTempFile("test_" + prefix, ".csv"); //$NON-NLS-1$ //$NON-NLS-2$
-		} catch (IOException e) {
-			assumeNoException("Failed to create temp file for test", e); //$NON-NLS-1$
-			return null;
-		}
+/**
+ * <p>
+ * Supplies default smoke-tests for each export operation:
+ * </p>
+ * <ul>
+ * <li>for empty data set (only headers should appear in the target file)
+ * and</li>
+ * <li>for not-empty one</li>
+ * </ul>
+ * 
+ * @param <T> domain-specific subclass of {@linkplain TestData}
+ */
+public abstract class ExportCommandTest<T extends TestData<?>> extends BaseExportCommandTest<T> {
+	@Test
+	public void exportSome() {
+		testExport(some());
 	}
 
-	protected final void exportSilent(T data, Path output) {
-		try {
-			export(data, output);
-		} catch (ReportException e) {
-			fail("Export failed"); //$NON-NLS-1$
-		}
+	@Test
+	public void exportNone() {
+		testExport(none());
 	}
 
-	protected final Set<String> results(Path output) {
-		try {
-			return new HashSet<>(//
-					Files.lines(output, StandardCharsets.UTF_8)//
-							.collect(Collectors.toSet()));
-		} catch (Throwable e) {
-			e.printStackTrace();
-			fail("Output is broken"); //$NON-NLS-1$
-			return null;
-		}
+	private void testExport(T data) {
+		Path output = outputFile(""); //$NON-NLS-1$
+		exportSilent(data, output);
+		assertEquals(data.csv(), results(output));
 	}
 
-	protected abstract void export(T data, Path output) throws ReportException;
+	protected abstract T some();
+
+	protected abstract T none();
 
 }
