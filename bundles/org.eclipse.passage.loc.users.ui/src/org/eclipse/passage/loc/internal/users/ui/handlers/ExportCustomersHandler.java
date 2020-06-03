@@ -20,8 +20,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
-import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
-import org.eclipse.passage.loc.report.internal.core.ExportService;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.ui.jface.ExposedExportWizard;
 import org.eclipse.swt.widgets.Shell;
 
@@ -38,7 +38,7 @@ public class ExportCustomersHandler {
 		if (!customers.isPresent()) {
 			return;
 		}
-		Optional<ExportService> export = service(ExportService.class, context);
+		Optional<CustomerExportService> export = service(CustomerExportService.class, context);
 		if (!export.isPresent()) {
 			return;
 		}

@@ -16,8 +16,8 @@ import java.util.function.Consumer;
 
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
-import org.eclipse.passage.loc.report.internal.core.ExportService;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.swt.widgets.Shell;
 
 @SuppressWarnings("restriction")
@@ -25,9 +25,9 @@ public final class ExposedExportWizard implements Consumer<Shell> {
 
 	private final ProductRegistry products;
 	private final CustomerStorage customers;
-	private final ExportService export;
+	private final CustomerExportService export;
 
-	public ExposedExportWizard(ProductRegistry products, CustomerStorage customers, ExportService export) {
+	public ExposedExportWizard(ProductRegistry products, CustomerStorage customers, CustomerExportService export) {
 		this.products = products;
 		this.customers = customers;
 		this.export = export;

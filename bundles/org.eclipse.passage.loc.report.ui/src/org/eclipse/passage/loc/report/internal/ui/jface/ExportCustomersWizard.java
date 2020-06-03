@@ -19,8 +19,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
-import org.eclipse.passage.loc.report.internal.core.ExportService;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 @SuppressWarnings("restriction")
 final class ExportCustomersWizard extends Wizard {
 
-	private final ExportService export;
+	private final CustomerExportService export;
 	private final DataForExport data;
 	private final PreviewPage preview;
 	private final ScopePage scope;
@@ -36,7 +36,7 @@ final class ExportCustomersWizard extends Wizard {
 
 	// private final String scope = "Scope"; //$NON-NLS-1$
 
-	public ExportCustomersWizard(ProductRegistry products, CustomerStorage customers, ExportService export) {
+	public ExportCustomersWizard(ProductRegistry products, CustomerStorage customers, CustomerExportService export) {
 		this.export = export;
 		this.data = new DataForExport(this::identifiers, this::path, this::open);
 		this.preview = new PreviewPage(customers, data);
