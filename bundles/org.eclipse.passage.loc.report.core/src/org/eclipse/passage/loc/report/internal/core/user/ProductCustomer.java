@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
@@ -19,7 +19,7 @@ import org.eclipse.passage.loc.yars.internal.api.Progress;
 /**
  * <p>
  * Internal unit of information fetched during
- * {@linkplain ExportService#exportCustomersForProducts(java.util.Set, java.nio.file.Path)}
+ * {@linkplain CustomerExportService#exportCustomersForProducts(java.util.Set, java.nio.file.Path)}
  * command execution.
  * </p>
  * 
@@ -34,7 +34,7 @@ import org.eclipse.passage.loc.yars.internal.api.Progress;
  * interface).
  * </p>
  * 
- * @since 0.1
+ * @since 0.2
  */
 @SuppressWarnings("restriction")
 public final class ProductCustomer implements ExportData<ProductCustomer, DosHandleMedia<ProductCustomer>> {

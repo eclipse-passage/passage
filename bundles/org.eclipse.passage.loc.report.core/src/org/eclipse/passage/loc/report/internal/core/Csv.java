@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
+import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
 import org.eclipse.passage.loc.yars.internal.api.Unsafe;
@@ -26,7 +28,7 @@ import org.eclipse.passage.loc.yars.internal.api.Unsafe;
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-final class Csv implements ListMedia<ProductCustomer> {
+public final class Csv<D extends ExportData<D, DosHandleMedia<D>>> implements ListMedia<D> {
 	private final CSVPrinter stream;
 
 	/**
@@ -55,11 +57,11 @@ final class Csv implements ListMedia<ProductCustomer> {
 	}
 
 	@Override
-	public final void startNode(ProductCustomer node) {
+	public final void startNode(D node) {
 	}
 
 	@Override
-	public final void finishNode(ProductCustomer node) throws ReportException {
+	public final void finishNode(D node) throws ReportException {
 		unsafeCall(stream::println, Messages.getString("Csv.action_closing_row")); //$NON-NLS-1$
 	}
 

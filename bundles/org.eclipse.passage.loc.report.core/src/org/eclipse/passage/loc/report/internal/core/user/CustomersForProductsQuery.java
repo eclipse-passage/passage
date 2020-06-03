@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.Query;
