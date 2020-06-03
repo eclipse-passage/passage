@@ -13,6 +13,9 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.passage.loc.report.internal.core.Csv;
 import org.eclipse.passage.loc.report.internal.core.ExistingFileStream;
@@ -42,12 +45,21 @@ final class LicenseReportToCsv {
 				new LicensePlanReportQuery().fetch(source, parameters)) //
 						.write( //
 								new DosHandleMedia<LicensePlanReport>( //
-										new Csv( //
+										new Csv<LicensePlanReport>( //
 												new ExistingFileStream(target), //
-												"License plan", //$NON-NLS-1$
-												"Amount of licenses", //$NON-NLS-1$
-												"Users"), //$NON-NLS-1$
+												header(parameters.explain())), //
 										new DefaultDosHandler()), //
 								progress);
+	}
+
+	private String[] header(boolean explain) {
+		List<String> header = new ArrayList<>(Arrays.asList(//
+				"License plan", //$NON-NLS-1$
+				"Plan id", //$NON-NLS-1$
+				"Amount of licenses")); //$NON-NLS-1$
+		if (explain) {
+			header.add("Users"); //$NON-NLS-1$
+		}
+		return header.toArray(new String[header.size()]);
 	}
 }

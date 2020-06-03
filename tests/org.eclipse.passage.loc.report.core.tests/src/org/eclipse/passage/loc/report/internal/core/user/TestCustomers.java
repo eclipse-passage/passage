@@ -24,7 +24,7 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 
 	private final String[][] records;
 
-	TestCustomers(String[][] records) {
+	protected TestCustomers(String[][] records) {
 		this.records = records;
 	}
 

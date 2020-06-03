@@ -12,38 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.license;
 
-import static org.junit.Assert.assertEquals;
-
 import java.nio.file.Path;
 
-import org.eclipse.passage.loc.report.internal.core.BaseExportCommandTest;
+import org.eclipse.passage.loc.report.internal.core.ExportCommandTest;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 import org.eclipse.passage.loc.yars.internal.api.ReportException;
-import org.junit.Test;
 
 /**
  * plain unit test
  */
 @SuppressWarnings("restriction")
-public class ExportLicenseReportCommandTest extends BaseExportCommandTest<TestLicenses> {
-
-	@Test
-	public void ñsvExport() {
-		Path output = outputFile(""); //$NON-NLS-1$
-		TestLicenses data = new TestLicenses.Empty();
-		exportSilent(data, output);
-		assertEquals(data.csv(), results(output));
-	}
+public class ExportLicenseReportCommandTest extends ExportCommandTest<TestLicenses> {
 
 	@Override
 	protected void export(TestLicenses data, Path output) throws ReportException {
 		new LicenseReportToCsv(data.storage())//
-				.export(parameters(), output, new Progress.Inane<LicensePlanReport>());
+				.export(data.params(), output, new Progress.Inane<LicensePlanReport>());
 
 	}
 
-	private LicensePlanReportParameters parameters() {
-		return null;
+	@Override
+	protected TestLicenses some() {
+		return new TestLicenses.Some();
+	}
+
+	@Override
+	protected TestLicenses none() {
+		return new TestLicenses.Empty();
 	}
 
 }

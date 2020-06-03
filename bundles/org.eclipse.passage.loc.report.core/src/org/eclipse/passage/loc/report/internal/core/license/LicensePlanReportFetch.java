@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -37,20 +38,31 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 	public List<LicensePlanReport> get() {
 		return parameters.plans().stream() //
 				.map(this::entry) //
+				.filter(Optional::isPresent) //
+				.map(Optional::get) //
 				.collect(Collectors.toList());
 	}
 
-	private LicensePlanReport entry(String id) {
-		LicensePlanDescriptor plan = storage.plan(id);
+	private Optional<LicensePlanReport> entry(String id) {
+		Optional<LicensePlanDescriptor> plan = storage.plan(id);
+		if (!plan.isPresent()) {
+			return Optional.empty();
+		}
 		List<UserLicenseDescriptor> licenses = storage.licenses(id).stream()//
 				.filter(lic -> lic.getIssueDate().after(parameters.from())) //
 				.filter(lic -> lic.getIssueDate().before(parameters.to()))//
 				.collect(Collectors.toList());
-		return new LicensePlanReport(//
-				plan, //
-				licenses.size(), //
-				licenses.stream() //
-						.collect(Collectors.groupingBy(UserLicenseDescriptor::getUser))//
+		if (licenses.size() == 0) {
+			return Optional.empty(); // do not report non-profit plans. FIXME: Do we a parameter for this?
+		}
+		return Optional.of(//
+				new LicensePlanReport(//
+						plan.get(), //
+						licenses.size(), //
+						licenses.stream() //
+								.collect(Collectors.groupingBy(UserLicenseDescriptor::getUser)), //
+						parameters.explain()//
+				)//
 		);
 
 	}

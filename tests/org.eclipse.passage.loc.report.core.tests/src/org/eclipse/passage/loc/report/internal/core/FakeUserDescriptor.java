@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -20,10 +23,12 @@ public final class FakeUserDescriptor implements UserDescriptor {
 
 	private final String email;
 	private final String name;
+	private final List<UserLicenseDescriptor> licenses;
 
 	public FakeUserDescriptor(String email, String name) {
 		this.email = email;
 		this.name = name;
+		this.licenses = new ArrayList<>();
 	}
 
 	@Override
@@ -63,7 +68,11 @@ public final class FakeUserDescriptor implements UserDescriptor {
 
 	@Override
 	public Iterable<? extends UserLicenseDescriptor> getUserLicenses() {
-		throw new UnsupportedOperationException();
+		return licenses;
+	}
+
+	public void bindLicense(UserLicenseDescriptor license) {
+		licenses.add(license);
 	}
 
 }

@@ -26,11 +26,13 @@ public final class LicensePlanReportParameters implements FetchParams {
 	private final Date from;
 	private final Date to;
 	private final Set<String> plans;
+	private final boolean explain;
 
-	public LicensePlanReportParameters(Date from, Date to, Set<String> plans) {
+	public LicensePlanReportParameters(Set<String> plans, Date from, Date to, boolean explain) {
 		this.from = from;
 		this.to = to;
 		this.plans = plans;
+		this.explain = explain;
 	}
 
 	Set<String> plans() {
@@ -43,6 +45,10 @@ public final class LicensePlanReportParameters implements FetchParams {
 
 	Date to() {
 		return to;
+	}
+
+	boolean explain() {
+		return explain;
 	}
 
 }

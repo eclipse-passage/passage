@@ -36,24 +36,29 @@ final class LicensePlanReport implements ExportData<LicensePlanReport, DosHandle
 	private final LicensePlanDescriptor plan;
 	private final int amount;
 	private final Map<UserDescriptor, List<UserLicenseDescriptor>> licenses;
+	private final boolean explain;
 	private final SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd"); //$NON-NLS-1$
 
 	public LicensePlanReport(LicensePlanDescriptor plan, int amount,
-			Map<UserDescriptor, List<UserLicenseDescriptor>> licenses) {
+			Map<UserDescriptor, List<UserLicenseDescriptor>> licenses, boolean explain) {
 		this.plan = plan;
 		this.amount = amount;
 		this.licenses = licenses;
+		this.explain = explain;
 	}
 
 	@Override
 	public void write(DosHandleMedia<LicensePlanReport> media, Progress<LicensePlanReport> progress) {
-		media.inner(plan.getIdentifier(), "plan"); //$NON-NLS-1$
+		media.inner(plan.getName(), "plan-name"); //$NON-NLS-1$
+		media.inner(plan.getIdentifier(), "plan-id"); //$NON-NLS-1$
 		media.inner(Integer.toString(amount), "licenses"); //$NON-NLS-1$
-		media.inner(//
-				licenses.keySet().stream()//
-						.map(this::user) //
-						.collect(Collectors.joining(",")), //$NON-NLS-1$
-				"users"); //$NON-NLS-1$
+		if (explain) {
+			media.inner(//
+					licenses.keySet().stream()//
+							.map(this::user) //
+							.collect(Collectors.joining(",")), //$NON-NLS-1$
+					"users"); //$NON-NLS-1$
+		}
 
 	}
 

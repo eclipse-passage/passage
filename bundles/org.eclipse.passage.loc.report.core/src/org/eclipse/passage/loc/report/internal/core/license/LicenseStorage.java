@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
@@ -28,6 +29,6 @@ public interface LicenseStorage extends Storage<UserLicenseDescriptor> {
 
 	List<LicensePlanDescriptor> plans();
 
-	LicensePlanDescriptor plan(String plan);
+	Optional<LicensePlanDescriptor> plan(String plan);
 
 }

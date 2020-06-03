@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -46,8 +47,8 @@ public final class Licenses implements LicenseStorage {
 	}
 
 	@Override
-	public LicensePlanDescriptor plan(String plan) {
-		return licenses.getLicensePlan(plan);
+	public Optional<LicensePlanDescriptor> plan(String plan) {
+		return Optional.ofNullable(licenses.getLicensePlan(plan));
 	}
 
 	@Reference
