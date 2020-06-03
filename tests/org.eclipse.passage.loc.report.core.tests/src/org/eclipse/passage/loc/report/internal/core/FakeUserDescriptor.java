@@ -16,12 +16,12 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
-final class FakeUserDescriptor implements UserDescriptor {
+public final class FakeUserDescriptor implements UserDescriptor {
 
 	private final String email;
 	private final String name;
 
-	FakeUserDescriptor(String email, String name) {
+	public FakeUserDescriptor(String email, String name) {
 		this.email = email;
 		this.name = name;
 	}

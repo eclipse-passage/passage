@@ -10,20 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 
-@SuppressWarnings("restriction")
 final class FakeCustomersBase implements CustomerStorage {
 
 	private final TestCustomers customers;
 
-	public FakeCustomersBase() {
-		this.customers = new TestCustomers();
+	FakeCustomersBase(TestCustomers customers) {
+		this.customers = customers;
 	}
 
 	@Override
@@ -32,7 +31,7 @@ final class FakeCustomersBase implements CustomerStorage {
 	}
 
 	@Override
-	public Set<String> allProducts() {
+	public Set<String> products() {
 		return Collections.emptySet();
 	}
 
