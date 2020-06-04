@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.eclipse.passage.loc.report.internal.core.i18n.ReportMessages;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.ListMedia;
@@ -43,7 +44,7 @@ public final class Csv<D extends ExportData<D, DosHandleMedia<D>>> implements Li
 									.withDelimiter(';')//
 									.withHeader(header));
 		} catch (IOException e) {
-			throw new ReportException(Messages.getString("Csv.action_printer_construction_failure"), e); //$NON-NLS-1$
+			throw new ReportException(ReportMessages.getString("Csv.action_printer_construction_failure"), e); //$NON-NLS-1$
 		}
 	}
 
@@ -53,7 +54,7 @@ public final class Csv<D extends ExportData<D, DosHandleMedia<D>>> implements Li
 
 	@Override
 	public final void finish() throws ReportException {
-		unsafeCall(stream::close, Messages.getString("Csv.action_printer_closure_failure")); //$NON-NLS-1$
+		unsafeCall(stream::close, ReportMessages.getString("Csv.action_printer_closure_failure")); //$NON-NLS-1$
 	}
 
 	@Override
@@ -62,21 +63,21 @@ public final class Csv<D extends ExportData<D, DosHandleMedia<D>>> implements Li
 
 	@Override
 	public final void finishNode(D node) throws ReportException {
-		unsafeCall(stream::println, Messages.getString("Csv.action_closing_row")); //$NON-NLS-1$
+		unsafeCall(stream::println, ReportMessages.getString("Csv.action_closing_row")); //$NON-NLS-1$
 	}
 
 	@Override
 	public final void inner(String data, String name) throws ReportException {
 		unsafeCall(() -> {
 			stream.print(data);
-		}, String.format(Messages.getString("Csv.action_filling_cell"), data, name)); //$NON-NLS-1$
+		}, String.format(ReportMessages.getString("Csv.action_filling_cell"), data, name)); //$NON-NLS-1$
 	}
 
 	private void unsafeCall(Unsafe<IOException> unsafe, String happening) throws ReportException {
 		try {
 			unsafe.call();
 		} catch (IOException e) {
-			throw new ReportException(String.format(Messages.getString("Csv.action_failed"), happening), e); //$NON-NLS-1$
+			throw new ReportException(String.format(ReportMessages.getString("Csv.action_failed"), happening), e); //$NON-NLS-1$
 		}
 	}
 }

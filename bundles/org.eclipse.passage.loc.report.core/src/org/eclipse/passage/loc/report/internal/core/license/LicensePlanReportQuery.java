@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.license;
 
+import org.eclipse.passage.loc.report.internal.core.i18n.LicensesReportMessages;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.Query;
 
@@ -28,7 +29,7 @@ final class LicensePlanReportQuery implements Query<LicenseStorage, LicensePlanR
 
 	@Override
 	public String description() {
-		return Messages.getString("LicensePlanReportQuery_description"); //$NON-NLS-1$
+		return LicensesReportMessages.getString("LicensePlanReportQuery_description"); //$NON-NLS-1$
 	}
 
 	@Override

@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.user;
 
+import org.eclipse.passage.loc.report.internal.core.i18n.CustomersReportMessages;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 import org.eclipse.passage.loc.yars.internal.api.Query;
 
@@ -40,7 +41,7 @@ final class CustomersForProductsQuery implements Query<CustomerStorage, ProductC
 
 	@Override
 	public String description() {
-		return Messages.getString("CustomersForProductsQuery.query_description"); //$NON-NLS-1$
+		return CustomersReportMessages.getString("CustomersForProductsQuery.query_description"); //$NON-NLS-1$
 	}
 
 	/**

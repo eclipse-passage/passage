@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,23 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core.user;
+package org.eclipse.passage.loc.report.internal.core.i18n;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-/**
- * @since 0.1
- */
-final class Messages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.user.messages"; //$NON-NLS-1$
-
+public final class LicensesReportMessages {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.license.LicensesReportMessages"; //$NON-NLS-1$
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-	private Messages() {
+	private LicensesReportMessages() {
 	}
 
-	static String getString(String key) {
+	public static String getString(String key) {
 		try {
 			return RESOURCE_BUNDLE.getString(key);
 		} catch (MissingResourceException e) {
