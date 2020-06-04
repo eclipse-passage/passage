@@ -29,11 +29,11 @@ import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-final class LicenseReportToCsv {
+public final class LicenseReportToCsv {
 
 	private final LicenseStorage source;
 
-	LicenseReportToCsv(LicenseStorage source) {
+	public LicenseReportToCsv(LicenseStorage source) {
 		this.source = source;
 	}
 
