@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  * @since 0.1
  */
 public final class ReportMessages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.ReportMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.i18n.ReportMessages"; //$NON-NLS-1$
 
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
