@@ -10,11 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.nio.file.Path;
 import java.util.Set;
 
+import org.eclipse.passage.loc.report.internal.core.Csv;
+import org.eclipse.passage.loc.report.internal.core.ExistingFileStream;
 import org.eclipse.passage.loc.yars.internal.api.DefaultDosHandler;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
@@ -25,7 +27,7 @@ import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
  * OSGi-free final implementation of the <i>customers for these products</i>
  * export command
  * 
- * @since 0.1
+ * @since 0.2
  */
 @SuppressWarnings("restriction")
 public final class ProductCustomersToCsv {
@@ -49,7 +51,7 @@ public final class ProductCustomersToCsv {
 								new ProductNames(products)))//
 										.write(//
 												new DosHandleMedia<ProductCustomer>( //
-														new Csv( //
+														new Csv<ProductCustomer>( //
 																new ExistingFileStream(target), //
 																"email", //$NON-NLS-1$
 																"name"), //$NON-NLS-1$

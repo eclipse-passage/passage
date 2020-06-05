@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 
 @SuppressWarnings("restriction")
 final class Products implements Supplier<ProductDescriptor[]> {
@@ -32,7 +32,7 @@ final class Products implements Supplier<ProductDescriptor[]> {
 
 	@Override
 	public ProductDescriptor[] get() {
-		return customers.allProducts().stream() //
+		return customers.products().stream() //
 				.map(descriptor) //
 				.collect(Collectors.toSet())//
 				.toArray(new ProductDescriptor[0]);

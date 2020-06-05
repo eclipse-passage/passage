@@ -39,7 +39,7 @@ import org.eclipse.passage.loc.yars.internal.api.ReportException;
  * @since 0.1
  */
 @SuppressWarnings("restriction")
-final class ExistingFileStream {
+public final class ExistingFileStream {
 
 	private final Path path;
 
@@ -48,7 +48,7 @@ final class ExistingFileStream {
 	 * 
 	 * @since 0.1
 	 */
-	ExistingFileStream(Path path) {
+	public ExistingFileStream(Path path) {
 		this.path = path;
 	}
 

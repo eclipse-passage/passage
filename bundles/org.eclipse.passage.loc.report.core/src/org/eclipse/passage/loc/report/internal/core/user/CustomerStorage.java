@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Set;
 
@@ -22,7 +22,7 @@ import org.eclipse.passage.loc.yars.internal.api.Storage;
  * A {@code YARS}'s {@linkplain Storage} dedicated to spread user information
  * built on top of {@code LIC} {@linkplain UserRegistry}.
  * 
- * @since 0.1
+ * @since 0.2
  */
 @SuppressWarnings("restriction")
 public interface CustomerStorage extends Storage<UserDescriptor> {
@@ -43,6 +43,6 @@ public interface CustomerStorage extends Storage<UserDescriptor> {
 	 * 
 	 * @return all products with licensed issued
 	 */
-	Set<String> allProducts();
+	Set<String> products();
 
 }

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.report.internal.ui.jface;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.loc.report.internal.core.ProductCustomer;
+import org.eclipse.passage.loc.report.internal.core.user.ProductCustomer;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 

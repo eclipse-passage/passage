@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.i18n;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -18,12 +18,12 @@ import java.util.ResourceBundle;
 /**
  * @since 0.1
  */
-final class Messages {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.messages"; //$NON-NLS-1$
+public final class CustomersReportMessages {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.core.i18.CustomersReportMessages"; //$NON-NLS-1$
 
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-	private Messages() {
+	private CustomersReportMessages() {
 	}
 
 	public static String getString(String key) {

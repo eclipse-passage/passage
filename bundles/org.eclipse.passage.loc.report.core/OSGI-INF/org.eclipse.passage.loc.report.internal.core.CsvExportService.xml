@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.report.internal.core.CsvExportService">
-   <service>
-      <provide interface="org.eclipse.passage.loc.report.internal.core.ExportService"/>
-   </service>
-   <reference bind="installCustomerStorage" interface="org.eclipse.passage.loc.report.internal.core.CustomerStorage" name="installCustomerStorage"/>
-   <implementation class="org.eclipse.passage.loc.report.internal.core.CsvExportService"/>
-</scr:component>

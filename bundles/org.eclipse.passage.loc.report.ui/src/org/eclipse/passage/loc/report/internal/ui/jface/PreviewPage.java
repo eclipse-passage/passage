@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.report.internal.ui.jface;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.report.internal.core.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.nio.file.Path;
 import java.util.Set;
@@ -20,13 +20,14 @@ import org.eclipse.passage.loc.yars.internal.api.ReportException;
 
 /**
  * <p>
- * Central interface of the package: here a client finds proper report action.
+ * Central interface of the package: here an export developer finds proper
+ * reporting action.
  * </p>
  * 
- * @since 0.1
+ * @since 0.2
  */
 @SuppressWarnings("restriction")
-public interface ExportService {
+public interface CustomerExportService {
 
 	/**
 	 * Command to export agreed information about all customers interested in the

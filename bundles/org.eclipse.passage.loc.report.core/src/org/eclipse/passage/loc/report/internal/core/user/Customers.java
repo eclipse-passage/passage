@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core;
+package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,24 +32,24 @@ import org.osgi.service.component.annotations.Reference;
  * {@linkplain UserRegistry} injection is intended to be done by OSGi.
  * </p>
  * 
- * @since 0.1
+ * @since 0.2
  */
 @Component
 public final class Customers implements CustomerStorage {
 
-	private UserRegistry registry;
+	private UserRegistry users;
 
 	@Override
 	public Set<UserDescriptor> forProducts(Set<String> products) {
-		return StreamSupport.stream(registry.getUserLicenses().spliterator(), false)//
+		return StreamSupport.stream(users.getUserLicenses().spliterator(), false)//
 				.filter(lic -> products.contains(lic.getProductIdentifier())) //
 				.map(UserLicenseDescriptor::getUser) //
 				.collect(Collectors.toSet());
 	}
 
 	@Override
-	public Set<String> allProducts() {
-		return StreamSupport.stream(registry.getUserLicenses().spliterator(), false)//
+	public Set<String> products() {
+		return StreamSupport.stream(users.getUserLicenses().spliterator(), false)//
 				.map(UserLicenseDescriptor::getProductIdentifier) //
 				.collect(Collectors.toSet());
 	}
@@ -61,8 +61,8 @@ public final class Customers implements CustomerStorage {
 	 * @since 0.1
 	 */
 	@Reference
-	public void installUserRegistry(UserRegistry userRegistry) {
-		this.registry = userRegistry;
+	public void installUserRegistry(UserRegistry registry) {
+		this.users = registry;
 	}
 
 }
