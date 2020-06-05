@@ -10,35 +10,35 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface.user;
+package org.eclipse.passage.loc.report.internal.ui.jface;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.loc.report.internal.core.user.ProductCustomer;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
 
 @SuppressWarnings("restriction")
-final class VisibleProgress implements Progress<ProductCustomer> {
+public final class VisibleProgress<T> implements Progress<T> {
 
 	private final IProgressMonitor monitor;
+	private final String message;
 
-	VisibleProgress(IProgressMonitor monitor) {
+	public VisibleProgress(IProgressMonitor monitor, String message) {
 		this.monitor = monitor;
+		this.message = message;
 	}
 
 	@Override
 	public void estimate(int amount) {
-		monitor.beginTask(NLS.bind(ExportCustomersWizardMessages.VisibleProgress_task, amount), amount);
+		monitor.beginTask(NLS.bind(message, amount), amount);
 	}
 
 	@Override
-	public void reportNodeSrart(ProductCustomer entry) {
+	public void reportNodeSrart(T entry) {
 		monitor.subTask(entry.toString());
 	}
 
 	@Override
-	public void reportNodeFinish(ProductCustomer entry) {
+	public void reportNodeFinish(T entry) {
 		monitor.worked(1);
 	}
 

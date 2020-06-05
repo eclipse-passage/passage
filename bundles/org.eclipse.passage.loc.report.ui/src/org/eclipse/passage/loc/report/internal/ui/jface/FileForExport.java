@@ -10,26 +10,29 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface.user;
+package org.eclipse.passage.loc.report.internal.ui.jface;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.util.NLS;
 
-final class FileForExport implements Supplier<Path> {
+public final class FileForExport implements Supplier<Path> {
 
 	private final Path parent;
+	private final String dedication;
 
-	public FileForExport(Path parent) {
+	public FileForExport(Path parent, String dedication) {
 		this.parent = parent;
+		this.dedication = dedication;
 	}
 
 	@Override
 	public Path get() {
 		return parent.resolve(//
 				NLS.bind(//
-						"users-{0}.csv", //$NON-NLS-1$
+						"{0}-{1}.csv", //$NON-NLS-1$
+						dedication, //
 						Long.toHexString(System.currentTimeMillis())//
 				));
 	}

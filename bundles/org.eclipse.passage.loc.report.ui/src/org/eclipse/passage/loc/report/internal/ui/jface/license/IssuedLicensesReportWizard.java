@@ -10,39 +10,48 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface.user;
+package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
-import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.core.license.LicensePlanReportParameters;
+import org.eclipse.passage.loc.report.internal.core.license.LicenseReportExportService;
+import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.FileForExport;
 import org.eclipse.passage.loc.report.internal.ui.jface.TargetPage;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
 
-final class ExportCustomersWizard extends Wizard {
+final class IssuedLicensesReportWizard extends Wizard {
 
-	private final CustomerExportService export;
+	private final LicenseReportExportService export;
 	private final DataForExport data;
 	private final PreviewPage preview;
 	private final ScopePage scope;
+	private final ConfigPage config;
 	private final TargetPage target;
 
 	// private final String scope = "Scope"; //$NON-NLS-1$
 
-	public ExportCustomersWizard(ProductRegistry products, CustomerStorage customers, CustomerExportService export) {
+	public IssuedLicensesReportWizard(LicenseStorage storage, LicenseReportExportService export) {
 		this.export = export;
-		this.data = new DataForExport(this::identifiers, this::path, this::open);
-		this.preview = new PreviewPage(customers, data);
-		this.scope = new ScopePage(new Products(products, customers), preview);
-		this.target = new TargetPage(() -> preview.updateTargetPath());
+		this.data = new DataForExport(//
+				this::identifiers, //
+				this::from, //
+				this::to, //
+				this::explain, //
+				this::path, //
+				this::open);
+		this.preview = new PreviewPage(storage, data);
+		this.scope = new ScopePage(new LicensePlans(storage), preview);
+		this.config = new ConfigPage(preview);
+		this.target = new TargetPage(preview);
 	}
 
 	@Override
@@ -59,18 +68,6 @@ final class ExportCustomersWizard extends Wizard {
 		target.installInitial();
 	}
 
-	private Set<String> identifiers() {
-		return scope.identifiers();
-	}
-
-	private Path path() {
-		return target.path();
-	}
-
-	private boolean open() {
-		return target.open();
-	}
-
 	@Override
 	public boolean performFinish() {
 		Path file = new FileForExport(data.target(), "users").get(); //$NON-NLS-1$
@@ -78,7 +75,14 @@ final class ExportCustomersWizard extends Wizard {
 			new ProgressMonitorDialog(getShell()).run(//
 					true, //
 					true, //
-					new MonitoredExportOperation(export, data.products(), file));
+					new MonitoredExportOperation(//
+							export, //
+							new LicensePlanReportParameters(//
+									data.plans(), //
+									data.from(), //
+									data.to(), //
+									data.explain()),
+							file));
 		} catch (Exception e) {
 			MessageDialog.openError(//
 					getShell(), //
@@ -95,6 +99,30 @@ final class ExportCustomersWizard extends Wizard {
 	@Override
 	public boolean canFinish() {
 		return data.complete();
+	}
+
+	private Path path() {
+		return target.path();
+	}
+
+	private Set<String> identifiers() {
+		return scope.identifiers();
+	}
+
+	private Date from() {
+		return null; // TODO:
+	}
+
+	private Date to() {
+		return null; // TODO:
+	}
+
+	private boolean explain() {
+		return false; // TODO
+	}
+
+	private boolean open() {
+		return target.open();
 	}
 
 }

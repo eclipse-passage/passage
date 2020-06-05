@@ -10,9 +10,10 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface.user;
+package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -20,23 +21,45 @@ import org.eclipse.passage.loc.report.internal.ui.jface.ExportWizardDecisions;
 
 final class DataForExport extends ExportWizardDecisions {
 
-	private final Supplier<Set<String>> products;
+	private final Supplier<Set<String>> plans;
+	private final Supplier<Date> from;
+	private final Supplier<Date> to;
+	private final Supplier<Boolean> explain;
 
 	DataForExport(//
-			Supplier<Set<String>> products, //
+			Supplier<Set<String>> plans, //
+			Supplier<Date> from, //
+			Supplier<Date> to, //
+			Supplier<Boolean> explain, //
 			Supplier<Path> target, //
 			Supplier<Boolean> open) {
 		super(target, open);
-		this.products = products;
+		this.plans = plans;
+		this.from = from;
+		this.to = to;
+		this.explain = explain;
 	}
 
-	Set<String> products() {
-		return products.get();
+	Set<String> plans() {
+		return plans.get();
+	}
+
+	Date from() {
+		return from.get();
+	}
+
+	Date to() {
+		return to.get();
+	}
+
+	boolean explain() {
+		return explain.get();
 	}
 
 	@Override
 	protected boolean dataComplete() {
-		return !products.get().isEmpty();
+		return !plans.get().isEmpty() && //
+				from.get().before(to.get());
 	}
 
 }

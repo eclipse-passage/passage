@@ -23,13 +23,13 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * @since 0.2
  */
-public final class ExposedExportWizard implements Consumer<Shell> {
+public final class ExposedExportCustomersWizard implements Consumer<Shell> {
 
 	private final ProductRegistry products;
 	private final CustomerStorage customers;
 	private final CustomerExportService export;
 
-	public ExposedExportWizard(ProductRegistry products, CustomerStorage customers, CustomerExportService export) {
+	public ExposedExportCustomersWizard(ProductRegistry products, CustomerStorage customers, CustomerExportService export) {
 		this.products = products;
 		this.customers = customers;
 		this.export = export;

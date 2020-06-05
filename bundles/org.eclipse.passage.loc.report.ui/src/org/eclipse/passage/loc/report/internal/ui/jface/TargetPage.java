@@ -10,7 +10,7 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface.user;
+package org.eclipse.passage.loc.report.internal.ui.jface;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -28,17 +29,17 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-final class TargetPage extends WizardPage {
+public final class TargetPage extends WizardPage {
 
-	private final PreviewPage preview;
+	private final PageObserver observer;
 	private Text path;
 	private Button open;
 
-	protected TargetPage(PreviewPage preview) {
+	public TargetPage(PageObserver observer) {
 		super("target"); //$NON-NLS-1$
-		this.preview = preview;
-		setTitle(ExportCustomersWizardMessages.TargetPage_title);
-		setDescription(ExportCustomersWizardMessages.TargetPage_description);
+		this.observer = observer;
+		setTitle(ExportWizardMessages.TargetPage_title);
+		setDescription(ExportWizardMessages.TargetPage_description);
 	}
 
 	@Override
@@ -52,16 +53,16 @@ final class TargetPage extends WizardPage {
 		setControl(content);
 	}
 
-	void installInitial() {
+	public void installInitial() {
 		path.setText(System.getProperty("user.home")); //$NON-NLS-1$
 		open.setSelection(true);
 	}
 
-	Path path() {
+	public Path path() {
 		return Paths.get(path.getText());
 	}
 
-	boolean open() {
+	public boolean open() {
 		return open.getSelection();
 	}
 
@@ -72,19 +73,19 @@ final class TargetPage extends WizardPage {
 	}
 
 	private void updateControls() {
-		preview.updateTargetPath();
+		observer.update();
 	}
 
 	private void createOpen(Composite content) {
 		open = new Button(content, SWT.CHECK);
 		open.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, false, 2, 1));
-		open.setText(ExportCustomersWizardMessages.TargetPage_open);
+		open.setText(ExportWizardMessages.TargetPage_open);
 	}
 
 	private void createBrowseForPath(Composite content) {
 		Button browse = new Button(content, SWT.PUSH);
 		browse.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
-		browse.setText(ExportCustomersWizardMessages.TargetPage_browse);
+		browse.setText(ExportWizardMessages.TargetPage_browse);
 		browse.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
 			DirectoryDialog dialog = new DirectoryDialog(getShell());
 			dialog.setFilterPath(path.getText());

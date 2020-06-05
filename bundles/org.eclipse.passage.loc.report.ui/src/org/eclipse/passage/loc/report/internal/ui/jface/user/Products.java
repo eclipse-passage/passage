@@ -21,18 +21,18 @@ import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 
 final class Products implements Supplier<ProductDescriptor[]> {
 
-	private final DescribedProduct descriptor;
 	private final CustomerStorage customers;
+	private final ProductRegistry products;
 
 	public Products(ProductRegistry products, CustomerStorage customers) {
-		this.descriptor = new DescribedProduct(products);
+		this.products = products;
 		this.customers = customers;
 	}
 
 	@Override
 	public ProductDescriptor[] get() {
 		return customers.products().stream() //
-				.map(descriptor) //
+				.map(products::getProduct) //
 				.collect(Collectors.toSet())//
 				.toArray(new ProductDescriptor[0]);
 	}

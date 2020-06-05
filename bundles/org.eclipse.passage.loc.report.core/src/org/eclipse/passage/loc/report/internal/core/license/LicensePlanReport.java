@@ -31,7 +31,7 @@ import org.eclipse.passage.loc.yars.internal.api.Progress;
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-final class LicensePlanReport implements ExportData<LicensePlanReport, DosHandleMedia<LicensePlanReport>> {
+public final class LicensePlanReport implements ExportData<LicensePlanReport, DosHandleMedia<LicensePlanReport>> {
 
 	private final LicensePlanDescriptor plan;
 	private final int amount;
@@ -39,8 +39,8 @@ final class LicensePlanReport implements ExportData<LicensePlanReport, DosHandle
 	private final boolean explain;
 	private final SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd"); //$NON-NLS-1$
 
-	public LicensePlanReport(LicensePlanDescriptor plan, int amount,
-			Map<UserDescriptor, List<UserLicenseDescriptor>> licenses, boolean explain) {
+	LicensePlanReport(LicensePlanDescriptor plan, int amount, Map<UserDescriptor, List<UserLicenseDescriptor>> licenses,
+			boolean explain) {
 		this.plan = plan;
 		this.amount = amount;
 		this.licenses = licenses;
