@@ -10,7 +10,7 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

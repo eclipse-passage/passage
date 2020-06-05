@@ -10,7 +10,7 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
 import java.nio.file.Path;
 import java.util.Set;
@@ -19,13 +19,12 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
-import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
 
-@SuppressWarnings("restriction")
 final class ExportCustomersWizard extends Wizard {
 
 	private final CustomerExportService export;

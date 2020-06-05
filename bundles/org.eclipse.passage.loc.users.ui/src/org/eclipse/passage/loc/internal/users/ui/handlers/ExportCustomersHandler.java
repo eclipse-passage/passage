@@ -20,12 +20,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
-import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
-import org.eclipse.passage.loc.report.internal.ui.jface.ExposedExportWizard;
+import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.ui.jface.user.ExposedExportWizard;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public class ExportCustomersHandler {
 
 	@Execute

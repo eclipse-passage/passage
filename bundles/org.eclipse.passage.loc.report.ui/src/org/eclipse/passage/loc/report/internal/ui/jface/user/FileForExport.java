@@ -10,24 +10,28 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
-import java.util.function.Function;
+import java.nio.file.Path;
+import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.osgi.util.NLS;
 
-final class DescribedProduct implements Function<String, ProductDescriptor> {
+final class FileForExport implements Supplier<Path> {
 
-	private final ProductRegistry registry;
+	private final Path parent;
 
-	public DescribedProduct(ProductRegistry registry) {
-		this.registry = registry;
+	public FileForExport(Path parent) {
+		this.parent = parent;
 	}
 
 	@Override
-	public ProductDescriptor apply(String identifier) {
-		return registry.getProduct(identifier);
+	public Path get() {
+		return parent.resolve(//
+				NLS.bind(//
+						"users-{0}.csv", //$NON-NLS-1$
+						Long.toHexString(System.currentTimeMillis())//
+				));
 	}
 
 }
