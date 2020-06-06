@@ -51,17 +51,23 @@ public class MailImplTest {
 
 	@Test
 	public void shouldCreateEmlByParametersPositiveTest() {
-		Mailing mailing = new MailImpl();
+		MailImpl mailing = new MailImpl();
+		mailing.activate();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
 				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> {throw new RuntimeException(m,t);});
+			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> failure(m,t));
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
+	}
+	
+	private void failure(String message, Throwable t) {
+		t.printStackTrace();
+		fail(message);
 	}
 
 	@Test

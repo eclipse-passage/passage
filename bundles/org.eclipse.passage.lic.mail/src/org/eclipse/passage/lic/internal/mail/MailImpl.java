@@ -17,9 +17,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.function.BiConsumer;
 
+import javax.activation.CommandMap;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import javax.activation.MailcapCommandMap;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -32,6 +34,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -42,6 +45,16 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component
 public class MailImpl implements Mailing {
+	
+	@Activate
+	public void activate() {
+		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
+		mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"); 
+		mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"); 
+		mc.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"); 
+		mc.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"); 
+		mc.addMailcap("message/rfc822;; x-java-content- handler=com.sun.mail.handlers.message_rfc822");
+	}
 
 	@Override
 	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
