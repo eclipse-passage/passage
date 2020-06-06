@@ -62,12 +62,16 @@ public class MailImpl implements Mailing {
 
 	@Override
 	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
+		ClassLoader original = Thread.currentThread().getContextClassLoader();
+		Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
 		try {
 			Message message = createMessage(descriptor);
 			fulfillMessage(descriptor, message);
 			message.writeTo(output);
 		} catch (MessagingException | IOException e) {
 			consumerStatus.accept(e.getMessage(), e);
+		} finally {
+			Thread.currentThread().setContextClassLoader(original);
 		}
 	}
 
