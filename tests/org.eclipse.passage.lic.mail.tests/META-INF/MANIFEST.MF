@@ -4,7 +4,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-SymbolicName: org.eclipse.passage.lic.mail.tests;singleton:=true
-Bundle-Version: 0.1.100.qualifier
+Bundle-Version: 0.2.0.qualifier
 Automatic-Module-Name: org.eclipse.passage.lic.mail.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",

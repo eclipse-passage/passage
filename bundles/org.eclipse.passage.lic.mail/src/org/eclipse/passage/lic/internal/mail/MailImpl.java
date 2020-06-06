@@ -48,6 +48,7 @@ public class MailImpl implements Mailing {
 	
 	@Activate
 	public void activate() {
+		//it **may** work "out-of-the-box", but let's declare explicitly to know where to dig
 		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
 		mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"); 
 		mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"); 
@@ -62,16 +63,12 @@ public class MailImpl implements Mailing {
 
 	@Override
 	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
-		ClassLoader original = Thread.currentThread().getContextClassLoader();
-		Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
 		try {
 			Message message = createMessage(descriptor);
 			fulfillMessage(descriptor, message);
 			message.writeTo(output);
 		} catch (MessagingException | IOException e) {
 			consumerStatus.accept(e.getMessage(), e);
-		} finally {
-			Thread.currentThread().setContextClassLoader(original);
 		}
 	}
 
