@@ -49,15 +49,15 @@ final class ConfigPage extends WizardPage {
 	}
 
 	Date from() {
-		return null;// TODO:read from ui
+		return new Date(System.currentTimeMillis() - 3600000);
 	}
 
 	Date to() {
-		return null;// TODO:read from ui
+		return new Date(System.currentTimeMillis() + 3600000);
 	}
 
 	boolean explain() {
-		return explain.getSelection();
+		return true;// explain.getSelection();
 	}
 
 	private void createPeriodSection(Composite parent) {

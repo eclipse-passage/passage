@@ -18,15 +18,12 @@ public class ExportLicenseReportWizardMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages"; //$NON-NLS-1$
 
-	public static String ErrorPage_description;
-	public static String ErrorPage_title;
-	public static String ExportCustomersWizard_errorTitle;
-
 	public static String ExposedIssuedLicensesReportWizard_dialogTitle;
-	public static String PreviewPage_description;
 
+	public static String PreviewPage_description;
 	public static String PreviewPage_period;
 	public static String PreviewPage_title;
+
 	public static String ScopePage_columnId;
 	public static String ScopePage_columnName;
 	public static String ScopePage_title;

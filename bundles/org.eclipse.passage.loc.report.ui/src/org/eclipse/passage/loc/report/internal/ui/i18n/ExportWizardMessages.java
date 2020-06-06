@@ -18,6 +18,7 @@ public class ExportWizardMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages"; //$NON-NLS-1$
 
+	public static String ExportWizard_errorTitle;
 	public static String TargetPage_browse;
 	public static String TargetPage_description;
 	public static String TargetPage_open;

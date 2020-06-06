@@ -22,7 +22,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.loc.report.internal.core.license.LicensePlanReportParameters;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseReportExportService;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.FileForExport;
 import org.eclipse.passage.loc.report.internal.ui.jface.TargetPage;
 import org.eclipse.swt.program.Program;
@@ -70,7 +70,7 @@ final class IssuedLicensesReportWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		Path file = new FileForExport(data.target(), "users").get(); //$NON-NLS-1$
+		Path file = new FileForExport(data.target(), "issued-licenses").get(); //$NON-NLS-1$
 		try {
 			new ProgressMonitorDialog(getShell()).run(//
 					true, //
@@ -86,7 +86,7 @@ final class IssuedLicensesReportWizard extends Wizard {
 		} catch (Exception e) {
 			MessageDialog.openError(//
 					getShell(), //
-					ExportCustomersWizardMessages.ExportCustomersWizard_errorTitle, //
+					ExportWizardMessages.ExportWizard_errorTitle, //
 					e.getLocalizedMessage());
 			return false;
 		}
@@ -110,15 +110,15 @@ final class IssuedLicensesReportWizard extends Wizard {
 	}
 
 	private Date from() {
-		return null; // TODO:
+		return config.from();
 	}
 
 	private Date to() {
-		return null; // TODO:
+		return config.to();
 	}
 
 	private boolean explain() {
-		return false; // TODO
+		return config.explain();
 	}
 
 	private boolean open() {

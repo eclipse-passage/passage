@@ -18,11 +18,6 @@ public class ExportCustomersWizardMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages"; //$NON-NLS-1$
 
-	public static String AllProducts_noExportService;
-	public static String ErrorPage_description;
-	public static String ErrorPage_title;
-	public static String ExportCustomersWizard_errorTitle;
-
 	public static String ExposedExportCustomersWizard_dialogTitle;
 	public static String PreviewPage_description;
 	public static String PreviewPage_title;
