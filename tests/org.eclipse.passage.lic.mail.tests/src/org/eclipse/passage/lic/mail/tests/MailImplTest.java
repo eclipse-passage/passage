@@ -72,7 +72,8 @@ public class MailImplTest {
 
 	@Test
 	public void shouldCreateEmlByParametersNagativeTest() {
-		Mailing mailing = new MailImpl();
+		MailImpl mailing = new MailImpl();
+		mailing.activate();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
