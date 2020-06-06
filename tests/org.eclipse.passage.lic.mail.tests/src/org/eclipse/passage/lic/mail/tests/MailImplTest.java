@@ -52,7 +52,6 @@ public class MailImplTest {
 	@Test
 	public void shouldCreateEmlByParametersPositiveTest() {
 		MailImpl mailing = new MailImpl();
-		mailing.activate();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
@@ -73,7 +72,6 @@ public class MailImplTest {
 	@Test
 	public void shouldCreateEmlByParametersNagativeTest() {
 		MailImpl mailing = new MailImpl();
-		mailing.activate();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));

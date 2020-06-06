@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lic.internal.mail.MailImpl">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.mail.MailImpl">
    <service>
       <provide interface="org.eclipse.passage.lic.email.Mailing"/>
    </service>
