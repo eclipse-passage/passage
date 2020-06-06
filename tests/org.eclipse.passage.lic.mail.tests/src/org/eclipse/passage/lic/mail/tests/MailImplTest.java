@@ -58,7 +58,7 @@ public class MailImplTest {
 				MAIL_BODY, Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> fail());
+			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> {throw new RuntimeException(m,t);});
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
