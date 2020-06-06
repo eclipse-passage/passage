@@ -2,8 +2,10 @@ package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
 import java.util.function.Consumer;
 
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseReportExportService;
 import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -20,9 +22,14 @@ public final class ExposedIssuedLicensesReportWizard implements Consumer<Shell> 
 	}
 
 	@Override
-	public void accept(Shell t) {
-		new IssuedLicensesReportWizard(storage, export);
-
+	public void accept(Shell shell) {
+		WizardDialog dialog = new WizardDialog(//
+				shell, //
+				new IssuedLicensesReportWizard(storage, export)//
+		);
+		dialog.setTitle(ExportLicenseReportWizardMessages.ExposedIssuedLicensesReportWizard_dialogTitle);
+		dialog.setPageSize(700, 400);
+		dialog.open();
 	}
 
 }

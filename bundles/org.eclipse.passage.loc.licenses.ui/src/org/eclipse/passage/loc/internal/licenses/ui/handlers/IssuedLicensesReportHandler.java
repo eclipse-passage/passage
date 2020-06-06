@@ -36,12 +36,10 @@ public class IssuedLicensesReportHandler {
 		if (!export.isPresent()) {
 			return;
 		}
-
 		new ExposedIssuedLicensesReportWizard(//
 				storage.get(), //
 				export.get()//
 		).accept(context.get(Shell.class));
-
 	}
 
 	private <S> Optional<S> service(Class<S> service, IEclipseContext context) {

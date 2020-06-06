@@ -24,9 +24,8 @@ import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -105,9 +104,9 @@ final class ScopePage extends WizardPage {
 		controls.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		controls.setLayout(new FillLayout(SWT.VERTICAL));
 		all = new Button(controls, SWT.PUSH);
-		all.setText(ExportCustomersWizardMessages.ScopePage_selectAll);
+		all.setText(ExportWizardMessages.ScopePage_selectAll);
 		none = new Button(controls, SWT.PUSH);
-		none.setText(ExportCustomersWizardMessages.ScopePage_selctNone);
+		none.setText(ExportWizardMessages.ScopePage_selctNone);
 		all.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
 			Arrays.stream(plans).forEach(selected::add);
 			viewer.refresh();
@@ -140,13 +139,23 @@ final class ScopePage extends WizardPage {
 	}
 
 	private void createColumns() {
-		TableViewerColumn product = new TableViewerColumn(viewer, SWT.NONE);
-		product.getColumn().setWidth(500);
-		product.getColumn().setText(ExportCustomersWizardMessages.ScopePage_columnProduct);
-		product.setLabelProvider(new ColumnLabelProvider() {
+		TableViewerColumn id = new TableViewerColumn(viewer, SWT.NONE);
+		id.getColumn().setWidth(200);
+		id.getColumn().setText(ExportLicenseReportWizardMessages.ScopePage_columnId);
+		id.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((ProductDescriptor) element).getName();
+				return ((LicensePlanDescriptor) element).getIdentifier();
+			}
+		});
+
+		TableViewerColumn name = new TableViewerColumn(viewer, SWT.NONE);
+		name.getColumn().setWidth(300);
+		name.getColumn().setText(ExportLicenseReportWizardMessages.ScopePage_columnName);
+		name.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return ((LicensePlanDescriptor) element).getName();
 			}
 		});
 	}

@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -103,9 +104,9 @@ final class ScopePage extends WizardPage {
 		controls.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		controls.setLayout(new FillLayout(SWT.VERTICAL));
 		all = new Button(controls, SWT.PUSH);
-		all.setText(ExportCustomersWizardMessages.ScopePage_selectAll);
+		all.setText(ExportWizardMessages.ScopePage_selectAll);
 		none = new Button(controls, SWT.PUSH);
-		none.setText(ExportCustomersWizardMessages.ScopePage_selctNone);
+		none.setText(ExportWizardMessages.ScopePage_selctNone);
 		all.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
 			Arrays.stream(products).forEach(selected::add);
 			viewer.refresh();
