@@ -35,6 +35,8 @@ public class ExportLicenseReportWizardMessages extends NLS {
 	public static String ConfigPage_dateTo_title;
 	public static String ConfigPage_dates_description;
 
+	public static String ConfigPage_explain_title;
+
 	public static String VisibleProgress_task;
 
 	static {

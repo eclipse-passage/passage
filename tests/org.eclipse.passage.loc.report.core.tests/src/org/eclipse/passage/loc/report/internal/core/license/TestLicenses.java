@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.license;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,7 +20,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -70,14 +67,6 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 				+ (explain ? ";Users" : ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	protected Date movedNow(Function<LocalDate, LocalDate> move) {
-		return Date.from(//
-				move.apply(LocalDate.now())//
-						.atStartOfDay()//
-						.atZone(ZoneId.systemDefault())//
-						.toInstant());
-	}
-
 	static final class Empty extends TestLicenses {
 
 		protected Empty() {
@@ -88,8 +77,8 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 		LicensePlanReportParameters params() {
 			return new LicensePlanReportParameters(//
 					Collections.emptySet(), //
-					movedNow(date -> date.minus(2, ChronoUnit.MONTHS)), //
-					movedNow(date -> date.minus(1, ChronoUnit.MONTHS)), //
+					new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get(), //
+					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
 					true);
 		}
 
@@ -125,11 +114,12 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 			LicensePlanDescriptor planA = plan("plan-a").get(); //$NON-NLS-1$
 			LicensePlanDescriptor planB = plan("plan-b").get(); //$NON-NLS-1$
 			Arrays.asList(//
-					new FakeLicenseDescriptor(planA, evan, movedNow(date -> date.plus(2, ChronoUnit.MONTHS))), //
+					new FakeLicenseDescriptor(planA, evan, new MovedNow(date -> date.plus(2, ChronoUnit.MONTHS)).get()), //
 					new FakeLicenseDescriptor(planB, evan, new Date()), //
 					new FakeLicenseDescriptor(planA, zena, new Date()), //
 					new FakeLicenseDescriptor(planB, zena, new Date()), //
-					new FakeLicenseDescriptor(planA, dorothea, movedNow(date -> date.minus(2, ChronoUnit.MONTHS))), //
+					new FakeLicenseDescriptor(planA, dorothea,
+							new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get()), //
 					new FakeLicenseDescriptor(planB, dorothea, new Date()))//
 					.forEach(lic -> {
 						((FakeUserDescriptor) lic.getUser()).bindLicense(lic);
@@ -144,8 +134,8 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 							"plan-b", //$NON-NLS-1$
 							"plan-c" //$NON-NLS-1$
 					)), //
-					movedNow(date -> date.minus(1, ChronoUnit.MONTHS)), //
-					movedNow(date -> date.plus(1, ChronoUnit.MONTHS)), //
+					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
+					new MovedNow(date -> date.plus(1, ChronoUnit.MONTHS)).get(), //
 					false);
 		}
 

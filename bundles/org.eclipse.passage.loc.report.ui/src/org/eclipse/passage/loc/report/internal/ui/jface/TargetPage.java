@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;

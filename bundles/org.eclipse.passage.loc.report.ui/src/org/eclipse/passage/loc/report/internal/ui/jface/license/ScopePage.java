@@ -26,6 +26,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -39,7 +40,7 @@ final class ScopePage extends WizardPage {
 
 	private final LicensePlanDescriptor[] plans;
 	private final Set<LicensePlanDescriptor> selected;
-	private final PreviewPage preview;
+	private final PageObserver preview;
 	private Button all;
 	private Button none;
 	private CheckboxTableViewer viewer;
@@ -65,7 +66,7 @@ final class ScopePage extends WizardPage {
 	void installInitial() {
 		selected.addAll(Arrays.asList(this.plans));
 		viewer.refresh();
-		updateControls();
+		updateLocalControls();
 	}
 
 	Set<String> identifiers() {
@@ -132,10 +133,13 @@ final class ScopePage extends WizardPage {
 	 * buttons and {@code Preview} page
 	 */
 	private void updateControls() {
+		updateLocalControls();
+		preview.update();
+	}
+
+	private void updateLocalControls() {
 		all.setEnabled(plans.length > 0 && selected.size() < plans.length);
 		none.setEnabled(!selected.isEmpty());
-		getWizard().getContainer().updateButtons();
-		preview.update();
 	}
 
 	private void createColumns() {

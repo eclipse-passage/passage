@@ -17,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -24,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
-final class PreviewPage extends WizardPage {
+final class PreviewPage extends WizardPage implements PageObserver {
 
 	private final CustomerStorage customers;
 	private List users;
@@ -50,11 +51,18 @@ final class PreviewPage extends WizardPage {
 		setControl(content);
 	}
 
-	void updateTargetPath() {
+	@Override
+	public void update() {
+		updateTargetPath();
+		updateUsers();
+		getWizard().getContainer().updateButtons();
+	}
+
+	private void updateTargetPath() {
 		path.setText(data.target().toString());
 	}
 
-	void updateUsers() {
+	private void updateUsers() {
 		users.removeAll();
 		customers.forProducts(data.products()).stream() //
 				.map(this::userInfo) //

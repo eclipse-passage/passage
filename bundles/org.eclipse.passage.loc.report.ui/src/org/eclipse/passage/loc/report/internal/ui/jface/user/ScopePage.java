@@ -26,6 +26,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -39,12 +40,12 @@ final class ScopePage extends WizardPage {
 
 	private final ProductDescriptor[] products;
 	private final Set<ProductDescriptor> selected;
-	private final PreviewPage preview;
+	private final PageObserver preview;
 	private Button all;
 	private Button none;
 	private CheckboxTableViewer viewer;
 
-	protected ScopePage(Products products, PreviewPage preview) {
+	protected ScopePage(Products products, PageObserver preview) {
 		super("scope"); //$NON-NLS-1$
 		this.preview = preview;
 		this.products = products.get();
@@ -65,7 +66,7 @@ final class ScopePage extends WizardPage {
 	void installInitial() {
 		selected.addAll(Arrays.asList(this.products));
 		viewer.refresh();
-		updateControls();
+		updateLocalControls();
 	}
 
 	Set<String> identifiers() {
@@ -132,10 +133,13 @@ final class ScopePage extends WizardPage {
 	 * buttons and {@code Preview} page
 	 */
 	private void updateControls() {
+		updateLocalControls();
+		preview.update();
+	}
+
+	private void updateLocalControls() {
 		all.setEnabled(products.length > 0 && selected.size() < products.length);
 		none.setEnabled(!selected.isEmpty());
-		getWizard().getContainer().updateButtons();
-		preview.updateUsers();
 	}
 
 	private void createColumns() {

@@ -57,15 +57,17 @@ final class IssuedLicensesReportWizard extends Wizard {
 	@Override
 	public void addPages() {
 		addPage(scope);
+		addPage(config);
 		addPage(target);
 		addPage(preview);
 	}
 
 	@Override
-	public void createPageControls(Composite pageContainer) {
-		super.createPageControls(pageContainer);
-		scope.installInitial();
+	public void createPageControls(Composite container) {
+		super.createPageControls(container);
 		target.installInitial();
+		scope.installInitial();
+		config.installInitial();
 	}
 
 	@Override

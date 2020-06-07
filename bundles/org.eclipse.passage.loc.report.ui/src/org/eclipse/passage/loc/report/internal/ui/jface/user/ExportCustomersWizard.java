@@ -42,7 +42,7 @@ final class ExportCustomersWizard extends Wizard {
 		this.data = new DataForExport(this::identifiers, this::path, this::open);
 		this.preview = new PreviewPage(customers, data);
 		this.scope = new ScopePage(new Products(products, customers), preview);
-		this.target = new TargetPage(() -> preview.updateTargetPath());
+		this.target = new TargetPage(preview);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ final class ExportCustomersWizard extends Wizard {
 	}
 
 	@Override
-	public void createPageControls(Composite pageContainer) {
-		super.createPageControls(pageContainer);
+	public void createPageControls(Composite container) {
+		super.createPageControls(container);
 		scope.installInitial();
 		target.installInitial();
 	}

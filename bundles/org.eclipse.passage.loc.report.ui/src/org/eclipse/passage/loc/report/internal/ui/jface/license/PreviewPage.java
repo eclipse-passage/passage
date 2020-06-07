@@ -62,6 +62,7 @@ final class PreviewPage extends WizardPage implements PageObserver {
 		updatePlans();
 		updatePeriod();
 		// TODO: show and update `explain`
+		getWizard().getContainer().updateButtons();
 	}
 
 	private void updateTargetPath() {
