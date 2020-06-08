@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.passage.loc.report.internal.core.Csv;
 import org.eclipse.passage.loc.report.internal.core.ExistingFileStream;
+import org.eclipse.passage.loc.report.internal.core.i18n.LicensesReportMessages;
 import org.eclipse.passage.loc.yars.internal.api.DefaultDosHandler;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
@@ -56,12 +57,12 @@ public final class LicenseReportToCsv {
 	private String[] header(LicensePlanReportParameters parameters) {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY"); //$NON-NLS-1$
 		List<String> header = new ArrayList<>(Arrays.asList(//
-				"License plan", //$NON-NLS-1$
-				"Plan id", //$NON-NLS-1$
-				"Amount of licenses")); //$NON-NLS-1$
+				LicensesReportMessages.getString("LicenseReportToCsv_header_planName"), // //$NON-NLS-1$
+				LicensesReportMessages.getString("LicenseReportToCsv_header_planId"), // //$NON-NLS-1$
+				LicensesReportMessages.getString("LicenseReportToCsv_header_amountOfLicenses"))); // //$NON-NLS-1$
 		if (parameters.explain()) {
 			header.add(String.format(//
-					"Users (issue dates from %s to %s)", //$NON-NLS-1$
+					LicensesReportMessages.getString("LicenseReportToCsv_details"), // //$NON-NLS-1$
 					format.format(parameters.from()), //
 					format.format(parameters.to())//
 			));
