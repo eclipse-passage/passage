@@ -32,7 +32,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.activation.CommandMap;
-import javax.activation.DataHandler;
 import javax.activation.MailcapCommandMap;
 import javax.mail.internet.AddressException;
 
@@ -61,7 +60,7 @@ public class MailImplTest {
 	
 	@BeforeClass
 	public static void initialize() {
-//		Thread.currentThread().setContextClassLoader(javax.activation.DataContentHandler.class.getClassLoader());
+		//need this extra setup to avoid java.lang.AssertionError: no object DCH for MIME type multipart/mixed;
 		MailImpl mailing = new MailImpl();
 		mailing.activate();
 		System.out.println("multipart/*" + ' '
