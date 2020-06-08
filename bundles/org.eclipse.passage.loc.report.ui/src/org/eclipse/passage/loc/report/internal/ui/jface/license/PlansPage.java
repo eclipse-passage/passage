@@ -10,7 +10,7 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,8 +23,10 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportLicenseReportWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
+import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -34,22 +36,22 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
-final class ScopePage extends WizardPage {
+final class PlansPage extends WizardPage {
 
-	private final ProductDescriptor[] products;
-	private final Set<ProductDescriptor> selected;
-	private final PreviewPage preview;
+	private final LicensePlanDescriptor[] plans;
+	private final Set<LicensePlanDescriptor> selected;
+	private final PageObserver preview;
 	private Button all;
 	private Button none;
 	private CheckboxTableViewer viewer;
 
-	protected ScopePage(Products products, PreviewPage preview) {
+	protected PlansPage(LicensePlans plans, PreviewPage preview) {
 		super("scope"); //$NON-NLS-1$
 		this.preview = preview;
-		this.products = products.get();
+		this.plans = plans.get();
 		this.selected = new HashSet<>();
-		setTitle(ExportCustomersWizardMessages.ScopePage_title);
-		setMessage(ExportCustomersWizardMessages.ScopePage_description);
+		setTitle(ExportLicenseReportWizardMessages.PlansPage_title);
+		setMessage(ExportLicenseReportWizardMessages.PlansPage_description);
 	}
 
 	@Override
@@ -62,14 +64,14 @@ final class ScopePage extends WizardPage {
 	}
 
 	void installInitial() {
-		selected.addAll(Arrays.asList(this.products));
+		selected.addAll(Arrays.asList(this.plans));
 		viewer.refresh();
 		updateControls();
 	}
 
 	Set<String> identifiers() {
 		return selected.stream()//
-				.map(ProductDescriptor::getIdentifier) //
+				.map(LicensePlanDescriptor::getIdentifier) //
 				.collect(Collectors.toSet());
 	}
 
@@ -94,7 +96,7 @@ final class ScopePage extends WizardPage {
 			}
 		});
 
-		viewer.setInput(products);
+		viewer.setInput(plans);
 		return viewer;
 	}
 
@@ -103,11 +105,11 @@ final class ScopePage extends WizardPage {
 		controls.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 		controls.setLayout(new FillLayout(SWT.VERTICAL));
 		all = new Button(controls, SWT.PUSH);
-		all.setText(ExportCustomersWizardMessages.ScopePage_selectAll);
+		all.setText(ExportWizardMessages.ScopePage_selectAll);
 		none = new Button(controls, SWT.PUSH);
-		none.setText(ExportCustomersWizardMessages.ScopePage_selctNone);
+		none.setText(ExportWizardMessages.ScopePage_selctNone);
 		all.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
-			Arrays.stream(products).forEach(selected::add);
+			Arrays.stream(plans).forEach(selected::add);
 			viewer.refresh();
 			updateControls();
 		}));
@@ -118,7 +120,7 @@ final class ScopePage extends WizardPage {
 		}));
 		viewer.addCheckStateListener(e -> {
 			if (e.getChecked()) {
-				selected.add((ProductDescriptor) e.getElement());
+				selected.add((LicensePlanDescriptor) e.getElement());
 			} else {
 				selected.remove(e.getElement());
 			}
@@ -131,20 +133,32 @@ final class ScopePage extends WizardPage {
 	 * buttons and {@code Preview} page
 	 */
 	private void updateControls() {
-		all.setEnabled(products.length > 0 && selected.size() < products.length);
+		updateLocalControls();
+		preview.update();
+	}
+
+	private void updateLocalControls() {
+		all.setEnabled(plans.length > 0 && selected.size() < plans.length);
 		none.setEnabled(!selected.isEmpty());
-		getWizard().getContainer().updateButtons();
-		preview.updateUsers();
 	}
 
 	private void createColumns() {
-		TableViewerColumn product = new TableViewerColumn(viewer, SWT.NONE);
-		product.getColumn().setWidth(500);
-		product.getColumn().setText(ExportCustomersWizardMessages.ScopePage_columnProduct);
-		product.setLabelProvider(new ColumnLabelProvider() {
+		TableViewerColumn id = new TableViewerColumn(viewer, SWT.NONE);
+		id.getColumn().setWidth(250);
+		id.getColumn().setText(ExportLicenseReportWizardMessages.PlansPage_columnId);
+		id.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((ProductDescriptor) element).getName();
+				return ((LicensePlanDescriptor) element).getIdentifier();
+			}
+		});
+		TableViewerColumn name = new TableViewerColumn(viewer, SWT.NONE);
+		name.getColumn().setWidth(250);
+		name.getColumn().setText(ExportLicenseReportWizardMessages.PlansPage_columnName);
+		name.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return ((LicensePlanDescriptor) element).getName();
 			}
 		});
 	}

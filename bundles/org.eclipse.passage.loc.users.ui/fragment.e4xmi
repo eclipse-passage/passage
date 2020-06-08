@@ -10,7 +10,7 @@
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Cn6GAA84Eemq0ONZAqyi5g" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
     <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.userorigin.create" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.users.ui.handlers.CreateUserOriginHandler" command="_wC9kIA83Eemq0ONZAqyi5g"/>
-    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi5g" elementId="org.eclipse.passage.loc.users.ui.handler.export.customers" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.internal.users.ui.handlers.ExportCustomersHandler" command="_wC9kIA83Eemq0ONZAqyi6g"/>
+    <elements xsi:type="commands:Handler" xmi:id="_HW4WkA84Eemq0ONZAqyi6g" elementId="org.eclipse.passage.loc.users.ui.handler.export.customers" contributionURI="bundleclass://org.eclipse.passage.loc.users.ui/org.eclipse.passage.loc.internal.users.ui.handlers.ExportCustomersHandler" command="_wC9kIA83Eemq0ONZAqyi6g"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_bDhvQAp1EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main">
     <elements xsi:type="advanced:Perspective" xmi:id="_iE1O0Ap1EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.users.ui.perspective.main" label="Users" iconURI="platform:/plugin/org.eclipse.passage.lic.users.edit/icons/full/obj16/user.png">

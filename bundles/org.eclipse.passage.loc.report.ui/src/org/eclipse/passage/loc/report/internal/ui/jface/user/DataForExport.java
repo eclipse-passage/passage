@@ -10,44 +10,33 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 import java.util.function.Supplier;
 
-final class DataForExport {
+import org.eclipse.passage.loc.report.internal.ui.jface.ExportWizardDecisions;
+
+final class DataForExport extends ExportWizardDecisions {
 
 	private final Supplier<Set<String>> products;
-	private final Supplier<Path> target;
-	private final Supplier<Boolean> open;
 
 	DataForExport(//
 			Supplier<Set<String>> products, //
 			Supplier<Path> target, //
 			Supplier<Boolean> open) {
+		super(target, open);
 		this.products = products;
-		this.target = target;
-		this.open = open;
-	}
-
-	boolean complete() {
-		Path path = target.get();
-		return (!products.get().isEmpty()) //
-				&& Files.exists(path) //
-				&& Files.isDirectory(path);
-	}
-
-	Path target() {
-		return target.get();
 	}
 
 	Set<String> products() {
 		return products.get();
 	}
 
-	boolean open() {
-		return open.get();
+	@Override
+	protected boolean dataComplete() {
+		return !products.get().isEmpty();
 	}
+
 }

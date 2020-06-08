@@ -52,9 +52,6 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 				.filter(lic -> lic.getIssueDate().after(parameters.from())) //
 				.filter(lic -> lic.getIssueDate().before(parameters.to()))//
 				.collect(Collectors.toList());
-		if (licenses.size() == 0) {
-			return Optional.empty(); // do not report non-profit plans. FIXME: Do we a parameter for this?
-		}
 		return Optional.of(//
 				new LicensePlanReport(//
 						plan.get(), //

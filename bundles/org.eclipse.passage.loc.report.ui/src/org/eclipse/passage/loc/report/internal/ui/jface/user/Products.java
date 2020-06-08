@@ -10,7 +10,7 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -19,21 +19,20 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 
-@SuppressWarnings("restriction")
 final class Products implements Supplier<ProductDescriptor[]> {
 
-	private final DescribedProduct descriptor;
 	private final CustomerStorage customers;
+	private final ProductRegistry products;
 
 	public Products(ProductRegistry products, CustomerStorage customers) {
-		this.descriptor = new DescribedProduct(products);
+		this.products = products;
 		this.customers = customers;
 	}
 
 	@Override
 	public ProductDescriptor[] get() {
 		return customers.products().stream() //
-				.map(descriptor) //
+				.map(products::getProduct) //
 				.collect(Collectors.toSet())//
 				.toArray(new ProductDescriptor[0]);
 	}

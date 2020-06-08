@@ -10,31 +10,24 @@
  * Contributors:
  *      ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.ui.jface;
+package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
-import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.loc.report.internal.core.license.LicenseStorage;
 
-public final class FileForExport implements Supplier<Path> {
+final class LicensePlans implements Supplier<LicensePlanDescriptor[]> {
 
-	private final Path parent;
-	private final String dedication;
+	private final LicenseStorage storage;
 
-	public FileForExport(Path parent, String dedication) {
-		this.parent = parent;
-		this.dedication = dedication;
+	public LicensePlans(LicenseStorage storage) {
+		this.storage = storage;
 	}
 
 	@Override
-	public Path get() {
-		return parent.resolve(//
-				NLS.bind(//
-						"{0}-{1}.csv", //$NON-NLS-1$
-						dedication, //
-						Long.toHexString(System.currentTimeMillis())//
-				));
+	public LicensePlanDescriptor[] get() {
+		return storage.plans().toArray(new LicensePlanDescriptor[0]);
 	}
 
 }
