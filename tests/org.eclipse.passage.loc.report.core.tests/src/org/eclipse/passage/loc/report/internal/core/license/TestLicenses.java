@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.license;
 
+import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,10 +35,16 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 
 	private final List<LicensePlanDescriptor> plans;
 	protected final List<UserDescriptor> users;
+	protected final Date from;
+	protected final Date to;
 
-	protected TestLicenses(List<LicensePlanDescriptor> plans, List<UserDescriptor> users) {
+	protected TestLicenses(//
+			List<LicensePlanDescriptor> plans, List<UserDescriptor> users, //
+			Date from, Date to) {
 		this.plans = plans;
 		this.users = users;
+		this.from = from;
+		this.to = to;
 	}
 
 	@Override
@@ -63,23 +70,27 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 	}
 
 	protected String header(boolean explain) {
+		SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY"); //$NON-NLS-1$
 		return "License plan;Plan id;Amount of licenses" // //$NON-NLS-1$
-				+ (explain ? ";Users" : ""); //$NON-NLS-1$ //$NON-NLS-2$
+				+ (explain //
+						? String.format(//
+								";Users (issue dates from %s to %s)", //$NON-NLS-1$
+								format.format(from), //
+								format.format(to)) //
+						: ""); //$NON-NLS-1$
 	}
 
 	static final class Empty extends TestLicenses {
 
 		protected Empty() {
-			super(Collections.emptyList(), Collections.emptyList());
+			super(Collections.emptyList(), Collections.emptyList(), //
+					new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get(), //
+					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get());
 		}
 
 		@Override
 		LicensePlanReportParameters params() {
-			return new LicensePlanReportParameters(//
-					Collections.emptySet(), //
-					new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get(), //
-					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
-					true);
+			return new LicensePlanReportParameters(Collections.emptySet(), from, to, true);
 		}
 
 		@Override
@@ -102,7 +113,9 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 							new FakeUserDescriptor("evan@universe.com", "Evan Almighty"), //$NON-NLS-1$ //$NON-NLS-2$
 							new FakeUserDescriptor("dorothea-the-elder@nest.ant", "Dorothea Vollenhovia"), //$NON-NLS-1$ //$NON-NLS-2$
 							new FakeUserDescriptor("zena-the-queen@kindom.com", "Zena") //$NON-NLS-1$ //$NON-NLS-2$
-					)//
+					), //
+					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
+					new MovedNow(date -> date.plus(1, ChronoUnit.MONTHS)).get()//
 			);
 			issueLicenses();
 		}
@@ -134,19 +147,17 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 							"plan-b", //$NON-NLS-1$
 							"plan-c" //$NON-NLS-1$
 					)), //
-					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
-					new MovedNow(date -> date.plus(1, ChronoUnit.MONTHS)).get(), //
+					from, //
+					to, //
 					false);
 		}
 
-		/**
-		 * tested: 1) date-range filtering 2) zero-rows absence
-		 */
 		@Override
 		public Set<String> csv() {
 			return new HashSet<>(Arrays.asList(//
 					"Plan B;plan-b;3", //$NON-NLS-1$
 					"Plan A;plan-a;1", //$NON-NLS-1$
+					"Plan C;plan-c;0", //$NON-NLS-1$
 					header(false)));
 		}
 
