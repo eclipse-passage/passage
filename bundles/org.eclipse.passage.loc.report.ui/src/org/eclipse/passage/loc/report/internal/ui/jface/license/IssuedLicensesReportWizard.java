@@ -33,7 +33,7 @@ final class IssuedLicensesReportWizard extends Wizard {
 	private final LicenseReportExportService export;
 	private final DataForExport data;
 	private final PreviewPage preview;
-	private final ScopePage scope;
+	private final PlansPage scope;
 	private final ConfigPage config;
 	private final TargetPage target;
 
@@ -49,7 +49,7 @@ final class IssuedLicensesReportWizard extends Wizard {
 				this::path, //
 				this::open);
 		this.preview = new PreviewPage(storage, data);
-		this.scope = new ScopePage(new LicensePlans(storage), preview);
+		this.scope = new PlansPage(new LicensePlans(storage), preview);
 		this.config = new ConfigPage(preview);
 		this.target = new TargetPage(preview);
 	}
@@ -68,6 +68,8 @@ final class IssuedLicensesReportWizard extends Wizard {
 		target.installInitial();
 		scope.installInitial();
 		config.installInitial();
+		preview.update();
+
 	}
 
 	@Override

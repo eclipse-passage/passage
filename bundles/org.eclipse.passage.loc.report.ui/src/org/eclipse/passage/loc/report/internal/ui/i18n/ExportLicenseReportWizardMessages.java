@@ -21,21 +21,26 @@ public class ExportLicenseReportWizardMessages extends NLS {
 	public static String ExposedIssuedLicensesReportWizard_dialogTitle;
 
 	public static String PreviewPage_description;
+
+	public static String PreviewPage_explained;
+	public static String PreviewPage_path;
+
 	public static String PreviewPage_period;
 	public static String PreviewPage_title;
 
-	public static String ScopePage_columnId;
-	public static String ScopePage_columnName;
-	public static String ScopePage_title;
-	public static String ScopePage_description;
+	public static String PlansPage_columnId;
+	public static String PlansPage_columnName;
+	public static String PlansPage_title;
+	public static String PlansPage_description;
 
 	public static String ConfigPage_title;
 	public static String ConfigPage_description;
 	public static String ConfigPage_dateFrom_title;
 	public static String ConfigPage_dateTo_title;
-	public static String ConfigPage_dates_description;
 
 	public static String ConfigPage_explain_title;
+	public static String ConfigPage_explain_tooltip;
+	public static String ConfigPage_invalidDates;
 
 	public static String VisibleProgress_task;
 

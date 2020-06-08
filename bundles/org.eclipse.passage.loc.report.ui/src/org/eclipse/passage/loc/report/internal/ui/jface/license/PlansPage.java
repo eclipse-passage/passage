@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
-final class ScopePage extends WizardPage {
+final class PlansPage extends WizardPage {
 
 	private final LicensePlanDescriptor[] plans;
 	private final Set<LicensePlanDescriptor> selected;
@@ -45,13 +45,13 @@ final class ScopePage extends WizardPage {
 	private Button none;
 	private CheckboxTableViewer viewer;
 
-	protected ScopePage(LicensePlans plans, PreviewPage preview) {
+	protected PlansPage(LicensePlans plans, PreviewPage preview) {
 		super("scope"); //$NON-NLS-1$
 		this.preview = preview;
 		this.plans = plans.get();
 		this.selected = new HashSet<>();
-		setTitle(ExportLicenseReportWizardMessages.ScopePage_title);
-		setMessage(ExportLicenseReportWizardMessages.ScopePage_description);
+		setTitle(ExportLicenseReportWizardMessages.PlansPage_title);
+		setMessage(ExportLicenseReportWizardMessages.PlansPage_description);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ final class ScopePage extends WizardPage {
 	void installInitial() {
 		selected.addAll(Arrays.asList(this.plans));
 		viewer.refresh();
-		updateLocalControls();
+		updateControls();
 	}
 
 	Set<String> identifiers() {
@@ -144,18 +144,17 @@ final class ScopePage extends WizardPage {
 
 	private void createColumns() {
 		TableViewerColumn id = new TableViewerColumn(viewer, SWT.NONE);
-		id.getColumn().setWidth(200);
-		id.getColumn().setText(ExportLicenseReportWizardMessages.ScopePage_columnId);
+		id.getColumn().setWidth(250);
+		id.getColumn().setText(ExportLicenseReportWizardMessages.PlansPage_columnId);
 		id.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 				return ((LicensePlanDescriptor) element).getIdentifier();
 			}
 		});
-
 		TableViewerColumn name = new TableViewerColumn(viewer, SWT.NONE);
-		name.getColumn().setWidth(300);
-		name.getColumn().setText(ExportLicenseReportWizardMessages.ScopePage_columnName);
+		name.getColumn().setWidth(250);
+		name.getColumn().setText(ExportLicenseReportWizardMessages.PlansPage_columnName);
 		name.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {

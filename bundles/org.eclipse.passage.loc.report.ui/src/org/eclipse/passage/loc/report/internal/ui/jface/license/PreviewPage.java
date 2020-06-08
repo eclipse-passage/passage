@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.ui.jface.license;
 
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -23,17 +24,20 @@ import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Text;
 
 final class PreviewPage extends WizardPage implements PageObserver {
 
 	private final LicenseStorage storage;
 	private List plans;
-	private Text period;
-	private Text path;
+	private Label period;
+	private Label path;
+	private Button explained;
 	private final DataForExport data;
+	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY"); //$NON-NLS-1$
 
 	protected PreviewPage(LicenseStorage storage, DataForExport data) {
 		super("preview"); //$NON-NLS-1$
@@ -46,13 +50,16 @@ final class PreviewPage extends WizardPage implements PageObserver {
 	@Override
 	public void createControl(Composite parent) {
 		Composite content = new Composite(parent, SWT.NONE);
-		content.setLayout(new GridLayout(1, false));
+		content.setLayout(new GridLayout(2, false));
 		plans = new List(content, SWT.BORDER | SWT.READ_ONLY);
-		plans.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		path = new Text(content, SWT.BORDER | SWT.READ_ONLY);
-		path.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false));
-		period = new Text(content, SWT.BORDER | SWT.READ_ONLY);
-		period.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false));
+		plans.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		path = new Label(content, SWT.NONE);
+		path.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false, 2, 1));
+		period = new Label(content, SWT.NONE);
+		period.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false, 2, 1));
+		new Label(content, SWT.NONE).setText(ExportLicenseReportWizardMessages.PreviewPage_explained);
+		explained = new Button(content, SWT.CHECK);
+		explained.setEnabled(false);
 		setControl(content);
 	}
 
@@ -61,12 +68,12 @@ final class PreviewPage extends WizardPage implements PageObserver {
 		updateTargetPath();
 		updatePlans();
 		updatePeriod();
-		// TODO: show and update `explain`
+		updateExplained();
 		getWizard().getContainer().updateButtons();
 	}
 
 	private void updateTargetPath() {
-		path.setText(data.target().toString());
+		path.setText(NLS.bind(ExportLicenseReportWizardMessages.PreviewPage_path, data.target().toString()));
 	}
 
 	private void updatePlans() {
@@ -82,11 +89,15 @@ final class PreviewPage extends WizardPage implements PageObserver {
 
 	private void updatePeriod() {
 		period.setText(NLS.bind(ExportLicenseReportWizardMessages.PreviewPage_period, //
-				data.from(), data.to())); // TODO: format
+				format.format(data.from()), format.format(data.to())));
 	}
 
 	private String planInfo(LicensePlanDescriptor plan) {
 		return NLS.bind("{0} ({1})", plan.getName(), plan.getIdentifier()); //$NON-NLS-1$
+	}
+
+	private void updateExplained() {
+		explained.setSelection(data.explain());
 	}
 
 }

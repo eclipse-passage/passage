@@ -28,7 +28,7 @@ public final class ExposedIssuedLicensesReportWizard implements Consumer<Shell> 
 				new IssuedLicensesReportWizard(storage, export)//
 		);
 		dialog.setTitle(ExportLicenseReportWizardMessages.ExposedIssuedLicensesReportWizard_dialogTitle);
-		dialog.setPageSize(700, 400);
+		dialog.setPageSize(700, 300);
 		dialog.open();
 	}
 
