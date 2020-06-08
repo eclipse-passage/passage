@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,18 +48,23 @@ public final class LicenseReportToCsv {
 								new DosHandleMedia<LicensePlanReport>( //
 										new Csv<LicensePlanReport>( //
 												new ExistingFileStream(target), //
-												header(parameters.explain())), //
+												header(parameters)), //
 										new DefaultDosHandler()), //
 								progress);
 	}
 
-	private String[] header(boolean explain) {
+	private String[] header(LicensePlanReportParameters parameters) {
+		SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY"); //$NON-NLS-1$
 		List<String> header = new ArrayList<>(Arrays.asList(//
 				"License plan", //$NON-NLS-1$
 				"Plan id", //$NON-NLS-1$
 				"Amount of licenses")); //$NON-NLS-1$
-		if (explain) {
-			header.add("Users"); //$NON-NLS-1$
+		if (parameters.explain()) {
+			header.add(String.format(//
+					"Users (issue dates from %s to %s)", //$NON-NLS-1$
+					format.format(parameters.from()), //
+					format.format(parameters.to())//
+			));
 		}
 		return header.toArray(new String[header.size()]);
 	}
