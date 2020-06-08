@@ -66,7 +66,7 @@ final class ScopePage extends WizardPage {
 	void installInitial() {
 		selected.addAll(Arrays.asList(this.products));
 		viewer.refresh();
-		updateLocalControls();
+		updateControls();
 	}
 
 	Set<String> identifiers() {

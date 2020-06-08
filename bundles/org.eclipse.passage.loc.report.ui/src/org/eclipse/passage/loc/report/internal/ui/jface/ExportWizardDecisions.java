@@ -34,9 +34,6 @@ import java.util.function.Supplier;
  * To gather more data, extend the class, supply the data and the validation
  * part for it.
  * </p>
- * 
- * @author user
- *
  */
 public abstract class ExportWizardDecisions {
 
