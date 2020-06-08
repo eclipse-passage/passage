@@ -50,15 +50,11 @@ public class MailImpl implements Mailing {
 	public void activate() {
 		//it **may** work "out-of-the-box", but let's declare explicitly to know where to dig
 		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
-		mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"); 
-		mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"); 
-		mc.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"); 
-		mc.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"); 
-		mc.addMailcap("message/rfc822;; x-java-content- handler=com.sun.mail.handlers.message_rfc822");
-		mc.addMailcap("multipart/report;;  x-java-content-handler=com.sun.mail.dsn.multipart_report");
-		mc.addMailcap("message/delivery-status;; x-java-content-handler=com.sun.mail.dsn.message_deliverystatus");
-		mc.addMailcap("message/disposition-notification;; x-java-content-handler=com.sun.mail.dsn.message_dispositionnotification");
-		mc.addMailcap("text/rfc822-headers;;   x-java-content-handler=com.sun.mail.dsn.text_rfc822headers");
+		mc.addMailcap("text/plain;;		x-java-content-handler=org.apache.geronimo.mail.handlers.TextHandler"); 
+		mc.addMailcap("text/xml;;		x-java-content-handler=org.apache.geronimo.mail.handlers.XMLHandler"); 
+		mc.addMailcap("text/html;;		x-java-content-handler=org.apache.geronimo.mail.handlers.HtmlHandler"); 
+		mc.addMailcap("message/rfc822;;	x-java-content-handler=org.apache.geronimo.mail.handlers.MessageHandler"); 
+		mc.addMailcap("multipart/*;;		x-java-content-handler=org.apache.geronimo.mail.handlers.MultipartHandler; x-java-fallback-entry=true"); 
 	}
 
 	@Override
@@ -87,10 +83,10 @@ public class MailImpl implements Mailing {
 	}
 
 	private Multipart createBody(String body) throws MessagingException {
+		Multipart multipart = new MimeMultipart("mixed"); //$NON-NLS-1$
 		MimeBodyPart content = new MimeBodyPart();
-		content.setText(body);
-		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(content);
+		content.setText(body, "UTF-8");
 		return multipart;
 	}
 
