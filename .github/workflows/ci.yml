@@ -16,7 +16,19 @@ jobs:
         java-version: 1.8
     - name: Setup Maven
       run: echo "MAVEN_OPTS='-Xmx2048m'" > ~/.mavenrc
+    - name: Cache maven repo
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-maven-repo
+      with:
+        # maven files are stored in `~/.m2/repository` on Linux/macOS
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/*.sha1') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
     - name: Build with Maven
-      run: mvn clean verify -U -Pcoverage
+      run: mvn clean verify --no-transfer-progress -U -Pcoverage
     - name: Publish coverage
       run: bash <(curl -s https://codecov.io/bash)

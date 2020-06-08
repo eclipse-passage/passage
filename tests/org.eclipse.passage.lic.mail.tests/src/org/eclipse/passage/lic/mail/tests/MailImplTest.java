@@ -19,6 +19,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -30,12 +31,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.activation.CommandMap;
+import javax.activation.MailcapCommandMap;
 import javax.mail.internet.AddressException;
 
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.mail.MailImpl;
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MailImplTest {
@@ -49,24 +53,43 @@ public class MailImplTest {
 	private static final String MAIL_ATTACHMENT_CONTENT = "Content by TimeStamp:"; //$NON-NLS-1$
 	private Path fileAttachmentPath;
 
+	private static String resolveOutputDirName() {
+		return System.getProperty("project.build.directory",
+				System.getProperty("user.dir") + File.separator + "target");
+	}
+	
+	@BeforeClass
+	public static void initialize() {
+		//need this extra setup to avoid java.lang.AssertionError: no object DCH for MIME type multipart/mixed;
+		MailImpl mailing = new MailImpl();
+		mailing.activate();
+		System.out.println("multipart/*" + ' '
+				+ ((MailcapCommandMap) CommandMap.getDefaultCommandMap()).createDataContentHandler("multipart/*"));
+	}
+
 	@Test
 	public void shouldCreateEmlByParametersPositiveTest() {
-		Mailing mailing = new MailImpl();
+		MailImpl mailing = new MailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT,
-				MAIL_BODY, Collections.singleton(attachment));
+		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT, MAIL_BODY,
+				Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
 		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
-			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> fail());
+			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> failure(m, t));
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
 	}
 
+	private void failure(String message, Throwable t) {
+		t.printStackTrace();
+		fail(message);
+	}
+
 	@Test
-	public void shouldCreateEmlByParametersNagativeTest() {
-		Mailing mailing = new MailImpl();
+	public void shouldCreateEmlByParametersNegativeTest() {
+		MailImpl mailing = new MailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
@@ -90,9 +113,9 @@ public class MailImplTest {
 	}
 
 	private String createAttachment() {
-		String userHome = System.getProperty("user.home");
+		String userDir = resolveOutputDirName();
 		try {
-			Path createFile = Files.createFile(Paths.get(userHome, MAIL_ATTACHMENT));
+			Path createFile = Files.createFile(Paths.get(userDir, MAIL_ATTACHMENT));
 			List<String> content = new ArrayList<>();
 			String attachmentContent = new String(MAIL_ATTACHMENT_CONTENT + System.currentTimeMillis());
 			content.add(attachmentContent);

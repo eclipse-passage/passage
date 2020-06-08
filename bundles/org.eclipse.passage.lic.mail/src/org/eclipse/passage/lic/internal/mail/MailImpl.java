@@ -15,14 +15,16 @@ package org.eclipse.passage.lic.internal.mail;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.function.BiConsumer;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
+import javax.activation.CommandMap;
+import javax.activation.MailcapCommandMap;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -32,6 +34,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -42,6 +45,17 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component
 public class MailImpl implements Mailing {
+	
+	@Activate
+	public void activate() {
+		//it **may** work "out-of-the-box", but let's declare explicitly to know where to dig
+		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
+		mc.addMailcap("text/plain;;		x-java-content-handler=org.apache.geronimo.mail.handlers.TextHandler"); 
+		mc.addMailcap("text/xml;;		x-java-content-handler=org.apache.geronimo.mail.handlers.XMLHandler"); 
+		mc.addMailcap("text/html;;		x-java-content-handler=org.apache.geronimo.mail.handlers.HtmlHandler"); 
+		mc.addMailcap("message/rfc822;;	x-java-content-handler=org.apache.geronimo.mail.handlers.MessageHandler"); 
+		mc.addMailcap("multipart/*;;		x-java-content-handler=org.apache.geronimo.mail.handlers.MultipartHandler; x-java-fallback-entry=true"); 
+	}
 
 	@Override
 	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
@@ -62,27 +76,29 @@ public class MailImpl implements Mailing {
 		return message;
 	}
 
-	private void fulfillMessage(EmailDescriptor descriptor, Message message) throws MessagingException {
+	private void fulfillMessage(EmailDescriptor descriptor, Message message) throws MessagingException, IOException {
 		Multipart multipart = createBody(descriptor.getBody());
 		attachFiles(descriptor, multipart);
 		message.setContent(multipart);
 	}
 
 	private Multipart createBody(String body) throws MessagingException {
+		Multipart multipart = new MimeMultipart("mixed"); //$NON-NLS-1$
 		MimeBodyPart content = new MimeBodyPart();
-		content.setText(body);
-		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(content);
+		content.setText(body, "UTF-8");
 		return multipart;
 	}
 
-	private void attachFiles(EmailDescriptor descriptor, Multipart multipart) throws MessagingException {
+	private void attachFiles(EmailDescriptor descriptor, Multipart multipart) throws MessagingException, IOException {
 		Iterable<String> attachmentPaths = descriptor.getAttachmentPaths();
 		for (String path : attachmentPaths) {
 			final File attache = new File(path);
 			MimeBodyPart attachment = new MimeBodyPart();
-			DataSource source = new FileDataSource(attache);
-			attachment.setDataHandler(new DataHandler(source));
+			//FIXME: we need to support content types near to attachment path
+			attachment.setContent(Files.readAllBytes(Paths.get(path)), "application/binary");
+			attachment.addHeader("Content-Transfer-Encoding", "base64");			
+			attachment.setDisposition(Part.ATTACHMENT);
 			attachment.setFileName(attache.getName());
 			multipart.addBodyPart(attachment);
 		}

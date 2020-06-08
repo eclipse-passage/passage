@@ -14,7 +14,7 @@
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
     xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 index:/models/Mylyn.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/setup/pde/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/PDE.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
     name="passage"
     label="Passage">
   <annotation
@@ -58,7 +58,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      value="2020-03"
+      value="2020-06"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -74,7 +74,7 @@
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <repository
-        url="https://download.eclipse.org/releases/2020-03/"/>
+        url="https://download.eclipse.org/releases/2020-06/"/>
     <repository
         url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
@@ -146,17 +146,17 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/releases/2020-03/"/>
+              url="https://download.eclipse.org/releases/2020-06/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2020-03"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.8.0/lic/"/>
+              url="https://download.eclipse.org/passage/updates/release/0.9.0/lic/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.8.0/loc/"/>
+              url="https://download.eclipse.org/passage/updates/release/0.9.0/loc/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.8.0/lbc/"/>
+              url="https://download.eclipse.org/passage/updates/release/0.9.0/lbc/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.8.0/ldc/"/>
+              url="https://download.eclipse.org/passage/updates/release/0.9.0/ldc/"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -192,7 +192,7 @@
         xsi:type="setup.targlets:TargletTask">
       <targlet
           name="${scope.project.label}"
-          activeRepositoryList="2020-03">
+          activeRepositoryList="2020-06">
         <requirement
             name="com.fasterxml.jackson.core.jackson-annotations"/>
         <requirement
@@ -237,6 +237,15 @@
         <sourceLocator
             rootFolder="${git.clone.passage.location}"
             locateNestedProjects="true"/>
+        <repositoryList
+            name="2020-06">
+          <repository
+              url="https://download.eclipse.org/cbi/updates/license/"/>
+          <repository
+              url="https://download.eclipse.org/releases/2020-06/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
+        </repositoryList>
         <repositoryList
             name="2020-03">
           <repository

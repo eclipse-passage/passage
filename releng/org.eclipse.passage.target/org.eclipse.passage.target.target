@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.target" sequenceNumber="85">
+<target name="org.eclipse.passage.target" sequenceNumber="86">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -24,7 +24,7 @@
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/releases/2020-03/"/>
+			<repository location="https://download.eclipse.org/releases/2020-06/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
@@ -52,7 +52,7 @@
 			<unit id="org.mockito" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
 			<unit id="org.slf4j.api.source" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-03/"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-06/"/>
 		</location>
 	</locations>
 </target>
