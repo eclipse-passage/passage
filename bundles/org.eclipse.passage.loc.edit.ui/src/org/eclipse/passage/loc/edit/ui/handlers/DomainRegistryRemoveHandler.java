@@ -12,20 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.edit.ui.handlers;
 
+import java.util.Objects;
+
 import javax.inject.Named;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.loc.internal.edit.ui.i18n.EditUiMessages;
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.workbench.registry.UnregisterConfirmation;
+import org.eclipse.passage.loc.internal.workbench.registry.UnregisterSelected;
+import org.eclipse.passage.loc.internal.workbench.registry.UnregisterUri;
 import org.eclipse.swt.widgets.Shell;
 
 //FIXME: rewrite to avoid restriction warnings
@@ -33,28 +32,16 @@ import org.eclipse.swt.widgets.Shell;
 public class DomainRegistryRemoveHandler {
 
 	@CanExecute
-	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional Resource resource) {
-		return resource != null;
+	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) Object selection) {
+		return Objects.nonNull(selection);
 	}
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) Resource resource, IEclipseContext context) {
-		URI uri = resource.getURI();
-		if (uri != null) {
-			LocDomainRegistryAccess access = (LocDomainRegistryAccess) context.get(EditingDomainRegistryAccess.class);
-			access.domainRegistryForExtension(uri.fileExtension())//
-					.filter(BaseDomainRegistry.class::isInstance)//
-					.map(BaseDomainRegistry.class::cast)//
-					.ifPresent(r -> unregister(r, uri, context.get(Shell.class)));
-		}
-	}
-
-	private void unregister(BaseDomainRegistry<?> registry, URI uri, Shell shell) {
-		String message = String.format(EditUiMessages.DomainRegistryRemoveHandler_mesage, uri.toFileString());
-		String title = EditUiMessages.DomainRegistryRemoveHandler_title;
-		if (MessageDialog.openConfirm(shell, title, message)) {
-			registry.unregisterSource(uri.toFileString());
-		}
+	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) Object selection, IEclipseContext context) {
+		new UnregisterSelected(//
+				new UnregisterUri((LocDomainRegistryAccess) context.get(EditingDomainRegistryAccess.class)), //
+				new UnregisterConfirmation(() -> context.get(Shell.class))//
+		).unregister(selection);
 	}
 
 }
