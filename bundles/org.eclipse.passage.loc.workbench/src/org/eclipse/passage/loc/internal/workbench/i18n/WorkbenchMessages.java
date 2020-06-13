@@ -65,6 +65,8 @@ public class WorkbenchMessages extends NLS {
 	public static String SelectRoot_e_null_root_request;
 	public static String UndoHandler_label_base;
 	public static String UndoHandler_label_handler;
+	public static String UnregisterConfirmation_message;
+	public static String UnregisterConfirmation_title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, WorkbenchMessages.class);
