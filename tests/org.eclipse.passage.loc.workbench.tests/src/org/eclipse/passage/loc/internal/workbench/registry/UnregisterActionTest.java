@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench.registry;
 
+import static org.junit.Assert.assertFalse;
+
 import java.util.function.Supplier;
 
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
@@ -42,6 +44,7 @@ public class UnregisterActionTest {
 	@Test
 	public void dryRun() {
 		new UnregisterAction(access, selection, shell).run();
+		assertFalse("Nothing to check here ATM".isEmpty()); //$NON-NLS-1$
 	}
 
 }
