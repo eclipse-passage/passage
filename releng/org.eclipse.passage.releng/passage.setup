@@ -120,9 +120,11 @@
         <requirement
             name="org.bouncycastle.bcprov"/>
         <requirement
-            name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+            name="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group"/>
         <requirement
             name="org.eclipse.emf.sdk.feature.group"/>
+        <requirement
+            name="org.eclipse.emfforms.setup.base"/>
         <requirement
             name="org.eclipse.passage.lbc.execute.feature.feature.group"/>
         <requirement
@@ -146,9 +148,11 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/releases/2020-06/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.15/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
+              url="https://download.eclipse.org/ecp/releases/releases_124/1240/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.21/"/>
           <repository
               url="https://download.eclipse.org/passage/updates/release/0.9.0/lic/"/>
           <repository
@@ -157,6 +161,8 @@
               url="https://download.eclipse.org/passage/updates/release/0.9.0/lbc/"/>
           <repository
               url="https://download.eclipse.org/passage/updates/release/0.9.0/ldc/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -219,9 +225,11 @@
         <requirement
             name="org.bouncycastle.bcprov"/>
         <requirement
-            name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+            name="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group"/>
         <requirement
             name="org.eclipse.emf.sdk.feature.group"/>
+        <requirement
+            name="org.eclipse.emfforms.setup.base"/>
         <requirement
             name="org.eclipse.pde.feature.group"/>
         <requirement
@@ -242,7 +250,11 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/releases/2020-06/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.16/R-4.16-202006040540/"/>
+          <repository
+              url="https://download.eclipse.org/ecp/releases/releases_124/1240/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.22/"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
         </repositoryList>
@@ -260,34 +272,34 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
-          <repository
               url="https://download.eclipse.org/releases/2019-12/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
         </repositoryList>
         <repositoryList
             name="2019-09">
           <repository
               url="https://download.eclipse.org/cbi/updates/license"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
-          <repository
               url="https://download.eclipse.org/releases/2019-09/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2019-09"/>
         </repositoryList>
         <repositoryList
             name="2019-06">
           <repository
-              url="https://download.eclipse.org/releases/2019-06/"/>
-          <repository
               url="https://download.eclipse.org/cbi/updates/license"/>
+          <repository
+              url="https://download.eclipse.org/releases/2019-06/"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/2019-06"/>
         </repositoryList>
         <repositoryList
             name="2019-03">
           <repository
-              url="https://download.eclipse.org/releases/2019-03"/>
-          <repository
               url="https://download.eclipse.org/cbi/updates/license"/>
+          <repository
+              url="https://download.eclipse.org/releases/2019-03"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/2019-03"/>
         </repositoryList>

@@ -12,19 +12,26 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.target" sequenceNumber="86">
+<target name="org.eclipse.passage.target" sequenceNumber="87">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<unit id="org.eclipse.emf.ecp.sdk.feature.feature.group" version="0.0.0"/>
-			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/releases/2020-06/"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.16/R-4.16-202006040540/"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.emfforms.setup.base" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/ecp/releases/releases_124/1240/"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>https://download.eclipse.org/ecp/releases/releases_124/
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.22/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
