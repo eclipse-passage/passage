@@ -13,8 +13,7 @@
 package org.eclipse.passage.lic.internal.base.registry;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -40,37 +39,23 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * @param <S> type of {@linkplain Service} to keep
  */
 @SuppressWarnings("restriction")
-public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>> implements RuntimeRegistry<I, S> {
+public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>> //
+		extends BaseRegistry<I, S> //
+		implements RuntimeRegistry<I, S> {
 
-	private final Map<I, S> services;
 	private final Consumer<String> handler;
 
-	/**
-	 * Primary constructor
-	 * 
-	 * @param init    {@linkplain Map} implementation to be used as service storing
-	 *                facility
-	 * @param handler error handler
-	 */
-	public BaseRuntimeRegistry(Map<I, S> init, Consumer<String> handler) {
-		this.services = init;
+	public BaseRuntimeRegistry(Collection<S> services, Consumer<String> handler) {
+		super(services);
 		this.handler = handler;
 	}
 
-	/**
-	 * Convenience constructor, uses {@linkplain HashMap} as a storage and prints
-	 * errors into {@linkplain Stsrem.err} stream
-	 */
-	public BaseRuntimeRegistry() {
-		this(new HashMap<>(), System.err::println);
-	}
-
-	public BaseRuntimeRegistry(Map<I, S> init) {
-		this(init, System.err::println);
-	}
-
 	public BaseRuntimeRegistry(Consumer<String> handler) {
-		this(new HashMap<>(), handler);
+		this(Collections.emptyList(), handler);
+	}
+
+	public BaseRuntimeRegistry() {
+		this(System.err::println);
 	}
 
 	@Override
@@ -84,35 +69,6 @@ public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>
 	public void unregister(S service) {
 		checkAbsent(service);
 		services.remove(service.id());
-	}
-
-	@Override
-	public boolean hasService(I id) {
-		return services.containsKey(id);
-	}
-
-	/**
-	 * <p>
-	 * Get the previously registered service by it's {@code id}. It's mandatory to
-	 * either be sure the service has been registered or to check
-	 * {@linkplain #hasService(ServiceId)} first.
-	 * </p>
-	 * 
-	 * @throws IllegalStateException if not yet registered service is requested
-	 */
-	@Override
-	public S service(I id) {
-		if (!hasService(id)) {
-			throw new IllegalStateException(String.format(//
-					BaseMessages.getString("Registry.retrieve_absent_exception"), //$NON-NLS-1$
-					id));
-		}
-		return services.get(id);
-	}
-
-	@Override
-	public Collection<S> services() {
-		return services.values();
 	}
 
 	private void checkOverride(S service) {

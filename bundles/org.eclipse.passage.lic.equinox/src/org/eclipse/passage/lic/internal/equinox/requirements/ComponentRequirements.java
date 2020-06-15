@@ -24,8 +24,8 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
@@ -40,13 +40,23 @@ import org.slf4j.LoggerFactory;
  * @see ResolvedRequirements
  */
 @SuppressWarnings("restriction")
-@Component
 public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
 
-	private Optional<BundleContext> context = Optional.empty();
-	private Optional<ServiceComponentRuntime> runtime = Optional.empty();
+	private Optional<BundleContext> context;
+	private Optional<ServiceComponentRuntime> runtime;
+
+	public ComponentRequirements() {
+		context = Optional.of(FrameworkUtil.getBundle(getClass()).getBundleContext());
+		runtime = retrieveRuntime();
+	}
+
+	private Optional<ServiceComponentRuntime> retrieveRuntime() {
+		BundleContext bundle = context.get();
+		return Optional.ofNullable(bundle.getServiceReference(ServiceComponentRuntime.class))
+				.map(ref -> bundle.getService(ref));
+	}
 
 	@Override
 	public StringServiceId id() {

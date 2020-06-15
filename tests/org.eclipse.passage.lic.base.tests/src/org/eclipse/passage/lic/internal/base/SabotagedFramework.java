@@ -12,14 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base;
 
-import java.util.Collections;
+import java.util.ArrayList;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
-import org.eclipse.passage.lic.internal.base.registry.BaseRegistry;
+import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 
 @SuppressWarnings("restriction")
 final class SabotagedFramework implements Framework {
@@ -33,7 +33,7 @@ final class SabotagedFramework implements Framework {
 
 		@Override
 		public Registry<StringServiceId, ResolvedRequirements> get() {
-			return new BaseRegistry<StringServiceId, ResolvedRequirements>(Collections::emptyList);
+			return new ReadOnlyRegistry<StringServiceId, ResolvedRequirements>(new ArrayList<>());
 		}
 
 	}

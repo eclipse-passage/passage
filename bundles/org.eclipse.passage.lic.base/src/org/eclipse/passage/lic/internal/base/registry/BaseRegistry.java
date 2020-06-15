@@ -14,7 +14,8 @@ package org.eclipse.passage.lic.internal.base.registry;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
@@ -23,31 +24,37 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
  * <p>
- * {@linkplain Registry} implementation that delegates actual service owning to
- * the incoming {@linkplain Supplier}
+ * {@linkplain Registry} implementation that is filled and managed at runtime
+ * programmatically.
  * </p>
  * 
- * @param <S> type of {@linkplain Service} to spread
+ * <p>
+ * Not thread safe (yet)
+ * </p>
+ * <p>
+ * Null free zone.
+ * </p>
+ * 
+ * @param <S> type of {@linkplain Service} to keep
  */
 @SuppressWarnings("restriction")
-public final class BaseRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
+public abstract class BaseRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 
-	private final Supplier<Collection<S>> services;
+	protected final Map<I, S> services;
 
 	/**
-	 * Primary constructor
+	 * Convenience constructor
 	 * 
-	 * @param init    {@linkplain Map} implementation to be used as service storing
-	 *                facility
-	 * @param handler error handler
+	 * @param service {@linkplain Collection} list of actual services to be owned by
+	 *                the registry
 	 */
-	public BaseRegistry(Supplier<Collection<S>> services) {
-		this.services = services;
+	public BaseRegistry(Collection<S> service) {
+		this.services = service.stream().collect(Collectors.toMap(Service::id, Function.identity()));
 	}
 
 	@Override
-	public boolean hasService(I id) {
-		return services.get().stream().anyMatch(s -> id.equals(s.id()));
+	public final boolean hasService(I id) {
+		return services.containsKey(id);
 	}
 
 	/**
@@ -60,17 +67,18 @@ public final class BaseRegistry<I extends ServiceId, S extends Service<I>> imple
 	 * @throws IllegalStateException if not yet registered service is requested
 	 */
 	@Override
-	public S service(I id) {
-		return services.get().stream()//
-				.filter(s -> id.equals(s.id()))//
-				.findFirst().orElseThrow(() -> new IllegalStateException(String.format(//
-						BaseMessages.getString("Registry.retrieve_absent_exception"), //$NON-NLS-1$
-						id)));
+	public final S service(I id) {
+		if (!hasService(id)) {
+			throw new IllegalStateException(String.format(//
+					BaseMessages.getString("Registry.retrieve_absent_exception"), //$NON-NLS-1$
+					id));
+		}
+		return services.get(id);
 	}
 
 	@Override
-	public Collection<S> services() {
-		return services.get();
+	public final Collection<S> services() {
+		return services.values();
 	}
 
 }

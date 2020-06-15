@@ -1,16 +1,4 @@
-/*******************************************************************************
- * Copyright (c) 2020 ArSysOp
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License 2.0 which is available at
- * https://www.eclipse.org/legal/epl-2.0/.
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     ArSysOp - initial API and implementation
- *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.seal.demo.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,14 +16,14 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
+import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class EquinoxFrameworkSupplierTest {
-
+public final class DemoFrameworkContentTest {
 	@Test
 	public void accessible() {
-		assertTrue(new FrameworkSupplier().get().isPresent());
+		assertTrue(new DemoFrameworkSupplier().get().isPresent());
 	}
 
 	@Test
@@ -60,7 +48,7 @@ public final class EquinoxFrameworkSupplierTest {
 	}
 
 	private Framework framework() {
-		Optional<Framework> framework = new FrameworkSupplier().get();
+		Optional<Framework> framework = new DemoFrameworkSupplier().get();
 		assumeTrue(framework.isPresent());
 		return framework.get();
 	}
@@ -71,5 +59,4 @@ public final class EquinoxFrameworkSupplierTest {
 		assumeTrue(registry.isPresent());
 		return registry.get().get();
 	}
-
 }

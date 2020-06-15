@@ -29,7 +29,7 @@
 	<modules>
 		<module>../../bundles/org.eclipse.passage.seal.demo</module>
 		<module>../../features/org.eclipse.passage.demo.feature</module>
-		<module>../../tests/org.eclipse.passage.seal.tests</module>
+		<module>../../tests/org.eclipse.passage.seal.demo.tests</module>
 	</modules>
 
 </project>
