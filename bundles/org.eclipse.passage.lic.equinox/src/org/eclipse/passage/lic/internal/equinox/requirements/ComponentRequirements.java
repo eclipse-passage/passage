@@ -40,9 +40,8 @@ import org.slf4j.LoggerFactory;
 public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
-
-	private Optional<BundleContext> context;
-	private Optional<ServiceComponentRuntime> runtime;
+	private final Optional<BundleContext> context;
+	private final Optional<ServiceComponentRuntime> runtime;
 
 	public ComponentRequirements() {
 		context = Optional.of(FrameworkUtil.getBundle(getClass()).getBundleContext());
