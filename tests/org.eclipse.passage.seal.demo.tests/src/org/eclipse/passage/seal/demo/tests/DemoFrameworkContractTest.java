@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 @SuppressWarnings("restriction")
-public final class DemoFrameworkContractTest extends FrameworkContractTest{
+public final class DemoFrameworkContractTest extends FrameworkContractTest {
 
 	@Override
 	protected Optional<Framework> framework() {
