@@ -12,6 +12,16 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.junit.Test;
 
+/**
+ * <p>
+ * Here we check severe assumptions Passage does about instance of
+ * {@linkplain Framework} interface it operates with.
+ * </p>
+ * <p>
+ * Each sealed {@linkplain Framework} implementation must follow the contract:
+ * extend the test, supply a framework instance and succeed at every test.
+ * </p>
+ */
 @SuppressWarnings("restriction")
 public abstract class FrameworkContractTest {
 
@@ -46,5 +56,5 @@ public abstract class FrameworkContractTest {
 	protected abstract Optional<Framework> framework();
 
 	protected abstract boolean readOnly(Registry<?, ?> registry);
-	
+
 }
