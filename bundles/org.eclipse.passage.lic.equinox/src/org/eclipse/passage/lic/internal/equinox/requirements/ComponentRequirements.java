@@ -25,9 +25,6 @@ import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequireme
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,30 +58,6 @@ public final class ComponentRequirements implements ResolvedRequirements {
 	@Override
 	public StringServiceId id() {
 		return new StringServiceId("OSGi component"); //$NON-NLS-1$
-	}
-
-	@Activate
-	public void activate(BundleContext bundle) {
-		this.context = Optional.ofNullable(bundle);
-	}
-
-	@Deactivate
-	public void deactivate() {
-		this.context = Optional.empty();
-	}
-
-	@Reference
-	public void bindRuntime(ServiceComponentRuntime input) {
-		this.runtime = Optional.ofNullable(input);
-	}
-
-	public void unbindRuntime(ServiceComponentRuntime input) {
-		if (!runtime.isPresent()) {
-			return;
-		}
-		if (runtime.get() == input) {
-			runtime = Optional.empty();
-		}
 	}
 
 	@Override
