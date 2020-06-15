@@ -15,7 +15,11 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 import java.util.Set;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
+/**
+ * Integration test: requires OSGi running
+ */
 @SuppressWarnings("restriction")
 public final class ComponentRequirementsTest extends ResolvedRequirementsServiceTest {
 
@@ -32,6 +36,11 @@ public final class ComponentRequirementsTest extends ResolvedRequirementsService
 	@Override
 	protected Requirement single() {
 		return new DataBundle().goodWitch();
+	}
+
+	@Override
+	protected ResolvedRequirements service() {
+		return new ComponentRequirements();
 	}
 
 }
