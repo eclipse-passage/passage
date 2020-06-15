@@ -23,15 +23,17 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.tests.ResolvedRequirementsContractTest;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 
 @SuppressWarnings("restriction")
-abstract class ResolvedRequirementsServiceTest {
+abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContractTest {
 
 	@Test
 	public void providedAsResolvedRequirementsImpl() throws InvalidSyntaxException {
@@ -56,24 +58,29 @@ abstract class ResolvedRequirementsServiceTest {
 				new HashSet<Requirement>(forTheFeature));
 	}
 
-	protected abstract Class<?> serviceClass();
+	@Override
+	protected ResolvedRequirements service() {
+		Optional<ResolvedRequirements> service = mayBeService();
+		assumeTrue(service.isPresent());
+		return service.get();
+	}
 
-	protected abstract Set<Requirement> expectations();
-
-	protected abstract Requirement single();
-
-	private Optional<ResolvedRequirements> mayBeService() throws InvalidSyntaxException {
+	private Optional<ResolvedRequirements> mayBeService() {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
-		return context.getServiceReferences(ResolvedRequirements.class, null).stream() //
+		Collection<ServiceReference<ResolvedRequirements>> refs;
+		try {
+			refs = context.getServiceReferences(ResolvedRequirements.class, null); // API-dictated null
+		} catch (InvalidSyntaxException e) {
+			return Optional.empty();
+		}
+		return refs.stream() //
 				.map(s -> context.getService(s)) //
 				.filter(s -> s.getClass() == serviceClass()) //
 				.findAny();
 	}
 
-	private ResolvedRequirements service() throws InvalidSyntaxException {
-		Optional<ResolvedRequirements> service = mayBeService();
-		assumeTrue(service.isPresent());
-		return service.get();
-	}
+	protected abstract Class<?> serviceClass();
+
+	protected abstract Set<Requirement> expectations();
 
 }
