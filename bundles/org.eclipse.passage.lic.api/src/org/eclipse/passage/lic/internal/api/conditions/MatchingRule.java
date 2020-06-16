@@ -12,16 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions;
 
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+
 /**
  * <p>
- * Defines the way a actual string (tested) can be matched with a predefined
- * one. (beacon).
+ * Defines the way a two strings can be matched.
  * </p>
  * <p>
- * For example {@code perfect match} for any string type would mean absolute
- * equality, and {@code not less} match rule for a {@code version} strings would
- * mean that match is successful iff the tested version is greater or equal than
- * the beacon one.
+ * In scope of condition evaluation we find out if <i>version comes from
+ * {@linkplain Requirement}</i> ({@code required}) {@code match} to version
+ * definition string that comes from a license of source through
+ * {@linkplain Condition} ({@code allowed}).
+ * </p>
+ * <p>
+ * For example {@code perfect match} match rule would mean absolute equality.
  * </p>
  * 
  * @see VersionMatch
@@ -37,9 +41,9 @@ public abstract interface MatchingRule {
 	String identifier();
 
 	/**
-	 * Find out if the {@code tested} string {@code matches} with the {@code beacon}
-	 * one.
+	 * Find out if the {@code required} ({@code actual}) string {@code matches} with
+	 * the {@code allowed} one ({@code expected}).
 	 */
-	boolean match(String tested, String beacon);
+	boolean match(String required, String allowed);
 
 }
