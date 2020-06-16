@@ -30,6 +30,8 @@
 
 	<modules>
 		<module>../../bundles/org.eclipse.passage.lic.api</module>
+		<module>../../tests/org.eclipse.passage.lic.api.tests</module>
+
 		<module>../../bundles/org.eclipse.passage.lic.base</module>
 		<module>../../bundles/org.eclipse.passage.lic.equinox</module>
 		<module>../../features/org.eclipse.passage.lic.equinox.feature</module>

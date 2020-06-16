@@ -26,9 +26,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.framework.FrameworkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,20 +41,13 @@ import org.slf4j.LoggerFactory;
  * @see ResolvedRequirements
  */
 @SuppressWarnings("restriction")
-@Component
 public final class BundleRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
-	private Optional<BundleContext> context;
+	private final Optional<BundleContext> context;
 
-	@Activate
-	public void activate(BundleContext bundle) {
-		this.context = Optional.ofNullable(bundle);
-	}
-
-	@Deactivate
-	public void deactivate() {
-		this.context = Optional.empty();
+	public BundleRequirements() {
+		context = Optional.of(FrameworkUtil.getBundle(getClass()).getBundleContext());
 	}
 
 	@Override

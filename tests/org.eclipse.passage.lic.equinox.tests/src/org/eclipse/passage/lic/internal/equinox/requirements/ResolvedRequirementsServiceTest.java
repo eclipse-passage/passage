@@ -14,29 +14,21 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assume.assumeTrue;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.tests.ResolvedRequirementsContractTest;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.junit.Test;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 
 @SuppressWarnings("restriction")
-abstract class ResolvedRequirementsServiceTest {
-
-	@Test
-	public void providedAsResolvedRequirementsImpl() throws InvalidSyntaxException {
-		assertTrue(mayBeService().isPresent());
-	}
+abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContractTest {
 
 	@Test
 	public void allRequirements() throws InvalidSyntaxException {
@@ -59,21 +51,5 @@ abstract class ResolvedRequirementsServiceTest {
 	protected abstract Class<?> serviceClass();
 
 	protected abstract Set<Requirement> expectations();
-
-	protected abstract Requirement single();
-
-	private Optional<ResolvedRequirements> mayBeService() throws InvalidSyntaxException {
-		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
-		return context.getServiceReferences(ResolvedRequirements.class, null).stream() //
-				.map(s -> context.getService(s)) //
-				.filter(s -> s.getClass() == serviceClass()) //
-				.findAny();
-	}
-
-	private ResolvedRequirements service() throws InvalidSyntaxException {
-		Optional<ResolvedRequirements> service = mayBeService();
-		assumeTrue(service.isPresent());
-		return service.get();
-	}
 
 }

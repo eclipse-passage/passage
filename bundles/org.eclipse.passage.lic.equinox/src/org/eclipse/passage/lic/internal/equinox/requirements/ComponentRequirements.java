@@ -24,10 +24,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,41 +37,26 @@ import org.slf4j.LoggerFactory;
  * @see ResolvedRequirements
  */
 @SuppressWarnings("restriction")
-@Component
 public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
+	private final Optional<BundleContext> context;
+	private final Optional<ServiceComponentRuntime> runtime;
 
-	private Optional<BundleContext> context = Optional.empty();
-	private Optional<ServiceComponentRuntime> runtime = Optional.empty();
+	public ComponentRequirements() {
+		context = Optional.of(FrameworkUtil.getBundle(getClass()).getBundleContext());
+		runtime = retrieveRuntime();
+	}
+
+	private Optional<ServiceComponentRuntime> retrieveRuntime() {
+		BundleContext bundle = context.get();
+		return Optional.ofNullable(bundle.getServiceReference(ServiceComponentRuntime.class))
+				.map(ref -> bundle.getService(ref));
+	}
 
 	@Override
 	public StringServiceId id() {
 		return new StringServiceId("OSGi component"); //$NON-NLS-1$
-	}
-
-	@Activate
-	public void activate(BundleContext bundle) {
-		this.context = Optional.ofNullable(bundle);
-	}
-
-	@Deactivate
-	public void deactivate() {
-		this.context = Optional.empty();
-	}
-
-	@Reference
-	public void bindRuntime(ServiceComponentRuntime input) {
-		this.runtime = Optional.ofNullable(input);
-	}
-
-	public void unbindRuntime(ServiceComponentRuntime input) {
-		if (!runtime.isPresent()) {
-			return;
-		}
-		if (runtime.get() == input) {
-			runtime = Optional.empty();
-		}
 	}
 
 	@Override

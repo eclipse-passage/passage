@@ -10,33 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.seal.internal.demo;
+
+import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 @SuppressWarnings("restriction")
 @Component
-public final class EquinoxFramework implements Framework {
-
-	private ResolvedRequirementsRegistry requirements;
+public final class DemoFrameworkSupplier implements Supplier<Optional<Framework>> {
 
 	@Override
-	public ResolvedRequirementsRegistry requirementsRegistry() {
-		return requirements;
-	}
-
-	@Reference
-	public void bind(ResolvedRequirementsRegistry registry) {
-		this.requirements = registry;
-	}
-
-	public void unbind(ResolvedRequirementsRegistry registry) {
-		if (this.requirements.equals(registry)) {
-			this.requirements = null;
-		}
+	public Optional<Framework> get() {
+		return Optional.of(DemoFramework.demo);
 	}
 
 }

@@ -10,37 +10,32 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.requirements;
+package org.eclipse.passage.lic.api.tests;
 
-import java.util.Set;
+import java.util.Collection;
+import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.tests.fakes.FakeRequirement;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 /**
- * Integration test: requires OSGi running
+ * Each requirement resolution service must follow the contract.
+ * 
+ * @author user
+ *
  */
 @SuppressWarnings("restriction")
-public final class ComponentRequirementsTest extends ResolvedRequirementsServiceTest {
+public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectionTest<Requirement> {
 
-	@Override
-	protected Class<?> serviceClass() {
-		return ComponentRequirements.class;
+	protected Supplier<Collection<Requirement>> collection() {
+		return service()::all;
 	}
 
-	@Override
-	protected Set<Requirement> expectations() {
-		return new DataBundle().validRequirementsFromComponents();
-	}
-
-	@Override
 	protected Requirement single() {
-		return new DataBundle().goodWitch();
+		return new FakeRequirement();
 	}
 
-	@Override
-	protected ResolvedRequirements service() {
-		return new ComponentRequirements();
-	}
+	protected abstract ResolvedRequirements service();
 
 }
