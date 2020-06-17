@@ -33,10 +33,17 @@ public interface EvaluationInstructions {
 	EvaluationType type();
 
 	/**
+	 * <p>
 	 * Precise data for evaluation. Each evaluation type can expect it's own format
 	 * here.
+	 * </p>
+	 * <p>
+	 * {@code null} is prohibited. Use empty string to denote there is no
+	 * expression.
+	 * </p>
 	 * 
-	 * @return raw string mined from a license
+	 * @return raw string mined from a license, can be blank, cannot be
+	 *         {@code null}.
 	 */
 	String expression();
 
