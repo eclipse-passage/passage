@@ -19,15 +19,15 @@ import org.junit.Test;
 public final class TemporaryTest {
 	/**
 	 * <p>
-	 * There only contract (meaning abstract) tests in this bundle. Nonetheless,
-	 * it's still recognized as 'tests' bundle. All the special treatments are
-	 * applied: sure-fire plug-in is applied. This one fails on a bundle where is
+	 * There only contract (meaning abstract) tests are supposed to reside here. Nonetheless,
+	 * this bundle is recognized as 'tests' one. Among all the special treatments that are
+	 * applied for tests bundle sure-fire plug-in is triggered. This one fails on a bundle where is
 	 * nothing to run.
 	 * </p>
 	 * 
 	 * <p>
-	 * Thus we add a single deadly stupid but workable test especially for sure-fire
-	 * to make it go.
+	 * Thus we add a single deadly stupid but rock solid workable test especially for sure-fire
+	 * to make it go. 
 	 * </p>
 	 */
 	@Test
