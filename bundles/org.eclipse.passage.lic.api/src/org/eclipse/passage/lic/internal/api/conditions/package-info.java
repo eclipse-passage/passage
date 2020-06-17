@@ -17,8 +17,11 @@
  * </p>
  * <p>
  * {@code null}-free zone: no interface or class is intended to receive or
- * return {@code null}. Implementations must extend and satisfy the
- * corresponding contract tests.
+ * return {@code null}.
+ * </p>
+ * <p>
+ * Implementations must extend and satisfy the corresponding contract tests, if
+ * any.
  * </p>
  */
 package org.eclipse.passage.lic.internal.api.conditions;

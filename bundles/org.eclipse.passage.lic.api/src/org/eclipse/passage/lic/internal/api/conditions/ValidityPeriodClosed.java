@@ -16,22 +16,16 @@ import java.util.Date;
 
 /**
  * <p>
- * General purpose time period(s) definition in which {@code Condition} is
- * valid.
+ * Additionally to {@linkplain ValidityPeriodOpen} declares when the validity
+ * ends, thus denoting fixed period bounds.
  * </p>
  * <p>
- * Examples: 'from 1st of May, 2020 for two months' or 'each Friday ever'.
+ * Guarantees that if an instance survived creation, it is consistent:
+ * {@code from < to}
  * </p>
  */
-public interface ValidityPeriod {
+public interface ValidityPeriodClosed extends ValidityPeriodOpen {
 
-	/**
-	 * Check if the given {@code date} belongs to the validity period.
-	 * 
-	 * @param not null date to be checked if it belongs to the period of validity or
-	 *            not
-	 * @return {@code true} if date is valid and {@code false} otherwise
-	 */
-	boolean valid(Date date);
+	Date to();
 
 }
