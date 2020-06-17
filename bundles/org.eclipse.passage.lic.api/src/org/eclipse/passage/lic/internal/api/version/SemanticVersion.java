@@ -13,7 +13,9 @@
 package org.eclipse.passage.lic.internal.api.version;
 
 /**
+ * <p>
  * Well structured representation of a version.
+ * </p>
  */
 public interface SemanticVersion {
 
@@ -23,8 +25,26 @@ public interface SemanticVersion {
 
 	int service();
 
+	/**
+	 * Qualifier structure is not formalized (raw string) and it is optional.
+	 * 
+	 * @return {@code true} is qualification is defined for the version and
+	 *         {@code false} otherwise.
+	 */
 	boolean hasQualifier();
 
+	/**
+	 * <p>
+	 * Get qualifier, if it is defined for the version.
+	 * </p>
+	 * <p>
+	 * The call must be prevented by appealing to
+	 * {@linkplain SemanticVersion#hasQualifier()}.
+	 * </p>
+	 * <p>
+	 * Requesting absent qualifier must fire {@linkplain RuntimeException}.
+	 * </p>
+	 */
 	String qualifier();
 
 }
