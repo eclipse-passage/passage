@@ -8,21 +8,21 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 @SuppressWarnings("restriction")
-public final class FakeResolvedRequirements implements ResolvedRequirements{
+public final class FakeResolvedRequirements implements ResolvedRequirements {
 
 	private final Collection<Requirement> requirements;
-	
+
 	public FakeResolvedRequirements(Collection<Requirement> requirements) {
 		this.requirements = requirements;
 	}
-	
+
 	public FakeResolvedRequirements() {
 		this.requirements = Collections.emptySet();
 	}
 
 	@Override
 	public StringServiceId id() {
-		return new StringServiceId("fake-req-res");
+		return new StringServiceId("fake-req-res"); //$NON-NLS-1$
 	}
 
 	@Override

@@ -28,10 +28,12 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 @SuppressWarnings("restriction")
 public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectionTest<Requirement> {
 
+	@Override
 	protected Supplier<Collection<Requirement>> collection() {
 		return service()::all;
 	}
 
+	@Override
 	protected Requirement single() {
 		return new FakeRequirement();
 	}
