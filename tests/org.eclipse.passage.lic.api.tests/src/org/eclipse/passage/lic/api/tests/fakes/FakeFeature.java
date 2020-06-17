@@ -17,22 +17,22 @@ public final class FakeFeature implements Feature {
 
 	@Override
 	public String name() {
-		return String.format("Fake feature %s ", identity);
+		return String.format("Fake feature %s ", identity); //$NON-NLS-1$
 	}
 
 	@Override
 	public String version() {
-		return "0.0.7";
+		return "0.0.7"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String identifier() {
-		return String.format("fake_%s ", identity);
+		return String.format("fake_%s ", identity); //$NON-NLS-1$
 	}
 
 	@Override
 	public String provider() {
-		return "API tests";
+		return "API tests"; //$NON-NLS-1$
 	}
 
 }

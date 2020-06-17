@@ -23,38 +23,37 @@ public abstract class MatchingRuleContractTest {
 
 	@Test
 	public void absolutelyEqualVersionsMatch() {
-		String version = "1.23.456";
+		String version = "1.23.456"; //$NON-NLS-1$
 		assertTrue(create().match(version, version));
 	}
 
 	@Test
 	public void notVersionFailMatchiing() {
-		String incorrect = "this .is . not . a . version";
+		String incorrect = "this .is . not . a . version"; //$NON-NLS-1$
 		assertFalse(create().match(incorrect, incorrect));
-		assertFalse(create().match(incorrect, "1.2.3"));
-		assertFalse(create().match("3.2.1", incorrect));
+		assertFalse(create().match(incorrect, "1.2.3")); //$NON-NLS-1$
+		assertFalse(create().match("3.2.1", incorrect)); //$NON-NLS-1$
 	}
 
 	/**
-	 * For the same arguments matching must always return the same result 
+	 * For the same arguments matching must always return the same result
 	 */
 	@Test
 	public void matchingIsDeterministic() {
-		String required = "1.23.456";
-		String allowed = "1.23.0";
+		String required = "1.23.456"; //$NON-NLS-1$
+		String allowed = "1.23.0"; //$NON-NLS-1$
 		boolean first = create().match(required, allowed);
 		boolean second = create().match(required, allowed);
 		assertTrue(first == second);
 	}
-	
 
 	/**
 	 * A matching call does not affect further calls.
 	 */
 	@Test
 	public void matchingIsIdempotant() {
-		String required = "1.23.456";
-		String allowed = "1.23.0";
+		String required = "1.23.456"; //$NON-NLS-1$
+		String allowed = "1.23.0"; //$NON-NLS-1$
 		MatchingRule rule = create();
 		boolean first = rule.match(required, allowed);
 		boolean second = rule.match(required, allowed);

@@ -5,12 +5,11 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 @SuppressWarnings("restriction")
-public final class FakeRequirement implements Requirement{
+public final class FakeRequirement implements Requirement {
 
 	private final Feature feature;
 	private final RestrictionLevel level;
-	
-	
+
 	public FakeRequirement(Feature feature, RestrictionLevel level) {
 		this.feature = feature;
 		this.level = level;
@@ -40,7 +39,7 @@ public final class FakeRequirement implements Requirement{
 
 	@Override
 	public Object source() {
-		return "API Tests";
+		return "API Tests"; //$NON-NLS-1$
 	}
 
 }

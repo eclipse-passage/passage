@@ -40,13 +40,13 @@ public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpe
 	public void doNotReverseIncorectBounds() {
 		createForTwoDates(movedNow(10), movedNow(-10));
 	}
-	
+
 	/**
 	 * Implementation must rise NPE if there is no data for ending date definition.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void doNotInventFrom() {
-		createForTwoDates(new Date(), null);
+	public void doNotInventTo() {
+		createForTwoDates(null, new Date());
 	}
 
 	@Test
@@ -54,7 +54,20 @@ public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpe
 		ValidityPeriodClosed period = createForTwoDates(new Date(), movedNow(1));
 		assertTrue(period.from().before(period.to()));
 	}
-	
+
+	@Test
+	public void mustEndWithDefinedTo() {
+		mustBoundWithDefinedDate(this::someTimeBefore, ValidityPeriodClosed::to);
+	}
+
+	@Test
+	public void endIsConstant() {
+		boundIsConstant(this::someTimeBefore, ValidityPeriodClosed::to);
+
+	}
+
 	protected abstract ValidityPeriodClosed createForTwoDates(Date from, Date to);
+
+	protected abstract ValidityPeriodClosed someTimeBefore(Date to);
 
 }
