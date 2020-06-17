@@ -10,24 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.restrictions;
+package org.eclipse.passage.lic.internal.api.conditions;
 
 import java.util.Objects;
 
 /**
  * <p>
- * Severity of a licensing requirement and, accordingly, restriction verdict.
+ * Defines the way the condition will be evaluated in a running environment. For
+ * example, "hardware" means that specially dedicated module is going to access
+ * a workstation hardware in order to supply enough information to verify if the
+ * condition is met.
  * </p>
  * <p>
  * Designed to be a <i>data-class</i>.
  * </p>
  */
-public abstract class RestrictionLevel {
+public abstract class EvaluationType {
 
 	private final String identifier;
 
-	protected RestrictionLevel(String identifier) {
-		Objects.requireNonNull(identifier, "Identifier is mandatory for restriction level"); //$NON-NLS-1$
+	protected EvaluationType(String identifier) {
+		Objects.requireNonNull(identifier, "Identifier is mandatory for condition type"); //$NON-NLS-1$
 		this.identifier = identifier.trim().toLowerCase();
 	}
 
@@ -42,10 +45,10 @@ public abstract class RestrictionLevel {
 
 	@Override
 	public final boolean equals(Object object) {
-		if (!RestrictionLevel.class.isInstance(object)) {
+		if (!EvaluationType.class.isInstance(object)) {
 			return false;
 		}
-		return identifier.equals(((RestrictionLevel) object).identifier);
+		return identifier.equals(((EvaluationType) object).identifier);
 	}
 
 	@Override
@@ -53,38 +56,15 @@ public abstract class RestrictionLevel {
 		return identifier;
 	}
 
-	public static final class Info extends RestrictionLevel {
+	public static final class Hardware extends EvaluationType {
 
-		public Info() {
-			super("info"); //$NON-NLS-1$
+		public Hardware() {
+			super("hardware"); //$NON-NLS-1$
 		}
 
 	}
 
-	public static final class Warning extends RestrictionLevel {
-
-		public Warning() {
-			super("warn"); //$NON-NLS-1$
-		}
-	}
-
-	public final static class Error extends RestrictionLevel {
-
-		public Error() {
-			super("error"); //$NON-NLS-1$
-		}
-
-	}
-
-	public static final class Fatal extends RestrictionLevel {
-
-		public Fatal() {
-			super("fatal"); //$NON-NLS-1$
-		}
-
-	}
-
-	public static final class Of extends RestrictionLevel {
+	public static final class Of extends EvaluationType {
 
 		public Of(String identifier) {
 			super(identifier);
