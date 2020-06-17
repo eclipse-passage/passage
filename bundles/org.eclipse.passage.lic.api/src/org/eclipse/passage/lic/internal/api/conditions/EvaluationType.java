@@ -16,8 +16,10 @@ import java.util.Objects;
 
 /**
  * <p>
- * Defines the way the condition will be evaluated in a running environment. The
- * type of condition like "time" or "hardware".
+ * Defines the way the condition will be evaluated in a running environment. For
+ * example, "hardware" means that specially dedicated module is going to access
+ * a workstation hardware in order to supply enough information to verify if the
+ * condition is met.
  * </p>
  * <p>
  * Designed to be a <i>data-class</i>.
@@ -52,14 +54,6 @@ public abstract class EvaluationType {
 	@Override
 	public final String toString() {
 		return identifier;
-	}
-
-	public static final class Time extends EvaluationType {
-
-		public Time() {
-			super("time"); //$NON-NLS-1$
-		}
-
 	}
 
 	public static final class Hardware extends EvaluationType {
