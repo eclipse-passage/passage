@@ -21,16 +21,21 @@ package org.eclipse.passage.lic.internal.api.conditions;
  * <p>
  * This way or another a license defines which version of a feature is allowed
  * to use. It also defines <i>how far</i> from this specified version can be the
- * actual version of the feature that has been plugged to the product under
- * licensing.
+ * actual version of the feature that is found at runtime.
+ * </p>
+ * <p>
+ * The class aggregates both <i>data</i> (a string describing version demands)
+ * and <i>algorithmic</i> (knowing how to match couple of version-supplying
+ * strings) parts.
  * </p>
  * 
  * @see Condition
+ * @see MatchingRule
  */
 public interface VersionMatch {
 
 	/**
-	 * @return {@code version} definition string, can contain wildcards like
+	 * @return {@code version} definition string, can contain wild cards like
 	 *         {@code 1.12.*} meaning <i>any build of version {@code 1.12}</i>
 	 */
 	String version();
