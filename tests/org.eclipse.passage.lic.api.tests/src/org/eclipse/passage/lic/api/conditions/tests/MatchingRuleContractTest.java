@@ -61,7 +61,6 @@ public abstract class MatchingRuleContractTest {
 		assertTrue(first == second);
 	}
 
-
 	protected abstract MatchingRule create();
 
 }
