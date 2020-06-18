@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+// fully covered 
 public class LicensingVersionsTest {
 
 	@Test

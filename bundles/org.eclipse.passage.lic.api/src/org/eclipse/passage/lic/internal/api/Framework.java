@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 
 /**
@@ -37,5 +38,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsReg
 public interface Framework {
 
 	ResolvedRequirementsRegistry requirementsRegistry();
+
+	MinedConditionsRegistry conditionsRegistry();
 
 }

@@ -15,23 +15,28 @@ package org.eclipse.passage.lic.api.conditions;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 /**
- * <p>The miner to extract {@link LicensingCondition}s from different sources like</p>
+ * <p>
+ * The miner to extract {@link LicensingCondition}s from different sources like
+ * </p>
  * <ul>
  * <li>local file system</li>
  * <li>network server</li>
  * <li>etc</li>
  * </ul>
- * <p>The service is intended to implement the third phase of <i>access cycle</i>.</p>
+ * <p>
+ * The service is intended to implement the third phase of <i>access cycle</i>.
+ * </p>
  *
  * @see LicensingCondition
  * @see org.eclipse.passage.lic.api
+ * @deprecated use MinedConditions
  * @since 0.4.0
  */
+@Deprecated
 public interface ConditionMiner {
 
 	/**
-	 * Extracts {@link LicensingCondition}s for given
-	 * {@link LicensingConfiguration}
+	 * Extracts {@link LicensingCondition}s for given {@link LicensingConfiguration}
 	 * 
 	 * @param configuration the {@link LicensingConfiguration}
 	 * @return the {@link Iterable}<{@link LicensingCondition}>, may be empty
