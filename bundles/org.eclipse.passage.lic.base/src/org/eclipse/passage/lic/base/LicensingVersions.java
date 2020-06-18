@@ -14,14 +14,46 @@ package org.eclipse.passage.lic.base;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleGreaterOrEqual;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
+import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
+import org.eclipse.passage.lic.internal.base.version.SafeVersion;
+
 public final class LicensingVersions {
 
+	/**
+	 * @deprecated use {@linkplain SafeVersion} or {@linkplain DefaultVersion}
+	 */
+	@Deprecated
 	public static final String VERSION_DEFAULT = "0.0.0"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@linkplain MatchingRulePerfect}
+	 */
+	@Deprecated
 	public static final String RULE_PERFECT = "perfect"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@linkplain MatchingRuleEquivalent}
+	 */
+	@Deprecated
 	public static final String RULE_EQUIVALENT = "equivalent"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@linkplain MatchRuleEquivalentCompatible}
+	 */
+	@Deprecated
 	public static final String RULE_COMPATIBLE = "compatible"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@linkplain MatchingRuleGreaterOrEqual}
+	 */
+	@Deprecated
 	public static final String RULE_GREATER_OR_EQUAL = "greaterOrEqual"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@linkplain MatchingRuleDefault}
+	 */
+	@Deprecated
 	public static final String RULE_DEFAULT = RULE_COMPATIBLE;
 
 	private static final String SEPARATOR_REGEX = "\\."; //$NON-NLS-1$
@@ -30,6 +62,10 @@ public final class LicensingVersions {
 		// block
 	}
 
+	/**
+	 * @deprecated use {@linkplain SafeVersion}
+	 */
+	@Deprecated
 	public static String toVersionValue(Object object) {
 		if (object instanceof String) {
 			String version = (String) object;
@@ -90,6 +126,10 @@ public final class LicensingVersions {
 		return LicensingVersions.RULE_DEFAULT;
 	}
 
+	/**
+	 * @deprecated use MatchRule
+	 */
+	@Deprecated
 	public static boolean isMatch(String required, String allowed, String match) {
 		String rule = toRuleValue(match);
 		if (RULE_GREATER_OR_EQUAL.equals(rule)) {
@@ -110,6 +150,10 @@ public final class LicensingVersions {
 		return Objects.equals(required, allowed);
 	}
 
+	/**
+	 * @deprecated use {@linkplain MatchingRuleGreaterOrEqual}
+	 */
+	@Deprecated
 	public static boolean isGreaterOrEqual(String required, String allowed) {
 		if (VERSION_DEFAULT.equals(allowed)) {
 			return true;
@@ -117,14 +161,26 @@ public final class LicensingVersions {
 		return compare(required, allowed, 0);
 	}
 
+	/**
+	 * @deprecated use {@linkplain MatchingRuleCompatible}
+	 */
+	@Deprecated
 	public static boolean isCompatible(String required, String allowed) {
 		return compare(required, allowed, 1);
 	}
 
+	/**
+	 * @deprecated use {@linkplain MatchingRuleEquivalent}
+	 */
+	@Deprecated
 	public static boolean isEquivalent(String required, String allowed) {
 		return compare(required, allowed, 2);
 	}
 
+	/**
+	 * @deprecated use {@linkplain MatchingRulePerfect}
+	 */
+	@Deprecated
 	public static boolean isPerfect(String required, String allowed) {
 		if (required == null || allowed == null) {
 			return false;
@@ -132,6 +188,10 @@ public final class LicensingVersions {
 		return Objects.equals(required, allowed);
 	}
 
+	/**
+	 * Use {@linkplain MatchRule} implementations
+	 */
+	@Deprecated
 	public static boolean compare(String required, String allowed, int match) {
 		if (required == null || allowed == null) {
 			return false;

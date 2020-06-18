@@ -24,19 +24,19 @@ import org.junit.Test;
 public abstract class ValidityPeriodContractTest<V extends ValidityPeriod> {
 
 	@Test
-	public void dateCanBeValid() {
-		assertTrue(atLeastMonthLong(movedNow(-1)).valid(new Date()));
+	public final void dateCanBeValid() {
+		assertTrue(atLeastMonthLongFrom(movedNow(-1)).valid(new Date()));
 	}
 
 	@Test
-	public void dateCanBeInvalid() {
-		assertFalse(atLeastMonthLong(movedNow(1)).valid(new Date()));
+	public final void dateCanBeInvalid() {
+		assertFalse(atLeastMonthLongFrom(movedNow(1)).valid(new Date()));
 	}
 
-	protected Date movedNow(int hours) {
-		return new Date(System.currentTimeMillis() - hours * 3_600_000);
+	protected final Date movedNow(int hours) {
+		return new Date(System.currentTimeMillis() + hours * 3_600_000L);
 	}
 
-	protected abstract V atLeastMonthLong(Date from);
+	protected abstract V atLeastMonthLongFrom(Date from);
 
 }
