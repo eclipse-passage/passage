@@ -30,7 +30,7 @@ public abstract class EvaluationType {
 	private final String identifier;
 
 	protected EvaluationType(String identifier) {
-		Objects.requireNonNull(identifier, "Identifier is mandatory for condition type"); //$NON-NLS-1$
+		Objects.requireNonNull(identifier, "EvaluationType::identifier"); //$NON-NLS-1$
 		this.identifier = identifier.trim().toLowerCase();
 	}
 
