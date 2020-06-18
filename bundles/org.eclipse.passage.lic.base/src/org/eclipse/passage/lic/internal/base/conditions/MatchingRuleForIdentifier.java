@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
@@ -21,6 +22,7 @@ public final class MatchingRuleForIdentifier implements Supplier<MatchingRule> {
 	private final String identifier;
 
 	public MatchingRuleForIdentifier(String identifier) {
+		Objects.requireNonNull(identifier, "MatchingRuleForIdentifier::identifier"); //$NON-NLS-1$
 		this.identifier = identifier;
 	}
 
