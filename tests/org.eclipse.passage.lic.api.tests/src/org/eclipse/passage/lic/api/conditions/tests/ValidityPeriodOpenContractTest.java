@@ -39,22 +39,21 @@ public abstract class ValidityPeriodOpenContractTest<V extends ValidityPeriodOpe
 	 * definition.
 	 */
 	@Test(expected = NullPointerException.class)
-	public void doNotInventFrom() {
-		atLeastMonthLong(null);
+	public final void doNotInventFrom() {
+		atLeastMonthLongFrom(null);
 	}
 
 	@Test
-	public void mustStartWithDefinedFrom() {
-		mustBoundWithDefinedDate(this::atLeastMonthLong, V::from);
+	public final void mustStartWithDefinedFrom() {
+		mustBoundWithDefinedDate(this::atLeastMonthLongFrom, V::from);
 	}
 
 	@Test
-	public void fromIsConstant() {
-		boundIsConstant(this::atLeastMonthLong, V::from);
-
+	public final void fromIsConstant() {
+		boundIsConstant(this::atLeastMonthLongFrom, V::from);
 	}
 
-	protected void mustBoundWithDefinedDate(Function<Date, V> ctor, Function<V, Date> bound) {
+	protected final void mustBoundWithDefinedDate(Function<Date, V> ctor, Function<V, Date> bound) {
 		Date now = new Date();
 		V period = ctor.apply(now);
 		Date original = bound.apply(period);
@@ -62,12 +61,12 @@ public abstract class ValidityPeriodOpenContractTest<V extends ValidityPeriodOpe
 	}
 
 	@SuppressWarnings("deprecation") // it's intentional: we need to alter Date by any possible means
-	protected void boundIsConstant(Function<Date, V> ctor, Function<V, Date> bound) {
+	protected final void boundIsConstant(Function<Date, V> ctor, Function<V, Date> bound) {
 		// having
 		V period = ctor.apply(new Date());
 		Date original = new Date(bound.apply(period).getTime());
-		// when: alter period.from
-		period.from().setYear(1977);
+		// when: alter period.bound
+		bound.apply(period).setYear(1977);
 		// then
 		assertEquals(original, bound.apply(period));
 	}

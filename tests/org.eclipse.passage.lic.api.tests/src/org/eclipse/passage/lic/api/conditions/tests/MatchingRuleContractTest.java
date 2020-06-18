@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions.tests;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
@@ -22,28 +22,32 @@ import org.junit.Test;
 public abstract class MatchingRuleContractTest {
 
 	@Test
-	public void absolutelyEqualVersionsMatch() {
+	public final void absolutelyEqualVersionsMatch() {
 		String version = "1.23.456"; //$NON-NLS-1$
-		assertTrue(create().match(version, version));
+		assertTrue(rule().match(new String(version), new String(version)));
 	}
 
 	@Test
-	public void notVersionFailMatchiing() {
-		String incorrect = "this .is . not . a . version"; //$NON-NLS-1$
-		assertFalse(create().match(incorrect, incorrect));
-		assertFalse(create().match(incorrect, "1.2.3")); //$NON-NLS-1$
-		assertFalse(create().match("3.2.1", incorrect)); //$NON-NLS-1$
+	public final void absolutelyEqualNotVersionsMatch() {
+		String cadabra = "some strange 59t#.iQo/ing"; //$NON-NLS-1$
+		assertTrue(rule().match(new String(cadabra), new String(cadabra)));
+	}
+
+	@Test
+	public final void defaultVersionsMatch() {
+		String version = "0.0.0"; //$NON-NLS-1$
+		assertTrue(rule().match(version, version));
 	}
 
 	/**
 	 * For the same arguments matching must always return the same result
 	 */
 	@Test
-	public void matchingIsDeterministic() {
+	public final void matchingIsDeterministic() {
 		String required = "1.23.456"; //$NON-NLS-1$
 		String allowed = "1.23.0"; //$NON-NLS-1$
-		boolean first = create().match(required, allowed);
-		boolean second = create().match(required, allowed);
+		boolean first = rule().match(required, allowed);
+		boolean second = rule().match(required, allowed);
 		assertTrue(first == second);
 	}
 
@@ -51,15 +55,31 @@ public abstract class MatchingRuleContractTest {
 	 * A matching call does not affect further calls.
 	 */
 	@Test
-	public void matchingIsIdempotant() {
+	public final void matchingIsIdempotant() {
 		String required = "1.23.456"; //$NON-NLS-1$
 		String allowed = "1.23.0"; //$NON-NLS-1$
-		MatchingRule rule = create();
+		MatchingRule rule = rule();
 		boolean first = rule.match(required, allowed);
 		boolean second = rule.match(required, allowed);
 		assertTrue(first == second);
 	}
 
-	protected abstract MatchingRule create();
+	@Test
+	public final void allInstancesAreEqual() {
+		assertEquals(rule(), rule());
+	}
+
+	/**
+	 * An instance must hold no mutable data and be focused on the matching
+	 * algorithm only.
+	 */
+	@Test
+	public final void stateless() {
+		MatchingRule rule = rule();
+		rule.match("1.23.456", "stearing wheel"); //$NON-NLS-1$//$NON-NLS-2$
+		assertEquals(rule(), rule);
+	}
+
+	protected abstract MatchingRule rule();
 
 }
