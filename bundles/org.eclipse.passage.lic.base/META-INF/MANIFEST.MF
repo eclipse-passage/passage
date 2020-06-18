@@ -20,4 +20,5 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.internal.base.permission.observatory;x-internal:=true,
  org.eclipse.passage.lic.internal.base.registry;x-internal:=true,
  org.eclipse.passage.lic.internal.base.requirements;x-internal:=true,
- org.eclipse.passage.lic.internal.base.restrictions;x-internal:=true
+ org.eclipse.passage.lic.internal.base.restrictions;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.version;x-internal:=true
