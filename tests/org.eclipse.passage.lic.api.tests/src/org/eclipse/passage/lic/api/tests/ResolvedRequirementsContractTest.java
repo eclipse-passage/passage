@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectionTest<Requirement> {
 
 	@Override
-	protected Supplier<Collection<Requirement>> collection() {
+	protected final Supplier<Collection<Requirement>> collection() {
 		return service()::all;
 	}
 

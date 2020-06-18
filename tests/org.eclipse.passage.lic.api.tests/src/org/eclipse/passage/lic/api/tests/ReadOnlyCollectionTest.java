@@ -34,13 +34,13 @@ import org.junit.Test;
 public abstract class ReadOnlyCollectionTest<T> {
 
 	@Test
-	public void prohibitsInjections() {
+	public final void prohibitsInjections() {
 		testInterferenceResistence(shared -> shared.add(single()));
 		testInterferenceResistence(shared -> shared.addAll(Collections.singleton(single())));
 	}
 
 	@Test
-	public void prohibitsRemovals() {
+	public final void prohibitsRemovals() {
 		assumeTrue(collection().get().size() > 0);
 		testInterferenceResistence(Collection::clear);
 		testInterferenceResistence(shared -> shared.retainAll(Collections.emptyList()));

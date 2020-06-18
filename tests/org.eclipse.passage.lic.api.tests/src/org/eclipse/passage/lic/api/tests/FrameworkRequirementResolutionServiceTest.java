@@ -34,12 +34,12 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 public abstract class FrameworkRequirementResolutionServiceTest extends ReadOnlyCollectionTest<ResolvedRequirements> {
 
 	@Override
-	protected Supplier<Collection<ResolvedRequirements>> collection() {
+	protected final Supplier<Collection<ResolvedRequirements>> collection() {
 		return () -> framework().get().requirementsRegistry().get().services();
 	}
 
 	@Override
-	protected ResolvedRequirements single() {
+	protected final ResolvedRequirements single() {
 		return new FakeResolvedRequirements();
 	}
 
