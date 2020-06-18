@@ -38,13 +38,13 @@ import org.junit.Test;
 public abstract class FrameworkContractTest {
 
 	@Test
-	public void exists() {
+	public final void exists() {
 		assertNotNull(framework());
 		assertTrue(framework().isPresent());
 	}
 
 	@Test
-	public void canResolveRequirements() {
+	public final void canResolveRequirements() {
 		Registry<StringServiceId, ResolvedRequirements> registry = framework().get().requirementsRegistry().get();
 		assertNotNull(registry);
 		assertNotNull(registry.services());
@@ -52,12 +52,12 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public void prohibitsRequirementsResolutionExtension() {
+	public final void prohibitsRequirementsResolutionExtension() {
 		assertTrue(readOnly(framework().get().requirementsRegistry().get()));
 	}
 
 	@Test
-	public void prohibitsInjectionIntoRequirementResolutionServices() {
+	public final void prohibitsInjectionIntoRequirementResolutionServices() {
 		Registry<StringServiceId, ResolvedRequirements> registry = framework().get().requirementsRegistry().get();
 		int before = registry.services().size();
 		registry.services().add(new FakeResolvedRequirements());
