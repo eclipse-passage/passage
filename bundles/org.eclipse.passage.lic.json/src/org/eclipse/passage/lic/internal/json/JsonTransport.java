@@ -17,6 +17,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+/**
+ * @deprecated use revised version of transport (tobemoved package)
+ */
+@Deprecated
 public class JsonTransport {
 
 	private JsonTransport() {

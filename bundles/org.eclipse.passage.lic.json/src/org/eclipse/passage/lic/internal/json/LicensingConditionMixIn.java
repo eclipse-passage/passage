@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @deprecated use revised version of transport (package revision)
+ * @deprecated use revised version of transport (tobemoved package)
  */
 @Deprecated
 final class LicensingConditionMixIn implements LicensingCondition {
