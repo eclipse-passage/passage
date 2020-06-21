@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.api.tests.conditions.mining;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeTrue;
 
 import java.io.ByteArrayInputStream;
@@ -29,6 +30,11 @@ import org.junit.Test;
 
 @SuppressWarnings("restriction")
 public abstract class ConditionTransportContractTest {
+
+	@Test
+	public void identifiedByContentType() {
+		assertNotNull(transport().id());
+	}
 
 	@Test(expected = NullPointerException.class)
 	public void conditionsAreMandatory() throws IOException {
@@ -79,4 +85,5 @@ public abstract class ConditionTransportContractTest {
 	 * Supply as least two test condition for transportation
 	 */
 	protected abstract Collection<Condition> conditions();
+
 }
