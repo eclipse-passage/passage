@@ -12,27 +12,28 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.mining;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 /**
- * <p>
- * The miner to extract {@link Condition}s from different sources like
- * </p>
- * <ul>
- * <li>local file system</li>
- * <li>network server</li>
- * <li>etc</li>
- * </ul>
- * <p>
- * The service is intended to implement the third phase of <i>access cycle</i>.
- * </p>
+ * Persistence interface for {@link Condition}(s).
  */
-public interface MinedConditions extends Service<StringServiceId> {
+public interface ConditionTransport {
 
-	Collection<Condition> all() throws ConditionMiningException;
+	/**
+	 * Reads {@link Condition}(s) from the given {@link InputStream}. Stream remains
+	 * open.
+	 */
+	Collection<Condition> read(InputStream input) throws IOException;
+
+	/**
+	 * Writes {@link Condition}(s) to the given {@link OutputStream}. Stream remains
+	 * open.
+	 */
+	void write(Collection<Condition> conditions, OutputStream output) throws IOException;
 
 }
