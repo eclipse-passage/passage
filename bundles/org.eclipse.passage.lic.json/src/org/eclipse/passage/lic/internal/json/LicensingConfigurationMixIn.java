@@ -17,6 +17,10 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @deprecated use revised version of transport (package revision)
+ */
+@Deprecated
 final class LicensingConfigurationMixIn implements LicensingConfiguration {
 
 	static LicensingConfigurationMixIn create(LicensingConfiguration d) {
