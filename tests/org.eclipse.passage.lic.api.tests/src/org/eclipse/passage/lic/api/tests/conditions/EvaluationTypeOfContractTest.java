@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.conditions.tests;
+package org.eclipse.passage.lic.api.tests.conditions;
 
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.conditions.tests;
+package org.eclipse.passage.lic.api.tests.conditions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

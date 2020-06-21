@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.contract;
 
-import org.eclipse.passage.lic.api.conditions.tests.MatchingRuleContractTest;
+import org.eclipse.passage.lic.api.tests.conditions.MatchingRuleContractTest;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
