@@ -20,18 +20,20 @@ import java.io.OutputStream;
  * Transport interface for {@link LicensingCondition}(s).
  *
  * @since 0.4.0
+ * @deprecated use {@code lic.internal.api.ConditionTransport}
  */
+@Deprecated
 public interface ConditionTransport {
 
 	/**
-	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}. 
+	 * Reads {@link LicensingCondition}(s) from the given {@link InputStream}.
 	 *
 	 * @since 0.4.0
 	 */
 	Iterable<LicensingCondition> readConditions(InputStream input) throws IOException;
 
 	/**
-	 * Writes {@link LicensingCondition}(s) from the given {@link OutputStream}. 
+	 * Writes {@link LicensingCondition}(s) from the given {@link OutputStream}.
 	 *
 	 * @since 0.4.0
 	 */
