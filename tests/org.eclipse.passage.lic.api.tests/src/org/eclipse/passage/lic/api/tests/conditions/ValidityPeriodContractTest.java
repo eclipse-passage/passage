@@ -10,27 +10,33 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.version.tests;
+package org.eclipse.passage.lic.api.tests.conditions;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.internal.api.version.Version;
+import java.util.Date;
+
+import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public abstract class VersionContractTest {
+public abstract class ValidityPeriodContractTest<V extends ValidityPeriod> {
 
 	@Test
-	public void sameValuedVersionsAreEqual() {
-		assertTrue(fromString("1.0.0").equals(fromString("1.0.0"))); //$NON-NLS-1$//$NON-NLS-2$
+	public final void dateCanBeValid() {
+		assertTrue(atLeastMonthLongFrom(movedNow(-1)).valid(new Date()));
 	}
 
 	@Test
-	public void differentValuedVersionsAreNotEqual() {
-		assertFalse(fromString("1.0.0").equals(fromString("1.0.1"))); //$NON-NLS-1$//$NON-NLS-2$
+	public final void dateCanBeInvalid() {
+		assertFalse(atLeastMonthLongFrom(movedNow(1)).valid(new Date()));
 	}
 
-	protected abstract Version fromString(String source);
+	protected final Date movedNow(int hours) {
+		return new Date(System.currentTimeMillis() + hours * 3_600_000L);
+	}
+
+	protected abstract V atLeastMonthLongFrom(Date from);
 
 }

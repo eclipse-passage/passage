@@ -12,8 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
@@ -57,6 +61,21 @@ public final class BaseConditionTest {
 	@Test(expected = NullPointerException.class)
 	public void evaluationInstructionsAreMandatory() {
 		new BaseCondition(feature(), versionMatch(), validityPeriod(), null);
+	}
+
+	@Test
+	public void isDataTransitionObject() {
+		// given
+		VersionMatch match = versionMatch();
+		ValidityPeriod period = validityPeriod();
+		EvaluationInstructions instructions = evaluationInstructions();
+		// when
+		Condition condition = new BaseCondition(feature(), match, period, instructions);
+		// then
+		assertEquals(feature(), condition.feature());
+		assertTrue(match == condition.versionMatch());
+		assertTrue(period == condition.validityPeriod());
+		assertTrue(instructions == condition.evaluationInstructions());
 	}
 
 	private String feature() {

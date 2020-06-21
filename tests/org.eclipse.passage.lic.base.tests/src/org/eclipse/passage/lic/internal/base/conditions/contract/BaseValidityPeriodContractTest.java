@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions.contract;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.api.conditions.tests.ValidityPeriodClosedContractTest;
+import org.eclipse.passage.lic.api.tests.conditions.ValidityPeriodClosedContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.version.tests;
+package org.eclipse.passage.lic.api.tests.version;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeFalse;

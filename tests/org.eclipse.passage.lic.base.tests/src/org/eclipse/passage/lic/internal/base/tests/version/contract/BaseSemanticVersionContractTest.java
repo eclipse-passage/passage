@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.version.contract;
 
-import org.eclipse.passage.lic.api.version.tests.SemanticVersionContractTest;
+import org.eclipse.passage.lic.api.tests.version.SemanticVersionContractTest;
 import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
 import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
 

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.version.contract;
 
-import org.eclipse.passage.lic.api.version.tests.VersionContractTest;
+import org.eclipse.passage.lic.api.tests.version.VersionContractTest;
 import org.eclipse.passage.lic.internal.api.version.Version;
 import org.eclipse.passage.lic.internal.base.version.SafeVersion;
 
