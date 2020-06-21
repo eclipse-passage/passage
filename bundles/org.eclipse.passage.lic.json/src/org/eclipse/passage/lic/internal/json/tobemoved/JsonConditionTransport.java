@@ -22,9 +22,6 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
-/**
- * @since 0.6
- */
 @SuppressWarnings("restriction")
 public final class JsonConditionTransport implements ConditionTransport {
 
