@@ -1,0 +1,53 @@
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.passage.lic.json.tests.tobemoved;
+
+import java.util.Collection;
+
+import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.json.tobemoved.JsonConditionTransport;
+
+@SuppressWarnings("restriction")
+public final class JsonConditionTransportTest extends ConditionTransportContractTest {
+
+	@Override
+	protected String textual(Condition condition) {
+		return new StringBuffer() //
+				.append(condition.feature()).append('|') //
+				.append(condition.versionMatch().version()).append('|') //
+				.append(condition.versionMatch().rule().identifier()).append('|') //
+				.append(textual(((ValidityPeriodClosed) condition.validityPeriod()))).append('|') //
+				.append(condition.evaluationInstructions().type().identifier()).append('|') //
+				.append(condition.evaluationInstructions().expression()) //
+				.toString();
+
+	}
+
+	private String textual(ValidityPeriodClosed period) {
+		return String.format("%d-%d", period.from().getTime(), period.to().getTime()); //$NON-NLS-1$
+	}
+
+	@Override
+	protected ConditionTransport transport() {
+		return new JsonConditionTransport();
+	}
+
+	@Override
+	protected Collection<Condition> conditions() {
+		return new TestConditions().conditions();
+	}
+
+}
