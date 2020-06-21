@@ -19,6 +19,10 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @deprecated use revised version of transport (tobemoved package)
+ */
+@Deprecated
 final class LicensingConditionMixIn implements LicensingCondition {
 
 	static LicensingConditionMixIn create(LicensingCondition d) {

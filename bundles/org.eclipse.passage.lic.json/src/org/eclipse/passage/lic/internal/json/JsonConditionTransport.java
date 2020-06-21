@@ -27,6 +27,10 @@ import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @deprecated use revised version (tobemoved package)
+ */
+@Deprecated
 @Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_JSON })
 public class JsonConditionTransport implements ConditionTransport {
 

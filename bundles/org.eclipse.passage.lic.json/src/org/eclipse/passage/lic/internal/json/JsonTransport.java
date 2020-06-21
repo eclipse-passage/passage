@@ -17,6 +17,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+/**
+ * @deprecated use revised version of transport (tobemoved package)
+ */
+@Deprecated
 public class JsonTransport {
 
 	private JsonTransport() {
@@ -26,8 +30,9 @@ public class JsonTransport {
 	public static ObjectMapper createObjectMapper() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
-				.withFieldVisibility(JsonAutoDetect.Visibility.ANY).withGetterVisibility(JsonAutoDetect.Visibility.NONE)
-				.withSetterVisibility(JsonAutoDetect.Visibility.ANY)
+				.withFieldVisibility(JsonAutoDetect.Visibility.ANY)//
+				.withGetterVisibility(JsonAutoDetect.Visibility.NONE)//
+				.withSetterVisibility(JsonAutoDetect.Visibility.ANY)//
 				.withCreatorVisibility(JsonAutoDetect.Visibility.ANY));
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		mapper.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);

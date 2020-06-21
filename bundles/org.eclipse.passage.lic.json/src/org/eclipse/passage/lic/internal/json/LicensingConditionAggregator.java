@@ -17,6 +17,10 @@ import java.util.List;
 
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 
+/**
+ * @deprecated use revised version of transport (tobemoved package)
+ */
+@Deprecated
 public class LicensingConditionAggregator {
 
 	private final List<LicensingConditionMixIn> licensingConditions = new ArrayList<>();
