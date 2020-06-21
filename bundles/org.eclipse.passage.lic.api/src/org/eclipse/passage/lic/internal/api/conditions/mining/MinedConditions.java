@@ -33,6 +33,15 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
  */
 public interface MinedConditions extends Service<StringServiceId> {
 
-	Collection<Condition> all();
+	/**
+	 * 
+	 * @return all the conditions gained during the mining (caching possible, but
+	 *         not mandatory)
+	 * @throws ConditionMiningException in case of any undeniable misbehavior of a
+	 *                                  mining infrastructure: is it floating
+	 *                                  license server protocol discrepancy or file
+	 *                                  system failure
+	 */
+	Collection<Condition> all() throws ConditionMiningException;
 
 }
