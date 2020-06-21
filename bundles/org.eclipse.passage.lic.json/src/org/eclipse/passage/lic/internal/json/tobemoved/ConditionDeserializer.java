@@ -44,6 +44,7 @@ final class ConditionDeserializer extends StdDeserializer<Condition> {
 	@Override
 	public Condition deserialize(JsonParser parser, DeserializationContext context)
 			throws IOException, JsonProcessingException {
+		// FIXME: redesign innards basing on {@code NamedData}
 		JsonNode node = parser.getCodec().readTree(parser);
 		return new BaseCondition(node.get("feature").textValue(), //$NON-NLS-1$ ,
 				new BaseVersionMatch( //

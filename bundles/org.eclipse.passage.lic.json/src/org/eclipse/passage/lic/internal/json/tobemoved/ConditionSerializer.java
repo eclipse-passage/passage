@@ -34,6 +34,7 @@ final class ConditionSerializer extends StdSerializer<Condition> {
 
 	@Override
 	public void serialize(Condition condition, JsonGenerator gen, SerializerProvider provider) throws IOException {
+		// FIXME: redesign innards basing on {@code NamedData}
 		gen.writeStartObject();
 		gen.writeStringField("feature", condition.feature()); //$NON-NLS-1$
 		gen.writeStringField("version", condition.versionMatch().version()); //$NON-NLS-1$
