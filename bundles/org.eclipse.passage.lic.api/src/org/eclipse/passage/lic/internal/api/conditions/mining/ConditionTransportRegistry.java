@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.mining;
 
+import java.util.function.Supplier;
+
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 
-public interface ConditionTransportRegistry extends Registry<ContentType, ConditionTransport> {
+public interface ConditionTransportRegistry extends Supplier<Registry<ContentType, ConditionTransport>> {
 
 }
