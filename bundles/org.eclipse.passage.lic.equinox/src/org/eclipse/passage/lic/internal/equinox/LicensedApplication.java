@@ -15,21 +15,21 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.internal.base.BaseLicensingConfiguration;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
-public final class ApplicationConfiguration implements Supplier<LicensingConfiguration> {
+public final class LicensedApplication implements Supplier<LicensedProduct> {
 
 	private final IApplicationContext context;
 
-	public ApplicationConfiguration(IApplicationContext context) {
+	public LicensedApplication(IApplicationContext context) {
 		this.context = context;
 	}
 
 	@Override
-	public LicensingConfiguration get() {
-		return new BaseLicensingConfiguration(//
+	public LicensedProduct get() {
+		return new BaseLicensedProduct(//
 				new ApplicationIdentifier(context).get(), //
 				new ApplicationVersion(context).get());
 	}
