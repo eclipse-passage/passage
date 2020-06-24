@@ -10,12 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.hc.remote;
 
-import java.util.function.Supplier;
+import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 
-public interface ConditionTransportRegistry extends Supplier<Registry<ContentType, ConditionTransport>> {
+@SuppressWarnings("restriction")
+public interface Client<C> {
+
+	Collection<Condition> remoteConditions(Request<C> request, ResponseHandler miner) throws ConditionMiningException;
 
 }

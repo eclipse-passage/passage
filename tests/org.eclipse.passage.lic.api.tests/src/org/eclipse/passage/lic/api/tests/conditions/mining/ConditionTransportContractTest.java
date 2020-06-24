@@ -32,17 +32,17 @@ import org.junit.Test;
 public abstract class ConditionTransportContractTest {
 
 	@Test
-	public void identifiedByContentType() {
+	public final void identifiedByContentType() {
 		assertNotNull(transport().id());
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void conditionsAreMandatory() throws IOException {
+	public final void conditionsAreMandatory() throws IOException {
 		transport().write(null, new ByteArrayOutputStream());
 	}
 
 	@Test
-	public void readYourOwnWritings() throws IOException {
+	public final void readYourOwnWritings() throws IOException {
 		// given
 		Collection<Condition> sedentaries = conditions();
 		assumeTrue("Too few: supply at least two test conditions for transportation", sedentaries.size() > 1); //$NON-NLS-1$

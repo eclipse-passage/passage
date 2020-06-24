@@ -17,14 +17,14 @@ import org.eclipse.osgi.util.NLS;
 public class HcMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.HcMessages"; //$NON-NLS-1$
 
-	public static String HcConditionMiner_e_host_invalid;
-	public static String HcConditionMiner_e_port_invalid;
+	public static String DecryptedConditions_no_transport_for_content_type;
 
-	public static String HttpRequests_e_host_invalid;
-	public static String HttpRequests_e_port_invalid;
+	public static String DecryptedConditions_reading_error;
+
+	public static String HttpClient_final_error_message;
+	public static String HttpClient_not_ok_response;
 
 	static {
-		// initialize resource bundles
 		NLS.initializeMessages(BUNDLE_NAME, HcMessages.class);
 	}
 }

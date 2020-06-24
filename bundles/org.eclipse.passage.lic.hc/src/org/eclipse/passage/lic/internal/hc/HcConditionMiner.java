@@ -43,7 +43,6 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMiner;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.hc.HttpRequests;
-import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 
@@ -96,23 +95,20 @@ public class HcConditionMiner extends BaseConditionMiner {
 		try {
 			String hostValue = settingsMap.get(LicensingNet.LICENSING_SERVER_HOST);
 			if (hostValue == null || hostValue.isEmpty()) {
-				logger.log(Level.FINEST, HcMessages.HcConditionMiner_e_host_invalid);
 				return conditions;
 			}
 			String portValue = settingsMap.get(LicensingNet.LICENSING_SERVER_PORT);
 			if (portValue == null || portValue.isEmpty()) {
-				logger.log(Level.FINEST, HcMessages.HcConditionMiner_e_port_invalid);
 				return conditions;
 			}
 			String location = String.format(HOST_PORT, hostValue, portValue);
+			HttpHost host = HttpHost.create(location);
 
 			// FIXME: use LicensingConfiguration
 			String productId = "product.1"; //$NON-NLS-1$
 			String productVersion = "1.0.0"; //$NON-NLS-1$
 			Map<String, String> requestAttributes = HttpRequests.initRequestParams(hostValue, portValue,
 					LicensingNet.ROLE, productId, productVersion);
-			HttpHost host = HttpHost.create(location);
-
 			URIBuilder requestBulder = HttpRequests.createRequestURI(requestAttributes, ConditionActions.ACQUIRE);
 			// FIXME: rework API, it should never return null instead of builder instance
 			if (requestBulder == null) {

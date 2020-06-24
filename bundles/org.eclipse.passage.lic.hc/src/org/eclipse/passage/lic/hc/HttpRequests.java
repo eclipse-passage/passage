@@ -18,10 +18,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.http.client.utils.URIBuilder;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingProperties;
-import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,16 +58,12 @@ public final class HttpRequests {
 		if (hostAttr instanceof String) {
 			host = (String) hostAttr;
 		} else {
-			String message = NLS.bind(HcMessages.HttpRequests_e_host_invalid, String.valueOf(hostAttr));
-			LOG.info(message);
 			return null;
 		}
 		Object portAttr = attributes.get(PORT);
 		if (portAttr instanceof String) {
 			port = (String) portAttr;
 		} else {
-			String message = NLS.bind(HcMessages.HttpRequests_e_port_invalid, String.valueOf(portAttr));
-			LOG.info(message);
 			return null;
 		}
 

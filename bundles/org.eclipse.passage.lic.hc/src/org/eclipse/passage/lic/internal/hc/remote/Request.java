@@ -10,12 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.hc.remote;
 
-import java.util.function.Supplier;
+import java.net.URL;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
+public interface Request<R> {
 
-public interface ConditionTransportRegistry extends Supplier<Registry<ContentType, ConditionTransport>> {
+	URL url();
+
+	Configuration<R> config();
 
 }
