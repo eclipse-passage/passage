@@ -33,16 +33,10 @@ import org.junit.Test;
 
 @SuppressWarnings("restriction")
 public final class DemoFrameworkContentTest {
+	
 	@Test
-	public void accessible() {
+	public void supplied() {
 		assertTrue(new DemoFrameworkSupplier().get().isPresent());
-	}
-
-	@Test
-	public void providesRequrementsRegistry() {
-		Optional<ResolvedRequirementsRegistry> registry = //
-				Optional.ofNullable(framework().requirementsRegistry());
-		assertTrue(registry.isPresent());
 	}
 
 	@Test
@@ -59,16 +53,18 @@ public final class DemoFrameworkContentTest {
 		assertEquals(template.getClass(), registry.service(template.id()).getClass());
 	}
 
+	private Registry<StringServiceId, ResolvedRequirements> registry() {
+		Optional<ResolvedRequirementsRegistry> registry = //
+				Optional.ofNullable(framework().accessCycleConfiguration().requirementsRegistry());
+		assumeTrue(registry.isPresent());
+		return registry.get().get();
+	}
+	
 	private Framework framework() {
 		Optional<Framework> framework = new DemoFrameworkSupplier().get();
 		assumeTrue(framework.isPresent());
 		return framework.get();
 	}
 
-	private Registry<StringServiceId, ResolvedRequirements> registry() {
-		Optional<ResolvedRequirementsRegistry> registry = //
-				Optional.ofNullable(framework().requirementsRegistry());
-		assumeTrue(registry.isPresent());
-		return registry.get().get();
-	}
+	
 }

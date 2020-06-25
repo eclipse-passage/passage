@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import org.eclipse.passage.lic.api.tests.FrameworkContractTest;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 @SuppressWarnings("restriction")
@@ -30,7 +31,7 @@ public final class DemoFrameworkContractTest extends FrameworkContractTest {
 
 	@Override
 	protected boolean readOnly(Registry<?, ?> registry) {
-		return false;
+		return ReadOnlyRegistry.class.isInstance(registry);
 	}
 
 }

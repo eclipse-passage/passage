@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
@@ -45,7 +46,7 @@ public abstract class FrameworkContractTest {
 
 	@Test
 	public final void canResolveRequirements() {
-		Registry<StringServiceId, ResolvedRequirements> registry = framework().get().requirementsRegistry().get();
+		Registry<StringServiceId, ResolvedRequirements> registry = config().requirementsRegistry().get();
 		assertNotNull(registry);
 		assertNotNull(registry.services());
 		assertTrue(registry.services().size() > 0);
@@ -53,16 +54,25 @@ public abstract class FrameworkContractTest {
 
 	@Test
 	public final void prohibitsRequirementsResolutionExtension() {
-		assertTrue(readOnly(framework().get().requirementsRegistry().get()));
+		assertTrue(readOnly(config().requirementsRegistry().get()));
 	}
 
 	@Test
 	public final void prohibitsInjectionIntoRequirementResolutionServices() {
-		Registry<StringServiceId, ResolvedRequirements> registry = framework().get().requirementsRegistry().get();
+		Registry<StringServiceId, ResolvedRequirements> registry = config().requirementsRegistry().get();
 		int before = registry.services().size();
 		registry.services().add(new FakeResolvedRequirements());
 		assertTrue(before == registry.services().size());
 
+	}
+
+	@Test
+	public final void suppliesLicensedProductInformation() {
+		assertNotNull(framework().get().product());
+	}
+
+	private AccessCycleConfiguration config() {
+		return framework().get().accessCycleConfiguration();
 	}
 
 	protected abstract Optional<Framework> framework();

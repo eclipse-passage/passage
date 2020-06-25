@@ -12,26 +12,51 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 @SuppressWarnings("restriction")
-public final class LicensedApplication implements Supplier<LicensedProduct> {
+public final class LicensedApplication {
 
-	private final IApplicationContext context;
-
-	public LicensedApplication(IApplicationContext context) {
-		this.context = context;
+	public LicensedProduct product() throws LicensingException {
+		BundleContext context = context();
+		ServiceReference<IApplicationContext> reference = reference(context);
+		LicensedProduct product = product(context, reference);
+		context.ungetService(reference);
+		return product;
 	}
 
-	@Override
-	public LicensedProduct get() {
-		return new BaseLicensedProduct(//
-				new ApplicationIdentifier(context).get(), //
-				new ApplicationVersion(context).get());
+	private BundleContext context() throws LicensingException {
+		Optional<BundleContext> context = Optional.ofNullable(FrameworkUtil.getBundle(getClass()).getBundleContext());
+		if (!context.isPresent()) {
+			throw new LicensingException(EquinoxMessages.LicensedApplication_no_bundle_context);
+		}
+		return context.get();
+	}
+
+	private ServiceReference<IApplicationContext> reference(BundleContext context) throws LicensingException {
+		Optional<ServiceReference<IApplicationContext>> reference = //
+				Optional.ofNullable(context.getServiceReference(IApplicationContext.class));
+		if (!reference.isPresent()) {
+			throw new LicensingException(EquinoxMessages.LicensedApplication_no_application_context_service_ref);
+		}
+		return reference.get();
+	}
+
+	private LicensedProduct product(BundleContext context, ServiceReference<IApplicationContext> reference)
+			throws LicensingException {
+		Optional<IApplicationContext> service = Optional.ofNullable(context.getService(reference));
+		if (!service.isPresent()) {
+			throw new LicensingException(EquinoxMessages.LicensedApplication_application_context_service_unregistered);
+		}
+		return new LicensedApplicationFromContext(service.get()).get();
 	}
 
 }

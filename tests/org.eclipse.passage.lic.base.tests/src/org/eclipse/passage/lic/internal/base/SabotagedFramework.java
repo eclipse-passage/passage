@@ -14,7 +14,9 @@ package org.eclipse.passage.lic.internal.base;
 
 import java.util.ArrayList;
 
+import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -26,14 +28,31 @@ import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 @SuppressWarnings("restriction")
 final class SabotagedFramework implements Framework {
 
+	private final AccessCycleConfiguration config = new SabotagedAccessCycleConfiguration();
+	private final LicensedProduct product = new BaseLicensedProduct("test-product", "1.0.0"); //$NON-NLS-1$//$NON-NLS-2$
+
 	@Override
-	public ResolvedRequirementsRegistry requirementsRegistry() {
-		return new NoRequirementResolvers();
+	public LicensedProduct product() {
+		return product;
 	}
 
 	@Override
-	public MinedConditionsRegistry conditionsRegistry() {
-		return new NoConditionMiners();
+	public AccessCycleConfiguration accessCycleConfiguration() {
+		return config;
+	}
+
+	private static class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
+
+		@Override
+		public ResolvedRequirementsRegistry requirementsRegistry() {
+			return new NoRequirementResolvers();
+		}
+
+		@Override
+		public MinedConditionsRegistry conditionsRegistry() {
+			return new NoConditionMiners();
+		}
+
 	}
 
 	private static class NoRequirementResolvers implements ResolvedRequirementsRegistry {

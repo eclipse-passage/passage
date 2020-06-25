@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.InvalidLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 
 @SuppressWarnings("restriction")
@@ -33,16 +33,16 @@ public final class ApplicationIdentifier implements Supplier<String> {
 		if (property.isPresent()) {
 			return property.get();
 		}
-		String brandingId = context.getBrandingId();
-		if (brandingId != null) {
-			return brandingId;
+		String brand = context.getBrandingId();
+		if (brand != null) {
+			return brand;
 		}
-		String applicationId = context.getBrandingApplication();
-		if (applicationId != null) {
-			return applicationId;
+		String application = context.getBrandingApplication();
+		if (application != null) {
+			return application;
 		}
 		// OK, no more ideas
-		return new InvalidLicensingConfiguration().getProductIdentifier();
+		return new InvalidLicensedProduct().identifier();
 	}
 
 }

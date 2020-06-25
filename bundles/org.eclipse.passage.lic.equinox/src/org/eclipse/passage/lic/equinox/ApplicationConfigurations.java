@@ -18,7 +18,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.base.LicensingVersions;
-import org.eclipse.passage.lic.internal.equinox.ApplicationConfiguration;
+import org.eclipse.passage.lic.internal.equinox.LicensedApplicationFromContext;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -79,7 +79,7 @@ public class ApplicationConfigurations {
 
 	/**
 	 * 
-	 * @deprecated use {@linkplain ApplicationConfiguration}
+	 * @deprecated use {@linkplain LicensedApplicationFromContext}
 	 */
 	@Deprecated
 	public static LicensingConfiguration getLicensingConfiguration(IApplicationContext application) {

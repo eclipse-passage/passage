@@ -13,12 +13,19 @@
 package org.eclipse.passage.lic.api;
 
 /**
- * <p>A checked exception representing a failure.</p>
- * <p> Licensing exceptions contain a result object describing the cause of the exception. </p>
+ * <p>
+ * A checked exception representing a failure.
+ * </p>
+ * <p>
+ * Licensing exceptions contain a result object describing the cause of the
+ * exception.
+ * </p>
  * 
  * @see LicensingResult
+ * @deprecated use internal version
  * @since 0.4.0
  */
+@Deprecated
 public class LicensingException extends Exception {
 
 	private static final long serialVersionUID = 1L;

@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.InvalidLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
@@ -37,7 +37,7 @@ public final class ApplicationVersion implements Supplier<String> {
 		}
 		Bundle bundle = context.getBrandingBundle();
 		if (bundle == null) {
-			return new InvalidLicensingConfiguration().getProductVersion();
+			return new InvalidLicensedProduct().version();
 		}
 		return stringify(bundle.getVersion());
 	}

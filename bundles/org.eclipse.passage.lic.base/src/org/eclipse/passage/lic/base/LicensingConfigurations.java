@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.base;
 import java.util.Map;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.internal.base.BaseLicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.NamedData;
 
 /**
  * 
- * @deprecated use {@linkplain NamedData}, {@linkplain ProductInfo} or
- *             another implementations, {@linkplain BaseLicensingConfiguration}
+ * @deprecated use {@linkplain NamedData}, {@linkplain ProductInfo} or another
+ *             implementations, {@linkplain BaseLicensedProduct}
  */
 @Deprecated
 public final class LicensingConfigurations {
@@ -32,7 +32,7 @@ public final class LicensingConfigurations {
 
 	public static final String IDENTIFIER_INVALID = "org.eclipse.passage.lic.api.configuration.invalid"; //$NON-NLS-1$
 
-	public static final LicensingConfiguration INVALID = new BaseLicensingConfiguration(IDENTIFIER_INVALID,
+	public static final LicensingConfiguration INVALID = new LicConfig(IDENTIFIER_INVALID,
 			LicensingVersions.VERSION_DEFAULT);
 
 	private LicensingConfigurations() {
@@ -40,13 +40,35 @@ public final class LicensingConfigurations {
 	}
 
 	public static LicensingConfiguration create(String product, String version) {
-		return new BaseLicensingConfiguration(String.valueOf(product), String.valueOf(version));
+		return new LicConfig(String.valueOf(product), String.valueOf(version));
 	}
 
 	public static LicensingConfiguration create(Map<String, Object> properties) {
 		String product = String.valueOf(properties.get(LICENSING_PRODUCT_IDENTIFIER));
 		String version = String.valueOf(properties.get(LICENSING_PRODUCT_VERSION));
-		return new BaseLicensingConfiguration(product, version);
+		return new LicConfig(product, version);
+	}
+
+	private static final class LicConfig implements LicensingConfiguration {
+
+		private final String id;
+		private final String version;
+
+		private LicConfig(String id, String version) {
+			this.id = id;
+			this.version = version;
+		}
+
+		@Override
+		public String getProductIdentifier() {
+			return id;
+		}
+
+		@Override
+		public String getProductVersion() {
+			return version;
+		}
+
 	}
 
 }

@@ -56,7 +56,7 @@ public final class EquinoxPassage implements Passage {
 					.map(context::getService) //
 					// DI is used only to get rid of overwhelming dependencies here
 					.filter(supplier -> supplier.getClass().getName()
-							.equals("org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier")) //$NON-NLS-1$ FIXME
+							.equals("org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier")) //$NON-NLS-1$
 					.findAny();
 		} catch (InvalidSyntaxException e) {
 			log.error(EquinoxMessages.EquinoxPassage_no_framework, e);

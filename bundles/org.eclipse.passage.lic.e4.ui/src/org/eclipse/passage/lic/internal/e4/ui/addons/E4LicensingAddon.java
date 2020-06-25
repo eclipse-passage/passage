@@ -18,27 +18,27 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.internal.equinox.ApplicationConfiguration;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.internal.equinox.LicensedApplicationFromContext;
 import org.osgi.service.event.Event;
 
 @SuppressWarnings("restriction")
 public final class E4LicensingAddon {
 
-	private final IApplicationContext applicationContext;
+	private final IApplicationContext context;
 
 	@Inject
-	public E4LicensingAddon(IApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
+	public E4LicensingAddon(IApplicationContext context) {
+		this.context = context;
 	}
 
 	@Inject
 	@Optional
-	public void applicationStarted(
-			@SuppressWarnings("unused") @UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) Event event) {
-		LicensingConfiguration configuration = new ApplicationConfiguration(applicationContext).get();
-		new EquinoxPassage().checkLicense(configuration.getProductIdentifier());
+	public void applicationStarted(//
+			@SuppressWarnings("unused") //
+			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
+			Event event) {
+		new EquinoxPassage().checkLicense(new LicensedApplicationFromContext(context).get().identifier());
 	}
 
 }
