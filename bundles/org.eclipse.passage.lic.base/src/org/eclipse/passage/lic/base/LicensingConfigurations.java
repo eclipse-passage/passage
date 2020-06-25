@@ -13,10 +13,13 @@
 package org.eclipse.passage.lic.base;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.internal.base.ProductIdentifier;
+import org.eclipse.passage.lic.internal.base.ProductVersion;
 
 /**
  * 
@@ -67,6 +70,35 @@ public final class LicensingConfigurations {
 		@Override
 		public String getProductVersion() {
 			return version;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(id, version);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (!LicensingConfiguration.class.isInstance(obj)) {
+				return false;
+			}
+			LicensingConfiguration other = (LicensingConfiguration) obj;
+			if (!Objects.equals(id, other.getProductIdentifier())) {
+				return false;
+			}
+			if (!Objects.equals(version, other.getProductVersion())) {
+				return false;
+			}
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			StringBuilder output = new StringBuilder();
+			new NamedData.Writable<String>(new ProductIdentifier(id)).write(output);
+			output.append(';');
+			new NamedData.Writable<String>(new ProductVersion(version)).write(output);
+			return output.toString();
 		}
 
 	}
