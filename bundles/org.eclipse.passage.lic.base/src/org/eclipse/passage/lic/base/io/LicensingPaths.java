@@ -18,9 +18,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
 
 public final class LicensingPaths {
 
+	/**
+	 * @deprecated use {@link LicensingFolder}
+	 */
+	@Deprecated
 	public static final String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
 
 	public static final String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
@@ -31,17 +39,29 @@ public final class LicensingPaths {
 		// block
 	}
 
+	/**
+	 * @deprecated use {@link LicensingFolder} and {@link PathFromLocalUrl}
+	 */
+	@Deprecated
 	public static Path resolveBasePath(URL url) {
 		File file = new File(url.getPath());
 		Path path = Paths.get(file.getPath());
 		return path.resolve(FOLDER_LICENSING_BASE);
 	}
 
+	/**
+	 * @deprecated use {@link PathFromLicensedProduct} and {@link PathFromLocalUrl}
+	 */
+	@Deprecated
 	public static Path resolveConfigurationPath(URL url, LicensingConfiguration configuration) {
 		Path base = resolveBasePath(url);
 		return resolveConfigurationPath(base, configuration);
 	}
 
+	/**
+	 * @deprecated use {@link PathFromLicensedProduct}
+	 */
+	@Deprecated
 	public static Path resolveConfigurationPath(Path from, LicensingConfiguration configuration) {
 		Path basePath = from;
 		if (configuration == null) {
@@ -59,6 +79,10 @@ public final class LicensingPaths {
 		return productPath.resolve(version);
 	}
 
+	/**
+	 * @deprecated use {@link FileNameFromLicensedProduct}
+	 */
+	@Deprecated
 	public static String composeFileName(LicensingConfiguration configuration, String extension) {
 		String product = null;
 		String version = null;
