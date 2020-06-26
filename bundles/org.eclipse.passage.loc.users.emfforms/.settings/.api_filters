@@ -32,14 +32,6 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/passage/loc/users/emfforms/renderers/PackIdentifierRenderer.java" type="org.eclipse.passage.loc.users.emfforms.renderers.PackIdentifierRenderer">
-        <filter comment="Unintentional API" id="305365105">
-            <message_arguments>
-                <message_argument value="org.eclipse.passage.loc.users.emfforms.renderers.PackIdentifierRenderer"/>
-                <message_argument value="org.eclipse.passage.loc.users.emfforms_0.6.0"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/passage/loc/users/emfforms/renderers/PackIdentifierRendererService.java" type="org.eclipse.passage.loc.users.emfforms.renderers.PackIdentifierRendererService">
         <filter comment="Unintentional API" id="305365105">
             <message_arguments>

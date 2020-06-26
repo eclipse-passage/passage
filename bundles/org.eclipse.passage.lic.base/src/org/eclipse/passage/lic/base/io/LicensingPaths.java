@@ -18,11 +18,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.internal.base.io.FileExtension.LicenseDecrypted;
+import org.eclipse.passage.lic.internal.base.io.FileExtension.LicenseEncrypted;
+import org.eclipse.passage.lic.internal.base.io.FileExtension.PublicKey;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
 
+/**
+ * @deprecated in favor of new `lic.internal.base.io` facilities
+ */
+@Deprecated
 public final class LicensingPaths {
 
 	/**
@@ -31,8 +38,20 @@ public final class LicensingPaths {
 	@Deprecated
 	public static final String FOLDER_LICENSING_BASE = ".passage"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@link LicenseDecrypted}
+	 */
+	@Deprecated
 	public static final String EXTENSION_LICENSE_DECRYPTED = ".lic"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link LicenseEncrypted}
+	 */
+	@Deprecated
 	public static final String EXTENSION_LICENSE_ENCRYPTED = ".licen"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link PublicKey}
+	 */
+	@Deprecated
 	public static final String EXTENSION_PRODUCT_PUBLIC = ".pub"; //$NON-NLS-1$
 
 	private LicensingPaths() {
