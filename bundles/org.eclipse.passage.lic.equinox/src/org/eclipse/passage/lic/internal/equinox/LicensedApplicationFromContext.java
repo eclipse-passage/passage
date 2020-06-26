@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
-import java.util.Optional;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
@@ -22,21 +22,18 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 @SuppressWarnings("restriction")
 public final class LicensedApplicationFromContext implements Supplier<LicensedProduct> {
 
-	private final Supplier<Optional<IApplicationContext>> context;
+	private final IApplicationContext context;
 
 	public LicensedApplicationFromContext(IApplicationContext context) {
-		this.context = () -> Optional.of(context);
+		Objects.requireNonNull(context);
+		this.context = context;
 	}
 
 	@Override
 	public LicensedProduct get() {
-		Optional<IApplicationContext> supplied = context.get();
-		if (!supplied.isPresent()) {
-			throw new RuntimeException();
-		}
 		return new BaseLicensedProduct(//
-				new ApplicationIdentifier(supplied.get()).get(), //
-				new ApplicationVersion(supplied.get()).get());
+				new ApplicationIdentifier(context).get(), //
+				new ApplicationVersion(context).get());
 	}
 
 }
