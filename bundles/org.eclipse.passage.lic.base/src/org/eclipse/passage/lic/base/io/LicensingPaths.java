@@ -18,9 +18,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.internal.base.io.FileExtension.LicenseDecrypted;
-import org.eclipse.passage.lic.internal.base.io.FileExtension.LicenseEncrypted;
-import org.eclipse.passage.lic.internal.base.io.FileExtension.PublicKey;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension.LicenseDecrypted;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension.LicenseEncrypted;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension.PublicKey;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
