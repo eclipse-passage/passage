@@ -31,7 +31,8 @@ public final class Access {
 	}
 
 	public boolean canUse(String feature) {
-		Set<Requirement> requirements = new Requirements(framework.requirementsRegistry().get(), feature).get();
+		Set<Requirement> requirements = new Requirements(
+				framework.accessCycleConfiguration().requirementsRegistry().get(), feature).get();
 		if (requirements.isEmpty()) {
 			return true;
 		}

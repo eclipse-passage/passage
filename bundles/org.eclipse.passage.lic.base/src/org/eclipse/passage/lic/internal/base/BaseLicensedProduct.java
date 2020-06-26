@@ -14,61 +14,54 @@ package org.eclipse.passage.lic.internal.base;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lic.api.LicensingConfiguration;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 /**
- * Default data-driven implementation of {@code LicensingConfiguration}. True
- * {@code data-class}.
+ * Default data-driven implementation of {@code LicensedProduct} represents
+ * configuration of the running product. True {@code data-class}.
  * 
- * @see LicensingConfiguration
+ * @see LicensedProduct
  * @see ProductIdentifier
  * @see ProductVersion
  */
-public final class BaseLicensingConfiguration implements LicensingConfiguration {
+@SuppressWarnings("restriction")
+public final class BaseLicensedProduct implements LicensedProduct {
 
 	private final String identifier;
 	private final String version;
 
-	public BaseLicensingConfiguration(String product, String version) {
+	public BaseLicensedProduct(String product, String version) {
+		Objects.requireNonNull(product, "BaseLicensedProduct::product"); //$NON-NLS-1$
+		Objects.requireNonNull(version, "BaseLicensedProduct::version"); //$NON-NLS-1$
 		this.identifier = product;
 		this.version = version;
 	}
 
 	@Override
-	public String getProductIdentifier() {
+	public String identifier() {
 		return identifier;
 	}
 
 	@Override
-	public String getProductVersion() {
+	public String version() {
 		return version;
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
-		return result;
+		return Objects.hash(identifier, version);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (!LicensedProduct.class.isInstance(obj)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		LicensedProduct other = (LicensedProduct) obj;
+		if (!Objects.equals(identifier, other.identifier())) {
 			return false;
 		}
-		BaseLicensingConfiguration other = (BaseLicensingConfiguration) obj;
-		if (!Objects.equals(identifier, other.identifier)) {
-			return false;
-		}
-		if (!Objects.equals(version, other.version)) {
+		if (!Objects.equals(version, other.version())) {
 			return false;
 		}
 		return true;

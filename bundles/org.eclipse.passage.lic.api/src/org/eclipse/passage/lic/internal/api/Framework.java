@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
-
 /**
  * <p>
  * All the framework-relying constructions are to originate from this point this
@@ -37,8 +34,8 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsReg
  */
 public interface Framework {
 
-	ResolvedRequirementsRegistry requirementsRegistry();
+	LicensedProduct product();
 
-	MinedConditionsRegistry conditionsRegistry();
+	AccessCycleConfiguration accessCycleConfiguration();
 
 }

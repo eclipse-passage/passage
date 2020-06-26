@@ -42,6 +42,12 @@ public class EquinoxMessages extends NLS {
 	public static String EquinoxRestrictionExecutorRegistry_info_title;
 	public static String EquinoxRestrictionExecutorRegistry_warning_name;
 	public static String EquinoxRestrictionExecutorRegistry_warning_title;
+
+	public static String LicensedApplication_application_context_service_unregistered;
+
+	public static String LicensedApplication_no_application_context_service_ref;
+
+	public static String LicensedApplication_no_bundle_context;
 	public static String RequirementsFromCapability_no_attributes;
 	public static String RequirementsFromCapability_no_feature_id;
 
