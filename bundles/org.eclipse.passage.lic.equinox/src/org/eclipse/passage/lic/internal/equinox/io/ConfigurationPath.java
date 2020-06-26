@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
 /**
  * <p>
  * Accompanies {@code lic.base.internal.io} with eclipse-specific runtime
- * location: a product {@code .configuration} path.
+ * location: a product {@code configuration} path.
  * </p>
  * <p>
  * Decorate with {@link PathFromLicensedProduct} to get a product-named folder

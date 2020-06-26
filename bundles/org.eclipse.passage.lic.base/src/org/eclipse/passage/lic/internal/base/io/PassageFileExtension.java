@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.base.io;
 
 import java.util.function.Supplier;
 
-public interface FileExtension extends Supplier<String> {
+public interface PassageFileExtension extends Supplier<String> {
 
-	public static final class LicenseEncrypted implements FileExtension {
+	public static final class LicenseEncrypted implements PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -25,7 +25,7 @@ public interface FileExtension extends Supplier<String> {
 
 	}
 
-	public static final class LicenseDecrypted implements FileExtension {
+	public static final class LicenseDecrypted implements PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -34,7 +34,7 @@ public interface FileExtension extends Supplier<String> {
 
 	}
 
-	public static final class PublicKey implements FileExtension {
+	public static final class PublicKey implements PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -43,11 +43,20 @@ public interface FileExtension extends Supplier<String> {
 
 	}
 
-	public static final class PrivateKey implements FileExtension {
+	public static final class PrivateKey implements PassageFileExtension {
 
 		@Override
 		public String get() {
 			return ".scr"; //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class Settings implements PassageFileExtension {
+
+		@Override
+		public String get() {
+			return ".settings"; //$NON-NLS-1$
 		}
 
 	}
