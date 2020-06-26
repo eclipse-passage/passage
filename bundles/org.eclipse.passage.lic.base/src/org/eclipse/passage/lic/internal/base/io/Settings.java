@@ -34,9 +34,9 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 /**
  * <p>
  * Traverses all the files down to the given {@code base} directory looking for
- * <i>settings</i> files. These ones are read as property-files and one by one
- * and merged into the final map of properties, until {@code enough} predicate
- * says these is no need to proceed.
+ * <i>settings</i> files. These ones are read as property-files one by one and
+ * merged into the final map of properties, until {@code enough} predicate (if
+ * any) says these is no need to proceed.
  * </p>
  * 
  * @see PassageFileExtension.Settings
@@ -93,7 +93,7 @@ public final class Settings {
 					.forEach(e -> properties.put(//
 							e.getKey().toString(), //
 							e.getValue()));
-			return enough.test(properties) ? FileVisitResult.CONTINUE : FileVisitResult.TERMINATE;
+			return enough.test(properties) ? FileVisitResult.TERMINATE : FileVisitResult.CONTINUE;
 		}
 
 		private Set<Entry<Object, Object>> load(Path file) throws IOException {
