@@ -24,6 +24,8 @@ public class HcMessages extends NLS {
 	public static String HttpClient_final_error_message;
 	public static String HttpClient_not_ok_response;
 
+	public static String LicensingServerCoordinates_settings_not_found;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, HcMessages.class);
 	}
