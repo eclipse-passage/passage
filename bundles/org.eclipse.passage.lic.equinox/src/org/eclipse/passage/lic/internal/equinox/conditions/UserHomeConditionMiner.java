@@ -24,10 +24,13 @@ import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+@SuppressWarnings("restriction")
 @Component(service = ConditionMiner.class)
 public class UserHomeConditionMiner extends PathConditionMiner {
 
@@ -75,6 +78,11 @@ public class UserHomeConditionMiner extends PathConditionMiner {
 		super.unbindConditionTransport(transport, properties);
 	}
 
+	/**
+	 * @deprecated use {@link UserHomePath} in conjunction with
+	 *             {@link LicensingFolder}
+	 */
+	@Deprecated
 	@Override
 	protected Path getBasePath() {
 		String property = System.getProperty("user.home"); //$NON-NLS-1$

@@ -25,28 +25,51 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
+import org.eclipse.passage.lic.internal.equinox.io.ConfigurationPath;
+import org.eclipse.passage.lic.internal.equinox.io.InstalationPath;
 
+/**
+ * @deprecated in the favor of {@code lic.interal.base.io} Path suppliers
+ *             accompanied with {@linkplain InstalationPath} and
+ *             {@linkplain ConfigurationPath}
+ */
+@Deprecated
+@SuppressWarnings("restriction")
 public class EquinoxPaths {
 
+	/**
+	 * @deprecated use {@link InstalationPath} in decoration with
+	 *             {@link PathFromLicensedProduct}
+	 */
+	@Deprecated
 	public static Path resolveInstallConfigurationPath(LicensingConfiguration configuration) {
 		URL url = Platform.getInstallLocation().getURL();
 		return LicensingPaths.resolveConfigurationPath(url, configuration);
 	}
 
+	/**
+	 * @deprecated use {@link InstalationPath} in decoration with
+	 */
+	@Deprecated
 	public static Path resolveInstallBasePath() {
 		URL url = Platform.getInstallLocation().getURL();
 		return LicensingPaths.resolveBasePath(url);
 	}
 
+	/**
+	 * @deprecated it is not used now and is prohibited to use in the future. To be
+	 *             removed.
+	 */
+	@Deprecated
 	public static Path extractPath(String property, String value) throws LicensingException {
-		String source = EquinoxPaths.class.getName();
 		try {
 			return Paths.get(URIUtil.fromString(value));
 		} catch (URISyntaxException e) {
 			String pattern = EquinoxMessages.EquinoxPaths_uri_retrieval_error;
 			String message = NLS.bind(pattern, value, property);
-			LicensingResult result = LicensingResults.createError(message, source, e);
+			LicensingResult result = LicensingResults.createError(message, EquinoxPaths.class.getName(), e);
 			throw new LicensingException(result);
 		}
 	}

@@ -10,30 +10,29 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.base.io;
 
-import java.util.Objects;
+import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
-public final class LicensedApplicationFromContext implements Supplier<LicensedProduct> {
+public final class PathFromLicensedProduct implements Supplier<Path> {
 
-	private final IApplicationContext context;
+	private final Supplier<Path> base;
+	private final LicensedProduct product;
 
-	public LicensedApplicationFromContext(IApplicationContext context) {
-		Objects.requireNonNull(context);
-		this.context = context;
+	public PathFromLicensedProduct(Supplier<Path> base, LicensedProduct product) {
+		this.base = base;
+		this.product = product;
 	}
 
 	@Override
-	public LicensedProduct get() {
-		return new BaseLicensedProduct(//
-				new ApplicationIdentifier(context).get(), //
-				new ApplicationVersion(context).get());
+	public Path get() {
+		return base.get()//
+				.resolve(product.identifier())//
+				.resolve(product.version());
 	}
 
 }

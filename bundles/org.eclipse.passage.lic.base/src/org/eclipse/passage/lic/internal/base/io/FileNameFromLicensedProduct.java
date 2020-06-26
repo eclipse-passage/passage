@@ -10,30 +10,29 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.internal.base.io;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
-public final class LicensedApplicationFromContext implements Supplier<LicensedProduct> {
+public final class FileNameFromLicensedProduct implements Supplier<String> {
 
-	private final IApplicationContext context;
+	private final LicensedProduct product;
+	private final String extension;
 
-	public LicensedApplicationFromContext(IApplicationContext context) {
-		Objects.requireNonNull(context);
-		this.context = context;
+	public FileNameFromLicensedProduct(LicensedProduct product, String extension) {
+		this.product = product;
+		this.extension = extension;
 	}
 
 	@Override
-	public LicensedProduct get() {
-		return new BaseLicensedProduct(//
-				new ApplicationIdentifier(context).get(), //
-				new ApplicationVersion(context).get());
+	public String get() {
+		return String.format("%s_%s%s", //$NON-NLS-1$
+				product.identifier(), //
+				product.version(), //
+				extension);
 	}
 
 }
