@@ -23,7 +23,7 @@ public final class SettingsTest {
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@Test
-	public void enoughStopsSearcing() throws IOException, LicensingException {
+	public void enoughStopsSearching() throws IOException, LicensingException {
 		// given
 		String key = "common_key"; //$NON-NLS-1$
 		writeOverlappingSettings(key + " = some_value", new PassageFileExtension.Settings()); //$NON-NLS-1$
@@ -37,7 +37,7 @@ public final class SettingsTest {
 	}
 
 	@Test
-	public void neverEnoughDoesNotStopSearcing() throws IOException, LicensingException {
+	public void neverEnoughDoesNotStopSearching() throws IOException, LicensingException {
 		// given
 		writeOverlappingSettings("x=X", new PassageFileExtension.Settings()); //$NON-NLS-1$
 		// when
