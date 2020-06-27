@@ -23,6 +23,15 @@ public final class LicensingServerPort extends StringNamedData {
 		super(container);
 	}
 
+	public LicensingServerPort(String value) {
+		super(value);
+	}
+
+	@Override
+	public String entrySeparator() {
+		return "\n"; //$NON-NLS-1$
+	}
+
 	@Override
 	public String key() {
 		return "licensing.server.port"; //$NON-NLS-1$

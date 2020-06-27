@@ -23,6 +23,15 @@ public final class LicensingServerHost extends StringNamedData {
 		super(container);
 	}
 
+	public LicensingServerHost(String value) {
+		super(value);
+	}
+
+	@Override
+	public String entrySeparator() {
+		return "\n"; //$NON-NLS-1$
+	}
+
 	@Override
 	public String key() {
 		return "licensing.server.host"; //$NON-NLS-1$

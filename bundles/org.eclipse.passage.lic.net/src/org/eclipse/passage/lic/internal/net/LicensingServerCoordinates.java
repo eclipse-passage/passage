@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.net;
 
 import java.nio.file.Path;
 import java.util.Map;
@@ -20,9 +20,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.base.io.Settings;
-import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
-import org.eclipse.passage.lic.internal.net.LicensingServerHost;
-import org.eclipse.passage.lic.internal.net.LicensingServerPort;
+import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
 
 /**
  * <p>
@@ -51,19 +49,23 @@ public final class LicensingServerCoordinates {
 	 * @throws LicensingException in case of errors during file reading or setting
 	 *                            analysis
 	 */
-	public String get() throws LicensingException {
+	public HostPort get() throws LicensingException {
 		Map<String, Object> properties = new Settings(settings, this::necessaryPropertiesExist).get();
-		return String.format(//
-				"%s:%s", //$NON-NLS-1$
+		return new HostPort(//
 				value(new LicensingServerHost(properties)), //
 				value(new LicensingServerPort(properties)));
 	}
 
 	private String value(StringNamedData data) throws LicensingException {
 		Optional<String> value = data.get();
-		if (value.isPresent()) {
-			throw new LicensingException(
-					String.format(HcMessages.LicensingServerCoordinates_settings_not_found, data.key()));
+		if (!value.isPresent()) {
+			throw new LicensingException(//
+					String.format(NetMessages.LicensingServerCoordinates_settings_not_found, data.key()));
+		}
+		if (value.get().trim().isEmpty()) {
+			throw new LicensingException(//
+					String.format(NetMessages.LicensingServerCoordinates_settings_are_blank, data.key()));
+
 		}
 		return value.get();
 	}
@@ -73,4 +75,22 @@ public final class LicensingServerCoordinates {
 				new LicensingServerPort(properties).get().isPresent();
 	}
 
+	public static final class HostPort {
+		private final String host;
+		private final String port;
+
+		public HostPort(String host, String port) {
+			this.host = host;
+			this.port = port;
+		}
+
+		public String host() {
+			return host;
+		}
+
+		public String port() {
+			return port;
+		}
+
+	}
 }
