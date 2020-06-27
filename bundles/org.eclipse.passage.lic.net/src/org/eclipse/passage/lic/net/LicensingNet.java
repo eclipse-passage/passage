@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.net;
 
+import org.eclipse.passage.lic.internal.net.LicensingServerHost;
+import org.eclipse.passage.lic.internal.net.LicensingServerPort;
+
 /**
  * 
  * @since 0.5.0
@@ -19,7 +22,15 @@ package org.eclipse.passage.lic.net;
  */
 public class LicensingNet {
 
+	/**
+	 * @deprecated use {@link LicensingServerHost}
+	 */
+	@Deprecated
 	public static final String LICENSING_SERVER_HOST = "licensing.server.host"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link LicensingServerPort}
+	 */
+	@Deprecated
 	public static final String LICENSING_SERVER_PORT = "licensing.server.port"; //$NON-NLS-1$
 
 	public static final String ROLE = "role"; //$NON-NLS-1$

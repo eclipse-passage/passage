@@ -12,11 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.io;
 
+import java.nio.file.Path;
 import java.util.function.Supplier;
 
-public interface PassageFileExtension extends Supplier<String> {
+public abstract class PassageFileExtension implements Supplier<String> {
 
-	public static final class LicenseEncrypted implements PassageFileExtension {
+	public final boolean ends(Path path) {
+		return path.getFileName().toString().endsWith(get());
+	}
+
+	public static final class LicenseEncrypted extends PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -25,7 +30,7 @@ public interface PassageFileExtension extends Supplier<String> {
 
 	}
 
-	public static final class LicenseDecrypted implements PassageFileExtension {
+	public static final class LicenseDecrypted extends PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -34,7 +39,7 @@ public interface PassageFileExtension extends Supplier<String> {
 
 	}
 
-	public static final class PublicKey implements PassageFileExtension {
+	public static final class PublicKey extends PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -43,7 +48,7 @@ public interface PassageFileExtension extends Supplier<String> {
 
 	}
 
-	public static final class PrivateKey implements PassageFileExtension {
+	public static final class PrivateKey extends PassageFileExtension {
 
 		@Override
 		public String get() {
@@ -52,7 +57,7 @@ public interface PassageFileExtension extends Supplier<String> {
 
 	}
 
-	public static final class Settings implements PassageFileExtension {
+	public static final class Settings extends PassageFileExtension {
 
 		@Override
 		public String get() {
