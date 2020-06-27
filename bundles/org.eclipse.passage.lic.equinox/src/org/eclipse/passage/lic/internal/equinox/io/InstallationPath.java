@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
  * </p>
  */
 @SuppressWarnings("restriction")
-public final class InstalationPath implements Supplier<Path> {
+public final class InstallationPath implements Supplier<Path> {
 
 	@Override
 	public Path get() {

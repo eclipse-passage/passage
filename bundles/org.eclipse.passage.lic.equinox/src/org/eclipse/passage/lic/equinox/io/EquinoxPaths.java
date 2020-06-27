@@ -28,11 +28,11 @@ import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.internal.equinox.io.ConfigurationPath;
-import org.eclipse.passage.lic.internal.equinox.io.InstalationPath;
+import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 
 /**
  * @deprecated in the favor of {@code lic.interal.base.io} Path suppliers
- *             accompanied with {@linkplain InstalationPath} and
+ *             accompanied with {@linkplain InstallationPath} and
  *             {@linkplain ConfigurationPath}
  */
 @Deprecated
@@ -40,7 +40,7 @@ import org.eclipse.passage.lic.internal.equinox.io.InstalationPath;
 public class EquinoxPaths {
 
 	/**
-	 * @deprecated use {@link InstalationPath} in decoration with
+	 * @deprecated use {@link InstallationPath} in decoration with
 	 *             {@link PathFromLicensedProduct}
 	 */
 	@Deprecated
@@ -50,7 +50,7 @@ public class EquinoxPaths {
 	}
 
 	/**
-	 * @deprecated use {@link InstalationPath} in decoration with
+	 * @deprecated use {@link InstallationPath} in decoration with
 	 */
 	@Deprecated
 	public static Path resolveInstallBasePath() {
