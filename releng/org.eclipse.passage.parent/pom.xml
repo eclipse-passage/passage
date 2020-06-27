@@ -42,9 +42,9 @@
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
-		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.16-I-builds/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</released.baseline>
-		<staging.baseline>https://download.eclipse.org/passage/updates/release/0.7.0/ldc/</staging.baseline>
+		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.17-I-builds/</eclipserun-repo>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/0.9.0/ldc/</released.baseline>
+		<staging.baseline>https://download.eclipse.org/passage/updates/release/0.9.0/ldc/</staging.baseline>
 
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
