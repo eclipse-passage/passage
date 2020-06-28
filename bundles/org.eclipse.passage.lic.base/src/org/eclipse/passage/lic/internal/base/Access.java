@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
  * Top-level access cycle management is to be implemented here. Just started
  * with what we have for now: requirements resolution.
  */
-@SuppressWarnings("restriction")
 public final class Access {
 
 	private final Framework framework;

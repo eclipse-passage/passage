@@ -41,7 +41,6 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * 
  * @see PassageFileExtension.Settings
  */
-@SuppressWarnings("restriction")
 public final class Settings {
 
 	private final Supplier<Path> base;
