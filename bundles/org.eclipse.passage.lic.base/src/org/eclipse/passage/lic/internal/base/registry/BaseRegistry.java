@@ -37,7 +37,6 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * 
  * @param <S> type of {@linkplain Service} to keep
  */
-@SuppressWarnings("restriction")
 public abstract class BaseRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 
 	protected final Map<I, S> services;
