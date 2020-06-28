@@ -23,6 +23,8 @@ public class HcMessages extends NLS {
 	public static String HttpClient_final_error_message;
 	public static String HttpClient_not_ok_response;
 
+	public static String RemoteConditionsRequest_failed_to_compose_url;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, HcMessages.class);
 	}

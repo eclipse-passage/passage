@@ -12,14 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.net;
 
+import org.eclipse.passage.lic.internal.api.conditions.UserRole;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.LicensingRole;
 import org.eclipse.passage.lic.internal.net.LicensingServerHost;
 import org.eclipse.passage.lic.internal.net.LicensingServerPort;
 
 /**
- * 
+ * @deprecated use proper constructions form
+ *             {@code org.eclipse.passage.lic.internal.api.conditions} and
+ *             {@code org.eclipse.passage.lic.internal.net}
  * @since 0.5.0
- *
  */
+@Deprecated
+@SuppressWarnings("restriction")
 public class LicensingNet {
 
 	/**
@@ -33,11 +39,31 @@ public class LicensingNet {
 	@Deprecated
 	public static final String LICENSING_SERVER_PORT = "licensing.server.port"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@link LicensingRole}
+	 */
+	@Deprecated
 	public static final String ROLE = "role"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link UserRole.Admin}
+	 */
+	@Deprecated
 	public static final String ROLE_ADMIN = "admin"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link UserRole.Licensee}
+	 */
+	@Deprecated
 	public static final String ROLE_LICENSEE = "licensee"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link UserRole.Operator}
+	 */
+	@Deprecated
 	public static final String ROLE_OPERATOR = "operator"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@link LicensingAction}
+	 */
+	@Deprecated
 	public static final String ACTION = "action"; //$NON-NLS-1$
 
 }

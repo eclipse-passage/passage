@@ -13,7 +13,9 @@
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
@@ -24,9 +26,11 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 public final class RemoteConditions implements MinedConditions {
 
 	private final StringServiceId id = new StringServiceId("remote"); //$NON-NLS-1$
+	private final Supplier<LicensedProduct> product;
 	private final ConditionTransportRegistry transports;
 
-	public RemoteConditions(ConditionTransportRegistry transports) {
+	public RemoteConditions(Supplier<LicensedProduct> product, ConditionTransportRegistry transports) {
+		this.product = product;
 		this.transports = transports;
 	}
 
@@ -39,7 +43,7 @@ public final class RemoteConditions implements MinedConditions {
 	@Override
 	public Collection<Condition> all() throws ConditionMiningException {
 		return new HttpClient().remoteConditions(//
-				new LicensingServerRequest(), //
+				new RemoteConditionsRequest(product.get()), //
 				new DecryptedConditions(transports));
 	}
 

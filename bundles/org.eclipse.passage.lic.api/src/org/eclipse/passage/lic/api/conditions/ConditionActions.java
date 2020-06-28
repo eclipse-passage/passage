@@ -12,11 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions;
 
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+
 /**
  * Actions to be performed with {@link LicensingCondition}(s)
  * 
  * @since 0.5.0
+ * @deprecated use {@link ConditionAction}
  */
+@Deprecated
 public class ConditionActions {
 
 	private ConditionActions() {
@@ -28,21 +32,27 @@ public class ConditionActions {
 	 * be periodically confirmed with {@link #KEEP} action
 	 *
 	 * @since 0.5.0
+	 * @deprecated use {@link ConditionAction.Aquire}
 	 */
+	@Deprecated
 	public static final String ACQUIRE = "acquire"; //$NON-NLS-1$
 
 	/**
 	 * Keep the {@link LicensingCondition} for the usage
 	 *
 	 * @since 0.5.0
+	 * @deprecated use {@link ConditionAction.Keep}
 	 */
+	@Deprecated
 	public static final String KEEP = "keep"; //$NON-NLS-1$
 
 	/**
 	 * Release the {@link LicensingCondition} to be available for others
 	 *
 	 * @since 0.5.0
+	 * @deprecated use {@link ConditionAction.Release}
 	 */
+	@Deprecated
 	public static final String RELEASE = "release"; //$NON-NLS-1$
 
 }
