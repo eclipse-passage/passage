@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
 
-@SuppressWarnings("restriction")
 public final class BaseSemanticVersion implements SemanticVersion {
 
 	private final int major;

@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
  * Auxiliary unit operating over {@linkplain SemanticVersion} collects it's
  * numerical fields in a list.
  */
-@SuppressWarnings("restriction")
 public final class NumericalVersion implements Supplier<List<Integer>> {
 
 	private final SemanticVersion version;

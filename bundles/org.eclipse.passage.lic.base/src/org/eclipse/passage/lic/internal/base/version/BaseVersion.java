@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.version.Version;
 /**
  * 
  */
-@SuppressWarnings("restriction")
 public abstract class BaseVersion implements Version {
 
 	@Override

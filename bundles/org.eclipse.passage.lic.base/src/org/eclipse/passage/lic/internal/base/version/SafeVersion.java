@@ -28,7 +28,6 @@ import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
  * inconsistency.
  * </p>
  */
-@SuppressWarnings("restriction")
 public final class SafeVersion extends BaseVersion {
 
 	private final Object source;
