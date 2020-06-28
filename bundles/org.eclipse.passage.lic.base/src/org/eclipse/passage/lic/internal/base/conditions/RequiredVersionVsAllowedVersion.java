@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.internal.base.version.SafeVersion;
  * {@linkplain Requirement}s) fits to the {@code expected} version (which comes
  * from license by means of licensing {@linkplain Condition}s.
  */
-@SuppressWarnings("restriction")
 public final class RequiredVersionVsAllowedVersion {
 
 	private final String required;

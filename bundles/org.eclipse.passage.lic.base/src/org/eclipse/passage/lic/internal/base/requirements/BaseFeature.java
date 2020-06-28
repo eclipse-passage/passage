@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.requirements.Feature;
 /**
  * Base <i>data driven</i> implementation of a {@linkplain Feature} descriptor.
  */
-@SuppressWarnings("restriction")
 public final class BaseFeature implements Feature {
 
 	private final String id;
