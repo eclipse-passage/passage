@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 /**
  * Base <i>data-driven</i> implementation of a {@linkplain Requirement}.
  */
-@SuppressWarnings("restriction")
 public final class BaseRequirement implements Requirement {
 
 	private final Feature feature;

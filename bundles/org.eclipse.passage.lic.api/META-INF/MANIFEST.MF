@@ -26,5 +26,5 @@ Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.internal.api.conditions.mining;x-internal:=true,
  org.eclipse.passage.lic.internal.api.registry;x-internal:=true,
  org.eclipse.passage.lic.internal.api.requirements;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.restrictions;x-internal:=true,
+ org.eclipse.passage.lic.internal.api.restrictions;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.version;x-internal:=true

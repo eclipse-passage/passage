@@ -32,7 +32,6 @@ import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
  * cycle from successful completion.
  * </p>
  */
-@SuppressWarnings("restriction")
 public final class UnsatisfiableRequirement implements Supplier<Requirement> {
 
 	private final String description;
