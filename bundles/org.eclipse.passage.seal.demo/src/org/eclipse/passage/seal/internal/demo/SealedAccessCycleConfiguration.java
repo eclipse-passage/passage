@@ -13,8 +13,10 @@
 package org.eclipse.passage.seal.internal.demo;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -37,7 +39,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<StringServiceId, MinedConditions> conditions;
 	private final Registry<ContentType, ConditionTransport> transports;
 
-	SealedAccessCycleConfiguration() {
+	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		requirements = //
 				new ReadOnlyRegistry<>(Arrays.asList(//
 						new BundleRequirements(), //
@@ -45,7 +47,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				);
 		conditions = //
 				new ReadOnlyRegistry<>(Arrays.asList(//
-						new RemoteConditions(transports())//
+						new RemoteConditions(product, transports())//
 				)//
 				);
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//

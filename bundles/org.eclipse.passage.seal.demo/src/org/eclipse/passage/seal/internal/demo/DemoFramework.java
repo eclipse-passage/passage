@@ -28,8 +28,8 @@ final class DemoFramework implements Framework {
 	static final Framework demo = new DemoFramework();
 
 	private DemoFramework() {
-		access = new SealedAccessCycleConfiguration();
 		product = productRead();
+		access = new SealedAccessCycleConfiguration(this::product);
 	}
 
 	private LicensedProduct productRead() {

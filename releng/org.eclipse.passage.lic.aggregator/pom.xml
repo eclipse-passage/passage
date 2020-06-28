@@ -55,6 +55,7 @@
 
 		<module>../../bundles/org.eclipse.passage.lic.hc</module>
 		<module>../../features/org.eclipse.passage.lic.hc.feature</module>
+		<module>../../tests/org.eclipse.passage.lic.hc.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.json</module>
 		<module>../../features/org.eclipse.passage.lic.json.feature</module>

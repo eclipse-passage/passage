@@ -10,17 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.hc.tests;
 
-import java.net.URL;
+import org.junit.Test;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+public final class RemoteConditionsRequestTest {
 
-@SuppressWarnings("restriction")
-public interface Request<R> {
+	@Test
+	public void f() {
 
-	URL url() throws ConditionMiningException;
-
-	Configuration<R> config();
-
+	}
 }
