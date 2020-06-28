@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
 /**
  * Does not tolerate {@code null}s as a version for matching.
  */
-@SuppressWarnings("restriction")
 public abstract class StrictMatchingRule implements MatchingRule {
 
 	@Override

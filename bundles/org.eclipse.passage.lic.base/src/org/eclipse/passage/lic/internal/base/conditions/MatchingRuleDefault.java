@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
-@SuppressWarnings("restriction")
 public final class MatchingRuleDefault extends StrictMatchingRule {
 
 	private final StrictMatchingRule assignee;

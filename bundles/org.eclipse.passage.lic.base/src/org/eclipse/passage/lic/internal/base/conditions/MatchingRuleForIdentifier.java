@@ -17,7 +17,6 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
 
-@SuppressWarnings("restriction")
 public final class MatchingRuleForIdentifier implements Supplier<MatchingRule> {
 	private final String identifier;
 

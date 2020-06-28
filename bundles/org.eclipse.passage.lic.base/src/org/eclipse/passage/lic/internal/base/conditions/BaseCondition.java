@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 
-@SuppressWarnings("restriction")
 public final class BaseCondition implements Condition {
 
 	private final String identifier;
