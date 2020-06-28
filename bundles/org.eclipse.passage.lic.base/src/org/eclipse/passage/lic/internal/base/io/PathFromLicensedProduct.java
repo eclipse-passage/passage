@@ -17,7 +17,6 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
-@SuppressWarnings("restriction")
 public final class PathFromLicensedProduct implements Supplier<Path> {
 
 	private final Supplier<Path> base;

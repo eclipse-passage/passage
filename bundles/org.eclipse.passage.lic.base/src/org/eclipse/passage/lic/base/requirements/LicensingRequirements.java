@@ -42,7 +42,6 @@ import org.eclipse.passage.lic.base.LicensingVersions;
  * {@link org.eclipse.passage.lic.internal.api.requirements.Requirement}s
  * directly
  */
-@SuppressWarnings("restriction")
 @Deprecated
 public class LicensingRequirements {
 

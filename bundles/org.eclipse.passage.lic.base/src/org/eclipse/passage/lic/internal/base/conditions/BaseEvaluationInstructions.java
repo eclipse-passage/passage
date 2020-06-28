@@ -17,7 +17,6 @@ import java.util.Objects;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 
-@SuppressWarnings("restriction")
 public final class BaseEvaluationInstructions implements EvaluationInstructions {
 
 	private final EvaluationType type;

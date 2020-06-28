@@ -24,7 +24,6 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
  * @see ProductIdentifier
  * @see ProductVersion
  */
-@SuppressWarnings("restriction")
 public final class BaseLicensedProduct implements LicensedProduct {
 
 	private final String identifier;

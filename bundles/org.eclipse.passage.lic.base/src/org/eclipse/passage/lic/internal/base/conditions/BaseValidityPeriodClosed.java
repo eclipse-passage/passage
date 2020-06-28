@@ -17,7 +17,6 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 
-@SuppressWarnings("restriction")
 public final class BaseValidityPeriodClosed implements ValidityPeriodClosed {
 
 	private final Date from;

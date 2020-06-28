@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.base.version;
 
 import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
 
-@SuppressWarnings("restriction")
 public final class DefaultVersion extends BaseVersion {
 
 	@Override

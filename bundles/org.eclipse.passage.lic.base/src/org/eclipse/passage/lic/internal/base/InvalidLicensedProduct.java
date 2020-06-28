@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
  * knowingly invalid</i> configuration is used to make an {@code access cycle}
  * fail.
  */
-@SuppressWarnings("restriction")
 public final class InvalidLicensedProduct implements LicensedProduct {
 
 	private final BaseLicensedProduct delegate;

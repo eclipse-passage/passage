@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 
-@SuppressWarnings("restriction")
 public final class Requirements implements Supplier<Set<Requirement>> {
 
 	private final Registry<StringServiceId, ResolvedRequirements> registry;

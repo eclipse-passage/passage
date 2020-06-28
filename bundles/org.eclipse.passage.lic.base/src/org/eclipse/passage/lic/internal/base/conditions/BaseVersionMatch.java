@@ -17,7 +17,6 @@ import java.util.Objects;
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 
-@SuppressWarnings("restriction")
 public final class BaseVersionMatch implements VersionMatch {
 
 	private final String version;
