@@ -10,35 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.internal.base.conditions.mining;
 
-import java.util.Map;
+import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 @SuppressWarnings("restriction")
-public final class LicensingServerPort extends StringNamedData {
+public final class LicensingContentType extends BaseNamedData<ContentType> {
 
-	public LicensingServerPort(Map<String, Object> container) {
-		super(container);
+	public LicensingContentType(Function<String, ContentType> retrieve) {
+		super(retrieve);
 	}
 
-	public LicensingServerPort(String value) {
-		super(value);
-	}
-
-	public LicensingServerPort(int value) {
-		super(Integer.toString(value));
-	}
-
-	@Override
-	public String entrySeparator() {
-		return "\n"; //$NON-NLS-1$
+	public LicensingContentType(ContentType type) {
+		super(key -> type);
 	}
 
 	@Override
 	public String key() {
-		return "licensing.server.port"; //$NON-NLS-1$
+		return "licensing.content.type"; //$NON-NLS-1$
 	}
 
 }

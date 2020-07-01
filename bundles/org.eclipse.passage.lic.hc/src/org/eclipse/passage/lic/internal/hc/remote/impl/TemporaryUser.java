@@ -10,35 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
-
-import java.util.Map;
+package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
+/**
+ * <p>
+ * Until proper user management is developed across both server and client, this
+ * class supplies the dummy value for a user name for condition mining requests
+ * </p>
+ * 
+ * FIXME: for development: #564815
+ */
 @SuppressWarnings("restriction")
-public final class LicensingServerPort extends StringNamedData {
+final class TemporaryUser extends StringNamedData {
 
-	public LicensingServerPort(Map<String, Object> container) {
-		super(container);
-	}
-
-	public LicensingServerPort(String value) {
+	protected TemporaryUser(String value) {
 		super(value);
-	}
-
-	public LicensingServerPort(int value) {
-		super(Integer.toString(value));
-	}
-
-	@Override
-	public String entrySeparator() {
-		return "\n"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String key() {
-		return "licensing.server.port"; //$NON-NLS-1$
+		return "user"; //$NON-NLS-1$
 	}
 
 }

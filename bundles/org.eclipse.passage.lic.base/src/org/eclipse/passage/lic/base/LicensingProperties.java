@@ -17,8 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
+@SuppressWarnings("restriction")
 public final class LicensingProperties {
 
 	/**
@@ -97,8 +100,20 @@ public final class LicensingProperties {
 	public static final String LICENSING_CONDITION_AREA = "licensing.condition.area"; //$NON-NLS-1$
 	public static final String LICENSING_CONDITION_URI = "licensing.condition.uri"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@link LicensingContentType}
+	 */
+	@Deprecated
 	public static final String LICENSING_CONTENT_TYPE = "licensing.content.type"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link ContentType.Json}
+	 */
+	@Deprecated
 	public static final String LICENSING_CONTENT_TYPE_JSON = "application/json"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link ContentType.Xml}
+	 */
+	@Deprecated
 	public static final String LICENSING_CONTENT_TYPE_XML = "application/xml"; //$NON-NLS-1$
 
 	public static final String LICENSING_SECURITY_KEY_ALGO = "licensing.security.key.algo"; //$NON-NLS-1$

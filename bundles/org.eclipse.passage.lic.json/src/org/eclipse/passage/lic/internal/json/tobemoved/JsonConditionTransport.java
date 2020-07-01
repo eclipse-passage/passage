@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 @SuppressWarnings("restriction")
 public final class JsonConditionTransport implements ConditionTransport {
 
-	private final ContentType type = new ContentType("application/json"); //$NON-NLS-1$
+	private final ContentType type = new ContentType.Json();
 
 	@Override
 	public ContentType id() {

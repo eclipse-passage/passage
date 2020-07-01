@@ -17,16 +17,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.UserRole;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
@@ -37,23 +42,26 @@ import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
 
 /**
- * Basing on
- * 
- * @author user
  */
 @SuppressWarnings("restriction")
-final class RemoteConditionsRequest implements Request<HttpURLConnection> {
+public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	private final LicensedProduct product;
+	private final Supplier<Path> settings;
+
+	public RemoteConditionsRequest(LicensedProduct product, Supplier<Path> settings) {
+		this.product = product;
+		this.settings = settings;
+	}
 
 	public RemoteConditionsRequest(LicensedProduct product) {
-		this.product = product;
+		this(product, new InstallationPath());
 	}
 
 	@Override
 	public URL url() throws ConditionMiningException {
 		try {
-			HostPort corrdinates = new LicensingServerCoordinates(new InstallationPath()).get();
+			HostPort corrdinates = new LicensingServerCoordinates(settings).get();
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
@@ -73,7 +81,9 @@ final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 						new ProductIdentifier(encode(product.identifier())), //
 						new ProductVersion(encode(product.version())), //
 						new LicensingAction(new ConditionAction.Aquire()), //
-						new LicensingRole(new UserRole.Admin()) }) //
+						new LicensingRole(new UserRole.Admin()), //
+						new LicensingContentType(new ContentType.Xml()), //
+						new TemporaryUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
 				.map(NamedData.Writable<String>::new)//
 				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
 		return params.toString();
@@ -86,7 +96,7 @@ final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	@Override
 	public Configuration<HttpURLConnection> config() {
-		throw new UnsupportedOperationException();
+		return new HttpUrlConnectionConfiguration(1000, new HashMap<>());
 	}
 
 }

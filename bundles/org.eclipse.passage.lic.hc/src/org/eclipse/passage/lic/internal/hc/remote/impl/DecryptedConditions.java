@@ -36,7 +36,7 @@ final class DecryptedConditions implements ResponseHandler {
 	@Override
 	public Collection<Condition> read(byte[] raw, String contentType) throws ConditionMiningException {
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(keyDecoded(base64Decoded(raw)))) {
-			return transport(new ContentType(contentType)).read(stream);
+			return transport(new ContentType.Of(contentType)).read(stream);
 		} catch (IOException e) {
 			throw new ConditionMiningException(HcMessages.DecryptedConditions_reading_error, e);
 		}
