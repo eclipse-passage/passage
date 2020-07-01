@@ -17,7 +17,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -37,23 +40,26 @@ import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
 
 /**
- * Basing on
- * 
- * @author user
  */
 @SuppressWarnings("restriction")
-final class RemoteConditionsRequest implements Request<HttpURLConnection> {
+public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	private final LicensedProduct product;
+	private final Supplier<Path> settings;
+
+	public RemoteConditionsRequest(LicensedProduct product, Supplier<Path> settings) {
+		this.product = product;
+		this.settings = settings;
+	}
 
 	public RemoteConditionsRequest(LicensedProduct product) {
-		this.product = product;
+		this(product, new InstallationPath());
 	}
 
 	@Override
 	public URL url() throws ConditionMiningException {
 		try {
-			HostPort corrdinates = new LicensingServerCoordinates(new InstallationPath()).get();
+			HostPort corrdinates = new LicensingServerCoordinates(settings).get();
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
@@ -86,7 +92,7 @@ final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	@Override
 	public Configuration<HttpURLConnection> config() {
-		throw new UnsupportedOperationException();
+		return new HttpUrlConnectionConfiguration(1000, new HashMap<>());
 	}
 
 }

@@ -27,6 +27,10 @@ public final class LicensingServerPort extends StringNamedData {
 		super(value);
 	}
 
+	public LicensingServerPort(int value) {
+		super(Integer.toString(value));
+	}
+
 	@Override
 	public String entrySeparator() {
 		return "\n"; //$NON-NLS-1$
