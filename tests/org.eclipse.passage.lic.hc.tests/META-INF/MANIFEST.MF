@@ -8,6 +8,6 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
- org.eclipse.passage.lic.base,
- org.eclipse.passage.lic.net,
- org.eclipse.passage.lic.hc
+ org.eclipse.passage.lic.base;bundle-version="0.6.100",
+ org.eclipse.passage.lic.net;bundle-version="0.5.200",
+ org.eclipse.passage.lic.hc;bundle-version="0.5.300"
