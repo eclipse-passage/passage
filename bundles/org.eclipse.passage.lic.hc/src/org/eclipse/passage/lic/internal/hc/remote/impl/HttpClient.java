@@ -54,8 +54,8 @@ public final class HttpClient implements Client<HttpURLConnection> {
 	private Collection<Condition> read(HttpURLConnection connection, ResponseHandler miner) throws Exception {
 		byte[] content = new byte[connection.getContentLength()];
 		try (InputStream source = connection.getInputStream()) {
-			source.read(content);
-		} // connection is closed here
+			source.read(content); // read all and close the connection briefly
+		}
 		return miner.read(content, connection.getHeaderField("Content-Type")); //$NON-NLS-1$
 	}
 
