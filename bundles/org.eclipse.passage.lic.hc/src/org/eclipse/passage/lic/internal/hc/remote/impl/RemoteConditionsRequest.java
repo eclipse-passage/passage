@@ -27,9 +27,11 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.UserRole;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
@@ -79,7 +81,9 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 						new ProductIdentifier(encode(product.identifier())), //
 						new ProductVersion(encode(product.version())), //
 						new LicensingAction(new ConditionAction.Aquire()), //
-						new LicensingRole(new UserRole.Admin()) }) //
+						new LicensingRole(new UserRole.Admin()), //
+						new LicensingContentType(new ContentType.Xml()), //
+						new TemporaryUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
 				.map(NamedData.Writable<String>::new)//
 				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
 		return params.toString();

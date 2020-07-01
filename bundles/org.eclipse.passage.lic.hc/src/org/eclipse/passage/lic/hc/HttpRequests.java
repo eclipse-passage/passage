@@ -26,8 +26,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Helper class with static methods to work with http(s) requests
- *
+ * 
+ * @deprecated use RemoteConditionsRequest
  */
+@Deprecated
 public final class HttpRequests {
 
 	private static final String PROTOCOL_TYPE_ID = "http"; //$NON-NLS-1$

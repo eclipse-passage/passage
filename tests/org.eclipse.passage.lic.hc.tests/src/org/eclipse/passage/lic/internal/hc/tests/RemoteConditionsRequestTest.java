@@ -25,10 +25,12 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.UserRole;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
@@ -49,7 +51,7 @@ public final class RemoteConditionsRequestTest {
 	public TemporaryFolder folder = new TemporaryFolder();
 
 	@Test
-	public void urlComposed() throws IOException {
+	public void urlContainsAllParameters() throws IOException {
 		writeSettings();
 		URL url = url();
 		assertEquals(host, url.getHost());
@@ -59,6 +61,8 @@ public final class RemoteConditionsRequestTest {
 		assertTrue(url.getQuery().contains(new ProductVersion("any").key())); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains(new LicensingAction(new ConditionAction.Of("any")).key())); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains(new LicensingRole(new UserRole.Of("any")).key())); //$NON-NLS-1$
+		assertTrue(url.getQuery().contains("user")); //$NON-NLS-1$ // FIXME: #564815
+		assertTrue(url.getQuery().contains(new LicensingContentType(new ContentType.Of("any")).key())); //$NON-NLS-1$
 	}
 
 	private URL url() {

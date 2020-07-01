@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 /**
  * String-valued {@linkplain ServiceId} with mime content type semantics
  */
-public final class ContentType implements ServiceId {
+public abstract class ContentType implements ServiceId {
 
 	private final String type;
 
@@ -50,4 +50,27 @@ public final class ContentType implements ServiceId {
 		return type;
 	}
 
+	public static final class Json extends ContentType {
+
+		public Json() {
+			super("application/json"); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class Xml extends ContentType {
+
+		public Xml() {
+			super("application/xml"); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class Of extends ContentType {
+
+		public Of(String type) {
+			super(type.toLowerCase());
+		}
+
+	}
 }
