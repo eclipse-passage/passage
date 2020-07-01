@@ -42,6 +42,15 @@ import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
 
 /**
+ * <p>
+ * Supplies all the data we are to tell a licensing server on mining request.
+ * </p>
+ * <ul>
+ * use
+ * <li>{@code url()}</li> to compose server coordinates and all the request
+ * parameters
+ * <li>{@code config()} to gain a proper request headers configuring unit</li>
+ * </ul>
  */
 @SuppressWarnings("restriction")
 public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
@@ -65,7 +74,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
-					'?' + parameters());
+					query());
 		} catch (LicensingException //
 				| NumberFormatException //
 				| MalformedURLException //
@@ -74,7 +83,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 		}
 	}
 
-	private String parameters() throws UnsupportedEncodingException {
+	private String query() throws UnsupportedEncodingException {
 		StringBuilder params = new StringBuilder();
 		Arrays.stream(//
 				new NamedData[] { //
@@ -86,7 +95,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 						new TemporaryUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
 				.map(NamedData.Writable<String>::new)//
 				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
-		return params.toString();
+		return '?' + params.toString();
 
 	}
 

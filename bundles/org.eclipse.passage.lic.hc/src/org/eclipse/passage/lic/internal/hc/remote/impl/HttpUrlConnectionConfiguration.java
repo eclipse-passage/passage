@@ -25,7 +25,7 @@ final class HttpUrlConnectionConfiguration implements Configuration<HttpURLConne
 	private final Map<String, String> properties;
 
 	public HttpUrlConnectionConfiguration(int timeout, Map<String, String> properties) {
-		Objects.requireNonNull(properties, "HttpUrlConnectionConfiguration::proeprties"); //$NON-NLS-1$
+		Objects.requireNonNull(properties, "HttpUrlConnectionConfiguration::properties"); //$NON-NLS-1$
 		this.timeout = timeout;
 		this.properties = properties;
 	}
