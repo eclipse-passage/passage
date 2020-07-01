@@ -22,12 +22,12 @@ public final class ContentTypeTest extends ServiceIdContractTest {
 
 	@Test(expected = NullPointerException.class)
 	public void typeIsMandatory() {
-		new ContentType(null);
+		new ContentType.Of(null);
 	}
 
 	@Override
 	protected ServiceId ofSameData() {
-		return new ContentType("same-id-value"); //$NON-NLS-1$
+		return new ContentType.Of("same-id-value"); //$NON-NLS-1$
 	}
 
 }
