@@ -10,10 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.tests.permission.observatory;
 
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+
+import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
 
 @SuppressWarnings("restriction")
 final class TimeLimited implements Limited {

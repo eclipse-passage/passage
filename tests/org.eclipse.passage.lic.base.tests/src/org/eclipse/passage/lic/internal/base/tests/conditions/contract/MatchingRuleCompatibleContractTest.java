@@ -10,22 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions;
+package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
-import org.junit.Test;
+import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 
 @SuppressWarnings("restriction")
-public final class BaseEvaluationInstructionsTest {
+public final class MatchingRuleCompatibleContractTest extends ComparingMatchingRuleContractTest {
 
-	@Test(expected = NullPointerException.class)
-	public void nullTypeIsProhibited() {
-		new BaseEvaluationInstructions(null, ""); //$NON-NLS-1$
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void nullExpressionIsProhibited() {
-		new BaseEvaluationInstructions(new EvaluationType.Of("anyway"), null); //$NON-NLS-1$
+	@Override
+	protected MatchingRule rule() {
+		return new MatchingRuleCompatible();
 	}
 
 }

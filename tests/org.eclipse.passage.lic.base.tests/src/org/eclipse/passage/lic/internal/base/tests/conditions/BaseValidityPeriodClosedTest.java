@@ -10,17 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.internal.base.tests.conditions;
 
-import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import java.util.Date;
+
+import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public class BaseLicensedProductServiceIdContractTest extends ServiceIdContractTest {
+public final class BaseValidityPeriodClosedTest {
 
-	@Override
-	protected ServiceId ofSameData() {
-		return new BaseLicensedProduct("product", "vesion"); //$NON-NLS-1$//$NON-NLS-2$
+	@Test(expected = NullPointerException.class)
+	public void fromIsMandatory() {
+		new BaseValidityPeriodClosed(null, new Date());
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void toIsMandatory() {
+		new BaseValidityPeriodClosed(new Date(), null);
 	}
 
 }

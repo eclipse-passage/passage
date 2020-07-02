@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions.contract;
+package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
 
 @SuppressWarnings("restriction")
-public final class MatchingRuleDefaultContractTest extends BaseMatchingRuleContractTest {
+public final class MatchingRulePerfectContractTest extends BaseMatchingRuleContractTest {
 
 	@Override
 	protected MatchingRule rule() {
-		return new MatchingRuleDefault();
+		return new MatchingRulePerfect();
 	}
 
 }

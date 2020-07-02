@@ -10,12 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.tests.permission.observatory;
 
 import static org.junit.Assert.assertEquals;
 
 import java.time.temporal.ChronoUnit;
 
+import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
