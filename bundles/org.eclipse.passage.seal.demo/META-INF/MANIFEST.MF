@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="3.8.0",
  org.eclipse.passage.lic.base;bundle-version="0.6.100",
  org.eclipse.passage.lic.equinox;bundle-version="0.6.0",
  org.eclipse.passage.lic.hc;bundle-version="0.5.300",
- org.eclipse.passage.lic.json;bundle-version="0.5.300"
+ org.eclipse.passage.lic.json;bundle-version="0.5.300",
+ org.eclipse.passage.lic.bc
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.passage.seal.internal.demo;x-internal:=true
