@@ -10,14 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.internal.base;
 
+import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 
-public interface LicensedProduct extends ServiceId {
+@SuppressWarnings("restriction")
+public class BaseLicensedProductServiceIdContractTest extends ServiceIdContractTest {
 
-	String identifier();
-
-	String version();
+	@Override
+	protected ServiceId ofSameData() {
+		return new BaseLicensedProduct("product", "vesion"); //$NON-NLS-1$//$NON-NLS-2$
+	}
 
 }

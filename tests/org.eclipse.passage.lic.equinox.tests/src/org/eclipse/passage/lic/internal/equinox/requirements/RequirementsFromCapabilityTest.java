@@ -18,8 +18,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.base.tests.requirements.Unsatisfiable;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.base.tests.requirements.Unsatisfiable;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.tests.requirements;
+package org.eclipse.passage.lic.internal.base.tests.requirements;
 
 import java.util.function.Predicate;
 

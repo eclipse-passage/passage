@@ -18,7 +18,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
+import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
+import org.eclipse.passage.lic.internal.base.conditions.mining.SecurityKeyAlgorithm;
+import org.eclipse.passage.lic.internal.base.conditions.mining.SecurityKeySize;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")
@@ -116,10 +120,25 @@ public final class LicensingProperties {
 	@Deprecated
 	public static final String LICENSING_CONTENT_TYPE_XML = "application/xml"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated use {@link SecurityKeyAlgorithm}
+	 */
+	@Deprecated
 	public static final String LICENSING_SECURITY_KEY_ALGO = "licensing.security.key.algo"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link EncryptionAlgorithm.RSA}
+	 */
+	@Deprecated
 	public static final String LICENSING_SECURITY_KEY_ALGO_RSA = "RSA"; //$NON-NLS-1$
-
+	/**
+	 * @deprecated use {@link SecurityKeySize}
+	 */
+	@Deprecated
 	public static final String LICENSING_SECURITY_KEY_SIZE = "licensing.security.key.size"; //$NON-NLS-1$
+	/**
+	 * @deprecated use {@link EncryptionKeySize.Of}
+	 */
+	@Deprecated
 	public static final int LICENSING_SECURITY_KEY_SIZE_1024 = 1024;
 
 	public static final String LICENSING_SECURITY_HASH_ALGO = "licensing.security.hash.algo"; //$NON-NLS-1$
