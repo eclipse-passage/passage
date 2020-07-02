@@ -15,4 +15,5 @@ Require-Bundle: org.bouncycastle.bcpg;bundle-version="1.59.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lic.bc,
+ org.eclipse.passage.lic.internal.bc;x-internal:=true,
  org.eclipse.passage.lic.internal.bc.i18n;x-internal:=true
