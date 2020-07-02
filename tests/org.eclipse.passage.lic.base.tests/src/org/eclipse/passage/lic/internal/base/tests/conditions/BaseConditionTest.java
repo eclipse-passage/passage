@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions;
+package org.eclipse.passage.lic.internal.base.tests.conditions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,6 +22,11 @@ import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
+import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
+import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

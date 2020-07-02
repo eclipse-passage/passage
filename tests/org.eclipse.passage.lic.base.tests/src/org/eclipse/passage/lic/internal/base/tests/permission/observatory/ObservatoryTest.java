@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.tests.permission.observatory;
 
 import static org.junit.Assert.fail;
 
@@ -18,6 +18,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
+import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
+import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
 import org.junit.Assert;
 import org.junit.Test;
 

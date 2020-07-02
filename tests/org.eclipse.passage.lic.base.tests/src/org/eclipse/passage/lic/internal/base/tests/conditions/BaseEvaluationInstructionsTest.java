@@ -10,23 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions;
+package org.eclipse.passage.lic.internal.base.tests.conditions;
 
-import java.util.Date;
-
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class BaseValidityPeriodClosedTest {
+public final class BaseEvaluationInstructionsTest {
 
 	@Test(expected = NullPointerException.class)
-	public void fromIsMandatory() {
-		new BaseValidityPeriodClosed(null, new Date());
+	public void nullTypeIsProhibited() {
+		new BaseEvaluationInstructions(null, ""); //$NON-NLS-1$
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void toIsMandatory() {
-		new BaseValidityPeriodClosed(new Date(), null);
+	public void nullExpressionIsProhibited() {
+		new BaseEvaluationInstructions(new EvaluationType.Of("anyway"), null); //$NON-NLS-1$
 	}
 
 }

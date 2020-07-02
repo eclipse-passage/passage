@@ -10,27 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.tests.permission.observatory;
 
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
+
 @SuppressWarnings("restriction")
-final class Countdown implements Consumer<Set<Limited>> {
-	private final AtomicInteger counter;
-
-	Countdown(int from) {
-		this.counter = new AtomicInteger(from);
-	}
-
+final class Trouble implements Consumer<Set<Limited>> {
 	@Override
 	public void accept(Set<Limited> entries) {
-		counter.updateAndGet(i -> i - entries.size());
+		throw new RuntimeException("Trouble is emulated for the entry expiration process"); //$NON-NLS-1$
 	}
-
-	boolean complete() {
-		return counter.get() == 0;
-	}
-
 }

@@ -10,17 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions.contract;
+package org.eclipse.passage.lic.internal.base.tests;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
+import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
-public final class MatchingRuleEquivalentContractTest extends ComparingMatchingRuleContractTest {
+public class BaseLicensedProductServiceIdContractTest extends ServiceIdContractTest {
 
 	@Override
-	protected MatchingRule rule() {
-		return new MatchingRuleEquivalent();
+	protected ServiceId ofSameData() {
+		return new BaseLicensedProduct("product", "vesion"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 }

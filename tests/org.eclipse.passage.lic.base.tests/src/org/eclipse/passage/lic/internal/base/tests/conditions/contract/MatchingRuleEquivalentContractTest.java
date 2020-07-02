@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,15 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
-import java.util.Set;
-import java.util.function.Consumer;
+import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
 
 @SuppressWarnings("restriction")
-final class Trouble implements Consumer<Set<Limited>> {
+public final class MatchingRuleEquivalentContractTest extends ComparingMatchingRuleContractTest {
+
 	@Override
-	public void accept(Set<Limited> entries) {
-		throw new RuntimeException("Trouble is emulated for the entry expiration process"); //$NON-NLS-1$
+	protected MatchingRule rule() {
+		return new MatchingRuleEquivalent();
 	}
+
 }
