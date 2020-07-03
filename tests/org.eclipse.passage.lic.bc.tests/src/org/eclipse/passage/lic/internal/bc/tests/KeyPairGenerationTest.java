@@ -1,5 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -24,17 +37,20 @@ public final class KeyPairGenerationTest {
 
 	@Test
 	public void generationSucceeds() throws IOException {
-		// given:
-		Path pub = keyFile(new PassageFileExtension.PublicKey());
-		Path secret = keyFile(new PassageFileExtension.PrivateKey());
-		try {
-			// when
-			new BcStreamCodec(this::product).createKeyPair(pub, secret, "test-user", "test-pass-word"); //$NON-NLS-1$//$NON-NLS-2$
-		} catch (LicensingException e) {
-			// then
-			fail("PGP key pair generation on valid data is not supposed to fail"); //$NON-NLS-1$
-		}
-		// then: 1) default key size, 2) not empty files 3) pair is valid
+		PairInfo<Integer> pair = pair((pub, secret) -> new PairSize(pub, secret));
+		assertTrue(pair.privateKeyInfo() > 0);
+		assertTrue(pair.publicKeyInfo() > 0);
+	}
+
+	@Test
+	public void subsequentPairDiffer() throws IOException {
+		PairInfo<byte[]> first = pair((pub, secret) -> new PairContent(pub, secret));
+		PairInfo<byte[]> second = pair((pub, secret) -> new PairContent(pub, secret));
+		assertFalse(first.equals(second));
+	}
+
+	@Test
+	public void generatedPairIsValid() {
 
 	}
 
@@ -100,6 +116,21 @@ public final class KeyPairGenerationTest {
 				"p"); //$NON-NLS-1$
 		// then
 		assertFileExists(publicPath);
+	}
+
+	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor) throws IOException {
+		// given:
+		Path pub = keyFile(new PassageFileExtension.PublicKey());
+		Path secret = keyFile(new PassageFileExtension.PrivateKey());
+		BcStreamCodec codec = new BcStreamCodec(this::product);
+		try {
+			// when
+			codec.createKeyPair(pub, secret, "test-user", "test-pass-word"); //$NON-NLS-1$//$NON-NLS-2$
+		} catch (LicensingException e) {
+			// then
+			fail("PGP key pair generation on valid data is not supposed to fail"); //$NON-NLS-1$
+		}
+		return ctor.create(pub, secret);
 	}
 
 	private void assertFileExists(Path file) {
