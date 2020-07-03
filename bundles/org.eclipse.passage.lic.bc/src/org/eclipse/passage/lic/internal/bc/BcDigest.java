@@ -12,18 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.bouncycastle.crypto.digests.SHA512Digest;
+import org.eclipse.passage.lic.internal.base.io.FileContent;
 
-final class BcDigest implements Supplier<byte[]> {
+@SuppressWarnings("restriction")
+public final class BcDigest implements Supplier<byte[]> {
 
 	private final byte[] source;
 
-	BcDigest(byte[] source) {
+	public BcDigest(byte[] source) {
 		Objects.requireNonNull(source, "BcDigest::source"); //$NON-NLS-1$
 		this.source = source;
+	}
+
+	public BcDigest(Path source) throws IOException {
+		this(new FileContent(source).get());
 	}
 
 	@Override
