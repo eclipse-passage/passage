@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,27 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.bc;
+package org.eclipse.passage.lic.internal.bc;
+
+import java.util.function.Supplier;
 
 import org.bouncycastle.crypto.digests.SHA512Digest;
 
-/**
- * @deprecated use internal BcDigest
- */
-@Deprecated
-public final class BcDigest {
+public final class BcDigest implements Supplier<byte[]> {
 
-	private BcDigest() {
-		// block
+	private final byte[] source;
+
+	public BcDigest(byte[] source) {
+		this.source = source;
 	}
 
-	public static byte[] calculateDigest(byte[] source) {
-		final SHA512Digest dig = new SHA512Digest();
-		dig.reset();
-		dig.update(source, 0, source.length);
-		final byte[] digest = new byte[dig.getDigestSize()];
-		dig.doFinal(digest, 0);
-		return digest;
+	@Override
+	public byte[] get() {
+		SHA512Digest digest = new SHA512Digest();
+		digest.reset();
+		digest.update(source, 0, source.length);
+		byte[] data = new byte[digest.getDigestSize()];
+		digest.doFinal(data, 0);
+		return data;
 	}
 
 }

@@ -80,6 +80,10 @@ import org.eclipse.passage.lic.base.LicensingConfigurations;
 import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
 import org.osgi.service.component.annotations.Activate;
 
+/**
+ * @deprecated use internal BcStreamCodec
+ */
+@Deprecated
 public class BcStreamCodec implements StreamCodec {
 
 	private static final long EXPIRATION_TIME = 1000L;
@@ -90,7 +94,7 @@ public class BcStreamCodec implements StreamCodec {
 
 	private String keyAlgo = BcProperties.KEY_ALGO_DEFAULT;
 	private int keySize = BcProperties.KEY_SIZE_DEFAULT;
-	private int hashAlgo = PGPUtil.SHA512;
+	private final int hashAlgo = PGPUtil.SHA512;
 
 	private LicensingConfiguration configuration = LicensingConfigurations.INVALID;
 

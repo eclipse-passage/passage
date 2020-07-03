@@ -12,11 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.io;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
@@ -39,14 +40,13 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	 * Create a public/private keys pair and store them to {@code publicKeyPath} and
 	 * {@code privateKeyPath} respectively.
 	 *
-	 * @param publicKeyPath  file system path for <i>public key</i> to be generated
-	 * @param privateKeyPath file system path for <i>private key</i> to be generated
-	 * @param username       of the keys owner user
-	 * @param password       of the keys owner user
-	 * @throws IOException in case of any i/o misbehavior
+	 * @param publicKey  file system path for <i>public key</i> to be generated
+	 * @param privateKey file system path for <i>private key</i> to be generated
+	 * @param username   of the keys owner user
+	 * @param password   of the keys owner user
+	 * @throws LicensingException in case of any i/o misbehavior
 	 */
-	void createKeyPair(String publicKeyPath, String privateKeyPath, String username, String password)
-			throws IOException;
+	void createKeyPair(Path publicKey, Path privateKey, String username, String password) throws LicensingException;
 
 	/**
 	 * Encode {@code input} stream data with a private key retrieved form the given
@@ -57,10 +57,10 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	 * @param key      source for a private key
 	 * @param username of the private key owner user
 	 * @param password of the private key owner user
-	 * @throws IOException in case of any i/o misbehavior
+	 * @throws LicensingException in case of any i/o misbehavior
 	 */
 	void encode(InputStream input, OutputStream output, InputStream key, String username, String password)
-			throws IOException;
+			throws LicensingException;
 
 	/**
 	 * Decode the {@code input} stream with the <i>public key</i> and store decoded
@@ -71,8 +71,9 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	 * @param key    stream containing the <i>public key</i> for decoding
 	 * @param digest expected digest for public key source stream {@code key} to be
 	 *               validated prior decoding
-	 * @throws IOException in case of any i/o denial or misbehavior
+	 * @throws LicensingException in case of any i/o denial or misbehavior
 	 */
-	void decode(InputStream input, OutputStream output, InputStream key, DigestExpectation digest) throws IOException;
+	void decode(InputStream input, OutputStream output, InputStream key, DigestExpectation digest)
+			throws LicensingException;
 
 }
