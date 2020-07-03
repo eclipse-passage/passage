@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.internal.bc.tests;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.internal.base.io.FileContent;
+
+@SuppressWarnings("restriction")
 final class PairContent extends PairInfo<byte[]> {
 
 	PairContent(Path first, Path second) throws IOException {

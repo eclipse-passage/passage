@@ -21,7 +21,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -30,6 +29,7 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.FileContent;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.junit.Rule;
@@ -40,7 +40,7 @@ import org.junit.rules.TemporaryFolder;
 public final class KeyPairGenerationTest {
 
 	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+	public TemporaryFolder root = new TemporaryFolder();
 
 	@Test
 	public void generationSucceeds() throws IOException {
@@ -69,15 +69,18 @@ public final class KeyPairGenerationTest {
 	 * <b>NB: </b>It is not symmetric: you can encrypt only with {@code private} key
 	 * and then decipher only with the pairing {@code public}.
 	 * </p>
+	 * <p>
+	 * Side test: {@code BcStreamCodec} does not have state.
+	 * </p>
 	 * 
 	 * @throws IOException in case of file system denials
 	 */
 	@Test
 	public void generatedPairIsFunctional() throws IOException {
 		// given
-		Path victim = fileWithContent();
-		Path encoded = file(".txt"); //$NON-NLS-1$
-		Path decoded = file(".txt"); //$NON-NLS-1$
+		Path victim = new TmpFile(root).fileWithContent();
+		Path encoded = new TmpFile(root).file(".txt"); //$NON-NLS-1$
+		Path decoded = new TmpFile(root).file(".txt"); //$NON-NLS-1$
 		String user = "fake.user"; //$NON-NLS-1$
 		String pass = "some$pass#val&1"; //$NON-NLS-1$
 
@@ -114,7 +117,7 @@ public final class KeyPairGenerationTest {
 	public void publicKeyPathIsMandatory() throws LicensingException, IOException {
 		new BcStreamCodec(this::product).createKeyPair(//
 				null, //
-				keyFile(new PassageFileExtension.PrivateKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
 				"p"); //$NON-NLS-1$
 	}
@@ -122,7 +125,7 @@ public final class KeyPairGenerationTest {
 	@Test(expected = NullPointerException.class)
 	public void privateKeyPathIsMandatory() throws LicensingException, IOException {
 		new BcStreamCodec(this::product).createKeyPair(//
-				keyFile(new PassageFileExtension.PublicKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				null, //
 				"u", //$NON-NLS-1$
 				"p"); //$NON-NLS-1$
@@ -131,8 +134,8 @@ public final class KeyPairGenerationTest {
 	@Test(expected = NullPointerException.class)
 	public void usernameIsMandatory() throws LicensingException, IOException {
 		new BcStreamCodec(this::product).createKeyPair(//
-				keyFile(new PassageFileExtension.PublicKey()), //
-				keyFile(new PassageFileExtension.PrivateKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				null, //
 				"p"); //$NON-NLS-1$
 	}
@@ -140,8 +143,8 @@ public final class KeyPairGenerationTest {
 	@Test(expected = NullPointerException.class)
 	public void passwordIsMandatory() throws LicensingException, IOException {
 		new BcStreamCodec(this::product).createKeyPair(//
-				keyFile(new PassageFileExtension.PublicKey()), //
-				keyFile(new PassageFileExtension.PrivateKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
 				null);
 	}
@@ -149,10 +152,10 @@ public final class KeyPairGenerationTest {
 	@Test
 	public void absentPrivateKeyFileIsCreated() throws LicensingException, IOException {
 		// given
-		Path privatePath = keyPath(new PassageFileExtension.PrivateKey());
+		Path privatePath = new TmpFile(root).keyPath(new PassageFileExtension.PrivateKey());
 		// when
 		new BcStreamCodec(this::product).createKeyPair(//
-				keyFile(new PassageFileExtension.PublicKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				privatePath, //
 				"u", //$NON-NLS-1$
 				"p"); //$NON-NLS-1$
@@ -163,11 +166,11 @@ public final class KeyPairGenerationTest {
 	@Test
 	public void absentPublicKeyFileIsCreated() throws LicensingException, IOException {
 		// given
-		Path publicPath = keyPath(new PassageFileExtension.PublicKey());
+		Path publicPath = new TmpFile(root).keyPath(new PassageFileExtension.PublicKey());
 		// when
 		new BcStreamCodec(this::product).createKeyPair(//
 				publicPath, //
-				keyFile(new PassageFileExtension.PrivateKey()), //
+				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
 				"p"); //$NON-NLS-1$
 		// then
@@ -180,8 +183,8 @@ public final class KeyPairGenerationTest {
 
 	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor, String user, String pass) throws IOException {
 		// given:
-		Path pub = keyFile(new PassageFileExtension.PublicKey());
-		Path secret = keyFile(new PassageFileExtension.PrivateKey());
+		Path pub = new TmpFile(root).keyFile(new PassageFileExtension.PublicKey());
+		Path secret = new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey());
 		BcStreamCodec codec = new BcStreamCodec(this::product);
 		try {
 			// when
@@ -199,35 +202,7 @@ public final class KeyPairGenerationTest {
 	}
 
 	private LicensedProduct product() {
-		return new BaseLicensedProduct("test-product", "1.0.18"); //$NON-NLS-1$//$NON-NLS-2$
-	}
-
-	/**
-	 * Physically creates an empty file with demanded extension
-	 */
-	private Path keyFile(PassageFileExtension extension) throws IOException {
-		return file(extension.get());
-	}
-
-	private Path file(String extension) throws IOException {
-		return folder.newFile(Long.toHexString(System.nanoTime()) + extension).toPath();
-	}
-
-	/**
-	 * Creates a reference for not yet existing file
-	 */
-	private Path keyPath(PassageFileExtension extension) throws IOException {
-		return folder.getRoot().toPath().resolve(Long.toHexString(System.nanoTime()) + extension.get());
-	}
-
-	private Path fileWithContent() throws IOException {
-		Path path = folder.newFile(Long.toHexString(System.nanoTime()) + ".txt").toPath(); //$NON-NLS-1$
-		try (PrintWriter writer = new PrintWriter(path.toFile())) {
-			writer.println("content row 1"); //$NON-NLS-1$
-			writer.println("content row 2"); //$NON-NLS-1$
-			writer.println("content row 3"); //$NON-NLS-1$
-		}
-		return path;
+		return new BaseLicensedProduct("keygen-test-product", "1.0.18"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 }

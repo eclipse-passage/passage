@@ -10,23 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.bc.tests;
+package org.eclipse.passage.lic.internal.base.io;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
-final class FileContent {
+public final class FileContent {
 
 	private final Path file;
 
-	FileContent(Path file) {
+	public FileContent(Path file) {
+		Objects.requireNonNull(file, "FileContent::file"); //$NON-NLS-1$
 		this.file = file;
 	}
 
-	byte[] get() throws IOException {
+	public byte[] get() throws IOException {
 		byte[] content = new byte[(int) Files.size(file)];
 		try (InputStream stream = new FileInputStream(file.toFile())) {
 			stream.read(content);

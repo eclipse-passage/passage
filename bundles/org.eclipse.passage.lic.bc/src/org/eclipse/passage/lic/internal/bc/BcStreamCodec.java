@@ -97,7 +97,8 @@ public final class BcStreamCodec implements StreamCodec {
 		Objects.requireNonNull(output, "BcStreamCodec::decode::output"); //$NON-NLS-1$
 		Objects.requireNonNull(key, "BcStreamCodec::decode::key"); //$NON-NLS-1$ ;
 		Objects.requireNonNull(digest, "BcStreamCodec::decode::digest"); //$NON-NLS-1$
-		new BcDecodedStream(product.get(), input, output).produce(key, digest);
+		new BcDecodedStream(product.get(), input, output)//
+				.produce(key, digest);
 	}
 
 }

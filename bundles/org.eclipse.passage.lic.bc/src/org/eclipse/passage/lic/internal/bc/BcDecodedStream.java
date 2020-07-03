@@ -138,8 +138,7 @@ final class BcDecodedStream {
 		if (!digest.expected()) {
 			return;
 		}
-		byte[] calculatedDigest = new BcDigest(key).get();
-		if (Objects.deepEquals(calculatedDigest, digest.value())) {
+		if (Objects.deepEquals(new BcDigest(key).get(), digest.value())) {
 			return;
 		}
 		throw new LicensingException(//
