@@ -15,8 +15,11 @@ package org.eclipse.passage.lic.internal.bc;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
+import java.security.Security;
+import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
@@ -26,6 +29,10 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 @SuppressWarnings("restriction")
 public final class BcStreamCodec implements StreamCodec {
+
+	static {
+		Security.addProvider(new BouncyCastleProvider());
+	}
 
 	private final Supplier<LicensedProduct> product;
 	private final EncryptionAlgorithm algorithm;
@@ -59,6 +66,10 @@ public final class BcStreamCodec implements StreamCodec {
 	@Override
 	public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
 			throws LicensingException {
+		Objects.requireNonNull(publicKey);
+		Objects.requireNonNull(privateKey);
+		Objects.requireNonNull(username);
+		Objects.requireNonNull(password);
 		new BcKeyPair( //
 				new BcKeyPair.Targets(publicKey, privateKey), //
 				new BcKeyPair.EncryptionParameters(algorithm, keySize) //
