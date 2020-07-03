@@ -16,12 +16,19 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
@@ -38,8 +45,8 @@ public final class KeyPairGenerationTest {
 	@Test
 	public void generationSucceeds() throws IOException {
 		PairInfo<Integer> pair = pair((pub, secret) -> new PairSize(pub, secret));
-		assertTrue(pair.privateKeyInfo() > 0);
-		assertTrue(pair.publicKeyInfo() > 0);
+		assertTrue(pair.secondInfo() > 0);
+		assertTrue(pair.firstInfo() > 0);
 	}
 
 	@Test
@@ -49,8 +56,57 @@ public final class KeyPairGenerationTest {
 		assertFalse(first.equals(second));
 	}
 
+	/**
+	 * <ul>
+	 * <li>generate pair of keys</li>
+	 * <li>encode random text file with {@code private} key</li>
+	 * <li>decode the result with the pairing {@code public} key</li>
+	 * <li>compare original and decoded files: they re expected to have equal
+	 * content</li>
+	 * </ul>
+	 * 
+	 * <p>
+	 * <b>NB: </b>It is not symmetric: you can encrypt only with {@code private} key
+	 * and then decipher only with the pairing {@code public}.
+	 * </p>
+	 * 
+	 * @throws IOException in case of file system denials
+	 */
 	@Test
-	public void generatedPairIsValid() {
+	public void generatedPairIsFunctional() throws IOException {
+		// given
+		Path victim = fileWithContent();
+		Path encoded = file(".txt"); //$NON-NLS-1$
+		Path decoded = file(".txt"); //$NON-NLS-1$
+		String user = "fake.user"; //$NON-NLS-1$
+		String pass = "some$pass#val&1"; //$NON-NLS-1$
+
+		// when: first: encode
+		PairInfo<Path> pair = pair((pub, secret) -> new PairKeys(pub, secret), user, pass);
+		try (//
+				InputStream target = new FileInputStream(victim.toFile()); //
+				OutputStream destination = new FileOutputStream(encoded.toFile()); //
+				InputStream key = new FileInputStream(pair.secondInfo().toFile())) {
+			new BcStreamCodec(this::product).encode(target, destination, key, user, pass);
+		} catch (LicensingException e) {
+			fail("Encoding is not supposed to fail on valid data"); //$NON-NLS-1$
+		}
+
+		// when: second: decode
+		try (//
+				InputStream target = new FileInputStream(encoded.toFile()); //
+				OutputStream destination = new FileOutputStream(decoded.toFile()); //
+				InputStream key = new FileInputStream(pair.firstInfo().toFile())) {
+			new BcStreamCodec(this::product).decode(target, destination, key, new DigestExpectation.None());
+		} catch (LicensingException e) {
+			e.printStackTrace();
+			fail("Decoding is not supposed to fail on valid data"); //$NON-NLS-1$
+		}
+
+		// then
+		assertTrue(Objects.deepEquals(//
+				new FileContent(victim).get(), //
+				new FileContent(decoded).get()));
 
 	}
 
@@ -119,13 +175,17 @@ public final class KeyPairGenerationTest {
 	}
 
 	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor) throws IOException {
+		return pair(ctor, "test-user", "test-pass-word");//$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor, String user, String pass) throws IOException {
 		// given:
 		Path pub = keyFile(new PassageFileExtension.PublicKey());
 		Path secret = keyFile(new PassageFileExtension.PrivateKey());
 		BcStreamCodec codec = new BcStreamCodec(this::product);
 		try {
 			// when
-			codec.createKeyPair(pub, secret, "test-user", "test-pass-word"); //$NON-NLS-1$//$NON-NLS-2$
+			codec.createKeyPair(pub, secret, user, pass);
 		} catch (LicensingException e) {
 			// then
 			fail("PGP key pair generation on valid data is not supposed to fail"); //$NON-NLS-1$
@@ -146,7 +206,11 @@ public final class KeyPairGenerationTest {
 	 * Physically creates an empty file with demanded extension
 	 */
 	private Path keyFile(PassageFileExtension extension) throws IOException {
-		return folder.newFile(Long.toHexString(System.nanoTime()) + extension.get()).toPath();
+		return file(extension.get());
+	}
+
+	private Path file(String extension) throws IOException {
+		return folder.newFile(Long.toHexString(System.nanoTime()) + extension).toPath();
 	}
 
 	/**
@@ -154,6 +218,16 @@ public final class KeyPairGenerationTest {
 	 */
 	private Path keyPath(PassageFileExtension extension) throws IOException {
 		return folder.getRoot().toPath().resolve(Long.toHexString(System.nanoTime()) + extension.get());
+	}
+
+	private Path fileWithContent() throws IOException {
+		Path path = folder.newFile(Long.toHexString(System.nanoTime()) + ".txt").toPath(); //$NON-NLS-1$
+		try (PrintWriter writer = new PrintWriter(path.toFile())) {
+			writer.println("content row 1"); //$NON-NLS-1$
+			writer.println("content row 2"); //$NON-NLS-1$
+			writer.println("content row 3"); //$NON-NLS-1$
+		}
+		return path;
 	}
 
 }

@@ -12,18 +12,25 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc.tests;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
-final class PairContent extends PairInfo<byte[]> {
+final class FileContent {
 
-	PairContent(Path first, Path second) throws IOException {
-		super(first, second);
+	private final Path file;
+
+	FileContent(Path file) {
+		this.file = file;
 	}
 
-	@Override
-	protected byte[] info(Path file) throws IOException {
-		return new FileContent(file).get();
+	byte[] get() throws IOException {
+		byte[] content = new byte[(int) Files.size(file)];
+		try (InputStream stream = new FileInputStream(file.toFile())) {
+			stream.read(content);
+		}
+		return content;
 	}
-
 }

@@ -15,15 +15,15 @@ package org.eclipse.passage.lic.internal.bc.tests;
 import java.io.IOException;
 import java.nio.file.Path;
 
-final class PairContent extends PairInfo<byte[]> {
+final class PairKeys extends PairInfo<Path> {
 
-	PairContent(Path first, Path second) throws IOException {
+	PairKeys(Path first, Path second) throws IOException {
 		super(first, second);
 	}
 
 	@Override
-	protected byte[] info(Path file) throws IOException {
-		return new FileContent(file).get();
+	protected Path info(Path file) throws IOException {
+		return file;
 	}
 
 }

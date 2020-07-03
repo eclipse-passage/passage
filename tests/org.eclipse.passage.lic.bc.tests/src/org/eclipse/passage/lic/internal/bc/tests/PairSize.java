@@ -18,8 +18,8 @@ import java.nio.file.Path;
 
 final class PairSize extends PairInfo<Integer> {
 
-	PairSize(Path pub, Path secret) throws IOException {
-		super(pub, secret);
+	PairSize(Path first, Path second) throws IOException {
+		super(first, second);
 	}
 
 	@Override

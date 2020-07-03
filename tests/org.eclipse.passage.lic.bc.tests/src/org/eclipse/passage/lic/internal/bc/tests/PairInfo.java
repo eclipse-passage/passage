@@ -18,20 +18,20 @@ import java.util.Objects;
 
 abstract class PairInfo<I> {
 
-	private final I publicKeyInfo;
-	private final I privateKeyInfo;
+	private final I first;
+	private final I second;
 
-	PairInfo(Path pub, Path secret) throws IOException {
-		publicKeyInfo = info(pub);
-		privateKeyInfo = info(secret);
+	PairInfo(Path first, Path second) throws IOException {
+		this.first = info(first);
+		this.second = info(second);
 	}
 
-	I publicKeyInfo() {
-		return publicKeyInfo;
+	I firstInfo() {
+		return first;
 	}
 
-	I privateKeyInfo() {
-		return privateKeyInfo;
+	I secondInfo() {
+		return second;
 	}
 
 	protected abstract I info(Path file) throws IOException;
@@ -43,13 +43,13 @@ abstract class PairInfo<I> {
 		}
 		@SuppressWarnings("unchecked")
 		PairInfo<I> another = (PairInfo<I>) object;
-		return Objects.deepEquals(publicKeyInfo, another.publicKeyInfo) //
-				&& Objects.deepEquals(privateKeyInfo, another.privateKeyInfo);
+		return Objects.deepEquals(first, another.first) //
+				&& Objects.deepEquals(second, another.second);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(publicKeyInfo, privateKeyInfo);
+		return Objects.hash(first, second);
 	}
 
 }
