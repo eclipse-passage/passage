@@ -12,15 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.bc;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.bouncycastle.crypto.digests.SHA512Digest;
 
-public final class BcDigest implements Supplier<byte[]> {
+final class BcDigest implements Supplier<byte[]> {
 
 	private final byte[] source;
 
-	public BcDigest(byte[] source) {
+	BcDigest(byte[] source) {
+		Objects.requireNonNull(source, "BcDigest::source"); //$NON-NLS-1$
 		this.source = source;
 	}
 

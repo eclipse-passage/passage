@@ -15,8 +15,11 @@ package org.eclipse.passage.lic.internal.bc;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
+import java.security.Security;
+import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
@@ -26,6 +29,10 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 @SuppressWarnings("restriction")
 public final class BcStreamCodec implements StreamCodec {
+
+	static {
+		Security.addProvider(new BouncyCastleProvider());
+	}
 
 	private final Supplier<LicensedProduct> product;
 	private final EncryptionAlgorithm algorithm;
@@ -59,24 +66,38 @@ public final class BcStreamCodec implements StreamCodec {
 	@Override
 	public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
 			throws LicensingException {
+		Objects.requireNonNull(publicKey, "BcStreamCodec::createKeyPair::publicKey"); //$NON-NLS-1$
+		Objects.requireNonNull(privateKey, "BcStreamCodec::createKeyPair::privateKey"); //$NON-NLS-1$
+		Objects.requireNonNull(username, "BcStreamCodec::createKeyPair::username"); //$NON-NLS-1$
+		Objects.requireNonNull(password, "BcStreamCodec::createKeyPair::password"); //$NON-NLS-1$
 		new BcKeyPair( //
 				new BcKeyPair.Targets(publicKey, privateKey), //
 				new BcKeyPair.EncryptionParameters(algorithm, keySize) //
 		).generate(username, password);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void encode(InputStream input, OutputStream output, InputStream key, String username, String password)
 			throws LicensingException {
+		Objects.requireNonNull(input, "BcStreamCodec::encode::input"); //$NON-NLS-1$
+		Objects.requireNonNull(output, "BcStreamCodec::encode::output"); //$NON-NLS-1$
+		Objects.requireNonNull(key, "BcStreamCodec::encode::key"); //$NON-NLS-1$ ;
+		Objects.requireNonNull(username, "BcStreamCodec::encode::username"); //$NON-NLS-1$
+		Objects.requireNonNull(password, "BcStreamCodec::encode::password"); //$NON-NLS-1$
 		new BcEncodedStream(product.get(), input, output)//
 				.produce(new BcResidentSecretKey(key, username).get(), password);
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void decode(InputStream input, OutputStream output, InputStream key, DigestExpectation digest)
 			throws LicensingException {
-		// TODO Auto-generated method stub
-
+		Objects.requireNonNull(input, "BcStreamCodec::decode::input"); //$NON-NLS-1$
+		Objects.requireNonNull(output, "BcStreamCodec::decode::output"); //$NON-NLS-1$
+		Objects.requireNonNull(key, "BcStreamCodec::decode::key"); //$NON-NLS-1$ ;
+		Objects.requireNonNull(digest, "BcStreamCodec::decode::digest"); //$NON-NLS-1$
+		new BcDecodedStream(product.get(), input, output).produce(key, digest);
 	}
 
 }

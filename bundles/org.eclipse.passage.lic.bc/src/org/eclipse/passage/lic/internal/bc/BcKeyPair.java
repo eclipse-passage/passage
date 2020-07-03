@@ -30,6 +30,7 @@ import org.bouncycastle.openpgp.PGPKeyPair;
 import org.bouncycastle.openpgp.PGPKeyRing;
 import org.bouncycastle.openpgp.PGPKeyRingGenerator;
 import org.bouncycastle.openpgp.PGPPublicKey;
+import org.bouncycastle.openpgp.PGPSecretKey;
 import org.bouncycastle.openpgp.PGPSignature;
 import org.bouncycastle.openpgp.PGPSignatureSubpacketGenerator;
 import org.bouncycastle.openpgp.PGPSignatureSubpacketVector;
@@ -44,6 +45,21 @@ import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
 
+/**
+ * <p>
+ * Generated a couple of PGP keys ({@linkplain PGPPublicKey} and pairing
+ * {@linkplain PGPSecretKey})
+ * </p>
+ * <ul>
+ * <li>into the files pointed in the given {@linkplain Targets}</li>
+ * <li>according to the configured {@linkplain EncryptionParameters}</li>
+ * <li>for an owner with the passed credentials</li>
+ * </ul>
+ * <p>
+ * Empowers
+ * {@linkplain BcStreamCodec#createKeyPair(Path, Path, String, String)}.
+ * </p>
+ */
 @SuppressWarnings("restriction")
 final class BcKeyPair {
 

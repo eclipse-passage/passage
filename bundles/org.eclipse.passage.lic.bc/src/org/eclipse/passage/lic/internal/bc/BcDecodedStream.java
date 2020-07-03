@@ -52,7 +52,9 @@ final class BcDecodedStream {
 
 	void produce(InputStream publicKeyRing, DigestExpectation digest) throws LicensingException {
 		byte[] ring = ring(publicKeyRing, digest);
-		try (InputStream compressed = compressedData().getDataStream()) {
+		try (//
+				InputStream decodedInput = PGPUtil.getDecoderStream(input);
+				InputStream compressed = compressedData(decodedInput).getDataStream()) {
 			PGPObjectFactory factory = new JcaPGPObjectFactory(compressed);
 			PGPOnePassSignature signature = signature(factory);
 			try (InputStream literal = literalDataStream(factory);
@@ -61,6 +63,7 @@ final class BcDecodedStream {
 				signature.init(new JcaPGPContentVerifierBuilderProvider(), decodeKey);
 				writeVerifiedDecodedOutput(literal, signature, factory);
 			}
+
 		} catch (Exception e) {
 			throw new LicensingException( //
 					String.format(BcMessages.getString("BcStreamCodec_deconde_error"), product), //$NON-NLS-1$ ,
@@ -102,16 +105,14 @@ final class BcDecodedStream {
 		return ((PGPLiteralData) factory.nextObject()).getInputStream();
 	}
 
-	private PGPCompressedData compressedData() throws LicensingException, IOException {
-		try (InputStream decoder = PGPUtil.getDecoderStream(input)) {
-			PGPObjectFactory factory = new JcaPGPObjectFactory(decoder);
-			Optional<PGPCompressedData> compressed = Optional.ofNullable((PGPCompressedData) factory.nextObject());
-			if (!compressed.isPresent()) {
-				throw new LicensingException(//
-						String.format(BcMessages.getString("BcStreamCodec_encode_error_data"), product)); //$NON-NLS-1$
-			}
-			return compressed.get();
+	private PGPCompressedData compressedData(InputStream decoder) throws LicensingException, IOException {
+		PGPObjectFactory factory = new JcaPGPObjectFactory(decoder);
+		Optional<PGPCompressedData> compressed = Optional.ofNullable((PGPCompressedData) factory.nextObject());
+		if (!compressed.isPresent()) {
+			throw new LicensingException(//
+					String.format(BcMessages.getString("BcStreamCodec_encode_error_data"), product)); //$NON-NLS-1$
 		}
+		return compressed.get();
 	}
 
 	private byte[] ring(InputStream publicKeyRing, DigestExpectation digest) throws LicensingException {
