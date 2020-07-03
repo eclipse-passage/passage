@@ -17,8 +17,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeTrue;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,21 +26,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FileContent;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("restriction")
-public final class StreamEncodingTest {
-
-	@Rule
-	public TemporaryFolder root = new TemporaryFolder();
+public final class StreamEncodingTest extends BcStreamCodecTest {
 
 	@Test
 	public void encodingIsFunctional() throws IOException {
@@ -71,7 +62,7 @@ public final class StreamEncodingTest {
 	}
 
 	/**
-	 * Here we do the encoding using the random char sequence as an encryption key.
+	 * Here we do the encoding using a random char sequence as an encryption key.
 	 * This supposed to constantly fail as only properly generated keys are
 	 * acceptable for encoding purpose.
 	 */
@@ -135,15 +126,6 @@ public final class StreamEncodingTest {
 			fail("Failed to getenate key pair: check corresponging tests set"); //$NON-NLS-1$
 		}
 		return key;
-
-	}
-
-	private InputStream anInput() {
-		return new ByteArrayInputStream(new byte[0]);
-	}
-
-	private OutputStream anOutput() {
-		return new ByteArrayOutputStream();
 	}
 
 	private void encodeNull(InputStream input, OutputStream output, InputStream key) {
@@ -154,12 +136,8 @@ public final class StreamEncodingTest {
 		try {
 			new BcStreamCodec(this::product).encode(input, output, key, user, pass);
 		} catch (LicensingException e) {
-			fail("Incorrect incoming data are not intended to use any encoding activity"); //$NON-NLS-1$
+			fail("Incorrect incoming data are not intended to cause any encoding activity"); //$NON-NLS-1$
 		}
-	}
-
-	private LicensedProduct product() {
-		return new BaseLicensedProduct("encoding-test-product", "2.4.21"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 }

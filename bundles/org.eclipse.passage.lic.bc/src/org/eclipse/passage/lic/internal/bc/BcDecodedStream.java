@@ -63,7 +63,6 @@ final class BcDecodedStream {
 				signature.init(new JcaPGPContentVerifierBuilderProvider(), decodeKey);
 				writeVerifiedDecodedOutput(literal, signature, factory);
 			}
-
 		} catch (Exception e) {
 			throw new LicensingException( //
 					String.format(BcMessages.getString("BcStreamCodec_deconde_error"), product), //$NON-NLS-1$ ,

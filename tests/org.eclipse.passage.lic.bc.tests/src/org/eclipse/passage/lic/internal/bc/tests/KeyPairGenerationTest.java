@@ -21,26 +21,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FileContent;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("restriction")
-public final class KeyPairGenerationTest {
-
-	@Rule
-	public TemporaryFolder root = new TemporaryFolder();
+public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test
 	public void generationSucceeds() throws IOException {
@@ -78,16 +70,16 @@ public final class KeyPairGenerationTest {
 	@Test
 	public void generatedPairIsFunctional() throws IOException {
 		// given
-		Path victim = new TmpFile(root).fileWithContent();
+		Path origin = new TmpFile(root).fileWithContent();
 		Path encoded = new TmpFile(root).file(".txt"); //$NON-NLS-1$
 		Path decoded = new TmpFile(root).file(".txt"); //$NON-NLS-1$
 		String user = "fake.user"; //$NON-NLS-1$
 		String pass = "some$pass#val&1"; //$NON-NLS-1$
 
-		// when: first: encode
-		PairInfo<Path> pair = pair((pub, secret) -> new PairKeys(pub, secret), user, pass);
+		// when: first: create pair
+		PairInfo<Path> pair = pair(user, pass);
 		try (//
-				InputStream target = new FileInputStream(victim.toFile()); //
+				InputStream target = new FileInputStream(origin.toFile()); //
 				OutputStream destination = new FileOutputStream(encoded.toFile()); //
 				InputStream key = new FileInputStream(pair.secondInfo().toFile())) {
 			new BcStreamCodec(this::product).encode(target, destination, key, user, pass);
@@ -108,7 +100,7 @@ public final class KeyPairGenerationTest {
 
 		// then
 		assertTrue(Objects.deepEquals(//
-				new FileContent(victim).get(), //
+				new FileContent(origin).get(), //
 				new FileContent(decoded).get()));
 
 	}
@@ -179,30 +171,6 @@ public final class KeyPairGenerationTest {
 
 	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor) throws IOException {
 		return pair(ctor, "test-user", "test-pass-word");//$NON-NLS-1$//$NON-NLS-2$
-	}
-
-	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor, String user, String pass) throws IOException {
-		// given:
-		Path pub = new TmpFile(root).keyFile(new PassageFileExtension.PublicKey());
-		Path secret = new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey());
-		BcStreamCodec codec = new BcStreamCodec(this::product);
-		try {
-			// when
-			codec.createKeyPair(pub, secret, user, pass);
-		} catch (LicensingException e) {
-			// then
-			fail("PGP key pair generation on valid data is not supposed to fail"); //$NON-NLS-1$
-		}
-		return ctor.create(pub, secret);
-	}
-
-	private void assertFileExists(Path file) {
-		assertTrue(Files.exists(file));
-		assertTrue(Files.isRegularFile(file));
-	}
-
-	private LicensedProduct product() {
-		return new BaseLicensedProduct("keygen-test-product", "1.0.18"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 }
