@@ -42,13 +42,13 @@ import org.junit.rules.TemporaryFolder;
 public final class StreamEncodingTest {
 
 	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+	public TemporaryFolder root = new TemporaryFolder();
 
 	@Test
-	public void encodes() throws IOException {
+	public void encodingIsFunctional() throws IOException {
 		// given
-		Path victim = new TmpFile(folder).fileWithContent();
-		Path encoded = new TmpFile(folder).file(".txt"); //$NON-NLS-1$
+		Path victim = new TmpFile(root).fileWithContent();
+		Path encoded = new TmpFile(root).file(".txt"); //$NON-NLS-1$
 		assumeTrue(Files.size(encoded) == 0);
 		String user = "Suer"; //$NON-NLS-1$
 		String pass = "Vyer"; //$NON-NLS-1$
@@ -68,6 +68,26 @@ public final class StreamEncodingTest {
 		assertFalse(Objects.deepEquals(//
 				new FileContent(victim).get(), //
 				new FileContent(encoded).get()));
+	}
+
+	/**
+	 * Here we do the encoding using the random char sequence as an encryption key.
+	 * This supposed to constantly fail as only properly generated keys are
+	 * acceptable for encoding purpose.
+	 */
+	@Test
+	public void properKeyIsRequired() throws IOException {
+		try (//
+				InputStream source = new FileInputStream(new TmpFile(root).fileWithContent().toFile());
+				OutputStream destination = anOutput();
+				InputStream key = new FileInputStream(new TmpFile(root).fileWithRandomContent(1024).toFile());) {
+			new BcStreamCodec(this::product).encode(//
+					source, destination, key, "user", "pass");//$NON-NLS-1$ //$NON-NLS-2$
+		} catch (LicensingException e) {
+			assertTrue(e.getMessage().contains("key")); //$NON-NLS-1$
+			return;
+		}
+		fail("Enconding is not supposed to encrypt anything with  a random sequence of chars as a key"); //$NON-NLS-1$
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -106,10 +126,10 @@ public final class StreamEncodingTest {
 	}
 
 	private Path privateKey(String user, String pass) throws IOException {
-		Path key = new TmpFile(folder).keyFile(new PassageFileExtension.PrivateKey());
+		Path key = new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey());
 		try {
 			new BcStreamCodec(this::product).createKeyPair(//
-					new TmpFile(folder).keyFile(new PassageFileExtension.PublicKey()), //
+					new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 					key, user, pass);
 		} catch (LicensingException e) {
 			fail("Failed to getenate key pair: check corresponging tests set"); //$NON-NLS-1$
