@@ -19,9 +19,11 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
 
 /**
  * Provides the key required for given configuration
- *
+ * 
  * @since 0.4.0
+ * @deprecated use internal (1.0) KeyKeeper
  */
+@Deprecated
 public interface KeyKeeper {
 
 	/**
