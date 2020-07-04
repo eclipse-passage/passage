@@ -21,6 +21,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+/**
+ * @deprecated use internal.api.io StreamCodecRegistry
+ */
+@Deprecated
 @Component
 public class EquinoxKeyKeeperRegistry extends BaseKeyKeeperRegistry implements KeyKeeperRegistry {
 

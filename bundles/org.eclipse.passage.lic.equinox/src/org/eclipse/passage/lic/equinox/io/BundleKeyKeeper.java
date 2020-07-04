@@ -12,7 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.io;
 
-import static org.eclipse.passage.lic.base.io.LicensingPaths.*;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
+import static org.eclipse.passage.lic.base.io.LicensingPaths.composeFileName;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,12 +27,16 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 
+/**
+ * @deprecated use internal (1.0) BundleKeyKeeper
+ */
+@Deprecated
 public class BundleKeyKeeper implements KeyKeeper {
 
 	protected static final String PATH_DEFAULT = "OSGI-INF/"; //$NON-NLS-1$
-	
+
 	private ComponentContext componentContext;
-	
+
 	@Activate
 	public void activate(ComponentContext context) {
 		this.componentContext = context;
