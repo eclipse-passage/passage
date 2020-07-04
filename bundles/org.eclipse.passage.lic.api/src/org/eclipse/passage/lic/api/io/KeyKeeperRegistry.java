@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.LicensingConfiguration;
  * Registry for {@link KeyKeeper} instances available at runtime.
  *
  * @since 0.4.0
- * @deprecated use internal (1.0) KeyKeeperregistry
+ * @deprecated use internal (1.0) KeyKeeperRegistry
  */
 @Deprecated
 public interface KeyKeeperRegistry {
