@@ -31,19 +31,18 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
 public interface KeyKeeper extends Service<LicensedProduct> {
 	/**
 	 * <p>
-	 * Constructs new input stream for the given {@code product}'s public key
-	 * reading.
+	 * Constructs new input stream to read the public key of a {@code product}
+	 * configured for the keeper.
 	 * </p>
 	 * <p>
 	 * Ones get the stream, a burden of closing it lies on one's shoulders as well.
 	 * </p>
 	 * 
-	 * @param product owner of the public key to be read
 	 * @return never {@code null}, fresh and ready to be used input stream from
 	 *         content of the public key file
 	 * @throws LicensingException in case of any infrastructure misbehavior or
 	 *                            detected content discrepancy.
 	 */
-	InputStream productPublicKey(LicensedProduct product) throws LicensingException;
+	InputStream productPublicKey() throws LicensingException;
 
 }
