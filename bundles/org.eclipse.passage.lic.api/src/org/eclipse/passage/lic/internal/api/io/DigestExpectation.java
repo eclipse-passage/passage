@@ -15,7 +15,8 @@ package org.eclipse.passage.lic.internal.api.io;
 public interface DigestExpectation {
 
 	/**
-	 * @return is there is any expectation at all
+	 * @return {@code true} if there is any expectation at all, {@code false} if
+	 *         digest is not intended to be used for a key verification
 	 */
 	boolean expected();
 

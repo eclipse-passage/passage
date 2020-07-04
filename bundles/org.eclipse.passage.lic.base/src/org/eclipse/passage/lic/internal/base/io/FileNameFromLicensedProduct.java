@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.io;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -19,9 +20,11 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 public final class FileNameFromLicensedProduct implements Supplier<String> {
 
 	private final LicensedProduct product;
-	private final String extension;
+	private final PassageFileExtension extension;
 
-	public FileNameFromLicensedProduct(LicensedProduct product, String extension) {
+	public FileNameFromLicensedProduct(LicensedProduct product, PassageFileExtension extension) {
+		Objects.requireNonNull(product, "FileNameFromLicensedProduct::product"); //$NON-NLS-1$
+		Objects.requireNonNull(extension, "FileNameFromLicensedProduct::extension"); //$NON-NLS-1$
 		this.product = product;
 		this.extension = extension;
 	}
@@ -31,7 +34,7 @@ public final class FileNameFromLicensedProduct implements Supplier<String> {
 		return String.format("%s_%s%s", //$NON-NLS-1$
 				product.identifier(), //
 				product.version(), //
-				extension);
+				extension.get());
 	}
 
 }
