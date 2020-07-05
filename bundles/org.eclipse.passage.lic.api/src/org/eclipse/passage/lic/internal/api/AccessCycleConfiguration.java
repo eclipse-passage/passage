@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.internal.api;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 
 /**
@@ -20,8 +22,12 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsReg
  */
 public interface AccessCycleConfiguration {
 
-	ResolvedRequirementsRegistry requirementsRegistry();
+	ResolvedRequirementsRegistry requirementResolvers();
 
-	MinedConditionsRegistry conditionsRegistry();
+	MinedConditionsRegistry conditionMiners();
+
+	StreamCodecRegistry codecs();
+
+	KeyKeeperRegistry keyKeepers();
 
 }

@@ -55,7 +55,7 @@ public final class DemoFrameworkContentTest {
 
 	private Registry<StringServiceId, ResolvedRequirements> registry() {
 		Optional<ResolvedRequirementsRegistry> registry = //
-				Optional.ofNullable(framework().accessCycleConfiguration().requirementsRegistry());
+				Optional.ofNullable(framework().accessCycleConfiguration().requirementResolvers());
 		assumeTrue(registry.isPresent());
 		return registry.get().get();
 	}
