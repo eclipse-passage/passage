@@ -484,7 +484,7 @@
 							</execution>
 							<execution>
 								<id>report-aggregate</id>
-								<phase>prepare-package</phase>
+								<phase>verify</phase>
 								<goals>
 									<goal>report-aggregate</goal>
 								</goals>
@@ -665,7 +665,8 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<argLine>${surefire.testArgLine}
+					<argLine>${tycho.testArgLine}
+					    ${surefire.testArgLine}
 						${surefire.platformSystemProperties}
 						${surefire.systemProperties}
 						${surefire.moduleProperties}
