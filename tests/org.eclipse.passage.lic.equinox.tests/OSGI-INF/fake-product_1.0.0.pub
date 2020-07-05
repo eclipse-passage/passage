@@ -1,0 +1,11 @@
+This test .pub file
+emulates public key file
+for a product [fake-product] 
+of version [1.0.0]
+for test BundleKeyKeeperTest.
+
+Totally fake. 
+
+Illustrates, after all,
+that the format is not checked 
+on an input stream opening.

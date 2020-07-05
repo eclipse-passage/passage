@@ -30,6 +30,10 @@ public class EquinoxMessages extends NLS {
 	public static String ComponentConfigurationResolver_error_invalid_component_rt;
 	public static String ComponentRequirements_error_no_resource;
 	public static String ComponentRequirements_requirement_for_resource;
+	public static String BundleKeyKeeper_failed_to_find_file;
+
+	public static String BundleKeyKeeper_failed_to_open_stream;
+
 	public static String BundleRequirements_error_bundle_context;
 	public static String BundleRequirements_no_context;
 
