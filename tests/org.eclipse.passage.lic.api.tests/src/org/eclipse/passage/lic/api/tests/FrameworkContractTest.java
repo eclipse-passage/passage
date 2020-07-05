@@ -98,6 +98,11 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
+	public final void canEncodeAndDecodeForProduct() {
+		assertTrue(config().codecs().get().hasService(framework().get().product()));
+	}
+
+	@Test
 	public final void keepsPublicKeyForProduct() {
 		assertServiceRegistryIsFunctional(config().keyKeepers().get());
 	}
@@ -110,6 +115,11 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void prohibitsInjectionIntoKeyKeeperServices() {
 		assertServiceInjectionsIsProhibited(config().keyKeepers().get(), new FakeKeyKeeper());
+	}
+
+	@Test
+	public final void keepsKepForProduct() {
+		assertTrue(config().keyKeepers().get().hasService(framework().get().product()));
 	}
 
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
