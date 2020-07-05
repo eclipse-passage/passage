@@ -55,7 +55,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new ComponentRequirements() //
 		));
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				new RemoteConditions(product, conditionTransports())//
+				new RemoteConditions(conditionTransports())//
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport()//
