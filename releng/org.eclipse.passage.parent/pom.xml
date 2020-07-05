@@ -622,6 +622,8 @@
 						.META-INF_MANIFEST.MF
 						.polyglot.*
 						*.takari_issue_192
+						ECLIPSE_.RSA
+						ECLIPSE_.SF
 					</jgit.ignore>
 					<jgit.dirtyWorkingTree>warning</jgit.dirtyWorkingTree>
 					<sourceReferences>
