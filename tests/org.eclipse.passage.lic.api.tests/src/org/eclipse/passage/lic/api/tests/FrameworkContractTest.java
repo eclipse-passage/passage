@@ -17,12 +17,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.tests.fakes.FakeKeyKeeper;
+import org.eclipse.passage.lic.api.tests.fakes.FakeMinedConditions;
 import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
+import org.eclipse.passage.lic.api.tests.fakes.FakeStreamCodec;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.registry.Service;
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.junit.Test;
 
 /**
@@ -45,30 +48,97 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
+	public final void suppliesLicensedProductInformation() {
+		assertNotNull(framework().get().product());
+	}
+
+	@Test
 	public final void canResolveRequirements() {
-		Registry<StringServiceId, ResolvedRequirements> registry = config().requirementsRegistry().get();
+		assertServiceRegistryIsFunctional(config().requirementResolvers().get());
+	}
+
+	@Test
+	public final void prohibitsRequirementsResolutionExtension() {
+		assertTrue(readOnly(config().requirementResolvers().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoRequirementResolutionServices() {
+		assertServiceInjectionsIsProhibited(config().requirementResolvers().get(), new FakeResolvedRequirements());
+	}
+
+	@Test
+	public final void canMineConditions() {
+		assertServiceRegistryIsFunctional(config().conditionMiners().get());
+	}
+
+	@Test
+	public final void prohibitsConditionMiningExtension() {
+		assertTrue(readOnly(config().conditionMiners().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoConditionMiningServices() {
+		assertServiceInjectionsIsProhibited(config().conditionMiners().get(), new FakeMinedConditions());
+	}
+
+	@Test
+	public final void canEncodeAndDecodeStreams() {
+		assertServiceRegistryIsFunctional(config().codecs().get());
+	}
+
+	@Test
+	public final void prohibitsStreamCodecServicesExtension() {
+		assertTrue(readOnly(config().codecs().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoStreamCodecServices() {
+		assertServiceInjectionsIsProhibited(config().codecs().get(), new FakeStreamCodec());
+	}
+
+	@Test
+	public final void canEncodeAndDecodeForProduct() {
+		assertTrue(config().codecs().get().hasService(framework().get().product()));
+	}
+
+	@Test
+	public final void keepsPublicKeyForProduct() {
+		assertServiceRegistryIsFunctional(config().keyKeepers().get());
+	}
+
+	@Test
+	public final void prohibitsKeyKeeperServicesExtension() {
+		assertTrue(readOnly(config().keyKeepers().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoKeyKeeperServices() {
+		assertServiceInjectionsIsProhibited(config().keyKeepers().get(), new FakeKeyKeeper());
+	}
+
+	@Test
+	public final void keepsKepForProduct() {
+		assertTrue(config().keyKeepers().get().hasService(framework().get().product()));
+	}
+
+	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
+			Registry<I, S> registry) {
 		assertNotNull(registry);
 		assertNotNull(registry.services());
 		assertTrue(registry.services().size() > 0);
 	}
 
-	@Test
-	public final void prohibitsRequirementsResolutionExtension() {
-		assertTrue(readOnly(config().requirementsRegistry().get()));
-	}
-
-	@Test
-	public final void prohibitsInjectionIntoRequirementResolutionServices() {
-		Registry<StringServiceId, ResolvedRequirements> registry = config().requirementsRegistry().get();
+	private <I extends ServiceId, S extends Service<I>> void assertServiceInjectionsIsProhibited(
+			Registry<I, S> registry, S intruder) {
 		int before = registry.services().size();
-		registry.services().add(new FakeResolvedRequirements());
+		try {
+			registry.services().add(intruder);
+		} catch (UnsupportedOperationException unsupported) {
+			// then (hooray! unsupported! no injections!)
+			return;
+		}
 		assertTrue(before == registry.services().size());
-
-	}
-
-	@Test
-	public final void suppliesLicensedProductInformation() {
-		assertNotNull(framework().get().product());
 	}
 
 	private AccessCycleConfiguration config() {

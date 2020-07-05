@@ -55,7 +55,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new ComponentRequirements() //
 		));
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				new RemoteConditions(product, transports())//
+				new RemoteConditions(product, conditionTransports())//
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport()//
@@ -69,27 +69,27 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	}
 
 	@Override
-	public ResolvedRequirementsRegistry requirementsRegistry() {
+	public ResolvedRequirementsRegistry requirementResolvers() {
 		return () -> requirements;
 	}
 
 	@Override
-	public MinedConditionsRegistry conditionsRegistry() {
+	public MinedConditionsRegistry conditionMiners() {
 		return () -> conditions;
 	}
 
-	private ConditionTransportRegistry transports() {
-		return () -> transports;
-	}
-
-	@SuppressWarnings("unused") // Under development: required for condition mining
-	private StreamCodecRegistry codecs() {
+	@Override
+	public StreamCodecRegistry codecs() {
 		return () -> codecs;
 	}
 
-	@SuppressWarnings("unused") // Under development: required for condition mining
-	private KeyKeeperRegistry keys() {
+	@Override
+	public KeyKeeperRegistry keyKeepers() {
 		return () -> keys;
+	}
+
+	private ConditionTransportRegistry conditionTransports() {
+		return () -> transports;
 	}
 
 	private Bundle bundle() {

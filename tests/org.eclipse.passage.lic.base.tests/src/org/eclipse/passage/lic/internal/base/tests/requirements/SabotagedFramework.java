@@ -17,11 +17,12 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.registry.Service;
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -45,33 +46,28 @@ final class SabotagedFramework implements Framework {
 	private static class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
 
 		@Override
-		public ResolvedRequirementsRegistry requirementsRegistry() {
-			return new NoRequirementResolvers();
+		public ResolvedRequirementsRegistry requirementResolvers() {
+			return () -> noService();
 		}
 
 		@Override
-		public MinedConditionsRegistry conditionsRegistry() {
-			return new NoConditionMiners();
+		public MinedConditionsRegistry conditionMiners() {
+			return () -> noService();
 		}
-
-	}
-
-	private static class NoRequirementResolvers implements ResolvedRequirementsRegistry {
 
 		@Override
-		public Registry<StringServiceId, ResolvedRequirements> get() {
-			return new ReadOnlyRegistry<StringServiceId, ResolvedRequirements>(new ArrayList<>());
+		public StreamCodecRegistry codecs() {
+			return () -> noService();
 		}
-
-	}
-
-	private static class NoConditionMiners implements MinedConditionsRegistry {
 
 		@Override
-		public Registry<StringServiceId, MinedConditions> get() {
-			return new ReadOnlyRegistry<StringServiceId, MinedConditions>(new ArrayList<>());
+		public KeyKeeperRegistry keyKeepers() {
+			return () -> noService();
 		}
 
+		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
+			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
+		}
 	}
 
 }

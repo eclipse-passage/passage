@@ -13,22 +13,24 @@
 package org.eclipse.passage.lic.api.tests.fakes;
 
 import java.util.Collection;
+import java.util.Collections;
 
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 @SuppressWarnings("restriction")
-public final class FakeResolvedRequirements implements ResolvedRequirements {
+public final class FakeMinedConditions implements MinedConditions {
 
 	@Override
 	public StringServiceId id() {
-		return new StringServiceId("fake-req-res"); //$NON-NLS-1$
+		return new StringServiceId("fake-mining-service"); //$NON-NLS-1$
 	}
 
 	@Override
-	public Collection<Requirement> all() {
-		throw new UnsupportedOperationException();
+	public Collection<Condition> all() throws ConditionMiningException {
+		return Collections.emptySet();
 	}
 
 }

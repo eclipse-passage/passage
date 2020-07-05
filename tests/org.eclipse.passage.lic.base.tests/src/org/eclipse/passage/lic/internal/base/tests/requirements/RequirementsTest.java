@@ -27,7 +27,7 @@ public final class RequirementsTest {
 	@Test
 	public void noResolversMeansNoAccess() {
 		Set<Requirement> requirements = new Requirements(//
-				new SabotagedFramework().accessCycleConfiguration().requirementsRegistry().get(), //
+				new SabotagedFramework().accessCycleConfiguration().requirementResolvers().get(), //
 				"feature0" //$NON-NLS-1$
 		).get();
 		assertEquals(1, requirements.size());
