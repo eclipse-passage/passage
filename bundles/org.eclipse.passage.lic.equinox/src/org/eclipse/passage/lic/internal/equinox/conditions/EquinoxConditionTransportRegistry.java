@@ -17,10 +17,16 @@ import java.util.Map;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.ConditionTransportRegistry;
 import org.eclipse.passage.lic.base.conditions.BaseConditionTransportRegistry;
+import org.eclipse.passage.lic.internal.api.Framework;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+/**
+ * @deprecated use {@link Framework}-supplied transport registry
+ */
+@SuppressWarnings("restriction")
+@Deprecated
 @Component
 public class EquinoxConditionTransportRegistry extends BaseConditionTransportRegistry
 		implements ConditionTransportRegistry {

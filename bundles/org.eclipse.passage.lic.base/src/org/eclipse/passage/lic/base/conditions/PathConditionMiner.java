@@ -29,8 +29,13 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.base.io.NullKeyKeeper;
 import org.eclipse.passage.lic.base.io.NullStreamCodec;
+import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
+/**
+ * @deprecated use {@link LocalConditions}
+ */
+@Deprecated
 public abstract class PathConditionMiner extends BaseConditionMiner {
 
 	@Override
