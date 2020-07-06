@@ -37,9 +37,11 @@ public final class JsonConditionTransport implements ConditionTransport {
 		return new JsonObjectMapper().get().readValue(input, ConditionPack.class).conditions;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public void write(Collection<Condition> conditions, OutputStream output) throws IOException {
 		Objects.requireNonNull(conditions, "JsonConditionTransport::write::conditions"); //$NON-NLS-1$
+		Objects.requireNonNull(output, "JsonConditionTransport::write::output"); //$NON-NLS-1$
 		output.write(new JsonObjectMapper().get().writeValueAsBytes(new ConditionPack(conditions)));
 	}
 

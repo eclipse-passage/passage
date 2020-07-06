@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.internal.equinox.io.ConfigurationPath;
 public final class ConfigurationResidentConditions extends LocalConditions {
 
 	public ConfigurationResidentConditions(MiningEquipment equipment, Consumer<LicensingException> handler) {
-		super(new StringServiceId("installation-conditions"), equipment, handler); //$NON-NLS-1$
+		super(new StringServiceId("configuration-conditions"), equipment, handler); //$NON-NLS-1$
 	}
 
 	@Override
