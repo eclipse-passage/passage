@@ -66,6 +66,7 @@ final class MiningTool {
 				ByteArrayOutputStream decoded = new ByteArrayOutputStream();
 				InputStream ring = key.productPublicKey()) {
 			codec.decode(encoded, decoded, ring, new DigestExpectation.None());
+			decoded.flush();
 			return decoded.toByteArray();
 		}
 	}
