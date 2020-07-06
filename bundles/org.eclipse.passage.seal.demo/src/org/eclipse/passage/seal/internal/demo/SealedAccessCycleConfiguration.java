@@ -43,6 +43,7 @@ import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditions;
 import org.eclipse.passage.lic.internal.json.tobemoved.JsonConditionTransport;
+import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -75,7 +76,8 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 						alarm)//
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
-				new JsonConditionTransport()//
+				new JsonConditionTransport(), //
+				new XmiConditionTransport() // FIXME: does not do `writing`
 		));
 		codecs = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BcStreamCodec(product) //

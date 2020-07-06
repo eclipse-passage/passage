@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.registry;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
@@ -21,6 +22,10 @@ public final class ReadOnlyRegistry<I extends ServiceId, S extends Service<I>> e
 
 	public ReadOnlyRegistry(Collection<S> service) {
 		super(service);
+	}
+
+	public ReadOnlyRegistry(S service) {
+		super(Collections.singleton(service));
 	}
 
 }
