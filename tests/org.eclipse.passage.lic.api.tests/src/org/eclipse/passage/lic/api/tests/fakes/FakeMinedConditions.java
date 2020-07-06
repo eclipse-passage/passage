@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.api.tests.fakes;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
@@ -29,7 +30,7 @@ public final class FakeMinedConditions implements MinedConditions {
 	}
 
 	@Override
-	public Collection<Condition> all() throws ConditionMiningException {
+	public Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
 		return Collections.emptySet();
 	}
 
