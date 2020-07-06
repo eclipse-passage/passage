@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
@@ -65,9 +66,15 @@ final class SabotagedFramework implements Framework {
 			return () -> noService();
 		}
 
+		@Override
+		public ConditionTransportRegistry transports() {
+			return () -> noService();
+		}
+
 		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
 			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
 		}
+
 	}
 
 }

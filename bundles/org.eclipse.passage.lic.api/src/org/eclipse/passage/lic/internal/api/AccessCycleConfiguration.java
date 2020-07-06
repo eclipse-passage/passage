@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
@@ -29,5 +30,7 @@ public interface AccessCycleConfiguration {
 	StreamCodecRegistry codecs();
 
 	KeyKeeperRegistry keyKeepers();
+
+	ConditionTransportRegistry transports();
 
 }

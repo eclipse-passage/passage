@@ -35,9 +35,13 @@ import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
+import org.eclipse.passage.lic.internal.base.io.FileCollection;
 
 public class ConditionMiners {
-
+	/**
+	 * @deprecated use minedConditions directly or internal MiningTool
+	 */
+	@Deprecated
 	public static LicensingResult mine(String source, LicensingConfiguration configuration,
 			List<LicensingCondition> mined, KeyKeeper keyKeeper, StreamCodec streamCodec, ConditionTransport transport,
 			Iterable<String> packs) {
@@ -71,6 +75,10 @@ public class ConditionMiners {
 		return LicensingResults.createError(task, source, errors);
 	}
 
+	/**
+	 * @deprecated use {@link FileCollection}
+	 */
+	@Deprecated
 	public static List<String> collectPacks(Path configurationPath, String... extensions) throws LicensingException {
 		String message = String.format(BaseMessages.getString("ConditionMiners_collect_packs_error"), //$NON-NLS-1$
 				configurationPath);

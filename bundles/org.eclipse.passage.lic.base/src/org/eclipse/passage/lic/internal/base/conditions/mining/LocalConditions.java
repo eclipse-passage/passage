@@ -14,31 +14,41 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Objects;
+import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 
+/**
+ * <p>
+ * Scans the configured part of the local file system for encrypted license
+ * files, read 'em and retrieve all the licensing {@linkplain Condition}s they
+ * declare.
+ * </p>
+ */
 @SuppressWarnings("restriction")
 public abstract class LocalConditions implements MinedConditions {
 
-	protected final StringServiceId id;
-	private final KeyKeeperRegistry keys;
-	private final StreamCodecRegistry codecs;
+	private final StringServiceId id;
+	private final MiningEquipment equipment;
+	private final Consumer<LicensingException> handler;
 
-	protected LocalConditions(StringServiceId id, KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
+	protected LocalConditions(StringServiceId id, MiningEquipment equipment, Consumer<LicensingException> handler) {
+		Objects.requireNonNull(id);
+		Objects.requireNonNull(equipment);
+		Objects.requireNonNull(handler);
 		this.id = id;
-		this.keys = keys;
-		this.codecs = codecs;
+		this.equipment = equipment;
+		this.handler = handler;
 	}
 
 	@Override
@@ -48,7 +58,7 @@ public abstract class LocalConditions implements MinedConditions {
 
 	@Override
 	public final Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
-		return conditions(licenses(product));
+		return equipment.tool(product).mine(licenses(product), handler);
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws ConditionMiningException {
@@ -57,13 +67,8 @@ public abstract class LocalConditions implements MinedConditions {
 					new PassageFileExtension.LicenseEncrypted()).get();
 		} catch (LicensingException e) {
 			throw new ConditionMiningException(//
-					String.format(BaseMessages.getString("PathConditionMiner.failure"), id, product), e); //$NON-NLS-1$
+					String.format(BaseMessages.getString("LocalConditions.failure"), id, product), e); //$NON-NLS-1$
 		}
-	}
-
-	private Collection<Condition> conditions(Collection<Path> sources) throws ConditionMiningException {
-		return null;
-
 	}
 
 	protected abstract Path base();
