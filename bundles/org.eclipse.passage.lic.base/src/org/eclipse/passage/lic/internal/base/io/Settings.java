@@ -65,13 +65,13 @@ public final class Settings {
 	}
 
 	public Map<String, Object> get() throws LicensingException {
-		Map<String, Object> properties = new HashMap<>();
+		HunterForSettingsFiles hunter = new HunterForSettingsFiles();
 		try {
-			Files.walkFileTree(base.get(), new HunterForSettingsFiles(properties));
+			Files.walkFileTree(base.get(), hunter);
 		} catch (IOException e) {
 			throw new LicensingException(BaseMessages.getString("Settings.error_on_reading_settings"), e); //$NON-NLS-1$
 		}
-		return properties;
+		return hunter.findings();
 	}
 
 	private final class HunterForSettingsFiles extends SimpleFileVisitor<Path> {
@@ -79,8 +79,8 @@ public final class Settings {
 		private final Map<String, Object> properties;
 		private final PassageFileExtension extension = new PassageFileExtension.Settings();
 
-		public HunterForSettingsFiles(Map<String, Object> properties) {
-			this.properties = properties;
+		public HunterForSettingsFiles() {
+			this.properties = new HashMap<String, Object>();
 		}
 
 		@Override
@@ -101,6 +101,10 @@ public final class Settings {
 				heap.load(stream);
 			}
 			return heap.entrySet();
+		}
+
+		Map<String, Object> findings() {
+			return properties;
 		}
 
 	}

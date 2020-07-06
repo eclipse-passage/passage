@@ -50,7 +50,8 @@ public interface StreamCodec extends Service<LicensedProduct> {
 
 	/**
 	 * Encode {@code input} stream data with a private key retrieved form the given
-	 * {@code key} stream. Fill {@code output} stream with the encoded data.
+	 * {@code key} stream. Fill {@code output} stream with the encoded data. All the
+	 * streams stay opened.
 	 *
 	 * @param input    source of data to be encoded
 	 * @param output   target stream to place encoded data into
@@ -64,7 +65,8 @@ public interface StreamCodec extends Service<LicensedProduct> {
 
 	/**
 	 * Decode the {@code input} stream with the <i>public key</i> and store decoded
-	 * data to {@code output} stream.
+	 * data to {@code output} stream. All the streams stay opened at the end of the
+	 * call.
 	 *
 	 * @param input  source stream with encoded data
 	 * @param output target stream for decoded data

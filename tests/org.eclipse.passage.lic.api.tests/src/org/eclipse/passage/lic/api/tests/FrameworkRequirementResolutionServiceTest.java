@@ -35,7 +35,7 @@ public abstract class FrameworkRequirementResolutionServiceTest extends ReadOnly
 
 	@Override
 	protected final Supplier<Collection<ResolvedRequirements>> collection() {
-		return () -> framework().get().accessCycleConfiguration().requirementsRegistry().get().services();
+		return () -> framework().get().accessCycleConfiguration().requirementResolvers().get().services();
 	}
 
 	@Override

@@ -10,38 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.api.tests.fakes;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 @SuppressWarnings("restriction")
-public final class RemoteConditions implements MinedConditions {
-
-	private final StringServiceId id = new StringServiceId("remote"); //$NON-NLS-1$
-	private final ConditionTransportRegistry transports;
-
-	public RemoteConditions(ConditionTransportRegistry transports) {
-		this.transports = transports;
-	}
+public final class FakeMinedConditions implements MinedConditions {
 
 	@Override
 	public StringServiceId id() {
-		return id;
+		return new StringServiceId("fake-mining-service"); //$NON-NLS-1$
 	}
 
-	// FIXME: consider caching (ttl-ed)
 	@Override
 	public Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
-		return new HttpClient().remoteConditions(//
-				new RemoteConditionsRequest(product), //
-				new DecryptedConditions(transports));
+		return Collections.emptySet();
 	}
 
 }
