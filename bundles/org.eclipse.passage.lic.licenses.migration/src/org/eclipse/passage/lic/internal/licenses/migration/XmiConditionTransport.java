@@ -50,9 +50,13 @@ public class XmiConditionTransport implements ConditionTransport {
 		return extracted;
 	}
 
+	/**
+	 * FIXME: beware: on reading we expect LicensePackDescriptor to be a root for
+	 * conditions but on reading we put conditions directly into contents. Will not
+	 * work both sides. Totally deprecated.
+	 */
 	@Override
-	public void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output)
-			throws IOException {
+	public void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output) throws IOException {
 		Resource resource = new XMIResourceImpl();
 		EList<EObject> contents = resource.getContents();
 		for (LicensingCondition conditionDescriptor : conditions) {

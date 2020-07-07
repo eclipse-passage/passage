@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -60,11 +59,6 @@ final class HeadOnlyTransport implements ConditionTransport {
 			}
 		}
 		return conditions;
-	}
-
-	@Override
-	public void write(Collection<Condition> conditions, OutputStream output) throws IOException {
-		throw new UnsupportedOperationException();
 	}
 
 	private VersionMatch commonVersion() {

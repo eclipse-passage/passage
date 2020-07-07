@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.api.tests.fakes;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
@@ -31,11 +30,6 @@ public final class FakeConditionTransport implements ConditionTransport {
 
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void write(Collection<Condition> conditions, OutputStream output) throws IOException {
 		throw new UnsupportedOperationException();
 	}
 
