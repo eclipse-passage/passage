@@ -10,26 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.json.tobemoved;
+package org.eclipse.passage.lic.api.tests.fakes;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
-/**
- * Cover connection of typed elements as our persistence library requires.
- * Intentionally ugly.
- */
 @SuppressWarnings("restriction")
-public final class ConditionPack {
+public final class FakeConditionTransport implements ConditionTransport {
 
-	Collection<Condition> conditions;
-
-	public ConditionPack(Collection<Condition> conditions) {
-		this.conditions = conditions;
+	@Override
+	public ContentType id() {
+		return new ContentType.Of("application/test"); //$NON-NLS-1$
 	}
 
-	ConditionPack() {
+	@Override
+	public Collection<Condition> read(InputStream input) throws IOException {
+		throw new UnsupportedOperationException();
 	}
 
 }

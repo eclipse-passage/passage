@@ -23,7 +23,6 @@ import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 /**
  * integration test: required OSGi running
- * @author user
  */
 @SuppressWarnings("restriction")
 public final class DemoFrameworkContractTest extends FrameworkContractTest {

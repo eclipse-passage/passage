@@ -26,6 +26,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+/**
+ * @deprecated use {@link InstallationResidentConditions}
+ */
+@Deprecated
 @Component(service = ConditionMiner.class)
 public class InstallLocationConditionMiner extends PathConditionMiner {
 

@@ -17,12 +17,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.tests.fakes.FakeConditionTransport;
 import org.eclipse.passage.lic.api.tests.fakes.FakeKeyKeeper;
 import org.eclipse.passage.lic.api.tests.fakes.FakeMinedConditions;
 import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
 import org.eclipse.passage.lic.api.tests.fakes.FakeStreamCodec;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
@@ -103,7 +105,7 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void keepsPublicKeyForProduct() {
+	public final void hasKeyKeepers() {
 		assertServiceRegistryIsFunctional(config().keyKeepers().get());
 	}
 
@@ -118,8 +120,28 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void keepsKepForProduct() {
+	public final void keepsKeyForProduct() {
 		assertTrue(config().keyKeepers().get().hasService(framework().get().product()));
+	}
+
+	@Test
+	public final void hasConditionTransports() {
+		assertServiceRegistryIsFunctional(config().transports().get());
+	}
+
+	@Test
+	public final void prohibitsConditionTransportServicesExtension() {
+		assertTrue(readOnly(config().transports().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoConditionTransportServices() {
+		assertServiceInjectionsIsProhibited(config().transports().get(), new FakeConditionTransport());
+	}
+
+	@Test
+	public final void hasTransportForXml() {
+		assertTrue(config().transports().get().hasService(new ContentType.Xml()));
 	}
 
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(

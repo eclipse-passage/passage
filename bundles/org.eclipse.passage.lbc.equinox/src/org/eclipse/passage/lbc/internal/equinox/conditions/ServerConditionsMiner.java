@@ -24,11 +24,16 @@ import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.conditions.PathConditionMiner;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
+import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;;
 
+/**
+ * @deprecated use {@link UserHomeResidentConditions} instead
+ */
+@Deprecated
 @Component(service = ConditionMiner.class)
 public class ServerConditionsMiner extends PathConditionMiner {
 

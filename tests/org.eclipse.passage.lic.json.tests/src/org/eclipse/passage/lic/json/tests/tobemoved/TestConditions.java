@@ -12,6 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.json.tests.tobemoved;
 
+import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeNoException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -26,6 +31,10 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
+import org.eclipse.passage.lic.internal.json.tobemoved.ConditionPack;
+import org.eclipse.passage.lic.internal.json.tobemoved.JsonObjectMapper;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @SuppressWarnings("restriction")
 public final class TestConditions {
@@ -48,6 +57,19 @@ public final class TestConditions {
 
 	Collection<Condition> conditions() {
 		return conditions;
+	}
+
+	String textual() {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		try {
+			output.write(new JsonObjectMapper().get().writeValueAsBytes(new ConditionPack(conditions)));
+			return new String(output.toByteArray(), "UTF-8"); //$NON-NLS-1$
+		} catch (JsonProcessingException e) {
+			fail("Is not intendd to fail on valid data"); //$NON-NLS-1$
+		} catch (IOException e) {
+			assumeNoException(e); // file system misbehavior must not fail test
+		}
+		throw new RuntimeException("unreachable"); //$NON-NLS-1$
 	}
 
 }

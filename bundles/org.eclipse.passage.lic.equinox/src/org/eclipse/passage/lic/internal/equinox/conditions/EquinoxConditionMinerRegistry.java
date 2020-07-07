@@ -17,10 +17,16 @@ import java.util.Map;
 import org.eclipse.passage.lic.api.conditions.ConditionMiner;
 import org.eclipse.passage.lic.api.conditions.ConditionMinerRegistry;
 import org.eclipse.passage.lic.base.conditions.BaseConditionMinerRegistry;
+import org.eclipse.passage.lic.internal.api.Framework;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
+/**
+ * @deprecated use {@link Framework}-supplied miners registry
+ */
+@SuppressWarnings("restriction")
+@Deprecated
 @Component(service = ConditionMinerRegistry.class)
 public class EquinoxConditionMinerRegistry extends BaseConditionMinerRegistry {
 

@@ -40,13 +40,27 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 public interface MinedConditions extends Service<StringServiceId> {
 
 	/**
+	 * <p>
+	 * Triggers a mining process (caching possible, but not mandatory) for declared
+	 * licensing {@linkplain Condition}s over particular set of sources.
+	 * </p>
+	 * <p>
+	 * The mining fails with a {@code ConditionMiningException} in case of any
+	 * undeniable misbehavior of a mining infrastructure: whether it is a floating
+	 * license server protocol discrepancy, a file system failure, heavy lack of
+	 * configuration or other state that makes the mining itself impossible.
+	 * </p>
+	 * <p>
+	 * If, on the scape of full functioning infrastructure, a particular conditions
+	 * source is failed to be processed, then this local failure is {@code handled}
+	 * (logged or listened in other way the particular implementation provides). No
+	 * exception is thrown in this case to make other sources scanning possible.
+	 * </p>
 	 * 
-	 * @return all the conditions gained during the mining (caching possible, but
-	 *         not mandatory) for the given {@code product}
+	 * @return all the conditions gained during the mining for the given
+	 *         {@code product}.
 	 * @throws ConditionMiningException in case of any undeniable misbehavior of a
-	 *                                  mining infrastructure: is it floating
-	 *                                  license server protocol discrepancy or file
-	 *                                  system failure
+	 *                                  mining infrastructure.
 	 */
 	Collection<Condition> all(LicensedProduct product) throws ConditionMiningException;
 

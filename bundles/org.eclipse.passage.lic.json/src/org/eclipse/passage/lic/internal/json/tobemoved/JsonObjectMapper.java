@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 @SuppressWarnings("restriction")
-class JsonObjectMapper implements Supplier<ObjectMapper> {
+public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 
 	@Override
 	public ObjectMapper get() {
