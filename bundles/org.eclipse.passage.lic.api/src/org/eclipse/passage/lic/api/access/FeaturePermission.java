@@ -16,6 +16,7 @@ import java.util.Date;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
 /**
  * Permission expresses runtime state of a satisfied {@link LicensingCondition}:
@@ -23,17 +24,21 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
  * permission to use the feature of given name and version range is issues by
  * {@link PermissionEmitter}.
  * <p>
- * In other words, {@link PermissionEmitter} <i>evaluates</i> a {@link LicensingCondition} and <i>emits or not</i>
- * corresponding {@link FeaturePermission}.
+ * In other words, {@link PermissionEmitter} <i>evaluates</i> a
+ * {@link LicensingCondition} and <i>emits or not</i> corresponding
+ * {@link FeaturePermission}.
  *
  * @since 0.4.0
+ * @deprecated use 1.0 {@linkplain Permission}
  */
+@Deprecated
 public interface FeaturePermission {
 
 	LicensingConfiguration getLicensingConfiguration();
 
 	/**
-	 * The original {@code LicensingCondition} for which this {@link FeaturePermission} was emitted.
+	 * The original {@code LicensingCondition} for which this
+	 * {@link FeaturePermission} was emitted.
 	 *
 	 * @since 0.4.0
 	 */
