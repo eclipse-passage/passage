@@ -17,7 +17,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeTrue;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -25,6 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.junit.Test;
 
@@ -36,11 +36,6 @@ public abstract class ConditionTransportContractTest {
 		assertNotNull(transport().id());
 	}
 
-	@Test(expected = NullPointerException.class)
-	public final void conditionsAreMandatory() throws IOException {
-		transport().write(null, new ByteArrayOutputStream());
-	}
-
 	@Test
 	public final void readYourOwnWritings() throws IOException {
 		// given
@@ -48,33 +43,38 @@ public abstract class ConditionTransportContractTest {
 		assumeTrue("Too few: supply at least two test conditions for transportation", sedentaries.size() > 1); //$NON-NLS-1$
 		ConditionTransport transport = transport();
 		// when
-		String serialized = write(transport, sedentaries);
-		Collection<Condition> nomads = read(transport, serialized);
+		Collection<Condition> nomads = read(transport, serialized(sedentaries));
 		// then
 		assertEquals(new HashSet<>(textual(sedentaries)), new HashSet<>(textual(nomads)));
-	}
-
-	private String write(ConditionTransport transport, Collection<Condition> conditions) throws IOException {
-		ByteArrayOutputStream output = new ByteArrayOutputStream();
-		transport.write(conditions, output);
-		return new String(output.toByteArray());
 	}
 
 	private Collection<Condition> read(ConditionTransport transport, String source) throws IOException {
 		return transport.read(new ByteArrayInputStream(source.getBytes()));
 	}
 
-	private Set<String> textual(Collection<Condition> conditions) {
-		return conditions.stream()//
+	private Set<String> textual(Collection<Condition> condition) {
+		return condition.stream()//
 				.map(this::textual) //
 				.collect(Collectors.toSet());
 	}
 
+	private String textual(Condition condition) {
+		return new StringBuilder()//
+				.append(condition.feature())//
+				.append(condition.versionMatch().version())//
+				.append(condition.versionMatch().rule().identifier())//
+				.append(((ValidityPeriodClosed) condition.validityPeriod()).from())//
+				.append(((ValidityPeriodClosed) condition.validityPeriod()).to())//
+				.append(condition.evaluationInstructions().type().identifier())//
+				.append(condition.evaluationInstructions().expression()) //
+				.toString();
+	}
+
 	/**
-	 * Provide any textual representation of a condition that distinguishes two
-	 * instances with differing content.
+	 * Supply source for reading which is expected to be parsed to
+	 * {@code conditions()}
 	 */
-	protected abstract String textual(Condition condition);
+	protected abstract String serialized(Collection<Condition> condition);
 
 	/**
 	 * Produce new instance of a transport under test

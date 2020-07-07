@@ -21,11 +21,11 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
  * Intentionally ugly.
  */
 @SuppressWarnings("restriction")
-final class ConditionPack {
+public final class ConditionPack {
 
 	Collection<Condition> conditions;
 
-	ConditionPack(Collection<Condition> conditions) {
+	public ConditionPack(Collection<Condition> conditions) {
 		this.conditions = conditions;
 	}
 

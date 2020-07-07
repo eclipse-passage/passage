@@ -14,21 +14,15 @@ package org.eclipse.passage.lic.internal.licenses.migration.tobemoved;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
@@ -73,34 +67,6 @@ public final class XmiConditionTransport implements ConditionTransport {
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of(descriptor.getConditionType()), //
 						descriptor.getConditionExpression()));
-	}
-
-	@Override
-	public void write(Collection<Condition> conditions, OutputStream output) throws IOException {
-		Resource resource = new XMIResourceImpl();
-		EList<EObject> contents = resource.getContents();
-		for (Condition condition : conditions) {
-			LicensingCondition conditionDescriptor = condition(condition);
-			if (conditionDescriptor instanceof EObject) {
-				EObject eObject = (EObject) conditionDescriptor;
-				contents.add(eObject);
-			}
-		}
-		resource.save(output, new HashMap<>());
-	}
-
-	// FIXME: severe error here: none of'em are EObject! Find a way to construct
-	// true-emf LicenseGrantDescriptors
-	private LicensingCondition condition(Condition condition) {
-		LicensingCondition lic = LicensingConditions.create(//
-				condition.feature(), //
-				condition.versionMatch().version(), //
-				condition.versionMatch().rule().identifier(), //
-				((ValidityPeriodClosed) condition.validityPeriod()).from(), //
-				((ValidityPeriodClosed) condition.validityPeriod()).to(), //
-				condition.evaluationInstructions().type().identifier(), //
-				condition.evaluationInstructions().expression());
-		throw new UnsupportedOperationException();
 	}
 
 }

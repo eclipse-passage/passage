@@ -16,29 +16,11 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.json.tobemoved.JsonConditionTransport;
 
 @SuppressWarnings("restriction")
 public final class JsonConditionTransportTest extends ConditionTransportContractTest {
-
-	@Override
-	protected String textual(Condition condition) {
-		return new StringBuffer() //
-				.append(condition.feature()).append('|') //
-				.append(condition.versionMatch().version()).append('|') //
-				.append(condition.versionMatch().rule().identifier()).append('|') //
-				.append(textual(((ValidityPeriodClosed) condition.validityPeriod()))).append('|') //
-				.append(condition.evaluationInstructions().type().identifier()).append('|') //
-				.append(condition.evaluationInstructions().expression()) //
-				.toString();
-
-	}
-
-	private String textual(ValidityPeriodClosed period) {
-		return String.format("%d-%d", period.from().getTime(), period.to().getTime()); //$NON-NLS-1$
-	}
 
 	@Override
 	protected ConditionTransport transport() {
@@ -48,6 +30,11 @@ public final class JsonConditionTransportTest extends ConditionTransportContract
 	@Override
 	protected Collection<Condition> conditions() {
 		return new TestConditions().conditions();
+	}
+
+	@Override
+	protected String serialized(Collection<Condition> condition) {
+		return new TestConditions().textual();
 	}
 
 }

@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.api.conditions.mining;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
@@ -30,11 +29,5 @@ public interface ConditionTransport extends Service<ContentType> {
 	 * open.
 	 */
 	Collection<Condition> read(InputStream input) throws IOException;
-
-	/**
-	 * Writes {@link Condition}(s) to the given {@link OutputStream}. Stream remains
-	 * open.
-	 */
-	void write(Collection<Condition> conditions, OutputStream output) throws IOException;
 
 }
