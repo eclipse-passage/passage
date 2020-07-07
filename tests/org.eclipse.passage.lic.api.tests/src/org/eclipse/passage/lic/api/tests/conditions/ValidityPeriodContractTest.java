@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api.tests.conditions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.junit.Test;
@@ -25,18 +25,18 @@ public abstract class ValidityPeriodContractTest<V extends ValidityPeriod> {
 
 	@Test
 	public final void dateCanBeValid() {
-		assertTrue(atLeastMonthLongFrom(movedNow(-1)).valid(new Date()));
+		assertTrue(atLeastMonthLongFrom(movedNow(-1)).valid(ZonedDateTime.now()));
 	}
 
 	@Test
 	public final void dateCanBeInvalid() {
-		assertFalse(atLeastMonthLongFrom(movedNow(1)).valid(new Date()));
+		assertFalse(atLeastMonthLongFrom(movedNow(1)).valid(ZonedDateTime.now()));
 	}
 
-	protected final Date movedNow(int hours) {
-		return new Date(System.currentTimeMillis() + hours * 3_600_000L);
+	protected final ZonedDateTime movedNow(int hours) {
+		return ZonedDateTime.now().plusHours(hours);
 	}
 
-	protected abstract V atLeastMonthLongFrom(Date from);
+	protected abstract V atLeastMonthLongFrom(ZonedDateTime from);
 
 }

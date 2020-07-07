@@ -16,7 +16,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonParser;
@@ -31,7 +30,6 @@ public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 	public ObjectMapper get() {
 		return ((Function<ObjectMapper, ObjectMapper>) this::withVisibility)//
 				.andThen(this::withFeatures) //
-				.andThen(this::withMixIns) //
 				.andThen(this::withSerializers) //
 				.apply(new ObjectMapper());
 	}
@@ -48,10 +46,6 @@ public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 		return mapper//
 				.enable(SerializationFeature.INDENT_OUTPUT) //
 				.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
-	}
-
-	private ObjectMapper withMixIns(ObjectMapper mapper) {
-		return mapper.addMixIn(ValidityPeriodClosed.class, ValidityPeriodClosedMixIn.class);
 	}
 
 	private ObjectMapper withSerializers(ObjectMapper mapper) {

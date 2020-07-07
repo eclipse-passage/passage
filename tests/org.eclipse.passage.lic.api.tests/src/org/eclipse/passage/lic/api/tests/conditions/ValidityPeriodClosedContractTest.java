@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.tests.conditions;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.junit.Test;
@@ -46,13 +46,13 @@ public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpe
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void doNotInventTo() {
-		forTwoDates(new Date(), null);
+		forTwoDates(ZonedDateTime.now(), null);
 	}
 
 	@Test
 	public final void fromBeforeTo() {
-		ValidityPeriodClosed period = forTwoDates(new Date(), movedNow(1));
-		assertTrue(period.from().before(period.to()));
+		ValidityPeriodClosed period = forTwoDates(ZonedDateTime.now(), movedNow(1));
+		assertTrue(period.from().isBefore(period.to()));
 	}
 
 	@Test
@@ -60,13 +60,8 @@ public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpe
 		mustBoundWithDefinedDate(this::someTimeBefore, ValidityPeriodClosed::to);
 	}
 
-	@Test
-	public final void toIsConstant() {
-		boundIsConstant(this::someTimeBefore, ValidityPeriodClosed::to);
-	}
+	protected abstract ValidityPeriodClosed forTwoDates(ZonedDateTime from, ZonedDateTime to);
 
-	protected abstract ValidityPeriodClosed forTwoDates(Date from, Date to);
-
-	protected abstract ValidityPeriodClosed someTimeBefore(Date to);
+	protected abstract ValidityPeriodClosed someTimeBefore(ZonedDateTime to);
 
 }

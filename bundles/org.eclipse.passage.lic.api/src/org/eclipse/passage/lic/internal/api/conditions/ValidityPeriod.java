@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * <p>
@@ -32,6 +32,6 @@ public interface ValidityPeriod {
 	 *            not
 	 * @return {@code true} if date is valid and {@code false} otherwise
 	 */
-	boolean valid(Date date);
+	boolean valid(ZonedDateTime date);
 
 }

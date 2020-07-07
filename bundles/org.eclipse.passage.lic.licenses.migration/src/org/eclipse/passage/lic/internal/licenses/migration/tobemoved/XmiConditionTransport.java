@@ -14,7 +14,10 @@ package org.eclipse.passage.lic.internal.licenses.migration.tobemoved;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -62,11 +65,15 @@ public final class XmiConditionTransport implements ConditionTransport {
 				new BaseVersionMatch(descriptor.getMatchVersion(), //
 						new MatchingRuleForIdentifier(descriptor.getMatchRule()).get()), //
 				new BaseValidityPeriodClosed(//
-						descriptor.getValidFrom(), //
-						descriptor.getValidUntil()), //
+						fromDate(descriptor.getValidFrom()), //
+						fromDate(descriptor.getValidUntil())), //
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of(descriptor.getConditionType()), //
 						descriptor.getConditionExpression()));
+	}
+
+	private ZonedDateTime fromDate(Date date) {
+		return ZonedDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
 	}
 
 }

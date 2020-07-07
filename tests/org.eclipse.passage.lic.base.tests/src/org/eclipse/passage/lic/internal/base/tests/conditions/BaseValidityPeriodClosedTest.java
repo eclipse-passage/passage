@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.junit.Test;
@@ -22,12 +22,12 @@ public final class BaseValidityPeriodClosedTest {
 
 	@Test(expected = NullPointerException.class)
 	public void fromIsMandatory() {
-		new BaseValidityPeriodClosed(null, new Date());
+		new BaseValidityPeriodClosed(null, ZonedDateTime.now());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void toIsMandatory() {
-		new BaseValidityPeriodClosed(new Date(), null);
+		new BaseValidityPeriodClosed(ZonedDateTime.now(), null);
 	}
 
 }

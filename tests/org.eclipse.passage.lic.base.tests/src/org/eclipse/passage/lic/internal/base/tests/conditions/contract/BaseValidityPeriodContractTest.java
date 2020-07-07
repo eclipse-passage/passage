@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.api.tests.conditions.ValidityPeriodClosedContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
@@ -22,17 +22,17 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 public final class BaseValidityPeriodContractTest extends ValidityPeriodClosedContractTest {
 
 	@Override
-	protected ValidityPeriodClosed forTwoDates(Date from, Date to) {
+	protected ValidityPeriodClosed forTwoDates(ZonedDateTime from, ZonedDateTime to) {
 		return new BaseValidityPeriodClosed(from, to);
 	}
 
 	@Override
-	protected ValidityPeriodClosed someTimeBefore(Date to) {
+	protected ValidityPeriodClosed someTimeBefore(ZonedDateTime to) {
 		return new BaseValidityPeriodClosed(movedNow(-1), to);
 	}
 
 	@Override
-	protected ValidityPeriodClosed atLeastMonthLongFrom(Date from) {
+	protected ValidityPeriodClosed atLeastMonthLongFrom(ZonedDateTime from) {
 		return new BaseValidityPeriodClosed(from, movedNow(24 * 35));
 	}
 

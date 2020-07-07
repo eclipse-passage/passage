@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * <p>
@@ -26,6 +26,6 @@ import java.util.Date;
  */
 public interface ValidityPeriodClosed extends ValidityPeriodOpen {
 
-	Date to();
+	ZonedDateTime to();
 
 }

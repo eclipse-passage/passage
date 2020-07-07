@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * {@linkplain ValidityPeriod} with a defined start. Is <i>open</i>, meaning has
@@ -20,6 +20,6 @@ import java.util.Date;
  */
 public interface ValidityPeriodOpen extends ValidityPeriod {
 
-	Date from();
+	ZonedDateTime from();
 
 }
