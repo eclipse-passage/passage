@@ -10,20 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
-/**
- * Cover denials of condition mining infrastructure
- */
-@SuppressWarnings("serial")
-public final class ConditionMiningException extends Exception {
+import java.time.ZonedDateTime;
 
-	public ConditionMiningException(String message, Throwable cause) {
-		super(message, cause);
-	}
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
-	public ConditionMiningException(String message) {
-		super(message);
-	}
+public interface Permission {
+
+	LicensedProduct product();
+
+	Condition condition();
+
+	ZonedDateTime leaseDate();
+
+	ZonedDateTime expireDate();
 
 }

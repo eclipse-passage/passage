@@ -10,20 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 /**
- * Cover denials of condition mining infrastructure
+ * <p>
+ * FIXME: diagnostic details structure are yet to be designed as existing
+ * emission process is reimplemented on top of these interfaces. Do we need try
+ * to evaluate the rest of the condition after the first failure to get the full
+ * picture? Or this first failure is enough? The answer will affect further
+ * development of this interface.
+ * </p>
  */
-@SuppressWarnings("serial")
-public final class ConditionMiningException extends Exception {
-
-	public ConditionMiningException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public ConditionMiningException(String message) {
-		super(message);
-	}
+public interface EmissionFailureDiagnostic {
 
 }
