@@ -22,6 +22,8 @@ import org.eclipse.passage.lic.internal.json.tobemoved.JsonConditionTransport;
 @SuppressWarnings("restriction")
 public final class JsonConditionTransportTest extends ConditionTransportContractTest {
 
+	private final TestConditions data = new TestConditions();
+
 	@Override
 	protected ConditionTransport transport() {
 		return new JsonConditionTransport();
@@ -29,12 +31,12 @@ public final class JsonConditionTransportTest extends ConditionTransportContract
 
 	@Override
 	protected Collection<Condition> conditions() {
-		return new TestConditions().conditions();
+		return data.conditions();
 	}
 
 	@Override
 	protected String serialized(Collection<Condition> condition) {
-		return new TestConditions().textual();
+		return data.textual();
 	}
 
 }
