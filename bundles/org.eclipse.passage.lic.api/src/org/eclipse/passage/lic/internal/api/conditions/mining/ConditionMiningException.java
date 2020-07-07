@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.mining;
 
+/**
+ * Cover denials of condition mining infrastructure
+ */
 @SuppressWarnings("serial")
 public final class ConditionMiningException extends Exception {
 
