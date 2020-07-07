@@ -20,7 +20,8 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
 /**
- * Persistence interface for {@link Condition}(s).
+ * Encapsulates knowledge how to retrieve {@link Condition}(s) from an input
+ * source of the configured {@linkplain ContentType}.
  */
 public interface ConditionTransport extends Service<ContentType> {
 
