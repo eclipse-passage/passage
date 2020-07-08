@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.internal.api.conditions;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+
 /**
  * <p>
  * Defines the way the condition will be evaluated in a running environment. For
@@ -25,7 +27,7 @@ import java.util.Objects;
  * Designed to be a <i>data-class</i>.
  * </p>
  */
-public abstract class EvaluationType {
+public abstract class EvaluationType implements ServiceId {
 
 	private final String identifier;
 
