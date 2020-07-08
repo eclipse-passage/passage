@@ -29,6 +29,10 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.conditions.LicensingConditions;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
+/**
+ * @deprecated use internal 1.0 BaseEmittedPermission service
+ */
+@Deprecated
 public abstract class BasePermissionEmitter implements PermissionEmitter {
 
 	@Override
