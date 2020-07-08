@@ -12,20 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 
 public final class BaseValidityPeriodClosed implements ValidityPeriodClosed {
 
-	private final Date from;
-	private final Date to;
+	private final ZonedDateTime from;
+	private final ZonedDateTime to;
 
-	public BaseValidityPeriodClosed(Date from, Date to) {
+	public BaseValidityPeriodClosed(ZonedDateTime from, ZonedDateTime to) {
 		Objects.requireNonNull(from, "BaseValidityPeriodClosed::from"); //$NON-NLS-1$
 		Objects.requireNonNull(to, "BaseValidityPeriodClosed:to"); //$NON-NLS-1$
-		if (!from.before(to)) {
+		if (!from.isBefore(to)) {
 			throw new IllegalStateException("BaseValidityPeriodClosed: 'from' must be strictly less than 'to'"); //$NON-NLS-1$
 		}
 		this.from = from;
@@ -33,20 +33,20 @@ public final class BaseValidityPeriodClosed implements ValidityPeriodClosed {
 	}
 
 	@Override
-	public Date from() {
-		return new Date(from.getTime());
+	public ZonedDateTime from() {
+		return from;
 	}
 
 	@Override
-	public Date to() {
-		return new Date(to.getTime());
+	public ZonedDateTime to() {
+		return to;
 	}
 
 	@Override
-	public boolean valid(Date date) {
+	public boolean valid(ZonedDateTime date) {
 		Objects.requireNonNull(date, "BaseValidityPeriodClosed::valid::date"); //$NON-NLS-1$
-		return (from.before(date) || date.equals(from)) && //
-				(date.before(to) || date.equals(to));
+		return (from.isBefore(date) || date.isEqual(from)) && //
+				(date.isBefore(to) || date.isEqual(to));
 	}
 
 }

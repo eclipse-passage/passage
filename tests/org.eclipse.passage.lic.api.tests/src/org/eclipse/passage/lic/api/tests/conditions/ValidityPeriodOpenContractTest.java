@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.tests.conditions;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodOpen;
@@ -48,27 +48,11 @@ public abstract class ValidityPeriodOpenContractTest<V extends ValidityPeriodOpe
 		mustBoundWithDefinedDate(this::atLeastMonthLongFrom, V::from);
 	}
 
-	@Test
-	public final void fromIsConstant() {
-		boundIsConstant(this::atLeastMonthLongFrom, V::from);
-	}
-
-	protected final void mustBoundWithDefinedDate(Function<Date, V> ctor, Function<V, Date> bound) {
-		Date now = new Date();
+	protected final void mustBoundWithDefinedDate(Function<ZonedDateTime, V> ctor, Function<V, ZonedDateTime> bound) {
+		ZonedDateTime now = ZonedDateTime.now();
 		V period = ctor.apply(now);
-		Date original = bound.apply(period);
+		ZonedDateTime original = bound.apply(period);
 		assertEquals(now, original);
-	}
-
-	@SuppressWarnings("deprecation") // it's intentional: we need to alter Date by any possible means
-	protected final void boundIsConstant(Function<Date, V> ctor, Function<V, Date> bound) {
-		// having
-		V period = ctor.apply(new Date());
-		Date original = new Date(bound.apply(period).getTime());
-		// when: alter period.bound
-		bound.apply(period).setYear(1977);
-		// then
-		assertEquals(original, bound.apply(period));
 	}
 
 }

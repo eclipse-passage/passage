@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
@@ -66,7 +66,7 @@ final class HeadOnlyTransport implements ConditionTransport {
 	}
 
 	private ValidityPeriod commonPeriod() {
-		return new BaseValidityPeriodClosed(new Date(12345678), new Date(23456789));
+		return new BaseValidityPeriodClosed(ZonedDateTime.now(), ZonedDateTime.now().plusDays(1));
 	}
 
 	private EvaluationInstructions commonInstructions() {

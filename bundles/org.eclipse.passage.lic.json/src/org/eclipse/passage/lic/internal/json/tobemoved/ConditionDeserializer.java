@@ -13,7 +13,8 @@
 package org.eclipse.passage.lic.internal.json.tobemoved;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
@@ -51,11 +52,15 @@ final class ConditionDeserializer extends StdDeserializer<Condition> {
 						node.get("version").textValue(), //$NON-NLS-1$
 						new MatchingRuleForIdentifier(node.get("rule").textValue()).get()), //$NON-NLS-1$
 				new BaseValidityPeriodClosed(//
-						new Date(node.get("period").get("from").longValue()), //$NON-NLS-1$ //$NON-NLS-2$
-						new Date(node.get("period").get("to").longValue())), //$NON-NLS-1$ //$NON-NLS-2$
+						date(node.get("period-closed-from").textValue()), //$NON-NLS-1$
+						date(node.get("period-closed-to").textValue())), //$NON-NLS-1$
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of(node.get("type").textValue()), // //$NON-NLS-1$
 						node.get("expression").textValue())); //$NON-NLS-1$
+	}
+
+	private ZonedDateTime date(String source) {
+		return ZonedDateTime.parse(source, DateTimeFormatter.ISO_ZONED_DATE_TIME);
 	}
 
 }

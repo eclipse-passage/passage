@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.base.tests.conditions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
@@ -92,7 +92,7 @@ public final class BaseConditionTest {
 	}
 
 	private ValidityPeriod validityPeriod() {
-		return new BaseValidityPeriodClosed(new Date(), new Date(System.currentTimeMillis() + 3_600_000));
+		return new BaseValidityPeriodClosed(ZonedDateTime.now(), ZonedDateTime.now().plusHours(1));
 	}
 
 	private EvaluationInstructions evaluationInstructions() {
