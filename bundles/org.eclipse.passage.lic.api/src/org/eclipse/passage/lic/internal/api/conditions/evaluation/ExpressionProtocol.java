@@ -10,29 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions;
+package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 
-/**
- * <p>
- * Defines the way the condition will be evaluated in a running environment. For
- * example, "hardware" means that specially dedicated module is going to access
- * a workstation hardware in order to supply enough information to verify if the
- * condition is met.
- * </p>
- * <p>
- * Designed to be a <i>data-class</i>.
- * </p>
- */
-public abstract class EvaluationType implements ServiceId {
+public abstract class ExpressionProtocol implements ServiceId {
 
 	private final String identifier;
 
-	protected EvaluationType(String identifier) {
-		Objects.requireNonNull(identifier, "EvaluationType::identifier"); //$NON-NLS-1$
+	protected ExpressionProtocol(String identifier) {
+		Objects.requireNonNull(identifier, "ExpressionProtocol::identifier"); //$NON-NLS-1$
 		this.identifier = identifier.trim().toLowerCase();
 	}
 
@@ -47,10 +36,10 @@ public abstract class EvaluationType implements ServiceId {
 
 	@Override
 	public final boolean equals(Object object) {
-		if (!EvaluationType.class.isInstance(object)) {
+		if (!ExpressionProtocol.class.isInstance(object)) {
 			return false;
 		}
-		return identifier.equals(((EvaluationType) object).identifier);
+		return identifier.equals(((ExpressionProtocol) object).identifier);
 	}
 
 	@Override
@@ -58,15 +47,23 @@ public abstract class EvaluationType implements ServiceId {
 		return identifier;
 	}
 
-	public static final class Hardware extends EvaluationType {
+	public static final class Ands extends ExpressionProtocol {
 
-		public Hardware() {
-			super("hardware"); //$NON-NLS-1$
+		public Ands() {
+			super("ands"); //$NON-NLS-1$
 		}
 
 	}
 
-	public static final class Of extends EvaluationType {
+	public static final class Default extends ExpressionProtocol {
+
+		public Default() {
+			super(new Ands().identifier());
+		}
+
+	}
+
+	public static final class Of extends ExpressionProtocol {
 
 		public Of(String identifier) {
 			super(identifier);
