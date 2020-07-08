@@ -17,17 +17,22 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.tests.fakes.FakeConditionExpressionEvaluator;
+import org.eclipse.passage.lic.api.tests.fakes.FakeConditionExpressionParser;
 import org.eclipse.passage.lic.api.tests.fakes.FakeConditionTransport;
+import org.eclipse.passage.lic.api.tests.fakes.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.FakeKeyKeeper;
 import org.eclipse.passage.lic.api.tests.fakes.FakeMinedConditions;
 import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
 import org.eclipse.passage.lic.api.tests.fakes.FakeStreamCodec;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -142,6 +147,64 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void hasTransportForXml() {
 		assertTrue(config().transports().get().hasService(new ContentType.Xml()));
+	}
+
+	@Test
+	public final void canParseConditionExpressions() {
+		assertServiceRegistryIsFunctional(config().expressionParsers().get());
+	}
+
+	@Test
+	public final void prohibitsExpressionParseServicesExtension() {
+		assertTrue(readOnly(config().expressionParsers().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoExpressionParseServices() {
+		assertServiceInjectionsIsProhibited(config().expressionParsers().get(), new FakeConditionExpressionParser());
+	}
+
+	@Test
+	public final void hasParserForDefaultExpressionFormat() {
+		assertTrue(config().expressionParsers().get().hasService(new ExpressionProtocol.Default()));
+	}
+
+	@Test
+	public final void canEvaluateConditionExpressions() {
+		assertServiceRegistryIsFunctional(config().expressionEvaluators().get());
+	}
+
+	@Test
+	public final void prohibitsExpressionEvaluationServicesExtension() {
+		assertTrue(readOnly(config().expressionEvaluators().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoExpressionEvaluationServices() {
+		assertServiceInjectionsIsProhibited(config().expressionEvaluators().get(),
+				new FakeConditionExpressionEvaluator());
+	}
+
+	@Test
+	public final void hasEvaluatorForDefaultExpressionFormat() {
+		assertTrue(config().expressionEvaluators().get().hasService(new ExpressionProtocol.Default()));
+	}
+
+	@Test
+	@Ignore // yet to be implemented (OSHI-based)
+	public final void canAssessConditionExpressionsSegment() {
+		assertServiceRegistryIsFunctional(config().tokenEvaluators().get());
+	}
+
+	@Test
+	public final void prohibitsExpressionSegmentAssessmentServicesExtension() {
+		assertTrue(readOnly(config().tokenEvaluators().get()));
+	}
+
+	@Test
+	public final void prohibitsInjectionIntoSegmentAssessmentServices() {
+		assertServiceInjectionsIsProhibited(config().tokenEvaluators().get(),
+				new FakeExpressionTokenAssessmentService());
 	}
 
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(

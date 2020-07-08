@@ -19,6 +19,16 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -32,6 +42,9 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -56,6 +69,10 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<ContentType, ConditionTransport> transports;
 	private final Registry<LicensedProduct, StreamCodec> codecs;
 	private final Registry<LicensedProduct, KeyKeeper> keys;
+	private final Registry<StringServiceId, PermissionEmittingService> emitters;
+	private final Registry<ExpressionProtocol, ExpressionPasringService> expressionParsers;
+	private final Registry<ExpressionProtocol, ExpressionEvaluationService> expressionEvaluators;
+	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenEvaluators;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		alarm = LicensingException::printStackTrace;
@@ -77,7 +94,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport(), //
-				new XmiConditionTransport() // FIXME: does not do `writing`
+				new XmiConditionTransport() //
 		));
 		codecs = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BcStreamCodec(product) //
@@ -85,6 +102,25 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		keys = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleKeyKeeper(product, bundle()) //
 		));
+		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
+				new BasePermissionEmittingService(//
+						expressionParsers(), //
+						tokenEvaluators(), //
+						expressionEvaluators())//
+		));
+		expressionParsers = new ReadOnlyRegistry<>(Arrays.asList(//
+				new AndsProtocolExpressionParseService()//
+		));
+		expressionEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
+				new SimpleMapExpressionEvaluationService()//
+		));
+		tokenEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
+		// FIXME: OSHI-based evaluator for EvaluationType.Hardware
+		));
+	}
+
+	private Bundle bundle() {
+		return FrameworkUtil.getBundle(getClass());
 	}
 
 	@Override
@@ -112,8 +148,24 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		return () -> transports;
 	}
 
-	private Bundle bundle() {
-		return FrameworkUtil.getBundle(getClass());
+	@Override
+	public PermissionEmittersRegistry permissionEmitters() {
+		return () -> emitters;
+	}
+
+	@Override
+	public ExpressionPasringRegistry expressionParsers() {
+		return () -> expressionParsers;
+	}
+
+	@Override
+	public ExpressionEvaluatorsRegistry expressionEvaluators() {
+		return () -> expressionEvaluators;
+	}
+
+	@Override
+	public ExpressionTokenAssessorsRegistry tokenEvaluators() {
+		return () -> tokenEvaluators;
 	}
 
 }
