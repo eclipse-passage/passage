@@ -60,7 +60,7 @@ final class ConditionDeserializer extends StdDeserializer<Condition> {
 	}
 
 	private ZonedDateTime date(String source) {
-		return (ZonedDateTime) DateTimeFormatter.ISO_ZONED_DATE_TIME.parse(source);
+		return ZonedDateTime.parse(source, DateTimeFormatter.ISO_ZONED_DATE_TIME);
 	}
 
 }
