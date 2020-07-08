@@ -484,7 +484,7 @@
 							</execution>
 							<execution>
 								<id>report-aggregate</id>
-								<phase>prepare-package</phase>
+								<phase>verify</phase>
 								<goals>
 									<goal>report-aggregate</goal>
 								</goals>
