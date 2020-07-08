@@ -12,13 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.access;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.EmittedPermissionsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 
 /**
  * Takes care of all {@link PermissionEmitter} services registered at runtime.
  *
  * @since 0.4.0
- * @deprecated use {@link EmittedPermissionsRegistry}
+ * @deprecated use {@link PermissionEmittersRegistry}
  */
 @Deprecated
 public interface PermissionEmitterRegistry {
