@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Report {@linkplain Condition}s evaluation results.
@@ -51,6 +52,7 @@ public interface Emission {
 		private final Collection<Permission> permissions;
 
 		public Successful(Collection<Permission> permissions) {
+			Objects.requireNonNull(permissions, "Emission.Successful::permissions"); //$NON-NLS-1$
 			this.permissions = permissions;
 		}
 
@@ -76,6 +78,7 @@ public interface Emission {
 		private final EmissionFailureDiagnostic diagnose;
 
 		public Failed(EmissionFailureDiagnostic diagnose) {
+			Objects.requireNonNull(diagnose, "Emission.Failed::diagnose"); //$NON-NLS-1$
 			this.diagnose = diagnose;
 		}
 

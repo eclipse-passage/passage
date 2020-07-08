@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
-public interface EmittedPermissions extends Service<StringServiceId> {
+public interface PermissionEmittingService extends Service<StringServiceId> {
 
 	/**
 	 * <p>
@@ -47,6 +47,6 @@ public interface EmittedPermissions extends Service<StringServiceId> {
 	 * reported in the returned {@linkplain Emission} instance.
 	 * </p>
 	 */
-	Emission get(Collection<Condition> conditions, LicensedProduct product);
+	Emission emit(Collection<Condition> conditions, LicensedProduct product);
 
 }

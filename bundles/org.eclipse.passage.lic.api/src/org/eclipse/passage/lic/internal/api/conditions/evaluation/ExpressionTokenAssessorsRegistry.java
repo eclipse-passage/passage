@@ -14,9 +14,10 @@ package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
-public interface EmittedPermissionsRegistry extends Supplier<Registry<StringServiceId, EmittedPermissions>> {
+public interface ExpressionTokenAssessorsRegistry
+		extends Supplier<Registry<EvaluationType, ExpressionTokenAssessmentService>> {
 
 }
