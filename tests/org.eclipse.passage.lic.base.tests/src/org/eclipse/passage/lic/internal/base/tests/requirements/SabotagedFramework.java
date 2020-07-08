@@ -94,7 +94,7 @@ final class SabotagedFramework implements Framework {
 		}
 
 		@Override
-		public ExpressionTokenAssessorsRegistry tokenEvaluators() {
+		public ExpressionTokenAssessorsRegistry expressionAssessors() {
 			return () -> noService();
 		}
 

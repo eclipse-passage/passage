@@ -43,6 +43,6 @@ public interface AccessCycleConfiguration {
 
 	ExpressionEvaluatorsRegistry expressionEvaluators();
 
-	ExpressionTokenAssessorsRegistry tokenEvaluators();
+	ExpressionTokenAssessorsRegistry expressionAssessors();
 
 }

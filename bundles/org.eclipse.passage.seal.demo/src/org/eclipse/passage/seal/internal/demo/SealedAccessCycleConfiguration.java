@@ -105,7 +105,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionEmittingService(//
 						expressionParsers(), //
-						tokenEvaluators(), //
+						expressionAssessors(), //
 						expressionEvaluators())//
 		));
 		expressionParsers = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -164,7 +164,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	}
 
 	@Override
-	public ExpressionTokenAssessorsRegistry tokenEvaluators() {
+	public ExpressionTokenAssessorsRegistry expressionAssessors() {
 		return () -> tokenEvaluators;
 	}
 

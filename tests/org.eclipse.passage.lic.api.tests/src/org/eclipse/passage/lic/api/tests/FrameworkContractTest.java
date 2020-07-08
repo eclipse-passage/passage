@@ -193,17 +193,17 @@ public abstract class FrameworkContractTest {
 	@Test
 	@Ignore // yet to be implemented (OSHI-based)
 	public final void canAssessConditionExpressionsSegment() {
-		assertServiceRegistryIsFunctional(config().tokenEvaluators().get());
+		assertServiceRegistryIsFunctional(config().expressionAssessors().get());
 	}
 
 	@Test
 	public final void prohibitsExpressionSegmentAssessmentServicesExtension() {
-		assertTrue(readOnly(config().tokenEvaluators().get()));
+		assertTrue(readOnly(config().expressionAssessors().get()));
 	}
 
 	@Test
 	public final void prohibitsInjectionIntoSegmentAssessmentServices() {
-		assertServiceInjectionsIsProhibited(config().tokenEvaluators().get(),
+		assertServiceInjectionsIsProhibited(config().expressionAssessors().get(),
 				new FakeExpressionTokenAssessmentService());
 	}
 
