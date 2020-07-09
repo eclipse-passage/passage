@@ -17,20 +17,14 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.tests.conditions.evaluation.ExpressionEvaluationServiceContractTest;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeParsedExpression;
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpression;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.junit.Test;
@@ -51,18 +45,19 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 
 	@Test(expected = ExpressionEvaluationException.class)
 	public void segmantFailureIsContagious() throws ExpressionEvaluationException {
-		Biased assessor = new Biased()//
-				.withAnswer("ok", true) //$NON-NLS-1$
-				.withAnswer("nok", false); //$NON-NLS-1$
+		BiasedAssessor assessor = new BiasedAssessor()//
+				.withAnswer("ok", "1") //$NON-NLS-1$//$NON-NLS-2$
+				.withAnswer("nok", "not-2"); //$NON-NLS-1$//$NON-NLS-2$
 		try {
 
 			evaluator().evaluate(//
 					expression(//
-							new String[] { "ok", "!1" }, //$NON-NLS-1$//$NON-NLS-2$
-							new String[] { "nok", "?!" }), //$NON-NLS-1$//$NON-NLS-2$
+							new String[] { "ok", "1" }, //$NON-NLS-1$//$NON-NLS-2$
+							new String[] { "nok", "2" }), //$NON-NLS-1$//$NON-NLS-2$
 					assessor);
 		} catch (ExpressionEvaluationException e) {
-			assertTrue(assessor.asked.size() >= 1);
+			// at least the failing segment has been assessed
+			assertTrue(assessor.askedKeys().contains("nok")); //$NON-NLS-1$
 			throw e;
 		}
 	}
@@ -74,9 +69,9 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 
 	@Test
 	public void canSucceed() {
-		Biased assessor = new Biased()//
-				.withAnswer("ok1", true) //$NON-NLS-1$
-				.withAnswer("ok2", true); //$NON-NLS-1$
+		BiasedAssessor assessor = new BiasedAssessor()//
+				.withAnswer("ok1", ":)") //$NON-NLS-1$//$NON-NLS-2$
+				.withAnswer("ok2", ":)"); //$NON-NLS-1$//$NON-NLS-2$
 		try {
 			evaluator().evaluate(//
 					expression(//
@@ -86,36 +81,16 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 		} catch (ExpressionEvaluationException e) {
 			fail("Intended to succeed"); //$NON-NLS-1$
 		}
-		assertEquals(2, assessor.asked.size()); // each key is asked
+		assertEquals(2, assessor.askedKeys().size()); // each segment has been assessed
 	}
 
 	private SimpleMapExpression expression(String[]... pairs) {
 		return new SimpleMapExpression(//
 				new ExpressionProtocol.Ands(), // $NON-NLS-1$
-				Arrays.stream(pairs) //
-						.collect(Collectors.<String[], String, String>toMap(pair -> pair[0], pair -> pair[1])));
-	}
-
-	private static final class Biased implements ExpressionTokenAssessmentService {
-		private final Map<String, Boolean> answers = new HashMap<>();
-		private final Set<String> asked = new HashSet<>();
-
-		Biased withAnswer(String key, boolean answer) {
-			answers.put(key, answer);
-			return this;
-		}
-
-		@Override
-		public EvaluationType id() {
-			return new EvaluationType.Of("biased"); //$NON-NLS-1$
-		}
-
-		@Override
-		public boolean equal(String key, String value) throws ExpressionEvaluationException {
-			asked.add(key);
-			return answers.containsKey(key) ? answers.get(key) : false;
-		}
-
+				Arrays.stream(pairs)//
+						.collect(Collectors.toMap(//
+								pair -> pair[0], //
+								pair -> pair[1])));
 	}
 
 }

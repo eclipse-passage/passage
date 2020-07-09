@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
@@ -20,24 +22,56 @@ import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 @SuppressWarnings("restriction")
 public final class FakeCondition implements Condition {
 
+	private Optional<VersionMatch> version = Optional.empty();
+	private Optional<ValidityPeriod> period = Optional.empty();
+	private Optional<String> feature = Optional.empty();
+	private Optional<EvaluationInstructions> evaluation = Optional.empty();
+
 	@Override
 	public VersionMatch versionMatch() {
-		throw new UnsupportedOperationException();
+		return getOrFail(version);
 	}
 
 	@Override
 	public ValidityPeriod validityPeriod() {
-		throw new UnsupportedOperationException();
+		return getOrFail(period);
 	}
 
 	@Override
 	public String feature() {
-		throw new UnsupportedOperationException();
+		return getOrFail(feature);
 	}
 
 	@Override
 	public EvaluationInstructions evaluationInstructions() {
+		return getOrFail(evaluation);
+	}
+
+	private <T> T getOrFail(Optional<T> optional) {
+		if (optional.isPresent()) {
+			return optional.get();
+		}
 		throw new UnsupportedOperationException();
+	}
+
+	public FakeCondition withVersionMatch(VersionMatch v) {
+		this.version = Optional.ofNullable(v);
+		return this;
+	}
+
+	public FakeCondition withValidityPeriod(ValidityPeriod p) {
+		this.period = Optional.ofNullable(p);
+		return this;
+	}
+
+	public FakeCondition withFeature(String f) {
+		this.feature = Optional.ofNullable(f);
+		return this;
+	}
+
+	public FakeCondition withEvaluationInstructions(EvaluationInstructions e) {
+		this.evaluation = Optional.ofNullable(e);
+		return this;
 	}
 
 }

@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
 @SuppressWarnings("restriction")
-public class FakeConditionExpressionEvaluator implements ExpressionEvaluationService {
+public class FakeExpressionEvaluationService implements ExpressionEvaluationService {
 
 	@Override
 	public ExpressionProtocol id() {
