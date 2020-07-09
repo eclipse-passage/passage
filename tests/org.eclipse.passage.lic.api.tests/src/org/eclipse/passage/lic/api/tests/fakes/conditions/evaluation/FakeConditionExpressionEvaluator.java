@@ -10,8 +10,9 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
+package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
@@ -26,8 +27,10 @@ public class FakeConditionExpressionEvaluator implements ExpressionEvaluationSer
 	}
 
 	@Override
-	public boolean evaluate(ParsedExpression expression, ExpressionTokenAssessmentService tokenEvaluator) {
+	public void evaluate(ParsedExpression expression, ExpressionTokenAssessmentService assessor)
+			throws ExpressionEvaluationException {
 		throw new UnsupportedOperationException();
+
 	}
 
 }

@@ -10,24 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.requirements;
+package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
 
-import java.util.Collection;
+import java.util.List;
 
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
 @SuppressWarnings("restriction")
-public final class FakeResolvedRequirements implements ResolvedRequirements {
+public final class FakeFailureDiagnostic implements FailureDiagnostic {
 
 	@Override
-	public StringServiceId id() {
-		return new StringServiceId("fake-req-res"); //$NON-NLS-1$
-	}
-
-	@Override
-	public Collection<Requirement> all() {
+	public List<Trouble> troubles() {
 		throw new UnsupportedOperationException();
 	}
 

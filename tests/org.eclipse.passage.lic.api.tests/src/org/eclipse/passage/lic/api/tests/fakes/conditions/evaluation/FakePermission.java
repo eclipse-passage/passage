@@ -12,19 +12,32 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
+import java.time.ZonedDateTime;
+
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
 @SuppressWarnings("restriction")
-public final class FakeExpressionTokenAssessmentService implements ExpressionTokenAssessmentService {
+public final class FakePermission implements Permission {
 
 	@Override
-	public EvaluationType id() {
-		return new EvaluationType.Of("air-content-assessment"); //$NON-NLS-1$
+	public LicensedProduct product() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean equal(String key, String value) {
+	public Condition condition() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ZonedDateTime leaseDate() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ZonedDateTime expireDate() {
 		throw new UnsupportedOperationException();
 	}
 

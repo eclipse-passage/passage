@@ -17,14 +17,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.tests.fakes.FakeConditionExpressionEvaluator;
-import org.eclipse.passage.lic.api.tests.fakes.FakeConditionExpressionParser;
-import org.eclipse.passage.lic.api.tests.fakes.FakeConditionTransport;
-import org.eclipse.passage.lic.api.tests.fakes.FakeExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.api.tests.fakes.FakeKeyKeeper;
-import org.eclipse.passage.lic.api.tests.fakes.FakeMinedConditions;
-import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
-import org.eclipse.passage.lic.api.tests.fakes.FakeStreamCodec;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeConditionExpressionEvaluator;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeConditionExpressionParser;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.mining.FakeMinedConditions;
+import org.eclipse.passage.lic.api.tests.fakes.io.FakeConditionTransport;
+import org.eclipse.passage.lic.api.tests.fakes.io.FakeKeyKeeper;
+import org.eclipse.passage.lic.api.tests.fakes.io.FakeStreamCodec;
+import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;

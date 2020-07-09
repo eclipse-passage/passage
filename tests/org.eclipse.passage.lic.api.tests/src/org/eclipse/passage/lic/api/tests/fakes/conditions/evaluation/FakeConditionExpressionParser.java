@@ -10,15 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
+package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
 @SuppressWarnings("restriction")
-public final class FakeConditionExpressionParser implements ExpressionPasringService {
+public final class FakeConditionExpressionParser implements ExpressionParsingService {
 
 	@Override
 	public ExpressionProtocol id() {

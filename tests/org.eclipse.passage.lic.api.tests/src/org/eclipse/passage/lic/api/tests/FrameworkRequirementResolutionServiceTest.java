@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.FakeResolvedRequirements;
+import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 

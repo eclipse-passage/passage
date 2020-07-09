@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api.tests;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.FakeRequirement;
+import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeRequirement;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 

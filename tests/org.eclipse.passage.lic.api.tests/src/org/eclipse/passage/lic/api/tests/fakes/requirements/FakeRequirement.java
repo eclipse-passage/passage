@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
+package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
 import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
