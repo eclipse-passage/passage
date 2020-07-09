@@ -21,12 +21,12 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProt
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
 @SuppressWarnings("restriction")
-final class SimpleMapExpression implements ParsedExpression {
+public final class SimpleMapExpression implements ParsedExpression {
 
 	private final Map<String, String> checks;
 	private final ExpressionProtocol format;
 
-	SimpleMapExpression(ExpressionProtocol format, Map<String, String> checks) {
+	public SimpleMapExpression(ExpressionProtocol format, Map<String, String> checks) {
 		Objects.requireNonNull(format);
 		Objects.requireNonNull(checks);
 		this.format = format;

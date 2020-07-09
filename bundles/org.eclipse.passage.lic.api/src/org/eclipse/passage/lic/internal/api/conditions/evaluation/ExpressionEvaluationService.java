@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
+/**
+ * Any implementation must follow the contract defined in
+ * {@code ExpressionEvaluationServiceContractTest}
+ */
 public interface ExpressionEvaluationService extends Service<ExpressionProtocol> {
 
 	/**
