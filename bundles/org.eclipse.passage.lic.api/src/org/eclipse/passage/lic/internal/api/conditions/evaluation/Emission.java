@@ -13,7 +13,10 @@
 package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
+
+import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
 
 /**
  * Report {@linkplain Condition}s evaluation results.
@@ -45,7 +48,7 @@ public interface Emission {
 
 	Collection<Permission> permissions();
 
-	EmissionFailureDiagnostic failureDiagnostic();
+	FailureDiagnostic failureDiagnostic();
 
 	public static final class Successful implements Emission {
 
@@ -54,6 +57,10 @@ public interface Emission {
 		public Successful(Collection<Permission> permissions) {
 			Objects.requireNonNull(permissions, "Emission.Successful::permissions"); //$NON-NLS-1$
 			this.permissions = permissions;
+		}
+
+		public Successful(Permission permission) {
+			this(Collections.singleton(permission));
 		}
 
 		@Override
@@ -67,7 +74,7 @@ public interface Emission {
 		}
 
 		@Override
-		public EmissionFailureDiagnostic failureDiagnostic() {
+		public FailureDiagnostic failureDiagnostic() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -75,9 +82,9 @@ public interface Emission {
 
 	public static final class Failed implements Emission {
 
-		private final EmissionFailureDiagnostic diagnose;
+		private final FailureDiagnostic diagnose;
 
-		public Failed(EmissionFailureDiagnostic diagnose) {
+		public Failed(FailureDiagnostic diagnose) {
 			Objects.requireNonNull(diagnose, "Emission.Failed::diagnose"); //$NON-NLS-1$
 			this.diagnose = diagnose;
 		}
@@ -93,7 +100,7 @@ public interface Emission {
 		}
 
 		@Override
-		public EmissionFailureDiagnostic failureDiagnostic() {
+		public FailureDiagnostic failureDiagnostic() {
 			return diagnose;
 		}
 

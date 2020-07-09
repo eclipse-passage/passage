@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.evaluation;
+package org.eclipse.passage.lic.internal.api.diagnostic;
 
-import org.eclipse.passage.lic.internal.api.registry.Service;
+import java.util.List;
 
-public interface ExpressionPasringService extends Service<ExpressionProtocol> {
+public interface FailureDiagnostic {
 
-	ParsedExpression parsed(String expression) throws ExpressionParsingException;
+	List<Trouble> troubles();
 
 }

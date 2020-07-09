@@ -16,6 +16,6 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 
-public interface ExpressionPasringRegistry extends Supplier<Registry<ExpressionProtocol, ExpressionPasringService>> {
+public interface ExpressionPasringRegistry extends Supplier<Registry<ExpressionProtocol, ExpressionParsingService>> {
 
 }

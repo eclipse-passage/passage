@@ -12,15 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
-/**
- * <p>
- * FIXME: diagnostic details structure are yet to be designed as existing
- * emission process is reimplemented on top of these interfaces. Do we need try
- * to evaluate the rest of the condition after the first failure to get the full
- * picture? Or this first failure is enough? The answer will affect further
- * development of this interface.
- * </p>
- */
-public interface EmissionFailureDiagnostic {
+@SuppressWarnings("serial")
+public final class ExpressionEvaluationException extends Exception {
+
+	public ExpressionEvaluationException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public ExpressionEvaluationException(String message) {
+		super(message);
+	}
 
 }

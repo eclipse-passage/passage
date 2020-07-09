@@ -10,11 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions.evaluation;
+package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.EmissionFailureDiagnostic;
+import org.eclipse.passage.lic.internal.api.registry.Service;
 
-@SuppressWarnings("restriction")
-final class BaseEmissionFailureDiagnostic implements EmissionFailureDiagnostic {
-	// FIXME: ytbd
+public interface ExpressionParsingService extends Service<ExpressionProtocol> {
+
+	ParsedExpression parsed(String expression) throws ExpressionParsingException;
+
 }

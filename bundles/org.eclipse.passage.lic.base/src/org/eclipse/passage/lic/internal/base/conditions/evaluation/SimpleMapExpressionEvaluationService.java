@@ -12,10 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
+import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 @SuppressWarnings("restriction")
 public final class SimpleMapExpressionEvaluationService implements ExpressionEvaluationService {
@@ -28,12 +30,42 @@ public final class SimpleMapExpressionEvaluationService implements ExpressionEva
 	}
 
 	@Override
-	public boolean evaluate(ParsedExpression expression, ExpressionTokenAssessmentService evaluator) {
-		// FIXME: ytbd: if not instanceof - swear to diagnose
-		SimpleMapExpression simple = (SimpleMapExpression) expression;
-		// FIXME: ytbd: need report which check is failed
-		return simple.keys().stream() //
-				.allMatch(key -> evaluator.equal(key, simple.expected(key)));
+	public void evaluate(ParsedExpression expression, ExpressionTokenAssessmentService assessor)
+			throws ExpressionEvaluationException {
+		SimpleMapExpression map = map(expression);
+		for (String key : map.keys()) {
+			boolean passed = equal(key, map.expected(key), assessor);
+			if (!passed) {
+				throw new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
+						"SimpleMapExpressionEvaluationService.segment_fails_evaluation"), //$NON-NLS-1$
+						assessor.id().identifier(), key, map.expected(key)));
+			}
+		}
+	}
+
+	private boolean equal(String key, String value, ExpressionTokenAssessmentService assessor)
+			throws ExpressionEvaluationException {
+		try {
+			return assessor.equal(key, value);
+		} catch (ExpressionEvaluationException e) {
+			throw new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
+					"SimpleMapExpressionEvaluationService.evaluation_fails"), //$NON-NLS-1$
+					key, value, assessor.id().identifier()), e);
+		}
+	}
+
+	private SimpleMapExpression map(ParsedExpression expression) throws ExpressionEvaluationException {
+		if (!SimpleMapExpression.class.isInstance(expression)) {
+			new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
+					"SimpleMapExpressionEvaluationService.foreign_expression"), // //$NON-NLS-1$
+					expression.protocol()));
+		}
+		SimpleMapExpression map = (SimpleMapExpression) expression;
+		if (map.keys().isEmpty()) {
+			new ExpressionEvaluationException(ConditionsEvaluationMessages.getString(//
+					"SimpleMapExpressionEvaluationService.no_checks")); //$NON-NLS-1$
+		}
+		return map;
 	}
 
 }

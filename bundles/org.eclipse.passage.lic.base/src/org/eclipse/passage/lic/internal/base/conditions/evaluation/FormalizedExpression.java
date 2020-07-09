@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -37,9 +37,9 @@ final class FormalizedExpression {
 
 	private final String raw;
 	private final String separator;
-	private final Registry<ExpressionProtocol, ExpressionPasringService> parsers;
+	private final Registry<ExpressionProtocol, ExpressionParsingService> parsers;
 
-	FormalizedExpression(String raw, String separator, Registry<ExpressionProtocol, ExpressionPasringService> parsers) {
+	FormalizedExpression(String raw, String separator, Registry<ExpressionProtocol, ExpressionParsingService> parsers) {
 		Objects.requireNonNull(raw, "RetrievedExpression::raw"); //$NON-NLS-1$
 		Objects.requireNonNull(separator, "RetrievedExpression::separator"); //$NON-NLS-1$
 		Objects.requireNonNull(parsers, "RetrievedExpression::parsers"); //$NON-NLS-1$
@@ -48,7 +48,7 @@ final class FormalizedExpression {
 		this.parsers = parsers;
 	}
 
-	FormalizedExpression(String raw, Registry<ExpressionProtocol, ExpressionPasringService> parsers) {
+	FormalizedExpression(String raw, Registry<ExpressionProtocol, ExpressionParsingService> parsers) {
 		this(raw, "!!", parsers); //$NON-NLS-1$
 	}
 
@@ -56,7 +56,7 @@ final class FormalizedExpression {
 		return service().parsed(content());
 	}
 
-	private ExpressionPasringService service() {
+	private ExpressionParsingService service() {
 		ExpressionProtocol protocol = protocol();
 		return parsers.hasService(protocol) //
 				? parsers.service(protocol) //

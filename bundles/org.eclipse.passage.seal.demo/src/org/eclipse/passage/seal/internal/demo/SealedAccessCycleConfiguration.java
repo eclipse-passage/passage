@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEval
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
@@ -70,7 +70,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<LicensedProduct, StreamCodec> codecs;
 	private final Registry<LicensedProduct, KeyKeeper> keys;
 	private final Registry<StringServiceId, PermissionEmittingService> emitters;
-	private final Registry<ExpressionProtocol, ExpressionPasringService> expressionParsers;
+	private final Registry<ExpressionProtocol, ExpressionParsingService> expressionParsers;
 	private final Registry<ExpressionProtocol, ExpressionEvaluationService> expressionEvaluators;
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenEvaluators;
 
