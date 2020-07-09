@@ -25,25 +25,25 @@ public abstract class EncryptionKeySize {
 		this.size = size;
 	}
 
+	public final int size() {
+		return size;
+	}
+
 	@Override
-	public boolean equals(Object object) {
+	public final boolean equals(Object object) {
 		if (!getClass().isInstance(object)) {
 			return false;
 		}
 		return size == ((EncryptionKeySize) object).size();
 	}
 
-	public int size() {
-		return size;
-	}
-
 	@Override
-	public int hashCode() {
+	public final int hashCode() {
 		return Objects.hash(size);
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return Integer.toString(size);
 	}
 
