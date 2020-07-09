@@ -36,7 +36,10 @@ import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
  * at all ({@code Emission.failed()}) and then request either permissions or
  * failure details.
  * </p>
- * 
+ * <p>
+ * Any implementation must follow the contract defined in
+ * {@code EmissionContractTest}
+ * </p>
  */
 public interface Emission {
 

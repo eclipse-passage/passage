@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
+/**
+ * An implementation must follow the contract defined in
+ * {@code ExpressionParsingServiceContractTest}
+ */
 public interface ExpressionParsingService extends Service<ExpressionProtocol> {
 
 	ParsedExpression parsed(String expression) throws ExpressionParsingException;

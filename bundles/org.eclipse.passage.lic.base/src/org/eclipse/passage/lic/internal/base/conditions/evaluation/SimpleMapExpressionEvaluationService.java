@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
+import java.util.Objects;
+
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
@@ -32,6 +34,9 @@ public final class SimpleMapExpressionEvaluationService implements ExpressionEva
 	@Override
 	public void evaluate(ParsedExpression expression, ExpressionTokenAssessmentService assessor)
 			throws ExpressionEvaluationException {
+		Objects.requireNonNull(expression);
+		Objects.requireNonNull(assessor);
+		verifyProtocol(expression);
 		SimpleMapExpression map = map(expression);
 		for (String key : map.keys()) {
 			boolean passed = equal(key, map.expected(key), assessor);
@@ -56,16 +61,25 @@ public final class SimpleMapExpressionEvaluationService implements ExpressionEva
 
 	private SimpleMapExpression map(ParsedExpression expression) throws ExpressionEvaluationException {
 		if (!SimpleMapExpression.class.isInstance(expression)) {
-			new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
+			throw new ExpressionEvaluationException(String.format(ConditionsEvaluationMessages.getString(//
 					"SimpleMapExpressionEvaluationService.foreign_expression"), // //$NON-NLS-1$
 					expression.protocol()));
 		}
 		SimpleMapExpression map = (SimpleMapExpression) expression;
 		if (map.keys().isEmpty()) {
-			new ExpressionEvaluationException(ConditionsEvaluationMessages.getString(//
+			throw new ExpressionEvaluationException(ConditionsEvaluationMessages.getString(//
 					"SimpleMapExpressionEvaluationService.no_checks")); //$NON-NLS-1$
 		}
 		return map;
+	}
+
+	private void verifyProtocol(ParsedExpression expression) throws ExpressionEvaluationException {
+		if (!id().equals(expression.protocol())) {
+			throw new ExpressionEvaluationException(String.format(
+					ConditionsEvaluationMessages
+							.getString("SimpleMapExpressionEvaluationService.unexpected_expression_protocol"), //$NON-NLS-1$
+					expression.protocol(), id()));
+		}
 	}
 
 }
