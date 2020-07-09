@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -32,5 +36,13 @@ public interface AccessCycleConfiguration {
 	KeyKeeperRegistry keyKeepers();
 
 	ConditionTransportRegistry transports();
+
+	PermissionEmittersRegistry permissionEmitters();
+
+	ExpressionPasringRegistry expressionParsers();
+
+	ExpressionEvaluatorsRegistry expressionEvaluators();
+
+	ExpressionTokenAssessorsRegistry expressionAssessors();
 
 }

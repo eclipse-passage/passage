@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -45,6 +49,9 @@ final class SabotagedFramework implements Framework {
 	}
 
 	private static class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
+		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
+			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
+		}
 
 		@Override
 		public ResolvedRequirementsRegistry requirementResolvers() {
@@ -71,8 +78,24 @@ final class SabotagedFramework implements Framework {
 			return () -> noService();
 		}
 
-		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
-			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
+		@Override
+		public PermissionEmittersRegistry permissionEmitters() {
+			return () -> noService();
+		}
+
+		@Override
+		public ExpressionPasringRegistry expressionParsers() {
+			return () -> noService();
+		}
+
+		@Override
+		public ExpressionEvaluatorsRegistry expressionEvaluators() {
+			return () -> noService();
+		}
+
+		@Override
+		public ExpressionTokenAssessorsRegistry expressionAssessors() {
+			return () -> noService();
 		}
 
 	}
