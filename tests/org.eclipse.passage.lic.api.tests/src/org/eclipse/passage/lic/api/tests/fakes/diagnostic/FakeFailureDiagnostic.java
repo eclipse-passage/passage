@@ -10,12 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.evaluation;
+package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
 
-import org.eclipse.passage.lic.internal.api.registry.Service;
+import java.util.List;
 
-public interface ExpressionPasringService extends Service<ExpressionProtocol> {
+import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
-	ParsedExpression parsed(String expression) throws ExpressionParsingException;
+@SuppressWarnings("restriction")
+public final class FakeFailureDiagnostic implements FailureDiagnostic {
+
+	@Override
+	public List<Trouble> troubles() {
+		throw new UnsupportedOperationException();
+	}
 
 }

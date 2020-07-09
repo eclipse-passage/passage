@@ -14,12 +14,14 @@ package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.EmissionFailureDiagnostic;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
 
 @SuppressWarnings("restriction")
 public final class SumOfEmissions implements BinaryOperator<Emission> {
@@ -31,11 +33,13 @@ public final class SumOfEmissions implements BinaryOperator<Emission> {
 				: new Emission.Successful(sumPermissions(first, second));
 	}
 
-	private EmissionFailureDiagnostic sumDiagnostic(Emission first, Emission second) {
-		return new BaseEmissionFailureDiagnostic(); // FIXME: implement
+	private FailureDiagnostic sumDiagnostic(Emission first, Emission second) {
+		return new BaseFailureDiagnostic(first, second);
 	}
 
 	private Collection<Permission> sumPermissions(Emission first, Emission second) {
+		Objects.requireNonNull(first);
+		Objects.requireNonNull(second);
 		return Arrays.asList(first.permissions(), second.permissions()).stream()//
 				.flatMap(Collection::stream) //
 				.collect(Collectors.toList());

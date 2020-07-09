@@ -31,15 +31,20 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
  * must answer only these simple questions. the rest of the evaluation logic is
  * on {@linkplain ExpressionProtocol}-aware services.
  * </p>
+ * <p>
+ * This interface is to be extended further to cover all atomic queries we might
+ * need.
+ * </p>
  */
 public interface ExpressionTokenAssessmentService extends Service<EvaluationType> {
 
-	boolean equal(String key, String value);
-
-	// contains ()
-
-	// startsWith ()
-
-	// all the things we will ever need -> slice to [Operation]s
+	/**
+	 * Assess dedicated part of the runtime environment is the given property
+	 * {@code key} equals to the expected {@code value}.
+	 * 
+	 * @throws ExpressionEvaluationException in the case of any evaluation
+	 *                                       infrastructure denial or misbehavior
+	 */
+	boolean equal(String key, String value) throws ExpressionEvaluationException;
 
 }

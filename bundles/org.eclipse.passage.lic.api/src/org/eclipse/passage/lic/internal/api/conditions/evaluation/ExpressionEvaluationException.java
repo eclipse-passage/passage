@@ -12,10 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
-import java.util.function.Supplier;
+@SuppressWarnings("serial")
+public final class ExpressionEvaluationException extends Exception {
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
+	public ExpressionEvaluationException(String message, Throwable cause) {
+		super(message, cause);
+	}
 
-public interface ExpressionPasringRegistry extends Supplier<Registry<ExpressionProtocol, ExpressionParsingService>> {
+	public ExpressionEvaluationException(String message) {
+		super(message);
+	}
 
 }

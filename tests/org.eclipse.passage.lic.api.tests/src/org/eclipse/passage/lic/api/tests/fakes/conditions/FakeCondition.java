@@ -10,26 +10,33 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
+package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
+import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
+import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 
 @SuppressWarnings("restriction")
-public final class FakeConditionTransport implements ConditionTransport {
+public final class FakeCondition implements Condition {
 
 	@Override
-	public ContentType id() {
-		return new ContentType.Of("application/test"); //$NON-NLS-1$
+	public VersionMatch versionMatch() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Collection<Condition> read(InputStream input) throws IOException {
+	public ValidityPeriod validityPeriod() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String feature() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public EvaluationInstructions evaluationInstructions() {
 		throw new UnsupportedOperationException();
 	}
 

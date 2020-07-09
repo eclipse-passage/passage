@@ -10,34 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
+package org.eclipse.passage.lic.api.tests.fakes.io;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
 @SuppressWarnings("restriction")
-public final class FakeKeyKeeper implements KeyKeeper, LicensedProduct {
+public final class FakeConditionTransport implements ConditionTransport {
 
 	@Override
-	public LicensedProduct id() {
-		return this;
+	public ContentType id() {
+		return new ContentType.Of("application/test"); //$NON-NLS-1$
 	}
 
 	@Override
-	public String identifier() {
-		return "fake-product-keeping-keys"; //$NON-NLS-1$
-	}
-
-	@Override
-	public String version() {
-		return "0.0.1"; //$NON-NLS-1$
-	}
-
-	@Override
-	public InputStream productPublicKey() throws LicensingException {
+	public Collection<Condition> read(InputStream input) throws IOException {
 		throw new UnsupportedOperationException();
 	}
 

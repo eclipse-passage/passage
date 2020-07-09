@@ -16,6 +16,13 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
 
 public interface ExpressionEvaluationService extends Service<ExpressionProtocol> {
 
-	boolean evaluate(ParsedExpression expression, ExpressionTokenAssessmentService assessor);
+	/**
+	 * Assess the {@code expression} tokens with the given {@code assessor}.
+	 * 
+	 * @throws ExpressionEvaluationException in case of infrastructure denial or
+	 *                                       assessment failure
+	 */
+	void evaluate(ParsedExpression expression, ExpressionTokenAssessmentService assessor)
+			throws ExpressionEvaluationException;
 
 }

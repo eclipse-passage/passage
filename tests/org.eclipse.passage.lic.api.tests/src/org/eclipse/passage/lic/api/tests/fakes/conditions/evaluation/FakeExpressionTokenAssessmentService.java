@@ -10,23 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes;
+package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
 @SuppressWarnings("restriction")
-public class FakeConditionExpressionEvaluator implements ExpressionEvaluationService {
+public final class FakeExpressionTokenAssessmentService implements ExpressionTokenAssessmentService {
 
 	@Override
-	public ExpressionProtocol id() {
-		return new ExpressionProtocol.Of("brand-new-format"); //$NON-NLS-1$
+	public EvaluationType id() {
+		return new EvaluationType.Of("air-content-assessment"); //$NON-NLS-1$
 	}
 
 	@Override
-	public boolean evaluate(ParsedExpression expression, ExpressionTokenAssessmentService tokenEvaluator) {
+	public boolean equal(String key, String value) {
 		throw new UnsupportedOperationException();
 	}
 

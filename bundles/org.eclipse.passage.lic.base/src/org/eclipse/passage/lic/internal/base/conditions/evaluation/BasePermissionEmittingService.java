@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
@@ -33,7 +34,12 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseCheckFailed;
+import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
+import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 @SuppressWarnings("restriction")
 public final class BasePermissionEmittingService implements PermissionEmittingService {
@@ -70,34 +76,45 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	}
 
 	private Emission emitFor(Condition condition, LicensedProduct product) {
-		boolean satisfied = false;
 		try {
-			satisfied = expressionIsSatisfied(condition);
+			expressionIsSatisfied(condition);
 		} catch (ExpressionParsingException e) {
-			new Emission.Failed(new BaseEmissionFailureDiagnostic()); // FIXME: ytbd: explain
+			return new Emission.Failed(new BaseFailureDiagnostic(//
+					new LicenseInvalid(), //
+					String.format(ConditionsEvaluationMessages.getString("BasePermissionEmittingService.parse_failed"), // //$NON-NLS-1$
+							condition.evaluationInstructions().expression()), //
+					e));
+		} catch (ExpressionEvaluationException e) {
+			return new Emission.Failed(new BaseFailureDiagnostic(//
+					new LicenseDoesNotMatch(), //
+					String.format(
+							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.evaluation_failed"), // //$NON-NLS-1$
+							condition.evaluationInstructions().expression()), //
+					e));
 		} catch (LicensingException e) {
-			new Emission.Failed(new BaseEmissionFailureDiagnostic()); // FIXME: ytbd: explain
+			return new Emission.Failed(new BaseFailureDiagnostic(//
+					new LicenseCheckFailed(), //
+					String.format(ConditionsEvaluationMessages.getString("BasePermissionEmittingService.failed"), // //$NON-NLS-1$
+							condition.evaluationInstructions().expression()), //
+					e));
 		}
-		if (satisfied) {
-			return new Emission.Successful(Arrays.asList(//
-					new BasePermission(//
-							product, //
-							condition, //
-							ZonedDateTime.now(), //
-							expiration(condition.validityPeriod()))));
-		} else {
-			return new Emission.Failed(new BaseEmissionFailureDiagnostic()); // FIXME: ytbd: explain
-		}
+		return new Emission.Successful(Arrays.asList(//
+				new BasePermission(//
+						product, //
+						condition, //
+						ZonedDateTime.now(), //
+						expiration(condition.validityPeriod()))));
 	}
 
-	private boolean expressionIsSatisfied(Condition condition) throws LicensingException, ExpressionParsingException {
+	private void expressionIsSatisfied(Condition condition)
+			throws ExpressionParsingException, ExpressionEvaluationException, LicensingException {
 		ExpressionTokenAssessmentService assessor = //
 				evaluator(condition.evaluationInstructions().type());
 		ParsedExpression expression = new FormalizedExpression( //
 				condition.evaluationInstructions().expression(), //
 				parsers.get()).get();
 		ExpressionEvaluationService evaluator = evaluators.get().service(expression.protocol());
-		return evaluator.evaluate(expression, assessor);
+		evaluator.evaluate(expression, assessor);
 	}
 
 	private ExpressionTokenAssessmentService evaluator(EvaluationType type) throws LicensingException {

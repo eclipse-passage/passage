@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public class LicensingConditions {
@@ -33,10 +34,13 @@ public class LicensingConditions {
 		// block
 	}
 
+	/**
+	 * @deprecated use {@link AndsProtocolExpressionParseService}
+	 */
+	@Deprecated
 	public static Map<String, String> parseExpression(String expression) {
 		Map<String, String> map = new HashMap<>();
 		if (expression == null) {
-			// FIXME: report error;
 			return map;
 		}
 		String[] segments = expression.split(SEGMENT_SEPARATOR);

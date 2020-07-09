@@ -10,17 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.evaluation;
+package org.eclipse.passage.lic.internal.api.diagnostic;
 
-/**
- * <p>
- * FIXME: diagnostic details structure are yet to be designed as existing
- * emission process is reimplemented on top of these interfaces. Do we need try
- * to evaluate the rest of the condition after the first failure to get the full
- * picture? Or this first failure is enough? The answer will affect further
- * development of this interface.
- * </p>
- */
-public interface EmissionFailureDiagnostic {
+import java.util.List;
+
+public interface FailureDiagnostic {
+
+	List<Trouble> troubles();
 
 }
