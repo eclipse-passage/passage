@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeConditionExpressionEvaluator;
+import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionEvaluationService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeConditionExpressionParser;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.mining.FakeMinedConditions;
@@ -182,7 +182,7 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void prohibitsInjectionIntoExpressionEvaluationServices() {
 		assertServiceInjectionsIsProhibited(config().expressionEvaluators().get(),
-				new FakeConditionExpressionEvaluator());
+				new FakeExpressionEvaluationService());
 	}
 
 	@Test

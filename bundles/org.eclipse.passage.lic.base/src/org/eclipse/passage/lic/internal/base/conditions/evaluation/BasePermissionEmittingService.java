@@ -47,7 +47,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	private final StringServiceId id = new StringServiceId("default-emitter"); //$NON-NLS-1$
 	private final ExpressionPasringRegistry parsers;
 	private final ExpressionTokenAssessorsRegistry assessors;
-	private ExpressionEvaluatorsRegistry evaluators;
+	private final ExpressionEvaluatorsRegistry evaluators;
 
 	public BasePermissionEmittingService(//
 			ExpressionPasringRegistry parsers, //
@@ -109,7 +109,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	private void expressionIsSatisfied(Condition condition)
 			throws ExpressionParsingException, ExpressionEvaluationException, LicensingException {
 		ExpressionTokenAssessmentService assessor = //
-				evaluator(condition.evaluationInstructions().type());
+				assessor(condition.evaluationInstructions().type());
 		ParsedExpression expression = new FormalizedExpression( //
 				condition.evaluationInstructions().expression(), //
 				parsers.get()).get();
@@ -117,7 +117,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 		evaluator.evaluate(expression, assessor);
 	}
 
-	private ExpressionTokenAssessmentService evaluator(EvaluationType type) throws LicensingException {
+	private ExpressionTokenAssessmentService assessor(EvaluationType type) throws LicensingException {
 		if (!assessors.get().hasService(type)) {
 			throw new LicensingException(String.format(
 					"Expression of [%s] evaluation type cannot be asessed: no evaluation services are geristered for the type", //$NON-NLS-1$ FIXME
