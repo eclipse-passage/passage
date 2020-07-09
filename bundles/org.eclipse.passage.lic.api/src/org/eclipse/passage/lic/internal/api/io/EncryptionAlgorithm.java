@@ -23,25 +23,25 @@ public abstract class EncryptionAlgorithm {
 		this.name = name.toUpperCase();
 	}
 
+	public final String name() {
+		return name;
+	}
+
 	@Override
-	public boolean equals(Object object) {
+	public final boolean equals(Object object) {
 		if (!getClass().isInstance(object)) {
 			return false;
 		}
 		return name.equals(((EncryptionAlgorithm) object).name());
 	}
 
-	public String name() {
-		return name;
-	}
-
 	@Override
-	public int hashCode() {
+	public final int hashCode() {
 		return name.hashCode();
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return name;
 	}
 

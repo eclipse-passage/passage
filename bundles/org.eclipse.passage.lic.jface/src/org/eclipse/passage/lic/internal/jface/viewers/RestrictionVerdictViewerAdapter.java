@@ -69,6 +69,10 @@ public class RestrictionVerdictViewerAdapter extends LicensingViewerBasis {
 		return super.getLabel(element, columnIndex);
 	}
 
+	/**
+	 * @deprecated use lic.api.diagnostic.code
+	 */
+	@Deprecated
 	private String getVerdictMessage(RestrictionVerdict verdict) {
 		int code = verdict.getRestrictionCode();
 		if (code == 0) {
