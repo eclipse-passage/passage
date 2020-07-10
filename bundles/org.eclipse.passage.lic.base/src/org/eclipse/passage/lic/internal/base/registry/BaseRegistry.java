@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.registry;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.Function;
@@ -77,7 +78,7 @@ public abstract class BaseRegistry<I extends ServiceId, S extends Service<I>> im
 
 	@Override
 	public final Collection<S> services() {
-		return services.values();
+		return new ArrayList<>(services.values());
 	}
 
 }
