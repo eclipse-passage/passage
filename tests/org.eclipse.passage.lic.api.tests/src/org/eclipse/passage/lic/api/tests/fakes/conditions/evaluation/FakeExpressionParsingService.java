@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPars
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
 @SuppressWarnings("restriction")
-public final class FakeConditionExpressionParser implements ExpressionParsingService {
+public final class FakeExpressionParsingService implements ExpressionParsingService {
 
 	@Override
 	public ExpressionProtocol id() {

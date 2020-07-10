@@ -17,14 +17,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionEvaluationService;
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeConditionExpressionParser;
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.api.tests.fakes.conditions.mining.FakeMinedConditions;
-import org.eclipse.passage.lic.api.tests.fakes.io.FakeConditionTransport;
-import org.eclipse.passage.lic.api.tests.fakes.io.FakeKeyKeeper;
-import org.eclipse.passage.lic.api.tests.fakes.io.FakeStreamCodec;
-import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
@@ -70,11 +62,6 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void prohibitsInjectionIntoRequirementResolutionServices() {
-		assertServiceInjectionsIsProhibited(config().requirementResolvers().get(), new FakeResolvedRequirements());
-	}
-
-	@Test
 	public final void canMineConditions() {
 		assertServiceRegistryIsFunctional(config().conditionMiners().get());
 	}
@@ -85,11 +72,6 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void prohibitsInjectionIntoConditionMiningServices() {
-		assertServiceInjectionsIsProhibited(config().conditionMiners().get(), new FakeMinedConditions());
-	}
-
-	@Test
 	public final void canEncodeAndDecodeStreams() {
 		assertServiceRegistryIsFunctional(config().codecs().get());
 	}
@@ -97,11 +79,6 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void prohibitsStreamCodecServicesExtension() {
 		assertTrue(readOnly(config().codecs().get()));
-	}
-
-	@Test
-	public final void prohibitsInjectionIntoStreamCodecServices() {
-		assertServiceInjectionsIsProhibited(config().codecs().get(), new FakeStreamCodec());
 	}
 
 	@Test
@@ -120,11 +97,6 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void prohibitsInjectionIntoKeyKeeperServices() {
-		assertServiceInjectionsIsProhibited(config().keyKeepers().get(), new FakeKeyKeeper());
-	}
-
-	@Test
 	public final void keepsKeyForProduct() {
 		assertTrue(config().keyKeepers().get().hasService(framework().get().product()));
 	}
@@ -137,11 +109,6 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void prohibitsConditionTransportServicesExtension() {
 		assertTrue(readOnly(config().transports().get()));
-	}
-
-	@Test
-	public final void prohibitsInjectionIntoConditionTransportServices() {
-		assertServiceInjectionsIsProhibited(config().transports().get(), new FakeConditionTransport());
 	}
 
 	@Test
@@ -160,11 +127,6 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	public final void prohibitsInjectionIntoExpressionParseServices() {
-		assertServiceInjectionsIsProhibited(config().expressionParsers().get(), new FakeConditionExpressionParser());
-	}
-
-	@Test
 	public final void hasParserForDefaultExpressionFormat() {
 		assertTrue(config().expressionParsers().get().hasService(new ExpressionProtocol.Default()));
 	}
@@ -177,12 +139,6 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void prohibitsExpressionEvaluationServicesExtension() {
 		assertTrue(readOnly(config().expressionEvaluators().get()));
-	}
-
-	@Test
-	public final void prohibitsInjectionIntoExpressionEvaluationServices() {
-		assertServiceInjectionsIsProhibited(config().expressionEvaluators().get(),
-				new FakeExpressionEvaluationService());
 	}
 
 	@Test
@@ -201,29 +157,11 @@ public abstract class FrameworkContractTest {
 		assertTrue(readOnly(config().expressionAssessors().get()));
 	}
 
-	@Test
-	public final void prohibitsInjectionIntoSegmentAssessmentServices() {
-		assertServiceInjectionsIsProhibited(config().expressionAssessors().get(),
-				new FakeExpressionTokenAssessmentService());
-	}
-
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
 			Registry<I, S> registry) {
 		assertNotNull(registry);
 		assertNotNull(registry.services());
 		assertTrue(registry.services().size() > 0);
-	}
-
-	private <I extends ServiceId, S extends Service<I>> void assertServiceInjectionsIsProhibited(
-			Registry<I, S> registry, S intruder) {
-		int before = registry.services().size();
-		try {
-			registry.services().add(intruder);
-		} catch (UnsupportedOperationException unsupported) {
-			// then (hooray! unsupported! no injections!)
-			return;
-		}
-		assertTrue(before == registry.services().size());
 	}
 
 	private AccessCycleConfiguration config() {

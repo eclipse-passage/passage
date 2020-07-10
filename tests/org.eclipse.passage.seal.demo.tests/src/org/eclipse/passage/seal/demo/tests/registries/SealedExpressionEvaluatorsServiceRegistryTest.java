@@ -10,16 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.demo.tests;
+package org.eclipse.passage.seal.demo.tests.registries;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.tests.FrameworkRequirementResolutionServiceTest;
+import org.eclipse.passage.lic.api.tests.ExpressionParsingServicesRegitryTest;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 @SuppressWarnings("restriction")
-public final class DemoFrameworkRequirementResolutionServiceTest extends FrameworkRequirementResolutionServiceTest {
+public final class SealedExpressionEvaluatorsServiceRegistryTest extends ExpressionParsingServicesRegitryTest {
 
 	@Override
 	protected Optional<Framework> framework() {
