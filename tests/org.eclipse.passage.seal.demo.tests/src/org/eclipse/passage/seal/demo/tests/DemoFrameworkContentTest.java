@@ -35,11 +35,6 @@ import org.junit.Test;
 public final class DemoFrameworkContentTest {
 	
 	@Test
-	public void supplied() {
-		assertTrue(new DemoFrameworkSupplier().get().isPresent());
-	}
-
-	@Test
 	public void providesBothEquinoxRequirementServices() {
 		Registry<StringServiceId, ResolvedRequirements> registry = registry();
 		assertHasService(registry, new BundleRequirements());
