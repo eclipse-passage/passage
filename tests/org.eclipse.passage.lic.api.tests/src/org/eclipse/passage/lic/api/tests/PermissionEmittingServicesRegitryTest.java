@@ -16,14 +16,14 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
+import org.eclipse.passage.lic.api.tests.fakes.io.FakeStreamCodec;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of requirement resolution services.
+ * collection of sream codecs.
  * </p>
  * <p>
  * Each {@code Framework} implementation must extend this class and satisfy all
@@ -31,16 +31,16 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
  * </p>
  */
 @SuppressWarnings("restriction")
-public abstract class FrameworkRequirementResolutionServiceTest extends ReadOnlyCollectionTest<ResolvedRequirements> {
+public abstract class PermissionEmittingServicesRegitryTest extends ReadOnlyCollectionTest<StreamCodec> {
 
 	@Override
-	protected final Supplier<Collection<ResolvedRequirements>> collection() {
-		return () -> framework().get().accessCycleConfiguration().requirementResolvers().get().services();
+	protected final Supplier<Collection<StreamCodec>> collection() {
+		return () -> framework().get().accessCycleConfiguration().codecs().get().services();
 	}
 
 	@Override
-	protected final ResolvedRequirements single() {
-		return new FakeResolvedRequirements();
+	protected final StreamCodec single() {
+		return new FakeStreamCodec();
 	}
 
 	protected abstract Optional<Framework> framework();
