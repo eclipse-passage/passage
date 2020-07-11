@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-public abstract class Disk extends HardwareProperty {
+import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+
+public abstract class Disk extends EnvironmentProperty {
 
 	protected Disk(String name) {
 		super("hwdisk", name); //$NON-NLS-1$
