@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
  * </p>
  * <p>
  * Implementation of this interface for a particular {@linkplain EvaluationType}
- * must answer only these simple questions. the rest of the evaluation logic is
+ * must answer only these simple questions. The rest of the evaluation logic is
  * on {@linkplain ExpressionProtocol}-aware services.
  * </p>
  * <p>
