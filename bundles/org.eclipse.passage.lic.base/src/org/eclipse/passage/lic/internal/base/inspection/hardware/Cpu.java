@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-public abstract class Cpu extends HardwareProperty {
+import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+
+public abstract class Cpu extends EnvironmentProperty {
 
 	protected Cpu(String name) {
 		super("system", name); //$NON-NLS-1$

@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-public abstract class Firmware extends HardwareProperty {
+import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+
+public abstract class Firmware extends EnvironmentProperty {
 
 	protected Firmware(String name) {
 		super("firmware", name); //$NON-NLS-1$

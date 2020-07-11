@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.inspection;
 
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
@@ -30,6 +31,8 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
  */
 public interface RuntimeEnvironment extends Service<EvaluationType> {
 
-	String state();
+	String state() throws LicensingException;
+
+	boolean isAssuptionTrue(EnvironmentProperty property, String value) throws LicensingException;
 
 }

@@ -10,24 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.inspection.hardware;
+package org.eclipse.passage.lic.internal.api.inspection;
 
 import java.util.Objects;
 
-public abstract class HardwareProperty {
+public abstract class EnvironmentProperty {
 
 	protected final String separator = ".";//$NON-NLS-1$
 	private final String name;
 	private final String family;
 
-	protected HardwareProperty(String family, String name) {
+	protected EnvironmentProperty(String family, String name) {
 		Objects.requireNonNull(family);
 		Objects.requireNonNull(name);
 		this.family = family;
 		this.name = name;
 	}
 
-	protected HardwareProperty(FullyQualifiedName fqn) {
+	protected EnvironmentProperty(FullyQualifiedName fqn) {
 		this.family = fqn.family(separator);
 		this.name = fqn.name(separator);
 	}
@@ -42,10 +42,10 @@ public abstract class HardwareProperty {
 
 	@Override
 	public final boolean equals(Object object) {
-		if (!HardwareProperty.class.isInstance(object)) {
+		if (!EnvironmentProperty.class.isInstance(object)) {
 			return false;
 		}
-		HardwareProperty os = (HardwareProperty) object;
+		EnvironmentProperty os = (EnvironmentProperty) object;
 		return family.equals(os.family) && name.equals(os.name);
 	}
 
@@ -59,7 +59,7 @@ public abstract class HardwareProperty {
 		return String.format("%s%s%s", family, separator, name); //$NON-NLS-1$
 	}
 
-	public static final class Of extends HardwareProperty {
+	public static final class Of extends EnvironmentProperty {
 
 		public Of(String fqn) {
 			super(new FullyQualifiedName(fqn));
