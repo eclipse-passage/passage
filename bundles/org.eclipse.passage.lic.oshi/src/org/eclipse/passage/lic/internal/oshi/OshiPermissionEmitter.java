@@ -26,6 +26,10 @@ import org.eclipse.passage.lic.oshi.OshiHal;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+/**
+ * @deprecated use 1.0 HardwareAssessmentService instead
+ */
+@Deprecated
 @Component(property = { LICENSING_CONDITION_TYPE_ID + '=' + OshiHal.CONDITION_TYPE_HARDWARE,
 		LICENSING_CONDITION_TYPE_NAME + '=' + "Hardware", LICENSING_CONDITION_TYPE_DESCRIPTION + '='
 				+ "Evaluates node-locked conditions using runtime hardware information" })
