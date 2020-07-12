@@ -66,6 +66,7 @@
 		<module>../../tests/org.eclipse.passage.lic.oshi.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.emf</module>
+		<module>../../bundles/org.eclipse.passage.lic.emf.meta</module>
 		<module>../../features/org.eclipse.passage.lic.emf.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.emf.tests</module>
 

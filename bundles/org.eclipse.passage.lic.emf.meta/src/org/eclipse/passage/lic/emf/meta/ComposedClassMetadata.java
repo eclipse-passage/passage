@@ -5,8 +5,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
-
 /**
  * Creates composed class metadata to suitable for dynamic environment
  * 
@@ -31,13 +29,13 @@ public final class ComposedClassMetadata implements ComposableClassMetadata {
 
 	@Override
 	public void consider(ClassMetadata fragment) {
-		Objects.requireNonNull(fragment, EmfMessages.ComposedClassMetadata_e_null_class_metadata);
+		Objects.requireNonNull(fragment);
 		registry.add(fragment);
 	}
 
 	@Override
 	public void forget(ClassMetadata fragment) {
-		Objects.requireNonNull(fragment, EmfMessages.ComposedClassMetadata_e_null_class_metadata);
+		Objects.requireNonNull(fragment);
 		registry.remove(fragment);
 	}
 

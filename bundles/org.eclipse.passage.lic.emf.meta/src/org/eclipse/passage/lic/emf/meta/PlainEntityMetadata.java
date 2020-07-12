@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 /**
  * Encapsulates the ECore metadata for the object to reduce the number of
@@ -43,9 +42,9 @@ public final class PlainEntityMetadata implements EntityMetadata {
 	 * 
 	 */
 	public PlainEntityMetadata(EClass type, EStructuralFeature id, EStructuralFeature name) {
-		Objects.requireNonNull(type, EmfMessages.PlainEntityMetadata_e_null_eclass);
-		Objects.requireNonNull(id, EmfMessages.PlainEntityMetadata_e_null_identification);
-		Objects.requireNonNull(name, EmfMessages.PlainEntityMetadata_e_null_naming);
+		Objects.requireNonNull(type, "PlainEntityMetadata::eClass"); //$NON-NLS-1$
+		Objects.requireNonNull(id, "PlainEntityMetadata::identification"); //$NON-NLS-1$
+		Objects.requireNonNull(name, "PlainEntityMetadata::naimng"); //$NON-NLS-1$
 		this.eClass = type;
 		this.identification = id;
 		this.naming = name;

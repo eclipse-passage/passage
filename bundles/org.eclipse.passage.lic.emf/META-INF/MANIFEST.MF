@@ -13,12 +13,5 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
 Export-Package: org.eclipse.passage.lic.emf.ecore,
  org.eclipse.passage.lic.emf.ecore.util,
  org.eclipse.passage.lic.emf.edit,
- org.eclipse.passage.lic.emf.meta;
-  x-friends:="org.eclipse.passage.lic.features.model,
-   org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.loc.workbench,
-   org.eclipse.passage.lic.users.model,
-   org.eclipse.passage.lic.products.model,
-   org.eclipse.passage.lic.licenses.model",
  org.eclipse.passage.lic.internal.emf.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy
