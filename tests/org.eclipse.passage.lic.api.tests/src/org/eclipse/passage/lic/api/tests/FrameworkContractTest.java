@@ -21,10 +21,10 @@ import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -147,13 +147,25 @@ public abstract class FrameworkContractTest {
 	}
 
 	@Test
-	@Ignore // yet to be implemented (OSHI-based)
 	public final void canAssessConditionExpressionsSegment() {
 		assertServiceRegistryIsFunctional(config().expressionAssessors().get());
 	}
 
 	@Test
 	public final void prohibitsExpressionSegmentAssessmentServicesExtension() {
+		assertTrue(readOnly(config().expressionAssessors().get()));
+	}
+
+	@Test
+	public final void hasRuntimeEnvironmentInspectorsRegistry() {
+		RuntimeEnvironmentRegistry environments = framework().get().accessCycleConfiguration().environments();
+		assertNotNull(environments);
+		assertNotNull(environments.get());
+		assertNotNull(environments.get().services()); // can legally be empty
+	}
+
+	@Test
+	public final void prohibitsRuntimeEnvironmentInspectionServicesExtension() {
 		assertTrue(readOnly(config().expressionAssessors().get()));
 	}
 

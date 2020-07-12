@@ -19,7 +19,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.passage.lic.api.inspector.HardwareInspector;
+import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareEnvironment;
 
+/**
+ * @deprecated use 1.0 {@link HardwareEnvironment}'s state
+ */
+@Deprecated
 public class OshiHal {
 
 	public static final String CONDITION_TYPE_HARDWARE = "hardware"; //$NON-NLS-1$

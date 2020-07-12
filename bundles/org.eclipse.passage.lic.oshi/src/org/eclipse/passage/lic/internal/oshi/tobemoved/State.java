@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -85,6 +86,26 @@ final class State {
 		return Optional.ofNullable(hardware.get(property))//
 				.map(value -> value.matches(regexp))//
 				.orElse(false);
+	}
+
+	Set<EnvironmentProperty> properties() {
+		return hardware.keySet();
+	}
+
+	String value(EnvironmentProperty key) {
+		return hardware.get(key);
+	}
+
+	int disksAmount() {
+		return disks.size();
+	}
+
+	Set<EnvironmentProperty> diskProperties(int no) {
+		return disks.get(no).keySet();
+	}
+
+	String diskValue(int no, EnvironmentProperty key) {
+		return disks.get(no).get(key);
 	}
 
 	private void read() throws LicensingException {

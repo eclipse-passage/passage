@@ -43,6 +43,11 @@ import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystemVersion;
 
+/**
+ * @deprecated use 1.0 internal State for the sake of scanning and
+ *             HardawareEnvironemnt to get a corresponsing service
+ */
+@Deprecated
 @Component
 public class OshiHardwareInspector implements HardwareInspector {
 

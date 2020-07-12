@@ -20,20 +20,22 @@ import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -42,8 +44,8 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
@@ -57,6 +59,8 @@ import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequiremen
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditions;
 import org.eclipse.passage.lic.internal.json.tobemoved.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareAssessmentService;
+import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareEnvironment;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -72,7 +76,8 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<StringServiceId, PermissionEmittingService> emitters;
 	private final Registry<ExpressionProtocol, ExpressionParsingService> expressionParsers;
 	private final Registry<ExpressionProtocol, ExpressionEvaluationService> expressionEvaluators;
-	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenEvaluators;
+	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
+	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		alarm = LicensingException::printStackTrace;
@@ -114,8 +119,11 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		expressionEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new SimpleMapExpressionEvaluationService()//
 		));
-		tokenEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
-		// FIXME: OSHI-based evaluator for EvaluationType.Hardware
+		tokenAssessors = new ReadOnlyRegistry<>(Arrays.asList(//
+				new HardwareAssessmentService(environments())//
+		));
+		environments = new ReadOnlyRegistry<>(Arrays.asList(//
+				new HardwareEnvironment()//
 		));
 	}
 
@@ -165,7 +173,12 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 
 	@Override
 	public ExpressionTokenAssessorsRegistry expressionAssessors() {
-		return () -> tokenEvaluators;
+		return () -> tokenAssessors;
+	}
+
+	@Override
+	public RuntimeEnvironmentRegistry environments() {
+		return () -> environments;
 	}
 
 }
