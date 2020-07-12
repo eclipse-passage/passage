@@ -23,7 +23,9 @@ import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
  *
  * @see RestrictionExecutor
  * @since 0.4.0
+ * @deprecated use 1.0 internal Restriction
  */
+@Deprecated
 public interface RestrictionVerdict {
 
 	/**
@@ -34,8 +36,11 @@ public interface RestrictionVerdict {
 	LicensingConfiguration getLicensingConfiguration();
 
 	/**
-	 * <p>The original {@code LicensingRequirement} which was admitted by {@code PermissionExaminer}
-	 * to be not satisfied  by existing set of {@code FeaturePermission}s.</p>
+	 * <p>
+	 * The original {@code LicensingRequirement} which was admitted by
+	 * {@code PermissionExaminer} to be not satisfied by existing set of
+	 * {@code FeaturePermission}s.
+	 * </p>
 	 *
 	 * @see LicensingRequirement
 	 * @see org.eclipse.passage.lic.api.access.FeaturePermission
