@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.oshi.feature"
       label="%featureName"
-      version="0.6.300.qualifier"
+      version="0.6.400.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.oshi"
       license-feature="org.eclipse.license"
