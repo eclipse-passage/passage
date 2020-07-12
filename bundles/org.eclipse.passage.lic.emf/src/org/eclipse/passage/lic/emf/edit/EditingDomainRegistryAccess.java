@@ -23,19 +23,5 @@ public interface EditingDomainRegistryAccess {
 
 	String getFileExtension(String domain);
 
-	/**
-	 * Not used anymore since 0.9, will throw {@link UnsupportedOperationException}
-	 * 
-	 * @deprecated will be deleted at 1.0
-	 * 
-	 * @param domain
-	 * @throws UnsupportedOperationException
-	 * 
-	 */
-	@Deprecated
-	default ClassifierInitializer getClassifierInitializer(String domain) {
-		throw new UnsupportedOperationException(domain);
-	}
-
 	SelectionCommandAdvisor getSelectionCommandAdvisor(String domain);
 }
