@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.workbench
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.workbench;singleton:=true
-Bundle-Version: 0.6.100.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -43,7 +43,6 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
  org.eclipse.passage.loc.workbench,
  org.eclipse.passage.loc.workbench.dialogs,
  org.eclipse.passage.loc.workbench.handlers,
- org.eclipse.passage.loc.workbench.parts,
  org.eclipse.passage.loc.workbench.viewers,
  org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true,
  org.eclipse.passage.moveto.lic.internal.emf.edit.i18n;x-internal:=true

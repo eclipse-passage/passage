@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.dashboard.ui
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.dashboard.ui;singleton:=true
-Bundle-Version: 0.6.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -26,9 +26,9 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.eclipse.passage.lic.email;bundle-version="0.0.0",
  org.eclipse.passage.lic.features.model;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0",
- org.eclipse.passage.loc.api;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.loc.workbench;bundle-version="0.0.0";visibility:=reexport,
- org.eclipse.passage.loc.workbench.emfforms;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.loc.api;bundle-version="0.0.0",
+ org.eclipse.passage.loc.workbench;bundle-version="1.0.0",
+ org.eclipse.passage.loc.workbench.emfforms;bundle-version="0.0.0",
  org.eclipse.passage.loc.features.ui;bundle-version="0.0.0",
  org.eclipse.passage.loc.licenses.core;bundle-version="0.6.0",
  org.eclipse.passage.loc.products.ui;bundle-version="0.0.0",
