@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.workbench.emfforms
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.workbench.emfforms;singleton:=true
-Bundle-Version: 0.6.100.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Import-Package: javax.inject,
@@ -28,7 +28,7 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.eclipse.emfforms.core.bazaar;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.passage.lic.emf;bundle-version="0.0.0",
- org.eclipse.passage.loc.workbench;bundle-version="0.0.0";visibility:=reexport
+ org.eclipse.passage.loc.workbench;bundle-version="1.0.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.loc.internal.workbench.emfforms;x-internal:=true,
  org.eclipse.passage.loc.internal.workbench.emfforms.i18n;x-internal:=true,

@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.loc.dashboard.feature"
       label="%featureName"
-      version="0.6.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -30,10 +30,6 @@
    <license url="%licenseURL">
       %license
    </license>
-
-   <requires>
-      <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
-   </requires>
 
    <includes
          id="org.eclipse.passage.loc.workbench.feature"
@@ -62,6 +58,10 @@
    <includes
          id="org.eclipse.passage.loc.licenses.feature"
          version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.passage.lic.define.feature" version="0.0.0" match="equivalent"/>
+   </requires>
 
    <plugin
          id="org.eclipse.passage.loc.dashboard.ui"
