@@ -30,10 +30,10 @@
  * particular workstation.</li>
  * 
  * <li>{@code expression} can be written in different protocols, so we must have
- * proper {@linkplain ExpressionParsingService} to be able {@code decompose} the
- * expression to tokens, and {@linkplain ExpressionEvaluationService} for this
- * protocol to combine all token assessment results into the final answer: if
- * the expression's demands are satisfied or not.</li>
+ * proper {@linkplain ExpressionParsingService} to be able to {@code decompose}
+ * the expression to tokens, and {@linkplain ExpressionEvaluationService} for
+ * this protocol to combine all token assessment results into the final answer:
+ * if the expression's demands are satisfied or not.</li>
  * 
  * <li>To define if a particular token (simplest question to the environment)
  * claim is met, we find an implementation of {@code RuntimeEnvironment}
