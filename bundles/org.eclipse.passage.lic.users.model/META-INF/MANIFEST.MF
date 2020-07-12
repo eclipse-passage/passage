@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.users.model
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.users.model;singleton:=true
-Bundle-Version: 0.5.100.qualifier
+Bundle-Version: 0.5.200.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
