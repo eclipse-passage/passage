@@ -19,13 +19,9 @@ public class EmfMessages extends NLS {
 	public static String BaseDomainRegistry_e_load_failed;
 	public static String BaseDomainRegistry_ok_load;
 	public static String BaseDomainRegistry_ok_unload;
-	public static String ComposedClassMetadata_e_null_class_metadata;
 	public static String LicensingEcore_inpur_header;
 	public static String LicensingEcore_input_entry;
 	public static String LicensingEcore_input_invalid;
-	public static String PlainEntityMetadata_e_null_eclass;
-	public static String PlainEntityMetadata_e_null_identification;
-	public static String PlainEntityMetadata_e_null_naming;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EmfMessages.class);
