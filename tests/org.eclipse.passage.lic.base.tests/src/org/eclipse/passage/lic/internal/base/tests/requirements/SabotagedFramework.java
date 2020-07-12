@@ -17,12 +17,13 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -95,6 +96,11 @@ final class SabotagedFramework implements Framework {
 
 		@Override
 		public ExpressionTokenAssessorsRegistry expressionAssessors() {
+			return () -> noService();
+		}
+
+		@Override
+		public RuntimeEnvironmentRegistry environments() {
 			return () -> noService();
 		}
 

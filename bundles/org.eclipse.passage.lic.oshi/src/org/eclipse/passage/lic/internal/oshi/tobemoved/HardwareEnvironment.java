@@ -48,6 +48,18 @@ public final class HardwareEnvironment implements RuntimeEnvironment {
 		return new GlanceOfState(freshState()).get();
 	}
 
+	/**
+	 * <p>
+	 * It's extremely important to prevent any concurrent access to the
+	 * {@linkplain State} reading. We synchronize it by key {@code OSHI} class
+	 * ({@linkplain SystemInfo}) lock to be sure we have exclusive access to it
+	 * until the hardware scanning is over.
+	 * </p>
+	 * <p>
+	 * Behind all the benefits of such a sync lock choice, it's still a foreign
+	 * class. Just beware, in case of any threading troubles revise.
+	 * </p>
+	 */
 	private State freshState() throws LicensingException {
 		State state;
 		synchronized (SystemInfo.class) {

@@ -16,14 +16,14 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.io.FakeStreamCodec;
+import org.eclipse.passage.lic.api.tests.fakes.inspection.FakeRuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of stream codecs.
+ * collection of runtime environment inspection services.
  * </p>
  * <p>
  * Each {@code Framework} implementation must extend this class and satisfy all
@@ -31,16 +31,16 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
  * </p>
  */
 @SuppressWarnings("restriction")
-public abstract class StreamCodecsRegitryTest extends ReadOnlyCollectionTest<StreamCodec> {
+public abstract class RuntimeEnvironmentRegitryTest extends ReadOnlyCollectionTest<RuntimeEnvironment> {
 
 	@Override
-	protected final Supplier<Collection<StreamCodec>> collection() {
-		return () -> framework().get().accessCycleConfiguration().codecs().get().services();
+	protected final Supplier<Collection<RuntimeEnvironment>> collection() {
+		return () -> framework().get().accessCycleConfiguration().environments().get().services();
 	}
 
 	@Override
-	protected final StreamCodec single() {
-		return new FakeStreamCodec();
+	protected final RuntimeEnvironment single() {
+		return new FakeRuntimeEnvironment();
 	}
 
 	protected abstract Optional<Framework> framework();
