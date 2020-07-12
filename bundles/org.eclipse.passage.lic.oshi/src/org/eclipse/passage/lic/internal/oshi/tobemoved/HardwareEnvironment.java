@@ -17,11 +17,21 @@ import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
+import oshi.SystemInfo;
+
+/**
+ * <p>
+ * It's extremely important to have not more then one instance of this service
+ * at runtime (guaranteed by {@code Framework}).
+ * </p>
+ * 
+ * @see State
+ */
+
 @SuppressWarnings("restriction")
 public final class HardwareEnvironment implements RuntimeEnvironment {
 
 	private final EvaluationType type = new EvaluationType.Hardware();
-	private final State state = new State();
 
 	@Override
 	public EvaluationType id() {
@@ -30,12 +40,20 @@ public final class HardwareEnvironment implements RuntimeEnvironment {
 
 	@Override
 	public boolean isAssuptionTrue(EnvironmentProperty property, String assumption) throws LicensingException {
-		return state.hasValue(property, assumption);
+		return freshState().hasValue(property, assumption);
 	}
 
 	@Override
 	public String state() throws LicensingException {
-		return new GlanceOfState(state).get();
+		return new GlanceOfState(freshState()).get();
+	}
+
+	private State freshState() throws LicensingException {
+		State state;
+		synchronized (SystemInfo.class) {
+			state = new State();
+		}
+		return state;
 	}
 
 }

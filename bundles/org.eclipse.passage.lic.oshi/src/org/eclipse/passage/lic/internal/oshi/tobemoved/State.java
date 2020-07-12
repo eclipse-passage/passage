@@ -38,33 +38,56 @@ import oshi.hardware.HWDiskStore;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OperatingSystem;
 
+/**
+ * <p>
+ * State has aggressively not thread-safe hardware state reading phase, which is
+ * done on construction time.
+ * </p>
+ * <p>
+ * Reading hardware (done eagerly on a State construction) boils down to lots
+ * tricky native code invocation, which has static parts and does not stand
+ * concurrent access.
+ * </p>
+ * <p>
+ * Thus, State construction must be synchronized externally: until one State if
+ * fully constructed, no another one must even think about it.
+ * </p>
+ * <p>
+ * We construct it under a class-dedicated lock only in a
+ * {@linkplain HardwareEnvironment} service, which, it turn, must have only
+ * single instance at runtime (which is guaranteed by {@code Framework}).
+ * </p>
+ * <p>
+ * Regarding to the data it collects - it's fully immutable, always fresh and
+ * absolutely thread safe.
+ * </p>
+ */
 @SuppressWarnings("restriction")
 final class State {
 
 	private final Map<EnvironmentProperty, String> hardware = new HashMap<>();
 	private final String diskFamily = new Disk.Name().family();
 	private final List<Map<EnvironmentProperty, String>> disks = new ArrayList<>();
-	private final Object lock = new Object();
 
-	boolean hasValue(EnvironmentProperty property, String expected) throws LicensingException {
+	State() throws LicensingException {
+		read();
+	}
+
+	boolean hasValue(EnvironmentProperty property, String expected) {
 		String regexp = expected.replaceAll("\\*", ".*"); //$NON-NLS-1$//$NON-NLS-2$
-		synchronized (lock) {
-			read();
-			if (diskFamily.equals(property.family())) {
-				return disks.stream()//
-						.map(properties -> Optional.ofNullable(properties.get(property)))//
-						.filter(Optional::isPresent)//
-						.map(Optional::get)//
-						.anyMatch(value -> value.matches(regexp));
-			}
-			return Optional.ofNullable(hardware.get(property))//
-					.map(value -> value.matches(regexp))//
-					.orElse(false);
+		if (diskFamily.equals(property.family())) {
+			return disks.stream()//
+					.map(properties -> Optional.ofNullable(properties.get(property)))//
+					.filter(Optional::isPresent)//
+					.map(Optional::get)//
+					.anyMatch(value -> value.matches(regexp));
 		}
+		return Optional.ofNullable(hardware.get(property))//
+				.map(value -> value.matches(regexp))//
+				.orElse(false);
 	}
 
 	private void read() throws LicensingException {
-		clean();
 		try {
 			SystemInfo system = new SystemInfo();
 			readOS(system.getOperatingSystem());
@@ -72,11 +95,6 @@ final class State {
 		} catch (Exception e) {
 			throw new LicensingException(AssessmentMessages.State_error_reading_hw, e);
 		}
-	}
-
-	private void clean() {
-		disks.clear();
-		hardware.clear();
 	}
 
 	private void readOS(OperatingSystem info) {
@@ -140,4 +158,5 @@ final class State {
 	private void store(Supplier<String> value, EnvironmentProperty key, Map<EnvironmentProperty, String> target) {
 		Optional.ofNullable(value.get()).ifPresent(valuable -> target.put(key, valuable));
 	}
+
 }
