@@ -27,9 +27,9 @@ public final class BaseRestriction implements Restriction {
 	private final TroubleCode reason;
 
 	public BaseRestriction(LicensedProduct product, Requirement requirement, TroubleCode reason) {
-		Objects.requireNonNull(product);
-		Objects.requireNonNull(requirement);
-		Objects.requireNonNull(reason);
+		Objects.requireNonNull(product, "BaseRestriction::product"); //$NON-NLS-1$
+		Objects.requireNonNull(requirement, "BaseRestriction::requirement"); //$NON-NLS-1$
+		Objects.requireNonNull(reason, "BaseRestriction::reason"); //$NON-NLS-1$
 		this.product = product;
 		this.requirement = requirement;
 		this.reason = reason;
