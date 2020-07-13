@@ -22,4 +22,5 @@ Export-Package: org.eclipse.passage.lic.api.tests;x-internal:=true,
  org.eclipse.passage.lic.api.tests.fakes.requirements;x-internal:=true,
  org.eclipse.passage.lic.api.tests.inspection;x-internal:=true,
  org.eclipse.passage.lic.api.tests.registry;x-internal:=true,
+ org.eclipse.passage.lic.api.tests.resrictions;x-internal:=true,
  org.eclipse.passage.lic.api.tests.version;x-internal:=true

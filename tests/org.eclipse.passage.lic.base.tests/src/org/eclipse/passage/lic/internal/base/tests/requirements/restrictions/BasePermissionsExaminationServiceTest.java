@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.tests.requirements.restrictions;
+package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
+import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
 import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
@@ -28,7 +29,7 @@ import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExamina
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class BasePermissionsExaminationServiceTest {
+public final class BasePermissionsExaminationServiceTest extends PermissionsExaminationServiceContractTest {
 
 	@Test
 	public void detectsSingleRequirementSatisfaction() {
@@ -103,26 +104,8 @@ public final class BasePermissionsExaminationServiceTest {
 		assertTrue(restrictions.isEmpty());
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void prohibitsNullRequirements() {
-		TestState state = new TestState();
-		examiner().examine(null, Collections.singleton(state.permissionFirst()), state.product());
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void prohibitsNullPermissions() {
-		TestState state = new TestState();
-		examiner().examine(Collections.singleton(state.requirementFirst()), null, state.product());
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void prohibitsNullProduct() {
-		TestState state = new TestState();
-		examiner().examine(Collections.singleton(state.requirementFirst()),
-				Collections.singleton(state.permissionFirst()), null);
-	}
-
-	private PermissionsExaminationService examiner() {
+	@Override
+	protected PermissionsExaminationService examiner() {
 		return new BasePermissionsExaminationService();
 	}
 
