@@ -30,6 +30,10 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.base.restrictions.RestrictionVerdicts;
 
+/**
+ * @deprecated use 1.0 internal.restrictions.BasePermissionExaminationService
+ */
+@Deprecated
 public abstract class BasePermissionExaminer implements PermissionExaminer {
 
 	@Override
