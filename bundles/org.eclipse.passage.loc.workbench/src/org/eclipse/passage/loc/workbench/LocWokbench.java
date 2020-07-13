@@ -28,12 +28,10 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.CreateRoot;
@@ -46,6 +44,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @since 1.0
+ */
 public class LocWokbench {
 
 	public static final String BUNDLE_SYMBOLIC_NAME = "org.eclipse.passage.loc.workbench"; //$NON-NLS-1$
@@ -123,22 +124,26 @@ public class LocWokbench {
 	public static <C> Object selectClassifier(IEclipseContext context, String classifier, String title,
 			Iterable<C> input, C initial) {
 		Shell shell = context.get(Shell.class);
-		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
-		ComposedAdapterFactory factory = provider.getComposedAdapterFactory();
-		return selectClassifier(shell, factory, classifier, title, input, initial);
+		return selectClassifier(shell, classifier, title, input, initial);
 	}
 
-	public static <C> C selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier, String title,
-			Iterable<? extends C> input, C initial, Class<C> clazz) {
-		Object selected = selectClassifier(shell, factory, classifier, title, input, initial);
+	/**
+	 * @since 1.0
+	 */
+	public static <C> C selectClassifier(Shell shell, String classifier, String title, Iterable<? extends C> input,
+			C initial, Class<C> clazz) {
+		Object selected = selectClassifier(shell, classifier, title, input, initial);
 		if (clazz.isInstance(selected)) {
 			return clazz.cast(selected);
 		}
 		return null;
 	}
 
-	public static <C> Object selectClassifier(Shell shell, ComposedAdapterFactory factory, String classifier,
-			String title, Iterable<? extends C> input, C initial) {
+	/**
+	 * @since 1.0
+	 */
+	public static <C> Object selectClassifier(Shell shell, String classifier, String title, Iterable<? extends C> input,
+			C initial) {
 		if (input == null) {
 			return null;
 		}
@@ -156,7 +161,7 @@ public class LocWokbench {
 		dialog.setTitle(title);
 		dialog.setImage(LicensingImages.getImage(classifier));
 
-		dialog.setLabelProvider(new DomainRegistryLabelProvider(factory));
+		dialog.setLabelProvider(new DomainRegistryLabelProvider());
 		dialog.setInput(input);
 		if (initial != null) {
 			dialog.setInitialSelection(Collections.singletonList(initial));

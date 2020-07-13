@@ -20,7 +20,6 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
@@ -37,7 +36,6 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
 	private final ProductRegistry registry;
-	private final ComposedAdapterFactoryProvider provider;
 
 	@Inject
 	public ProductVersionRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
@@ -45,7 +43,6 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
 		registry = viewContext.getService(ProductRegistry.class);
-		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -70,8 +67,7 @@ public class ProductVersionRenderer extends TextWithButtonRenderer {
 	protected void selectIdentifier() {
 		Shell shell = Display.getDefault().getActiveShell();
 		ProductVersionDescriptor initial = null;
-		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, provider, registry,
-				initial);
+		ProductVersionDescriptor descriptor = ProductsUi.selectProductVersionDescriptor(shell, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getVersion();
 			if (identifier != null) {

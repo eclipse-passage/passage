@@ -17,16 +17,13 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.LabeledDiagnostician;
 import org.eclipse.swt.widgets.Shell;
 
@@ -34,13 +31,10 @@ public class ValidateHandler {
 
 	@Execute
 	public void execute(ESelectionService selectionService, Shell shell, IEclipseContext context) {
-		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
-		ComposedAdapterFactory adapterFactory = provider.getComposedAdapterFactory();
 		Object selection = selectionService.getSelection();
 		if (selection instanceof EObject) {
 			EObject eObject = (EObject) selection;
-			final AdapterFactory adapterFactory1 = adapterFactory;
-			Diagnostician diagnostician = new LabeledDiagnostician(adapterFactory1);
+			Diagnostician diagnostician = new LabeledDiagnostician();
 			Diagnostic validate = diagnostician.validate(eObject);
 			handleDiagnostic(validate, shell);
 		}

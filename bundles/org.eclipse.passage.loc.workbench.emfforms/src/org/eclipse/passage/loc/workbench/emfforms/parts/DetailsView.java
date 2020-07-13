@@ -53,7 +53,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -168,8 +167,7 @@ public class DetailsView {
 				createElementCallback);
 		treeMasterDetail.setLayoutData(treeMasterDetailLayoutData);
 		TreeViewer selectionProvider = treeMasterDetail.getSelectionProvider();
-		AdapterFactory adapterFactory = context.get(ComposedAdapterFactoryProvider.class).getComposedAdapterFactory();
-		selectionProvider.setLabelProvider(new DomainRegistryLabelProvider(adapterFactory));
+		selectionProvider.setLabelProvider(new DomainRegistryLabelProvider());
 		return treeMasterDetail;
 	}
 

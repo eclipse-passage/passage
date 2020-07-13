@@ -30,7 +30,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductDescriptor;
@@ -65,14 +64,12 @@ public final class IssueLicenseRequestPage extends WizardPage {
 	private LocalDate validFrom;
 	private LocalDate validUntil;
 
-	private final ComposedAdapterFactoryProvider provider;
 	private final LabelProvider labelProvider;
 
 	protected IssueLicenseRequestPage(String pageName, IEclipseContext context) {
 		super(pageName);
 		this.context = new MandatoryEclipseContext(context);
-		this.provider = context.get(ComposedAdapterFactoryProvider.class);
-		labelProvider = new DomainRegistryLabelProvider(provider.getComposedAdapterFactory());
+		labelProvider = new DomainRegistryLabelProvider();
 		setTitle(IssueLicensePageMessages.IssueLicenseRequestPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicenseRequestPage_page_description);
 	}

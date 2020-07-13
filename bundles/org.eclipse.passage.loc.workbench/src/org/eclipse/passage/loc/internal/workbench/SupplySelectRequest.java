@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.workbench;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
 
@@ -28,7 +27,6 @@ public abstract class SupplySelectRequest<C> implements Supplier<SelectRequest<C
 	}
 
 	protected LabelProvider labels() {
-		return new DomainRegistryLabelProvider(
-				context.get(ComposedAdapterFactoryProvider.class).getComposedAdapterFactory());
+		return new DomainRegistryLabelProvider();
 	}
 }

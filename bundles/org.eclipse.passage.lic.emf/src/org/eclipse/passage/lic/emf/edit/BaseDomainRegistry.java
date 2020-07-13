@@ -45,8 +45,6 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	protected String domainName;
 
-	private ComposedAdapterFactory composedAdapterFactory;
-
 	private AdapterFactoryEditingDomain editingDomain;
 
 	private final List<String> sources = new ArrayList<>();
@@ -55,7 +53,8 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	public BaseDomainRegistry() {
 		BasicCommandStack commandStack = new BasicCommandStack();
-		editingDomain = new AdapterFactoryEditingDomain(composedAdapterFactory, commandStack,
+		editingDomain = new AdapterFactoryEditingDomain(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), commandStack,
 				new HashMap<Resource, Boolean>());
 	}
 
@@ -67,16 +66,6 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		if (this.licensingReporter == reporter) {
 			this.licensingReporter = SystemReporter.INSTANCE;
 		}
-	}
-
-	protected void bindFactoryProvider(ComposedAdapterFactoryProvider factoryProvider) {
-		this.composedAdapterFactory = factoryProvider.getComposedAdapterFactory();
-		editingDomain.setAdapterFactory(composedAdapterFactory);
-	}
-
-	protected void unbindFactoryProvider(ComposedAdapterFactoryProvider factoryProvider) {
-		this.composedAdapterFactory = null;
-		editingDomain.setAdapterFactory(composedAdapterFactory);
 	}
 
 	protected void activate(Map<String, Object> properties) {
@@ -123,10 +112,6 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	protected ComposedAdapterFactory getComposedAdapterFactory() {
-		return composedAdapterFactory;
 	}
 
 	@Override

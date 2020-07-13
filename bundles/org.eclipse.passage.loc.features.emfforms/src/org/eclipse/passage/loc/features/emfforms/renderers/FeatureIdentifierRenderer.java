@@ -22,7 +22,6 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
@@ -39,15 +38,13 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
 	private final FeatureRegistry registry;
-	private final ComposedAdapterFactoryProvider provider;
-	
+
 	@Inject
 	public FeatureIdentifierRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
 		registry = viewContext.getService(FeatureRegistry.class);
-		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -63,7 +60,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 
 		return control;
 	}
-	
+
 	@Override
 	protected String getUnsetText() {
 		return IDENTIFIER_EMPTY;
@@ -81,7 +78,7 @@ public class FeatureIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, provider, registry, initial);
+		FeatureDescriptor descriptor = FeaturesUi.selectFeatureDescriptor(shell, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

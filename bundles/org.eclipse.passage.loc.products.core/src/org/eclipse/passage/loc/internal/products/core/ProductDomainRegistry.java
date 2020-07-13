@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.products.ProductDescriptor;
@@ -64,17 +63,6 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	@Override
 	public void unbindLicensingReporter(LicensingReporter admin) {
 		super.unbindLicensingReporter(admin);
-	}
-
-	@Reference
-	@Override
-	public void bindFactoryProvider(ComposedAdapterFactoryProvider factoryProvider) {
-		super.bindFactoryProvider(factoryProvider);
-	}
-
-	@Override
-	public void unbindFactoryProvider(ComposedAdapterFactoryProvider factoryProvider) {
-		super.unbindFactoryProvider(factoryProvider);
 	}
 
 	@Override

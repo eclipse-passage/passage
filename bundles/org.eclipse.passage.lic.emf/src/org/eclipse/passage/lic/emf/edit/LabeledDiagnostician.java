@@ -15,10 +15,18 @@ package org.eclipse.passage.lic.emf.edit;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 public class LabeledDiagnostician extends Diagnostician {
 	private final AdapterFactory adapterFactory;
+
+	/**
+	 * @since 1.0
+	 */
+	public LabeledDiagnostician() {
+		this(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	}
 
 	public LabeledDiagnostician(AdapterFactory adapterFactory) {
 		this.adapterFactory = adapterFactory;

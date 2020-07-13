@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.workbench.viewers;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -24,8 +25,14 @@ public class DomainRegistryLabelProvider extends LabelProvider {
 
 	private final AdapterFactoryLabelProvider delegate;
 
+	/**
+	 * @since 1.0
+	 */
+	public DomainRegistryLabelProvider() {
+		this(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	}
+
 	public DomainRegistryLabelProvider(AdapterFactory adapterFactory) {
-		super();
 		this.delegate = new AdapterFactoryLabelProvider(adapterFactory);
 	}
 
