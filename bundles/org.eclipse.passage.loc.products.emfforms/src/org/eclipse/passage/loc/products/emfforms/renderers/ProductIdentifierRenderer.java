@@ -22,7 +22,6 @@ import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedExcep
 import org.eclipse.emfforms.spi.core.services.databinding.DatabindingFailedReport;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.registry.ProductRegistry;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
@@ -39,7 +38,6 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 	private static final String IDENTIFIER_EMPTY = ""; //$NON-NLS-1$
 
 	private final ProductRegistry registry;
-	private final ComposedAdapterFactoryProvider provider;
 
 	@Inject
 	public ProductIdentifierRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
@@ -47,7 +45,6 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
 		registry = viewContext.getService(ProductRegistry.class);
-		provider = viewContext.getService(ComposedAdapterFactoryProvider.class);
 	}
 
 	@Override
@@ -81,7 +78,7 @@ public class ProductIdentifierRenderer extends TextWithButtonRenderer {
 		} catch (DatabindingFailedException e) {
 			getReportService().report(new DatabindingFailedReport(e));
 		}
-		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, provider, registry, initial);
+		ProductDescriptor descriptor = ProductsUi.selectProductDescriptor(shell, registry, initial);
 		if (descriptor != null) {
 			String identifier = descriptor.getIdentifier();
 			if (identifier != null) {

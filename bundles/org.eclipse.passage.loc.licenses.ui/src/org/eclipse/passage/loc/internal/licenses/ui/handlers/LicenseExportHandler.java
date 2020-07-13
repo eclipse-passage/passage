@@ -33,7 +33,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
-import org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -69,9 +68,8 @@ public class LicenseExportHandler {
 			return;
 		}
 		ProductRegistry productRegistry = context.get(ProductRegistry.class);
-		ComposedAdapterFactoryProvider provider = context.get(ComposedAdapterFactoryProvider.class);
-		ProductVersionDescriptor productVersion = ProductsUi.selectProductVersionDescriptor(shell, provider,
-				productRegistry, null);
+		ProductVersionDescriptor productVersion = ProductsUi.selectProductVersionDescriptor(shell, productRegistry,
+				null);
 		if (productVersion == null) {
 			return;
 		}

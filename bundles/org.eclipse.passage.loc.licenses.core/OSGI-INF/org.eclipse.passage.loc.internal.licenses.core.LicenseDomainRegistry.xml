@@ -6,7 +6,6 @@
       <provide interface="org.eclipse.passage.lic.licenses.registry.LicenseRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>
    </service>
-   <reference bind="bindFactoryProvider" interface="org.eclipse.passage.lic.emf.edit.ComposedAdapterFactoryProvider" name="FactoryProvider" unbind="unbindFactoryProvider"/>
    <reference bind="bindLicensingReporter" interface="org.eclipse.passage.lic.api.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseDomainRegistry"/>
 </scr:component>
