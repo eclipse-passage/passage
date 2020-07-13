@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.tests.requirements.restrictions;
+package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import java.time.ZonedDateTime;
 
