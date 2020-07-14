@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.tests.requirements.restrictions;
+package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.junit.Test;
 
+//FIXME: move to contract tests
 @SuppressWarnings("restriction")
 public final class BasePermissionsExaminationServiceTest {
 
