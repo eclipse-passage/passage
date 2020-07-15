@@ -109,7 +109,9 @@ public abstract class RuntimeEnvironmentContractTest {
 		}
 
 		// then: all of'em succeed
-		assertTrue(demands.stream().allMatch(InspectionDemand::result));
+		assertTrue(demands.stream()//
+				.filter(InspectionDemand::notSkipped) //
+				.allMatch(InspectionDemand::result));
 	}
 
 	private final class InspectionDemand implements Runnable {
@@ -117,6 +119,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		private final CountDownLatch done;
 		private final RuntimeEnvironment env;
 		private boolean result = false;
+		private boolean skip = false;
 
 		InspectionDemand(RuntimeEnvironment env, CountDownLatch altogether, CountDownLatch done) {
 			this.env = env;
@@ -139,12 +142,16 @@ public abstract class RuntimeEnvironmentContractTest {
 			try {
 				result = !env.isAssuptionTrue(property(), invalidPropertyValue());
 			} catch (Exception e) {
-				result = false;
+				skip = true;
 			}
 		}
 
 		boolean result() {
 			return result;
+		}
+
+		boolean notSkipped() {
+			return !skip;
 		}
 	}
 
