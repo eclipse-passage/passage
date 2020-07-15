@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.oshi.tobemoved;
 
+import java.util.Objects;
+
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
@@ -40,6 +42,8 @@ public final class HardwareEnvironment implements RuntimeEnvironment {
 
 	@Override
 	public boolean isAssuptionTrue(EnvironmentProperty property, String assumption) throws LicensingException {
+		Objects.requireNonNull(property, "HardwareEnvironment::isAssuptionTrue::property"); //$NON-NLS-1$
+		Objects.requireNonNull(assumption, "HardwareEnvironment::isAssuptionTrue::assumption"); //$NON-NLS-1$
 		return freshState().hasValue(property, assumption);
 	}
 
