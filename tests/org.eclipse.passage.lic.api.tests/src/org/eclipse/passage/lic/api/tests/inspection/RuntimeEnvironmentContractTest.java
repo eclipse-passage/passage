@@ -44,7 +44,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		try {
 			assertFalse(environment().isAssuptionTrue(property(), invalidPropertyValue()));
 		} catch (LicensingException e) {
-			// possible due to severe environment denials
+			assumeNoException(e); // skip the test in the case of environment denial
 		}
 	}
 
