@@ -113,7 +113,7 @@ final class State {
 			SystemInfo system = new SystemInfo();
 			readOS(system.getOperatingSystem());
 			readHal(system.getHardware());
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			throw new LicensingException(AssessmentMessages.State_error_reading_hw, e);
 		}
 	}
