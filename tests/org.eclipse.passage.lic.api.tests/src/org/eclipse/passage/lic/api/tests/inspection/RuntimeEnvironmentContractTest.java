@@ -17,6 +17,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeNoException;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -43,7 +44,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		try {
 			assertFalse(environment().isAssuptionTrue(property(), invalidPropertyValue()));
 		} catch (LicensingException e) {
-			fail("Is not supposed to fail on valid data"); //$NON-NLS-1$
+			assumeNoException(e); // skip the test in the case of environment denial
 		}
 	}
 
@@ -70,7 +71,7 @@ public abstract class RuntimeEnvironmentContractTest {
 		try {
 			assertTrue(environment().isAssuptionTrue(property(), "*"));//$NON-NLS-1$
 		} catch (LicensingException e) {
-			fail("Is not supposed to fail on valid data"); //$NON-NLS-1$
+			assumeNoException(e); // skip the test in the case of environment denial
 		}
 	}
 
@@ -81,7 +82,7 @@ public abstract class RuntimeEnvironmentContractTest {
 			assertNotNull(state);
 			assertFalse(state.trim().isEmpty());
 		} catch (LicensingException e) {
-			fail("In not intended to fail"); //$NON-NLS-1$
+			assumeNoException(e); // skip the test in the case of environment denial
 		}
 	}
 
@@ -104,7 +105,7 @@ public abstract class RuntimeEnvironmentContractTest {
 			readySteadyGo.countDown(); // and now trigger'em all to ddos the env
 			done.await(); // and just wait until each of'em finish
 		} catch (InterruptedException e) {
-			fail("Test has been interrupted"); //$NON-NLS-1$
+			assumeNoException(e); // skip the test then: further checks will fail
 		}
 
 		// then: all of'em succeed
