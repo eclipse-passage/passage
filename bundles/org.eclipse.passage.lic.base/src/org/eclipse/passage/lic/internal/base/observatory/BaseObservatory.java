@@ -10,10 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.observatory;
 
 import java.util.Set;
 import java.util.function.Consumer;
+
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
+import org.eclipse.passage.lic.internal.api.observatory.Observatory;
 
 /**
  * <p>
@@ -47,7 +50,9 @@ import java.util.function.Consumer;
  * 
  * @since 0.6
  */
-public final class Observatory<T extends Limited> {
+@SuppressWarnings("restriction")
+public final class BaseObservatory<T extends Limited> implements Observatory<T> {
+
 	private final Pool<T> pool;
 	private final Guard<T> guard;
 
@@ -69,7 +74,7 @@ public final class Observatory<T extends Limited> {
 	 *                 or empty set.
 	 * @since 0.6
 	 */
-	public Observatory(CheckSchedule schedule, Consumer<Set<T>> farewell) {
+	public BaseObservatory(CheckSchedule schedule, Consumer<Set<T>> farewell) {
 		pool = new Pool<T>();
 		guard = new Guard<T>(schedule, pool, farewell);
 	}
@@ -89,6 +94,7 @@ public final class Observatory<T extends Limited> {
 	 * 
 	 * @since 0.6
 	 */
+	@Override
 	public void watch(T limited) {
 		pool.watch(limited);
 	}
@@ -99,6 +105,7 @@ public final class Observatory<T extends Limited> {
 	 * 
 	 * @since 0.6
 	 */
+	@Override
 	public void forget(T limited) {
 		pool.forget(limited);
 	}

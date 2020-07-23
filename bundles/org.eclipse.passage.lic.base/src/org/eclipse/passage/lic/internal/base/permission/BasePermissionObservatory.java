@@ -17,25 +17,25 @@ import java.util.function.Consumer;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.access.FeaturePermission;
-import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
-import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
+import org.eclipse.passage.lic.internal.base.observatory.CheckSchedule;
+import org.eclipse.passage.lic.internal.base.observatory.BaseObservatory;
 
 /**
  * <p>
  * Base implementation for {@linkplain PermissionObservatory} component.
  * </p>
  * <p>
- * Covers {@linkplain Observatory} tuned for permission tracking and is it's
+ * Covers {@linkplain BaseObservatory} tuned for permission tracking and is it's
  * representation for the domain specific environment.
  * </p>
  * 
  * @since 0.6
  */
 public final class BasePermissionObservatory implements PermissionObservatory {
-	private final Observatory<LimitedPermission> observatory;
+	private final BaseObservatory<LimitedPermission> observatory;
 
 	public BasePermissionObservatory(CheckSchedule schedule, Consumer<Set<LimitedPermission>> farewell) {
-		this.observatory = new Observatory<LimitedPermission>(schedule, farewell);
+		this.observatory = new BaseObservatory<LimitedPermission>(schedule, farewell);
 	}
 
 	public void watch(Iterable<FeaturePermission> permissions) {

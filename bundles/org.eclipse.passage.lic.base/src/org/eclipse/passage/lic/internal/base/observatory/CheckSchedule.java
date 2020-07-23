@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.observatory;
 
 import java.time.temporal.ChronoUnit;
 

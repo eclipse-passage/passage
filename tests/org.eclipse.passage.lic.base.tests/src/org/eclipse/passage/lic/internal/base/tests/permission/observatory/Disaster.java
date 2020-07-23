@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.base.tests.permission.observatory;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
 
 @SuppressWarnings("restriction")
 final class Disaster implements Consumer<Set<Limited>> {
