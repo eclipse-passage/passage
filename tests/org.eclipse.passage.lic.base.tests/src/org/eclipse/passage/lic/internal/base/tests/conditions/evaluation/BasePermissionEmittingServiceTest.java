@@ -18,12 +18,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
@@ -35,6 +37,7 @@ import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseCheckFailed;
 import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
@@ -65,9 +68,11 @@ public final class BasePermissionEmittingServiceTest {
 	public void singleConditionFailureIsContagious() {
 		BiasedAssessor morphology = morphologyAssessor(2, 1);
 		BiasedAssessor dialog = dialogAssessor(4, 3);
-		Emission emission = service(morphology, dialog)//
-				.emit(Arrays.asList(humanoid(2, 1), teller(5, 3)), product());
-		assertTrue(emission.failed());
+		Collection<Emission> emissions = service(morphology, dialog)//
+				.emit(packOf(humanoid(2, 1), teller(5, 3)), product());
+		assertEquals(1, emissions.size());
+		Emission emission = emissions.iterator().next();
+		assertFalse(emission.successful());
 		assertTrue(emission.failureDiagnostic().troubles().size() == 1);
 		assertEquals(2, morphology.askedKeys().size());
 		assertTrue(dialog.askedKeys().contains("storytelling"));//$NON-NLS-1$
@@ -79,13 +84,15 @@ public final class BasePermissionEmittingServiceTest {
 		BiasedAssessor morphology = morphologyAssessor(2, 1);
 		BiasedAssessor dialog = dialogAssessor(4, 3);
 		// when: emit on valid data
-		Emission emission = service(morphology, dialog)//
-				.emit(Arrays.asList(//
+		Collection<Emission> emissions = service(morphology, dialog)//
+				.emit(packOf(//
 						humanoid(2, 1), //
 						teller(4, 3)//
 				), product());
 		// then: all conditions evaluated to permissions
-		assertFalse(emission.failed());
+		assertEquals(1, emissions.size());
+		Emission emission = emissions.iterator().next();
+		assertTrue(emission.successful());
 		assertEquals(2, emission.permissions().size());
 		assertEquals(2, morphology.askedKeys().size());
 		assertEquals(2, dialog.askedKeys().size());
@@ -94,23 +101,29 @@ public final class BasePermissionEmittingServiceTest {
 	@Test
 	public void unsupportedEvaluationTypeFailsEmission() {
 		BiasedAssessor morphology = morphologyAssessor(4, 2);
-		Emission emission = service(morphology).emit(Arrays.asList(teller(4, 3)), product());
-		assertTrue(emission.failed());
+		Collection<Emission> emissions = service(morphology).emit(packOf(teller(4, 3)), product());
+		assertEquals(1, emissions.size());
+		Emission emission = emissions.iterator().next();
+		assertFalse(emission.successful());
 		assertEquals(1, emission.failureDiagnostic().troubles().size());
 		assertEquals(new LicenseCheckFailed(), emission.failureDiagnostic().troubles().get(0).code());
 	}
 
 	@Test
 	public void corruptedExpressionFailsEmission() {
-		Emission emission = service(morphologyAssessor(1, 1)).emit(Arrays.asList(corrupted()), product());
-		assertTrue(emission.failed());
+		Collection<Emission> emissions = service(morphologyAssessor(1, 1)).emit(packOf(corrupted()), product());
+		assertEquals(1, emissions.size());
+		Emission emission = emissions.iterator().next();
+		assertFalse(emission.successful());
 		assertEquals(new LicenseInvalid(), emission.failureDiagnostic().troubles().get(0).code());
 	}
 
 	@Test
 	public void negativeAssessmentExpressionFailsEmission() {
-		Emission emission = service(morphologyAssessor(1, 1)).emit(Arrays.asList(humanoid(2, 1)), product());
-		assertTrue(emission.failed());
+		Collection<Emission> emissions = service(morphologyAssessor(1, 1)).emit(packOf(humanoid(2, 1)), product());
+		assertEquals(1, emissions.size());
+		Emission emission = emissions.iterator().next();
+		assertFalse(emission.successful());
 		assertEquals(new LicenseDoesNotMatch(), emission.failureDiagnostic().troubles().get(0).code());
 	}
 
@@ -178,5 +191,12 @@ public final class BasePermissionEmittingServiceTest {
 		return new BiasedAssessor("dialog")// //$NON-NLS-1$
 				.withAnswer("storytelling", Integer.toString(storytelling)) //$NON-NLS-1$
 				.withAnswer("synonims", Integer.toString(synonims)); //$NON-NLS-1$
+	}
+
+	private Collection<ConditionPack> packOf(Condition... conditions) {
+		return Collections.singleton(//
+				new BaseConditionPack(//
+						"source0", //$NON-NLS-1$
+						Arrays.asList(conditions)));
 	}
 }

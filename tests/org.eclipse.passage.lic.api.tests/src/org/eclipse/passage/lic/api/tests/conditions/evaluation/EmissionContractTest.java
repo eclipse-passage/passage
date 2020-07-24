@@ -25,28 +25,28 @@ public abstract class EmissionContractTest {
 	@Test(expected = Exception.class)
 	public void failedEmissionCannotHoldPermission() {
 		Emission failure = failed();
-		assumeTrue(failure.failed());
+		assumeFalse(failure.successful());
 		failure.permissions();
 	}
 
 	@Test
 	public void successfulEmissionMustHoldPermission() {
 		Emission success = successful();
-		assumeFalse(success.failed());
+		assumeTrue(success.successful());
 		assertNotNull(success.permissions());
 	}
 
 	@Test
 	public void failedEmissionMustHoldDiagnosis() {
 		Emission failure = failed();
-		assumeTrue(failure.failed());
+		assumeFalse(failure.successful());
 		assertNotNull(failure.failureDiagnostic());
 	}
 
 	@Test(expected = Exception.class)
 	public void successfulEmissionCannotHoldDiagnosis() {
 		Emission success = successful();
-		assumeFalse(success.failed());
+		assumeTrue(success.successful());
 		success.failureDiagnostic();
 
 	}

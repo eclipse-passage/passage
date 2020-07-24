@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
 
 /**
@@ -41,34 +42,45 @@ import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
  * {@code EmissionContractTest}
  * </p>
  */
-public interface Emission {
+public abstract class Emission {
+
+	private final boolean success;
+	private final ConditionPack pack;
+
+	protected Emission(boolean success, ConditionPack pack) {
+		Objects.requireNonNull(pack, "Emission::pack"); //$NON-NLS-1$
+		this.success = success;
+		this.pack = pack;
+	}
 
 	/**
 	 * Must be asked before any information ( permission or failure details) is
 	 * asked for.
 	 */
-	boolean failed();
+	public final boolean successful() {
+		return success;
+	}
 
-	Collection<Permission> permissions();
+	public final ConditionPack conditionPack() {
+		return pack;
+	}
 
-	FailureDiagnostic failureDiagnostic();
+	public abstract Collection<Permission> permissions();
 
-	public static final class Successful implements Emission {
+	public abstract FailureDiagnostic failureDiagnostic();
+
+	public static final class Successful extends Emission {
 
 		private final Collection<Permission> permissions;
 
-		public Successful(Collection<Permission> permissions) {
+		public Successful(ConditionPack pack, Collection<Permission> permissions) {
+			super(true, pack);
 			Objects.requireNonNull(permissions, "Emission.Successful::permissions"); //$NON-NLS-1$
 			this.permissions = permissions;
 		}
 
-		public Successful(Permission permission) {
-			this(Collections.singleton(permission));
-		}
-
-		@Override
-		public boolean failed() {
-			return false;
+		public Successful(ConditionPack pack, Permission permission) {
+			this(pack, Collections.singleton(permission));
 		}
 
 		@Override
@@ -83,18 +95,14 @@ public interface Emission {
 
 	}
 
-	public static final class Failed implements Emission {
+	public static final class Failed extends Emission {
 
 		private final FailureDiagnostic diagnose;
 
-		public Failed(FailureDiagnostic diagnose) {
+		public Failed(ConditionPack pack, FailureDiagnostic diagnose) {
+			super(false, pack);
 			Objects.requireNonNull(diagnose, "Emission.Failed::diagnose"); //$NON-NLS-1$
 			this.diagnose = diagnose;
-		}
-
-		@Override
-		public boolean failed() {
-			return true;
 		}
 
 		@Override

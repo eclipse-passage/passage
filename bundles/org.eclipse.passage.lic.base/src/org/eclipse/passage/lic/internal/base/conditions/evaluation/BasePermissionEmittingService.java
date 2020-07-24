@@ -17,10 +17,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
@@ -67,43 +69,57 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	}
 
 	@Override
-	public Emission emit(Collection<Condition> conditions, LicensedProduct product) {
+	public Collection<Emission> emit(Collection<ConditionPack> conditions, LicensedProduct product) {
 		return conditions.stream() //
 				.map(condition -> emitFor(condition, product))//
+				.collect(Collectors.toSet());
+	}
+
+	private Emission emitFor(ConditionPack pack, LicensedProduct product) {
+		return pack.conditions().stream() //
+				.map(condition -> emitFor(condition, pack, product))//
 				.reduce(//
-						new Emission.Successful(Collections.emptyList()), //
+						new Emission.Successful(pack, Collections.emptyList()), //
 						new SumOfEmissions());
 	}
 
-	private Emission emitFor(Condition condition, LicensedProduct product) {
+	private Emission emitFor(Condition condition, ConditionPack pack, LicensedProduct product) {
 		try {
 			expressionIsSatisfied(condition);
 		} catch (ExpressionParsingException e) {
-			return new Emission.Failed(new BaseFailureDiagnostic(//
-					new LicenseInvalid(), //
-					String.format(ConditionsEvaluationMessages.getString("BasePermissionEmittingService.parse_failed"), // //$NON-NLS-1$
-							condition.evaluationInstructions().expression()), //
-					e));
+			return new Emission.Failed(pack, //
+					new BaseFailureDiagnostic(//
+							new LicenseInvalid(), //
+							String.format(
+									ConditionsEvaluationMessages
+											.getString("BasePermissionEmittingService.parse_failed"), // //$NON-NLS-1$
+									condition.evaluationInstructions().expression()), //
+							e));
 		} catch (ExpressionEvaluationException e) {
-			return new Emission.Failed(new BaseFailureDiagnostic(//
-					new LicenseDoesNotMatch(), //
-					String.format(
-							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.evaluation_failed"), // //$NON-NLS-1$
-							condition.evaluationInstructions().expression()), //
-					e));
+			return new Emission.Failed(pack, //
+					new BaseFailureDiagnostic(//
+							new LicenseDoesNotMatch(), //
+							String.format(
+									ConditionsEvaluationMessages
+											.getString("BasePermissionEmittingService.evaluation_failed"), // //$NON-NLS-1$
+									condition.evaluationInstructions().expression()), //
+							e));
 		} catch (LicensingException e) {
-			return new Emission.Failed(new BaseFailureDiagnostic(//
-					new LicenseCheckFailed(), //
-					String.format(ConditionsEvaluationMessages.getString("BasePermissionEmittingService.failed"), // //$NON-NLS-1$
-							condition.evaluationInstructions().expression()), //
-					e));
+			return new Emission.Failed(pack, //
+					new BaseFailureDiagnostic(//
+							new LicenseCheckFailed(), //
+							String.format(
+									ConditionsEvaluationMessages.getString("BasePermissionEmittingService.failed"), // //$NON-NLS-1$
+									condition.evaluationInstructions().expression()), //
+							e));
 		}
-		return new Emission.Successful(Arrays.asList(//
-				new BasePermission(//
-						product, //
-						condition, //
-						ZonedDateTime.now(), //
-						expiration(condition.validityPeriod()))));
+		return new Emission.Successful(pack, //
+				Arrays.asList(//
+						new BasePermission(//
+								product, //
+								condition, //
+								ZonedDateTime.now(), //
+								expiration(condition.validityPeriod()))));
 	}
 
 	private void expressionIsSatisfied(Condition condition)

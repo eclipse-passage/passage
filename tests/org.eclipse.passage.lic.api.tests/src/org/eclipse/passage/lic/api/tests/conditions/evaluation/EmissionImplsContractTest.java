@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
+import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
 import org.eclipse.passage.lic.api.tests.fakes.diagnostic.FakeFailureDiagnostic;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
@@ -21,11 +22,11 @@ public class EmissionImplsContractTest extends EmissionContractTest {
 
 	@Override
 	protected Emission failed() {
-		return new Emission.Failed(new FakeFailureDiagnostic());
+		return new Emission.Failed(new FakeConditionPack(), new FakeFailureDiagnostic());
 	}
 
 	@Override
 	protected Emission successful() {
-		return new Emission.Successful(new FakePermission());
+		return new Emission.Successful(new FakeConditionPack(), new FakePermission());
 	}
 }
