@@ -10,11 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,10 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 
-public final class Requirements implements Supplier<Set<Requirement>> {
+/**
+ * FIXME: Has public visibility only for testing.
+ */
+public final class Requirements implements Supplier<Collection<Requirement>> {
 
 	private final Registry<StringServiceId, ResolvedRequirements> registry;
 	private final String feature;
@@ -36,7 +38,7 @@ public final class Requirements implements Supplier<Set<Requirement>> {
 	}
 
 	@Override
-	public Set<Requirement> get() {
+	public Collection<Requirement> get() {
 		Collection<ResolvedRequirements> services = registry.services();
 		if (!services.isEmpty()) {
 			return services.stream() //

@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.tests.requirements;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
+import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.Requirements;
+import org.eclipse.passage.lic.internal.base.access.Requirements;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -26,7 +26,7 @@ public final class RequirementsTest {
 
 	@Test
 	public void noResolversMeansNoAccess() {
-		Set<Requirement> requirements = new Requirements(//
+		Collection<Requirement> requirements = new Requirements(//
 				new SabotagedFramework().accessCycleConfiguration().requirementResolvers().get(), //
 				"feature0" //$NON-NLS-1$
 		).get();

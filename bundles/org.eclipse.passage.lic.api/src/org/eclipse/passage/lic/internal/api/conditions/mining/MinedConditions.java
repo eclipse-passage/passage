@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
@@ -62,6 +63,6 @@ public interface MinedConditions extends Service<StringServiceId> {
 	 * @throws ConditionMiningException in case of any undeniable misbehavior of a
 	 *                                  mining infrastructure.
 	 */
-	Collection<Condition> all(LicensedProduct product) throws ConditionMiningException;
+	Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException;
 
 }

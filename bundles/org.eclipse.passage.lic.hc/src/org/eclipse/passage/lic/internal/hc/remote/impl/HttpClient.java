@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 public final class HttpClient implements Client<HttpURLConnection> {
 
 	@Override
-	public Collection<Condition> remoteConditions(Request<HttpURLConnection> request, ResponseHandler miner)
+	public Collection<ConditionPack> remoteConditions(Request<HttpURLConnection> request, ResponseHandler miner)
 			throws ConditionMiningException {
 		try {
 			return netConditions(connection(request), miner);
@@ -40,7 +40,8 @@ public final class HttpClient implements Client<HttpURLConnection> {
 		return request.config().apply((HttpURLConnection) request.url().openConnection());
 	}
 
-	private Collection<Condition> netConditions(HttpURLConnection connection, ResponseHandler miner) throws Exception {
+	private Collection<ConditionPack> netConditions(HttpURLConnection connection, ResponseHandler miner)
+			throws Exception {
 		// actual connection is happening on the first 'get' (get response code)
 		if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			connection.getInputStream().close(); // close the connection
@@ -51,7 +52,7 @@ public final class HttpClient implements Client<HttpURLConnection> {
 		return read(connection, miner);
 	}
 
-	private Collection<Condition> read(HttpURLConnection connection, ResponseHandler miner) throws Exception {
+	private Collection<ConditionPack> read(HttpURLConnection connection, ResponseHandler miner) throws Exception {
 		byte[] content = new byte[connection.getContentLength()];
 		try (InputStream source = connection.getInputStream()) {
 			source.read(content); // read all and close the connection briefly

@@ -10,16 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.BinaryOperator;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
 
-@SuppressWarnings("restriction")
-public interface ResponseHandler {
-
-	Collection<ConditionPack> read(byte[] raw, String contentType) throws ConditionMiningException;
+	@Override
+	public Collection<E> apply(Collection<E> first, Collection<E> second) {
+		ArrayList<E> sum = new ArrayList<>(first.size() + second.size());
+		sum.addAll(first);
+		sum.addAll(second);
+		return sum;
+	}
 
 }

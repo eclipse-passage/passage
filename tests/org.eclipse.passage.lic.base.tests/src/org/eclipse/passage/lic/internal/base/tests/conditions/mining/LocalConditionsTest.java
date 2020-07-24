@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
@@ -52,7 +53,7 @@ public final class LocalConditionsTest {
 		List<String> features = Arrays.asList("A", "B", "C"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 		writePseudoLicenseFile(features);
 		Spy spy = new Spy();
-		Collection<Condition> condition;
+		Collection<ConditionPack> condition;
 		// when
 		try {
 			condition = new TempFolderResidentConditions(//
@@ -83,11 +84,13 @@ public final class LocalConditionsTest {
 		new TempFolderResidentConditions(Paths.get("."), equipment(new Spy()), null); //$NON-NLS-1$
 	}
 
-	private void assertMiningResultsAreOk(List<String> features, Collection<Condition> condition) {
-		assertEquals(features.size(), condition.size());
+	private void assertMiningResultsAreOk(List<String> features, Collection<ConditionPack> packs) {
+		assertEquals(1, packs.size());
+		Collection<Condition> conditions = packs.iterator().next().conditions();
+		assertEquals(features.size(), conditions.size());
 		assertEquals(//
 				new HashSet<>(features), //
-				condition.stream()//
+				conditions.stream()//
 						.map(Condition::feature)//
 						.collect(Collectors.toSet()));
 	}

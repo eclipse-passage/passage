@@ -10,16 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.api.conditions;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+/**
+ * <p>
+ * Set of conditions of a common origin.
+ * </p>
+ * <p>
+ * Unsuccessful condition evaluation is supposed to be contagious. Origin limits
+ * the scope of contamination: having one failed condition among all the
+ * conditions of the same origin means this origin compromising, but does not
+ * affect fates of conditions from other origins.
+ * </p>
+ */
+public interface ConditionPack {
 
-@SuppressWarnings("restriction")
-public interface ResponseHandler {
+	String origin();
 
-	Collection<ConditionPack> read(byte[] raw, String contentType) throws ConditionMiningException;
+	Collection<Condition> conditions();
 
 }

@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
@@ -30,7 +30,7 @@ public final class FakeMinedConditions implements MinedConditions {
 	}
 
 	@Override
-	public Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
+	public Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException {
 		return Collections.emptySet();
 	}
 
