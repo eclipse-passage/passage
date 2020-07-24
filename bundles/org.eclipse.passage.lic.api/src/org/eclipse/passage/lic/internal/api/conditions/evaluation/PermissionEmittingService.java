@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
@@ -23,9 +23,10 @@ public interface PermissionEmittingService extends Service<StringServiceId> {
 
 	/**
 	 * <p>
-	 * The given {@code conditions} pack is treated as an altogether undeniable set
-	 * of demands. For each of the {@code conditions} one's {@code expression} is
-	 * <i>evaluated</i> according to the condition's evaluation type and other data.
+	 * Each of the given {@code condition pack} is treated as an altogether
+	 * undeniable set of demands. For each of the {@code conditions} in a pack one's
+	 * {@code expression} is <i>evaluated</i> according to the condition's
+	 * evaluation type and other data.
 	 * </p>
 	 * <p>
 	 * <i>Evaluation</i> means assessing the {@code expression}'s statements against
@@ -46,7 +47,11 @@ public interface PermissionEmittingService extends Service<StringServiceId> {
 	 * set (ended up in negative diagnose or a crush), then the failure details are
 	 * reported in the returned {@linkplain Emission} instance.
 	 * </p>
+	 * <p>
+	 * Single {@linkplain Emission} is leased for each incoming
+	 * {@linkplain ConditionPack}.
+	 * </p>
 	 */
-	Emission emit(Collection<Condition> conditions, LicensedProduct product);
+	Collection<Emission> emit(Collection<ConditionPack> conditions, LicensedProduct product);
 
 }

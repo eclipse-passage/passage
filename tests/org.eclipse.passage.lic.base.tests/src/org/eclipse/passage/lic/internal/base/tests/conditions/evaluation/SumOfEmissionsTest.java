@@ -18,11 +18,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission.Failed;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission.Successful;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SumOfEmissions;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
 import org.junit.Test;
@@ -32,22 +35,22 @@ public final class SumOfEmissionsTest {
 
 	@Test
 	public void sumOfSuccessesIsSuccess() {
-		assertFalse(new SumOfEmissions().apply(success(), success()).failed());
+		assertTrue(new SumOfEmissions().apply(success(), success()).successfull());
 	}
 
 	@Test
 	public void sumOfSuccessesAndFailureIsFailure() {
-		assertTrue(new SumOfEmissions().apply(success(), failure()).failed());
+		assertFalse(new SumOfEmissions().apply(success(), failure()).successfull());
 	}
 
 	@Test
 	public void sumOfFailureAndSuccessIsFailure() {
-		assertTrue(new SumOfEmissions().apply(failure(), success()).failed());
+		assertFalse(new SumOfEmissions().apply(failure(), success()).successfull());
 	}
 
 	@Test
 	public void sumOfFailuresIsFailure() {
-		assertTrue(new SumOfEmissions().apply(failure(), failure()).failed());
+		assertFalse(new SumOfEmissions().apply(failure(), failure()).successfull());
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -62,10 +65,11 @@ public final class SumOfEmissionsTest {
 
 	@Test
 	public void sumsPermissions() {
+		ConditionPack common = new FakeConditionPack();
 		assertEquals(2, //
 				new SumOfEmissions().apply(//
-						new Emission.Successful(new FakePermission()), //
-						new Emission.Successful(new FakePermission()))//
+						new Emission.Successful(common, new FakePermission()), //
+						new Emission.Successful(common, new FakePermission()))//
 						.permissions().size());
 	}
 
@@ -74,11 +78,24 @@ public final class SumOfEmissionsTest {
 		assertEquals(2, new SumOfEmissions().apply(failure(), failure()).failureDiagnostic().troubles().size());
 	}
 
+	@Test(expected = Exception.class)
+	public void doesNotSumDifferentPacks() {
+		new SumOfEmissions().apply(//
+				new Emission.Successful(new FakeConditionPack(), new FakePermission()), //
+				new Emission.Successful(new FakeConditionPack(), new FakePermission()));
+	}
+
 	private Successful success() {
-		return new Emission.Successful(Collections.emptyList());
+		return new Emission.Successful(//
+				new BaseConditionPack(//
+						"emission-test", //$NON-NLS-1$
+						Collections.emptyList()), //
+				Collections.emptyList());
 	}
 
 	private Failed failure() {
-		return new Emission.Failed(new BaseFailureDiagnostic(new TroubleCode.Of(0, "0"), "")); //$NON-NLS-1$ //$NON-NLS-2$
+		return new Emission.Failed(//
+				new FakeConditionPack(), //
+				new BaseFailureDiagnostic(new TroubleCode.Of(0, "0"), "")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

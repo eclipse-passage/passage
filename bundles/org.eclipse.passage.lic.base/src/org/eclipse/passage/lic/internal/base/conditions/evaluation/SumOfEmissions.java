@@ -28,9 +28,13 @@ public final class SumOfEmissions implements BinaryOperator<Emission> {
 
 	@Override
 	public Emission apply(Emission first, Emission second) {
-		return (first.failed() || second.failed()) //
-				? new Emission.Failed(sumDiagnostic(first, second))//
-				: new Emission.Successful(sumPermissions(first, second));
+		if (!first.conditionPack().equals(second.conditionPack())) {
+			throw new IllegalArgumentException(
+					"Pessimistic sum is not intended to be applied to emissions begotten by different condition packs"); //$NON-NLS-1$
+		}
+		return (!first.successfull() || !second.successfull()) //
+				? new Emission.Failed(first.conditionPack(), sumDiagnostic(first, second))//
+				: new Emission.Successful(first.conditionPack(), sumPermissions(first, second));
 	}
 
 	private FailureDiagnostic sumDiagnostic(Emission first, Emission second) {

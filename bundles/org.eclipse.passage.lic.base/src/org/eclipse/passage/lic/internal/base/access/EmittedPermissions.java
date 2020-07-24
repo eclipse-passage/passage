@@ -13,41 +13,43 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SumOfEmissions;
 
 /**
  * FIXME: Has public visibility only for testing.
  */
 @SuppressWarnings("restriction")
-public final class EmittedPermissions implements Supplier<Emission> {
+public final class EmittedPermissions implements Supplier<Collection<Permission>> {
 
 	private final Registry<StringServiceId, PermissionEmittingService> registry;
-	private final Collection<Condition> conditions;
+	private final Collection<ConditionPack> conditions;
 	private final LicensedProduct product;
 
 	public EmittedPermissions(Registry<StringServiceId, PermissionEmittingService> registry,
-			Collection<Condition> conditions, LicensedProduct product) {
+			Collection<ConditionPack> conditions, LicensedProduct product) {
 		this.registry = registry;
 		this.conditions = conditions;
 		this.product = product;
 	}
 
 	@Override
-	public Emission get() {
-		SumOfEmissions sum = new SumOfEmissions();
+	public Collection<Permission> get() {
 		return registry.services().stream() //
 				.map(service -> service.emit(conditions, product))//
-				.reduce(sum)//
-				.orElse(new Emission.Successful(Collections.emptyList()));
+				.flatMap(Collection::stream) //
+				.filter(Emission::successfull) //
+				.map(Emission::permissions) //
+				.flatMap(Collection::stream) //
+				.collect(Collectors.toSet());
 	}
 
 }

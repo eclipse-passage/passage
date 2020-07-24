@@ -10,26 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
+package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 @SuppressWarnings("restriction")
-public final class FakePermissionEmittingService implements PermissionEmittingService {
+public final class FakeConditionPack implements ConditionPack {
 
 	@Override
-	public StringServiceId id() {
+	public String origin() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Collection<Emission> emit(Collection<ConditionPack> conditions, LicensedProduct product) {
+	public Collection<Condition> conditions() {
 		throw new UnsupportedOperationException();
 	}
 
