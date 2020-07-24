@@ -28,13 +28,13 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
  * FIXME: Has public visibility only for testing.
  */
 @SuppressWarnings("restriction")
-public final class EmittedPermissions implements Supplier<Collection<Permission>> {
+public final class Permissions implements Supplier<Collection<Permission>> {
 
 	private final Registry<StringServiceId, PermissionEmittingService> registry;
 	private final Collection<ConditionPack> conditions;
 	private final LicensedProduct product;
 
-	public EmittedPermissions(Registry<StringServiceId, PermissionEmittingService> registry,
+	public Permissions(Registry<StringServiceId, PermissionEmittingService> registry,
 			Collection<ConditionPack> conditions, LicensedProduct product) {
 		this.registry = registry;
 		this.conditions = conditions;
