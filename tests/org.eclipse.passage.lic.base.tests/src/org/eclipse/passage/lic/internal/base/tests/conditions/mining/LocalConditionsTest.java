@@ -84,12 +84,13 @@ public final class LocalConditionsTest {
 		new TempFolderResidentConditions(Paths.get("."), equipment(new Spy()), null); //$NON-NLS-1$
 	}
 
-	private void assertMiningResultsAreOk(List<String> features, Collection<ConditionPack> condition) {
-		assertEquals(features.size(), condition.size());
+	private void assertMiningResultsAreOk(List<String> features, Collection<ConditionPack> packs) {
+		assertEquals(1, packs.size());
+		Collection<Condition> conditions = packs.iterator().next().conditions();
+		assertEquals(features.size(), conditions.size());
 		assertEquals(//
 				new HashSet<>(features), //
-				condition.stream()//
-						.flatMap(pack -> pack.conditions().stream())//
+				conditions.stream()//
 						.map(Condition::feature)//
 						.collect(Collectors.toSet()));
 	}
