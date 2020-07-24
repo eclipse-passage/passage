@@ -15,12 +15,14 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
@@ -33,10 +35,17 @@ final class DecryptedConditions implements ResponseHandler {
 		this.transports = transports;
 	}
 
+	/**
+	 * FIXME: we treat all remote condition =s to be of the same origin until
+	 * {@linkplain ConditionTransport} evolves to support condition packs
+	 */
 	@Override
-	public Collection<Condition> read(byte[] raw, String contentType) throws ConditionMiningException {
+	public Collection<ConditionPack> read(byte[] raw, String contentType) throws ConditionMiningException {
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(keyDecoded(base64Decoded(raw)))) {
-			return transport(new ContentType.Of(contentType)).read(stream);
+			return Collections.singleton(//
+					new BaseConditionPack(//
+							"net", //$NON-NLS-1$
+							transport(new ContentType.Of(contentType)).read(stream)));
 		} catch (IOException e) {
 			throw new ConditionMiningException(HcMessages.DecryptedConditions_reading_error, e);
 		}

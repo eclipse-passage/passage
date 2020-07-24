@@ -17,7 +17,7 @@ import java.util.Optional;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
 import org.eclipse.passage.lic.internal.api.Passage;
-import org.eclipse.passage.lic.internal.base.Access;
+import org.eclipse.passage.lic.internal.base.access.Access;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
@@ -38,7 +38,7 @@ public final class RemoteConditions implements MinedConditions {
 
 	// FIXME: consider caching (ttl-ed)
 	@Override
-	public Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
+	public Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException {
 		return new HttpClient().remoteConditions(//
 				new RemoteConditionsRequest(product), //
 				new DecryptedConditions(transports));

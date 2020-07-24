@@ -25,10 +25,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")
@@ -44,21 +46,20 @@ final class MiningTool {
 		this.transport = transport;
 	}
 
-	Collection<Condition> mine(Collection<Path> sources, Consumer<LicensingException> handler) {
+	Collection<ConditionPack> mine(Collection<Path> sources, Consumer<LicensingException> handler) {
 		return sources.stream()//
 				.map(path -> mine(path, handler)) //
-				.flatMap(Collection::stream)//
 				.collect(Collectors.toSet());
 	}
 
-	private Collection<Condition> mine(Path source, Consumer<LicensingException> handler) {
+	private ConditionPack mine(Path source, Consumer<LicensingException> handler) {
 		try {
-			return from(decoded(source));
+			return new BaseConditionPack(source, from(decoded(source)));
 		} catch (IOException | LicensingException e) {
 			handler.accept(new LicensingException(String.format(//
 					BaseMessages.getString("MiningTool.error_mining_file"), source), e)); //$NON-NLS-1$
 		}
-		return Collections.emptySet();
+		return new BaseConditionPack(source, Collections.emptySet());
 	}
 
 	private byte[] decoded(Path path) throws IOException, LicensingException {

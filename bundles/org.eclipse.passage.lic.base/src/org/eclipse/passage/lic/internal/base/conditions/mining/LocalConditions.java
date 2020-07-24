@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
@@ -57,7 +58,7 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	@Override
-	public final Collection<Condition> all(LicensedProduct product) throws ConditionMiningException {
+	public final Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException {
 		return equipment.tool(product).mine(licenses(product), handler);
 	}
 
