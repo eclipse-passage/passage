@@ -48,7 +48,7 @@ public final class BaseFailureDiagnostic implements FailureDiagnostic {
 	}
 
 	public BaseFailureDiagnostic(Emission first, Emission second) {
-		if (first.successful() || second.successful()) {
+		if (first.successful() && second.successful()) {
 			throw new IllegalArgumentException("Diagnostic supposes failure"); //$NON-NLS-1$
 		}
 		troubles = new ArrayList<Trouble>();
