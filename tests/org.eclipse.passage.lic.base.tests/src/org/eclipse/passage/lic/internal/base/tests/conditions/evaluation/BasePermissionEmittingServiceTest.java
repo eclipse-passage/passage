@@ -72,7 +72,7 @@ public final class BasePermissionEmittingServiceTest {
 				.emit(packOf(humanoid(2, 1), teller(5, 3)), product());
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
-		assertFalse(emission.successfull());
+		assertFalse(emission.successful());
 		assertTrue(emission.failureDiagnostic().troubles().size() == 1);
 		assertEquals(2, morphology.askedKeys().size());
 		assertTrue(dialog.askedKeys().contains("storytelling"));//$NON-NLS-1$
@@ -92,7 +92,7 @@ public final class BasePermissionEmittingServiceTest {
 		// then: all conditions evaluated to permissions
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
-		assertTrue(emission.successfull());
+		assertTrue(emission.successful());
 		assertEquals(2, emission.permissions().size());
 		assertEquals(2, morphology.askedKeys().size());
 		assertEquals(2, dialog.askedKeys().size());
@@ -104,7 +104,7 @@ public final class BasePermissionEmittingServiceTest {
 		Collection<Emission> emissions = service(morphology).emit(packOf(teller(4, 3)), product());
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
-		assertFalse(emission.successfull());
+		assertFalse(emission.successful());
 		assertEquals(1, emission.failureDiagnostic().troubles().size());
 		assertEquals(new LicenseCheckFailed(), emission.failureDiagnostic().troubles().get(0).code());
 	}
@@ -114,7 +114,7 @@ public final class BasePermissionEmittingServiceTest {
 		Collection<Emission> emissions = service(morphologyAssessor(1, 1)).emit(packOf(corrupted()), product());
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
-		assertFalse(emission.successfull());
+		assertFalse(emission.successful());
 		assertEquals(new LicenseInvalid(), emission.failureDiagnostic().troubles().get(0).code());
 	}
 
@@ -123,7 +123,7 @@ public final class BasePermissionEmittingServiceTest {
 		Collection<Emission> emissions = service(morphologyAssessor(1, 1)).emit(packOf(humanoid(2, 1)), product());
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
-		assertFalse(emission.successfull());
+		assertFalse(emission.successful());
 		assertEquals(new LicenseDoesNotMatch(), emission.failureDiagnostic().troubles().get(0).code());
 	}
 

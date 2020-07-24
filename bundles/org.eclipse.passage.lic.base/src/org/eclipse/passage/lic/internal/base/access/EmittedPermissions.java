@@ -46,7 +46,7 @@ public final class EmittedPermissions implements Supplier<Collection<Permission>
 		return registry.services().stream() //
 				.map(service -> service.emit(conditions, product))//
 				.flatMap(Collection::stream) //
-				.filter(Emission::successfull) //
+				.filter(Emission::successful) //
 				.map(Emission::permissions) //
 				.flatMap(Collection::stream) //
 				.collect(Collectors.toSet());

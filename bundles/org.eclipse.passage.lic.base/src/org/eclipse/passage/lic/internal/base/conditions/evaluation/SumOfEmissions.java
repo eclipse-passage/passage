@@ -32,7 +32,7 @@ public final class SumOfEmissions implements BinaryOperator<Emission> {
 			throw new IllegalArgumentException(
 					"Pessimistic sum is not intended to be applied to emissions begotten by different condition packs"); //$NON-NLS-1$
 		}
-		return (!first.successfull() || !second.successfull()) //
+		return (!first.successful() || !second.successful()) //
 				? new Emission.Failed(first.conditionPack(), sumDiagnostic(first, second))//
 				: new Emission.Successful(first.conditionPack(), sumPermissions(first, second));
 	}

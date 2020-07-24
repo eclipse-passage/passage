@@ -35,22 +35,22 @@ public final class SumOfEmissionsTest {
 
 	@Test
 	public void sumOfSuccessesIsSuccess() {
-		assertTrue(new SumOfEmissions().apply(success(), success()).successfull());
+		assertTrue(new SumOfEmissions().apply(success(), success()).successful());
 	}
 
 	@Test
 	public void sumOfSuccessesAndFailureIsFailure() {
-		assertFalse(new SumOfEmissions().apply(success(), failure()).successfull());
+		assertFalse(new SumOfEmissions().apply(success(), failure()).successful());
 	}
 
 	@Test
 	public void sumOfFailureAndSuccessIsFailure() {
-		assertFalse(new SumOfEmissions().apply(failure(), success()).successfull());
+		assertFalse(new SumOfEmissions().apply(failure(), success()).successful());
 	}
 
 	@Test
 	public void sumOfFailuresIsFailure() {
-		assertFalse(new SumOfEmissions().apply(failure(), failure()).successfull());
+		assertFalse(new SumOfEmissions().apply(failure(), failure()).successful());
 	}
 
 	@Test(expected = NullPointerException.class)
