@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.permission;
 
-import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
+import org.eclipse.passage.lic.internal.base.observatory.BaseObservatory;
 
 /**
- * Marker interface for a component that holds {@linkplain Observatory}
+ * Marker interface for a component that holds {@linkplain BaseObservatory}
  * for permission tracking.
  * 
  * @since 0.6

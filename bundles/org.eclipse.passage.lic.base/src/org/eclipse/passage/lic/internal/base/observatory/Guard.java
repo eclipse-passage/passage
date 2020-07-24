@@ -10,12 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.observatory;
 
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
+
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
 
 final class Guard<T extends Limited> implements Runnable {
 

@@ -10,10 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.observatory;
 
 import java.util.Set;
 import java.util.function.Consumer;
+
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
 
 /**
  * <p>
@@ -27,6 +29,7 @@ import java.util.function.Consumer;
  * @see #dispose
  */
 final class Expired<T extends Limited> {
+
 	private final Set<T> origin;
 
 	Expired(Set<T> origin) {

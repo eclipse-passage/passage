@@ -10,11 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.permission.observatory;
+package org.eclipse.passage.lic.internal.base.observatory;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
 
 final class Pool<T extends Limited> {
 	private final Set<T> watched = new HashSet<>();

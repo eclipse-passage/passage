@@ -18,14 +18,14 @@ import java.time.temporal.ChronoUnit;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
-import org.eclipse.passage.lic.internal.base.permission.observatory.Limited;
-import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
+import org.eclipse.passage.lic.internal.api.observatory.Limited;
+import org.eclipse.passage.lic.internal.base.observatory.CheckSchedule;
+import org.eclipse.passage.lic.internal.base.observatory.BaseObservatory;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test suite for {@linkplain Observatory}, which mostly intended to keep an eye
+ * Test suite for {@linkplain BaseObservatory}, which mostly intended to keep an eye
  * on {@linkplain Limited} instances, given under it's watch and fire
  * {@code expired} action when a {@linkplain Limited} expires.
  * 
@@ -50,7 +50,7 @@ public class ObservatoryTest {
 	@Test
 	public void twoSeconds() {
 		Countdown countdown = new Countdown(2);
-		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown);
+		BaseObservatory<Limited> observatory = new BaseObservatory<Limited>(buzy(), countdown);
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		observatory.watch(new TimeLimited(1));
@@ -64,7 +64,7 @@ public class ObservatoryTest {
 	@Test
 	public void forget() {
 		Countdown countdown = new Countdown(1); // watch two entries, but then forget one of them
-		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown);
+		BaseObservatory<Limited> observatory = new BaseObservatory<Limited>(buzy(), countdown);
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		TimeLimited toBeForgotten = new TimeLimited(1);
@@ -90,7 +90,7 @@ public class ObservatoryTest {
 
 	private void testGuardReliability(Consumer<Set<Limited>> sabotage) {
 		Countdown countdown = new Countdown(4);
-		Observatory<Limited> observatory = new Observatory<Limited>(buzy(), countdown.andThen(sabotage));
+		BaseObservatory<Limited> observatory = new BaseObservatory<Limited>(buzy(), countdown.andThen(sabotage));
 		observatory.open();
 		observatory.watch(new TimeLimited(1));
 		observatory.watch(new TimeLimited(1));
