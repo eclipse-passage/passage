@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistr
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
+import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 
 /**
  * Supplies all the service that runtime <i>access cycle</i> can count on.
@@ -47,5 +48,7 @@ public interface AccessCycleConfiguration {
 	ExpressionTokenAssessorsRegistry expressionAssessors();
 
 	RuntimeEnvironmentRegistry environments();
+
+	PermissionsExaminationServicesRegistry examinators();
 
 }

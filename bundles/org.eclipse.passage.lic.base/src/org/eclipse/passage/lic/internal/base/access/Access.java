@@ -12,15 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * Top-level access cycle
  */
+@SuppressWarnings("restriction")
 public final class Access {
 
 	private final Framework framework;
@@ -41,9 +47,12 @@ public final class Access {
 		if (mining.data().isEmpty()) {
 			return false;
 		}
-
-		// FIXME: EP: implement further
-		return false;
+		Collection<Permission> emission = permissions(mining.data());
+		ServiceInvocationResult<Collection<Restriction>> examination = restrictions(emission, requirements);
+		if (!examination.successful()) {
+			return false;
+		}
+		return noSevereRestrictions(examination.data());
 	}
 
 	private Collection<Requirement> requirements(String feature) {
@@ -59,8 +68,33 @@ public final class Access {
 				feature).get();
 	}
 
-	private void permissions(String feature) {
-		framework.accessCycleConfiguration().permissionEmitters().get();
+	private Collection<Permission> permissions(Collection<ConditionPack> conditions) {
+		return new Permissions(//
+				framework.accessCycleConfiguration().permissionEmitters().get(), //
+				conditions, //
+				framework.product()).get();
+	}
+
+	private ServiceInvocationResult<Collection<Restriction>> restrictions(Collection<Permission> permissions,
+			Collection<Requirement> requirements) {
+		return new Restrictions(//
+				framework.accessCycleConfiguration().examinators().get(), //
+				requirements, //
+				permissions, //
+				framework.product()).get();
+
+	}
+
+	private boolean noSevereRestrictions(Collection<Restriction> restrictions) {
+		List<RestrictionLevel> severe = Arrays.asList(//
+				new RestrictionLevel.Error(), //
+				new RestrictionLevel.Fatal());
+		return !restrictions.stream()//
+				.map(r -> r.unsatisfiedRequirement().restrictionLevel())//
+				.filter(severe::contains) //
+				.findFirst()//
+				.isPresent();
+
 	}
 
 }

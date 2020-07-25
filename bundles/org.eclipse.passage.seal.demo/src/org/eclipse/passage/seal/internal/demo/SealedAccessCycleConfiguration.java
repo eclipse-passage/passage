@@ -44,12 +44,15 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
+import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
+import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
+import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
@@ -78,6 +81,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<ExpressionProtocol, ExpressionEvaluationService> expressionEvaluators;
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
+	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		alarm = LicensingException::printStackTrace;
@@ -124,6 +128,9 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		));
 		environments = new ReadOnlyRegistry<>(Arrays.asList(//
 				new HardwareEnvironment()//
+		));
+		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
+				new BasePermissionsExaminationService()//
 		));
 	}
 
@@ -179,6 +186,11 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	@Override
 	public RuntimeEnvironmentRegistry environments() {
 		return () -> environments;
+	}
+
+	@Override
+	public PermissionsExaminationServicesRegistry examinators() {
+		return () -> examinators;
 	}
 
 }
