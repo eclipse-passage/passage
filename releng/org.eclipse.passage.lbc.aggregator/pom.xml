@@ -34,6 +34,7 @@
 		<module>../../bundles/org.eclipse.passage.lbc.equinox</module>
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
+		<module>../../bundles/org.eclipse.passage.lbc.server.launcher</module>
 		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
 
 		<module>../../tests/org.eclipse.passage.lbc.server.tests</module>
