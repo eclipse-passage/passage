@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.api;
 
+import java.util.Map;
+
 /**
- * @since 0.5.0 The return value type should be Iterable<BackendLauncher> as it
- *        is not intended to be changed
- *
+ * @since 0.5
  */
-public interface BackendCluster {
-	Iterable<BackendLauncher> getBackendLaunchers();
+public interface BackendLauncherProvider {
+	Map<BackendLauncher, BackendLaunchArguments> getBackendLaunchers();
 }

@@ -13,16 +13,14 @@
 
 package org.eclipse.passage.lbc.server.tests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
-import org.eclipse.passage.lbc.api.BackendCluster;
+import org.eclipse.passage.lbc.api.BackendLaunchArguments;
 import org.eclipse.passage.lbc.api.BackendLauncher;
+import org.eclipse.passage.lbc.api.BackendLauncherProvider;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +31,6 @@ import org.osgi.framework.ServiceReference;
 
 public class ServerBackendLauncherTest {
 
-	private static final int DEFAULT_CAPACITY = 2;
 	private BundleContext context;
 
 	@Before
@@ -45,24 +42,20 @@ public class ServerBackendLauncherTest {
 	@Test
 	public void serverBackendLauncherTest() {
 		assertNotNull(context);
-		ServiceReference<BackendCluster> serviceReference = context.getServiceReference(BackendCluster.class);
+		ServiceReference<BackendLauncherProvider> serviceReference = context
+				.getServiceReference(BackendLauncherProvider.class);
 		assertNotNull(serviceReference);
-		BackendCluster service = context.getService(serviceReference);
+		BackendLauncherProvider service = context.getService(serviceReference);
 		assertNotNull(service);
-		Iterable<BackendLauncher> backendLaunchers = service.getBackendLaunchers();
-		assertNotNull(backendLaunchers);
-		List<BackendLauncher> launchers = new ArrayList<>();
-		backendLaunchers.forEach(launchers::add);
+		Map<BackendLauncher, BackendLaunchArguments> launchers = service.getBackendLaunchers();
 		assertNotNull(launchers);
-		assertFalse(launchers.isEmpty());
-		assertTrue(launchers.size() >= DEFAULT_CAPACITY);
 
-		launchers.stream().forEach(launcher -> {
-			LicensingResult result = launcher.launch(Collections.emptyMap());
+		launchers.forEach((launcher, arguments) -> {
+			LicensingResult result = launcher.launch(arguments.get());
 			assertTrue(result.getSeverity() == LicensingResult.OK);
 		});
 
-		launchers.stream().forEach(launcher -> {
+		launchers.forEach((launcher, arguments) -> {
 			LicensingResult result = launcher.terminate();
 			assertTrue(result.getSeverity() == LicensingResult.OK);
 		});
