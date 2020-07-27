@@ -54,6 +54,7 @@
       <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.target.feature"/>
       <feature id="org.eclipse.passage.lbc.execute.feature"/>
+      <feature id="org.eclipse.passage.lbc.server.launcher.feature"/>
    </features>
 
    <configurations>
