@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.internal.mail;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.function.BiConsumer;
 
 import javax.activation.CommandMap;
+import javax.activation.DataHandler;
 import javax.activation.MailcapCommandMap;
+import javax.activation.URLDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -95,8 +95,8 @@ public class MailImpl implements Mailing {
 		for (String path : attachmentPaths) {
 			final File attache = new File(path);
 			MimeBodyPart attachment = new MimeBodyPart();
-			//FIXME: we need to support content types near to attachment path
-			attachment.setContent(Files.readAllBytes(Paths.get(path)), "application/binary");
+			URLDataSource fds = new URLDataSource(attache.toURI().toURL());
+			attachment.setDataHandler(new DataHandler(fds));
 			attachment.addHeader("Content-Transfer-Encoding", "base64");			
 			attachment.setDisposition(Part.ATTACHMENT);
 			attachment.setFileName(attache.getName());
