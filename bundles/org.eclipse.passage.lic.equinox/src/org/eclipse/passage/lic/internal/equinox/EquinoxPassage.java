@@ -32,11 +32,7 @@ public final class EquinoxPassage implements Passage {
 
 	@Override
 	public boolean canUse(String feature) {
-		Optional<FrameworkSupplier> supplier = frameworkSupplier();
-		if (!supplier.isPresent()) {
-			return false;
-		}
-		Optional<Framework> framework = supplier.get().get();
+		Optional<Framework> framework = framework();
 		if (!framework.isPresent()) {
 			return false;
 		}
@@ -45,11 +41,14 @@ public final class EquinoxPassage implements Passage {
 
 	@Override
 	public void checkLicense(String feature) {
-		// accessManager.executeAccessRestrictions(configuration);
-		throw new UnsupportedOperationException();
+		Optional<Framework> framework = framework();
+		if (!framework.isPresent()) {
+			reportErrorPassageSabotaged();
+		}
+		new Access(framework.get()).check(feature);
 	}
 
-	private Optional<FrameworkSupplier> frameworkSupplier() {
+	private Optional<Framework> framework() {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 		try {
 			return context.getServiceReferences(FrameworkSupplier.class, null).stream() //
@@ -57,11 +56,17 @@ public final class EquinoxPassage implements Passage {
 					// DI is used only to get rid of overwhelming dependencies here
 					.filter(supplier -> supplier.getClass().getName()
 							.equals("org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier")) //$NON-NLS-1$
-					.findAny();
+					.findAny() //
+					.flatMap(FrameworkSupplier::get);
 		} catch (InvalidSyntaxException e) {
 			log.error(EquinoxMessages.EquinoxPassage_no_framework, e);
 			return Optional.empty();
 		}
+	}
+
+	// FIXME: invoke executors here?
+	private void reportErrorPassageSabotaged() {
+		throw new RuntimeException("Passage gained no Framework and is unoperable"); //$NON-NLS-1$
 	}
 
 }

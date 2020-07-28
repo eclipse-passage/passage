@@ -13,21 +13,16 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * Top-level access cycle
  */
-@SuppressWarnings("restriction")
 public final class Access {
 
 	private final Framework framework;
@@ -37,63 +32,31 @@ public final class Access {
 	}
 
 	public boolean canUse(String feature) {
-		Collection<Requirement> requirements = requirements(feature);
-		if (requirements.isEmpty()) {
-			return true;
-		}
-		ServiceInvocationResult<Collection<ConditionPack>> mining = conditions(feature);
-		if (!mining.successful()) {
+		return new WithExaminationCertificate<Boolean>(framework, feature).apply(this::noSevereRestrictions);
+	}
+
+	public void check(String feature) {
+		new WithExaminationCertificate<Boolean>(framework, feature).apply(this::track);
+	}
+
+	private boolean noSevereRestrictions(Optional<ExaminationCertificate> certificate) {
+		if (!certificate.isPresent()) {
 			return false;
 		}
-		Collection<Permission> permissions = permissions(mining.data());
-		if (permissions.isEmpty()) {
-			return false;
-		}
-		ServiceInvocationResult<ExaminationCertificate> examination = restrictions(permissions, requirements);
-		if (!examination.successful()) {
-			return false;
-		}
-		return noSevereRestrictions(examination.data().restrictions());
-	}
-
-	private Collection<Requirement> requirements(String feature) {
-		return new Requirements(//
-				framework.accessCycleConfiguration().requirementResolvers().get(), //
-				feature).get();
-	}
-
-	private ServiceInvocationResult<Collection<ConditionPack>> conditions(String feature) {
-		return new Conditions(//
-				framework.accessCycleConfiguration().conditionMiners().get(), //
-				framework.product(), //
-				feature).get();
-	}
-
-	private Collection<Permission> permissions(Collection<ConditionPack> conditions) {
-		return new Permissions(//
-				framework.accessCycleConfiguration().permissionEmitters().get(), //
-				conditions, //
-				framework.product()).get();
-	}
-
-	private ServiceInvocationResult<ExaminationCertificate> restrictions(Collection<Permission> permissions,
-			Collection<Requirement> requirements) {
-		return new Restrictions(//
-				framework.accessCycleConfiguration().examinators().get(), //
-				requirements, //
-				permissions, //
-				framework.product()).get();
-	}
-
-	private boolean noSevereRestrictions(Collection<Restriction> restrictions) {
 		List<RestrictionLevel> severe = Arrays.asList(//
 				new RestrictionLevel.Error(), //
 				new RestrictionLevel.Fatal());
-		return !restrictions.stream()//
+		return !certificate.get().restrictions().stream()//
 				.map(r -> r.unsatisfiedRequirement().restrictionLevel())//
 				.filter(severe::contains) //
 				.findFirst()//
 				.isPresent();
+	}
+
+	private boolean track(Optional<ExaminationCertificate> certificate) {
+		// FIXME: run observation for active permissions (no matter how patient
+		// FIXME: execute restrictions
+		return true; // is dropped, just to cover 'void' value with an object
 	}
 
 }
