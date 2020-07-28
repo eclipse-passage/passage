@@ -16,14 +16,15 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermissionEmittingService;
+import org.eclipse.passage.lic.api.tests.fakes.restrictions.FakePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of permission emitting services.
+ * collection of services responsible for permissions-vs-requirements
+ * examination.
  * </p>
  * <p>
  * Each {@code Framework} implementation must extend this class and satisfy all
@@ -31,16 +32,17 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmit
  * </p>
  */
 @SuppressWarnings("restriction")
-public abstract class PermissionEmittingServicesRegitryTest extends ReadOnlyCollectionTest<PermissionEmittingService> {
+public abstract class PermissionExaminingServicesRegitryTest
+		extends ReadOnlyCollectionTest<PermissionsExaminationService> {
 
 	@Override
-	protected final Supplier<Collection<PermissionEmittingService>> collection() {
-		return () -> framework().get().accessCycleConfiguration().permissionEmitters().get().services();
+	protected final Supplier<Collection<PermissionsExaminationService>> collection() {
+		return () -> framework().get().accessCycleConfiguration().examinators().get().services();
 	}
 
 	@Override
-	protected final PermissionEmittingService single() {
-		return new FakePermissionEmittingService();
+	protected final PermissionsExaminationService single() {
+		return new FakePermissionsExaminationService();
 	}
 
 	protected abstract Optional<Framework> framework();
