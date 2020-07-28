@@ -48,6 +48,9 @@ public final class Access {
 			return false;
 		}
 		Collection<Permission> emission = permissions(mining.data());
+		if (emission.isEmpty()) {
+			return false;
+		}
 		ServiceInvocationResult<Collection<Restriction>> examination = restrictions(emission, requirements);
 		if (!examination.successful()) {
 			return false;
@@ -82,7 +85,6 @@ public final class Access {
 				requirements, //
 				permissions, //
 				framework.product()).get();
-
 	}
 
 	private boolean noSevereRestrictions(Collection<Restriction> restrictions) {
@@ -94,7 +96,6 @@ public final class Access {
 				.filter(severe::contains) //
 				.findFirst()//
 				.isPresent();
-
 	}
 
 }

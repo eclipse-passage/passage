@@ -14,12 +14,12 @@ package org.eclipse.passage.seal.demo.tests.registries;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.api.tests.PermissionExaminingServicesRegitryTest;
+import org.eclipse.passage.lic.api.tests.PermissionEmittingServicesRegitryTest;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 @SuppressWarnings("restriction")
-public final class SealedPermissionEmttingServicesRegistryTest extends PermissionExaminingServicesRegitryTest {
+public final class SealedPermissionsExaminationServicesRegistryTest extends PermissionEmittingServicesRegitryTest {
 
 	@Override
 	protected Optional<Framework> framework() {

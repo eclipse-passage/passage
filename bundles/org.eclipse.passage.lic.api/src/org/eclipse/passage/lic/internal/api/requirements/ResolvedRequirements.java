@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.api.requirements;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
@@ -63,9 +62,8 @@ public interface ResolvedRequirements extends Service<StringServiceId> {
 		}
 
 		/**
-		 * Among {@linkplain ResolvedRequirements#all(LicensingConfiguration)}
-		 * requirements here only those are selected that relates to the given
-		 * {@code feature}.
+		 * Among {@linkplain ResolvedRequirements#all()} requirements here only those
+		 * are selected that relates to the given {@code feature}.
 		 * 
 		 * @param configuration of the product under licensing
 		 * @param feature       identifier of a feature, who's {@linkplain Requirement}s
