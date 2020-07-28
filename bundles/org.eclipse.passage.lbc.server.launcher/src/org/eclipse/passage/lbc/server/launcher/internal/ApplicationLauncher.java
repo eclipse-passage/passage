@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.launcher;
+package org.eclipse.passage.lbc.server.launcher.internal;
 
 import java.util.Collections;
 import java.util.Map;

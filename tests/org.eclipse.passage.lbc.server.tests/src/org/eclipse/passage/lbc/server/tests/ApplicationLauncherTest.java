@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.server.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lbc.server.launcher.ApplicationLauncher;
+import org.eclipse.passage.lbc.server.launcher.internal.ApplicationLauncher;
 import org.junit.Before;
 import org.junit.Test;
 
