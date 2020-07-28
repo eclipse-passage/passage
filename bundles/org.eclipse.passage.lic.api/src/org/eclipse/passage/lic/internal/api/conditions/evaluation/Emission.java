@@ -54,7 +54,7 @@ public abstract class Emission {
 	}
 
 	/**
-	 * Must be asked before any information permission or failure details) is asked
+	 * Must be asked before any information (permission or failure details) is asked
 	 * for.
 	 */
 	public final boolean successful() {
