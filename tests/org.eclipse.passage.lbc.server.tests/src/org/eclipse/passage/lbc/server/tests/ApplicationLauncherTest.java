@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lbc.server.tests;
 
 import static org.junit.Assert.assertTrue;
@@ -8,13 +20,11 @@ import org.junit.Test;
 
 public class ApplicationLauncherTest {
 
-	private ApplicationLauncher launcher;
 	private FakeBackendLauncher fakeBackendLauncher = new FakeBackendLauncher();
 
 	@Before
 	public void init() {
-		launcher = new ApplicationLauncher();
-		launcher.bind(fakeBackendLauncher);
+		new ApplicationLauncher().bind(fakeBackendLauncher);
 	}
 
 	@Test
