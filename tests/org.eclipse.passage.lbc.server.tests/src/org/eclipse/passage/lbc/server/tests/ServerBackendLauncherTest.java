@@ -16,11 +16,9 @@ package org.eclipse.passage.lbc.server.tests;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Map;
+import java.util.Collections;
 
-import org.eclipse.passage.lbc.api.BackendLaunchArguments;
 import org.eclipse.passage.lbc.api.BackendLauncher;
-import org.eclipse.passage.lbc.api.BackendLauncherProvider;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,23 +40,16 @@ public class ServerBackendLauncherTest {
 	@Test
 	public void serverBackendLauncherTest() {
 		assertNotNull(context);
-		ServiceReference<BackendLauncherProvider> serviceReference = context
-				.getServiceReference(BackendLauncherProvider.class);
+		ServiceReference<BackendLauncher> serviceReference = context.getServiceReference(BackendLauncher.class);
 		assertNotNull(serviceReference);
-		BackendLauncherProvider service = context.getService(serviceReference);
-		assertNotNull(service);
-		Map<BackendLauncher, BackendLaunchArguments> launchers = service.getBackendLaunchers();
-		assertNotNull(launchers);
+		BackendLauncher launcher = context.getService(serviceReference);
+		assertNotNull(launcher);
 
-		launchers.forEach((launcher, arguments) -> {
-			LicensingResult result = launcher.launch(arguments.get());
-			assertTrue(result.getSeverity() == LicensingResult.OK);
-		});
+		LicensingResult launchResult = launcher.launch(Collections.emptyMap());
+		assertTrue(launchResult.getSeverity() == LicensingResult.OK);
 
-		launchers.forEach((launcher, arguments) -> {
-			LicensingResult result = launcher.terminate();
-			assertTrue(result.getSeverity() == LicensingResult.OK);
-		});
+		LicensingResult terminateResult = launcher.terminate();
+		assertTrue(terminateResult.getSeverity() == LicensingResult.OK);
 
 	}
 }
