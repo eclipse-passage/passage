@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.restrictions;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
@@ -35,30 +37,34 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	@Override
-	public Collection<Restriction> examine(Collection<Requirement> requirements, Collection<Permission> permissions,
+	public ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions,
 			LicensedProduct product) {
 		Objects.requireNonNull(requirements);
 		Objects.requireNonNull(permissions);
 		Objects.requireNonNull(product);
-		return requirements.stream() //
+		Collection<Permission> active = new ArrayList<>(); // FIXME: a bit ugly. Redo if there is a simple way
+		Collection<Restriction> restrictions = requirements.stream() //
 				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
-				.map(e -> examineFeature(e.getValue(), permissions, product))//
+				.map(e -> examineFeature(e.getValue(), permissions, product, active))//
 				.flatMap(Collection::stream)//
 				.collect(Collectors.toList());
+		return new BaseExaminationCertificate(active, restrictions);
 	}
 
 	private Collection<Restriction> examineFeature(Collection<Requirement> requirements,
-			Collection<Permission> permissions, LicensedProduct product) {
+			Collection<Permission> permissions, LicensedProduct product, Collection<Permission> active) {
 		return requirements.stream()//
-				.filter(requirement -> !covered(requirement, permissions))//
+				.filter(requirement -> !covered(requirement, permissions, active))//
 				.map(requirement -> restriction(requirement, product)) //
 				.collect(Collectors.toList());
 	}
 
-	private boolean covered(Requirement requirement, Collection<Permission> permissions) {
+	private boolean covered(Requirement requirement, Collection<Permission> permissions,
+			Collection<Permission> active) {
 		return permissions.stream() //
 				.filter(permission -> sameFeature(requirement, permission)) //
 				.filter(permission -> versionMatches(requirement, permission)) //
+				.peek(active::add) // keep an eye on each permission that played active role in examination
 				.findAny().isPresent();
 	}
 

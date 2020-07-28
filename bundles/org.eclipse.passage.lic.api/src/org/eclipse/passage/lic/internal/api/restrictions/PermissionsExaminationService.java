@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
  */
 public interface PermissionsExaminationService extends Service<StringServiceId> {
 
-	Collection<Restriction> examine(Collection<Requirement> requirements, Collection<Permission> permissions,
+	ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions,
 			LicensedProduct product);
 
 }

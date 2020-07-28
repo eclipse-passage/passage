@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -22,7 +23,11 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
@@ -34,38 +39,43 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 	@Test
 	public void detectsSingleRequirementSatisfaction() {
 		TestState state = new TestState();
-		Collection<Restriction> restrictions = examiner().examine(//
+		testSuccess(//
 				Collections.singleton(state.requirementFirst()), //
 				Collections.singleton(state.permissionFirst()), //
 				state.product());
-		assertNotNull(restrictions);
-		assertTrue(restrictions.isEmpty());
 	}
 
 	@Test
 	public void detectsSeveralRequirementsSatisfaction() {
 		TestState state = new TestState();
-		Collection<Restriction> restrictions = examiner().examine(//
+		testSuccess(//
 				Arrays.asList(state.requirementFirst(), state.requirementSecond()), //
 				Arrays.asList(state.permissionSecond(), state.permissionFirst()), //
 				state.product());
-		assertNotNull(restrictions);
-		assertTrue(restrictions.isEmpty());
 	}
 
 	@Test
-	public void detectsRequirementUnsatisfaction() {
+	public void detectsPartialRequirementsUnsatisfaction() {
+		// given
 		TestState state = new TestState();
-		Collection<Restriction> restrictions = examiner().examine(//
+		// when examine two requirements against one permission for the requirement2
+		ExaminationCertificate certificate = examiner().examine(//
 				Arrays.asList(state.requirementFirst(), state.requirementSecond()), //
 				Arrays.asList(state.permissionSecond()), //
 				state.product());
-		assertNotNull(restrictions);
-		assertEquals(1, restrictions.size());
-		Restriction restriction = restrictions.iterator().next();
+		// then: examination is failed
+		assertFalse(certificate.examinationPassed());
+		// then: the first of the requirement stays unsatisfied
+		assertNotNull(certificate.restrictions());
+		assertEquals(1, certificate.restrictions().size());
+		// then: and the restriction describes all the data correctly
+		Restriction restriction = certificate.restrictions().iterator().next();
 		assertEquals(state.requirementFirst(), restriction.unsatisfiedRequirement());
 		assertEquals(state.product(), restriction.product());
 		assertEquals(new LicenseInvalid(), restriction.reason());
+		// then: our only permission is counted as active
+		assertEquals(1, certificate.participants().size());
+		assertEquals(state.permissionSecond(), certificate.participants().iterator().next());
 	}
 
 	@Test
@@ -74,7 +84,8 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		Collection<Restriction> restrictions = examiner().examine(//
 				Arrays.asList(state.requirementSecond()), //
 				Arrays.asList(state.permissionSecondObsolete()), //
-				state.product());
+				state.product())//
+				.restrictions();
 		assertNotNull(restrictions);
 		assertEquals(1, restrictions.size());
 		Restriction restriction = restrictions.iterator().next();
@@ -85,23 +96,16 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 
 	@Test
 	public void restrictsNothingOnEmptyRequest() {
-		Collection<Restriction> restrictions = examiner().examine(//
-				Collections.emptyList(), //
-				Collections.emptyList(), //
-				new FakeLicensedProduct());
-		assertNotNull(restrictions);
-		assertTrue(restrictions.isEmpty());
+		testSuccess(Collections.emptyList(), Collections.emptyList(), new FakeLicensedProduct());
 	}
 
 	@Test
 	public void restrictsNothingOnEmptyRequirements() {
 		TestState state = new TestState();
-		Collection<Restriction> restrictions = examiner().examine(//
+		testSuccess(//
 				Collections.emptyList(), //
 				Collections.singleton(state.permissionFirst()), //
 				state.product());
-		assertNotNull(restrictions);
-		assertTrue(restrictions.isEmpty());
 	}
 
 	@Override
@@ -109,4 +113,12 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		return new BasePermissionsExaminationService();
 	}
 
+	private void testSuccess(//
+			Collection<Requirement> requirements, //
+			Collection<Permission> permissions, //
+			LicensedProduct product) {
+		ExaminationCertificate certificate = examiner().examine(requirements, permissions, product);
+		assertNotNull(certificate);
+		assertTrue(certificate.examinationPassed());
+	}
 }

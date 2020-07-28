@@ -10,29 +10,38 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.restrictions;
+package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
 @SuppressWarnings("restriction")
-public final class FakePermissionsExaminationService implements PermissionsExaminationService {
+public final class BaseExaminationCertificate implements ExaminationCertificate {
 
-	@Override
-	public StringServiceId id() {
-		throw new UnsupportedOperationException();
+	private final Collection<Permission> participants;
+	private final Collection<Restriction> restrictions;
+
+	public BaseExaminationCertificate(Collection<Permission> participants, Collection<Restriction> restrictions) {
+		this.participants = participants;
+		this.restrictions = restrictions;
 	}
 
 	@Override
-	public ExaminationCertificate examine(Collection<Requirement> requirements, Collection<Permission> permissions,
-			LicensedProduct product) {
-		throw new UnsupportedOperationException();
+	public boolean examinationPassed() {
+		return restrictions.isEmpty();
+	}
+
+	@Override
+	public Collection<Restriction> restrictions() {
+		return restrictions;
+	}
+
+	@Override
+	public Collection<Permission> participants() {
+		return participants;
 	}
 
 }

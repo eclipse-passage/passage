@@ -49,7 +49,7 @@ public final class EquinoxPassage implements Passage {
 		throw new UnsupportedOperationException();
 	}
 
-	Optional<FrameworkSupplier> frameworkSupplier() {
+	private Optional<FrameworkSupplier> frameworkSupplier() {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 		try {
 			return context.getServiceReferences(FrameworkSupplier.class, null).stream() //
