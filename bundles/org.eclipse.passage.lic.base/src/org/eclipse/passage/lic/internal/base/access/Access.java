@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
@@ -44,18 +45,15 @@ public final class Access {
 		if (!mining.successful()) {
 			return false;
 		}
-		if (mining.data().isEmpty()) {
+		Collection<Permission> permissions = permissions(mining.data());
+		if (permissions.isEmpty()) {
 			return false;
 		}
-		Collection<Permission> emission = permissions(mining.data());
-		if (emission.isEmpty()) {
-			return false;
-		}
-		ServiceInvocationResult<Collection<Restriction>> examination = restrictions(emission, requirements);
+		ServiceInvocationResult<ExaminationCertificate> examination = restrictions(permissions, requirements);
 		if (!examination.successful()) {
 			return false;
 		}
-		return noSevereRestrictions(examination.data());
+		return noSevereRestrictions(examination.data().restrictions());
 	}
 
 	private Collection<Requirement> requirements(String feature) {
@@ -78,7 +76,7 @@ public final class Access {
 				framework.product()).get();
 	}
 
-	private ServiceInvocationResult<Collection<Restriction>> restrictions(Collection<Permission> permissions,
+	private ServiceInvocationResult<ExaminationCertificate> restrictions(Collection<Permission> permissions,
 			Collection<Requirement> requirements) {
 		return new Restrictions(//
 				framework.accessCycleConfiguration().examinators().get(), //

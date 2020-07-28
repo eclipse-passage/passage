@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.function.BinaryOperator;
 
-public abstract class ServiceInvocationResult<T> {
+abstract class ServiceInvocationResult<T> {
 
 	private final boolean success;
 
