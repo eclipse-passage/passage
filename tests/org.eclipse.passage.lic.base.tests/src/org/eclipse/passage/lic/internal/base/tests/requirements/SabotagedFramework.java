@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
+import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingServicesRegistry;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 
@@ -107,6 +108,11 @@ final class SabotagedFramework implements Framework {
 
 		@Override
 		public PermissionsExaminationServicesRegistry examinators() {
+			return () -> noService();
+		}
+
+		@Override
+		public RestrictionExecutingServicesRegistry executors() {
 			return () -> noService();
 		}
 

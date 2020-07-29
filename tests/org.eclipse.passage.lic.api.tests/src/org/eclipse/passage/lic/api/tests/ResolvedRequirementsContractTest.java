@@ -21,9 +21,6 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 
 /**
  * Each requirement resolution service must follow the contract.
- * 
- * @author user
- *
  */
 @SuppressWarnings("restriction")
 public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectionTest<Requirement> {
