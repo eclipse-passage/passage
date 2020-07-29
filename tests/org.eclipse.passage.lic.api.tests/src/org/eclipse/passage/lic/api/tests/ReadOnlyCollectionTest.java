@@ -27,9 +27,6 @@ import org.junit.Test;
  * Here we check an arbitrary service method, that returns multiple results as a
  * collection for being read only.
  * </p>
- * <p>
- * Each requirement resolution service must follow the contract.
- * </p>
  */
 public abstract class ReadOnlyCollectionTest<T> {
 

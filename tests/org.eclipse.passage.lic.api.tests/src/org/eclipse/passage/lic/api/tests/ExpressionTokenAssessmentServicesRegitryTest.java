@@ -26,8 +26,8 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
  * collection of condition expression token assessment services.
  * </p>
  * <p>
- * Each {@code Framework} implementation must extend this class and satisfy all
- * the demands.
+ * Each {@code Framework} implementation must supply a test extending this class
+ * and satisfy all the demands.
  * </p>
  */
 @SuppressWarnings("restriction")

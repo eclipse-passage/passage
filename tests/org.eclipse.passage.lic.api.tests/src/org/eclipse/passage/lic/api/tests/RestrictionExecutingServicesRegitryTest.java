@@ -16,14 +16,14 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermissionEmittingService;
+import org.eclipse.passage.lic.api.tests.fakes.restrictions.FakeRestrictionExecutingService;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingService;
 
 /**
  * <p>
  * Check that {@linkplain Framework} instance in use supplies read only
- * collection of permission emitting services.
+ * collection of services responsible for executing restriction.
  * </p>
  * <p>
  * Each {@code Framework} implementation must supply a test extending this class
@@ -31,16 +31,17 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmit
  * </p>
  */
 @SuppressWarnings("restriction")
-public abstract class PermissionEmittingServicesRegitryTest extends ReadOnlyCollectionTest<PermissionEmittingService> {
+public abstract class RestrictionExecutingServicesRegitryTest
+		extends ReadOnlyCollectionTest<RestrictionExecutingService> {
 
 	@Override
-	protected final Supplier<Collection<PermissionEmittingService>> collection() {
-		return () -> framework().get().accessCycleConfiguration().permissionEmitters().get().services();
+	protected final Supplier<Collection<RestrictionExecutingService>> collection() {
+		return () -> framework().get().accessCycleConfiguration().executors().get().services();
 	}
 
 	@Override
-	protected final PermissionEmittingService single() {
-		return new FakePermissionEmittingService();
+	protected final RestrictionExecutingService single() {
+		return new FakeRestrictionExecutingService();
 	}
 
 	protected abstract Optional<Framework> framework();
