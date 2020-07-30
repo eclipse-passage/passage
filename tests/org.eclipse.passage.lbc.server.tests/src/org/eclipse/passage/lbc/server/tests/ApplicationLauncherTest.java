@@ -21,19 +21,22 @@ import org.junit.Test;
 public class ApplicationLauncherTest {
 
 	private FakeBackendLauncher fakeBackendLauncher = new FakeBackendLauncher();
+	private ApplicationLauncher applicationLauncher = new ApplicationLauncher();
 
 	@Before
 	public void init() {
-		new ApplicationLauncher().bind(fakeBackendLauncher);
+		applicationLauncher.bind(fakeBackendLauncher);
 	}
 
 	@Test
 	public void launch() {
+		applicationLauncher.activate();
 		assertTrue(fakeBackendLauncher.wasLaunched());
 	}
 
 	@Test
 	public void terminate() {
+		applicationLauncher.deactivate();
 		assertTrue(fakeBackendLauncher.wasTerminated());
 	}
 
