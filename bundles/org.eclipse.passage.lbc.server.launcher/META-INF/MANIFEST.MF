@@ -8,3 +8,8 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/org.eclipse.passage.lbc.server.launcher.internal.ApplicationLauncher.xml
+Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
+ org.eclipse.passage.lbc.api;bundle-version="0.0.0",
+ org.eclipse.passage.lbc.jetty;bundle-version="0.0.0"
+Export-Package: org.eclipse.passage.lbc.server.launcher.internal;x-internal:=true
