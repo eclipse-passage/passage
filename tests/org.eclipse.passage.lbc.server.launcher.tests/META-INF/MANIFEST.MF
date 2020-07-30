@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.lbc.server.launcher.tests
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.passage.lbc.server.launcher.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Fragment-Host: org.eclipse.passage.lbc.server.launcher
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.eclipse.passage.lic.base;bundle-version="0.0.0"
