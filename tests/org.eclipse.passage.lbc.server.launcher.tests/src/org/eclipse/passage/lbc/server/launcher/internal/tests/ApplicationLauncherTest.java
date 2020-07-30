@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.tests;
+package org.eclipse.passage.lbc.server.launcher.internal.tests;
 
 import static org.junit.Assert.assertTrue;
 
