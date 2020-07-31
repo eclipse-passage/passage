@@ -26,7 +26,9 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.junit.Ignore;
 
+@Ignore // fix TODOs to make it test something reasonable
 @SuppressWarnings("restriction")
 public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	@Override
@@ -52,6 +54,11 @@ public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	@Override
 	protected String serialized(Collection<Condition> condition) {
 		return "TODO: get an xmi-persistence license text"; //$NON-NLS-1$
+	}
+
+	@Override
+	protected String serializedInvalid() {
+		return "TODO: get an xmi-persistence license text and edit it"; //$NON-NLS-1$
 	}
 
 }

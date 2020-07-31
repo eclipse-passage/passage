@@ -48,6 +48,16 @@ public abstract class ConditionTransportContractTest {
 		assertEquals(new HashSet<>(textual(sedentaries)), new HashSet<>(textual(nomads)));
 	}
 
+	@Test(expected = IOException.class)
+	public final void failOnNotSufficientData() throws IOException {
+		read(transport(), serializedInvalid()); // $NON-NLS-1$
+	}
+
+	@Test(expected = IOException.class)
+	public final void failOnEmptySource() throws IOException {
+		read(transport(), ""); //$NON-NLS-1$
+	}
+
 	private Collection<Condition> read(ConditionTransport transport, String source) throws IOException {
 		return transport.read(new ByteArrayInputStream(source.getBytes()));
 	}
@@ -75,6 +85,12 @@ public abstract class ConditionTransportContractTest {
 	 * {@code conditions()}
 	 */
 	protected abstract String serialized(Collection<Condition> condition);
+
+	/**
+	 * Supply source for reading a single condition with lack if mandatory data
+	 * {@code conditions()}
+	 */
+	protected abstract String serializedInvalid();
 
 	/**
 	 * Produce new instance of a transport under test
