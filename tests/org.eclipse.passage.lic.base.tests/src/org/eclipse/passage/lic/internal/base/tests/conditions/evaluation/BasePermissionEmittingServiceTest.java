@@ -33,9 +33,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEval
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseCheckFailed;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseDoesNotMatch;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
@@ -43,6 +40,9 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Test;
 
@@ -73,7 +73,7 @@ public final class BasePermissionEmittingServiceTest {
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
 		assertFalse(emission.successful());
-		assertTrue(emission.failureDiagnostic().troubles().size() == 1);
+		assertTrue(emission.failureDiagnostic().bearable().size() == 1);
 		assertEquals(2, morphology.askedKeys().size());
 		assertTrue(dialog.askedKeys().contains("storytelling"));//$NON-NLS-1$
 	}
@@ -105,8 +105,8 @@ public final class BasePermissionEmittingServiceTest {
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
 		assertFalse(emission.successful());
-		assertEquals(1, emission.failureDiagnostic().troubles().size());
-		assertEquals(new LicenseCheckFailed(), emission.failureDiagnostic().troubles().get(0).code());
+		assertEquals(1, emission.failureDiagnostic().bearable().size());
+		assertEquals(new LicenseCheckFailed(), emission.failureDiagnostic().bearable().get(0).code());
 	}
 
 	@Test
@@ -115,7 +115,7 @@ public final class BasePermissionEmittingServiceTest {
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
 		assertFalse(emission.successful());
-		assertEquals(new LicenseInvalid(), emission.failureDiagnostic().troubles().get(0).code());
+		assertEquals(new LicenseInvalid(), emission.failureDiagnostic().bearable().get(0).code());
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public final class BasePermissionEmittingServiceTest {
 		assertEquals(1, emissions.size());
 		Emission emission = emissions.iterator().next();
 		assertFalse(emission.successful());
-		assertEquals(new LicenseDoesNotMatch(), emission.failureDiagnostic().troubles().get(0).code());
+		assertEquals(new LicenseDoesNotMatch(), emission.failureDiagnostic().bearable().get(0).code());
 	}
 
 	private PermissionEmittingService service(BiasedAssessor... assessors) {

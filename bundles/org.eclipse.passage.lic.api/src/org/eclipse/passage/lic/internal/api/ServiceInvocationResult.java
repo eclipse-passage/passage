@@ -10,15 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages;
+import java.util.Optional;
 
-public final class LicenseCheckFailed extends TroubleCode {
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
-	public LicenseCheckFailed() {
-		super(501, DiagnosticCodeMessages.getString("LicenseCheckFailed.error")); //$NON-NLS-1$
-	}
+public interface ServiceInvocationResult<T> {
 
+	Diagnostic diagnostic();
+
+	Optional<T> data();
 }

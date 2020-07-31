@@ -10,19 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
+package org.eclipse.passage.lic.internal.api.diagnostic;
 
 import java.util.List;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+public interface Diagnostic {
 
-@SuppressWarnings("restriction")
-public final class FakeFailureDiagnostic implements Diagnostic {
+	List<Trouble> severe();
 
-	@Override
-	public List<Trouble> bearable() {
-		throw new UnsupportedOperationException();
-	}
+	List<Trouble> bearable();
 
 }

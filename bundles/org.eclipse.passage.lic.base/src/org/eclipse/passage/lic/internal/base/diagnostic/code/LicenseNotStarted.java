@@ -10,19 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import java.util.List;
-
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
 @SuppressWarnings("restriction")
-public final class FakeFailureDiagnostic implements Diagnostic {
+public final class LicenseNotStarted extends TroubleCode {
 
-	@Override
-	public List<Trouble> bearable() {
-		throw new UnsupportedOperationException();
+	public LicenseNotStarted() {
+		super(403, DiagnosticCodeMessages.getString("LicenseNotStarted.license_not_started")); //$NON-NLS-1$
 	}
 
 }

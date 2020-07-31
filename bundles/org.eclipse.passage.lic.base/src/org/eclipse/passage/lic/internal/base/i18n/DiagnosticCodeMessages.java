@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.i18n;
+package org.eclipse.passage.lic.internal.base.i18n;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

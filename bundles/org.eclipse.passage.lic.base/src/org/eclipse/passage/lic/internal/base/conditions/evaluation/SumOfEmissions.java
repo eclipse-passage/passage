@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 
 @SuppressWarnings("restriction")
 public final class SumOfEmissions implements BinaryOperator<Emission> {
@@ -37,8 +37,8 @@ public final class SumOfEmissions implements BinaryOperator<Emission> {
 				: new Emission.Successful(first.conditionPack(), sumPermissions(first, second));
 	}
 
-	private FailureDiagnostic sumDiagnostic(Emission first, Emission second) {
-		return new BaseFailureDiagnostic(first, second);
+	private Diagnostic sumDiagnostic(Emission first, Emission second) {
+		return new BaseDiagnostic(first, second);
 	}
 
 	private Collection<Permission> sumPermissions(Emission first, Emission second) {

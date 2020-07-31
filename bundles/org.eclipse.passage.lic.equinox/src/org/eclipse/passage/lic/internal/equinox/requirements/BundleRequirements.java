@@ -14,21 +14,20 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
-import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -43,7 +42,6 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("restriction")
 public final class BundleRequirements implements ResolvedRequirements {
 
-	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
 	private final Optional<BundleContext> context;
 
 	public BundleRequirements() {
@@ -56,24 +54,16 @@ public final class BundleRequirements implements ResolvedRequirements {
 	}
 
 	@Override
-	public Collection<Requirement> all() {
+	public ServiceInvocationResult<Collection<Requirement>> all() {
 		if (sabotage()) {
-			return unsafisifiable();
+			return new BaseServiceInvocationResult<Collection<Requirement>>(//
+					new Trouble(new ServiceCannotOperate(), EquinoxMessages.BundleRequirements_no_context));
 		}
-		return resolve();
+		return new BaseServiceInvocationResult<Collection<Requirement>>(resolve());
 	}
 
 	private boolean sabotage() {
 		return !context.isPresent();
-	}
-
-	private Collection<Requirement> unsafisifiable() {
-		logger.error(EquinoxMessages.BundleRequirements_error_bundle_context);
-		return Collections.singleton(//
-				new UnsatisfiableRequirement(//
-						NLS.bind(EquinoxMessages.BundleRequirements_no_context, getClass().getName()), //
-						getClass()//
-				).get());
 	}
 
 	private Collection<Requirement> resolve() {

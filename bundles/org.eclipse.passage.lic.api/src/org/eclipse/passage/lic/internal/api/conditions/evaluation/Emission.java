@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.diagnostic.FailureDiagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
 /**
  * Report {@linkplain Condition}s evaluation results.
@@ -67,7 +67,7 @@ public abstract class Emission {
 
 	public abstract Collection<Permission> permissions();
 
-	public abstract FailureDiagnostic failureDiagnostic();
+	public abstract Diagnostic failureDiagnostic();
 
 	public static final class Successful extends Emission {
 
@@ -89,7 +89,7 @@ public abstract class Emission {
 		}
 
 		@Override
-		public FailureDiagnostic failureDiagnostic() {
+		public Diagnostic failureDiagnostic() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -97,9 +97,9 @@ public abstract class Emission {
 
 	public static final class Failed extends Emission {
 
-		private final FailureDiagnostic diagnose;
+		private final Diagnostic diagnose;
 
-		public Failed(ConditionPack pack, FailureDiagnostic diagnose) {
+		public Failed(ConditionPack pack, Diagnostic diagnose) {
 			super(false, pack);
 			Objects.requireNonNull(diagnose, "Emission.Failed::diagnose"); //$NON-NLS-1$
 			this.diagnose = diagnose;
@@ -111,7 +111,7 @@ public abstract class Emission {
 		}
 
 		@Override
-		public FailureDiagnostic failureDiagnostic() {
+		public Diagnostic failureDiagnostic() {
 			return diagnose;
 		}
 

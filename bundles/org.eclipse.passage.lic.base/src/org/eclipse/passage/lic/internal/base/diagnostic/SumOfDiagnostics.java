@@ -10,19 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
+package org.eclipse.passage.lic.internal.base.diagnostic;
 
-import java.util.List;
+import java.util.function.BinaryOperator;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
 @SuppressWarnings("restriction")
-public final class FakeFailureDiagnostic implements Diagnostic {
+public final class SumOfDiagnostics implements BinaryOperator<Diagnostic> {
 
 	@Override
-	public List<Trouble> bearable() {
-		throw new UnsupportedOperationException();
+	public Diagnostic apply(Diagnostic first, Diagnostic second) {
+		return new BaseDiagnostic(//
+				new SumOfLists<Trouble>().apply(first.severe(), second.severe()), //
+				new SumOfLists<Trouble>().apply(first.bearable(), second.bearable())//
+		);
 	}
 
 }

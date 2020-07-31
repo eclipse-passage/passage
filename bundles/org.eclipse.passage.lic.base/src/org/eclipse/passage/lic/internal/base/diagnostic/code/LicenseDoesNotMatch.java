@@ -10,15 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public final class LicenseExpired extends TroubleCode {
+@SuppressWarnings("restriction")
+public final class LicenseDoesNotMatch extends TroubleCode {
 
-	public LicenseExpired() {
-		super(403, DiagnosticCodeMessages.getString("LicenseExpired.license_expired")); //$NON-NLS-1$
+	public LicenseDoesNotMatch() {
+		super(403, DiagnosticCodeMessages.getString("LicenseDoesNotMatch.license_does_not_match")); //$NON-NLS-1$
 	}
 
 }

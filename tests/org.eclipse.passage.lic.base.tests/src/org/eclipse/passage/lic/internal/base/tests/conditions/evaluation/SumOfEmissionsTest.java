@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission.Faile
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission.Successful;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SumOfEmissions;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -82,7 +82,7 @@ public final class SumOfEmissionsTest {
 		assertEquals(2, new SumOfEmissions()//
 				.apply(failure(common), failure(common))//
 				.failureDiagnostic()//
-				.troubles()//
+				.bearable()//
 				.size());
 	}
 
@@ -98,6 +98,6 @@ public final class SumOfEmissionsTest {
 	}
 
 	private Failed failure(ConditionPack pack) {
-		return new Emission.Failed(pack, new BaseFailureDiagnostic(new TroubleCode.Of(0, "0"), "")); //$NON-NLS-1$ //$NON-NLS-2$
+		return new Emission.Failed(pack, new BaseDiagnostic(new TroubleCode.Of(0, "0"), "")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

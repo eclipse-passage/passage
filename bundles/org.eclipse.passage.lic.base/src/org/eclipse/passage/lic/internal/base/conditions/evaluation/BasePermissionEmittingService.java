@@ -36,11 +36,11 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseCheckFailed;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseDoesNotMatch;
-import org.eclipse.passage.lic.internal.api.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseFailureDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 @SuppressWarnings("restriction")
@@ -88,7 +88,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 			expressionIsSatisfied(condition);
 		} catch (ExpressionParsingException e) {
 			return new Emission.Failed(pack, //
-					new BaseFailureDiagnostic(//
+					new BaseDiagnostic(//
 							new LicenseInvalid(), //
 							String.format(
 									ConditionsEvaluationMessages
@@ -97,7 +97,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							e));
 		} catch (ExpressionEvaluationException e) {
 			return new Emission.Failed(pack, //
-					new BaseFailureDiagnostic(//
+					new BaseDiagnostic(//
 							new LicenseDoesNotMatch(), //
 							String.format(
 									ConditionsEvaluationMessages
@@ -106,7 +106,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							e));
 		} catch (LicensingException e) {
 			return new Emission.Failed(pack, //
-					new BaseFailureDiagnostic(//
+					new BaseDiagnostic(//
 							new LicenseCheckFailed(), //
 							String.format(
 									ConditionsEvaluationMessages.getString("BasePermissionEmittingService.failed"), // //$NON-NLS-1$
