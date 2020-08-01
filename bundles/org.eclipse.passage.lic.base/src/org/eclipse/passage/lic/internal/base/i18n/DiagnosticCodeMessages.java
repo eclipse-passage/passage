@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public final class DiagnosticCodeMessages {
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages"; //$NON-NLS-1$
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private DiagnosticCodeMessages() {

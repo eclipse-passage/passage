@@ -13,24 +13,29 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-/**
- * Top-level access cycle
- */
-public final class Access {
+@SuppressWarnings("restriction")
+final class Allow extends Cycle<Boolean> {
 
-	private final Framework framework;
-
-	public Access(Framework framework) {
-		this.framework = framework;
+	Allow(Framework framework, String feature) {
+		super(framework, feature);
 	}
 
-	public boolean canUse(String feature) {
-		return new Allow(framework, feature).apply();
+	@Override
+	protected Boolean stop(Diagnostic diagnostic) {
+		return false;
 	}
 
-	public void check(String feature) {
-		new Expose(framework, feature).apply();
+	@Override
+	protected Boolean stop(ExaminationCertificate certificate, Diagnostic diagnostic) {
+		return new NoSevereRestrictions().test(certificate);
+	}
+
+	@Override
+	protected Boolean freeWayOut() {
+		return true;
 	}
 
 }

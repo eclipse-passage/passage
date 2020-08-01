@@ -17,17 +17,22 @@ import java.util.Collections;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 
 /**
  * FIXME: Has public visibility only for testing.
  */
-public final class Requirements implements Supplier<Collection<Requirement>> {
+@SuppressWarnings("restriction")
+public final class Requirements implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Registry<StringServiceId, ResolvedRequirements> registry;
 	private final String feature;
@@ -38,18 +43,15 @@ public final class Requirements implements Supplier<Collection<Requirement>> {
 	}
 
 	@Override
-	public Collection<Requirement> get() {
-		Collection<ResolvedRequirements> services = registry.services();
-		if (!services.isEmpty()) {
-			return services.stream() //
-					.map(ResolvedRequirements.Smart::new) //
-					.flatMap(service -> service.forFeature(feature).stream()) //
-					.collect(Collectors.toSet());
+	public ServiceInvocationResult<Collection<Requirement>> get() {
+		if (registry.services().isEmpty()) {
+			return new BaseServiceInvocationResult<Collection<Requirement>>(//
+					new Trouble(//
+							new NoServicesOfType("requirement resolution"), //$NON-NLS-1$
+							BaseMessages.getString("Requirements.failed"))); //$NON-NLS-1$
 		}
-		return Collections.singleton(new UnsatisfiableRequirement(//
-				BaseMessages.getString("Requirements.mandatory_requirements_resolvers_demand"), //$NON-NLS-1$
-				BaseMessages.getString("Requirements.mandatory_requirements_resolvers_demand_author") //$NON-NLS-1$
-		).get());
-	}
+			return registry.services().stream() //
+					.map(ResolvedRequirements::all) //
+					.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()));
 
 }

@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
@@ -28,7 +29,7 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
  * FIXME: Has public visibility only for testing.
  */
 @SuppressWarnings("restriction")
-public final class Permissions implements Supplier<Collection<Permission>> {
+public final class Permissions implements Supplier<ServiceInvocationResult<Collection<Permission>>> {
 
 	private final Registry<StringServiceId, PermissionEmittingService> registry;
 	private final Collection<ConditionPack> conditions;
@@ -42,7 +43,7 @@ public final class Permissions implements Supplier<Collection<Permission>> {
 	}
 
 	@Override
-	public Collection<Permission> get() {
+	public ServiceInvocationResult<Collection<Permission>> get() {
 		return registry.services().stream() //
 				.map(service -> service.emit(conditions, product))//
 				.flatMap(Collection::stream) //

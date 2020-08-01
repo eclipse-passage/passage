@@ -10,27 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-/**
- * Top-level access cycle
- */
-public final class Access {
+@SuppressWarnings("restriction")
+public final class NoServicesOfType extends TroubleCode {
 
-	private final Framework framework;
-
-	public Access(Framework framework) {
-		this.framework = framework;
-	}
-
-	public boolean canUse(String feature) {
-		return new Allow(framework, feature).apply();
-	}
-
-	public void check(String feature) {
-		new Expose(framework, feature).apply();
+	public NoServicesOfType(String type) {
+		super(102, String.format(//
+				DiagnosticCodeMessages.getString("NoServices.explanation"), type)); //$NON-NLS-1$
 	}
 
 }
