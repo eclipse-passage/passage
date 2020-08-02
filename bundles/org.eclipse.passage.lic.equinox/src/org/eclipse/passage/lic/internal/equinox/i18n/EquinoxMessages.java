@@ -23,9 +23,6 @@ public class EquinoxMessages extends NLS {
 	public static String EquinoxPassage_no_framework;
 
 	public static String EquinoxPaths_uri_retrieval_error;
-	public static String EquinoxRestrictions_feature_is_licensed;
-	public static String EquinoxRestrictions_feature_is_not_licensed;
-	public static String EquinoxRestrictions_title;
 	public static String ComponentConfigurationResolver_error_invalid_bundle_context;
 	public static String ComponentConfigurationResolver_error_invalid_component_rt;
 	public static String ComponentRequirements_error_no_resource;
