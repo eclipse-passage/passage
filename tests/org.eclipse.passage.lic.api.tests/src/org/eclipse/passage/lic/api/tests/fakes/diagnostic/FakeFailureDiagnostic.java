@@ -25,4 +25,9 @@ public final class FakeFailureDiagnostic implements Diagnostic {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public List<Trouble> severe() {
+		throw new UnsupportedOperationException();
+	}
+
 }

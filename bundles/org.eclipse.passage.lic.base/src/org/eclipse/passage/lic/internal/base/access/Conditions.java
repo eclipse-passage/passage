@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.FeatureFilter;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.conditions.FeatureConditionPack;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;

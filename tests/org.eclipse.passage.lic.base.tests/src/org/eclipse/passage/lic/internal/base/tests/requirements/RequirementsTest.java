@@ -17,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.access.Requirements;
 import org.junit.Test;
@@ -26,10 +27,13 @@ public final class RequirementsTest {
 
 	@Test
 	public void noResolversMeansNoAccess() {
-		Collection<Requirement> requirements = new Requirements(//
+		ServiceInvocationResult<Collection<Requirement>> result = new Requirements(//
 				new SabotagedFramework().accessCycleConfiguration().requirementResolvers().get(), //
 				"feature0" //$NON-NLS-1$
 		).get();
+		assertTrue(result.diagnostic().severe().isEmpty());
+		assertTrue(result.data().isPresent());
+		Collection<Requirement> requirements = result.data().get();
 		assertEquals(1, requirements.size());
 		assertTrue(new Unsatisfiable().test(requirements.iterator().next()));
 	}

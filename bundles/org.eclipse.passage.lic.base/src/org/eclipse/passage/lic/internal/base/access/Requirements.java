@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -26,6 +25,7 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
+import org.eclipse.passage.lic.internal.base.requirements.RequirementsFeatureFilter;
 
 /**
  * FIXME: Has public visibility only for testing.
@@ -52,12 +52,8 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 		return registry.services().stream() //
 				.map(ResolvedRequirements::all) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
-				.map(new FeatureFilter<Requirement>(feature, this::filtered))//
+				.map(new RequirementsFeatureFilter(feature).get())//
 				.get(); // always exists
-	}
-
-	private Optional<Requirement> filtered(Requirement origin, String incoming) {
-		return incoming.equals(origin.feature().identifier()) ? Optional.of(origin) : Optional.empty();
 	}
 
 }

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,15 +20,14 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-final class FeatureFilter<T>
+public final class FeatureFilter<T>
 		implements Function<ServiceInvocationResult<Collection<T>>, ServiceInvocationResult<Collection<T>>> {
 
 	private final String feature;
 	private final BiFunction<T, String, Optional<T>> map;
 
-	FeatureFilter(String feature, BiFunction<T, String, Optional<T>> map) {
+	public FeatureFilter(String feature, BiFunction<T, String, Optional<T>> map) {
 		this.feature = feature;
 		this.map = map;
 	}

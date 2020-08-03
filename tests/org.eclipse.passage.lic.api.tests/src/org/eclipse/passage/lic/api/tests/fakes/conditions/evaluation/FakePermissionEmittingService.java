@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
@@ -29,7 +30,8 @@ public final class FakePermissionEmittingService implements PermissionEmittingSe
 	}
 
 	@Override
-	public Collection<Emission> emit(Collection<ConditionPack> conditions, LicensedProduct product) {
+	public ServiceInvocationResult<Collection<Emission>> emit(Collection<ConditionPack> conditions,
+			LicensedProduct product) {
 		throw new UnsupportedOperationException();
 	}
 
