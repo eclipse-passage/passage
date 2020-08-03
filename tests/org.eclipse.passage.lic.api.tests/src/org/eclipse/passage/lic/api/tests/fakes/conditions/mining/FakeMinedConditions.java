@@ -13,11 +13,10 @@
 package org.eclipse.passage.lic.api.tests.fakes.conditions.mining;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
@@ -30,8 +29,8 @@ public final class FakeMinedConditions implements MinedConditions {
 	}
 
 	@Override
-	public Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException {
-		return Collections.emptySet();
+	public ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product) {
+		throw new UnsupportedOperationException();
 	}
 
 }

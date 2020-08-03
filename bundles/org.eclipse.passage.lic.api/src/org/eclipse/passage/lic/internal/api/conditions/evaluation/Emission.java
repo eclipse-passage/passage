@@ -39,6 +39,9 @@ public final class Emission {
 		Objects.requireNonNull(permissions, "Emission::permissions"); //$NON-NLS-1$
 		this.pack = pack;
 		this.permissions = permissions;
+		if (permissions.stream().anyMatch(Objects::isNull)) {
+			throw new IllegalArgumentException("Null permissions have no sence"); //$NON-NLS-1$
+		}
 	}
 
 	public final ConditionPack conditionPack() {

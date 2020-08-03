@@ -22,9 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.UserRole;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.NamedData;
@@ -68,7 +68,7 @@ public final class RemoteConditionsRequestTest {
 	private URL url() {
 		try {
 			return new RemoteConditionsRequest(product(), folder.getRoot()::toPath).url();
-		} catch (ConditionMiningException e) {
+		} catch (LicensingException e) {
 			fail("Url composition on valid parameters must succssed"); //$NON-NLS-1$
 			throw new RuntimeException(e); // unreachable
 		}

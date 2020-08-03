@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -25,14 +24,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
@@ -53,38 +50,30 @@ public final class LocalConditionsTest {
 		List<String> features = Arrays.asList("A", "B", "C"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 		writePseudoLicenseFile(features);
 		Spy spy = new Spy();
-		Collection<ConditionPack> condition;
 		// when
-		try {
-			condition = new TempFolderResidentConditions(//
-					folder.getRoot().toPath(), equipment(spy), spy)//
-							.all(product());
-		} catch (ConditionMiningException e) {
-			fail("Local conition mining on the valid infrastructure and data is not supposed to fail"); //$NON-NLS-1$
-			throw new RuntimeException(); // unreachable
-		}
+		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
+				new TempFolderResidentConditions(//
+						folder.getRoot().toPath(), equipment(spy)).all(product());
 		// then
-		assertNoPerLicenseExceptions(spy);
 		assertCrutialServicesHaveBeenProperlyInvolved(spy);
-		assertMiningResultsAreOk(features, condition);
+		assertMiningResultsAreOk(features, conditions);
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void miningPathIsMandatoryOnRuntime() throws ConditionMiningException {
-		new TempFolderResidentConditions(null, equipment(new Spy()), new Spy()).all(product());
+	public void miningPathIsMandatoryOnRuntime() {
+		new TempFolderResidentConditions(null, equipment(new Spy())).all(product());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void miningEquipmentIsMandatory() {
-		new TempFolderResidentConditions(Paths.get("."), null, new Spy()); //$NON-NLS-1$
+		new TempFolderResidentConditions(Paths.get("."), null); //$NON-NLS-1$
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void perLicenseExceptionHandlerIsMandatory() {
-		new TempFolderResidentConditions(Paths.get("."), equipment(new Spy()), null); //$NON-NLS-1$
-	}
-
-	private void assertMiningResultsAreOk(List<String> features, Collection<ConditionPack> packs) {
+	private void assertMiningResultsAreOk(List<String> features,
+			ServiceInvocationResult<Collection<ConditionPack>> result) {
+		assertTrue(result.diagnostic().severe().isEmpty());
+		assertTrue(result.data().isPresent());
+		Collection<ConditionPack> packs = result.data().get();
 		assertEquals(1, packs.size());
 		Collection<Condition> conditions = packs.iterator().next().conditions();
 		assertEquals(features.size(), conditions.size());
@@ -93,10 +82,6 @@ public final class LocalConditionsTest {
 				conditions.stream()//
 						.map(Condition::feature)//
 						.collect(Collectors.toSet()));
-	}
-
-	private void assertNoPerLicenseExceptions(Spy spy) {
-		assertEquals(0, spy.perLicenseFailures);
 	}
 
 	private void assertCrutialServicesHaveBeenProperlyInvolved(Spy spy) {
@@ -130,12 +115,11 @@ public final class LocalConditionsTest {
 		}
 	}
 
-	static final class Spy implements Consumer<LicensingException> {
+	static final class Spy {
 
 		private boolean keyAsked = false;
 		private int decoded = 0;
 		private int transported = 0;
-		private int perLicenseFailures = 0;
 
 		void keyAsked() {
 			keyAsked = true;
@@ -149,10 +133,6 @@ public final class LocalConditionsTest {
 			transported++;
 		}
 
-		@Override
-		public void accept(LicensingException e) {
-			perLicenseFailures++;
-		}
 	}
 
 }
