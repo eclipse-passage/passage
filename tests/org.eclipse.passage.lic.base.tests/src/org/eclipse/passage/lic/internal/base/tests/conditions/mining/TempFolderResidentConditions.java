@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
 import java.nio.file.Path;
-import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
@@ -25,8 +23,8 @@ final class TempFolderResidentConditions extends LocalConditions {
 
 	private final Path root;
 
-	TempFolderResidentConditions(Path root, MiningEquipment equipment, Consumer<LicensingException> handler) {
-		super(new StringServiceId("temp-folder-conditions"), equipment, handler); //$NON-NLS-1$
+	TempFolderResidentConditions(Path root, MiningEquipment equipment) {
+		super(new StringServiceId("temp-folder-conditions"), equipment); //$NON-NLS-1$
 		this.root = root;
 	}
 

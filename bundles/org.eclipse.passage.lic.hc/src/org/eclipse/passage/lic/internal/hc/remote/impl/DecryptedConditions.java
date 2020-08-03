@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -40,29 +40,29 @@ final class DecryptedConditions implements ResponseHandler {
 	 * {@linkplain ConditionTransport} evolves to support condition packs
 	 */
 	@Override
-	public Collection<ConditionPack> read(byte[] raw, String contentType) throws ConditionMiningException {
+	public Collection<ConditionPack> read(byte[] raw, String contentType) throws LicensingException {
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(keyDecoded(base64Decoded(raw)))) {
 			return Collections.singleton(//
 					new BaseConditionPack(//
 							"net", //$NON-NLS-1$
 							transport(new ContentType.Of(contentType)).read(stream)));
 		} catch (IOException e) {
-			throw new ConditionMiningException(HcMessages.DecryptedConditions_reading_error, e);
+			throw new LicensingException(HcMessages.DecryptedConditions_reading_error, e);
 		}
 	}
 
-	private byte[] base64Decoded(byte[] raw) throws ConditionMiningException {
+	private byte[] base64Decoded(byte[] raw) throws LicensingException {
 		return raw; // FIXME: implement
 	}
 
-	private byte[] keyDecoded(byte[] data) throws ConditionMiningException {
+	private byte[] keyDecoded(byte[] data) throws LicensingException {
 		return data; // FIXME: implement
 	}
 
-	private ConditionTransport transport(ContentType contentType) throws ConditionMiningException {
+	private ConditionTransport transport(ContentType contentType) throws LicensingException {
 		if (!transports.get().hasService(contentType)) {
-			throw new ConditionMiningException(String
-					.format(HcMessages.DecryptedConditions_no_transport_for_content_type, contentType.contentType()));
+			throw new LicensingException(String.format(HcMessages.DecryptedConditions_no_transport_for_content_type,
+					contentType.contentType()));
 		}
 		return transports.get().service(contentType);
 	}

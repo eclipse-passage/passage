@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.api.conditions.mining;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.registry.Service;
@@ -60,9 +61,7 @@ public interface MinedConditions extends Service<StringServiceId> {
 	 * 
 	 * @return all the conditions gained during the mining for the given
 	 *         {@code product}.
-	 * @throws ConditionMiningException in case of any undeniable misbehavior of a
-	 *                                  mining infrastructure.
 	 */
-	Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException;
+	ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product);
 
 }

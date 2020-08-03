@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.UserRole;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
@@ -68,7 +67,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 	}
 
 	@Override
-	public URL url() throws ConditionMiningException {
+	public URL url() throws LicensingException {
 		try {
 			HostPort corrdinates = new LicensingServerCoordinates(settings).get();
 			return new URL("http", //$NON-NLS-1$
@@ -79,7 +78,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 				| NumberFormatException //
 				| MalformedURLException //
 				| UnsupportedEncodingException e) {
-			throw new ConditionMiningException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
+			throw new LicensingException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
 		}
 	}
 

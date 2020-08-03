@@ -10,16 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import java.util.Collection;
-
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
 @SuppressWarnings("restriction")
-public interface Client<C> {
+public final class ServiceFailedOnMorsel extends TroubleCode {
 
-	ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<C> request, ResponseHandler miner);
+	public ServiceFailedOnMorsel() {
+		super(103, DiagnosticCodeMessages.getString("ServiceFailedOnMorsel.explanation")); //$NON-NLS-1$
+	}
 
 }

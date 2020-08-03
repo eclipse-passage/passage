@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -42,7 +43,7 @@ abstract class Cycle<T> {
 	}
 
 	T apply() {
-		return examine(this::requirements, () -> this::permissions);
+		return examine(this::requirements, this::permissions);
 	}
 
 	private T examine(Supplier<ServiceInvocationResult<Collection<Requirement>>> requirements, //
@@ -112,8 +113,9 @@ abstract class Cycle<T> {
 
 	private ServiceInvocationResult<Collection<Permission>> permissions() {
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = conditions();
-		if(failed(conditions) || empty(conditions)) {
-			return new BaseServiceInvocationResult<Collection<Permission>>(new BaseDiagnostic())
+		if (failed(conditions) || empty(conditions)) {
+			return new BaseServiceInvocationResult<Collection<Permission>>(conditions.diagnostic(),
+					Collections.emptyList());
 		}
 		return scan(new Permissions(//
 				framework.accessCycleConfiguration().permissionEmitters().get(), //

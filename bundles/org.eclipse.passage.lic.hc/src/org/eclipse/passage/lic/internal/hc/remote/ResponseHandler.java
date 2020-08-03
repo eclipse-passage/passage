@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.hc.remote;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 
 @SuppressWarnings("restriction")
 public interface ResponseHandler {
 
-	Collection<ConditionPack> read(byte[] raw, String contentType) throws ConditionMiningException;
+	Collection<ConditionPack> read(byte[] raw, String contentType) throws LicensingException;
 
 }

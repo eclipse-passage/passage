@@ -23,6 +23,11 @@ import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.SystemReporter;
 
+/**
+ * @deprecated use LocalConditions, RemoteConditions or other MinedConditions
+ *             implementations
+ */
+@Deprecated
 public abstract class BaseConditionMiner implements ConditionMiner {
 
 	protected LicensingReporter licensingReporter = SystemReporter.INSTANCE;

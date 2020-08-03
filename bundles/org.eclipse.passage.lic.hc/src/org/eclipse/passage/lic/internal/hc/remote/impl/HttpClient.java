@@ -16,8 +16,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
@@ -27,12 +30,14 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 public final class HttpClient implements Client<HttpURLConnection> {
 
 	@Override
-	public Collection<ConditionPack> remoteConditions(Request<HttpURLConnection> request, ResponseHandler miner)
-			throws ConditionMiningException {
+	public ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<HttpURLConnection> request,
+			ResponseHandler miner) {
 		try {
-			return netConditions(connection(request), miner);
+			return new BaseServiceInvocationResult<Collection<ConditionPack>>(
+					netConditions(connection(request), miner));
 		} catch (Exception e) {
-			throw new ConditionMiningException(HcMessages.HttpClient_final_error_message, e);
+			return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnInfrastructureDenial(),
+					HcMessages.HttpClient_final_error_message, e));
 		}
 	}
 

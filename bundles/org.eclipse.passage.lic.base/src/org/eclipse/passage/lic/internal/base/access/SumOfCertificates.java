@@ -17,6 +17,7 @@ import java.util.function.BinaryOperator;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
 @SuppressWarnings("restriction")

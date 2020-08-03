@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-/**
- * Cover denials of condition mining infrastructure
- */
-@SuppressWarnings("serial")
-public final class ConditionMiningException extends Exception {
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-	public ConditionMiningException(String message, Throwable cause) {
-		super(message, cause);
-	}
+@SuppressWarnings("restriction")
+public final class ServiceFailedOnInfrastructureDenial extends TroubleCode {
 
-	public ConditionMiningException(String message) {
-		super(message);
+	public ServiceFailedOnInfrastructureDenial() {
+		super(104, DiagnosticCodeMessages.getString("ServiceFailedOnInfrastructureDenial.explanation")); //$NON-NLS-1$
 	}
 
 }

@@ -17,104 +17,35 @@ import java.util.Collections;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
 /**
- * Report {@linkplain Condition}s evaluation results.
- * 
- * <p>
- * Condition evaluation, in general, can end up
- * </p>
- * <ul>
- * <li>in a set successfully emitted permissions, one per each of the given
- * conditions</li>
- * <li>or, in case of any part of evaluation fails, in complete denial with lots
- * of details.</li>
- * </ul>
- * 
- * <p>
- * Thus, working with the emission result, first check if it has been successful
- * at all ({@code Emission.failed()}) and then request either permissions or
- * failure details.
- * </p>
- * <p>
- * Any implementation must follow the contract defined in
- * {@code EmissionContractTest}
- * </p>
+ * Aggregates results of a {@linkplain ConditionPack}'s successful evaluation.
  */
-public abstract class Emission {
+public final class Emission {
 
-	private final boolean success;
 	private final ConditionPack pack;
+	private final Collection<Permission> permissions;
 
-	protected Emission(boolean success, ConditionPack pack) {
-		Objects.requireNonNull(pack, "Emission::pack"); //$NON-NLS-1$
-		this.success = success;
-		this.pack = pack;
+	public Emission(ConditionPack pack) {
+		this(pack, Collections.emptyList());
 	}
 
-	/**
-	 * Must be asked before any information (permission or failure details) is asked
-	 * for.
-	 */
-	public final boolean successful() {
-		return success;
+	public Emission(ConditionPack pack, Permission permission) {
+		this(pack, Collections.singleton(permission));
+	}
+
+	public Emission(ConditionPack pack, Collection<Permission> permissions) {
+		Objects.requireNonNull(pack, "Emission::pack"); //$NON-NLS-1$
+		Objects.requireNonNull(permissions, "Emission::permissions"); //$NON-NLS-1$
+		this.pack = pack;
+		this.permissions = permissions;
 	}
 
 	public final ConditionPack conditionPack() {
 		return pack;
 	}
 
-	public abstract Collection<Permission> permissions();
-
-	public abstract Diagnostic failureDiagnostic();
-
-	public static final class Successful extends Emission {
-
-		private final Collection<Permission> permissions;
-
-		public Successful(ConditionPack pack, Collection<Permission> permissions) {
-			super(true, pack);
-			Objects.requireNonNull(permissions, "Emission.Successful::permissions"); //$NON-NLS-1$
-			this.permissions = permissions;
-		}
-
-		public Successful(ConditionPack pack, Permission permission) {
-			this(pack, Collections.singleton(permission));
-		}
-
-		@Override
-		public Collection<Permission> permissions() {
-			return permissions;
-		}
-
-		@Override
-		public Diagnostic failureDiagnostic() {
-			throw new UnsupportedOperationException();
-		}
-
+	public Collection<Permission> permissions() {
+		return permissions;
 	}
-
-	public static final class Failed extends Emission {
-
-		private final Diagnostic diagnose;
-
-		public Failed(ConditionPack pack, Diagnostic diagnose) {
-			super(false, pack);
-			Objects.requireNonNull(diagnose, "Emission.Failed::diagnose"); //$NON-NLS-1$
-			this.diagnose = diagnose;
-		}
-
-		@Override
-		public Collection<Permission> permissions() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public Diagnostic failureDiagnostic() {
-			return diagnose;
-		}
-
-	}
-
 }

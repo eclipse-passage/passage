@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -36,32 +36,31 @@ public final class MiningEquipment {
 		this.transports = transports;
 	}
 
-	MiningTool tool(LicensedProduct product) throws ConditionMiningException {
+	MiningTool tool(LicensedProduct product) throws LicensingException {
 		return new MiningTool(key(product), codec(product), transport(product));
 	}
 
-	private KeyKeeper key(LicensedProduct product) throws ConditionMiningException {
+	private KeyKeeper key(LicensedProduct product) throws LicensingException {
 		if (!keys.get().hasService(product)) {
-			throw new ConditionMiningException(
+			throw new LicensingException(
 					String.format(BaseMessages.getString("LicenseReadingTool.error_no_key_keeper"), product)); //$NON-NLS-1$
 		}
 		return keys.get().service(product);
 	}
 
-	private StreamCodec codec(LicensedProduct product) throws ConditionMiningException {
+	private StreamCodec codec(LicensedProduct product) throws LicensingException {
 		if (!codecs.get().hasService(product)) {
-			throw new ConditionMiningException(
+			throw new LicensingException(
 					String.format(BaseMessages.getString("LicenseReadingTool.error_no_stream_codec"), product)); //$NON-NLS-1$
 		}
 		return codecs.get().service(product);
 	}
 
-	private ConditionTransport transport(LicensedProduct product) throws ConditionMiningException {
+	private ConditionTransport transport(LicensedProduct product) throws LicensingException {
 		ContentType contentType = new ContentType.Xml();
 		if (!transports.get().hasService(contentType)) {
-			throw new ConditionMiningException(
-					String.format(BaseMessages.getString("LicenseReadingTool.error_no_transport"), //$NON-NLS-1$
-							product, contentType));
+			throw new LicensingException(String.format(BaseMessages.getString("LicenseReadingTool.error_no_transport"), //$NON-NLS-1$
+					product, contentType));
 		}
 		return transports.get().service(contentType);
 	}

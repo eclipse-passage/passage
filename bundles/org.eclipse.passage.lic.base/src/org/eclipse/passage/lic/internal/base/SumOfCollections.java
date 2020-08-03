@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.BinaryOperator;
 
-final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
+public final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
 
 	@Override
 	public Collection<E> apply(Collection<E> first, Collection<E> second) {
