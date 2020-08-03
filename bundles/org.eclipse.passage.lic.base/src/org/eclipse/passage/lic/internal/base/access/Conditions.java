@@ -13,10 +13,8 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -58,26 +56,14 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 		return registry.services().stream() //
 				.map(miner -> miner.all(product)) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>()))//
-				.map(this::filter)//
+				.map(new FeatureFilter<ConditionPack>(feature, this::filtered)) //
 				.orElse(new BaseServiceInvocationResult<>());
 
 	}
 
-	private ServiceInvocationResult<Collection<ConditionPack>> filter(
-			ServiceInvocationResult<Collection<ConditionPack>> overwhelming) {
-		return new BaseServiceInvocationResult<Collection<ConditionPack>>(//
-				overwhelming.diagnostic(), //
-				filter(overwhelming.data()));
+	private Optional<ConditionPack> filtered(ConditionPack pack, String incoming) {
+		ConditionPack filtered = new FeatureConditionPack(pack, incoming);
+		return filtered.conditions().isEmpty() ? Optional.empty() : Optional.of(filtered);
 	}
 
-	private Collection<ConditionPack> filter(Optional<Collection<ConditionPack>> conditions) {
-		return conditions.map(this::filter).orElse(Collections.emptySet());
-	}
-
-	private Collection<ConditionPack> filter(Collection<ConditionPack> conditions) {
-		return conditions.stream()//
-				.map(pack -> new FeatureConditionPack(pack, feature))//
-				.filter(pack -> !pack.conditions().isEmpty()) //
-				.collect(Collectors.toSet());
-	}
 }

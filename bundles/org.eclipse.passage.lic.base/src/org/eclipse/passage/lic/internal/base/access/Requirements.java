@@ -13,9 +13,8 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Optional;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -27,7 +26,6 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
-import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 
 /**
  * FIXME: Has public visibility only for testing.
@@ -51,8 +49,15 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 							new NoServicesOfType("requirement resolution"), //$NON-NLS-1$
 							BaseMessages.getString("Requirements.failed"))); //$NON-NLS-1$
 		}
-			return registry.services().stream() //
-					.map(ResolvedRequirements::all) //
-					.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()));
+		return registry.services().stream() //
+				.map(ResolvedRequirements::all) //
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
+				.map(new FeatureFilter<Requirement>(feature, this::filtered))//
+				.get(); // always exists
+	}
+
+	private Optional<Requirement> filtered(Requirement origin, String incoming) {
+		return incoming.equals(origin.feature().identifier()) ? Optional.of(origin) : Optional.empty();
+	}
 
 }
