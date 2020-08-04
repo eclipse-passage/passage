@@ -29,8 +29,8 @@ public final class Access {
 		return new Allow(framework, feature).apply();
 	}
 
-	public void check(String feature) {
-		new Expose(framework, feature).apply();
+	public boolean check(String feature) {
+		return new Expose(framework, feature).apply();
 	}
 
 }

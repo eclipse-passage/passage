@@ -17,29 +17,29 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 @SuppressWarnings("restriction")
-final class Expose extends Cycle<Object> {
+final class Expose extends Cycle<Boolean> {
 
 	Expose(Framework framework, String feature) {
 		super(framework, feature);
 	}
 
 	@Override
-	protected Object stop(Diagnostic diagnostic) {
+	protected Boolean stop(Diagnostic diagnostic) {
 		// FIXME: build prohibitions out of severe troubles and appeal to executors
-		return new Object();
+		return new NoSevereErrors().test(diagnostic);
 	}
 
 	@Override
-	protected Object stop(ExaminationCertificate certificate, Diagnostic diagnostic) {
-		// FIXME: put certificate.participants under observation (?)
+	protected Boolean stop(ExaminationCertificate certificate, Diagnostic diagnostic) {
 		// FIXME: build out both of severe troubles and restrictions, if any, and call
 		// executors
-		return new Object();
+		return new NoSevereErrors().test(diagnostic) && //
+				new NoSevereRestrictions().test(certificate);
 	}
 
 	@Override
-	protected Object freeWayOut() {
-		return new Object();
+	protected Boolean freeWayOut() {
+		return true;
 	}
 
 }

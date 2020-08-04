@@ -14,9 +14,7 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -24,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
@@ -59,21 +58,21 @@ public final class BundleRequirements implements ResolvedRequirements {
 			return new BaseServiceInvocationResult<Collection<Requirement>>(//
 					new Trouble(new ServiceCannotOperate(), EquinoxMessages.BundleRequirements_no_context));
 		}
-		return new BaseServiceInvocationResult<Collection<Requirement>>(resolve());
+		return resolve();
 	}
 
 	private boolean sabotage() {
 		return !context.isPresent();
 	}
 
-	private Collection<Requirement> resolve() {
+	private ServiceInvocationResult<Collection<Requirement>> resolve() {
 		return Arrays.stream(context.get().getBundles())//
 				.map(RequirementsFromBundle::new)//
 				.map(RequirementsFromBundle::get) //
 				.filter(Optional::isPresent)//
 				.map(Optional::get)//
-				.flatMap(List::stream) //
-				.collect(Collectors.toList());
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
+				.orElseGet(BaseServiceInvocationResult::new);
 	}
 
 }

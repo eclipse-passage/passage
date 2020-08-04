@@ -10,23 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.tests.requirements;
+package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
 @SuppressWarnings("restriction")
-public final class Unsatisfiable implements Predicate<Requirement> {
+final class NoSevereErrors implements Predicate<Diagnostic> {
 
 	@Override
-	public boolean test(Requirement requirement) {
-		String identifier = requirement.feature().identifier();
-		if (identifier.length() < 4) {
-			return false;
-		}
-		return Long.toHexString(System.currentTimeMillis())//
-				.startsWith(identifier.substring(0, 4));
+	public boolean test(Diagnostic diagnostic) {
+		return diagnostic.severe().isEmpty();
 	}
 
 }
