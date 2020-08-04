@@ -34,7 +34,8 @@ abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContr
 	@Test
 	public void allRequirements() throws InvalidSyntaxException {
 		ServiceInvocationResult<Collection<Requirement>> requirements = service().all();
-		assertTrue(requirements.diagnostic().severe().isEmpty());
+		// we have one broken requirement without feature identifier attribute
+		assertEquals(1, requirements.diagnostic().severe().size());
 		assertTrue(requirements.data().isPresent());
 		assertTrue(requirements.data().get().stream() //
 				.collect(Collectors.toSet())//
