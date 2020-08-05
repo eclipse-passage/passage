@@ -12,27 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
-import org.eclipse.passage.lic.internal.api.Framework;
+import java.util.function.Predicate;
+
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-/**
- * Top-level access cycle
- */
-public final class Access {
+public final class CanProceed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
 
-	private final Framework framework;
-
-	public Access(Framework framework) {
-		this.framework = framework;
-	}
-
-	public boolean canUse(String feature) {
-		return new Allow(framework, feature).apply();
-	}
-
-	public ServiceInvocationResult<ExaminationCertificate> check(String feature) {
-		return new Expose(framework, feature).apply();
+	@Override
+	public boolean test(ServiceInvocationResult<ExaminationCertificate> result) {
+		return new NoSevereErrors().test(result.diagnostic()) && //
+				result.data().map(certificate -> new NoSevereRestrictions().test(certificate))//
+						.orElse(true);
 	}
 
 }

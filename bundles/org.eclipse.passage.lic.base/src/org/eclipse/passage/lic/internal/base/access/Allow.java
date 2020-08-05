@@ -24,12 +24,12 @@ final class Allow extends Cycle<Boolean> {
 	}
 
 	@Override
-	protected Boolean stop(Diagnostic diagnostic) {
+	protected Boolean stopOnError(Diagnostic diagnostic) {
 		return new NoSevereErrors().test(diagnostic);
 	}
 
 	@Override
-	protected Boolean stop(ExaminationCertificate certificate, Diagnostic diagnostic) {
+	protected Boolean stopOnCertificate(ExaminationCertificate certificate, Diagnostic diagnostic) {
 		return new NoSevereErrors().test(diagnostic) && //
 				new NoSevereRestrictions().test(certificate);
 	}
