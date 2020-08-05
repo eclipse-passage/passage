@@ -179,16 +179,6 @@ public abstract class FrameworkContractTest {
 		assertTrue(readOnly(config().examinators().get()));
 	}
 
-	@Test
-	public final void canExecuteRestrictions() {
-		assertServiceRegistryIsFunctional(config().executors().get());
-	}
-
-	@Test
-	public final void prohibitsRestrictionExecutingServicesExtension() {
-		assertTrue(readOnly(config().executors().get()));
-	}
-
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
 			Registry<I, S> registry) {
 		assertNotNull(registry);

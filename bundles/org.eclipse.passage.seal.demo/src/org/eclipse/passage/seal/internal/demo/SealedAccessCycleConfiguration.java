@@ -44,8 +44,6 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
-import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingService;
-import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingServicesRegistry;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
@@ -54,7 +52,6 @@ import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentC
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchRestrictionExecutingService;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.io.BundleKeyKeeper;
@@ -82,7 +79,6 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
-	private final Registry<StringServiceId, RestrictionExecutingService> executors;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -128,9 +124,6 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		));
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionsExaminationService()//
-		));
-		executors = new ReadOnlyRegistry<>(Arrays.asList(//
-				new WorkbenchRestrictionExecutingService()//
 		));
 	}
 
@@ -191,11 +184,6 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	@Override
 	public PermissionsExaminationServicesRegistry examinators() {
 		return () -> examinators;
-	}
-
-	@Override
-	public RestrictionExecutingServicesRegistry executors() {
-		return () -> executors;
 	}
 
 }

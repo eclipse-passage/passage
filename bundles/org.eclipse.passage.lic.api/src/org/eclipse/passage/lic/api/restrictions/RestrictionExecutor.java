@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api.restrictions;
 
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingService;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  *
@@ -22,7 +22,11 @@ import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionEx
  * 
  * @since 0.4.0
  * @see org.eclipse.passage.lic.api
- * @deprecated use {@link RestrictionExecutingService}
+ * @deprecated Restriction execution is not part of access cycle anymore. It is
+ *             now designed as a set of developer's facilities for
+ *             {@linkplain Diagnostic} and {@linkplain ExaminationCertificate}
+ *             analysis as well as for performing some predefined restrictive
+ *             actions.
  */
 @Deprecated
 public interface RestrictionExecutor {
