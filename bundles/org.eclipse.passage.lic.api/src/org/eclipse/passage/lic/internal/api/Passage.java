@@ -12,9 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.api.restrictions.RestrictionExecutor;
-import org.eclipse.passage.lic.api.restrictions.RestrictionVerdict;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * <p>
@@ -27,12 +28,9 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 public interface Passage {
 
 	/**
-	 * FIXME: add `see` to (1) dedicated parts of the new version of AccessManager
-	 * (2) licensing dialog
-	 * 
 	 * <p>
-	 * Direct access to full access cycle up to all found restrictions execution.
-	 * Can cause UI interference in the form of Licensing dialog.
+	 * Full feathered access cycle invocation returns complete set of data and
+	 * diagnostics to take an informed decision
 	 * <p>
 	 * 
 	 * <p>
@@ -43,31 +41,51 @@ public interface Passage {
 	 * @param feature string identifier of the feature under licensing.
 	 * @see org.eclipse.passage.lic.api
 	 */
-	void checkLicense(String feature);
+	ServiceInvocationResult<ExaminationCertificate> checkLicense(String feature);
 
 	/**
-	 * FIXME: add `see` to dedicated parts of the new version of AccessManager
 	 * <p>
-	 * Headless way to check if the given {@code feature} is properly licensed. No
-	 * actual {@linkplain RestrictionExecutor}s are going to be involved. FIXME:
-	 * point to particular place in access cycle
+	 * Ask Passage if a product user has enough license coverage to exploit the
+	 * given {@code feature}. Access cycle invocation is simplified to be called in
+	 * a headless environment.
 	 * </p>
+	 * <p>
+	 * The full-feathered response is reduced to simple boolean value according to
+	 * the following rules:
+	 * </p>
+	 * <ul>
+	 * <li>If there is no {@linkplain Requirement} a product defined for the
+	 * feature, then the answer is {@code true} - the feature can be used.</li>
+	 * <li>IF not all the defined {@linkplain Requirement}s found for the feature
+	 * are satisfied by user's license coverage, then we look at how severe are
+	 * those which stay unsatisfied. If these are only of {@code info} or @{cod
+	 * warning} restriction levels, then the feature can be used and the answer is
+	 * again {@code true}</li>
+	 * <li>Is it's not the case, or if the Passage Framework suspects sabotage or is
+	 * poorly configured and cannot properly operate, then the answer is
+	 * {@code false} and the feature cannot be used.</li>
+	 * </ul>
 	 * <p>
 	 * Use it in the case you cannot afford full feather License Dialog appearance.
 	 * Like to implement {@code action::isEnabled} of sorts or to guide simple
-	 * control flow. FIXME: samples
+	 * control flow.
 	 * </p>
 	 * 
 	 * @param feature string identifier of the feature under licensing.
-	 * @return true if license check found all licensing requirements satisfied and
-	 *         found no restrictions. Any restrictions discovered starting from
-	 *         {@code warning} up to {@code fatal} causes {@code false} to be
-	 *         returned here. FIXME explain where to get these codes.
+	 * @return {@code true} if the given {@code feature} can be used and
+	 *         {@code false} otherwise
 	 * 
 	 * @see Requirement
-	 * @see RestrictionVerdict
+	 * @see Restriction
+	 * @see RestrictionLevel
 	 * @see org.eclipse.passage.lic.api
 	 */
 	boolean canUse(String feature);
+
+	/**
+	 * Get the product identification found and used by Passage across all the
+	 * access cycle phases
+	 */
+	ServiceInvocationResult<LicensedProduct> product();
 
 }

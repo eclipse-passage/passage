@@ -14,15 +14,33 @@ package org.eclipse.passage.lic.internal.api.restrictions;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+
 /**
  * <p>
  * Severity of a licensing requirement and, accordingly, restriction verdict.
+ * It's up to a product developer to define semantics of a restriction level. By
+ * default we supply
+ * </p>
+ * <ul>
+ * <li>{@code info} level. It a requirement of this level is not satisfied, then
+ * a product user should be somehow notified of this fact without pausing
+ * workflow.</li>
+ * <li>{@code warn} level: unsatisfied requirement of this type should cause a
+ * feature execution postponing</li>
+ * <li>{@code error} level: feature usage should be stopped
+ * <li>
+ * <li>{@code fatal} level: the whole product usage must be stopped
+ * <li>
+ * </ul>
+ * <p>
+ * These treatment can be redesigned according to a product development demands.
  * </p>
  * <p>
  * Designed to be a <i>data-class</i>.
  * </p>
  */
-public abstract class RestrictionLevel {
+public abstract class RestrictionLevel implements ServiceId {
 
 	private final String identifier;
 

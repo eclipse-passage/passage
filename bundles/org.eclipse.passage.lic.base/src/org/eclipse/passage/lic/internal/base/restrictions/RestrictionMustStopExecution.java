@@ -10,25 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api.tests.fakes.restrictions;
+package org.eclipse.passage.lic.internal.base.restrictions;
 
-import java.util.Collection;
+import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.api.restrictions.execution.RestrictionExecutingService;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevelComparator;
 
-@SuppressWarnings("restriction")
-public class FakeRestrictionExecutingService implements RestrictionExecutingService {
-
-	@Override
-	public StringServiceId id() {
-		throw new UnsupportedOperationException();
-	}
+public final class RestrictionMustStopExecution implements Predicate<Restriction> {
 
 	@Override
-	public void execute(Collection<Restriction> restrictions) {
-		throw new UnsupportedOperationException();
+	public boolean test(Restriction restriction) {
+		return new RestrictionLevelComparator().compare(//
+				new RestrictionLevel.Error(), //
+				restriction.unsatisfiedRequirement().restrictionLevel())//
+				<= 0;
 	}
 
 }

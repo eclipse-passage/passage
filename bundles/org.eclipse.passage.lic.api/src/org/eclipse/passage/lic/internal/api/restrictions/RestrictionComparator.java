@@ -10,16 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.restrictions.execution;
+package org.eclipse.passage.lic.internal.api.restrictions;
 
-import java.util.Collection;
+import java.util.Comparator;
 
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+public final class RestrictionComparator implements Comparator<Restriction> {
 
-public interface RestrictionExecutingService extends Service<StringServiceId> {
+	@Override
+	public int compare(Restriction left, Restriction right) {
+		return new RestrictionLevelComparator().compare(level(left), level(right));
+	}
 
-	void execute(Collection<Restriction> restrictions);
+	private RestrictionLevel level(Restriction restriction) {
+		return restriction.unsatisfiedRequirement().restrictionLevel();
+	}
 
 }

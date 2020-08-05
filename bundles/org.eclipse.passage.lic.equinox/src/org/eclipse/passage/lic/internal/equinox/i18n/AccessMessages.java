@@ -10,14 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.restrictions.execution;
+package org.eclipse.passage.lic.internal.equinox.i18n;
 
-import java.util.function.Supplier;
+import org.eclipse.osgi.util.NLS;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+public class AccessMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages"; //$NON-NLS-1$
+	public static String EquinoxPassage_no_framewrok;
+	static {
+		// initialize resource bundle
+		NLS.initializeMessages(BUNDLE_NAME, AccessMessages.class);
+	}
 
-public interface RestrictionExecutingServicesRegistry
-		extends Supplier<Registry<StringServiceId, RestrictionExecutingService>> {
-
+	private AccessMessages() {
+	}
 }

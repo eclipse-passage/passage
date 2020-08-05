@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.demo.tests.registries;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import java.util.Optional;
-
-import org.eclipse.passage.lic.api.tests.RestrictionExecutingServicesRegitryTest;
-import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
 @SuppressWarnings("restriction")
-public final class SealedRestrictionExecutingServicesRegistryTest extends RestrictionExecutingServicesRegitryTest {
+public final class NoFramework extends TroubleCode {
 
-	@Override
-	protected Optional<Framework> framework() {
-		return new DemoFrameworkSupplier().get();
+	public NoFramework() {
+		super(100, DiagnosticCodeMessages.getString("NoFramework.explanation")); //$NON-NLS-1$
 	}
 
 }
