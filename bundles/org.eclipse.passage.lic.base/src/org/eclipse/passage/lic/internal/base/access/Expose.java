@@ -13,33 +13,32 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 @SuppressWarnings("restriction")
-final class Expose extends Cycle<Boolean> {
+final class Expose extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
 	Expose(Framework framework, String feature) {
 		super(framework, feature);
 	}
 
 	@Override
-	protected Boolean stop(Diagnostic diagnostic) {
-		// FIXME: build prohibitions out of severe troubles and appeal to executors
-		return new NoSevereErrors().test(diagnostic);
+	protected ServiceInvocationResult<ExaminationCertificate> stopOnError(Diagnostic diagnostic) {
+		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic);
 	}
 
 	@Override
-	protected Boolean stop(ExaminationCertificate certificate, Diagnostic diagnostic) {
-		// FIXME: build out both of severe troubles and restrictions, if any, and call
-		// executors
-		return new NoSevereErrors().test(diagnostic) && //
-				new NoSevereRestrictions().test(certificate);
+	protected ServiceInvocationResult<ExaminationCertificate> stopOnCertificate(ExaminationCertificate certificate,
+			Diagnostic diagnostic) {
+		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic, certificate);
 	}
 
 	@Override
-	protected Boolean freeWayOut() {
-		return true;
+	protected ServiceInvocationResult<ExaminationCertificate> freeWayOut() {
+		return new BaseServiceInvocationResult<ExaminationCertificate>();
 	}
 
 }

@@ -39,7 +39,7 @@ abstract class Cycle<T> {
 	Cycle(Framework framework, String feature) {
 		this.framework = framework;
 		this.feature = feature;
-		diagnostics = new ArrayList<>();
+		this.diagnostics = new ArrayList<>();
 	}
 
 	T apply() {
@@ -52,15 +52,17 @@ abstract class Cycle<T> {
 		if (failed(reqs)) {
 			return stop();
 		}
-		if (empty(reqs)) { // avoid heavy operations below
+		if (empty(reqs)) {
+			// no requirements means no restrictions anyway, which is always green light,
+			// we just want to avoid heavy operations below
 			return freeWayOut();
 		}
 		ServiceInvocationResult<Collection<Permission>> perms = permissions.get();
 		if (failed(perms)) {
 			return stop();
 		}
-		ServiceInvocationResult<ExaminationCertificate> examination = restrictions(reqs.data().get(),
-				perms.data().get());
+		ServiceInvocationResult<ExaminationCertificate> examination = //
+				restrictions(reqs.data().get(), perms.data().get());
 		if (failed(examination)) {
 			return stop();
 		}
@@ -68,16 +70,25 @@ abstract class Cycle<T> {
 	}
 
 	private T stop() {
-		return stop(diagnostic());
+		return stopOnError(diagnostic());
 	}
 
 	private T stop(ExaminationCertificate certificate) {
-		return stop(certificate, diagnostic());
+		return stopOnCertificate(certificate, diagnostic());
 	}
 
-	protected abstract T stop(Diagnostic diagnostic);
+	/**
+	 * Severe error cannot be fixed by new data (say, imported license). It must
+	 * cause unavoidable denial, but for user's sake we'd like to expose the state
+	 * of affairs to support one with the failure reason information.
+	 */
+	protected abstract T stopOnError(Diagnostic diagnostic);
 
-	protected abstract T stop(ExaminationCertificate certificate, Diagnostic diagnostic);
+	/**
+	 * We successfully made it to and through the examination, and even have got a
+	 * certificate!
+	 */
+	protected abstract T stopOnCertificate(ExaminationCertificate certificate, Diagnostic diagnostic);
 
 	protected abstract T freeWayOut();
 
