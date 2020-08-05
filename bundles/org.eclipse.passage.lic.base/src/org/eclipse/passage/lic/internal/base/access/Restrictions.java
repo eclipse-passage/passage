@@ -16,12 +16,17 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
+import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 @SuppressWarnings("restriction")
 public final class Restrictions implements Supplier<ServiceInvocationResult<ExaminationCertificate>> {
@@ -42,13 +47,15 @@ public final class Restrictions implements Supplier<ServiceInvocationResult<Exam
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> get() {
 		if (registry.services().isEmpty()) {
-			return new ServiceInvocationResult.Error<>();
+			return new BaseServiceInvocationResult<ExaminationCertificate>( //
+					new Trouble(//
+							new NoServicesOfType(AccessCycleMessages.getString("Restrictions.type")), // //$NON-NLS-1$
+							AccessCycleMessages.getString("Restrictions.no_services"))); //$NON-NLS-1$
 		}
-		return new ServiceInvocationResult.Success<>(//
+		return new BaseServiceInvocationResult<ExaminationCertificate>(//
 				registry.services().stream()//
 						.map(service -> service.examine(requirements, permissions, product)) //
-						.reduce(new SumOfCertificates()) //
-						.get() // always exists
+						.reduce(new SumOfCertificates())//
 		);
 	}
 

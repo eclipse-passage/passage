@@ -10,15 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.internal.base.access;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages;
+import java.util.function.Predicate;
 
-public final class LicenseNotStarted extends TroubleCode {
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
-	public LicenseNotStarted() {
-		super(403, DiagnosticCodeMessages.getString("LicenseNotStarted.license_not_started")); //$NON-NLS-1$
+@SuppressWarnings("restriction")
+final class NoSevereErrors implements Predicate<Diagnostic> {
+
+	@Override
+	public boolean test(Diagnostic diagnostic) {
+		return diagnostic.severe().isEmpty();
 	}
 
 }

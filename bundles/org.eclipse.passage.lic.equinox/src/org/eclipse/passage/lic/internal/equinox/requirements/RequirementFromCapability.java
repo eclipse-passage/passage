@@ -12,18 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
-import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
+import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
+import org.eclipse.passage.lic.internal.base.version.SafeVersion;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
@@ -36,7 +42,7 @@ import org.osgi.framework.wiring.BundleCapability;
  * @see BundleRequirements
  */
 @SuppressWarnings("restriction")
-final class RequirementFromCapability implements Supplier<Requirement> {
+final class RequirementFromCapability implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Bundle bundle;
 	private final BundleCapability capability;
@@ -47,22 +53,24 @@ final class RequirementFromCapability implements Supplier<Requirement> {
 	}
 
 	@Override
-	public Requirement get() {
+	public ServiceInvocationResult<Collection<Requirement>> get() {
 		Optional<Map<String, Object>> attributes = Optional.ofNullable(capability.getAttributes());
 		if (!attributes.isPresent()) {
-			return requirementForAttributes();
+			return fail(NLS.bind(EquinoxMessages.RequirementsFromCapability_no_attributes, //
+					capability.getNamespace(), new BundleName(bundle).get()));
 		}
 		Optional<String> feature = new CapabilityLicFeatureId(attributes.get()).get();
 		if (!feature.isPresent()) {
-			return requirementForFeatureIdentifier();
+			return fail(NLS.bind(EquinoxMessages.RequirementsFromCapability_no_feature_id, //
+					capability.getNamespace(), new BundleName(bundle).get()));
 		}
-		return requirementFromAttributes(feature.get(), attributes.get());
+		return succeed(requirementFromAttributes(feature.get(), attributes.get()));
 	}
 
 	private Requirement requirementFromAttributes(String feature, Map<String, Object> attributes) {
 		String version = new CapabilityLicFeatureVersion(attributes).get()//
-				.map(LicensingVersions::toVersionValue)//
-				.orElse(LicensingVersions.VERSION_DEFAULT);
+				.map(value -> new SafeVersion(value).value())//
+				.orElse(new DefaultVersion().value());
 		String name = new CapabilityLicFeatureName(attributes).get()//
 				.orElse(feature);
 		String provider = new CapabilityLicFeatureProvider(attributes).get()//
@@ -77,21 +85,11 @@ final class RequirementFromCapability implements Supplier<Requirement> {
 		return requirement;
 	}
 
-	private Requirement requirementForAttributes() {
-		return new UnsatisfiableRequirement(//
-				NLS.bind(EquinoxMessages.RequirementsFromCapability_no_attributes, //
-						capability.getNamespace(), new BundleName(bundle).get()), //
-				bundle//
-		).get();
+	private ServiceInvocationResult<Collection<Requirement>> fail(String explanation) {
+		return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnMorsel(), explanation));
 	}
 
-	private Requirement requirementForFeatureIdentifier() {
-		return new UnsatisfiableRequirement(//
-				NLS.bind(EquinoxMessages.RequirementsFromCapability_no_feature_id, //
-						capability.getNamespace(), //
-						new BundleName(bundle).get()), //
-				bundle //
-		).get();
+	private ServiceInvocationResult<Collection<Requirement>> succeed(Requirement requirement) {
+		return new BaseServiceInvocationResult<>(Collections.singleton(requirement));
 	}
-
 }

@@ -10,15 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.internal.base;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.BinaryOperator;
 
-public final class LicenseExpired extends TroubleCode {
+public final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
 
-	public LicenseExpired() {
-		super(403, DiagnosticCodeMessages.getString("LicenseExpired.license_expired")); //$NON-NLS-1$
+	@Override
+	public Collection<E> apply(Collection<E> first, Collection<E> second) {
+		ArrayList<E> sum = new ArrayList<>(first.size() + second.size());
+		sum.addAll(first);
+		sum.addAll(second);
+		return sum;
 	}
 
 }

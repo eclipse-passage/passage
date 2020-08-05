@@ -10,15 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.internal.base.diagnostic;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BinaryOperator;
 
-public final class LicenseDoesNotMatch extends TroubleCode {
+public final class SumOfLists<E> implements BinaryOperator<List<E>> {
 
-	public LicenseDoesNotMatch() {
-		super(403, DiagnosticCodeMessages.getString("LicenseDoesNotMatch.license_does_not_match")); //$NON-NLS-1$
+	@Override
+	public List<E> apply(List<E> first, List<E> second) {
+		ArrayList<E> sum = new ArrayList<>(first.size() + second.size());
+		sum.addAll(first);
+		sum.addAll(second);
+		return sum;
 	}
 
 }

@@ -15,16 +15,18 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
+import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
@@ -41,15 +43,12 @@ public abstract class LocalConditions implements MinedConditions {
 
 	private final StringServiceId id;
 	private final MiningEquipment equipment;
-	private final Consumer<LicensingException> handler;
 
-	protected LocalConditions(StringServiceId id, MiningEquipment equipment, Consumer<LicensingException> handler) {
-		Objects.requireNonNull(id);
-		Objects.requireNonNull(equipment);
-		Objects.requireNonNull(handler);
+	protected LocalConditions(StringServiceId id, MiningEquipment equipment) {
+		Objects.requireNonNull(id, getClass().getSimpleName() + "::id"); //$NON-NLS-1$
+		Objects.requireNonNull(equipment, getClass().getSimpleName() + "::equipment"); //$NON-NLS-1$
 		this.id = id;
 		this.equipment = equipment;
-		this.handler = handler;
 	}
 
 	@Override
@@ -58,18 +57,21 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	@Override
-	public final Collection<ConditionPack> all(LicensedProduct product) throws ConditionMiningException {
-		return equipment.tool(product).mine(licenses(product), handler);
+	public final ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product) {
+		try {
+			return equipment.tool(product).mine(licenses(product));
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<Collection<ConditionPack>>( //
+					new Trouble(//
+							new ServiceFailedOnInfrastructureDenial(), //
+							ConditionMiningMessages.getString("LocalConditions.failed"), //$NON-NLS-1$
+							e));
+		}
 	}
 
-	private Collection<Path> licenses(LicensedProduct product) throws ConditionMiningException {
-		try {
-			return new FileCollection(new PathFromLicensedProduct(this::base, product),
-					new PassageFileExtension.LicenseEncrypted()).get();
-		} catch (LicensingException e) {
-			throw new ConditionMiningException(//
-					String.format(BaseMessages.getString("LocalConditions.failure"), id, product), e); //$NON-NLS-1$
-		}
+	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {
+		return new FileCollection(new PathFromLicensedProduct(this::base, product),
+				new PassageFileExtension.LicenseEncrypted()).get();
 	}
 
 	protected abstract Path base();

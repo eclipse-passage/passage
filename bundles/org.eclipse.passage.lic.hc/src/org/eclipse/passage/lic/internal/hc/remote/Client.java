@@ -14,13 +14,12 @@ package org.eclipse.passage.lic.internal.hc.remote;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
 
 @SuppressWarnings("restriction")
 public interface Client<C> {
 
-	Collection<ConditionPack> remoteConditions(Request<C> request, ResponseHandler miner)
-			throws ConditionMiningException;
+	ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<C> request, ResponseHandler miner);
 
 }

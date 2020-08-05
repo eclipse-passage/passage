@@ -22,8 +22,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.tests.ResolvedRequirementsContractTest;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
+import org.eclipse.passage.lic.internal.base.requirements.RequirementsFeatureFilter;
 import org.junit.Test;
 import org.osgi.framework.InvalidSyntaxException;
 
@@ -32,8 +33,10 @@ abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContr
 
 	@Test
 	public void allRequirements() throws InvalidSyntaxException {
-		Collection<Requirement> requirements = service().all();
-		assertTrue(requirements.stream() //
+		ServiceInvocationResult<Collection<Requirement>> requirements = service().all();
+		assertTrue(invalidMorsels() <= requirements.diagnostic().severe().size());
+		assertTrue(requirements.data().isPresent());
+		assertTrue(requirements.data().get().stream() //
 				.collect(Collectors.toSet())//
 				.containsAll(expectations()));
 	}
@@ -41,15 +44,17 @@ abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContr
 	@Test
 	public void requirementsForFeature() throws InvalidSyntaxException {
 		Requirement single = single();
-		Collection<Requirement> forTheFeature = new ResolvedRequirements.Smart(service())
-				.forFeature(single.feature().identifier());
+		ServiceInvocationResult<Collection<Requirement>> filtered = new RequirementsFeatureFilter(
+				single.feature().identifier()).get().apply(service().all());
 		assertEquals(//
 				Collections.singleton(single), //
-				new HashSet<Requirement>(forTheFeature));
+				new HashSet<Requirement>(filtered.data().get()));
 	}
 
 	protected abstract Class<?> serviceClass();
 
 	protected abstract Set<Requirement> expectations();
+
+	protected abstract int invalidMorsels();
 
 }

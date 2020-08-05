@@ -43,4 +43,9 @@ public final class ComponentRequirementsTest extends ResolvedRequirementsService
 		return new ComponentRequirements();
 	}
 
+	@Override
+	protected int invalidMorsels() {
+		return 0;
+	}
+
 }

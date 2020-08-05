@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.hc.remote;
 
 import java.net.URL;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningException;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 
 @SuppressWarnings("restriction")
 public interface Request<R> {
 
-	URL url() throws ConditionMiningException;
+	URL url() throws LicensingException;
 
 	Configuration<R> config();
 

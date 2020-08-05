@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.i18n;
+package org.eclipse.passage.lic.internal.base.i18n;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-public final class DiagnosticCodeMessages {
+public class AccessCycleMessages {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages"; //$NON-NLS-1$
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.api.i18n.DiagnosticCodeMessages"; //$NON-NLS-1$
 	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-	private DiagnosticCodeMessages() {
+	private AccessCycleMessages() {
 	}
 
 	public static String getString(String key) {

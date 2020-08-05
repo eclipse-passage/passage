@@ -27,7 +27,7 @@ public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectio
 
 	@Override
 	protected final Supplier<Collection<Requirement>> collection() {
-		return service()::all;
+		return service().all().data()::get;
 	}
 
 	@Override

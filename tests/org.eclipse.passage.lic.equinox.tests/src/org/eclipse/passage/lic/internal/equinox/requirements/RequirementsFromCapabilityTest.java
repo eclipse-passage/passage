@@ -15,42 +15,44 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.tests.requirements.Unsatisfiable;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
 public final class RequirementsFromCapabilityTest {
 
 	@Test
-	public void read() {
+	public void keepReadingOnMorselFailure() {
 		DataBundle data = new DataBundle();
-		Set<Requirement> found = data.capabilities().stream() //
+		ServiceInvocationResult<Collection<Requirement>> result = data.capabilities().stream() //
 				.map(c -> new RequirementFromCapability(data.bundle(), c)) //
 				.map(RequirementFromCapability::get) //
-				.collect(Collectors.toSet());
-		assertContainsUnsatisfiableRequirement(found);
-		assertContainsAllExpectedRequirements(data, found);
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))// ;
+				.get();
+		assertContainsProperErrorDiagnostic(result.diagnostic());
+		assertContainsAllExpectedRequirements(data, result.data());
 	}
 
-	private void assertContainsUnsatisfiableRequirement(Set<Requirement> requirements) {
-		assertTrue(//
-				requirements.stream()//
-						.filter(new Unsatisfiable())//
-						.findAny() //
-						.isPresent()//
-		);
+	private void assertContainsProperErrorDiagnostic(Diagnostic diagnostic) {
+		assertEquals(1, diagnostic.severe().size());
+		assertEquals(new ServiceFailedOnMorsel(), diagnostic.severe().get(0).code());
 	}
 
-	private void assertContainsAllExpectedRequirements(DataBundle data, Set<Requirement> requirements) {
+	private void assertContainsAllExpectedRequirements(DataBundle data,
+			Optional<Collection<Requirement>> requirements) {
+		assertTrue(requirements.isPresent());
 		assertEquals(//
 				data.validRequirementsFromCapabilities(), //
-				requirements.stream()//
-						.filter(r -> !new Unsatisfiable().test(r)) //
-						.collect(Collectors.toSet())//
+				new HashSet<>(requirements.get())//
 		);
 	}
 

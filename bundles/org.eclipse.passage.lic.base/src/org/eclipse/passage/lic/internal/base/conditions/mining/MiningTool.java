@@ -20,17 +20,20 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 @SuppressWarnings("restriction")
@@ -46,20 +49,25 @@ final class MiningTool {
 		this.transport = transport;
 	}
 
-	Collection<ConditionPack> mine(Collection<Path> sources, Consumer<LicensingException> handler) {
+	ServiceInvocationResult<Collection<ConditionPack>> mine(Collection<Path> sources) {
 		return sources.stream()//
-				.map(path -> mine(path, handler)) //
-				.collect(Collectors.toSet());
+				.map(path -> mine(path)) //
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>())) //
+				.orElse(new BaseServiceInvocationResult<Collection<ConditionPack>>(Collections.emptyList()));
 	}
 
-	private ConditionPack mine(Path source, Consumer<LicensingException> handler) {
+	private ServiceInvocationResult<Collection<ConditionPack>> mine(Path source) {
 		try {
-			return new BaseConditionPack(source, from(decoded(source)));
+			return new BaseServiceInvocationResult<>(Collections.singleton(//
+					new BaseConditionPack(source, from(decoded(source)))));
 		} catch (IOException | LicensingException e) {
-			handler.accept(new LicensingException(String.format(//
-					BaseMessages.getString("MiningTool.error_mining_file"), source), e)); //$NON-NLS-1$
+			return new BaseServiceInvocationResult<>(//
+					new Trouble(//
+							new ServiceFailedOnMorsel(), //
+							String.format(BaseMessages.getString("MiningTool.error_mining_file"), //$NON-NLS-1$
+									source.normalize().toAbsolutePath()), //
+							e));
 		}
-		return new BaseConditionPack(source, Collections.emptySet());
 	}
 
 	private byte[] decoded(Path path) throws IOException, LicensingException {

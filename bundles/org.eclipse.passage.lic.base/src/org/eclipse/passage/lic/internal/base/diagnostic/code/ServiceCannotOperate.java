@@ -10,12 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.diagnostic;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import java.util.List;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public interface FailureDiagnostic {
+@SuppressWarnings("restriction")
+public final class ServiceCannotOperate extends TroubleCode {
 
-	List<Trouble> troubles();
+	public ServiceCannotOperate() {
+		super(101, DiagnosticCodeMessages.getString("ServiceCannotOperate.explanation")); //$NON-NLS-1$
+	}
 
 }

@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.function.BinaryOperator;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
+@SuppressWarnings("restriction")
+public final class LicenseDoesNotMatch extends TroubleCode {
 
-	@Override
-	public Collection<E> apply(Collection<E> first, Collection<E> second) {
-		ArrayList<E> sum = new ArrayList<>(first.size() + second.size());
-		sum.addAll(first);
-		sum.addAll(second);
-		return sum;
+	public LicenseDoesNotMatch() {
+		super(403, DiagnosticCodeMessages.getString("LicenseDoesNotMatch.license_does_not_match")); //$NON-NLS-1$
 	}
 
 }

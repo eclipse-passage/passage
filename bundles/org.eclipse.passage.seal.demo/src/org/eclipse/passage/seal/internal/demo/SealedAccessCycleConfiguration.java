@@ -13,12 +13,10 @@
 package org.eclipse.passage.seal.internal.demo;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -73,7 +71,6 @@ import org.osgi.framework.FrameworkUtil;
 @SuppressWarnings("restriction")
 final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 
-	private final Consumer<LicensingException> alarm;
 	private final Registry<StringServiceId, ResolvedRequirements> requirements;
 	private final Registry<StringServiceId, MinedConditions> conditions;
 	private final Registry<ContentType, ConditionTransport> transports;
@@ -88,7 +85,6 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<StringServiceId, RestrictionExecutingService> executors;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
-		alarm = LicensingException::printStackTrace;
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleRequirements(), //
 				new ComponentRequirements() //
@@ -96,14 +92,11 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
 				new RemoteConditions(transports()), //
 				new UserHomeResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports()), //
-						alarm), //
+						new MiningEquipment(keyKeepers(), codecs(), transports())), //
 				new InstallationResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports()), //
-						alarm), //
+						new MiningEquipment(keyKeepers(), codecs(), transports())), //
 				new ConfigurationResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports()), //
-						alarm)//
+						new MiningEquipment(keyKeepers(), codecs(), transports()))//
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport(), //

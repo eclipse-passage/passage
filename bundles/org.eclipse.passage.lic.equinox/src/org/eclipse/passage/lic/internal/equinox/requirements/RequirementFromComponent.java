@@ -16,12 +16,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.base.LicensingVersions;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
+import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
+import org.eclipse.passage.lic.internal.base.version.SafeVersion;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 
@@ -59,8 +60,8 @@ final class RequirementFromComponent implements Supplier<Optional<Requirement>> 
 
 	private Requirement requirementFromProperties(String feature, Map<String, Object> properties) {
 		String version = new ComponentLicFeatureVersion(properties).get()//
-				.map(LicensingVersions::toVersionValue)//
-				.orElse(LicensingVersions.VERSION_DEFAULT);
+				.map(raw -> new SafeVersion(raw).value())//
+				.orElse(new DefaultVersion().value());
 		String name = new ComponentLicFeatureName(properties).get()//
 				.orElse(feature);
 		String provider = new ComponentLicFeatureProvider(properties).get()//

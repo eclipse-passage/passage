@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
-import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
@@ -26,8 +24,8 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
  */
 public final class UserHomeResidentConditions extends LocalConditions {
 
-	public UserHomeResidentConditions(MiningEquipment equipment, Consumer<LicensingException> handler) {
-		super(new StringServiceId("user-home-conditions"), equipment, handler); //$NON-NLS-1$
+	public UserHomeResidentConditions(MiningEquipment equipment) {
+		super(new StringServiceId("user-home-conditions"), equipment); //$NON-NLS-1$
 	}
 
 	@Override

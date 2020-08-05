@@ -13,9 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox.conditions;
 
 import java.nio.file.Path;
-import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
@@ -30,8 +28,8 @@ import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 @SuppressWarnings("restriction")
 public final class InstallationResidentConditions extends LocalConditions {
 
-	public InstallationResidentConditions(MiningEquipment equipment, Consumer<LicensingException> handler) {
-		super(new StringServiceId("installation-conditions"), equipment, handler); //$NON-NLS-1$
+	public InstallationResidentConditions(MiningEquipment equipment) {
+		super(new StringServiceId("installation-conditions"), equipment); //$NON-NLS-1$
 	}
 
 	@Override

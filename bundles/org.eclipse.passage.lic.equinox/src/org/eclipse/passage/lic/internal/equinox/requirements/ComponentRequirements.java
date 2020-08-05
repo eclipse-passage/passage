@@ -13,21 +13,20 @@
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
-import org.eclipse.passage.lic.internal.base.requirements.UnsatisfiableRequirement;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Looks for licensing {@linkplain Requirement} declarations among
@@ -39,7 +38,6 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("restriction")
 public final class ComponentRequirements implements ResolvedRequirements {
 
-	private final Logger logger = LoggerFactory.getLogger(BundleRequirements.class);
 	private final Optional<BundleContext> context;
 	private final Optional<ServiceComponentRuntime> runtime;
 
@@ -60,26 +58,20 @@ public final class ComponentRequirements implements ResolvedRequirements {
 	}
 
 	@Override
-	public Collection<Requirement> all() {
+	public ServiceInvocationResult<Collection<Requirement>> all() {
 		if (!runtime.isPresent()) {
-			return unsafisifiable(ServiceComponentRuntime.class.getSimpleName());
+			return noWay(ServiceComponentRuntime.class.getSimpleName());
 		}
 		if (!context.isPresent()) {
-			return unsafisifiable(BundleContext.class.getSimpleName());
+			return noWay(BundleContext.class.getSimpleName());
 		}
-		return resolve();
+		return new BaseServiceInvocationResult<Collection<Requirement>>(resolve());
 	}
 
-	private Collection<Requirement> unsafisifiable(String resource) {
-		logger.error(NLS.bind(EquinoxMessages.ComponentRequirements_error_no_resource, resource));
-		return Collections.singleton(//
-				new UnsatisfiableRequirement(//
-						NLS.bind(//
-								EquinoxMessages.ComponentRequirements_requirement_for_resource, //
-								resource, //
-								getClass().getName()), //
-						getClass()//
-				).get());
+	private ServiceInvocationResult<Collection<Requirement>> noWay(String resource) {
+		return new BaseServiceInvocationResult<Collection<Requirement>>(//
+				new Trouble(new ServiceCannotOperate(), //
+						String.format(EquinoxMessages.ComponentRequirements_requirement_for_resource, resource)));
 	}
 
 	private Collection<Requirement> resolve() {

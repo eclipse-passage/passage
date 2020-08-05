@@ -13,8 +13,9 @@
 package org.eclipse.passage.lic.internal.api.requirements;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
@@ -48,35 +49,9 @@ public interface ResolvedRequirements extends Service<StringServiceId> {
 	 * Having access to a particular type of physical sources, reads them for all
 	 * the {@link Requirement} declared there.
 	 *
-	 * @return resolved collection of {@link Requirement}s, not nullable
-	 * @since 0.4.0
+	 * @return resolved collection of {@link Requirement}s, never null, couples with
+	 *         {@linkplain Diagnostic} instance
 	 */
-	Collection<Requirement> all();
-
-	final class Smart {
-
-		private final ResolvedRequirements delegate;
-
-		public Smart(ResolvedRequirements delegate) {
-			this.delegate = delegate;
-		}
-
-		/**
-		 * Among {@linkplain ResolvedRequirements#all()} requirements here only those
-		 * are selected that relates to the given {@code feature}.
-		 * 
-		 * @param configuration of the product under licensing
-		 * @param feature       identifier of a feature, who's {@linkplain Requirement}s
-		 *                      are demanded
-		 * @return collection of {@linkplain Requirement} only for the given
-		 *         {@code feature}
-		 */
-		public Collection<Requirement> forFeature(String feature) {
-			return delegate.all().stream() //
-					.filter(r -> feature.equals(r.feature().identifier())) //
-					.collect(Collectors.toList());
-		}
-
-	}
+	ServiceInvocationResult<Collection<Requirement>> all();
 
 }

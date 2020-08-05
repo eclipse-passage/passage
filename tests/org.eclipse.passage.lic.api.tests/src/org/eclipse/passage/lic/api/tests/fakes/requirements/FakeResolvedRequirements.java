@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
@@ -27,7 +28,7 @@ public final class FakeResolvedRequirements implements ResolvedRequirements {
 	}
 
 	@Override
-	public Collection<Requirement> all() {
+	public ServiceInvocationResult<Collection<Requirement>> all() {
 		throw new UnsupportedOperationException();
 	}
 
