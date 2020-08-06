@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.api;
+package org.eclipse.passage.lbc.internal.api;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 

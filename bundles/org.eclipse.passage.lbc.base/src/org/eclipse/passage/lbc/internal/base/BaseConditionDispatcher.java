@@ -10,14 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base;
+package org.eclipse.passage.lbc.internal.base;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.passage.lbc.api.BackendConditionDispatcher;
-import org.eclipse.passage.lbc.api.LicenseAlreadyTakenException;
-import org.eclipse.passage.lbc.api.NoSuchTakenLicenseException;
+import org.eclipse.passage.lbc.internal.api.BackendConditionDispatcher;
+import org.eclipse.passage.lbc.internal.api.LicenseAlreadyTakenException;
+import org.eclipse.passage.lbc.internal.api.NoSuchTakenLicenseException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**

@@ -17,10 +17,10 @@ import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 
-import org.eclipse.passage.lbc.api.BackendConditionDispatcher;
-import org.eclipse.passage.lbc.api.LicenseAlreadyTakenException;
-import org.eclipse.passage.lbc.api.NoSuchTakenLicenseException;
-import org.eclipse.passage.lbc.base.BaseConditionDispatcher;
+import org.eclipse.passage.lbc.internal.api.BackendConditionDispatcher;
+import org.eclipse.passage.lbc.internal.api.LicenseAlreadyTakenException;
+import org.eclipse.passage.lbc.internal.api.NoSuchTakenLicenseException;
+import org.eclipse.passage.lbc.internal.base.BaseConditionDispatcher;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
