@@ -22,7 +22,6 @@ import org.eclipse.passage.lbc.api.LicenseAlreadyTakenException;
 import org.eclipse.passage.lbc.api.NoSuchTakenLicenseException;
 import org.eclipse.passage.lbc.base.BaseConditionDispatcher;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.hamcrest.Condition;
 import org.junit.Test;
 
 public class ConditionLockerTest {
@@ -68,7 +67,9 @@ public class ConditionLockerTest {
 		});
 	}
 
-	private ConditionPack license(String origin, Condition... conditions) {
+	// In this we only need a way to determine what license is it, and so there is
+	// no need to work with Conditions yet.
+	private ConditionPack license(String origin) {
 		return new License(origin, new LinkedList<>());
 	}
 
