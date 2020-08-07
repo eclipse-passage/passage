@@ -22,12 +22,10 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 public class TransferableConditionPack {
 
-	private final String origin;
 	private final Collection<Condition> conditions;
 
 	public TransferableConditionPack(ConditionPack conditionPack) {
 		this.conditions = conditionPack.conditions();
-		this.origin = conditionPack.origin();
 	}
 
 	public LicensePack ePack() {

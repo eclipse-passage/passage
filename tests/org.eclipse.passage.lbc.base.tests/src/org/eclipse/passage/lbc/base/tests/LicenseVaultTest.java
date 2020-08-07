@@ -13,10 +13,11 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
@@ -26,15 +27,9 @@ public class LicenseVaultTest {
 
 	@Test
 	public void availableLicenses() {
-		Collection<ConditionPack> availableLicenses = new BaseLicenseVault().availableLicenses(new FakeMiningRequest());
-		if (availableLicenses.size() > 0) {
-			availableLicenses.forEach((conditionPack) -> {
-				assertEquals("floating", conditionPack.origin()); //$NON-NLS-1$
-				assertEquals(Collections.emptyList(), conditionPack.conditions());
-			});
-		} else {
-			fail();
-		}
+		List<ConditionPack> pack = new LinkedList(new BaseLicenseVault().availableLicenses(new FakeMiningRequest()));
+		assertEquals("floating", pack.get(0).origin()); //$NON-NLS-1$
+		assertEquals(Collections.emptyList(), pack.get(0).conditions());
 	}
 
 }
