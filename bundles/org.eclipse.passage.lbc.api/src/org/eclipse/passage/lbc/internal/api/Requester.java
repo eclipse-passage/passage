@@ -12,15 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import java.util.function.Function;
+
+import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
  * @since 1.0
  */
-public class LicenseNotLockedException extends Exception {
+public class Requester extends StringNamedData {
 
-	public LicenseNotLockedException(ConditionPack conditionPack) {
-		super("No such taken license on the server: " + conditionPack.toString()); //$NON-NLS-1$
+	public Requester(String value) {
+		super(value);
+	}
+
+	public Requester(Function<String, String> retrieve) {
+		super(retrieve);
+	}
+
+	@Override
+	public String key() {
+		return "user"; //$NON-NLS-1$
 	}
 
 }

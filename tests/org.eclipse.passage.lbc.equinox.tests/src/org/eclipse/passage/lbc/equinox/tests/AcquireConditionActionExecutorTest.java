@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.equinox.tests;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lbc.internal.equinox.conditions.AcquireConditionActionExecutor;
+import org.junit.Test;
 
-/**
- * @since 1.0
- */
-public interface BackendLicenseLock {
+public class AcquireConditionActionExecutorTest {
 
-	void lock(ConditionPack conditionPack) throws LicenseAlreadyLockedException;
-
-	void release(ConditionPack conditionPack) throws LicenseNotLockedException;
+	@Test
+	public void writtenConditions() {
+		AcquireConditionActionExecutor executor = new AcquireConditionActionExecutor();
+		executor.executeAction(null, null);
+	}
 
 }

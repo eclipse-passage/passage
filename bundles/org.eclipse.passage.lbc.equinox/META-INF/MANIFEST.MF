@@ -15,7 +15,8 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
  org.eclipse.passage.lic.net;bundle-version="0.0.0",
  org.eclipse.passage.lbc.base;bundle-version="0.0.0",
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.passage.lic.licenses.model
 Export-Package: org.eclipse.passage.lbc.internal.equinox;x-internal:=true,
  org.eclipse.passage.lbc.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lbc.internal.equinox.i18n;x-internal:=true

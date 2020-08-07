@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
-import org.eclipse.passage.lbc.internal.api.BackendUser;
 import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.BaseMiningRequest;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
@@ -36,6 +36,7 @@ import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 
@@ -68,13 +69,12 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	private MiningRequest miningRequest(HttpServletRequest request) {
 		ProductIdentifier productId = new ProductIdentifier(key -> request.getParameter(key));
 		ProductVersion productVersion = new ProductVersion(key -> request.getParameter(key));
-		BackendUser user = new BackendUser(key -> request.getParameter(key));
-		MiningRequest miningRequest = new BaseMiningRequest(productId, productVersion, user);
-		return miningRequest;
+		Requester user = new Requester(key -> request.getParameter(key));
+		return new BaseMiningRequest(productId, productVersion, user);
 	}
 
-	private List<TransferableConditionPack> transferable(Collection<ConditionPack> licenses) {
-		return licenses.stream().map(pack -> new TransferableConditionPack(pack)).collect(Collectors.toList());
+	private List<LicensePack> transferable(Collection<ConditionPack> licenses) {
+		return licenses.stream().map(pack -> new TransferableConditionPack(pack).ePack()).collect(Collectors.toList());
 	}
 
 }
