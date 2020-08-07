@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import java.time.ZonedDateTime;
+
 /**
  * As licensing runtime is a complicated and infrastructure-dependent, wide
  * variety of things can occasionally go south. This general purpose exception
@@ -24,12 +26,20 @@ public final class LicensingException extends Exception {
 	 */
 	private static final long serialVersionUID = 7746884069745071894L;
 
+	private final ZonedDateTime stamp;
+
 	public LicensingException(String message, Throwable cause) {
 		super(message, cause);
+		stamp = ZonedDateTime.now();
 	}
 
 	public LicensingException(String message) {
 		super(message);
+		stamp = ZonedDateTime.now();
+	}
+
+	public ZonedDateTime stamp() {
+		return stamp;
 	}
 
 }
