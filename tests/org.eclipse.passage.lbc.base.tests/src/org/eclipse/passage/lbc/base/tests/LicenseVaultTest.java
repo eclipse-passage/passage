@@ -14,7 +14,6 @@ package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
