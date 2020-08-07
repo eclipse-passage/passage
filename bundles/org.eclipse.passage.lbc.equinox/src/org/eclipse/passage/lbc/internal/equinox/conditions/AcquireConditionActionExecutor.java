@@ -13,34 +13,31 @@
 package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
+import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
+import org.eclipse.passage.lbc.internal.api.BackendUser;
+import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
+import org.eclipse.passage.lbc.internal.base.BaseMiningRequest;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
-import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.conditions.ConditionActions;
-import org.eclipse.passage.lic.api.conditions.ConditionMiner;
-import org.eclipse.passage.lic.api.conditions.ConditionTransport;
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.base.LicensingConfigurations;
-import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.LicensingResults;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.base.ProductIdentifier;
+import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * According to AccessManager specification implementation of
@@ -50,68 +47,34 @@ import org.slf4j.LoggerFactory;
 @Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
 public class AcquireConditionActionExecutor implements BackendActionExecutor {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AcquireConditionActionExecutor.class);
-
-	private List<ConditionMiner> licenseConditionMiners = new ArrayList<>();
-	private Map<String, ConditionTransport> mapCondition2Transport = new HashMap<>();
+	private final BackendLicenseVault baseLicenseVault = new BaseLicenseVault();
 
 	@Override
 	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
 		String source = getClass().getName();
-		LOG.info(NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_i_execute_action, source));
-		if (licenseConditionMiners.isEmpty()) {
-			String error = EquinoxMessages.AcquireConditionActionExecutor_e_no_miners;
-			LOG.error(error);
-			return LicensingResults.createError(error, source);
-		}
 		try {
-			String productId = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_IDENTIFIER);
-			String productVersion = request.getParameter(LicensingConfigurations.LICENSING_PRODUCT_VERSION);
-			LicensingConfiguration configuration = LicensingConfigurations.create(productId, productVersion);
-
-			Collection<LicensingCondition> resultConditions = new ArrayList<>();
-
-			for (ConditionMiner miner : licenseConditionMiners) {
-				Iterable<LicensingCondition> descriptors = miner.extractLicensingConditions(configuration);
-				resultConditions.addAll((Collection<? extends LicensingCondition>) descriptors);
-			}
-			String contentType = request.getParameter(LicensingProperties.LICENSING_CONTENT_TYPE);
-			ConditionTransport transport = mapCondition2Transport.get(contentType);
-			if (transport == null) {
-				String error = NLS.bind(EquinoxMessages.AcquireConditionActionExecutor_e_transport_not_defined,
-						contentType);
-				LOG.error(error);
-				return LicensingResults.createError(error, source);
-			}
-
-			transport.writeConditions(resultConditions, response.getOutputStream());
+			Collection<ConditionPack> availableLicenses = baseLicenseVault.availableLicenses(miningRequest(request));
+			Resource resource = new XMIResourceImpl();
+			resource.getContents().addAll(transferable(availableLicenses));
+			resource.save(response.getOutputStream(), new HashMap<>());
 			response.setContentType(request.getContentType());
-
 			return LicensingResults.createOK(EquinoxMessages.AcquireConditionActionExecutor_k_mined, source);
 		} catch (IOException e) {
-			LOG.error(e.getMessage());
 			String error = EquinoxMessages.AcquireConditionActionExecutor_e_mining_failed;
 			return LicensingResults.createError(error, source, e);
 		}
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
-	public void bindConditionMiner(ConditionMiner conditionMiner) {
-		this.licenseConditionMiners.add(conditionMiner);
+	private MiningRequest miningRequest(HttpServletRequest request) {
+		ProductIdentifier productId = new ProductIdentifier(key -> request.getParameter(key));
+		ProductVersion productVersion = new ProductVersion(key -> request.getParameter(key));
+		BackendUser user = new BackendUser(key -> request.getParameter(key));
+		MiningRequest miningRequest = new BaseMiningRequest(productId, productVersion, user);
+		return miningRequest;
 	}
 
-	public void unbindConditionMiner(ConditionMiner conditionMiner) {
-		this.licenseConditionMiners.remove(conditionMiner);
+	private List<TransferableConditionPack> transferable(Collection<ConditionPack> licenses) {
+		return licenses.stream().map(pack -> new TransferableConditionPack(pack)).collect(Collectors.toList());
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
-	public void bindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String conditionType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
-		mapCondition2Transport.put(conditionType, transport);
-	}
-
-	public void unbindConditionTransport(ConditionTransport transport, Map<String, String> context) {
-		String conditionType = context.get(LicensingProperties.LICENSING_CONTENT_TYPE);
-		mapCondition2Transport.remove(conditionType, transport);
-	}
 }

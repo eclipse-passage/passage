@@ -17,10 +17,10 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 /**
  * @since 1.0
  */
-public class LicenseAlreadyTakenException extends Exception {
+public interface BackendLicenseLock {
 
-	public LicenseAlreadyTakenException(ConditionPack conditionPack) {
-		super("License is already taken: " + conditionPack.toString()); //$NON-NLS-1$
-	}
+	void lock(ConditionPack conditionPack) throws LicenseAlreadyLockedException;
+
+	void release(ConditionPack conditionPack) throws LicenseNotLockedException;
 
 }

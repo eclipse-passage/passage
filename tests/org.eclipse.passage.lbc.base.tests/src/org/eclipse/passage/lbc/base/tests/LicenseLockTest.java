@@ -17,31 +17,31 @@ import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 
-import org.eclipse.passage.lbc.internal.api.BackendConditionDispatcher;
-import org.eclipse.passage.lbc.internal.api.LicenseAlreadyTakenException;
-import org.eclipse.passage.lbc.internal.api.NoSuchTakenLicenseException;
-import org.eclipse.passage.lbc.internal.base.BaseConditionDispatcher;
+import org.eclipse.passage.lbc.internal.api.BackendLicenseLock;
+import org.eclipse.passage.lbc.internal.api.LicenseAlreadyLockedException;
+import org.eclipse.passage.lbc.internal.api.LicenseNotLockedException;
+import org.eclipse.passage.lbc.internal.base.BaseLicenseLock;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
-public class ConditionLockerTest {
+public class LicenseLockTest {
 
-	private final BackendConditionDispatcher conditionDispatcher = new BaseConditionDispatcher();
+	private final BackendLicenseLock conditionDispatcher = new BaseLicenseLock();
 
 	@Test
 	public void takeOnce() {
 		try {
-			conditionDispatcher.take(license("origin")); //$NON-NLS-1$
-		} catch (LicenseAlreadyTakenException e) {
+			conditionDispatcher.lock(license("origin")); //$NON-NLS-1$
+		} catch (LicenseAlreadyLockedException e) {
 			fail();
 		}
 	}
 
 	@Test
 	public void takeTwice() {
-		assertThrows(LicenseAlreadyTakenException.class, () -> {
-			conditionDispatcher.take(license("origin")); //$NON-NLS-1$
-			conditionDispatcher.take(license("origin")); //$NON-NLS-1$
+		assertThrows(LicenseAlreadyLockedException.class, () -> {
+			conditionDispatcher.lock(license("origin")); //$NON-NLS-1$
+			conditionDispatcher.lock(license("origin")); //$NON-NLS-1$
 		});
 	}
 
@@ -49,20 +49,20 @@ public class ConditionLockerTest {
 	public void releaseExisting() {
 		ConditionPack license = license("origin"); //$NON-NLS-1$
 		try {
-			conditionDispatcher.take(license);
-		} catch (LicenseAlreadyTakenException e) {
+			conditionDispatcher.lock(license);
+		} catch (LicenseAlreadyLockedException e) {
 			fail();
 		}
 		try {
 			conditionDispatcher.release(license);
-		} catch (NoSuchTakenLicenseException e) {
+		} catch (LicenseNotLockedException e) {
 			fail();
 		}
 	}
 
 	@Test
 	public void releaseNonExisting() {
-		assertThrows(NoSuchTakenLicenseException.class, () -> {
+		assertThrows(LicenseNotLockedException.class, () -> {
 			conditionDispatcher.release(license("origin")); //$NON-NLS-1$
 		});
 	}
@@ -70,7 +70,7 @@ public class ConditionLockerTest {
 	// In this we only need a way to determine what license is it, and so there is
 	// no need to work with Conditions yet.
 	private ConditionPack license(String origin) {
-		return new License(origin, new LinkedList<>());
+		return new FakeLicense(origin, new LinkedList<>());
 	}
 
 }
