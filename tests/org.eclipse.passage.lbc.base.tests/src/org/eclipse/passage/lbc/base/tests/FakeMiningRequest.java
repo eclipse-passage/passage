@@ -17,7 +17,7 @@ import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
-public class FakeMiningRequest implements MiningRequest {
+public final class FakeMiningRequest implements MiningRequest {
 
 	@Override
 	public ProductIdentifier getProductIdentifier() {

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
+import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
 import org.eclipse.passage.lbc.internal.base.LicensesResource;
 import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
@@ -64,7 +65,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	private List<Resource> resources(HttpServletRequest request) {
 		return Stream.of(request) //
 				.map(new ParsedRequest()) //
-				.map(new MinedConditionPacks()) //
+				.map(new MinedConditionPacks(new BaseLicenseVault())) //
 				.flatMap(packs -> packs.stream()) //
 				.map(new LicenseEObject()) //
 				.map(new LicensesResource()) //

@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 /**
  * @since 1.0
  */
-public class LicenseEObject implements Function<ConditionPack, LicensePack> {
+public final class LicenseEObject implements Function<ConditionPack, LicensePack> {
 
 	public LicensePack ePack(Collection<Condition> conditions) {
 		LicensesFactory factory = LicensesFactory.eINSTANCE;

@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.base.ProductVersion;
 /**
  * @since 1.0
  */
-public class ParsedRequest implements Function<HttpServletRequest, MiningRequest> {
+public final class ParsedRequest implements Function<HttpServletRequest, MiningRequest> {
 
 	@Override
 	public MiningRequest apply(HttpServletRequest request) {

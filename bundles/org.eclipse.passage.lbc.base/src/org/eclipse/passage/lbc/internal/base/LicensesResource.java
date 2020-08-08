@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 /**
  * @since 1.0
  */
-public class LicensesResource implements Function<LicensePack, Resource> {
+public final class LicensesResource implements Function<LicensePack, Resource> {
 
 	@Override
 	public Resource apply(LicensePack t) {

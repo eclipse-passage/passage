@@ -15,17 +15,24 @@ package org.eclipse.passage.lbc.internal.base;
 import java.util.Collection;
 import java.util.function.Function;
 
+import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
 import org.eclipse.passage.lbc.internal.api.MiningRequest;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
  * @since 1.0
  */
-public class MinedConditionPacks implements Function<MiningRequest, Collection<ConditionPack>> {
+public final class MinedConditionPacks implements Function<MiningRequest, Collection<ConditionPack>> {
+
+	private final BackendLicenseVault licenseVault;
+
+	public MinedConditionPacks(BackendLicenseVault licenseVault) {
+		this.licenseVault = licenseVault;
+	}
 
 	@Override
 	public Collection<ConditionPack> apply(MiningRequest request) {
-		return new BaseLicenseVault().availableLicenses(request);
+		return licenseVault.availableLicenses(request);
 	}
 
 }
