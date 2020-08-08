@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
@@ -28,47 +29,47 @@ import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 
 @SuppressWarnings("restriction")
 public final class EquinoxPassage implements Passage {
 
-	private final String friend = "org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier"; //$NON-NLS-1$
+	private final String friend = "org.eclipse.passage.seal.demo"; //$NON-NLS-1$
+
+	private final BundleContext context;
+
+	public EquinoxPassage() {
+		this.context = FrameworkUtil.getBundle(getClass()).getBundleContext();
+	}
 
 	@Override
 	public boolean canUse(String feature) {
-		Optional<Framework> framework = frameworkIfAny();
-		if (!framework.isPresent()) {
-			return false;
-		}
-		return new Access(framework.get()).canUse(feature);
+		return invokeAndUnget(frameworkIfAny(), //
+				f -> new BaseServiceInvocationResult<>(new Access(f).canUse(feature)))//
+						.data().orElse(Boolean.FALSE);
 	}
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> checkLicense(String feature) {
-		Optional<Framework> framework = frameworkIfAny();
-		if (!framework.isPresent()) {
-			return noFramework();
-		}
-		return new Access(framework.get()).check(feature);
+		return invokeAndUnget(frameworkIfAny(), f -> new Access(f).check(feature));
 	}
 
 	@Override
 	public ServiceInvocationResult<LicensedProduct> product() {
-		Optional<Framework> framework = frameworkIfAny();
+		Optional<ServiceReference<FrameworkSupplier>> framework = frameworkIfAny();
 		if (!framework.isPresent()) {
 			return noFramework();
 		}
-		return new BaseServiceInvocationResult<>(framework.get().product());
+		return invokeAndUnget(frameworkIfAny(), f -> new BaseServiceInvocationResult<>(f.product()));
 	}
 
-	private Optional<Framework> frameworkIfAny() {
-		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
+	private Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
 		try {
 			return context.getServiceReferences(FrameworkSupplier.class, null).stream() //
-					.map(context::getService) //
 					// DI is used only to get rid of overwhelming dependencies here
-					.filter(supplier -> supplier.getClass().getName().equals(friend)).findAny() //
-					.flatMap(FrameworkSupplier::get);
+					// here we can check signature of the seal
+					.filter(supplier -> supplier.getBundle().getSymbolicName().equals(friend))//
+					.findAny();
 		} catch (InvalidSyntaxException e) {
 			return Optional.empty();
 		}
@@ -80,6 +81,24 @@ public final class EquinoxPassage implements Passage {
 						new NoFramework(), //
 						String.format(AccessMessages.EquinoxPassage_no_framewrok, friend))//
 		);
+	}
+
+	private <T> ServiceInvocationResult<T> invokeAndUnget(Optional<ServiceReference<FrameworkSupplier>> candidate,
+			Function<Framework, ServiceInvocationResult<T>> invoke) {
+		if (candidate.isEmpty()) {
+			return noFramework();
+		}
+		ServiceReference<FrameworkSupplier> reference = candidate.get();
+		try {
+			Optional<Framework> framework = Optional.ofNullable(context.getService(reference))//
+					.flatMap(FrameworkSupplier::get);
+			if (framework.isEmpty()) {
+				return noFramework();
+			}
+			return invoke.apply(framework.get());
+		} finally {
+			context.ungetService(reference);
+		}
 	}
 
 }
