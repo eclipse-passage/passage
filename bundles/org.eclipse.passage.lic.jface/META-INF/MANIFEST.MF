@@ -19,6 +19,7 @@ Export-Package: org.eclipse.passage.lic.internal.jface.dialogs;x-internal:=true,
  org.eclipse.passage.lic.jface,
  org.eclipse.passage.lic.jface.actions,
  org.eclipse.passage.lic.jface.dialogs,
+ org.eclipse.passage.lic.jface.dialogs.licensingstatus;x-internal:=true,
  org.eclipse.passage.lic.jface.resource,
  org.eclipse.passage.lic.jface.viewers,
  org.eclipse.passage.lic.jface.widgets
