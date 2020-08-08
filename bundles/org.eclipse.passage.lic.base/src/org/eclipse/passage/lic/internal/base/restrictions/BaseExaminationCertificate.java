@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.restrictions;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
@@ -23,10 +24,12 @@ public final class BaseExaminationCertificate implements ExaminationCertificate 
 
 	private final Collection<Permission> participants;
 	private final Collection<Restriction> restrictions;
+	private final ZonedDateTime stamp;
 
 	public BaseExaminationCertificate(Collection<Permission> participants, Collection<Restriction> restrictions) {
 		this.participants = participants;
 		this.restrictions = restrictions;
+		this.stamp = ZonedDateTime.now();
 	}
 
 	@Override
@@ -42,6 +45,11 @@ public final class BaseExaminationCertificate implements ExaminationCertificate 
 	@Override
 	public Collection<Permission> participants() {
 		return participants;
+	}
+
+	@Override
+	public ZonedDateTime stamp() {
+		return stamp;
 	}
 
 }

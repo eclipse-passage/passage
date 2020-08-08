@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.restrictions;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
@@ -46,5 +47,7 @@ public interface ExaminationCertificate {
 	Collection<Restriction> restrictions();
 
 	Collection<Permission> participants();
+
+	ZonedDateTime stamp();
 
 }

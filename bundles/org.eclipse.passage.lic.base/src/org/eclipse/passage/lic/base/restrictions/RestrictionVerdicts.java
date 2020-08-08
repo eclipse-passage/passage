@@ -38,7 +38,9 @@ public class RestrictionVerdicts {
 
 	/**
 	 * @since 0.6
+	 * @deprecated use diagnostic codes (TroubleCode)
 	 */
+	@Deprecated
 	public static RestrictionVerdict createConfigurationError(LicensingConfiguration configuration, String featureId) {
 		LicensingRequirement requirement = LicensingRequirements.createConfigurationError(featureId, configuration);
 		int code = CODE_CONFIGURATION_ERROR;
@@ -59,19 +61,29 @@ public class RestrictionVerdicts {
 
 	/**
 	 * @since 0.6
+	 * @deprecated use diagnostic codes (TroubleCode)
 	 */
+	@Deprecated
 	public static RestrictionVerdict createError(LicensingConfiguration configuration, LicensingRequirement requirement,
 			int code) {
 		String policy = LICENSING_RESTRICTION_LEVEL_ERROR;
 		return new BaseRestrictionVerdict(configuration, requirement, policy, code);
 	}
 
+	/**
+	 * @deprecated use diagnostic codes (TroubleCode)
+	 */
+	@Deprecated
 	public static Iterable<RestrictionVerdict> createConfigurationError(LicensingConfiguration configuration,
 			LicensingRequirement requirement) {
 		int code = CODE_CONFIGURATION_ERROR;
 		return Collections.singletonList(createError(configuration, requirement, code));
 	}
 
+	/**
+	 * @deprecated use WorstRestrictionsPerFeature
+	 */
+	@Deprecated
 	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts) {
 		if (verdicts == null) {
 			return null;
@@ -86,6 +98,10 @@ public class RestrictionVerdicts {
 		return last;
 	}
 
+	/**
+	 * @deprecated use WorstRestrictionsPerFeature
+	 */
+	@Deprecated
 	public static RestrictionVerdict resolveLastVerdict(Iterable<RestrictionVerdict> verdicts, String featureId) {
 		if (featureId == null) {
 			return resolveLastVerdict(verdicts);
@@ -106,6 +122,10 @@ public class RestrictionVerdicts {
 		return resolveLastVerdict(candidates);
 	}
 
+	/**
+	 * @deprecated use RestrictionMustPauseExecution predicate
+	 */
+	@Deprecated
 	public static boolean shouldPauseExecution(RestrictionVerdict verdict) {
 		if (verdict == null) {
 			return false;
@@ -115,6 +135,10 @@ public class RestrictionVerdicts {
 				|| LICENSING_RESTRICTION_LEVEL_FATAL.equals(level);
 	}
 
+	/**
+	 * @deprecated use RestrictionMustStopExecution predicate
+	 */
+	@Deprecated
 	public static boolean shouldInterruptExecution(RestrictionVerdict verdict) {
 		if (verdict == null) {
 			return false;
