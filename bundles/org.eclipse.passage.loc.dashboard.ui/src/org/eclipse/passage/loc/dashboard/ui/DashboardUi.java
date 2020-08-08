@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui;
 
-import static org.eclipse.passage.lic.e4.core.commands.E4CoreCommands.executeCommand;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,9 +20,10 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
-import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
+import org.eclipse.passage.lic.internal.e4.core.commands.ExecuteCommand;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
@@ -104,7 +103,7 @@ public class DashboardUi {
 		if (perspectiveId != null) {
 			parameters.put(COMMANDPARAMETER_CREATE_PERSPECTIVE, perspectiveId);
 		}
-		executeCommand(context, COMMAND_CREATE, parameters);
+		new ExecuteCommand(COMMAND_CREATE, context).apply(parameters);
 	}
 
 	public static void executeLoadCommand(IEclipseContext context, String domain) {
@@ -114,7 +113,7 @@ public class DashboardUi {
 		if (perspectiveId != null) {
 			parameters.put(COMMANDPARAMETER_LOAD_PERSPECTIVE, perspectiveId);
 		}
-		executeCommand(context, COMMAND_LOAD, parameters);
+		new ExecuteCommand(COMMAND_LOAD, context).apply(parameters);
 	}
 
 	public static void executeShowCommand(IEclipseContext context, String domain, String classifier) {
@@ -125,7 +124,7 @@ public class DashboardUi {
 		if (perspectiveId != null) {
 			parameters.put(COMMANDPARAMETER_SHOW_PERSPECTIVE, perspectiveId);
 		}
-		executeCommand(context, COMMAND_SHOW, parameters);
+		new ExecuteCommand(COMMAND_SHOW, context).apply(parameters);
 	}
 
 }

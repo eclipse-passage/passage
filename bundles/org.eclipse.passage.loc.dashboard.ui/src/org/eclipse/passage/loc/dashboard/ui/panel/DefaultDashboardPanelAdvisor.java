@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.passage.lic.e4.core.commands.E4CoreCommands;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
+import org.eclipse.passage.lic.internal.e4.core.commands.ExecuteCommand;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
@@ -298,7 +298,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	}
 
 	protected void executeIssueLicenseCommand() {
-		E4CoreCommands.executeCommand(eclipseContext, DashboardUi.COMMAND_ISSUE_LICENSE, Collections.emptyMap());
+		new ExecuteCommand(DashboardUi.COMMAND_ISSUE_LICENSE, eclipseContext).apply(Collections.emptyMap());
 	}
 
 	protected void createLinks(Group group, String domain) {
