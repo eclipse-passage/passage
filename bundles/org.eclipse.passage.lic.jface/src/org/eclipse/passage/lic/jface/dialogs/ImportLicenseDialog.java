@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.TableViewer;
@@ -34,9 +35,15 @@ import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.base.BaseLicensingResult;
 import org.eclipse.passage.lic.base.LicensingProperties;
 import org.eclipse.passage.lic.base.conditions.ConditionMiners;
 import org.eclipse.passage.lic.equinox.LicensingEquinox;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.conditions.mining.ConditionImport;
+import org.eclipse.passage.lic.internal.jface.dialogs.OpenDiagnosticMessage;
 import org.eclipse.passage.lic.internal.jface.i18n.JFaceMessages;
 import org.eclipse.passage.lic.internal.jface.viewers.LicensingConditionViewer;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -184,13 +191,21 @@ public class ImportLicenseDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		String source = sourceText.getText().trim();
-		LicensingResult result = conditionMinerRegistry.importConditions(source, configuration);
-		LicensingResultDialogs.openMessageDialog(getShell(), JFaceMessages.ImportLicenseDialog_shell, result);
-		int severity = result.getSeverity();
-		if (severity <= LicensingResult.INFO) {
+		ServiceInvocationResult<String> result = new ConditionImport(
+				new BaseLicensedProduct(configuration.getProductIdentifier(), configuration.getProductVersion()))
+						.from(source);
+		Diagnostic diagnostic = result.diagnostic();
+		if (diagnostic.severe().isEmpty() && diagnostic.bearable().isEmpty()) {
+			MessageDialog.openInformation(getShell(), JFaceMessages.ImportLicenseDialog_shell, result.data().get());
+		} else {
+			new OpenDiagnosticMessage(this::getShell, () -> JFaceMessages.ImportLicenseDialog_shell).apply(diagnostic);
+		}
+		if (diagnostic.severe().isEmpty()) {
 			super.okPressed();
 		} else {
-			reporter.logResult(result);
+			// FIXME: rework
+			diagnostic.severe().forEach(s -> reporter
+					.logResult(new BaseLicensingResult(LicensingResult.ERROR, s.details(), getClass().getName())));
 		}
 	}
 

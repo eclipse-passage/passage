@@ -17,7 +17,6 @@ import java.util.function.BinaryOperator;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
-@SuppressWarnings("restriction")
 public final class SumOfDiagnostics implements BinaryOperator<Diagnostic> {
 
 	@Override
