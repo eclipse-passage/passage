@@ -13,31 +13,32 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.junit.Test;
 
 public final class LicenseEObjectTest extends LbcTestsBase {
 
 	@Test
 	public void positive() {
-		final ConditionPack conditionPack = conditionPack();
-		Stream.of(conditionPack) //
+		List<LicensePack> licensePacks = Stream.of(conditionPack()) //
 				.map(new LicenseEObject()) //
-				.forEach(licensePack -> {
-					List<LicenseGrant> grants = licensePack.getLicenseGrants();
-					grants.forEach(grant -> {
-						assertEquals(condition().feature(), grant.getFeatureIdentifier());
-						assertEquals(condition().evaluationInstructions().expression(), grant.getConditionExpression());
-						assertEquals(condition().evaluationInstructions().type().identifier(),
-								grant.getConditionType());
-					});
-				});
+				.collect(Collectors.toList());
+		assertFalse(licensePacks.isEmpty());
+		LicensePack licensePack = licensePacks.get(0);
+		List<LicenseGrant> grants = licensePack.getLicenseGrants();
+		assertFalse(grants.isEmpty());
+		LicenseGrant grant = grants.get(0);
+		assertEquals(condition().feature(), grant.getFeatureIdentifier());
+		assertEquals(condition().evaluationInstructions().expression(), grant.getConditionExpression());
+		assertEquals(condition().evaluationInstructions().type().identifier(), grant.getConditionType());
 	}
 
 }

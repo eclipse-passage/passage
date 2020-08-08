@@ -12,10 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.internal.base.LicensesResource;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -26,10 +30,10 @@ public final class LicensesResourceTest {
 	@Test
 	public void positive() {
 		LicensePack licensePack = LicensesFactory.eINSTANCE.createLicensePack();
-		Stream.of(licensePack) //
-				.map(new LicensesResource()).forEach(resource -> {
-					assertTrue(resource.getContents().contains(licensePack));
-				});
+		List<Resource> resources = Stream.of(licensePack) //
+				.map(new LicensesResource()).collect(Collectors.toList());
+		assertFalse(resources.isEmpty());
+		Resource resource = resources.get(0);
+		assertTrue(resource.getContents().contains(licensePack));
 	}
-
 }
