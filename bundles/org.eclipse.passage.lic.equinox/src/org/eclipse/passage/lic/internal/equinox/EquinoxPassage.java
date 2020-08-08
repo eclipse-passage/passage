@@ -51,16 +51,14 @@ public final class EquinoxPassage implements Passage {
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> checkLicense(String feature) {
-		return invokeAndUnget(frameworkIfAny(), f -> new Access(f).check(feature));
+		return invokeAndUnget(frameworkIfAny(), //
+				f -> new Access(f).check(feature));
 	}
 
 	@Override
 	public ServiceInvocationResult<LicensedProduct> product() {
-		Optional<ServiceReference<FrameworkSupplier>> framework = frameworkIfAny();
-		if (!framework.isPresent()) {
-			return noFramework();
-		}
-		return invokeAndUnget(frameworkIfAny(), f -> new BaseServiceInvocationResult<>(f.product()));
+		return invokeAndUnget(frameworkIfAny(), //
+				f -> new BaseServiceInvocationResult<>(f.product()));
 	}
 
 	private Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
