@@ -36,7 +36,6 @@ import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
  *             {@linkplain ConfigurationPath}
  */
 @Deprecated
-@SuppressWarnings("restriction")
 public class EquinoxPaths {
 
 	/**

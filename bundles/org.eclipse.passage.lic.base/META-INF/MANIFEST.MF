@@ -7,23 +7,23 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport
+Require-Bundle: org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.access,
  org.eclipse.passage.lic.base.conditions,
  org.eclipse.passage.lic.base.io,
  org.eclipse.passage.lic.base.requirements,
  org.eclipse.passage.lic.base.restrictions,
- org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lbc.base",
+ org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
- org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json",
+ org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.conditions.evaluation;x-internal:=true,
- org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface",
+ org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.diagnostic;x-internal:=true,
- org.eclipse.passage.lic.internal.base.diagnostic.code;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.diagnostic.code;x-friends:="org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.i18n;x-internal:=true,
  org.eclipse.passage.lic.internal.base.inspection.hardware;x-internal:=true,
- org.eclipse.passage.lic.internal.base.io;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.io;x-friends:="org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.observatory;x-internal:=true,
  org.eclipse.passage.lic.internal.base.permission;x-internal:=true,
  org.eclipse.passage.lic.internal.base.registry;x-internal:=true,
