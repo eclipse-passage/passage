@@ -40,7 +40,7 @@ public final class WorkbenchNotification {
 			return false;
 		}
 		if (!new NoSevereRestrictions().test(result.data().get())) {
-			LicenseStausDialog dialog = new LicenseStausDialog(shell.get(), result.data().get());
+			LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), result.data().get());
 			if (Window.OK == dialog.open()) {
 				return dialog.licenseHasBeenImported();
 			}

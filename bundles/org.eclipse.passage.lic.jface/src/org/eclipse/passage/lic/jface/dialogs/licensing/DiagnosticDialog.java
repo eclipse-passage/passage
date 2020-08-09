@@ -86,4 +86,5 @@ public final class DiagnosticDialog extends NotificationDialog {
 	private Optional<Trouble> selectedTrouble() {
 		return new FirstSelected<Trouble>(viewer.getSelection(), Trouble.class).get();
 	}
+
 }

@@ -21,12 +21,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
 @SuppressWarnings("restriction")
-public final class LicenseStausDialog extends NotificationDialog {
+public final class LicenseStatusDialog extends NotificationDialog {
 
 	private final ExaminationCertificate origin;
 	private boolean imported = false; // truly mutable ^:(
 
-	public LicenseStausDialog(Shell shell, ExaminationCertificate certificate) {
+	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate) {
 		super(shell);
 		this.origin = certificate;
 	}
