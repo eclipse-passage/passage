@@ -25,8 +25,8 @@ public final class LicensingRole extends BaseNamedData<UserRole> {
 		super(retrieve);
 	}
 
-	public LicensingRole(Map<String, String> data) {
-		super(key -> new UserRole.Of(data.get(key)));
+	public LicensingRole(Map<String, Object> data) {
+		super(key -> new UserRole.Of(String.valueOf(data.get(key))));
 	}
 
 	public LicensingRole(UserRole role) {

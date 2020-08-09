@@ -25,7 +25,7 @@ import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.jetty.i18n.JettyMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.net.LicensingNet;
+import org.eclipse.passage.lic.internal.net.LicensingRole;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -44,14 +44,12 @@ public class JettyServerLauncher implements BackendLauncher {
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)
 	public void bindBackendRequestDispatcher(BackendRequestDispatcher dispatcher, Map<String, Object> context) {
 		logger.info(String.format("Bind BackendRequestDispatcher %s with context %s", dispatcher, context)); //$NON-NLS-1$
-		String roleId = String.valueOf(context.get(LicensingNet.ROLE));
-		requestDispatchers.put(roleId, dispatcher);
+		new LicensingRole(context).get().ifPresent(r -> requestDispatchers.put(r.name(), dispatcher));
 	}
 
 	public void unbindBackendRequestDispatcher(BackendRequestDispatcher dispatcher, Map<String, Object> context) {
 		logger.info(String.format("Unbind BackendRequestDispatcher %s with context %s", dispatcher, context)); //$NON-NLS-1$
-		String roleId = String.valueOf(context.get(LicensingNet.ROLE));
-		requestDispatchers.remove(roleId, dispatcher);
+		new LicensingRole(context).get().ifPresent(r -> requestDispatchers.remove(r.name(), dispatcher));
 	}
 
 	@Override

@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.equinox;
 
-import static org.eclipse.passage.lic.net.LicensingNet.ROLE;
-import static org.eclipse.passage.lic.net.LicensingNet.ROLE_LICENSEE;
-
 import java.util.Map;
 
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
@@ -26,7 +23,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-@Component(service = BackendRequestDispatcher.class, property = ROLE + '=' + ROLE_LICENSEE)
+@Component(service = BackendRequestDispatcher.class, property = "role" + '=' + "licensee")
 public class LicenseeRequestDispatcher extends BaseRequestDispatcher {
 
 	@Activate

@@ -15,7 +15,7 @@ package org.eclipse.passage.lbc.base;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +28,10 @@ import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
-import org.eclipse.passage.lic.net.LicensingNet;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.conditions.UserRole;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.LicensingRole;
 
 /**
  * Base implementation for {@link BackendRequestDispatcher}
@@ -44,7 +47,7 @@ public class BaseRequestDispatcher implements BackendRequestDispatcher {
 	private Map<String, BackendActionExecutor> actionExecutors = new HashMap<>();
 
 	protected void activate(Map<String, Object> properties) {
-		roleId = String.valueOf(properties.get(LicensingNet.ROLE));
+		roleId = new LicensingRole(properties).get().get().name();
 	}
 
 	protected void bindLicensingReporter(LicensingReporter reporter) {
@@ -58,32 +61,34 @@ public class BaseRequestDispatcher implements BackendRequestDispatcher {
 	}
 
 	protected void bindBackendActionExecutor(BackendActionExecutor executor, Map<String, Object> properties) {
-		String actionId = String.valueOf(properties.get(LicensingNet.ACTION));
-		actionExecutors.put(actionId, executor);
+		new LicensingAction(properties).get().ifPresent(a -> actionExecutors.put(a.name(), executor));
 	}
 
 	protected void unbindBackendActionExecutor(BackendActionExecutor executor, Map<String, Object> properties) {
-		String actionId = String.valueOf(properties.get(LicensingNet.ACTION));
-		actionExecutors.remove(actionId, executor);
+		new LicensingAction(properties).get().ifPresent(a -> actionExecutors.remove(a.name(), executor));
 	}
 
 	@Override
 	public boolean canDispatchRequest(HttpServletRequest baseRequest) {
-		String requestRole = baseRequest.getParameter(LicensingNet.ROLE);
-		return Objects.equals(roleId, requestRole);
+		return new LicensingRole(s -> new UserRole.Of(baseRequest.getParameter(s))).get()//
+				.map(UserRole::name)//
+				.filter(roleId::equals)//
+				.isPresent();
 	}
 
 	@Override
 	public void dispatchRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		// FIXME: add authentication here
-		String actionId = request.getParameter(LicensingNet.ACTION);
-		BackendActionExecutor requestAction = actionExecutors.get(actionId);
-		if (requestAction != null) {
-			LicensingResult execution = requestAction.executeAction(request, response);
+		Optional<BackendActionExecutor> optional = new LicensingAction(
+				s -> new ConditionAction.Of(request.getParameter(s))).get()//
+						.flatMap(x -> Optional.ofNullable(actionExecutors.get(x.name())));
+		if (optional.isPresent()) {
+			LicensingResult execution = optional.get().executeAction(request, response);
 			licensingReporter.logResult(execution);
 		} else {
-			String message = String.format(BaseMessages.BaseRequestDispatcher_e_executor_not_available, requestAction);
+			String message = String.format(BaseMessages.BaseRequestDispatcher_e_executor_not_available,
+					request.getParameterMap());
 			licensingReporter.logResult(LicensingResults.createError(message, getClass().getName()));
 			response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, message);
 		}
