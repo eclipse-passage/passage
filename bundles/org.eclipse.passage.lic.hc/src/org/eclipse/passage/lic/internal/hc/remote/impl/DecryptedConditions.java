@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-@SuppressWarnings("restriction")
 final class DecryptedConditions implements ResponseHandler {
 
 	private final ConditionTransportRegistry transports;

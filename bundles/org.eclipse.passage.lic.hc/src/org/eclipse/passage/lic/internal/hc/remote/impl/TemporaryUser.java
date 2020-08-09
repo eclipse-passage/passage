@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * 
  * FIXME: for development: #564815
  */
-@SuppressWarnings("restriction")
 final class TemporaryUser extends StringNamedData {
 
 	protected TemporaryUser(String value) {

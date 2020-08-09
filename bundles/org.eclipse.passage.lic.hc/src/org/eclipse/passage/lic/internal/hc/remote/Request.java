@@ -16,7 +16,6 @@ import java.net.URL;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-@SuppressWarnings("restriction")
 public interface Request<R> {
 
 	URL url() throws LicensingException;
