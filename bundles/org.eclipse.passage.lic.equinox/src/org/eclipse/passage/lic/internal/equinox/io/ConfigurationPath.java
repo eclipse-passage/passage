@@ -31,7 +31,6 @@ import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
  * the configuration folder.
  * </p>
  */
-@SuppressWarnings("restriction")
 public final class ConfigurationPath implements Supplier<Path> {
 
 	@Override
