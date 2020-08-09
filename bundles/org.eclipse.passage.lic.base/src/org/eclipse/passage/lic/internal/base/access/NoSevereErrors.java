@@ -16,7 +16,8 @@ import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
-final class NoSevereErrors implements Predicate<Diagnostic> {
+@SuppressWarnings("restriction")
+public final class NoSevereErrors implements Predicate<Diagnostic> {
 
 	@Override
 	public boolean test(Diagnostic diagnostic) {
