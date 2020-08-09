@@ -30,14 +30,12 @@ final class FirstSelected<T> implements Supplier<Optional<T>> {
 
 	@Override
 	public Optional<T> get() {
-		if (!IStructuredSelection.class.isInstance(selection)) {
-			return Optional.empty();
-		}
-		IStructuredSelection structured = (IStructuredSelection) selection;
-		if (structured.isEmpty()) {
-			return Optional.empty();
-		}
-		return Optional.of(cls.cast(structured.getFirstElement()));
+		return Optional.ofNullable(selection)//
+				.filter(IStructuredSelection.class::isInstance)//
+				.map(IStructuredSelection.class::cast)//
+				.filter(structured -> !structured.isEmpty()) //
+				.map(IStructuredSelection::getFirstElement)//
+				.map(cls::cast); //
 	}
 
 }
