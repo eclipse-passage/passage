@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,25 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.net.tests;
+package org.eclipse.passage.lic.internal.base.tests.time;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.net.TimeConditions;
+import org.eclipse.passage.lic.internal.base.time.IsLocalFuture;
 import org.junit.Test;
 
-public class TimeConditionsTest {
-	
+public class IsLocalFutureTest {
+
+	private final IsLocalFuture predicate = new IsLocalFuture();
+
 	@Test
 	public void testIsFutureLocalTimeNegative() {
-		assertFalse(TimeConditions.isFutureLocalDateTime(null));
-		assertFalse(TimeConditions.isFutureLocalDateTime(new String()));
+		assertFalse(predicate.test(null));
+		assertFalse(predicate.test("")); //$NON-NLS-1$
 	}
+
 	@Test
 	public void testIsFutureLocalTimePositive() {
-		assertFalse(TimeConditions.isFutureLocalDateTime("2018-11-20T17:00:00")); //$NON-NLS-1$
-		assertTrue(TimeConditions.isFutureLocalDateTime("2028-11-20T17:00:00")); //$NON-NLS-1$
+		assertFalse(predicate.test("2018-11-20T17:00:00")); //$NON-NLS-1$
+		assertTrue(predicate.test("2028-11-20T17:00:00")); //$NON-NLS-1$
 	}
 
 }

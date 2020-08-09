@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,22 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.internal.base.time;
 
-import org.eclipse.passage.lic.base.access.BasePermissionEmitter;
-import org.eclipse.passage.lic.net.TimeConditions;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.function.Predicate;
 
-public class NtpPermissionEmitter extends BasePermissionEmitter {
-
-	public NtpPermissionEmitter() {
-	}
+public class IsLocalFuture implements Predicate<String> {
 
 	@Override
-	protected boolean evaluateSegment(String key, String value) {
-		switch (key) {
-		case TimeConditions.PROPERTY_LOCALTIMESTAMP:
-			return TimeConditions.isFutureLocalDateTime(value);
-		default:
+	public boolean test(String value) {
+		try {
+			return !Duration.between(//
+					LocalDateTime.now(), //
+					LocalDateTime.parse(value)).isNegative();
+		} catch (Exception e) {
 			return false;
 		}
 	}
