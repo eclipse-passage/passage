@@ -12,25 +12,25 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.tests;
 
-import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.Requester;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
-public final class FakeMiningRequest implements MiningRequest {
+public final class FakeMiningRequest implements ProductLicensesRequest {
 
 	@Override
-	public ProductIdentifier getProductIdentifier() {
+	public ProductIdentifier identifier() {
 		return new ProductIdentifier("identifier"); //$NON-NLS-1$
 	}
 
 	@Override
-	public ProductVersion getProductVersion() {
+	public ProductVersion version() {
 		return new ProductVersion("version"); //$NON-NLS-1$
 	}
 
 	@Override
-	public Requester getRequester() {
+	public Requester requester() {
 		return new Requester("temporal"); //$NON-NLS-1$
 	}
 

@@ -16,13 +16,13 @@ import java.util.Collection;
 import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
-import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
  * @since 1.0
  */
-public final class MinedConditionPacks implements Function<MiningRequest, Collection<ConditionPack>> {
+public final class MinedConditionPacks implements Function<ProductLicensesRequest, Collection<ConditionPack>> {
 
 	private final BackendLicenseVault licenseVault;
 
@@ -31,7 +31,7 @@ public final class MinedConditionPacks implements Function<MiningRequest, Collec
 	}
 
 	@Override
-	public Collection<ConditionPack> apply(MiningRequest request) {
+	public Collection<ConditionPack> apply(ProductLicensesRequest request) {
 		return licenseVault.availableLicenses(request).data().get();
 	}
 
