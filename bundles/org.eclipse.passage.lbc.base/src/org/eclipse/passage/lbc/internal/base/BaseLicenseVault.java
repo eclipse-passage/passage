@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
-import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 public class BaseLicenseVault implements BackendLicenseVault {
 
 	@Override
-	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(MiningRequest request) {
+	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request) {
 		return new BaseServiceInvocationResult<>(
 				Optional.of(Collections.singletonList(new BaseConditionPack("floating", Collections.emptyList())))); //$NON-NLS-1$
 	}

@@ -15,14 +15,14 @@ package org.eclipse.passage.lbc.internal.base;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
 /**
  * @since 1.0
  */
-public class BaseMiningRequest implements MiningRequest {
+public class BaseMiningRequest implements ProductLicensesRequest {
 
 	private final ProductIdentifier identifier;
 	private final ProductVersion version;
@@ -35,17 +35,17 @@ public class BaseMiningRequest implements MiningRequest {
 	}
 
 	@Override
-	public Supplier<Optional<String>> getProductIdentifier() {
+	public Supplier<Optional<String>> identifier() {
 		return identifier;
 	}
 
 	@Override
-	public Supplier<Optional<String>> getProductVersion() {
+	public Supplier<Optional<String>> version() {
 		return version;
 	}
 
 	@Override
-	public Supplier<Optional<String>> getRequester() {
+	public Supplier<Optional<String>> requester() {
 		return user;
 	}
 

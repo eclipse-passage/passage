@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.passage.lbc.internal.api.MiningRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.ParsedRequest;
 import org.junit.Test;
 
@@ -30,10 +30,10 @@ public final class ParsedRequestTest extends LbcTestsBase {
 	@Test
 	public void positive() {
 		HttpServletRequest request = new FakeHttpRequest(params());
-		MiningRequest miningRequest = Stream.of(request).map(new ParsedRequest()).collect(Collectors.toList()).get(0);
-		assertEquals(userValue(), miningRequest.getRequester().get().get());
-		assertEquals(identifierValue(), miningRequest.getProductIdentifier().get().get());
-		assertEquals(versionValue(), miningRequest.getProductVersion().get().get());
+		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedRequest()).collect(Collectors.toList()).get(0);
+		assertEquals(userValue(), miningRequest.requester().get().get());
+		assertEquals(identifierValue(), miningRequest.identifier().get().get());
+		assertEquals(versionValue(), miningRequest.version().get().get());
 	}
 
 	private Map<String, String> params() {

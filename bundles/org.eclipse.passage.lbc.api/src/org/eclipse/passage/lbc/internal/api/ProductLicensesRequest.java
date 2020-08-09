@@ -18,12 +18,12 @@ import java.util.function.Supplier;
 /**
  * @since 1.0
  */
-public interface MiningRequest {
+public interface ProductLicensesRequest {
 
-	Supplier<Optional<String>> getProductIdentifier();
+	Supplier<Optional<String>> identifier();
 
-	Supplier<Optional<String>> getProductVersion();
+	Supplier<Optional<String>> version();
 
-	Supplier<Optional<String>> getRequester();
+	Supplier<Optional<String>> requester();
 
 }

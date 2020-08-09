@@ -12,16 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Collection;
-
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 
 /**
  * @since 1.0
  */
-public interface BackendLicenseVault {
+public interface BackendServerConfiguration {
 
-	ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request);
+	MinedConditionsRegistry conditionMiners();
+
+	StreamCodecRegistry codecs();
+
+	KeyKeeperRegistry keyKeepers();
+
+	ConditionTransportRegistry transports();
 
 }
