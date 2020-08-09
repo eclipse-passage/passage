@@ -19,9 +19,11 @@ import java.util.TreeMap;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
+import org.eclipse.passage.lic.jface.dialogs.ImportLicenseDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -66,8 +68,8 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		initButtons();
 		((GridLayout) parent.getLayout()).makeColumnsEqualWidth = false;
+		initButtons();
 		buttons.keySet().forEach(id -> createButton(parent, buttons.get(id)));
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
 	}
@@ -111,20 +113,22 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 	}
 
 	private void initButtons() {
-		new ButtonConfig(1, this::requestLicense, "&Request License...", "", LicensingImages.IMG_DEFAULT) //$NON-NLS-1$ //$NON-NLS-2$
+		new ButtonConfig(1, this::requestLicense, "&Request License...", "", "") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				.reside(buttons);
-		new ButtonConfig(2, this::importLicense, "&Import License...", "", LicensingImages.IMG_IMPORT)//$NON-NLS-1$ //$NON-NLS-2$
+		new ButtonConfig(2, this::importLicense, "&Import License...", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				.reside(buttons);
 		new ButtonConfig(3, new CopyToClipboard(this::getShell, new ExaminationExplained(origin)), "Co&py", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				.reside(buttons);
 	}
 
 	private void requestLicense() {
-
+		// FIXME: do it, request!
 	}
 
 	private void importLicense() {
-
+		// FIXME: reimplement this one too
+		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), null);
+		imported = (Window.OK == dialog.open());
 	}
 
 }

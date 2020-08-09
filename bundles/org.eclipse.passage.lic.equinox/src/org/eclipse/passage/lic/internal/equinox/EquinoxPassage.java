@@ -83,14 +83,14 @@ public final class EquinoxPassage implements Passage {
 
 	private <T> ServiceInvocationResult<T> invokeAndUnget(Optional<ServiceReference<FrameworkSupplier>> candidate,
 			Function<Framework, ServiceInvocationResult<T>> invoke) {
-		if (candidate.isEmpty()) {
+		if (!candidate.isPresent()) {
 			return noFramework();
 		}
 		ServiceReference<FrameworkSupplier> reference = candidate.get();
 		try {
 			Optional<Framework> framework = Optional.ofNullable(context.getService(reference))//
 					.flatMap(FrameworkSupplier::get);
-			if (framework.isEmpty()) {
+			if (!framework.isPresent()) {
 				return noFramework();
 			}
 			return invoke.apply(framework.get());

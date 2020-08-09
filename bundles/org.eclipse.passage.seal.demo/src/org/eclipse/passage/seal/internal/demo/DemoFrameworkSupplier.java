@@ -13,14 +13,14 @@
 package org.eclipse.passage.seal.internal.demo;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @SuppressWarnings("restriction")
 @Component
-public final class DemoFrameworkSupplier implements Supplier<Optional<Framework>> {
+public final class DemoFrameworkSupplier implements FrameworkSupplier {
 
 	@Override
 	public Optional<Framework> get() {
