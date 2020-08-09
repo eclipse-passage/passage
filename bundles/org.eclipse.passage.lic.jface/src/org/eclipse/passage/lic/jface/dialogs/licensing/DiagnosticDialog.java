@@ -12,38 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.jface.dialogs.licensing;
 
-import java.util.List;
+import java.util.Optional;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.passage.lic.internal.base.diagnostic.TroubleHasException;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 @SuppressWarnings("restriction")
-public final class DiagnosticDialog extends TitleAreaDialog {
+public final class DiagnosticDialog extends NotificationDialog {
 
 	private final Diagnostic diagnostic;
-	private TableViewer viewer;
+	private ButtonConfig error;
 
 	public DiagnosticDialog(Shell shell, Diagnostic diagnostic) {
 		super(shell);
 		this.diagnostic = diagnostic;
-	}
-
-	@Override
-	protected Control createDialogArea(Composite parent) {
-		Composite owner = owner(parent);
-		errorsTable(owner);
-		inplaceData();
-		return owner;
 	}
 
 	@Override
@@ -55,28 +43,15 @@ public final class DiagnosticDialog extends TitleAreaDialog {
 	}
 
 	@Override
-	protected boolean isResizable() {
-		return true;
+	protected void initButtons() {
+		error = new ButtonConfig(1, this::viewError, "&View Error...", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		error.reside(buttons);
+		new ButtonConfig(2, new CopyToClipboard(this::getShell, new DiagnosticExplained(diagnostic)), "Co&py", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				.reside(buttons);
 	}
 
 	@Override
-	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
-	}
-
-	@Override
-	protected void buttonPressed(int id) {
-		okPressed();
-	}
-
-	private Composite owner(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		composite.setLayout(new GridLayout(1, false));
-		return composite;
-	}
-
-	private void errorsTable(Composite parent) {
+	protected void buildUI(Composite parent) {
 		viewer = new LicensingTable<Trouble>(parent, Trouble.class) //
 				.withColumn("Error", 720, t -> t.details()) //$NON-NLS-1$
 				.withColumn("Code", 50, t -> Integer.toString(t.code().code())) //$NON-NLS-1$
@@ -84,9 +59,31 @@ public final class DiagnosticDialog extends TitleAreaDialog {
 				.viewer();
 	}
 
-	private void inplaceData() {
-		List<Trouble> list = new SumOfLists<Trouble>().apply(diagnostic.severe(), diagnostic.bearable());
-		System.out.println(list.size());
-		viewer.setInput(list);
+	@Override
+	protected void inplaceData() {
+		viewer.setInput(new SumOfLists<Trouble>().apply(diagnostic.severe(), diagnostic.bearable()));
+	}
+
+	@Override
+	protected void updateButtonsEnablement() {
+		getButton(error.id()).setEnabled(new TroubleHasException().test(selectedTrouble()));
+	}
+
+	private void viewError() {
+		Optional<Trouble> trouble = selectedTrouble();
+		if (!trouble.isPresent()) {
+			return;
+		}
+		if (!new TroubleHasException().test(trouble)) {
+			return;
+		}
+		ErrorDialog.openError(getShell(), //
+				"title", //$NON-NLS-1$
+				"message", //$NON-NLS-1$
+				new StatusFromException(trouble.get().exception().get()).get());//
+	}
+
+	private Optional<Trouble> selectedTrouble() {
+		return new FirstSelected<Trouble>(viewer.getSelection(), Trouble.class).get();
 	}
 }
