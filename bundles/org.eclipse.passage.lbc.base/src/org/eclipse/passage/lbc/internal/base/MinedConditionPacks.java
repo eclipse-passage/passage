@@ -32,7 +32,7 @@ public final class MinedConditionPacks implements Function<MiningRequest, Collec
 
 	@Override
 	public Collection<ConditionPack> apply(MiningRequest request) {
-		return licenseVault.availableLicenses(request);
+		return licenseVault.availableLicenses(request).data().get();
 	}
 
 }

@@ -14,6 +14,7 @@ package org.eclipse.passage.lbc.internal.api;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
@@ -21,6 +22,6 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
  */
 public interface BackendLicenseVault {
 
-	Collection<ConditionPack> availableLicenses(MiningRequest request);
+	ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(MiningRequest request);
 
 }

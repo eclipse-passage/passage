@@ -13,7 +13,7 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import org.eclipse.passage.lbc.internal.api.MiningRequest;
-import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lbc.internal.base.Requester;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 

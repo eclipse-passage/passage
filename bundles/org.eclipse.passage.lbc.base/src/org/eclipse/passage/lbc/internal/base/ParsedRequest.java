@@ -17,7 +17,6 @@ import java.util.function.Function;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.passage.lbc.internal.api.MiningRequest;
-import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
