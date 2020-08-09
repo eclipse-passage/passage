@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.api.base
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.base
-Bundle-Version: 0.6.200.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -14,11 +14,11 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.io,
  org.eclipse.passage.lic.base.requirements,
  org.eclipse.passage.lic.base.restrictions,
- org.eclipse.passage.lic.internal.base;x-internal:=true,
+ org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
- org.eclipse.passage.lic.internal.base.conditions;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json",
  org.eclipse.passage.lic.internal.base.conditions.evaluation;x-internal:=true,
- org.eclipse.passage.lic.internal.base.conditions.mining;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface",
  org.eclipse.passage.lic.internal.base.diagnostic;x-internal:=true,
  org.eclipse.passage.lic.internal.base.diagnostic.code;x-internal:=true,
  org.eclipse.passage.lic.internal.base.i18n;x-internal:=true,

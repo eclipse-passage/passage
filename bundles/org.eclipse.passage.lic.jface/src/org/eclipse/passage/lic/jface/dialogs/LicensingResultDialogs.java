@@ -13,37 +13,19 @@
 package org.eclipse.passage.lic.jface.dialogs;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.passage.lic.internal.jface.dialogs.OpenDiagnosticMessage;
+import org.eclipse.passage.lic.internal.jface.dialogs.UpdateDialogTitle;
 
 /**
  * 
  * @since 0.5.0
- *
+ * 
+ * @deprecated use {@link OpenDiagnosticMessage} {@link UpdateDialogTitle}
  */
+@Deprecated
 public final class LicensingResultDialogs {
-
-	public static void openMessageDialog(Shell parent, String title, LicensingResult result) {
-		int severity = result.getSeverity();
-		String message = prepareMessage(result);
-		switch (severity) {
-		case LicensingResult.OK:
-		case LicensingResult.INFO:
-			MessageDialog.openInformation(parent, title, message);
-			return;
-		case LicensingResult.WARNING:
-			MessageDialog.openWarning(parent, title, message);
-			return;
-		case LicensingResult.ERROR:
-		case LicensingResult.CANCEL:
-			MessageDialog.openError(parent, title, message);
-			return;
-		default:
-			MessageDialog.openError(parent, title, message);
-		}
-	}
 
 	public static void updateTitleDialog(TitleAreaDialog dialog, LicensingResult result) {
 		int severity = result.getSeverity();

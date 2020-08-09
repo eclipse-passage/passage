@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-@SuppressWarnings("restriction")
 public final class HttpClient implements Client<HttpURLConnection> {
 
 	@Override

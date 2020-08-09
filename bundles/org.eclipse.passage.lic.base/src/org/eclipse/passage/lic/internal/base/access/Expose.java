@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-@SuppressWarnings("restriction")
 final class Expose extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
 	Expose(Framework framework, String feature) {

@@ -17,7 +17,6 @@ import java.util.Collection;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
-@SuppressWarnings("restriction")
 public interface Client<C> {
 
 	ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<C> request, ResponseHandler miner);

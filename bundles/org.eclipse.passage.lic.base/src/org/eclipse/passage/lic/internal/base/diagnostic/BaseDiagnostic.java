@@ -19,7 +19,6 @@ import java.util.Objects;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
-@SuppressWarnings("restriction")
 public final class BaseDiagnostic implements Diagnostic {
 
 	private final List<Trouble> severe;
@@ -59,6 +58,18 @@ public final class BaseDiagnostic implements Diagnostic {
 	@Override
 	public List<Trouble> bearable() {
 		return bearable;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		for (Trouble trouble : severe) {
+			builder.append(trouble.details()).append('\n');
+		}
+		for (Trouble trouble : bearable) {
+			builder.append(trouble.details()).append('\n');
+		}
+		return builder.toString();
 	}
 
 }

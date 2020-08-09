@@ -14,9 +14,6 @@ package org.eclipse.passage.lic.api.conditions;
 
 import java.util.Map;
 
-import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.api.LicensingResult;
-
 /**
  * Contract interface for a registry of {@link ConditionMiner}s.
  *
@@ -59,14 +56,6 @@ public interface ConditionMinerRegistry {
 	 * @since 0.4.0
 	 */
 	void unregisterConditionMiner(ConditionMiner conditionMiner, Map<String, Object> properties);
-
-	/**
-	 * To be extracted to a separate service and deprecated here: #552752
-	 * (https://bugs.eclipse.org/bugs/show_bug.cgi?id=552752)
-	 *
-	 * @since 0.4.0
-	 */
-	LicensingResult importConditions(String source, LicensingConfiguration configuration);
 
 	/**
 	 * Physical source used by the miner to quarry conditions.

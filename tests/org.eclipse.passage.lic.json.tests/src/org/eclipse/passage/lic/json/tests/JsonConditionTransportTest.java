@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,66 +12,43 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.json.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.Collection;
 
-import java.io.ByteArrayInputStream;
-import java.util.Date;
-
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.base.conditions.LicensingConditions;
+import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
-import org.eclipse.passage.lic.internal.json.JsonTransport;
-import org.eclipse.passage.lic.internal.json.LicensingConditionAggregator;
-import org.junit.Test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+public final class JsonConditionTransportTest extends ConditionTransportContractTest {
 
-@SuppressWarnings("restriction")
-public class JsonConditionTransportTest {
+	private final TestConditions data = new TestConditions();
 
-	private static final String FEATURE_TEST_ID = "test.id"; //$NON-NLS-1$
-	private static final String FEATURE_TEST_VERSION = "test.version.1"; //$NON-NLS-1$
-	private static final String FEATURE_TEST_RULE = "test.rule"; //$NON-NLS-1$
-
-	private static final Date FEATURE_TEST_VALID_FROM = new Date(System.currentTimeMillis() - 5000l);
-	private static final Date FEATURE_TEST_VALID_UNTIL = new Date(System.currentTimeMillis() + 6000l);
-
-	private static final String FEATURE_TEST_CONDITION_TYPE = "test.content.type"; //$NON-NLS-1$
-	private static final String FEATURE_TEST_EXPRESSION = "test.expression"; //$NON-NLS-1$
-
-	@Test
-	public void netConditionDescriptorTransportTest() throws Exception {
-		ObjectMapper mapper = JsonTransport.createObjectMapper();
-
-		LicensingConditionAggregator conditionAggregator = createConditionDescriptorAggregator();
-		byte[] byteValues = mapper.writeValueAsBytes(conditionAggregator);
-		ByteArrayInputStream bis = new ByteArrayInputStream(byteValues);
-		JsonConditionTransport transport = new JsonConditionTransport();
-		Iterable<LicensingCondition> conditions = transport.readConditions(bis);
-		assertNotNull(conditions);
-		for (LicensingCondition condition : conditions) {
-			assertEquals(FEATURE_TEST_ID, condition.getFeatureIdentifier());
-			assertEquals(FEATURE_TEST_VERSION, condition.getMatchVersion());
-			assertEquals(FEATURE_TEST_RULE, condition.getMatchRule());
-			assertEquals(FEATURE_TEST_VALID_FROM, condition.getValidFrom());
-			assertEquals(FEATURE_TEST_VALID_UNTIL, condition.getValidUntil());
-			assertEquals(FEATURE_TEST_CONDITION_TYPE, condition.getConditionType());
-			assertEquals(FEATURE_TEST_EXPRESSION, condition.getConditionExpression());
-		}
+	@Override
+	protected ConditionTransport transport() {
+		return new JsonConditionTransport();
 	}
 
-	private LicensingConditionAggregator createConditionDescriptorAggregator() {
-		LicensingConditionAggregator conditionAggregator = new LicensingConditionAggregator();
-		String id = FEATURE_TEST_ID;
-		String version = FEATURE_TEST_VERSION;
-		String rule = FEATURE_TEST_RULE;
-		Date from = FEATURE_TEST_VALID_FROM;
-		Date until = FEATURE_TEST_VALID_UNTIL;
-		String type = FEATURE_TEST_CONDITION_TYPE;
-		String expression = FEATURE_TEST_EXPRESSION;
-		LicensingCondition descriptor = LicensingConditions.create(id, version, rule, from, until, type, expression);
-		conditionAggregator.addLicensingCondition(descriptor);
-		return conditionAggregator;
+	@Override
+	protected Collection<Condition> conditions() {
+		return data.conditions();
 	}
+
+	@Override
+	protected String serialized(Collection<Condition> condition) {
+		return data.textual();
+	}
+
+	@Override
+	protected String serializedInvalid() {
+		return "{\r\n" + //$NON-NLS-1$
+				"  \"conditions\" : [ {\r\n" + //$NON-NLS-1$
+				"    \"feature\" : \"who-are-you-guys?\",\r\n" + //$NON-NLS-1$
+				"    \"rule\" : \"equivalent\",\r\n" + //$NON-NLS-1$
+				"    \"period-closed-from\" : \"2020-07-30T19:23:18.898+03:00[Europe/Moscow]\",\r\n" + //$NON-NLS-1$
+				"    \"period-closed-to\" : \"2020-07-30T19:23:19.898+03:00[Europe/Moscow]\",\r\n" + //$NON-NLS-1$
+				"    \"expression\" : \"cow-says=moo;cat-says=meow\"\r\n" + //$NON-NLS-1$
+				"  } ]\r\n" + //$NON-NLS-1$
+				"}\r\n"; //$NON-NLS-1$
+	}
+
 }

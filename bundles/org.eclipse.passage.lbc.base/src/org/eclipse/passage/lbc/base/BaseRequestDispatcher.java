@@ -41,7 +41,7 @@ public class BaseRequestDispatcher implements BackendRequestDispatcher {
 	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
 	private String roleId;
-	private static Map<String, BackendActionExecutor> actionExecutors = new HashMap<>();
+	private Map<String, BackendActionExecutor> actionExecutors = new HashMap<>();
 
 	protected void activate(Map<String, Object> properties) {
 		roleId = String.valueOf(properties.get(LicensingNet.ROLE));
