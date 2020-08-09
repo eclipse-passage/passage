@@ -12,18 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * @since 1.0
  */
 public interface MiningRequest {
 
-	ProductIdentifier getProductIdentifier();
+	Supplier<Optional<String>> getProductIdentifier();
 
-	ProductVersion getProductVersion();
+	Supplier<Optional<String>> getProductVersion();
 
-	Requester getRequester();
+	Supplier<Optional<String>> getRequester();
 
 }

@@ -22,11 +22,13 @@ import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class LicenseVaultTest {
 
 	@Test
 	public void availableLicenses() {
-		List<ConditionPack> pack = new LinkedList(new BaseLicenseVault().availableLicenses(new FakeMiningRequest()));
+		List<ConditionPack> pack = new LinkedList<ConditionPack>(
+				new BaseLicenseVault().availableLicenses(new FakeMiningRequest()).data().get());
 		assertEquals("floating", pack.get(0).origin()); //$NON-NLS-1$
 		assertEquals(Collections.emptyList(), pack.get(0).conditions());
 	}
