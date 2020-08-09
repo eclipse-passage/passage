@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.json.tobemoved;
+package org.eclipse.passage.lic.internal.json;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
-@SuppressWarnings("restriction")
 public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 
 	@Override

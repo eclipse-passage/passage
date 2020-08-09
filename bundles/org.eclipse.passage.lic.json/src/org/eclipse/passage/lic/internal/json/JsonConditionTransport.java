@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,50 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.json;
 
-import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE;
-import static org.eclipse.passage.lic.base.LicensingProperties.LICENSING_CONTENT_TYPE_JSON;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.passage.lic.api.conditions.ConditionTransport;
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.osgi.service.component.annotations.Component;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+public final class JsonConditionTransport implements ConditionTransport {
 
-/**
- * @deprecated use revised version (tobemoved package)
- */
-@Deprecated
-@Component(property = { LICENSING_CONTENT_TYPE + '=' + LICENSING_CONTENT_TYPE_JSON })
-public class JsonConditionTransport implements ConditionTransport {
+	private final ContentType type = new ContentType.Json();
 
 	@Override
-	public Iterable<LicensingCondition> readConditions(InputStream input) throws IOException {
-		Collection<LicensingCondition> descriptors = new ArrayList<>();
-		ObjectMapper mapper = JsonTransport.createObjectMapper();
-		LicensingConditionAggregator transfer = mapper.readValue(input, LicensingConditionAggregator.class);
-		transfer.getLicensingConditions().forEach(descriptors::add);
-		return descriptors;
+	public ContentType id() {
+		return type;
 	}
 
 	@Override
-	public void writeConditions(Iterable<LicensingCondition> conditions, OutputStream output) throws IOException {
-		if (conditions == null) {
-			return;
-		}
-		LicensingConditionAggregator aggregator = new LicensingConditionAggregator();
-		for (LicensingCondition c : conditions) {
-			aggregator.addLicensingCondition(c);
-		}
-
-		ObjectMapper mapper = JsonTransport.createObjectMapper();
-		byte[] byteValues = mapper.writeValueAsBytes(aggregator);
-		output.write(byteValues);
+	public Collection<Condition> read(InputStream input) throws IOException {
+		return new JsonObjectMapper().get().readValue(input, ConditionPack.class).conditions;
 	}
 
 }
