@@ -18,7 +18,11 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
 //FIXME: work for CachingSupplier
@@ -40,18 +44,67 @@ public final class ExaminationExplained implements Supplier<String> {
 				ExaminationExplanedMessages.getString("ExaminationExplained.prelude"), //$NON-NLS-1$
 				features.size(), //
 				date(), //
-				certificate.restrictions().size()));
-
+				certificate.restrictions().size()))//
+				.append("\r\n"); //$NON-NLS-1$
+		appendFeatures(features, out);
+		appendRestriction(out);
+		appendPermissions(out);
 		return out.toString();
 	}
 
+	private void appendFeatures(List<String> features, StringBuilder out) {
+		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.features_prelude")); //$NON-NLS-1$
+		features.forEach(feature -> out//
+				.append("\t") //$NON-NLS-1$
+				.append(feature)//
+				.append("\r\n")); //$NON-NLS-1$
+	}
+
+	private void appendRestriction(StringBuilder out) {
+		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.restrictions_prelude")); //$NON-NLS-1$
+		certificate.restrictions().forEach(restriction -> out//
+				.append("\t ") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.restriction_feature")) //$NON-NLS-1$
+				.append(" [") //$NON-NLS-1$
+				.append(feature(restriction))//
+				.append("] ") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.restriction_reason")) //$NON-NLS-1$
+				.append(" [") //$NON-NLS-1$
+				.append(reason(restriction.reason()))//
+				.append("] ") //$NON-NLS-1$
+		);
+	}
+
+	private String reason(TroubleCode code) {
+		return String.format("%d: %s", code.code(), code.explanation());//$NON-NLS-1$
+	}
+
+	private void appendPermissions(StringBuilder out) {
+		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.permissions_prelude")); //$NON-NLS-1$
+	}
+
 	private List<String> features() {
-		return certificate.participants().stream()//
-				.map(p -> String.format(ExaminationExplanedMessages.getString("ExaminationExplained.feature_format"), //$NON-NLS-1$
-						p.condition().feature(), p //
-								.condition().versionMatch().version()))//
+		List<String> permitted = certificate.participants().stream()//
+				.map(this::feature)//
 				.distinct() //
 				.collect(Collectors.toList());
+		List<String> prohibited = certificate.restrictions().stream()//
+				.map(this::feature)//
+				.distinct() //
+				.collect(Collectors.toList());
+		return new SumOfLists<String>().apply(permitted, prohibited);
+	}
+
+	private String feature(Permission permission) {
+		return String.format(ExaminationExplanedMessages.getString("ExaminationExplained.feature_format"), //$NON-NLS-1$
+				permission.condition().feature(), //
+				permission.condition().versionMatch().version());
+	}
+
+	private String feature(Restriction restriction) {
+		return String.format(ExaminationExplanedMessages.getString("ExaminationExplained.feature_format"), //$NON-NLS-1$
+				restriction.unsatisfiedRequirement().feature().identifier(), //
+				restriction.unsatisfiedRequirement().feature().version());
 	}
 
 	private String date() {

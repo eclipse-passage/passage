@@ -58,7 +58,10 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 
 	@Override
 	protected void buttonPressed(int id) {
-		Optional.ofNullable(buttons.get(id)).ifPresent(button -> button.action().run());
+		Optional.ofNullable(buttons.get(id))//
+				.map(button -> button.action())//
+				.orElse(this::okPressed) //
+				.run();
 	}
 
 	@Override

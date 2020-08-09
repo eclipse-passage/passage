@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.jface.dialogs.licensing;
 
 import java.util.List;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
@@ -50,12 +51,22 @@ public final class DiagnosticDialog extends TitleAreaDialog {
 		super.configureShell(shell);
 		shell.setText("Licensing failure diagnostic"); //$NON-NLS-1$
 		shell.setImage(getDefaultImage());
-		shell.setSize(620, 300);
+		shell.setSize(850, 300);
 	}
 
 	@Override
 	protected boolean isResizable() {
 		return true;
+	}
+
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
+	}
+
+	@Override
+	protected void buttonPressed(int id) {
+		okPressed();
 	}
 
 	private Composite owner(Composite parent) {
@@ -67,9 +78,8 @@ public final class DiagnosticDialog extends TitleAreaDialog {
 
 	private void errorsTable(Composite parent) {
 		viewer = new LicensingTable<Trouble>(parent, Trouble.class) //
-				.withColumn("Error", 450, t -> t.details()) //$NON-NLS-1$
+				.withColumn("Error", 720, t -> t.details()) //$NON-NLS-1$
 				.withColumn("Code", 50, t -> Integer.toString(t.code().code())) //$NON-NLS-1$
-				.withColumn("Type", 100, t -> t.code().explanation()) //$NON-NLS-1$
 				.withColumn("Failure", 50, t -> t.exception().isPresent() ? "Oh, yah..." : "Nope!")//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 				.viewer();
 	}
