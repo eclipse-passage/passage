@@ -10,40 +10,52 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensingstatus;
+package org.eclipse.passage.lic.jface.dialogs.licensing;
 
-import org.eclipse.jface.viewers.ILabelProvider;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.passage.lic.jface.viewers.LicensingLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 
-final class LicensingTable {
-	private final TableViewer table;
-	private final ILabelProvider labels = new LicensingLabelProvider();
+final class LicensingTable<T> {
 
-	LicensingTable(Composite parent) {
+	private final TableViewer table;
+	private final Class<T> cls;
+	private final Map<Integer, Function<T, String>> texts = new HashMap<>();
+
+	LicensingTable(Composite parent, Class<T> cls) {
 		this.table = new TableViewer(parent);
+		this.cls = cls;
 	}
 
 	public TableViewer viewer() {
-		table.setLabelProvider(labels);
+		table.setContentProvider(new ArrayContentProvider());
+		table.setLabelProvider(new HereLabelProvider<T>(texts, cls));
 		table.getTable().setHeaderVisible(true);
 		table.getTable().setLinesVisible(true);
+		table.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		// table.getTable().setLayout(new TableColumnLayout(true));
 		return table;
 	}
 
-	public LicensingTable withColumn(String name, int width) {
+	public LicensingTable<T> withColumn(String name, int width, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE);
 		setupColumn(column.getColumn(), name, width);
+		texts.put(table.getTable().getColumnCount() - 1, text);
 		return this;
 	}
 
-	public LicensingTable withColumn(String name, int width, int index) {
+	public LicensingTable<T> withColumn(String name, int width, int index, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE, index);
 		setupColumn(column.getColumn(), name, width);
+		texts.put(index, text);
 		return this;
 	}
 

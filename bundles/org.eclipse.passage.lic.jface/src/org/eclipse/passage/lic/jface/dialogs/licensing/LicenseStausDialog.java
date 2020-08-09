@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensingstatus;
+package org.eclipse.passage.lic.jface.dialogs.licensing;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -35,17 +36,23 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 
 	private final ExaminationCertificate origin;
 	private final Map<Integer, ButtonConfig> buttons = new TreeMap<>();
-	private TableViewer viewer;
+	private TableViewer viewer; // framework-driven mutability
+	private boolean imported = false; // truly mutable ^:(
 
 	public LicenseStausDialog(Shell shell, ExaminationCertificate certificate) {
 		super(shell);
 		this.origin = certificate;
 	}
 
+	public boolean licenseHasBeenImported() {
+		return imported;
+	}
+
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite owner = owner(parent);
 		restrictionsTable(owner);
+		inplaceData();
 		return owner;
 	}
 
@@ -62,12 +69,6 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 		createButton(parent, IDialogConstants.CLOSE_ID, IDialogConstants.CLOSE_LABEL, true);
 	}
 
-	private void createButton(Composite parent, ButtonConfig config) {
-		Button button = createButton(parent, config.id(), config.name(), false);
-		button.setToolTipText(config.tooltip());
-		button.setImage(LicensingImages.getImage(config.image()));
-	}
-
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
@@ -81,6 +82,12 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 		return true;
 	}
 
+	private void createButton(Composite parent, ButtonConfig config) {
+		Button button = createButton(parent, config.id(), config.name(), false);
+		button.setToolTipText(config.tooltip());
+		button.setImage(LicensingImages.getImage(config.image()));
+	}
+
 	private Composite owner(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -89,12 +96,15 @@ public final class LicenseStausDialog extends TitleAreaDialog {
 	}
 
 	private void restrictionsTable(Composite parent) {
-		viewer = new LicensingTable(parent) //
-				.withColumn("Name", 300) //$NON-NLS-1$
-				.withColumn("Version", 100) //$NON-NLS-1$
-				.withColumn("Verdict", 100) //$NON-NLS-1$
+		viewer = new LicensingTable<Restriction>(parent, Restriction.class) //
+				.withColumn("Name", 300, r -> r.unsatisfiedRequirement().feature().identifier()) //$NON-NLS-1$
+				.withColumn("Version", 100, r -> r.unsatisfiedRequirement().feature().version()) //$NON-NLS-1$
+				.withColumn("Verdict", 100, r -> r.reason().explanation()) //$NON-NLS-1$
 				.viewer();
-		viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+	}
+
+	private void inplaceData() {
+		viewer.setInput(origin.restrictions());
 	}
 
 	private void initButtons() {

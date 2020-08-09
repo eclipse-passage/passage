@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensingstatus;
+package org.eclipse.passage.lic.jface.dialogs.licensing;
 
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.ILabelProviderListener;
