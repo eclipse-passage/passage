@@ -14,15 +14,17 @@ package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.util.TimerTask;
 
-import org.eclipse.passage.lic.net.TimeConditions;
+import org.eclipse.passage.lic.internal.base.time.IsLocalFuture;
 
 abstract class ConditionTimerTask extends TimerTask {
 
 	private boolean isStopped = false;
 	private final String timeToLive;
+	private final IsLocalFuture predicate;
 
 	public ConditionTimerTask(String timeToLive) {
 		this.timeToLive = timeToLive;
+		this.predicate = new IsLocalFuture();
 	}
 
 	@Override
@@ -30,7 +32,7 @@ abstract class ConditionTimerTask extends TimerTask {
 		if (isStopped) {
 			return;
 		}
-		if (TimeConditions.isFutureLocalDateTime(timeToLive)) {
+		if (predicate.test(timeToLive)) {
 			isStopped = true;
 			timeExpired();
 		}
