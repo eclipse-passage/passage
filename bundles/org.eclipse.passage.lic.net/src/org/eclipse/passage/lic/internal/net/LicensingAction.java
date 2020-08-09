@@ -25,8 +25,8 @@ public final class LicensingAction extends BaseNamedData<ConditionAction> {
 		super(retrieve);
 	}
 
-	public LicensingAction(Map<String, String> data) {
-		super(key -> new ConditionAction.Of(data.get(key)));
+	public LicensingAction(Map<String, Object> data) {
+		super(key -> new ConditionAction.Of(String.valueOf(data.get(key))));
 	}
 
 	public LicensingAction(ConditionAction action) {

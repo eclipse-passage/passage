@@ -31,9 +31,7 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lbc.internal.base.ParsedRequest;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.passage.lic.api.conditions.ConditionActions;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.net.LicensingNet;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -41,7 +39,7 @@ import org.osgi.service.component.annotations.Component;
  * {@code Iterable<ConditionDescriptor> extractConditions(Object configuration)}
  * {@link org.eclipse.passage.lic.api.access.AccessManager}
  */
-@Component(property = LicensingNet.ACTION + '=' + ConditionActions.ACQUIRE)
+@Component(property = "action" + '=' + "acquire")
 public class AcquireConditionActionExecutor implements BackendActionExecutor {
 
 	@Override
