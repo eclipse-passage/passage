@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
-@SuppressWarnings("restriction")
 public final class RemoteConditions implements MinedConditions {
 
 	private final StringServiceId id = new StringServiceId("remote"); //$NON-NLS-1$

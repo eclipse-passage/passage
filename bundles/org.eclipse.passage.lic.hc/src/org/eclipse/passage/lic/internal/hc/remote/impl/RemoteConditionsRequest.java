@@ -51,7 +51,6 @@ import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
  * <li>{@code config()} to gain a proper request headers configuring unit</li>
  * </ul>
  */
-@SuppressWarnings("restriction")
 public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	private final LicensedProduct product;
