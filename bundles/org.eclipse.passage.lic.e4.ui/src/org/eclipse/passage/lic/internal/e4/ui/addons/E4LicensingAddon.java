@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.access.ShouldBeExposed;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplicationFromContext;
-import org.eclipse.passage.lic.jface.dialogs.licensing.WorkbenchNotification;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.WorkbenchNotification;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
 

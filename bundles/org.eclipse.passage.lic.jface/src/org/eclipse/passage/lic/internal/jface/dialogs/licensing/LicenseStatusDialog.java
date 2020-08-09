@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
