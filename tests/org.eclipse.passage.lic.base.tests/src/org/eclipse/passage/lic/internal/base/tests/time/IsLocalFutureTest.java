@@ -25,7 +25,7 @@ public class IsLocalFutureTest {
 	@Test
 	public void testIsFutureLocalTimeNegative() {
 		assertFalse(predicate.test(null));
-		assertFalse(predicate.test(new String()));
+		assertFalse(predicate.test("")); //$NON-NLS-1$
 	}
 
 	@Test
