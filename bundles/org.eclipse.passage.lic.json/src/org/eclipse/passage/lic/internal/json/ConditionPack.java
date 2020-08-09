@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.json.tobemoved;
+package org.eclipse.passage.lic.internal.json;
 
 import java.util.Collection;
 
@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
  * Cover connection of typed elements as our persistence library requires.
  * Intentionally ugly.
  */
-@SuppressWarnings("restriction")
 public final class ConditionPack {
 
 	Collection<Condition> conditions;

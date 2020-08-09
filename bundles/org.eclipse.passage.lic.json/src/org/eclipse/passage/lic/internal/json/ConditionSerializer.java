@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.json.tobemoved;
+package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
@@ -23,7 +23,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-@SuppressWarnings("restriction")
 final class ConditionSerializer extends StdSerializer<Condition> {
 
 	ConditionSerializer(Class<Condition> type) {

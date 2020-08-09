@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.json.tests.tobemoved;
+package org.eclipse.passage.lic.json.tests;
 
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
@@ -31,12 +31,11 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
-import org.eclipse.passage.lic.internal.json.tobemoved.ConditionPack;
-import org.eclipse.passage.lic.internal.json.tobemoved.JsonObjectMapper;
+import org.eclipse.passage.lic.internal.json.ConditionPack;
+import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-@SuppressWarnings("restriction")
 public final class TestConditions {
 
 	private final List<Condition> conditions = Arrays.asList(//

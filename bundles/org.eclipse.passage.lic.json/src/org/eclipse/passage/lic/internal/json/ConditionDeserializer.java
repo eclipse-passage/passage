@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.json.tobemoved;
+package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
@@ -30,7 +30,6 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
-@SuppressWarnings("restriction")
 final class ConditionDeserializer extends StdDeserializer<Condition> {
 
 	/**
