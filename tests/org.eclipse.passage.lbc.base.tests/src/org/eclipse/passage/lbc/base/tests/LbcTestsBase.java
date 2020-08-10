@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 
+@SuppressWarnings("restriction")
 public abstract class LbcTestsBase {
 
 	protected ProductIdentifier identifier() {
