@@ -26,6 +26,7 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class MinedConditionPacksTest extends LbcTestsBase {
 
 	@Test

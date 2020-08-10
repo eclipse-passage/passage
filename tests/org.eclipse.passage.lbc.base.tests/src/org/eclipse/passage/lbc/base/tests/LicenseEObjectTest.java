@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class LicenseEObjectTest extends LbcTestsBase {
 
 	@Test

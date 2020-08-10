@@ -16,7 +16,6 @@ import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-@SuppressWarnings("restriction")
 final class Allow extends Cycle<Boolean> {
 
 	Allow(Framework framework, String feature) {

@@ -16,9 +16,8 @@ import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.internal.equinox.access.EquinoxAccessManager;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public class EquinoxAccessManagerTest {
-	
+
 	@Test
 	public void testExecuteRestrictions() {
 		EquinoxAccessManager accessManager = new EquinoxAccessManager();

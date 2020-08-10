@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
-@SuppressWarnings("restriction")
 public final class BaseRestriction implements Restriction {
 
 	private final LicensedProduct product;

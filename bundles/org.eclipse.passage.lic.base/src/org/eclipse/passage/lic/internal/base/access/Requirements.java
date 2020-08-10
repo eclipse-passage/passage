@@ -30,7 +30,6 @@ import org.eclipse.passage.lic.internal.base.requirements.RequirementsFeatureFil
 /**
  * FIXME: Has public visibility only for testing.
  */
-@SuppressWarnings("restriction")
 public final class Requirements implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Registry<StringServiceId, ResolvedRequirements> registry;
