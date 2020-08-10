@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public abstract class ConditionTransportContractTest {
 
 	@Test

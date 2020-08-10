@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 
-@SuppressWarnings("restriction")
 public final class BaseServiceInvocationResult<T> implements ServiceInvocationResult<T> {
 
 	private final Diagnostic diagnostic;

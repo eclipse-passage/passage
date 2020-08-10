@@ -23,7 +23,6 @@ import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.log.Logger;
 import org.osgi.service.log.LoggerFactory;
 
-@SuppressWarnings("restriction")
 public class ComponentConfigurationResolverTest {
 
 	@Test

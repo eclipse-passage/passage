@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.base.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-@SuppressWarnings("restriction")
 public final class LicenseInvalid extends TroubleCode {
 
 	public LicenseInvalid() {
