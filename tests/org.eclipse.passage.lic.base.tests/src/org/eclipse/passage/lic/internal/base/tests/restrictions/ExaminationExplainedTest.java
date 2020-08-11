@@ -48,7 +48,6 @@ public final class ExaminationExplainedTest {
 	@Test
 	public void explains() {
 		String explanation = new ExaminationExplained(certificate()).get().trim();
-		System.out.println(explanation);
 		assertFalse(explanation.isEmpty());
 		assertTrue(explanation.contains("woha!")); //$NON-NLS-1$
 		assertTrue(explanation.contains("christmas")); //$NON-NLS-1$
