@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.restrictions;
 
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +44,7 @@ public final class ExaminationExplained implements Supplier<String> {
 		out.append(String.format(//
 				ExaminationExplanedMessages.getString("ExaminationExplained.prelude"), //$NON-NLS-1$
 				features.size(), //
-				date(), //
+				date(certificate.stamp()), //
 				certificate.restrictions().size()))//
 				.append("\r\n"); //$NON-NLS-1$
 		appendFeatures(features, out);
@@ -53,7 +54,8 @@ public final class ExaminationExplained implements Supplier<String> {
 	}
 
 	private void appendFeatures(List<String> features, StringBuilder out) {
-		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.features_prelude")); //$NON-NLS-1$
+		out.append(String.format(ExaminationExplanedMessages.getString(//
+				"ExaminationExplained.features_prelude"), features.size())); //$NON-NLS-1$
 		features.forEach(feature -> out//
 				.append("\t") //$NON-NLS-1$
 				.append(feature)//
@@ -61,9 +63,10 @@ public final class ExaminationExplained implements Supplier<String> {
 	}
 
 	private void appendRestriction(StringBuilder out) {
-		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.restrictions_prelude")); //$NON-NLS-1$
+		out.append(String.format(ExaminationExplanedMessages.getString(//
+				"ExaminationExplained.restrictions_prelude"), certificate.restrictions().size())); //$NON-NLS-1$
 		certificate.restrictions().forEach(restriction -> out//
-				.append("\t ") //$NON-NLS-1$
+				.append("\t") //$NON-NLS-1$
 				.append(ExaminationExplanedMessages.getString("ExaminationExplained.restriction_feature")) //$NON-NLS-1$
 				.append(" [") //$NON-NLS-1$
 				.append(feature(restriction))//
@@ -72,6 +75,11 @@ public final class ExaminationExplained implements Supplier<String> {
 				.append(" [") //$NON-NLS-1$
 				.append(reason(restriction.reason()))//
 				.append("] ") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.restriction_level")) //$NON-NLS-1$
+				.append(" [") //$NON-NLS-1$
+				.append(restriction.unsatisfiedRequirement().restrictionLevel())//
+				.append("] ") //$NON-NLS-1$
+				.append("\r\n") //$NON-NLS-1$
 		);
 	}
 
@@ -80,7 +88,35 @@ public final class ExaminationExplained implements Supplier<String> {
 	}
 
 	private void appendPermissions(StringBuilder out) {
-		out.append(ExaminationExplanedMessages.getString("ExaminationExplained.permissions_prelude")); //$NON-NLS-1$
+		out.append(String.format(ExaminationExplanedMessages.getString("ExaminationExplained.permissions_prelude"), //$NON-NLS-1$
+				certificate.participants().size()));
+		certificate.participants().forEach(permission -> out //
+				.append("\t") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_feature")) //$NON-NLS-1$
+				.append(" [") //$NON-NLS-1$
+				.append(feature(permission))//
+				.append("]\r\n\t\t") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_period")) //$NON-NLS-1$
+				.append(" [") //$NON-NLS-1$
+				.append(date(permission.leaseDate()))//
+				.append(" - ") //$NON-NLS-1$
+				.append(date(permission.expireDate()))//
+				.append("]\r\n\t\t") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_condition")) //$NON-NLS-1$
+				.append(": ") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_condition_version")) //$NON-NLS-1$
+				.append("=[") //$NON-NLS-1$
+				.append(permission.condition().versionMatch().version()) //
+				.append(", ") //$NON-NLS-1$
+				.append(permission.condition().versionMatch().rule().identifier()) //
+				.append("] ") //$NON-NLS-1$
+				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_condition_evaluation")) //$NON-NLS-1$
+				.append("=[") //$NON-NLS-1$
+				.append(permission.condition().evaluationInstructions().type().identifier()).append(", ") //$NON-NLS-1$
+				.append(permission.condition().evaluationInstructions().expression()) //
+				.append("] ") //$NON-NLS-1$
+				.append("\r\n") //$NON-NLS-1$
+		);
 	}
 
 	private List<String> features() {
@@ -107,7 +143,7 @@ public final class ExaminationExplained implements Supplier<String> {
 				restriction.unsatisfiedRequirement().feature().version());
 	}
 
-	private String date() {
-		return DateTimeFormatter.RFC_1123_DATE_TIME.format(certificate.stamp());
+	private String date(ZonedDateTime date) {
+		return DateTimeFormatter.RFC_1123_DATE_TIME.format(date);
 	}
 }
