@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import java.util.function.Supplier;
 
@@ -40,7 +40,7 @@ public final class WorkbenchNotification {
 			return false;
 		}
 		if (!new NoSevereRestrictions().test(result.data().get())) {
-			LicenseStausDialog dialog = new LicenseStausDialog(shell.get(), result.data().get());
+			LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), result.data().get());
 			if (Window.OK == dialog.open()) {
 				return dialog.licenseHasBeenImported();
 			}

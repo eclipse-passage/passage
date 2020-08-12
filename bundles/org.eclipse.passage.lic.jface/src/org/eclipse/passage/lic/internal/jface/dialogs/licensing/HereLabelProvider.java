@@ -10,21 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
-import org.eclipse.jface.resource.ResourceManager;
+import java.util.Map;
+import java.util.function.Function;
+
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableColorProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-@SuppressWarnings("restriction")
-public class DiagnosticLabelProvider implements ITableLabelProvider, ITableColorProvider {
+class HereLabelProvider<T> implements ITableLabelProvider, ITableColorProvider {
 
-	// FIXME: final CahchingFunction
-	private ResourceManager resourceManager;
+	private final Map<Integer, Function<T, String>> texts;
+	private final Class<T> cls;
+
+	HereLabelProvider(Map<Integer, Function<T, String>> texts, Class<T> cls) {
+		this.texts = texts;
+		this.cls = cls;
+	}
 
 	@Override
 	public Color getForeground(Object element, int column) {
@@ -46,11 +51,7 @@ public class DiagnosticLabelProvider implements ITableLabelProvider, ITableColor
 
 	@Override
 	public String getColumnText(Object element, int column) {
-		return null;
-	}
-
-	private Restriction restriction(Object element) {
-		return (Restriction) element;
+		return texts.get(column).apply(cls.cast(element));
 	}
 
 	@Override
