@@ -16,7 +16,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
-import org.eclipse.passage.lic.jface.dialogs.ImportLicenseDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -40,15 +39,16 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText("Licensing status"); //$NON-NLS-1$
 		shell.setImage(getDefaultImage());
-		shell.setSize(520, 300);
+		shell.setSize(730, 300);
+		setMessage("Point a license file to see what's inside"); //$NON-NLS-1$
 	}
 
 	@Override
 	protected void buildUI(Composite parent) {
 		viewer = new LicensingTable<Restriction>(parent, Restriction.class) //
-				.withColumn("Name", 300, r -> r.unsatisfiedRequirement().feature().identifier()) //$NON-NLS-1$
+				.withColumn("Name", 500, r -> r.unsatisfiedRequirement().feature().identifier()) //$NON-NLS-1$
 				.withColumn("Version", 100, r -> r.unsatisfiedRequirement().feature().version()) //$NON-NLS-1$
-				.withColumn("Verdict", 100, r -> r.reason().explanation()) //$NON-NLS-1$
+				.withColumn("Verdict", 200, r -> r.reason().explanation()) //$NON-NLS-1$
 				.viewer();
 	}
 
@@ -78,7 +78,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	private void importLicense() {
 		// FIXME: reimplement this one too
-		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell(), null);
+		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell());
 		imported = (Window.OK == dialog.open());
 	}
 
