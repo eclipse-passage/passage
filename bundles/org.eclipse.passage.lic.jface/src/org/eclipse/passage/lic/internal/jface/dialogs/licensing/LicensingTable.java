@@ -41,7 +41,6 @@ final class LicensingTable<T> {
 		table.getTable().setHeaderVisible(true);
 		table.getTable().setLinesVisible(true);
 		table.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		// table.getTable().setLayout(new TableColumnLayout(true));
 		return table;
 	}
 

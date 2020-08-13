@@ -16,20 +16,24 @@ import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
+import org.eclipse.passage.lic.internal.base.conditions.mining.BaseLicenseReadingService;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
 
 @SuppressWarnings("restriction")
 final class DemoFramework implements Framework {
 
-	private final AccessCycleConfiguration access;
+	private final SealedAccessCycleConfiguration access;
 	private final LicensedProduct product;
+	private final LicenseReadingService reader;
 
 	static final Framework demo = new DemoFramework();
 
 	private DemoFramework() {
 		product = productRead();
 		access = new SealedAccessCycleConfiguration(this::product);
+		reader = new BaseLicenseReadingService(product, access.miningEquipment());
 	}
 
 	private LicensedProduct productRead() {
@@ -50,6 +54,11 @@ final class DemoFramework implements Framework {
 	@Override
 	public AccessCycleConfiguration accessCycleConfiguration() {
 		return access;
+	}
+
+	@Override
+	public LicenseReadingService licenseReader() {
+		return reader;
 	}
 
 }

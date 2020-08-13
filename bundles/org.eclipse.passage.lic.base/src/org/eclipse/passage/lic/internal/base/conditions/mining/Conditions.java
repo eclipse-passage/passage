@@ -10,10 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -30,20 +32,26 @@ import org.eclipse.passage.lic.internal.base.conditions.FeatureConditionPack;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
-/**
- * FIXME: Has public visibility only for testing.
- */
 @SuppressWarnings("restriction")
 public final class Conditions implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 
 	private final Registry<StringServiceId, MinedConditions> registry;
 	private final LicensedProduct product;
-	private final String feature;
+	private final Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter;
 
 	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product, String feature) {
+		this(registry, product, new FeatureFilter<ConditionPack>(feature, new Filtered()));
+	}
+
+	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product) {
+		this(registry, product, Function.identity());
+	}
+
+	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product,
+			Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter) {
 		this.registry = registry;
 		this.product = product;
-		this.feature = feature;
+		this.filter = filter;
 	}
 
 	@Override
@@ -57,14 +65,19 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 		return registry.services().stream() //
 				.map(miner -> miner.all(product)) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>()))//
-				.map(new FeatureFilter<ConditionPack>(feature, this::filtered)) //
+				.map(filter) //
 				.orElse(new BaseServiceInvocationResult<>());
 
 	}
 
-	private Optional<ConditionPack> filtered(ConditionPack pack, String incoming) {
-		ConditionPack filtered = new FeatureConditionPack(pack, incoming);
-		return filtered.conditions().isEmpty() ? Optional.empty() : Optional.of(filtered);
+	private static final class Filtered implements BiFunction<ConditionPack, String, Optional<ConditionPack>> {
+
+		@Override
+		public Optional<ConditionPack> apply(ConditionPack pack, String incoming) {
+			ConditionPack filtered = new FeatureConditionPack(pack, incoming);
+			return filtered.conditions().isEmpty() ? Optional.empty() : Optional.of(filtered);
+		}
+
 	}
 
 }
