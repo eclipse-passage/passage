@@ -31,8 +31,12 @@ public final class Access {
 		return new Allow(framework, feature).apply();
 	}
 
-	public ServiceInvocationResult<ExaminationCertificate> check(String feature) {
+	public ServiceInvocationResult<ExaminationCertificate> acquire(String feature) {
 		return new Expose(framework, feature).apply();
 	}
 
+	public boolean release(ExaminationCertificate certificate) {
+		// FIXME: implement, currently returns an intention
+		return certificate.examinationPassed();
+	}
 }

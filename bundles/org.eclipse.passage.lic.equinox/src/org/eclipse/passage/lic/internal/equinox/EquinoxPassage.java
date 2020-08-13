@@ -50,9 +50,15 @@ public final class EquinoxPassage implements Passage {
 	}
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> checkLicense(String feature) {
+	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
 		return invokeAndUnget(frameworkIfAny(), //
-				f -> new Access(f).check(feature));
+				f -> new Access(f).acquire(feature));
+	}
+
+	@Override
+	public ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate) {
+		return invokeAndUnget(frameworkIfAny(), //
+				f -> new BaseServiceInvocationResult<>(new Access(f).release(certificate)));
 	}
 
 	@Override
