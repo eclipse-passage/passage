@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasr
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -110,6 +111,11 @@ final class SabotagedFramework implements Framework {
 			return () -> noService();
 		}
 
+	}
+
+	@Override
+	public LicenseReadingService licenseReader() {
+		throw new UnsupportedOperationException();
 	}
 
 }

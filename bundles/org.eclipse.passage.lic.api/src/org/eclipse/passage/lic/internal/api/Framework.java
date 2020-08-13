@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
+
 /**
  * <p>
  * All the framework-relying constructions are to originate from this point this
@@ -37,5 +39,7 @@ public interface Framework {
 	LicensedProduct product();
 
 	AccessCycleConfiguration accessCycleConfiguration();
+
+	LicenseReadingService licenseReader();
 
 }

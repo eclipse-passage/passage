@@ -57,7 +57,6 @@ import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentC
 import org.eclipse.passage.lic.internal.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditions;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareAssessmentService;
@@ -86,13 +85,10 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new ComponentRequirements() //
 		));
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				new RemoteConditions(transports()), //
-				new UserHomeResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports())), //
-				new InstallationResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports())), //
-				new ConfigurationResidentConditions(//
-						new MiningEquipment(keyKeepers(), codecs(), transports()))//
+				// new RemoteConditions(transports()), //
+				new UserHomeResidentConditions(miningEquipment()), //
+				new InstallationResidentConditions(miningEquipment()), //
+				new ConfigurationResidentConditions(miningEquipment())//
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport(), //
@@ -125,6 +121,10 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionsExaminationService()//
 		));
+	}
+
+	MiningEquipment miningEquipment() {
+		return new MiningEquipment(keyKeepers(), codecs(), transports());
 	}
 
 	private Bundle bundle() {

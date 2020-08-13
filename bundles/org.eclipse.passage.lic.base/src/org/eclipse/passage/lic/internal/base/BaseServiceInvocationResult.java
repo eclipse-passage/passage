@@ -51,7 +51,7 @@ public final class BaseServiceInvocationResult<T> implements ServiceInvocationRe
 		this(diagnostic, Optional.of(data));
 	}
 
-	private BaseServiceInvocationResult(Diagnostic diagnostic, Optional<T> data) {
+	public BaseServiceInvocationResult(Diagnostic diagnostic, Optional<T> data) {
 		Objects.requireNonNull(diagnostic, "BaseServiceInvocationResult:diagnostic"); //$NON-NLS-1$
 		Objects.requireNonNull(data, "BaseServiceInvocationResult:data"); //$NON-NLS-1$
 		this.diagnostic = diagnostic;
