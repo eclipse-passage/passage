@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
@@ -29,19 +30,45 @@ public interface Passage {
 
 	/**
 	 * <p>
-	 * Full feathered access cycle invocation returns complete set of data and
-	 * diagnostics to take an informed decision
+	 * Full feathered access cycle invocation returns an acquired examination
+	 * certificate with complete set of data and diagnostics. Acquires the
+	 * {@link Condition} to be in use until released. Potentially long running
+	 * operation.
 	 * <p>
 	 * 
 	 * <p>
-	 * Call this method from your {@code feature} code to ensure it is not used
-	 * without proper license.
+	 * Call this method before starting your {@code feature} code to ensure it is
+	 * not used without proper license. Be cooperative and don't forget to call
+	 * {@link Passage#releaseLicense(ServiceInvocationResult)} at the end of you
+	 * {@code feature} code to let others use the license after you don't need it.
 	 * </p>
 	 * 
 	 * @param feature string identifier of the feature under licensing.
+	 * 
 	 * @see org.eclipse.passage.lic.api
+	 * @see Passage#releaseLicense(ExaminationCertificate)
 	 */
-	ServiceInvocationResult<ExaminationCertificate> checkLicense(String feature);
+	ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature);
+
+	/**
+	 * <p>
+	 * The command to release the acquired license represented by
+	 * {@link ExaminationCertificate} when it is not needed anymore.
+	 * <p>
+	 * 
+	 * <p>
+	 * Call this at the <code>finally</code> block of your {@code feature} code to
+	 * ensure the license is released for the future use. Potentially long running
+	 * operation.
+	 * </p>
+	 * 
+	 * @param certificate the examination certificate to be released.
+	 * @return the result of command invocation, <code>true</code> for success
+	 * 
+	 * @see org.eclipse.passage.lic.api
+	 * @see Passage#acquireLicense(String)
+	 */
+	ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate);
 
 	/**
 	 * <p>

@@ -47,10 +47,11 @@ public final class E4LicensingAddon {
 			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
 		ServiceInvocationResult<ExaminationCertificate> result = new EquinoxPassage()
-				.checkLicense(new LicensedApplicationFromContext(application).get().identifier());
+				.acquireLicense(new LicensedApplicationFromContext(application).get().identifier());
 		if (new ShouldBeExposed().test(result)) {
 			new WorkbenchNotification(() -> context.get(Shell.class)).expose(result);
 		}
+		// FIXME: find a way to call releaseLicense
 	}
 
 }
