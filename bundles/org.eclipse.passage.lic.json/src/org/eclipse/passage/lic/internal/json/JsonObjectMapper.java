@@ -16,6 +16,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonParser;
@@ -51,6 +52,8 @@ public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 		SimpleModule module = new SimpleModule();
 		module.addSerializer(new ConditionSerializer(Condition.class));
 		module.addDeserializer(Condition.class, new ConditionDeserializer(Condition.class));
+		module.addSerializer(new CertificateSerializer(ExaminationCertificate.class));
+		module.addDeserializer(ExaminationCertificate.class, new CertificateDeserializer(ExaminationCertificate.class));
 		mapper.registerModule(module);
 		return mapper;
 	}
