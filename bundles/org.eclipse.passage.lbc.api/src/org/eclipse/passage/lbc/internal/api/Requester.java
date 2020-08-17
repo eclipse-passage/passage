@@ -10,28 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
-
-import java.util.function.Function;
-
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+package org.eclipse.passage.lbc.internal.api;
 
 /**
+ * TODO: all params as StringNamedData
+ * 
  * @since 1.0
  */
-public class Requester extends StringNamedData {
+public interface Requester {
 
-	public Requester(String value) {
-		super(value);
-	}
+	String feature();
 
-	public Requester(Function<String, String> retrieve) {
-		super(retrieve);
-	}
+	String hardware();
 
-	@Override
-	public String key() {
-		return "user"; //$NON-NLS-1$
-	}
+	String process();
 
 }

@@ -16,8 +16,8 @@ import java.io.IOException;
 
 import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
-import org.eclipse.passage.lbc.internal.api.LicensingResponse;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
 
 /**
  * @since 1.0
@@ -28,7 +28,7 @@ public class BaseRequestDispatcher implements BackendRequestDispatcher {
 	private final BackendFloatingServer server = new PassageFloatingServer();
 
 	@Override
-	public void dispatch(LicensingRequest request, LicensingResponse result) throws IOException {
+	public void dispatch(BackendLicensingRequest request, BackendLicensingResponse result) throws IOException {
 		// TODO: execute server's method according to request's action
 	}
 

@@ -22,10 +22,10 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
  */
 public interface BackendFloatingServer {
 
-	ServiceInvocationResult<Boolean> canTake(LicensingRequest request);
+	ServiceInvocationResult<Boolean> canTake(CheckAvailabilityRequest request);
 
-	ServiceInvocationResult<ExaminationCertificate> take(LicensingRequest request);
+	ServiceInvocationResult<ExaminationCertificate> take(TakeCertificateRequest request);
 
-	ServiceInvocationResult<Boolean> release(LicensingRequest request);
+	ServiceInvocationResult<Boolean> release(ReleaseCertificateRequest request);
 
 }

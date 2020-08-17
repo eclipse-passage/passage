@@ -13,14 +13,14 @@
 package org.eclipse.passage.lbc.internal.base.chains;
 
 import org.eclipse.passage.lbc.internal.api.Chain;
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.CheckAvailabilityRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class CanTakeConditionChain implements Chain<Boolean> {
+public class CanTakeConditionChain implements Chain<Boolean, CheckAvailabilityRequest> {
 
 	@Override
-	public ServiceInvocationResult<Boolean> execute(LicensingRequest request) {
+	public ServiceInvocationResult<Boolean> execute(CheckAvailabilityRequest request) {
 		return new BaseServiceInvocationResult<Boolean>(true);
 	}
 

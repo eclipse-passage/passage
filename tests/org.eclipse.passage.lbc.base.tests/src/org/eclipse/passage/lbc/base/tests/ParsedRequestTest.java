@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.ParsedRequest;
 import org.junit.Test;
@@ -28,10 +28,10 @@ public final class ParsedRequestTest extends LbcTestsBase {
 
 	@Test
 	public void positive() {
-		LicensingRequest request = new FakeLicensingRequest(params());
+		BackendLicensingRequest request = new FakeLicensingRequest(params());
 		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedRequest()).collect(Collectors.toList())
 				.get(0);
-		assertEquals(userValue(), miningRequest.requester().get().get());
+		assertEquals(userValue(), miningRequest.requester().hardware());
 		assertEquals(identifierValue(), miningRequest.identifier().get().get());
 		assertEquals(versionValue(), miningRequest.version().get().get());
 	}

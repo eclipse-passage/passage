@@ -12,17 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.chains;
 
+import java.util.Collections;
+
 import org.eclipse.passage.lbc.internal.api.Chain;
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.TakeCertificateRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
-public class AcquireConditionChain implements Chain<ExaminationCertificate> {
+public class AcquireConditionChain implements Chain<ExaminationCertificate, TakeCertificateRequest> {
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> execute(LicensingRequest request) {
-		return new BaseServiceInvocationResult<>();
+	public ServiceInvocationResult<ExaminationCertificate> execute(TakeCertificateRequest request) {
+		return new BaseServiceInvocationResult<>(
+				new BaseExaminationCertificate(Collections.emptyList(), Collections.emptyList()));
 	}
 
 }

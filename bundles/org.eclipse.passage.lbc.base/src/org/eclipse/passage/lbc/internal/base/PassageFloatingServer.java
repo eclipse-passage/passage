@@ -13,7 +13,9 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.CheckAvailabilityRequest;
+import org.eclipse.passage.lbc.internal.api.ReleaseCertificateRequest;
+import org.eclipse.passage.lbc.internal.api.TakeCertificateRequest;
 import org.eclipse.passage.lbc.internal.base.chains.AcquireConditionChain;
 import org.eclipse.passage.lbc.internal.base.chains.CanTakeConditionChain;
 import org.eclipse.passage.lbc.internal.base.chains.ReleaseConditionChain;
@@ -26,17 +28,17 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 public class PassageFloatingServer implements BackendFloatingServer {
 
 	@Override
-	public ServiceInvocationResult<Boolean> canTake(LicensingRequest request) {
+	public ServiceInvocationResult<Boolean> canTake(CheckAvailabilityRequest request) {
 		return new CanTakeConditionChain().execute(request);
 	}
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> take(LicensingRequest request) {
+	public ServiceInvocationResult<ExaminationCertificate> take(TakeCertificateRequest request) {
 		return new AcquireConditionChain().execute(request);
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> release(LicensingRequest request) {
+	public ServiceInvocationResult<Boolean> release(ReleaseCertificateRequest request) {
 		return new ReleaseConditionChain().execute(request);
 	}
 

@@ -24,6 +24,6 @@ public interface ProductLicensesRequest {
 
 	Supplier<Optional<String>> version();
 
-	Supplier<Optional<String>> requester();
+	Requester requester();
 
 }

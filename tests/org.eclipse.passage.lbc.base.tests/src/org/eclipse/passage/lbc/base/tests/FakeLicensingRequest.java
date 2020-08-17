@@ -16,10 +16,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
+import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lbc.internal.base.BaseRequester;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 
-public class FakeLicensingRequest implements LicensingRequest {
+public class FakeLicensingRequest implements BackendLicensingRequest {
 
 	private final Map<String, String> params;
 
@@ -35,6 +37,11 @@ public class FakeLicensingRequest implements LicensingRequest {
 	@Override
 	public String parameter(String key) {
 		return params.get(key);
+	}
+
+	@Override
+	public Requester requester() {
+		return new BaseRequester("process", "hardware", "feature"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 	}
 
 }

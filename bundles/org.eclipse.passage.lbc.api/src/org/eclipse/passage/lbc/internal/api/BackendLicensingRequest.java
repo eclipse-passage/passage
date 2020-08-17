@@ -20,10 +20,11 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 /**
  * @since 1.0
  */
-public interface LicensingRequest {
+public interface BackendLicensingRequest {
 
 	Supplier<Optional<ConditionAction>> action();
 
 	String parameter(String key);
 
+	Requester requester();
 }

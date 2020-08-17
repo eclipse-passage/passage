@@ -17,8 +17,8 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 /**
  * @since 1.0
  */
-public interface Chain<T> {
+public interface Chain<T, U> {
 
-	ServiceInvocationResult<T> execute(LicensingRequest request);
+	ServiceInvocationResult<T> execute(U request);
 
 }

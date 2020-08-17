@@ -22,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingRequest;
-import org.eclipse.passage.lbc.internal.base.chains.LoadConditionsChain;
+import org.eclipse.passage.lbc.internal.base.ParsedRequest;
+import org.eclipse.passage.lbc.internal.base.chains.MineConditionsChain;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
@@ -49,7 +50,8 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	}
 
 	private List<Resource> loadConditions(HttpServletRequest request) {
-		return new LoadConditionsChain().execute(new BaseLicensingRequest(request)).data().get();
+		return new MineConditionsChain().execute(new ParsedRequest().apply(new BaseLicensingRequest(request))).data()
+				.get();
 	}
 
 	private void send(HttpServletResponse response, List<Resource> conditions) throws IOException {

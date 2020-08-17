@@ -18,7 +18,7 @@ import java.io.OutputStream;
 /**
  * @since 1.0
  */
-public interface LicensingResponse {
+public interface BackendLicensingResponse {
 
 	OutputStream outputStream() throws IOException;
 

@@ -17,14 +17,15 @@ import java.util.function.Supplier;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
+import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 /**
  * @since 1.0
  */
-public class BaseLicensingRequest implements LicensingRequest {
+public class BaseLicensingRequest implements BackendLicensingRequest {
 
 	private final HttpServletRequest httpRequest;
 
@@ -40,6 +41,11 @@ public class BaseLicensingRequest implements LicensingRequest {
 	@Override
 	public String parameter(String key) {
 		return httpRequest.getParameter(key);
+	}
+
+	@Override
+	public Requester requester() {
+		return new BaseRequester(parameter("process"), parameter("hardware"), parameter("feature")); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 	}
 
 }

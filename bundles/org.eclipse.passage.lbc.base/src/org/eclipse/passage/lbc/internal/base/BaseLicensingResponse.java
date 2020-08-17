@@ -17,12 +17,12 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.passage.lbc.internal.api.LicensingResponse;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
 
 /**
  * @since 1.0
  */
-public class BaseLicensingResponse implements LicensingResponse {
+public class BaseLicensingResponse implements BackendLicensingResponse {
 
 	private final HttpServletResponse response;
 

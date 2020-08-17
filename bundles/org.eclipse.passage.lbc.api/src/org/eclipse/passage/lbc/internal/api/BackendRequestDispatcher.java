@@ -19,6 +19,6 @@ import java.io.IOException;
  */
 public interface BackendRequestDispatcher {
 
-	void dispatch(LicensingRequest request, LicensingResponse result) throws IOException;
+	void dispatch(BackendLicensingRequest request, BackendLicensingResponse result) throws IOException;
 
 }

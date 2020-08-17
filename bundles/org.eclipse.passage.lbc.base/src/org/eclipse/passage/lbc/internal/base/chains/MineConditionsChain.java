@@ -18,30 +18,28 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.internal.api.Chain;
-import org.eclipse.passage.lbc.internal.api.LicensingRequest;
+import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
 import org.eclipse.passage.lbc.internal.base.LicensesResource;
 import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
-import org.eclipse.passage.lbc.internal.base.ParsedRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class LoadConditionsChain implements Chain<List<Resource>> {
+public class MineConditionsChain implements Chain<List<Resource>, ProductLicensesRequest> {
 
-	@Override
-	public ServiceInvocationResult<List<Resource>> execute(LicensingRequest request) {
-		return new BaseServiceInvocationResult<List<Resource>>(resources(request));
-	}
-
-	private List<Resource> resources(LicensingRequest request) {
+	private List<Resource> resources(ProductLicensesRequest request) {
 		return Stream.of(request) //
-				.map(new ParsedRequest()) //
 				.map(new MinedConditionPacks(new BaseLicenseVault())) //
 				.flatMap(packs -> packs.stream()) //
 				.map(new LicenseEObject()) //
 				.map(new LicensesResource()) //
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public ServiceInvocationResult<List<Resource>> execute(ProductLicensesRequest request) {
+		return new BaseServiceInvocationResult<List<Resource>>(resources(request));
 	}
 
 }
