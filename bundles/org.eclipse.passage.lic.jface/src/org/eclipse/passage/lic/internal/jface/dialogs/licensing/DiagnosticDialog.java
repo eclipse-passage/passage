@@ -69,6 +69,11 @@ public final class DiagnosticDialog extends NotificationDialog {
 		getButton(error.id()).setEnabled(new TroubleHasException().test(selectedTrouble()));
 	}
 
+	@Override
+	protected String defaultMessage() {
+		return "Something went wrong"; //$NON-NLS-1$
+	}
+
 	private void viewError() {
 		Optional<Trouble> trouble = selectedTrouble();
 		if (!trouble.isPresent()) {

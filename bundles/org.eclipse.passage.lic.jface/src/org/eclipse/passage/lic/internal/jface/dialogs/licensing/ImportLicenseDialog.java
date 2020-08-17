@@ -70,6 +70,12 @@ public final class ImportLicenseDialog extends NotificationDialog {
 
 	}
 
+	@Override
+	protected String defaultMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	private void buildSelector(Composite parent) {
 		Composite composite = row(parent, 3);
 		new Label(composite, SWT.NONE).setText("From license file:"); //$NON-NLS-1$
@@ -121,4 +127,5 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	private void loadLicense(Event e) {
 
 	}
+
 }
