@@ -14,8 +14,7 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.function.Function;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.eclipse.passage.lbc.internal.api.LicensingRequest;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -23,13 +22,13 @@ import org.eclipse.passage.lic.internal.base.ProductVersion;
 /**
  * @since 1.0
  */
-public final class ParsedRequest implements Function<HttpServletRequest, ProductLicensesRequest> {
+public final class ParsedRequest implements Function<LicensingRequest, ProductLicensesRequest> {
 
 	@Override
-	public ProductLicensesRequest apply(HttpServletRequest request) {
-		ProductIdentifier productId = new ProductIdentifier(key -> request.getParameter(key));
-		ProductVersion productVersion = new ProductVersion(key -> request.getParameter(key));
-		Requester user = new Requester(key -> request.getParameter(key));
+	public ProductLicensesRequest apply(LicensingRequest request) {
+		ProductIdentifier productId = new ProductIdentifier(key -> request.parameter(key));
+		ProductVersion productVersion = new ProductVersion(key -> request.parameter(key));
+		Requester user = new Requester(key -> request.parameter(key));
 		return new BaseMiningRequest(productId, productVersion, user);
 	}
 
