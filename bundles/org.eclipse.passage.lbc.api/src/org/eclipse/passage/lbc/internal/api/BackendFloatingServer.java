@@ -13,12 +13,19 @@
 package org.eclipse.passage.lbc.internal.api;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
+ * 
+ * 
  */
-public interface Chain<T> {
+public interface BackendFloatingServer {
 
-	ServiceInvocationResult<T> execute(LicensingRequest request);
+	ServiceInvocationResult<Boolean> canTake(LicensingRequest request);
+
+	ServiceInvocationResult<ExaminationCertificate> take(LicensingRequest request);
+
+	ServiceInvocationResult<Boolean> release(LicensingRequest request);
 
 }

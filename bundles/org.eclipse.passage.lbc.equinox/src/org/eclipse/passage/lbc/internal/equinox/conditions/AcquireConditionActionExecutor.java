@@ -13,14 +13,16 @@
 package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingRequest;
-import org.eclipse.passage.lbc.internal.base.BaseLicensingResponse;
-import org.eclipse.passage.lbc.internal.base.chains.AcquireConditionsChain;
+import org.eclipse.passage.lbc.internal.base.chains.LoadConditionsChain;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
@@ -37,13 +39,22 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	@Override
 	public LicensingResult executeAction(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			new AcquireConditionsChain().execute(new BaseLicensingRequest(request),
-					new BaseLicensingResponse(response));
+			send(response, loadConditions(request));
 			return LicensingResults.createOK(EquinoxMessages.AcquireConditionActionExecutor_k_mined,
 					getClass().getName());
 		} catch (IOException e) {
 			String error = EquinoxMessages.AcquireConditionActionExecutor_e_mining_failed;
 			return LicensingResults.createError(error, getClass().getName(), e);
+		}
+	}
+
+	private List<Resource> loadConditions(HttpServletRequest request) {
+		return new LoadConditionsChain().execute(new BaseLicensingRequest(request)).data().get();
+	}
+
+	private void send(HttpServletResponse response, List<Resource> conditions) throws IOException {
+		for (Resource resource : conditions) {
+			resource.save(response.getOutputStream(), new HashMap<>());
 		}
 	}
 

@@ -13,10 +13,6 @@
 package org.eclipse.passage.lbc.internal.api;
 
 import java.io.IOException;
-import java.util.Optional;
-import java.util.function.Supplier;
-
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 
 /**
  * @since 1.0
@@ -25,5 +21,4 @@ public interface BackendRequestDispatcher {
 
 	void dispatch(LicensingRequest request, LicensingResponse result) throws IOException;
 
-	void addChain(Supplier<Optional<ConditionAction>> action, Chain chain);
 }

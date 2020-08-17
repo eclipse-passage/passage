@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.chains;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,25 +19,19 @@ import java.util.stream.Stream;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.internal.api.Chain;
 import org.eclipse.passage.lbc.internal.api.LicensingRequest;
-import org.eclipse.passage.lbc.internal.api.LicensingResponse;
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
 import org.eclipse.passage.lbc.internal.base.LicensesResource;
 import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lbc.internal.base.ParsedRequest;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class AcquireConditionsChain implements Chain {
+public class LoadConditionsChain implements Chain<List<Resource>> {
 
 	@Override
-	public void execute(LicensingRequest request, LicensingResponse response) throws IOException {
-		sendResources(response, resources(request));
-	}
-
-	@SuppressWarnings("resource")
-	private void sendResources(LicensingResponse response, Collection<Resource> resources) throws IOException {
-		for (Resource resource : resources) {
-			resource.save(response.outputStream(), new HashMap<>());
-		}
+	public ServiceInvocationResult<List<Resource>> execute(LicensingRequest request) {
+		return new BaseServiceInvocationResult<List<Resource>>(resources(request));
 	}
 
 	private List<Resource> resources(LicensingRequest request) {

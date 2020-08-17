@@ -13,16 +13,11 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
 
+import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.internal.api.Chain;
 import org.eclipse.passage.lbc.internal.api.LicensingRequest;
 import org.eclipse.passage.lbc.internal.api.LicensingResponse;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 
 /**
  * @since 1.0
@@ -30,21 +25,11 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 
 public class BaseRequestDispatcher implements BackendRequestDispatcher {
 
-	private final Map<Supplier<Optional<ConditionAction>>, Chain> toolChains = new HashMap<Supplier<Optional<ConditionAction>>, Chain>();
+	private final BackendFloatingServer server = new PassageFloatingServer();
 
 	@Override
 	public void dispatch(LicensingRequest request, LicensingResponse result) throws IOException {
-		if (toolChains.containsKey(request.action())) {
-			find(request.action()).execute(request, result);
-		}
+		// TODO: execute server's method according to request's action
 	}
 
-	@Override
-	public void addChain(Supplier<Optional<ConditionAction>> action, Chain chain) {
-		toolChains.put(action, chain);
-	}
-
-	private Chain find(Supplier<Optional<ConditionAction>> action) {
-		return toolChains.get(action);
-	}
 }

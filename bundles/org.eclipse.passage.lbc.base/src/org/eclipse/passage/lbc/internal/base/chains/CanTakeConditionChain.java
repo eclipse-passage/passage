@@ -10,15 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base.chains;
 
+import org.eclipse.passage.lbc.internal.api.Chain;
+import org.eclipse.passage.lbc.internal.api.LicensingRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-/**
- * @since 1.0
- */
-public interface Chain<T> {
+public class CanTakeConditionChain implements Chain<Boolean> {
 
-	ServiceInvocationResult<T> execute(LicensingRequest request);
+	@Override
+	public ServiceInvocationResult<Boolean> execute(LicensingRequest request) {
+		return new BaseServiceInvocationResult<Boolean>(true);
+	}
 
 }
