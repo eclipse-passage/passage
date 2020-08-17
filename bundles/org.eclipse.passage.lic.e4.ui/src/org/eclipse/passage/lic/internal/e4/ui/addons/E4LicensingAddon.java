@@ -19,12 +19,9 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.access.ShouldBeExposed;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplicationFromContext;
-import org.eclipse.passage.lic.internal.jface.dialogs.licensing.WorkbenchNotification;
+import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
 
@@ -46,10 +43,10 @@ public final class E4LicensingAddon {
 			@SuppressWarnings("unused") //
 			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
-		ServiceInvocationResult<ExaminationCertificate> result = new EquinoxPassage()
-				.acquireLicense(new LicensedApplicationFromContext(application).get().identifier());
-		if (new ShouldBeExposed().test(result)) {
-			new WorkbenchNotification(() -> context.get(Shell.class)).expose(result);
+		boolean allowed = new EquinoxPassageUI(() -> context.get(Shell.class))
+				.canUse(new LicensedApplicationFromContext(application).get().identifier());
+		if (!allowed) {
+			new WorkbenchShutdown().run();
 		}
 		// FIXME: find a way to call releaseLicense
 	}
