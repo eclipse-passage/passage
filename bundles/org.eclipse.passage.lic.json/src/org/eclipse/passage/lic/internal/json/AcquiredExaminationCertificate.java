@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
-public class AcquiredExaminationCertificate implements ExaminationCertificate {
+public final class AcquiredExaminationCertificate implements ExaminationCertificate {
 
 	private final String stamp;
 	private final Collection<Restriction> restrictions;

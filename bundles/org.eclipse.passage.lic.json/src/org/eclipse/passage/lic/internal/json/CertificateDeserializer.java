@@ -47,7 +47,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-public class CertificateDeserializer extends StdDeserializer<ExaminationCertificate> {
+public final class CertificateDeserializer extends StdDeserializer<ExaminationCertificate> {
 
 	/**
 	 * 
