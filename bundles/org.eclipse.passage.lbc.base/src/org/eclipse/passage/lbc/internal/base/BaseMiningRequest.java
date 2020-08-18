@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.internal.base.ProductVersion;
 /**
  * @since 1.0
  */
-public class BaseMiningRequest implements ProductLicensesRequest {
+public final class BaseMiningRequest implements ProductLicensesRequest {
 
 	private final ProductIdentifier identifier;
 	private final ProductVersion version;

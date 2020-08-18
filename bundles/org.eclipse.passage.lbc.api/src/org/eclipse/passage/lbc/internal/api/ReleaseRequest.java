@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 /**
  * @since 1.0
  */
-public interface ReleaseCertificateRequest {
+public interface ReleaseRequest {
 
 	ExaminationCertificate certificate();
 

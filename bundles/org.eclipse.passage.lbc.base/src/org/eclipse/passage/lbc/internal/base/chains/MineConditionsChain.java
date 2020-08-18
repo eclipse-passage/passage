@@ -26,7 +26,8 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class MineConditionsChain implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
+public final class MineConditionsChain
+		implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 
 	private List<Resource> resources(ProductLicensesRequest request) {
 		return Stream.of(request) //

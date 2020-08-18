@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 /**
  * @since 1.0
  */
-public class BaseLicenseVault implements BackendLicenseVault {
+public final class BaseLicenseVault implements BackendLicenseVault {
 
 	@Override
 	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request) {

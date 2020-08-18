@@ -22,7 +22,7 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
 /**
  * @since 1.0
  */
-public class BaseLicensingResponse implements BackendLicensingResponse {
+public final class BaseLicensingResponse implements BackendLicensingResponse {
 
 	private final HttpServletResponse response;
 

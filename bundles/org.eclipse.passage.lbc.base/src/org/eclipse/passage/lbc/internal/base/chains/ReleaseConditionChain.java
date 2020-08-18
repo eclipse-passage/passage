@@ -14,14 +14,14 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.ReleaseCertificateRequest;
+import org.eclipse.passage.lbc.internal.api.ReleaseRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class ReleaseConditionChain implements Function<ReleaseCertificateRequest, ServiceInvocationResult<Boolean>> {
+public final class ReleaseConditionChain implements Function<ReleaseRequest, ServiceInvocationResult<Boolean>> {
 
 	@Override
-	public ServiceInvocationResult<Boolean> apply(ReleaseCertificateRequest t) {
+	public ServiceInvocationResult<Boolean> apply(ReleaseRequest t) {
 		return new BaseServiceInvocationResult<Boolean>(true);
 	}
 

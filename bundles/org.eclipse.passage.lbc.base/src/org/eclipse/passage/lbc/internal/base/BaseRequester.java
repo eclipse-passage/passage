@@ -5,7 +5,7 @@ import org.eclipse.passage.lbc.internal.api.Requester;
 /**
  * @since 1.0
  */
-public class BaseRequester implements Requester {
+public final class BaseRequester implements Requester {
 
 	private final String feature;
 	private final String hardware;

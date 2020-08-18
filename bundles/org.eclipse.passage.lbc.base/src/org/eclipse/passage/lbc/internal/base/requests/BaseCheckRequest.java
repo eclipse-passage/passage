@@ -10,23 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
-
-import java.io.IOException;
+package org.eclipse.passage.lbc.internal.base.requests;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
-import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
-import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
+import org.eclipse.passage.lbc.internal.api.CheckRequest;
+import org.eclipse.passage.lbc.internal.api.Requester;
 
-/**
- * @since 1.0
- */
+public class BaseCheckRequest implements CheckRequest {
 
-public final class BaseRequestDispatcher implements BackendRequestDispatcher {
+	private final BackendLicensingRequest request;
+
+	public BaseCheckRequest(BackendLicensingRequest request) {
+		this.request = request;
+	}
 
 	@Override
-	public void dispatch(BackendLicensingRequest request, BackendLicensingResponse result) throws IOException {
-		// TODO: execute server's method according to request's action
+	public Requester requester() {
+		return request.requester();
 	}
 
 }

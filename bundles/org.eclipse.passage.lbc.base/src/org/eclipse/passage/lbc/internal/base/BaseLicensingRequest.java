@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.internal.net.LicensingAction;
 /**
  * @since 1.0
  */
-public class BaseLicensingRequest implements BackendLicensingRequest {
+public final class BaseLicensingRequest implements BackendLicensingRequest {
 
 	private final HttpServletRequest httpRequest;
 
