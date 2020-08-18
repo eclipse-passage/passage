@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
-import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
@@ -23,15 +22,16 @@ import org.eclipse.swt.widgets.Shell;
 public final class LicenseStatusDialog extends NotificationDialog {
 
 	private final ExaminationCertificate origin;
-	private boolean imported = false; // truly mutable ^:(
+	private GoodIntention intention = new GoodIntention.Nope(); // truly mutable ^:(
 
 	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate) {
 		super(shell);
 		this.origin = certificate;
+		super.setMessage("Point a license file to see what's inside"); //$NON-NLS-1$
 	}
 
-	public boolean licenseHasBeenImported() {
-		return imported;
+	public GoodIntention goodIntention() {
+		return intention;
 	}
 
 	@Override
@@ -40,7 +40,6 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		shell.setText("Licensing status"); //$NON-NLS-1$
 		shell.setImage(getDefaultImage());
 		shell.setSize(730, 300);
-		setMessage("Point a license file to see what's inside"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -72,14 +71,17 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		// do nothing
 	}
 
+	@Override
+	protected String defaultMessage() {
+		return "License coverage is not sufficient"; //$NON-NLS-1$
+	}
+
 	private void requestLicense() {
-		// FIXME: do it, request!
+		intention = new GoodIntention.RequestLicense();
 	}
 
 	private void importLicense() {
-		// FIXME: reimplement this one too
-		ImportLicenseDialog dialog = new ImportLicenseDialog(getShell());
-		imported = (Window.OK == dialog.open());
+		intention = new GoodIntention.ImportLicense(this::getShell);
 	}
 
 }

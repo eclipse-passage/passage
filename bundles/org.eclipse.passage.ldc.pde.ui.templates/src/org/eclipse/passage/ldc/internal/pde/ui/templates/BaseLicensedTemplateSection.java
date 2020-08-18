@@ -170,7 +170,8 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				"org.eclipse.core.runtime", //$NON-NLS-1$
 				"org.eclipse.ui", //$NON-NLS-1$
 				"org.eclipse.passage.lic.equinox", //$NON-NLS-1$
-				"org.eclipse.passage.lic.e4.ui"); //$NON-NLS-1$
+				"org.eclipse.passage.lic.e4.ui", //$NON-NLS-1$
+				"org.eclipse.passage.seal.demo"); //$NON-NLS-1$
 	}
 
 	protected List<String> getRCP4Dependencies() {
@@ -187,6 +188,7 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				"org.eclipse.e4.core.contexts", //$NON-NLS-1$
 				"org.eclipse.passage.lic.equinox", //$NON-NLS-1$
 				"org.eclipse.passage.lic.e4.ui", //$NON-NLS-1$
+				"org.eclipse.passage.seal.demo", //$NON-NLS-1$
 				"org.slf4j.api"); //$NON-NLS-1$
 	}
 
