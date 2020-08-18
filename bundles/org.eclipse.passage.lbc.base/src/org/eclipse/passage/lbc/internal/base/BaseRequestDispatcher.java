@@ -14,18 +14,15 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.io.IOException;
 
-import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
-import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
+import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 
 /**
  * @since 1.0
  */
 
 public class BaseRequestDispatcher implements BackendRequestDispatcher {
-
-	private final BackendFloatingServer server = new PassageFloatingServer();
 
 	@Override
 	public void dispatch(BackendLicensingRequest request, BackendLicensingResponse result) throws IOException {
