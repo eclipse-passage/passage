@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.jface;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.PassageUI;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
@@ -40,6 +41,24 @@ public final class EquinoxPassageUI implements PassageUI {
 			result = ask(feature);
 		}
 		return result.data().isPresent() ? new NoSevereRestrictions().test(result.data().get()) : false;
+	}
+
+	@Override
+	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ServiceInvocationResult<LicensedProduct> product() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private ServiceInvocationResult<ExaminationCertificate> ask(String feature) {
