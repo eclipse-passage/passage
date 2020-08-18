@@ -10,12 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.restrictions.RestrictionMustStopExecution;
 
 public final class NoSevereRestrictions implements Predicate<ExaminationCertificate> {
 
