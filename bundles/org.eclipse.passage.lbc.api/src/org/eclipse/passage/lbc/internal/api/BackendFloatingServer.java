@@ -12,18 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
+ * 
+ * 
  */
-public interface ProductLicensesRequest {
+public interface BackendFloatingServer {
 
-	Supplier<Optional<String>> identifier();
+	ServiceInvocationResult<Boolean> canTake(CheckRequest request);
 
-	Supplier<Optional<String>> version();
+	ServiceInvocationResult<ExaminationCertificate> take(TakeRequest request);
 
-	Requester requester();
+	ServiceInvocationResult<Boolean> release(ReleaseRequest request);
 
 }

@@ -12,17 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
  */
-public interface ProductLicensesRequest {
+public interface ReleaseRequest {
 
-	Supplier<Optional<String>> identifier();
-
-	Supplier<Optional<String>> version();
+	ExaminationCertificate certificate();
 
 	Requester requester();
 

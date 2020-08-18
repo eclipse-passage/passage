@@ -12,17 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
-
 /**
  * @since 1.0
  */
-public interface ProductLicensesRequest {
-
-	Supplier<Optional<String>> identifier();
-
-	Supplier<Optional<String>> version();
+public interface TakeRequest {
 
 	Requester requester();
 

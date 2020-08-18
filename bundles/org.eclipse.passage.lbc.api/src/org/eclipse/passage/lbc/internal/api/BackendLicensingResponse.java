@@ -12,18 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @since 1.0
  */
-public interface ProductLicensesRequest {
+public interface BackendLicensingResponse {
 
-	Supplier<Optional<String>> identifier();
-
-	Supplier<Optional<String>> version();
-
-	Requester requester();
+	OutputStream outputStream() throws IOException;
 
 }

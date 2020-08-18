@@ -12,26 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.util.function.Function;
+import java.io.IOException;
 
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
+import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 
 /**
  * @since 1.0
  */
-public class Requester extends StringNamedData {
 
-	public Requester(String value) {
-		super(value);
-	}
-
-	public Requester(Function<String, String> retrieve) {
-		super(retrieve);
-	}
+public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 
 	@Override
-	public String key() {
-		return "user"; //$NON-NLS-1$
+	public void dispatch(BackendLicensingRequest request, BackendLicensingResponse result) throws IOException {
+		// TODO: execute server's method according to request's action
 	}
 
 }

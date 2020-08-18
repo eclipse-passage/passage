@@ -10,28 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lbc.internal.base.chains;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
+import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
-import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
+import org.eclipse.passage.lbc.internal.api.TakeRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
+import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
-/**
- * @since 1.0
- */
-public final class BaseLicenseVault implements BackendLicenseVault {
+public final class AcquireConditionChain
+		implements Function<TakeRequest, ServiceInvocationResult<ExaminationCertificate>> {
 
 	@Override
-	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request) {
+	public ServiceInvocationResult<ExaminationCertificate> apply(TakeRequest t) {
 		return new BaseServiceInvocationResult<>(
-				Optional.of(Collections.singletonList(new BaseConditionPack("floating", Collections.emptyList())))); //$NON-NLS-1$
+				new BaseExaminationCertificate(Collections.emptyList(), Collections.emptyList()));
 	}
 
 }

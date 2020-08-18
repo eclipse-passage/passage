@@ -15,15 +15,16 @@ package org.eclipse.passage.lbc.internal.api;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+
 /**
  * @since 1.0
  */
-public interface ProductLicensesRequest {
+public interface BackendLicensingRequest {
 
-	Supplier<Optional<String>> identifier();
+	Supplier<Optional<ConditionAction>> action();
 
-	Supplier<Optional<String>> version();
+	String parameter(String key);
 
 	Requester requester();
-
 }

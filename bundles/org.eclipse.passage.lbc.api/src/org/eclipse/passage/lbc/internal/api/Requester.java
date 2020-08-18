@@ -12,18 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
-
 /**
+ * TODO: all params as StringNamedData
+ * 
  * @since 1.0
  */
-public interface ProductLicensesRequest {
+public interface Requester {
 
-	Supplier<Optional<String>> identifier();
+	String feature();
 
-	Supplier<Optional<String>> version();
+	String hardware();
 
-	Requester requester();
+	String process();
 
 }

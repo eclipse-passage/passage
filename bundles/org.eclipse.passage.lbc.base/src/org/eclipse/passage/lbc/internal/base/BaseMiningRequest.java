@@ -16,13 +16,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
+import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
 /**
  * @since 1.0
  */
-public class BaseMiningRequest implements ProductLicensesRequest {
+public final class BaseMiningRequest implements ProductLicensesRequest {
 
 	private final ProductIdentifier identifier;
 	private final ProductVersion version;
@@ -45,7 +46,7 @@ public class BaseMiningRequest implements ProductLicensesRequest {
 	}
 
 	@Override
-	public Supplier<Optional<String>> requester() {
+	public Requester requester() {
 		return user;
 	}
 

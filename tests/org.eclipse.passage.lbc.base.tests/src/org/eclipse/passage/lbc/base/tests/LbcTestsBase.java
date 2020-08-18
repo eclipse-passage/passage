@@ -16,7 +16,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
-import org.eclipse.passage.lbc.internal.base.Requester;
+import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lbc.internal.base.BaseRequester;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
@@ -43,11 +44,11 @@ public abstract class LbcTestsBase {
 	}
 
 	protected Requester requester() {
-		return new Requester("user"); //$NON-NLS-1$
+		return new BaseRequester("process", "hardware", "feature"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	protected String userValue() {
-		return "user"; //$NON-NLS-1$
+		return "hardware"; //$NON-NLS-1$
 	}
 
 	protected String identifierValue() {
