@@ -22,9 +22,8 @@ public final class FakeRequirement implements Requirement {
 	private final Feature feature;
 	private final RestrictionLevel level;
 
-	public FakeRequirement(Feature feature, RestrictionLevel level) {
-		this.feature = feature;
-		this.level = level;
+	public FakeRequirement(RestrictionLevel level) {
+		this(new FakeFeature(), level);
 	}
 
 	public FakeRequirement(String feature) {
@@ -33,6 +32,11 @@ public final class FakeRequirement implements Requirement {
 
 	public FakeRequirement() {
 		this(new FakeFeature(), new RestrictionLevel.Error());
+	}
+
+	public FakeRequirement(Feature feature, RestrictionLevel level) {
+		this.feature = feature;
+		this.level = level;
 	}
 
 	@Override
