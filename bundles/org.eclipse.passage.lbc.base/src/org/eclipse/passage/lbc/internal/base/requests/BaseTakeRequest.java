@@ -16,7 +16,7 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.api.TakeRequest;
 
-public class BaseTakeRequest implements TakeRequest {
+public final class BaseTakeRequest implements TakeRequest {
 
 	private final BackendLicensingRequest request;
 

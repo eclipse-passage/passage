@@ -16,7 +16,7 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.CheckRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 
-public class BaseCheckRequest implements CheckRequest {
+public final class BaseCheckRequest implements CheckRequest {
 
 	private final BackendLicensingRequest request;
 
