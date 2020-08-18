@@ -29,17 +29,17 @@ public class PassageFloatingServer implements BackendFloatingServer {
 
 	@Override
 	public ServiceInvocationResult<Boolean> canTake(CheckAvailabilityRequest request) {
-		return new CanTakeConditionChain().execute(request);
+		return new CanTakeConditionChain().apply(request);
 	}
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> take(TakeCertificateRequest request) {
-		return new AcquireConditionChain().execute(request);
+		return new AcquireConditionChain().apply(request);
 	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> release(ReleaseCertificateRequest request) {
-		return new ReleaseConditionChain().execute(request);
+		return new ReleaseConditionChain().apply(request);
 	}
 
 }

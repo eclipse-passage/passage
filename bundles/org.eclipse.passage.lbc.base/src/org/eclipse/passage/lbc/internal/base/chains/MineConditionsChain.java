@@ -13,11 +13,11 @@
 package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lbc.internal.api.Chain;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
@@ -26,7 +26,7 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public class MineConditionsChain implements Chain<List<Resource>, ProductLicensesRequest> {
+public class MineConditionsChain implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 
 	private List<Resource> resources(ProductLicensesRequest request) {
 		return Stream.of(request) //
@@ -38,7 +38,7 @@ public class MineConditionsChain implements Chain<List<Resource>, ProductLicense
 	}
 
 	@Override
-	public ServiceInvocationResult<List<Resource>> execute(ProductLicensesRequest request) {
+	public ServiceInvocationResult<List<Resource>> apply(ProductLicensesRequest request) {
 		return new BaseServiceInvocationResult<List<Resource>>(resources(request));
 	}
 

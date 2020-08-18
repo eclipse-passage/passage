@@ -50,7 +50,7 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	}
 
 	private List<Resource> loadConditions(HttpServletRequest request) {
-		return new MineConditionsChain().execute(new ParsedRequest().apply(new BaseLicensingRequest(request))).data()
+		return new MineConditionsChain().apply(new ParsedRequest().apply(new BaseLicensingRequest(request))).data()
 				.get();
 	}
 
