@@ -13,13 +13,13 @@
 package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationS
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
+import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -64,7 +65,7 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 				Arrays.asList(state.permissionSecond()), //
 				state.product());
 		// then: examination is failed
-		assertFalse(certificate.examinationPassed());
+		assertTrue(new CertificateIsRestrictive().test(Optional.of(certificate)));
 		// then: the first of the requirement stays unsatisfied
 		assertNotNull(certificate.restrictions());
 		assertEquals(1, certificate.restrictions().size());
@@ -119,6 +120,6 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 			LicensedProduct product) {
 		ExaminationCertificate certificate = examiner().examine(requirements, permissions, product);
 		assertNotNull(certificate);
-		assertTrue(certificate.examinationPassed());
+		assertTrue(certificate.restrictions().isEmpty());
 	}
 }

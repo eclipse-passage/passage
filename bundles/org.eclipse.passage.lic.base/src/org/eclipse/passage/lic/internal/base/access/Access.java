@@ -36,7 +36,8 @@ public final class Access {
 	}
 
 	public boolean release(ExaminationCertificate certificate) {
-		// FIXME: implement, currently returns an intention
-		return certificate.examinationPassed();
+		// FIXME: implement with either MinedConditions service evolution or new service
+		// invention
+		return false;
 	}
 }
