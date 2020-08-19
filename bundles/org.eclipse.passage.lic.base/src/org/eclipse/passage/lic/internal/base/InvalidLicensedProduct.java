@@ -42,12 +42,15 @@ public final class InvalidLicensedProduct implements LicensedProduct {
 
 	@Override
 	public int hashCode() {
-		return delegate.hashCode();
+		return delegate.identifier().hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return delegate.equals(obj);
+		if (!LicensedProduct.class.isInstance(obj)) {
+			return false;
+		}
+		return delegate.identifier().equals(((LicensedProduct) obj).identifier());
 	}
 
 	@Override
