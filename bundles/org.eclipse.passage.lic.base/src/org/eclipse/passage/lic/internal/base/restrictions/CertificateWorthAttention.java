@@ -17,14 +17,14 @@ import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public final class CertificateIsRestrictive implements Predicate<Optional<ExaminationCertificate>> {
+public final class CertificateWorthAttention implements Predicate<Optional<ExaminationCertificate>> {
 
 	@Override
 	public boolean test(Optional<ExaminationCertificate> certificate) {
 		if (!certificate.isPresent()) {
 			return true;
 		}
-		if (!new NoSevereRestrictions().test(certificate.get())) {
+		if (certificate.get().restrictions().stream().anyMatch(new RestrictionMustPauseExecution())) {
 			return true;
 		}
 		return false;
