@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
 public final class CanProceed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
 
