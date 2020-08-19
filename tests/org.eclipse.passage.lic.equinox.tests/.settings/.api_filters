@@ -8,4 +8,12 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/internal/equinox/tests/LicensedApplicationFromContextTest.java" type="org.eclipse.passage.lic.internal.equinox.tests.LicensedApplicationFromContextTest$Empty">
+        <filter id="574619656">
+            <message_arguments>
+                <message_argument value="IApplicationContext"/>
+                <message_argument value="Empty"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>
