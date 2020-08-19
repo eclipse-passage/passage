@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.version;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public final class SafeVersion extends BaseVersion {
 	private static String seprators = "\\."; //$NON-NLS-1$
 
 	public SafeVersion(Object source) {
+		Objects.requireNonNull(source, "SafeVersion::source"); //$NON-NLS-1$
 		this.source = source;
 	}
 
