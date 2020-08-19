@@ -77,4 +77,9 @@ public final class SafeVersionTest {
 		assertEquals(new DefaultVersion(), new SafeVersion("0.0.0.no-way")); //$NON-NLS-1$
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void sourceIsMandatory() {
+		new SafeVersion(null);
+	}
+
 }
