@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 public final class LicenseNotStarted extends TroubleCode {
 
 	public LicenseNotStarted() {
-		super(403, DiagnosticCodeMessages.getString("LicenseNotStarted.license_not_started")); //$NON-NLS-1$
+		super(402, DiagnosticCodeMessages.getString("LicenseNotStarted.license_not_started")); //$NON-NLS-1$
 	}
 
 }

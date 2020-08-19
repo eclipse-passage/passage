@@ -52,7 +52,7 @@ public final class DiagnosticDialog extends NotificationDialog {
 
 	@Override
 	protected void buildUI(Composite parent) {
-		viewer = new LicensingTable<Trouble>(parent, Trouble.class) //
+		viewer = new HereTable<Trouble>(parent, Trouble.class) //
 				.withColumn("Error", 720, t -> t.details()) //$NON-NLS-1$
 				.withColumn("Code", 50, t -> Integer.toString(t.code().code())) //$NON-NLS-1$
 				.withColumn("Failure", 50, t -> t.exception().isPresent() ? "Oh, yah..." : "Nope!")//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$

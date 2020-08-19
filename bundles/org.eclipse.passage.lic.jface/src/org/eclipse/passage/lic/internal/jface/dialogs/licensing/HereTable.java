@@ -24,13 +24,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 
-final class LicensingTable<T> {
+final class HereTable<T> {
 
 	private final TableViewer table;
 	private final Class<T> cls;
 	private final Map<Integer, Function<T, String>> texts = new HashMap<>();
 
-	LicensingTable(Composite parent, Class<T> cls) {
+	HereTable(Composite parent, Class<T> cls) {
 		this.table = new TableViewer(parent);
 		this.cls = cls;
 	}
@@ -44,14 +44,14 @@ final class LicensingTable<T> {
 		return table;
 	}
 
-	public LicensingTable<T> withColumn(String name, int width, Function<T, String> text) {
+	public HereTable<T> withColumn(String name, int width, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE);
 		setupColumn(column.getColumn(), name, width);
 		texts.put(table.getTable().getColumnCount() - 1, text);
 		return this;
 	}
 
-	public LicensingTable<T> withColumn(String name, int width, int index, Function<T, String> text) {
+	public HereTable<T> withColumn(String name, int width, int index, Function<T, String> text) {
 		TableViewerColumn column = new TableViewerColumn(table, SWT.NONE, index);
 		setupColumn(column.getColumn(), name, width);
 		texts.put(index, text);
