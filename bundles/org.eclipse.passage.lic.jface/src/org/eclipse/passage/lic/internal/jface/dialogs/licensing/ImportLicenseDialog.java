@@ -95,7 +95,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void buildViewer(Composite parent) {
-		viewer = new LicensingTable<Condition>(parent, Condition.class) //
+		viewer = new HereTable<Condition>(parent, Condition.class) //
 				.withColumn("Feature", 300, this::feature) //$NON-NLS-1$
 				.withColumn("Valid", 300, this::period) //$NON-NLS-1$
 				.withColumn("Evaluation", 220, this::evaluation) //$NON-NLS-1$
@@ -125,7 +125,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void loadLicense(Event e) {
-
+// FIXME
 	}
 
 }

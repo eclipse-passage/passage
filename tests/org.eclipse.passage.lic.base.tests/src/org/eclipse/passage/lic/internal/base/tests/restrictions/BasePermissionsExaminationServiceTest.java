@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 import org.junit.Test;
@@ -73,7 +73,7 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		Restriction restriction = certificate.restrictions().iterator().next();
 		assertEquals(state.requirementFirst(), restriction.unsatisfiedRequirement());
 		assertEquals(state.product(), restriction.product());
-		assertEquals(new LicenseInvalid(), restriction.reason());
+		assertEquals(new InsufficientLicenseCoverage(), restriction.reason());
 		// then: our only permission is counted as active
 		assertEquals(1, certificate.participants().size());
 		assertEquals(state.permissionSecond(), certificate.participants().iterator().next());
@@ -92,7 +92,7 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		Restriction restriction = restrictions.iterator().next();
 		assertEquals(state.requirementSecond(), restriction.unsatisfiedRequirement());
 		assertEquals(state.product(), restriction.product());
-		assertEquals(new LicenseInvalid(), restriction.reason());
+		assertEquals(new InsufficientLicenseCoverage(), restriction.reason());
 	}
 
 	@Test

@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
@@ -27,7 +28,6 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate) {
 		super(shell);
 		this.origin = certificate;
-		super.setMessage("Point a license file to see what's inside"); //$NON-NLS-1$
 	}
 
 	public GoodIntention goodIntention() {
@@ -39,14 +39,13 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText("Licensing status"); //$NON-NLS-1$
 		shell.setImage(getDefaultImage());
-		shell.setSize(730, 300);
+		shell.setSize(740, 300);
 	}
 
 	@Override
 	protected void buildUI(Composite parent) {
-		viewer = new LicensingTable<Restriction>(parent, Restriction.class) //
-				.withColumn("Name", 500, r -> r.unsatisfiedRequirement().feature().identifier()) //$NON-NLS-1$
-				.withColumn("Version", 100, r -> r.unsatisfiedRequirement().feature().version()) //$NON-NLS-1$
+		viewer = new HereTable<Restriction>(parent, Restriction.class) //
+				.withColumn("Name", 500, r -> feature(r.unsatisfiedRequirement().feature())) //$NON-NLS-1$
 				.withColumn("Verdict", 200, r -> r.reason().explanation()) //$NON-NLS-1$
 				.viewer();
 	}
@@ -78,10 +77,16 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	private void requestLicense() {
 		intention = new GoodIntention.RequestLicense();
+		super.okPressed();
 	}
 
 	private void importLicense() {
 		intention = new GoodIntention.ImportLicense(this::getShell);
+		super.okPressed();
+	}
+
+	private String feature(Feature feature) {
+		return String.format("%s v%s", feature.identifier(), feature.version()); //$NON-NLS-1$
 	}
 
 }

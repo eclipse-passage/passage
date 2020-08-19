@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public final class LicenseDoesNotMatch extends TroubleCode {
+public final class InsufficientLicenseCoverage extends TroubleCode {
 
-	public LicenseDoesNotMatch() {
-		super(404, DiagnosticCodeMessages.getString("LicenseDoesNotMatch.license_does_not_match")); //$NON-NLS-1$
+	public InsufficientLicenseCoverage() {
+		super(405, DiagnosticCodeMessages.getString("InsufficientLicenseCoverage.not_covered")); //$NON-NLS-1$
 	}
 
 }

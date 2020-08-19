@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
 
 @SuppressWarnings("restriction")
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {
@@ -79,7 +79,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	private Restriction restriction(Requirement requirement, LicensedProduct product) {
-		return new BaseRestriction(product, requirement, new LicenseInvalid());
+		return new BaseRestriction(product, requirement, new InsufficientLicenseCoverage());
 	}
 
 }
