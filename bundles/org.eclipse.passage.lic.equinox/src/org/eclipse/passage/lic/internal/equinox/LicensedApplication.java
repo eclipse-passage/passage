@@ -56,7 +56,7 @@ public final class LicensedApplication {
 		if (!service.isPresent()) {
 			throw new LicensingException(EquinoxMessages.LicensedApplication_application_context_service_unregistered);
 		}
-		return new LicensedApplicationFromContext(service.get()).get();
+		return new LicensedProductFromContext(service.get()).get();
 	}
 
 }
