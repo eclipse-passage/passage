@@ -12,9 +12,9 @@ import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeRequirement;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.base.access.NoSevereRestrictions;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
+import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

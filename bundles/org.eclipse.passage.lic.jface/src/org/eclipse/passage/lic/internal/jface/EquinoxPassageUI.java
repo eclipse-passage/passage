@@ -15,11 +15,10 @@ package org.eclipse.passage.lic.internal.jface;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.PassageUI;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.access.NoSevereRestrictions;
+import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.LicenseStatusDialog;
@@ -35,30 +34,12 @@ public final class EquinoxPassageUI implements PassageUI {
 	}
 
 	@Override
-	public boolean canUse(String feature) {
+	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
 		ServiceInvocationResult<ExaminationCertificate> result = ask(feature);
 		while (exposeAndMayBeEvenFix(result)) {
 			result = ask(feature);
 		}
-		return result.data().isPresent() ? new NoSevereRestrictions().test(result.data().get()) : false;
-	}
-
-	@Override
-	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ServiceInvocationResult<LicensedProduct> product() {
-		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 
 	private ServiceInvocationResult<ExaminationCertificate> ask(String feature) {
@@ -71,8 +52,12 @@ public final class EquinoxPassageUI implements PassageUI {
 			return false;
 		}
 
-		if (!new NoSevereRestrictions().test(last.data().get())) {
-			LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), last.data().get());
+		ExaminationCertificate certificate = last.data().get();
+		if (certificate.examinationPassed()) {
+			return false;
+		}
+		if (!new NoSevereRestrictions().test(certificate)) {
+			LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), certificate);
 			if (Window.OK != dialog.open()) {
 				return false;
 			}

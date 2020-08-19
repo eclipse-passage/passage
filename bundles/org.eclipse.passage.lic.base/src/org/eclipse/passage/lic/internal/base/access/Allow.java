@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.base.access;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
 final class Allow extends Cycle<Boolean> {
 
@@ -24,7 +25,7 @@ final class Allow extends Cycle<Boolean> {
 
 	@Override
 	protected Boolean stopOnError(Diagnostic diagnostic) {
-		return new NoSevereErrors().test(diagnostic);
+		return false;
 	}
 
 	@Override
