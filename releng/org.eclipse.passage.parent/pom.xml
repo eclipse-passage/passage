@@ -33,11 +33,11 @@
 		<build.label>${unqualifiedVersion}.${buildQualifier}</build.label>
 
 		<tycho.scmUrl>scm:git:https://git.eclipse.org/r/p/passage/passage.git</tycho.scmUrl>
-		<tycho.version>2.0.0-SNAPSHOT</tycho.version>
+		<tycho.version>2.0.0</tycho.version>
 		<cbi-plugins.version>1.1.8-SNAPSHOT</cbi-plugins.version>
 		<jarsigner.version>1.1.5</jarsigner.version>
 
-		<tycho-snapshot-repo.url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1063</tycho-snapshot-repo.url>
+		<tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
 		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
