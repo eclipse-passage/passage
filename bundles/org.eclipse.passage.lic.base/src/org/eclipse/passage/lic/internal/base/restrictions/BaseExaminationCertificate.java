@@ -36,11 +36,6 @@ public final class BaseExaminationCertificate implements ExaminationCertificate 
 	}
 
 	@Override
-	public boolean examinationPassed() {
-		return restrictions.isEmpty();
-	}
-
-	@Override
 	public Collection<Restriction> restrictions() {
 		return restrictions;
 	}

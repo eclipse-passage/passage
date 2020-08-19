@@ -42,8 +42,6 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
  */
 public interface ExaminationCertificate {
 
-	boolean examinationPassed();
-
 	Collection<Restriction> restrictions();
 
 	Collection<Permission> participants();
