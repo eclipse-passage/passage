@@ -6,7 +6,13 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9b7ac68ec46a4d58b6e33c5d96a34d42)](https://www.codacy.com/manual/eclipse_2/passage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eclipse/passage&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/eclipse-passage/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse-passage/passage)
 
-[![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-brightgreen.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+[![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-HotPink.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+
+[![Stable release P2](https://img.shields.io/badge/Release%20P2%20Components-0.9.0-DeepSkyBlue.svg)](https://download.eclipse.org/passage/updates/release/0.9.0/)
+[![Stable release Products](https://img.shields.io/badge/Release%20Runnable%20Products-0.9.0-DeepSkyBlue.svg)](https://download.eclipse.org/passage/downloads/release/0.9.0/)
+
+[![Current P2](https://img.shields.io/badge/Curren%20P2%20Components-1.0.0--M2-Thistle.svg)](https://download.eclipse.org/passage/updates/milestone/1.0.0-M2/)
+[![Current Products](https://img.shields.io/badge/Curren%20Runnable%20Products-1.0.0--M2-Thistle.svg)](https://download.eclipse.org/passage/downloads/milestone/1.0.0-M2/)
 
 [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
