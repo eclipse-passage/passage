@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
 /**
  * Tells if the examination result should cause use notification
@@ -24,12 +25,13 @@ public final class ShouldBeExposed implements Predicate<ServiceInvocationResult<
 
 	@Override
 	public boolean test(ServiceInvocationResult<ExaminationCertificate> result) {
-		if (!new NoSevereErrors().test(result.diagnostic())) {
-			return true;
-		}
 		if (!result.data().isPresent()) {
 			return true;
 		}
+		if (!new NoSevereErrors().test(result.diagnostic())) {
+			return true;
+		}
+
 		if (!new NoSevereRestrictions().test(result.data().get())) {
 			return true;
 		}

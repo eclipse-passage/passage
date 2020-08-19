@@ -20,11 +20,11 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
-public final class LicensedApplicationFromContext implements Supplier<LicensedProduct> {
+public final class LicensedProductFromContext implements Supplier<LicensedProduct> {
 
 	private final IApplicationContext context;
 
-	public LicensedApplicationFromContext(IApplicationContext context) {
+	public LicensedProductFromContext(IApplicationContext context) {
 		Objects.requireNonNull(context);
 		this.context = context;
 	}

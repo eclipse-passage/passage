@@ -36,7 +36,8 @@ import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
 
-public class CertificateTestDataSupplier {
+@SuppressWarnings("restriction")
+public class CertificateTestData {
 
 	public LicensedProduct product() {
 		return new BaseLicensedProduct("product", "version");//$NON-NLS-1$ //$NON-NLS-2$

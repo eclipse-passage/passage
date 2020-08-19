@@ -10,21 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.restrictions;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
-public final class CanProceed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
+public final class CertificateIsRestrictive implements Predicate<Optional<ExaminationCertificate>> {
 
 	@Override
-	public boolean test(ServiceInvocationResult<ExaminationCertificate> result) {
-		return new NoSevereErrors().test(result.diagnostic()) && //
-				result.data().map(certificate -> new NoSevereRestrictions().test(certificate))//
-						.orElse(true);
+	public boolean test(Optional<ExaminationCertificate> certificate) {
+		if (!certificate.isPresent()) {
+			return true;
+		}
+		if (!new NoSevereRestrictions().test(certificate.get())) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.json.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.time.ZonedDateTime;
@@ -28,53 +29,50 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@SuppressWarnings("restriction")
 public class CertificateTransportTest {
-
-	private final CertificateTestDataSupplier supplier = new CertificateTestDataSupplier();
 
 	@Test
 	public void examinationNotPassed() {
 		try {
 			ZonedDateTime time = ZonedDateTime.now();
-			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(supplier.permissions(),
-					supplier.restrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
-			System.out.println(serialized);
+			CertificateTestData data = new CertificateTestData();
+			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(data.permissions(),
+					data.restrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
 			ExaminationCertificate certificate = mapper().readValue(serialized, ExaminationCertificate.class);
-			assertEquals(false, certificate.examinationPassed());
 			assertEquals(time, certificate.stamp());
 			for (Restriction restriction : certificate.restrictions()) {
-				assertEquals(supplier.restriction().product().version(), restriction.product().version());
-				assertEquals(supplier.restriction().product().identifier(), restriction.product().identifier());
-				assertEquals(supplier.restriction().reason().code(), restriction.reason().code());
-				assertEquals(supplier.restriction().reason().explanation(), restriction.reason().explanation());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().feature().identifier(),
+				assertEquals(data.restriction().product().version(), restriction.product().version());
+				assertEquals(data.restriction().product().identifier(), restriction.product().identifier());
+				assertEquals(data.restriction().reason().code(), restriction.reason().code());
+				assertEquals(data.restriction().reason().explanation(), restriction.reason().explanation());
+				assertEquals(data.restriction().unsatisfiedRequirement().feature().identifier(),
 						restriction.unsatisfiedRequirement().feature().identifier());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().feature().name(),
+				assertEquals(data.restriction().unsatisfiedRequirement().feature().name(),
 						restriction.unsatisfiedRequirement().feature().name());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().feature().provider(),
+				assertEquals(data.restriction().unsatisfiedRequirement().feature().provider(),
 						restriction.unsatisfiedRequirement().feature().provider());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().feature().version(),
+				assertEquals(data.restriction().unsatisfiedRequirement().feature().version(),
 						restriction.unsatisfiedRequirement().feature().version());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().source(),
+				assertEquals(data.restriction().unsatisfiedRequirement().source(),
 						restriction.unsatisfiedRequirement().source());
-				assertEquals(supplier.restriction().unsatisfiedRequirement().restrictionLevel().identifier(),
+				assertEquals(data.restriction().unsatisfiedRequirement().restrictionLevel().identifier(),
 						restriction.unsatisfiedRequirement().restrictionLevel().identifier());
 			}
 			for (Permission permission : certificate.participants()) {
-				assertEquals(supplier.permission().product().identifier(), permission.product().identifier());
-				assertEquals(supplier.permission().product().version(), permission.product().version());
-				assertEquals(supplier.condition().feature(), permission.condition().feature());
-				assertEquals(supplier.condition().versionMatch().version(),
+				assertEquals(data.permission().product().identifier(), permission.product().identifier());
+				assertEquals(data.permission().product().version(), permission.product().version());
+				assertEquals(data.condition().feature(), permission.condition().feature());
+				assertEquals(data.condition().versionMatch().version(),
 						permission.condition().versionMatch().version());
-				assertEquals(supplier.condition().versionMatch().rule().identifier(),
+				assertEquals(data.condition().versionMatch().rule().identifier(),
 						permission.condition().versionMatch().rule().identifier());
-				assertEquals(supplier.condition().evaluationInstructions().expression(),
+				assertEquals(data.condition().evaluationInstructions().expression(),
 						permission.condition().evaluationInstructions().expression());
-				assertEquals(supplier.condition().evaluationInstructions().type(),
+				assertEquals(data.condition().evaluationInstructions().type(),
 						permission.condition().evaluationInstructions().type());
 			}
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
 			fail();
 		}
 	}
@@ -83,10 +81,11 @@ public class CertificateTransportTest {
 	public void examinationPassed() {
 		try {
 			ZonedDateTime time = ZonedDateTime.now();
-			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(supplier.permissions(),
-					supplier.emptyRestrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
+			CertificateTestData data = new CertificateTestData();
+			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(data.permissions(),
+					data.emptyRestrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
 			ExaminationCertificate certificate = mapper().readValue(serialized, ExaminationCertificate.class);
-			assertEquals(true, certificate.examinationPassed());
+			assertTrue(certificate.restrictions().isEmpty());
 		} catch (JsonProcessingException e) {
 			fail();
 		}

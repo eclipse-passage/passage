@@ -16,8 +16,10 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
+import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
+import org.eclipse.passage.lic.internal.base.version.SafeVersion;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
@@ -33,21 +35,14 @@ public final class ApplicationVersion implements Supplier<String> {
 	public String get() {
 		Optional<String> property = new ProductVersion(context::getBrandingProperty).get();
 		if (property.isPresent()) {
-			return property.get();
+			return new SafeVersion(property.get()).semantic().toString();
 		}
-		Bundle bundle = context.getBrandingBundle();
-		if (bundle == null) {
-			return new InvalidLicensedProduct().version();
-		}
-		return stringify(bundle.getVersion());
+		return Optional.ofNullable(context.getBrandingBundle()) //
+				.map(Bundle::getVersion).map(this::stringify).orElse(new DefaultVersion().toString());
 	}
 
 	private String stringify(Version version) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(version.getMajor()).append('.');
-		sb.append(version.getMinor()).append('.');
-		sb.append(version.getMicro());
-		return sb.toString();
+		return new BaseSemanticVersion(version.getMajor(), version.getMinor(), version.getMicro()).toString();
 	}
 
 }

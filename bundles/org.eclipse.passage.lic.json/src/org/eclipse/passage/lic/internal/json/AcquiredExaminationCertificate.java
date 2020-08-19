@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
+@SuppressWarnings("restriction")
 public final class AcquiredExaminationCertificate implements ExaminationCertificate {
 
 	private final String stamp;
@@ -30,11 +31,6 @@ public final class AcquiredExaminationCertificate implements ExaminationCertific
 		this.restrictions = restrictions;
 		this.permissions = permissions;
 		this.stamp = stamp;
-	}
-
-	@Override
-	public boolean examinationPassed() {
-		return restrictions.isEmpty();
 	}
 
 	@Override
