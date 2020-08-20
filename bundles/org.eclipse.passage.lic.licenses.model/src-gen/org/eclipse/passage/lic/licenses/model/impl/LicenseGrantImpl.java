@@ -36,6 +36,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchVersion <em>Match Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchRule <em>Match Rule</em>}</li>
@@ -50,6 +51,27 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * @generated
  */
 public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements LicenseGrant {
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 * @since 1.0
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	private String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -245,6 +267,33 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	protected EClass eStaticClass() {
 		return LicensesPackage.eINSTANCE.getLicenseGrant();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__IDENTIFIER,
+					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -578,6 +627,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+			return getIdentifier();
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 			return getFeatureIdentifier();
 		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
@@ -610,6 +661,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+			setIdentifier((String) newValue);
+			return;
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 			setFeatureIdentifier((String) newValue);
 			return;
@@ -652,6 +706,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 			setFeatureIdentifier(FEATURE_IDENTIFIER_EDEFAULT);
 			return;
@@ -694,6 +751,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
 		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
@@ -729,7 +788,9 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return super.toString();
 		}
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (featureIdentifier: "); //$NON-NLS-1$
+		result.append(" (identifier: "); //$NON-NLS-1$
+		result.append(identifier);
+		result.append(", featureIdentifier: "); //$NON-NLS-1$
 		result.append(featureIdentifier);
 		result.append(", matchVersion: "); //$NON-NLS-1$
 		result.append(matchVersion);

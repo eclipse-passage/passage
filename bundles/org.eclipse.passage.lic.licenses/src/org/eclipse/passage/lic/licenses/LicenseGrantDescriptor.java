@@ -27,6 +27,15 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
 public interface LicenseGrantDescriptor extends LicensingCondition {
 
 	/**
+	 * Returns the identifier of this license pack. This is the value of its
+	 * <code>"identifier"</code> attribute.
+	 *
+	 * @return the identifier
+	 * @since 1.0
+	 */
+	String getIdentifier();
+
+	/**
 	 * Returns the capacity of this license grant. Used for floating license. This
 	 * is the value of its <code>"capacity"</code> attribute.
 	 *

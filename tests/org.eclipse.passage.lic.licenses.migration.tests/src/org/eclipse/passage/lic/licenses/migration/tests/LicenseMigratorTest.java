@@ -15,6 +15,8 @@ package org.eclipse.passage.lic.licenses.migration.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -29,9 +31,22 @@ import org.junit.Test;
 public class LicenseMigratorTest {
 
 	@Test
-	public void testMigratorPositive() throws Exception {
-		File legacy = new File(
-				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_licenses"); //$NON-NLS-1$//$NON-NLS-2$
+	public void from0_3_3() throws Exception {
+		loaded("model/0_3_3.lic_licenses"); //$NON-NLS-1$
+	}
+
+	@Test
+	public void from0_4_0() throws Exception {
+		loaded("model/0_4_0.lic"); //$NON-NLS-1$
+	}
+
+	@Test
+	public void from0_5_0() throws Exception {
+		loaded("model/0_5_0.lic"); //$NON-NLS-1$
+	}
+
+	private void loaded(String path) throws IOException, ParseException {
+		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(null);

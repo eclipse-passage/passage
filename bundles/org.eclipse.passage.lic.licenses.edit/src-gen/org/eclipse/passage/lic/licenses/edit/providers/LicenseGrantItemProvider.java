@@ -67,6 +67,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdentifierPropertyDescriptor(object);
 			addFeatureIdentifierPropertyDescriptor(object);
 			addMatchVersionPropertyDescriptor(object);
 			addMatchRulePropertyDescriptor(object);
@@ -77,6 +78,25 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 			addCapacityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @since 1.0
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicenseGrant_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseGrant_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicenseGrant_Identifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -287,6 +307,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LicenseGrant.class)) {
+		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
 		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
 		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
 		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:

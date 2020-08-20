@@ -51,7 +51,7 @@ public interface LicensesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/1.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -447,6 +447,18 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT = 7;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 * @since 1.0
+	 */
+	int LICENSE_GRANT__IDENTIFIER = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -454,7 +466,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__FEATURE_IDENTIFIER = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 0;
+	int LICENSE_GRANT__FEATURE_IDENTIFIER = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Match Version</b></em>' attribute.
@@ -464,7 +476,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__MATCH_VERSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 1;
+	int LICENSE_GRANT__MATCH_VERSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Match Rule</b></em>' attribute.
@@ -474,7 +486,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__MATCH_RULE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_GRANT__MATCH_RULE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
@@ -484,7 +496,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__VALID_FROM = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_GRANT__VALID_FROM = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
@@ -494,7 +506,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__VALID_UNTIL = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int LICENSE_GRANT__VALID_UNTIL = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Condition Type</b></em>' attribute.
@@ -504,7 +516,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CONDITION_TYPE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_GRANT__CONDITION_TYPE = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Condition Expression</b></em>' attribute.
@@ -514,7 +526,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CONDITION_EXPRESSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
+	int LICENSE_GRANT__CONDITION_EXPRESSION = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
@@ -524,7 +536,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
+	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>License Pack</b></em>' container reference.
@@ -534,7 +546,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 8;
+	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>License Grant</em>' class.
@@ -544,7 +556,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT_FEATURE_COUNT = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 9;
+	int LICENSE_GRANT_FEATURE_COUNT = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>License Grant</em>' class.
@@ -836,6 +848,19 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLicenseGrant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier()
+	 * @see #getLicenseGrant()
+	 * @generated
+	 * @since 1.0
+	 */
+	EAttribute getLicenseGrant_Identifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}'.

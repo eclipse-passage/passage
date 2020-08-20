@@ -190,10 +190,10 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Path path = basePath.resolve(productIdentifier).resolve(productVersion);
 		String storageKeyFolder = path.toFile().getAbsolutePath();
 
-		String uuid = UUID.randomUUID().toString();
 		Date issueDate = new Date();
-		license.setIdentifier(uuid);
+		license.setIdentifier(UUID.randomUUID().toString());
 		license.setIssueDate(issueDate);
+		license.getLicenseGrants().forEach(x -> x.setIdentifier(UUID.randomUUID().toString()));
 		String userIdentifier = template.getUserIdentifier();
 		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
 		Map<String, Object> attachments = new HashMap<String, Object>();
@@ -202,7 +202,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			String conditionType = userDescriptor.getPreferredConditionType();
 			String expression = userDescriptor.getPreferredConditionExpression();
 			UserLicense userLicense = UsersFactory.eINSTANCE.createUserLicense();
-			userLicense.setPackIdentifier(uuid);
+			userLicense.setPackIdentifier(license.getIdentifier());
 			userLicense.setIssueDate(issueDate);
 			userLicense.setPlanIdentifier(request.getPlanIdentifier());
 			userLicense.setValidFrom(request.getValidFrom());
@@ -231,7 +231,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			}
 		}
 
-		String licenseIn = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
+		String licenseIn = storageKeyFolder + File.separator + license.getIdentifier()
+				+ LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
 
 		URI uri = URI.createFileURI(licenseIn);
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -261,7 +262,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			return LicensingResults.createError(message, pluginId);
 		}
 
-		String licenseOut = storageKeyFolder + File.separator + uuid + LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
+		String licenseOut = storageKeyFolder + File.separator + license.getIdentifier()
+				+ LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
 		File licenseEncoded = new File(licenseOut);
 		try (FileInputStream licenseInput = new FileInputStream(licenseIn);
 				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded);

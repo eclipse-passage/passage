@@ -431,7 +431,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_FeatureIdentifier() {
+	public EAttribute getLicenseGrant_Identifier() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -442,7 +442,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_MatchVersion() {
+	public EAttribute getLicenseGrant_FeatureIdentifier() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -453,7 +453,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_MatchRule() {
+	public EAttribute getLicenseGrant_MatchVersion() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -464,7 +464,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_ValidFrom() {
+	public EAttribute getLicenseGrant_MatchRule() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -475,7 +475,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_ValidUntil() {
+	public EAttribute getLicenseGrant_ValidFrom() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -486,7 +486,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_ConditionType() {
+	public EAttribute getLicenseGrant_ValidUntil() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -497,7 +497,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_ConditionExpression() {
+	public EAttribute getLicenseGrant_ConditionType() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -508,7 +508,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_Capacity() {
+	public EAttribute getLicenseGrant_ConditionExpression() {
 		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -519,8 +519,19 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getLicenseGrant_Capacity() {
+		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getLicenseGrant_LicensePack() {
-		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(8);
+		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -588,6 +599,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEReference(licensePackEClass, LICENSE_PACK__LICENSE_GRANTS);
 
 		licenseGrantEClass = createEClass(LICENSE_GRANT);
+		createEAttribute(licenseGrantEClass, LICENSE_GRANT__IDENTIFIER);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__FEATURE_IDENTIFIER);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__MATCH_VERSION);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__MATCH_RULE);
@@ -708,6 +720,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(licenseGrantEClass, LicenseGrant.class, "LicenseGrant", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLicenseGrant_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, //$NON-NLS-1$
+				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLicenseGrant_FeatureIdentifier(), ecorePackage.getEString(), "featureIdentifier", null, 1, 1, //$NON-NLS-1$
 				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
