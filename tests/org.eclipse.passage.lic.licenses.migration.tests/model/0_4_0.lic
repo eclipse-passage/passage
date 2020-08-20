@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:LicensePack xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/0.4.0" identifier="org.eclipse.passage.lic.evaluation" productIdentifier="org.eclipse.passage.lic.product" productVersion="0.4.0" userIdentifier="">
+  <licenseGrants featureIdentifier="org.eclipse.passage.lic.product" matchVersion="0.4.0" matchRule="perfect" validFrom="2019-03-14T00:00:00.000+0300" validUntil="2019-06-14T00:00:00.000+0300" conditionType="hardware" conditionExpression="os.family=*"/>
+</org.eclipse.passage.lic:LicensePack>

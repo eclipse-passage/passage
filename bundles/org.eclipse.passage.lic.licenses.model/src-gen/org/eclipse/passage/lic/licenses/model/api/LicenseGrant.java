@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}</li>
@@ -44,6 +45,29 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
  * @generated
  */
 public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Identifier()
+	 * @model id="true"
+	 * @generated
+	 */
+	@Override
+	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->

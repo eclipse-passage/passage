@@ -45,6 +45,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePack/licenseGrants"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/featureIdentifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/matchVersion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/matchRule"/>

@@ -60,8 +60,7 @@ public final class XmiConditionTransport implements ConditionTransport {
 	}
 
 	private Condition condition(LicenseGrantDescriptor descriptor) {
-		// FIXME: AF descriptor.getIdentifier();
-		return new BaseCondition(String.valueOf(descriptor.hashCode()), //
+		return new BaseCondition(descriptor.getIdentifier(), //
 				descriptor.getFeatureIdentifier(), //
 				new BaseVersionMatch(descriptor.getMatchVersion(), //
 						new MatchingRuleForIdentifier(descriptor.getMatchRule()).get()), //
