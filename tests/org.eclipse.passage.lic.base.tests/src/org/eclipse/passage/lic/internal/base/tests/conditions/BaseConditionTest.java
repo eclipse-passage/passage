@@ -37,8 +37,17 @@ public final class BaseConditionTest {
 	 * failure.
 	 */
 	@Test(expected = NullPointerException.class)
+	public void identifierIsMandatory() {
+		new BaseCondition(null, feature(), versionMatch(), validityPeriod(), evaluationInstructions());
+	}
+
+	/**
+	 * Constructing a condition with {@code null} {@code feature} must cause a
+	 * failure.
+	 */
+	@Test(expected = NullPointerException.class)
 	public void featureIsMandatory() {
-		new BaseCondition(null, versionMatch(), validityPeriod(), evaluationInstructions());
+		new BaseCondition(identifier(), null, versionMatch(), validityPeriod(), evaluationInstructions());
 	}
 
 	/**
@@ -47,7 +56,7 @@ public final class BaseConditionTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void versionMatchDefinitionIsMandatory() {
-		new BaseCondition(feature(), null, validityPeriod(), evaluationInstructions());
+		new BaseCondition(identifier(), feature(), null, validityPeriod(), evaluationInstructions());
 	}
 
 	/**
@@ -56,7 +65,7 @@ public final class BaseConditionTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void validityPeriodIsMandatory() {
-		new BaseCondition(feature(), versionMatch(), null, evaluationInstructions());
+		new BaseCondition(identifier(), feature(), versionMatch(), null, evaluationInstructions());
 	}
 
 	/**
@@ -65,7 +74,7 @@ public final class BaseConditionTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void evaluationInstructionsAreMandatory() {
-		new BaseCondition(feature(), versionMatch(), validityPeriod(), null);
+		new BaseCondition(identifier(), feature(), versionMatch(), validityPeriod(), null);
 	}
 
 	@Test
@@ -75,12 +84,17 @@ public final class BaseConditionTest {
 		ValidityPeriod period = validityPeriod();
 		EvaluationInstructions instructions = evaluationInstructions();
 		// when
-		Condition condition = new BaseCondition(feature(), match, period, instructions);
+		Condition condition = new BaseCondition(identifier(), feature(), match, period, instructions);
 		// then
+		assertEquals(identifier(), condition.identifier());
 		assertEquals(feature(), condition.feature());
 		assertTrue(match == condition.versionMatch());
 		assertTrue(period == condition.validityPeriod());
 		assertTrue(instructions == condition.evaluationInstructions());
+	}
+
+	private String identifier() {
+		return "aaa"; //$NON-NLS-1$
 	}
 
 	private String feature() {

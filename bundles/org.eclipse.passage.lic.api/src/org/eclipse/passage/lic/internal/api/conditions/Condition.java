@@ -28,6 +28,11 @@ package org.eclipse.passage.lic.internal.api.conditions;
 public interface Condition {
 
 	/**
+	 * @return persistent identifier for cross-environment interactions.
+	 */
+	String identifier();
+
+	/**
 	 * @return unique identifier of a feature under licensing.
 	 */
 	String feature();

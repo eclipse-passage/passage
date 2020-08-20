@@ -57,7 +57,7 @@ final class TestState {
 				"6.4.37", //$NON-NLS-1$
 				"Feature the second", //$NON-NLS-1$
 				getClass().getName());
-		conditionFirst = new BaseCondition(featureFirst.identifier(), //
+		conditionFirst = new BaseCondition("first", featureFirst.identifier(), //$NON-NLS-1$
 				new BaseVersionMatch(//
 						"1.1.0", //$NON-NLS-1$
 						new MatchingRuleCompatible()), //
@@ -68,7 +68,7 @@ final class TestState {
 						new EvaluationType.Of("does not matter"), //$NON-NLS-1$
 						"does not matter eitehr") //$NON-NLS-1$
 		);
-		conditionSecond = new BaseCondition(featureSecond.identifier(), //
+		conditionSecond = new BaseCondition("second", featureSecond.identifier(), //$NON-NLS-1$
 				new BaseVersionMatch(//
 						"6.4.0", //$NON-NLS-1$
 						new MatchingRuleEquivalent()), //
@@ -79,7 +79,7 @@ final class TestState {
 						new EvaluationType.Of("does not matter"), //$NON-NLS-1$
 						"does not matter eitehr") //$NON-NLS-1$
 		);
-		conditionSecondObsolete = new BaseCondition(featureSecond.identifier(), //
+		conditionSecondObsolete = new BaseCondition("obsolete", featureSecond.identifier(), // //$NON-NLS-1$
 				new BaseVersionMatch(//
 						"5.4.18", //$NON-NLS-1$
 						new MatchingRuleEquivalent()), //

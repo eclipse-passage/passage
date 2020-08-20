@@ -105,7 +105,8 @@ public final class CertificateDeserializer extends StdDeserializer<ExaminationCe
 	}
 
 	private Condition condition(JsonNode node) {
-		return new BaseCondition(node.get("feature").textValue(), //$NON-NLS-1$ ,
+		return new BaseCondition(node.get("identifier").textValue(), //$NON-NLS-1$
+				node.get("feature").textValue(), //$NON-NLS-1$ ,
 				new BaseVersionMatch( //
 						node.get("version").textValue(), //$NON-NLS-1$
 						new MatchingRuleForIdentifier(node.get("rule").textValue()).get()), //$NON-NLS-1$

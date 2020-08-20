@@ -55,6 +55,10 @@ public abstract class LbcTestsBase {
 		return "identifier"; //$NON-NLS-1$
 	}
 
+	protected String featureValue() {
+		return "feature"; //$NON-NLS-1$
+	}
+
 	protected String versionValue() {
 		return "version"; //$NON-NLS-1$
 	}
@@ -68,7 +72,8 @@ public abstract class LbcTestsBase {
 	}
 
 	protected Condition condition() {
-		return new BaseCondition(identifierValue(), versionMatch(), validityPeriod(), evaluationInstructions());
+		return new BaseCondition(identifierValue(), featureValue(), versionMatch(), validityPeriod(),
+				evaluationInstructions());
 	}
 
 	private BaseEvaluationInstructions evaluationInstructions() {
