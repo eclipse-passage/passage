@@ -57,7 +57,16 @@ public final class FileCollectionTest {
 	@Test(expected = NullPointerException.class)
 	public void pushIsMandatoryOnAction() throws LicensingException {
 		new FileCollection(() -> null, new PassageFileExtension.PublicKey()).get();
+	}
 
+	@Test
+	public void canTraverseSingleFile() throws LicensingException {
+		PassageFileExtension.LicenseEncrypted extension = new PassageFileExtension.LicenseEncrypted();
+		Collection<Path> single = new FileCollection(this::single, extension).get();
+		assertEquals(1, single.size());
+		assertEquals(//
+				"single" + extension.get(), //$NON-NLS-1$
+				single.iterator().next().getFileName().toString());
 	}
 
 	private Path emulated() {
@@ -80,5 +89,14 @@ public final class FileCollectionTest {
 		}
 
 		return folder.getRoot().toPath();
+	}
+
+	private Path single() {
+		try {
+			return folder.newFile("single" + new PassageFileExtension.LicenseEncrypted().get()).toPath(); //$NON-NLS-1$
+		} catch (IOException e) {
+			assumeNoException(e);
+			return folder.getRoot().toPath(); // unreachable
+		}
 	}
 }

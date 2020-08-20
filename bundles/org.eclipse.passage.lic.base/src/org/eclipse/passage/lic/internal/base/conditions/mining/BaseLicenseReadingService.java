@@ -13,16 +13,13 @@
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 @SuppressWarnings("restriction")
 public final class BaseLicenseReadingService implements LicenseReadingService {
@@ -40,39 +37,22 @@ public final class BaseLicenseReadingService implements LicenseReadingService {
 	}
 
 	@Override
-	public ServiceInvocationResult<ConditionPack> read(Path license) {
-		ServiceInvocationResult<Collection<ConditionPack>> all = //
-				new OnTheFlyConditions(license.getParent(), equipment).all(product);
-		if (!all.diagnostic().severe().isEmpty() || !all.data().isPresent()) {
-			return new BaseServiceInvocationResult<>(all.diagnostic());
-		}
-		return new BaseServiceInvocationResult<>(//
-				all.diagnostic(), //
-				oneOf(all.data().get(), license.normalize()));
-	}
-
-	private Optional<ConditionPack> oneOf(Collection<ConditionPack> packs, Path license) {
-		return packs.stream()//
-				.filter(pack -> originatedHere(pack, license)) //
-				.findFirst();
-	}
-
-	private boolean originatedHere(ConditionPack pack, Path license) {
-		return Paths.get(pack.origin()).normalize().equals(license);
+	public ServiceInvocationResult<Collection<ConditionPack>> read(Path license) {
+		return new OnTheFlyConditions(license, equipment).all(product);
 	}
 
 	private static final class OnTheFlyConditions extends LocalConditions {
 
-		private final Path folder;
+		private final Path license;
 
-		private OnTheFlyConditions(Path folder, MiningEquipment equipment) {
+		private OnTheFlyConditions(Path license, MiningEquipment equipment) {
 			super(new StringServiceId("on-the-fly"), equipment); //$NON-NLS-1$
-			this.folder = folder;
+			this.license = license;
 		}
 
 		@Override
 		protected Path base() {
-			return folder;
+			return license;
 		}
 
 	}

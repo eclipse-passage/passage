@@ -18,6 +18,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @deprecated use DiagnosticDialog
+ */
+@Deprecated
 public final class OpenDiagnosticMessage {
 
 	private final Supplier<Shell> shell;
