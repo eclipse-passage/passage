@@ -35,9 +35,9 @@ public final class Access {
 		return new Expose(framework, feature).apply();
 	}
 
-	public boolean release(ExaminationCertificate certificate) {
+	public ServiceInvocationResult<Boolean> release(ExaminationCertificate certificate) {
 		// FIXME: implement with either MinedConditions service evolution or new service
 		// invention
-		return false;
+		return null;
 	}
 }

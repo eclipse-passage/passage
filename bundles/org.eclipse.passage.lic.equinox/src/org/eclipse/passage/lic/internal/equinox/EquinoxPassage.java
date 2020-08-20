@@ -24,24 +24,22 @@ public final class EquinoxPassage extends FrameworkAware implements Passage {
 
 	@Override
 	public boolean canUse(String feature) {
-		return withFramework(framework -> //
-		new BaseServiceInvocationResult<>(new Access(framework).canUse(feature))).data()//
-				.orElse(Boolean.FALSE);
+		return withFramework(framework -> new Access(framework).canUse(feature)).orElse(Boolean.FALSE);
 	}
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
-		return withFramework(framework -> new Access(framework).acquire(feature));
+		return withFrameworkService(framework -> new Access(framework).acquire(feature));
 	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate) {
-		return withFramework(framework -> new Access(framework).release(certificate));
+		return withFrameworkService(framework -> new Access(framework).release(certificate));
 	}
 
 	@Override
 	public ServiceInvocationResult<LicensedProduct> product() {
-		return withFramework(framework -> new BaseServiceInvocationResult<>(framework.product()));
+		return withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.product()));
 	}
 
 }

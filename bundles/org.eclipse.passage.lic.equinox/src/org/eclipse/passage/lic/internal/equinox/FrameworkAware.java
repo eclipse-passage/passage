@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
@@ -58,19 +59,34 @@ abstract class FrameworkAware {
 		);
 	}
 
-	protected <T> ServiceInvocationResult<T> withFramework(Function<Framework, ServiceInvocationResult<T>> invoke) {
+	protected <T> ServiceInvocationResult<T> withFrameworkService(
+			Function<Framework, ServiceInvocationResult<T>> invoke) {
+		return withReference(//
+				reference -> //
+				Optional.ofNullable(context.getService(reference))//
+						.flatMap(FrameworkSupplier::get)//
+						.map(invoke::apply)//
+						.orElseGet(this::noFramework), //
+				this::noFramework);
+	}
+
+	protected <T> Optional<T> withFramework(Function<Framework, T> invoke) {
+		return withReference(//
+				reference -> //
+				Optional.ofNullable(context.getService(reference))//
+						.flatMap(FrameworkSupplier::get)//
+						.map(invoke::apply), //
+				Optional::empty);
+	}
+
+	protected <K> K withReference(Function<ServiceReference<FrameworkSupplier>, K> action, Supplier<K> noAction) {
 		Optional<ServiceReference<FrameworkSupplier>> candidate = frameworkIfAny();
 		if (!candidate.isPresent()) {
-			return noFramework();
+			return noAction.get();
 		}
 		ServiceReference<FrameworkSupplier> reference = candidate.get();
 		try {
-			Optional<Framework> framework = Optional.ofNullable(context.getService(reference))//
-					.flatMap(FrameworkSupplier::get);
-			if (!framework.isPresent()) {
-				return noFramework();
-			}
-			return invoke.apply(framework.get());
+			return action.apply(reference);
 		} finally {
 			context.ungetService(reference);
 		}
