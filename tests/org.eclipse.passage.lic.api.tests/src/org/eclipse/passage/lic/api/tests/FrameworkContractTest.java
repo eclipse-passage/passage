@@ -179,6 +179,11 @@ public abstract class FrameworkContractTest {
 		assertTrue(readOnly(config().examinators().get()));
 	}
 
+	@Test
+	public final void canReadLicenseFile() {
+		assertNotNull(framework().get().licenseReader());
+	}
+
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
 			Registry<I, S> registry) {
 		assertNotNull(registry);

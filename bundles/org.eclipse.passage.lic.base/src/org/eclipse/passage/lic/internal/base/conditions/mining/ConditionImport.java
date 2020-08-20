@@ -37,8 +37,9 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
  * Imports conditions for a given {@link LicensedProduct}
  * 
  * @since 1.0
- *
+ * @deprecated use LicenseReadingService
  */
+@Deprecated
 public class ConditionImport {
 
 	private final LicensedProduct product;
