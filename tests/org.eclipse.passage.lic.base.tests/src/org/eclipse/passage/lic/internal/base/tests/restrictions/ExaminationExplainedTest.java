@@ -60,7 +60,7 @@ public final class ExaminationExplainedTest {
 				Collections.singleton(//
 						new BasePermission(//
 								product(), //
-								new BaseCondition(//
+								new BaseCondition("aaa", //$NON-NLS-1$
 										"properly-licensed-feature", //$NON-NLS-1$
 										new BaseVersionMatch("1.2.3", new MatchingRuleCompatible()), //$NON-NLS-1$
 										new BaseValidityPeriodClosed(//

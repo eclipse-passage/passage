@@ -44,7 +44,7 @@ public class CertificateTestData {
 	}
 
 	public Condition condition() {
-		return new BaseCondition("identifier", new BaseVersionMatch("version", new MatchingRuleDefault()), //$NON-NLS-1$//$NON-NLS-2$
+		return new BaseCondition("identifier", "feature", new BaseVersionMatch("version", new MatchingRuleDefault()), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 				new BaseValidityPeriodClosed(ZonedDateTime.now(),
 						ZonedDateTime.of(2020, 10, 1, 1, 1, 1, 1, ZoneId.systemDefault())),
 				new BaseEvaluationInstructions(new EvaluationType.Hardware(), "expression")); //$NON-NLS-1$
@@ -55,7 +55,7 @@ public class CertificateTestData {
 	}
 
 	public Requirement requirement() {
-		return new BaseRequirement(new BaseFeature("identifier", "version", "name", "provider"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		return new BaseRequirement(new BaseFeature("feature", "version", "name", "provider"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				new RestrictionLevel.Warning(), "source"); //$NON-NLS-1$
 	}
 

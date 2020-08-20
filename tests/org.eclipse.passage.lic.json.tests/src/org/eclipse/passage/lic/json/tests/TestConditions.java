@@ -39,16 +39,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public final class TestConditions {
 
 	private final List<Condition> conditions = Arrays.asList(//
-			new BaseCondition("who-are-you-guys?", //$NON-NLS-1$
+			new BaseCondition("aaa", "who-are-you-guys?", //$NON-NLS-1$ //$NON-NLS-2$
 					new BaseVersionMatch("1.1.1", new MatchingRuleEquivalent()), //$NON-NLS-1$
 					new BaseValidityPeriodClosed(ZonedDateTime.now(), ZonedDateTime.now().plusSeconds(1)), //
 					new BaseEvaluationInstructions(new EvaluationType.Of("mental-test"), "cow-says=moo;cat-says=meow")), //$NON-NLS-1$ //$NON-NLS-2$
-			new BaseCondition("extraterrestrial-verifier", //$NON-NLS-1$
+			new BaseCondition("bbb", "extraterrestrial-verifier", //$NON-NLS-1$ //$NON-NLS-2$
 					new BaseVersionMatch("17.0.8", new MatchingRuleCompatible()), //$NON-NLS-1$
 					new BaseValidityPeriodClosed(ZonedDateTime.now(), ZonedDateTime.now().plusSeconds(2)), //
 					new BaseEvaluationInstructions(new EvaluationType.Of("barrier-body-asessment"), //$NON-NLS-1$
 							"heads=1;heands=2;legs=2")), //$NON-NLS-1$
-			new BaseCondition("good-witch", //$NON-NLS-1$
+			new BaseCondition("ccc", "good-witch", //$NON-NLS-1$ //$NON-NLS-2$
 					new BaseVersionMatch("0.32.17.patch5", new MatchingRulePerfect()), //$NON-NLS-1$
 					new BaseValidityPeriodClosed(ZonedDateTime.now(), ZonedDateTime.now().plusSeconds(2)), //
 					new BaseEvaluationInstructions(new EvaluationType.Of("physical"), "thermal-conductivity=water")) //$NON-NLS-1$ //$NON-NLS-2$

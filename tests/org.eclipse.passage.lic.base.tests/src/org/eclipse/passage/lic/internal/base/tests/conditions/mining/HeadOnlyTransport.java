@@ -55,7 +55,9 @@ final class HeadOnlyTransport implements ConditionTransport {
 			for (String line = lines.readLine(); line != null; line = lines.readLine()) {
 				spy.transportLine();
 				conditions.add(new BaseCondition(//
-						line.trim(), commonVersion(), commonPeriod(), commonInstructions()));
+						String.valueOf(line.trim().hashCode()), //
+						line.trim(), //
+						commonVersion(), commonPeriod(), commonInstructions()));
 			}
 		}
 		return conditions;

@@ -22,10 +22,21 @@ import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 @SuppressWarnings("restriction")
 public final class FakeCondition implements Condition {
 
+	private Optional<String> identifier = Optional.empty();
+	private Optional<String> feature = Optional.empty();
 	private Optional<VersionMatch> version = Optional.empty();
 	private Optional<ValidityPeriod> period = Optional.empty();
-	private Optional<String> feature = Optional.empty();
 	private Optional<EvaluationInstructions> evaluation = Optional.empty();
+
+	@Override
+	public String identifier() {
+		return getOrFail(identifier);
+	}
+
+	@Override
+	public String feature() {
+		return getOrFail(feature);
+	}
 
 	@Override
 	public VersionMatch versionMatch() {
@@ -35,11 +46,6 @@ public final class FakeCondition implements Condition {
 	@Override
 	public ValidityPeriod validityPeriod() {
 		return getOrFail(period);
-	}
-
-	@Override
-	public String feature() {
-		return getOrFail(feature);
 	}
 
 	@Override

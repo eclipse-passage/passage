@@ -39,6 +39,7 @@ public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	@Override
 	protected Collection<Condition> conditions() {
 		return Collections.singleton(new BaseCondition(//
+				"aaa", //$NON-NLS-1$
 				"doodle", //$NON-NLS-1$
 				new BaseVersionMatch(//
 						"1.2.3", //$NON-NLS-1$
