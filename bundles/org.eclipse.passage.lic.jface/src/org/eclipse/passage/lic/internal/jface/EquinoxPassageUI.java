@@ -55,7 +55,7 @@ public final class EquinoxPassageUI implements PassageUI {
 			return false;
 		}
 		ExaminationCertificate certificate = last.data().get();
-		LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), certificate);
+		LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), certificate, last.diagnostic());
 		if (Window.OK != dialog.open()) {
 			return false;
 		}

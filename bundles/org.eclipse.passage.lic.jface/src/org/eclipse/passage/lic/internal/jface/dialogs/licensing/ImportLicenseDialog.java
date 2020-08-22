@@ -12,13 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
@@ -27,6 +30,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingServ
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicensingToolBox;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
@@ -44,6 +48,8 @@ import org.eclipse.swt.widgets.Text;
 public final class ImportLicenseDialog extends NotificationDialog {
 
 	private final DateTimeFormatter dates = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //$NON-NLS-1$
+	private ButtonConfig action;
+	private Text path;
 
 	public ImportLicenseDialog(Shell shell) {
 		super(shell);
@@ -54,7 +60,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText("Import License"); //$NON-NLS-1$
 		shell.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
-		shell.setSize(850, 300);
+		shell.setSize(850, 500);
 	}
 
 	@Override
@@ -71,11 +77,11 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	private void buildSelector(Composite parent) {
 		Composite composite = row(parent, 3);
 		new Label(composite, SWT.NONE).setText(ImportLicenseDialogMessages.ImportLicenseDialog_path_label);
-		Text path = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
+		path = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
 		path.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		Button browse = new Button(composite, SWT.PUSH);
 		browse.setText("B&rowse..."); //$NON-NLS-1$
-		browse.addListener(SWT.Selection, e -> browseAndLoad(path));
+		browse.addListener(SWT.Selection, e -> browseAndLoad());
 		setButtonLayoutData(browse);
 	}
 
@@ -90,7 +96,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		viewer = new HereTable<Condition>(parent, Condition.class) //
 				.withColumn(ImportLicenseDialogMessages.ImportLicenseDialog_column_feature, 300, this::feature) //
 				.withColumn(ImportLicenseDialogMessages.ImportLicenseDialog_column_period, 300, this::period) //
-				.withColumn(ImportLicenseDialogMessages.ImportLicenseDialog_column_evaluation, 220, this::evaluation) //
+				.withColumn(ImportLicenseDialogMessages.ImportLicenseDialog_column_evaluation, 210, this::evaluation) //
 				.viewer();
 	}
 
@@ -116,11 +122,12 @@ public final class ImportLicenseDialog extends NotificationDialog {
 				condition.evaluationInstructions().type().identifier());
 	}
 
-	private void browseAndLoad(Text path) {
-		browse(path).ifPresent(this::loadLicense);
+	private void browseAndLoad() {
+		browse().ifPresent(this::loadLicense);
+		updateButtonsEnablement();
 	}
 
-	private Optional<String> browse(Text path) {
+	private Optional<String> browse() {
 		FileDialog dialog = new FileDialog(getShell(), SWT.OPEN | SWT.SHEET);
 		dialog.setText(ImportLicenseDialogMessages.ImportLicenseDialog_browse_dialog_title);
 		dialog.setFilterPath(path.getText().trim());
@@ -145,7 +152,6 @@ public final class ImportLicenseDialog extends NotificationDialog {
 		List<Condition> conditions = packs.data().get().stream()//
 				.flatMap(pack -> pack.conditions().stream())//
 				.collect(Collectors.toList());
-		System.out.println(conditions.size());
 		viewer.setInput(conditions);
 	}
 
@@ -155,17 +161,34 @@ public final class ImportLicenseDialog extends NotificationDialog {
 
 	@Override
 	protected void initButtons() {
-		// do nothing
+		action = new ButtonConfig(1, this::doLicenseImport, "&Import this license", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		action.reside(buttons);
 	}
 
 	@Override
 	protected void inplaceData() {
-		// do nothing
+		viewer.setInput(Collections.emptyList());
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected void updateButtonsEnablement() {
-		// do nothing
+		getButton(action.id()).setEnabled(!((Collection) viewer.getInput()).isEmpty());
+	}
+
+	private void doLicenseImport() {
+		ServiceInvocationResult<LicensedProduct> product = new EquinoxPassage().product();
+		if (!product.data().isPresent()) {
+			reportError(product.diagnostic());
+			return;
+		}
+		try {
+			new ExternalLicense(product.data().get()).install(Paths.get(path.getText().trim()));
+		} catch (IOException e) {
+			setErrorMessage(
+					String.format(ImportLicenseDialogMessages.ImportLicenseDialog_io_error, e.getLocalizedMessage()));
+		}
+		okPressed();
 	}
 
 }
