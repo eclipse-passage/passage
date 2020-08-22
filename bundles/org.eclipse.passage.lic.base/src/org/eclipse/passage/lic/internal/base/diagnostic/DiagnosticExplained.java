@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.diagnostic;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -35,6 +37,9 @@ public final class DiagnosticExplained implements Supplier<String> {
 			return DiagnosticExplainedMessages.getString("DiagnosticExplained.empty"); //$NON-NLS-1$
 		}
 		StringBuilder out = new StringBuilder();
+		out//
+				.append(DiagnosticExplainedMessages.getString("DiagnosticExplained.prelude")) //$NON-NLS-1$
+				.append("\r\n"); //$NON-NLS-1$
 		append(diagnostic.severe(), DiagnosticExplainedMessages.getString("DiagnosticExplained.severe"), out); //$NON-NLS-1$
 		append(diagnostic.bearable(), DiagnosticExplainedMessages.getString("DiagnosticExplained.bearable"), out); //$NON-NLS-1$
 		return out.toString();
@@ -63,6 +68,14 @@ public final class DiagnosticExplained implements Supplier<String> {
 				.append(trouble.exception().isPresent()
 						? DiagnosticExplainedMessages.getString("DiagnosticExplained.failure") //$NON-NLS-1$
 						: ""); //$NON-NLS-1$
+		if (trouble.exception().isPresent()) {
+			StringWriter media = new StringWriter();
+			trouble.exception().get().printStackTrace(new PrintWriter(media));
+			out//
+					.append("\r\n----\r\n") //$NON-NLS-1$
+					.append(media.toString())//
+					.append("----\r\n"); //$NON-NLS-1$
+		}
 	}
 
 }
