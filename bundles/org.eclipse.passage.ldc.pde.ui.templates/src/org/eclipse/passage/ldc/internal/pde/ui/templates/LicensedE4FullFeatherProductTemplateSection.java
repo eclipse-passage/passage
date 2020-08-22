@@ -77,7 +77,7 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 	@Override
 	protected List<Requirement> requirements(String product) {
 		return Arrays.asList(//
-				new DefaultProductRequirement(product).get(), //
+				new DefaultProductRequirement(product, getManifestHeader("Bundle-Version")).get(), //$NON-NLS-1$
 				new AntimagicShieldFeatureLicRequirement().get());
 	}
 
