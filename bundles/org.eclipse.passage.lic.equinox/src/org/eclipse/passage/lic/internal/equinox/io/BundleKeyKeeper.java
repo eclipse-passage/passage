@@ -38,12 +38,18 @@ public final class BundleKeyKeeper implements KeyKeeper {
 
 	private final Supplier<LicensedProduct> product;
 	private final Bundle bundle;
+	private final String midpath;
 
 	public BundleKeyKeeper(Supplier<LicensedProduct> product, Bundle bundle) {
+		this(product, bundle, "OSGI-INF"); //$NON-NLS-1$
+	}
+
+	public BundleKeyKeeper(Supplier<LicensedProduct> product, Bundle bundle, String midpath) {
 		Objects.requireNonNull(product, "BundleKeyKeeper::product"); //$NON-NLS-1$
 		Objects.requireNonNull(bundle, "BundleKeyKeeper::bundle"); //$NON-NLS-1$
 		this.product = product;
 		this.bundle = bundle;
+		this.midpath = midpath;
 	}
 
 	@Override
@@ -53,7 +59,7 @@ public final class BundleKeyKeeper implements KeyKeeper {
 
 	@Override
 	public InputStream productPublicKey() throws LicensingException {
-		URL resource = resource(Paths.get("OSGI-INF").resolve(keyFile())); //$NON-NLS-1$
+		URL resource = resource(Paths.get(midpath).resolve(keyFile()));
 		try {
 			return resource.openStream();
 		} catch (IOException e) {
