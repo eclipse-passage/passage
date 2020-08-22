@@ -16,9 +16,9 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
 @SuppressWarnings("restriction")
@@ -39,10 +39,12 @@ public final class HardwareAssessmentService implements ExpressionTokenAssessmen
 	@Override
 	public boolean equal(String key, String value) throws ExpressionEvaluationException {
 		try {
-			return hardware().isAssuptionTrue(new EnvironmentProperty.Of(key), value);
-		} catch (LicensingException e) {
-			throw new ExpressionEvaluationException(String.format(//
-					AssessmentMessages.HardwareAssessmentService_error_on_assessment, type), e);
+			return hardware().isAssuptionTrue(new BaseEnvironmentProperty.Of(key), value);
+		} catch (Exception e) {
+			throw new ExpressionEvaluationException(//
+					String.format(AssessmentMessages.HardwareAssessmentService_error_on_assessment, //
+							key, value), //
+					e);
 		}
 	}
 
