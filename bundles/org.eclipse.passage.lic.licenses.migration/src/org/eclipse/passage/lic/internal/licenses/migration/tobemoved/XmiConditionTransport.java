@@ -26,12 +26,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -63,13 +65,24 @@ public final class XmiConditionTransport implements ConditionTransport {
 		return new BaseCondition(descriptor.getIdentifier(), //
 				descriptor.getFeatureIdentifier(), //
 				new BaseVersionMatch(descriptor.getMatchVersion(), //
-						new MatchingRuleForIdentifier(descriptor.getMatchRule()).get()), //
+						rule(descriptor.getMatchRule())), //
 				new BaseValidityPeriodClosed(//
 						fromDate(descriptor.getValidFrom()), //
 						fromDate(descriptor.getValidUntil())), //
 				new BaseEvaluationInstructions(//
 						new EvaluationType.Of(descriptor.getConditionType()), //
 						descriptor.getConditionExpression()));
+	}
+
+	/**
+	 * It looks like default matching rule is not persisted my EMF, this we expect
+	 * {@code null} here
+	 */
+	private MatchingRule rule(String origin) {
+		if (origin == null) {
+			return new MatchingRuleDefault();
+		}
+		return new MatchingRuleForIdentifier(origin).get();
 	}
 
 	private ZonedDateTime fromDate(Date date) {
