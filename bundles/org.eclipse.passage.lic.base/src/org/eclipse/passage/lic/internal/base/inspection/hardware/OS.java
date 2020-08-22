@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 
-public abstract class OS extends EnvironmentProperty {
+public abstract class OS extends BaseEnvironmentProperty {
 
 	protected OS(String family) {
 		super("os", family); //$NON-NLS-1$

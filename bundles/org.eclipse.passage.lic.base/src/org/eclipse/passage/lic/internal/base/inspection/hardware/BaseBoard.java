@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 
-public abstract class BaseBoard extends EnvironmentProperty {
+public abstract class BaseBoard extends BaseEnvironmentProperty {
 
 	protected BaseBoard(String name) {
 		super("baseboard", name); //$NON-NLS-1$
