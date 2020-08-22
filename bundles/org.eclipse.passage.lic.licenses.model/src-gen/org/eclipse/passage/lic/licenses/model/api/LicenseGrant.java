@@ -65,6 +65,7 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
 	 * @generated
+	 * @since 1.0
 	 */
 	void setIdentifier(String value);
 
