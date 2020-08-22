@@ -13,10 +13,13 @@
 package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 
 import java.nio.file.Path;
+import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 
 @SuppressWarnings("restriction")
 final class TempFolderResidentConditions extends LocalConditions {
@@ -29,8 +32,8 @@ final class TempFolderResidentConditions extends LocalConditions {
 	}
 
 	@Override
-	protected Path base() {
-		return root;
+	protected Supplier<Path> base(LicensedProduct product) {
+		return new PathFromLicensedProduct(() -> root, product);
 	}
 
 }

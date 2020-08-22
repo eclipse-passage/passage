@@ -13,9 +13,12 @@
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
+import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
 /**
@@ -29,8 +32,8 @@ public final class UserHomeResidentConditions extends LocalConditions {
 	}
 
 	@Override
-	protected Path base() {
-		return new LicensingFolder(new UserHomePath()).get();
+	protected Supplier<Path> base(LicensedProduct product) {
+		return new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product);
 	}
 
 }

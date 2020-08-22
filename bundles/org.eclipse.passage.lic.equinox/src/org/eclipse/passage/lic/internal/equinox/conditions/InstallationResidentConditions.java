@@ -13,11 +13,14 @@
 package org.eclipse.passage.lic.internal.equinox.conditions;
 
 import java.nio.file.Path;
+import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 
 /**
@@ -33,8 +36,8 @@ public final class InstallationResidentConditions extends LocalConditions {
 	}
 
 	@Override
-	protected Path base() {
-		return new LicensingFolder(new InstallationPath()).get();
+	protected Supplier<Path> base(LicensedProduct product) {
+		return new PathFromLicensedProduct(new LicensingFolder(new InstallationPath()), product);
 	}
 
 }
