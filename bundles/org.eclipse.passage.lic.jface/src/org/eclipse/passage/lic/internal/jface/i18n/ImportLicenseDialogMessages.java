@@ -20,6 +20,7 @@ public class ImportLicenseDialogMessages extends NLS {
 	public static String ImportLicenseDialog_column_evaluation;
 	public static String ImportLicenseDialog_column_feature;
 	public static String ImportLicenseDialog_column_period;
+	public static String ImportLicenseDialog_io_error;
 	public static String ImportLicenseDialog_path_label;
 	public static String ImportLicenseDialog_prelude;
 	static {

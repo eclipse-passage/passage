@@ -12,9 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
@@ -22,12 +24,14 @@ import org.eclipse.swt.widgets.Shell;
 @SuppressWarnings("restriction")
 public final class LicenseStatusDialog extends NotificationDialog {
 
-	private final ExaminationCertificate origin;
+	private final ExaminationCertificate certificate;
+	private final Diagnostic diagnostic;
 	private GoodIntention intention = new GoodIntention.Nope(); // truly mutable ^:(
 
-	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate) {
+	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate, Diagnostic diagnostic) {
 		super(shell);
-		this.origin = certificate;
+		this.certificate = certificate;
+		this.diagnostic = diagnostic;
 	}
 
 	public GoodIntention goodIntention() {
@@ -52,7 +56,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void inplaceData() {
-		viewer.setInput(origin.restrictions());
+		viewer.setInput(certificate.restrictions());
 	}
 
 	@Override
@@ -61,7 +65,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				.reside(buttons);
 		new ButtonConfig(2, this::importLicense, "&Import License...", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				.reside(buttons);
-		new ButtonConfig(3, new CopyToClipboard(this::getShell, new ExaminationExplained(origin)), "Co&py", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		new ButtonConfig(3, copy(), "Co&py", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				.reside(buttons);
 	}
 
@@ -83,6 +87,12 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	private void importLicense() {
 		intention = new GoodIntention.ImportLicense(this::getShell);
 		super.okPressed();
+	}
+
+	private Runnable copy() {
+		return new CopyToClipboard(this::getShell, //
+				new ExaminationExplained(certificate), //
+				new DiagnosticExplained(diagnostic));
 	}
 
 	private String feature(Feature feature) {

@@ -29,7 +29,7 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
 @SuppressWarnings("restriction")
-abstract class FrameworkAware {
+public abstract class FrameworkAware {
 
 	private final String friend = "org.eclipse.passage.seal.demo"; //$NON-NLS-1$
 
@@ -91,4 +91,5 @@ abstract class FrameworkAware {
 			context.ungetService(reference);
 		}
 	}
+
 }
