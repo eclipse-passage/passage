@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -29,7 +30,6 @@ import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfr
 import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 
 /**
  * <p>
@@ -70,10 +70,9 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {
-		return new FileCollection(new PathFromLicensedProduct(this::base, product),
-				new PassageFileExtension.LicenseEncrypted()).get();
+		return new FileCollection(base(product), new PassageFileExtension.LicenseEncrypted()).get();
 	}
 
-	protected abstract Path base();
+	protected abstract Supplier<Path> base(LicensedProduct product);
 
 }

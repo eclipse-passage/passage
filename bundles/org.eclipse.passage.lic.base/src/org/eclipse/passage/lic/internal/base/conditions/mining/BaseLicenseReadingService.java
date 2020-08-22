@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -23,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 @SuppressWarnings("restriction")
 public final class BaseLicenseReadingService implements LicenseReadingService {
+
 	private final LicensedProduct product;
 	private final MiningEquipment equipment;
 
@@ -51,8 +53,8 @@ public final class BaseLicenseReadingService implements LicenseReadingService {
 		}
 
 		@Override
-		protected Path base() {
-			return license;
+		protected Supplier<Path> base(LicensedProduct product) {
+			return () -> license;
 		}
 
 	}
