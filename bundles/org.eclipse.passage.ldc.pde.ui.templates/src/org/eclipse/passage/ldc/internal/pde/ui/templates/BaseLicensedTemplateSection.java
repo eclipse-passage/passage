@@ -119,8 +119,8 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 		}
 		((IBundlePluginModelBase) shared).getBundleModel().getBundle()//
 				.setHeader(Constants.PROVIDE_CAPABILITY, //
-						new RequirementsToBundle()//
-								.printed(requirements(identifier)));
+						new RequirementsToBundle().printed(requirements(identifier)));
+		// FIXME: version also must be set - from Bundle-Version
 	}
 
 	protected abstract List<Requirement> requirements(String product);

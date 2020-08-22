@@ -21,10 +21,13 @@ import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 
 @SuppressWarnings("restriction")
 final class DefaultProductRequirement implements Supplier<Requirement> {
-	private final String product;
 
-	DefaultProductRequirement(String product) {
+	private final String product;
+	private final String version;
+
+	DefaultProductRequirement(String product, String version) {
 		this.product = product;
+		this.version = version;
 	}
 
 	@Override
@@ -32,7 +35,7 @@ final class DefaultProductRequirement implements Supplier<Requirement> {
 		return new BaseRequirement(//
 				new BaseFeature(//
 						product, //
-						"1.0.0", //$NON-NLS-1$
+						version, //
 						product, //
 						"Eclipse Passage Template"), //$NON-NLS-1$
 				new RestrictionLevel.Warning(), //

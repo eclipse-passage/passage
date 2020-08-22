@@ -85,7 +85,7 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	@Override
 	protected List<Requirement> requirements(String product) {
-		return Arrays.asList(new DefaultProductRequirement(product).get());
+		return Arrays.asList(new DefaultProductRequirement(product, getManifestHeader("Bundle-Version")).get()); //$NON-NLS-1$
 	}
 
 	private void createProductExtension() throws CoreException {
