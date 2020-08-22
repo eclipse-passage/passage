@@ -60,6 +60,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
+/**
+ * @deprecated use new one from 'licensing' package build on 1.0 service
+ */
+@Deprecated
 public class ImportLicenseDialog extends TitleAreaDialog {
 
 	private final LicensingConfiguration configuration;
