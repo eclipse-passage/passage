@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.passage.lbc.internal.api.BackendServerConfiguration;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.LicenseEObject;
@@ -29,9 +30,15 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 public final class MineConditionsChain
 		implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 
+	private final BackendServerConfiguration configuration;
+
+	public MineConditionsChain(BackendServerConfiguration configuration) {
+		this.configuration = configuration;
+	}
+
 	private List<Resource> resources(ProductLicensesRequest request) {
 		return Stream.of(request) //
-				.map(new MinedConditionPacks(new BaseLicenseVault())) //
+				.map(new MinedConditionPacks(new BaseLicenseVault(configuration))) //
 				.flatMap(packs -> packs.stream()) //
 				.map(new LicenseEObject()) //
 				.map(new LicensesResource()) //

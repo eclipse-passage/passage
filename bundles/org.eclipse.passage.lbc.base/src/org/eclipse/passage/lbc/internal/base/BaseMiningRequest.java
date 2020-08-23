@@ -12,11 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.util.Optional;
-import java.util.function.Supplier;
-
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 
@@ -36,18 +35,13 @@ public final class BaseMiningRequest implements ProductLicensesRequest {
 	}
 
 	@Override
-	public Supplier<Optional<String>> identifier() {
-		return identifier;
-	}
-
-	@Override
-	public Supplier<Optional<String>> version() {
-		return version;
-	}
-
-	@Override
 	public Requester requester() {
 		return user;
+	}
+
+	@Override
+	public LicensedProduct product() {
+		return new BaseLicensedProduct(identifier.get().get(), version.get().get());
 	}
 
 }

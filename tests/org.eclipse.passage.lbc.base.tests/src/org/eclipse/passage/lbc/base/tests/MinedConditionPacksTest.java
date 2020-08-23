@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
 import org.eclipse.passage.lbc.internal.base.BaseMiningRequest;
+import org.eclipse.passage.lbc.internal.base.EmptyServerConfiguration;
 import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public final class MinedConditionPacksTest extends LbcTestsBase {
 	@Test
 	public void positive() {
 		List<ConditionPack> mined = Stream.of(new BaseMiningRequest(identifier(), version(), requester())) //
-				.map(new MinedConditionPacks(new BaseLicenseVault())) //
+				.map(new MinedConditionPacks(new BaseLicenseVault(new EmptyServerConfiguration()))) //
 				.flatMap(packs -> packs.stream()) //
 				.collect(Collectors.toList());
 		assertFalse(mined.isEmpty());

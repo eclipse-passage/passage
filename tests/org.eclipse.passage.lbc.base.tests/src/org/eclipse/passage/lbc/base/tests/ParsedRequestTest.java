@@ -32,8 +32,8 @@ public final class ParsedRequestTest extends LbcTestsBase {
 		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedRequest()).collect(Collectors.toList())
 				.get(0);
 		assertEquals(userValue(), miningRequest.requester().hardware());
-		assertEquals(identifierValue(), miningRequest.identifier().get().get());
-		assertEquals(versionValue(), miningRequest.version().get().get());
+		assertEquals(identifierValue(), miningRequest.product().identifier());
+		assertEquals(versionValue(), miningRequest.product().version());
 	}
 
 	private Map<String, String> params() {

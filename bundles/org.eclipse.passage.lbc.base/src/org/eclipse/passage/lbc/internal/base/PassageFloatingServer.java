@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
+import org.eclipse.passage.lbc.internal.api.BackendServerConfiguration;
 import org.eclipse.passage.lbc.internal.api.CheckRequest;
 import org.eclipse.passage.lbc.internal.api.ReleaseRequest;
 import org.eclipse.passage.lbc.internal.api.TakeRequest;
@@ -26,6 +27,12 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
  * @since 1.0
  */
 public final class PassageFloatingServer implements BackendFloatingServer {
+
+	private final BackendServerConfiguration configuration;
+
+	public PassageFloatingServer(BackendServerConfiguration configuration) {
+		this.configuration = configuration;
+	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> canTake(CheckRequest request) {
