@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.api.restrictions;
 
 import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.api.access.PermissionExaminer;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 
 /**
@@ -21,7 +20,6 @@ import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
  * The data required to execute the restriction, produced by
  * {@link PermissionExaminer} and consumed by {@link RestrictionExecutor}
  *
- * @see RestrictionExecutor
  * @since 0.4.0
  * @deprecated use 1.0 internal Restriction
  */

@@ -15,9 +15,6 @@ package org.eclipse.passage.lic.api.inspector;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.eclipse.passage.lic.api.access.PermissionEmitter;
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-
 /**
  * <p>
  * Contract for a service capable to uncover and enlist current hardware
@@ -32,9 +29,6 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
  * hardware information fits to the one gathered by this service.
  * </p>
  *
- * @see PermissionEmitter
- * @see LicensingCondition#getConditionType
- * @see LicensingCondition#getConditionExpression
  * @since 0.4.0
  * @deprecated use 1.0 inspection.RuntimeEnvironment
  */

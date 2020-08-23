@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi.tobemoved;
+package org.eclipse.passage.lic.internal.oshi;
 
 import java.util.List;
 import java.util.Objects;

@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.api.access;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-
 /**
  * Collects the data required to issue the license
  *
@@ -91,7 +89,6 @@ public interface LicensingRequest {
 	 * value of its <code>"validFrom"</code> attribute.
 	 *
 	 * @return the valid from
-	 * @see LicensingCondition#getValidFrom()
 	 * @since 0.5.0
 	 */
 	Date getValidFrom();
@@ -101,7 +98,6 @@ public interface LicensingRequest {
 	 * value of its <code>"validUntil"</code> attribute.
 	 *
 	 * @return the valid until
-	 * @see LicensingCondition#getValidUntil()
 	 * @since 0.5.0
 	 */
 	Date getValidUntil();
@@ -111,7 +107,6 @@ public interface LicensingRequest {
 	 * its <code>"conditionType"</code> attribute.
 	 *
 	 * @return the condition type
-	 * @see LicensingCondition#getConditionType()
 	 * @since 0.5.0
 	 */
 	String getConditionType();
@@ -121,7 +116,6 @@ public interface LicensingRequest {
 	 * of its <code>"conditionExpression"</code> attribute.
 	 *
 	 * @return the condition expression
-	 * @see LicensingCondition#getConditionExpression()
 	 * @since 0.5.0
 	 */
 	String getConditionExpression();
