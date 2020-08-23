@@ -24,9 +24,14 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -83,7 +88,7 @@ public final class BaseLicenseReadingServiceTest {
 
 	private void assertConditionState(Condition condition) {
 		assertEquals("0.1.0", condition.versionMatch().version()); //$NON-NLS-1$
-		assertEquals(new MatchingRuleCompatible(), condition.versionMatch().rule()); //$NON-NLS-1$
+		assertEquals(new MatchingRuleCompatible(), condition.versionMatch().rule()); // $NON-NLS-1$
 		assertEquals("prince-to-frog", condition.feature()); //$NON-NLS-1$
 		assertEquals("os=win", condition.evaluationInstructions().expression()); //$NON-NLS-1$
 		assertEquals(new EvaluationType.Hardware(), condition.evaluationInstructions().type());
@@ -93,8 +98,16 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private void assertValidityPeriodState(ValidityPeriodClosed period) {
-		assertEquals(LocalDate.of(2020, Month.AUGUST, 20), period.from().toLocalDate());
-		assertEquals(LocalDate.of(2021, Month.AUGUST, 20), period.to().toLocalDate());
+		assertDatesEqual(LocalDate.of(2020, Month.AUGUST, 20), period.from());
+		assertDatesEqual(LocalDate.of(2021, Month.AUGUST, 20), period.to());
+	}
+
+	private void assertDatesEqual(LocalDate expected, ZonedDateTime actual) {
+		assertEquals(Date.from(ZonedDateTime.of(//
+				expected, //
+				LocalTime.of(0, 0, 0), //
+				ZoneId.of("Europe/Moscow")).toInstant()).getTime(), //$NON-NLS-1$
+				Date.from(actual.toInstant()).getTime());
 	}
 
 	private LicenseReadingService service() {
