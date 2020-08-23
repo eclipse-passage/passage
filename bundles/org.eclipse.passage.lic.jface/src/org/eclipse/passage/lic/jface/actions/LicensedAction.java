@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.jface.actions;
 import org.eclipse.jface.action.Action;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
@@ -25,14 +26,15 @@ public class LicensedAction extends Action {
 
 	@Override
 	public void runWithEvent(Event event) {
-		String feature = getId();
-		ServiceInvocationResult<ExaminationCertificate> response = //
-				new EquinoxPassageUI(event.display::getActiveShell).acquireLicense(feature);
-		if (new CertificateIsRestrictive().test(response.data())) {
-			return;
+		ServiceInvocationResult<ExaminationCertificate> response = new BaseServiceInvocationResult<>();
+		try {
+			response = new EquinoxPassageUI(event.display::getActiveShell).acquireLicense(getId());
+			if (!new CertificateIsRestrictive().test(response.data())) {
+				super.runWithEvent(event);
+			}
+		} finally {
+			response.data().ifPresent(certificate -> new EquinoxPassage().releaseLicense(certificate));
 		}
-		super.runWithEvent(event);
-		new EquinoxPassage().releaseLicense(response.data().get());
 	}
 
 }
