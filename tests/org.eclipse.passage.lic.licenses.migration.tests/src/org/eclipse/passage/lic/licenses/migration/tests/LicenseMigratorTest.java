@@ -17,13 +17,16 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.base.LicensingProperties;
+import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.junit.Test;
@@ -49,30 +52,31 @@ public class LicenseMigratorTest {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new XMIResourceImpl(uri);
-		resource.load(null);
+		resource.load(Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
 
-		LicensePack licensePack = LicensePack.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic.evaluation", licensePack.getIdentifier()); //$NON-NLS-1$
-		assertEquals(null, licensePack.getIssueDate());
-		assertEquals("org.eclipse.passage.lic.product", licensePack.getProductIdentifier()); //$NON-NLS-1$
-		assertEquals("0.4.0", licensePack.getProductVersion()); //$NON-NLS-1$
-		assertEquals("", licensePack.getUserIdentifier()); //$NON-NLS-1$
+		LicensePack pack = LicensePack.class.cast(eObject);
+		assertEquals("org.eclipse.passage.lic.evaluation", pack.getIdentifier()); //$NON-NLS-1$
+		assertEquals(null, pack.getIssueDate());
+		assertEquals("org.eclipse.passage.lic.product", pack.getProductIdentifier()); //$NON-NLS-1$
+		assertEquals("0.4.0", pack.getProductVersion()); //$NON-NLS-1$
+		assertEquals("", pack.getUserIdentifier()); //$NON-NLS-1$
 
-		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
+		EList<LicenseGrant> grants = pack.getLicenseGrants();
 		assertEquals(1, grants.size());
 
-		LicenseGrant licencecGrant = grants.get(0);
-		assertEquals(1, licencecGrant.getCapacity());
-		assertEquals("os.family=*", licencecGrant.getConditionExpression()); //$NON-NLS-1$
-		assertEquals("hardware", licencecGrant.getConditionType()); //$NON-NLS-1$
-		assertEquals("org.eclipse.passage.lic.product", licencecGrant.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("perfect", licencecGrant.getMatchRule()); //$NON-NLS-1$
-		assertEquals("0.4.0", licencecGrant.getMatchVersion()); //$NON-NLS-1$
+		LicenseGrant grant = grants.get(0);
+		assertEquals("org.eclipse.passage.lic.evaluation#0", grant.getIdentifier()); //$NON-NLS-1$
+		assertEquals(1, grant.getCapacity());
+		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
+		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
+		assertEquals("org.eclipse.passage.lic.product", grant.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("perfect", grant.getMatchRule()); //$NON-NLS-1$
+		assertEquals("0.4.0", grant.getMatchVersion()); //$NON-NLS-1$
 		assertEquals(LicensingProperties.getLicensingDateFormat().parse("2019-03-14T00:00:00.000+0300"), //$NON-NLS-1$
-				licencecGrant.getValidFrom());
+				grant.getValidFrom());
 		assertEquals(LicensingProperties.getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
-				licencecGrant.getValidUntil());
+				grant.getValidUntil());
 	}
 }

@@ -19,12 +19,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.api.conditions.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.LicensingCondition;
@@ -37,7 +39,8 @@ public class XmiConditionTransport implements ConditionTransport {
 	@Override
 	public Iterable<LicensingCondition> readConditions(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
-		resource.load(input, new HashMap<>());
+		resource.load(input,
+				Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
 		List<LicensingCondition> extracted = new ArrayList<>();
 		EList<EObject> contents = resource.getContents();
 		for (EObject eObject : contents) {

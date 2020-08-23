@@ -43,6 +43,7 @@ import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
@@ -193,7 +194,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Date issueDate = new Date();
 		license.setIdentifier(UUID.randomUUID().toString());
 		license.setIssueDate(issueDate);
-		license.getLicenseGrants().forEach(x -> x.setIdentifier(UUID.randomUUID().toString()));
+		new AssignGrantIdentifiers().accept(license);
 		String userIdentifier = template.getUserIdentifier();
 		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
 		Map<String, Object> attachments = new HashMap<String, Object>();

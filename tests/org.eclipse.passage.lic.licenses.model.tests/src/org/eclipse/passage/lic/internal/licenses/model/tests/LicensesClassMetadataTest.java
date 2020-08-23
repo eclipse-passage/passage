@@ -10,7 +10,7 @@
  * Contributors:
  *     Nikifor Fedorov <zelenyhleb@gmail.com> - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.model.tests;
+package org.eclipse.passage.lic.internal.licenses.model.tests;
 
 import static org.junit.Assert.assertTrue;
 
