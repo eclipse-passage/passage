@@ -14,13 +14,10 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.equinox;bundle-version="0.4.0"
 Export-Package: org.eclipse.passage.lic.internal.jface;x-internal:=true,
- org.eclipse.passage.lic.internal.jface.dialogs;x-internal:=true,
  org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-internal:=true,
  org.eclipse.passage.lic.internal.jface.i18n;x-internal:=true,
- org.eclipse.passage.lic.internal.jface.viewers;x-internal:=true,
  org.eclipse.passage.lic.jface,
  org.eclipse.passage.lic.jface.actions,
- org.eclipse.passage.lic.jface.dialogs,
  org.eclipse.passage.lic.jface.resource,
  org.eclipse.passage.lic.jface.viewers,
  org.eclipse.passage.lic.jface.widgets
