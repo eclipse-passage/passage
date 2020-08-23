@@ -59,8 +59,8 @@ import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
-import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareAssessmentService;
-import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareEnvironment;
+import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
+import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 

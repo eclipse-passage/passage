@@ -10,14 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.oshi.tests.tobemoved;
+package org.eclipse.passage.lic.oshi.tests;
 
 import org.eclipse.passage.lic.api.tests.inspection.RuntimeEnvironmentContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.OS;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.OS.Family;
-import org.eclipse.passage.lic.internal.oshi.tobemoved.HardwareEnvironment;
+import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
 
 @SuppressWarnings("restriction")
 public final class HardwareEnvironmentTest extends RuntimeEnvironmentContractTest {

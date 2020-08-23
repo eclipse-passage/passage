@@ -23,30 +23,30 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.api.access.PermissionEmitterRegistry;
+import org.eclipse.passage.lic.internal.equinox.EnvironmentNames;
 
+@SuppressWarnings("restriction")
 public class ConditionTypeRenderer extends ComboControlRenderer {
 
-	private final PermissionEmitterRegistry conditionInpector;
+	private final List<String> environments;
 
 	@Inject
 	public ConditionTypeRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		this.conditionInpector = viewContext.getService(PermissionEmitterRegistry.class);
+		// FIXME: work for caching supplier
+		environments = new EnvironmentNames().get();
 	}
 
 	@Override
 	protected String getUnsetText() {
-		return conditionInpector.getDefaultConditionType();
+		return environments.size() > 0 ? environments.get(0) : ""; //$NON-NLS-1$
 	}
 
 	@Override
 	protected List<String> getDefinedValues() {
-		List<String> values = new ArrayList<>();
-		conditionInpector.getSupportedConditionTypes().forEach(values::add);
-		return values;
+		return new ArrayList<>(environments);
 	}
 
 }
