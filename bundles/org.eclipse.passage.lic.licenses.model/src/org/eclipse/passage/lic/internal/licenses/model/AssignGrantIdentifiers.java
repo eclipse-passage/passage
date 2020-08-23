@@ -31,7 +31,7 @@ public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
 			if (Optional.ofNullable(grant.getIdentifier()).filter(Predicate.not(String::isEmpty)).isPresent()) {
 				continue;
 			}
-			grant.setIdentifier(new StringBuilder(identifier).append('#').append(i).toString());
+			grant.setIdentifier(identifier + '#' + i);
 		}
 
 	}
