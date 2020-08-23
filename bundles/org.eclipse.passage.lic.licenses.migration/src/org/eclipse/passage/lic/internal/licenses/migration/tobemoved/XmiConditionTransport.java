@@ -17,12 +17,13 @@ import java.io.InputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
@@ -35,10 +36,10 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
+import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 
-@SuppressWarnings("restriction")
 public final class XmiConditionTransport implements ConditionTransport {
 
 	private final ContentType type = new ContentType.Xml();
@@ -51,7 +52,8 @@ public final class XmiConditionTransport implements ConditionTransport {
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
-		resource.load(input, new HashMap<>());
+		resource.load(input,
+				Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
 		return resource.getContents().stream() //
 				.filter(LicensePackDescriptor.class::isInstance) //
 				.map(LicensePackDescriptor.class::cast) //

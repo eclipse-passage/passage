@@ -33,7 +33,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-@SuppressWarnings("restriction")
 public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$
@@ -60,11 +59,11 @@ public class XmiLicensingConditionExtractorTest {
 		String outDir = System.getProperty(MVN_PROJECT_OUTPUT_PROPERTY, defaultValue);
 		return outDir;
 	}
-	
+
 	@Test
 	public void testExtractorPositive() throws Exception {
 		XmiConditionTransport extractor = new XmiConditionTransport();
-		
+
 		LicensesFactory factory = LicensesFactory.eINSTANCE;
 		LicensePack license = factory.createLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
@@ -103,7 +102,5 @@ public class XmiLicensingConditionExtractorTest {
 		assertEquals(COND2_CONDITION_TYPE, actual2.getConditionType());
 		assertEquals(COND2_CONDITION_EXPRESSION, actual2.getConditionExpression());
 	}
-	
-	
 
 }
