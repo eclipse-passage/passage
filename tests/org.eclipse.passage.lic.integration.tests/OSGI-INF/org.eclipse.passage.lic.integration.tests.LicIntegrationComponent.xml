@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.integration.tests.LicIntegrationComponent">
-   <property name="licensing.feature.identifier" value="some.licensed.component"/>
-   <property name="licensing.feature.version" value="1.2.0"/>
-   <property name="licensing.restriction.level" value="error"/>
-   <implementation class="org.eclipse.passage.lic.integration.tests.LicIntegrationComponent"/>
-</scr:component>

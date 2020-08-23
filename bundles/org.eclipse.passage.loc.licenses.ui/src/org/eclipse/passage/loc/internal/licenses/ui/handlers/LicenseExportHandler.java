@@ -20,6 +20,7 @@ import java.util.UUID;
 import javax.inject.Named;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
@@ -33,7 +34,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.api.access.LicensingRequest;
-import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -116,9 +116,9 @@ public class LicenseExportHandler {
 				broker.post(LocWokbench.TOPIC_SHOW, userLicense);
 			}
 		} else {
-			IStatus status = LicensingEquinox.toStatus(result);
 			ErrorDialog.openError(shell, LicensesUiMessages.LicenseExportHandler_error_title,
-					LicensesUiMessages.LicenseExportHandler_error_message, status);
+					LicensesUiMessages.LicenseExportHandler_error_message,
+					new Status(IStatus.ERROR, getClass(), result.getMessage()));
 		}
 	}
 

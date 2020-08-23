@@ -126,8 +126,6 @@
 		<module>../../bundles/org.eclipse.passage.lic.define.branding</module>
 		<module>../../features/org.eclipse.passage.lic.define.feature</module>
 
-		<module>../../tests/org.eclipse.passage.lic.integration.tests</module>
-
 		<module>../../releng/org.eclipse.passage.lic.repository</module>
 	</modules>
 

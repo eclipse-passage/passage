@@ -12,18 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.equinox.requirements;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.api.inspector.FeatureCase;
-import org.eclipse.passage.lic.api.inspector.FeatureInspector;
 import org.eclipse.passage.lic.api.requirements.LicensingRequirement;
 import org.eclipse.passage.lic.base.LicensingNamespaces;
-import org.eclipse.passage.lic.base.requirements.LicensingRequirements;
-import org.eclipse.passage.lic.equinox.ApplicationConfigurations;
-import org.eclipse.passage.lic.equinox.LicensingEquinox;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleRequirement;
@@ -56,22 +48,7 @@ public class EquinoxRequirements {
 	}
 
 	public static Iterable<LicensingRequirement> getFeatureRequirements(String... featureIds) {
-		FeatureInspector featureInspector = LicensingEquinox.getFeatureInspector();
-		if (featureInspector == null) {
-			LicensingConfiguration configuration = ApplicationConfigurations.getLicensingConfiguration();
-			if (featureIds.length == 0) {
-				String id = configuration.getProductIdentifier();
-				return Collections.singletonList(LicensingRequirements.createConfigurationError(id, configuration));
-			}
-			List<LicensingRequirement> errors = new ArrayList<>();
-			for (String id : featureIds) {
-				errors.add(LicensingRequirements.createConfigurationError(id, configuration));
-			}
-			return errors;
-		}
-		try (FeatureCase inspection = featureInspector.inspectFeatures(featureIds)) {
-			return inspection.getRequirements();
-		}
+		throw new UnsupportedOperationException("deprecated"); //$NON-NLS-1$
 	}
 
 }

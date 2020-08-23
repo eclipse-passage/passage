@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lic.internal.equinox.EquinoxLicensingReporter">
-   <service>
-      <provide interface="org.eclipse.passage.lic.api.LicensingReporter"/>
-   </service>
-   <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
-   <implementation class="org.eclipse.passage.lic.internal.equinox.EquinoxLicensingReporter"/>
-</scr:component>
