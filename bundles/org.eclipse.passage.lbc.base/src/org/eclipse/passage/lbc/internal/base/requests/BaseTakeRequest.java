@@ -15,6 +15,7 @@ package org.eclipse.passage.lbc.internal.base.requests;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.api.TakeRequest;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 public final class BaseTakeRequest implements TakeRequest {
 
@@ -27,6 +28,11 @@ public final class BaseTakeRequest implements TakeRequest {
 	@Override
 	public Requester requester() {
 		return request.requester();
+	}
+
+	@Override
+	public ExaminationCertificate certificate() {
+		return null;
 	}
 
 }

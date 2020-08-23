@@ -12,18 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Collection;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
- * A class operating persistable license state storage
- * 
  * @since 1.0
  */
-public interface BackendLicenseVault {
+public interface BackendLicenseLock {
 
-	ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request);
+	// Returns simply a boolean value of license.taken < license.capacity
+	ServiceInvocationResult<Boolean> canTake(Supplier<String> condition);
+
+	// Decreases condition.taken
+	ServiceInvocationResult<Boolean> release(Supplier<String> condition);
+
+	// Increases condition.taken
+	ServiceInvocationResult<Boolean> take(Supplier<String> condition);
 
 }
