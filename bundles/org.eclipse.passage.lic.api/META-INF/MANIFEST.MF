@@ -10,8 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.access,
  org.eclipse.passage.lic.api.io,
- org.eclipse.passage.lic.api.requirements,
- org.eclipse.passage.lic.api.restrictions,
  org.eclipse.passage.lic.internal.api;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
