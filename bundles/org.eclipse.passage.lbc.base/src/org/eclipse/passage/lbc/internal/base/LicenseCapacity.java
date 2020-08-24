@@ -10,21 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.json.tests;
+package org.eclipse.passage.lbc.internal.base;
 
-import static org.junit.Assert.assertFalse;
+import java.util.function.Function;
 
-import org.junit.Test;
+import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-public class PlaceHolderTest {
+/**
+ * @since 1.0
+ */
+public class LicenseCapacity extends BaseNamedData<Integer> {
 
-	@Test
-	public void positive() {
-		assertFalse(doILikeOnion());
+	public LicenseCapacity(Function<String, Integer> retrieve) {
+		super(retrieve);
 	}
 
-	private boolean doILikeOnion() {
-		// I don't like onion >_<
-		return false;
+	@Override
+	public String key() {
+		return "capacity"; //$NON-NLS-1$
 	}
+
 }

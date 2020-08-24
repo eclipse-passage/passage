@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 /**
  * Represents a license that was loaded to the floating server to be operated.
  * 
@@ -20,13 +23,13 @@ package org.eclipse.passage.lbc.internal.api;
 public interface BoundLicense {
 
 	// Condition identifier
-	ConditionIdentifier identifier();
+	Supplier<Optional<String>> identifier();
 
 	// Grant's capacity
-	int capacity();
+	Supplier<Optional<Integer>> capacity();
 
 	// How many times it was taken
-	int taken();
+	Supplier<Optional<Integer>> taken();
 
 	// returns true if it is takeable and false if it is not.
 	boolean takeable();

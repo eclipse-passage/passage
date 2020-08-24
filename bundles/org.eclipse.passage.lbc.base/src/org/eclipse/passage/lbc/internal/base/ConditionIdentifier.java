@@ -10,18 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import java.util.function.Function;
+
+import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
  * @since 1.0
  */
-public interface RequestedCondition {
+public class ConditionIdentifier extends StringNamedData {
 
-	Requester requester();
+	public ConditionIdentifier(String identifier) {
+		super(identifier);
+	}
 
-	Supplier<Optional<String>> condition();
+	public ConditionIdentifier(Function<String, String> retrieve) {
+		super(retrieve);
+	}
+
+	@Override
+	public final String key() {
+		return "identifier"; //$NON-NLS-1$
+	}
 
 }
