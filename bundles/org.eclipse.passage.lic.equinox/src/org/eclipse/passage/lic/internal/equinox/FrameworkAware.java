@@ -28,6 +28,14 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * <p>
+ * Base for services relying in a framework facilities.
+ * </p>
+ * <p>
+ * Use {@code withFrameworkService} to implement client level secondary services
+ * or {@code withFramework} to retrieve parts of configuration directly.
+ */
 @SuppressWarnings("restriction")
 public abstract class FrameworkAware {
 
@@ -39,7 +47,7 @@ public abstract class FrameworkAware {
 		this.context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 	}
 
-	protected Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
+	private Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
 		try {
 			return context.getServiceReferences(FrameworkSupplier.class, null).stream() //
 					// DI is used only to get rid of overwhelming dependencies here
