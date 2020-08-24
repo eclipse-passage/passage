@@ -13,7 +13,6 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
-import org.eclipse.passage.lbc.internal.api.BackendServerConfiguration;
 import org.eclipse.passage.lbc.internal.api.CertificateRequestData;
 import org.eclipse.passage.lbc.internal.api.ConditionRequestData;
 import org.eclipse.passage.lbc.internal.base.chains.Acquire;
@@ -26,12 +25,6 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
  * @since 1.0
  */
 public final class PassageFloatingServer implements BackendFloatingServer {
-
-	private final BackendServerConfiguration configuration;
-
-	public PassageFloatingServer(BackendServerConfiguration configuration) {
-		this.configuration = configuration;
-	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> canTake(ConditionRequestData request) {

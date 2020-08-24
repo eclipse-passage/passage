@@ -27,11 +27,9 @@ import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
  */
 public final class BaseLicenseVault implements BackendLicenseVault {
 
-	private final BackendServerConfiguration configuration;
 	private final MinedConditions miner;
 
 	public BaseLicenseVault(BackendServerConfiguration configuration) {
-		this.configuration = configuration;
 		this.miner = new VaultMinedConditions(
 				new MiningEquipment(configuration.keyKeepers(), configuration.codecs(), configuration.transports()));
 	}
