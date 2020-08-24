@@ -15,8 +15,10 @@ package org.eclipse.passage.lbc.internal.api;
 /**
  * @since 1.0
  */
-public interface TakeRequest {
+public interface RequestedCondition {
 
 	Requester requester();
+
+	ConditionIdentifier condition();
 
 }

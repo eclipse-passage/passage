@@ -24,9 +24,11 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 public class FakeLicensingRequest implements BackendLicensingRequest {
 
 	private final Map<String, String> params;
+	private final String body;
 
-	public FakeLicensingRequest(Map<String, String> params) {
+	public FakeLicensingRequest(Map<String, String> params, String body) {
 		this.params = params;
+		this.body = body;
 	}
 
 	@Override
@@ -42,6 +44,11 @@ public class FakeLicensingRequest implements BackendLicensingRequest {
 	@Override
 	public Requester requester() {
 		return new BaseRequester("process", "hardware", "feature"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+	}
+
+	@Override
+	public String body() {
+		return body;
 	}
 
 }

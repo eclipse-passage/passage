@@ -10,33 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lbc.base.tests;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicenseVault;
-import org.eclipse.passage.lbc.internal.api.BackendServerConfiguration;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 
-/**
- * @since 1.0
- */
-public final class BaseLicenseVault implements BackendLicenseVault {
-
-	private final MinedConditions miner;
-
-	public BaseLicenseVault(BackendServerConfiguration configuration) {
-		this.miner = new VaultMinedConditions(
-				new MiningEquipment(configuration.keyKeepers(), configuration.codecs(), configuration.transports()));
-	}
+public class FakeVault implements BackendLicenseVault {
 
 	@Override
 	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request) {
-		return miner.all(request.product());
+		return new BaseServiceInvocationResult<Collection<ConditionPack>>(
+				Collections.singleton(new BaseConditionPack("floating", Collections.emptyList()))); //$NON-NLS-1$
 	}
 
 }

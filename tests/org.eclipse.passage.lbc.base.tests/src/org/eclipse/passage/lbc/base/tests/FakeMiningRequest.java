@@ -15,25 +15,25 @@ package org.eclipse.passage.lbc.base.tests;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 @SuppressWarnings("restriction")
 public final class FakeMiningRequest implements ProductLicensesRequest {
 
-	@Override
-	public ProductIdentifier identifier() {
-		return new ProductIdentifier("identifier"); //$NON-NLS-1$
-	}
+	private final LicensedProduct product;
 
-	@Override
-	public ProductVersion version() {
-		return new ProductVersion("version"); //$NON-NLS-1$
+	public FakeMiningRequest(LicensedProduct product) {
+		this.product = product;
 	}
 
 	@Override
 	public Requester requester() {
 		return new BaseRequester("process", "hardware", "feature");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	@Override
+	public LicensedProduct product() {
+		return product;
 	}
 
 }

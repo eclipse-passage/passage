@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,8 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingRequest;
+import org.eclipse.passage.lbc.internal.base.BaseServerConfiguration;
 import org.eclipse.passage.lbc.internal.base.ParsedRequest;
-import org.eclipse.passage.lbc.internal.base.chains.MineConditionsChain;
+import org.eclipse.passage.lbc.internal.base.chains.Mine;
 import org.eclipse.passage.lbc.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
@@ -50,8 +52,12 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	}
 
 	private List<Resource> loadConditions(HttpServletRequest request) {
-		return new MineConditionsChain().apply(new ParsedRequest().apply(new BaseLicensingRequest(request))).data()
-				.get();
+		try {
+			return new Mine(BaseServerConfiguration.empty())
+					.apply(new ParsedRequest().apply(new BaseLicensingRequest(request))).data().get();
+		} catch (IOException e) {
+			return Collections.emptyList();
+		}
 	}
 
 	private void send(HttpServletResponse response, List<Resource> conditions) throws IOException {

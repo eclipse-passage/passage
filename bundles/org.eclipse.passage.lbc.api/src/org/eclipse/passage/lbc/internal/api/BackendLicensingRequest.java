@@ -26,5 +26,7 @@ public interface BackendLicensingRequest {
 
 	String parameter(String key);
 
+	String body();
+
 	Requester requester();
 }

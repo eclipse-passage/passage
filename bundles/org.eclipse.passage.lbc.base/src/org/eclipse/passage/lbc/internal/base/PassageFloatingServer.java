@@ -13,12 +13,11 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lbc.internal.api.BackendFloatingServer;
-import org.eclipse.passage.lbc.internal.api.CheckRequest;
-import org.eclipse.passage.lbc.internal.api.ReleaseRequest;
-import org.eclipse.passage.lbc.internal.api.TakeRequest;
-import org.eclipse.passage.lbc.internal.base.chains.AcquireConditionChain;
-import org.eclipse.passage.lbc.internal.base.chains.CanTakeConditionChain;
-import org.eclipse.passage.lbc.internal.base.chains.ReleaseConditionChain;
+import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
+import org.eclipse.passage.lbc.internal.api.RequestedCondition;
+import org.eclipse.passage.lbc.internal.base.chains.Acquire;
+import org.eclipse.passage.lbc.internal.base.chains.CanTake;
+import org.eclipse.passage.lbc.internal.base.chains.Release;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
@@ -28,18 +27,18 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 public final class PassageFloatingServer implements BackendFloatingServer {
 
 	@Override
-	public ServiceInvocationResult<Boolean> canTake(CheckRequest request) {
-		return new CanTakeConditionChain().apply(request);
+	public ServiceInvocationResult<Boolean> canTake(RequestedCondition request) {
+		return new CanTake().apply(request);
 	}
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> take(TakeRequest request) {
-		return new AcquireConditionChain().apply(request);
+	public ServiceInvocationResult<ExaminationCertificate> take(RequestedCertificate request) {
+		return new Acquire().apply(request);
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> release(ReleaseRequest request) {
-		return new ReleaseConditionChain().apply(request);
+	public ServiceInvocationResult<Boolean> release(RequestedCertificate request) {
+		return new Release().apply(request);
 	}
 
 }

@@ -27,7 +27,6 @@ import java.nio.file.StandardOpenOption;
 
 import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
@@ -82,10 +81,6 @@ public class ServerKeyKeeperTest extends LbcTestsBase {
 		Files.createFile(path());
 		Files.writeString(path(), message(), StandardCharsets.UTF_8,
 				new OpenOption[] { StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND });
-	}
-
-	private BaseLicensedProduct product() {
-		return new BaseLicensedProduct(identifierValue(), versionValue());
 	}
 
 	private ServerKeyKeeper keyKeeper() {

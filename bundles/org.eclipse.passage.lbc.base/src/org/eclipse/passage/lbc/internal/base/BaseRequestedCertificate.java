@@ -10,29 +10,33 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.requests;
+package org.eclipse.passage.lbc.internal.base;
 
-import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
-import org.eclipse.passage.lbc.internal.api.ReleaseRequest;
+import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public final class BaseReleaseRequest implements ReleaseRequest {
+/**
+ * @since 1.0
+ */
+public final class BaseRequestedCertificate implements RequestedCertificate {
 
-	private final BackendLicensingRequest request;
+	private final Requester requester;
+	private final ExaminationCertificate certificate;
 
-	public BaseReleaseRequest(BackendLicensingRequest request) {
-		this.request = request;
+	public BaseRequestedCertificate(ExaminationCertificate certificate, Requester requester) {
+		this.requester = requester;
+		this.certificate = certificate;
 	}
 
 	@Override
 	public Requester requester() {
-		return request.requester();
+		return requester;
 	}
 
 	@Override
 	public ExaminationCertificate certificate() {
-		throw new UnsupportedOperationException();
+		return certificate;
 	}
 
 }

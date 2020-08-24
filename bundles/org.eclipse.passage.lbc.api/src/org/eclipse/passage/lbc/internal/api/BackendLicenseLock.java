@@ -12,11 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
+import java.util.function.Supplier;
+
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+
 /**
  * @since 1.0
  */
-public interface CheckRequest {
+public interface BackendLicenseLock {
 
-	Requester requester();
+	// Returns simply a boolean value of license.taken < license.capacity
+	ServiceInvocationResult<Boolean> canTake(Supplier<String> condition);
+
+	// Decreases condition.taken
+	ServiceInvocationResult<Boolean> release(Supplier<String> condition);
+
+	// Increases condition.taken
+	ServiceInvocationResult<Boolean> take(Supplier<String> condition);
 
 }

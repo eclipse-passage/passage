@@ -13,7 +13,10 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.net;bundle-version="0.0.0",
  org.eclipse.passage.lbc.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0",
- org.eclipse.emf.ecore.xmi;bundle-version="0.0.0"
+ org.eclipse.emf.ecore.xmi;bundle-version="0.0.0",
+ org.eclipse.passage.lic.json;bundle-version="0.0.0",
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="0.0.0",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.lbc.base,
  org.eclipse.passage.lbc.internal.base;x-internal=true,
  org.eclipse.passage.lbc.internal.base.chains;x-internal:=true,

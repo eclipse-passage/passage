@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -28,14 +29,21 @@ import org.eclipse.passage.lic.internal.net.LicensingAction;
 public final class BaseLicensingRequest implements BackendLicensingRequest {
 
 	private final HttpServletRequest httpRequest;
+	private final String body;
 
-	public BaseLicensingRequest(HttpServletRequest httpRequest) {
+	public BaseLicensingRequest(HttpServletRequest httpRequest) throws IOException {
 		this.httpRequest = httpRequest;
+		this.body = body(httpRequest);
 	}
 
 	@Override
 	public Supplier<Optional<ConditionAction>> action() {
 		return new LicensingAction(key -> new ConditionAction.Of(parameter(key)));
+	}
+
+	@Override
+	public String body() {
+		return body;
 	}
 
 	@Override
@@ -46,6 +54,13 @@ public final class BaseLicensingRequest implements BackendLicensingRequest {
 	@Override
 	public Requester requester() {
 		return new BaseRequester(parameter("process"), parameter("hardware"), parameter("feature")); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+	}
+
+	private String body(HttpServletRequest httpRequest) throws IOException {
+		StringBuilder builder = new StringBuilder();
+		httpRequest.getReader().lines().forEachOrdered(builder::append);
+		String string = builder.toString();
+		return string;
 	}
 
 }

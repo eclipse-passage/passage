@@ -12,19 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
  */
-public interface BackendServerConfiguration {
+public interface RequestedCertificate {
 
-	StreamCodecRegistry codecs();
+	Requester requester();
 
-	KeyKeeperRegistry keyKeepers();
-
-	ConditionTransportRegistry transports();
+	ExaminationCertificate certificate();
 
 }
