@@ -18,16 +18,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingReporter;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
@@ -37,6 +37,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
@@ -45,15 +46,15 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 
 	private final Map<String, LicensePlanDescriptor> licensePlanIndex = new HashMap<>();
 
+	private EventAdmin events;
+
 	@Reference
-	@Override
-	public void bindLicensingReporter(LicensingReporter admin) {
-		super.bindLicensingReporter(admin);
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events = admin;
 	}
 
-	@Override
-	public void unbindLicensingReporter(LicensingReporter admin) {
-		super.unbindLicensingReporter(admin);
+	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
+		this.events = null;
 	}
 
 	@Override
@@ -100,17 +101,15 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 		if (existing != null) {
 			String msg = NLS.bind(LicensesCoreMessages.LicenseDomain_instance_duplication_message, existing,
 					licensePlan);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter
-				.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan));
+		events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_CREATE, licensePlan).get());
 	}
 
 	public void unregisterLicensePlan(String identifier) {
 		LicensePlanDescriptor removed = licensePlanIndex.remove(identifier);
 		if (removed != null) {
-			licensingReporter
-					.postResult(LicensingResults.createEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed));
+			events.postEvent(new EquinoxEvent(LicenseRegistryEvents.LICENSE_PLAN_DELETE, removed).get());
 
 		}
 	}

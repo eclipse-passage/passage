@@ -5,6 +5,5 @@
       <provide interface="org.eclipse.passage.lbc.api.BackendRequestDispatcher"/>
    </service>
    <reference bind="bindBackendActionExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.api.BackendActionExecutor" name="BackendActionExecutor" unbind="unbindBackendActionExecutor"/>
-   <reference bind="bindLicensingReporter" cardinality="0..1" interface="org.eclipse.passage.lic.api.LicensingReporter" name="LicensingReporter" unbind="unbindLicensingReporter"/>
    <implementation class="org.eclipse.passage.lbc.internal.equinox.OperatorRequestDispatcher"/>
 </scr:component>

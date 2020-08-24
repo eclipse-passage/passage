@@ -21,11 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingReporter;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
@@ -37,11 +36,13 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.features.registry.FeatureRegistry;
 import org.eclipse.passage.lic.features.registry.FeatureRegistryEvents;
+import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + FeaturesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "features_xmi" })
@@ -52,15 +53,15 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	private final Map<String, FeatureDescriptor> featureIndex = new HashMap<>();
 	private final Map<String, Map<String, FeatureVersionDescriptor>> featureVersionIndex = new HashMap<>();
 
+	private EventAdmin events;
+
 	@Reference
-	@Override
-	public void bindLicensingReporter(LicensingReporter admin) {
-		super.bindLicensingReporter(admin);
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events = admin;
 	}
 
-	@Override
-	public void unbindLicensingReporter(LicensingReporter admin) {
-		super.unbindLicensingReporter(admin);
+	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
+		this.events = null;
 	}
 
 	@Override
@@ -168,10 +169,9 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (existing != null) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
 					featureSet);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter
-				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet));
+		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_CREATE, featureSet).get());
 		Iterable<? extends FeatureDescriptor> features = featureSet.getFeatures();
 		for (FeatureDescriptor feature : features) {
 			registerFeature(feature);
@@ -184,9 +184,9 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		FeatureDescriptor existing = featureIndex.put(identifier, feature);
 		if (existing != null) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing, feature);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_CREATE, feature));
+		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_CREATE, feature).get());
 		Iterable<? extends FeatureVersionDescriptor> featureVersions = feature.getFeatureVersions();
 		for (FeatureVersionDescriptor featureVersion : featureVersions) {
 			registerFeatureVersion(feature, featureVersion);
@@ -203,18 +203,16 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (existing != null) {
 			String msg = NLS.bind(FeaturesCoreMessages.FeatureDomain_instance_duplication_message, existing,
 					featureVersion);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter
-				.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion));
+		events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_CREATE, featureVersion).get());
 	}
 
 	@Override
 	public void unregisterFeatureSet(String featureSetId) {
 		FeatureSetDescriptor removed = featureSetIndex.remove(featureSetId);
 		if (removed != null) {
-			licensingReporter
-					.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed));
+			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_SET_DELETE, removed).get());
 			Iterable<? extends FeatureDescriptor> features = removed.getFeatures();
 			for (FeatureDescriptor feature : features) {
 				unregisterFeature(feature.getIdentifier());
@@ -226,7 +224,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 	public void unregisterFeature(String featureId) {
 		FeatureDescriptor removed = featureIndex.remove(featureId);
 		if (removed != null) {
-			licensingReporter.postResult(LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_DELETE, removed));
+			events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_DELETE, removed).get());
 			Iterable<? extends FeatureVersionDescriptor> featureVersions = removed.getFeatureVersions();
 			for (FeatureVersionDescriptor featureVersion : featureVersions) {
 				unregisterFeatureVersion(featureId, featureVersion.getVersion());
@@ -240,8 +238,7 @@ public class FeatureDomainRegistry extends BaseDomainRegistry<FeatureSetDescript
 		if (map != null) {
 			FeatureVersionDescriptor removed = map.remove(version);
 			if (removed != null) {
-				licensingReporter.postResult(
-						LicensingResults.createEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed));
+				events.postEvent(new EquinoxEvent(FeatureRegistryEvents.FEATURE_VERSION_DELETE, removed).get());
 			}
 			if (map.isEmpty()) {
 				featureVersionIndex.remove(version);

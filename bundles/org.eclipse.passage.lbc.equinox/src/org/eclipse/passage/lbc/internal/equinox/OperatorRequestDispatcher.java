@@ -17,7 +17,6 @@ import java.util.Map;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.base.BaseRequestDispatcher;
-import org.eclipse.passage.lic.api.LicensingReporter;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -30,17 +29,6 @@ public class OperatorRequestDispatcher extends BaseRequestDispatcher {
 	@Override
 	public void activate(Map<String, Object> context) {
 		super.activate(context);
-	}
-
-	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
-	@Override
-	public void bindLicensingReporter(LicensingReporter reporter) {
-		super.bindLicensingReporter(reporter);
-	}
-
-	@Override
-	public void unbindLicensingReporter(LicensingReporter reporter) {
-		super.unbindLicensingReporter(reporter);
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE)

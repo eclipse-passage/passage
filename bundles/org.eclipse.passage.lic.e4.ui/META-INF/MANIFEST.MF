@@ -21,4 +21,3 @@ Import-Package: javax.inject;version="1.0.0"
 Export-Package: org.eclipse.passage.lic.internal.e4.ui.addons;x-internal:=true,
  org.eclipse.passage.lic.internal.e4.ui.restrictions;x-internal:=true
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/*.xml

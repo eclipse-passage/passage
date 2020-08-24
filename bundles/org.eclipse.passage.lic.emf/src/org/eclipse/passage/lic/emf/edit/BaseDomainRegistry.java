@@ -31,17 +31,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
-import org.eclipse.passage.lic.base.SystemReporter;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
-
-	protected LicensingReporter licensingReporter = SystemReporter.INSTANCE;
 
 	protected String domainName;
 
@@ -58,16 +54,6 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 				new HashMap<Resource, Boolean>());
 	}
 
-	protected void bindLicensingReporter(LicensingReporter reporter) {
-		this.licensingReporter = reporter;
-	}
-
-	protected void unbindLicensingReporter(LicensingReporter reporter) {
-		if (this.licensingReporter == reporter) {
-			this.licensingReporter = SystemReporter.INSTANCE;
-		}
-	}
-
 	protected void activate(Map<String, Object> properties) {
 		domainName = String.valueOf(properties.get(EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME));
 		contentAdapter = createContentAdapter();
@@ -82,10 +68,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			if (!Files.exists(domainPath)) {
 				return;
 			}
-			List<String> lines = Files.readAllLines(domainPath);
-			for (String line : lines) {
-				licensingReporter.logResult(registerSource(line));
-			}
+			Files.readAllLines(domainPath).forEach(this::registerSource);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

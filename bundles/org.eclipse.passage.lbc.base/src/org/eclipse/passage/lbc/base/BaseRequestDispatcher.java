@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.passage.lbc.api.BackendActionExecutor;
 import org.eclipse.passage.lbc.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
-import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.SystemReporter;
@@ -41,23 +40,14 @@ import org.eclipse.passage.lic.internal.net.LicensingRole;
  */
 public class BaseRequestDispatcher implements BackendRequestDispatcher {
 
-	private LicensingReporter licensingReporter = SystemReporter.INSTANCE;
+	// FIXME: find better logger
+	private final SystemReporter licensingReporter = SystemReporter.INSTANCE;
 
 	private String roleId;
 	private Map<String, BackendActionExecutor> actionExecutors = new HashMap<>();
 
 	protected void activate(Map<String, Object> properties) {
 		roleId = new LicensingRole(properties).get().get().name();
-	}
-
-	protected void bindLicensingReporter(LicensingReporter reporter) {
-		this.licensingReporter = reporter;
-	}
-
-	protected void unbindLicensingReporter(LicensingReporter reporter) {
-		if (this.licensingReporter == reporter) {
-			this.licensingReporter = SystemReporter.INSTANCE;
-		}
 	}
 
 	protected void bindBackendActionExecutor(BackendActionExecutor executor, Map<String, Object> properties) {
