@@ -18,18 +18,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.passage.lbc.internal.base.BaseLicenseVault;
-import org.eclipse.passage.lbc.internal.base.EmptyServerConfiguration;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class LicenseVaultTest {
+public final class LicenseVaultTest extends LbcTestsBase {
 
 	@Test
 	public void availableLicenses() {
-		List<ConditionPack> pack = new LinkedList<ConditionPack>(new BaseLicenseVault(new EmptyServerConfiguration())
-				.availableLicenses(new FakeMiningRequest()).data().get());
+		List<ConditionPack> pack = new LinkedList<ConditionPack>(
+				new FakeVault().availableLicenses(new FakeMiningRequest(product())).data().get());
 		assertEquals("floating", pack.get(0).origin()); //$NON-NLS-1$
 		assertEquals(Collections.emptyList(), pack.get(0).conditions());
 	}

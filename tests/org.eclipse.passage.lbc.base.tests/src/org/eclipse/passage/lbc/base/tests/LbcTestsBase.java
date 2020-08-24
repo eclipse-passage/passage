@@ -18,11 +18,13 @@ import java.util.Collections;
 
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
@@ -35,12 +37,16 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 @SuppressWarnings("restriction")
 public abstract class LbcTestsBase {
 
+	protected LicensedProduct product() {
+		return new BaseLicensedProduct(identifierValue(), versionValue());
+	}
+
 	protected ProductIdentifier identifier() {
-		return new ProductIdentifier("identifier"); //$NON-NLS-1$
+		return new ProductIdentifier(identifierValue());
 	}
 
 	protected ProductVersion version() {
-		return new ProductVersion("version"); //$NON-NLS-1$
+		return new ProductVersion(versionValue());
 	}
 
 	protected Requester requester() {

@@ -16,10 +16,15 @@ import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
 public final class FakeMiningRequest implements ProductLicensesRequest {
+
+	private final LicensedProduct product;
+
+	public FakeMiningRequest(LicensedProduct product) {
+		this.product = product;
+	}
 
 	@Override
 	public Requester requester() {
@@ -28,7 +33,7 @@ public final class FakeMiningRequest implements ProductLicensesRequest {
 
 	@Override
 	public LicensedProduct product() {
-		return new BaseLicensedProduct("product", "version"); //$NON-NLS-1$ //$NON-NLS-2$
+		return product;
 	}
 
 }

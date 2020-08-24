@@ -18,8 +18,6 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
- * A class operating persistable license state storage
- * 
  * @since 1.0
  */
 public interface BackendLicenseVault {

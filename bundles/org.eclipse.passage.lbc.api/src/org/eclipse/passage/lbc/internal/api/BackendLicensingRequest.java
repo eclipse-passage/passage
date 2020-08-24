@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -25,6 +26,8 @@ public interface BackendLicensingRequest {
 	Supplier<Optional<ConditionAction>> action();
 
 	String parameter(String key);
+
+	String body() throws IOException;
 
 	Requester requester();
 }

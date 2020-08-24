@@ -14,14 +14,14 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.CheckRequest;
+import org.eclipse.passage.lbc.internal.api.BackendRequestData;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class CanTakeConditionChain implements Function<CheckRequest, ServiceInvocationResult<Boolean>> {
+public final class CanTakeConditionChain implements Function<BackendRequestData, ServiceInvocationResult<Boolean>> {
 
 	@Override
-	public ServiceInvocationResult<Boolean> apply(CheckRequest t) {
+	public ServiceInvocationResult<Boolean> apply(BackendRequestData t) {
 		return new BaseServiceInvocationResult<Boolean>(true);
 	}
 

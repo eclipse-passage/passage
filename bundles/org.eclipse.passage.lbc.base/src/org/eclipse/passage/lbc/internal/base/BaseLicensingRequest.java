@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -36,6 +37,13 @@ public final class BaseLicensingRequest implements BackendLicensingRequest {
 	@Override
 	public Supplier<Optional<ConditionAction>> action() {
 		return new LicensingAction(key -> new ConditionAction.Of(parameter(key)));
+	}
+
+	@Override
+	public String body() throws IOException {
+		StringBuilder builder = new StringBuilder();
+		httpRequest.getReader().lines().map(builder::append);
+		return builder.toString();
 	}
 
 	@Override

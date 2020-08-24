@@ -10,18 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.requests;
+package org.eclipse.passage.lbc.internal.base;
+
+import java.io.IOException;
+import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
+import org.eclipse.passage.lbc.internal.api.BackendRequestData;
 import org.eclipse.passage.lbc.internal.api.Requester;
-import org.eclipse.passage.lbc.internal.api.TakeRequest;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 
-public final class BaseTakeRequest implements TakeRequest {
+/**
+ * @since 1.0
+ */
+public final class BaseRequestData implements BackendRequestData {
 
 	private final BackendLicensingRequest request;
 
-	public BaseTakeRequest(BackendLicensingRequest request) {
+	public BaseRequestData(BackendLicensingRequest request) {
 		this.request = request;
 	}
 
@@ -31,8 +38,13 @@ public final class BaseTakeRequest implements TakeRequest {
 	}
 
 	@Override
-	public ExaminationCertificate certificate() {
-		return null;
+	public Optional<ExaminationCertificate> certificate() {
+		try {
+			return Optional.of(new JsonObjectMapper().get().readValue(request.body(), ExaminationCertificate.class));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return Optional.empty();
+		}
 	}
 
 }
