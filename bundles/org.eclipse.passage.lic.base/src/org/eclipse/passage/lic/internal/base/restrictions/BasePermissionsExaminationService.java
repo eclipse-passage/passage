@@ -12,8 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.restrictions;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 		Objects.requireNonNull(requirements);
 		Objects.requireNonNull(permissions);
 		Objects.requireNonNull(product);
-		Collection<Permission> active = new ArrayList<>(); // FIXME: a bit ugly. Redo if there is a simple way
+		Map<Requirement, Permission> active = new HashMap<>();
 		Collection<Restriction> restrictions = requirements.stream() //
 				.collect(Collectors.groupingBy(Requirement::feature)).entrySet().stream()//
 				.map(e -> examineFeature(e.getValue(), permissions, product, active))//
@@ -52,7 +53,7 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	private Collection<Restriction> examineFeature(Collection<Requirement> requirements,
-			Collection<Permission> permissions, LicensedProduct product, Collection<Permission> active) {
+			Collection<Permission> permissions, LicensedProduct product, Map<Requirement, Permission> active) {
 		return requirements.stream()//
 				.filter(requirement -> !covered(requirement, permissions, active))//
 				.map(requirement -> restriction(requirement, product)) //
@@ -60,12 +61,14 @@ public final class BasePermissionsExaminationService implements PermissionsExami
 	}
 
 	private boolean covered(Requirement requirement, Collection<Permission> permissions,
-			Collection<Permission> active) {
+			Map<Requirement, Permission> active) {
 		return permissions.stream() //
 				.filter(permission -> sameFeature(requirement, permission)) //
 				.filter(permission -> versionMatches(requirement, permission)) //
-				.peek(active::add) // keep an eye on each permission that played active role in examination
-				.findAny().isPresent();
+				// keep an eye on each permission that played active role in examination
+				.peek(permission -> active.put(requirement, permission)) //
+				.findAny()//
+				.isPresent();
 	}
 
 	private boolean sameFeature(Requirement requirement, Permission permission) {

@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
@@ -88,9 +90,10 @@ public final class ExaminationExplained implements Supplier<String> {
 	}
 
 	private void appendPermissions(StringBuilder out) {
+		Collection<Requirement> satisfied = certificate.satisfied();
 		out.append(String.format(ExaminationExplanedMessages.getString("ExaminationExplained.permissions_prelude"), //$NON-NLS-1$
-				certificate.participants().size()));
-		certificate.participants().forEach(permission -> out //
+				satisfied.size()));
+		satisfied.stream().map(certificate::satisfaction).forEach(permission -> out //
 				.append("\t") //$NON-NLS-1$
 				.append(ExaminationExplanedMessages.getString("ExaminationExplained.permission_feature")) //$NON-NLS-1$
 				.append(" [") //$NON-NLS-1$
@@ -120,7 +123,8 @@ public final class ExaminationExplained implements Supplier<String> {
 	}
 
 	private List<String> features() {
-		List<String> permitted = certificate.participants().stream()//
+		List<String> permitted = certificate.satisfied().stream()//
+				.map(certificate::satisfaction) //
 				.map(this::feature)//
 				.distinct() //
 				.collect(Collectors.toList());

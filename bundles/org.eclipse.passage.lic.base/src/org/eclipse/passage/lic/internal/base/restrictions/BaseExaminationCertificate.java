@@ -14,23 +14,26 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
 @SuppressWarnings("restriction")
 public final class BaseExaminationCertificate implements ExaminationCertificate {
 
-	private final Collection<Permission> participants;
+	private final Map<Requirement, Permission> satisfied;
 	private final Collection<Restriction> restrictions;
 	private final ZonedDateTime stamp;
 
-	public BaseExaminationCertificate(Collection<Permission> participants, Collection<Restriction> restrictions) {
-		Objects.requireNonNull(participants, "BaseExaminationCertificate::participants"); //$NON-NLS-1$
+	public BaseExaminationCertificate(Map<Requirement, Permission> satisfied, Collection<Restriction> restrictions) {
+		Objects.requireNonNull(satisfied, "BaseExaminationCertificate::satisfied"); //$NON-NLS-1$
 		Objects.requireNonNull(restrictions, "BaseExaminationCertificate::restrictions"); //$NON-NLS-1$
-		this.participants = participants;
+		this.satisfied = satisfied;
 		this.restrictions = restrictions;
 		this.stamp = ZonedDateTime.now();
 	}
@@ -41,13 +44,21 @@ public final class BaseExaminationCertificate implements ExaminationCertificate 
 	}
 
 	@Override
-	public Collection<Permission> participants() {
-		return participants;
+	public ZonedDateTime stamp() {
+		return stamp;
 	}
 
 	@Override
-	public ZonedDateTime stamp() {
-		return stamp;
+	public Collection<Requirement> satisfied() {
+		return new HashSet<>(satisfied.keySet());
+	}
+
+	@Override
+	public Permission satisfaction(Requirement requirement) {
+		if (!satisfied.containsKey(requirement)) {
+			throw new IllegalArgumentException("The requirement has not been satisifed"); //$NON-NLS-1$ dev error
+		}
+		return satisfied.get(requirement);
 	}
 
 }

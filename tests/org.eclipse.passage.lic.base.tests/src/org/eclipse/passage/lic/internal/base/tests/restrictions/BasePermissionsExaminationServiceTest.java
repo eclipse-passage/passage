@@ -75,8 +75,14 @@ public final class BasePermissionsExaminationServiceTest extends PermissionsExam
 		assertEquals(state.product(), restriction.product());
 		assertEquals(new InsufficientLicenseCoverage(), restriction.reason());
 		// then: our only permission is counted as active
-		assertEquals(1, certificate.participants().size());
-		assertEquals(state.permissionSecond(), certificate.participants().iterator().next());
+		assertPermissionHasDoneItsWork(state.permissionSecond(), certificate);
+	}
+
+	private void assertPermissionHasDoneItsWork(Permission permission, ExaminationCertificate certificate) {
+		Collection<Requirement> satisfied = certificate.satisfied();
+		assertEquals(1, satisfied.size());
+		Permission satisfaction = certificate.satisfaction(satisfied.iterator().next());
+		assertEquals(permission, satisfaction);
 	}
 
 	@Test

@@ -16,6 +16,7 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
@@ -39,13 +40,20 @@ public final class AcquiredExaminationCertificate implements ExaminationCertific
 	}
 
 	@Override
-	public Collection<Permission> participants() {
-		return permissions;
+	public ZonedDateTime stamp() {
+		return ZonedDateTime.parse(stamp);
 	}
 
 	@Override
-	public ZonedDateTime stamp() {
-		return ZonedDateTime.parse(stamp);
+	public Collection<Requirement> satisfied() {
+		// FIXME #566331
+		return null;
+	}
+
+	@Override
+	public Permission satisfaction(Requirement satisfied) {
+		// FIXME #566331
+		return null;
 	}
 
 }

@@ -78,7 +78,7 @@ public final class NoSevereRestrictionsTest {
 
 	private ExaminationCertificate certificate(RestrictionLevel... levels) {
 		return new BaseExaminationCertificate(//
-				Collections.emptyList(), //
+				Collections.emptyMap(), //
 				Arrays.stream(levels) //
 						.map(level -> new BaseRestriction( //
 								new FakeLicensedProduct(), //

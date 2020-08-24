@@ -57,10 +57,19 @@ public final class ExaminationExplainedTest {
 
 	private ExaminationCertificate certificate() {
 		return new BaseExaminationCertificate(//
-				Collections.singleton(//
+				Collections.singletonMap(//
+						new BaseRequirement(//
+								new BaseFeature(//
+										"properly-licensed-feature", //$NON-NLS-1$
+										"1.2.3", //$NON-NLS-1$
+										"Feature to Succeed", //$NON-NLS-1$
+										"This test"), //$NON-NLS-1$
+								new RestrictionLevel.Of("oops"), //$NON-NLS-1$
+								"This test"), //$NON-NLS-1$
 						new BasePermission(//
 								product(), //
-								new BaseCondition("aaa", //$NON-NLS-1$
+								new BaseCondition(//
+										"condition-identifier", //$NON-NLS-1$
 										"properly-licensed-feature", //$NON-NLS-1$
 										new BaseVersionMatch("1.2.3", new MatchingRuleCompatible()), //$NON-NLS-1$
 										new BaseValidityPeriodClosed(//
