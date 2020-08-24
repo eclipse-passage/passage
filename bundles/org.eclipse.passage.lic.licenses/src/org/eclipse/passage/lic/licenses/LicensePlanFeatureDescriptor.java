@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-
 /**
  * <p>
  * A <code>"License Pack Feature"</code> is a unit inside a
@@ -31,7 +29,7 @@ public interface LicensePlanFeatureDescriptor {
 	 * This is the value of its <code>"featureIdentifier"</code> attribute.
 	 *
 	 * @return the feature identifier
-	 * @see LicensingCondition#getFeatureIdentifier()
+	 * @see LicenseGrantDescriptor#getFeatureIdentifier()
 	 */
 	String getFeatureIdentifier();
 
@@ -40,7 +38,7 @@ public interface LicensePlanFeatureDescriptor {
 	 * feature. This is the value of its <code>"matchVersion"</code> attribute.
 	 *
 	 * @return the match version
-	 * @see LicensingCondition#getMatchVersion()
+	 * @see LicenseGrantDescriptor#getMatchVersion()
 	 */
 	String getMatchVersion();
 
@@ -49,7 +47,7 @@ public interface LicensePlanFeatureDescriptor {
 	 * This is the value of its <code>"matchRule"</code> attribute.
 	 *
 	 * @return the match rule
-	 * @see LicensingCondition#getMatchRule()
+	 * @see LicenseGrantDescriptor#getMatchRule()
 	 */
 	String getMatchRule();
 

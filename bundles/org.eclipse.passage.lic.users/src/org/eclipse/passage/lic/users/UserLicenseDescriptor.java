@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.users;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-
 /**
  * <p>
  * A <code>"User License"</code> describes the license issued to a
@@ -56,7 +54,7 @@ public interface UserLicenseDescriptor {
 	 * value of its <code>"validFrom"</code> attribute.
 	 *
 	 * @return the valid from
-	 * @see LicensingCondition#getValidFrom()
+	 * @see LicenseGrantDescriptor#getValidFrom()
 	 */
 	Date getValidFrom();
 
@@ -65,7 +63,7 @@ public interface UserLicenseDescriptor {
 	 * of its <code>"validUntil"</code> attribute.
 	 *
 	 * @return the valid until
-	 * @see LicensingCondition#getValidUntil()
+	 * @see LicenseGrantDescriptor#getValidUntil()
 	 */
 	Date getValidUntil();
 
@@ -74,7 +72,7 @@ public interface UserLicenseDescriptor {
 	 * <code>"conditionType"</code> attribute.
 	 *
 	 * @return the condition type
-	 * @see LicensingCondition#getConditionType()
+	 * @see LicenseGrantDescriptor#getConditionType()
 	 */
 	String getConditionType();
 
@@ -83,7 +81,7 @@ public interface UserLicenseDescriptor {
 	 * its <code>"conditionExpression"</code> attribute.
 	 *
 	 * @return the condition expression
-	 * @see LicensingCondition#getConditionExpression()
+	 * @see LicenseGrantDescriptor#getConditionExpression()
 	 */
 	String getConditionExpression();
 

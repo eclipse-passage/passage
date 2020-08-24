@@ -9,7 +9,6 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.access,
- org.eclipse.passage.lic.api.conditions,
  org.eclipse.passage.lic.api.io,
  org.eclipse.passage.lic.api.requirements,
  org.eclipse.passage.lic.api.restrictions,
