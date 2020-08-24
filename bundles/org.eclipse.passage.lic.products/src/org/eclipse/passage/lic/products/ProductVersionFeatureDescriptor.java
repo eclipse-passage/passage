@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.products;
 
-import org.eclipse.passage.lic.api.restrictions.RestrictionLevelDescriptor;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * <p>
@@ -46,7 +46,7 @@ public interface ProductVersionFeatureDescriptor {
 	 *
 	 * @return the restriction level
 	 * 
-	 * @see RestrictionLevelDescriptor
+	 * @see RestrictionLevel
 	 */
 	String getRestrictionLevel();
 
