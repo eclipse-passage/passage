@@ -12,17 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-
 /**
  * @since 1.0
  */
-public interface BackendRequestData {
+public interface ConditionRequestData {
 
 	Requester requester();
 
-	Optional<ExaminationCertificate> certificate();
+	String condition();
 
 }

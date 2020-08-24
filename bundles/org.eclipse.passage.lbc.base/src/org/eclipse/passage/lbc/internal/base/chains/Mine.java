@@ -27,12 +27,12 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class MineConditionsChain
+public final class Mine
 		implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 
 	private final BackendServerConfiguration configuration;
 
-	public MineConditionsChain(BackendServerConfiguration configuration) {
+	public Mine(BackendServerConfiguration configuration) {
 		this.configuration = configuration;
 	}
 

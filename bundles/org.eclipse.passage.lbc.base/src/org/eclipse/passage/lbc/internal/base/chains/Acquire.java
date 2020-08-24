@@ -12,17 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.chains;
 
+import java.util.Collections;
 import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.BackendRequestData;
+import org.eclipse.passage.lbc.internal.api.CertificateRequestData;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
-public final class ReleaseConditionChain implements Function<BackendRequestData, ServiceInvocationResult<Boolean>> {
+public final class Acquire
+		implements Function<CertificateRequestData, ServiceInvocationResult<ExaminationCertificate>> {
 
 	@Override
-	public ServiceInvocationResult<Boolean> apply(BackendRequestData t) {
-		return new BaseServiceInvocationResult<Boolean>(true);
+	public ServiceInvocationResult<ExaminationCertificate> apply(CertificateRequestData t) {
+		return new BaseServiceInvocationResult<>(
+				new BaseExaminationCertificate(Collections.emptyList(), Collections.emptyList()));
 	}
 
 }

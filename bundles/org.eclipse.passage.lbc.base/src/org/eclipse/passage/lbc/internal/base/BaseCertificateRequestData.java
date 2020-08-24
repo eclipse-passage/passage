@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
-import org.eclipse.passage.lbc.internal.api.BackendRequestData;
+import org.eclipse.passage.lbc.internal.api.CertificateRequestData;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
@@ -24,11 +24,11 @@ import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 /**
  * @since 1.0
  */
-public final class BaseRequestData implements BackendRequestData {
+public final class BaseCertificateRequestData implements CertificateRequestData {
 
 	private final BackendLicensingRequest request;
 
-	public BaseRequestData(BackendLicensingRequest request) {
+	public BaseCertificateRequestData(BackendLicensingRequest request) {
 		this.request = request;
 	}
 

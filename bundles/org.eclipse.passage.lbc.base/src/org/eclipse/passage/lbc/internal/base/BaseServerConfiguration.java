@@ -1,6 +1,7 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.passage.lbc.internal.api.BackendServerConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -43,6 +44,10 @@ public class BaseServerConfiguration implements BackendServerConfiguration {
 	@Override
 	public ConditionTransportRegistry transports() {
 		return () -> transports;
+	}
+
+	public static BackendServerConfiguration empty() {
+		return new BaseServerConfiguration(Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
 	}
 
 }

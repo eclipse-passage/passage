@@ -12,20 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import java.util.Optional;
+
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
- * 
- * 
  */
-public interface BackendFloatingServer {
+public interface CertificateRequestData {
 
-	ServiceInvocationResult<Boolean> canTake(ConditionRequestData request);
+	Requester requester();
 
-	ServiceInvocationResult<ExaminationCertificate> take(CertificateRequestData request);
-
-	ServiceInvocationResult<Boolean> release(CertificateRequestData request);
+	Optional<ExaminationCertificate> certificate();
 
 }

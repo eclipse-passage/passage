@@ -37,8 +37,11 @@ public class MiningTest extends LbcTestsBase {
 						Collections.singleton(new XmiConditionTransport())));
 		ServiceInvocationResult<Collection<ConditionPack>> result = vault
 				.availableLicenses(new FakeMiningRequest(product()));
+
+		// No errors during the mining process initialization
 		assertTrue(result.diagnostic().bearable().isEmpty());
 		assertTrue(result.diagnostic().severe().isEmpty());
+
 	}
 
 }
