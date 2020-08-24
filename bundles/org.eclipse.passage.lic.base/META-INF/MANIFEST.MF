@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=r
 Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.io,
  org.eclipse.passage.lic.base.requirements,
- org.eclipse.passage.lic.base.restrictions,
  org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json,org.eclipse.passage.lic.hc",
