@@ -14,14 +14,14 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.CertificateRequestData;
+import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class Release implements Function<CertificateRequestData, ServiceInvocationResult<Boolean>> {
+public final class Release implements Function<RequestedCertificate, ServiceInvocationResult<Boolean>> {
 
 	@Override
-	public ServiceInvocationResult<Boolean> apply(CertificateRequestData t) {
+	public ServiceInvocationResult<Boolean> apply(RequestedCertificate t) {
 		return new BaseServiceInvocationResult<Boolean>(true);
 	}
 

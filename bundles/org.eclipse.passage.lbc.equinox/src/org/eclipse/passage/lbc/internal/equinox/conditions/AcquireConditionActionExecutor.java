@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.equinox.conditions;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,8 +52,12 @@ public class AcquireConditionActionExecutor implements BackendActionExecutor {
 	}
 
 	private List<Resource> loadConditions(HttpServletRequest request) {
-		return new Mine(BaseServerConfiguration.empty())
-				.apply(new ParsedRequest().apply(new BaseLicensingRequest(request))).data().get();
+		try {
+			return new Mine(BaseServerConfiguration.empty())
+					.apply(new ParsedRequest().apply(new BaseLicensingRequest(request))).data().get();
+		} catch (IOException e) {
+			return Collections.emptyList();
+		}
 	}
 
 	private void send(HttpServletResponse response, List<Resource> conditions) throws IOException {

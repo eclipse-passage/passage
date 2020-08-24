@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.tests;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -48,7 +47,7 @@ public class FakeLicensingRequest implements BackendLicensingRequest {
 	}
 
 	@Override
-	public String body() throws IOException {
+	public String body() {
 		return body;
 	}
 

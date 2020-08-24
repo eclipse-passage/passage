@@ -29,9 +29,11 @@ import org.eclipse.passage.lic.internal.net.LicensingAction;
 public final class BaseLicensingRequest implements BackendLicensingRequest {
 
 	private final HttpServletRequest httpRequest;
+	private final String body;
 
-	public BaseLicensingRequest(HttpServletRequest httpRequest) {
+	public BaseLicensingRequest(HttpServletRequest httpRequest) throws IOException {
 		this.httpRequest = httpRequest;
+		this.body = body(httpRequest);
 	}
 
 	@Override
@@ -40,10 +42,8 @@ public final class BaseLicensingRequest implements BackendLicensingRequest {
 	}
 
 	@Override
-	public String body() throws IOException {
-		StringBuilder builder = new StringBuilder();
-		httpRequest.getReader().lines().map(builder::append);
-		return builder.toString();
+	public String body() {
+		return body;
 	}
 
 	@Override
@@ -54,6 +54,13 @@ public final class BaseLicensingRequest implements BackendLicensingRequest {
 	@Override
 	public Requester requester() {
 		return new BaseRequester(parameter("process"), parameter("hardware"), parameter("feature")); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+	}
+
+	private String body(HttpServletRequest httpRequest) throws IOException {
+		StringBuilder builder = new StringBuilder();
+		httpRequest.getReader().lines().forEachOrdered(builder::append);
+		String string = builder.toString();
+		return string;
 	}
 
 }

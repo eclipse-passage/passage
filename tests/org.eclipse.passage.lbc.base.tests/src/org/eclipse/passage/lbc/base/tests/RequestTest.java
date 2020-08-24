@@ -13,7 +13,9 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,10 +38,15 @@ public class RequestTest extends LbcTestsBase {
 	@Test
 	public void positiveTransition() {
 		HttpServletRequest httpRequest = new FakeHttpRequest(params());
-		BackendLicensingRequest request = new BaseLicensingRequest(httpRequest);
-		assertEquals("action", request.action().get().get().name()); //$NON-NLS-1$
-		assertEquals("value", request.parameter("key")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertEquals(userValue(), request.requester().hardware());
+		BackendLicensingRequest request;
+		try {
+			request = new BaseLicensingRequest(httpRequest);
+			assertEquals("action", request.action().get().get().name()); //$NON-NLS-1$
+			assertEquals("value", request.parameter("key")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertEquals(userValue(), request.requester().hardware());
+		} catch (IOException e) {
+			fail();
+		}
 	}
 
 }

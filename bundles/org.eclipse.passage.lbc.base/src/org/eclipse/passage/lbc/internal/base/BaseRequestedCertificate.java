@@ -12,36 +12,31 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.0
  */
-public final class BaseRequester implements Requester {
+public final class BaseRequestedCertificate implements RequestedCertificate {
 
-	private final String feature;
-	private final String hardware;
-	private final String process;
+	private final Requester requester;
+	private final ExaminationCertificate certificate;
 
-	public BaseRequester(String process, String hardware, String feature) {
-		this.feature = feature;
-		this.hardware = hardware;
-		this.process = process;
+	public BaseRequestedCertificate(ExaminationCertificate certificate, Requester requester) {
+		this.requester = requester;
+		this.certificate = certificate;
 	}
 
 	@Override
-	public String feature() {
-		return feature;
+	public Requester requester() {
+		return requester;
 	}
 
 	@Override
-	public String hardware() {
-		return hardware;
-	}
-
-	@Override
-	public String process() {
-		return process;
+	public ExaminationCertificate certificate() {
+		return certificate;
 	}
 
 }
