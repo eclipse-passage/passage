@@ -25,6 +25,7 @@ import org.osgi.framework.Version;
 
 @SuppressWarnings("restriction")
 public final class ApplicationVersion implements Supplier<String> {
+
 	private final IApplicationContext context;
 
 	public ApplicationVersion(IApplicationContext context) {
