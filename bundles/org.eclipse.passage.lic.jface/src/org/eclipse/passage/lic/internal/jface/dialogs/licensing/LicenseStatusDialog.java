@@ -80,7 +80,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	}
 
 	private void requestLicense() {
-		intention = new GoodIntention.RequestLicense();
+		intention = new GoodIntention.RequestLicense(this::getShell);
 		super.okPressed();
 	}
 

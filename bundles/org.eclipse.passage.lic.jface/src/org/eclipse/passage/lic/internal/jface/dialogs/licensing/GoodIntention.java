@@ -48,9 +48,15 @@ public abstract class GoodIntention {
 
 	final static class RequestLicense extends GoodIntention {
 
+		private final Supplier<Shell> shell;
+
+		RequestLicense(Supplier<Shell> shell) {
+			this.shell = shell;
+		}
+
 		@Override
 		public boolean paveTheWay() {
-			// expose request-license dialog facilitated with environment inspection
+			new EnvironmentStateDialog(shell.get()).open();
 			return false;
 		}
 	}
