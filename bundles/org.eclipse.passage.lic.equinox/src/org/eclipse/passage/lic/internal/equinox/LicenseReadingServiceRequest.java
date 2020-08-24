@@ -12,16 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
-import org.eclipse.passage.lic.internal.api.PassageLicensingToolBox;
+import java.util.function.Supplier;
+
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 @SuppressWarnings("restriction")
-public final class EquinoxPassageLicensingToolBox extends FrameworkAware implements PassageLicensingToolBox {
+public final class LicenseReadingServiceRequest extends FrameworkAware
+		implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 
 	@Override
-	public ServiceInvocationResult<LicenseReadingService> licenseReadingService() {
+	public ServiceInvocationResult<LicenseReadingService> get() {
 		return withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.licenseReader()));
 	}
 

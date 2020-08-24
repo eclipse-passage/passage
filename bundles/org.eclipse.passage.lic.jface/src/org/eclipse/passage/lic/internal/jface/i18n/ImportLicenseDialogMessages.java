@@ -20,9 +20,12 @@ public class ImportLicenseDialogMessages extends NLS {
 	public static String ImportLicenseDialog_column_evaluation;
 	public static String ImportLicenseDialog_column_feature;
 	public static String ImportLicenseDialog_column_period;
+	public static String ImportLicenseDialog_import_title;
+	public static String ImportLicenseDialog_import_tooltip;
 	public static String ImportLicenseDialog_io_error;
 	public static String ImportLicenseDialog_path_label;
 	public static String ImportLicenseDialog_prelude;
+	public static String ImportLicenseDialog_title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, ImportLicenseDialogMessages.class);

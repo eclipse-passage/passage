@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicensingToolBox;
+import org.eclipse.passage.lic.internal.equinox.LicenseReadingServiceRequest;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.swt.SWT;
@@ -58,7 +58,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText("Import License"); //$NON-NLS-1$
+		shell.setText(ImportLicenseDialogMessages.ImportLicenseDialog_title);
 		shell.setImage(LicensingImages.getImage(LicensingImages.IMG_IMPORT));
 		shell.setSize(850, 500);
 	}
@@ -138,8 +138,7 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void loadLicense(String file) {
-		ServiceInvocationResult<LicenseReadingService> reader = new EquinoxPassageLicensingToolBox()
-				.licenseReadingService();
+		ServiceInvocationResult<LicenseReadingService> reader = new LicenseReadingServiceRequest().get();
 		if (!reader.data().isPresent()) {
 			reportError(reader.diagnostic());
 			return;
@@ -161,7 +160,10 @@ public final class ImportLicenseDialog extends NotificationDialog {
 
 	@Override
 	protected void initButtons() {
-		action = new ButtonConfig(1, this::doLicenseImport, "&Import this license", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		action = new ButtonConfig(1, this::doLicenseImport, //
+				ImportLicenseDialogMessages.ImportLicenseDialog_import_title, //
+				ImportLicenseDialogMessages.ImportLicenseDialog_import_tooltip, //
+				""); //$NON-NLS-1$
 		action.reside(buttons);
 	}
 
