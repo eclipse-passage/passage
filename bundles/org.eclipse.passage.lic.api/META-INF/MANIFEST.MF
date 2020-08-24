@@ -10,8 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.access,
  org.eclipse.passage.lic.api.io,
- org.eclipse.passage.lic.api.requirements,
- org.eclipse.passage.lic.api.restrictions,
  org.eclipse.passage.lic.internal.api;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
@@ -43,5 +41,5 @@ Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.api.requirements;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.restrictions;x-friends:="org.eclipse.passage.lic.base",
+ org.eclipse.passage.lic.internal.api.restrictions;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.loc.workbench.emfforms,org.eclipse.passage.lic.products",
  org.eclipse.passage.lic.internal.api.version;x-friends:="org.eclipse.passage.lic.base"
