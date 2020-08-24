@@ -37,8 +37,8 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class XmiConditionTransport implements ConditionTransport {
 
@@ -55,15 +55,15 @@ public final class XmiConditionTransport implements ConditionTransport {
 		resource.load(input,
 				Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
 		return resource.getContents().stream() //
-				.filter(LicensePackDescriptor.class::isInstance) //
-				.map(LicensePackDescriptor.class::cast) //
-				.map(LicensePackDescriptor::getLicenseGrants) //
+				.filter(LicensePack.class::isInstance) //
+				.map(LicensePack.class::cast) //
+				.map(LicensePack::getLicenseGrants) //
 				.flatMap(i -> StreamSupport.stream(i.spliterator(), false)) //
 				.map(this::condition) //
 				.collect(Collectors.toList());
 	}
 
-	private Condition condition(LicenseGrantDescriptor descriptor) {
+	private Condition condition(LicenseGrant descriptor) {
 		return new BaseCondition(descriptor.getIdentifier(), //
 				descriptor.getFeatureIdentifier(), //
 				new BaseVersionMatch(descriptor.getMatchVersion(), //
@@ -88,6 +88,10 @@ public final class XmiConditionTransport implements ConditionTransport {
 	}
 
 	private ZonedDateTime fromDate(Date date) {
+		if (date == null) {
+			// it should be in the past to be marked as invalid
+			return ZonedDateTime.now().minusMinutes(1);
+		}
 		return ZonedDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
 	}
 

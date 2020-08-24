@@ -19,7 +19,6 @@ Export-Package: org.eclipse.passage.lic.internal.jface;x-internal:=true,
  org.eclipse.passage.lic.jface,
  org.eclipse.passage.lic.jface.actions,
  org.eclipse.passage.lic.jface.resource,
- org.eclipse.passage.lic.jface.viewers,
  org.eclipse.passage.lic.jface.widgets
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

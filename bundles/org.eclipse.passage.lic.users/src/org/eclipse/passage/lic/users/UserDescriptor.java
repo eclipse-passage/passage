@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users;
 
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-
 /**
  * <p>
  * A <code>"User"</code> describes the licensee of your functionality.
@@ -62,7 +60,7 @@ public interface UserDescriptor {
 	 *
 	 * @return the preferred condition type
 	 * @since 0.5.0
-	 * @see LicensingCondition#getConditionType()
+	 * @see LicenseGrantDescriptor#getConditionType()
 	 */
 	String getPreferredConditionType();
 
@@ -72,7 +70,7 @@ public interface UserDescriptor {
 	 *
 	 * @return the preferred condition expression
 	 * @since 0.5.0
-	 * @see LicensingCondition#getConditionExpression()
+	 * @see LicenseGrantDescriptor#getConditionExpression()
 	 */
 	String getPreferredConditionExpression();
 

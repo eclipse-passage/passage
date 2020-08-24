@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
+import java.util.Date;
 
 /**
  * <p>
@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.conditions.LicensingCondition;
  * @since 0.4.0
  * @see LicensePackDescriptor
  */
-public interface LicenseGrantDescriptor extends LicensingCondition {
+public interface LicenseGrantDescriptor {
 
 	/**
 	 * Returns the identifier of this license pack. This is the value of its
@@ -34,6 +34,68 @@ public interface LicenseGrantDescriptor extends LicensingCondition {
 	 * @since 1.0
 	 */
 	String getIdentifier();
+
+	/**
+	 * Returns unique identifier of a feature under licensing.
+	 *
+	 * @return feature identifier
+	 * @since 0.5.0
+	 */
+	String getFeatureIdentifier();
+
+	/**
+	 * Returns descriptor of the feature version allowed by this licensing
+	 * condition.
+	 *
+	 * @return version descriptor
+	 * @since 0.5.0
+	 */
+	String getMatchVersion();
+
+	/**
+	 * Returns rule of version matching, like "perfect match" or "equal or greater".
+	 *
+	 * @return match rule
+	 * @since 0.5.0
+	 */
+	String getMatchRule();
+
+	/**
+	 * Returns the validity period start date of this licensing condition. This is
+	 * the value of its <code>"validFrom"</code> attribute.
+	 *
+	 * @return the valid from
+	 * @since 0.5.0
+	 */
+	Date getValidFrom();
+
+	/**
+	 * Returns the validity period end date of this licensing condition. This is the
+	 * value of its <code>"validUntil"</code> attribute.
+	 *
+	 * @return the valid until
+	 * @since 0.5.0
+	 */
+	Date getValidUntil();
+
+	/**
+	 * The type of condition like "time" or "hardware". Defines the way the
+	 * condition will be evaluated in a running environment.
+	 *
+	 * @return condition type
+	 * @since 0.5.0
+	 */
+	String getConditionType();
+
+	/**
+	 * Returns additional data encoded in a single string value. The expression is
+	 * utilized by condition evaluation subsystem in conjunction with
+	 * {@code conditionType}
+	 *
+	 * @return enlistment of additional information of this licensing condition
+	 * @since 0.5.0
+	 */
+	String getConditionExpression();
 
 	/**
 	 * Returns the capacity of this license grant. Used for floating license. This
