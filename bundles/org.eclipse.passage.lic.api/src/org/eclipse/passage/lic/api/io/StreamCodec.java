@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.eclipse.passage.lic.api.conditions.ConditionMiner;
-
 /**
  * Coder and decoder for licensing data, used by {@link ConditionMiner}
  * 

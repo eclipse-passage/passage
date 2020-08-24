@@ -18,14 +18,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.api.conditions.LicensingCondition;
-import org.eclipse.passage.lic.internal.licenses.migration.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -71,11 +72,15 @@ public class XmiLicensingConditionExtractorTest {
 		cond1.setFeatureIdentifier(COND1_FEATURE_ID);
 		cond1.setConditionType(COND1_CONDITION_TYPE);
 		cond1.setConditionExpression(COND1_CONDITION_EXPRESSION);
+		cond1.setValidFrom(new Date());
+		cond1.setValidUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond1);
 		LicenseGrant cond2 = factory.createLicenseGrant();
 		cond2.setFeatureIdentifier(COND2_FEATURE_ID);
 		cond2.setConditionType(COND2_CONDITION_TYPE);
 		cond2.setConditionExpression(COND2_CONDITION_EXPRESSION);
+		cond2.setValidFrom(new Date());
+		cond2.setValidUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond2);
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
@@ -85,22 +90,19 @@ public class XmiLicensingConditionExtractorTest {
 			saved.save(fos, new HashMap<>());
 		}
 
-		List<LicensingCondition> actual = new ArrayList<>();
+		List<Condition> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
-			Iterable<LicensingCondition> extracted = extractor.readConditions(fis);
-			for (LicensingCondition descriptor : extracted) {
-				actual.add(descriptor);
-			}
+			extractor.read(fis).forEach(actual::add);
 		}
 		assertEquals(2, actual.size());
-		LicensingCondition actual1 = actual.get(0);
-		assertEquals(COND1_FEATURE_ID, actual1.getFeatureIdentifier());
-		assertEquals(COND1_CONDITION_TYPE, actual1.getConditionType());
-		assertEquals(COND1_CONDITION_EXPRESSION, actual1.getConditionExpression());
-		LicensingCondition actual2 = actual.get(1);
-		assertEquals(COND2_FEATURE_ID, actual2.getFeatureIdentifier());
-		assertEquals(COND2_CONDITION_TYPE, actual2.getConditionType());
-		assertEquals(COND2_CONDITION_EXPRESSION, actual2.getConditionExpression());
+		Condition actual1 = actual.get(0);
+		assertEquals(COND1_FEATURE_ID, actual1.feature());
+		assertEquals(COND1_CONDITION_TYPE, actual1.evaluationInstructions().type().identifier());
+		assertEquals(COND1_CONDITION_EXPRESSION, actual1.evaluationInstructions().expression());
+		Condition actual2 = actual.get(1);
+		assertEquals(COND2_FEATURE_ID, actual2.feature());
+		assertEquals(COND2_CONDITION_TYPE, actual2.evaluationInstructions().type().identifier());
+		assertEquals(COND2_CONDITION_EXPRESSION, actual2.evaluationInstructions().expression());
 	}
 
 }
