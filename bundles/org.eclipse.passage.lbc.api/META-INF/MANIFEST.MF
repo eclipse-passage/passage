@@ -10,6 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lbc.api,
- org.eclipse.passage.lbc.api.conditions,
  org.eclipse.passage.lbc.internal.api
 Bundle-ActivationPolicy: lazy
