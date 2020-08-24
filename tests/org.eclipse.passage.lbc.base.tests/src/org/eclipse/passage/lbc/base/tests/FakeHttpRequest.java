@@ -13,8 +13,11 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -126,7 +129,8 @@ public final class FakeHttpRequest implements HttpServletRequest {
 
 	@Override
 	public BufferedReader getReader() throws IOException {
-		throw new UnsupportedOperationException();
+		return new BufferedReader(
+				new InputStreamReader(new ByteArrayInputStream("body".getBytes(StandardCharsets.UTF_8)))); //$NON-NLS-1$
 	}
 
 	@Override
