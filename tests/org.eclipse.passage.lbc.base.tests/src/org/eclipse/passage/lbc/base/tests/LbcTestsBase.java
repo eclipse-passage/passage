@@ -83,8 +83,12 @@ public abstract class LbcTestsBase {
 	}
 
 	protected BoundLicense boundLicense() {
-		return new BaseBoundLicense(new ConditionIdentifier(identifierValue()), new LicenseTaken(key -> 0),
-				new LicenseCapacity(key -> 0));
+		return boundLicense(0, 0);
+	}
+
+	protected BoundLicense boundLicense(int taken, int capacity) {
+		return new BaseBoundLicense(new ConditionIdentifier(identifierValue()), new LicenseTaken(key -> taken),
+				new LicenseCapacity(key -> capacity));
 	}
 
 	protected Condition condition() {
