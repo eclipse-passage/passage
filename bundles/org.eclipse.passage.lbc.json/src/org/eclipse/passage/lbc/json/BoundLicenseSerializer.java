@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 public final class BoundLicenseSerializer extends StdSerializer<BoundLicense> {
 
 	/**
-	 * 
+	 * generated for framework
 	 */
 	private static final long serialVersionUID = -210107085093085286L;
 

@@ -27,18 +27,19 @@ public final class LockFile implements Supplier<Path> {
 	private final Supplier<Path> folder;
 	private final String identifier;
 
-	public LockFile(Supplier<Path> folder, BoundLicense license) {
+	private LockFile(Supplier<Path> folder, String identifier) {
 		Objects.requireNonNull(folder, "LockFile::folder"); //$NON-NLS-1$
-		Objects.requireNonNull(license, "LockFile::license"); //$NON-NLS-1$
+		Objects.requireNonNull(identifier, "LockFile::identifier"); //$NON-NLS-1$
 		this.folder = folder;
-		this.identifier = license.identifier().get().get();
+		this.identifier = identifier;
+	}
+
+	public LockFile(Supplier<Path> folder, BoundLicense license) {
+		this(folder, license.identifier().get().get());
 	}
 
 	public LockFile(Supplier<Path> folder, Condition license) {
-		Objects.requireNonNull(folder, "LockFile::folder"); //$NON-NLS-1$
-		Objects.requireNonNull(license, "LockFile::license"); //$NON-NLS-1$
-		this.folder = folder;
-		this.identifier = license.identifier();
+		this(folder, license.identifier());
 	}
 
 	public LockFile(BoundLicense license) {

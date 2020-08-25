@@ -29,6 +29,9 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 public final class BoundLicenseDeserializer extends StdDeserializer<BoundLicense> {
 
 	/**
+	 * generated for framework
+	 */
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8837623016361034983L;
