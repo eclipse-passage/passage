@@ -10,18 +10,29 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.api.persistence;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
  * @since 1.0
  */
-public interface RequestedCondition {
+public abstract class PersistableLicense implements Supplier<BoundLicense> {
 
-	Requester requester();
+	private final BoundLicense license;
 
-	Supplier<Optional<String>> condition();
+	public PersistableLicense(BoundLicense license) {
+		Objects.requireNonNull(license, "PersistableLicense::license"); //$NON-NLS-1$
+		this.license = license;
+	}
+
+	@Override
+	public final BoundLicense get() {
+		return license;
+	}
+
+	public abstract void save() throws IOException;
 
 }

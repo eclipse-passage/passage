@@ -10,18 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.api.persistence;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
+ * Represents a license that was loaded to the floating server to be operated.
+ * 
  * @since 1.0
  */
-public interface RequestedCondition {
+public interface BoundLicense {
 
-	Requester requester();
+	// Condition identifier
+	Supplier<Optional<String>> identifier();
 
-	Supplier<Optional<String>> condition();
+	// Grant's capacity
+	Supplier<Optional<Integer>> capacity();
+
+	// How many times it was taken
+	Supplier<Optional<Integer>> taken();
+
+	// returns true if it is takeable and false if it is not.
+	boolean takeable();
 
 }

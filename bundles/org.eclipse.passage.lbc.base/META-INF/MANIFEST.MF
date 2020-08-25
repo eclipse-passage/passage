@@ -20,5 +20,6 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
 Export-Package: org.eclipse.passage.lbc.base,
  org.eclipse.passage.lbc.internal.base;x-internal=true,
  org.eclipse.passage.lbc.internal.base.chains;x-internal:=true,
- org.eclipse.passage.lbc.internal.base.i18n;x-internal:=true
+ org.eclipse.passage.lbc.internal.base.i18n;x-internal:=true,
+ org.eclipse.passage.lbc.internal.base.persistence;x-internal:=true
 Bundle-ActivationPolicy: lazy

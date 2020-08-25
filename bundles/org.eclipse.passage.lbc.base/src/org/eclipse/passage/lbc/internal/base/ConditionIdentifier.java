@@ -10,25 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base;
+
+import java.util.function.Function;
+
+import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 /**
- * Represents a license that was loaded to the floating server to be operated.
- * 
  * @since 1.0
  */
-public interface BoundLicense {
+public final class ConditionIdentifier extends StringNamedData {
 
-	// Condition identifier
-	ConditionIdentifier identifier();
+	public ConditionIdentifier(String identifier) {
+		super(identifier);
+	}
 
-	// Grant's capacity
-	int capacity();
+	public ConditionIdentifier(Function<String, String> retrieve) {
+		super(retrieve);
+	}
 
-	// How many times it was taken
-	int taken();
-
-	// returns true if it is takeable and false if it is not.
-	boolean takeable();
+	@Override
+	public final String key() {
+		return "identifier"; //$NON-NLS-1$
+	}
 
 }

@@ -12,9 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.function.Supplier;
-
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
 /**
  * @since 1.0
@@ -22,12 +21,12 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 public interface BackendLicenseLock {
 
 	// Returns simply a boolean value of license.taken < license.capacity
-	ServiceInvocationResult<Boolean> canTake(Supplier<String> condition);
+	ServiceInvocationResult<Boolean> canTake(Condition condition);
 
 	// Decreases condition.taken
-	ServiceInvocationResult<Boolean> release(Supplier<String> condition);
+	ServiceInvocationResult<Boolean> release(Condition condition);
 
 	// Increases condition.taken
-	ServiceInvocationResult<Boolean> take(Supplier<String> condition);
+	ServiceInvocationResult<Boolean> take(Condition condition);
 
 }

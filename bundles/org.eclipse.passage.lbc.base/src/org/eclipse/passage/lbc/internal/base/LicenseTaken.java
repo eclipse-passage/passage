@@ -10,12 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base;
+
+import java.util.function.Function;
+
+import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 /**
  * @since 1.0
  */
-public interface ConditionIdentifier {
+public final class LicenseTaken extends BaseNamedData<Integer> {
 
-	String identifier();
+	public LicenseTaken(Function<String, Integer> retrieve) {
+		super(retrieve);
+	}
+
+	@Override
+	public String key() {
+		return "taken"; //$NON-NLS-1$
+	}
+
 }
