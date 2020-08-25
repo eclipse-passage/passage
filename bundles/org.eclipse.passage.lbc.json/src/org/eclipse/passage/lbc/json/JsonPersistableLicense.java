@@ -12,18 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.json;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFile;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 
 /**
  * @since 1.0
@@ -31,23 +30,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SuppressWarnings("restriction")
 public final class JsonPersistableLicense extends PersistableLicense {
 
-	public JsonPersistableLicense(BoundLicense license) {
-		super(license);
-	}
+	private final Supplier<Path> base;
 
-	/**
-	 * Loads PersistableLicense from <b>existing</b> file
-	 * 
-	 * @throws IOException if file does not exist
-	 */
-	public static PersistableLicense load(Condition condition) throws IOException {
-		File licenseFile = new LockFile(condition).get().toFile();
-		FileInputStream fileReader = new FileInputStream(licenseFile);
-		ObjectMapper mapper = new JsonObjectMapper().get();
-		String json = new String(fileReader.readAllBytes(), StandardCharsets.UTF_8);
-		JsonPersistableLicense license = new JsonPersistableLicense(mapper.readValue(json, BoundLicense.class));
-		fileReader.close();
-		return license;
+	public JsonPersistableLicense(BoundLicense license, Supplier<Path> base) {
+		super(license);
+		Objects.requireNonNull(base, "JsonPersistableLicense::base"); //$NON-NLS-1$
+		this.base = base;
 	}
 
 	/**
@@ -57,8 +45,8 @@ public final class JsonPersistableLicense extends PersistableLicense {
 	 */
 	@Override
 	public void save() throws IOException {
-		Files.writeString(new LockFile(get()).get(), new JsonObjectMapper().get().writeValueAsString(get()),
-				StandardCharsets.UTF_8);
+		Files.writeString(new LockFile(new LockFolder(base), get()).get(),
+				new LbcJsonObjectMapper().get().writeValueAsString(get()), StandardCharsets.UTF_8);
 	}
 
 }

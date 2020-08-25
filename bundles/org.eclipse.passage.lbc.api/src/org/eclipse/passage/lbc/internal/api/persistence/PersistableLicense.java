@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.api.persistence;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -23,11 +24,12 @@ public abstract class PersistableLicense implements Supplier<BoundLicense> {
 	private final BoundLicense license;
 
 	public PersistableLicense(BoundLicense license) {
+		Objects.requireNonNull(license, "PersistableLicense::license"); //$NON-NLS-1$
 		this.license = license;
 	}
 
 	@Override
-	public BoundLicense get() {
+	public final BoundLicense get() {
 		return license;
 	}
 

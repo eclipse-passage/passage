@@ -20,15 +20,15 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-public class BoundLicenseSerializer extends StdSerializer<BoundLicense> {
+public final class BoundLicenseSerializer extends StdSerializer<BoundLicense> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -210107085093085286L;
 
-	protected BoundLicenseSerializer(Class<BoundLicense> t) {
-		super(t);
+	protected BoundLicenseSerializer(Class<BoundLicense> type) {
+		super(type);
 	}
 
 	@Override

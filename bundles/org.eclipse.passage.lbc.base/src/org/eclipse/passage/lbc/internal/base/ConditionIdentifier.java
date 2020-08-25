@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
 /**
  * @since 1.0
  */
-public class ConditionIdentifier extends StringNamedData {
+public final class ConditionIdentifier extends StringNamedData {
 
 	public ConditionIdentifier(String identifier) {
 		super(identifier);

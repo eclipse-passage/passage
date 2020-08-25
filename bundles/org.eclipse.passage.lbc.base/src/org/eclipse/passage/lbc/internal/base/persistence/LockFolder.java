@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.base.persistence;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
@@ -26,6 +27,7 @@ public final class LockFolder implements Supplier<Path> {
 	private final Supplier<Path> base;
 
 	public LockFolder(Supplier<Path> base) {
+		Objects.requireNonNull(base, "LockFolder::base"); //$NON-NLS-1$
 		this.base = base;
 	}
 

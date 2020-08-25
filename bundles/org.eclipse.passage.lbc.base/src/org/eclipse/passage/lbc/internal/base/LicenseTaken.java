@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.base.BaseNamedData;
 /**
  * @since 1.0
  */
-public class LicenseTaken extends BaseNamedData<Integer> {
+public final class LicenseTaken extends BaseNamedData<Integer> {
 
 	public LicenseTaken(Function<String, Integer> retrieve) {
 		super(retrieve);

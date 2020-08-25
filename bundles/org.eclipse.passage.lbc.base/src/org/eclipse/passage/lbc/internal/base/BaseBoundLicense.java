@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.util.Objects;
+
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 
 /**
@@ -24,6 +26,9 @@ public final class BaseBoundLicense implements BoundLicense {
 	private final LicenseTaken taken;
 
 	public BaseBoundLicense(ConditionIdentifier identifier, LicenseTaken taken, LicenseCapacity capacity) {
+		Objects.requireNonNull(identifier, "BaseBoundLicense::identifier"); //$NON-NLS-1$
+		Objects.requireNonNull(capacity, "BaseBoundLicense::capacity"); //$NON-NLS-1$
+		Objects.requireNonNull(taken, "BaseBoundLicense::taken"); //$NON-NLS-1$
 		this.identifier = identifier;
 		this.capacity = capacity;
 		this.taken = taken;

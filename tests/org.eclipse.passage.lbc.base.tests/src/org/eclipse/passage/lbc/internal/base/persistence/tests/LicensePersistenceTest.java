@@ -16,51 +16,42 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.passage.lbc.base.tests.LbcTestsBase;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
-import org.eclipse.passage.lbc.internal.base.persistence.LockFile;
-import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
+import org.eclipse.passage.lbc.json.JsonLoadedPersistableLicense;
 import org.eclipse.passage.lbc.json.JsonPersistableLicense;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
-public class LicensePersistenceTest extends LbcTestsBase {
+@SuppressWarnings("restriction")
+public final class LicensePersistenceTest extends LbcTestsBase {
+
+	@Rule
+	public final TemporaryFolder folder = new TemporaryFolder();
 
 	@Test
 	public void persistence() {
-		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense());
-		initTempFiles();
+		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense(), () -> root());
 		try {
+			folder.newFolder("locked"); //$NON-NLS-1$
+			folder.newFile(condition().identifier());
 			persistable.save();
-			PersistableLicense loaded = JsonPersistableLicense.load(condition());
-			clearFileSystem();
+			PersistableLicense loaded = new JsonLoadedPersistableLicense(condition(), () -> root()).get().data().get();
 			assertEquals(persistable.get().identifier().get().get(), loaded.get().identifier().get().get());
 			assertEquals(persistable.get().taken().get().get(), loaded.get().taken().get().get());
 			assertEquals(persistable.get().capacity().get().get(), loaded.get().capacity().get().get());
 		} catch (IOException e) {
-			clearFileSystem();
 			fail();
 		}
 	}
 
-	private void initTempFiles() {
-		try {
-			Files.createDirectories(new LockFolder().get());
-			Files.createFile(new LockFile(boundLicense()).get());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void clearFileSystem() {
-		try {
-			Files.deleteIfExists(new LockFile(boundLicense()).get());
-			Files.deleteIfExists(new LockFolder().get());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	private Path root() {
+		return Paths.get(URI.decode(folder.getRoot().getAbsolutePath()));
 	}
 
 }

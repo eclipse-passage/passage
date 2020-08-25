@@ -21,13 +21,13 @@ import org.eclipse.passage.lbc.internal.base.BaseBoundLicense;
 import org.eclipse.passage.lbc.internal.base.ConditionIdentifier;
 import org.eclipse.passage.lbc.internal.base.LicenseCapacity;
 import org.eclipse.passage.lbc.internal.base.LicenseTaken;
-import org.eclipse.passage.lbc.json.JsonObjectMapper;
+import org.eclipse.passage.lbc.json.LbcJsonObjectMapper;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SerializationCycleTest {
+public final class SerializationCycleTest {
 
 	@Test
 	public void positive() {
@@ -44,7 +44,7 @@ public class SerializationCycleTest {
 	}
 
 	private ObjectMapper mapper() {
-		return new JsonObjectMapper().get();
+		return new LbcJsonObjectMapper().get();
 	}
 
 	private ConditionIdentifier identifier() {

@@ -26,15 +26,15 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
-public class BoundLicenseDeserializer extends StdDeserializer<BoundLicense> {
+public final class BoundLicenseDeserializer extends StdDeserializer<BoundLicense> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8837623016361034983L;
 
-	protected BoundLicenseDeserializer(Class<BoundLicense> vc) {
-		super(vc);
+	protected BoundLicenseDeserializer(Class<BoundLicense> type) {
+		super(type);
 	}
 
 	@Override

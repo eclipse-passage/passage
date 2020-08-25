@@ -12,39 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.json;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
+import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
-public final class JsonObjectMapper implements Supplier<ObjectMapper> {
+@SuppressWarnings("restriction")
+public final class LbcJsonObjectMapper implements Supplier<ObjectMapper> {
 
 	@Override
 	public ObjectMapper get() {
-		return ((Function<ObjectMapper, ObjectMapper>) this::withVisibility)//
-				.andThen(this::withFeatures) //
-				.andThen(this::withSerializers) //
-				.apply(new ObjectMapper());
-	}
-
-	private ObjectMapper withVisibility(ObjectMapper mapper) {
-		return mapper.setVisibility(mapper.getSerializationConfig().getDefaultVisibilityChecker()
-				.withFieldVisibility(JsonAutoDetect.Visibility.ANY)//
-				.withGetterVisibility(JsonAutoDetect.Visibility.NONE)//
-				.withSetterVisibility(JsonAutoDetect.Visibility.ANY)//
-				.withCreatorVisibility(JsonAutoDetect.Visibility.ANY));
-	}
-
-	private ObjectMapper withFeatures(ObjectMapper mapper) {
-		return mapper//
-				.enable(SerializationFeature.INDENT_OUTPUT) //
-				.enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES);
+		return withSerializers(new JsonObjectMapper().get());
 	}
 
 	private ObjectMapper withSerializers(ObjectMapper mapper) {

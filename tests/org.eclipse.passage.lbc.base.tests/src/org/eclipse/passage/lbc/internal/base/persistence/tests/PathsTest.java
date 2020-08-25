@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public class PathsTest extends LbcTestsBase {
+public final class PathsTest extends LbcTestsBase {
 
 	@Test
 	public void folderDefault() {

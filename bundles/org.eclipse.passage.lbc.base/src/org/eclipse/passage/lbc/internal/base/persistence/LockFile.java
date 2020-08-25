@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.base.persistence;
 
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
@@ -21,17 +22,21 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 /**
  * @since 1.0
  */
-public class LockFile implements Supplier<Path> {
+public final class LockFile implements Supplier<Path> {
 
 	private final Supplier<Path> folder;
 	private final String identifier;
 
 	public LockFile(Supplier<Path> folder, BoundLicense license) {
+		Objects.requireNonNull(folder, "LockFile::folder"); //$NON-NLS-1$
+		Objects.requireNonNull(license, "LockFile::license"); //$NON-NLS-1$
 		this.folder = folder;
 		this.identifier = license.identifier().get().get();
 	}
 
 	public LockFile(Supplier<Path> folder, Condition license) {
+		Objects.requireNonNull(folder, "LockFile::folder"); //$NON-NLS-1$
+		Objects.requireNonNull(license, "LockFile::license"); //$NON-NLS-1$
 		this.folder = folder;
 		this.identifier = license.identifier();
 	}
