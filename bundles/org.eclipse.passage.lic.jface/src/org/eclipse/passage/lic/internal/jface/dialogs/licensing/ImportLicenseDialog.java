@@ -70,8 +70,8 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	@Override
-	protected String defaultMessage() {
-		return ImportLicenseDialogMessages.ImportLicenseDialog_prelude;
+	protected void initMessage() {
+		setMessage(ImportLicenseDialogMessages.ImportLicenseDialog_prelude);
 	}
 
 	private void buildSelector(Composite parent) {
