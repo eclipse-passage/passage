@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
@@ -49,17 +48,17 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void buildUI(Composite parent) {
-		viewer = new HereTable<Restriction>(parent, Restriction.class) //
-				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, 500,
-						r -> feature(r.unsatisfiedRequirement().feature()))
-				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, 200,
-						r -> r.reason().explanation())
+		viewer = new HereTable<RequirementStatus>(parent, RequirementStatus.class) //
+				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, //
+						500, RequirementStatus::feature)
+				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
+						200, RequirementStatus::status)
 				.viewer();
 	}
 
 	@Override
 	protected void inplaceData() {
-		viewer.setInput(certificate.restrictions());
+		viewer.setInput(new LicensingStatus(certificate).get());
 	}
 
 	@Override
