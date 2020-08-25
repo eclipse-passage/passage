@@ -45,7 +45,7 @@ abstract class NotificationDialog extends TitleAreaDialog {
 		buildUI(owner);
 		installBehaviour();
 		inplaceData();
-		setMessage(defaultMessage());
+		initMessage();
 		return owner;
 	}
 
@@ -102,6 +102,6 @@ abstract class NotificationDialog extends TitleAreaDialog {
 
 	protected abstract void updateButtonsEnablement();
 
-	protected abstract String defaultMessage();
+	protected abstract void initMessage();
 
 }

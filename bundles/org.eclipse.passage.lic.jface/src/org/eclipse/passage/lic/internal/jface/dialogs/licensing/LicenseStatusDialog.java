@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
+import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -41,7 +42,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText("Licensing status"); //$NON-NLS-1$
+		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
 		shell.setSize(740, 300);
 	}
@@ -49,8 +50,10 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	@Override
 	protected void buildUI(Composite parent) {
 		viewer = new HereTable<Restriction>(parent, Restriction.class) //
-				.withColumn("Name", 500, r -> feature(r.unsatisfiedRequirement().feature())) //$NON-NLS-1$
-				.withColumn("Verdict", 200, r -> r.reason().explanation()) //$NON-NLS-1$
+				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_id, 500,
+						r -> feature(r.unsatisfiedRequirement().feature()))
+				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, 200,
+						r -> r.reason().explanation())
 				.viewer();
 	}
 
@@ -61,12 +64,18 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void initButtons() {
-		new ButtonConfig(1, this::requestLicense, "&Request License...", "", "") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				.reside(buttons);
-		new ButtonConfig(2, this::importLicense, "&Import License...", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				.reside(buttons);
-		new ButtonConfig(3, copy(), "Co&py", "", "")//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				.reside(buttons);
+		new ButtonConfig(1, this::requestLicense, //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_request, //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_request_tooltip, "")//$NON-NLS-1$
+						.reside(buttons);
+		new ButtonConfig(2, this::importLicense, //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_import, //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_import_tooltip, "") //$NON-NLS-1$
+						.reside(buttons);
+		new ButtonConfig(3, copy(), //
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy,
+				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy_tooltip, "") //$NON-NLS-1$
+						.reside(buttons);
 	}
 
 	@Override
@@ -75,8 +84,8 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	}
 
 	@Override
-	protected String defaultMessage() {
-		return "License coverage is not sufficient"; //$NON-NLS-1$
+	protected void initMessage() {
+		new CertificateSummary(certificate).accept(this);
 	}
 
 	private void requestLicense() {
