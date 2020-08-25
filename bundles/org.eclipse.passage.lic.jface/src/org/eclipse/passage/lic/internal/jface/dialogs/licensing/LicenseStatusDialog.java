@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
@@ -101,10 +100,6 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		return new CopyToClipboard(this::getShell, //
 				new ExaminationExplained(certificate), //
 				new DiagnosticExplained(diagnostic));
-	}
-
-	private String feature(Feature feature) {
-		return String.format("%s v%s", feature.identifier(), feature.version()); //$NON-NLS-1$
 	}
 
 }
