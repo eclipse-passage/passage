@@ -23,6 +23,10 @@ public final class LicensingFolder implements Supplier<Path> {
 		this.base = base;
 	}
 
+	public LicensingFolder(Path base) {
+		this(() -> base);
+	}
+
 	@Override
 	public Path get() {
 		return base.get().resolve(".passage"); //$NON-NLS-1$

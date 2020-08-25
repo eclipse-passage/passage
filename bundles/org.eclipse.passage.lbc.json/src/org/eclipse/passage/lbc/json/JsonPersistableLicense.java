@@ -45,7 +45,6 @@ public final class JsonPersistableLicense extends PersistableLicense {
 		FileInputStream fileReader = new FileInputStream(licenseFile);
 		ObjectMapper mapper = new JsonObjectMapper().get();
 		String json = new String(fileReader.readAllBytes(), StandardCharsets.UTF_8);
-		System.out.println(json);
 		JsonPersistableLicense license = new JsonPersistableLicense(mapper.readValue(json, BoundLicense.class));
 		fileReader.close();
 		return license;
