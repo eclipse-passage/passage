@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
+@SuppressWarnings("restriction")
 public final class CertificateSerializer extends StdSerializer<ExaminationCertificate> {
 
 	/**
@@ -39,7 +40,8 @@ public final class CertificateSerializer extends StdSerializer<ExaminationCertif
 			throws IOException {
 		gen.writeStartObject();
 		gen.writeStringField("stamp", date(value.stamp())); //$NON-NLS-1$
-		writeCollection(value.participants(), gen, "permissions"); //$NON-NLS-1$
+		// FIXME #566331
+		// writeCollection(value.participants(), gen, "permissions"); //$NON-NLS-1$
 		writeCollection(value.restrictions(), gen, "restrictions"); //$NON-NLS-1$
 		gen.writeEndObject();
 	}

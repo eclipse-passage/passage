@@ -44,7 +44,9 @@ public interface ExaminationCertificate {
 
 	Collection<Restriction> restrictions();
 
-	Collection<Permission> participants();
+	Collection<Requirement> satisfied();
+
+	Permission satisfaction(Requirement satisfied);
 
 	ZonedDateTime stamp();
 

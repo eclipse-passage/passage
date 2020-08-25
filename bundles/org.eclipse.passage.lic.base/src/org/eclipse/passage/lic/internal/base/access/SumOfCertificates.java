@@ -12,12 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.Map;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.SumOfMaps;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
 @SuppressWarnings("restriction")
@@ -27,9 +32,15 @@ public final class SumOfCertificates implements BinaryOperator<ExaminationCertif
 	public ExaminationCertificate apply(ExaminationCertificate first, ExaminationCertificate second) {
 
 		return new BaseExaminationCertificate(//
-				new SumOfCollections<Permission>().apply(first.participants(), second.participants()), //
+				new SumOfMaps<Requirement, Permission>().apply(satisfied(first), satisfied(second)), //
 				new SumOfCollections<Restriction>().apply(first.restrictions(), second.restrictions())//
 		);
+
+	}
+
+	private Map<Requirement, Permission> satisfied(ExaminationCertificate certificate) {
+		return certificate.satisfied().stream() //
+				.collect(Collectors.toMap(Function.identity(), certificate::satisfaction));
 	}
 
 }

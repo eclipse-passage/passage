@@ -21,13 +21,13 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
-public final class Acquire
-		implements Function<RequestedCertificate, ServiceInvocationResult<ExaminationCertificate>> {
+@SuppressWarnings("restriction")
+public final class Acquire implements Function<RequestedCertificate, ServiceInvocationResult<ExaminationCertificate>> {
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> apply(RequestedCertificate t) {
 		return new BaseServiceInvocationResult<>(
-				new BaseExaminationCertificate(Collections.emptyList(), Collections.emptyList()));
+				new BaseExaminationCertificate(Collections.emptyMap(), Collections.emptyList()));
 	}
 
 }
