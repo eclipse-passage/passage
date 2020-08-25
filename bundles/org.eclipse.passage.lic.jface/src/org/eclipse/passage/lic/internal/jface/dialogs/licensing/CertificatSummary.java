@@ -39,9 +39,11 @@ final class CertificatSummary implements Consumer<TitleAreaDialog> {
 	public void accept(TitleAreaDialog dialog) {
 		if (new CertificateIsRestrictive().test(certificate)) {
 			dialog.setMessage(LicenseStatusDialogMessages.WithCertificatSummary_error, IMessageProvider.ERROR);
+			return;
 		}
 		if (new CertificateWorthAttention().test(certificate)) {
 			dialog.setMessage(LicenseStatusDialogMessages.WithCertificatSummary_warning, IMessageProvider.WARNING);
+			return;
 		}
 		dialog.setMessage(LicenseStatusDialogMessages.WithCertificatSummary_ok, IMessageProvider.NONE);
 	}
