@@ -24,7 +24,7 @@ public final class CanProceed implements Predicate<ServiceInvocationResult<Exami
 	public boolean test(ServiceInvocationResult<ExaminationCertificate> result) {
 		return new NoSevereErrors().test(result.diagnostic()) && //
 				result.data().map(certificate -> new NoSevereRestrictions().test(certificate))//
-						.orElse(true);
+						.orElse(false);
 	}
 
 }

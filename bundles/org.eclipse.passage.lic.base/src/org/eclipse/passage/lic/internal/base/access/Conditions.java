@@ -10,11 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.conditions.mining;
+package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
-import java.util.Optional;
-import java.util.function.BiFunction;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -26,9 +25,8 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.FeatureFilter;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
-import org.eclipse.passage.lic.internal.base.conditions.FeatureConditionPack;
+import org.eclipse.passage.lic.internal.base.conditions.ConditionsFeatureFilter;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
@@ -37,10 +35,12 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 
 	private final Registry<StringServiceId, MinedConditions> registry;
 	private final LicensedProduct product;
-	private final Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter;
+	private final Function<//
+			ServiceInvocationResult<Collection<ConditionPack>>, //
+			ServiceInvocationResult<Collection<ConditionPack>>> filter;
 
 	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product, String feature) {
-		this(registry, product, new FeatureFilter<ConditionPack>(feature, new Filtered()));
+		this(registry, product, new ConditionsFeatureFilter(feature).get());
 	}
 
 	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product) {
@@ -49,6 +49,9 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 
 	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product,
 			Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter) {
+		Objects.requireNonNull(registry, "Conditions::registry"); //$NON-NLS-1$
+		Objects.requireNonNull(product, "Conditions::product"); //$NON-NLS-1$
+		Objects.requireNonNull(product, "Conditions::product"); //$NON-NLS-1$
 		this.registry = registry;
 		this.product = product;
 		this.filter = filter;
@@ -67,16 +70,6 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>()))//
 				.map(filter) //
 				.orElse(new BaseServiceInvocationResult<>());
-
-	}
-
-	private static final class Filtered implements BiFunction<ConditionPack, String, Optional<ConditionPack>> {
-
-		@Override
-		public Optional<ConditionPack> apply(ConditionPack pack, String incoming) {
-			ConditionPack filtered = new FeatureConditionPack(pack, incoming);
-			return filtered.conditions().isEmpty() ? Optional.empty() : Optional.of(filtered);
-		}
 
 	}
 

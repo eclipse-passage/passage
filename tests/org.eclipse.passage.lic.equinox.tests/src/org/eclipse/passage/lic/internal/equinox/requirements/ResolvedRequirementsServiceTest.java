@@ -45,7 +45,9 @@ abstract class ResolvedRequirementsServiceTest extends ResolvedRequirementsContr
 	public void requirementsForFeature() throws InvalidSyntaxException {
 		Requirement single = single();
 		ServiceInvocationResult<Collection<Requirement>> filtered = new RequirementsFeatureFilter(
-				single.feature().identifier()).get().apply(service().all());
+				single.feature().identifier())//
+						.get()//
+						.apply(service().all());
 		assertEquals(//
 				Collections.singleton(single), //
 				new HashSet<Requirement>(filtered.data().get()));
