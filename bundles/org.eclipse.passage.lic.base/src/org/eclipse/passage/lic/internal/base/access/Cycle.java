@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.Framework;
@@ -33,12 +34,22 @@ import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 abstract class Cycle<T> {
 
 	private final Framework framework;
-	private final String feature;
+	private final CycleFilter filter;
 	private final List<Diagnostic> diagnostics;
 
+	Cycle(Framework framework) {
+		this(framework, new CycleFilter());
+	}
+
 	Cycle(Framework framework, String feature) {
+		this(framework, new CycleFilter(feature));
+	}
+
+	private Cycle(Framework framework, CycleFilter filter) {
+		Objects.requireNonNull(framework, "Cycle::framework"); //$NON-NLS-1$
+		Objects.requireNonNull(filter, "Cycle::filter"); //$NON-NLS-1$
 		this.framework = framework;
-		this.feature = feature;
+		this.filter = filter;
 		this.diagnostics = new ArrayList<>();
 	}
 
@@ -112,14 +123,14 @@ abstract class Cycle<T> {
 	private ServiceInvocationResult<Collection<Requirement>> requirements() {
 		return scan(new Requirements(//
 				framework.accessCycleConfiguration().requirementResolvers().get(), //
-				feature).get());
+				filter.requiremental()).get());
 	}
 
 	private ServiceInvocationResult<Collection<ConditionPack>> conditions() {
 		return scan(new Conditions(//
 				framework.accessCycleConfiguration().conditionMiners().get(), //
 				framework.product(), //
-				feature).get());
+				filter.conditional()).get());
 	}
 
 	private ServiceInvocationResult<Collection<Permission>> permissions() {

@@ -32,7 +32,11 @@ public final class Access {
 	}
 
 	public ServiceInvocationResult<ExaminationCertificate> acquire(String feature) {
-		return new Expose(framework, feature).apply();
+		return new Assess(framework, feature).apply();
+	}
+
+	public ServiceInvocationResult<ExaminationCertificate> assess() {
+		return new Assess(framework).apply();
 	}
 
 	public ServiceInvocationResult<Boolean> release(ExaminationCertificate certificate) {
