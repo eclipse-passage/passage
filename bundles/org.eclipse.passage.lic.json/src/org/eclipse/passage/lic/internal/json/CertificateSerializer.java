@@ -16,7 +16,10 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -27,22 +30,22 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 public final class CertificateSerializer extends StdSerializer<ExaminationCertificate> {
 
 	/**
-	 * 
+	 * generated
 	 */
 	private static final long serialVersionUID = -8642464467092910399L;
 
-	CertificateSerializer(Class<ExaminationCertificate> t) {
-		super(t);
+	CertificateSerializer(Class<ExaminationCertificate> type) {
+		super(type);
 	}
 
 	@Override
 	public void serialize(ExaminationCertificate value, JsonGenerator gen, SerializerProvider provider)
 			throws IOException {
 		gen.writeStartObject();
-		gen.writeStringField("stamp", date(value.stamp())); //$NON-NLS-1$
-		// FIXME #566331
-		// writeCollection(value.participants(), gen, "permissions"); //$NON-NLS-1$
+		gen.writeObjectField("stamp", value.stamp()); //$NON-NLS-1$
+		writeCollection(value.satisfied(), gen, "requirements"); //$NON-NLS-1$
 		writeCollection(value.restrictions(), gen, "restrictions"); //$NON-NLS-1$
+		writeCollection(permissions(value), gen, "permissions"); //$NON-NLS-1$
 		gen.writeEndObject();
 	}
 
@@ -52,6 +55,12 @@ public final class CertificateSerializer extends StdSerializer<ExaminationCertif
 			gen.writeObject(item);
 		}
 		gen.writeEndArray();
+	}
+
+	private List<Permission> permissions(ExaminationCertificate certificate) {
+		return certificate.satisfied().stream() //
+				.map(requirement -> certificate.satisfaction(requirement)) //
+				.collect(Collectors.toList());
 	}
 
 	private String date(ZonedDateTime time) {

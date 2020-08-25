@@ -13,19 +13,17 @@
 package org.eclipse.passage.lic.json.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Map;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.json.AcquiredExaminationCertificate;
 import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,13 +33,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CertificateTransportTest {
 
 	@Test
-	@Ignore // FIXME #566331
 	public void examinationNotPassed() {
 		try {
 			ZonedDateTime time = ZonedDateTime.now();
 			CertificateTestData data = new CertificateTestData();
-			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(data.permissions(),
-					data.restrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
+			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(
+					Map.of(data.requirement(), data.permission()), data.restrictions(), time));
 			ExaminationCertificate certificate = mapper().readValue(serialized, ExaminationCertificate.class);
 			assertEquals(time, certificate.stamp());
 			for (Restriction restriction : certificate.restrictions()) {
@@ -62,8 +59,8 @@ public class CertificateTransportTest {
 				assertEquals(data.restriction().unsatisfiedRequirement().restrictionLevel().identifier(),
 						restriction.unsatisfiedRequirement().restrictionLevel().identifier());
 			}
-			// FIXME #566331
-			for (Permission permission : new ArrayList<Permission>()) {
+			for (Requirement entry : certificate.satisfied()) {
+				Permission permission = certificate.satisfaction(entry);
 				assertEquals(data.permission().product().identifier(), permission.product().identifier());
 				assertEquals(data.permission().product().version(), permission.product().version());
 				assertEquals(data.condition().feature(), permission.condition().feature());
@@ -76,21 +73,6 @@ public class CertificateTransportTest {
 				assertEquals(data.condition().evaluationInstructions().type(),
 						permission.condition().evaluationInstructions().type());
 			}
-		} catch (JsonProcessingException e) {
-			fail();
-		}
-	}
-
-	@Test
-	@Ignore // FIXME #566331
-	public void examinationPassed() {
-		try {
-			ZonedDateTime time = ZonedDateTime.now();
-			CertificateTestData data = new CertificateTestData();
-			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(data.permissions(),
-					data.emptyRestrictions(), DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time)));
-			ExaminationCertificate certificate = mapper().readValue(serialized, ExaminationCertificate.class);
-			assertTrue(certificate.restrictions().isEmpty());
 		} catch (JsonProcessingException e) {
 			fail();
 		}
