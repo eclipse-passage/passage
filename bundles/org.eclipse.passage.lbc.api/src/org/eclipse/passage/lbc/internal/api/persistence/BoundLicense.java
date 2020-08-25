@@ -10,22 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.io;
+package org.eclipse.passage.lbc.internal.api.persistence;
 
-import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Supplier;
 
-public final class LicensingFolder implements Supplier<Path> {
+/**
+ * Represents a license that was loaded to the floating server to be operated.
+ * 
+ * @since 1.0
+ */
+public interface BoundLicense {
 
-	private final Supplier<Path> base;
+	// Condition identifier
+	Supplier<Optional<String>> identifier();
 
-	public LicensingFolder(Supplier<Path> base) {
-		this.base = base;
-	}
+	// Grant's capacity
+	Supplier<Optional<Integer>> capacity();
 
-	@Override
-	public Path get() {
-		return base.get().resolve(".passage"); //$NON-NLS-1$
-	}
+	// How many times it was taken
+	Supplier<Optional<Integer>> taken();
+
+	// returns true if it is takeable and false if it is not.
+	boolean takeable();
 
 }

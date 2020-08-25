@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.json;
 
 import java.io.IOException;
 
-import org.eclipse.passage.lbc.internal.api.BoundLicense;
+import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;

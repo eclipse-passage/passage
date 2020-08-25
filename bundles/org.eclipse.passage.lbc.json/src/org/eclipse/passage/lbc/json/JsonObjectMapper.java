@@ -15,7 +15,7 @@ package org.eclipse.passage.lbc.json;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.BoundLicense;
+import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonParser;

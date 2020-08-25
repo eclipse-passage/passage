@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.eclipse.passage.lbc.internal.api.BoundLicense;
+import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.base.BaseBoundLicense;
 import org.eclipse.passage.lbc.internal.base.ConditionIdentifier;
 import org.eclipse.passage.lbc.internal.base.LicenseCapacity;

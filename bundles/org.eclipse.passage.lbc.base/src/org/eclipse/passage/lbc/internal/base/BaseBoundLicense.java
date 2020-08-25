@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import org.eclipse.passage.lbc.internal.api.BoundLicense;
+import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 
 /**
  * @since 1.0

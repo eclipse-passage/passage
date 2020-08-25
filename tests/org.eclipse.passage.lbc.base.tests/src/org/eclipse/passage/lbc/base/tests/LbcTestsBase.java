@@ -17,7 +17,12 @@ import java.time.ZonedDateTime;
 import java.util.Collections;
 
 import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
+import org.eclipse.passage.lbc.internal.base.BaseBoundLicense;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
+import org.eclipse.passage.lbc.internal.base.ConditionIdentifier;
+import org.eclipse.passage.lbc.internal.base.LicenseCapacity;
+import org.eclipse.passage.lbc.internal.base.LicenseTaken;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
@@ -75,6 +80,11 @@ public abstract class LbcTestsBase {
 
 	protected ConditionPack conditionPack() {
 		return new BaseConditionPack(origin(), Collections.singletonList(condition()));
+	}
+
+	protected BoundLicense boundLicense() {
+		return new BaseBoundLicense(new ConditionIdentifier(identifierValue()), new LicenseTaken(key -> 0),
+				new LicenseCapacity(key -> 0));
 	}
 
 	protected Condition condition() {

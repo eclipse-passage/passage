@@ -12,3 +12,4 @@ Require-Bundle: com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0",
  com.fasterxml.jackson.core.jackson-annotations;bundle-version="0.0.0",
  org.eclipse.passage.lbc.api;bundle-version="0.0.0",
  org.eclipse.passage.lbc.base;bundle-version="0.0.0"
+Export-Package: org.eclipse.passage.lbc.json;x-internal:=true

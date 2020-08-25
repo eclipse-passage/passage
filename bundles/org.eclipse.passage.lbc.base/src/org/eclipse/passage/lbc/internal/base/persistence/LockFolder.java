@@ -10,22 +10,32 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.io;
+package org.eclipse.passage.lbc.internal.base.persistence;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-public final class LicensingFolder implements Supplier<Path> {
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+
+/**
+ * @since 1.0
+ */
+public final class LockFolder implements Supplier<Path> {
 
 	private final Supplier<Path> base;
 
-	public LicensingFolder(Supplier<Path> base) {
+	public LockFolder(Supplier<Path> base) {
 		this.base = base;
+	}
+
+	public LockFolder() {
+		this(new LicensingFolder(new UserHomePath()));
 	}
 
 	@Override
 	public Path get() {
-		return base.get().resolve(".passage"); //$NON-NLS-1$
+		return base.get().resolve("locked"); //$NON-NLS-1$
 	}
 
 }
