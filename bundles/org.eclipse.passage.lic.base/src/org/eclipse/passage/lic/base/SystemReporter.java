@@ -12,14 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.api.LicensingReporter;
 import org.eclipse.passage.lic.api.LicensingResult;
 
-public class SystemReporter implements LicensingReporter {
+public class SystemReporter {
 
 	public static final SystemReporter INSTANCE = new SystemReporter();
 
-	@Override
 	public void logResult(LicensingResult result) {
 		int severity = result.getSeverity();
 		String message = result.getMessage();
@@ -43,16 +41,6 @@ public class SystemReporter implements LicensingReporter {
 			System.err.println(result);
 			break;
 		}
-	}
-
-	@Override
-	public void postResult(LicensingResult result) {
-		logResult(result);
-	}
-
-	@Override
-	public void sendResult(LicensingResult result) {
-		logResult(result);
 	}
 
 }

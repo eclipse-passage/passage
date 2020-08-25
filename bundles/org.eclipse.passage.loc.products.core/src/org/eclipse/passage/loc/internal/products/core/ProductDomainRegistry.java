@@ -21,16 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingReporter;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + ProductsPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "products_xmi" })
@@ -54,15 +55,15 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	private final Map<String, Map<String, ProductVersionDescriptor>> productVersionIndex = new HashMap<>();
 	private final Map<String, Map<String, Map<String, ProductVersionFeatureDescriptor>>> productVersionFeatureIndex = new HashMap<>();
 
+	private EventAdmin events;
+
 	@Reference
-	@Override
-	public void bindLicensingReporter(LicensingReporter admin) {
-		super.bindLicensingReporter(admin);
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events = admin;
 	}
 
-	@Override
-	public void unbindLicensingReporter(LicensingReporter admin) {
-		super.unbindLicensingReporter(admin);
+	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
+		this.events = null;
 	}
 
 	@Override
@@ -197,10 +198,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productLine);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter
-				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine));
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_CREATE, productLine).get());
 		productLine.getProducts().forEach(p -> registerProduct(p));
 	}
 
@@ -210,9 +210,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		ProductDescriptor existing = productIndex.put(identifier, product);
 		if (existing != null) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing, product);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_CREATE, product));
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_CREATE, product).get());
 		product.getProductVersions().forEach(pv -> registerProductVersion(product, pv));
 	}
 
@@ -226,10 +226,9 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productVersion);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.domainName, null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter
-				.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion));
+		events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_CREATE, productVersion).get());
 	}
 
 	@Override
@@ -246,18 +245,17 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (existing != null) {
 			String msg = NLS.bind(ProductsCoreMessages.ProductDomain_instance_duplication_message, existing,
 					productVersionFeature);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, existing.getFeatureIdentifier(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE,
-				productVersionFeature));
+		events.postEvent(
+				new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_CREATE, productVersionFeature).get());
 	}
 
 	@Override
 	public void unregisterProductLine(String productLineId) {
 		ProductLineDescriptor removed = productLineIndex.remove(productLineId);
 		if (removed != null) {
-			licensingReporter
-					.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed));
+			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_LINE_DELETE, removed).get());
 			removed.getProducts().forEach(p -> unregisterProduct(p.getIdentifier()));
 		}
 	}
@@ -266,7 +264,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 	public void unregisterProduct(String productId) {
 		ProductDescriptor removed = productIndex.remove(productId);
 		if (removed != null) {
-			licensingReporter.postResult(LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_DELETE, removed));
+			events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_DELETE, removed).get());
 			removed.getProductVersions().forEach(pv -> unregisterProductVersion(productId, pv.getVersion()));
 		}
 	}
@@ -277,8 +275,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 		if (versions != null) {
 			ProductVersionDescriptor removed = versions.remove(version);
 			if (removed != null) {
-				licensingReporter.postResult(
-						LicensingResults.createEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed));
+				events.postEvent(new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_DELETE, removed).get());
 				removed.getProductVersionFeatures().forEach(
 						pvf -> unregisterProductVersionFeature(productId, version, pvf.getFeatureIdentifier()));
 			}
@@ -296,8 +293,8 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 			if (features != null) {
 				ProductVersionFeatureDescriptor removed = features.remove(featureId);
 				if (removed != null) {
-					licensingReporter.postResult(LicensingResults
-							.createEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed));
+					events.postEvent(
+							new EquinoxEvent(ProductRegistryEvents.PRODUCT_VERSION_FEATURE_DELETE, removed).get());
 				}
 				if (features.isEmpty()) {
 					versions.remove(version);

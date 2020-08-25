@@ -19,16 +19,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingReporter;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.BaseDomainRegistry;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
+import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -40,6 +40,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.event.EventAdmin;
 
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + UsersPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "users_xmi" })
@@ -50,15 +51,15 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
 	private final Map<String, UserLicenseDescriptor> userLicenseIndex = new HashMap<>();
 
+	private EventAdmin events;
+
 	@Reference
-	@Override
-	public void bindLicensingReporter(LicensingReporter admin) {
-		super.bindLicensingReporter(admin);
+	public void bindEventAdmin(EventAdmin admin) {
+		this.events = admin;
 	}
 
-	@Override
-	public void unbindLicensingReporter(LicensingReporter admin) {
-		super.unbindLicensingReporter(admin);
+	public void unbindEventAdmin(@SuppressWarnings("unused") EventAdmin admin) {
+		this.events = null;
 	}
 
 	@Override
@@ -133,9 +134,9 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		UserOriginDescriptor existing = userOriginIndex.put(identifier, userOrigin);
 		if (existing != null) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userOrigin);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin));
+		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_CREATE, userOrigin).get());
 		userOrigin.getUsers().forEach(u -> registerUser(u));
 	}
 
@@ -144,9 +145,9 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		UserDescriptor existing = userIndex.put(identifier, user);
 		if (existing != null) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_CREATE, user));
+		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_CREATE, user).get());
 		user.getUserLicenses().forEach(u -> registerUserLicense(u));
 	}
 
@@ -155,15 +156,15 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		UserLicenseDescriptor existing = userLicenseIndex.put(identifier, userLicense);
 		if (existing != null) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userLicense);
-			licensingReporter.logResult(LicensingResults.createWarning(msg, this.getClass(), null));
+			Platform.getLog(getClass()).warn(msg);
 		}
-		licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_LICENSE_CREATE, userLicense));
+		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_LICENSE_CREATE, userLicense).get());
 	}
 
 	public void unregisterUserOrigin(String userOriginId) {
 		UserOriginDescriptor removed = userOriginIndex.remove(userOriginId);
 		if (removed != null) {
-			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed));
+			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed).get());
 			removed.getUsers().forEach(u -> {
 				unregisterUser(u.getEmail());
 			});
@@ -173,14 +174,14 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	public void unregisterUser(String userId) {
 		UserDescriptor removed = userIndex.remove(userId);
 		if (removed != null) {
-			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_DELETE, removed));
+			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_DELETE, removed).get());
 		}
 	}
 
 	public void unregisterUserLicense(String packId) {
 		UserLicenseDescriptor removed = userLicenseIndex.remove(packId);
 		if (removed != null) {
-			licensingReporter.postResult(LicensingResults.createEvent(UserRegistryEvents.USER_LICENSE_DELETE, removed));
+			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_LICENSE_DELETE, removed).get());
 		}
 	}
 
