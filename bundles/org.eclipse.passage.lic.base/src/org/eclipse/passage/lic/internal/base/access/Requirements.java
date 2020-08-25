@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -33,11 +35,24 @@ import org.eclipse.passage.lic.internal.base.requirements.RequirementsFeatureFil
 public final class Requirements implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Registry<StringServiceId, ResolvedRequirements> registry;
-	private final String feature;
+	private final Function<//
+			ServiceInvocationResult<Collection<Requirement>>, //
+			ServiceInvocationResult<Collection<Requirement>>> filter;
 
 	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry, String feature) {
+		this(registry, new RequirementsFeatureFilter(feature).get());
+	}
+
+	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry) {
+		this(registry, Function.identity());
+	}
+
+	private Requirements(Registry<StringServiceId, ResolvedRequirements> registry,
+			Function<ServiceInvocationResult<Collection<Requirement>>, ServiceInvocationResult<Collection<Requirement>>> filter) {
+		Objects.requireNonNull(registry, "Requirements::registry"); //$NON-NLS-1$
+		Objects.requireNonNull(filter, "Requirements::filter"); //$NON-NLS-1$
 		this.registry = registry;
-		this.feature = feature;
+		this.filter = filter;
 	}
 
 	@Override
@@ -51,7 +66,7 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 		return registry.services().stream() //
 				.map(ResolvedRequirements::all) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
-				.map(new RequirementsFeatureFilter(feature).get())//
+				.map(filter)//
 				.get(); // always exists
 	}
 
