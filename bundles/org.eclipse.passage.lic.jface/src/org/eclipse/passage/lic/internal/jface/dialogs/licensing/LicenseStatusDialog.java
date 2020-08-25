@@ -85,7 +85,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	@Override
 	protected void initMessage() {
-		new CertificatSummary(certificate).accept(this);
+		new CertificateSummary(certificate).accept(this);
 	}
 
 	private void requestLicense() {

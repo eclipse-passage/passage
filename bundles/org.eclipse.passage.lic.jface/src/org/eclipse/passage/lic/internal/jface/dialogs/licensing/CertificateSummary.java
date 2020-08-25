@@ -23,15 +23,15 @@ import org.eclipse.passage.lic.internal.base.restrictions.CertificateWorthAttent
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 
 @SuppressWarnings("restriction")
-final class CertificatSummary implements Consumer<TitleAreaDialog> {
+final class CertificateSummary implements Consumer<TitleAreaDialog> {
 
 	private final Optional<ExaminationCertificate> certificate;
 
-	CertificatSummary(ExaminationCertificate certificate) {
+	CertificateSummary(ExaminationCertificate certificate) {
 		this(Optional.of(certificate));
 	}
 
-	CertificatSummary(Optional<ExaminationCertificate> certificate) {
+	CertificateSummary(Optional<ExaminationCertificate> certificate) {
 		this.certificate = certificate;
 	}
 
