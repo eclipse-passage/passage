@@ -47,7 +47,7 @@ public final class Requirements implements Supplier<ServiceInvocationResult<Coll
 		this(registry, Function.identity());
 	}
 
-	private Requirements(Registry<StringServiceId, ResolvedRequirements> registry,
+	public Requirements(Registry<StringServiceId, ResolvedRequirements> registry,
 			Function<ServiceInvocationResult<Collection<Requirement>>, ServiceInvocationResult<Collection<Requirement>>> filter) {
 		Objects.requireNonNull(registry, "Requirements::registry"); //$NON-NLS-1$
 		Objects.requireNonNull(filter, "Requirements::filter"); //$NON-NLS-1$

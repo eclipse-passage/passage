@@ -18,10 +18,14 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-final class Expose extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
+final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
-	Expose(Framework framework, String feature) {
+	Assess(Framework framework, String feature) {
 		super(framework, feature);
+	}
+
+	Assess(Framework framework) {
+		super(framework);
 	}
 
 	@Override
