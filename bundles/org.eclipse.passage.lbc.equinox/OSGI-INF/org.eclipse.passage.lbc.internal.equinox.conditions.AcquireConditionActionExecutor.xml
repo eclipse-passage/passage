@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.lbc.internal.equinox.conditions.AcquireConditionActionExecutor">
-   <property name="action" value="acquire"/>
-   <implementation class="org.eclipse.passage.lbc.internal.equinox.conditions.AcquireConditionActionExecutor"/>
-   <service>
-      <provide interface="org.eclipse.passage.lbc.api.BackendActionExecutor"/>
-   </service>
-</scr:component>
