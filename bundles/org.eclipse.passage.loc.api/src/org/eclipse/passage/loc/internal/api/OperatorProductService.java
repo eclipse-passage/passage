@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.api;
+package org.eclipse.passage.loc.internal.api;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;

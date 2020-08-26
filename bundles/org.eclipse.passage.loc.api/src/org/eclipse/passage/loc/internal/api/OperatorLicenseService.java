@@ -10,11 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.api;
+package org.eclipse.passage.loc.internal.api;
 
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
 
 /**
  * 

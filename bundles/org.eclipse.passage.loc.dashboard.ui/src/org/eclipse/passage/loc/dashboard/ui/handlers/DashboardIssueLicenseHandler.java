@@ -25,8 +25,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.api.OperatorLicenseService;
 import org.eclipse.passage.loc.dashboard.ui.wizards.IssueLicenseWizard;
+import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.swt.widgets.Shell;
 
 public class DashboardIssueLicenseHandler {

@@ -7,8 +7,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.passage.loc.api,
- org.eclipse.passage.loc.internal.api;
+Export-Package: org.eclipse.passage.loc.internal.api;
   x-friends:="org.eclipse.passage.loc.workbench,
    org.eclipse.passage.loc.licenses.ui,
    org.eclipse.passage.loc.users.ui,
