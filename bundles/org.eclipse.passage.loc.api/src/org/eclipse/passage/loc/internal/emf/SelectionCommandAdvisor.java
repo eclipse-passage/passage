@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.edit;
+package org.eclipse.passage.loc.internal.emf;
 
 public interface SelectionCommandAdvisor {
 

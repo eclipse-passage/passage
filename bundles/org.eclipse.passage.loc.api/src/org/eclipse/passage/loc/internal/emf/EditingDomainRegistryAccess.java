@@ -10,9 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.edit;
-
-import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
+package org.eclipse.passage.loc.internal.emf;
 
 public interface EditingDomainRegistryAccess {
 

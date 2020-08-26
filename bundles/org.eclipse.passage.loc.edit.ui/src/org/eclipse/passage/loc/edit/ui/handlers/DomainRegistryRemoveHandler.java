@@ -20,7 +20,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.passage.loc.internal.workbench.registry.UnregisterConfirmation;
 import org.eclipse.passage.loc.internal.workbench.registry.UnregisterSelected;

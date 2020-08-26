@@ -14,9 +14,9 @@ package org.eclipse.passage.loc.internal.features.core;
 
 import java.util.Collections;
 
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.core.i18n.FeaturesCoreMessages;
 import org.osgi.service.component.annotations.Component;
