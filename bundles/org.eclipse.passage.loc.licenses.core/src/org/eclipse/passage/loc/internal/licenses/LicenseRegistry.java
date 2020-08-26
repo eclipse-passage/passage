@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.registry;
+package org.eclipse.passage.loc.internal.licenses;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 

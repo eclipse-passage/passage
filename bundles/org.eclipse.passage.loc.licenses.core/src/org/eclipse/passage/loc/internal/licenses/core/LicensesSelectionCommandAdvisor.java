@@ -17,7 +17,7 @@ import java.util.Collections;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
