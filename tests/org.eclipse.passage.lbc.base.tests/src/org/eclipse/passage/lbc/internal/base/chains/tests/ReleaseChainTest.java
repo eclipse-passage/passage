@@ -41,23 +41,20 @@ public final class ReleaseChainTest extends LbcTestsBase {
 	public void releasable() {
 		createLicense(1, 1);
 		assertFalse(new Release(new JsonLoadedPersistableLicense(() -> root()))
-				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get()
-				.containsValue(Boolean.valueOf(false)));
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
 	}
 
 	@Test
 	public void notReleasable() {
 		createLicense(0, 1);
 		assertTrue(new Release(new JsonLoadedPersistableLicense(() -> root()))
-				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get()
-				.containsValue(Boolean.valueOf(false)));
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
 	}
 
 	@Test
 	public void notExisting() {
 		assertTrue(new Release(new JsonLoadedPersistableLicense(() -> root()))
-				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get()
-				.containsValue(Boolean.valueOf(false)));
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
 	}
 
 	private void createLicense(int taken, int capacity) {
