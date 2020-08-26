@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activate" name="org.eclipse.passage.lbc.internal.equinox.AdminRequestDispatcher">
-   <property name="role" value="admin"/>
-   <service>
-      <provide interface="org.eclipse.passage.lbc.api.BackendRequestDispatcher"/>
-   </service>
-   <reference bind="bindBackendActionExecutor" cardinality="0..n" interface="org.eclipse.passage.lbc.api.BackendActionExecutor" name="BackendActionExecutor" unbind="unbindBackendActionExecutor"/>
-   <implementation class="org.eclipse.passage.lbc.internal.equinox.AdminRequestDispatcher"/>
-</scr:component>
