@@ -76,6 +76,4 @@ public final class LicensingEvents {
 	 */
 	public static final String TOPIC_BASE = "org/eclipse/passage/lic/api"; //$NON-NLS-1$
 
-
-
 }

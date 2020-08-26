@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.features.model;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.loc.api;bundle-version="0.0.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.passage.loc.internal.features.core;x-internal:=true,
+Export-Package: org.eclipse.passage.loc.internal.features;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.features.emfforms,org.eclipse.passage.loc.features.ui",
+ org.eclipse.passage.loc.internal.features.core;x-internal:=true,
  org.eclipse.passage.loc.internal.features.core.i18n;x-internal:=true
 Service-Component: OSGI-INF/*.xml
