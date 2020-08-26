@@ -38,7 +38,6 @@ import javax.mail.internet.AddressException;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.mail.MailImpl;
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -51,7 +50,6 @@ public class MailImplTest {
 	private static final String MAIL_ATTACHMENT = "mail.attachment"; //$NON-NLS-1$
 	private static final String MAIL_FILE_OUT = "test.file"; //$NON-NLS-1$
 	private static final String MAIL_ATTACHMENT_CONTENT = "Content by TimeStamp:"; //$NON-NLS-1$
-	private Path fileAttachmentPath;
 
 	private static String resolveOutputDirName() {
 		return System.getProperty("project.build.directory",
@@ -75,10 +73,12 @@ public class MailImplTest {
 		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT, MAIL_BODY,
 				Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
-		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
+		try (FileOutputStream fileOutput = new FileOutputStream(Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
 			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> failure(m, t));
 		} catch (IOException e) {
 			assumeNoException(e);
+		} finally {
+			
 		}
 	}
 
@@ -94,7 +94,7 @@ public class MailImplTest {
 		assertFalse(attachment.isEmpty());
 		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
-		try (FileOutputStream fileOutput = new FileOutputStream(MAIL_FILE_OUT)) {
+		try (FileOutputStream fileOutput = new FileOutputStream(Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
 			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> assertEquals(AddressException.class, t.getClass()));
 		} catch (IOException e) {
 			assumeNoException(e);
@@ -119,20 +119,11 @@ public class MailImplTest {
 			List<String> content = new ArrayList<>();
 			String attachmentContent = new String(MAIL_ATTACHMENT_CONTENT + System.currentTimeMillis());
 			content.add(attachmentContent);
-			fileAttachmentPath = Files.write(createFile, content, StandardCharsets.UTF_8, StandardOpenOption.WRITE);
-			return fileAttachmentPath.toString();
+			return Files.write(createFile, content, StandardCharsets.UTF_8, StandardOpenOption.WRITE).toString();
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
 		return "";
-	}
-
-	@After
-	public void removeAttachment() throws IOException {
-		if (fileAttachmentPath != null) {
-			Files.delete(fileAttachmentPath);
-		}
-		Files.deleteIfExists(Paths.get(MAIL_FILE_OUT));
 	}
 
 }
