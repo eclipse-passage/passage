@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
  * @since 1.0
  */
 @SuppressWarnings("restriction")
-public class SatisfiedRequirements implements Function<ExaminationCertificate, Map<Requirement, Permission>> {
+public final class SatisfiedRequirements implements Function<ExaminationCertificate, Map<Requirement, Permission>> {
 
 	@Override
 	public Map<Requirement, Permission> apply(ExaminationCertificate certificate) {

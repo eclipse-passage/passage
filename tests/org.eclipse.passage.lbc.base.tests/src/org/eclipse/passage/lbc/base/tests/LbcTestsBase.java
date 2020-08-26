@@ -29,6 +29,10 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -38,6 +42,10 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
+import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
 @SuppressWarnings("restriction")
 public abstract class LbcTestsBase {
@@ -84,6 +92,20 @@ public abstract class LbcTestsBase {
 
 	protected BoundLicense boundLicense() {
 		return boundLicense(0, 0);
+	}
+
+	protected ExaminationCertificate certificate() {
+		return new BaseExaminationCertificate(Collections.singletonMap(requirement(), permission()),
+				Collections.emptyList());
+	}
+
+	private Permission permission() {
+		return new BasePermission(product(), condition(), ZonedDateTime.now(), ZonedDateTime.now().plusDays(2));
+	}
+
+	private Requirement requirement() {
+		return new BaseRequirement(new BaseFeature(identifierValue(), versionValue(), featureValue(), "provider"), //$NON-NLS-1$
+				new RestrictionLevel.Info(), new Object());
 	}
 
 	protected BoundLicense boundLicense(int taken, int capacity) {
