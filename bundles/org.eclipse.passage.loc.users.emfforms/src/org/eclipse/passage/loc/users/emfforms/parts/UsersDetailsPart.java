@@ -27,7 +27,7 @@ import org.eclipse.emf.ecp.common.spi.ChildrenDescriptorCollector;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
-import org.eclipse.passage.lic.users.registry.UserRegistryEvents;
+import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
 
 public class UsersDetailsPart extends DetailsView {

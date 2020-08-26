@@ -13,10 +13,10 @@
 package org.eclipse.passage.loc.internal.licenses.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
 public class LicensesDomainRegistryTracker extends DomainContentAdapter<LicensePlanDescriptor, LicenseDomainRegistry> {
 

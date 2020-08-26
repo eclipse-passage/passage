@@ -10,19 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.registry;
+package org.eclipse.passage.loc.internal.api;
 
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 
-/**
- * 
- * @since 0.4.0
- *
- */
-public interface LicenseRegistry {
+public interface OperatorProductService {
 
-	Iterable<? extends LicensePlanDescriptor> getLicensePlans();
+	// FIXME: find better place
+	String EXTENSION_KEY_PRIVATE = ".scr"; //$NON-NLS-1$
 
-	LicensePlanDescriptor getLicensePlan(String licensePlanId);
+	String createPassword(ProductVersionDescriptor productVersion);
+
+	IStatus createProductKeys(ProductVersionDescriptor descriptor);
 
 }

@@ -10,11 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.edit;
+package org.eclipse.passage.loc.internal.licenses;
 
-public interface SelectionCommandAdvisor {
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 
-	String getSelectionTitle(String classifier);
+/**
+ * 
+ * @since 0.4.0
+ *
+ */
+public interface LicenseRegistry {
 
-	Iterable<?> getSelectionInput(String classifier);
+	Iterable<? extends LicensePlanDescriptor> getLicensePlans();
+
+	LicensePlanDescriptor getLicensePlan(String licensePlanId);
+
 }

@@ -3,8 +3,8 @@
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="licenses"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="licenses_xmi"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.licenses.registry.LicenseRegistry"/>
-      <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>
+      <provide interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry"/>
+      <provide interface="org.eclipse.passage.loc.internal.emf.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
    <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseDomainRegistry"/>

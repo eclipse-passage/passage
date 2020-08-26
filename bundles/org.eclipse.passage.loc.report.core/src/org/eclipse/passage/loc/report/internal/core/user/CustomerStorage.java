@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.report.internal.core.user;
 import java.util.Set;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
 /**

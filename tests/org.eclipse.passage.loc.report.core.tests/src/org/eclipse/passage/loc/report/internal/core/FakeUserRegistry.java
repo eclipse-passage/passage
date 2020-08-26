@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.UserRegistry;
 
 public final class FakeUserRegistry implements UserRegistry {
 

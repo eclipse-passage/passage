@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.features.registry;
+package org.eclipse.passage.loc.internal.features;
 
-import static org.eclipse.passage.lic.api.LicensingEvents.CREATE;
-import static org.eclipse.passage.lic.api.LicensingEvents.DELETE;
-import static org.eclipse.passage.lic.api.LicensingEvents.READ;
-import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
-import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.CREATE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.DELETE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.READ;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.TOPIC_SEP;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.UPDATE;
 
 /**
  * Feature registry events and event topic definitions.

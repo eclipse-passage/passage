@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api;
+package org.eclipse.passage.loc.internal.api;
 
 /**
  *
@@ -75,7 +75,5 @@ public final class LicensingEvents {
 	 * @since 0.4.0
 	 */
 	public static final String TOPIC_BASE = "org/eclipse/passage/lic/api"; //$NON-NLS-1$
-
-
 
 }

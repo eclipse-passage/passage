@@ -51,7 +51,7 @@ public final class EquinoxPassageUI implements PassageUI {
 	private ServiceInvocationResult<ExaminationCertificate> investigate(
 			Supplier<ServiceInvocationResult<ExaminationCertificate>> gain, //
 			Predicate<Optional<ExaminationCertificate>> ok) {
-		ServiceInvocationResult<ExaminationCertificate> result = assess();
+		ServiceInvocationResult<ExaminationCertificate> result = gain.get();
 		while (exposeAndMayBeEvenFix(result, ok)) {
 			result = gain.get();
 		}

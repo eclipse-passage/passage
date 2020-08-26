@@ -18,7 +18,7 @@ import java.util.Set;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;

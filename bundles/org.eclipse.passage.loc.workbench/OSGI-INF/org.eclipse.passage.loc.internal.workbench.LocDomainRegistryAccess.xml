@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess">
    <service>
-      <provide interface="org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess"/>
+      <provide interface="org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess"/>
    </service>
-   <reference bind="registerCommandAdvisor" cardinality="0..n" interface="org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor" name="registerCommandAdvisor" unbind="unregisterCommandAdvisor"/>
-   <reference bind="registerEditingDomainRegistry" cardinality="0..n" interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry" name="registerEditingDomainRegistry" unbind="unregisterEditingDomainRegistry"/>
+   <reference bind="registerCommandAdvisor" cardinality="0..n" interface="org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor" name="registerCommandAdvisor" unbind="unregisterCommandAdvisor"/>
+   <reference bind="registerEditingDomainRegistry" cardinality="0..n" interface="org.eclipse.passage.loc.internal.emf.EditingDomainRegistry" name="registerEditingDomainRegistry" unbind="unregisterEditingDomainRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess"/>
 </scr:component>

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
-public class LabeledDiagnostician extends Diagnostician {
+public final class LabeledDiagnostician extends Diagnostician {
 	private final AdapterFactory adapterFactory;
 
 	/**
@@ -41,7 +41,6 @@ public class LabeledDiagnostician extends Diagnostician {
 				return itemLabelProvider.getText(eObject);
 			}
 		}
-
 		return super.getObjectLabel(eObject);
 	}
 
