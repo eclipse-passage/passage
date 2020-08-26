@@ -52,4 +52,9 @@ public interface PassageUI {
 	 */
 	ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature);
 
+	/**
+	 * Assess the whole product licensing coverage.
+	 */
+	ServiceInvocationResult<ExaminationCertificate> assessLicensingStatus();
+
 }
