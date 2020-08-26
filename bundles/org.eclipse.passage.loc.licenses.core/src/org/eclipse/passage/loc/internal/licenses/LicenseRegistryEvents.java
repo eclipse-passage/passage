@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses;
 
-import static org.eclipse.passage.lic.api.LicensingEvents.CREATE;
-import static org.eclipse.passage.lic.api.LicensingEvents.DELETE;
-import static org.eclipse.passage.lic.api.LicensingEvents.READ;
-import static org.eclipse.passage.lic.api.LicensingEvents.TOPIC_SEP;
-import static org.eclipse.passage.lic.api.LicensingEvents.UPDATE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.CREATE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.DELETE;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.READ;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.TOPIC_SEP;
+import static org.eclipse.passage.loc.internal.api.LicensingEvents.UPDATE;
 
 /**
  * License registry events and event topic definitions.
