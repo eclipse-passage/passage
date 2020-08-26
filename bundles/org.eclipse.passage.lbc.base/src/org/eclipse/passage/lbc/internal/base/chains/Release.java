@@ -37,9 +37,13 @@ public final class Release extends ConditionInteraction<RequestedCertificate, Bo
 				.map(Map.Entry::getValue) //
 				.map(Permission::condition) //
 				.map(this::release) //
-				.filter(result -> result == false) //
+				.filter(this::not) //
 				.findAny();
 		return new BaseServiceInvocationResult<Boolean>(findAny.isEmpty());
+	}
+
+	private boolean not(boolean result) {
+		return !result;
 	}
 
 	private boolean release(Condition condition) {
