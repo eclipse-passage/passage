@@ -14,22 +14,24 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
-import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class Release extends ConditionInteraction<RequestedCertificate, Boolean> {
+public abstract class ConditionInteraction<T, U> implements Function<T, ServiceInvocationResult<U>> {
 
-	public Release(Function<Condition, Optional<PersistableLicense>> find) {
-		super(find);
+	private final Function<Condition, Optional<PersistableLicense>> find;
+
+	public ConditionInteraction(Function<Condition, Optional<PersistableLicense>> find) {
+		this.find = find;
 	}
 
-	@Override
-	public ServiceInvocationResult<Boolean> apply(RequestedCertificate t) {
-		return new BaseServiceInvocationResult<Boolean>(true);
+	protected final Optional<PersistableLicense> license(Condition request) {
+		return Stream.of(request) //
+				.map(find) //
+				.findAny().get();
 	}
 
 }

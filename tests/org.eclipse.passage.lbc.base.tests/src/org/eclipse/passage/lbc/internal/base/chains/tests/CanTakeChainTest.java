@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.tests;
+package org.eclipse.passage.lbc.internal.base.chains.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.passage.lbc.base.tests.LbcTestsBase;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.BaseRequestedCondition;
 import org.eclipse.passage.lbc.internal.base.chains.CanTake;
@@ -29,6 +30,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+@SuppressWarnings("restriction")
 public final class CanTakeChainTest extends LbcTestsBase {
 
 	@Rule

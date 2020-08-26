@@ -14,7 +14,6 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import org.eclipse.passage.lbc.internal.api.RequestedCondition;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
@@ -25,12 +24,10 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 @SuppressWarnings("restriction")
-public final class CanTake implements Function<RequestedCondition, ServiceInvocationResult<Boolean>> {
-
-	private final Function<Condition, Optional<PersistableLicense>> find;
+public final class CanTake extends ConditionInteraction<RequestedCondition, Boolean> {
 
 	public CanTake(Function<Condition, Optional<PersistableLicense>> find) {
-		this.find = find;
+		super(find);
 	}
 
 	@Override
@@ -42,12 +39,6 @@ public final class CanTake implements Function<RequestedCondition, ServiceInvoca
 			return new BaseServiceInvocationResult<>(
 					new Trouble(new ConditionEntryNotFound(), request.condition().identifier()));
 		}
-	}
-
-	private Optional<PersistableLicense> license(Condition request) {
-		return Stream.of(request) //
-				.map(find) //
-				.findAny().get();
 	}
 
 }
