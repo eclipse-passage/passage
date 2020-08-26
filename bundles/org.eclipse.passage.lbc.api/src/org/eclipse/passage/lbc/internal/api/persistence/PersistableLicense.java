@@ -35,4 +35,8 @@ public abstract class PersistableLicense implements Supplier<BoundLicense> {
 
 	public abstract void save() throws IOException;
 
+	public abstract boolean takeOne();
+
+	public abstract boolean releaseOne();
+
 }

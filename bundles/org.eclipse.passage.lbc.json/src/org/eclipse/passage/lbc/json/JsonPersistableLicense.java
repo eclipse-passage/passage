@@ -21,6 +21,10 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.BaseBoundLicense;
+import org.eclipse.passage.lbc.internal.base.ConditionIdentifier;
+import org.eclipse.passage.lbc.internal.base.LicenseCapacity;
+import org.eclipse.passage.lbc.internal.base.LicenseTaken;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFile;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 
@@ -47,6 +51,37 @@ public final class JsonPersistableLicense extends PersistableLicense {
 	public void save() throws IOException {
 		Files.writeString(new LockFile(new LockFolder(base), get()).get(),
 				new LbcJsonObjectMapper().get().writeValueAsString(get()), StandardCharsets.UTF_8);
+	}
+
+	public void writeInitial() throws IOException {
+		save();
+	}
+
+	@Override
+	public boolean takeOne() {
+		try {
+			offsetLicense(1).save();
+			return true;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean releaseOne() {
+		try {
+			offsetLicense(-1).save();
+			return true;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private JsonPersistableLicense offsetLicense(int offset) {
+		return new JsonPersistableLicense(
+				new BaseBoundLicense(new ConditionIdentifier(get().identifier()),
+						new LicenseTaken(get().taken().get().get() + offset), new LicenseCapacity(get().capacity())),
+				base);
 	}
 
 }

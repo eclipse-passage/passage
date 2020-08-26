@@ -10,23 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base.chains;
 
+import java.util.Optional;
+import java.util.function.Function;
+
+import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
-/**
- * @since 1.0
- */
-public interface BackendLicenseLock {
+public abstract class ConditionInteraction<T, U> implements Function<T, ServiceInvocationResult<U>> {
 
-	// Returns simply a boolean value of license.taken < license.capacity
-	ServiceInvocationResult<Boolean> canTake(Condition condition);
+	private final Function<Condition, Optional<PersistableLicense>> find;
 
-	// Decreases condition.taken
-	ServiceInvocationResult<Boolean> release(Condition condition);
+	public ConditionInteraction(Function<Condition, Optional<PersistableLicense>> find) {
+		this.find = find;
+	}
 
-	// Increases condition.taken
-	ServiceInvocationResult<Boolean> take(Condition condition);
+	protected final Optional<PersistableLicense> license(Condition request) {
+		return find.apply(request);
+	}
 
 }
