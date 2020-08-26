@@ -13,8 +13,8 @@
 package org.eclipse.passage.loc.api;
 
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.passage.lic.api.access.LicensingRequest;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.loc.internal.api.LicensingRequest;
 
 /**
  * 
