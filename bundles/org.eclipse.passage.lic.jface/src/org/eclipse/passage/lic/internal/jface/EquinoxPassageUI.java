@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicenseCoverage;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.LicenseStatusDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -35,15 +36,29 @@ public final class EquinoxPassageUI implements PassageUI {
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
-		ServiceInvocationResult<ExaminationCertificate> result = ask(feature);
+		return investigate(() -> acquire(feature));
+	}
+
+	@Override
+	public ServiceInvocationResult<ExaminationCertificate> assessLicensingStatus() {
+		return investigate(this::assess);
+	}
+
+	private ServiceInvocationResult<ExaminationCertificate> investigate(
+			Supplier<ServiceInvocationResult<ExaminationCertificate>> action) {
+		ServiceInvocationResult<ExaminationCertificate> result = assess();
 		while (exposeAndMayBeEvenFix(result)) {
-			result = ask(feature);
+			result = action.get();
 		}
 		return result;
 	}
 
-	private ServiceInvocationResult<ExaminationCertificate> ask(String feature) {
+	private ServiceInvocationResult<ExaminationCertificate> acquire(String feature) {
 		return new EquinoxPassage().acquireLicense(feature);
+	}
+
+	private ServiceInvocationResult<ExaminationCertificate> assess() {
+		return new EquinoxPassageLicenseCoverage().assess();
 	}
 
 	private boolean exposeAndMayBeEvenFix(ServiceInvocationResult<ExaminationCertificate> last) {
