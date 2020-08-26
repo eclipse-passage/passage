@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.internal.json;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -23,14 +26,17 @@ import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 @SuppressWarnings("restriction")
 public final class AcquiredExaminationCertificate implements ExaminationCertificate {
 
-	private final String stamp;
+	private final ZonedDateTime stamp;
+	private final Map<Requirement, Permission> permissions;
 	private final Collection<Restriction> restrictions;
-	private final Collection<Permission> permissions;
 
-	public AcquiredExaminationCertificate(Collection<Permission> permissions, Collection<Restriction> restrictions,
-			String stamp) {
-		this.restrictions = restrictions;
+	public AcquiredExaminationCertificate(Map<Requirement, Permission> permissions,
+			Collection<Restriction> restrictions, ZonedDateTime stamp) {
+		Objects.requireNonNull(restrictions, "AcquiredExaminationCertificate::restrictions"); //$NON-NLS-1$
+		Objects.requireNonNull(permissions, "AcquiredExaminationCertificate::permissions"); //$NON-NLS-1$
+		Objects.requireNonNull(stamp, "AcquiredExaminationCertificate::stamp"); //$NON-NLS-1$
 		this.permissions = permissions;
+		this.restrictions = restrictions;
 		this.stamp = stamp;
 	}
 
@@ -41,19 +47,20 @@ public final class AcquiredExaminationCertificate implements ExaminationCertific
 
 	@Override
 	public ZonedDateTime stamp() {
-		return ZonedDateTime.parse(stamp);
+		return stamp;
 	}
 
 	@Override
 	public Collection<Requirement> satisfied() {
-		// FIXME #566331
-		return null;
+		return new HashSet<>(permissions.keySet());
 	}
 
 	@Override
 	public Permission satisfaction(Requirement satisfied) {
-		// FIXME #566331
-		return null;
+		if (!permissions.containsKey(satisfied)) {
+			throw new IllegalArgumentException("The requirement has not been satisifed"); //$NON-NLS-1$ dev error
+		}
+		return permissions.get(satisfied);
 	}
 
 }

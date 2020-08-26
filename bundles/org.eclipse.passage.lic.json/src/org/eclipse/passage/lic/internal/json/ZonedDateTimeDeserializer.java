@@ -13,8 +13,7 @@
 package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
-
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,22 +21,22 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
-final class ConditionDeserializer extends StdDeserializer<Condition> {
+public class ZonedDateTimeDeserializer extends StdDeserializer<ZonedDateTime> {
 
 	/**
 	 * generated
 	 */
-	private static final long serialVersionUID = 4583912455528712124L;
+	private static final long serialVersionUID = -8647902276935159360L;
 
-	ConditionDeserializer(Class<Condition> type) {
+	protected ZonedDateTimeDeserializer(Class<ZonedDateTime> type) {
 		super(type);
 	}
 
 	@Override
-	public Condition deserialize(JsonParser parser, DeserializationContext context)
+	public ZonedDateTime deserialize(JsonParser parser, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
 		JsonNode node = parser.getCodec().readTree(parser);
-		return new Json.LicensingCondition().apply(node);
+		return new Json.Date().apply(node);
 	}
 
 }

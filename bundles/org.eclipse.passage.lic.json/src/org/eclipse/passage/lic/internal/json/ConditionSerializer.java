@@ -13,8 +13,6 @@
 package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
@@ -42,15 +40,13 @@ final class ConditionSerializer extends StdSerializer<Condition> {
 		gen.writeStringField("feature", condition.feature()); //$NON-NLS-1$
 		gen.writeStringField("version", condition.versionMatch().version()); //$NON-NLS-1$
 		gen.writeStringField("rule", condition.versionMatch().rule().identifier()); //$NON-NLS-1$
-		gen.writeStringField("period-closed-from", date(((ValidityPeriodClosed) condition.validityPeriod()).from())); //$NON-NLS-1$
-		gen.writeStringField("period-closed-to", date(((ValidityPeriodClosed) condition.validityPeriod()).to())); //$NON-NLS-1$
+		// FIXME: #566015
+		gen.writeObjectField("period-closed-from", ((ValidityPeriodClosed) condition.validityPeriod()).from()); //$NON-NLS-1$
+		// FIXME: #566015
+		gen.writeObjectField("period-closed-to", ((ValidityPeriodClosed) condition.validityPeriod()).to()); //$NON-NLS-1$
 		gen.writeStringField("type", condition.evaluationInstructions().type().identifier()); //$NON-NLS-1$
 		gen.writeStringField("expression", condition.evaluationInstructions().expression()); //$NON-NLS-1$
 		gen.writeEndObject();
-	}
-
-	private String date(ZonedDateTime time) {
-		return DateTimeFormatter.ISO_ZONED_DATE_TIME.format(time);
 	}
 
 }

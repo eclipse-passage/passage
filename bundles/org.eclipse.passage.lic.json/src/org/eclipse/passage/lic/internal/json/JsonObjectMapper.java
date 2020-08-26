@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.json;
 
+import java.time.ZonedDateTime;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -54,6 +55,8 @@ public final class JsonObjectMapper implements Supplier<ObjectMapper> {
 		module.addDeserializer(Condition.class, new ConditionDeserializer(Condition.class));
 		module.addSerializer(new CertificateSerializer(ExaminationCertificate.class));
 		module.addDeserializer(ExaminationCertificate.class, new CertificateDeserializer(ExaminationCertificate.class));
+		module.addSerializer(new ZonedDateTimeSerializer(ZonedDateTime.class));
+		module.addDeserializer(ZonedDateTime.class, new ZonedDateTimeDeserializer(ZonedDateTime.class));
 		mapper.registerModule(module);
 		return mapper;
 	}
