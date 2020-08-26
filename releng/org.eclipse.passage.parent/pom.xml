@@ -685,7 +685,7 @@
 					<artifactId>tycho-eclipserun-plugin</artifactId>
 					<version>${tycho.version}</version>
 					<configuration>
-						<executionEnvironment>JavaSE-1.8</executionEnvironment>
+						<executionEnvironment>JavaSE-11</executionEnvironment>
 						<repositories>
 							<repository>
 								<id>eclipse</id>
@@ -698,7 +698,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
-					<version>1.8</version>
+					<version>11</version>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
