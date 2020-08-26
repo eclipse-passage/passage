@@ -54,4 +54,9 @@ public final class BaseBoundLicense implements BoundLicense {
 		return taken().get().get() < capacity().get().get();
 	}
 
+	@Override
+	public boolean releasable() {
+		return taken().get().get() > 0;
+	}
+
 }
