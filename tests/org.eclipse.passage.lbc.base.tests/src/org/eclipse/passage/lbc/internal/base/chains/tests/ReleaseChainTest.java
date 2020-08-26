@@ -10,9 +10,9 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.persistence.tests;
+package org.eclipse.passage.lbc.internal.base.chains.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -23,6 +23,8 @@ import java.nio.file.Paths;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.passage.lbc.base.tests.LbcTestsBase;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.BaseRequestedCertificate;
+import org.eclipse.passage.lbc.internal.base.chains.Release;
 import org.eclipse.passage.lbc.json.JsonLoadedPersistableLicense;
 import org.eclipse.passage.lbc.json.JsonPersistableLicense;
 import org.junit.Rule;
@@ -30,23 +32,37 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("restriction")
-public final class LicensePersistenceTest extends LbcTestsBase {
+public final class ReleaseChainTest extends LbcTestsBase {
 
 	@Rule
 	public final TemporaryFolder folder = new TemporaryFolder();
 
 	@Test
-	public void persistence() {
-		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense(1, 3), () -> root());
+	public void releasable() {
+		createLicense(1, 1);
+		assertFalse(new Release(new JsonLoadedPersistableLicense(() -> root()))
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
+	}
+
+	@Test
+	public void notReleasable() {
+		createLicense(0, 1);
+		assertTrue(new Release(new JsonLoadedPersistableLicense(() -> root()))
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
+	}
+
+	@Test
+	public void notExisting() {
+		assertTrue(new Release(new JsonLoadedPersistableLicense(() -> root()))
+				.apply(new BaseRequestedCertificate(certificate(), requester())).data().get().containsValue(false));
+	}
+
+	private void createLicense(int taken, int capacity) {
 		try {
+			PersistableLicense persistable = new JsonPersistableLicense(boundLicense(taken, capacity), () -> root());
 			folder.newFolder("locked"); //$NON-NLS-1$
 			folder.newFile(condition().identifier());
 			persistable.save();
-			PersistableLicense loaded = new JsonLoadedPersistableLicense(() -> root()).apply(condition()).get();
-			assertEquals(persistable.get().identifier().get().get(), loaded.get().identifier().get().get());
-			assertEquals(persistable.get().taken().get().get(), loaded.get().taken().get().get());
-			assertEquals(persistable.get().capacity().get().get(), loaded.get().capacity().get().get());
-			assertTrue(loaded.get().takeable());
 		} catch (IOException e) {
 			fail();
 		}

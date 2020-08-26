@@ -10,17 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base.troubles;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 
-/**
- * @since 1.0
- */
-public interface RequestedCondition {
+@SuppressWarnings("restriction")
+public class LicenseOutOfcapacity extends TroubleCode {
 
-	Requester requester();
-
-	Condition condition();
+	public LicenseOutOfcapacity() {
+		super(602, "License is taken too many times"); //$NON-NLS-1$
+	}
 
 }

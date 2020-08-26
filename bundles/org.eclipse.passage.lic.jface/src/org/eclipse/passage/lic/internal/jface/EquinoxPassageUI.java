@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface;
 
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
@@ -36,19 +38,22 @@ public final class EquinoxPassageUI implements PassageUI {
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
-		return investigate(() -> acquire(feature));
+		return investigate(//
+				() -> acquire(feature), //
+				certificate -> !new CertificateWorthAttention().test(certificate));
 	}
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> assessLicensingStatus() {
-		return investigate(this::assess);
+		return investigate(this::assess, c -> false);
 	}
 
 	private ServiceInvocationResult<ExaminationCertificate> investigate(
-			Supplier<ServiceInvocationResult<ExaminationCertificate>> action) {
-		ServiceInvocationResult<ExaminationCertificate> result = action.get();
-		while (exposeAndMayBeEvenFix(result)) {
-			result = action.get();
+			Supplier<ServiceInvocationResult<ExaminationCertificate>> gain, //
+			Predicate<Optional<ExaminationCertificate>> ok) {
+		ServiceInvocationResult<ExaminationCertificate> result = gain.get();
+		while (exposeAndMayBeEvenFix(result, ok)) {
+			result = gain.get();
 		}
 		return result;
 	}
@@ -61,16 +66,22 @@ public final class EquinoxPassageUI implements PassageUI {
 		return new EquinoxPassageLicenseCoverage().assess();
 	}
 
-	private boolean exposeAndMayBeEvenFix(ServiceInvocationResult<ExaminationCertificate> last) {
-		if (!last.data().isPresent()) {
-			new DiagnosticDialog(shell.get(), last.diagnostic()).open();
+	/**
+	 * @return {@code true} if licensing state has been changed and new assessment
+	 *         have sense. {@code false} otherwise.
+	 */
+	private boolean exposeAndMayBeEvenFix(//
+			ServiceInvocationResult<ExaminationCertificate> result, //
+			Predicate<Optional<ExaminationCertificate>> ok) {
+		if (!result.data().isPresent()) {
+			new DiagnosticDialog(shell.get(), result.diagnostic()).open();
 			return false;
 		}
-		if (!new CertificateWorthAttention().test(last.data())) {
+		if (ok.test(result.data())) {
 			return false;
 		}
-		ExaminationCertificate certificate = last.data().get();
-		LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), certificate, last.diagnostic());
+		ExaminationCertificate certificate = result.data().get();
+		LicenseStatusDialog dialog = new LicenseStatusDialog(shell.get(), certificate, result.diagnostic());
 		if (Window.OK != dialog.open()) {
 			return false;
 		}

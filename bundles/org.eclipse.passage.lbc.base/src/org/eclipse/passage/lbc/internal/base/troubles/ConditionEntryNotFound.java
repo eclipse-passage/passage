@@ -10,17 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base.troubles;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 
 /**
  * @since 1.0
  */
-public interface RequestedCondition {
+@SuppressWarnings("restriction")
+public final class ConditionEntryNotFound extends TroubleCode {
 
-	Requester requester();
-
-	Condition condition();
+	public ConditionEntryNotFound() {
+		super(601, "No bound license found for specified condition."); //$NON-NLS-1$
+	}
 
 }
