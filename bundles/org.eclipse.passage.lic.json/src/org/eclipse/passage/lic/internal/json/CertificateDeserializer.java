@@ -13,10 +13,11 @@
 package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -55,19 +56,14 @@ public final class CertificateDeserializer extends StdDeserializer<ExaminationCe
 	}
 
 	private <T, U extends Json<T>> List<T> collection(ArrayNode serialized, U deserializer) {
-		List<T> deserialized = new LinkedList<>();
-		for (JsonNode node : serialized) {
-			deserialized.add(deserializer.apply(node));
-		}
-		return deserialized;
+		return StreamSupport.stream(serialized.spliterator(), false) //
+				.map(deserializer) //
+				.collect(Collectors.toList());
 	}
 
 	private Map<Requirement, Permission> satisfied(List<Requirement> keys, List<Permission> values) {
-		Map<Requirement, Permission> satisfied = new HashMap<>();
-		for (int i = 0; i < keys.size(); i++) {
-			satisfied.put(keys.get(i), values.get(i));
-		}
-		return satisfied;
+		return IntStream.range(0, keys.size()).boxed() //
+				.collect(Collectors.toMap(keys::get, values::get));
 	}
 
 }

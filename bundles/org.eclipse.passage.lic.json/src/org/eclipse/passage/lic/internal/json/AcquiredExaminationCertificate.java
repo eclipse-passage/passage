@@ -16,6 +16,7 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -31,6 +32,9 @@ public final class AcquiredExaminationCertificate implements ExaminationCertific
 
 	public AcquiredExaminationCertificate(Map<Requirement, Permission> permissions,
 			Collection<Restriction> restrictions, ZonedDateTime stamp) {
+		Objects.requireNonNull(restrictions, "AcquiredExaminationCertificate::restrictions"); //$NON-NLS-1$
+		Objects.requireNonNull(permissions, "AcquiredExaminationCertificate::permissions"); //$NON-NLS-1$
+		Objects.requireNonNull(stamp, "AcquiredExaminationCertificate::stamp"); //$NON-NLS-1$
 		this.permissions = permissions;
 		this.restrictions = restrictions;
 		this.stamp = stamp;

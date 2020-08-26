@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
+import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -38,7 +38,7 @@ public class CertificateTransportTest {
 			ZonedDateTime time = ZonedDateTime.now();
 			CertificateTestData data = new CertificateTestData();
 			String serialized = mapper().writeValueAsString(new AcquiredExaminationCertificate(
-					Map.of(data.requirement(), data.permission()), data.restrictions(), time));
+					Collections.singletonMap(data.requirement(), data.permission()), data.restrictions(), time));
 			ExaminationCertificate certificate = mapper().readValue(serialized, ExaminationCertificate.class);
 			assertEquals(time, certificate.stamp());
 			for (Restriction restriction : certificate.restrictions()) {

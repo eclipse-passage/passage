@@ -40,7 +40,9 @@ final class ConditionSerializer extends StdSerializer<Condition> {
 		gen.writeStringField("feature", condition.feature()); //$NON-NLS-1$
 		gen.writeStringField("version", condition.versionMatch().version()); //$NON-NLS-1$
 		gen.writeStringField("rule", condition.versionMatch().rule().identifier()); //$NON-NLS-1$
+		// FIXME: #566015
 		gen.writeObjectField("period-closed-from", ((ValidityPeriodClosed) condition.validityPeriod()).from()); //$NON-NLS-1$
+		// FIXME: #566015
 		gen.writeObjectField("period-closed-to", ((ValidityPeriodClosed) condition.validityPeriod()).to()); //$NON-NLS-1$
 		gen.writeStringField("type", condition.evaluationInstructions().type().identifier()); //$NON-NLS-1$
 		gen.writeStringField("expression", condition.evaluationInstructions().expression()); //$NON-NLS-1$
