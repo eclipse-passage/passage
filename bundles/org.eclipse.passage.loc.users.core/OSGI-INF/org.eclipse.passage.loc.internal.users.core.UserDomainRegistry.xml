@@ -3,7 +3,7 @@
    <property name="org.eclipse.passage.lic.emf.edit.domain.name" value="users"/>
    <property name="org.eclipse.passage.lic.emf.edit.file.extension" value="users_xmi"/>
    <service>
-      <provide interface="org.eclipse.passage.lic.users.registry.UserRegistry"/>
+      <provide interface="org.eclipse.passage.loc.internal.users.UserRegistry"/>
       <provide interface="org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry"/>
    </service>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>

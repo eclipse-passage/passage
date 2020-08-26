@@ -12,6 +12,8 @@ Require-Bundle: org.apache.commons.csv;bundle-version="1.4.0",
  org.eclipse.passage.lic.licenses;bundle-version="1.0.0",
  org.eclipse.passage.lic.users;bundle-version="0.5.0",
  org.eclipse.passage.loc.licenses.core;bundle-version="0.6.0",
+ org.eclipse.passage.loc.products.core;bundle-version="0.6.0",
+ org.eclipse.passage.loc.users.core;bundle-version="1.0.0",
  org.eclipse.passage.loc.yars.api;bundle-version="0.1.0";visibility:=reexport
 Export-Package: org.eclipse.passage.loc.report.internal.core.license,
  org.eclipse.passage.loc.report.internal.core.user

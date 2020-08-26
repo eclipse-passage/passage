@@ -18,7 +18,7 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

@@ -19,8 +19,8 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
+import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 

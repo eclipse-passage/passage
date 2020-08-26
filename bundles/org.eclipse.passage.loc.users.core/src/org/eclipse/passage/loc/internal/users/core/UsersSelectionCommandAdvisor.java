@@ -17,7 +17,7 @@ import java.util.Collections;
 import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
 import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
-import org.eclipse.passage.lic.users.registry.UserRegistry;
+import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.core.i18n.UsersCoreMessages;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
