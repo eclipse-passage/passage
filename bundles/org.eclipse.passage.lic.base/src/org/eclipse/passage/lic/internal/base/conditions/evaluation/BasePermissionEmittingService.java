@@ -44,6 +44,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 @SuppressWarnings("restriction")
@@ -120,14 +121,25 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							condition.evaluationInstructions().expression()), //
 					e);
 		}
-		return new BaseServiceInvocationResult<>(//
-				new Emission(//
-						pack, //
-						new BasePermission(//
-								product, //
-								condition, //
-								ZonedDateTime.now(), //
-								expiration(condition.validityPeriod())))); // FIXME: evolve further
+		return createFor(condition, pack, product);
+	}
+
+	private ServiceInvocationResult<Emission> createFor(Condition condition, ConditionPack pack,
+			LicensedProduct product) {
+		try {
+			return new BaseServiceInvocationResult<>(//
+					new Emission(//
+							pack, //
+							new BasePermission(//
+									product, //
+									condition, //
+									ZonedDateTime.now(), //
+									expiration(condition.validityPeriod())))); // FIXME: #566015
+		} catch (Exception e) {
+			return new BaseServiceInvocationResult<>(//
+					new BaseDiagnostic(Collections.singletonList(new Trouble(new ServiceFailedOnMorsel(),
+							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.e_create_for"), e)))); //$NON-NLS-1$
+		}
 	}
 
 	private ServiceInvocationResult<Emission> fail(ConditionPack pack, TroubleCode code, String explanation,
