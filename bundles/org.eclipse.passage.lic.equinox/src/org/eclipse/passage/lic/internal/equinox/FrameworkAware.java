@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -39,8 +41,6 @@ import org.osgi.framework.ServiceReference;
 @SuppressWarnings("restriction")
 public abstract class FrameworkAware {
 
-	private final String friend = "org.eclipse.passage.seal.demo"; //$NON-NLS-1$
-
 	private final BundleContext context;
 
 	protected FrameworkAware() {
@@ -49,11 +49,17 @@ public abstract class FrameworkAware {
 
 	private Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
 		try {
-			return context.getServiceReferences(FrameworkSupplier.class, null).stream() //
-					// DI is used only to get rid of overwhelming dependencies here
-					// here we can check signature of the seal
-					.filter(supplier -> supplier.getBundle().getSymbolicName().equals(friend))//
-					.findAny();
+			// DI is used only to get rid of overwhelming dependencies here
+			Collection<ServiceReference<FrameworkSupplier>> refs = context.getServiceReferences(FrameworkSupplier.class,
+					null);
+			if (refs.size() != 1) {
+				// we have alien framework, something is wrong
+				return Optional.empty();
+			}
+			ServiceReference<FrameworkSupplier> ref = new ArrayList<>(refs).get(0);
+			// here we can check signature of the seal
+//			ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
+			return Optional.of(ref);
 		} catch (InvalidSyntaxException e) {
 			return Optional.empty();
 		}
@@ -63,7 +69,7 @@ public abstract class FrameworkAware {
 		return new BaseServiceInvocationResult<T>(//
 				new Trouble(//
 						new NoFramework(), //
-						String.format(AccessMessages.EquinoxPassage_no_framewrok, friend))//
+						String.format(AccessMessages.EquinoxPassage_no_framewrok))//
 		);
 	}
 
