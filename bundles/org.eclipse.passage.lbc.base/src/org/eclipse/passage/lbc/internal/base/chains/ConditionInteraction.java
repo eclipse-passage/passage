@@ -14,7 +14,6 @@ package org.eclipse.passage.lbc.internal.base.chains;
 
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -29,9 +28,7 @@ public abstract class ConditionInteraction<T, U> implements Function<T, ServiceI
 	}
 
 	protected final Optional<PersistableLicense> license(Condition request) {
-		return Stream.of(request) //
-				.map(find) //
-				.findAny().get();
+		return find.apply(request);
 	}
 
 }
