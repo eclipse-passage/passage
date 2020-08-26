@@ -77,8 +77,6 @@ public class MailImplTest {
 			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> failure(m, t));
 		} catch (IOException e) {
 			assumeNoException(e);
-		} finally {
-			
 		}
 	}
 
