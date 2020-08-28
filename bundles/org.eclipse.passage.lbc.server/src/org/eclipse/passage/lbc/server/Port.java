@@ -13,19 +13,14 @@
 package org.eclipse.passage.lbc.server;
 
 import java.util.Map;
-import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 @SuppressWarnings("restriction")
 public final class Port extends BaseNamedData<Integer> {
 
-	protected Port(Function<String, Integer> retrieve) {
-		super(retrieve);
-	}
-
 	public Port(Map<String, Object> arguments) {
-		super(key -> Integer.class.isInstance(arguments.get(key)) ? (int) arguments.get(key) : 8080);
+		super(key -> Integer.class.isInstance(arguments.get(key)) ? (int) arguments.get(key) : 8090);
 	}
 
 	@Override

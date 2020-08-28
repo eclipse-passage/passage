@@ -33,6 +33,11 @@
 
    <requires>
       <import feature="org.eclipse.passage.lbc.target.feature"/>
+      <import feature="org.eclipse.passage.lic.emf.feature"/>
+      <import feature="org.eclipse.passage.lic.equinox.feature"/>
+      <import feature="org.eclipse.passage.lic.json.feature"/>
+      <import feature="org.eclipse.passage.lic.licenses.feature"/>
+      <import feature="org.eclipse.passage.lic.net.feature"/>
    </requires>
 
    <plugin
