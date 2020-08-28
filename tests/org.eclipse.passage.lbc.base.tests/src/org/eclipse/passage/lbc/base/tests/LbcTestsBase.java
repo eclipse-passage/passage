@@ -46,9 +46,13 @@ import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissio
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
+import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 @SuppressWarnings("restriction")
 public abstract class LbcTestsBase {
+
+	private final LicensesFactory factory = LicensesFactory.eINSTANCE;
 
 	protected LicensedProduct product() {
 		return new BaseLicensedProduct(identifierValue(), versionValue());
@@ -92,6 +96,13 @@ public abstract class LbcTestsBase {
 
 	protected BoundLicense boundLicense() {
 		return boundLicense(0, 0);
+	}
+
+	protected LicenseGrant grant(String identifier, int capacity) {
+		LicenseGrant grant = factory.createLicenseGrant();
+		grant.setIdentifier(identifier);
+		grant.setCapacity(capacity);
+		return grant;
 	}
 
 	protected ExaminationCertificate certificate() {

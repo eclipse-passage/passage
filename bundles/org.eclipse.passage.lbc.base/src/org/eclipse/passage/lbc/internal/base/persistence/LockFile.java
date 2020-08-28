@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.persistence;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -53,6 +55,14 @@ public final class LockFile implements Supplier<Path> {
 	@Override
 	public Path get() {
 		return folder.get().resolve(identifier);
+	}
+
+	public boolean exists() {
+		return Files.exists(get());
+	}
+
+	public void create() throws IOException {
+		Files.createFile(get());
 	}
 
 }
