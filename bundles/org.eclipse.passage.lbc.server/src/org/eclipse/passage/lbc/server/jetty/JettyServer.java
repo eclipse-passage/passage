@@ -16,12 +16,13 @@ import java.util.Map;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.passage.lbc.internal.api.BackendLauncher;
+import org.eclipse.passage.lbc.server.Dispatcher;
 import org.eclipse.passage.lbc.server.Port;
 import org.osgi.service.component.annotations.Component;
 
 @Component
 @SuppressWarnings("restriction")
-public class JettyServer implements BackendLauncher {
+public final class JettyServer implements BackendLauncher {
 
 	private Server server;
 

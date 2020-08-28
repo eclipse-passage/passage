@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.jetty;
+package org.eclipse.passage.lbc.server;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -20,7 +20,7 @@ import org.eclipse.passage.lbc.internal.base.BaseRequestDispatcher;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 @SuppressWarnings("restriction")
-public class Dispatcher extends BaseNamedData<BackendRequestDispatcher> {
+public final class Dispatcher extends BaseNamedData<BackendRequestDispatcher> {
 
 	protected Dispatcher(Function<String, BackendRequestDispatcher> retrieve) {
 		super(retrieve);

@@ -22,7 +22,7 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 
-public class Handler extends AbstractHandler {
+public final class Handler extends AbstractHandler {
 
 	private final BackendRequestDispatcher dispatcher;
 

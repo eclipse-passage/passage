@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 @Component(immediate = true)
-public class OsgiServerLauncher {
+public final class OsgiServerLauncher {
 
 	private final Set<BackendLauncher> servers = new HashSet<>();
 
