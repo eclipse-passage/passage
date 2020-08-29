@@ -21,16 +21,17 @@ import java.util.stream.Stream;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
-import org.eclipse.passage.lbc.internal.base.ParsedRequest;
+import org.eclipse.passage.lbc.internal.base.ParsedMiningRequest;
 import org.junit.Test;
 
 public final class ParsedRequestTest extends LbcTestsBase {
 
+	@SuppressWarnings("restriction")
 	@Test
 	public void positive() {
 		BackendLicensingRequest request = new FakeLicensingRequest(params(), ""); //$NON-NLS-1$
-		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedRequest()).collect(Collectors.toList())
-				.get(0);
+		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedMiningRequest())
+				.collect(Collectors.toList()).get(0);
 		assertEquals(userValue(), miningRequest.requester().hardware());
 		assertEquals(identifierValue(), miningRequest.product().identifier());
 		assertEquals(versionValue(), miningRequest.product().version());

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.chains;
+package org.eclipse.passage.lbc.chains;
 
 import java.util.List;
 import java.util.function.Function;
@@ -27,6 +27,7 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
+@SuppressWarnings("restriction")
 public final class Mine
 		implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 

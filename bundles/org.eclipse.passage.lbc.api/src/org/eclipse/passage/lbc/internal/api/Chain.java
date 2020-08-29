@@ -12,14 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
+import java.util.function.Function;
+
 /**
  * @since 1.0
  */
-public interface BackendLicensingRequest {
-
-	String parameter(String key);
-
-	String body();
-
-	Requester requester();
+public interface Chain extends Function<BackendLicensingRequest, String> {
+	// Just a wrapper to make code more beautiful
 }

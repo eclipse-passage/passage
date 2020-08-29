@@ -15,11 +15,9 @@ package org.eclipse.passage.lbc.json;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
@@ -30,11 +28,11 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("restriction")
-public final class JsonLoadedPersistableLicense implements Function<Condition, Optional<PersistableLicense>> {
+public final class JsonLoadedLicense implements Function<Condition, Optional<PersistableLicense>> {
 
-	private final Supplier<Path> base;
+	private final LockFolder base;
 
-	public JsonLoadedPersistableLicense(Supplier<Path> base) {
+	public JsonLoadedLicense(LockFolder base) {
 		Objects.requireNonNull(base, "JsonLoadedPersistableLicense::base"); //$NON-NLS-1$
 		this.base = base;
 	}
@@ -43,7 +41,7 @@ public final class JsonLoadedPersistableLicense implements Function<Condition, O
 	public Optional<PersistableLicense> apply(Condition condition) {
 		try {
 			ObjectMapper mapper = new LbcJsonObjectMapper().get();
-			String raw = Files.readString(new LockFile(new LockFolder(base), condition).get(), StandardCharsets.UTF_8);
+			String raw = Files.readString(new LockFile(base, condition).get(), StandardCharsets.UTF_8);
 			PersistableLicense license = new JsonPersistableLicense(mapper.readValue(raw, BoundLicense.class), base);
 			return Optional.of(license);
 		} catch (IOException e) {

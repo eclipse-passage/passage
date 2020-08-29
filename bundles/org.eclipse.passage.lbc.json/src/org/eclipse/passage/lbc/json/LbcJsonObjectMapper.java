@@ -15,6 +15,7 @@ package org.eclipse.passage.lbc.json;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
+import org.eclipse.passage.lbc.internal.base.ReleaseReport;
 import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +33,8 @@ public final class LbcJsonObjectMapper implements Supplier<ObjectMapper> {
 		SimpleModule module = new SimpleModule();
 		module.addSerializer(new BoundLicenseSerializer(BoundLicense.class));
 		module.addDeserializer(BoundLicense.class, new BoundLicenseDeserializer(BoundLicense.class));
+		module.addSerializer(new ReleaseReportSerializer(ReleaseReport.class));
+		module.addDeserializer(ReleaseReport.class, new ReleaseReportDeserializer(ReleaseReport.class));
 		mapper.registerModule(module);
 		return mapper;
 	}

@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.internal.base.ProductVersion;
 /**
  * @since 1.0
  */
-public final class ParsedRequest implements Function<BackendLicensingRequest, ProductLicensesRequest> {
+public final class ParsedMiningRequest implements Function<BackendLicensingRequest, ProductLicensesRequest> {
 
 	@Override
 	public ProductLicensesRequest apply(BackendLicensingRequest request) {

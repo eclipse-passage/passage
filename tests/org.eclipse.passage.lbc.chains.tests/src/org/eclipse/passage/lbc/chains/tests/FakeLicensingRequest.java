@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.tests;
+package org.eclipse.passage.lbc.chains.tests;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
 
-public class FakeLicensingRequest implements BackendLicensingRequest {
+public final class FakeLicensingRequest implements BackendLicensingRequest {
 
 	private final Map<String, String> params;
 	private final String body;

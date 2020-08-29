@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lbc.base.tests" version="2">
+    <resource path="src/org/eclipse/passage/lbc/base/tests/FakeMiningRequest.java" type="org.eclipse.passage.lbc.base.tests.FakeMiningRequest">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="LicensedProduct"/>
+                <message_argument value="FakeMiningRequest"/>
+                <message_argument value="product()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="LicensedProduct"/>
+                <message_argument value="FakeMiningRequest"/>
+                <message_argument value="FakeMiningRequest(LicensedProduct)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lbc/base/tests/FakeVault.java" type="org.eclipse.passage.lbc.base.tests.FakeVault">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="ServiceInvocationResult&lt;T&gt;"/>
+                <message_argument value="FakeVault"/>
+                <message_argument value="availableLicenses(ProductLicensesRequest)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/passage/lbc/base/tests/LbcTestsBase.java" type="org.eclipse.passage.lbc.base.tests.LbcTestsBase">
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="Condition"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="condition()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="ConditionPack"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="conditionPack()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="ExaminationCertificate"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="certificate()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="LicensedProduct"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="product()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="ProductIdentifier"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="identifier()"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="ProductVersion"/>
+                <message_argument value="LbcTestsBase"/>
+                <message_argument value="version()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
