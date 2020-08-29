@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.eclipse.emf.common.command.CommandStack;
@@ -38,10 +39,12 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -70,9 +73,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component
 public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
@@ -84,7 +87,6 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	private UserRegistry userRegistry;
 	private LicenseRegistry licenseRegistry;
 	private OperatorProductService operatorProductService;
-	private StreamCodec streamCodec;
 
 	@Activate
 	public void activate(BundleContext context) {
@@ -154,17 +156,6 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	public void unbindProductOperatorService(OperatorProductService productService) {
 		if (Objects.equals(this.operatorProductService, productService)) {
 			this.operatorProductService = null;
-		}
-	}
-
-	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
-	public void bindStreamCodec(StreamCodec codec) {
-		this.streamCodec = codec;
-	}
-
-	public void unbindStreamCodec(StreamCodec codec) {
-		if (Objects.equals(this.streamCodec, codec)) {
-			this.streamCodec = null;
 		}
 	}
 
@@ -247,7 +238,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 					e);
 		}
 
-		if (streamCodec == null) {
+		Optional<StreamCodec> codec = codec(new BaseLicensedProduct(productIdentifier, productVersion));
+		if (!codec.isPresent()) {
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding;
 			String message = String.format(format, licenseIn);
 			return LicensingResults.createWarning(message, pluginId, attachments);
@@ -272,7 +264,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			String username = productIdentifier;
 			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
 			String password = operatorProductService.createPassword(pvd);
-			streamCodec.encodeStream(licenseInput, licenseOutput, keyStream, username, password);
+			codec.get().encode(licenseInput, licenseOutput, keyStream, username, password);
 			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
@@ -284,7 +276,11 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		}
 	}
 
-	public Path getBasePath() {
+	private Optional<StreamCodec> codec(LicensedProduct product) {
+		return new CodecSupplier(product).get();
+	}
+
+	private Path getBasePath() {
 		String areaValue = environmentInfo.getProperty("user.home"); //$NON-NLS-1$
 		Path passagePath = Paths.get(areaValue, LicensingPaths.FOLDER_LICENSING_BASE);
 		try {

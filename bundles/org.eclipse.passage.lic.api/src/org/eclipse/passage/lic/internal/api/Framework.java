@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.api;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
+import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 
 /**
  * <p>
@@ -41,5 +42,7 @@ public interface Framework {
 	AccessCycleConfiguration accessCycleConfiguration();
 
 	LicenseReadingService licenseReader();
+
+	UnemployedCodecs unemployedCodecs();
 
 }

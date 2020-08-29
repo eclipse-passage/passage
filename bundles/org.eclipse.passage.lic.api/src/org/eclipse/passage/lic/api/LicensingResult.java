@@ -16,6 +16,7 @@ package org.eclipse.passage.lic.api;
  * Information about the outcome of some licensing activity.
  * 
  * @since 0.4.0
+ * @Deprectaed
  */
 public interface LicensingResult {
 

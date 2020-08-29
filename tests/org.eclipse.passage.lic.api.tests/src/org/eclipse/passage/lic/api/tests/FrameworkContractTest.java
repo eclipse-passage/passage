@@ -12,16 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
@@ -182,6 +185,14 @@ public abstract class FrameworkContractTest {
 	@Test
 	public final void canReadLicenseFile() {
 		assertNotNull(framework().get().licenseReader());
+	}
+
+	@Test
+	public final void suppliesCodecs() {
+		UnemployedCodecs service = framework().get().unemployedCodecs();
+		assertNotNull(service);
+		assertNotNull(service.employFor(FakeLicensedProduct::new));
+		assertNotEquals(service.employFor(FakeLicensedProduct::new), service.employFor(FakeLicensedProduct::new));
 	}
 
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(
