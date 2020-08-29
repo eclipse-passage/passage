@@ -18,7 +18,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lbc.internal.base.ReleaseReport.Verdict;
+import org.eclipse.passage.lbc.internal.base.ReleaseReport.ReleaseResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
 /**
@@ -27,40 +27,40 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
  * 
  * @since 1.0
  */
-public final class ReleaseReport implements Supplier<Collection<Verdict>> {
+public final class ReleaseReport implements Supplier<Collection<ReleaseResult>> {
 
-	private final Collection<Verdict> result;
+	private final Collection<ReleaseResult> result;
 
-	public ReleaseReport(Collection<Verdict> result) {
+	public ReleaseReport(Collection<ReleaseResult> result) {
 		Objects.requireNonNull(result, "ReleaseReport::result"); //$NON-NLS-1$
 		this.result = result;
 	}
 
 	public Collection<Condition> bad() {
-		return get().stream().filter(Predicate.not(Verdict::verdict)).map(Verdict::condition)
+		return get().stream().filter(Predicate.not(ReleaseResult::result)).map(ReleaseResult::condition)
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public Collection<Verdict> get() {
+	public Collection<ReleaseResult> get() {
 		return result;
 	}
 
-	public final static class Verdict {
+	public final static class ReleaseResult {
 		private final Condition condition;
-		private final boolean verdict;
+		private final boolean result;
 
-		public Verdict(Condition condition, boolean verdict) {
+		public ReleaseResult(Condition condition, boolean verdict) {
 			this.condition = condition;
-			this.verdict = verdict;
+			this.result = verdict;
 		}
 
 		public Condition condition() {
 			return condition;
 		}
 
-		public boolean verdict() {
-			return verdict;
+		public boolean result() {
+			return result;
 		}
 
 	}

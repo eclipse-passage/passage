@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lbc.internal.base.ReleaseReport;
-import org.eclipse.passage.lbc.internal.base.ReleaseReport.Verdict;
+import org.eclipse.passage.lbc.internal.base.ReleaseReport.ReleaseResult;
 import org.eclipse.passage.lic.internal.json.Json;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -45,13 +45,13 @@ public final class ReleaseReportDeserializer extends StdDeserializer<ReleaseRepo
 			throws IOException, JsonProcessingException {
 		JsonNode root = p.getCodec().readTree(p);
 		ArrayNode nodes = (ArrayNode) root.get("verdicts"); //$NON-NLS-1$
-		List<Verdict> parsed = StreamSupport.stream(nodes.spliterator(), false).map(this::verdict)
+		List<ReleaseResult> parsed = StreamSupport.stream(nodes.spliterator(), false).map(this::result)
 				.collect(Collectors.toList());
 		return new ReleaseReport(parsed);
 	}
 
-	private Verdict verdict(JsonNode node) {
-		return new Verdict(new Json.LicensingCondition().apply(node.get("condition")), //$NON-NLS-1$
+	private ReleaseResult result(JsonNode node) {
+		return new ReleaseResult(new Json.LicensingCondition().apply(node.get("condition")), //$NON-NLS-1$
 				node.get("verdict").booleanValue()); //$NON-NLS-1$
 	}
 
