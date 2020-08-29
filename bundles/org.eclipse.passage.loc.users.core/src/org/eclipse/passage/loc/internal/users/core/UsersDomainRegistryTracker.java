@@ -15,12 +15,12 @@ package org.eclipse.passage.loc.internal.users.core;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
 public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> {
 

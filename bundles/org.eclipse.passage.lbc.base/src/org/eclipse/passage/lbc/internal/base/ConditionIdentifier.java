@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
@@ -27,6 +29,10 @@ public final class ConditionIdentifier extends StringNamedData {
 
 	public ConditionIdentifier(Function<String, String> retrieve) {
 		super(retrieve);
+	}
+
+	public ConditionIdentifier(Supplier<Optional<String>> existing) {
+		this(existing.get().get());
 	}
 
 	@Override

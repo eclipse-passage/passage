@@ -18,7 +18,7 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.ui.i18n.UsersUiMessages;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;

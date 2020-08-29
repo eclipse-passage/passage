@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.internal.workbench.SupplySelectRequest;

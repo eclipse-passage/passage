@@ -12,17 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.chains;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.api.RequestedCondition;
+import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.troubles.ConditionEntryNotFound;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class CanTake implements Function<RequestedCondition, ServiceInvocationResult<Boolean>> {
+@SuppressWarnings("restriction")
+public final class CanTake extends ConditionInteraction<RequestedCondition, Boolean> {
+
+	public CanTake(Function<Condition, Optional<PersistableLicense>> find) {
+		super(find);
+	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> apply(RequestedCondition t) {
-		return new BaseServiceInvocationResult<Boolean>(true);
+	public ServiceInvocationResult<Boolean> apply(RequestedCondition request) {
+		Optional<PersistableLicense> license = license(request.condition());
+		if (license.isPresent()) {
+			return new BaseServiceInvocationResult<Boolean>(license.get().get().takeable());
+		} else {
+			return new BaseServiceInvocationResult<>(
+					new Trouble(new ConditionEntryNotFound(), request.condition().identifier()));
+		}
 	}
 
 }

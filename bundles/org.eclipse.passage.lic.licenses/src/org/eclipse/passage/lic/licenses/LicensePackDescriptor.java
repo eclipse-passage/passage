@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.licenses;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.api.access.LicensingRequest;
-
 /**
  * <p>
  * A <code>"License Pack"</code> is a container for
@@ -69,7 +67,6 @@ public interface LicensePackDescriptor {
 	 * <code>"requestIdentifier"</code> attribute.
 	 *
 	 * @return the request identifier
-	 * @see LicensingRequest
 	 * 
 	 * @since 0.5.0
 	 */

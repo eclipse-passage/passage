@@ -13,12 +13,12 @@
 package org.eclipse.passage.loc.internal.features.core;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.passage.lic.emf.ecore.DomainContentAdapter;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
+import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 
 public class FeaturesDomainRegistryTracker extends DomainContentAdapter<FeatureSetDescriptor, FeatureDomainRegistry> {
 

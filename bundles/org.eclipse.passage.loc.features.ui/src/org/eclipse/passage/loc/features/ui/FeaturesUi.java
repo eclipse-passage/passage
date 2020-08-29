@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.features.ui;
 
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
-import org.eclipse.passage.lic.features.registry.FeatureRegistry;
+import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.ui.i18n.FeatureUiMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;

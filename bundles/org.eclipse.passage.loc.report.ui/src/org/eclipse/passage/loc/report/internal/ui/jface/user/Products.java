@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.products.ProductDescriptor;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 
 final class Products implements Supplier<ProductDescriptor[]> {

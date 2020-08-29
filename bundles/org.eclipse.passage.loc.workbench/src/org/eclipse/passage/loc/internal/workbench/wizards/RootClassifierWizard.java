@@ -3,8 +3,8 @@ package org.eclipse.passage.loc.internal.workbench.wizards;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 
 /**

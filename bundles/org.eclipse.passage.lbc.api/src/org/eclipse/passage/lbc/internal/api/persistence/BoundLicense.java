@@ -34,4 +34,7 @@ public interface BoundLicense {
 	// returns true if it is takeable and false if it is not.
 	boolean takeable();
 
+	// returns true if taken is > 0
+	boolean releasable();
+
 }

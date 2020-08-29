@@ -18,14 +18,14 @@ import java.util.Map;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.passage.lic.emf.edit.EditingDomainRegistryAccess;
-import org.eclipse.passage.lic.emf.edit.SelectionCommandAdvisor;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 import org.eclipse.passage.lic.internal.e4.core.commands.ExecuteCommand;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.features.ui.FeaturesUi;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
+import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
 import org.eclipse.passage.loc.licenses.ui.LicensesUi;
 import org.eclipse.passage.loc.products.ui.ProductsUi;
 import org.eclipse.passage.loc.users.ui.UsersUi;

@@ -15,9 +15,9 @@ package org.eclipse.passage.loc.internal.workbench;
 import java.util.Optional;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.passage.loc.internal.workbench.wizards.BaseClassifierWizard;
 import org.eclipse.passage.loc.internal.workbench.wizards.RootClassifierWizard;

@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 
 public final class UnregisterUri implements Consumer<URI> {

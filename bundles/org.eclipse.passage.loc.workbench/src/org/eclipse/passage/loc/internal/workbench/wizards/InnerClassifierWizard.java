@@ -7,10 +7,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lic.emf.ecore.EditingDomainRegistry;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
+import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 

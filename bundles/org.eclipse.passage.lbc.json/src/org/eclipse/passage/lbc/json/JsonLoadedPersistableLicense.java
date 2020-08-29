@@ -17,44 +17,37 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFile;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("restriction")
-public final class JsonLoadedPersistableLicense implements Supplier<ServiceInvocationResult<PersistableLicense>> {
+public final class JsonLoadedPersistableLicense implements Function<Condition, Optional<PersistableLicense>> {
 
-	private final Condition condition;
 	private final Supplier<Path> base;
 
-	public JsonLoadedPersistableLicense(Condition condition, Supplier<Path> base) {
-		Objects.requireNonNull(condition, "JsonLoadedPersistableLicense::condition"); //$NON-NLS-1$
+	public JsonLoadedPersistableLicense(Supplier<Path> base) {
 		Objects.requireNonNull(base, "JsonLoadedPersistableLicense::base"); //$NON-NLS-1$
-		this.condition = condition;
 		this.base = base;
 	}
 
 	@Override
-	public ServiceInvocationResult<PersistableLicense> get() {
+	public Optional<PersistableLicense> apply(Condition condition) {
 		try {
 			ObjectMapper mapper = new LbcJsonObjectMapper().get();
 			String raw = Files.readString(new LockFile(new LockFolder(base), condition).get(), StandardCharsets.UTF_8);
-			JsonPersistableLicense license = new JsonPersistableLicense(mapper.readValue(raw, BoundLicense.class),
-					base);
-			return new BaseServiceInvocationResult<PersistableLicense>(license);
+			PersistableLicense license = new JsonPersistableLicense(mapper.readValue(raw, BoundLicense.class), base);
+			return Optional.of(license);
 		} catch (IOException e) {
-			return new BaseServiceInvocationResult<>(
-					new Trouble(new TroubleCode.Of(1, "no_file"), "file does not exist")); //$NON-NLS-1$ //$NON-NLS-2$
+			return Optional.empty();
 		}
 	}
 

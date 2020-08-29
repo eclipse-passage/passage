@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.report.internal.core;
 import java.util.List;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.registry.LicenseRegistry;
+import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 
 public final class FakeLicenseRegistry implements LicenseRegistry {
 

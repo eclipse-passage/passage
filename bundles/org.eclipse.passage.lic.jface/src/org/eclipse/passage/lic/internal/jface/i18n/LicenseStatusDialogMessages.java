@@ -24,7 +24,6 @@ public class LicenseStatusDialogMessages extends NLS {
 	public static String LicenseStatusDialog_intention_import_tooltip;
 	public static String LicenseStatusDialog_intention_request;
 	public static String LicenseStatusDialog_intention_request_tooltip;
-	public static String LicenseStatusDialog_message_insufficient;
 	public static String LicenseStatusDialog_title;
 	public static String RequirementStatus_status_ok;
 	public static String WithCertificatSummary_error;

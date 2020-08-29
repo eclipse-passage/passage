@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.report.internal.ui.jface.user;
 import java.util.function.Consumer;
 
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.passage.lic.products.registry.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;

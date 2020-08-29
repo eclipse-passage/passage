@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.base.persistence.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -36,15 +37,16 @@ public final class LicensePersistenceTest extends LbcTestsBase {
 
 	@Test
 	public void persistence() {
-		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense(), () -> root());
+		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense(1, 3), () -> root());
 		try {
 			folder.newFolder("locked"); //$NON-NLS-1$
 			folder.newFile(condition().identifier());
 			persistable.save();
-			PersistableLicense loaded = new JsonLoadedPersistableLicense(condition(), () -> root()).get().data().get();
+			PersistableLicense loaded = new JsonLoadedPersistableLicense(() -> root()).apply(condition()).get();
 			assertEquals(persistable.get().identifier().get().get(), loaded.get().identifier().get().get());
 			assertEquals(persistable.get().taken().get().get(), loaded.get().taken().get().get());
 			assertEquals(persistable.get().capacity().get().get(), loaded.get().capacity().get().get());
+			assertTrue(loaded.get().takeable());
 		} catch (IOException e) {
 			fail();
 		}

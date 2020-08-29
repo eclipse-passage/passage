@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
@@ -23,6 +25,14 @@ public final class LicenseCapacity extends BaseNamedData<Integer> {
 
 	public LicenseCapacity(Function<String, Integer> retrieve) {
 		super(retrieve);
+	}
+
+	public LicenseCapacity(int value) {
+		super((key) -> value);
+	}
+
+	public LicenseCapacity(Supplier<Optional<Integer>> existing) {
+		this(existing.get().get());
 	}
 
 	@Override

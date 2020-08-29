@@ -12,8 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
 /**
  * @since 1.0
@@ -22,6 +21,6 @@ public interface RequestedCondition {
 
 	Requester requester();
 
-	Supplier<Optional<String>> condition();
+	Condition condition();
 
 }
