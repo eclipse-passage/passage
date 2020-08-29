@@ -52,7 +52,7 @@ public final class ReleaseReportDeserializer extends StdDeserializer<ReleaseRepo
 
 	private ReleaseResult result(JsonNode node) {
 		return new ReleaseResult(new Json.LicensingCondition().apply(node.get("condition")), //$NON-NLS-1$
-				node.get("verdict").booleanValue()); //$NON-NLS-1$
+				node.get("result").booleanValue()); //$NON-NLS-1$
 	}
 
 }
