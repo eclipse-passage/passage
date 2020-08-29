@@ -60,6 +60,5 @@ public final class DemoFrameworkContentTest {
 		assumeTrue(framework.isPresent());
 		return framework.get();
 	}
-
 	
 }

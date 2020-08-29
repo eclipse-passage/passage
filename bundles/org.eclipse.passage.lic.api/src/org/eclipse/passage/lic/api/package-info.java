@@ -262,6 +262,8 @@
  * <b>program</b></li>
  * </ul>
  *
+ * FIXME: revise, reflect revised API concept
+ * 
  * @since 0.4.0
  */
 

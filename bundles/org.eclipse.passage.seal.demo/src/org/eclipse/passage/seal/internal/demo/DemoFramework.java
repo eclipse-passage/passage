@@ -17,8 +17,10 @@ import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
+import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.mining.BaseLicenseReadingService;
+import org.eclipse.passage.lic.internal.bc.UnemployedBcCodecs;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
 
 @SuppressWarnings("restriction")
@@ -27,6 +29,7 @@ final class DemoFramework implements Framework {
 	private final SealedAccessCycleConfiguration access;
 	private final LicensedProduct product;
 	private final LicenseReadingService reader;
+	private final UnemployedCodecs codecs;
 
 	static final Framework demo = new DemoFramework();
 
@@ -34,6 +37,7 @@ final class DemoFramework implements Framework {
 		product = productRead();
 		access = new SealedAccessCycleConfiguration(this::product);
 		reader = new BaseLicenseReadingService(product, access.miningEquipment());
+		codecs = new UnemployedBcCodecs();
 	}
 
 	private LicensedProduct productRead() {
@@ -59,6 +63,11 @@ final class DemoFramework implements Framework {
 	@Override
 	public LicenseReadingService licenseReader() {
 		return reader;
+	}
+
+	@Override
+	public UnemployedCodecs unemployedCodecs() {
+		return codecs;
 	}
 
 }

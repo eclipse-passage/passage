@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsReg
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
@@ -115,6 +116,11 @@ final class SabotagedFramework implements Framework {
 
 	@Override
 	public LicenseReadingService licenseReader() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public UnemployedCodecs unemployedCodecs() {
 		throw new UnsupportedOperationException();
 	}
 
