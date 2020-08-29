@@ -5,9 +5,9 @@
    </service>
    <reference bind="bindEnvironmentInfo" interface="org.eclipse.osgi.service.environment.EnvironmentInfo" name="EnvironmentInfo" unbind="unbindEnvironmentInfo"/>
    <reference bind="bindEventAdmin" interface="org.osgi.service.event.EventAdmin" name="EventAdmin" unbind="unbindEventAdmin"/>
-   <reference bind="bindLicenseRegistry" interface="org.eclipse.passage.lic.licenses.registry.LicenseRegistry" name="LicenseRegistry" unbind="unbindLicenseRegistry"/>
-   <reference bind="bindProductOperatorService" interface="org.eclipse.passage.loc.api.OperatorProductService" name="ProductOperatorService" unbind="unbindProductOperatorService"/>
-   <reference bind="bindProductRegistry" interface="org.eclipse.passage.lic.products.registry.ProductRegistry" name="ProductRegistry" unbind="unbindProductRegistry"/>
-   <reference bind="bindUserRegistry" interface="org.eclipse.passage.lic.users.registry.UserRegistry" name="UserRegistry" unbind="unbindUserRegistry"/>
+   <reference bind="bindLicenseRegistry" interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry" name="LicenseRegistry" unbind="unbindLicenseRegistry"/>
+   <reference bind="bindProductOperatorService" interface="org.eclipse.passage.loc.internal.api.OperatorProductService" name="ProductOperatorService" unbind="unbindProductOperatorService"/>
+   <reference bind="bindProductRegistry" interface="org.eclipse.passage.loc.internal.products.ProductRegistry" name="ProductRegistry" unbind="unbindProductRegistry"/>
+   <reference bind="bindUserRegistry" interface="org.eclipse.passage.loc.internal.users.UserRegistry" name="UserRegistry" unbind="unbindUserRegistry"/>
    <implementation class="org.eclipse.passage.loc.internal.licenses.core.LicenseOperatorServiceImpl"/>
 </scr:component>
