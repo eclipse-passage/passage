@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 @SuppressWarnings("restriction")
-public class ReleaseReportDeserializer extends StdDeserializer<ReleaseReport> {
+public final class ReleaseReportDeserializer extends StdDeserializer<ReleaseReport> {
 
 	/**
 	 * generated

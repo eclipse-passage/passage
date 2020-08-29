@@ -21,7 +21,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-public class ReleaseReportSerializer extends StdSerializer<ReleaseReport> {
+public final class ReleaseReportSerializer extends StdSerializer<ReleaseReport> {
 
 	/**
 	 * generated
