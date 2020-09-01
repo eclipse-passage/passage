@@ -23,18 +23,22 @@ import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.email.Mailing;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
-import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.EmailTemplate;
+import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
@@ -42,6 +46,7 @@ import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class IssueLicenseWizard extends Wizard {
 
 	private final IEclipseContext context;
@@ -93,26 +98,30 @@ public class IssueLicenseWizard extends Wizard {
 		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
 		LicensingRequest request = requestPage.getLicensingRequest();
 		LicensePackDescriptor licensePack = packPage.getLicensePack();
-		LicensingResult result = licenseService.issueLicensePack(request, licensePack);
-		int severity = result.getSeverity();
-		if (severity >= LicensingResult.ERROR) {
-			setErrorMessage(result.getMessage());
+		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request, licensePack);
+		if (!new NoSevereErrors().test(result.diagnostic())) {
+			setErrorMessage("Export failed"); //$NON-NLS-1$
+			new DiagnosticDialog(getShell(), result.diagnostic()).open();
 			return false;
 		} else {
 			setErrorMessage(null);
-			int kind = (severity == LicensingResult.WARNING) ? MessageDialog.WARNING : MessageDialog.INFORMATION;
-			MessageDialog.open(kind, getShell(), IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
-					result.getMessage(), SWT.NONE);
+			int kind = new NoErrors().test(result.diagnostic()) ? MessageDialog.INFORMATION : MessageDialog.WARNING;
+			MessageDialog.open(kind, getShell(), //
+					IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
+					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
+							result.data().get().encrypted().toAbsolutePath().toString(), //
+							result.data().get().decrypted().toAbsolutePath().toString()),
+					SWT.NONE);
 			String mailFrom = infoPage.mailFrom();
 			if (!mailFrom.isEmpty()) {
-				processingMail(mailFrom, licensePack, result);
+				processingMail(mailFrom, licensePack, result.data().get());
 			}
-			broadcast(result);
+			broadcast(result.data().get());
 			return true;
 		}
 	}
 
-	private void processingMail(String from, LicensePackDescriptor licensePack, LicensingResult result) {
+	private void processingMail(String from, LicensePackDescriptor licensePack, IssuedLicense result) {
 		Mailing mailing = context.get(Mailing.class);
 		EmailTemplate template = new EmailTemplate(mailing);
 		try {
@@ -128,15 +137,12 @@ public class IssueLicenseWizard extends Wizard {
 		}
 	}
 
-	private void broadcast(LicensingResult result) {
-		Object attached = result.getAttachment(UsersPackage.eINSTANCE.getUserLicense().getName());
-		if (attached instanceof UserLicense) {
-			UserLicense userLicense = (UserLicense) attached;
-			String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
-			LocWokbench.switchPerspective(context, perspectiveId);
-			IEventBroker broker = context.get(IEventBroker.class);
-			broker.post(LocWokbench.TOPIC_SHOW, userLicense);
-		}
+	private void broadcast(IssuedLicense result) {
+		UserLicense userLicense = result.license();
+		String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
+		LocWokbench.switchPerspective(context, perspectiveId);
+		IEventBroker broker = context.get(IEventBroker.class);
+		broker.post(LocWokbench.TOPIC_SHOW, userLicense);
 	}
 
 	private void setErrorMessage(String message) {

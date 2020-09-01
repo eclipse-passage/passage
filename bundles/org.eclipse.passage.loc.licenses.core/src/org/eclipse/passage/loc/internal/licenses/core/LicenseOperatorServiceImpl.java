@@ -38,13 +38,14 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.api.LicensingResult;
-import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -59,6 +60,7 @@ import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.api.OperatorEvents;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
@@ -66,6 +68,9 @@ import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
+import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
+import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingIsPartial;
+import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
@@ -160,11 +165,9 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensingResult issueLicensePack(LicensingRequest request, LicensePackDescriptor template) {
-		if (request == null) {
-			return LicensingResults.createError(
-					LicensesCoreMessages.LicenseOperatorServiceImpl_status_invalid_licensing_request, pluginId);
-		}
+	public ServiceInvocationResult<IssuedLicense> issueLicensePack(LicensingRequest request,
+			LicensePackDescriptor template) {
+		Objects.requireNonNull("LicenseOperatorServiceImpl::issueLicensePack: cannot issue license for null request"); //$NON-NLS-1$
 		LicensePack pack = null;
 		if (template instanceof LicensePack) {
 			pack = (LicensePack) template;
@@ -174,7 +177,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		LicensePack license = EcoreUtil.copy(pack);
 		String errors = LicensingEcore.extractValidationError(license);
 		if (errors != null) {
-			return LicensingResults.createError(errors, pluginId);
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors));
 		}
 		String productIdentifier = license.getProductIdentifier();
 		String productVersion = license.getProductVersion();
@@ -189,11 +192,12 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		String userIdentifier = template.getUserIdentifier();
 		UserDescriptor userDescriptor = userRegistry.getUser(userIdentifier);
 		Map<String, Object> attachments = new HashMap<String, Object>();
+		UserLicense userLicense = null;
 		if (userDescriptor instanceof User) {
 			User user = (User) userDescriptor;
 			String conditionType = userDescriptor.getPreferredConditionType();
 			String expression = userDescriptor.getPreferredConditionExpression();
-			UserLicense userLicense = UsersFactory.eINSTANCE.createUserLicense();
+			userLicense = UsersFactory.eINSTANCE.createUserLicense();
 			userLicense.setPackIdentifier(license.getIdentifier());
 			userLicense.setIssueDate(issueDate);
 			userLicense.setPlanIdentifier(request.getPlanIdentifier());
@@ -218,8 +222,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 				user.eResource().save(null);
 				attachments.put(userLicense.eClass().getName(), userLicense);
 			} catch (IOException e) {
-				return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error,
-						pluginId, e);
+				return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
+						LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 			}
 		}
 
@@ -234,15 +238,14 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			resource.save(null);
 			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(licenseIn));
 		} catch (IOException e) {
-			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
-					e);
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
+					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_save_decoded, e));
 		}
 
 		Optional<StreamCodec> codec = codec(new BaseLicensedProduct(productIdentifier, productVersion));
 		if (!codec.isPresent()) {
-			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding;
-			String message = String.format(format, licenseIn);
-			return LicensingResults.createWarning(message, pluginId, attachments);
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingIsPartial(), //
+					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, licenseIn)));
 		}
 
 		String keyFileName = productIdentifier + '_' + productVersion;
@@ -252,7 +255,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		if (!privateProductToken.exists()) {
 			String pattern = LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
 			String message = String.format(pattern, privateProductToken.getAbsolutePath());
-			return LicensingResults.createError(message, pluginId);
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), message));
 		}
 
 		String licenseOut = storageKeyFolder + File.separator + license.getIdentifier()
@@ -269,10 +272,13 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
 			String message = String.format(format, licenseOut);
 			attachments.put(LicensesPackage.eNAME, licenseOut);
-			return LicensingResults.createOK(message, pluginId, attachments);
+			return new BaseServiceInvocationResult<>(
+					new BaseIssuedLicense(userLicense, Paths.get(licenseOut), Paths.get(licenseIn)));
 		} catch (Exception e) {
-			return LicensingResults.createError(LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, pluginId,
-					e);
+			return new BaseServiceInvocationResult<>(//
+					new Trouble(//
+							new LicenseIssuingFailed(), //
+							LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
 		}
 	}
 

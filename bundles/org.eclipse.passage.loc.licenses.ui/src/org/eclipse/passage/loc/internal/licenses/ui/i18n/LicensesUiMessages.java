@@ -25,6 +25,7 @@ public class LicensesUiMessages extends NLS {
 	public static String LicenseExportHandler_period_message;
 	public static String LicenseExportHandler_period_title;
 	public static String LicenseExportHandler_success_title;
+	public static String LicenseExportHandler_success_description;
 	public static String LicensesUi_select_license_plan;
 	public static String IssuedLicensesReportHandler_unavailableTitle;
 	public static String IssuedLicensesReportHandler_unavailableMessage;
