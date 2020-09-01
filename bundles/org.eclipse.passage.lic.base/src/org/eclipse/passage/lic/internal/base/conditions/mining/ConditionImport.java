@@ -15,13 +15,15 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.eclipse.passage.lic.base.io.NullStreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -69,13 +71,21 @@ public class ConditionImport {
 			}
 		}
 		try (FileInputStream fis = new FileInputStream(source); FileOutputStream fos = new FileOutputStream(dest)) {
-			NullStreamCodec.transfer(fis, fos);
+			transfer(fis, fos);
 			return new BaseServiceInvocationResult<String>(fileName);
 		} catch (Exception e) {
 			String message = String
 					.format(BaseMessages.getString("BaseConditionMinerRegistry_lic_conditions_import_failed"), source); //$NON-NLS-1$
 			return new BaseServiceInvocationResult<>(
 					new Trouble(new ServiceFailedOnInfrastructureDenial(), message, e));
+		}
+	}
+
+	private void transfer(InputStream in, OutputStream out) throws IOException {
+		byte[] buffer = new byte[1024];
+		int len;
+		while ((len = in.read(buffer)) != -1) {
+			out.write(buffer, 0, len);
 		}
 	}
 
