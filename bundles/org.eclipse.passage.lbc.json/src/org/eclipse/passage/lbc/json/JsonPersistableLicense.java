@@ -15,9 +15,7 @@ package org.eclipse.passage.lbc.json;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
@@ -34,12 +32,12 @@ import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 @SuppressWarnings("restriction")
 public final class JsonPersistableLicense extends PersistableLicense {
 
-	private final Supplier<Path> base;
+	private final LockFolder folder;
 
-	public JsonPersistableLicense(BoundLicense license, Supplier<Path> base) {
+	public JsonPersistableLicense(BoundLicense license, LockFolder base) {
 		super(license);
 		Objects.requireNonNull(base, "JsonPersistableLicense::base"); //$NON-NLS-1$
-		this.base = base;
+		this.folder = base;
 	}
 
 	/**
@@ -49,12 +47,8 @@ public final class JsonPersistableLicense extends PersistableLicense {
 	 */
 	@Override
 	public void save() throws IOException {
-		Files.writeString(new LockFile(new LockFolder(base), get()).get(),
-				new LbcJsonObjectMapper().get().writeValueAsString(get()), StandardCharsets.UTF_8);
-	}
-
-	public void writeInitial() throws IOException {
-		save();
+		Files.writeString(new LockFile(folder, get()).get(), new LbcJsonObjectMapper().get().writeValueAsString(get()),
+				StandardCharsets.UTF_8);
 	}
 
 	@Override
@@ -81,7 +75,7 @@ public final class JsonPersistableLicense extends PersistableLicense {
 		return new JsonPersistableLicense(
 				new BaseBoundLicense(new ConditionIdentifier(get().identifier()),
 						new LicenseTaken(get().taken().get().get() + offset), new LicenseCapacity(get().capacity())),
-				base);
+				folder);
 	}
 
 }

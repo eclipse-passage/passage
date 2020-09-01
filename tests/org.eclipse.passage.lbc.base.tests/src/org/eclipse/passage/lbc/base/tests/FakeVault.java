@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 
+@SuppressWarnings("restriction")
 public class FakeVault implements BackendLicenseVault {
 
 	@Override

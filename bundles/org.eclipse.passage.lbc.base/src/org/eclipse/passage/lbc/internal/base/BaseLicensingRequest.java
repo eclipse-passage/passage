@@ -13,15 +13,11 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import java.io.IOException;
-import java.util.Optional;
-import java.util.function.Supplier;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 /**
  * @since 1.0
@@ -34,11 +30,6 @@ public final class BaseLicensingRequest implements BackendLicensingRequest {
 	public BaseLicensingRequest(HttpServletRequest httpRequest) throws IOException {
 		this.httpRequest = httpRequest;
 		this.body = body(httpRequest);
-	}
-
-	@Override
-	public Supplier<Optional<ConditionAction>> action() {
-		return new LicensingAction(key -> new ConditionAction.Of(parameter(key)));
 	}
 
 	@Override

@@ -10,10 +10,9 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.persistence.tests;
+package org.eclipse.passage.lbc.chains.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -21,38 +20,42 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.passage.lbc.base.tests.LbcTestsBase;
+import org.eclipse.passage.lbc.chains.CanTake;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
-import org.eclipse.passage.lbc.json.JsonLoadedLicense;
+import org.eclipse.passage.lbc.internal.base.troubles.ConditionEntryNotFound;
 import org.eclipse.passage.lbc.json.JsonPersistableLicense;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("restriction")
-public final class LicensePersistenceTest extends LbcTestsBase {
+public final class CanTakeChainTest extends ChainTestsBase {
 
 	@Rule
 	public final TemporaryFolder folder = new TemporaryFolder();
 
 	@Test
-	public void persistence() {
-		JsonPersistableLicense persistable = new JsonPersistableLicense(boundLicense(1, 3),
-				new LockFolder(() -> root()));
+	public void existingLicense() {
 		try {
+			PersistableLicense persistable = new JsonPersistableLicense(boundLicense(1, 1),
+					new LockFolder(() -> root()));
 			folder.newFolder("locked"); //$NON-NLS-1$
 			folder.newFile(condition().identifier());
 			persistable.save();
-			PersistableLicense loaded = new JsonLoadedLicense(new LockFolder(() -> root()))
-					.apply(condition()).get();
-			assertEquals(persistable.get().identifier().get().get(), loaded.get().identifier().get().get());
-			assertEquals(persistable.get().taken().get().get(), loaded.get().taken().get().get());
-			assertEquals(persistable.get().capacity().get().get(), loaded.get().capacity().get().get());
-			assertTrue(loaded.get().takeable());
 		} catch (IOException e) {
 			fail();
 		}
+		assertEquals("{ result: \"false\"}", chain()); //$NON-NLS-1$
+	}
+
+	@Test
+	public void nonExistingLicense() {
+		assertEquals("{ error: \"" + new ConditionEntryNotFound().explanation() + "\"}", chain()); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	private String chain() {
+		return new CanTake(new LockFolder(() -> root())).apply(conditionRequest());
 	}
 
 	private Path root() {

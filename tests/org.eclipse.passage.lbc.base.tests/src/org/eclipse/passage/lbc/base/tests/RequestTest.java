@@ -41,7 +41,7 @@ public class RequestTest extends LbcTestsBase {
 		BackendLicensingRequest request;
 		try {
 			request = new BaseLicensingRequest(httpRequest);
-			assertEquals("action", request.action().get().get().name()); //$NON-NLS-1$
+			assertEquals("action", request.parameter("action")); //$NON-NLS-1$ //$NON-NLS-2$
 			assertEquals("value", request.parameter("key")); //$NON-NLS-1$ //$NON-NLS-2$
 			assertEquals(userValue(), request.requester().hardware());
 		} catch (IOException e) {
