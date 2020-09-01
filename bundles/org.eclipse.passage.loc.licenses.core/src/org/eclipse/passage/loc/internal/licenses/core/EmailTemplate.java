@@ -13,7 +13,6 @@
 package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,14 +26,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
+@SuppressWarnings("restriction")
 public class EmailTemplate {
 
 	private final String separator = "%0A"; //$NON-NLS-1$
@@ -90,20 +89,8 @@ public class EmailTemplate {
 		return builder.toString();
 	}
 
-	public File createEmlFile(String from, LicensePackDescriptor licensePack, LicensingResult result)
-			throws IOException {
-		Optional<File> license = Optional.ofNullable(result.getAttachment(LicensesPackage.eNAME))//
-				.filter(String.class::isInstance)//
-				.map(String.class::cast)//
-				.filter(s -> !s.isEmpty())//
-				.map(s -> new File(s))//
-				.filter(File::isFile);
-		if (!license.isPresent()) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
-					LicensesCoreMessages.LicenseRequest_error_attachment_not_exist);
-			throw new FileNotFoundException(LicensesCoreMessages.LicenseRequest_error_attachment_not_exist);
-		}
-		File attachment = license.get();
+	public File createEmlFile(String from, LicensePackDescriptor licensePack, IssuedLicense result) throws IOException {
+		File attachment = result.encrypted().toFile();
 		File emlFile = new File(attachment.toString() + dotEml);
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
 			Mailing service = mailing;

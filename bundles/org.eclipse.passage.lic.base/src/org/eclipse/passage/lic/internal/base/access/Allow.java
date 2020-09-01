@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.base.access;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
 final class Allow extends Cycle<Boolean> {

@@ -17,8 +17,10 @@ import org.eclipse.osgi.util.NLS;
 
 public class LicensesCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages"; //$NON-NLS-1$
+	public static String LicenseOperatorServiceImpl_error_io;
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
+	public static String LicenseOperatorServiceImpl_failed_to_save_decoded;
 	public static String LicenseOperatorServiceImpl_private_key_not_found;
 	public static String LicenseOperatorServiceImpl_status_invalid_licensing_request;
 	public static String LicenseOperatorServiceImpl_w_no_encoding;

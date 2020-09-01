@@ -19,27 +19,26 @@ import java.util.UUID;
 
 import javax.inject.Named;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
-import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
@@ -54,6 +53,7 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
 //FIXME: should be moved to reduce dependencies
+@SuppressWarnings("restriction")
 public class LicenseExportHandler {
 
 	@Execute
@@ -103,22 +103,19 @@ public class LicenseExportHandler {
 
 		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
 
-		LicensingResult result = licenseService.issueLicensePack(request, licensePack);
-		if (result.getSeverity() == LicensingResult.OK) {
+		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request, licensePack);
+		if (new NoSevereErrors().test(result.diagnostic()) && result.data().isPresent()) {
 			MessageDialog.openInformation(shell, LicensesUiMessages.LicenseExportHandler_success_title,
-					result.getMessage());
-			Object attached = result.getAttachment(UsersPackage.eINSTANCE.getUserLicense().getName());
-			if (attached instanceof UserLicense) {
-				UserLicense userLicense = (UserLicense) attached;
-				String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
-				LocWokbench.switchPerspective(context, perspectiveId);
-				IEventBroker broker = context.get(IEventBroker.class);
-				broker.post(LocWokbench.TOPIC_SHOW, userLicense);
-			}
+					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
+							result.data().get().encrypted().toAbsolutePath().toString(), //
+							result.data().get().decrypted().toAbsolutePath().toString()));
+			UserLicense userLicense = result.data().get().license();
+			String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
+			LocWokbench.switchPerspective(context, perspectiveId);
+			IEventBroker broker = context.get(IEventBroker.class);
+			broker.post(LocWokbench.TOPIC_SHOW, userLicense);
 		} else {
-			ErrorDialog.openError(shell, LicensesUiMessages.LicenseExportHandler_error_title,
-					LicensesUiMessages.LicenseExportHandler_error_message,
-					new Status(IStatus.ERROR, getClass(), result.getMessage()));
+			new DiagnosticDialog(shell, result.diagnostic()).open();
 		}
 	}
 

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
-import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 
 /**
@@ -30,6 +30,6 @@ public interface OperatorLicenseService {
 	 */
 	LicensePackDescriptor createLicensePack(LicensingRequest request);
 
-	LicensingResult issueLicensePack(LicensingRequest request, LicensePackDescriptor template);
+	ServiceInvocationResult<IssuedLicense> issueLicensePack(LicensingRequest request, LicensePackDescriptor template);
 
 }

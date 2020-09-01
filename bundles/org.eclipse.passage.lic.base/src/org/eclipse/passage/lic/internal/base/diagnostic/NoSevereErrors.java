@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.internal.base.diagnostic;
 
 import java.util.function.Predicate;
 
