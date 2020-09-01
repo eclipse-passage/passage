@@ -12,41 +12,30 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.server.jetty;
 
-import java.util.Collections;
 import java.util.Map;
 
-import org.eclipse.equinox.app.IApplication;
-import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.passage.lbc.server.Dispatcher;
 import org.eclipse.passage.lbc.server.Port;
+import org.osgi.service.component.annotations.Component;
 
-public final class JettyServer implements IApplication {
+@Component
+public final class JettyServer {
 
 	private Server server;
 
-	@Override
 	@SuppressWarnings("restriction")
-	public Object start(IApplicationContext context) {
+	public void launch(Map<String, Object> arguments) {
 		try {
-			Map<String, Object> arguments = arguments(context);
 			server = new Server(new Port(arguments).get().get());
 			server.setHandler(new Handler(new Dispatcher(arguments).get().get()));
 			server.start();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Integer.valueOf(-1);
 		}
-		return EXIT_OK;
 	}
 
-	private Map<String, Object> arguments(IApplicationContext context) {
-		// FIXME: provide a way to read arguments from configuration
-		return Collections.emptyMap();
-	}
-
-	@Override
-	public void stop() {
+	public void terminate() {
 		try {
 			server.stop();
 		} catch (Exception e) {
