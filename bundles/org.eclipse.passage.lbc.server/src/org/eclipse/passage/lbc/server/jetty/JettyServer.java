@@ -15,7 +15,6 @@ package org.eclipse.passage.lbc.server.jetty;
 import java.util.Map;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.passage.lbc.server.Dispatcher;
 import org.eclipse.passage.lbc.server.Port;
 import org.osgi.service.component.annotations.Component;
 
@@ -28,7 +27,6 @@ public final class JettyServer {
 	public void launch(Map<String, Object> arguments) {
 		try {
 			server = new Server(new Port(arguments).get().get());
-			server.setHandler(new Handler(new Dispatcher(arguments).get().get()));
 			server.start();
 		} catch (Exception e) {
 			e.printStackTrace();
