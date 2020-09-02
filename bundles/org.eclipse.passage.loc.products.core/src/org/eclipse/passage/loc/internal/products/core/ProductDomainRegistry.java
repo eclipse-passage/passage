@@ -25,8 +25,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
+import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -333,7 +333,7 @@ public class ProductDomainRegistry extends BaseDomainRegistry<ProductLineDescrip
 
 	@Override
 	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Path passagePath = new InstallationPath().get();
 		Files.createDirectories(passagePath);
 		return passagePath.resolve(domainName);
 	}

@@ -22,8 +22,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.equinox.io.EquinoxPaths;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
+import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
@@ -146,7 +146,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 
 	@Override
 	protected Path getResourceSetPath() throws Exception {
-		Path passagePath = EquinoxPaths.resolveInstallBasePath();
+		Path passagePath = new InstallationPath().get();
 		Files.createDirectories(passagePath);
 		return passagePath.resolve(domainName);
 	}
