@@ -12,11 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
-import static org.eclipse.passage.lic.api.LicensingResult.ERROR;
-import static org.eclipse.passage.lic.api.LicensingResult.OK;
 import static org.eclipse.passage.loc.internal.api.BaseLicensingResult.CODE_NOMINAL;
-
-import org.eclipse.passage.lic.api.LicensingResult;
+import static org.eclipse.passage.loc.internal.api.LicensingResult.ERROR;
+import static org.eclipse.passage.loc.internal.api.LicensingResult.OK;
 
 /**
  * 

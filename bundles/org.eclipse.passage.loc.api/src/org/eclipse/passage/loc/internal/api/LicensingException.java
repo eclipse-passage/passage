@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.api;
+package org.eclipse.passage.loc.internal.api;
 
 /**
  * <p>

@@ -31,8 +31,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
+import org.eclipse.passage.loc.internal.api.LicensingResult;
 import org.eclipse.passage.loc.internal.api.LicensingResults;
 
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {

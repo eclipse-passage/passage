@@ -18,8 +18,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.passage.lic.api.LicensingResult;
-
 public class BaseLicensingResult implements LicensingResult {
 
 	public static final int CODE_NOMINAL = 0;
