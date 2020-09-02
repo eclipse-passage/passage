@@ -17,11 +17,8 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.eclipse.passage.lic.api.LicensingConfiguration;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PathFromLocalUrl;
 
 /**
@@ -64,52 +61,6 @@ public final class LicensingPaths {
 		File file = new File(url.getPath());
 		Path path = Paths.get(file.getPath());
 		return path.resolve(FOLDER_LICENSING_BASE);
-	}
-
-	/**
-	 * @deprecated use {@link PathFromLicensedProduct} and {@link PathFromLocalUrl}
-	 */
-	@Deprecated
-	public static Path resolveConfigurationPath(URL url, LicensingConfiguration configuration) {
-		Path base = resolveBasePath(url);
-		return resolveConfigurationPath(base, configuration);
-	}
-
-	/**
-	 * @deprecated use {@link PathFromLicensedProduct}
-	 */
-	@Deprecated
-	public static Path resolveConfigurationPath(Path from, LicensingConfiguration configuration) {
-		Path basePath = from;
-		if (configuration == null) {
-			return basePath;
-		}
-		String product = configuration.getProductIdentifier();
-		if (product == null) {
-			return basePath;
-		}
-		Path productPath = basePath.resolve(product);
-		String version = configuration.getProductVersion();
-		if (version == null) {
-			return productPath;
-		}
-		return productPath.resolve(version);
-	}
-
-	/**
-	 * @deprecated use {@link FileNameFromLicensedProduct}
-	 */
-	@Deprecated
-	public static String composeFileName(LicensingConfiguration configuration, String extension) {
-		String product = null;
-		String version = null;
-		if (configuration != null) {
-			product = configuration.getProductIdentifier();
-			version = configuration.getProductVersion();
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(product).append('_').append(version).append(extension);
-		return sb.toString();
 	}
 
 }
