@@ -20,12 +20,10 @@ import java.nio.file.Paths;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.passage.lic.api.LicensingConfiguration;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.LicensingResult;
 import org.eclipse.passage.lic.base.LicensingResults;
 import org.eclipse.passage.lic.base.io.LicensingPaths;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.eclipse.passage.lic.internal.equinox.io.ConfigurationPath;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
@@ -37,16 +35,6 @@ import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
  */
 @Deprecated
 public class EquinoxPaths {
-
-	/**
-	 * @deprecated use {@link InstallationPath} in decoration with
-	 *             {@link PathFromLicensedProduct}
-	 */
-	@Deprecated
-	public static Path resolveInstallConfigurationPath(LicensingConfiguration configuration) {
-		URL url = Platform.getInstallLocation().getURL();
-		return LicensingPaths.resolveConfigurationPath(url, configuration);
-	}
 
 	/**
 	 * @deprecated use {@link InstallationPath} in decoration with
