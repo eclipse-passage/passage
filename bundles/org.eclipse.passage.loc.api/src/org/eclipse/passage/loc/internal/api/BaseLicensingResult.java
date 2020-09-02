@@ -10,15 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base;
+package org.eclipse.passage.loc.internal.api;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.passage.lic.api.LicensingResult;
 
 public class BaseLicensingResult implements LicensingResult {
 

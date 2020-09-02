@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.equinox.app;
+package org.eclipse.passage.loc.workbench.dialogs;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,10 +31,8 @@ import org.osgi.framework.Bundle;
 /**
  * A class that provides processing for branding properties.
  * 
- * @since 0.5.0
- *
  */
-public final class ApplicationBranding {
+final class ApplicationBranding {
 
 	private static final String[] NO_MAPPINGS = new String[0];
 

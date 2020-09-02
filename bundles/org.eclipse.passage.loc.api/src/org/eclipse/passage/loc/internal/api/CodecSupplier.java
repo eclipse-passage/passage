@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.licenses.core;
+package org.eclipse.passage.loc.internal.api;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -21,11 +21,11 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.equinox.FrameworkAware;
 
 @SuppressWarnings("restriction")
-final class CodecSupplier extends FrameworkAware implements Supplier<Optional<StreamCodec>> {
+public final class CodecSupplier extends FrameworkAware implements Supplier<Optional<StreamCodec>> {
 
 	private final LicensedProduct product;
 
-	CodecSupplier(LicensedProduct product) {
+	public CodecSupplier(LicensedProduct product) {
 		this.product = product;
 	}
 

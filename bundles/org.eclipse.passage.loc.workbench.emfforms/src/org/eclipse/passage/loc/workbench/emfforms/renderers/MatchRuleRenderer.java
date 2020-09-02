@@ -23,7 +23,11 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.base.LicensingVersions;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleGreaterOrEqual;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
 
 public class MatchRuleRenderer extends ComboControlRenderer {
 
@@ -38,15 +42,15 @@ public class MatchRuleRenderer extends ComboControlRenderer {
 	@Override
 	protected List<String> getDefinedValues() {
 		List<String> values = new ArrayList<>();
-		values.add(LicensingVersions.RULE_COMPATIBLE);
-		values.add(LicensingVersions.RULE_EQUIVALENT);
-		values.add(LicensingVersions.RULE_GREATER_OR_EQUAL);
-		values.add(LicensingVersions.RULE_PERFECT);
+		values.add(new MatchingRuleCompatible().identifier());
+		values.add(new MatchingRuleEquivalent().identifier());
+		values.add(new MatchingRuleGreaterOrEqual().identifier());
+		values.add(new MatchingRulePerfect().identifier());
 		return values;
 	}
 
 	@Override
 	protected String getUnsetText() {
-		return LicensingVersions.RULE_DEFAULT;
+		return new MatchingRuleDefault().identifier();
 	}
 }

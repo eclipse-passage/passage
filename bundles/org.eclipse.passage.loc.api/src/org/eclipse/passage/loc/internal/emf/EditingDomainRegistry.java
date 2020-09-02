@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.emf;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.lic.api.LicensingResult;
+import org.eclipse.passage.loc.internal.api.LicensingResult;
 
 public interface EditingDomainRegistry<I> {
 

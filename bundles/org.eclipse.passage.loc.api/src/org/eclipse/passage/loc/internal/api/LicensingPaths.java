@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.base.io;
+package org.eclipse.passage.loc.internal.api;
 
 import java.io.File;
 import java.net.URL;
