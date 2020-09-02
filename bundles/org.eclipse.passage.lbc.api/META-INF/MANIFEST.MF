@@ -9,6 +9,6 @@ Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lbc.internal.api,
- org.eclipse.passage.lbc.internal.api.persistence
+Export-Package: org.eclipse.passage.lbc.internal.api;x-internal:=true,
+ org.eclipse.passage.lbc.internal.api.persistence;x-internal:=true
 Bundle-ActivationPolicy: lazy
