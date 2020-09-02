@@ -17,16 +17,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.internal.api.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
@@ -35,7 +39,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.event.EventAdmin;
 
 @Component
@@ -45,7 +48,6 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
-	private StreamCodec streamCodec;
 
 	@Activate
 	public void activate(BundleContext context) {
@@ -74,17 +76,6 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		}
 	}
 
-	@Reference(cardinality = ReferenceCardinality.OPTIONAL)
-	public void bindStreamCodec(StreamCodec codec) {
-		this.streamCodec = codec;
-	}
-
-	public void unbindStreamCodec(StreamCodec codec) {
-		if (this.streamCodec == codec) {
-			this.streamCodec = null;
-		}
-	}
-
 	@Override
 	public String createPassword(ProductVersionDescriptor descriptor) {
 		String id = null;
@@ -108,7 +99,8 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			productVersion = (ProductVersion) descriptor;
 		}
 		if (productVersion == null) {
-			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_invalid_product_version);
+			return new Status(IStatus.ERROR, pluginId,
+					ProductsCoreMessages.ProductOperatorServiceImpl_e_invalid_product_version);
 		}
 		String installationToken = productVersion.getInstallationToken();
 		if (installationToken != null) {
@@ -136,7 +128,8 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		}
 		String identifier = product.getIdentifier();
 		String version = productVersion.getVersion();
-		if (streamCodec == null) {
+		Optional<StreamCodec> codec = codec(new BaseLicensedProduct(identifier, version));
+		if (codec.isEmpty()) {
 			String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys;
 			String message = String.format(pattern, version, product.getName());
 			return new Status(IStatus.ERROR, pluginId, message);
@@ -150,7 +143,8 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			String publicKeyPath = storageKeyFolder + File.separator + keyFileName
 					+ LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
 			String privateKeyPath = storageKeyFolder + File.separator + keyFileName + EXTENSION_KEY_PRIVATE;
-			streamCodec.createKeyPair(publicKeyPath, privateKeyPath, identifier, createPassword(productVersion));
+			codec.get().createKeyPair(Paths.get(publicKeyPath), Paths.get(privateKeyPath), identifier,
+					createPassword(productVersion));
 			productVersion.setInstallationToken(publicKeyPath);
 			productVersion.setSecureToken(privateKeyPath);
 			eventAdmin.postEvent(OperatorProductEvents.publicCreated(publicKeyPath));
@@ -159,7 +153,8 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			String message = String.format(format, publicKeyPath, privateKeyPath);
 			return new Status(IStatus.OK, pluginId, message);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
+			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error,
+					e);
 		}
 	}
 
@@ -173,6 +168,10 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			e.printStackTrace();
 		}
 		return passagePath;
+	}
+
+	private Optional<StreamCodec> codec(LicensedProduct product) {
+		return new CodecSupplier(product).get();
 	}
 
 }

@@ -59,6 +59,7 @@ import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.internal.api.LicensingRequest;
