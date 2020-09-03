@@ -13,10 +13,7 @@
 package org.eclipse.passage.loc.internal.products.core;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.eclipse.core.runtime.IStatus;
@@ -26,12 +23,14 @@ import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.api.CodecSupplier;
-import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.internal.api.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
@@ -41,6 +40,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component
 public class ProductOperatorServiceImpl implements OperatorProductService {
 
@@ -126,48 +126,32 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		if (errors != null) {
 			return new Status(IStatus.ERROR, pluginId, errors);
 		}
-		String identifier = product.getIdentifier();
-		String version = productVersion.getVersion();
-		Optional<StreamCodec> codec = codec(new BaseLicensedProduct(identifier, version));
+		LicensedProduct licensed = new BaseLicensedProduct(product.getIdentifier(), productVersion.getVersion());
+		Optional<StreamCodec> codec = codec(licensed);
 		if (codec.isEmpty()) {
 			String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys;
-			String message = String.format(pattern, version, product.getName());
+			String message = String.format(pattern, licensed.version(), product.getName());
 			return new Status(IStatus.ERROR, pluginId, message);
 		}
-		Path basePath = getBasePath();
+		Path path = new UserHomeProductResidence(licensed).get();
 		try {
-			Path path = basePath.resolve(identifier).resolve(version);
-			Files.createDirectories(path);
-			String storageKeyFolder = path.toFile().getAbsolutePath();
-			String keyFileName = identifier + '_' + version;
-			String publicKeyPath = storageKeyFolder + File.separator + keyFileName
-					+ LicensingPaths.EXTENSION_PRODUCT_PUBLIC;
-			String privateKeyPath = storageKeyFolder + File.separator + keyFileName + EXTENSION_KEY_PRIVATE;
-			codec.get().createKeyPair(Paths.get(publicKeyPath), Paths.get(privateKeyPath), identifier,
-					createPassword(productVersion));
-			productVersion.setInstallationToken(publicKeyPath);
-			productVersion.setSecureToken(privateKeyPath);
-			eventAdmin.postEvent(OperatorProductEvents.publicCreated(publicKeyPath));
-			eventAdmin.postEvent(OperatorProductEvents.privateCreated(privateKeyPath));
+			new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey());
+			Path open = path.resolve(//
+					new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PublicKey()).get());
+			Path secret = path.resolve(//
+					new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey()).get());
+			codec.get().createKeyPair(open, secret, licensed.identifier(), createPassword(productVersion));
+			productVersion.setInstallationToken(open.toString());
+			productVersion.setSecureToken(secret.toString());
+			eventAdmin.postEvent(OperatorProductEvents.publicCreated(open.toString()));
+			eventAdmin.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
 			String format = ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported;
-			String message = String.format(format, publicKeyPath, privateKeyPath);
+			String message = String.format(format, open, secret);
 			return new Status(IStatus.OK, pluginId, message);
 		} catch (Exception e) {
 			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error,
 					e);
 		}
-	}
-
-	public Path getBasePath() {
-		String areaValue = environmentInfo.getProperty("user.home"); //$NON-NLS-1$
-		Path passagePath = Paths.get(areaValue, LicensingPaths.FOLDER_LICENSING_BASE);
-		try {
-			Files.createDirectories(passagePath);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return passagePath;
 	}
 
 	private Optional<StreamCodec> codec(LicensedProduct product) {

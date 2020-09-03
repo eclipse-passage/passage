@@ -17,9 +17,6 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 
 public interface OperatorProductService {
 
-	// FIXME: find better place
-	String EXTENSION_KEY_PRIVATE = ".scr"; //$NON-NLS-1$
-
 	String createPassword(ProductVersionDescriptor productVersion);
 
 	IStatus createProductKeys(ProductVersionDescriptor descriptor);

@@ -29,6 +29,10 @@ public final class FileNameFromLicensedProduct implements Supplier<String> {
 		this.extension = extension;
 	}
 
+	public FileNameFromLicensedProduct(LicensedProduct product, Supplier<String> extension) {
+		this(product, new PassageFileExtension.Of(extension));
+	}
+
 	@Override
 	public String get() {
 		return String.format("%s_%s%s", //$NON-NLS-1$

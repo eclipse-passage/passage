@@ -16,9 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +43,9 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -61,7 +62,6 @@ import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
-import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.api.OperatorEvents;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
@@ -75,8 +75,6 @@ import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationF
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
-import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
@@ -85,19 +83,12 @@ import org.osgi.service.event.EventAdmin;
 @Component
 public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
-	private String pluginId;
-
 	private EnvironmentInfo environmentInfo;
 	private EventAdmin eventAdmin;
 	private ProductRegistry productRegistry;
 	private UserRegistry userRegistry;
 	private LicenseRegistry licenseRegistry;
 	private OperatorProductService operatorProductService;
-
-	@Activate
-	public void activate(BundleContext context) {
-		pluginId = context.getBundle().getSymbolicName();
-	}
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environment) {
@@ -180,11 +171,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		if (errors != null) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors));
 		}
-		String productIdentifier = license.getProductIdentifier();
-		String productVersion = license.getProductVersion();
-		Path basePath = getBasePath();
-		Path path = basePath.resolve(productIdentifier).resolve(productVersion);
-		String storageKeyFolder = path.toFile().getAbsolutePath();
+		LicensedProduct product = new BaseLicensedProduct(license.getProductIdentifier(), license.getProductVersion());
 
 		Date issueDate = new Date();
 		license.setIdentifier(UUID.randomUUID().toString());
@@ -206,8 +193,8 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			userLicense.setValidUntil(request.getValidUntil());
 			userLicense.setConditionExpression(expression);
 			userLicense.setConditionType(conditionType);
-			userLicense.setProductIdentifier(productIdentifier);
-			userLicense.setProductVersion(productVersion);
+			userLicense.setProductIdentifier(product.identifier());
+			userLicense.setProductVersion(product.version());
 			if (userRegistry instanceof IEditingDomainProvider) {
 				IEditingDomainProvider edp = (IEditingDomainProvider) userRegistry;
 				EditingDomain editingDomain = edp.getEditingDomain();
@@ -227,54 +214,47 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 						LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 			}
 		}
-
-		String licenseIn = storageKeyFolder + File.separator + license.getIdentifier()
-				+ LicensingPaths.EXTENSION_LICENSE_DECRYPTED;
-
-		URI uri = URI.createFileURI(licenseIn);
+		Path path = new UserHomeProductResidence(product).get();
+		Path decrypted = path.resolve(license.getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
+		URI uri = URI.createFileURI(decrypted.toString());
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(license);
 		try {
 			resource.save(null);
-			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(licenseIn));
+			eventAdmin.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_save_decoded, e));
 		}
 
-		Optional<StreamCodec> codec = codec(new BaseLicensedProduct(productIdentifier, productVersion));
+		Optional<StreamCodec> codec = codec(product);
 		if (!codec.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingIsPartial(), //
-					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, licenseIn)));
+					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, decrypted)));
 		}
 
-		String keyFileName = productIdentifier + '_' + productVersion;
-		String privateKeyPath = storageKeyFolder + File.separator + keyFileName
-				+ OperatorProductService.EXTENSION_KEY_PRIVATE;
-		File privateProductToken = new File(privateKeyPath);
+		Path privateKeyPath = path.resolve(//
+				new FileNameFromLicensedProduct(product, new PassageFileExtension.PrivateKey()).get());
+		File privateProductToken = privateKeyPath.toFile();
 		if (!privateProductToken.exists()) {
 			String pattern = LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
 			String message = String.format(pattern, privateProductToken.getAbsolutePath());
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), message));
 		}
 
-		String licenseOut = storageKeyFolder + File.separator + license.getIdentifier()
-				+ LicensingPaths.EXTENSION_LICENSE_ENCRYPTED;
-		File licenseEncoded = new File(licenseOut);
-		try (FileInputStream licenseInput = new FileInputStream(licenseIn);
+		Path encrypted = path.resolve(license.getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
+		File licenseEncoded = encrypted.toFile();
+		try (FileInputStream licenseInput = new FileInputStream(decrypted.toFile());
 				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded);
 				FileInputStream keyStream = new FileInputStream(privateProductToken)) {
-			String username = productIdentifier;
-			ProductVersionDescriptor pvd = productRegistry.getProductVersion(productIdentifier, productVersion);
+			String username = product.identifier();
+			ProductVersionDescriptor pvd = productRegistry.getProductVersion(product.identifier(), product.version());
 			String password = operatorProductService.createPassword(pvd);
 			codec.get().encode(licenseInput, licenseOutput, keyStream, username, password);
-			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(licenseOut));
-			String format = LicensesCoreMessages.LicenseOperatorServiceImpl_export_success;
-			String message = String.format(format, licenseOut);
-			attachments.put(LicensesPackage.eNAME, licenseOut);
-			return new BaseServiceInvocationResult<>(
-					new BaseIssuedLicense(userLicense, Paths.get(licenseOut), Paths.get(licenseIn)));
+			eventAdmin.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
+			attachments.put(LicensesPackage.eNAME, encrypted);
+			return new BaseServiceInvocationResult<>(new BaseIssuedLicense(userLicense, encrypted, decrypted));
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(//
 					new Trouble(//
@@ -285,18 +265,6 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
 	private Optional<StreamCodec> codec(LicensedProduct product) {
 		return new CodecSupplier(product).get();
-	}
-
-	private Path getBasePath() {
-		String areaValue = environmentInfo.getProperty("user.home"); //$NON-NLS-1$
-		Path passagePath = Paths.get(areaValue, LicensingPaths.FOLDER_LICENSING_BASE);
-		try {
-			Files.createDirectories(passagePath);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return passagePath;
 	}
 
 	@Override

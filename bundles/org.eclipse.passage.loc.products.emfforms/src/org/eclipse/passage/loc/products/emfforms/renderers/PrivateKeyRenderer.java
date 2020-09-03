@@ -20,9 +20,12 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 
+@SuppressWarnings("restriction")
 public class PrivateKeyRenderer extends ProductVersionKeyRenderer {
+
+	private final PassageFileExtension extention = new PassageFileExtension.PrivateKey();
 
 	@Inject
 	public PrivateKeyRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
@@ -33,7 +36,7 @@ public class PrivateKeyRenderer extends ProductVersionKeyRenderer {
 
 	@Override
 	protected String getFileExtension() {
-		return OperatorProductService.EXTENSION_KEY_PRIVATE;
+		return extention.get();
 	}
 
 }

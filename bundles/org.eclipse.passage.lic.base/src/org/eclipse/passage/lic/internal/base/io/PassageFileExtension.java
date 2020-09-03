@@ -66,4 +66,19 @@ public abstract class PassageFileExtension implements Supplier<String> {
 
 	}
 
+	public static final class Of extends PassageFileExtension {
+
+		private final Supplier<String> extension;
+
+		public Of(Supplier<String> extension) {
+			this.extension = extension;
+		}
+
+		@Override
+		public String get() {
+			return extension.get();
+		}
+
+	}
+
 }
