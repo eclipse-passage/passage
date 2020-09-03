@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.products.emfforms.renderers;
 
-import java.io.File;
+import java.nio.file.Path;
 
 import javax.inject.Inject;
 
@@ -22,10 +22,13 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.FileContentRenderer;
 
+@SuppressWarnings("restriction")
 public abstract class ProductVersionKeyRenderer extends FileContentRenderer<ProductVersion> {
 
 	@Inject
@@ -38,16 +41,10 @@ public abstract class ProductVersionKeyRenderer extends FileContentRenderer<Prod
 
 	@Override
 	protected String extractFilePath(String value, ProductVersion observed) {
-		String productIdentifier = observed.getProduct().getIdentifier();
-		String productVersion = observed.getVersion();
-		StringBuilder sb = new StringBuilder();
-		sb.append(System.getProperty("user.home")); //$NON-NLS-1$
-		sb.append(File.separator).append(LicensingPaths.FOLDER_LICENSING_BASE);
-		sb.append(File.separator).append(productIdentifier);
-		sb.append(File.separator).append(productVersion);
-		sb.append(File.separator).append(productIdentifier).append('_').append(productVersion);
-		sb.append(getFileExtension());
-		return sb.toString();
+		BaseLicensedProduct product = new BaseLicensedProduct(//
+				observed.getProduct().getIdentifier(), observed.getVersion());
+		Path dir = new UserHomeProductResidence(product).get();
+		return dir.resolve(new FileNameFromLicensedProduct(product, this::getFileExtension).get()).toString();
 	}
 
 	protected abstract String getFileExtension();

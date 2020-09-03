@@ -12,7 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.users.emfforms.renderers;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.inject.Inject;
 
@@ -22,10 +23,13 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
-import org.eclipse.passage.loc.internal.api.LicensingPaths;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.FileContentRenderer;
 
+@SuppressWarnings("restriction")
 public class PackIdentifierRenderer extends FileContentRenderer<UserLicense> {
 
 	@Inject
@@ -38,21 +42,14 @@ public class PackIdentifierRenderer extends FileContentRenderer<UserLicense> {
 
 	@Override
 	protected String extractFilePath(String value, UserLicense observed) {
-		String productIdentifier = observed.getProductIdentifier();
-		String productVersion = observed.getProductVersion();
-		StringBuilder sb = new StringBuilder();
-		sb.append(System.getProperty("user.home")); //$NON-NLS-1$
-		sb.append(File.separator).append(LicensingPaths.FOLDER_LICENSING_BASE);
-		sb.append(File.separator).append(productIdentifier);
-		sb.append(File.separator).append(productVersion);
-		sb.append(File.separator).append(value).append(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
-		String encoded = sb.toString();
-		if (new File(encoded).exists()) {
-			return encoded;
+		BaseLicensedProduct product = new BaseLicensedProduct(//
+				observed.getProductIdentifier(), observed.getProductVersion());
+		Path dir = new UserHomeProductResidence(product).get();
+		Path encrypted = dir.resolve(value + new PassageFileExtension.LicenseEncrypted().get());
+		if (Files.exists(encrypted)) {
+			return encrypted.toString();
 		}
-		int index = sb.lastIndexOf(LicensingPaths.EXTENSION_LICENSE_ENCRYPTED);
-		sb.replace(index, sb.length(), LicensingPaths.EXTENSION_LICENSE_DECRYPTED);
-		return sb.toString();
+		return dir.resolve(value + new PassageFileExtension.LicenseDecrypted().get()).toString();
 	}
 
 }
