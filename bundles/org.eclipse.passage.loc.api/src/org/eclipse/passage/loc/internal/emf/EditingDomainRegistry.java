@@ -14,13 +14,13 @@ package org.eclipse.passage.loc.internal.emf;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.loc.internal.api.LicensingResult;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 public interface EditingDomainRegistry<I> {
 
-	LicensingResult registerSource(String source);
+	ServiceInvocationResult<Boolean> registerSource(String source);
 
-	LicensingResult unregisterSource(String source);
+	void unregisterSource(String source);
 
 	Iterable<String> getSources();
 

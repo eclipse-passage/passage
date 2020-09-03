@@ -31,10 +31,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
-import org.eclipse.passage.loc.internal.api.LicensingResult;
-import org.eclipse.passage.loc.internal.api.LicensingResults;
+import org.eclipse.passage.loc.internal.api.diagnostic.code.ResourceLoadFailed;
 
+@SuppressWarnings("restriction")
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
 
 	protected String domainName;
@@ -108,26 +111,25 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		return new HashMap<>();
 	}
 
-	public LicensingResult loadSource(String source) {
+	public ServiceInvocationResult<Boolean> loadSource(String source) {
 		URI uri = createURI(source);
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		Resource resource = resourceSet.createResource(uri);
 		try {
 			resource.load(getLoadOptions());
-			return LicensingResults.createOK(NLS.bind(EmfMessages.BaseDomainRegistry_ok_load, source));
+			return new BaseServiceInvocationResult<>(true);
 		} catch (IOException e) {
-			return LicensingResults.createError(NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, source),
-					getClass().getName(), e);
+			return new BaseServiceInvocationResult<>(new Trouble(//
+					new ResourceLoadFailed(), NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, source), e));
 		}
 	}
 
-	public LicensingResult unloadSource(String source) {
+	public void unloadSource(String source) {
 		URI uri = createURI(source);
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		Resource resource = resourceSet.getResource(uri, false);
 		resource.unload();
 		resourceSet.getResources().remove(resource);
-		return LicensingResults.createOK(NLS.bind(EmfMessages.BaseDomainRegistry_ok_unload, source));
 	}
 
 	protected URI createURI(String source) {
@@ -135,16 +137,15 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 	}
 
 	@Override
-	public LicensingResult registerSource(String source) {
+	public ServiceInvocationResult<Boolean> registerSource(String source) {
 		sources.add(source);
-		LicensingResult loadSource = loadSource(source);
-		return loadSource;
+		return loadSource(source);
 	}
 
 	@Override
-	public LicensingResult unregisterSource(String source) {
+	public void unregisterSource(String source) {
 		sources.remove(source);
-		return unloadSource(source);
+		unloadSource(source);
 	}
 
 	@Override
