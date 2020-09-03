@@ -22,6 +22,7 @@ public class EmfMessages extends NLS {
 	public static String LicensingEcore_inpur_header;
 	public static String LicensingEcore_input_entry;
 	public static String LicensingEcore_input_invalid;
+	public static String ResourceLoadFailed_explanation;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EmfMessages.class);
