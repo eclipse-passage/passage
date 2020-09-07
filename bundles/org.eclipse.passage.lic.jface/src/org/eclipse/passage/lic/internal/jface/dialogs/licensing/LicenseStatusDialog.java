@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.internal.equinox.ProductContacts;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -57,7 +58,8 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
 						200, RequirementStatus::status)
 				.viewer();
-		notice = new StyledText(parent, SWT.NONE);
+		notice = new StyledText(parent, SWT.BORDER);
+		notice.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	}
 
 	@Override
