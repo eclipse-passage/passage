@@ -49,6 +49,8 @@ public class EquinoxMessages extends NLS {
 	public static String LicensedApplication_no_application_context_service_ref;
 
 	public static String LicensedApplication_no_bundle_context;
+
+	public static String ProductContacts_defaults;
 	public static String RequirementsFromCapability_no_attributes;
 	public static String RequirementsFromCapability_no_feature_id;
 
