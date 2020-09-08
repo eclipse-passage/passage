@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
+
 <!--
 	Copyright (c) 2018, 2020 ArSysOp and others
 
@@ -50,11 +51,8 @@
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="org.eclipse.passage.lic.net.feature" installMode="root"/>
-      <feature id="org.eclipse.passage.lic.equinox.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.target.feature"/>
-      <feature id="org.eclipse.passage.lbc.execute.feature"/>
-      <feature id="org.eclipse.passage.lbc.server.launcher.feature"/>
+      <feature id="org.eclipse.passage.lbc.execute.feature" installMode="root"/>
    </features>
 
    <configurations>

@@ -35,8 +35,6 @@
 		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
-		<module>../../bundles/org.eclipse.passage.lbc.server.launcher</module>
-		<module>../../features/org.eclipse.passage.lbc.server.launcher.feature</module>
 		
 		<module>../../bundles/org.eclipse.passage.lbc.chains</module>
 		<module>../../tests/org.eclipse.passage.lbc.chains.tests</module>
