@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -140,6 +141,14 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 		element.setAttribute("application", "org.eclipse.e4.ui.workbench.swt.E4Application"); //$NON-NLS-1$ //$NON-NLS-2$
 		element.setAttribute("name", getStringOption(KEY_PACKAGE_NAME)); //$NON-NLS-1$
 		return element;
+	}
+
+	@Override
+	protected List<String> getRCP4Dependencies() {
+		List<String> result = new ArrayList<>();
+		result.add("javax.annotation"); //$NON-NLS-1$
+		result.addAll(super.getRCP4Dependencies());
+		return result;
 	}
 
 }
