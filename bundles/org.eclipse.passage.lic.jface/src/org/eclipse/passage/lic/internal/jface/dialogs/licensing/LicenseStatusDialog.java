@@ -16,7 +16,11 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
+import org.eclipse.passage.lic.internal.equinox.ProductContacts;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
@@ -26,6 +30,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 	private final ExaminationCertificate certificate;
 	private final Diagnostic diagnostic;
 	private GoodIntention intention = new GoodIntention.Nope(); // truly mutable ^:(
+	private StyledText notice;
 
 	public LicenseStatusDialog(Shell shell, ExaminationCertificate certificate, Diagnostic diagnostic) {
 		super(shell);
@@ -53,11 +58,14 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
 						200, RequirementStatus::status)
 				.viewer();
+		notice = new StyledText(parent, SWT.BORDER | SWT.READ_ONLY);
+		notice.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	}
 
 	@Override
 	protected void inplaceData() {
 		viewer.setInput(new LicensingStatus(certificate).get());
+		notice.setText(new ProductContacts().get());
 	}
 
 	@Override
