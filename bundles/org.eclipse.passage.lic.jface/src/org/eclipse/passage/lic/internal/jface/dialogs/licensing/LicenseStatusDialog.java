@@ -58,7 +58,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				.withColumn(LicenseStatusDialogMessages.LicenseStatusDialog_column_status, //
 						200, RequirementStatus::status)
 				.viewer();
-		notice = new StyledText(parent, SWT.BORDER);
+		notice = new StyledText(parent, SWT.BORDER | SWT.READ_ONLY);
 		notice.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	}
 
