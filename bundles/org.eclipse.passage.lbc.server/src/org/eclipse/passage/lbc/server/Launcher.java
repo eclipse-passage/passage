@@ -21,7 +21,7 @@ import org.eclipse.passage.lbc.server.jetty.Port;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class Main implements BundleActivator, CommandProvider {
+public class Launcher implements BundleActivator, CommandProvider {
 
 	private final JettyServer server = new JettyServer();
 
@@ -32,6 +32,7 @@ public class Main implements BundleActivator, CommandProvider {
 
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
+		// Do nothing
 	}
 
 	@Override

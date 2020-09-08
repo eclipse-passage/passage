@@ -7,7 +7,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Activator: org.eclipse.passage.lbc.server.Main
+Bundle-Activator: org.eclipse.passage.lbc.server.Launcher
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.osgi.services;bundle-version="0.0.0",
  javax.servlet;bundle-version="0.0.0",
