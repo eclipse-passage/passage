@@ -25,6 +25,7 @@ import org.eclipse.passage.lbc.internal.api.Chain;
  * @since 1.0
  */
 
+@SuppressWarnings("restriction")
 public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 
 	private final Map<BackendAction, Chain> chains;

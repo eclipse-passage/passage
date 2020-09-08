@@ -12,22 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.server.jetty;
 
-import java.util.Map;
-
 import org.eclipse.jetty.server.Server;
-import org.eclipse.passage.lbc.server.Port;
-import org.osgi.service.component.annotations.Component;
 
-@Component
 public final class JettyServer {
 
 	private Server server;
 
-	@SuppressWarnings("restriction")
-	public void launch(Map<String, Object> arguments) {
+	public void launch(Port port) {
 		try {
-			server = new Server(new Port(arguments).get().get());
+			server = new Server(port.get());
+			server.setHandler(new Handler());
 			server.start();
+			System.out.println("server started on port: " + port.get()); //$NON-NLS-1$
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -36,9 +32,14 @@ public final class JettyServer {
 	public void terminate() {
 		try {
 			server.stop();
+			System.out.println("server stopped"); //$NON-NLS-1$
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean running() {
+		return server != null && server.isRunning();
 	}
 
 }

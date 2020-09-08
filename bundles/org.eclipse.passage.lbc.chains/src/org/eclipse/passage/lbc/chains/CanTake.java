@@ -18,6 +18,7 @@ import java.util.function.Function;
 import org.eclipse.passage.lbc.chains.transform.ConditionOfRequest;
 import org.eclipse.passage.lbc.internal.api.RequestedCondition;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 import org.eclipse.passage.lbc.internal.base.troubles.ConditionEntryNotFound;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -55,6 +56,11 @@ public final class CanTake extends Operation<RequestedCondition, Boolean> {
 					"{ error: \"" + result.diagnostic().severe().get(0).code().explanation() + "\"}"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
+	}
+
+	@Override
+	public BackendAction action() {
+		return new BackendAction.CanTake();
 	}
 
 }
