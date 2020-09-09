@@ -23,7 +23,6 @@ public class DiagnosticDialogMessages extends NLS {
 	public static String DiagnosticDialog_column_code;
 	public static String DiagnosticDialog_column_details;
 	public static String DiagnosticDialog_description;
-	public static String DiagnosticDialog_error_message;
 	public static String DiagnosticDialog_error_title;
 	public static String DiagnosticDialog_title;
 	static {
