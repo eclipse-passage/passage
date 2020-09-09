@@ -47,7 +47,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(740, 300);
+		shell.setSize(740, 600);
 	}
 
 	@Override

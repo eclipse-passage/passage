@@ -39,7 +39,7 @@ final class RequirementStatus {
 	}
 
 	private String explain(Feature functionality) {
-		return String.format("%s v.%s", functionality.identifier(), functionality.version()); //$NON-NLS-1$
+		return String.format("%s v.%s", functionality.name(), functionality.version()); //$NON-NLS-1$
 	}
 
 	private String explain(TroubleCode trouble) {
