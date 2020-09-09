@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class GoodIntention {
@@ -57,6 +58,23 @@ public abstract class GoodIntention {
 		@Override
 		public boolean paveTheWay() {
 			new EnvironmentStateDialog(shell.get()).open();
+			return false;
+		}
+	}
+
+	final static class Diagnose extends GoodIntention {
+
+		private final Supplier<Shell> shell;
+		private final Diagnostic diagnostic;
+
+		Diagnose(Supplier<Shell> shell, Diagnostic diagnostic) {
+			this.shell = shell;
+			this.diagnostic = diagnostic;
+		}
+
+		@Override
+		public boolean paveTheWay() {
+			new DiagnosticDialog(shell.get(), diagnostic).open();
 			return false;
 		}
 	}

@@ -57,8 +57,8 @@ public abstract class FrameworkAware {
 				return Optional.empty();
 			}
 			ServiceReference<FrameworkSupplier> ref = new ArrayList<>(refs).get(0);
-			// here we can check signature of the seal
-//			ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
+			// here we can check signature of the seal:
+			// ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
 			return Optional.of(ref);
 		} catch (InvalidSyntaxException e) {
 			return Optional.empty();
