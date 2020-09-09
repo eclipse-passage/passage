@@ -22,13 +22,19 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
 
+	private final Predicate<String> predicate;
+
+	public AssignGrantIdentifiers() {
+		predicate = ((Predicate<String>) String::isEmpty).negate();
+	}
+
 	@Override
 	public void accept(LicensePack pack) {
 		String identifier = pack.getIdentifier();
 		EList<LicenseGrant> grants = pack.getLicenseGrants();
 		for (int i = 0; i < grants.size(); i++) {
 			LicenseGrant grant = grants.get(i);
-			if (Optional.ofNullable(grant.getIdentifier()).filter(Predicate.not(String::isEmpty)).isPresent()) {
+			if (Optional.ofNullable(grant.getIdentifier()).filter(predicate).isPresent()) {
 				continue;
 			}
 			grant.setIdentifier(identifier + '#' + i);
