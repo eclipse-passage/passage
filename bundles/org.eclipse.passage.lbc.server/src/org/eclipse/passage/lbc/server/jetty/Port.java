@@ -27,10 +27,10 @@ public abstract class Port implements Supplier<Integer> {
 		return port;
 	}
 
-	public static class OfArgument extends Port {
+	public static class Custom extends Port {
 
-		public OfArgument(String argument) throws NumberFormatException {
-			super(Integer.parseInt(argument));
+		public Custom(int argument) {
+			super(argument);
 		}
 
 	}
@@ -39,6 +39,29 @@ public abstract class Port implements Supplier<Integer> {
 
 		public Default() {
 			super(8090);
+		}
+
+	}
+
+	public static class OfArgument implements Supplier<Port> {
+
+		private final Port port;
+
+		public OfArgument(String argument) {
+			this.port = port(argument);
+		}
+
+		@Override
+		public Port get() {
+			return port;
+		}
+
+		private Port port(String argument) {
+			try {
+				return new Custom(Integer.parseInt(argument));
+			} catch (NumberFormatException e) {
+				return new Default();
+			}
 		}
 
 	}

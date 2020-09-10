@@ -46,12 +46,7 @@ public final class Launcher implements BundleActivator, CommandProvider {
 	 * @throws Exception if there is a framework error
 	 */
 	public void _launch(CommandInterpreter interpreter) throws Exception {
-		if (server.running()) {
-			System.out.println(Messages.already_running);
-			return;
-		}
 		server.launch(port(interpreter));
-
 	}
 
 	/**
@@ -64,10 +59,6 @@ public final class Launcher implements BundleActivator, CommandProvider {
 	 * @throws Exception if there is a framework error
 	 */
 	public void _terminate(CommandInterpreter interpreter) throws Exception {
-		if (!server.running()) {
-			System.out.println(Messages.not_running);
-			return;
-		}
 		server.terminate();
 	}
 
@@ -79,12 +70,6 @@ public final class Launcher implements BundleActivator, CommandProvider {
 	}
 
 	private Port port(CommandInterpreter interpreter) {
-		Port port;
-		try {
-			port = new Port.OfArgument(interpreter.nextArgument());
-		} catch (NumberFormatException e) {
-			port = new Port.Default();
-		}
-		return port;
+		return new Port.OfArgument(interpreter.nextArgument()).get();
 	}
 }

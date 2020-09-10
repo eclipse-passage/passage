@@ -25,8 +25,8 @@ public final class JettyServer {
 			server.setHandler(new Handler());
 			server.start();
 			System.out.println(String.format(Messages.started, port.get()));
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception exception) {
+			System.err.println(String.format(Messages.error_onstart, exception.getClass(), exception.getMessage()));
 		}
 	}
 
@@ -34,13 +34,9 @@ public final class JettyServer {
 		try {
 			server.stop();
 			System.out.println(String.format(Messages.stopped));
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception exception) {
+			System.err.println(String.format(Messages.error_onstop, exception.getClass(), exception.getMessage()));
 		}
-	}
-
-	public boolean running() {
-		return server != null && server.isRunning();
 	}
 
 }

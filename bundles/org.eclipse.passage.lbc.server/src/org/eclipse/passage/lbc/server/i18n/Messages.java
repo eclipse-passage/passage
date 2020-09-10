@@ -29,6 +29,8 @@ public final class Messages {
 	public static final String not_running = getString("server_not_running"); //$NON-NLS-1$
 	public static final String launch = getString("command_launch"); //$NON-NLS-1$
 	public static final String terminate = getString("command_terminate"); //$NON-NLS-1$
+	public static final String error_onstart = getString("error_onstart"); //$NON-NLS-1$
+	public static final String error_onstop = getString("error_onstop"); //$NON-NLS-1$
 
 	private Messages() {
 	}
