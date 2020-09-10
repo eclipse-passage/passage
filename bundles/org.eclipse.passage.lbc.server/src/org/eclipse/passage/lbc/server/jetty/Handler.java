@@ -53,9 +53,9 @@ public final class Handler extends AbstractHandler {
 	}
 
 	@Override
-	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
+	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse response)
 			throws IOException, ServletException {
-		dispatcher.dispatch(new BaseLicensingRequest(request), new BaseLicensingResponse(response));
+		dispatcher.dispatch(new BaseLicensingRequest(wrapper), new BaseLicensingResponse(response));
 	}
 
 }

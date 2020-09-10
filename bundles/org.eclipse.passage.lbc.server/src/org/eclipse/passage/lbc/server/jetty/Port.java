@@ -12,10 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.server.jetty;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
-public final class Port implements Supplier<Integer> {
+public abstract class Port implements Supplier<Integer> {
 
 	private final int port;
 
@@ -24,19 +23,22 @@ public final class Port implements Supplier<Integer> {
 	}
 
 	@Override
-	public Integer get() {
+	public final Integer get() {
 		return port;
 	}
 
-	public static class OfArgument implements Function<String, Port> {
+	public static class OfArgument extends Port {
 
-		@Override
-		public Port apply(String argument) {
-			try {
-				return new Port(Integer.parseInt(argument));
-			} catch (NumberFormatException e) {
-				return new Port(8090);
-			}
+		public OfArgument(String argument) throws NumberFormatException {
+			super(Integer.parseInt(argument));
+		}
+
+	}
+
+	public static class Default extends Port {
+
+		public Default() {
+			super(8090);
 		}
 
 	}

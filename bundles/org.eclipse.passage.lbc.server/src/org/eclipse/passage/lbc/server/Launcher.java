@@ -16,48 +16,75 @@ import java.util.Hashtable;
 
 import org.eclipse.osgi.framework.console.CommandInterpreter;
 import org.eclipse.osgi.framework.console.CommandProvider;
+import org.eclipse.passage.lbc.server.i18n.Messages;
 import org.eclipse.passage.lbc.server.jetty.JettyServer;
 import org.eclipse.passage.lbc.server.jetty.Port;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class Launcher implements BundleActivator, CommandProvider {
+public final class Launcher implements BundleActivator, CommandProvider {
 
 	private final JettyServer server = new JettyServer();
 
 	@Override
-	public void start(BundleContext bundleContext) throws Exception {
-		bundleContext.registerService(CommandProvider.class.getName(), this, new Hashtable<>());
+	public void start(BundleContext context) throws Exception {
+		context.registerService(CommandProvider.class.getName(), this, new Hashtable<>());
 	}
 
 	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
-		// Do nothing
+	public void stop(BundleContext context) throws Exception {
+		server.terminate();
 	}
 
-	@Override
-	public String getHelp() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("launch - starts server on specific port or on default port (8090) if no port was specified"); //$NON-NLS-1$
-		builder.append("terminate - stops server"); //$NON-NLS-1$
-		return builder.toString();
-	}
-
+	/**
+	 * Provides launch command for OSGi framework CLI
+	 * 
+	 * CommandProvider's naming conventions requires underscore in the beginning of
+	 * the command
+	 * 
+	 * @param interpreter framework's command interpreter
+	 * @throws Exception if there is a framework error
+	 */
 	public void _launch(CommandInterpreter interpreter) throws Exception {
 		if (server.running()) {
-			System.out.println("Server is already running"); //$NON-NLS-1$
+			System.out.println(Messages.already_running);
 			return;
 		}
-		server.launch(new Port.OfArgument().apply(interpreter.nextArgument()));
+		server.launch(port(interpreter));
 
 	}
 
-	public void _terminate(@SuppressWarnings("unused") CommandInterpreter interpreter) throws Exception {
+	/**
+	 * Provides terminate command for OSGi framework CLI
+	 * 
+	 * CommandProvider's naming conventions requires underscore in the beginning of
+	 * the command
+	 * 
+	 * @param interpreter framework's command interpreter
+	 * @throws Exception if there is a framework error
+	 */
+	public void _terminate(CommandInterpreter interpreter) throws Exception {
 		if (!server.running()) {
-			System.out.println("Server is not running"); //$NON-NLS-1$
+			System.out.println(Messages.not_running);
 			return;
 		}
 		server.terminate();
 	}
 
+	@Override
+	public String getHelp() {
+		return new StringBuilder() //
+				.append(String.format(Messages.launch, new Port.Default().get())) //
+				.append(Messages.terminate).toString();
+	}
+
+	private Port port(CommandInterpreter interpreter) {
+		Port port;
+		try {
+			port = new Port.OfArgument(interpreter.nextArgument());
+		} catch (NumberFormatException e) {
+			port = new Port.Default();
+		}
+		return port;
+	}
 }

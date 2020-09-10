@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.server.jetty;
 
 import org.eclipse.jetty.server.Server;
+import org.eclipse.passage.lbc.server.i18n.Messages;
 
 public final class JettyServer {
 
@@ -23,7 +24,7 @@ public final class JettyServer {
 			server = new Server(port.get());
 			server.setHandler(new Handler());
 			server.start();
-			System.out.println("server started on port: " + port.get()); //$NON-NLS-1$
+			System.out.println(String.format(Messages.started, port.get()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,7 +33,7 @@ public final class JettyServer {
 	public void terminate() {
 		try {
 			server.stop();
-			System.out.println("server stopped"); //$NON-NLS-1$
+			System.out.println(String.format(Messages.stopped));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
