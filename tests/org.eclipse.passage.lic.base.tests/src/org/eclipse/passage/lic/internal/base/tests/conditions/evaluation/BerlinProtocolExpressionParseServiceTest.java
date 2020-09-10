@@ -19,12 +19,12 @@ import org.eclipse.passage.lic.api.tests.conditions.evaluation.ExpressionParsing
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpression;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class AndsProtocolExpressionParseServiceTest extends ExpressionParsingServiceContractTest {
+public final class BerlinProtocolExpressionParseServiceTest extends ExpressionParsingServiceContractTest {
 
 	@Test
 	public void parsesValidData() {
@@ -71,7 +71,7 @@ public final class AndsProtocolExpressionParseServiceTest extends ExpressionPars
 
 	@Override
 	protected ExpressionParsingService parser() {
-		return new AndsProtocolExpressionParseService();
+		return new BerlinProtocolExpressionParseService();
 	}
 
 	@Override

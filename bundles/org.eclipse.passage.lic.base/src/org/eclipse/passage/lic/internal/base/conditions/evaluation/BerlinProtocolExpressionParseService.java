@@ -26,9 +26,9 @@ import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
  * 
  */
 @SuppressWarnings("restriction")
-public final class AndsProtocolExpressionParseService implements ExpressionParsingService {
+public final class BerlinProtocolExpressionParseService implements ExpressionParsingService {
 
-	private final ExpressionProtocol protocol = new ExpressionProtocol.Ands();
+	private final ExpressionProtocol protocol = new ExpressionProtocol.Berlin();
 	private final String separator = ";"; //$NON-NLS-1$
 	private final String mediator = "="; //$NON-NLS-1$
 
@@ -50,7 +50,7 @@ public final class AndsProtocolExpressionParseService implements ExpressionParsi
 		}
 		if (couples.isEmpty()) {
 			throw new ExpressionParsingException(String.format(//
-					ConditionsEvaluationMessages.getString("AndsProtocolExpressionParseService.no_checks"), //$NON-NLS-1$
+					ConditionsEvaluationMessages.getString("BerlinProtocolExpressionParseService.no_checks"), //$NON-NLS-1$
 					expression));
 		}
 		return new SimpleMapExpression(protocol, couples);
@@ -60,7 +60,8 @@ public final class AndsProtocolExpressionParseService implements ExpressionParsi
 		String[] couple = segment.split(mediator);
 		if (coupleIsInvalid(couple)) {
 			throw new ExpressionParsingException(String.format(//
-					ConditionsEvaluationMessages.getString("AndsProtocolExpressionParseService.invalid_format"), segment)); //$NON-NLS-1$
+					ConditionsEvaluationMessages.getString("BerlinProtocolExpressionParseService.invalid_format"), //$NON-NLS-1$
+					segment));
 		}
 		couples.put(couple[0].trim(), couple[1].trim());
 	}
