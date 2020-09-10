@@ -39,7 +39,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
@@ -144,7 +144,7 @@ public final class BasePermissionEmittingServiceTest {
 	}
 
 	private ExpressionPasringRegistry parsers() {
-		return () -> new ReadOnlyRegistry<>(Collections.singleton(new AndsProtocolExpressionParseService()));
+		return () -> new ReadOnlyRegistry<>(Collections.singleton(new BerlinProtocolExpressionParseService()));
 	}
 
 	private ExpressionTokenAssessorsRegistry assessors() {

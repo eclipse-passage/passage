@@ -47,10 +47,18 @@ public abstract class ExpressionProtocol implements ServiceId {
 		return identifier;
 	}
 
-	public static final class Ands extends ExpressionProtocol {
+	public static final class Berlin extends ExpressionProtocol {
 
-		public Ands() {
-			super("ands"); //$NON-NLS-1$
+		public Berlin() {
+			super("berlin"); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class Munich extends ExpressionProtocol {
+
+		public Munich() {
+			super("munich"); //$NON-NLS-1$
 		}
 
 	}
@@ -58,7 +66,7 @@ public abstract class ExpressionProtocol implements ServiceId {
 	public static final class Default extends ExpressionProtocol {
 
 		public Default() {
-			super(new Ands().identifier());
+			super(new Berlin().identifier());
 		}
 
 	}

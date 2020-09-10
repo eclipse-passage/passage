@@ -44,7 +44,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
@@ -107,7 +107,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 						expressionEvaluators())//
 		));
 		expressionParsers = new ReadOnlyRegistry<>(Arrays.asList(//
-				new AndsProtocolExpressionParseService()//
+				new BerlinProtocolExpressionParseService()//
 		));
 		expressionEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new SimpleMapExpressionEvaluationService()//
