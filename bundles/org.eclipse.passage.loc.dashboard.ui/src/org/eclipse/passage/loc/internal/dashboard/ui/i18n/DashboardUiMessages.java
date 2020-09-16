@@ -42,6 +42,8 @@ public class DashboardUiMessages extends NLS {
 	public static String DashboardPanelBlock_show_text;
 	public static String DefaultDashboardPanelAdvisor_btn_issue_description;
 	public static String DefaultDashboardPanelAdvisor_btn_issue_text;
+	public static String DefaultDashboardPanelAdvisor_btn_issue_floating_description;
+	public static String DefaultDashboardPanelAdvisor_btn_issue_floating_text;
 	public static String DefaultDashboardPanelAdvisor_create_link;
 	public static String DefaultDashboardPanelAdvisor_feature_show;
 	public static String DefaultDashboardPanelAdvisor_feature_group;
