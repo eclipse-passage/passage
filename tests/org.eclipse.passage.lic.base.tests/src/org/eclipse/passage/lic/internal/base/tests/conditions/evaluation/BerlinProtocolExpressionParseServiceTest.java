@@ -36,7 +36,7 @@ public final class BerlinProtocolExpressionParseServiceTest extends ExpressionPa
 	}
 
 	@Test
-	public void pasingIsAccurate() throws ExpressionParsingException {
+	public void parsingIsAccurate() throws ExpressionParsingException {
 		SimpleMapExpression parsed = (SimpleMapExpression) parser().parsed("k1=v1;k2=*;"); //$NON-NLS-1$
 		assertEquals("v1", parsed.expected("k1")); //$NON-NLS-1$//$NON-NLS-2$
 		assertEquals("*", parsed.expected("k2")); //$NON-NLS-1$//$NON-NLS-2$

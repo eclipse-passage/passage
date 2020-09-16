@@ -12,38 +12,31 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
+import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
+/**
+ * 
+ */
 @SuppressWarnings("restriction")
-public final class SimpleMapExpression implements ParsedExpression {
+public final class MunichProtocolExpressionParseService implements ExpressionParsingService {
 
-	private final Map<String, String> checks;
-	private final ExpressionProtocol protocol;
-
-	public SimpleMapExpression(ExpressionProtocol protocol, Map<String, String> checks) {
-		Objects.requireNonNull(protocol);
-		Objects.requireNonNull(checks);
-		this.protocol = protocol;
-		this.checks = new HashMap<>(checks);
-	}
+	private final ExpressionProtocol protocol = new ExpressionProtocol.Munich();
 
 	@Override
-	public ExpressionProtocol protocol() {
+	public ExpressionProtocol id() {
 		return protocol;
 	}
 
-	public Collection<String> keys() {
-		return checks.keySet();
-	}
-
-	public String expected(String key) {
-		return checks.get(key);
+	/**
+	 * Expect the incoming {@code expression} to be a pipe-separated strings, which
+	 * are also expressions under other protocols. Meaning {@code OR}-ed results.
+	 */
+	@Override
+	public ParsedExpression parsed(String expression) throws ExpressionParsingException {
+		return new MunichExpression();
 	}
 
 }
