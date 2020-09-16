@@ -282,23 +282,40 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	@Override
 	public void createFooterInfo(Composite parent) {
-		Label summary = new Label(parent, SWT.NONE);
 		GridDataFactory gdf = GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false);
+		appendSummary(parent, gdf);
+		appendIssueLicenseButton(parent, gdf, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_text, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_description, //
+				this::executeIssueLicenseCommand);
+		appendIssueLicenseButton(parent, gdf, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_floating_text, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_floating_description, //
+				this::executeIssueFloatingLicenseCommand);
+	}
+
+	private void appendSummary(Composite parent, GridDataFactory gdf) {
+		Label summary = new Label(parent, SWT.NONE);
 		summary.setLayoutData(gdf.create());
 		summary.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_summary);
-//		Label spacer = new Label(parent, SWT.NONE);
-//		spacer.setLayoutData(gdf.create());
-		Button issueLicense = new Button(parent, SWT.PUSH);
-		issueLicense.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
-		issueLicense.setLayoutData(gdf.create());
-		issueLicense.setText(DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_text);
-		issueLicense.setToolTipText(DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_description);
-		issueLicense.addSelectionListener(SelectionListener.widgetSelectedAdapter(c -> executeIssueLicenseCommand()));
+	}
 
+	private void appendIssueLicenseButton(Composite parent, GridDataFactory gdf, //
+			String text, String tooltip, Runnable issuing) {
+		Button issue = new Button(parent, SWT.PUSH);
+		issue.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		issue.setLayoutData(gdf.create());
+		issue.setText(text);
+		issue.setToolTipText(tooltip);
+		issue.addSelectionListener(SelectionListener.widgetSelectedAdapter(c -> issuing.run()));
 	}
 
 	protected void executeIssueLicenseCommand() {
 		new ExecuteCommand(DashboardUi.COMMAND_ISSUE_LICENSE, eclipseContext).apply(Collections.emptyMap());
+	}
+
+	protected void executeIssueFloatingLicenseCommand() {
+		new ExecuteCommand(DashboardUi.COMMAND_ISSUE_FLOATING_LICENSE, eclipseContext).apply(Collections.emptyMap());
 	}
 
 	protected void createLinks(Group group, String domain) {

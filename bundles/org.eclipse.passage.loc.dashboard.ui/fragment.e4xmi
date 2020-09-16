@@ -18,12 +18,14 @@
       <parameters xmi:id="_31JR0A6ZEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.commandparameter.show.perspective" name="Command Parameter Show Perspective"/>
     </elements>
     <elements xsi:type="commands:Command" xmi:id="_4kU3UIbPEemHgffLhDrdUQ" elementId="org.eclipse.passage.loc.dashboard.ui.command.issue.license" commandName="Issue License"/>
+    <elements xsi:type="commands:Command" xmi:id="_4kU2UIbPEemHgffLhDrdUQ" elementId="org.eclipse.passage.loc.dashboard.ui.command.issue.floatinglicense" commandName="Issue Floating License"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_8eD6gA6VEemZZbTGyctv6w" featurename="handlers" parentElementId="org.eclipse.passage.loc.workbench.application">
     <elements xsi:type="commands:Handler" xmi:id="_EWXTgA6WEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.handler.create" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardCreateHandler" command="_Xou0sA6ZEemZZbTGyctv6w"/>
     <elements xsi:type="commands:Handler" xmi:id="_6a958AzrEem1Ya6RV5AKlw" elementId="org.eclipse.passage.loc.dashboard.ui.handler.load" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardLoadHandler" command="_b49TwA6ZEemZZbTGyctv6w"/>
     <elements xsi:type="commands:Handler" xmi:id="_CbBrYA6aEemZZbTGyctv6w" elementId="org.eclipse.passage.loc.dashboard.ui.handler.show" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardShowHandler" command="_glc4EA6ZEemZZbTGyctv6w"/>
     <elements xsi:type="commands:Handler" xmi:id="_N3kygIbQEemHgffLhDrdUQ" elementId="org.eclipse.passage.loc.dashboard.ui.handler.issue.license" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardIssueLicenseHandler" command="_4kU3UIbPEemHgffLhDrdUQ"/>
+    <elements xsi:type="commands:Handler" xmi:id="_1ACYUPgSEeqy8bPj_tzc0w" elementId="org.eclipse.passage.loc.dashboard.ui.handler.issue.floatinglicense" contributionURI="bundleclass://org.eclipse.passage.loc.dashboard.ui/org.eclipse.passage.loc.dashboard.ui.handlers.DashboardIssueFloatingLicenseHandler" command="_4kU2UIbPEemHgffLhDrdUQ"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_kZSn8Ap5EemYD4Lz_PRA6A" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.perspectivestack.main" positionInList="first">
     <elements xsi:type="advanced:Perspective" xmi:id="_rrOkgAp5EemYD4Lz_PRA6A" elementId="org.eclipse.passage.loc.dashboard.perspective.main" selectedElement="_yd-qsAp5EemYD4Lz_PRA6A" label="Dashboard" iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/obj16/passage.png">
@@ -46,7 +48,7 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_5NZzUKPhEeqJg8Ul_v_2Vg" featurename="children" parentElementId="org.eclipse.passage.loc.workbench.toolbar.main" positionInList="before:org.eclipse.passage.loc.workbench.toolbarseparator.fie">
     <elements xsi:type="menu:HandledToolItem" xmi:id="_izyK0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.dashboard.ui.handledtoolitem.view" label="Dashboard" iconURI="platform:/plugin/org.eclipse.passage.lic.jface/icons/obj16/passage.png" tooltip="View Dashboard" command="_qx5wAAqeEemYD4Lz_PRA6A">
       <tags>FORCE_TEXT</tags>
-      <parameters xmi:id="_9KfY0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.dashboard.ui.parameter.view.perspective" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.dashboard.perspective.main"/>
+      <parameters xmi:id="_9KfY0E-_EeqvaIgEeXj4Hg" elementId="org.eclipse.passage.loc.dashboard.ui.parameter.view.perspective.0" name="org.eclipse.passage.loc.workbench.commandparameter.perspective.id" value="org.eclipse.passage.loc.dashboard.perspective.main"/>
     </elements>
   </fragments>
 </fragment:ModelFragments>

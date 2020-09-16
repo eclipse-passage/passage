@@ -47,6 +47,7 @@ public class DashboardUi {
 	public static final String COMMANDPARAMETER_SHOW_PERSPECTIVE = "org.eclipse.passage.loc.dashboard.ui.commandparameter.show.perspective"; //$NON-NLS-1$
 
 	public static final String COMMAND_ISSUE_LICENSE = "org.eclipse.passage.loc.dashboard.ui.command.issue.license"; //$NON-NLS-1$
+	public static final String COMMAND_ISSUE_FLOATING_LICENSE = "org.eclipse.passage.loc.dashboard.ui.command.issue.floatinglicense"; //$NON-NLS-1$
 
 	public static void showDetails(IEclipseContext context, String domain, String classifier, String perspectiveId) {
 		Iterable<?> input = resolveInput(context, domain, classifier);
