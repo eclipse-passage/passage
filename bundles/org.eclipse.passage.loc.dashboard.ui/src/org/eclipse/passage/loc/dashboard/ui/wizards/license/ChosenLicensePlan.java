@@ -33,7 +33,6 @@ public class ChosenLicensePlan extends TextLicenseData<LicensePlanDescriptor> {
 	@Override
 	protected T select(Text control) {
 		Optional<LicensePlanDescriptor> data = data();
-
 		Collection<LicensePlanDescriptor> initial = data.map(Arrays::asList).orElseGet(Collections::emptyList);
 		LicensePlanDescriptor selected = new SelectRoot<>(new SelectLicensePlan(context).get(), context).get()
 				.orElse(null);

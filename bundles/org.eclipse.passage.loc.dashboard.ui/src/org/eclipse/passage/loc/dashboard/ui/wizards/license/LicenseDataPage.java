@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -91,11 +90,6 @@ public final class LicenseDataPage extends WizardPage {
 		this.productVersionDescriptor = version;
 		this.validFrom = LocalDate.now();
 		this.validUntil = validFrom.plusMonths(12);
-	}
-
-	public LicensingRequest getLicensingRequest() {
-		return createLicensingRequest(userDescriptor, licensePlanDescriptor, productVersionDescriptor, validFrom,
-				validUntil);
 	}
 
 }
