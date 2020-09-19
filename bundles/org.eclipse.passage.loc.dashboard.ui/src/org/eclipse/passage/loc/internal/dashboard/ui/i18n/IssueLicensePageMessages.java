@@ -39,6 +39,9 @@ public class IssueLicensePageMessages extends NLS {
 	public static String IssueLicenseMailRequestDialog_title;
 	public static String IssueLicenseMailRequestDialog_text;
 	public static String IssueLicensingMailJob_task_text;
+	public static String IssueFloatingLicenseWizard_title;
+	public static String Floating_DataPage_description;
+	public static String Floating_DataPage_title;
 
 	static {
 		// initialize resource bundle

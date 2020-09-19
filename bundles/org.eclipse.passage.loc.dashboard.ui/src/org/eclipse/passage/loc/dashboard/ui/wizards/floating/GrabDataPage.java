@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.dashboard.ui.wizards;
+package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
 import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
 
@@ -53,34 +53,29 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public final class IssueLicenseRequestPage extends WizardPage {
+public class GrabDataPage extends WizardPage {
 
 	private final MandatoryService context;
+	private final LabelProvider labels;
+	private Text plan;
+	private Text users;
+	private Text product;
+	private Text from;
+	private Text until;
 
-	private LicensePlanDescriptor licensePlanDescriptor;
-	private UserDescriptor userDescriptor;
-	private ProductVersionDescriptor productVersionDescriptor;
-
-	private LocalDate validFrom;
-	private LocalDate validUntil;
-
-	private final LabelProvider labelProvider;
-
-	protected IssueLicenseRequestPage(String pageName, IEclipseContext context) {
-		super(pageName);
+	protected GrabDataPage(IEclipseContext context) {
+		super("data"); //$NON-NLS-1$
 		this.context = new MandatoryEclipseContext(context);
-		labelProvider = new DomainRegistryLabelProvider();
-		setTitle(IssueLicensePageMessages.IssueLicenseRequestPage_page_title);
-		setDescription(IssueLicensePageMessages.IssueLicenseRequestPage_page_description);
+		labels = new DomainRegistryLabelProvider();
+		setTitle(IssueLicensePageMessages.Floating_DataPage_title);
+		setDescription(IssueLicensePageMessages.Floating_DataPage_description);
 	}
 
 	@Override
 	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NONE);
-		container.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
-		container.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
+		Composite container = container(parent);
 		setControl(container);
-		createLicenseBlock(container);
+		createLicensePlanBlock(container);
 		createUserBlock(container);
 		createProductBlock(container);
 		createDatesBlock(container);
@@ -88,42 +83,46 @@ public final class IssueLicenseRequestPage extends WizardPage {
 		Dialog.applyDialogFont(container);
 	}
 
-	private void createLicenseBlock(Composite composite) {
-		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_license_plan,
-				t -> selectLicensePlan(t), licensePlanDescriptor);
+	private Composite container(Composite parent) {
+		Composite container = new Composite(parent, SWT.NONE);
+		container.setLayoutData(GridDataFactory.fillDefaults().grab(false, true).create());
+		container.setLayout(GridLayoutFactory.fillDefaults().numColumns(3).create());
+		return container;
+	}
+
+	private void createLicensePlanBlock(Composite composite) {
+		plan = textButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_license_plan,
+				this::selectLicensePlan);
 	}
 
 	private void createUserBlock(Composite composite) {
-		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_user, t -> selectUser(t),
-				userDescriptor);
+		users = textButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_user, this::selectUser);
 	}
 
 	private void createProductBlock(Composite composite) {
-		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_product_version,
-				t -> selectProductVersion(t), productVersionDescriptor);
+		product = textButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_product_version,
+				this::selectProductVersion);
 	}
 
 	private void createDatesBlock(Composite composite) {
-		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_from,
-				t -> selectFromDate(t), validFrom);
-		createTextButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_until,
-				t -> selectUntilDate(t), validUntil);
+		from = textButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_from,
+				this::selectFromDate);
+		until = textButtonBlock(composite, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_until,
+				this::selectUntilDate);
 	}
 
-	private void createTextButtonBlock(Composite composite, String labelText, Function<Text, String> s,
-			Object initial) {
+	private Text textButtonBlock(Composite composite, String labelText, Function<Text, String> inplace) {
 		Label label = new Label(composite, SWT.NONE);
 		label.setText(labelText);
 		label.setLayoutData(GridDataFactory.fillDefaults().create());
 		Text text = new Text(composite, SWT.READ_ONLY | SWT.BORDER);
-		text.setData(initial);
 		text.addModifyListener(m -> setPageComplete(validatePage()));
-		text.setText(labelProvider.getText(initial));
 		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
 		Button select = new Button(composite, SWT.PUSH);
 		select.setText(IssueLicensePageMessages.IssueLicenseRequestPage_btn_select_text);
-		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(s.apply(text))));
+		select.addSelectionListener(widgetSelectedAdapter(event -> text.setText(inplace.apply(text))));
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
+		return text;
 	}
 
 	private String selectLicensePlan(Text text) {
@@ -135,8 +134,7 @@ public final class IssueLicenseRequestPage extends WizardPage {
 		LicensePlanDescriptor selected = new SelectRoot<>(new SelectLicensePlan(context).get(), context).get()
 				.orElse(null);
 		text.setData(selected);
-		licensePlanDescriptor = selected;
-		return labelProvider.getText(selected);
+		return labels.getText(selected);
 	}
 
 	private String selectUser(Text text) {
@@ -148,8 +146,7 @@ public final class IssueLicenseRequestPage extends WizardPage {
 		UserDescriptor selected = new SelectInner<UserDescriptor, UserOriginDescriptor>(new SelectUser(context).get(),
 				new SelectUserOrigin(context).get(), context).get().orElse(null);
 		text.setData(selected);
-		userDescriptor = selected;
-		return labelProvider.getText(selected);
+		return labels.getText(selected);
 	}
 
 	private String selectProductVersion(Text text) {
@@ -162,7 +159,7 @@ public final class IssueLicenseRequestPage extends WizardPage {
 				new SelectProductVersion(context).get(), new SelectProduct(context).get(), context).get().orElse(null);
 		text.setData(selected);
 		productVersionDescriptor = selected;
-		return labelProvider.getText(selected);
+		return labels.getText(selected);
 	}
 
 	private String selectFromDate(Text text) {
@@ -209,7 +206,8 @@ public final class IssueLicenseRequestPage extends WizardPage {
 			setErrorMessage(IssueLicensePageMessages.IssueLicenseRequestPage_e_no_product_version);
 			return false;
 		}
-		// FIXME: validate dates
+//validate dates
+		// TODO Auto-generated method stub
 		return true;
 	}
 

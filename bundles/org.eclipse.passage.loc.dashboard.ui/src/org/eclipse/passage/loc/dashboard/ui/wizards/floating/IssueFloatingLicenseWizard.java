@@ -16,18 +16,18 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
-public class IssueFloatingLicenseWizard extends Wizard {
+public final class IssueFloatingLicenseWizard extends Wizard {
 
 	private final IEclipseContext context;
 
 	public IssueFloatingLicenseWizard(IEclipseContext context) {
 		this.context = context;
-		setWindowTitle(IssueLicensePageMessages.IssueLicenseWizard_window_title);
-		System.out.print("Going to have full feathered config wizard here"); //$NON-NLS-1$
+		setWindowTitle(IssueLicensePageMessages.IssueFloatingLicenseWizard_title);
 	}
 
 	@Override
 	public void addPages() {
+		addPage(new GrabDataPage(context));
 	}
 
 	@Override

@@ -33,12 +33,12 @@ public class DashboardIssueLicenseHandler {
 
 	@Execute
 	public void execute(IEclipseContext context,
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor licensePlan,
+			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
-			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor productVersion) {
+			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
 		Shell shell = context.get(Shell.class);
 		IssueLicenseWizard wizard = new IssueLicenseWizard(context);
-		wizard.init(licensePlan, user, productVersion);
+		wizard.init(plan, user, product);
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
 
