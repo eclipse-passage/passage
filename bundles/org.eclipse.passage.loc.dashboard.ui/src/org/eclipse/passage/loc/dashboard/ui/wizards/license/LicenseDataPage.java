@@ -66,6 +66,10 @@ public final class LicenseDataPage extends WizardPage {
 		return container;
 	}
 
+	private void updatePage() {
+		setPageComplete(validatePage());
+	}
+
 	protected boolean validatePage() {
 		setErrorMessage(null);
 		if (licensePlanDescriptor == null) {

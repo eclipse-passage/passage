@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -27,15 +28,17 @@ import org.eclipse.swt.widgets.Text;
 
 abstract class TextLicenseData<T> implements ChosenLicenseData<T> {
 
-	private final T initial;
+	protected final MandatoryService context;
+	private final Optional<T> initial;
 	private final Runnable modified;
 	private final LabelProvider labels;
 	private Text text;
 
-	protected TextLicenseData(T initial, Runnable modified, LabelProvider labels) {
-		this.initial = initial;
+	protected TextLicenseData(T initial, Runnable modified, LabelProvider labels, MandatoryService context) {
+		this.initial = Optional.ofNullable(initial);
 		this.modified = modified;
 		this.labels = labels;
+		this.context = context;
 	}
 
 	@Override
@@ -71,12 +74,15 @@ abstract class TextLicenseData<T> implements ChosenLicenseData<T> {
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
 	}
 
-	private void installData(T data) {
-		text.setData(data);
-		text.setText(labels.getText(data));
+	private void installData(Optional<T> data) {
+		data.ifPresent(d -> {
+			text.setData(d);
+			text.setText(labels.getText(d));
+		});
+
 	}
 
 	protected abstract String label();
 
-	protected abstract T select(Text control);
+	protected abstract Optional<T> select(Text control);
 }
