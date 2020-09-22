@@ -21,6 +21,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -76,7 +77,10 @@ public final class BundleKeyKeeper implements KeyKeeper {
 	 * {@linkplain LicensingException}
 	 */
 	private URL resource(Path path) throws LicensingException {
-		Optional<URL> url = Optional.ofNullable(bundle.getResource(path.toString()));
+		Optional<URL> url = Optional.ofNullable(//
+				FileLocator.find(//
+						bundle, //
+						new org.eclipse.core.runtime.Path(path.toString())));
 		if (!url.isPresent()) {
 			throw new LicensingException(String.format(//
 					EquinoxMessages.BundleKeyKeeper_failed_to_find_file, //
