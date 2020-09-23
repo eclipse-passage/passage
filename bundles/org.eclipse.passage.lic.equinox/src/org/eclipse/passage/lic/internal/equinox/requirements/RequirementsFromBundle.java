@@ -48,6 +48,7 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 	}
 
 	private final static class FromBundle {
+
 		private final Bundle bundle;
 
 		FromBundle(Bundle bundle) {

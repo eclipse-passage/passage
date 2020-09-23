@@ -23,8 +23,22 @@ import org.junit.Test;
 
 public final class ProvidedCapabilitiesFromManifestTest {
 
+	@Test(expected = NullPointerException.class)
+	public void sourceIsMandatory() {
+		new ProvidedCapabilitiesFromManifest(null);
+	}
+
 	@Test
 	public void empty() {
+		try {
+			assertFalse(new ProvidedCapabilitiesFromManifest("").get().isPresent()); //$NON-NLS-1$
+		} catch (LicensingException e) {
+			fail("Manifest scanning is not supposed to fail on valid data"); //$NON-NLS-1$
+		}
+	}
+
+	@Test
+	public void noCapabilitiesDeclared() {
 		String manifest = "Manifest-Version: 1.0\r\n" //$NON-NLS-1$
 				+ "Automatic-Module-Name: org.eclipse.passage.lic.equinox.tests\r\n" //$NON-NLS-1$
 				+ "Bundle-ManifestVersion: 2\r\n" //$NON-NLS-1$
@@ -54,17 +68,35 @@ public final class ProvidedCapabilitiesFromManifestTest {
 		testExistingDeclarations("\n"); //$NON-NLS-1$
 	}
 
+	@Test
+	public void fromManifestFile() {
+		try {
+			Optional<String> declarations = new ProvidedCapabilitiesFromManifest(//
+					new BundleManifest(//
+							new DataBundle().bundle()//
+					).get()//
+			).get();
+			assertCapabilitiesAreOk(declarations);
+		} catch (LicensingException e) {
+			fail("Is not supposed to fail on valid data"); //$NON-NLS-1$
+		}
+
+	}
+
 	private void testExistingDeclarations(String ending) {
 		try {
-			Optional<String> declarations = new ProvidedCapabilitiesFromManifest(manifest(ending)).get();
-			assertTrue(declarations.isPresent());
-			assertTrue(declarations.get().startsWith("licensing.feature;")); //$NON-NLS-1$
-			assertTrue(declarations.get().endsWith("licensing.feature")); //$NON-NLS-1$
-			assertTrue(declarations.get().contains("\"Euler number\"")); //$NON-NLS-1$
-			assertTrue(declarations.get().contains(";level=\"error\"")); //$NON-NLS-1$
+			assertCapabilitiesAreOk(new ProvidedCapabilitiesFromManifest(manifest(ending)).get());
 		} catch (LicensingException e) {
 			fail("Manifest scanning is not supposed to fail on valid data"); //$NON-NLS-1$
 		}
+	}
+
+	private void assertCapabilitiesAreOk(Optional<String> declarations) {
+		assertTrue(declarations.isPresent());
+		assertTrue(declarations.get().startsWith("licensing.feature;")); //$NON-NLS-1$
+		assertTrue(declarations.get().endsWith("licensing.feature")); //$NON-NLS-1$
+		assertTrue(declarations.get().contains("\"Euler number\"")); //$NON-NLS-1$
+		assertTrue(declarations.get().contains(";level=\"error\"")); //$NON-NLS-1$
 	}
 
 	private String manifest(String ending) {

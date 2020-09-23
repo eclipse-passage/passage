@@ -22,6 +22,11 @@ import org.osgi.framework.FrameworkUtil;
 
 public final class BundleManifestTest {
 
+	@Test(expected = NullPointerException.class)
+	public void sourceIsMandatory() {
+		new BundleManifest(null);
+	}
+
 	@Test
 	public void readManifest() {
 		try {

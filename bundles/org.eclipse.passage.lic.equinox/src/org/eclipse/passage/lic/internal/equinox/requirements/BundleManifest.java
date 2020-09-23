@@ -43,7 +43,7 @@ final class BundleManifest {
 			throw noManifest();
 		}
 		try (LineNumberReader reader = new LineNumberReader(new InputStreamReader(url.get().openStream()))) {
-			return reader.lines().collect(Collectors.joining());
+			return reader.lines().collect(Collectors.joining("\n")); //$NON-NLS-1$
 		} catch (IOException e) {
 			throw errorOnReading(e);
 		}
