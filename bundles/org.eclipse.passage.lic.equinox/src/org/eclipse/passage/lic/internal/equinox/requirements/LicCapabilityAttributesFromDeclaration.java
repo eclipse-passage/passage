@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ final class LicCapabilityAttributesFromDeclaration {
 	private final String declarations;
 
 	public LicCapabilityAttributesFromDeclaration(String declarations) {
+		Objects.requireNonNull(declarations, "LicCapabilityAttributesFromDeclaration::declarations"); //$NON-NLS-1$
 		this.declarations = declarations;
 	}
 
@@ -45,8 +47,7 @@ final class LicCapabilityAttributesFromDeclaration {
 		List<String> sources = Arrays.stream(declarations.split(",")) //$NON-NLS-1$
 				.map(String::trim) //
 				.filter(source -> source.startsWith(namespace)) //
-				.filter(declaration -> !declaration.isEmpty())//
-				.map(source -> source.substring(0, namespace.length()))//
+				.map(source -> source.substring(namespace.length())) //
 				.collect(Collectors.toList());
 		List<Map<String, Object>> structured = new ArrayList<>();
 		for (String source : sources) {
@@ -61,12 +62,23 @@ final class LicCapabilityAttributesFromDeclaration {
 				"Failed to compose licensing requirement declaration") //$NON-NLS-1$
 						.get();
 		return properties.keySet().stream() //
-				.map(String.class::cast)//
-				.collect(Collectors.toMap(Function.identity(), properties::get));
+				.map(String.class::cast) //
+				.filter(key -> !properties.getProperty(key).trim().isEmpty())
+				.collect(Collectors.toMap(Function.identity(), key -> unquote(properties.getProperty(key).trim())));
 	}
 
 	private String lined(String source) {
 		return source.replaceAll(";", "\n"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
+	private String unquote(String value) {
+		String unquoted = value;
+		if (unquoted.startsWith("\"")) { //$NON-NLS-1$
+			unquoted = unquoted.substring(1);
+		}
+		if (unquoted.endsWith("\"")) { //$NON-NLS-1$
+			unquoted = unquoted.substring(0, unquoted.length() - 1);
+		}
+		return unquoted;
+	}
 }

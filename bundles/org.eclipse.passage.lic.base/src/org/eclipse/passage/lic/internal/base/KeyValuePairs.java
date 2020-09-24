@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public final class KeyValuePairs {
 
@@ -26,8 +27,13 @@ public final class KeyValuePairs {
 
 	public KeyValuePairs(String source, String error) {
 		Objects.requireNonNull(source, "KeyValuePairs::source"); //$NON-NLS-1$
+		Objects.requireNonNull(error, "KeyValuePairs::error"); //$NON-NLS-1$
 		this.source = source;
 		this.error = error;
+	}
+
+	public KeyValuePairs(String source) {
+		this(source, BaseMessages.getString("KeyValuePairs.default_error")); //$NON-NLS-1$
 	}
 
 	public Properties get() throws LicensingException {
