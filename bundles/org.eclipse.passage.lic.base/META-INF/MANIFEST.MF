@@ -8,13 +8,18 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc",
+Export-Package: org.eclipse.passage.lic.internal.base;
+  x-friends:="org.eclipse.passage.lbc.base,
+   org.eclipse.passage.lic.equinox,
+   org.eclipse.passage.lic.hc,
+   org.eclipse.passage.lic.jface,
+   org.eclipse.passage.lic.base.tests",
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.conditions.evaluation;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lic.hc",
- org.eclipse.passage.lic.internal.base.diagnostic;x-internal:=true,
- org.eclipse.passage.lic.internal.base.diagnostic.code;x-friends:="org.eclipse.passage.lic.hc",
+ org.eclipse.passage.lic.internal.base.diagnostic;x-friends:="org.eclipse.passage.lic.equinox.tests",
+ org.eclipse.passage.lic.internal.base.diagnostic.code;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.i18n;x-internal:=true,
  org.eclipse.passage.lic.internal.base.inspection;x-internal:=true,
  org.eclipse.passage.lic.internal.base.inspection.hardware;x-internal:=true,

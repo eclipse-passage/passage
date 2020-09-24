@@ -34,7 +34,6 @@ import org.eclipse.passage.lic.internal.base.NamedData;
  * 
  * @see NamedData.Writable
  */
-@SuppressWarnings("restriction")
 public final class RequirementsToBundle implements NamedData<List<Requirement>> {
 
 	private final List<Requirement> requirements;

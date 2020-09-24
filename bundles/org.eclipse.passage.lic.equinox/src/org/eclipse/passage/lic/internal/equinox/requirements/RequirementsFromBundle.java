@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,9 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
+import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleWiring;
@@ -38,7 +41,7 @@ import org.osgi.framework.wiring.BundleWiring;
 final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult<Collection<Requirement>>> {
 
 	public RequirementsFromBundle(Bundle bundle) {
-		super(key -> new FromBondle(bundle).read(key));
+		super(key -> new FromBundle(bundle).read(key));
 	}
 
 	@Override
@@ -46,19 +49,22 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 		return new LicCapabilityNamespace().get();
 	}
 
-	private final static class FromBondle {
+	private final static class FromBundle {
+
 		private final Bundle bundle;
 
-		FromBondle(Bundle bundle) {
+		FromBundle(Bundle bundle) {
 			this.bundle = bundle;
 		}
 
 		ServiceInvocationResult<Collection<Requirement>> read(String key) {
-			Optional<List<BundleCapability>> capabilities = //
-					Optional.ofNullable(bundle.adapt(BundleWiring.class))//
-							.map(wiring -> wiring.getCapabilities(key));
+			Optional<BundleWiring> wiring = Optional.ofNullable(bundle.adapt(BundleWiring.class));
+			if (!wiring.isPresent()) {
+				return fromManifest(AccessMessages.RequirementsFromBundle_no_wiring);
+			}
+			Optional<List<BundleCapability>> capabilities = Optional.ofNullable(wiring.get().getCapabilities(key));
 			if (!capabilities.isPresent()) {
-				return fail();
+				return fromManifest(AccessMessages.RequirementsFromBundle_no_capabilities);
 			}
 			return capabilities.get().stream()//
 					.map(capability -> new RequirementFromCapability(bundle, capability))//
@@ -67,11 +73,12 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 					.orElseGet(BaseServiceInvocationResult<Collection<Requirement>>::new);
 		}
 
-		private ServiceInvocationResult<Collection<Requirement>> fail() {
-			return new BaseServiceInvocationResult<>(//
-					new Trouble(//
-							new ServiceCannotOperate(), //
-							"Requirements-from-bundles resolver cannot operate as cannot get bundle wiring"));//$NON-NLS-1$
+		private ServiceInvocationResult<Collection<Requirement>> fromManifest(String why) {
+			return new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>())//
+					.apply(//
+							new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.singletonList(//
+									new Trouble(new ServiceCannotOperate(), why)))),
+							new RequirementsFromManifest(bundle).get());
 		}
 	}
 
