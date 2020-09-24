@@ -33,7 +33,6 @@ import org.osgi.framework.wiring.BundleWiring;
  * {@code bundle}.
  * </p>
  */
-@SuppressWarnings("restriction")
 final class LicensingFeatureCapabilitiesFromBundle extends BaseNamedData<List<BundleCapability>> {
 
 	protected LicensingFeatureCapabilitiesFromBundle(Bundle bundle) {

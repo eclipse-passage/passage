@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.internal.base.NamedData;
  * 
  * @see NamedData
  */
-@SuppressWarnings("restriction")
 public final class CapabilityLicFeatureName extends CapabilityLicFeatureInfo {
 
 	public CapabilityLicFeatureName(Requirement requirement) {

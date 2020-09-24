@@ -12,13 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Properties;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.KeyValuePairs;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 
 final class ProvidedCapabilitiesFromManifest {
@@ -31,23 +29,17 @@ final class ProvidedCapabilitiesFromManifest {
 	}
 
 	public Optional<String> get() throws LicensingException {
-		Properties properties = new Properties();
-		try {
-			properties.load(new StringReader(lined()));
-		} catch (IOException e) {
-			throw fail(e);
-		}
-		return Optional.ofNullable(properties.getProperty(new RequirementsToBundle().key()));
+		return Optional.ofNullable(//
+				new KeyValuePairs(//
+						lined(), //
+						AccessMessages.RequirementCapabilitiesFromManifest_ioe).get()//
+								.getProperty(new RequirementsToBundle().key()));
 	}
 
 	private String lined() {
 		return manifest//
 				.replaceAll("\r\n ", "\\\\\r\n") // -- windows -- //$NON-NLS-1$//$NON-NLS-2$
 				.replaceAll("\n ", "\\\\\n"); // -- nix -- //$NON-NLS-1$//$NON-NLS-2$
-	}
-
-	private LicensingException fail(IOException e) {
-		return new LicensingException(AccessMessages.RequirementCapabilitiesFromManifest_ioe, e);
 	}
 
 }

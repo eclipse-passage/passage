@@ -68,6 +68,7 @@ public final class BaseServiceInvocationResult<T> implements ServiceInvocationRe
 		return data;
 	}
 
+	// FIXME: pull it up
 	public static final class Sum<T> implements BinaryOperator<ServiceInvocationResult<T>> {
 
 		private final BinaryOperator<T> sum;

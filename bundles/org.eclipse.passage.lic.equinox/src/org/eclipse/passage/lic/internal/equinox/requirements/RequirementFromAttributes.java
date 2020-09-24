@@ -86,4 +86,5 @@ final class RequirementFromAttributes implements Supplier<ServiceInvocationResul
 	private ServiceInvocationResult<Collection<Requirement>> succeed(Requirement requirement) {
 		return new BaseServiceInvocationResult<>(Collections.singleton(requirement));
 	}
+
 }

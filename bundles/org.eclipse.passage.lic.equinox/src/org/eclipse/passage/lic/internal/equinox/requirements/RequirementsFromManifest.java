@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.Bundle;
@@ -34,17 +35,12 @@ import org.osgi.framework.Bundle;
  * 
  * @see RequirementsFromBundle
  */
-@SuppressWarnings("restriction")
 final class RequirementsFromManifest implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Bundle bundle;
-	private final Trouble hiring;
-	private final String target;
 
-	public RequirementsFromManifest(Bundle bundle, Trouble hiring, String target) {
+	public RequirementsFromManifest(Bundle bundle) {
 		this.bundle = bundle;
-		this.hiring = hiring;
-		this.target = target;
 	}
 
 	@Override
@@ -60,11 +56,15 @@ final class RequirementsFromManifest implements Supplier<ServiceInvocationResult
 
 	private ServiceInvocationResult<Collection<Requirement>> scan() throws LicensingException {
 		String manifest = new BundleManifest(bundle).get();
-		Optional<String> provided = new ProvidedCapabilitiesFromManifest(manifest).get();
-		if (!provided.isPresent()) {
+		Optional<String> declaration = new ProvidedCapabilitiesFromManifest(manifest).get();
+		if (!declaration.isPresent()) {
 			return none();
 		}
-		return null;// FIXME: implement
+		return new LicCapabilityAttributesFromDeclaration(declaration.get()).get().stream()//
+				.map(pack -> new RequirementFromAttributes(bundle, pack)) //
+				.map(RequirementFromAttributes::get)//
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
+				.orElseGet(() -> new BaseServiceInvocationResult<>(new ArrayList<Requirement>()));
 	}
 
 	private ServiceInvocationResult<Collection<Requirement>> none() {

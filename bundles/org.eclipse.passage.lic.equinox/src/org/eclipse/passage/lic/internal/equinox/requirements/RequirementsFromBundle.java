@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.Bundle;
@@ -58,11 +60,11 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 		ServiceInvocationResult<Collection<Requirement>> read(String key) {
 			Optional<BundleWiring> wiring = Optional.ofNullable(bundle.adapt(BundleWiring.class));
 			if (!wiring.isPresent()) {
-				return fromManifest(AccessMessages.RequirementsFromBundle_no_wiring, key);
+				return fromManifest(AccessMessages.RequirementsFromBundle_no_wiring);
 			}
 			Optional<List<BundleCapability>> capabilities = Optional.ofNullable(wiring.get().getCapabilities(key));
 			if (!capabilities.isPresent()) {
-				return fromManifest(AccessMessages.RequirementsFromBundle_no_capabilities, key);
+				return fromManifest(AccessMessages.RequirementsFromBundle_no_capabilities);
 			}
 			return capabilities.get().stream()//
 					.map(capability -> new RequirementFromCapability(bundle, capability))//
@@ -71,8 +73,12 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 					.orElseGet(BaseServiceInvocationResult<Collection<Requirement>>::new);
 		}
 
-		private ServiceInvocationResult<Collection<Requirement>> fromManifest(String why, String key) {
-			return new RequirementsFromManifest(bundle, new Trouble(new ServiceCannotOperate(), why), key).get();
+		private ServiceInvocationResult<Collection<Requirement>> fromManifest(String why) {
+			return new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>())//
+					.apply(//
+							new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.singletonList(//
+									new Trouble(new ServiceCannotOperate(), why)))),
+							new RequirementsFromManifest(bundle).get());
 		}
 	}
 
