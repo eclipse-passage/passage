@@ -18,7 +18,7 @@ Export-Package: org.eclipse.passage.lic.internal.base;
  org.eclipse.passage.lic.internal.base.conditions;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.json,org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.base.conditions.evaluation;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lic.hc",
- org.eclipse.passage.lic.internal.base.diagnostic;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.diagnostic;x-friends:="org.eclipse.passage.lic.equinox.tests",
  org.eclipse.passage.lic.internal.base.diagnostic.code;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.i18n;x-internal:=true,
  org.eclipse.passage.lic.internal.base.inspection;x-internal:=true,

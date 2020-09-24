@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -40,6 +41,7 @@ final class RequirementsFromManifest implements Supplier<ServiceInvocationResult
 	private final Bundle bundle;
 
 	public RequirementsFromManifest(Bundle bundle) {
+		Objects.requireNonNull(bundle, "RequirementsFromManifest::bundle"); //$NON-NLS-1$
 		this.bundle = bundle;
 	}
 
