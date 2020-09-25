@@ -55,7 +55,7 @@ public final class Permissions implements Supplier<ServiceInvocationResult<Colle
 				.map(r -> new BaseServiceInvocationResult<Collection<Permission>>(//
 						r.diagnostic(), //
 						allPermissions(r.data())))//
-				.orElseGet(BaseServiceInvocationResult<Collection<Permission>>::new);
+				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 	}
 
 	private Collection<Permission> allPermissions(Optional<Collection<Emission>> emissions) {

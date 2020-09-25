@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -78,7 +79,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 		return conditions.stream() //
 				.map(pack -> emitFor(pack, product))//
 				.reduce(new BaseServiceInvocationResult.Sum<Collection<Emission>>(new SumOfCollections<>()))//
-				.orElse(new BaseServiceInvocationResult<>());
+				.orElse(new BaseServiceInvocationResult<>(new ArrayList<>()));
 	}
 
 	private ServiceInvocationResult<Collection<Emission>> emitFor(ConditionPack pack, LicensedProduct product) {
@@ -86,7 +87,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 				.map(condition -> emitFor(condition, pack, product))//
 				.reduce(new BaseServiceInvocationResult.Sum<Emission>(new SumOfEmissions()))//
 				.map(this::singleton)//
-				.orElse(new BaseServiceInvocationResult<Collection<Emission>>());
+				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 	}
 
 	private ServiceInvocationResult<Collection<Emission>> singleton(ServiceInvocationResult<Emission> origin) {

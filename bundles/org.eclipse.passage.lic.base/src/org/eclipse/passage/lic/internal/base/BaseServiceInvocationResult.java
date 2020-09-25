@@ -27,10 +27,6 @@ public final class BaseServiceInvocationResult<T> implements ServiceInvocationRe
 	private final Diagnostic diagnostic;
 	private final Optional<T> data;
 
-	public BaseServiceInvocationResult() {
-		this(new BaseDiagnostic(), Optional.empty());
-	}
-
 	public BaseServiceInvocationResult(Trouble severe) {
 		this(new BaseDiagnostic(severe), Optional.empty());
 	}
