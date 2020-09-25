@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -72,7 +73,7 @@ public final class BundleRequirements implements ResolvedRequirements {
 				.filter(Optional::isPresent)//
 				.map(Optional::get)//
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
-				.orElseGet(BaseServiceInvocationResult::new);
+				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 	}
 
 }

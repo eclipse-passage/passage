@@ -70,7 +70,7 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 					.map(capability -> new RequirementFromCapability(bundle, capability))//
 					.map(RequirementFromCapability::get)//
 					.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>()))//
-					.orElseGet(BaseServiceInvocationResult<Collection<Requirement>>::new);
+					.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 		}
 
 		private ServiceInvocationResult<Collection<Requirement>> fromManifest(String why) {

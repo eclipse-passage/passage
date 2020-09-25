@@ -12,11 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.Collections;
+
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
 final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 
@@ -41,7 +44,10 @@ final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>
 
 	@Override
 	protected ServiceInvocationResult<ExaminationCertificate> freeWayOut() {
-		return new BaseServiceInvocationResult<ExaminationCertificate>();
+		return new BaseServiceInvocationResult<ExaminationCertificate>(//
+				new BaseExaminationCertificate(//
+						Collections.emptyMap(), //
+						Collections.emptySet()));
 	}
 
 }

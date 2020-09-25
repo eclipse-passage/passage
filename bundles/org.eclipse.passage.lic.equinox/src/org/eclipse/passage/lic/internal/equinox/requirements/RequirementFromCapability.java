@@ -34,7 +34,6 @@ import org.osgi.framework.wiring.BundleCapability;
  * @see RequirementsFromBundle
  * @see BundleRequirements
  */
-@SuppressWarnings("restriction")
 final class RequirementFromCapability implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Bundle bundle;
