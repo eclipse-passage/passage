@@ -24,18 +24,19 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-abstract class TextLicenseData<T> implements ChosenLicenseData<T> {
+abstract class TextField<T> implements Field<T> {
 
-	protected final MandatoryService context;
-	private final Optional<T> initial;
+	protected final Optional<T> source;
 	private final Runnable modified;
 	private final LabelProvider labels;
+	protected final MandatoryService context;
 	private Text text;
 
-	protected TextLicenseData(T initial, Runnable modified, LabelProvider labels, MandatoryService context) {
-		this.initial = Optional.ofNullable(initial);
+	protected TextField(Optional<T> source, Runnable modified, LabelProvider labels, MandatoryService context) {
+		this.source = source;
 		this.modified = modified;
 		this.labels = labels;
 		this.context = context;
@@ -46,13 +47,18 @@ abstract class TextLicenseData<T> implements ChosenLicenseData<T> {
 		installLabel(parent);
 		installText(parent);
 		installSelectButton(parent);
-		installData(initial);
+		installData(source);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public final Optional<T> data() {
 		return Optional.ofNullable((T) text.getData());
+	}
+
+	@Override
+	public Optional<String> error() {
+		return data().isEmpty() ? Optional.of(errorMessage()) : Optional.empty();
 	}
 
 	private void installLabel(Composite parent) {
@@ -79,10 +85,16 @@ abstract class TextLicenseData<T> implements ChosenLicenseData<T> {
 			text.setData(d);
 			text.setText(labels.getText(d));
 		});
+	}
 
+	protected Shell shell() {
+		return text.getShell();
 	}
 
 	protected abstract String label();
 
+	protected abstract String errorMessage();
+
 	protected abstract Optional<T> select(Text control);
+
 }

@@ -12,15 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
-import java.time.ZonedDateTime;
+import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.swt.widgets.Composite;
 
-public abstract class BaseLicensingData {
+public interface Field<T> {
 
-	private final LicensePlan plan;
-	private final ZonedDateTime from;
-	private final ZonedDateTime until;
-	private final int capacity;
+	void installControll(Composite parent);
 
+	Optional<T> data();
+
+	Optional<String> error();
 }

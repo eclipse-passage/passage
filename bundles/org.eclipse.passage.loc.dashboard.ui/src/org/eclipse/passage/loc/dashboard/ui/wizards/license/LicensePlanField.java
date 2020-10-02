@@ -22,9 +22,9 @@ import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public class ChosenLicensePlan extends TextLicenseData<LicensePlanDescriptor> {
+public class LicensePlanField extends TextField<LicensePlanDescriptor> {
 
-	protected ChosenLicensePlan(LicensePlanDescriptor plan, Runnable modified, LabelProvider labels,
+	protected LicensePlanField(Optional<LicensePlanDescriptor> plan, Runnable modified, LabelProvider labels,
 			MandatoryService context) {
 		super(plan, modified, labels, context);
 	}
@@ -32,6 +32,11 @@ public class ChosenLicensePlan extends TextLicenseData<LicensePlanDescriptor> {
 	@Override
 	protected String label() {
 		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_license_plan;
+	}
+
+	@Override
+	protected String errorMessage() {
+		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_license_plan;
 	}
 
 	@Override

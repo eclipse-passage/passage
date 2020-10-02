@@ -22,15 +22,21 @@ import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public class ChosenUserPlan extends TextLicenseData<UserDescriptor> {
+public class UserField extends TextField<UserDescriptor> {
 
-	protected ChosenUserPlan(UserDescriptor user, Runnable modified, LabelProvider labels, MandatoryService context) {
+	protected UserField(Optional<UserDescriptor> user, Runnable modified, LabelProvider labels,
+			MandatoryService context) {
 		super(user, modified, labels, context);
 	}
 
 	@Override
 	protected String label() {
 		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_user;
+	}
+
+	@Override
+	protected String errorMessage() {
+		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_user;
 	}
 
 	@Override
