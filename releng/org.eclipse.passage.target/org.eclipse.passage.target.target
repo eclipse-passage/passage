@@ -12,7 +12,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.target" sequenceNumber="89">
+<target name="org.eclipse.passage.target" sequenceNumber="90">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -27,7 +27,7 @@
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.emfforms.setup.base" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/ecp/releases/releases_125/"/>
+			<repository location="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>https://download.eclipse.org/ecp/releases/releases_124/
@@ -59,7 +59,7 @@
 			<unit id="org.mockito" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
 			<unit id="org.slf4j.api.source" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-09/"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-12/"/>
 		</location>
 	</locations>
 </target>
