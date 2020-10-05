@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.json.tests;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -45,8 +44,7 @@ public class CertificateTestData {
 
 	public Condition condition() {
 		return new BaseCondition("identifier", "feature", new BaseVersionMatch("version", new MatchingRuleDefault()), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-				new BaseValidityPeriodClosed(ZonedDateTime.now(),
-						ZonedDateTime.of(2020, 10, 1, 1, 1, 1, 1, ZoneId.systemDefault())),
+				new BaseValidityPeriodClosed(ZonedDateTime.now(), nowPlusTwo()),
 				new BaseEvaluationInstructions(new EvaluationType.Hardware(), "expression")); //$NON-NLS-1$
 	}
 
