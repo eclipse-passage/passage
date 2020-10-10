@@ -42,7 +42,6 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
@@ -117,8 +116,9 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 					e);
 		} catch (LicensingException e) {
 			return fail(pack, //
-					new LicenseCheckFailed(), //
-					String.format(ConditionsEvaluationMessages.getString("BasePermissionEmittingService.failed"), // //$NON-NLS-1$
+					new LicenseInvalid(), //
+					String.format(
+							ConditionsEvaluationMessages.getString("BasePermissionEmittingService.assessment_failed"), // //$NON-NLS-1$
 							condition.evaluationInstructions().expression()), //
 					e);
 		}
@@ -138,12 +138,13 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 									expiration(condition.validityPeriod())))); // FIXME: #566015
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(//
-					new BaseDiagnostic(Collections.singletonList(new Trouble(new ServiceFailedOnMorsel(),
-							String.format(
-									ConditionsEvaluationMessages
-											.getString("BasePermissionEmittingService.e_create_for"), //$NON-NLS-1$
-									condition.feature(), condition.identifier()),
-							e))));
+					new BaseDiagnostic(Collections.singletonList(//
+							new Trouble(new ServiceFailedOnMorsel(),
+									String.format(
+											ConditionsEvaluationMessages.getString(
+													"BasePermissionEmittingService.failed_create_permission"), //$NON-NLS-1$
+											condition.feature(), condition.identifier()),
+									e))));
 		}
 	}
 
@@ -168,7 +169,7 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 	private ExpressionTokenAssessmentService assessor(EvaluationType type) throws LicensingException {
 		if (!assessors.get().hasService(type)) {
 			throw new LicensingException(String.format(
-					"Expression of [%s] evaluation type cannot be asessed: no evaluation services are geristered for the type", //$NON-NLS-1$ FIXME
+					ConditionsEvaluationMessages.getString("BasePermissionEmittingService.no_assessment_service"), //$NON-NLS-1$
 					type));
 		}
 		return assessors.get().service(type);

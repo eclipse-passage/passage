@@ -12,22 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.diagnostic;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 
-@SuppressWarnings("restriction")
 public final class FakeFailureDiagnostic implements Diagnostic {
 
 	@Override
 	public List<Trouble> bearable() {
-		throw new UnsupportedOperationException();
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Trouble> severe() {
-		throw new UnsupportedOperationException();
+		return Collections.emptyList();
 	}
 
 }
