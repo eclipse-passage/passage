@@ -12,18 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoFramework;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.SeveralFrameworks;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -38,7 +41,6 @@ import org.osgi.framework.ServiceReference;
  * Use {@code withFrameworkService} to implement client level secondary services
  * or {@code withFramework} to retrieve parts of configuration directly.
  */
-@SuppressWarnings("restriction")
 public abstract class FrameworkAware {
 
 	private final BundleContext context;
@@ -47,21 +49,12 @@ public abstract class FrameworkAware {
 		this.context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 	}
 
-	private Optional<ServiceReference<FrameworkSupplier>> frameworkIfAny() {
+	private Collection<ServiceReference<FrameworkSupplier>> frameworks() {
 		try {
 			// DI is used only to get rid of overwhelming dependencies here
-			Collection<ServiceReference<FrameworkSupplier>> refs = context.getServiceReferences(FrameworkSupplier.class,
-					null);
-			if (refs.size() != 1) {
-				// we have alien framework, something is wrong
-				return Optional.empty();
-			}
-			ServiceReference<FrameworkSupplier> ref = new ArrayList<>(refs).get(0);
-			// here we can check signature of the seal:
-			// ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
-			return Optional.of(ref);
+			return context.getServiceReferences(FrameworkSupplier.class, null);
 		} catch (InvalidSyntaxException e) {
-			return Optional.empty();
+			return Collections.emptyList();
 		}
 	}
 
@@ -69,8 +62,24 @@ public abstract class FrameworkAware {
 		return new BaseServiceInvocationResult<T>(//
 				new Trouble(//
 						new NoFramework(), //
-						String.format(AccessMessages.EquinoxPassage_no_framewrok))//
+						String.format(AccessMessages.EquinoxPassage_no_framework))//
 		);
+	}
+
+	private <T> ServiceInvocationResult<T> severalFrameworks(Collection<ServiceReference<FrameworkSupplier>> findings) {
+		return new BaseServiceInvocationResult<T>(//
+				new BaseDiagnostic(//
+						findings.stream()//
+								.map(foreign -> foreignFramework(findings.size(), foreign)) //
+								.collect(Collectors.toList()), //
+						Collections.emptyList()//
+				));
+	}
+
+	private Trouble foreignFramework(int singlings, ServiceReference<FrameworkSupplier> foreign) {
+		return new Trouble(//
+				new SeveralFrameworks(singlings), //
+				String.format(AccessMessages.EquinoxPassage_foreign_framework, foreign.getBundle().getSymbolicName()));
 	}
 
 	protected <T> ServiceInvocationResult<T> withFrameworkService(
@@ -81,7 +90,8 @@ public abstract class FrameworkAware {
 						.flatMap(FrameworkSupplier::get)//
 						.map(invoke::apply)//
 						.orElseGet(this::noFramework), //
-				this::noFramework);
+				this::noFramework, //
+				this::severalFrameworks);
 	}
 
 	protected <T> Optional<T> withFramework(Function<Framework, T> invoke) {
@@ -90,17 +100,28 @@ public abstract class FrameworkAware {
 				Optional.ofNullable(context.getService(reference))//
 						.flatMap(FrameworkSupplier::get)//
 						.map(invoke::apply), //
-				Optional::empty);
+				Optional::empty, //
+				any -> Optional.empty());
 	}
 
-	protected <K> K withReference(Function<ServiceReference<FrameworkSupplier>, K> action, Supplier<K> noAction) {
-		Optional<ServiceReference<FrameworkSupplier>> candidate = frameworkIfAny();
-		if (!candidate.isPresent()) {
-			return noAction.get();
+	private <K> K withReference(//
+			Function<ServiceReference<FrameworkSupplier>, K> onFramework, //
+			Supplier<K> onNoFramework, //
+			Function<Collection<ServiceReference<FrameworkSupplier>>, K> onSeveralFrameworks) {
+		Collection<ServiceReference<FrameworkSupplier>> candidates = frameworks();
+		if (candidates.isEmpty()) {
+			return onNoFramework.get();
 		}
-		ServiceReference<FrameworkSupplier> reference = candidate.get();
+		if (candidates.size() > 1) {
+			// we have alien framework, the occurrence is treated as sabotage
+			// here we can check signature of the seal:
+			// ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
+			return onSeveralFrameworks.apply(candidates);
+		}
+		ServiceReference<FrameworkSupplier> reference = candidates.iterator().next(); // size is precisely 1
+
 		try {
-			return action.apply(reference);
+			return onFramework.apply(reference);
 		} finally {
 			context.ungetService(reference);
 		}

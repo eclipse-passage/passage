@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public final class NoServicesOfType extends TroubleCode {
+public final class SeveralFrameworks extends TroubleCode {
 
-	public NoServicesOfType(String type) {
-		super(102, String.format(DiagnosticCodeMessages.getString("NoServices.explanation"), type)); //$NON-NLS-1$
+	public SeveralFrameworks(int amount) {
+		super(110, String.format(DiagnosticCodeMessages.getString("SeveralFrameworks.explanation"), amount)); //$NON-NLS-1$
 	}
 
 }
