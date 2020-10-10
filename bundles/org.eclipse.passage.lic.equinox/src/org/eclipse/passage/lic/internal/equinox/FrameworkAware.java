@@ -62,7 +62,7 @@ public abstract class FrameworkAware {
 		return new BaseServiceInvocationResult<T>(//
 				new Trouble(//
 						new NoFramework(), //
-						String.format(AccessMessages.EquinoxPassage_no_framewrok))//
+						String.format(AccessMessages.EquinoxPassage_no_framework))//
 		);
 	}
 

@@ -17,7 +17,7 @@ import org.eclipse.osgi.util.NLS;
 public class AccessMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages"; //$NON-NLS-1$
-	public static String EquinoxPassage_no_framewrok;
+	public static String EquinoxPassage_no_framework;
 	public static String EquinoxPassage_foreign_framework;
 	public static String RequirementCapabilitiesFromManifest_ioe;
 	public static String RequirementsFromBundle_no_capabilities;
