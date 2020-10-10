@@ -79,7 +79,7 @@ public abstract class FrameworkAware {
 	private Trouble foreignFramework(int singlings, ServiceReference<FrameworkSupplier> foreign) {
 		return new Trouble(//
 				new SeveralFrameworks(singlings), //
-				String.format(AccessMessages.EquinoxPassage_foreign_framewrok, foreign.getBundle().getSymbolicName()));
+				String.format(AccessMessages.EquinoxPassage_foreign_framework, foreign.getBundle().getSymbolicName()));
 	}
 
 	protected <T> ServiceInvocationResult<T> withFrameworkService(
