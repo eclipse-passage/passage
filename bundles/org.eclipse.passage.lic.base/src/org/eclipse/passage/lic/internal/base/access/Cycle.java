@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.Framework;
@@ -36,21 +37,23 @@ abstract class Cycle<T> {
 	private final Framework framework;
 	private final CycleFilter filter;
 	private final List<Diagnostic> diagnostics;
+	private final Optional<String> feature;
 
 	Cycle(Framework framework) {
-		this(framework, new CycleFilter());
+		this(framework, new CycleFilter(), Optional.empty());
 	}
 
 	Cycle(Framework framework, String feature) {
-		this(framework, new CycleFilter(feature));
+		this(framework, new CycleFilter(feature), Optional.of(feature));
 	}
 
-	private Cycle(Framework framework, CycleFilter filter) {
+	private Cycle(Framework framework, CycleFilter filter, Optional<String> feature) {
 		Objects.requireNonNull(framework, "Cycle::framework"); //$NON-NLS-1$
 		Objects.requireNonNull(filter, "Cycle::filter"); //$NON-NLS-1$
 		this.framework = framework;
 		this.filter = filter;
 		this.diagnostics = new ArrayList<>();
+		this.feature = feature;
 	}
 
 	T apply() {
@@ -123,7 +126,9 @@ abstract class Cycle<T> {
 	private ServiceInvocationResult<Collection<Requirement>> requirements() {
 		return scan(new Requirements(//
 				framework.accessCycleConfiguration().requirementResolvers().get(), //
-				filter.requiremental()).get());
+				filter.requiremental(), //
+				feature//
+		).get());
 	}
 
 	private ServiceInvocationResult<Collection<ConditionPack>> conditions() {

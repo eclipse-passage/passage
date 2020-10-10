@@ -33,10 +33,10 @@ public final class FeatureFilter<T>
 	}
 
 	@Override
-	public ServiceInvocationResult<Collection<T>> apply(ServiceInvocationResult<Collection<T>> overwhelming) {
+	public ServiceInvocationResult<Collection<T>> apply(ServiceInvocationResult<Collection<T>> original) {
 		return new BaseServiceInvocationResult<Collection<T>>(//
-				overwhelming.diagnostic(), //
-				filter(overwhelming.data()));
+				original.diagnostic(), //
+				filter(original.data()));
 	}
 
 	private Collection<T> filter(Optional<Collection<T>> targets) {
