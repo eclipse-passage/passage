@@ -46,7 +46,7 @@ public abstract class FrameworkAware {
 	private final BundleContext context;
 
 	protected FrameworkAware() {
-		this.context = FrameworkUtil.getBundle(getClass()).getBundleContext();
+		this.context = FrameworkUtil.getBundle(FrameworkAware.class).getBundleContext();
 	}
 
 	private Collection<ServiceReference<FrameworkSupplier>> frameworks() {
