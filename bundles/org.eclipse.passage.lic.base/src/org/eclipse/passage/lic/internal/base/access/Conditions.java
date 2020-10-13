@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -69,7 +70,7 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 				.map(miner -> miner.all(product)) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>()))//
 				.map(filter) //
-				.orElse(new BaseServiceInvocationResult<>());
+				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 
 	}
 

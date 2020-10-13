@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * 
  * @see NamedData
  */
-@SuppressWarnings("restriction")
 public final class ComponentLicFeatureId extends StringNamedData {
 
 	public ComponentLicFeatureId(String identifier) {

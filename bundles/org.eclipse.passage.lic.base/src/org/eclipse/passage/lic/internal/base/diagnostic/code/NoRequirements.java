@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public final class LicenseCheckFailed extends TroubleCode {
+public final class NoRequirements extends TroubleCode {
 
-	public LicenseCheckFailed() {
-		super(501, DiagnosticCodeMessages.getString("LicenseCheckFailed.error")); //$NON-NLS-1$
+	public NoRequirements() {
+		super(151, DiagnosticCodeMessages.getString("NoRequirements.explanation_feature")); //$NON-NLS-1$
 	}
 
 }

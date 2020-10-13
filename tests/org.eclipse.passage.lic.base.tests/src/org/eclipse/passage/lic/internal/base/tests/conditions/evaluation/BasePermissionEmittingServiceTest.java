@@ -39,10 +39,9 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseCheckFailed;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -110,7 +109,7 @@ public final class BasePermissionEmittingServiceTest {
 	public void unsupportedEvaluationTypeFailsEmission() {
 		verifyMorelFailure(//
 				service(morphologyAssessor(4, 2)).emit(packOf(teller(4, 3)), product()), //
-				new LicenseCheckFailed());
+				new LicenseInvalid());
 	}
 
 	@Test

@@ -15,8 +15,16 @@ package org.eclipse.passage.lic.internal.equinox.i18n;
 import org.eclipse.osgi.util.NLS;
 
 public class AccessMessages extends NLS {
+
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages"; //$NON-NLS-1$
-	public static String EquinoxPassage_no_framewrok;
+	public static String EquinoxPassage_no_framework;
+	public static String EquinoxPassage_foreign_framework;
+	public static String RequirementCapabilitiesFromManifest_ioe;
+	public static String RequirementsFromBundle_no_capabilities;
+	public static String RequirementsFromBundle_no_wiring;
+	public static String RequirementsFromManifest_failure;
+	public static String RequirementsFromManifest_no_manifest;
+	public static String RequirementsFromManifest_reading_error;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, AccessMessages.class);

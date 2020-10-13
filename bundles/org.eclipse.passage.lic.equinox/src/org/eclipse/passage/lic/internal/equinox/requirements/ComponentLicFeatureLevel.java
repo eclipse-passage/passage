@@ -24,7 +24,6 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * 
  * @see NamedData
  */
-@SuppressWarnings("restriction")
 public final class ComponentLicFeatureLevel extends StringNamedData {
 
 	public ComponentLicFeatureLevel(String version) {

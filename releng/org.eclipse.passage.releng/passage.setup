@@ -70,7 +70,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      value="2020-09"
+      value="2020-12"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -160,21 +160,21 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.15/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.17/R-4.17-202009021800/"/>
           <repository
-              url="https://download.eclipse.org/ecp/releases/releases_124/1240/"/>
+              url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.21/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.23/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.9.0/lic/"/>
+              url="https://download.eclipse.org/passage/updates/release/1.0.0/lic/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.9.0/loc/"/>
+              url="https://download.eclipse.org/passage/updates/release/1.0.0/loc/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.9.0/lbc/"/>
+              url="https://download.eclipse.org/passage/updates/release/1.0.0/lbc/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/0.9.0/ldc/"/>
+              url="https://download.eclipse.org/passage/updates/release/1.0.0/ldc/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2020-06"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-09"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -258,15 +258,28 @@
             rootFolder="${git.clone.passage.location}"
             locateNestedProjects="true"/>
         <repositoryList
+            name="2020-12">
+          <repository
+              url="https://download.eclipse.org/cbi/updates/license/"/>
+          <repository
+              url="https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18M1a-202010120320/"/>
+          <repository
+              url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
+          <repository
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/latest/"/>
+          <repository
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-12"/>
+        </repositoryList>
+        <repositoryList
             name="2020-09">
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.18-I-builds/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.17/R-4.17-202009021800/"/>
           <repository
-              url="https://download.eclipse.org/ecp/releases/releases_125/"/>
+              url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.23/"/>
           <repository
               url="https://download.eclipse.org/tools/orbit/downloads/2020-09"/>
         </repositoryList>

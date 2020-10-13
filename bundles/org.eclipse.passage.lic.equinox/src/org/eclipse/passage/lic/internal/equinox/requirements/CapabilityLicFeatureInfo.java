@@ -31,7 +31,6 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * @see NamedData
  * @see NamedData.Writable
  */
-@SuppressWarnings("restriction")
 abstract class CapabilityLicFeatureInfo extends StringNamedData {
 
 	public CapabilityLicFeatureInfo(String value) {

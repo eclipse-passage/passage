@@ -28,4 +28,8 @@
 		<relativePath>../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 
+	<properties>
+		<skipAPIAnalysis>true</skipAPIAnalysis>
+	</properties>
+
 </project>
