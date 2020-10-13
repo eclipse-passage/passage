@@ -12,22 +12,33 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
-public class IssueFloatingLicenseWizard extends Wizard {
+public final class IssueFloatingLicenseWizard extends Wizard {
 
 	private final IEclipseContext context;
+	private final FloatingDataPack initial;
 
-	public IssueFloatingLicenseWizard(IEclipseContext context) {
+	private Supplier<Optional<LicensePlanDescriptor>> plan;
+
+	public IssueFloatingLicenseWizard(IEclipseContext context, FloatingDataPack initial) {
 		this.context = context;
-		setWindowTitle(IssueLicensePageMessages.IssueLicenseWizard_window_title);
-		System.out.print("Going to have full feathered config wizard here"); //$NON-NLS-1$
+		this.initial = initial;
+		setWindowTitle(IssueLicensePageMessages.IssueFloatingLicenseWizard_title);
 	}
 
 	@Override
 	public void addPages() {
+		ComposedPage page = new ComposedPage("data", context); //$NON-NLS-1$
+		plan = page.withLicensePlan(initial.plan());
+		addPage(page.get());
 	}
 
 	@Override

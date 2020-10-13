@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.util.function.Supplier;
+
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -40,24 +42,27 @@ import org.eclipse.swt.widgets.Composite;
 public class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
-	private LicensePack licensePack;
-	private VViewModelProperties viewModelProperties;
+	private final Supplier<LicensingRequest> data;
+	private LicensePack license;
+	private VViewModelProperties properties;
 	private Composite base;
 
-	protected IssueLicensePackPage(String pageName, IEclipseContext context) {
-		super(pageName);
+	protected IssueLicensePackPage(String name, Supplier<LicensingRequest> data, IEclipseContext context) {
+		super(name);
 		this.context = context;
+		this.data = data;
 		setTitle(IssueLicensePageMessages.IssueLicensePackPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
 
-	public void init(LicensingRequest request) {
-		if (licensePack != null) {
-			licensePack.setPlanIdentifier(request.getPlanIdentifier());
-			licensePack.setProductIdentifier(request.getProductIdentifier());
-			licensePack.setProductVersion(request.getProductVersion());
-			licensePack.setUserIdentifier(request.getUserIdentifier());
-			EList<LicenseGrant> licenseGrants = licensePack.getLicenseGrants();
+	public void init() {
+		LicensingRequest request = data.get();
+		if (license != null) {
+			license.setPlanIdentifier(request.getPlanIdentifier());
+			license.setProductIdentifier(request.getProductIdentifier());
+			license.setProductVersion(request.getProductVersion());
+			license.setUserIdentifier(request.getUserIdentifier());
+			EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 			for (LicenseGrant licenseGrant : licenseGrants) {
 				licenseGrant.setValidFrom(request.getValidFrom());
 				licenseGrant.setValidUntil(request.getValidUntil());
@@ -67,8 +72,8 @@ public class IssueLicensePackPage extends WizardPage {
 		OperatorLicenseService operatorLicenseService = context.get(OperatorLicenseService.class);
 		LicensePackDescriptor licensePackDescriptor = operatorLicenseService.createLicensePack(request);
 		if (licensePackDescriptor instanceof LicensePack) {
-			licensePack = (LicensePack) licensePackDescriptor;
-			licensePack.eAdapters().add(new EContentAdapter() {
+			license = (LicensePack) licensePackDescriptor;
+			license.eAdapters().add(new EContentAdapter() {
 				@Override
 				public void notifyChanged(Notification notification) {
 					setPageComplete(validatePage());
@@ -87,9 +92,8 @@ public class IssueLicensePackPage extends WizardPage {
 		base = new Composite(composite, SWT.NONE);
 		base.setLayout(new GridLayout(1, false));
 		base.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
-
-		viewModelProperties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
-		viewModelProperties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
+		properties = VViewFactory.eINSTANCE.createViewModelLoadingProperties();
+		properties.addInheritableProperty(EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_KEY,
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
 		updatePage();
 		Dialog.applyDialogFont(composite);
@@ -100,26 +104,24 @@ public class IssueLicensePackPage extends WizardPage {
 			setPageComplete(false);
 			return;
 		}
-		if (licensePack != null) {
+		if (license != null) {
 			try {
-				ECPSWTViewRenderer.INSTANCE.render(base, licensePack, viewModelProperties);
+				ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
 				base.layout();
 			} catch (ECPRendererException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		setPageComplete(validatePage());
 	}
 
 	protected boolean validatePage() {
-		String errors = LicensingEcore.extractValidationError(licensePack);
+		String errors = LicensingEcore.extractValidationError(license);
 		setErrorMessage(errors);
 		return errors == null;
 	}
 
-	public LicensePackDescriptor getLicensePack() {
-		return licensePack;
+	public LicensePackDescriptor pack() {
+		return license;
 	}
 
 }

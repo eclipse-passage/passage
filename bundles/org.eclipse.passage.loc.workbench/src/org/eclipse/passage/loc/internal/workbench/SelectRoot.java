@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.MandatoryService;
-import org.eclipse.passage.loc.internal.api.ZeroOneMany;
+import org.eclipse.passage.loc.internal.api.ZeroOrOne;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.widgets.Shell;
 
@@ -48,7 +48,7 @@ public final class SelectRoot<R> implements Supplier<Optional<R>> {
 
 	@Override
 	public final Optional<R> get() {
-		return new ZeroOneMany<>(request.input()).choose(new CreateRoot<R>(context, request.domain(), request.target()),
+		return new ZeroOrOne<>(request.input()).choose(new CreateRoot<R>(context, request.domain(), request.target()),
 				new SelectFromDialog<>(() -> context.get(Shell.class), request.appearance()));
 	}
 

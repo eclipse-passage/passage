@@ -14,7 +14,8 @@ package org.eclipse.passage.loc.internal.dashboard.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class IssueLicensePageMessages extends NLS {
+public final class IssueLicensePageMessages extends NLS {
+
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages"; //$NON-NLS-1$
 	public static String IssueLicensePackPage_page_description;
 	public static String IssueLicensePackPage_page_title;
@@ -22,6 +23,8 @@ public class IssueLicensePageMessages extends NLS {
 	public static String IssueLicenseRequestPage_e_no_license_plan;
 	public static String IssueLicenseRequestPage_e_no_product_version;
 	public static String IssueLicenseRequestPage_e_no_user;
+	public static String IssueLicenseRequestPage_e_no_date;
+	public static String IssueLicenseRequestPage_e_reversed_period;
 	public static String IssueLicenseRequestPage_lbl_valid_from;
 	public static String IssueLicenseRequestPage_lbl_valid_until;
 	public static String IssueLicenseRequestPage_lbl_license_plan;
@@ -39,6 +42,9 @@ public class IssueLicensePageMessages extends NLS {
 	public static String IssueLicenseMailRequestDialog_title;
 	public static String IssueLicenseMailRequestDialog_text;
 	public static String IssueLicensingMailJob_task_text;
+	public static String IssueFloatingLicenseWizard_title;
+	public static String Floating_DataPage_description;
+	public static String Floating_DataPage_title;
 
 	static {
 		// initialize resource bundle

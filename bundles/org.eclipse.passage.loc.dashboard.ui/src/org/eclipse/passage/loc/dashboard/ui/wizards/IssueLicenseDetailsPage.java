@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
@@ -33,15 +34,15 @@ import org.eclipse.swt.widgets.Text;
 public class IssueLicenseDetailsPage extends WizardPage {
 
 	private final IEclipseContext context;
-
-	private LicensePackDescriptor licensePack;
+	private final Supplier<LicensePackDescriptor> data;
 	private Text info;
 	private Text from;
 	private String mailFrom = ""; //$NON-NLS-1$
 
-	protected IssueLicenseDetailsPage(String pageName, IEclipseContext context) {
+	protected IssueLicenseDetailsPage(String pageName, Supplier<LicensePackDescriptor> data, IEclipseContext context) {
 		super(pageName);
 		this.context = context;
+		this.data = data;
 		setTitle(IssueLicensePageMessages.IssueLicenseDetailsPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicenseDetailsPage_page_description);
 	}
@@ -70,10 +71,6 @@ public class IssueLicenseDetailsPage extends WizardPage {
 		from.addModifyListener(e -> mailFrom = from.getText().trim());
 	}
 
-	void init(LicensePackDescriptor pack) {
-		this.licensePack = pack;
-	}
-
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
@@ -85,7 +82,7 @@ public class IssueLicenseDetailsPage extends WizardPage {
 			if (mailing == null) {
 				return;
 			}
-			info.setText(new EmailTemplate(mailing).details(licensePack).stream()//
+			info.setText(new EmailTemplate(mailing).details(data.get()).stream()//
 					.collect(Collectors.joining(System.lineSeparator())));
 		}
 	}

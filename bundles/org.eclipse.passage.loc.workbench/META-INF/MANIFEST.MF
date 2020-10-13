@@ -39,11 +39,15 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
  org.eclipse.passage.loc.internal.workbench.i18n;x-internal:=true,
  org.eclipse.passage.loc.internal.workbench.registry;x-internal:=true,
  org.eclipse.passage.loc.jface;x-internal:=true,
- org.eclipse.passage.loc.jface.dialogs;x-friends:="org.eclipse.passage.loc.licenses.ui,org.eclipse.passage.loc.products.ui,org.eclipse.passage.loc.users.ui",
- org.eclipse.passage.loc.workbench;x-internal:=true,
+ org.eclipse.passage.loc.jface.dialogs;
+  x-friends:="org.eclipse.passage.loc.licenses.ui,
+   org.eclipse.passage.loc.products.ui,
+   org.eclipse.passage.loc.users.ui,
+   org.eclipse.passage.loc.dashboard.ui",
+ org.eclipse.passage.loc.workbench;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.workbench.dialogs;x-internal:=true,
  org.eclipse.passage.loc.workbench.handlers;x-internal:=true,
- org.eclipse.passage.loc.workbench.viewers;x-internal:=true,
+ org.eclipse.passage.loc.workbench.viewers;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true,
  org.eclipse.passage.moveto.lic.internal.emf.edit.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy

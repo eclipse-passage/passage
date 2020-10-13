@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.passage.loc.internal.api.ZeroOneMany;
+import org.eclipse.passage.loc.internal.api.ZeroOrOne;
 import org.junit.Test;
 
 public class ZeroOneManyTest {
 
 	@Test
 	public void testZero() throws Exception {
-		ZeroOneMany<Object> zom = new ZeroOneMany<>(() -> Collections.emptyList());
+		ZeroOrOne<Object> zom = new ZeroOrOne<>(() -> Collections.emptyList());
 		Optional<Object> zero = zom.choose(() -> null, null);
 		assertEquals(false, zero.isPresent());
 	}
@@ -36,7 +36,7 @@ public class ZeroOneManyTest {
 	@Test
 	public void testCreated() throws Exception {
 		Optional<Object> single = Optional.of(new Object());
-		ZeroOneMany<Object> zom = new ZeroOneMany<>(() -> Collections.emptyList());
+		ZeroOrOne<Object> zom = new ZeroOrOne<>(() -> Collections.emptyList());
 		Optional<Object> one = zom.choose(() -> single, null);
 		assertEquals(single, one);
 	}
@@ -44,7 +44,7 @@ public class ZeroOneManyTest {
 	@Test
 	public void testOne() throws Exception {
 		Object single = new Object();
-		ZeroOneMany<Object> zom = new ZeroOneMany<>(() -> Collections.singleton(single));
+		ZeroOrOne<Object> zom = new ZeroOrOne<>(() -> Collections.singleton(single));
 		Optional<Object> one = zom.choose(null, null);
 		assertEquals(single, one.get());
 	}
@@ -53,7 +53,7 @@ public class ZeroOneManyTest {
 	public void testMany() throws Exception {
 		Object first = new Object();
 		Object second = new Object();
-		ZeroOneMany<Object> zom = new ZeroOneMany<>(() -> Arrays.asList(first, second));
+		ZeroOrOne<Object> zom = new ZeroOrOne<>(() -> Arrays.asList(first, second));
 		Optional<Object> one = zom.choose(null, source -> select(source, 1));
 		assertEquals(second, one.get());
 	}

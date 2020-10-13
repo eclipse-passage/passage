@@ -22,11 +22,11 @@ import java.util.function.Supplier;
  * Experimental API to select existing or create new instance of given type.
  *
  */
-public final class ZeroOneMany<C> {
+public final class ZeroOrOne<C> {
 
 	private final Supplier<Iterable<C>> supplier;
 
-	public ZeroOneMany(Supplier<Iterable<C>> input) {
+	public ZeroOrOne(Supplier<Iterable<C>> input) {
 		this.supplier = input;
 	}
 
@@ -50,8 +50,8 @@ public final class ZeroOneMany<C> {
 		return Optional.ofNullable(first);
 	}
 
-	private Optional<C> optional(Optional<C> untrasted) {
-		return Optional.ofNullable(untrasted).orElse(Optional.empty());
+	private Optional<C> optional(Optional<C> untrusted) {
+		return Optional.ofNullable(untrusted).orElse(Optional.empty());
 	}
 
 }
