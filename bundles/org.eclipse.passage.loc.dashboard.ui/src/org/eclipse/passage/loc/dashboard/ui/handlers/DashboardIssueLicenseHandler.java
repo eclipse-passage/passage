@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.IssueLicenseWizard;
+import org.eclipse.passage.loc.dashboard.ui.wizards.PersonalDataPack;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.swt.widgets.Shell;
 
@@ -37,8 +38,11 @@ public class DashboardIssueLicenseHandler {
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
 		Shell shell = context.get(Shell.class);
-		IssueLicenseWizard wizard = new IssueLicenseWizard(context);
-		wizard.init(plan, user, product);
+		IssueLicenseWizard wizard = new IssueLicenseWizard(context, new PersonalDataPack(//
+				java.util.Optional.ofNullable(plan), //
+				java.util.Optional.ofNullable(user), //
+				java.util.Optional.ofNullable(product)//
+		));
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
 

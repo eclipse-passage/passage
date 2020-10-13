@@ -44,7 +44,7 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
    org.eclipse.passage.loc.products.ui,
    org.eclipse.passage.loc.users.ui,
    org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.workbench;x-internal:=true,
+ org.eclipse.passage.loc.workbench;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.workbench.dialogs;x-internal:=true,
  org.eclipse.passage.loc.workbench.handlers;x-internal:=true,
  org.eclipse.passage.loc.workbench.viewers;x-friends:="org.eclipse.passage.loc.dashboard.ui",

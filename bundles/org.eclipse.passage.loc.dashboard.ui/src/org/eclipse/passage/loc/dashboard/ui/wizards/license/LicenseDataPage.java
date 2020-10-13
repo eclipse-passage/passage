@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
@@ -55,11 +54,11 @@ public final class LicenseDataPage extends WizardPage {
 	}
 
 	protected boolean validatePage() {
-		setMessage("", DialogPage.NONE); //$NON-NLS-1$
+		setMessage("", WizardPage.NONE); //$NON-NLS-1$
 		for (Field<?> unit : units) {
 			Optional<String> error = unit.error();
 			if (error.isPresent()) {
-				setErrorMessage(error.get());
+				setMessage(error.get(), WizardPage.ERROR);
 				return false;
 			}
 		}
