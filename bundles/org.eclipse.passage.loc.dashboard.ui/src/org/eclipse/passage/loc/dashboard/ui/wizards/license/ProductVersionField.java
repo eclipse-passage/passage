@@ -24,9 +24,9 @@ import org.eclipse.passage.loc.internal.products.ui.SelectProductVersion;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.swt.widgets.Text;
 
-public class ProductVersionField extends TextField<ProductVersionDescriptor> {
+public final class ProductVersionField extends TextField<ProductVersionDescriptor> {
 
-	protected ProductVersionField(Optional<ProductVersionDescriptor> product, Runnable modified, LabelProvider labels,
+	ProductVersionField(Optional<ProductVersionDescriptor> product, Runnable modified, LabelProvider labels,
 			MandatoryService context) {
 		super(product, modified, labels, context);
 	}

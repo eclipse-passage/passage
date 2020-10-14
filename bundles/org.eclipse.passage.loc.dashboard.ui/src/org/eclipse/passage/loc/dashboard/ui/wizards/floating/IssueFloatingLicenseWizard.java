@@ -12,12 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
@@ -27,6 +29,7 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 	private final FloatingDataPack initial;
 
 	private Supplier<Optional<LicensePlanDescriptor>> plan;
+	private Supplier<Optional<Collection<UserDescriptor>>> users;
 
 	public IssueFloatingLicenseWizard(IEclipseContext context, FloatingDataPack initial) {
 		this.context = context;
@@ -38,6 +41,7 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 	public void addPages() {
 		ComposedPage page = new ComposedPage("data", context); //$NON-NLS-1$
 		plan = page.withLicensePlan(initial.plan());
+		users = page.withUsers();
 		addPage(page.get());
 	}
 
