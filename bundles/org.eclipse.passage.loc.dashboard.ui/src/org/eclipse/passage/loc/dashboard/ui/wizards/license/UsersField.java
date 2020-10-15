@@ -12,36 +12,36 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
-import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.licenses.ui.SelectLicensePlan;
-import org.eclipse.passage.loc.internal.workbench.SelectRoot;
+import org.eclipse.passage.loc.internal.users.ui.SelectUser;
+import org.eclipse.passage.loc.internal.workbench.SelectRoots;
 import org.eclipse.swt.widgets.Text;
 
-public final class LicensePlanField extends TextField<LicensePlanDescriptor> {
+public final class UsersField extends TextField<Collection<UserDescriptor>> {
 
-	LicensePlanField(Optional<LicensePlanDescriptor> plan, Runnable modified, LabelProvider labels,
-			MandatoryService context) {
-		super(plan, modified, labels, context);
+	UsersField(Collection<UserDescriptor> users, Runnable modified, LabelProvider labels, MandatoryService context) {
+		super(Optional.of(users), modified, labels, context);
 	}
 
 	@Override
 	protected String label() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_license_plan;
+		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_users;
 	}
 
 	@Override
 	protected String errorMessage() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_license_plan;
+		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_user;
 	}
 
 	@Override
-	protected Optional<LicensePlanDescriptor> select(Text control) {
-		return new SelectRoot<>(new SelectLicensePlan(context).get(), context).get();
+	protected Optional<Collection<UserDescriptor>> select(Text control) {
+		return Optional.of(new SelectRoots<>(new SelectUser(context).get(), context).get());
 	}
 
 }

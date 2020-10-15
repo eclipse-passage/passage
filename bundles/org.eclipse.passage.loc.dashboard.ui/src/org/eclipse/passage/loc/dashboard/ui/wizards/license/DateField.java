@@ -26,8 +26,7 @@ public final class DateField extends TextField<LocalDate> {
 
 	private final String name;
 
-	public DateField(LocalDate initial, String name, Runnable modified, LabelProvider labels,
-			MandatoryService context) {
+	DateField(LocalDate initial, String name, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(Optional.of(initial), modified, labels, context);
 		this.name = name;
 	}

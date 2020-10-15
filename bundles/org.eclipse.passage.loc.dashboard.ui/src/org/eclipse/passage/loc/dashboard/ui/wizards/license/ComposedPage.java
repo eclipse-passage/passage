@@ -14,6 +14,8 @@ package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -47,6 +49,10 @@ public final class ComposedPage implements Supplier<LicenseDataPage> {
 
 	public Supplier<Optional<UserDescriptor>> withUser(Optional<UserDescriptor> user) {
 		return with(new UserField(user, this::validatePage, labels, context));
+	}
+
+	public Supplier<Optional<Collection<UserDescriptor>>> withUsers() {
+		return with(new UsersField(Collections.emptyList(), this::validatePage, labels, context));
 	}
 
 	public Supplier<Optional<ProductVersionDescriptor>> withProductVersion(Optional<ProductVersionDescriptor> product) {

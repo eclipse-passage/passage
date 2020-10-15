@@ -19,8 +19,9 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 
 public final class FloatingDataPack {
+
 	private final Optional<LicensePlanDescriptor> plan;
-	private final Optional<UserDescriptor> user;
+	private final Optional<UserDescriptor> user; // FIXME: can there be several of'em?
 	private final Optional<ProductVersionDescriptor> product;
 
 	public FloatingDataPack(//

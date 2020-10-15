@@ -22,10 +22,9 @@ import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public class UserField extends TextField<UserDescriptor> {
+public final class UserField extends TextField<UserDescriptor> {
 
-	protected UserField(Optional<UserDescriptor> user, Runnable modified, LabelProvider labels,
-			MandatoryService context) {
+	UserField(Optional<UserDescriptor> user, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(user, modified, labels, context);
 	}
 

@@ -25,10 +25,10 @@ import java.util.function.Supplier;
  */
 public final class ZeroOrMany<C> {
 
-	private final Supplier<Collection<C>> supplier;
+	private final Supplier<Collection<C>> source;
 
 	public ZeroOrMany(Supplier<Collection<C>> input) {
-		this.supplier = input;
+		this.source = input;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public final class ZeroOrMany<C> {
 	 *         {@code new instance} collection or an empty collection.
 	 */
 	public Collection<C> choose(Supplier<Optional<C>> create, Function<Collection<C>, Collection<C>> select) {
-		Collection<C> input = supplier.get();
+		Collection<C> input = source.get();
 		if (input.isEmpty()) {
 			return create.get()//
 					.map(Collections::singleton)//
