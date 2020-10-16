@@ -63,6 +63,10 @@ public final class ComposedPage implements Supplier<LicenseDataPage> {
 		return with(new ActivePeriodField(this::validatePage, labels, context));
 	}
 
+	public Supplier<Optional<Integer>> withCapacity() {
+		return with(new CapacityField(this::validatePage, labels, context));
+	}
+
 	private <T> Supplier<Optional<T>> with(Field<T> unit) {
 		units.add(unit);
 		return unit::data;
