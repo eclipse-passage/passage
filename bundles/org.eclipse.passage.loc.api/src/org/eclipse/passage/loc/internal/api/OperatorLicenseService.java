@@ -28,8 +28,8 @@ public interface OperatorLicenseService {
 	 * @return the License Pack to be verified and issued
 	 * 
 	 */
-	LicensePackDescriptor createLicensePack(LicensingRequest request);
+	LicensePackDescriptor createLicensePack(PersonalLicenseRequest request);
 
-	ServiceInvocationResult<IssuedLicense> issueLicensePack(LicensingRequest request, LicensePackDescriptor template);
+	ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request, LicensePackDescriptor template);
 
 }

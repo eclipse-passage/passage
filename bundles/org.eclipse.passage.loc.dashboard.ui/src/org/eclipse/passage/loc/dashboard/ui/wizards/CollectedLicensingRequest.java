@@ -20,9 +20,9 @@ import java.util.UUID;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
+import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
-final class CollectedLicensingRequest implements LicensingRequest {
+final class CollectedLicensingRequest implements PersonalLicenseRequest {
 
 	private final ZoneId zone = ZoneId.systemDefault();
 	private final String uuid = UUID.randomUUID().toString();
@@ -44,57 +44,57 @@ final class CollectedLicensingRequest implements LicensingRequest {
 	}
 
 	@Override
-	public Date getValidUntil() {
+	public Date validUntil() {
 		return Date.from(until.atStartOfDay(zone).toInstant());
 	}
 
 	@Override
-	public Date getValidFrom() {
+	public Date validFrom() {
 		return Date.from(from.atStartOfDay(zone).toInstant());
 	}
 
 	@Override
-	public String getUserIdentifier() {
+	public String user() {
 		return user.getEmail();
 	}
 
 	@Override
-	public String getUserFullName() {
+	public String userFullName() {
 		return user.getFullName();
 	}
 
 	@Override
-	public String getProductVersion() {
+	public String productVersion() {
 		return product.getVersion();
 	}
 
 	@Override
-	public String getProductIdentifier() {
+	public String productIdentifier() {
 		return product.getProduct().getIdentifier();
 	}
 
 	@Override
-	public String getPlanIdentifier() {
+	public String plan() {
 		return plan.getIdentifier();
 	}
 
 	@Override
-	public String getIdentifier() {
+	public String identifier() {
 		return uuid;
 	}
 
 	@Override
-	public Date getCreationDate() {
+	public Date creationDate() {
 		return stamp;
 	}
 
 	@Override
-	public String getConditionType() {
+	public String conditionType() {
 		return user.getPreferredConditionType();
 	}
 
 	@Override
-	public String getConditionExpression() {
+	public String conditionExpression() {
 		return user.getPreferredConditionExpression();
 	}
 

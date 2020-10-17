@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
+import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
@@ -42,12 +42,12 @@ import org.eclipse.swt.widgets.Composite;
 public class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
-	private final Supplier<LicensingRequest> data;
+	private final Supplier<PersonalLicenseRequest> data;
 	private LicensePack license;
 	private VViewModelProperties properties;
 	private Composite base;
 
-	protected IssueLicensePackPage(String name, Supplier<LicensingRequest> data, IEclipseContext context) {
+	protected IssueLicensePackPage(String name, Supplier<PersonalLicenseRequest> data, IEclipseContext context) {
 		super(name);
 		this.context = context;
 		this.data = data;
@@ -56,16 +56,16 @@ public class IssueLicensePackPage extends WizardPage {
 	}
 
 	public void init() {
-		LicensingRequest request = data.get();
+		PersonalLicenseRequest request = data.get();
 		if (license != null) {
-			license.setPlanIdentifier(request.getPlanIdentifier());
-			license.setProductIdentifier(request.getProductIdentifier());
-			license.setProductVersion(request.getProductVersion());
-			license.setUserIdentifier(request.getUserIdentifier());
+			license.setPlanIdentifier(request.plan());
+			license.setProductIdentifier(request.productIdentifier());
+			license.setProductVersion(request.productVersion());
+			license.setUserIdentifier(request.user());
 			EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 			for (LicenseGrant licenseGrant : licenseGrants) {
-				licenseGrant.setValidFrom(request.getValidFrom());
-				licenseGrant.setValidUntil(request.getValidUntil());
+				licenseGrant.setValidFrom(request.validFrom());
+				licenseGrant.setValidUntil(request.validUntil());
 			}
 			return;
 		}

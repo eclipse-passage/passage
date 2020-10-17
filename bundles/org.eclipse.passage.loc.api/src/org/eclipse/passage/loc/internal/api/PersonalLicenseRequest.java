@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @since 0.5.0
  */
-public interface LicensingRequest {
+public interface PersonalLicenseRequest {
 
 	/**
 	 * Returns the identifier of this licensing request. This is the value of its
@@ -28,7 +28,7 @@ public interface LicensingRequest {
 	 * @return the identifier
 	 * @since 0.5.0
 	 */
-	String getIdentifier();
+	String identifier();
 
 	/**
 	 * Returns the creation date of this licensing request. This is the value of its
@@ -37,7 +37,7 @@ public interface LicensingRequest {
 	 * @return the creation date
 	 * @since 0.5.0
 	 */
-	Date getCreationDate();
+	Date creationDate();
 
 	/**
 	 * Returns the <code>"User"</code> identifier of this licensing request. This is
@@ -46,7 +46,7 @@ public interface LicensingRequest {
 	 * @return the user identifier
 	 * @since 0.5.0
 	 */
-	String getUserIdentifier();
+	String user();
 
 	/**
 	 * Returns the <code>"User"</code> full name of this licensing request. This is
@@ -55,7 +55,7 @@ public interface LicensingRequest {
 	 * @return the user full name
 	 * @since 0.5.0
 	 */
-	String getUserFullName();
+	String userFullName();
 
 	/**
 	 * Returns the <code>"Product"</code> identifier of this licensing request. This
@@ -64,7 +64,7 @@ public interface LicensingRequest {
 	 * @return the product identifier
 	 * @since 0.5.0
 	 */
-	String getProductIdentifier();
+	String productIdentifier();
 
 	/**
 	 * Returns the <code>"Product Version"</code> version of this licensing request.
@@ -73,7 +73,7 @@ public interface LicensingRequest {
 	 * @return the product version
 	 * @since 0.5.0
 	 */
-	String getProductVersion();
+	String productVersion();
 
 	/**
 	 * Returns the <code>"License Plan"</code> identifier of this licensing request.
@@ -82,7 +82,7 @@ public interface LicensingRequest {
 	 * @return the plan identifier
 	 * @since 0.5.0
 	 */
-	String getPlanIdentifier();
+	String plan();
 
 	/**
 	 * Returns the validity period start date of this licensing request. This is the
@@ -91,7 +91,7 @@ public interface LicensingRequest {
 	 * @return the valid from
 	 * @since 0.5.0
 	 */
-	Date getValidFrom();
+	Date validFrom();
 
 	/**
 	 * Returns the validity period end date of this licensing request. This is the
@@ -100,7 +100,7 @@ public interface LicensingRequest {
 	 * @return the valid until
 	 * @since 0.5.0
 	 */
-	Date getValidUntil();
+	Date validUntil();
 
 	/**
 	 * Returns the condition type of this licensing request. This is the value of
@@ -109,7 +109,7 @@ public interface LicensingRequest {
 	 * @return the condition type
 	 * @since 0.5.0
 	 */
-	String getConditionType();
+	String conditionType();
 
 	/**
 	 * Returns the condition expression of this licensing request. This is the value
@@ -118,6 +118,6 @@ public interface LicensingRequest {
 	 * @return the condition expression
 	 * @since 0.5.0
 	 */
-	String getConditionExpression();
+	String conditionExpression();
 
 }
