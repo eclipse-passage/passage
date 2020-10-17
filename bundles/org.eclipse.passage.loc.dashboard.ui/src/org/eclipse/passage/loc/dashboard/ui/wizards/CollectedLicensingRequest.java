@@ -15,10 +15,7 @@ package org.eclipse.passage.loc.dashboard.ui.wizards;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -31,55 +28,54 @@ final class CollectedLicensingRequest implements LicensingRequest {
 	private final String uuid = UUID.randomUUID().toString();
 	private final Date stamp = new Date();
 
-	private final Supplier<Optional<LicensePlanDescriptor>> plan;
-	private final Supplier<Optional<UserDescriptor>> user;
-	private final Supplier<Optional<ProductVersionDescriptor>> product;
-	private final Supplier<Optional<List<LocalDate>>> period;
+	private final LicensePlanDescriptor plan;
+	private final UserDescriptor user;
+	private final ProductVersionDescriptor product;
+	private final LocalDate from;
+	private final LocalDate until;
 
-	CollectedLicensingRequest(//
-			Supplier<Optional<LicensePlanDescriptor>> plan, //
-			Supplier<Optional<UserDescriptor>> user, //
-			Supplier<Optional<ProductVersionDescriptor>> product, //
-			Supplier<Optional<List<LocalDate>>> period) {
+	CollectedLicensingRequest(LicensePlanDescriptor plan, UserDescriptor user, ProductVersionDescriptor product,
+			LocalDate from, LocalDate until) {
 		this.plan = plan;
 		this.user = user;
 		this.product = product;
-		this.period = period;
+		this.from = from;
+		this.until = until;
 	}
 
 	@Override
 	public Date getValidUntil() {
-		return Date.from(period.get().get().get(1).atStartOfDay(zone).toInstant());
+		return Date.from(until.atStartOfDay(zone).toInstant());
 	}
 
 	@Override
 	public Date getValidFrom() {
-		return Date.from(period.get().get().get(0).atStartOfDay(zone).toInstant());
+		return Date.from(from.atStartOfDay(zone).toInstant());
 	}
 
 	@Override
 	public String getUserIdentifier() {
-		return user.get().get().getEmail();
+		return user.getEmail();
 	}
 
 	@Override
 	public String getUserFullName() {
-		return user.get().get().getFullName();
+		return user.getFullName();
 	}
 
 	@Override
 	public String getProductVersion() {
-		return product.get().get().getVersion();
+		return product.getVersion();
 	}
 
 	@Override
 	public String getProductIdentifier() {
-		return product.get().get().getProduct().getIdentifier();
+		return product.getProduct().getIdentifier();
 	}
 
 	@Override
 	public String getPlanIdentifier() {
-		return plan.get().get().getIdentifier();
+		return plan.getIdentifier();
 	}
 
 	@Override
@@ -94,12 +90,12 @@ final class CollectedLicensingRequest implements LicensingRequest {
 
 	@Override
 	public String getConditionType() {
-		return user.get().get().getPreferredConditionType();
+		return user.getPreferredConditionType();
 	}
 
 	@Override
 	public String getConditionExpression() {
-		return user.get().get().getPreferredConditionExpression();
+		return user.getPreferredConditionExpression();
 	}
 
 }

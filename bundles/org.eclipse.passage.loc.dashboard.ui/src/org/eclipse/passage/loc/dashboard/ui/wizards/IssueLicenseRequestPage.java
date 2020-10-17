@@ -47,6 +47,20 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 	}
 
 	public LicensingRequest request() {
-		return new CollectedLicensingRequest(plan, user, product, period);
+		return new CollectedLicensingRequest(//
+				plan.get().get(), //
+				user.get().get(), //
+				product.get().get(), //
+				from(), //
+				until());
 	}
+
+	private LocalDate from() {
+		return period.get().get().get(0);
+	}
+
+	private LocalDate until() {
+		return period.get().get().get(1);
+	}
+
 }

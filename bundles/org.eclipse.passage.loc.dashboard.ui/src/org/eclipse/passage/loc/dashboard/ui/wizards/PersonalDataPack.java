@@ -47,4 +47,5 @@ public final class PersonalDataPack {
 	Optional<ProductVersionDescriptor> product() {
 		return product;
 	}
+
 }
