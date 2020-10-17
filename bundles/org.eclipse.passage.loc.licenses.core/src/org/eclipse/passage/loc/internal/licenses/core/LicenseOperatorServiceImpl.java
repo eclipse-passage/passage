@@ -62,7 +62,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
+import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.api.OperatorEvents;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
@@ -157,7 +157,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public ServiceInvocationResult<IssuedLicense> issueLicensePack(LicensingRequest request,
+	public ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request,
 			LicensePackDescriptor template) {
 		Objects.requireNonNull("LicenseOperatorServiceImpl::issueLicensePack: cannot issue license for null request"); //$NON-NLS-1$
 		LicensePack pack = null;
@@ -188,9 +188,9 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 			userLicense = UsersFactory.eINSTANCE.createUserLicense();
 			userLicense.setPackIdentifier(license.getIdentifier());
 			userLicense.setIssueDate(issueDate);
-			userLicense.setPlanIdentifier(request.getPlanIdentifier());
-			userLicense.setValidFrom(request.getValidFrom());
-			userLicense.setValidUntil(request.getValidUntil());
+			userLicense.setPlanIdentifier(request.plan());
+			userLicense.setValidFrom(request.validFrom());
+			userLicense.setValidUntil(request.validUntil());
 			userLicense.setConditionExpression(expression);
 			userLicense.setConditionType(conditionType);
 			userLicense.setProductIdentifier(product.identifier());
@@ -268,28 +268,28 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensePack createLicensePack(LicensingRequest request) {
+	public LicensePack createLicensePack(PersonalLicenseRequest request) {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicensePack licensePack = licenseFactory.createLicensePack();
 		if (request == null) {
 			return licensePack;
 		}
-		licensePack.setRequestIdentifier(request.getIdentifier());
-		licensePack.setUserIdentifier(request.getUserIdentifier());
-		licensePack.setUserFullName(request.getUserFullName());
-		licensePack.setProductIdentifier(request.getProductIdentifier());
-		licensePack.setProductVersion(request.getProductVersion());
-		String planIdentifier = request.getPlanIdentifier();
+		licensePack.setRequestIdentifier(request.identifier());
+		licensePack.setUserIdentifier(request.user());
+		licensePack.setUserFullName(request.userFullName());
+		licensePack.setProductIdentifier(request.productIdentifier());
+		licensePack.setProductVersion(request.productVersion());
+		String planIdentifier = request.plan();
 		licensePack.setPlanIdentifier(planIdentifier);
 		LicensePlanDescriptor licensePlan = licenseRegistry.getLicensePlan(planIdentifier);
 		if (licensePlan == null) {
 			return licensePack;
 		}
 		Iterable<? extends LicensePlanFeatureDescriptor> features = licensePlan.getLicensePlanFeatures();
-		Date from = request.getValidFrom();
-		Date until = request.getValidUntil();
-		String conditionType = request.getConditionType();
-		String expression = request.getConditionExpression();
+		Date from = request.validFrom();
+		Date until = request.validUntil();
+		String conditionType = request.conditionType();
+		String expression = request.conditionExpression();
 		EList<LicenseGrant> grants = licensePack.getLicenseGrants();
 		for (LicensePlanFeatureDescriptor planFeature : features) {
 			LicenseGrant grant = createLicenseGrant(planFeature, from, until, conditionType, expression);

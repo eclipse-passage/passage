@@ -23,7 +23,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
+import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
+import org.eclipse.passage.loc.internal.licenses.core.request.PersonalLicenseData;
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
@@ -46,10 +47,10 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 		return page.get();
 	}
 
-	public LicensingRequest request() {
-		return new CollectedLicensingRequest(//
-				plan.get().get(), //
+	public PersonalLicenseRequest request() {
+		return new PersonalLicenseData(//
 				user.get().get(), //
+				plan.get().get(), //
 				product.get().get(), //
 				from(), //
 				until());

@@ -12,43 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * Collection of all the data required to issue a floating license pack.
  */
-public interface FloatingLicensingRequest {
+public interface FloatingLicenseRequest extends GeneralLicenseRequest {
 
 	/**
-	 * Returns the identifier of this licensing request.
-	 */
-	String identifier();
-
-	/**
-	 * Returns the creation date of this licensing request.
-	 */
-	Date creationDate();
-
-	/**
-	 * Identifiers of all the <code>User</code>s selected for this licensing
-	 * request.
+	 * Identifiers of all the <code>User</code>s selected to to gave access to this
+	 * floating license
 	 */
 	Collection<String> users();
-
-	String productIdentifier();
-
-	String productVersion();
-
-	/**
-	 * Identifier of the license plan used
-	 */
-	String plan();
-
-	ZonedDateTime validFrom();
-
-	ZonedDateTime validUntil();
 
 	/**
 	 * Full name of a <code>User</code> identified by the given {@code user} value.
