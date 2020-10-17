@@ -14,7 +14,10 @@ package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
 import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -23,37 +26,15 @@ import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessag
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Widget;
 
-abstract class TextField<T> implements Field<T> {
+abstract class TextField<T> extends LabeledField<T> {
 
-	protected final Optional<T> source;
-	private final Runnable modified;
-	private final LabelProvider labels;
-	protected final MandatoryService context;
 	private Text text;
 
 	protected TextField(Optional<T> source, Runnable modified, LabelProvider labels, MandatoryService context) {
-		this.source = source;
-		this.modified = modified;
-		this.labels = labels;
-		this.context = context;
-	}
-
-	@Override
-	public final void installControll(Composite parent) {
-		installLabel(parent);
-		installText(parent);
-		installSelectButton(parent);
-		installData(source);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public final Optional<T> data() {
-		return Optional.ofNullable((T) text.getData());
+		super(source, modified, labels, context);
 	}
 
 	@Override
@@ -61,10 +42,23 @@ abstract class TextField<T> implements Field<T> {
 		return data().isEmpty() ? Optional.of(errorMessage()) : Optional.empty();
 	}
 
-	private void installLabel(Composite parent) {
-		Label label = new Label(parent, SWT.NONE);
-		label.setText(label());
-		label.setLayoutData(GridDataFactory.fillDefaults().create());
+	@Override
+	protected Widget control(Composite parent) {
+		installText(parent);
+		installSelectButton(parent);
+		return text;
+	}
+
+	@Override
+	protected void reflectData(T data) {
+		if (data instanceof Collection) {
+			String altogether = StreamSupport.stream(((Collection<?>) data).spliterator(), false)//
+					.map(labels::getText)//
+					.collect(Collectors.joining(", ")); //$NON-NLS-1$
+			text.setText(altogether);
+		} else {
+			text.setText(labels.getText(data));
+		}
 	}
 
 	private void installText(Composite parent) {
@@ -80,17 +74,7 @@ abstract class TextField<T> implements Field<T> {
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
 	}
 
-	private void installData(Optional<T> data) {
-		data.ifPresent(d -> {
-			text.setData(d);
-			text.setText(labels.getText(d));
-		});
-	}
-
-	protected Shell shell() {
-		return text.getShell();
-	}
-
+	@Override
 	protected abstract String label();
 
 	protected abstract String errorMessage();

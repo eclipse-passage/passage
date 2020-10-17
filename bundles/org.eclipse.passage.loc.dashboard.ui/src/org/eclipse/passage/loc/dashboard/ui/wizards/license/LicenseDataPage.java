@@ -53,7 +53,7 @@ public final class LicenseDataPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
-	protected boolean validatePage() {
+	private boolean validatePage() {
 		setMessage("", WizardPage.NONE); //$NON-NLS-1$
 		for (Field<?> unit : units) {
 			Optional<String> error = unit.error();

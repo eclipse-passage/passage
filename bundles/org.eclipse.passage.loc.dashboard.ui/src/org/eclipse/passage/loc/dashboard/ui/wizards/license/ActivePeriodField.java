@@ -29,10 +29,10 @@ final class ActivePeriodField implements Field<List<LocalDate>> {
 
 	ActivePeriodField(Runnable modified, LabelProvider labels, MandatoryService context) {
 		from = new DateField(LocalDate.now(), //
-				IssueLicensePageMessages.IssueLicenseRequestPage_valid_from_title, //
+				IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_from, //
 				modified, labels, context);
 		until = new DateField(LocalDate.now().plusYears(1), //
-				IssueLicensePageMessages.IssueLicenseRequestPage_valid_until_title, //
+				IssueLicensePageMessages.IssueLicenseRequestPage_lbl_valid_until, //
 				modified, labels, context);
 	}
 
