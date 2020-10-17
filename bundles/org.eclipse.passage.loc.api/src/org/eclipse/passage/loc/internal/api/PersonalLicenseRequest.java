@@ -12,32 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
-import java.util.Date;
-
 /**
  * Collects the data required to issue the license
  *
  * @since 0.5.0
  */
-public interface PersonalLicenseRequest {
-
-	/**
-	 * Returns the identifier of this licensing request. This is the value of its
-	 * <code>"identifier"</code> attribute.
-	 *
-	 * @return the identifier
-	 * @since 0.5.0
-	 */
-	String identifier();
-
-	/**
-	 * Returns the creation date of this licensing request. This is the value of its
-	 * <code>"creationDate"</code> attribute.
-	 *
-	 * @return the creation date
-	 * @since 0.5.0
-	 */
-	Date creationDate();
+public interface PersonalLicenseRequest extends GeneralLicenseRequest {
 
 	/**
 	 * Returns the <code>"User"</code> identifier of this licensing request. This is
@@ -56,51 +36,6 @@ public interface PersonalLicenseRequest {
 	 * @since 0.5.0
 	 */
 	String userFullName();
-
-	/**
-	 * Returns the <code>"Product"</code> identifier of this licensing request. This
-	 * is the value of its <code>"productIdentifier"</code> attribute.
-	 *
-	 * @return the product identifier
-	 * @since 0.5.0
-	 */
-	String productIdentifier();
-
-	/**
-	 * Returns the <code>"Product Version"</code> version of this licensing request.
-	 * This is the value of its <code>"productVersion"</code> attribute.
-	 *
-	 * @return the product version
-	 * @since 0.5.0
-	 */
-	String productVersion();
-
-	/**
-	 * Returns the <code>"License Plan"</code> identifier of this licensing request.
-	 * This is the value of its <code>"planIdentifier"</code> attribute.
-	 *
-	 * @return the plan identifier
-	 * @since 0.5.0
-	 */
-	String plan();
-
-	/**
-	 * Returns the validity period start date of this licensing request. This is the
-	 * value of its <code>"validFrom"</code> attribute.
-	 *
-	 * @return the valid from
-	 * @since 0.5.0
-	 */
-	Date validFrom();
-
-	/**
-	 * Returns the validity period end date of this licensing request. This is the
-	 * value of its <code>"validUntil"</code> attribute.
-	 *
-	 * @return the valid until
-	 * @since 0.5.0
-	 */
-	Date validUntil();
 
 	/**
 	 * Returns the condition type of this licensing request. This is the value of
