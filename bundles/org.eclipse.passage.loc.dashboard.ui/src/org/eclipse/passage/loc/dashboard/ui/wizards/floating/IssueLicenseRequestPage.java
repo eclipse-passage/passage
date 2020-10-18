@@ -33,7 +33,6 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 	private final Supplier<Optional<Collection<UserDescriptor>>> users;
 	private final Supplier<Optional<ProductVersionDescriptor>> product;
 	private final Supplier<Optional<List<LocalDate>>> period;
-	private final Supplier<Optional<Integer>> capacity;
 	private final ComposedPage page;
 
 	IssueLicenseRequestPage(IEclipseContext context, FloatingDataPack initial) {
@@ -42,7 +41,6 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 		users = page.withUsers();
 		product = page.withProductVersion(initial.product());
 		period = page.withPeriod();
-		capacity = page.withCapacity();
 	}
 
 	@Override
