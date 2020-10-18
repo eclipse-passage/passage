@@ -32,7 +32,6 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
 		this.users = users; // FIXME: work for caching function: keep Map and reimplement retrieves
-
 	}
 
 	public FLoatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
@@ -68,7 +67,7 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 		return users.stream()//
 				.filter(user -> identifier.equals(user.getIdentifier()))//
 				.findAny()//
-				.get(); // yah, fail if not found, it's a developer's
+				.get(); // yah, fail if not found, it's a development problem
 	}
 
 }

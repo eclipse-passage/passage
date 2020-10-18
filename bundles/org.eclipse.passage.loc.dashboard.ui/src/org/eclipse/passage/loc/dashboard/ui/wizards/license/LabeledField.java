@@ -50,7 +50,7 @@ abstract class LabeledField<T> implements Field<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public final Optional<T> data() {
-		return Optional.ofNullable((T) widget.getData());
+		return Optional.ofNullable(widget).flatMap(w -> Optional.ofNullable((T) w.getData()));
 	}
 
 	private void installLabel(Composite parent) {
