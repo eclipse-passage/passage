@@ -52,8 +52,7 @@
         eOpposite="#//FloatingLicensePack/features"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriod" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosed" abstract="true"
-      interface="true" eSuperTypes="#//ValidityPeriod">
+  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosed" eSuperTypes="#//ValidityPeriod">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="until" ordered="false"
