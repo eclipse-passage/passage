@@ -29,6 +29,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin;
+import org.eclipse.passage.lic.floating.model.api.ProductRef;
+import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.floating.model.api.ProductRef} object.

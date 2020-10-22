@@ -29,6 +29,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.passage.lic.floating.model.util.FloatingAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
