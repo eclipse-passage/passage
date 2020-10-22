@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.floating.model/src-gen"
+    creationIcons="false" editDirectory="org.eclipse.passage.lic.floating.edit/src-gen"
+    editorDirectory="org.eclipse.passage.lic.floating.editor/src-gen" modelPluginID="org.eclipse.passage.lic.floating.model"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates" dynamicTemplates="true"
+    modelName="Floating" editPluginClass="org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin"
+    editorPluginClass="org.eclipse.passage.lic.floating.editor.FLoatingLicensesEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.floating.model.tests.FLoatingLicensesAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.eclipse.passage.lic.floating.edit" editorPluginID="org.eclipse.passage.lic.floating.editor"
+    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
+    cleanup="true" oSGiCompatible="true">
+  <foreignModel>../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore</foreignModel>
+  <genPackages prefix="Floating" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
+      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
+      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#/">
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicensePack">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicensePack/license"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicensePack/host"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicensePack/users"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicensePack/features"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/issueDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/company"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/plan"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/product"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//LicenseRequisites/valid"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ProductRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ProductRef/product"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ProductRef/version"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServer/identifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServer/authentication"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//UserGrant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//UserGrant/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//UserGrant/authentication"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/feature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/version"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/valid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/capacity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/pack"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ValidityPeriod"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ValidityPeriodClosed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ValidityPeriodClosed/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//ValidityPeriodClosed/until"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//EvaluationInstructions">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//EvaluationInstructions/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//EvaluationInstructions/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//VersionMatch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//VersionMatch/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//VersionMatch/rule"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
