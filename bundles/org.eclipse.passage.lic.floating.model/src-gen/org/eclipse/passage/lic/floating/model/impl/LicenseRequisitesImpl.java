@@ -1,47 +1,58 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>License Requisites</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>License
+ * Requisites</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getCompany <em>Company</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getPlan <em>Plan</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getProduct <em>Product</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getValid <em>Valid</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getIssueDate
+ * <em>Issue Date</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getCompany
+ * <em>Company</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getPlan
+ * <em>Plan</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getProduct
+ * <em>Product</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl#getValid
+ * <em>Valid</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -49,9 +60,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -59,9 +70,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIssueDate() <em>Issue Date</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIssueDate()
 	 * @generated
 	 * @ordered
@@ -69,9 +80,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	protected static final Date ISSUE_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIssueDate() <em>Issue Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIssueDate() <em>Issue Date</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIssueDate()
 	 * @generated
 	 * @ordered
@@ -80,8 +91,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * The default value of the '{@link #getCompany() <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCompany()
 	 * @generated
 	 * @ordered
@@ -90,8 +101,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * The cached value of the '{@link #getCompany() <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCompany()
 	 * @generated
 	 * @ordered
@@ -99,9 +110,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	private String company = COMPANY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPlan() <em>Plan</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPlan() <em>Plan</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPlan()
 	 * @generated
 	 * @ordered
@@ -109,9 +120,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	protected static final String PLAN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPlan() <em>Plan</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPlan() <em>Plan</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPlan()
 	 * @generated
 	 * @ordered
@@ -120,8 +131,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -129,9 +140,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	protected ProductRef product;
 
 	/**
-	 * The cached value of the '{@link #getValid() <em>Valid</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValid() <em>Valid</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getValid()
 	 * @generated
 	 * @ordered
@@ -139,8 +150,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	protected ValidityPeriod valid;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LicenseRequisitesImpl() {
@@ -148,8 +159,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,8 +169,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,8 +179,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,8 +194,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,8 +204,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,8 +219,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,8 +229,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,8 +244,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,8 +254,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,8 +269,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,8 +289,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProductRef basicGetProduct() {
@@ -287,8 +298,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,8 +313,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -322,8 +333,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ValidityPeriod basicGetValid() {
@@ -331,8 +342,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,8 +357,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -375,8 +386,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -407,8 +418,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -439,8 +450,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -464,8 +475,8 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -486,4 +497,4 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 		return result.toString();
 	}
 
-} //LicenseRequisitesImpl
+} // LicenseRequisitesImpl

@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.model;
+package org.eclipse.passage.lic.internal.floating.model;
 
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 
-public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
+public final class AssignGrantIdentifiers implements Consumer<FloatingLicensePack> {
 
 	private final Predicate<String> predicate;
 
@@ -29,11 +29,11 @@ public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
 	}
 
 	@Override
-	public void accept(LicensePack pack) {
-		String identifier = pack.getIdentifier();
-		EList<LicenseGrant> grants = pack.getLicenseGrants();
+	public void accept(FloatingLicensePack pack) {
+		String identifier = pack.getLicense().getIdentifier();
+		EList<FeatureGrant> grants = pack.getFeatures();
 		for (int i = 0; i < grants.size(); i++) {
-			LicenseGrant grant = grants.get(i);
+			FeatureGrant grant = grants.get(i);
 			if (Optional.ofNullable(grant.getIdentifier()).filter(predicate).isPresent()) {
 				continue;
 			}

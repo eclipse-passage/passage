@@ -1,41 +1,48 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FloatingServer;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Server</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Server</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl#getAuthentication <em>Authentication</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl#getAuthentication
+ * <em>Authentication</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FloatingServerImpl extends MinimalEObjectImpl.Container implements FloatingServer {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -43,9 +50,9 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -53,9 +60,10 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAuthentication()
+	 * <em>Authentication</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getAuthentication()
 	 * @generated
 	 * @ordered
@@ -63,8 +71,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	protected EvaluationInstructions authentication;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FloatingServerImpl() {
@@ -72,8 +80,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,8 +90,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,8 +100,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,8 +115,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,8 +135,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EvaluationInstructions basicGetAuthentication() {
@@ -136,8 +144,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,8 +159,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,8 +178,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,8 +198,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,8 +218,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -227,8 +235,8 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,4 +251,4 @@ public class FloatingServerImpl extends MinimalEObjectImpl.Container implements 
 		return result.toString();
 	}
 
-} //FloatingServerImpl
+} // FloatingServerImpl

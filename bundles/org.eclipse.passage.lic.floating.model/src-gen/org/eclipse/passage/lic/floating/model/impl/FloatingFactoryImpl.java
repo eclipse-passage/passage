@@ -1,31 +1,45 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.passage.lic.floating.model.api.*;
-
+import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
+import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.floating.model.api.FloatingServer;
+import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.floating.model.api.ProductRef;
+import org.eclipse.passage.lic.floating.model.api.UserGrant;
+import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static FloatingFactory init() {
@@ -42,9 +56,9 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public FloatingFactoryImpl() {
@@ -52,8 +66,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,8 +97,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,8 +108,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,8 +119,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,8 +130,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,8 +141,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,8 +152,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,8 +163,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -160,8 +174,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,8 +185,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -182,8 +196,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,8 +206,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -202,4 +216,4 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 		return FloatingPackage.eINSTANCE;
 	}
 
-} //FloatingFactoryImpl
+} // FloatingFactoryImpl

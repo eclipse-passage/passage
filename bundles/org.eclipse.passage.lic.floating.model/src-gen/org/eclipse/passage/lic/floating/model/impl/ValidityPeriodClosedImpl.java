@@ -1,40 +1,47 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Validity Period Closed</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Validity Period Closed</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getFrom <em>From</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getUntil <em>Until</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getFrom
+ * <em>From</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getUntil
+ * <em>Until</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container implements ValidityPeriodClosed {
 	/**
-	 * The default value of the '{@link #getFrom() <em>From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getFrom() <em>From</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFrom()
 	 * @generated
 	 * @ordered
@@ -42,9 +49,9 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	protected static final Date FROM_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFrom() <em>From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getFrom() <em>From</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFrom()
 	 * @generated
 	 * @ordered
@@ -52,9 +59,9 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	private Date from = FROM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUntil() <em>Until</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getUntil() <em>Until</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUntil()
 	 * @generated
 	 * @ordered
@@ -62,9 +69,9 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	protected static final Date UNTIL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUntil() <em>Until</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUntil() <em>Until</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUntil()
 	 * @generated
 	 * @ordered
@@ -72,8 +79,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	private Date until = UNTIL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ValidityPeriodClosedImpl() {
@@ -81,8 +88,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,8 +98,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,8 +108,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,8 +123,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,8 +133,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,8 +148,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,8 +165,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,8 +185,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,8 +205,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,8 +222,8 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,4 +240,4 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 		return result.toString();
 	}
 
-} //ValidityPeriodClosedImpl
+} // ValidityPeriodClosedImpl

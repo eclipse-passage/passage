@@ -1,48 +1,59 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.floating.model.api.VersionMatch;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Feature Grant</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
+ * Grant</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getValid <em>Valid</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getPack <em>Pack</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getFeature
+ * <em>Feature</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getVersion
+ * <em>Version</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getValid
+ * <em>Valid</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getCapacity
+ * <em>Capacity</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getPack
+ * <em>Pack</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements FeatureGrant {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -50,9 +61,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -61,8 +72,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -71,8 +82,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -81,8 +92,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -90,9 +101,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected VersionMatch version;
 
 	/**
-	 * The cached value of the '{@link #getValid() <em>Valid</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValid() <em>Valid</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getValid()
 	 * @generated
 	 * @ordered
@@ -100,9 +111,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected ValidityPeriod valid;
 
 	/**
-	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -111,8 +122,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -120,9 +131,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	private int capacity = CAPACITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPack() <em>Pack</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPack() <em>Pack</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPack()
 	 * @generated
 	 * @ordered
@@ -130,8 +141,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected FloatingLicensePack pack;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureGrantImpl() {
@@ -139,8 +150,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,8 +160,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,8 +170,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -174,8 +185,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,8 +195,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,8 +210,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,8 +230,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VersionMatch basicGetVersion() {
@@ -228,8 +239,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,8 +254,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,8 +274,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ValidityPeriod basicGetValid() {
@@ -272,8 +283,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,8 +298,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -297,8 +308,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -312,8 +323,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,8 +343,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FloatingLicensePack basicGetPack() {
@@ -341,8 +352,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(FloatingLicensePack newPack, NotificationChain msgs) {
@@ -360,8 +371,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -384,8 +395,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -402,8 +413,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -417,8 +428,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -448,8 +459,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -480,8 +491,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -512,8 +523,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -537,8 +548,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -557,4 +568,4 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		return result.toString();
 	}
 
-} //FeatureGrantImpl
+} // FeatureGrantImpl

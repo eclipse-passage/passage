@@ -1,30 +1,37 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Product Ref</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Product
+ * Ref</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getProduct <em>Product</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getVersion <em>Version</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getProduct
+ * <em>Product</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getVersion
+ * <em>Version</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,8 +39,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 public class ProductRefImpl extends MinimalEObjectImpl.Container implements ProductRef {
 	/**
 	 * The default value of the '{@link #getProduct() <em>Product</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -42,8 +49,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -52,8 +59,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -62,8 +69,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -71,8 +78,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	private String version = VERSION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProductRefImpl() {
@@ -80,8 +87,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,8 +97,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,8 +107,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,8 +122,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,8 +132,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,8 +147,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,8 +164,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,8 +184,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,8 +204,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,8 +221,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,4 +239,4 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 		return result.toString();
 	}
 
-} //ProductRefImpl
+} // ProductRefImpl

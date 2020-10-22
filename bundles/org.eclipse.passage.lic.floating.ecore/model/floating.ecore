@@ -13,7 +13,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="issueDate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="company" lowerBound="1"
@@ -31,7 +31,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FloatingServer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" ordered="false"
         unique="false" lowerBound="1" eType="#//EvaluationInstructions"/>
   </eClassifiers>
@@ -41,7 +41,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#//VersionMatch"/>
