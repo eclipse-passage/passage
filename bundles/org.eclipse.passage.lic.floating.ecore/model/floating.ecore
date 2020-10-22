@@ -51,7 +51,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pack" lowerBound="1" eType="#//FloatingLicensePack"
         eOpposite="#//FloatingLicensePack/features"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriod" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriod" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosed" eSuperTypes="#//ValidityPeriod">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
