@@ -22,10 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication
- * <em>Authentication</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication <em>Authentication</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingServer()
@@ -70,11 +68,9 @@ public interface FloatingServer extends EObject {
 	EvaluationInstructions getAuthentication();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication
-	 * <em>Authentication</em>}' reference. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication <em>Authentication</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Authentication</em>' reference.
 	 * @see #getAuthentication()
 	 * @generated

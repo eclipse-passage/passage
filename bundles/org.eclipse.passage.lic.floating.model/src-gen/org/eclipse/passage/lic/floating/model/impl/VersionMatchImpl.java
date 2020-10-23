@@ -28,10 +28,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl#getVersion
- * <em>Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl#getRule
- * <em>Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl#getRule <em>Rule</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,7 +38,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -50,7 +47,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -79,7 +75,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionMatchImpl() {
@@ -88,7 +83,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +92,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +101,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,7 +115,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,7 +124,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +137,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +153,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +172,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -204,7 +191,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,7 +207,6 @@ public class VersionMatchImpl extends MinimalEObjectImpl.Container implements Ve
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

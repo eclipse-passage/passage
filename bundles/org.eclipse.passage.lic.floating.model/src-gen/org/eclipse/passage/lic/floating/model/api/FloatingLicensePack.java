@@ -23,14 +23,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense
- * <em>License</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost
- * <em>Host</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers
- * <em>Users</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures
- * <em>Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingLicensePack()
@@ -51,10 +47,8 @@ public interface FloatingLicensePack extends EObject {
 	LicenseRequisites getLicense();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense
-	 * <em>License</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>License</em>' reference.
 	 * @see #getLicense()
 	 * @generated
@@ -74,10 +68,8 @@ public interface FloatingLicensePack extends EObject {
 	FloatingServer getHost();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost
-	 * <em>Host</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Host</em>' reference.
 	 * @see #getHost()
 	 * @generated
@@ -98,13 +90,10 @@ public interface FloatingLicensePack extends EObject {
 	EList<UserGrant> getUsers();
 
 	/**
-	 * Returns the value of the '<em><b>Features</b></em>' reference list. The list
-	 * contents are of type
-	 * {@link org.eclipse.passage.lic.floating.model.api.FeatureGrant}. It is
-	 * bidirectional and its opposite is
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack
-	 * <em>Pack</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the value of the '<em><b>Features</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.floating.model.api.FeatureGrant}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' reference list.
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingLicensePack_Features()
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack

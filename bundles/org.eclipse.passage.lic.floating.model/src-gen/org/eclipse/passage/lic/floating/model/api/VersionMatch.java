@@ -22,10 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion
- * <em>Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule
- * <em>Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule <em>Rule</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getVersionMatch()
@@ -46,10 +44,8 @@ public interface VersionMatch extends EObject {
 	String getVersion();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion
-	 * <em>Version</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Version</em>' attribute.
 	 * @see #getVersion()
 	 * @generated
@@ -69,10 +65,8 @@ public interface VersionMatch extends EObject {
 	String getRule();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule
-	 * <em>Rule</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule <em>Rule</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rule</em>' attribute.
 	 * @see #getRule()
 	 * @generated

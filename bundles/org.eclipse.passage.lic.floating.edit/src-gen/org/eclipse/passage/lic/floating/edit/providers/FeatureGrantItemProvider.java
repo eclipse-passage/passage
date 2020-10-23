@@ -65,6 +65,7 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 			addFeaturePropertyDescriptor(object);
 			addVersionPropertyDescriptor(object);
 			addValidPropertyDescriptor(object);
+			addVividPropertyDescriptor(object);
 			addCapacityPropertyDescriptor(object);
 			addPackPropertyDescriptor(object);
 		}
@@ -131,6 +132,22 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 						getString("_UI_PropertyDescriptor_description", "_UI_FeatureGrant_valid_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FeatureGrant_type"), //$NON-NLS-1$
 						FloatingPackage.eINSTANCE.getFeatureGrant_Valid(), true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Vivid feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVividPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FeatureGrant_vivid_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureGrant_vivid_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FeatureGrant_type"), //$NON-NLS-1$
+						FloatingPackage.eINSTANCE.getFeatureGrant_Vivid(), true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -201,6 +218,7 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 		switch (notification.getFeatureID(FeatureGrant.class)) {
 		case FloatingPackage.FEATURE_GRANT__IDENTIFIER:
 		case FloatingPackage.FEATURE_GRANT__FEATURE:
+		case FloatingPackage.FEATURE_GRANT__VIVID:
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

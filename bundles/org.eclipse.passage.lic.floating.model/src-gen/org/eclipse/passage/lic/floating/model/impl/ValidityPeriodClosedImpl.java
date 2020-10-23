@@ -29,10 +29,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getFrom
- * <em>From</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getUntil
- * <em>Until</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getFrom <em>From</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl#getUntil <em>Until</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,7 +78,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ValidityPeriodClosedImpl() {
@@ -89,7 +86,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,7 +95,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +104,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,7 +118,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,7 +127,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +141,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,7 +157,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +176,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,7 +195,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,7 +211,6 @@ public class ValidityPeriodClosedImpl extends MinimalEObjectImpl.Container imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

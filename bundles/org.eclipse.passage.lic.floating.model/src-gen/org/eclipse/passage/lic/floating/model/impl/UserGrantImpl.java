@@ -30,10 +30,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl#getUser
- * <em>User</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl#getAuthentication
- * <em>Authentication</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl#getUser <em>User</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl#getAuthentication <em>Authentication</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,10 +58,9 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 	private String user = USER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthentication()
-	 * <em>Authentication</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getAuthentication()
 	 * @generated
 	 * @ordered
@@ -72,7 +69,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UserGrantImpl() {
@@ -81,7 +77,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +86,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,7 +95,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +108,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,7 +127,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EvaluationInstructions basicGetAuthentication() {
@@ -144,7 +135,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +149,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,7 +167,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -198,7 +186,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,7 +205,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,7 +221,6 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

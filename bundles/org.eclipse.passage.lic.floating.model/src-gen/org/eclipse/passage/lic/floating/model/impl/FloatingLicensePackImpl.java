@@ -38,14 +38,10 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getLicense
- * <em>License</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getHost
- * <em>Host</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getUsers
- * <em>Users</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getFeatures
- * <em>Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getLicense <em>License</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getUsers <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,7 +50,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	/**
 	 * The cached value of the '{@link #getLicense() <em>License</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getLicense()
 	 * @generated
 	 * @ordered
@@ -74,7 +69,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	/**
 	 * The cached value of the '{@link #getUsers() <em>Users</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getUsers()
 	 * @generated
 	 * @ordered
@@ -82,9 +76,8 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	protected EList<UserGrant> users;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
@@ -93,7 +86,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FloatingLicensePackImpl() {
@@ -102,7 +94,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,7 +103,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +122,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LicenseRequisites basicGetLicense() {
@@ -141,7 +130,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,7 +144,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +163,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FloatingServer basicGetHost() {
@@ -185,7 +171,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +185,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +198,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +211,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -244,7 +226,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,7 +240,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,7 +264,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -313,7 +292,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -339,7 +317,6 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

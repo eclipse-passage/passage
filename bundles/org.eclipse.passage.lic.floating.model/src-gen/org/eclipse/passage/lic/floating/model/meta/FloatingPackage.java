@@ -28,46 +28,43 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingFactory
  * @model kind="package"
  * @generated
  */
 public interface FloatingPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "floating"; //$NON-NLS-1$
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/passage/lic/floating/0.1.0"; //$NON-NLS-1$
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.eclipse.passage.lic"; //$NON-NLS-1$
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	FloatingPackage eINSTANCE = org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl.init();
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl
-	 * <em>License Pack</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl <em>License Pack</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingLicensePackImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getFloatingLicensePack()
 	 * @generated
@@ -84,9 +81,9 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_LICENSE_PACK__LICENSE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Host</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Host</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -129,11 +126,9 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_LICENSE_PACK_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl
-	 * <em>License Requisites</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl <em>License Requisites</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.eclipse.passage.lic.floating.model.impl.LicenseRequisitesImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getLicenseRequisites()
 	 * @generated
@@ -168,9 +163,9 @@ public interface FloatingPackage extends EPackage {
 	int LICENSE_REQUISITES__COMPANY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Plan</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Plan</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -186,9 +181,9 @@ public interface FloatingPackage extends EPackage {
 	int LICENSE_REQUISITES__PRODUCT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Valid</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Valid</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -197,7 +192,6 @@ public interface FloatingPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>License Requisites</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -213,10 +207,8 @@ public interface FloatingPackage extends EPackage {
 	int LICENSE_REQUISITES_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl
-	 * <em>Product Ref</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl <em>Product Ref</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.ProductRefImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getProductRef()
 	 * @generated
@@ -260,10 +252,8 @@ public interface FloatingPackage extends EPackage {
 	int PRODUCT_REF_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl
-	 * <em>Server</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl <em>Server</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingServerImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getFloatingServer()
 	 * @generated
@@ -298,19 +288,17 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_SERVER_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Server</em>' class. <!-- begin-user-doc
+	 * The number of operations of the '<em>Server</em>' class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FLOATING_SERVER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl <em>User
-	 * Grant</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.UserGrantImpl <em>User Grant</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.UserGrantImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getUserGrant()
 	 * @generated
@@ -318,9 +306,9 @@ public interface FloatingPackage extends EPackage {
 	int USER_GRANT = 4;
 
 	/**
-	 * The feature id for the '<em><b>User</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>User</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -354,10 +342,8 @@ public interface FloatingPackage extends EPackage {
 	int USER_GRANT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl
-	 * <em>Feature Grant</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl <em>Feature Grant</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getFeatureGrant()
 	 * @generated
@@ -392,13 +378,22 @@ public interface FloatingPackage extends EPackage {
 	int FEATURE_GRANT__VERSION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Valid</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Valid</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FEATURE_GRANT__VALID = 3;
+
+	/**
+	 * The feature id for the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_GRANT__VIVID = 4;
 
 	/**
 	 * The feature id for the '<em><b>Capacity</b></em>' attribute. <!--
@@ -407,16 +402,16 @@ public interface FloatingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__CAPACITY = 4;
+	int FEATURE_GRANT__CAPACITY = 5;
 
 	/**
-	 * The feature id for the '<em><b>Pack</b></em>' reference. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Pack</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__PACK = 5;
+	int FEATURE_GRANT__PACK = 6;
 
 	/**
 	 * The number of structural features of the '<em>Feature Grant</em>' class. <!--
@@ -425,7 +420,7 @@ public interface FloatingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT_FEATURE_COUNT = 6;
+	int FEATURE_GRANT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Feature Grant</em>' class. <!--
@@ -451,7 +446,6 @@ public interface FloatingPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Validity Period</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -467,11 +461,9 @@ public interface FloatingPackage extends EPackage {
 	int VALIDITY_PERIOD_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl
-	 * <em>Validity Period Closed</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl <em>Validity Period Closed</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.eclipse.passage.lic.floating.model.impl.ValidityPeriodClosedImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getValidityPeriodClosed()
 	 * @generated
@@ -479,27 +471,26 @@ public interface FloatingPackage extends EPackage {
 	int VALIDITY_PERIOD_CLOSED = 7;
 
 	/**
-	 * The feature id for the '<em><b>From</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>From</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VALIDITY_PERIOD_CLOSED__FROM = VALIDITY_PERIOD_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Until</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Until</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int VALIDITY_PERIOD_CLOSED__UNTIL = VALIDITY_PERIOD_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Validity Period Closed</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Validity Period Closed</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -515,11 +506,9 @@ public interface FloatingPackage extends EPackage {
 	int VALIDITY_PERIOD_CLOSED_OPERATION_COUNT = VALIDITY_PERIOD_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl
-	 * <em>Evaluation Instructions</em>}' class. <!-- begin-user-doc --> <!--
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl <em>Evaluation Instructions</em>}' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getEvaluationInstructions()
 	 * @generated
@@ -527,9 +516,9 @@ public interface FloatingPackage extends EPackage {
 	int EVALUATION_INSTRUCTIONS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -545,9 +534,8 @@ public interface FloatingPackage extends EPackage {
 	int EVALUATION_INSTRUCTIONS__EXPRESSION = 1;
 
 	/**
-	 * The number of structural features of the '<em>Evaluation Instructions</em>'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The number of structural features of the '<em>Evaluation Instructions</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -556,17 +544,14 @@ public interface FloatingPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Evaluation Instructions</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int EVALUATION_INSTRUCTIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the
-	 * '{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl
-	 * <em>Version Match</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl <em>Version Match</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.floating.model.impl.VersionMatchImpl
 	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getVersionMatch()
 	 * @generated
@@ -583,9 +568,9 @@ public interface FloatingPackage extends EPackage {
 	int VERSION_MATCH__VERSION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Rule</b></em>' attribute. <!-- begin-user-doc
+	 * The feature id for the '<em><b>Rule</b></em>' attribute.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -610,10 +595,8 @@ public interface FloatingPackage extends EPackage {
 	int VERSION_MATCH_OPERATION_COUNT = 0;
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack
-	 * <em>License Pack</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack
 	 * @generated
@@ -621,10 +604,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getFloatingLicensePack();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense
-	 * <em>License</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>License</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense()
 	 * @see #getFloatingLicensePack()
@@ -633,10 +614,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_License();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost
-	 * <em>Host</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Host</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost()
 	 * @see #getFloatingLicensePack()
@@ -645,10 +624,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_Host();
 
 	/**
-	 * Returns the meta object for the reference list
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers
-	 * <em>Users</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Users</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers()
 	 * @see #getFloatingLicensePack()
@@ -657,10 +634,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_Users();
 
 	/**
-	 * Returns the meta object for the reference list
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures
-	 * <em>Features</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Features</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures()
 	 * @see #getFloatingLicensePack()
@@ -669,10 +644,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_Features();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites
-	 * <em>License Requisites</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites <em>License Requisites</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Requisites</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites
 	 * @generated
@@ -680,10 +653,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getLicenseRequisites();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIdentifier
-	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIdentifier()
 	 * @see #getLicenseRequisites()
@@ -692,10 +663,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getLicenseRequisites_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIssueDate
-	 * <em>Issue Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIssueDate <em>Issue Date</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Issue Date</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getIssueDate()
 	 * @see #getLicenseRequisites()
@@ -704,10 +673,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getLicenseRequisites_IssueDate();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getCompany
-	 * <em>Company</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getCompany <em>Company</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Company</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getCompany()
 	 * @see #getLicenseRequisites()
@@ -716,10 +683,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getLicenseRequisites_Company();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getPlan
-	 * <em>Plan</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getPlan <em>Plan</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Plan</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getPlan()
 	 * @see #getLicenseRequisites()
@@ -728,10 +693,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getLicenseRequisites_Plan();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct
-	 * <em>Product</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Product</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct()
 	 * @see #getLicenseRequisites()
@@ -740,10 +703,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getLicenseRequisites_Product();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid
-	 * <em>Valid</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid <em>Valid</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Valid</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid()
 	 * @see #getLicenseRequisites()
@@ -752,10 +713,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getLicenseRequisites_Valid();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ProductRef <em>Product
-	 * Ref</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.ProductRef <em>Product Ref</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Product Ref</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ProductRef
 	 * @generated
@@ -763,10 +722,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getProductRef();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ProductRef#getProduct
-	 * <em>Product</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.ProductRef#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Product</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ProductRef#getProduct()
 	 * @see #getProductRef()
@@ -775,10 +732,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getProductRef_Product();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ProductRef#getVersion
-	 * <em>Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.ProductRef#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Version</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ProductRef#getVersion()
 	 * @see #getProductRef()
@@ -787,10 +742,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getProductRef_Version();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer
-	 * <em>Server</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer <em>Server</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Server</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServer
 	 * @generated
@@ -798,10 +751,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getFloatingServer();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getIdentifier
-	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServer#getIdentifier()
 	 * @see #getFloatingServer()
@@ -810,10 +761,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFloatingServer_Identifier();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication
-	 * <em>Authentication</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication <em>Authentication</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Authentication</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication()
 	 * @see #getFloatingServer()
@@ -822,10 +771,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingServer_Authentication();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.UserGrant <em>User
-	 * Grant</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.UserGrant <em>User Grant</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>User Grant</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.UserGrant
 	 * @generated
@@ -833,10 +780,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getUserGrant();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getUser
-	 * <em>User</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>User</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.UserGrant#getUser()
 	 * @see #getUserGrant()
@@ -845,10 +790,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getUserGrant_User();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication
-	 * <em>Authentication</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication <em>Authentication</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Authentication</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication()
 	 * @see #getUserGrant()
@@ -857,10 +800,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getUserGrant_Authentication();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant <em>Feature
-	 * Grant</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant <em>Feature Grant</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Grant</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant
 	 * @generated
@@ -868,10 +809,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getFeatureGrant();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getIdentifier
-	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getIdentifier()
 	 * @see #getFeatureGrant()
@@ -880,10 +819,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFeatureGrant_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature
-	 * <em>Feature</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Feature</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature()
 	 * @see #getFeatureGrant()
@@ -892,10 +829,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFeatureGrant_Feature();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion
-	 * <em>Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Version</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion()
 	 * @see #getFeatureGrant()
@@ -904,10 +839,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFeatureGrant_Version();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid
-	 * <em>Valid</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Valid</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid()
 	 * @see #getFeatureGrant()
@@ -916,10 +849,19 @@ public interface FloatingPackage extends EPackage {
 	EReference getFeatureGrant_Valid();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity
-	 * <em>Capacity</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVivid <em>Vivid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vivid</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVivid()
+	 * @see #getFeatureGrant()
+	 * @generated
+	 */
+	EAttribute getFeatureGrant_Vivid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Capacity</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity()
 	 * @see #getFeatureGrant()
@@ -928,10 +870,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFeatureGrant_Capacity();
 
 	/**
-	 * Returns the meta object for the reference
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack
-	 * <em>Pack</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Pack</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack()
 	 * @see #getFeatureGrant()
@@ -940,10 +880,8 @@ public interface FloatingPackage extends EPackage {
 	EReference getFeatureGrant_Pack();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriod
-	 * <em>Validity Period</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriod <em>Validity Period</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Validity Period</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ValidityPeriod
 	 * @generated
@@ -963,10 +901,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getValidityPeriodClosed();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom
-	 * <em>From</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>From</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom()
 	 * @see #getValidityPeriodClosed()
@@ -975,10 +911,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getValidityPeriodClosed_From();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil
-	 * <em>Until</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil <em>Until</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Until</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil()
 	 * @see #getValidityPeriodClosed()
@@ -999,10 +933,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getEvaluationInstructions();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType
-	 * <em>Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType()
 	 * @see #getEvaluationInstructions()
@@ -1011,10 +943,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getEvaluationInstructions_Type();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getExpression
-	 * <em>Expression</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Expression</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getExpression()
 	 * @see #getEvaluationInstructions()
@@ -1023,10 +953,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getEvaluationInstructions_Expression();
 
 	/**
-	 * Returns the meta object for class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch <em>Version
-	 * Match</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch <em>Version Match</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Version Match</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.VersionMatch
 	 * @generated
@@ -1034,10 +962,8 @@ public interface FloatingPackage extends EPackage {
 	EClass getVersionMatch();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion
-	 * <em>Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Version</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.VersionMatch#getVersion()
 	 * @see #getVersionMatch()
@@ -1046,10 +972,8 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getVersionMatch_Version();
 
 	/**
-	 * Returns the meta object for the attribute
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule
-	 * <em>Rule</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule <em>Rule</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Rule</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.VersionMatch#getRule()
 	 * @see #getVersionMatch()

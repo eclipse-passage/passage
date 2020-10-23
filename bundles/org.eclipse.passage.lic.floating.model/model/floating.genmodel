@@ -48,6 +48,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/feature"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/version"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/valid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/vivid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/capacity"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FeatureGrant/pack"/>
     </genClasses>
