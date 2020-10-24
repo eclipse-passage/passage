@@ -65,5 +65,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//VersionMatch/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//VersionMatch/rule"/>
     </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicenseAccess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicenseAccess/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicenseAccess/server"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingLicenseAccess/originLicensePack"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection/ip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection/port"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection/authentication"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

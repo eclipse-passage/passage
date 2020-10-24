@@ -595,6 +595,116 @@ public interface FloatingPackage extends EPackage {
 	int VERSION_MATCH_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.FloatingLicenseAccessImpl <em>License Access</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingLicenseAccessImpl
+	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getFloatingLicenseAccess()
+	 * @generated
+	 */
+	int FLOATING_LICENSE_ACCESS = 10;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_ACCESS__USER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_ACCESS__SERVER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Origin License Pack</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_ACCESS__ORIGIN_LICENSE_PACK = 2;
+
+	/**
+	 * The number of structural features of the '<em>License Access</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_ACCESS_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>License Access</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_ACCESS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.FloatingServerConnectionImpl <em>Server Connection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingServerConnectionImpl
+	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getFloatingServerConnection()
+	 * @generated
+	 */
+	int FLOATING_SERVER_CONNECTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Ip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_SERVER_CONNECTION__IP = 0;
+
+	/**
+	 * The feature id for the '<em><b>Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_SERVER_CONNECTION__PORT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Authentication</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_SERVER_CONNECTION__AUTHENTICATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Server Connection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_SERVER_CONNECTION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Server Connection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_SERVER_CONNECTION_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack <em>License Pack</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack</em>'.
@@ -980,6 +1090,92 @@ public interface FloatingPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVersionMatch_Rule();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess <em>License Access</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Access</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess
+	 * @generated
+	 */
+	EClass getFloatingLicenseAccess();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getUser()
+	 * @see #getFloatingLicenseAccess()
+	 * @generated
+	 */
+	EAttribute getFloatingLicenseAccess_User();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer <em>Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Server</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer()
+	 * @see #getFloatingLicenseAccess()
+	 * @generated
+	 */
+	EReference getFloatingLicenseAccess_Server();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getOriginLicensePack <em>Origin License Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Origin License Pack</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getOriginLicensePack()
+	 * @see #getFloatingLicenseAccess()
+	 * @generated
+	 */
+	EAttribute getFloatingLicenseAccess_OriginLicensePack();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection <em>Server Connection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Server Connection</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection
+	 * @generated
+	 */
+	EClass getFloatingServerConnection();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getIp <em>Ip</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ip</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getIp()
+	 * @see #getFloatingServerConnection()
+	 * @generated
+	 */
+	EAttribute getFloatingServerConnection_Ip();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getPort <em>Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Port</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getPort()
+	 * @see #getFloatingServerConnection()
+	 * @generated
+	 */
+	EAttribute getFloatingServerConnection_Port();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication <em>Authentication</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Authentication</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication()
+	 * @see #getFloatingServerConnection()
+	 * @generated
+	 */
+	EReference getFloatingServerConnection_Authentication();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--

@@ -37,14 +37,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserGrant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" eType="#//EvaluationInstructions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" lowerBound="1"
+        eType="#//EvaluationInstructions"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#//VersionMatch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
+        eType="#//VersionMatch"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vivid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" lowerBound="1"
@@ -68,5 +70,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rule" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicenseAccess">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="server" lowerBound="1"
+        eType="#//FloatingServerConnection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="originLicensePack" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingServerConnection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" ordered="false"
+        unique="false" lowerBound="1" eType="#//EvaluationInstructions"/>
   </eClassifiers>
 </ecore:EPackage>

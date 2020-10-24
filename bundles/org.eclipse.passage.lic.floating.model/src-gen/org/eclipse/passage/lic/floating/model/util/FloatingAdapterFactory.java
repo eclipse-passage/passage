@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.floating.model.api.*;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
@@ -130,6 +131,16 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseVersionMatch(VersionMatch object) {
 			return createVersionMatchAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseAccess(FloatingLicenseAccess object) {
+			return createFloatingLicenseAccessAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServerConnection(FloatingServerConnection object) {
+			return createFloatingServerConnectionAdapter();
 		}
 
 		@Override
@@ -282,6 +293,34 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVersionMatchAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess <em>License Access</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess
+	 * @generated
+	 */
+	public Adapter createFloatingLicenseAccessAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection <em>Server Connection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection
+	 * @generated
+	 */
+	public Adapter createFloatingServerConnectionAdapter() {
 		return null;
 	}
 
