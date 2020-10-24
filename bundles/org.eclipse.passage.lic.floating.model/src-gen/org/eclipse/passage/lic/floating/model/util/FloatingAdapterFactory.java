@@ -32,22 +32,21 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage
  * @generated
  */
 public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static FloatingPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FloatingAdapterFactory() {
@@ -140,9 +139,9 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc --> <!--
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
@@ -153,12 +152,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack
-	 * <em>License Pack</em>}'. <!-- begin-user-doc --> This default implementation
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack <em>License Pack</em>}'.
+	 * <!-- begin-user-doc --> This default implementation
 	 * returns null so that we can easily ignore cases; it's useful to ignore a case
 	 * when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack
 	 * @generated
@@ -168,13 +165,11 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites
-	 * <em>License Requisites</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites <em>License Requisites</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites
 	 * @generated
@@ -184,12 +179,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ProductRef <em>Product
-	 * Ref</em>}'. <!-- begin-user-doc --> This default implementation returns null
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.ProductRef <em>Product Ref</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null
 	 * so that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.ProductRef
 	 * @generated
@@ -199,12 +192,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer
-	 * <em>Server</em>}'. <!-- begin-user-doc --> This default implementation
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer <em>Server</em>}'.
+	 * <!-- begin-user-doc --> This default implementation
 	 * returns null so that we can easily ignore cases; it's useful to ignore a case
 	 * when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServer
 	 * @generated
@@ -214,12 +205,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.UserGrant <em>User
-	 * Grant</em>}'. <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.UserGrant <em>User Grant</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	 * null so that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.UserGrant
 	 * @generated
@@ -229,12 +218,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant <em>Feature
-	 * Grant</em>}'. <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant <em>Feature Grant</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	 * null so that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant
 	 * @generated
@@ -244,13 +231,11 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriod
-	 * <em>Validity Period</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriod <em>Validity Period</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.ValidityPeriod
 	 * @generated
@@ -260,13 +245,11 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed
-	 * <em>Validity Period Closed</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed <em>Validity Period Closed</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed
 	 * @generated
@@ -276,13 +259,11 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions
-	 * <em>Evaluation Instructions</em>}'. <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions <em>Evaluation Instructions</em>}'.
+	 * <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's useful
 	 * to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.EvaluationInstructions
 	 * @generated
@@ -292,12 +273,10 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class
-	 * '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch <em>Version
-	 * Match</em>}'. <!-- begin-user-doc --> This default implementation returns
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.floating.model.api.VersionMatch <em>Version Match</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns
 	 * null so that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.floating.model.api.VersionMatch
 	 * @generated
@@ -307,9 +286,9 @@ public class FloatingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
-	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

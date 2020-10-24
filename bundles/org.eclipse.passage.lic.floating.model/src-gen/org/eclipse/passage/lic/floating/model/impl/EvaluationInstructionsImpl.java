@@ -28,10 +28,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl#getType
- * <em>Type</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl#getExpression
- * <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.EvaluationInstructionsImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,9 +56,8 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 	private String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getExpression() <em>Expression</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -68,9 +65,8 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 	protected static final String EXPRESSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -79,7 +75,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EvaluationInstructionsImpl() {
@@ -88,7 +83,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +92,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +101,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,7 +115,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,7 +124,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +138,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +154,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +173,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,7 +192,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,7 +208,6 @@ public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

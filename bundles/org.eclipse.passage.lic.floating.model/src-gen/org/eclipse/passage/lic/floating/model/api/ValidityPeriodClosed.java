@@ -22,10 +22,8 @@ import java.util.Date;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom
- * <em>From</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil
- * <em>Until</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom <em>From</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil <em>Until</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getValidityPeriodClosed()
@@ -46,10 +44,8 @@ public interface ValidityPeriodClosed extends ValidityPeriod {
 	Date getFrom();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom
-	 * <em>From</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getFrom <em>From</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>From</em>' attribute.
 	 * @see #getFrom()
 	 * @generated
@@ -69,10 +65,8 @@ public interface ValidityPeriodClosed extends ValidityPeriod {
 	Date getUntil();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil
-	 * <em>Until</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed#getUntil <em>Until</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Until</em>' attribute.
 	 * @see #getUntil()
 	 * @generated

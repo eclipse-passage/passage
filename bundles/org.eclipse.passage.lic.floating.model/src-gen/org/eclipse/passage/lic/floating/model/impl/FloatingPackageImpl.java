@@ -33,90 +33,79 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass floatingLicensePackEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass licenseRequisitesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass productRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass floatingServerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass userGrantEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass featureGrantEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass validityPeriodEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass validityPeriodClosedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass evaluationInstructionsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass versionMatchEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method
-	 * {@link #init init()}, which also performs initialization of the package, or
-	 * returns the registered package, if one already exists. <!-- begin-user-doc
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#eNS_URI
 	 * @see #init()
@@ -128,21 +117,17 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and
-	 * for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
-	 * <p>
-	 * This method is used to initialize {@link FloatingPackage#eINSTANCE} when that
-	 * field is accessed. Clients should not invoke it directly. Instead, they
-	 * should simply access that field to obtain the package. <!-- begin-user-doc
+	 * <p>This method is used to initialize {@link FloatingPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -176,7 +161,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +170,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +179,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,7 +188,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,7 +197,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,7 +206,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +215,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -246,7 +224,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +233,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,7 +242,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +251,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,7 +260,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -296,7 +269,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -306,7 +278,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -316,7 +287,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -326,7 +296,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -336,7 +305,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,7 +314,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -356,7 +323,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -366,7 +332,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -376,7 +341,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -386,7 +350,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -396,7 +359,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -406,7 +368,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -416,7 +377,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -426,7 +386,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -435,28 +394,35 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeatureGrant_Capacity() {
+	public EAttribute getFeatureGrant_Vivid() {
 		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public EReference getFeatureGrant_Pack() {
-		return (EReference) featureGrantEClass.getEStructuralFeatures().get(5);
+	public EAttribute getFeatureGrant_Capacity() {
+		return (EAttribute) featureGrantEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	@Override
+	public EReference getFeatureGrant_Pack() {
+		return (EReference) featureGrantEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -466,7 +432,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -476,7 +441,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -486,7 +450,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -496,7 +459,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -506,7 +468,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -516,7 +477,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -526,7 +486,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -536,7 +495,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -546,7 +504,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -556,7 +513,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -566,16 +522,15 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc --> <!--
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -615,6 +570,7 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 		createEAttribute(featureGrantEClass, FEATURE_GRANT__FEATURE);
 		createEReference(featureGrantEClass, FEATURE_GRANT__VERSION);
 		createEReference(featureGrantEClass, FEATURE_GRANT__VALID);
+		createEAttribute(featureGrantEClass, FEATURE_GRANT__VIVID);
 		createEAttribute(featureGrantEClass, FEATURE_GRANT__CAPACITY);
 		createEReference(featureGrantEClass, FEATURE_GRANT__PACK);
 
@@ -635,7 +591,6 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -738,6 +693,8 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 		initEReference(getFeatureGrant_Valid(), this.getValidityPeriod(), null, "valid", null, 1, 1, FeatureGrant.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureGrant_Vivid(), ecorePackage.getELong(), "vivid", null, 1, 1, FeatureGrant.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureGrant_Capacity(), ecorePackage.getEInt(), "capacity", null, 1, 1, FeatureGrant.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureGrant_Pack(), this.getFloatingLicensePack(), this.getFloatingLicensePack_Features(),

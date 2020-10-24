@@ -33,27 +33,21 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getFeature
- * <em>Feature</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getVersion
- * <em>Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getValid
- * <em>Valid</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getCapacity
- * <em>Capacity</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getPack
- * <em>Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getVivid <em>Vivid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.FeatureGrantImpl#getPack <em>Pack</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements FeatureGrant {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -61,9 +55,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -73,7 +66,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -83,7 +75,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -93,7 +84,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -111,9 +101,28 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	protected ValidityPeriod valid;
 
 	/**
-	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long VIVID_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @generated
+	 * @ordered
+	 */
+	private long vivid = VIVID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -123,7 +132,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCapacity()
 	 * @generated
 	 * @ordered
@@ -142,7 +150,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FeatureGrantImpl() {
@@ -151,7 +158,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,7 +167,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,7 +176,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +190,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +199,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,7 +213,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -231,7 +232,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersionMatch basicGetVersion() {
@@ -240,7 +240,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,7 +254,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,7 +273,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ValidityPeriod basicGetValid() {
@@ -284,7 +281,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -298,8 +294,32 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public long getVivid() {
+		return vivid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVivid(long newVivid) {
+		long oldVivid = vivid;
+		vivid = newVivid;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FEATURE_GRANT__VIVID, oldVivid,
+					vivid));
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -309,7 +329,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -324,7 +343,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -344,7 +362,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FloatingLicensePack basicGetPack() {
@@ -353,7 +370,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(FloatingLicensePack newPack, NotificationChain msgs) {
@@ -372,7 +388,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -396,7 +411,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -414,7 +428,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -429,7 +442,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -447,6 +459,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			if (resolve)
 				return getValid();
 			return basicGetValid();
+		case FloatingPackage.FEATURE_GRANT__VIVID:
+			return getVivid();
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			return getCapacity();
 		case FloatingPackage.FEATURE_GRANT__PACK:
@@ -460,7 +474,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -478,6 +491,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		case FloatingPackage.FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) newValue);
 			return;
+		case FloatingPackage.FEATURE_GRANT__VIVID:
+			setVivid((Long) newValue);
+			return;
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			setCapacity((Integer) newValue);
 			return;
@@ -492,7 +508,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -510,6 +525,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		case FloatingPackage.FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) null);
 			return;
+		case FloatingPackage.FEATURE_GRANT__VIVID:
+			setVivid(VIVID_EDEFAULT);
+			return;
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
 			return;
@@ -524,7 +542,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -538,6 +555,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			return version != null;
 		case FloatingPackage.FEATURE_GRANT__VALID:
 			return valid != null;
+		case FloatingPackage.FEATURE_GRANT__VIVID:
+			return vivid != VIVID_EDEFAULT;
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
 		case FloatingPackage.FEATURE_GRANT__PACK:
@@ -549,7 +568,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -562,6 +580,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		result.append(identifier);
 		result.append(", feature: "); //$NON-NLS-1$
 		result.append(feature);
+		result.append(", vivid: "); //$NON-NLS-1$
+		result.append(vivid);
 		result.append(", capacity: "); //$NON-NLS-1$
 		result.append(capacity);
 		result.append(')');

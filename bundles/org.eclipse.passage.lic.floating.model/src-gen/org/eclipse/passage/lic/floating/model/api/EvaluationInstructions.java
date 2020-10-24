@@ -22,10 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType
- * <em>Type</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getExpression
- * <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getEvaluationInstructions()
@@ -46,10 +44,8 @@ public interface EvaluationInstructions extends EObject {
 	String getType();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType
-	 * <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.EvaluationInstructions#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated

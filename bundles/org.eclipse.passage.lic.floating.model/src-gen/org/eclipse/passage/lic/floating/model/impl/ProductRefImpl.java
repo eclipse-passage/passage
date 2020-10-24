@@ -28,10 +28,8 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getProduct
- * <em>Product</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getVersion
- * <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.impl.ProductRefImpl#getVersion <em>Version</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,7 +38,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	/**
 	 * The default value of the '{@link #getProduct() <em>Product</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -50,7 +47,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getProduct()
 	 * @generated
 	 * @ordered
@@ -60,7 +56,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -70,7 +65,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	/**
 	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getVersion()
 	 * @generated
 	 * @ordered
@@ -79,7 +73,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProductRefImpl() {
@@ -88,7 +81,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +90,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +99,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,7 +113,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,7 +122,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +136,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +152,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +171,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,7 +190,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,7 +206,6 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

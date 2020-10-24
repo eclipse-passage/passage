@@ -32,14 +32,13 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static FloatingFactory init() {
@@ -67,7 +66,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,7 +96,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,7 +106,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,7 +116,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,7 +126,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,7 +136,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +146,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +156,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +166,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +176,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,7 +186,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,7 +195,6 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

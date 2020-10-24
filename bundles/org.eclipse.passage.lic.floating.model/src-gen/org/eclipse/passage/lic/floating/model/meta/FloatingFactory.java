@@ -26,23 +26,22 @@ import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage
  * @generated
  */
 public interface FloatingFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	FloatingFactory eINSTANCE = org.eclipse.passage.lic.floating.model.impl.FloatingFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>License Pack</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>License Pack</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>License Pack</em>'.
 	 * @generated
 	 */
@@ -58,36 +57,36 @@ public interface FloatingFactory extends EFactory {
 	LicenseRequisites createLicenseRequisites();
 
 	/**
-	 * Returns a new object of class '<em>Product Ref</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Product Ref</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Product Ref</em>'.
 	 * @generated
 	 */
 	ProductRef createProductRef();
 
 	/**
-	 * Returns a new object of class '<em>Server</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Server</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Server</em>'.
 	 * @generated
 	 */
 	FloatingServer createFloatingServer();
 
 	/**
-	 * Returns a new object of class '<em>User Grant</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>User Grant</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>User Grant</em>'.
 	 * @generated
 	 */
 	UserGrant createUserGrant();
 
 	/**
-	 * Returns a new object of class '<em>Feature Grant</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Feature Grant</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Feature Grant</em>'.
 	 * @generated
 	 */
@@ -112,18 +111,18 @@ public interface FloatingFactory extends EFactory {
 	EvaluationInstructions createEvaluationInstructions();
 
 	/**
-	 * Returns a new object of class '<em>Version Match</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Version Match</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Version Match</em>'.
 	 * @generated
 	 */
 	VersionMatch createVersionMatch();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!--
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

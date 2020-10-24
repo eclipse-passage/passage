@@ -22,18 +22,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getIdentifier
- * <em>Identifier</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature
- * <em>Feature</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion
- * <em>Version</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid
- * <em>Valid</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity
- * <em>Capacity</em>}</li>
- * <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack
- * <em>Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVivid <em>Vivid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFeatureGrant()
@@ -78,10 +73,8 @@ public interface FeatureGrant extends EObject {
 	String getFeature();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature
-	 * <em>Feature</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getFeature <em>Feature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature</em>' attribute.
 	 * @see #getFeature()
 	 * @generated
@@ -101,10 +94,8 @@ public interface FeatureGrant extends EObject {
 	VersionMatch getVersion();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion
-	 * <em>Version</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Version</em>' reference.
 	 * @see #getVersion()
 	 * @generated
@@ -124,15 +115,35 @@ public interface FeatureGrant extends EObject {
 	ValidityPeriod getValid();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid
-	 * <em>Valid</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Valid</em>' reference.
 	 * @see #getValid()
 	 * @generated
 	 */
 	void setValid(ValidityPeriod value);
+
+	/**
+	 * Returns the value of the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vivid</em>' attribute.
+	 * @see #setVivid(long)
+	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFeatureGrant_Vivid()
+	 * @model required="true"
+	 * @generated
+	 */
+	long getVivid();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVivid <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vivid</em>' attribute.
+	 * @see #getVivid()
+	 * @generated
+	 */
+	void setVivid(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Capacity</b></em>' attribute. <!--
@@ -147,10 +158,8 @@ public interface FeatureGrant extends EObject {
 	int getCapacity();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity
-	 * <em>Capacity</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getCapacity <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Capacity</em>' attribute.
 	 * @see #getCapacity()
 	 * @generated
@@ -158,11 +167,9 @@ public interface FeatureGrant extends EObject {
 	void setCapacity(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Pack</b></em>' reference. It is
-	 * bidirectional and its opposite is
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures
-	 * <em>Features</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the value of the '<em><b>Pack</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the value of the '<em>Pack</em>' reference.
 	 * @see #setPack(FloatingLicensePack)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFeatureGrant_Pack()
@@ -173,10 +180,8 @@ public interface FeatureGrant extends EObject {
 	FloatingLicensePack getPack();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack
-	 * <em>Pack</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pack</em>' reference.
 	 * @see #getPack()
 	 * @generated
