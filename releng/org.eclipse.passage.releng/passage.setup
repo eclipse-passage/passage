@@ -82,9 +82,9 @@
     <requirement
         name="org.eclipse.pde.api.tools.ee.feature.feature.group"/>
     <requirement
-        name="org.sonatype.tycho.m2e.feature.feature.group"/>
-    <requirement
         name="org.eclipse.sirius.specifier"/>
+    <requirement
+        name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository
         url="https://download.eclipse.org/modeling/emf/emf/builds/nightly/latest"/>
     <repository
