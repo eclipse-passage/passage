@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.request.FLoatingLicenseData;
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
@@ -33,6 +34,7 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 	private final Supplier<Optional<Collection<UserDescriptor>>> users;
 	private final Supplier<Optional<ProductVersionDescriptor>> product;
 	private final Supplier<Optional<List<LocalDate>>> period;
+	private final Supplier<Optional<Integer>> capacity;
 	private final ComposedPage page;
 
 	IssueLicenseRequestPage(IEclipseContext context, FloatingDataPack initial) {
@@ -41,6 +43,7 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 		users = page.withUsers();
 		product = page.withProductVersion(initial.product());
 		period = page.withPeriod();
+		capacity = page.withCapacity(IssueLicensePageMessages.IssueLicenseRequestPage_lbl_default_capacity);
 	}
 
 	@Override
@@ -54,7 +57,8 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 				plan.get().get(), //
 				product.get().get(), //
 				from(), //
-				until());
+				until(), //
+				capacity.get().get());
 	}
 
 	private LocalDate from() {

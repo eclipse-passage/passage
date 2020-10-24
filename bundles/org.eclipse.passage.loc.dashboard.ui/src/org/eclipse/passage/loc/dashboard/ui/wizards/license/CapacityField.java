@@ -25,15 +25,17 @@ import org.eclipse.swt.widgets.Widget;
 
 public final class CapacityField extends LabeledField<Integer> {
 
+	private final String name;
 	private Spinner spinner;
 
-	CapacityField(Runnable modified, LabelProvider labels, MandatoryService context) {
+	CapacityField(String name, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(Optional.of(1), modified, labels, context);
+		this.name = name;
 	}
 
 	@Override
 	protected String label() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_capacity;
+		return name;
 	}
 
 	@Override

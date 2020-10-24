@@ -20,7 +20,6 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 
 	private final IEclipseContext context;
 	private final FloatingDataPack initial;
-
 	private IssueLicenseRequestPage request;
 
 	public IssueFloatingLicenseWizard(IEclipseContext context, FloatingDataPack initial) {
