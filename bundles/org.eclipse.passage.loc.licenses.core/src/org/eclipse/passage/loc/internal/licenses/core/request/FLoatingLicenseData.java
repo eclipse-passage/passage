@@ -26,19 +26,22 @@ import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 public final class FLoatingLicenseData extends GeneralLicenseData implements FloatingLicenseRequest {
 
 	private final Collection<UserDescriptor> users;
+	private final int capacity;
 
 	public FLoatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
-			ProductVersionDescriptor product, Date from, Date until) {
+			ProductVersionDescriptor product, Date from, Date until, int capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
 		this.users = users; // FIXME: work for caching function: keep Map and reimplement retrieves
+		this.capacity = capacity;
 	}
 
 	public FLoatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
-			ProductVersionDescriptor product, LocalDate from, LocalDate until) {
+			ProductVersionDescriptor product, LocalDate from, LocalDate until, int capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
 		this.users = users;
+		this.capacity = capacity;
 	}
 
 	@Override
@@ -46,11 +49,6 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 		return users.stream()//
 				.map(UserDescriptor::getIdentifier) //
 				.collect(Collectors.toList());
-	}
-
-	@Override
-	public String fullName(String user) {
-		return user(user).getEmail();
 	}
 
 	@Override
@@ -68,6 +66,11 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 				.filter(user -> identifier.equals(user.getIdentifier()))//
 				.findAny()//
 				.get(); // yah, fail if not found, it's a development problem
+	}
+
+	@Override
+	public int defaultCapacity() {
+		return capacity;
 	}
 
 }

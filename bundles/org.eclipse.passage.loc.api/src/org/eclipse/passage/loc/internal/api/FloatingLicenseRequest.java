@@ -26,11 +26,6 @@ public interface FloatingLicenseRequest extends GeneralLicenseRequest {
 	Collection<String> users();
 
 	/**
-	 * Full name of a <code>User</code> identified by the given {@code user} value.
-	 */
-	String fullName(String user);
-
-	/**
 	 * Type of licensing condition for a <code>User</code> identified by the given
 	 * {@code user} value.
 	 */
@@ -41,5 +36,11 @@ public interface FloatingLicenseRequest extends GeneralLicenseRequest {
 	 * {@code user} value.
 	 */
 	String conditionExpression(String user);
+
+	/**
+	 * Default capacity for all the <code>FeatureGrant</code>s defined in this
+	 * floating license pack.
+	 */
+	int defaultCapacity();
 
 }
