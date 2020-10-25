@@ -19,8 +19,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.FloatingServer;
+import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.UserGrant;
@@ -95,6 +97,20 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 	 * @generated
 	 */
 	private EClass versionMatchEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass floatingLicenseAccessEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass floatingServerConnectionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -512,6 +528,86 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicenseAccess() {
+		return floatingLicenseAccessEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingLicenseAccess_User() {
+		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingLicenseAccess_Server() {
+		return (EReference) floatingLicenseAccessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingLicenseAccess_OriginLicensePack() {
+		return (EAttribute) floatingLicenseAccessEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingServerConnection() {
+		return floatingServerConnectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingServerConnection_Ip() {
+		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingServerConnection_Port() {
+		return (EAttribute) floatingServerConnectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFloatingServerConnection_Authentication() {
+		return (EReference) floatingServerConnectionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -587,6 +683,16 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 		versionMatchEClass = createEClass(VERSION_MATCH);
 		createEAttribute(versionMatchEClass, VERSION_MATCH__VERSION);
 		createEAttribute(versionMatchEClass, VERSION_MATCH__RULE);
+
+		floatingLicenseAccessEClass = createEClass(FLOATING_LICENSE_ACCESS);
+		createEAttribute(floatingLicenseAccessEClass, FLOATING_LICENSE_ACCESS__USER);
+		createEReference(floatingLicenseAccessEClass, FLOATING_LICENSE_ACCESS__SERVER);
+		createEAttribute(floatingLicenseAccessEClass, FLOATING_LICENSE_ACCESS__ORIGIN_LICENSE_PACK);
+
+		floatingServerConnectionEClass = createEClass(FLOATING_SERVER_CONNECTION);
+		createEAttribute(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__IP);
+		createEAttribute(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__PORT);
+		createEReference(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__AUTHENTICATION);
 	}
 
 	/**
@@ -676,7 +782,7 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUserGrant_User(), ecorePackage.getEString(), "user", null, 1, 1, UserGrant.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserGrant_Authentication(), this.getEvaluationInstructions(), null, "authentication", null, 0, //$NON-NLS-1$
+		initEReference(getUserGrant_Authentication(), this.getEvaluationInstructions(), null, "authentication", null, 1, //$NON-NLS-1$
 				1, UserGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -687,7 +793,7 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureGrant_Feature(), ecorePackage.getEString(), "feature", null, 1, 1, FeatureGrant.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureGrant_Version(), this.getVersionMatch(), null, "version", null, 0, 1, //$NON-NLS-1$
+		initEReference(getFeatureGrant_Version(), this.getVersionMatch(), null, "version", null, 1, 1, //$NON-NLS-1$
 				FeatureGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureGrant_Valid(), this.getValidityPeriod(), null, "valid", null, 1, 1, FeatureGrant.class, //$NON-NLS-1$
@@ -728,6 +834,30 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVersionMatch_Rule(), ecorePackage.getEString(), "rule", null, 1, 1, VersionMatch.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(floatingLicenseAccessEClass, FloatingLicenseAccess.class, "FloatingLicenseAccess", !IS_ABSTRACT, //$NON-NLS-1$
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFloatingLicenseAccess_User(), ecorePackage.getEString(), "user", null, 1, 1, //$NON-NLS-1$
+				FloatingLicenseAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFloatingLicenseAccess_Server(), this.getFloatingServerConnection(), null, "server", null, 1, //$NON-NLS-1$
+				1, FloatingLicenseAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFloatingLicenseAccess_OriginLicensePack(), ecorePackage.getEString(), "originLicensePack", //$NON-NLS-1$
+				null, 1, 1, FloatingLicenseAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(floatingServerConnectionEClass, FloatingServerConnection.class, "FloatingServerConnection", //$NON-NLS-1$
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFloatingServerConnection_Ip(), ecorePackage.getEString(), "ip", null, 1, 1, //$NON-NLS-1$
+				FloatingServerConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFloatingServerConnection_Port(), ecorePackage.getEInt(), "port", null, 1, 1, //$NON-NLS-1$
+				FloatingServerConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFloatingServerConnection_Authentication(), this.getEvaluationInstructions(), null,
+				"authentication", null, 1, 1, FloatingServerConnection.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

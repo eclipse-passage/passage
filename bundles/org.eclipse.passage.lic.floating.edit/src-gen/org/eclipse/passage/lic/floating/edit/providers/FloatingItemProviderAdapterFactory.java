@@ -288,6 +288,52 @@ public class FloatingItemProviderAdapterFactory extends FloatingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingLicenseAccessItemProvider floatingLicenseAccessItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingLicenseAccessAdapter() {
+		if (floatingLicenseAccessItemProvider == null) {
+			floatingLicenseAccessItemProvider = new FloatingLicenseAccessItemProvider(this);
+		}
+
+		return floatingLicenseAccessItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingServerConnectionItemProvider floatingServerConnectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingServerConnectionAdapter() {
+		if (floatingServerConnectionItemProvider == null) {
+			floatingServerConnectionItemProvider = new FloatingServerConnectionItemProvider(this);
+		}
+
+		return floatingServerConnectionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -410,6 +456,10 @@ public class FloatingItemProviderAdapterFactory extends FloatingAdapterFactory
 			evaluationInstructionsItemProvider.dispose();
 		if (versionMatchItemProvider != null)
 			versionMatchItemProvider.dispose();
+		if (floatingLicenseAccessItemProvider != null)
+			floatingLicenseAccessItemProvider.dispose();
+		if (floatingServerConnectionItemProvider != null)
+			floatingServerConnectionItemProvider.dispose();
 	}
 
 }

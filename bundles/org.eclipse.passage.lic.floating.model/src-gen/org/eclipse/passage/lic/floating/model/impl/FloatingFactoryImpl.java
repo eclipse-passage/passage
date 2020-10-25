@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.passage.lic.floating.model.api.*;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
@@ -89,6 +90,10 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 			return createEvaluationInstructions();
 		case FloatingPackage.VERSION_MATCH:
 			return createVersionMatch();
+		case FloatingPackage.FLOATING_LICENSE_ACCESS:
+			return createFloatingLicenseAccess();
+		case FloatingPackage.FLOATING_SERVER_CONNECTION:
+			return createFloatingServerConnection();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -182,6 +187,28 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	public VersionMatch createVersionMatch() {
 		VersionMatchImpl versionMatch = new VersionMatchImpl();
 		return versionMatch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingLicenseAccess createFloatingLicenseAccess() {
+		FloatingLicenseAccessImpl floatingLicenseAccess = new FloatingLicenseAccessImpl();
+		return floatingLicenseAccess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingServerConnection createFloatingServerConnection() {
+		FloatingServerConnectionImpl floatingServerConnection = new FloatingServerConnectionImpl();
+		return floatingServerConnection;
 	}
 
 	/**

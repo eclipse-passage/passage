@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.floating.model.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.passage.lic.floating.model.api.*;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
@@ -148,6 +149,20 @@ public class FloatingSwitch<T> extends Switch<T> {
 		case FloatingPackage.VERSION_MATCH: {
 			VersionMatch versionMatch = (VersionMatch) theEObject;
 			T result = caseVersionMatch(versionMatch);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FloatingPackage.FLOATING_LICENSE_ACCESS: {
+			FloatingLicenseAccess floatingLicenseAccess = (FloatingLicenseAccess) theEObject;
+			T result = caseFloatingLicenseAccess(floatingLicenseAccess);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FloatingPackage.FLOATING_SERVER_CONNECTION: {
+			FloatingServerConnection floatingServerConnection = (FloatingServerConnection) theEObject;
+			T result = caseFloatingServerConnection(floatingServerConnection);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -286,6 +301,36 @@ public class FloatingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVersionMatch(VersionMatch object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Access</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Access</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFloatingLicenseAccess(FloatingLicenseAccess object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Server Connection</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Server Connection</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFloatingServerConnection(FloatingServerConnection object) {
 		return null;
 	}
 
