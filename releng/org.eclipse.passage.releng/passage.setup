@@ -76,7 +76,7 @@
       xsi:type="setup.p2:P2Task"
       label="Passage">
     <requirement
-        name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+        name="org.eclipse.emf.ecp.emfforms.sdk.feature.feature.group"/>
     <requirement
         name="org.eclipse.emf.sdk.feature.group"/>
     <requirement
