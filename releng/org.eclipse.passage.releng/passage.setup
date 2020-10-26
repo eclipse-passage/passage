@@ -214,7 +214,7 @@
         xsi:type="setup.targlets:TargletTask">
       <targlet
           name="${scope.project.label}"
-          activeRepositoryList="2020-06">
+          activeRepositoryList="${eclipse.target.platform}">
         <requirement
             name="com.fasterxml.jackson.core.jackson-annotations"/>
         <requirement
