@@ -24,12 +24,13 @@ import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 
 final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
-	private final PersonalLicenseRequest request;
-	private final LicenseRegistry registry;
 
-	PersonalLicensePackFromRequest(PersonalLicenseRequest request, LicenseRegistry registry) {
+	private final PersonalLicenseRequest request;
+	private final LicenseRegistry licenses;
+
+	PersonalLicensePackFromRequest(PersonalLicenseRequest request, LicenseRegistry licesnses) {
 		this.request = request;
-		this.registry = registry;
+		this.licenses = licesnses;
 	}
 
 	@Override
@@ -43,7 +44,7 @@ final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 		pack.setProductVersion(request.productVersion());
 		String planIdentifier = request.plan();
 		pack.setPlanIdentifier(planIdentifier);
-		LicensePlanDescriptor plan = registry.getLicensePlan(planIdentifier);
+		LicensePlanDescriptor plan = licenses.getLicensePlan(planIdentifier);
 		if (plan == null) {
 			return pack; // FIXME: ServiceInvocationResult<LicensePack> should probably be used
 		}

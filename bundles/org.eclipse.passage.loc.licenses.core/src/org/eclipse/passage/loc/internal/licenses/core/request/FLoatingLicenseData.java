@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -52,13 +55,11 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 	}
 
 	@Override
-	public String conditionType(String user) {
-		return user(user).getPreferredConditionType();
-	}
-
-	@Override
-	public String conditionExpression(String user) {
-		return user(user).getPreferredConditionExpression();
+	public EvaluationInstructions userAuthentication(String user) {
+		UserDescriptor target = user(user);
+		return new BaseEvaluationInstructions(//
+				new EvaluationType.Of(target.getPreferredConditionExpression()), //
+				target.getPreferredConditionType());
 	}
 
 	private UserDescriptor user(String identifier) {
@@ -71,6 +72,17 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 	@Override
 	public int defaultCapacity() {
 		return capacity;
+	}
+
+	@Override
+	public EvaluationInstructions serverAuthentication() {
+		return null;
+	}
+
+	@Override
+	public String serverName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

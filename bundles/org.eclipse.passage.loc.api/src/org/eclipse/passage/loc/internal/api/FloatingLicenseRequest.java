@@ -14,6 +14,8 @@ package org.eclipse.passage.loc.internal.api;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
+
 /**
  * Collection of all the data required to issue a floating license pack.
  */
@@ -26,21 +28,25 @@ public interface FloatingLicenseRequest extends GeneralLicenseRequest {
 	Collection<String> users();
 
 	/**
-	 * Type of licensing condition for a <code>User</code> identified by the given
+	 * Licensing condition for a <code>User</code> identified by the given
 	 * {@code user} value.
 	 */
-	String conditionType(String user);
-
-	/**
-	 * Condition expression for a <code>User</code> identified by the given
-	 * {@code user} value.
-	 */
-	String conditionExpression(String user);
+	EvaluationInstructions userAuthentication(String user);
 
 	/**
 	 * Default capacity for all the <code>FeatureGrant</code>s defined in this
 	 * floating license pack.
 	 */
 	int defaultCapacity();
+
+	/**
+	 * {@code FloatingServer} is to be authenticated.
+	 */
+	EvaluationInstructions serverAuthentication();
+
+	/**
+	 * {@code FloatingServer} is to be named for convenience.
+	 */
+	String serverName();
 
 }

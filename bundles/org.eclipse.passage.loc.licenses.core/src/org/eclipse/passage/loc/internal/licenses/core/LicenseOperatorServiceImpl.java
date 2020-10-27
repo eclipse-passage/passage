@@ -16,9 +16,12 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
+import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
@@ -108,6 +111,11 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
+	public LicensePack createLicensePack(PersonalLicenseRequest request) {
+		return new PersonalLicensePackFromRequest(request, licenseRegistry).get();
+	}
+
+	@Override
 	public ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request,
 			LicensePackDescriptor template) {
 		Objects.requireNonNull(request,
@@ -120,8 +128,15 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensePack createLicensePack(PersonalLicenseRequest request) {
-		return new PersonalLicensePackFromRequest(request, licenseRegistry).get();
+	public FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request) {
+		return new FloatingLicensePackFromRequest(request, licenseRegistry, userRegistry).get();
+	}
+
+	@Override
+	public ServiceInvocationResult<IssuedFloatingLicense> issueFloatingLicensePack(FloatingLicenseRequest request,
+			FloatingLicensePack template) {
+		// TODO YTBD
+		return null;
 	}
 
 }
