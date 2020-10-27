@@ -32,7 +32,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.api,
    org.eclipse.passage.loc.api,
-   org.eclipse.passage.loc.licenses.core",
+   org.eclipse.passage.loc.licenses.core,
+   org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.lic.internal.api.conditions.evaluation;x-internal:=true,
  org.eclipse.passage.lic.internal.api.conditions.mining;
   x-friends:="org.eclipse.passage.lbc.api,
