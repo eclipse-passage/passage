@@ -25,7 +25,7 @@ import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 
 final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 	private final PersonalLicenseRequest request;
-	private LicenseRegistry registry;
+	private final LicenseRegistry registry;
 
 	PersonalLicensePackFromRequest(PersonalLicenseRequest request, LicenseRegistry registry) {
 		this.request = request;
@@ -43,11 +43,11 @@ final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 		pack.setProductVersion(request.productVersion());
 		String planIdentifier = request.plan();
 		pack.setPlanIdentifier(planIdentifier);
-		LicensePlanDescriptor licensePlan = registry.getLicensePlan(planIdentifier);
-		if (licensePlan == null) {
+		LicensePlanDescriptor plan = registry.getLicensePlan(planIdentifier);
+		if (plan == null) {
 			return pack; // FIXME: ServiceInvocationResult<LicensePack> should probably be used
 		}
-		Iterable<? extends LicensePlanFeatureDescriptor> features = licensePlan.getLicensePlanFeatures();
+		Iterable<? extends LicensePlanFeatureDescriptor> features = plan.getLicensePlanFeatures();
 		EList<LicenseGrant> grants = pack.getLicenseGrants();
 		for (LicensePlanFeatureDescriptor planFeature : features) {
 			LicenseGrant grant = new LicenseGrantFromRequest(planFeature, request).get();
