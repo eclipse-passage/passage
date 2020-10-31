@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4RrUgBrKEeuMV_ofZRuPaw" name="FloatingServerConnection">
+  <rootEClass href="http://www.eclipse.org/passage/lic/floating/0.1.0#//FloatingServerConnection"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4RuX0BrKEeuMV_ofZRuPaw" name="Control ip">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4RuX0RrKEeuMV_ofZRuPaw">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//FloatingServerConnection/ip"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4RuX0hrKEeuMV_ofZRuPaw" name="Control port">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4RuX0xrKEeuMV_ofZRuPaw">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//FloatingServerConnection/port"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4RuX1BrKEeuMV_ofZRuPaw" name="Control authentication">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4RuX1RrKEeuMV_ofZRuPaw">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//FloatingServerConnection/authentication"/>
+    </domainModelReference>
+  </children>
+  <ecorePaths>/org.eclipse.passage.lic.floating.ecore/model/floating.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>

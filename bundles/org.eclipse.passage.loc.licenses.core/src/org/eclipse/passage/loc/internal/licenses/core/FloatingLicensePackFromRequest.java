@@ -22,6 +22,7 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.floating.model.api.FloatingServer;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.UserGrant;
@@ -29,6 +30,8 @@ import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -52,7 +55,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	public FloatingLicensePack get() {
 		FloatingLicensePack pack = FloatingFactory.eINSTANCE.createFloatingLicensePack();
 		pack.setLicense(license());
-		pack.setHost(FloatingFactory.eINSTANCE.createFloatingServer());
+		pack.setHost(floatingServer());
 		userGrants().forEach(pack.getUsers()::add);
 		featureGrants(pack).forEach(pack.getFeatures()::add);
 		return pack;
@@ -67,6 +70,20 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		license.setProduct(product());
 		license.setValid(period());
 		return license;
+	}
+
+	private FloatingServer floatingServer() {
+		FloatingServer server = FloatingFactory.eINSTANCE.createFloatingServer();
+		server.setIdentifier("Floating Server A"); //$NON-NLS-1$
+		server.setAuthentication(serverAuthentication());
+		return server;
+	}
+
+	private EvaluationInstructions serverAuthentication() {
+		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
+		auth.setType(new EvaluationType.Hardware().identifier());
+		auth.setExpression(String.format("%s=%s", new Disk.Serial().toString(), "?")); //$NON-NLS-1$ //$NON-NLS-2$
+		return auth;
 	}
 
 	private String company() {
