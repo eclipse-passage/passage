@@ -24,6 +24,7 @@ import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.internal.equinox.EnvironmentNames;
+import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 
 @SuppressWarnings("restriction")
 public class ConditionTypeRenderer extends ComboControlRenderer {
@@ -41,7 +42,7 @@ public class ConditionTypeRenderer extends ComboControlRenderer {
 
 	@Override
 	protected String getUnsetText() {
-		return environments.size() > 0 ? environments.get(0) : ""; //$NON-NLS-1$
+		return WorkbenchEmfformsMessages.ConditionTypeRenderer_not_set;
 	}
 
 	@Override
