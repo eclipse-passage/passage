@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2020 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	https://www.eclipse.org/legal/epl-2.0/.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
+	<file filePath="viewmodels/FloatingServerConnection.view"/>
+	<file filePath="viewmodels/FloatingLicenseAccess.view"/>
+	<file filePath="viewmodels/VersionMatch.view"/>
+	<file filePath="viewmodels/EvaluationInstructions.view"/>
+	<file filePath="viewmodels/ValidityPeriodClosed.view"/>
+	<file filePath="viewmodels/ValidityPeriod.view"/>
+	<file filePath="viewmodels/FeatureGrant.view"/>
+	<file filePath="viewmodels/UserGrant.view"/>
+	<file filePath="viewmodels/FloatingServer.view"/>
+	<file filePath="viewmodels/ProductRef.view"/>
+	<file filePath="viewmodels/LicenseRequisites.view"/>
+	<file filePath="viewmodels/FloatingLicensePack.view"/>
+   </extension>
+</plugin>

@@ -40,12 +40,6 @@ public class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<FloatingLicenseRequest> data;
-	private final EContentAdapter updater = new EContentAdapter() {
-		@Override
-		public void notifyChanged(Notification notification) {
-			setPageComplete(validatePage());
-		}
-	};
 	private FloatingLicensePack license;
 	private VViewModelProperties properties;
 	private Composite base;
@@ -60,11 +54,21 @@ public class IssueLicensePackPage extends WizardPage {
 
 	public void init() {
 		if (license != null) {
-			license.eAdapters().remove(updater);
+			implantRequestIntoLicense();
+			return;
 		}
 		license = context.get(OperatorLicenseService.class).createFloatingLicensePack(data.get());
-		license.eAdapters().add(updater);
+		license.eAdapters().add(new EContentAdapter() {
+			@Override
+			public void notifyChanged(Notification notification) {
+				setPageComplete(validatePage());
+			}
+		});
 		updatePage();
+	}
+
+	private void implantRequestIntoLicense() {
+		// FIXME: implement on base of new license pack creation
 	}
 
 	@Override
