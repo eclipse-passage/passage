@@ -12,9 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecp.ui.view.ECPRendererException;
@@ -40,6 +42,12 @@ public class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<FloatingLicenseRequest> data;
+	private final Adapter update = new EContentAdapter() {
+		@Override
+		public void notifyChanged(Notification notification) {
+			setPageComplete(validatePage());
+		}
+	};
 	private FloatingLicensePack license;
 	private VViewModelProperties properties;
 	private Composite base;
@@ -53,22 +61,21 @@ public class IssueLicensePackPage extends WizardPage {
 	}
 
 	public void init() {
-		if (license != null) {
-			implantRequestIntoLicense();
-			return;
+		boolean render = license == null;
+		createLicensePack();
+		if (render) {
+			updatePage();
 		}
-		license = context.get(OperatorLicenseService.class).createFloatingLicensePack(data.get());
-		license.eAdapters().add(new EContentAdapter() {
-			@Override
-			public void notifyChanged(Notification notification) {
-				setPageComplete(validatePage());
-			}
-		});
-		updatePage();
 	}
 
-	private void implantRequestIntoLicense() {
-		// FIXME: implement on base of new license pack creation
+	private void createLicensePack() {
+		if (license != null) {
+			license.eAdapters().remove(update);
+		} else {
+			license = context.get(OperatorLicenseService.class).createFloatingLicensePack(data.get(),
+					Optional.ofNullable(license));
+			license.eAdapters().add(update);
+		}
 	}
 
 	@Override

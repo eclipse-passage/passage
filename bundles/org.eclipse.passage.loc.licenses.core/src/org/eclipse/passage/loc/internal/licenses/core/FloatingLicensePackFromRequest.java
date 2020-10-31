@@ -14,11 +14,14 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
@@ -44,9 +47,12 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private final FloatingLicenseRequest request;
 	private final LicenseRegistry licenses;
 	private final UserRegistry users;
+	private final Optional<FloatingLicensePack> template;
 
-	FloatingLicensePackFromRequest(FloatingLicenseRequest request, LicenseRegistry licenses, UserRegistry users) {
+	FloatingLicensePackFromRequest(FloatingLicenseRequest request, Optional<FloatingLicensePack> template,
+			LicenseRegistry licenses, UserRegistry users) {
 		this.request = request;
+		this.template = template;
 		this.licenses = licenses;
 		this.users = users;
 	}
@@ -74,16 +80,34 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private FloatingServer floatingServer() {
 		FloatingServer server = FloatingFactory.eINSTANCE.createFloatingServer();
-		server.setIdentifier("Floating Server A"); //$NON-NLS-1$
+		server.setIdentifier(serverId());
 		server.setAuthentication(serverAuthentication());
 		return server;
 	}
 
+	private String serverId() {
+		return template//
+				.map(l -> l.getHost().getIdentifier())//
+				.orElse("Floating Server A"); //$NON-NLS-1$
+	}
+
 	private EvaluationInstructions serverAuthentication() {
 		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
-		auth.setType(new EvaluationType.Hardware().identifier());
-		auth.setExpression(String.format("%s=%s", new Disk.Serial().toString(), "?")); //$NON-NLS-1$ //$NON-NLS-2$
+		auth.setType(serverAuthenticationType());
+		auth.setExpression(serverAuthenticationExpression());
 		return auth;
+	}
+
+	private String serverAuthenticationType() {
+		return template//
+				.map(l -> l.getHost().getAuthentication().getType())//
+				.orElseGet(this::defaultEvaluationType);
+	}
+
+	private String serverAuthenticationExpression() {
+		return template//
+				.map(l -> l.getHost().getAuthentication().getExpression())//
+				.orElse(String.format("%s=%s", new Disk.Serial().toString(), "?")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	private String company() {
@@ -120,9 +144,29 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private EvaluationInstructions userAuthentication(UserDescriptor user) {
 		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
-		auth.setExpression(user.getPreferredConditionExpression());
-		auth.setType(user.getPreferredConditionType());
+		auth.setExpression(userAuthenticationExpression(user));
+		auth.setType(userAuthenticationType(user));
 		return auth;
+	}
+
+	private String userAuthenticationType(UserDescriptor user) {
+		return template//
+				.flatMap(l -> forUser(l.getUsers(), user))//
+				.map(UserGrant::getAuthentication)//
+				.map(EvaluationInstructions::getType)//
+				.orElseGet(user::getPreferredConditionType);
+	}
+
+	private String userAuthenticationExpression(UserDescriptor user) {
+		return template//
+				.flatMap(l -> forUser(l.getUsers(), user))//
+				.map(UserGrant::getAuthentication)//
+				.map(EvaluationInstructions::getExpression)//
+				.orElseGet(user::getPreferredConditionExpression);
+	}
+
+	private Optional<UserGrant> forUser(List<UserGrant> all, UserDescriptor user) {
+		return all.stream().filter(u -> user.getEmail().equals(u.getUser())).findFirst();
 	}
 
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {
@@ -135,13 +179,32 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = FloatingFactory.eINSTANCE.createFeatureGrant();
-		grant.setFeature(feature.getFeatureIdentifier());
-		grant.setCapacity(request.defaultCapacity());
+		String fid = feature.getFeatureIdentifier();
+		grant.setFeature(fid);
+		grant.setCapacity(featureGrantCapacity(fid));
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
-		grant.setValid(period());
+		grant.setValid(featureGrantPeriod(fid));
 		grant.setVersion(version(feature));
 		return grant;
+	}
+
+	private int featureGrantCapacity(String feature) {
+		return template//
+				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.map(FeatureGrant::getCapacity)//
+				.orElseGet(request::defaultCapacity);
+	}
+
+	private ValidityPeriod featureGrantPeriod(String feature) {
+		return template//
+				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.map(g -> EcoreUtil.copy(g.getValid()))//
+				.orElseGet(this::period);
+	}
+
+	private Optional<FeatureGrant> forFeature(List<FeatureGrant> all, String feature) {
+		return all.stream().filter(g -> feature.equals(g.getFeature())).findFirst();
 	}
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
@@ -149,6 +212,10 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		version.setVersion(feature.getMatchVersion());
 		version.setRule(feature.getMatchRule());
 		return version;
+	}
+
+	private String defaultEvaluationType() {
+		return new EvaluationType.Hardware().identifier();
 	}
 
 }
