@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -36,9 +38,12 @@ public interface OperatorLicenseService {
 			LicensePackDescriptor template);
 
 	/**
-	 * Create new instance of Floating License Pack to be verified and issued
+	 * Create new instance of Floating License Pack to be verified and issued. Base
+	 * data comes from the request, the rest can come from the existing license
+	 * pack.
 	 */
-	FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request);
+	FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request,
+			Optional<FloatingLicensePack> template);
 
 	/**
 	 * Physically issue new Floating License Pack according to all the data supplied

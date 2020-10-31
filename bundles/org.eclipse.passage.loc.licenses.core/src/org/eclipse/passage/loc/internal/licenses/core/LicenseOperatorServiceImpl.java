@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
@@ -128,8 +129,9 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request) {
-		return new FloatingLicensePackFromRequest(request, licenseRegistry, userRegistry).get();
+	public FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request,
+			Optional<FloatingLicensePack> template) {
+		return new FloatingLicensePackFromRequest(request, template, licenseRegistry, userRegistry).get();
 	}
 
 	@Override
