@@ -26,12 +26,12 @@ import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 
-public final class FLoatingLicenseData extends GeneralLicenseData implements FloatingLicenseRequest {
+public final class FloatingLicenseData extends GeneralLicenseData implements FloatingLicenseRequest {
 
 	private final Collection<UserDescriptor> users;
 	private final int capacity;
 
-	public FLoatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
+	public FloatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
 			ProductVersionDescriptor product, Date from, Date until, int capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
@@ -39,7 +39,7 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 		this.capacity = capacity;
 	}
 
-	public FLoatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
+	public FloatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
 			ProductVersionDescriptor product, LocalDate from, LocalDate until, int capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
@@ -50,7 +50,7 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 	@Override
 	public Collection<String> users() {
 		return users.stream()//
-				.map(UserDescriptor::getIdentifier) //
+				.map(UserDescriptor::getEmail) //
 				.collect(Collectors.toList());
 	}
 
@@ -72,17 +72,6 @@ public final class FLoatingLicenseData extends GeneralLicenseData implements Flo
 	@Override
 	public int defaultCapacity() {
 		return capacity;
-	}
-
-	@Override
-	public EvaluationInstructions serverAuthentication() {
-		return null;
-	}
-
-	@Override
-	public String serverName() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

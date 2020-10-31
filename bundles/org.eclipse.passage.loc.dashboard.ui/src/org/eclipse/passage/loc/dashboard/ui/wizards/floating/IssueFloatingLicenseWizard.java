@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
@@ -21,6 +22,7 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 	private final IEclipseContext context;
 	private final FloatingDataPack initial;
 	private IssueLicenseRequestPage request;
+	private IssueLicensePackPage pack;
 
 	public IssueFloatingLicenseWizard(IEclipseContext context, FloatingDataPack initial) {
 		this.context = context;
@@ -32,6 +34,17 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 	public void addPages() {
 		request = new IssueLicenseRequestPage(context, initial);
 		addPage(request.get());
+		pack = new IssueLicensePackPage("License information", request::request, context); //$NON-NLS-1$
+		addPage(pack);
+	}
+
+	@Override
+	public IWizardPage getNextPage(IWizardPage page) {
+		IWizardPage next = super.getNextPage(page);
+		if (pack.equals(next)) {
+			pack.init();
+		}
+		return next;
 	}
 
 	@Override

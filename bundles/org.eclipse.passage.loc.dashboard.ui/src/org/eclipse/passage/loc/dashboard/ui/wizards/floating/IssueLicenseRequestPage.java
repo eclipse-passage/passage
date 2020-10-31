@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.licenses.core.request.FLoatingLicenseData;
+import org.eclipse.passage.loc.internal.licenses.core.request.FloatingLicenseData;
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
@@ -52,7 +52,7 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 	}
 
 	FloatingLicenseRequest request() {
-		return new FLoatingLicenseData(//
+		return new FloatingLicenseData(//
 				users.get().get(), //
 				plan.get().get(), //
 				product.get().get(), //

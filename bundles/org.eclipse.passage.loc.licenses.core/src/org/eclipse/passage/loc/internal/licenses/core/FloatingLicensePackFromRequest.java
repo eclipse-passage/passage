@@ -22,7 +22,6 @@ import java.util.stream.StreamSupport;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.floating.model.api.FloatingServer;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.UserGrant;
@@ -53,26 +52,10 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	public FloatingLicensePack get() {
 		FloatingLicensePack pack = FloatingFactory.eINSTANCE.createFloatingLicensePack();
 		pack.setLicense(license());
-		pack.setHost(host());
+		pack.setHost(FloatingFactory.eINSTANCE.createFloatingServer());
 		userGrants().forEach(pack.getUsers()::add);
 		featureGrants(pack).forEach(pack.getFeatures()::add);
 		return pack;
-	}
-
-	private FloatingServer host() {
-		FloatingServer server = FloatingFactory.eINSTANCE.createFloatingServer();
-		server.setIdentifier(request.serverName());
-		server.setAuthentication(serverAuthentication());
-		return server;
-	}
-
-	private EvaluationInstructions serverAuthentication() {
-		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
-		org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions requested = //
-				request.serverAuthentication();
-		auth.setExpression(requested.expression());
-		auth.setType(requested.type().identifier());
-		return auth;
 	}
 
 	private LicenseRequisites license() {

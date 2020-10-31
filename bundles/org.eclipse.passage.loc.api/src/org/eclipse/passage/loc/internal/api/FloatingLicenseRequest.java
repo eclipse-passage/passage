@@ -39,14 +39,4 @@ public interface FloatingLicenseRequest extends GeneralLicenseRequest {
 	 */
 	int defaultCapacity();
 
-	/**
-	 * {@code FloatingServer} is to be authenticated.
-	 */
-	EvaluationInstructions serverAuthentication();
-
-	/**
-	 * {@code FloatingServer} is to be named for convenience.
-	 */
-	String serverName();
-
 }
