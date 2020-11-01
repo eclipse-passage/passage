@@ -22,6 +22,8 @@ public final class WorkbenchEmfformsMessages extends NLS {
 	public static String TextWithButtonRenderer_button_edit;
 	public static String ConditionExpressionRenderer_condition_expression;
 
+	public static String ConditionTypeRenderer_not_set;
+
 	public static String FileContentRenderer_button_text;
 
 	public static String FileContentRenderer_e_content_message;

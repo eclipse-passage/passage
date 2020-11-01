@@ -72,8 +72,8 @@ public class IssueLicensePackPage extends WizardPage {
 		if (license != null) {
 			license.eAdapters().remove(update);
 		} else {
-			license = context.get(OperatorLicenseService.class).createFloatingLicensePack(data.get(),
-					Optional.ofNullable(license));
+			license = context.get(OperatorLicenseService.class)//
+					.createFloatingLicensePack(data.get(), Optional.ofNullable(license));
 			license.eAdapters().add(update);
 		}
 	}
