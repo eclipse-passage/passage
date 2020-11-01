@@ -13,8 +13,8 @@
 package org.eclipse.passage.loc.internal.licenses.core.request;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -23,17 +23,10 @@ import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
 public final class PersonalLicenseData extends GeneralLicenseData implements PersonalLicenseRequest {
 
-	private final UserDescriptor user;
+	private final Supplier<UserDescriptor> user;
 
-	public PersonalLicenseData(UserDescriptor user, LicensePlanDescriptor plan, ProductVersionDescriptor product,
-			LocalDate from, LocalDate until) {
-		super(plan, product, from, until);
-		Objects.requireNonNull(user, "PersonalLicenseData::user"); //$NON-NLS-1$
-		this.user = user;
-	}
-
-	public PersonalLicenseData(UserDescriptor user, LicensePlanDescriptor plan, ProductVersionDescriptor product,
-			Date from, Date until) {
+	public PersonalLicenseData(Supplier<UserDescriptor> user, Supplier<LicensePlanDescriptor> plan,
+			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(user, "PersonalLicenseData::user"); //$NON-NLS-1$
 		this.user = user;
@@ -41,21 +34,21 @@ public final class PersonalLicenseData extends GeneralLicenseData implements Per
 
 	@Override
 	public String user() {
-		return user.getEmail();
+		return user.get().getEmail();
 	}
 
 	@Override
 	public String userFullName() {
-		return user.getFullName();
+		return user.get().getFullName();
 	}
 
 	@Override
 	public String conditionType() {
-		return user.getPreferredConditionType();
+		return user.get().getPreferredConditionType();
 	}
 
 	@Override
 	public String conditionExpression() {
-		return user.getPreferredConditionExpression();
+		return user.get().getPreferredConditionExpression();
 	}
 }

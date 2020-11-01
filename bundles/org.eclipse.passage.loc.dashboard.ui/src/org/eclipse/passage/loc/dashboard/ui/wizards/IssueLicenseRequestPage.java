@@ -49,11 +49,11 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
 	public PersonalLicenseRequest request() {
 		return new PersonalLicenseData(//
-				user.get().get(), //
-				plan.get().get(), //
-				product.get().get(), //
-				from(), //
-				until());
+				() -> user.get().get(), //
+				() -> plan.get().get(), //
+				() -> product.get().get(), //
+				() -> from(), //
+				() -> until());
 	}
 
 	private LocalDate from() {

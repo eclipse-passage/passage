@@ -60,7 +60,7 @@ public class IssueLicensePackPage extends WizardPage {
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
 
-	public void init() {
+	private void init() {
 		boolean render = license == null;
 		createLicensePack();
 		if (render) {
@@ -92,6 +92,14 @@ public class IssueLicensePackPage extends WizardPage {
 				EMFFormsSWTConstants.USE_ON_MODIFY_DATABINDING_VALUE);
 		updatePage();
 		Dialog.applyDialogFont(composite);
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		if (visible) {
+			init();
+		}
+		super.setVisible(visible);
 	}
 
 	private void updatePage() {

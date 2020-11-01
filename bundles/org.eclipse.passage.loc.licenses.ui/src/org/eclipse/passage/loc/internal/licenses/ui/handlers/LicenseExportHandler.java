@@ -12,9 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.ui.handlers;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 import javax.inject.Named;
 
@@ -96,10 +95,9 @@ public class LicenseExportHandler {
 		months = Long.parseLong(durationDialog.getValue());
 		LocalDateTime fromLocal = LocalDateTime.now();
 		LocalDateTime untilLocal = fromLocal.plusMonths(months);
-		Date from = Date.from(fromLocal.atZone(ZoneId.systemDefault()).toInstant());
-		Date until = Date.from(untilLocal.atZone(ZoneId.systemDefault()).toInstant());
 
-		PersonalLicenseRequest request = createLicensingRequest(user.get(), licensePlan, productVersion, from, until);
+		PersonalLicenseRequest request = createLicensingRequest(user.get(), licensePlan, productVersion,
+				fromLocal.toLocalDate(), untilLocal.toLocalDate());
 
 		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
 
@@ -130,8 +128,8 @@ public class LicenseExportHandler {
 	}
 
 	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlanDescriptor plan,
-			ProductVersionDescriptor product, Date from, Date until) {
-		return new PersonalLicenseData(user, plan, product, from, until);
+			ProductVersionDescriptor product, LocalDate from, LocalDate until) {
+		return new PersonalLicenseData(() -> user, () -> plan, () -> product, () -> from, () -> until);
 	}
 
 }

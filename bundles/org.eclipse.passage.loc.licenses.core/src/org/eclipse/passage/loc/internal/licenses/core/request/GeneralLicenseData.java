@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -28,30 +29,21 @@ public abstract class GeneralLicenseData implements GeneralLicenseRequest {
 	private final String uuid = UUID.randomUUID().toString();
 	private final Date stamp = new Date();
 
-	private final LicensePlanDescriptor plan;
-	private final ProductVersionDescriptor product;
-	private final Date from;
-	private final Date until;
+	private final Supplier<LicensePlanDescriptor> plan;
+	private final Supplier<ProductVersionDescriptor> product;
+	private final Supplier<Date> from;
+	private final Supplier<Date> until;
 
-	protected GeneralLicenseData(LicensePlanDescriptor plan, ProductVersionDescriptor product, LocalDate from,
-			LocalDate until) {
+	protected GeneralLicenseData(Supplier<LicensePlanDescriptor> plan, Supplier<ProductVersionDescriptor> product,
+			Supplier<LocalDate> from, Supplier<LocalDate> until) {
 		noNulls(plan, product, from, until);
 		this.plan = plan;
 		this.product = product;
-		this.from = Date.from(from.atStartOfDay(zone).toInstant());
-		this.until = Date.from(until.atStartOfDay(zone).toInstant());
+		this.from = () -> Date.from(from.get().atStartOfDay(zone).toInstant());
+		this.until = () -> Date.from(until.get().atStartOfDay(zone).toInstant());
 	}
 
-	protected GeneralLicenseData(LicensePlanDescriptor plan, ProductVersionDescriptor product, Date from, Date until) {
-		noNulls(plan, product, from, until);
-		this.plan = plan;
-		this.product = product;
-		this.from = from;
-		this.until = until;
-	}
-
-	private void noNulls(LicensePlanDescriptor planObj, ProductVersionDescriptor productObj, Object fromObj,
-			Object untilObj) {
+	private void noNulls(Object planObj, Object productObj, Object fromObj, Object untilObj) {
 		String cls = getClass().getSimpleName();
 		Objects.requireNonNull(planObj, cls + "::plan"); //$NON-NLS-1$
 		Objects.requireNonNull(productObj, cls + "::product"); //$NON-NLS-1$
@@ -61,27 +53,27 @@ public abstract class GeneralLicenseData implements GeneralLicenseRequest {
 
 	@Override
 	public final Date validUntil() {
-		return until;
+		return until.get();
 	}
 
 	@Override
 	public final Date validFrom() {
-		return from;
+		return from.get();
 	}
 
 	@Override
 	public final String productVersion() {
-		return product.getVersion();
+		return product.get().getVersion();
 	}
 
 	@Override
 	public final String productIdentifier() {
-		return product.getProduct().getIdentifier();
+		return product.get().getProduct().getIdentifier();
 	}
 
 	@Override
 	public final String plan() {
-		return plan.getIdentifier();
+		return plan.get().getIdentifier();
 	}
 
 	@Override

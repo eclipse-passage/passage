@@ -14,8 +14,8 @@ package org.eclipse.passage.loc.internal.licenses.core.request;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Objects;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
@@ -28,19 +28,12 @@ import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 
 public final class FloatingLicenseData extends GeneralLicenseData implements FloatingLicenseRequest {
 
-	private final Collection<UserDescriptor> users;
-	private final int capacity;
+	private final Supplier<Collection<UserDescriptor>> users;
+	private final Supplier<Integer> capacity;
 
-	public FloatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
-			ProductVersionDescriptor product, Date from, Date until, int capacity) {
-		super(plan, product, from, until);
-		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
-		this.users = users; // FIXME: work for caching function: keep Map and reimplement retrieves
-		this.capacity = capacity;
-	}
-
-	public FloatingLicenseData(Collection<UserDescriptor> users, LicensePlanDescriptor plan,
-			ProductVersionDescriptor product, LocalDate from, LocalDate until, int capacity) {
+	public FloatingLicenseData(Supplier<Collection<UserDescriptor>> users, Supplier<LicensePlanDescriptor> plan,
+			Supplier<ProductVersionDescriptor> product, Supplier<LocalDate> from, Supplier<LocalDate> until,
+			Supplier<Integer> capacity) {
 		super(plan, product, from, until);
 		Objects.requireNonNull(users, "PersonalLicenseData::users"); //$NON-NLS-1$
 		this.users = users;
@@ -49,7 +42,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 
 	@Override
 	public Collection<String> users() {
-		return users.stream()//
+		return users.get().stream()//
 				.map(UserDescriptor::getEmail) //
 				.collect(Collectors.toList());
 	}
@@ -63,7 +56,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 	}
 
 	private UserDescriptor user(String identifier) {
-		return users.stream()//
+		return users.get().stream()//
 				.filter(user -> identifier.equals(user.getIdentifier()))//
 				.findAny()//
 				.get(); // yah, fail if not found, it's a development problem
@@ -71,7 +64,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 
 	@Override
 	public int defaultCapacity() {
-		return capacity;
+		return capacity.get();
 	}
 
 }
