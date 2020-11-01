@@ -20,9 +20,6 @@
           cardinality="1"
           thread="main"
           visible="true">
-       <run
-             class="org.eclipse.passage.lbc.server.jetty.JettyServer">
-       </run>
     </application>
  </extension>
  <extension

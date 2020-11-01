@@ -10,13 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server;
+package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Map;
 
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-@SuppressWarnings("restriction")
 public final class Port extends BaseNamedData<Integer> {
 
 	public Port(Map<String, Object> arguments) {
