@@ -10,15 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.jetty;
+package org.eclipse.passage.lbc.internal.jetty;
 
 import java.util.Map;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.passage.lbc.server.Port;
-import org.osgi.service.component.annotations.Component;
+import org.eclipse.passage.lbc.internal.base.Port;
 
-@Component
 public final class JettyServer {
 
 	private Server server;
