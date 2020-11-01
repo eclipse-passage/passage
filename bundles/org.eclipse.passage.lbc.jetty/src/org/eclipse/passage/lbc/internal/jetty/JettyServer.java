@@ -21,10 +21,9 @@ public final class JettyServer {
 
 	private Server server;
 
-	@SuppressWarnings("restriction")
 	public void launch(Map<String, Object> arguments) {
 		try {
-			server = new Server(new Port(arguments).get().get());
+			server = new Server(new Port.Default().get());
 			server.start();
 		} catch (Exception e) {
 			e.printStackTrace();

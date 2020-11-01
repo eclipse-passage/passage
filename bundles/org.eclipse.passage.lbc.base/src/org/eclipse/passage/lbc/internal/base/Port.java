@@ -12,19 +12,58 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.util.Map;
+import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.base.BaseNamedData;
+public abstract class Port implements Supplier<Integer> {
 
-public final class Port extends BaseNamedData<Integer> {
+	private final int port;
 
-	public Port(Map<String, Object> arguments) {
-		super(key -> Integer.class.isInstance(arguments.get(key)) ? (int) arguments.get(key) : 8090);
+	public Port(int port) {
+		this.port = port;
 	}
 
 	@Override
-	public String key() {
-		return "port"; //$NON-NLS-1$
+	public final Integer get() {
+		return port;
+	}
+
+	public static final class Custom extends Port {
+
+		public Custom(int argument) {
+			super(argument);
+		}
+
+	}
+
+	public static final class Default extends Port {
+
+		public Default() {
+			super(8090);
+		}
+
+	}
+
+	public static final class OfArgument implements Supplier<Port> {
+
+		private final Port port;
+
+		public OfArgument(String argument) {
+			this.port = port(argument);
+		}
+
+		@Override
+		public Port get() {
+			return port;
+		}
+
+		private Port port(String argument) {
+			try {
+				return new Custom(Integer.parseInt(argument));
+			} catch (NumberFormatException e) {
+				return new Default();
+			}
+		}
+
 	}
 
 }

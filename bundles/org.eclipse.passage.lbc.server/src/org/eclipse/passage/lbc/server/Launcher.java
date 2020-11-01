@@ -16,9 +16,9 @@ import java.util.Hashtable;
 
 import org.eclipse.osgi.framework.console.CommandInterpreter;
 import org.eclipse.osgi.framework.console.CommandProvider;
+import org.eclipse.passage.lbc.internal.base.Port;
 import org.eclipse.passage.lbc.server.i18n.Messages;
 import org.eclipse.passage.lbc.server.jetty.JettyServer;
-import org.eclipse.passage.lbc.server.jetty.Port;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 

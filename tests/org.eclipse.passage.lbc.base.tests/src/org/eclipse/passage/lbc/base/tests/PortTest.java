@@ -10,11 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.tests;
+package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.passage.lbc.server.jetty.Port;
+import org.eclipse.passage.lbc.internal.base.Port;
 import org.junit.Test;
 
 public class PortTest {

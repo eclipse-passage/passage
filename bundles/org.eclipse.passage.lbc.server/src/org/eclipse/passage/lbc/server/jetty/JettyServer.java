@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.server.jetty;
 
 import org.eclipse.jetty.server.Server;
+import org.eclipse.passage.lbc.internal.base.Port;
 import org.eclipse.passage.lbc.server.i18n.Messages;
 
 public final class JettyServer {
