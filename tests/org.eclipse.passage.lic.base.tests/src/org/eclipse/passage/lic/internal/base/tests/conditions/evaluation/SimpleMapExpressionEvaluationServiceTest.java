@@ -86,7 +86,7 @@ public final class SimpleMapExpressionEvaluationServiceTest extends ExpressionEv
 
 	private SimpleMapExpression expression(String[]... pairs) {
 		return new SimpleMapExpression(//
-				new ExpressionProtocol.Ands(), // $NON-NLS-1$
+				new ExpressionProtocol.Berlin(), // $NON-NLS-1$
 				Arrays.stream(pairs)//
 						.collect(Collectors.toMap(//
 								pair -> pair[0], //

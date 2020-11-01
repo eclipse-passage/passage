@@ -14,13 +14,19 @@ package org.eclipse.passage.lic.internal.base.tests.requirements;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.access.Requirements;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
+import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -37,6 +43,19 @@ public final class RequirementsTest {
 		assertEquals(//
 				new NoServicesOfType("resolvers"), //$NON-NLS-1$
 				result.diagnostic().severe().get(0).code());
+	}
+
+	@Test
+	public void noRequirementsIsSuspicious() {
+		ServiceInvocationResult<Collection<Requirement>> result = new Requirements(//
+				new ReadOnlyRegistry<StringServiceId, ResolvedRequirements>(new FakeResolvedRequirements()), "feature0" //$NON-NLS-1$
+		).get();
+		assertTrue(result.diagnostic().severe().isEmpty());
+		assertFalse(result.diagnostic().bearable().isEmpty());
+		assertTrue(result.data().isPresent());
+		assertEquals(//
+				new NoRequirements(), //
+				result.diagnostic().bearable().get(0).code());
 	}
 
 }

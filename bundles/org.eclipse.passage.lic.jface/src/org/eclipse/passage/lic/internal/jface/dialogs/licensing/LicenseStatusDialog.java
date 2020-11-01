@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.equinox.ProductContacts;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
@@ -47,7 +48,7 @@ public final class LicenseStatusDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(LicenseStatusDialogMessages.LicenseStatusDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(740, 300);
+		shell.setSize(740, 600);
 	}
 
 	@Override
@@ -82,6 +83,12 @@ public final class LicenseStatusDialog extends NotificationDialog {
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy,
 				LicenseStatusDialogMessages.LicenseStatusDialog_intention_copy_tooltip, "") //$NON-NLS-1$
 						.reside(buttons);
+		if (!new NoErrors().test(diagnostic)) {
+			new ButtonConfig(4, this::diagnose, //
+					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose,
+					LicenseStatusDialogMessages.LicenseStatusDialog_intention_diagnose_tooltip, "") //$NON-NLS-1$
+							.reside(buttons);
+		}
 	}
 
 	@Override
@@ -101,6 +108,11 @@ public final class LicenseStatusDialog extends NotificationDialog {
 
 	private void importLicense() {
 		intention = new GoodIntention.ImportLicense(this::getShell);
+		super.okPressed();
+	}
+
+	private void diagnose() {
+		intention = new GoodIntention.Diagnose(this::getShell, diagnostic);
 		super.okPressed();
 	}
 

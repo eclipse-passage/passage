@@ -18,8 +18,7 @@ import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 public final class NoServicesOfType extends TroubleCode {
 
 	public NoServicesOfType(String type) {
-		super(102, String.format(//
-				DiagnosticCodeMessages.getString("NoServices.explanation"), type)); //$NON-NLS-1$
+		super(102, String.format(DiagnosticCodeMessages.getString("NoServices.explanation"), type)); //$NON-NLS-1$
 	}
 
 }

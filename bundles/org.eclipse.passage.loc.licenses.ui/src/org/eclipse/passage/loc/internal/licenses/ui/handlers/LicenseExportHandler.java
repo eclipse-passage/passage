@@ -12,10 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.ui.handlers;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.inject.Named;
 
@@ -39,8 +37,9 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
-import org.eclipse.passage.loc.internal.api.LicensingRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
+import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
+import org.eclipse.passage.loc.internal.licenses.core.request.PersonalLicenseData;
 import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.ui.SelectUser;
@@ -96,10 +95,9 @@ public class LicenseExportHandler {
 		months = Long.parseLong(durationDialog.getValue());
 		LocalDateTime fromLocal = LocalDateTime.now();
 		LocalDateTime untilLocal = fromLocal.plusMonths(months);
-		Date from = Date.from(fromLocal.atZone(ZoneId.systemDefault()).toInstant());
-		Date until = Date.from(untilLocal.atZone(ZoneId.systemDefault()).toInstant());
 
-		LicensingRequest request = createLicensingRequest(user.get(), licensePlan, productVersion, from, until);
+		PersonalLicenseRequest request = createLicensingRequest(user.get(), licensePlan, productVersion,
+				fromLocal.toLocalDate(), untilLocal.toLocalDate());
 
 		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
 
@@ -129,67 +127,9 @@ public class LicenseExportHandler {
 		return licensePlan != null;
 	}
 
-	private LicensingRequest createLicensingRequest(UserDescriptor userDescriptor, LicensePlanDescriptor licensePlan,
-			ProductVersionDescriptor productVersion, Date from, Date until) {
-		String uuid = UUID.randomUUID().toString();
-		Date creationDate = new Date();
-		return new LicensingRequest() {
-
-			@Override
-			public Date getValidUntil() {
-				return until;
-			}
-
-			@Override
-			public Date getValidFrom() {
-				return from;
-			}
-
-			@Override
-			public String getUserIdentifier() {
-				return userDescriptor.getEmail();
-			}
-
-			@Override
-			public String getUserFullName() {
-				return userDescriptor.getFullName();
-			}
-
-			@Override
-			public String getProductVersion() {
-				return productVersion.getVersion();
-			}
-
-			@Override
-			public String getProductIdentifier() {
-				return productVersion.getProduct().getIdentifier();
-			}
-
-			@Override
-			public String getPlanIdentifier() {
-				return licensePlan.getIdentifier();
-			}
-
-			@Override
-			public String getIdentifier() {
-				return uuid;
-			}
-
-			@Override
-			public Date getCreationDate() {
-				return creationDate;
-			}
-
-			@Override
-			public String getConditionType() {
-				return userDescriptor.getPreferredConditionType();
-			}
-
-			@Override
-			public String getConditionExpression() {
-				return userDescriptor.getPreferredConditionExpression();
-			}
-		};
+	private PersonalLicenseRequest createLicensingRequest(UserDescriptor user, LicensePlanDescriptor plan,
+			ProductVersionDescriptor product, LocalDate from, LocalDate until) {
+		return new PersonalLicenseData(() -> user, () -> plan, () -> product, () -> from, () -> until);
 	}
 
 }

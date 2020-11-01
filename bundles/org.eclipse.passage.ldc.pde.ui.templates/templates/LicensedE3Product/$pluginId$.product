@@ -17,18 +17,30 @@
 
    <plugins>
       <plugin id="$pluginId$"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-core"/>
+      <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
+      <plugin id="com.github.oshi.oshi-core"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="com.sun.jna"/>
+      <plugin id="com.sun.jna.platform"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.i18n"/>
       <plugin id="org.apache.batik.util"/>
+      <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.commons.jxpath"/>
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.felix.scr"/>
+      <plugin id="org.apache.httpcomponents.httpclient"/>
+      <plugin id="org.apache.httpcomponents.httpcore"/>
       <plugin id="org.apache.xmlgraphics"/>
+      <plugin id="org.bouncycastle.bcpg"/>
+      <plugin id="org.bouncycastle.bcpkix"/>
+      <plugin id="org.bouncycastle.bcprov"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.databinding"/>
@@ -67,6 +79,7 @@
       <plugin id="org.eclipse.emf.ecore"/>
       <plugin id="org.eclipse.emf.ecore.change"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
+      <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.concurrent"/>
@@ -76,6 +89,7 @@
       <plugin id="org.eclipse.help"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
+      <plugin id="org.eclipse.jface.notifications"/>
       <plugin id="org.eclipse.jface.text"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
@@ -83,9 +97,20 @@
       <plugin id="org.eclipse.osgi.util"/>
       <plugin id="org.eclipse.passage.lic.api"/>
       <plugin id="org.eclipse.passage.lic.base"/>
+      <plugin id="org.eclipse.passage.lic.bc"/>
       <plugin id="org.eclipse.passage.lic.e4.ui"/>
+      <plugin id="org.eclipse.passage.lic.emf"/>
+      <plugin id="org.eclipse.passage.lic.emf.meta"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
+      <plugin id="org.eclipse.passage.lic.hc"/>
       <plugin id="org.eclipse.passage.lic.jface"/>
+      <plugin id="org.eclipse.passage.lic.json"/>
+      <plugin id="org.eclipse.passage.lic.licenses"/>
+      <plugin id="org.eclipse.passage.lic.licenses.migration"/>
+      <plugin id="org.eclipse.passage.lic.licenses.model"/>
+      <plugin id="org.eclipse.passage.lic.net"/>
+      <plugin id="org.eclipse.passage.lic.oshi"/>
+      <plugin id="org.eclipse.passage.seal.demo"/>
       <plugin id="org.eclipse.swt"/>
       <plugin id="org.eclipse.swt.cocoa.macosx.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.ppc64" fragment="true"/>
@@ -94,6 +119,8 @@
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
       <plugin id="org.eclipse.ui.workbench"/>
+      <plugin id="org.eclipse.urischeme"/>
+      <plugin id="org.slf4j.api"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>

@@ -11,7 +11,9 @@ Export-Package: org.eclipse.passage.loc.internal.api;
   x-friends:="org.eclipse.passage.loc.workbench,
    org.eclipse.passage.loc.licenses.ui,
    org.eclipse.passage.loc.users.ui,
-   org.eclipse.passage.loc.products.ui",
+   org.eclipse.passage.loc.products.ui,
+   org.eclipse.passage.loc.dashboard.ui,
+   org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.loc.internal.emf;x-internal:=true
 Require-Bundle: org.eclipse.e4.core.services;bundle-version="0.0.0",
  org.eclipse.emf.edit;bundle-version="2.16.0",
@@ -24,4 +26,5 @@ Require-Bundle: org.eclipse.e4.core.services;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.lic.products;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.lic.users;bundle-version="1.0.0";visibility:=reexport,
- org.eclipse.passage.lic.users.model;bundle-version="1.0.0"
+ org.eclipse.passage.lic.users.model;bundle-version="1.0.0",
+ org.eclipse.passage.lic.floating.model;bundle-version="0.1.0"

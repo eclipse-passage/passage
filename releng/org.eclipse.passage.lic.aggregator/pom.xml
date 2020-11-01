@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
 		<artifactId>org.eclipse.passage.parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 
@@ -116,6 +116,13 @@
 		<module>../../features/org.eclipse.passage.lic.licenses.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
+
+		<module>../../bundles/org.eclipse.passage.lic.floating</module>
+		<module>../../bundles/org.eclipse.passage.lic.floating.ecore</module>
+		<module>../../bundles/org.eclipse.passage.lic.floating.model</module>
+		<module>../../bundles/org.eclipse.passage.lic.floating.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.floating.e4.ui</module>
+		<module>../../features/org.eclipse.passage.lic.floating.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>

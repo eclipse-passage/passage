@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.dashboard.ui
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.dashboard.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -25,7 +25,8 @@ Require-Bundle: org.eclipse.e4.core.di.annotations;bundle-version="0.0.0",
  org.eclipse.passage.loc.licenses.core;bundle-version="0.6.0",
  org.eclipse.passage.loc.products.ui;bundle-version="0.0.0",
  org.eclipse.passage.loc.users.ui;bundle-version="0.0.0",
- org.eclipse.passage.loc.licenses.ui;bundle-version="0.0.0"
+ org.eclipse.passage.loc.licenses.ui;bundle-version="0.0.0",
+ org.eclipse.passage.lic.floating.model;bundle-version="0.1.0"
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
   javax.inject;version="1.0.0"
 Export-Package: org.eclipse.passage.loc.dashboard.ui;x-internal:=true,
@@ -33,5 +34,6 @@ Export-Package: org.eclipse.passage.loc.dashboard.ui;x-internal:=true,
  org.eclipse.passage.loc.dashboard.ui.handlers;x-internal:=true,
  org.eclipse.passage.loc.dashboard.ui.panel;x-internal:=true,
  org.eclipse.passage.loc.dashboard.ui.wizards;x-internal:=true,
+ org.eclipse.passage.loc.dashboard.ui.wizards.floating;x-internal:=true,
  org.eclipse.passage.loc.internal.dashboard.ui.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy

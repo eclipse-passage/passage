@@ -24,18 +24,18 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpressi
 public final class SimpleMapExpression implements ParsedExpression {
 
 	private final Map<String, String> checks;
-	private final ExpressionProtocol format;
+	private final ExpressionProtocol protocol;
 
-	public SimpleMapExpression(ExpressionProtocol format, Map<String, String> checks) {
-		Objects.requireNonNull(format);
+	public SimpleMapExpression(ExpressionProtocol protocol, Map<String, String> checks) {
+		Objects.requireNonNull(protocol);
 		Objects.requireNonNull(checks);
-		this.format = format;
+		this.protocol = protocol;
 		this.checks = new HashMap<>(checks);
 	}
 
 	@Override
 	public ExpressionProtocol protocol() {
-		return format;
+		return protocol;
 	}
 
 	public Collection<String> keys() {

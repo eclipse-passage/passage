@@ -69,6 +69,11 @@ public final class FileCollectionTest {
 				single.iterator().next().getFileName().toString());
 	}
 
+	@Test
+	public void traverseOnlyDownTheScope() throws LicensingException {
+		assertTrue(new FileCollection(this::outOfScope, new PassageFileExtension.LicenseEncrypted()).get().isEmpty());
+	}
+
 	private Path emulated() {
 		PassageFileExtension hunted = new PassageFileExtension.LicenseEncrypted();
 		String foreign = ".txt"; //$NON-NLS-1$
@@ -99,4 +104,20 @@ public final class FileCollectionTest {
 			return folder.getRoot().toPath(); // unreachable
 		}
 	}
+
+	private Path outOfScope() {
+		PassageFileExtension hunted = new PassageFileExtension.LicenseEncrypted();
+		try {
+			folder.newFolder("out-of-scope"); //$NON-NLS-1$
+			folder.newFile(//
+					Paths.get("out-of-scope") //$NON-NLS-1$
+							.resolve("not-to-be-found" + hunted.get()) //$NON-NLS-1$
+							.toString());
+			return folder.newFolder("scope").toPath(); //$NON-NLS-1$
+		} catch (IOException e) {
+			assumeNoException(e);
+			return folder.getRoot().toPath(); // unreachable
+		}
+	}
+
 }

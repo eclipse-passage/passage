@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.internal.equinox.BundleResource;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 
@@ -76,7 +77,7 @@ public final class BundleKeyKeeper implements KeyKeeper {
 	 * {@linkplain LicensingException}
 	 */
 	private URL resource(Path path) throws LicensingException {
-		Optional<URL> url = Optional.ofNullable(bundle.getResource(path.toString()));
+		Optional<URL> url = new BundleResource(bundle, path).get();
 		if (!url.isPresent()) {
 			throw new LicensingException(String.format(//
 					EquinoxMessages.BundleKeyKeeper_failed_to_find_file, //

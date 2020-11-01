@@ -60,7 +60,6 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 							"Михайло Васиильевич Ломоноосов" } //$NON-NLS-1$
 			});
 		}
-
 	}
 
 	static final class Empty extends TestCustomers {

@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.MandatoryService;
-import org.eclipse.passage.loc.internal.api.ZeroOneMany;
+import org.eclipse.passage.loc.internal.api.ZeroOrOne;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.eclipse.swt.widgets.Shell;
 
@@ -52,7 +52,7 @@ public final class SelectInner<I, R> implements Supplier<Optional<I>> {
 
 	@Override
 	public final Optional<I> get() {
-		return new ZeroOneMany<>(inner.input()).choose(
+		return new ZeroOrOne<>(inner.input()).choose(
 				new CreateInner<I, R>(context, root.domain(), inner.target(), root),
 				new SelectFromDialog<>(() -> context.get(Shell.class), inner.appearance()));
 	}

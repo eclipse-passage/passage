@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.oshi.feature"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.oshi"
       license-feature="org.eclipse.license"
@@ -47,14 +47,14 @@
          id="com.sun.jna"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="4.5.1.v20190425-1842"
          unpack="false"/>
 
    <plugin
          id="com.sun.jna.platform"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="4.5.1.v20190425-1842"
          unpack="false"/>
 
    <plugin

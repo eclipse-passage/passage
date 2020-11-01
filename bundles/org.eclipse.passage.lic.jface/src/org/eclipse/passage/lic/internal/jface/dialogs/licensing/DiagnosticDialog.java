@@ -40,7 +40,7 @@ public final class DiagnosticDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(DiagnosticDialogMessages.DiagnosticDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(850, 300);
+		shell.setSize(850, 600);
 	}
 
 	@Override

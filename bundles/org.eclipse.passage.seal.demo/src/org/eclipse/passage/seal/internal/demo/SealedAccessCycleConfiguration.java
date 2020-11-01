@@ -44,8 +44,9 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.AndsProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
+import org.eclipse.passage.lic.internal.base.conditions.evaluation.MunichProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
@@ -104,19 +105,20 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new BasePermissionEmittingService(//
 						expressionParsers(), //
 						expressionAssessors(), //
-						expressionEvaluators())//
+						expressionEvaluators()) //
 		));
 		expressionParsers = new ReadOnlyRegistry<>(Arrays.asList(//
-				new AndsProtocolExpressionParseService()//
+				new BerlinProtocolExpressionParseService(), //
+				new MunichProtocolExpressionParseService() //
 		));
 		expressionEvaluators = new ReadOnlyRegistry<>(Arrays.asList(//
-				new SimpleMapExpressionEvaluationService()//
+				new SimpleMapExpressionEvaluationService() //
 		));
 		tokenAssessors = new ReadOnlyRegistry<>(Arrays.asList(//
 				new HardwareAssessmentService(environments())//
 		));
 		environments = new ReadOnlyRegistry<>(Arrays.asList(//
-				new HardwareEnvironment()//
+				new HardwareEnvironment() //
 		));
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionsExaminationService()//

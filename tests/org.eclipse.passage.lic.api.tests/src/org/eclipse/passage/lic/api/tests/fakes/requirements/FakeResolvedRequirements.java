@@ -13,7 +13,9 @@
 package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
 import java.util.Collection;
+import java.util.Collections;
 
+import org.eclipse.passage.lic.api.tests.fakes.FakeServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
@@ -22,6 +24,16 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 @SuppressWarnings("restriction")
 public final class FakeResolvedRequirements implements ResolvedRequirements {
 
+	private final Collection<Requirement> requirements;
+
+	public FakeResolvedRequirements(Collection<Requirement> requirements) {
+		this.requirements = requirements;
+	}
+
+	public FakeResolvedRequirements() {
+		this(Collections.emptyList());
+	}
+
 	@Override
 	public StringServiceId id() {
 		return new StringServiceId("fake-req-res"); //$NON-NLS-1$
@@ -29,7 +41,7 @@ public final class FakeResolvedRequirements implements ResolvedRequirements {
 
 	@Override
 	public ServiceInvocationResult<Collection<Requirement>> all() {
-		throw new UnsupportedOperationException();
+		return new FakeServiceInvocationResult<Collection<Requirement>>(requirements);
 	}
 
 }

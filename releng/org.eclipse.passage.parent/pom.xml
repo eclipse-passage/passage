@@ -20,7 +20,7 @@
 
 	<groupId>org.eclipse.passage</groupId>
 	<artifactId>org.eclipse.passage.parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<prerequisites>
@@ -42,9 +42,9 @@
 		<eclipse-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-repo.url>
 		<cbi-snapshots-repo.url>https://repo.eclipse.org/content/repositories/cbi-snapshots/</cbi-snapshots-repo.url>
 
-		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.17-I-builds/</eclipserun-repo>
-		<released.baseline>https://download.eclipse.org/passage/updates/release/0.9.0/ldc/</released.baseline>
-		<staging.baseline>https://download.eclipse.org/passage/updates/release/0.9.0/ldc/</staging.baseline>
+		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.18-I-builds/</eclipserun-repo>
+		<released.baseline>https://download.eclipse.org/passage/updates/release/1.0.0/ldc/</released.baseline>
+		<staging.baseline>https://download.eclipse.org/passage/drops/integration/I554/ldc/</staging.baseline>
 
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
@@ -343,8 +343,9 @@
 									</jvmArgs>
 									<repositories>
 										<repository>
+											<id>eclipse</id>
 											<layout>p2</layout>
-											<url>${staging.baseline}</url>
+											<url>${eclipserun-repo}</url>
 										</repository>
 									</repositories>
 									<dependencies>
@@ -698,7 +699,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
-					<version>11</version>
+					<version>3.0.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>

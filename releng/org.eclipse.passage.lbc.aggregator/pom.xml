@@ -23,7 +23,7 @@
 	<parent>
 		<groupId>org.eclipse.passage</groupId>
 		<artifactId>org.eclipse.passage.parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.1.0-SNAPSHOT</version>
 		<relativePath>../../releng/org.eclipse.passage.parent</relativePath>
 	</parent>
 	<modules>
@@ -32,7 +32,6 @@
 		<module>../../bundles/org.eclipse.passage.lbc.api</module>
 		<module>../../bundles/org.eclipse.passage.lbc.base</module>
 		<module>../../tests/org.eclipse.passage.lbc.base.tests</module>
-		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
 		<module>../../tests/org.eclipse.passage.lbc.server.tests</module>
@@ -42,6 +41,9 @@
 		
 		<module>../../bundles/org.eclipse.passage.lbc.json</module>
 		<module>../../tests/org.eclipse.passage.lbc.json.tests</module>
+
+		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
+		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
 
 		<module>../../releng/org.eclipse.passage.lbc.repository</module>
 
