@@ -12,8 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.floating.edit.providers;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,6 +34,9 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
+import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
+import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
@@ -192,16 +199,41 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureGrant) object).getIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureGrant_type") : //$NON-NLS-1$
-				getString("_UI_FeatureGrant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureGrant grant = (FeatureGrant) object;
+		String feature = grant.getFeature() == null ? "unknown" : grant.getFeature(); //$NON-NLS-1$
+		Optional<VersionMatch> match = Optional.of(grant.getVersion());
+		String version = match.map(VersionMatch::getVersion).orElse("unknown"); //$NON-NLS-1$
+		String rule = match.map(VersionMatch::getRule).orElse("unknown"); //$NON-NLS-1$
+		ValidityPeriodClosed period = closed(grant.getValid());
+		String from = period == null ? "unknown" : date(period.getFrom()); //$NON-NLS-1$
+		String until = period == null ? "unknown" : date(period.getUntil()); //$NON-NLS-1$
+		return getString("_UI_FeatureGrant_type", //$NON-NLS-1$
+				new Object[] { feature, version, rule, grant.getCapacity(), from, until, grant.getVivid() });
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private ValidityPeriodClosed closed(ValidityPeriod period) {
+		if (period instanceof ValidityPeriodClosed) {
+			return (ValidityPeriodClosed) period;
+		}
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private String date(Date source) {
+		return source == null ? "unknown" //$NON-NLS-1$
+				: LocalDateTime.ofInstant(source.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 	}
 
 	/**

@@ -53,12 +53,12 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
 	FloatingLicenseRequest request() {
 		return new FloatingLicenseData(//
-				users.get().get(), //
-				plan.get().get(), //
-				product.get().get(), //
-				from(), //
-				until(), //
-				capacity.get().get());
+				() -> users.get().get(), //
+				() -> plan.get().get(), //
+				() -> product.get().get(), //
+				() -> from(), //
+				() -> until(), //
+				() -> capacity.get().get());
 	}
 
 	private LocalDate from() {

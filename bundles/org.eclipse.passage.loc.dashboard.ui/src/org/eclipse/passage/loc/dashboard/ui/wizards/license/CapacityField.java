@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Spinner;
@@ -62,6 +63,8 @@ public final class CapacityField extends LabeledField<Integer> {
 		spinner.setIncrement(1);
 		spinner.setPageIncrement(10);
 		spinner.setMaximum(Integer.MAX_VALUE);
+		spinner.addSelectionListener(SelectionListener.widgetSelectedAdapter(//
+				event -> installData(Optional.of(spinner.getSelection()))));
 		return spinner;
 	}
 

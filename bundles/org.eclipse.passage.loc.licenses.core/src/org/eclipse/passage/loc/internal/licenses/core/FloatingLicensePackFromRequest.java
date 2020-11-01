@@ -185,6 +185,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
 		grant.setValid(featureGrantPeriod(fid));
+		grant.setVivid(featureGrantVivid(fid));
 		grant.setVersion(version(feature));
 		return grant;
 	}
@@ -201,6 +202,13 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
 				.map(g -> EcoreUtil.copy(g.getValid()))//
 				.orElseGet(this::period);
+	}
+
+	private long featureGrantVivid(String feature) {
+		return template//
+				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
+				.map(FeatureGrant::getVivid)//
+				.orElse(60L);
 	}
 
 	private Optional<FeatureGrant> forFeature(List<FeatureGrant> all, String feature) {
