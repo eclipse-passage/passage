@@ -12,27 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
-import org.eclipse.passage.lbc.internal.base.Port;
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+/**
+ * Unrecoverable Jetty Server lifecycle error
+ * 
+ * @see JettyServer
+ *
+ */
+public class JettyException extends Exception {
 
-public class JettyActivator implements BundleActivator {
+	private static final long serialVersionUID = 1L;
 
-	private final JettyServer jetty;
-
-	public JettyActivator() {
-		jetty = new JettyServer();
-	}
-
-	@Override
-	public void start(BundleContext context) throws Exception {
-		// FIXME: extract configuration parameters
-		jetty.launch(new Port.Default());
-	}
-
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		jetty.terminate();
+	public JettyException(String message, Throwable cause) {
+		super(message, cause);
 	}
 
 }

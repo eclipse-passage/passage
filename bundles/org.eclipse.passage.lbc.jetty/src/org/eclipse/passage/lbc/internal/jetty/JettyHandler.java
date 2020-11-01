@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.server.jetty;
+package org.eclipse.passage.lbc.internal.jetty;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -37,15 +37,15 @@ import org.eclipse.passage.lbc.internal.base.BaseRequestDispatcher;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 
 @SuppressWarnings("restriction")
-public final class Handler extends AbstractHandler {
+public final class JettyHandler extends AbstractHandler {
 
 	private final BackendRequestDispatcher dispatcher;
 
-	public Handler() {
+	public JettyHandler() {
 		dispatcher = new BaseRequestDispatcher(chains());
 	}
 
-	private final Map<BackendAction, Chain> chains() {
+	private Map<BackendAction, Chain> chains() {
 		return Arrays
 				.asList(new Acquire(new LockFolder()), new CanTake(new LockFolder()), new Release(new LockFolder())) //
 				.stream() //
