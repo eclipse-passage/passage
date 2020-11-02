@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -23,6 +24,7 @@ public abstract class BackendAction implements Supplier<String> {
 	private final String name;
 
 	protected BackendAction(String name) {
+		Objects.requireNonNull("BackendAction::name"); //$NON-NLS-1$
 		this.name = name;
 	}
 
@@ -73,6 +75,7 @@ public abstract class BackendAction implements Supplier<String> {
 
 	public static final class Of extends BackendAction {
 
+		// FIXME: throw UnknownActionException
 		public Of(Function<String, String> retrieve) {
 			super(retrieve.apply("action")); //$NON-NLS-1$
 		}

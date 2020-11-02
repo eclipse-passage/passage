@@ -20,6 +20,7 @@ import org.eclipse.passage.lbc.chains.transform.CertificateOfRequest;
 import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.AcquiringFailures;
+import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.SatisfiedRequirements;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 import org.eclipse.passage.lbc.json.Serialization;
@@ -56,6 +57,11 @@ public final class Acquire extends Operation<RequestedCertificate, ExaminationCe
 			return persistable.takeOne();
 		}
 		return false;
+	}
+
+	@Override
+	public BackendAction action() {
+		return new BackendAction.Acquire();
 	}
 
 }

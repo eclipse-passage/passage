@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lbc.chains.transform.CertificateOfRequest;
 import org.eclipse.passage.lbc.internal.api.RequestedCertificate;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.ReleaseReport;
 import org.eclipse.passage.lbc.internal.base.ReleaseReport.ReleaseResult;
 import org.eclipse.passage.lbc.internal.base.SatisfiedRequirements;
@@ -57,6 +58,11 @@ public final class Release extends Operation<RequestedCertificate, ReleaseReport
 			return persistable.releaseOne();
 		}
 		return false;
+	}
+
+	@Override
+	public BackendAction action() {
+		return new BackendAction.Release();
 	}
 
 }

@@ -19,6 +19,7 @@ import java.util.function.Function;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Chain;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
+import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
 import org.eclipse.passage.lbc.json.JsonLoadedLicense;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -47,6 +48,8 @@ public abstract class Operation<T, U> implements Chain {
 	}
 
 	protected abstract ServiceInvocationResult<U> execute(T t);
+
+	public abstract BackendAction action();
 
 	@Override
 	public final String apply(BackendLicensingRequest request) {

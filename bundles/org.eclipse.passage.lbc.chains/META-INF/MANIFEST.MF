@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.passage.lbc.api;bundle-version="0.0.0",
  org.eclipse.passage.lic.base;bundle-version="0.0.0",
  org.eclipse.emf.ecore;bundle-version="0.0.0",
  org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0"
+Export-Package: org.eclipse.passage.lbc.chains;x-internal:=true

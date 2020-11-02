@@ -12,30 +12,39 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
-import java.util.Map;
-
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.util.log.Log;
+import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.passage.lbc.internal.base.Port;
+import org.eclipse.passage.lbc.internal.jetty.i18n.Messages;
 
 public final class JettyServer {
 
+	private final Logger logger = Log.getLogger(JettyServer.class);
+
 	private Server server;
 
-	@SuppressWarnings("restriction")
-	public void launch(Map<String, Object> arguments) {
+	public void launch(Port port) throws JettyException {
 		try {
-			server = new Server(new Port(arguments).get().get());
+			server = new Server(port.get());
+			server.setHandler(new JettyHandler());
 			server.start();
-		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info(String.format(Messages.started, port.get()));
+		} catch (Exception exception) {
+			throw new JettyException(//
+					String.format(Messages.error_onstart, exception.getClass(), exception.getMessage()), //
+					exception);
 		}
 	}
 
-	public void terminate() {
+	public void terminate() throws JettyException {
 		try {
 			server.stop();
-		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info(String.format(Messages.stopped));
+		} catch (Exception exception) {
+			throw new JettyException(//
+					String.format(Messages.error_onstop, exception.getClass(), exception.getMessage()), //
+					exception);
 		}
 	}
 
