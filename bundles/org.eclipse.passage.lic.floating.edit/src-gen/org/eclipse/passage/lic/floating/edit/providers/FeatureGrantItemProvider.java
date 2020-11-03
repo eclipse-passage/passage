@@ -12,10 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.floating.edit.providers;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +31,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
-import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
-import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
@@ -207,33 +202,14 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object) {
 		FeatureGrant grant = (FeatureGrant) object;
-		String feature = grant.getFeature() == null ? "unknown" : grant.getFeature(); //$NON-NLS-1$
+		String feature = new GetOrUnknown(grant.getFeature()).get();
 		Optional<VersionMatch> match = Optional.of(grant.getVersion());
 		String version = match.map(VersionMatch::getVersion).orElse("unknown"); //$NON-NLS-1$
 		String rule = match.map(VersionMatch::getRule).orElse("unknown"); //$NON-NLS-1$
-		ValidityPeriodClosed period = closed(grant.getValid());
-		String from = period == null ? "unknown" : date(period.getFrom()); //$NON-NLS-1$
-		String until = period == null ? "unknown" : date(period.getUntil()); //$NON-NLS-1$
-		return getString("_UI_FeatureGrant_type", //$NON-NLS-1$
-				new Object[] { feature, version, rule, grant.getCapacity(), from, until, grant.getVivid() });
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	private ValidityPeriodClosed closed(ValidityPeriod period) {
-		if (period instanceof ValidityPeriodClosed) {
-			return (ValidityPeriodClosed) period;
-		}
-		return null;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	private String date(Date source) {
-		return source == null ? "unknown" //$NON-NLS-1$
-				: LocalDateTime.ofInstant(source.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
+		ClosedPeriodPrinted period = new ClosedPeriodPrinted(grant.getValid());
+		return getString("_UI_FeatureGrant_type_detailed", //$NON-NLS-1$
+				new Object[] { feature, version, rule, grant.getCapacity(), //
+						period.from(), period.until(), grant.getVivid() });
 	}
 
 	/**

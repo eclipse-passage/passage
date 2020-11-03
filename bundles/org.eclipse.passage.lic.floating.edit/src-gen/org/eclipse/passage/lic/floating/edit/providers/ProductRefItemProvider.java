@@ -110,16 +110,20 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProductRef) object).getProduct();
-		return label == null || label.length() == 0 ? getString("_UI_ProductRef_type") : //$NON-NLS-1$
-				getString("_UI_ProductRef_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductRef product = (ProductRef) object;
+		return getString("_UI_ProductRef_type_detailed", //$NON-NLS-1$
+				new Object[] { //
+						new GetOrUnknown(product.getProduct()).get(), //
+						new GetOrUnknown(product.getVersion()).get() //
+				});
+
 	}
 
 	/**

@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.floating.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,6 +31,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
@@ -176,16 +178,27 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicenseRequisites) object).getIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_LicenseRequisites_type") : //$NON-NLS-1$
-				getString("_UI_LicenseRequisites_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		LicenseRequisites license = (LicenseRequisites) object;
+		String company = license.getCompany() == null ? "unknown" : license.getCompany(); //$NON-NLS-1$
+		String product = Optional.ofNullable(license.getProduct())//
+				.map(ProductRef::getProduct) //
+				.orElse("unknown"); //$NON-NLS-1$
+		String version = Optional.ofNullable(license.getProduct())//
+				.map(ProductRef::getVersion) //
+				.orElse("unknown"); //$NON-NLS-1$
+		return getString("_UI_LicenseRequisites_type_detailed", //$NON-NLS-1$
+				new Object[] { //
+						company,//
+						product,//
+						version
+				});
 	}
 
 	/**

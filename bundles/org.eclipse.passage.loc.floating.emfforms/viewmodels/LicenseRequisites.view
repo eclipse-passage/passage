@@ -6,7 +6,7 @@
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//LicenseRequisites/identifier"/>
     </domainModelReference>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGwhrKEeuMV_ofZRuPaw" name="Control issueDate">
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGwhrKEeuMV_ofZRuPaw" name="Control issueDate" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGwxrKEeuMV_ofZRuPaw">
       <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//LicenseRequisites/issueDate"/>
     </domainModelReference>
@@ -26,7 +26,7 @@
       <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//LicenseRequisites/product"/>
     </domainModelReference>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGyhrKEeuMV_ofZRuPaw" name="Control valid">
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGyhrKEeuMV_ofZRuPaw" name="Control valid" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGyxrKEeuMV_ofZRuPaw">
       <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/floating/0.1.0#//LicenseRequisites/valid"/>
     </domainModelReference>
