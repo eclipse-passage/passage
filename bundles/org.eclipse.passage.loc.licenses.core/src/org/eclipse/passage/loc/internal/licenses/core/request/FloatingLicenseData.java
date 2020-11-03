@@ -57,7 +57,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 
 	private UserDescriptor user(String identifier) {
 		return users.get().stream()//
-				.filter(user -> identifier.equals(user.getIdentifier()))//
+				.filter(user -> identifier.equals(user.getEmail()))//
 				.findAny()//
 				.get(); // yah, fail if not found, it's a development problem
 	}

@@ -34,6 +34,7 @@ import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.floating.model.api.VersionMatch;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
@@ -138,7 +139,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private UserGrant userGrant(UserDescriptor user) {
 		UserGrant grant = FloatingFactory.eINSTANCE.createUserGrant();
 		grant.setAuthentication(userAuthentication(user));
-		grant.setUser(user.getIdentifier());
+		grant.setUser(user.getEmail());
 		return grant;
 	}
 
@@ -218,7 +219,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
 		VersionMatch version = FloatingFactory.eINSTANCE.createVersionMatch();
 		version.setVersion(feature.getMatchVersion());
-		version.setRule(feature.getMatchRule());
+		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(feature.getMatchRule())).get().identifier());
 		return version;
 	}
 
