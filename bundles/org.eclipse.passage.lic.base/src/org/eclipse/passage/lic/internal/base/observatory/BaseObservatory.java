@@ -50,7 +50,6 @@ import org.eclipse.passage.lic.internal.api.observatory.Observatory;
  * 
  * @since 0.6
  */
-@SuppressWarnings("restriction")
 public final class BaseObservatory<T extends Limited> implements Observatory<T> {
 
 	private final Pool<T> pool;

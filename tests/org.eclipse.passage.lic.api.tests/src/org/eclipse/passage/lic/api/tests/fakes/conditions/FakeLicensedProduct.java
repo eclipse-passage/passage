@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
-@SuppressWarnings("restriction")
 public final class FakeLicensedProduct implements LicensedProduct {
 
 	@Override

@@ -17,7 +17,6 @@ import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 /**
  * @since 1.0
  */
-@SuppressWarnings("restriction")
 public final class ConditionEntryNotFound extends TroubleCode {
 
 	public ConditionEntryNotFound() {

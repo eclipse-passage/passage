@@ -37,7 +37,6 @@ import org.osgi.framework.wiring.BundleWiring;
  * @see RequirementFromCapability
  * @see BundleRequirements
  */
-@SuppressWarnings("restriction")
 final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult<Collection<Requirement>>> {
 
 	public RequirementsFromBundle(Bundle bundle) {

@@ -16,7 +16,6 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.EnvironmentStateDialog;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public final class InspectEnvironmentHandler {
 
 	@Execute

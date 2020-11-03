@@ -17,7 +17,6 @@ import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.base.BaseRequester;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
-@SuppressWarnings("restriction")
 public final class FakeMiningRequest implements ProductLicensesRequest {
 
 	private final LicensedProduct product;

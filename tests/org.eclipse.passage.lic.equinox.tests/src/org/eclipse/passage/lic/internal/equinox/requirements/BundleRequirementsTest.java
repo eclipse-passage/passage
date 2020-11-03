@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 /**
  * Integration test: requires OSGi running
  */
-@SuppressWarnings("restriction")
 public final class BundleRequirementsTest extends ResolvedRequirementsServiceTest {
 
 	@Override
