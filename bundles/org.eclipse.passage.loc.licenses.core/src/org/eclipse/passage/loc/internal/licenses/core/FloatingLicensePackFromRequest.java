@@ -131,7 +131,6 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private Collection<UserGrant> userGrants() {
 		return request.users().stream()//
-				.peek(System.out::println)//
 				.map(users::getUser)//
 				.map(this::userGrant)//
 				.collect(Collectors.toSet());
