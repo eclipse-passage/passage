@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.workbench
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.workbench;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -38,16 +38,22 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
    org.eclipse.passage.loc.products.ui",
  org.eclipse.passage.loc.internal.workbench.i18n;x-internal:=true,
  org.eclipse.passage.loc.internal.workbench.registry;x-internal:=true,
- org.eclipse.passage.loc.jface;x-internal:=true,
+ org.eclipse.passage.loc.jface;x-friends:="org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.loc.jface.dialogs;
   x-friends:="org.eclipse.passage.loc.licenses.ui,
    org.eclipse.passage.loc.products.ui,
    org.eclipse.passage.loc.users.ui,
    org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.workbench;x-friends:="org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.workbench.dialogs;x-internal:=true,
+ org.eclipse.passage.loc.workbench;
+  x-friends:="org.eclipse.passage.loc.dashboard.ui,
+   org.eclipse.passage.loc.features.ui,
+   org.eclipse.passage.loc.licenses.ui,
+   org.eclipse.passage.loc.products.ui,
+   org.eclipse.passage.loc.users.ui,
+   org.eclipse.passage.loc.workbench.emfforms",
+ org.eclipse.passage.loc.workbench.dialogs;x-friends:="org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.loc.workbench.handlers;x-internal:=true,
- org.eclipse.passage.loc.workbench.viewers;x-friends:="org.eclipse.passage.loc.dashboard.ui",
+ org.eclipse.passage.loc.workbench.viewers;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.moveto.lic.emf.edit;x-internal:=true,
  org.eclipse.passage.moveto.lic.internal.emf.edit.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy
