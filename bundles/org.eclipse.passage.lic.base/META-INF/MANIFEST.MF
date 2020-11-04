@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.api.base
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.base
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.0.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -23,7 +23,7 @@ Export-Package: org.eclipse.passage.lic.internal.base;
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.lic.internal.base.conditions.evaluation;x-internal:=true,
- org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lic.hc",
+ org.eclipse.passage.lic.internal.base.conditions.mining;x-friends:="org.eclipse.passage.lic.jface,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.base.diagnostic;x-friends:="org.eclipse.passage.lic.equinox.tests,org.eclipse.passage.lic.equinox,org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.lic.internal.base.diagnostic.code;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.i18n;x-internal:=true,
@@ -31,7 +31,7 @@ Export-Package: org.eclipse.passage.lic.internal.base;
  org.eclipse.passage.lic.internal.base.inspection.hardware;x-friends:="org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.lic.internal.base.io;x-friends:="org.eclipse.passage.lic.equinox,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.base.observatory;x-internal:=true,
- org.eclipse.passage.lic.internal.base.registry;x-internal:=true,
+ org.eclipse.passage.lic.internal.base.registry;x-friends:="org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.base.requirements;x-internal:=true,
  org.eclipse.passage.lic.internal.base.restrictions;x-internal:=true,
  org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests",

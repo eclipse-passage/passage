@@ -26,7 +26,6 @@ import org.junit.Test;
 
 public final class ParsedRequestTest extends LbcTestsBase {
 
-	@SuppressWarnings("restriction")
 	@Test
 	public void positive() {
 		BackendLicensingRequest request = new FakeLicensingRequest(params(), ""); //$NON-NLS-1$

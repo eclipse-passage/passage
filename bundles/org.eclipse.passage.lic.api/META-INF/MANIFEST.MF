@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.api
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.api
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.0.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -23,7 +23,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lic.equinox.tests,
    org.eclipse.passage.lic.base.tests,
-   org.eclipse.passage.lic.api.tests",
+   org.eclipse.passage.lic.api.tests,
+   org.eclipse.passage.lbc.base.tests",
  org.eclipse.passage.lic.internal.api.conditions;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
@@ -33,7 +34,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.api,
    org.eclipse.passage.loc.api,
    org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.loc.dashboard.ui",
+   org.eclipse.passage.loc.dashboard.ui,
+   org.eclipse.passage.lbc.base.tests",
  org.eclipse.passage.lic.internal.api.conditions.evaluation;x-internal:=true,
  org.eclipse.passage.lic.internal.api.conditions.mining;
   x-friends:="org.eclipse.passage.lbc.api,
@@ -45,15 +47,19 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.equinox,
-   org.eclipse.passage.lic.api.tests",
+   org.eclipse.passage.lic.api.tests,
+   org.eclipse.passage.lbc.base,
+   org.eclipse.passage.lbc.base.tests",
  org.eclipse.passage.lic.internal.api.inspection;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.io;x-friends:="org.eclipse.passage.lbc.api",
+ org.eclipse.passage.lic.internal.api.io;x-friends:="org.eclipse.passage.lbc.api,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc",
+ org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.requirements;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.equinox,org.eclipse.passage.lic.equinox.tests",
  org.eclipse.passage.lic.internal.api.restrictions;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.loc.workbench.emfforms,
    org.eclipse.passage.lic.products,
-   org.eclipse.passage.lic.equinox",
+   org.eclipse.passage.lic.equinox,
+   org.eclipse.passage.lbc.api,
+   org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.version;x-friends:="org.eclipse.passage.lic.base"

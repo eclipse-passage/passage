@@ -19,7 +19,6 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 
-@SuppressWarnings("restriction")
 public final class ApplicationIdentifier implements Supplier<String> {
 
 	private final IApplicationContext context;

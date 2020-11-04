@@ -14,7 +14,6 @@ package org.eclipse.passage.lbc.internal.base.troubles;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 
-@SuppressWarnings("restriction")
 public class LicenseOutOfcapacity extends TroubleCode {
 
 	public LicenseOutOfcapacity() {

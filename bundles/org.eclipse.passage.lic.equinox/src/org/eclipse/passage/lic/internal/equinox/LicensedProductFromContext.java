@@ -19,7 +19,6 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
-@SuppressWarnings("restriction")
 public final class LicensedProductFromContext implements Supplier<LicensedProduct> {
 
 	private final IApplicationContext context;
