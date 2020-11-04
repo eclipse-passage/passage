@@ -4,12 +4,13 @@
     nsPrefix="org.eclipse.passage.lic">
   <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack">
     <eStructuralFeatures xsi:type="ecore:EReference" name="license" lowerBound="1"
-        eType="#//LicenseRequisites"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="host" lowerBound="1" eType="#//FloatingServer"/>
+        eType="#//LicenseRequisites" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="host" lowerBound="1" eType="#//FloatingServer"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="users" lowerBound="1" upperBound="-1"
-        eType="#//UserGrant"/>
+        eType="#//UserGrant" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
-        upperBound="-1" eType="#//FeatureGrant" eOpposite="#//FeatureGrant/pack"/>
+        upperBound="-1" eType="#//FeatureGrant" containment="true" eOpposite="#//FeatureGrant/pack"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
@@ -20,8 +21,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="plan" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
-        eType="#//ProductRef"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"/>
+        eType="#//ProductRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductRef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="product" lowerBound="1"
@@ -33,12 +35,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" ordered="false"
-        unique="false" lowerBound="1" eType="#//EvaluationInstructions"/>
+        unique="false" lowerBound="1" eType="#//EvaluationInstructions" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserGrant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" lowerBound="1"
-        eType="#//EvaluationInstructions"/>
+        eType="#//EvaluationInstructions" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
@@ -46,8 +48,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
-        eType="#//VersionMatch"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"/>
+        eType="#//VersionMatch" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vivid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

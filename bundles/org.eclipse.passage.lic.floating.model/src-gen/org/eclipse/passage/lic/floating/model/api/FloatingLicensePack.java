@@ -47,9 +47,9 @@ public interface FloatingLicensePack extends EObject {
 	LicenseRequisites getLicense();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>License</em>' reference.
+	 * @param value the new value of the '<em>License</em>' containment reference.
 	 * @see #getLicense()
 	 * @generated
 	 */
@@ -68,9 +68,9 @@ public interface FloatingLicensePack extends EObject {
 	FloatingServer getHost();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Host</em>' reference.
+	 * @param value the new value of the '<em>Host</em>' containment reference.
 	 * @see #getHost()
 	 * @generated
 	 */
@@ -90,14 +90,14 @@ public interface FloatingLicensePack extends EObject {
 	EList<UserGrant> getUsers();
 
 	/**
-	 * Returns the value of the '<em><b>Features</b></em>' reference list.
+	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.passage.lic.floating.model.api.FeatureGrant}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the value of the '<em>Features</em>' reference list.
+	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingLicensePack_Features()
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack
-	 * @model opposite="pack" required="true"
+	 * @model opposite="pack" containment="true" required="true"
 	 * @generated
 	 */
 	EList<FeatureGrant> getFeatures();

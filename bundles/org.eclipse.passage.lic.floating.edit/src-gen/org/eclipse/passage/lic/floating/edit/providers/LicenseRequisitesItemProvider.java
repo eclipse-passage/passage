@@ -195,10 +195,9 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 				.orElse("unknown"); //$NON-NLS-1$
 		return getString("_UI_LicenseRequisites_type_detailed", //$NON-NLS-1$
 				new Object[] { //
-						company,//
-						product,//
-						version
-				});
+						company, //
+						product, //
+						version });
 	}
 
 	/**

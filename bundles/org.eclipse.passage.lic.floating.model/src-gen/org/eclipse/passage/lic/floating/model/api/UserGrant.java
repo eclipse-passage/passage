@@ -65,10 +65,10 @@ public interface UserGrant extends EObject {
 	EvaluationInstructions getAuthentication();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication <em>Authentication</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication <em>Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Authentication</em>' reference.
+	 * @param value the new value of the '<em>Authentication</em>' containment reference.
 	 * @see #getAuthentication()
 	 * @generated
 	 */

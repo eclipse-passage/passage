@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
@@ -48,7 +48,7 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
  */
 public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implements FloatingLicensePack {
 	/**
-	 * The cached value of the '{@link #getLicense() <em>License</em>}' reference.
+	 * The cached value of the '{@link #getLicense() <em>License</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLicense()
 	 * @generated
@@ -67,7 +67,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	protected FloatingServer host;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' reference list.
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getUsers()
 	 * @generated
@@ -76,7 +76,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	protected EList<UserGrant> users;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' reference list.
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeatures()
 	 * @generated
@@ -107,25 +107,26 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public LicenseRequisites getLicense() {
-		if (license != null && license.eIsProxy()) {
-			InternalEObject oldLicense = (InternalEObject) license;
-			license = (LicenseRequisites) eResolveProxy(oldLicense);
-			if (license != oldLicense) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.FLOATING_LICENSE_PACK__LICENSE, oldLicense, license));
-				}
-			}
-		}
 		return license;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseRequisites basicGetLicense() {
-		return license;
+	public NotificationChain basicSetLicense(LicenseRequisites newLicense, NotificationChain msgs) {
+		LicenseRequisites oldLicense = license;
+		license = newLicense;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FLOATING_LICENSE_PACK__LICENSE, oldLicense, newLicense);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -134,11 +135,20 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public void setLicense(LicenseRequisites newLicense) {
-		LicenseRequisites oldLicense = license;
-		license = newLicense;
-		if (eNotificationRequired()) {
+		if (newLicense != license) {
+			NotificationChain msgs = null;
+			if (license != null)
+				msgs = ((InternalEObject) license).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_PACK__LICENSE, null, msgs);
+			if (newLicense != null)
+				msgs = ((InternalEObject) newLicense).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_PACK__LICENSE, null, msgs);
+			msgs = basicSetLicense(newLicense, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FLOATING_LICENSE_PACK__LICENSE,
-					oldLicense, license));
+					newLicense, newLicense));
 		}
 	}
 
@@ -148,25 +158,26 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public FloatingServer getHost() {
-		if (host != null && host.eIsProxy()) {
-			InternalEObject oldHost = (InternalEObject) host;
-			host = (FloatingServer) eResolveProxy(oldHost);
-			if (host != oldHost) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.FLOATING_LICENSE_PACK__HOST, oldHost, host));
-				}
-			}
-		}
 		return host;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FloatingServer basicGetHost() {
-		return host;
+	public NotificationChain basicSetHost(FloatingServer newHost, NotificationChain msgs) {
+		FloatingServer oldHost = host;
+		host = newHost;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FLOATING_LICENSE_PACK__HOST, oldHost, newHost);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -175,11 +186,20 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public void setHost(FloatingServer newHost) {
-		FloatingServer oldHost = host;
-		host = newHost;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FLOATING_LICENSE_PACK__HOST, oldHost,
-					host));
+		if (newHost != host) {
+			NotificationChain msgs = null;
+			if (host != null)
+				msgs = ((InternalEObject) host).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_PACK__HOST, null, msgs);
+			if (newHost != null)
+				msgs = ((InternalEObject) newHost).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_PACK__HOST, null, msgs);
+			msgs = basicSetHost(newHost, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FLOATING_LICENSE_PACK__HOST, newHost,
+					newHost));
 		}
 	}
 
@@ -190,7 +210,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public EList<UserGrant> getUsers() {
 		if (users == null) {
-			users = new EObjectResolvingEList<UserGrant>(UserGrant.class, this,
+			users = new EObjectContainmentEList<UserGrant>(UserGrant.class, this,
 					FloatingPackage.FLOATING_LICENSE_PACK__USERS);
 		}
 		return users;
@@ -203,7 +223,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public EList<FeatureGrant> getFeatures() {
 		if (features == null) {
-			features = new EObjectWithInverseResolvingEList<FeatureGrant>(FeatureGrant.class, this,
+			features = new EObjectContainmentWithInverseEList<FeatureGrant>(FeatureGrant.class, this,
 					FloatingPackage.FLOATING_LICENSE_PACK__FEATURES, FloatingPackage.FEATURE_GRANT__PACK);
 		}
 		return features;
@@ -231,6 +251,12 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case FloatingPackage.FLOATING_LICENSE_PACK__LICENSE:
+			return basicSetLicense(null, msgs);
+		case FloatingPackage.FLOATING_LICENSE_PACK__HOST:
+			return basicSetHost(null, msgs);
+		case FloatingPackage.FLOATING_LICENSE_PACK__USERS:
+			return ((InternalEList<?>) getUsers()).basicRemove(otherEnd, msgs);
 		case FloatingPackage.FLOATING_LICENSE_PACK__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
 		default:
@@ -246,13 +272,9 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case FloatingPackage.FLOATING_LICENSE_PACK__LICENSE:
-			if (resolve)
-				return getLicense();
-			return basicGetLicense();
+			return getLicense();
 		case FloatingPackage.FLOATING_LICENSE_PACK__HOST:
-			if (resolve)
-				return getHost();
-			return basicGetHost();
+			return getHost();
 		case FloatingPackage.FLOATING_LICENSE_PACK__USERS:
 			return getUsers();
 		case FloatingPackage.FLOATING_LICENSE_PACK__FEATURES:

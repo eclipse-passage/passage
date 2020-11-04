@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
@@ -82,7 +83,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	private String feature = FEATURE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' reference.
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVersion()
 	 * @generated
@@ -137,16 +138,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 * @ordered
 	 */
 	private int capacity = CAPACITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getPack() <em>Pack</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getPack()
-	 * @generated
-	 * @ordered
-	 */
-	protected FloatingLicensePack pack;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -217,25 +208,26 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public VersionMatch getVersion() {
-		if (version != null && version.eIsProxy()) {
-			InternalEObject oldVersion = (InternalEObject) version;
-			version = (VersionMatch) eResolveProxy(oldVersion);
-			if (version != oldVersion) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FloatingPackage.FEATURE_GRANT__VERSION,
-							oldVersion, version));
-				}
-			}
-		}
 		return version;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VersionMatch basicGetVersion() {
-		return version;
+	public NotificationChain basicSetVersion(VersionMatch newVersion, NotificationChain msgs) {
+		VersionMatch oldVersion = version;
+		version = newVersion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FEATURE_GRANT__VERSION, oldVersion, newVersion);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -244,11 +236,20 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public void setVersion(VersionMatch newVersion) {
-		VersionMatch oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FEATURE_GRANT__VERSION, oldVersion,
-					version));
+		if (newVersion != version) {
+			NotificationChain msgs = null;
+			if (version != null)
+				msgs = ((InternalEObject) version).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FEATURE_GRANT__VERSION, null, msgs);
+			if (newVersion != null)
+				msgs = ((InternalEObject) newVersion).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FEATURE_GRANT__VERSION, null, msgs);
+			msgs = basicSetVersion(newVersion, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FEATURE_GRANT__VERSION, newVersion,
+					newVersion));
 		}
 	}
 
@@ -258,25 +259,26 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public ValidityPeriod getValid() {
-		if (valid != null && valid.eIsProxy()) {
-			InternalEObject oldValid = (InternalEObject) valid;
-			valid = (ValidityPeriod) eResolveProxy(oldValid);
-			if (valid != oldValid) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FloatingPackage.FEATURE_GRANT__VALID,
-							oldValid, valid));
-				}
-			}
-		}
 		return valid;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityPeriod basicGetValid() {
-		return valid;
+	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		ValidityPeriod oldValid = valid;
+		valid = newValid;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FEATURE_GRANT__VALID, oldValid, newValid);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -285,11 +287,20 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public void setValid(ValidityPeriod newValid) {
-		ValidityPeriod oldValid = valid;
-		valid = newValid;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FEATURE_GRANT__VALID, oldValid,
-					valid));
+		if (newValid != valid) {
+			NotificationChain msgs = null;
+			if (valid != null)
+				msgs = ((InternalEObject) valid).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FEATURE_GRANT__VALID, null, msgs);
+			if (newValid != null)
+				msgs = ((InternalEObject) newValid).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FEATURE_GRANT__VALID, null, msgs);
+			msgs = basicSetValid(newValid, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FEATURE_GRANT__VALID, newValid,
+					newValid));
 		}
 	}
 
@@ -347,25 +358,10 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public FloatingLicensePack getPack() {
-		if (pack != null && pack.eIsProxy()) {
-			InternalEObject oldPack = (InternalEObject) pack;
-			pack = (FloatingLicensePack) eResolveProxy(oldPack);
-			if (pack != oldPack) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FloatingPackage.FEATURE_GRANT__PACK,
-							oldPack, pack));
-				}
-			}
+		if (eContainerFeatureID() != FloatingPackage.FEATURE_GRANT__PACK) {
+			return null;
 		}
-		return pack;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FloatingLicensePack basicGetPack() {
-		return pack;
+		return (FloatingLicensePack) eInternalContainer();
 	}
 
 	/**
@@ -373,16 +369,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(FloatingLicensePack newPack, NotificationChain msgs) {
-		FloatingLicensePack oldPack = pack;
-		pack = newPack;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					FloatingPackage.FEATURE_GRANT__PACK, oldPack, newPack);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject) newPack, FloatingPackage.FEATURE_GRANT__PACK, msgs);
 		return msgs;
 	}
 
@@ -392,11 +379,15 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 */
 	@Override
 	public void setPack(FloatingLicensePack newPack) {
-		if (newPack != pack) {
+		if (newPack != eInternalContainer()
+				|| (eContainerFeatureID() != FloatingPackage.FEATURE_GRANT__PACK && newPack != null)) {
+			if (EcoreUtil.isAncestor(this, newPack)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
-			if (pack != null)
-				msgs = ((InternalEObject) pack).eInverseRemove(this, FloatingPackage.FLOATING_LICENSE_PACK__FEATURES,
-						FloatingLicensePack.class, msgs);
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			if (newPack != null)
 				msgs = ((InternalEObject) newPack).eInverseAdd(this, FloatingPackage.FLOATING_LICENSE_PACK__FEATURES,
 						FloatingLicensePack.class, msgs);
@@ -417,9 +408,9 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case FloatingPackage.FEATURE_GRANT__PACK:
-			if (pack != null)
-				msgs = ((InternalEObject) pack).eInverseRemove(this, FloatingPackage.FLOATING_LICENSE_PACK__FEATURES,
-						FloatingLicensePack.class, msgs);
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
 			return basicSetPack((FloatingLicensePack) otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -433,10 +424,30 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case FloatingPackage.FEATURE_GRANT__VERSION:
+			return basicSetVersion(null, msgs);
+		case FloatingPackage.FEATURE_GRANT__VALID:
+			return basicSetValid(null, msgs);
 		case FloatingPackage.FEATURE_GRANT__PACK:
 			return basicSetPack(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case FloatingPackage.FEATURE_GRANT__PACK:
+			return eInternalContainer().eInverseRemove(this, FloatingPackage.FLOATING_LICENSE_PACK__FEATURES,
+					FloatingLicensePack.class, msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
 	}
 
@@ -452,21 +463,15 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		case FloatingPackage.FEATURE_GRANT__FEATURE:
 			return getFeature();
 		case FloatingPackage.FEATURE_GRANT__VERSION:
-			if (resolve)
-				return getVersion();
-			return basicGetVersion();
+			return getVersion();
 		case FloatingPackage.FEATURE_GRANT__VALID:
-			if (resolve)
-				return getValid();
-			return basicGetValid();
+			return getValid();
 		case FloatingPackage.FEATURE_GRANT__VIVID:
 			return getVivid();
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			return getCapacity();
 		case FloatingPackage.FEATURE_GRANT__PACK:
-			if (resolve)
-				return getPack();
-			return basicGetPack();
+			return getPack();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -560,7 +565,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		case FloatingPackage.FEATURE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
 		case FloatingPackage.FEATURE_GRANT__PACK:
-			return pack != null;
+			return getPack() != null;
 		default:
 			return super.eIsSet(featureID);
 		}

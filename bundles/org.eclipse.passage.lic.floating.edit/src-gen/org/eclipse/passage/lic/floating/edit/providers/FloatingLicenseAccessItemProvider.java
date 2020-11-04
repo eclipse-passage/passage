@@ -111,17 +111,6 @@ public class FloatingLicenseAccessItemProvider extends ItemProviderAdapter imple
 	}
 
 	/**
-	 * This returns FloatingLicenseAccess.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FloatingLicenseAccess")); //$NON-NLS-1$
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

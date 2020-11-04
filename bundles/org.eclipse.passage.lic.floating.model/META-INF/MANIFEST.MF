@@ -23,7 +23,9 @@ Export-Package: org.eclipse.passage.lic.floating.model.api;
    org.eclipse.passage.lic.floating.edit,
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.loc.floating.emfforms",
- org.eclipse.passage.lic.floating.model.util;x-friends:="org.eclipse.passage.lic.floating.edit",
- org.eclipse.passage.lic.internal.floating.model;x-friends:="org.eclipse.passage.loc.dashboard.ui"
+ org.eclipse.passage.lic.floating.model.util;
+  x-friends:="org.eclipse.passage.lic.floating.edit",
+ org.eclipse.passage.lic.internal.floating.model;
+  x-friends:="org.eclipse.passage.loc.dashboard.ui"
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
