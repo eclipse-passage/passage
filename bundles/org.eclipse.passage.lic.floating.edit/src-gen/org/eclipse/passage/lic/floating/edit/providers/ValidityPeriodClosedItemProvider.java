@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.floating.edit.providers;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -118,10 +117,12 @@ public class ValidityPeriodClosedItemProvider extends ItemProviderAdapter implem
 	 */
 	@Override
 	public String getText(Object object) {
-		Date labelValue = ((ValidityPeriodClosed) object).getFrom();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ? getString("_UI_ValidityPeriodClosed_type") : //$NON-NLS-1$
-				getString("_UI_ValidityPeriodClosed_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ValidityPeriodClosed period = (ValidityPeriodClosed) object;
+		return getString("_UI_ValidityPeriodClosed_type_detailed", //$NON-NLS-1$
+				new Object[] { //
+						new DatePrinted(period.getFrom()).get(), //
+						new DatePrinted(period.getUntil()).get() //
+				});
 	}
 
 	/**

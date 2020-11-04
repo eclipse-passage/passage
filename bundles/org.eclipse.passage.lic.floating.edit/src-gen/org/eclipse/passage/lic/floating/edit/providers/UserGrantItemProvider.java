@@ -119,11 +119,11 @@ public class UserGrantItemProvider extends ItemProviderAdapter implements IEditi
 	@Override
 	public String getText(Object object) {
 		UserGrant grant = (UserGrant) object;
-		String user = grant.getUser() == null ? "unknown" : grant.getUser(); //$NON-NLS-1$
+		String user = new GetOrUnknown(grant.getUser()).get();
 		Optional<EvaluationInstructions> auth = Optional.ofNullable(grant.getAuthentication());
 		String env = auth.map(EvaluationInstructions::getType).orElse("undefined"); //$NON-NLS-1$
 		String expression = auth.map(EvaluationInstructions::getExpression).orElse("undefined"); //$NON-NLS-1$
-		return getString("_UI_UserGrant_type", new Object[] { user, env, expression }); //$NON-NLS-1$
+		return getString("_UI_UserGrant_type_detailed", new Object[] { user, env, expression }); //$NON-NLS-1$
 	}
 
 	/**
