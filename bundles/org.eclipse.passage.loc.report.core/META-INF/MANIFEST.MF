@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.report.core
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.report.core;singleton:=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.2.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -15,7 +15,11 @@ Require-Bundle: org.apache.commons.csv;bundle-version="1.4.0",
  org.eclipse.passage.loc.products.core;bundle-version="0.6.0",
  org.eclipse.passage.loc.users.core;bundle-version="1.0.0",
  org.eclipse.passage.loc.yars.api;bundle-version="0.1.0";visibility:=reexport
-Export-Package: org.eclipse.passage.loc.report.internal.core.license;x-internal:=true,
- org.eclipse.passage.loc.report.internal.core.user;x-friends:="org.eclipse.passage.loc.report.core,org.eclipse.passage.loc.report.core.tests"
+Export-Package: org.eclipse.passage.loc.report.internal.core.license;x-friends:="org.eclipse.passage.loc.report.ui,org.eclipse.passage.loc.licenses.ui",
+ org.eclipse.passage.loc.report.internal.core.user;
+  x-friends:="org.eclipse.passage.loc.report.core.tests,
+   org.eclipse.passage.loc.report.ui,
+   org.eclipse.passage.loc.users.ui,
+   org.eclipse.passage.loc.licenses.ui"
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

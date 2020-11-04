@@ -20,7 +20,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-@SuppressWarnings("restriction")
 public class RequirementSerializer extends StdSerializer<Requirement> {
 
 	/**

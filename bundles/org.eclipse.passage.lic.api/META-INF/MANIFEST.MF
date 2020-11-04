@@ -35,13 +35,16 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.loc.api,
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.lbc.base.tests",
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.lic.licenses.migration,
+   org.eclipse.passage.lic.licenses.migration.tests",
  org.eclipse.passage.lic.internal.api.conditions.evaluation;x-internal:=true,
  org.eclipse.passage.lic.internal.api.conditions.mining;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lic.json,
-   org.eclipse.passage.lic.hc",
+   org.eclipse.passage.lic.hc,
+   org.eclipse.passage.lic.licenses.migration",
  org.eclipse.passage.lic.internal.api.diagnostic;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.jface,
@@ -54,12 +57,17 @@ Export-Package: org.eclipse.passage.lic.internal.api;
  org.eclipse.passage.lic.internal.api.io;x-friends:="org.eclipse.passage.lbc.api,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
- org.eclipse.passage.lic.internal.api.requirements;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.equinox,org.eclipse.passage.lic.equinox.tests",
+ org.eclipse.passage.lic.internal.api.requirements;
+  x-friends:="org.eclipse.passage.lic.base,
+   org.eclipse.passage.lic.equinox,
+   org.eclipse.passage.lic.equinox.tests,
+   org.eclipse.passage.lic.json",
  org.eclipse.passage.lic.internal.api.restrictions;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.loc.workbench.emfforms,
    org.eclipse.passage.lic.products,
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lbc.api,
-   org.eclipse.passage.lbc.base",
+   org.eclipse.passage.lbc.base,
+   org.eclipse.passage.lic.json",
  org.eclipse.passage.lic.internal.api.version;x-friends:="org.eclipse.passage.lic.base"
