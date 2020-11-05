@@ -81,7 +81,7 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_LICENSE_PACK__LICENSE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Host</b></em>' reference.
+	 * The feature id for the '<em><b>Host</b></em>' containment reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +181,7 @@ public interface FloatingPackage extends EPackage {
 	int LICENSE_REQUISITES__PRODUCT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Valid</b></em>' reference.
+	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -378,7 +378,7 @@ public interface FloatingPackage extends EPackage {
 	int FEATURE_GRANT__VERSION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Valid</b></em>' reference.
+	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -405,7 +405,7 @@ public interface FloatingPackage extends EPackage {
 	int FEATURE_GRANT__CAPACITY = 5;
 
 	/**
-	 * The feature id for the '<em><b>Pack</b></em>' reference.
+	 * The feature id for the '<em><b>Pack</b></em>' container reference.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -714,9 +714,9 @@ public interface FloatingPackage extends EPackage {
 	EClass getFloatingLicensePack();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense <em>License</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>License</em>'.
+	 * @return the meta object for the containment reference '<em>License</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getLicense()
 	 * @see #getFloatingLicensePack()
 	 * @generated
@@ -724,9 +724,9 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_License();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost <em>Host</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Host</em>'.
+	 * @return the meta object for the containment reference '<em>Host</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getHost()
 	 * @see #getFloatingLicensePack()
 	 * @generated
@@ -734,9 +734,9 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_Host();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers <em>Users</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers <em>Users</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Users</em>'.
+	 * @return the meta object for the containment reference list '<em>Users</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getUsers()
 	 * @see #getFloatingLicensePack()
 	 * @generated
@@ -744,9 +744,9 @@ public interface FloatingPackage extends EPackage {
 	EReference getFloatingLicensePack_Users();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Features</em>'.
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures()
 	 * @see #getFloatingLicensePack()
 	 * @generated
@@ -803,9 +803,9 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getLicenseRequisites_Plan();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct <em>Product</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct <em>Product</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Product</em>'.
+	 * @return the meta object for the containment reference '<em>Product</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct()
 	 * @see #getLicenseRequisites()
 	 * @generated
@@ -813,9 +813,9 @@ public interface FloatingPackage extends EPackage {
 	EReference getLicenseRequisites_Product();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid <em>Valid</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid <em>Valid</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Valid</em>'.
+	 * @return the meta object for the containment reference '<em>Valid</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid()
 	 * @see #getLicenseRequisites()
 	 * @generated
@@ -871,9 +871,9 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFloatingServer_Identifier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication <em>Authentication</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication <em>Authentication</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Authentication</em>'.
+	 * @return the meta object for the containment reference '<em>Authentication</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServer#getAuthentication()
 	 * @see #getFloatingServer()
 	 * @generated
@@ -900,9 +900,9 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getUserGrant_User();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication <em>Authentication</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication <em>Authentication</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Authentication</em>'.
+	 * @return the meta object for the containment reference '<em>Authentication</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.UserGrant#getAuthentication()
 	 * @see #getUserGrant()
 	 * @generated
@@ -939,9 +939,9 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFeatureGrant_Feature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Version</em>'.
+	 * @return the meta object for the containment reference '<em>Version</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion()
 	 * @see #getFeatureGrant()
 	 * @generated
@@ -949,9 +949,9 @@ public interface FloatingPackage extends EPackage {
 	EReference getFeatureGrant_Version();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Valid</em>'.
+	 * @return the meta object for the containment reference '<em>Valid</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid()
 	 * @see #getFeatureGrant()
 	 * @generated
@@ -980,9 +980,9 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFeatureGrant_Capacity();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pack</em>'.
+	 * @return the meta object for the container reference '<em>Pack</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack()
 	 * @see #getFeatureGrant()
 	 * @generated

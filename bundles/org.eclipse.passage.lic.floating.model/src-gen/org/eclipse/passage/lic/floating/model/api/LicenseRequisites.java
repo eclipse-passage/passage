@@ -140,9 +140,9 @@ public interface LicenseRequisites extends EObject {
 	ProductRef getProduct();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct <em>Product</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getProduct <em>Product</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product</em>' reference.
+	 * @param value the new value of the '<em>Product</em>' containment reference.
 	 * @see #getProduct()
 	 * @generated
 	 */
@@ -161,9 +161,9 @@ public interface LicenseRequisites extends EObject {
 	ValidityPeriod getValid();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid <em>Valid</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.LicenseRequisites#getValid <em>Valid</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Valid</em>' reference.
+	 * @param value the new value of the '<em>Valid</em>' containment reference.
 	 * @see #getValid()
 	 * @generated
 	 */

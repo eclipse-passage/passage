@@ -117,12 +117,9 @@ public class EvaluationInstructionsItemProvider extends ItemProviderAdapter impl
 	 */
 	@Override
 	public String getText(Object object) {
-		EvaluationInstructions eval = (EvaluationInstructions) object;
-		return getString("_UI_EvaluationInstructions_type_detailed", //$NON-NLS-1$
-				new Object[] { //
-						new GetOrUnknown(eval.getExpression()).get(), //
-						new GetOrUnknown(eval.getType()).get()//
-				});
+		String label = ((EvaluationInstructions) object).getType();
+		return label == null || label.length() == 0 ? getString("_UI_EvaluationInstructions_type") : //$NON-NLS-1$
+				getString("_UI_EvaluationInstructions_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

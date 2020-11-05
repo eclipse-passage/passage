@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -118,7 +119,7 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	private String plan = PLAN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProduct() <em>Product</em>}' reference.
+	 * The cached value of the '{@link #getProduct() <em>Product</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getProduct()
 	 * @generated
@@ -251,25 +252,26 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	public ProductRef getProduct() {
-		if (product != null && product.eIsProxy()) {
-			InternalEObject oldProduct = (InternalEObject) product;
-			product = (ProductRef) eResolveProxy(oldProduct);
-			if (product != oldProduct) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.LICENSE_REQUISITES__PRODUCT, oldProduct, product));
-				}
-			}
-		}
 		return product;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProductRef basicGetProduct() {
-		return product;
+	public NotificationChain basicSetProduct(ProductRef newProduct, NotificationChain msgs) {
+		ProductRef oldProduct = product;
+		product = newProduct;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.LICENSE_REQUISITES__PRODUCT, oldProduct, newProduct);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -278,11 +280,20 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	public void setProduct(ProductRef newProduct) {
-		ProductRef oldProduct = product;
-		product = newProduct;
-		if (eNotificationRequired()) {
+		if (newProduct != product) {
+			NotificationChain msgs = null;
+			if (product != null)
+				msgs = ((InternalEObject) product).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.LICENSE_REQUISITES__PRODUCT, null, msgs);
+			if (newProduct != null)
+				msgs = ((InternalEObject) newProduct).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.LICENSE_REQUISITES__PRODUCT, null, msgs);
+			msgs = basicSetProduct(newProduct, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.LICENSE_REQUISITES__PRODUCT,
-					oldProduct, product));
+					newProduct, newProduct));
 		}
 	}
 
@@ -292,25 +303,26 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	public ValidityPeriod getValid() {
-		if (valid != null && valid.eIsProxy()) {
-			InternalEObject oldValid = (InternalEObject) valid;
-			valid = (ValidityPeriod) eResolveProxy(oldValid);
-			if (valid != oldValid) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FloatingPackage.LICENSE_REQUISITES__VALID,
-							oldValid, valid));
-				}
-			}
-		}
 		return valid;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityPeriod basicGetValid() {
-		return valid;
+	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		ValidityPeriod oldValid = valid;
+		valid = newValid;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.LICENSE_REQUISITES__VALID, oldValid, newValid);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -319,11 +331,37 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	public void setValid(ValidityPeriod newValid) {
-		ValidityPeriod oldValid = valid;
-		valid = newValid;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.LICENSE_REQUISITES__VALID, oldValid,
-					valid));
+		if (newValid != valid) {
+			NotificationChain msgs = null;
+			if (valid != null)
+				msgs = ((InternalEObject) valid).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.LICENSE_REQUISITES__VALID, null, msgs);
+			if (newValid != null)
+				msgs = ((InternalEObject) newValid).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.LICENSE_REQUISITES__VALID, null, msgs);
+			msgs = basicSetValid(newValid, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.LICENSE_REQUISITES__VALID, newValid,
+					newValid));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case FloatingPackage.LICENSE_REQUISITES__PRODUCT:
+			return basicSetProduct(null, msgs);
+		case FloatingPackage.LICENSE_REQUISITES__VALID:
+			return basicSetValid(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -343,13 +381,9 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 		case FloatingPackage.LICENSE_REQUISITES__PLAN:
 			return getPlan();
 		case FloatingPackage.LICENSE_REQUISITES__PRODUCT:
-			if (resolve)
-				return getProduct();
-			return basicGetProduct();
+			return getProduct();
 		case FloatingPackage.LICENSE_REQUISITES__VALID:
-			if (resolve)
-				return getValid();
-			return basicGetValid();
+			return getValid();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}

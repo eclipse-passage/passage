@@ -94,9 +94,9 @@ public interface FeatureGrant extends EObject {
 	VersionMatch getVersion();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getVersion <em>Version</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' reference.
+	 * @param value the new value of the '<em>Version</em>' containment reference.
 	 * @see #getVersion()
 	 * @generated
 	 */
@@ -115,9 +115,9 @@ public interface FeatureGrant extends EObject {
 	ValidityPeriod getValid();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getValid <em>Valid</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Valid</em>' reference.
+	 * @param value the new value of the '<em>Valid</em>' containment reference.
 	 * @see #getValid()
 	 * @generated
 	 */
@@ -167,22 +167,22 @@ public interface FeatureGrant extends EObject {
 	void setCapacity(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Pack</b></em>' reference.
+	 * Returns the value of the '<em><b>Pack</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the value of the '<em>Pack</em>' reference.
+	 * @return the value of the '<em>Pack</em>' container reference.
 	 * @see #setPack(FloatingLicensePack)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFeatureGrant_Pack()
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicensePack#getFeatures
-	 * @model opposite="features" required="true"
+	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
 	FloatingLicensePack getPack();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FeatureGrant#getPack <em>Pack</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pack</em>' reference.
+	 * @param value the new value of the '<em>Pack</em>' container reference.
 	 * @see #getPack()
 	 * @generated
 	 */

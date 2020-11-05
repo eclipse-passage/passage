@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.floating.model.impl;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -58,7 +59,7 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 	private String user = USER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' reference.
+	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @see #getAuthentication()
@@ -112,25 +113,26 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 	 */
 	@Override
 	public EvaluationInstructions getAuthentication() {
-		if (authentication != null && authentication.eIsProxy()) {
-			InternalEObject oldAuthentication = (InternalEObject) authentication;
-			authentication = (EvaluationInstructions) eResolveProxy(oldAuthentication);
-			if (authentication != oldAuthentication) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.USER_GRANT__AUTHENTICATION, oldAuthentication, authentication));
-				}
-			}
-		}
 		return authentication;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EvaluationInstructions basicGetAuthentication() {
-		return authentication;
+	public NotificationChain basicSetAuthentication(EvaluationInstructions newAuthentication, NotificationChain msgs) {
+		EvaluationInstructions oldAuthentication = authentication;
+		authentication = newAuthentication;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.USER_GRANT__AUTHENTICATION, oldAuthentication, newAuthentication);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -139,11 +141,35 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 	 */
 	@Override
 	public void setAuthentication(EvaluationInstructions newAuthentication) {
-		EvaluationInstructions oldAuthentication = authentication;
-		authentication = newAuthentication;
-		if (eNotificationRequired()) {
+		if (newAuthentication != authentication) {
+			NotificationChain msgs = null;
+			if (authentication != null)
+				msgs = ((InternalEObject) authentication).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.USER_GRANT__AUTHENTICATION, null, msgs);
+			if (newAuthentication != null)
+				msgs = ((InternalEObject) newAuthentication).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.USER_GRANT__AUTHENTICATION, null, msgs);
+			msgs = basicSetAuthentication(newAuthentication, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.USER_GRANT__AUTHENTICATION,
-					oldAuthentication, authentication));
+					newAuthentication, newAuthentication));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case FloatingPackage.USER_GRANT__AUTHENTICATION:
+			return basicSetAuthentication(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -157,9 +183,7 @@ public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserG
 		case FloatingPackage.USER_GRANT__USER:
 			return getUser();
 		case FloatingPackage.USER_GRANT__AUTHENTICATION:
-			if (resolve)
-				return getAuthentication();
-			return basicGetAuthentication();
+			return getAuthentication();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
