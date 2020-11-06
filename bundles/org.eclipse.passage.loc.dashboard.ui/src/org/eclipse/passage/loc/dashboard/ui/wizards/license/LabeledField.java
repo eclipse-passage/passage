@@ -19,9 +19,9 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Widget;
 
 abstract class LabeledField<T> implements Field<T> {
 
@@ -29,8 +29,9 @@ abstract class LabeledField<T> implements Field<T> {
 	protected final Runnable modified;
 	protected final LabelProvider labels;
 	protected final MandatoryService context;
-	protected Widget widget;
+	protected Control widget;
 	private Shell shell;
+	private Label label;
 
 	protected LabeledField(Optional<T> source, Runnable modified, LabelProvider labels, MandatoryService context) {
 		this.source = source;
@@ -54,7 +55,7 @@ abstract class LabeledField<T> implements Field<T> {
 	}
 
 	private void installLabel(Composite parent) {
-		Label label = new Label(parent, SWT.NONE);
+		label = new Label(parent, SWT.NONE);
 		label.setText(label());
 		label.setLayoutData(GridDataFactory.fillDefaults().create());
 	}
@@ -70,9 +71,26 @@ abstract class LabeledField<T> implements Field<T> {
 		return shell;
 	}
 
+	@Override
+	public final Optional<String> errorIfAny() {
+		return widget.isEnabled() ? error() : Optional.empty();
+	}
+
+	@Override
+	public final void enable(boolean enable) {
+		label.setEnabled(enable);
+		widget.setEnabled(enable);
+		enableAuxiliaryControls(enable);
+	}
+
 	protected abstract String label();
 
-	protected abstract Widget control(Composite parent);
+	protected abstract Control control(Composite parent);
 
 	protected abstract void reflectData(T data);
+
+	protected abstract Optional<String> error();
+
+	protected abstract void enableAuxiliaryControls(boolean enable);
+
 }

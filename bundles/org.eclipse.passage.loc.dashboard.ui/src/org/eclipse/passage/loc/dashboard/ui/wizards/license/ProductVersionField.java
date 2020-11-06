@@ -24,7 +24,7 @@ import org.eclipse.passage.loc.internal.products.ui.SelectProductVersion;
 import org.eclipse.passage.loc.internal.workbench.SelectInner;
 import org.eclipse.swt.widgets.Text;
 
-public final class ProductVersionField extends TextField<ProductVersionDescriptor> {
+public final class ProductVersionField extends SelectableField<ProductVersionDescriptor> {
 
 	ProductVersionField(Optional<ProductVersionDescriptor> product, Runnable modified, LabelProvider labels,
 			MandatoryService context) {
@@ -37,7 +37,7 @@ public final class ProductVersionField extends TextField<ProductVersionDescripto
 	}
 
 	@Override
-	protected String errorMessage() {
+	protected String errorText() {
 		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_product_version;
 	}
 

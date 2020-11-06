@@ -22,7 +22,7 @@ import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessag
 import org.eclipse.passage.loc.jface.dialogs.DateDialog;
 import org.eclipse.swt.widgets.Text;
 
-public final class DateField extends TextField<LocalDate> {
+public final class DateField extends SelectableField<LocalDate> {
 
 	private final String name;
 
@@ -37,7 +37,7 @@ public final class DateField extends TextField<LocalDate> {
 	}
 
 	@Override
-	protected String errorMessage() {
+	protected String errorText() {
 		return String.format(IssueLicensePageMessages.IssueLicenseRequestPage_e_no_date, name);
 	}
 

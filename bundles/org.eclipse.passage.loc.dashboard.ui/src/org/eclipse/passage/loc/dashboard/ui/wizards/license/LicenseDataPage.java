@@ -56,7 +56,7 @@ public final class LicenseDataPage extends WizardPage {
 	private boolean validatePage() {
 		setMessage("", WizardPage.NONE); //$NON-NLS-1$
 		for (Field<?> unit : units) {
-			Optional<String> error = unit.error();
+			Optional<String> error = unit.errorIfAny();
 			if (error.isPresent()) {
 				setMessage(error.get(), WizardPage.ERROR);
 				return false;

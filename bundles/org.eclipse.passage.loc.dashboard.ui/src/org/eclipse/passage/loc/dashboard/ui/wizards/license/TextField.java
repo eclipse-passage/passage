@@ -12,73 +12,59 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
-import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
-
-import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Widget;
 
-abstract class TextField<T> extends LabeledField<T> {
+abstract class TextField extends LabeledField<String> {
 
 	private Text text;
 
-	protected TextField(Optional<T> source, Runnable modified, LabelProvider labels, MandatoryService context) {
+	protected TextField(Optional<String> source, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(source, modified, labels, context);
 	}
 
 	@Override
 	public Optional<String> error() {
-		return data().isEmpty() ? Optional.of(errorMessage()) : Optional.empty();
+		return noData() ? Optional.of(errorText()) : Optional.empty();
+	}
+
+	private boolean noData() {
+		return data().isEmpty() || data().get().trim().isEmpty();
 	}
 
 	@Override
-	protected Widget control(Composite parent) {
+	protected Control control(Composite parent) {
 		installText(parent);
-		installSelectButton(parent);
 		return text;
 	}
 
 	@Override
-	protected void reflectData(T data) {
-		if (data instanceof Collection) {
-			String altogether = StreamSupport.stream(((Collection<?>) data).spliterator(), false)//
-					.map(labels::getText)//
-					.collect(Collectors.joining(", ")); //$NON-NLS-1$
-			text.setText(altogether);
-		} else {
-			text.setText(labels.getText(data));
-		}
+	protected void reflectData(String data) {
+		text.setText(labels.getText(data));
 	}
 
 	private void installText(Composite parent) {
-		text = new Text(parent, SWT.READ_ONLY | SWT.BORDER);
+		text = new Text(parent, SWT.BORDER);
 		text.addModifyListener(m -> modified.run());
-		text.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).create());
+		text.addModifyListener(m -> text.setData(text.getText().trim()));
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 	}
 
-	private void installSelectButton(Composite parent) {
-		Button select = new Button(parent, SWT.PUSH);
-		select.setText(IssueLicensePageMessages.IssueLicenseRequestPage_btn_select_text);
-		select.addSelectionListener(widgetSelectedAdapter(event -> installData(select(text))));
-		select.setLayoutData(GridDataFactory.fillDefaults().create());
+	@Override
+	protected void enableAuxiliaryControls(boolean enable) {
+		// do nothing
 	}
 
 	@Override
 	protected abstract String label();
 
-	protected abstract String errorMessage();
-
-	protected abstract Optional<T> select(Text control);
+	protected abstract String errorText();
 
 }

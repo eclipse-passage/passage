@@ -16,15 +16,15 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
-public final class CapacityField extends PositiveIntField {
+public final class PortField extends PositiveIntField {
 
-	CapacityField(String name, Runnable modified, LabelProvider labels, MandatoryService context) {
-		super(1, name, modified, labels, context);
+	PortField(Runnable modified, LabelProvider labels, MandatoryService context) {
+		super(8080, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_port, modified, labels, context);
 	}
 
 	@Override
 	protected String errorText() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_e_invalid_capacity;
+		return IssueLicensePageMessages.IssueLicenseRequestPage_e_invalid_port;
 	}
 
 }

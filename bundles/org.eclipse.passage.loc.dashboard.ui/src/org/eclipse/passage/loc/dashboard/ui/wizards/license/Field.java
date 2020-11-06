@@ -18,9 +18,21 @@ import org.eclipse.swt.widgets.Composite;
 
 public interface Field<T> {
 
+	/**
+	 * Once in a lifetime physically creates UI control representing the field.
+	 */
 	void installControll(Composite parent);
 
+	/**
+	 * Return a value from the field's control, it any.
+	 */
 	Optional<T> data();
 
-	Optional<String> error();
+	/**
+	 * Is used by page validation. When called, reports an error, if the filed
+	 * control's value is not valid. Return {@code Optional.empty()} otherwise.
+	 */
+	Optional<String> errorIfAny();
+
+	void enable(boolean enable);
 }

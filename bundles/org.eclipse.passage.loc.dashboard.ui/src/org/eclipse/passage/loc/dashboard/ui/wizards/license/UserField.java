@@ -22,7 +22,7 @@ import org.eclipse.passage.loc.internal.users.ui.SelectUser;
 import org.eclipse.passage.loc.internal.workbench.SelectRoot;
 import org.eclipse.swt.widgets.Text;
 
-public final class UserField extends TextField<UserDescriptor> {
+public final class UserField extends SelectableField<UserDescriptor> {
 
 	UserField(Optional<UserDescriptor> user, Runnable modified, LabelProvider labels, MandatoryService context) {
 		super(user, modified, labels, context);
@@ -34,7 +34,7 @@ public final class UserField extends TextField<UserDescriptor> {
 	}
 
 	@Override
-	protected String errorMessage() {
+	protected String errorText() {
 		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_user;
 	}
 
