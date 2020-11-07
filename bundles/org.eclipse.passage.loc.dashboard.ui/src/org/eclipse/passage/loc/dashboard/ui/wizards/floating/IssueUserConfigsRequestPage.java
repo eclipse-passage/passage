@@ -41,6 +41,10 @@ public final class IssueUserConfigsRequestPage implements Supplier<IWizardPage> 
 		generate = switcher.switcher();
 	}
 
+	ServerConfigsRequest request() {
+		return new ServerConfigsRequest.Of(generate, ip, port).get();
+	}
+
 	@Override
 	public IWizardPage get() {
 		return page.get();
