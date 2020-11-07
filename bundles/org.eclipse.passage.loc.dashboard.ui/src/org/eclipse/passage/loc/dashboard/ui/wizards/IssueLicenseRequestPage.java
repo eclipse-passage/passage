@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
+import org.eclipse.passage.loc.dashboard.ui.wizards.license.PageFields;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.core.request.PersonalLicenseData;
 
@@ -36,10 +37,11 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
 	IssueLicenseRequestPage(IEclipseContext context, PersonalDataPack initial) {
 		page = new ComposedPage(IssueLicenseRequestPage.class.getSimpleName(), context);
-		plan = page.withLicensePlan(initial.plan());
-		user = page.withUser(initial.user());
-		product = page.withProductVersion(initial.product());
-		period = page.withPeriod();
+		PageFields block = page.withBlock();
+		plan = block.withLicensePlan(initial.plan());
+		user = block.withUser(initial.user());
+		product = block.withProductVersion(initial.product());
+		period = block.withPeriod();
 	}
 
 	@Override

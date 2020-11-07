@@ -37,13 +37,13 @@ final class ActivePeriodField implements Field<List<LocalDate>> {
 	}
 
 	@Override
-	public final void installControll(Composite parent) {
+	public void installControll(Composite parent) {
 		from.installControll(parent);
 		until.installControll(parent);
 	}
 
 	@Override
-	public final Optional<List<LocalDate>> data() {
+	public Optional<List<LocalDate>> data() {
 		Optional<LocalDate> start = from.data();
 		Optional<LocalDate> end = until.data();
 		return (!start.isPresent() || !end.isPresent()) //
@@ -52,7 +52,7 @@ final class ActivePeriodField implements Field<List<LocalDate>> {
 	}
 
 	@Override
-	public Optional<String> error() {
+	public Optional<String> errorIfAny() {
 		Optional<String> start = from.error();
 		if (start.isPresent()) {
 			return start;
@@ -65,6 +65,12 @@ final class ActivePeriodField implements Field<List<LocalDate>> {
 			return Optional.of(IssueLicensePageMessages.IssueLicenseRequestPage_e_reversed_period);
 		}
 		return Optional.empty();
+	}
+
+	@Override
+	public void enable(boolean enable) {
+		from.enable(enable);
+		until.enable(enable);
 	}
 
 }

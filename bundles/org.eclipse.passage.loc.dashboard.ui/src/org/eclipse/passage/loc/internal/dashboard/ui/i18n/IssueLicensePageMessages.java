@@ -38,6 +38,12 @@ public final class IssueLicensePageMessages extends NLS {
 	public static String IssueLicenseRequestPage_lbl_default_capacity;
 	public static String IssueLicenseRequestPage_valid_from_title;
 	public static String IssueLicenseRequestPage_valid_until_title;
+	public static String IssueLicenseRequestPage_lbl_port;
+	public static String IssueLicenseRequestPage_e_invalid_port;
+	public static String IssueLicenseRequestPage_lbl_ip;
+	public static String IssueLicenseRequestPage_e_no_ip;
+	public static String IssueLicenseRequestPage_lbl_generate_floating_configs;
+
 	public static String IssueLicenseWizard_ok_licensed_title;
 	public static String IssueLicenseWizard_window_title;
 	public static String IssueLicenseDetailsPage_page_title;

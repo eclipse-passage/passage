@@ -12,36 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
-import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.passage.loc.internal.users.ui.SelectUser;
-import org.eclipse.passage.loc.internal.workbench.SelectRoots;
-import org.eclipse.swt.widgets.Text;
 
-public final class UsersField extends SelectableField<Collection<UserDescriptor>> {
+final class IpAddressField extends TextField {
 
-	UsersField(Collection<UserDescriptor> users, Runnable modified, LabelProvider labels, MandatoryService context) {
-		super(Optional.of(users), modified, labels, context);
+	protected IpAddressField(Runnable modified, LabelProvider labels, MandatoryService context) {
+		super(Optional.of("localhost"), modified, labels, context); //$NON-NLS-1$
 	}
 
 	@Override
 	protected String label() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_users;
+		return IssueLicensePageMessages.IssueLicenseRequestPage_lbl_ip;
 	}
 
 	@Override
 	protected String errorText() {
-		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_user;
-	}
-
-	@Override
-	protected Optional<Collection<UserDescriptor>> select(Text control) {
-		return Optional.of(new SelectRoots<>(new SelectUser(context).get(), context).get());
+		return IssueLicensePageMessages.IssueLicenseRequestPage_e_no_ip;
 	}
 
 }

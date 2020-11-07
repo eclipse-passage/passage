@@ -10,16 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
+package org.eclipse.passage.loc.dashboard.ui.wizards.license;
 
-import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
+import java.util.List;
 
-final class LicenseFromRequest {
+public interface Fields {
 
-	private final FloatingLicenseRequest request;
+	List<Field<?>> fields();
 
-	LicenseFromRequest(FloatingLicenseRequest request) {
-		this.request = request;
-	}
+	void modified();
 
 }

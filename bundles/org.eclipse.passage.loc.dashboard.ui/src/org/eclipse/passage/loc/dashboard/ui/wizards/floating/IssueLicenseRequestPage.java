@@ -24,8 +24,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
+import org.eclipse.passage.loc.dashboard.ui.wizards.license.PageFields;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
-import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.request.FloatingLicenseData;
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
@@ -39,11 +39,12 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 
 	IssueLicenseRequestPage(IEclipseContext context, FloatingDataPack initial) {
 		page = new ComposedPage(IssueLicenseRequestPage.class.getSimpleName(), context);
-		plan = page.withLicensePlan(initial.plan());
-		users = page.withUsers();
-		product = page.withProductVersion(initial.product());
-		period = page.withPeriod();
-		capacity = page.withCapacity(IssueLicensePageMessages.IssueLicenseRequestPage_lbl_default_capacity);
+		PageFields units = page.withBlock();
+		plan = units.withLicensePlan(initial.plan());
+		users = units.withUsers();
+		product = units.withProductVersion(initial.product());
+		period = units.withPeriod();
+		capacity = units.withDefaultCapacity();
 	}
 
 	@Override
