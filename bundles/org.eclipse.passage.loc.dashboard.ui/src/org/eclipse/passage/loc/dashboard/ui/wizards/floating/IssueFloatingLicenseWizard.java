@@ -12,14 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
+import java.util.function.Supplier;
+
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
+import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
+import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 
 public final class IssueFloatingLicenseWizard extends Wizard {
 
 	private final IEclipseContext context;
 	private final FloatingDataPack initial;
+	private Supplier<FloatingLicensePack> license;
+	private Supplier<ServerConfigsRequest> personals;
 
 	public IssueFloatingLicenseWizard(IEclipseContext context, FloatingDataPack initial) {
 		this.context = context;
@@ -35,11 +45,20 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 		addPage(pack);
 		IssueUserConfigsRequestPage configs = new IssueUserConfigsRequestPage(context);
 		addPage(configs.get());
+		personals = configs::request;
+		license = pack::pack;
 	}
 
 	@Override
 	public boolean performFinish() {
-		return false;
+		ServiceInvocationResult<IssuedFloatingLicense> result = new IssueCommand(context, license.get(),
+				personals.get()).issue();
+		if (!new NoSevereErrors().test(result.diagnostic())) {
+			new WizardInfoBar(this).installError(IssueLicensePageMessages.IssueFloatingLicenseWizard_failure);
+			new DiagnosticDialog(getShell(), result.diagnostic()).open();
+			return false;
+		}
+		return true;
 	}
 
 }

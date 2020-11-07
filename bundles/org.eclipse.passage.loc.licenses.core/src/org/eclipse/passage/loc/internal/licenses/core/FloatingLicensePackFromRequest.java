@@ -89,7 +89,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private String serverId() {
 		return template//
 				.map(l -> l.getHost().getIdentifier())//
-				.orElse("Floating Server A"); //$NON-NLS-1$
+				.orElse("Floating-Server-A"); //$NON-NLS-1$
 	}
 
 	private EvaluationInstructions serverAuthentication() {

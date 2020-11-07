@@ -18,8 +18,6 @@ import java.io.IOException;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
@@ -30,6 +28,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -81,11 +80,11 @@ public class IssueLicenseWizard extends Wizard {
 		LicensePackDescriptor licensePack = pack.pack();
 		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request.request(), licensePack);
 		if (!new NoSevereErrors().test(result.diagnostic())) {
-			setErrorMessage("Export failed"); //$NON-NLS-1$
+			new WizardInfoBar(this).installError("Export failed"); //$NON-NLS-1$
 			new DiagnosticDialog(getShell(), result.diagnostic()).open();
 			return false;
 		} else {
-			setErrorMessage(null);
+			new WizardInfoBar(this).wipe();
 			int kind = new NoErrors().test(result.diagnostic()) ? MessageDialog.INFORMATION : MessageDialog.WARNING;
 			MessageDialog.open(kind, getShell(), //
 					IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
@@ -124,14 +123,6 @@ public class IssueLicenseWizard extends Wizard {
 		LocWokbench.switchPerspective(context, perspectiveId);
 		IEventBroker broker = context.get(IEventBroker.class);
 		broker.post(LocWokbench.TOPIC_SHOW, userLicense);
-	}
-
-	private void setErrorMessage(String message) {
-		IWizardContainer container = getContainer();
-		if (container instanceof TitleAreaDialog) {
-			TitleAreaDialog dialog = (TitleAreaDialog) container;
-			dialog.setErrorMessage(message);
-		}
 	}
 
 }

@@ -38,7 +38,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class IssueLicensePackPage extends WizardPage {
+public final class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<FloatingLicenseRequest> data;
@@ -52,7 +52,7 @@ public class IssueLicensePackPage extends WizardPage {
 	private VViewModelProperties properties;
 	private Composite base;
 
-	protected IssueLicensePackPage(String name, Supplier<FloatingLicenseRequest> data, IEclipseContext context) {
+	IssueLicensePackPage(String name, Supplier<FloatingLicenseRequest> data, IEclipseContext context) {
 		super(name);
 		this.context = context;
 		this.data = data;
@@ -60,22 +60,12 @@ public class IssueLicensePackPage extends WizardPage {
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
 
-	private void init() {
-		boolean render = license == null;
-		createLicensePack();
-		if (render) {
-			updatePage();
+	@Override
+	public void setVisible(boolean visible) {
+		if (visible) {
+			init();
 		}
-	}
-
-	private void createLicensePack() {
-		if (license != null) {
-			license.eAdapters().remove(update);
-		} else {
-			license = context.get(OperatorLicenseService.class)//
-					.createFloatingLicensePack(data.get(), Optional.ofNullable(license));
-			license.eAdapters().add(update);
-		}
+		super.setVisible(visible);
 	}
 
 	@Override
@@ -94,12 +84,22 @@ public class IssueLicensePackPage extends WizardPage {
 		Dialog.applyDialogFont(composite);
 	}
 
-	@Override
-	public void setVisible(boolean visible) {
-		if (visible) {
-			init();
+	private void init() {
+		boolean render = license == null;
+		createLicensePack();
+		if (render) {
+			updatePage();
 		}
-		super.setVisible(visible);
+	}
+
+	private void createLicensePack() {
+		if (license != null) {
+			license.eAdapters().remove(update);
+		} else {
+			license = context.get(OperatorLicenseService.class)//
+					.createFloatingLicensePack(data.get(), Optional.ofNullable(license));
+			license.eAdapters().add(update);
+		}
 	}
 
 	private void updatePage() {
@@ -123,7 +123,7 @@ public class IssueLicensePackPage extends WizardPage {
 		return errors == null;
 	}
 
-	public FloatingLicensePack pack() {
+	FloatingLicensePack pack() {
 		return license;
 	}
 

@@ -12,11 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
+import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -39,11 +41,11 @@ import org.osgi.service.event.EventAdmin;
 public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
 	private EnvironmentInfo environmentInfo;
-	private EventAdmin eventAdmin;
-	private ProductRegistry productRegistry;
-	private UserRegistry userRegistry;
-	private LicenseRegistry licenseRegistry;
-	private OperatorProductService operatorProductService;
+	private EventAdmin events;
+	private ProductRegistry products;
+	private UserRegistry users;
+	private LicenseRegistry licenses;
+	private OperatorProductService operator;
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo environment) {
@@ -58,62 +60,62 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
 	@Reference
 	public void bindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = admin;
+		this.events = admin;
 	}
 
 	public void unbindEventAdmin(EventAdmin admin) {
-		if (Objects.equals(this.eventAdmin, admin)) {
-			this.eventAdmin = null;
+		if (Objects.equals(this.events, admin)) {
+			this.events = null;
 		}
 	}
 
 	@Reference
 	public void bindProductRegistry(ProductRegistry registry) {
-		this.productRegistry = registry;
+		this.products = registry;
 	}
 
 	public void unbindProductRegistry(ProductRegistry registry) {
-		if (Objects.equals(this.productRegistry, registry)) {
-			this.productRegistry = null;
+		if (Objects.equals(this.products, registry)) {
+			this.products = null;
 		}
 	}
 
 	@Reference
 	public void bindLicenseRegistry(LicenseRegistry registry) {
-		this.licenseRegistry = registry;
+		this.licenses = registry;
 	}
 
 	public void unbindLicenseRegistry(LicenseRegistry registry) {
-		if (Objects.equals(this.licenseRegistry, registry)) {
-			this.licenseRegistry = null;
+		if (Objects.equals(this.licenses, registry)) {
+			this.licenses = null;
 		}
 	}
 
 	@Reference
 	public void bindUserRegistry(UserRegistry registry) {
-		this.userRegistry = registry;
+		this.users = registry;
 	}
 
 	public void unbindUserRegistry(UserRegistry registry) {
-		if (Objects.equals(this.userRegistry, registry)) {
-			this.userRegistry = null;
+		if (Objects.equals(this.users, registry)) {
+			this.users = null;
 		}
 	}
 
 	@Reference
 	public void bindProductOperatorService(OperatorProductService productService) {
-		this.operatorProductService = productService;
+		this.operator = productService;
 	}
 
 	public void unbindProductOperatorService(OperatorProductService productService) {
-		if (Objects.equals(this.operatorProductService, productService)) {
-			this.operatorProductService = null;
+		if (Objects.equals(this.operator, productService)) {
+			this.operator = null;
 		}
 	}
 
 	@Override
 	public LicensePack createLicensePack(PersonalLicenseRequest request) {
-		return new PersonalLicensePackFromRequest(request, licenseRegistry).get();
+		return new PersonalLicensePackFromRequest(request, licenses).get();
 	}
 
 	@Override
@@ -124,19 +126,19 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Supplier<LicensePack> pack = (template instanceof LicensePack) //
 				? () -> LicensePack.class.cast(template)//
 				: () -> createLicensePack(request);
-		return new IssuePersonalLicense(userRegistry, productRegistry, operatorProductService, eventAdmin)
+		return new IssuePersonalLicense(users, products, operator, events)
 				.issue(request, pack);
 	}
 
 	@Override
 	public FloatingLicensePack createFloatingLicensePack(FloatingLicenseRequest request,
 			Optional<FloatingLicensePack> template) {
-		return new FloatingLicensePackFromRequest(request, template, licenseRegistry, userRegistry).get();
+		return new FloatingLicensePackFromRequest(request, template, licenses, users).get();
 	}
 
 	@Override
-	public ServiceInvocationResult<IssuedFloatingLicense> issueFloatingLicensePack(FloatingLicenseRequest request,
-			FloatingLicensePack template) {
+	public ServiceInvocationResult<IssuedFloatingLicense> issueFloatingLicensePack(FloatingLicensePack pack,
+			Collection<FloatingLicenseAccess> configs) {
 		// TODO YTBD
 		return null;
 	}
