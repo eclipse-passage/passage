@@ -54,6 +54,8 @@ public final class IssueLicensePageMessages extends NLS {
 	public static String IssueLicensingMailJob_task_text;
 	public static String IssueFloatingLicenseWizard_failure;
 	public static String IssueFloatingLicenseWizard_title;
+	public static String IssueFloatingLicenseWizard_success;
+	public static String IssueFloatingLicenseWizard_success_description;
 	public static String Floating_DataPage_description;
 	public static String Floating_DataPage_title;
 
