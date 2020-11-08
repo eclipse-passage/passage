@@ -43,8 +43,9 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseRequest_mailto_body_details_lbl;
 	public static String LicenseRequest_error_attachment_not_exist;
 	public static String LicenseOperatorServiceImpl_floating_no_codec;
-	public static String LicenseOperatorServiceImpl_floating_save_failed;
-
+	public static String LicenseOperatorServiceImpl_floating_save_decoded_failed;
+	public static String LicenseOperatorServiceImpl_floating_save_encoded_failed;
+	public static String LicenseOperatorServiceImpl_floating_save_encoded_file_error;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);
