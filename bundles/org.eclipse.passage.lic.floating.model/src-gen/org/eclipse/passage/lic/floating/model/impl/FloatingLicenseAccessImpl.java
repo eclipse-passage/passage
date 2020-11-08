@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -54,7 +55,7 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	private String user = USER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getServer() <em>Server</em>}' reference.
+	 * The cached value of the '{@link #getServer() <em>Server</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getServer()
@@ -134,16 +135,6 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public FloatingServerConnection getServer() {
-		if (server != null && server.eIsProxy()) {
-			InternalEObject oldServer = (InternalEObject) server;
-			server = (FloatingServerConnection) eResolveProxy(oldServer);
-			if (server != oldServer) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER, oldServer, server));
-				}
-			}
-		}
 		return server;
 	}
 
@@ -152,8 +143,18 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FloatingServerConnection basicGetServer() {
-		return server;
+	public NotificationChain basicSetServer(FloatingServerConnection newServer, NotificationChain msgs) {
+		FloatingServerConnection oldServer = server;
+		server = newServer;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER, oldServer, newServer);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -163,11 +164,20 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public void setServer(FloatingServerConnection newServer) {
-		FloatingServerConnection oldServer = server;
-		server = newServer;
-		if (eNotificationRequired()) {
+		if (newServer != server) {
+			NotificationChain msgs = null;
+			if (server != null)
+				msgs = ((InternalEObject) server).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER, null, msgs);
+			if (newServer != null)
+				msgs = ((InternalEObject) newServer).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER, null, msgs);
+			msgs = basicSetServer(newServer, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER,
-					oldServer, server));
+					newServer, newServer));
 		}
 	}
 
@@ -203,14 +213,27 @@ public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER:
+			return basicSetServer(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case FloatingPackage.FLOATING_LICENSE_ACCESS__USER:
 			return getUser();
 		case FloatingPackage.FLOATING_LICENSE_ACCESS__SERVER:
-			if (resolve)
-				return getServer();
-			return basicGetServer();
+			return getServer();
 		case FloatingPackage.FLOATING_LICENSE_ACCESS__ORIGIN_LICENSE_PACK:
 			return getOriginLicensePack();
 		default:

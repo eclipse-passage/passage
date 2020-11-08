@@ -46,22 +46,22 @@ public interface FloatingLicenseAccess extends EObject {
 	void setUser(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Server</b></em>' reference.
+	 * Returns the value of the '<em><b>Server</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Server</em>' reference.
+	 * @return the value of the '<em>Server</em>' containment reference.
 	 * @see #setServer(FloatingServerConnection)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingLicenseAccess_Server()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	FloatingServerConnection getServer();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer <em>Server</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer <em>Server</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Server</em>' reference.
+	 * @param value the new value of the '<em>Server</em>' containment reference.
 	 * @see #getServer()
 	 * @generated
 	 */

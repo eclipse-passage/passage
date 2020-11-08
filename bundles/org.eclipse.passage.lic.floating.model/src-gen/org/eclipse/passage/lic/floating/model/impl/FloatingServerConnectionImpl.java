@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -74,7 +75,7 @@ public class FloatingServerConnectionImpl extends MinimalEObjectImpl.Container i
 	private int port = PORT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' reference.
+	 * The cached value of the '{@link #getAuthentication() <em>Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAuthentication()
@@ -159,17 +160,6 @@ public class FloatingServerConnectionImpl extends MinimalEObjectImpl.Container i
 	 */
 	@Override
 	public EvaluationInstructions getAuthentication() {
-		if (authentication != null && authentication.eIsProxy()) {
-			InternalEObject oldAuthentication = (InternalEObject) authentication;
-			authentication = (EvaluationInstructions) eResolveProxy(oldAuthentication);
-			if (authentication != oldAuthentication) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, oldAuthentication,
-							authentication));
-				}
-			}
-		}
 		return authentication;
 	}
 
@@ -178,8 +168,18 @@ public class FloatingServerConnectionImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EvaluationInstructions basicGetAuthentication() {
-		return authentication;
+	public NotificationChain basicSetAuthentication(EvaluationInstructions newAuthentication, NotificationChain msgs) {
+		EvaluationInstructions oldAuthentication = authentication;
+		authentication = newAuthentication;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, oldAuthentication, newAuthentication);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -189,11 +189,37 @@ public class FloatingServerConnectionImpl extends MinimalEObjectImpl.Container i
 	 */
 	@Override
 	public void setAuthentication(EvaluationInstructions newAuthentication) {
-		EvaluationInstructions oldAuthentication = authentication;
-		authentication = newAuthentication;
-		if (eNotificationRequired()) {
+		if (newAuthentication != authentication) {
+			NotificationChain msgs = null;
+			if (authentication != null)
+				msgs = ((InternalEObject) authentication).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, null,
+						msgs);
+			if (newAuthentication != null)
+				msgs = ((InternalEObject) newAuthentication).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, null,
+						msgs);
+			msgs = basicSetAuthentication(newAuthentication, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, oldAuthentication, authentication));
+					FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION, newAuthentication, newAuthentication));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION:
+			return basicSetAuthentication(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -210,9 +236,7 @@ public class FloatingServerConnectionImpl extends MinimalEObjectImpl.Container i
 		case FloatingPackage.FLOATING_SERVER_CONNECTION__PORT:
 			return getPort();
 		case FloatingPackage.FLOATING_SERVER_CONNECTION__AUTHENTICATION:
-			if (resolve)
-				return getAuthentication();
-			return basicGetAuthentication();
+			return getAuthentication();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
