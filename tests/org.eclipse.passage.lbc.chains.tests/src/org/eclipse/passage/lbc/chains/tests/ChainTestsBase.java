@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
+import org.eclipse.passage.lbc.api.tests.FakeLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
 import org.eclipse.passage.lbc.internal.base.BaseBoundLicense;
