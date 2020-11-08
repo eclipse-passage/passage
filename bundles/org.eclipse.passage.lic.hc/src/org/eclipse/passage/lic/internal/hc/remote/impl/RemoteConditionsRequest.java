@@ -90,7 +90,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 						new LicensingAction(new ConditionAction.Aquire()), //
 						new LicensingRole(new UserRole.Admin()), //
 						new LicensingContentType(new ContentType.Xml()), //
-						new TemporaryUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
+						new LicenseUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
 				.map(NamedData.Writable<String>::new)//
 				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
 		return '?' + params.toString();
