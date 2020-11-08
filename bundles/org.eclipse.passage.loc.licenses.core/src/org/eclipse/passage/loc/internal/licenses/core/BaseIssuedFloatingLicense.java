@@ -10,14 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.api;
+package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.nio.file.Path;
 import java.util.List;
 
-public interface IssuedFloatingLicense {
+import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 
-	Path residence();
+public final class BaseIssuedFloatingLicense implements IssuedFloatingLicense {
 
-	List<Path> files();
+	private final Path residence;
+	private final List<Path> files;
+
+	public BaseIssuedFloatingLicense(Path residence, List<Path> files) {
+		this.residence = residence;
+		this.files = files;
+	}
+
+	@Override
+	public Path residence() {
+		return residence;
+	}
+
+	@Override
+	public List<Path> files() {
+		return files;
+	}
+
 }
