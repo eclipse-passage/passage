@@ -13,10 +13,7 @@
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +24,6 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
@@ -36,7 +32,6 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
-@SuppressWarnings("restriction")
 final class MiningTool {
 
 	private final KeyKeeper key;
@@ -71,13 +66,7 @@ final class MiningTool {
 	}
 
 	private byte[] decoded(Path path) throws IOException, LicensingException {
-		try (FileInputStream encoded = new FileInputStream(path.toFile());
-				ByteArrayOutputStream decoded = new ByteArrayOutputStream();
-				InputStream ring = key.productPublicKey()) {
-			codec.decode(encoded, decoded, ring, new DigestExpectation.None());
-			decoded.flush();
-			return decoded.toByteArray();
-		}
+		return new DecodedContent(path, key, codec).get();
 	}
 
 	private Collection<Condition> from(byte[] decoded) throws IOException {
