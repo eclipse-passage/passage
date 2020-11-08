@@ -22,8 +22,8 @@ import java.io.PrintWriter;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
-import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
+import org.eclipse.passage.lic.internal.net.HostPort;
+import org.eclipse.passage.lic.internal.net.LicensingServerCoordinatesFromSettings;
 import org.eclipse.passage.lic.internal.net.LicensingServerHost;
 import org.eclipse.passage.lic.internal.net.LicensingServerPort;
 import org.junit.Rule;
@@ -84,7 +84,7 @@ public final class LicensingServerCoordinatesTest {
 	}
 
 	private String coordinates() throws LicensingException {
-		HostPort coords = new LicensingServerCoordinates(folder.getRoot()::toPath).get();
+		HostPort coords = new LicensingServerCoordinatesFromSettings(folder.getRoot()::toPath).get();
 		return String.format("%s:%s", coords.host(), coords.port()); //$NON-NLS-1$
 	}
 
