@@ -614,7 +614,7 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_LICENSE_ACCESS__USER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Server</b></em>' reference.
+	 * The feature id for the '<em><b>Server</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -678,7 +678,7 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_SERVER_CONNECTION__PORT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Authentication</b></em>' reference.
+	 * The feature id for the '<em><b>Authentication</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1113,10 +1113,10 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFloatingLicenseAccess_User();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer <em>Server</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Server</em>'.
+	 * @return the meta object for the containment reference '<em>Server</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess#getServer()
 	 * @see #getFloatingLicenseAccess()
 	 * @generated
@@ -1167,10 +1167,10 @@ public interface FloatingPackage extends EPackage {
 	EAttribute getFloatingServerConnection_Port();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication <em>Authentication</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication <em>Authentication</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Authentication</em>'.
+	 * @return the meta object for the containment reference '<em>Authentication</em>'.
 	 * @see org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication()
 	 * @see #getFloatingServerConnection()
 	 * @generated

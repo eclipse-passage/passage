@@ -68,22 +68,22 @@ public interface FloatingServerConnection extends EObject {
 	void setPort(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Authentication</b></em>' reference.
+	 * Returns the value of the '<em><b>Authentication</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Authentication</em>' reference.
+	 * @return the value of the '<em>Authentication</em>' containment reference.
 	 * @see #setAuthentication(EvaluationInstructions)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getFloatingServerConnection_Authentication()
-	 * @model required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	EvaluationInstructions getAuthentication();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication <em>Authentication</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.FloatingServerConnection#getAuthentication <em>Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Authentication</em>' reference.
+	 * @param value the new value of the '<em>Authentication</em>' containment reference.
 	 * @see #getAuthentication()
 	 * @generated
 	 */
