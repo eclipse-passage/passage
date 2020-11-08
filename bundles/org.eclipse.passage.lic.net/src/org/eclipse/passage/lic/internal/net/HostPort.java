@@ -12,14 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+public final class HostPort {
 
-public interface LicensingServerCoordinates {
-	/**
-	 * @return licensing server location in a form {@code host:port}
-	 * @throws LicensingException in case of errors during source data reading or
-	 *                            analysis
-	 */
-	HostPort get() throws LicensingException;
+	private final String host;
+	private final String port;
+
+	public HostPort(String host, String port) {
+		this.host = host;
+		this.port = port;
+	}
+
+	public String host() {
+		return host;
+	}
+
+	public String port() {
+		return port;
+	}
 
 }

@@ -35,8 +35,8 @@ final class DecryptedConditions implements ResponseHandler {
 	}
 
 	/**
-	 * FIXME: we treat all remote condition =s to be of the same origin until
-	 * {@linkplain ConditionTransport} evolves to support condition packs
+	 * FIXME: we treat all remote conditions to be of the same origin until
+	 * {@linkplain ConditionTransport} evolves to support condition packs #568621
 	 */
 	@Override
 	public Collection<ConditionPack> read(byte[] raw, String contentType) throws LicensingException {
