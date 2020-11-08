@@ -25,6 +25,10 @@ public final class UserHomeProductResidence implements Supplier<Path> {
 		residence = new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product);
 	}
 
+	public UserHomeProductResidence(String product, String version) {
+		residence = new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product, version);
+	}
+
 	@Override
 	public Path get() {
 		Path path = residence.get();

@@ -20,18 +20,28 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 public final class PathFromLicensedProduct implements Supplier<Path> {
 
 	private final Supplier<Path> base;
-	private final LicensedProduct product;
+	private final Supplier<String> identifier;
+	private final Supplier<String> version;
 
 	public PathFromLicensedProduct(Supplier<Path> base, LicensedProduct product) {
+		this(base, product::identifier, product::version);
+	}
+
+	public PathFromLicensedProduct(Supplier<Path> base, String product, String version) {
+		this(base, () -> product, () -> version);
+	}
+
+	public PathFromLicensedProduct(Supplier<Path> base, Supplier<String> identifier, Supplier<String> version) {
 		this.base = base;
-		this.product = product;
+		this.identifier = identifier;
+		this.version = version;
 	}
 
 	@Override
 	public Path get() {
 		return base.get()//
-				.resolve(product.identifier())//
-				.resolve(product.version());
+				.resolve(identifier.get())//
+				.resolve(version.get());
 	}
 
 }
