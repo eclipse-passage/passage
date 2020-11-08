@@ -35,10 +35,6 @@ public final class BaseServiceInvocationResult<T> implements ServiceInvocationRe
 		this(new BaseDiagnostic(), Optional.of(data));
 	}
 
-	public BaseServiceInvocationResult(Optional<T> data) {
-		this(new BaseDiagnostic(), data);
-	}
-
 	public BaseServiceInvocationResult(Diagnostic diagnostic) {
 		this(diagnostic, Optional.empty());
 	}

@@ -56,6 +56,7 @@ public final class Restrictions implements Supplier<ServiceInvocationResult<Exam
 				registry.services().stream()//
 						.map(service -> service.examine(requirements, permissions, product)) //
 						.reduce(new SumOfCertificates())//
+						.get() // guaranteed to exist as there is at least one service
 		);
 	}
 
