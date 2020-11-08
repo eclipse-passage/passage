@@ -17,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class LicensesCoreMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages"; //$NON-NLS-1$
+	public static String EmfObjectPersisted_failed;
 	public static String LicenseOperatorServiceImpl_error_io;
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
@@ -41,6 +42,9 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseRequest_mailto_body_base_lbl;
 	public static String LicenseRequest_mailto_body_details_lbl;
 	public static String LicenseRequest_error_attachment_not_exist;
+	public static String LicenseOperatorServiceImpl_floating_no_codec;
+	public static String LicenseOperatorServiceImpl_floating_save_failed_lic;
+	public static String LicenseOperatorServiceImpl_floating_save_failed_lic_access;
 
 	static {
 		// initialize resource bundle

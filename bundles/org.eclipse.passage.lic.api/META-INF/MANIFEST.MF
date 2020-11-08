@@ -53,9 +53,10 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lic.api.tests,
    org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lbc.base.tests",
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.lic.internal.api.inspection;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.io;x-friends:="org.eclipse.passage.lbc.api,org.eclipse.passage.lbc.base",
+ org.eclipse.passage.lic.internal.api.io;x-friends:="org.eclipse.passage.lbc.api,org.eclipse.passage.lbc.base,org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.requirements;
