@@ -30,7 +30,7 @@ public class BaseRequestDispatcherTest {
 		BaseRequestDispatcher dispatcher = new BaseRequestDispatcher(new HashMap<>());
 		FakeLicensingRequest request = new FakeLicensingRequest(new HashMap<>());
 		String expected = "{\"error\":\"unsupported action null\"}"; //$NON-NLS-1$
-		dispatch(dispatcher, request, expected);
+		assertEquals(expected, dispatch(dispatcher, request));
 	}
 
 	@Test
@@ -38,14 +38,13 @@ public class BaseRequestDispatcherTest {
 		BaseRequestDispatcher dispatcher = new BaseRequestDispatcher(new HashMap<>());
 		FakeLicensingRequest request = new FakeLicensingRequest(Collections.singletonMap("action", "do-it-now")); //$NON-NLS-1$ //$NON-NLS-2$
 		String expected = "{\"error\":\"unsupported action do-it-now\"}"; //$NON-NLS-1$
-		dispatch(dispatcher, request, expected);
+		assertEquals(expected, dispatch(dispatcher, request));
 	}
 
-	private void dispatch(BaseRequestDispatcher dispatcher, FakeLicensingRequest request, String expected)
-			throws IOException {
+	private String dispatch(BaseRequestDispatcher dispatcher, FakeLicensingRequest request) throws IOException {
 		FakeLicensingResponse result = new FakeLicensingResponse();
 		dispatcher.dispatch(request, result);
-		assertEquals(expected, result.toString());
+		return result.toString();
 	}
 
 }
