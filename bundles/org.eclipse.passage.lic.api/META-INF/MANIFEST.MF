@@ -61,7 +61,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.lic.base",
+   org.eclipse.passage.lic.base,
+   org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.registry;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.requirements;
