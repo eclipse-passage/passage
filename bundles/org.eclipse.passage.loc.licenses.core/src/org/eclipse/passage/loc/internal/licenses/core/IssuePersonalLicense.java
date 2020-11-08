@@ -25,17 +25,14 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -133,20 +130,17 @@ final class IssuePersonalLicense {
 			}
 		}
 		Path path = new UserHomeProductResidence(product).get();
-		Path decrypted = path.resolve(license.getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
-		URI uri = URI.createFileURI(decrypted.toString());
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(license);
+		Path decrypted;
 		try {
-			resource.save(null);
+			decrypted = new PersistedDecoded(path, license)//
+					.write(license.getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
 			events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
-		} catch (IOException e) {
+		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_save_decoded, e));
 		}
 
-		Optional<StreamCodec> codec = codec(product);
+		Optional<StreamCodec> codec = new CodecSupplier(product).get();
 		if (!codec.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingIsPartial(), //
 					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, decrypted)));
@@ -179,10 +173,6 @@ final class IssuePersonalLicense {
 							new LicenseIssuingFailed(), //
 							LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
 		}
-	}
-
-	private Optional<StreamCodec> codec(LicensedProduct product) {
-		return new CodecSupplier(product).get();
 	}
 
 }
