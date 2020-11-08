@@ -13,6 +13,8 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
 Export-Package: org.eclipse.passage.lic.emf.ecore;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.lic.emf.ecore.util;
   x-friends:="org.eclipse.passage.lic.features.migration,
+   org.eclipse.passage.lic.emf.edit;x-internal:=true,
+   org.eclipse.passage.lic.internal.emf.i18n;x-internal:=true,
    org.eclipse.passage.lic.features.migration.tests,
    org.eclipse.passage.lic.licenses.migration,
    org.eclipse.passage.lic.licenses.migration.tests,
