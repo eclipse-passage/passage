@@ -29,7 +29,7 @@ public final class ParsedRequestTest extends LbcTestsBase {
 
 	@Test
 	public void positive() {
-		BackendLicensingRequest request = new FakeLicensingRequest(params(), ""); //$NON-NLS-1$
+		BackendLicensingRequest request = new FakeLicensingRequest(params());
 		ProductLicensesRequest miningRequest = Stream.of(request).map(new ParsedMiningRequest())
 				.collect(Collectors.toList()).get(0);
 		assertEquals(userValue(), miningRequest.requester().hardware());

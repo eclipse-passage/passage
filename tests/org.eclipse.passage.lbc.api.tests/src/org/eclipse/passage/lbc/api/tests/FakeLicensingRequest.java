@@ -22,6 +22,10 @@ public final class FakeLicensingRequest implements BackendLicensingRequest {
 	private final Map<String, String> params;
 	private final String body;
 
+	public FakeLicensingRequest(Map<String, String> params) {
+		this(params, ""); //$NON-NLS-1$
+	}
+
 	public FakeLicensingRequest(Map<String, String> params, String body) {
 		this.params = params;
 		this.body = body;
