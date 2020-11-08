@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.passage.lbc.api.tests.FakeLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lbc.internal.base.ParsedMiningRequest;

@@ -10,15 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.base.tests;
+package org.eclipse.passage.lbc.api.tests;
 
 import java.util.Map;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
-import org.eclipse.passage.lbc.internal.base.BaseRequester;
 
-public class FakeLicensingRequest implements BackendLicensingRequest {
+public final class FakeLicensingRequest implements BackendLicensingRequest {
 
 	private final Map<String, String> params;
 	private final String body;
@@ -35,7 +34,24 @@ public class FakeLicensingRequest implements BackendLicensingRequest {
 
 	@Override
 	public Requester requester() {
-		return new BaseRequester("process", "hardware", "feature"); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+		return new Requester() {
+
+			@Override
+			public String feature() {
+				return "feature"; //$NON-NLS-1$
+			}
+
+			@Override
+			public String hardware() {
+				return "hardware"; //$NON-NLS-1$
+			}
+
+			@Override
+			public String process() {
+				return "process"; //$NON-NLS-1$
+			}
+
+		};
 	}
 
 	@Override
