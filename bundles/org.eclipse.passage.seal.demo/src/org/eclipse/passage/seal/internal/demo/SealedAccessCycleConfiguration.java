@@ -86,7 +86,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new ComponentRequirements() //
 		));
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				// new RemoteConditions(transports()), //
+				// new RemoteConditions(keyKeepers(), codecs(), transports()), //
 				new UserHomeResidentConditions(miningEquipment()), //
 				new InstallationResidentConditions(miningEquipment()), //
 				new ConfigurationResidentConditions(miningEquipment())//

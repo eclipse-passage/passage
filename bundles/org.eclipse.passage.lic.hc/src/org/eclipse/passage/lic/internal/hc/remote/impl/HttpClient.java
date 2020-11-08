@@ -15,11 +15,13 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
@@ -35,8 +37,12 @@ public final class HttpClient implements Client<HttpURLConnection> {
 			return new BaseServiceInvocationResult<Collection<ConditionPack>>(
 					netConditions(connection(request), miner));
 		} catch (Exception e) {
-			return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnInfrastructureDenial(),
-					HcMessages.HttpClient_final_error_message, e));
+			return new BaseServiceInvocationResult<>(//
+					new BaseDiagnostic(//
+							Collections.emptyList(), //
+							Collections.singletonList(//
+									new Trouble(new ServiceFailedOnInfrastructureDenial(),
+											HcMessages.HttpClient_final_error_message, e))));
 		}
 	}
 
