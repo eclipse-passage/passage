@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -47,7 +48,7 @@ final class PersistedDecoded {
 
 	private void save(Path decrypted, Resource resource) throws LicensingException {
 		try {
-			resource.save(null);
+			resource.save(Collections.emptyMap());
 		} catch (IOException e) {
 			throw new LicensingException(//
 					String.format(LicensesCoreMessages.EmfObjectPersisted_failed, target, decrypted), e);
