@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
-final class EmfObjectPersisted {
+final class PersistedDecoded {
 
 	private final Path residence;
 	private final EObject target;
 
-	EmfObjectPersisted(Path residence, EObject target) {
+	PersistedDecoded(Path residence, EObject target) {
 		this.residence = residence;
 		this.target = target;
 	}

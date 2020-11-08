@@ -132,7 +132,7 @@ final class IssuePersonalLicense {
 		Path path = new UserHomeProductResidence(product).get();
 		Path decrypted;
 		try {
-			decrypted = new EmfObjectPersisted(path, license)//
+			decrypted = new PersistedDecoded(path, license)//
 					.write(license.getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
 			events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
 		} catch (LicensingException e) {
