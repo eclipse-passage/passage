@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
@@ -29,9 +30,11 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 final class DecryptedConditions implements ResponseHandler {
 
 	private final ConditionTransportRegistry transports;
+	private final FloatingServerConnection coordinates;
 
-	DecryptedConditions(ConditionTransportRegistry transports) {
+	DecryptedConditions(ConditionTransportRegistry transports, FloatingServerConnection coordinates) {
 		this.transports = transports;
+		this.coordinates = coordinates;
 	}
 
 	/**
@@ -40,22 +43,19 @@ final class DecryptedConditions implements ResponseHandler {
 	 */
 	@Override
 	public Collection<ConditionPack> read(byte[] raw, String contentType) throws LicensingException {
-		try (ByteArrayInputStream stream = new ByteArrayInputStream(keyDecoded(base64Decoded(raw)))) {
+		try (ByteArrayInputStream stream = new ByteArrayInputStream(raw)) {
 			return Collections.singleton(//
 					new BaseConditionPack(//
-							"net", //$NON-NLS-1$
-							transport(new ContentType.Of(contentType)).read(stream)));
+							source(), //
+							transport(new ContentType.Of(contentType)).read(stream)//
+					));
 		} catch (IOException e) {
 			throw new LicensingException(HcMessages.DecryptedConditions_reading_error, e);
 		}
 	}
 
-	private byte[] base64Decoded(byte[] raw) throws LicensingException {
-		return raw; // FIXME: implement
-	}
-
-	private byte[] keyDecoded(byte[] data) throws LicensingException {
-		return data; // FIXME: implement
+	private String source() {
+		return String.format("net:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
 	private ConditionTransport transport(ContentType contentType) throws LicensingException {

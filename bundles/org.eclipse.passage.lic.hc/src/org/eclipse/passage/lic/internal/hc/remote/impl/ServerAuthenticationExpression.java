@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-final class ServerAuthenticationExpression extends StringNamedData {
+public final class ServerAuthenticationExpression extends StringNamedData {
 
-	ServerAuthenticationExpression(String value) {
+	public ServerAuthenticationExpression(String value) {
 		super(value);
 	}
 
-	ServerAuthenticationExpression(FloatingServerConnection server) {
+	public ServerAuthenticationExpression(FloatingServerConnection server) {
 		this(server.getAuthentication().getExpression());
 	}
 

@@ -27,15 +27,15 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.api.conditions.UserRole;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditionsRequest;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
-import org.eclipse.passage.lic.internal.net.LicensingRole;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -60,7 +60,8 @@ public final class RemoteConditionsRequestTest {
 		assertTrue(url.getQuery().contains(new ProductIdentifier("any").key())); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains(new ProductVersion("any").key())); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains(new LicensingAction(new ConditionAction.Of("any")).key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new LicensingRole(new UserRole.Of("any")).key())); //$NON-NLS-1$
+		assertTrue(url.getQuery().contains(new ServerAuthenticationExpression("any").key())); //$NON-NLS-1$
+		assertTrue(url.getQuery().contains(new ServerAuthenticationType("any").key())); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains("user")); //$NON-NLS-1$
 		assertTrue(url.getQuery().contains(new LicensingContentType(new ContentType.Of("any")).key())); //$NON-NLS-1$
 	}
