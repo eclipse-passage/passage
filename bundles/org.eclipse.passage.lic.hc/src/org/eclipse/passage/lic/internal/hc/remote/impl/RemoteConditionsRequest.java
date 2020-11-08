@@ -16,26 +16,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.api.conditions.UserRole;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.net.HostPort;
-import org.eclipse.passage.lic.internal.net.LicensingAction;
-import org.eclipse.passage.lic.internal.net.LicensingRole;
 
 /**
  * <p>
@@ -65,33 +54,13 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
-					query());
+					new RequestParameters(product, access).query());
 		} catch (LicensingException //
 				| NumberFormatException //
 				| MalformedURLException //
 				| UnsupportedEncodingException e) {
 			throw new LicensingException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
 		}
-	}
-
-	private String query() throws UnsupportedEncodingException {
-		StringBuilder params = new StringBuilder();
-		Arrays.stream(//
-				new NamedData[] { //
-						new ProductIdentifier(encode(product.identifier())), //
-						new ProductVersion(encode(product.version())), //
-						new LicensingAction(new ConditionAction.Aquire()), //
-						new LicensingRole(new UserRole.Admin()), //
-						new LicensingContentType(new ContentType.Xml()), //
-						new LicenseUser("12345678") }) //$NON-NLS-1$ FIXME: for development: #564815
-				.map(NamedData.Writable<String>::new)//
-				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
-		return '?' + params.toString();
-
-	}
-
-	private String encode(String value) throws UnsupportedEncodingException {
-		return URLEncoder.encode(value, "UTF-8"); //$NON-NLS-1$
 	}
 
 	@Override

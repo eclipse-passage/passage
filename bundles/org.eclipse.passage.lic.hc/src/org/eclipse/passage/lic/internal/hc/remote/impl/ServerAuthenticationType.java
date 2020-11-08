@@ -12,12 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
+import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 final class ServerAuthenticationType extends StringNamedData {
 
-	protected ServerAuthenticationType(String value) {
+	ServerAuthenticationType(String value) {
 		super(value);
+	}
+
+	ServerAuthenticationType(FloatingServerConnection server) {
+		this(server.getAuthentication().getType());
 	}
 
 	@Override
