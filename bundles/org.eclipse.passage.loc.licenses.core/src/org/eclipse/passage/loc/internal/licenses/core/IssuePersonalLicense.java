@@ -12,15 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -35,22 +31,18 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
-import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorEvents;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
@@ -58,7 +50,6 @@ import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
-import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingIsPartial;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
@@ -140,39 +131,17 @@ final class IssuePersonalLicense {
 					LicensesCoreMessages.LicenseOperatorServiceImpl_failed_to_save_decoded, e));
 		}
 
-		Optional<StreamCodec> codec = new CodecSupplier(product).get();
-		if (!codec.isPresent()) {
-			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingIsPartial(), //
-					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, decrypted)));
+		Path encrypted;
+		try {
+			encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
+					.write(license.getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
+					LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
 		}
-
-		Path privateKeyPath = path.resolve(//
-				new FileNameFromLicensedProduct(product, new PassageFileExtension.PrivateKey()).get());
-		File privateProductToken = privateKeyPath.toFile();
-		if (!privateProductToken.exists()) {
-			String pattern = LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found;
-			String message = String.format(pattern, privateProductToken.getAbsolutePath());
-			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), message));
-		}
-
-		Path encrypted = path.resolve(license.getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
-		File licenseEncoded = encrypted.toFile();
-		try (FileInputStream licenseInput = new FileInputStream(decrypted.toFile());
-				FileOutputStream licenseOutput = new FileOutputStream(licenseEncoded);
-				FileInputStream keyStream = new FileInputStream(privateProductToken)) {
-			String username = product.identifier();
-			ProductVersionDescriptor pvd = products.getProductVersion(product.identifier(), product.version());
-			String password = operator.createPassword(pvd);
-			codec.get().encode(licenseInput, licenseOutput, keyStream, username, password);
-			events.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
-			attachments.put(LicensesPackage.eNAME, encrypted);
-			return new BaseServiceInvocationResult<>(new BaseIssuedLicense(userLicense, encrypted, decrypted));
-		} catch (Exception e) {
-			return new BaseServiceInvocationResult<>(//
-					new Trouble(//
-							new LicenseIssuingFailed(), //
-							LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
-		}
+		events.postEvent(OperatorLicenseEvents.encodedIssued(encrypted.toString()));
+		attachments.put(LicensesPackage.eNAME, encrypted);
+		return new BaseServiceInvocationResult<>(new BaseIssuedLicense(userLicense, encrypted, decrypted));
 	}
 
 }

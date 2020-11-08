@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.licenses.trouble.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicenseTroubleCodeMessages;
 
-@SuppressWarnings("restriction")
 public final class LicenseValidationFailed extends TroubleCode {
 
 	public LicenseValidationFailed() {
