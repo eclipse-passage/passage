@@ -14,22 +14,18 @@ package org.eclipse.passage.lic.internal.hc.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public final class AccessMessages extends NLS {
+public final class MinerMessages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.AccessMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.MinerMessages"; //$NON-NLS-1$
+	public static String RemoteConditions_insfficient_configuration;
+	public static String RemoteConditions_no_key_keeper;
+	public static String RemoteConditions_no_stream_codec;
 
-	public static String AccessPacks_failure;
-	public static String AccessPacks_failed_on_file;
-
-	public static String AccessPacks_failed_xmi_read;
-	public static String AccessPacks_unexpected_amount;
-	public static String AccessPacks_unexpected_type;
-	public static String AccessPacks_files_gaining_failed;
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, AccessMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, MinerMessages.class);
 	}
 
-	private AccessMessages() {
+	private MinerMessages() {
 	}
 }

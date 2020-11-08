@@ -17,11 +17,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
@@ -31,14 +30,12 @@ import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
-import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
+import org.eclipse.passage.lic.internal.net.HostPort;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 import org.eclipse.passage.lic.internal.net.LicensingRole;
-import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
-import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
 
 /**
  * <p>
@@ -54,21 +51,17 @@ import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates.HostPort;
 public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
 
 	private final LicensedProduct product;
-	private final Supplier<Path> settings;
+	private final FloatingLicenseAccess access;
 
-	public RemoteConditionsRequest(LicensedProduct product, Supplier<Path> settings) {
+	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access) {
 		this.product = product;
-		this.settings = settings;
-	}
-
-	public RemoteConditionsRequest(LicensedProduct product) {
-		this(product, new InstallationPath());
+		this.access = access;
 	}
 
 	@Override
 	public URL url() throws LicensingException {
 		try {
-			HostPort corrdinates = new LicensingServerCoordinates(settings).get();
+			HostPort corrdinates = new FloatingServerCoordinates(access).get();
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //

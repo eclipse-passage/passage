@@ -1,9 +1,10 @@
 /**
  * <ul>
  * General license cycle errors
- * <li>1xx - errors begotten by framework/services configuration or behavior, be
- * wrong product-under-license passage-equipment. Configuration part of these
- * errors are to be fixed on a product-under-licensing development side.
+ * <li>1xx - errors begotten by framework/services configuration or behavior,
+ * begotten by wrong product-under-license passage-equipment. Configuration part
+ * of these errors are to be fixed on a product-under-licensing development
+ * side.
  * <ul>
  * <li>100 - no framework found. Critical.</li>
  * <li>101 - service cannot operate due to the insufficient configuration or
@@ -23,9 +24,9 @@
  * <li>2xx - reserved</li>
  * <li>3xx - reserved</li>
  * <li>4xx - errors begotten by user data (license internals, credentials,
- * settings, etc) - the things a user of a product-under-licensing can change.
+ * settings, etc) - the things a user of a product-under-licensing can change,
+ * usually by requesting/purchasing new valid license packs.
  * <ul>
- * <li></li>
  * <li>401 - invalid license: a license cannot be applied as contains corrupted
  * data or data that are not readable with the active access cycle
  * configuration</li>
@@ -37,6 +38,8 @@
  * <li>405 - insufficient license coverage. Analytical error, reports that among
  * requested features there are some that do not have proper license
  * permissions.</li>
+ * <li>406 - invalid content of attendant license package file (floating license
+ * access file, etc)</li>
  * </ul>
  * </li>
  * </ul>

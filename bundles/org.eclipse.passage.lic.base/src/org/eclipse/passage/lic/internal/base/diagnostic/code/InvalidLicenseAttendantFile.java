@@ -10,16 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.internal.base.diagnostic.code;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public interface LicensingServerCoordinates {
-	/**
-	 * @return licensing server location in a form {@code host:port}
-	 * @throws LicensingException in case of errors during source data reading or
-	 *                            analysis
-	 */
-	HostPort get() throws LicensingException;
+public final class InvalidLicenseAttendantFile extends TroubleCode {
+
+	public InvalidLicenseAttendantFile() {
+		super(406, DiagnosticCodeMessages.getString("InvalidLicenseAttendantFile.license_expired")); //$NON-NLS-1$
+	}
 
 }

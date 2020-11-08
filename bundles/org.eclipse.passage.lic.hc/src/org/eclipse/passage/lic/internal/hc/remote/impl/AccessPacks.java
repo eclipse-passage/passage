@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -28,12 +29,18 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 
-final class AccessPacks {
+final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {
 
 	private final LicensedProduct product;
 	private final KeyKeeper key;
@@ -45,12 +52,26 @@ final class AccessPacks {
 		this.codec = codec;
 	}
 
-	Collection<FloatingLicenseAccess> get() throws LicensingException {
+	@Override
+	public ServiceInvocationResult<Collection<FloatingLicenseAccess>> get() {
 		List<FloatingLicenseAccess> result = new ArrayList<>();
-		for (Path file : new AccessFiles(product).get()) {
-			result.add(from(content(decoded(file))));
+		Collection<Path> files;
+		try {
+			files = new AccessFiles(product).get();
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnInfrastructureDenial(),
+					AccessMessages.AccessPacks_files_gaining_failed, e));
 		}
-		return result;
+		List<Trouble> failures = new ArrayList<>();
+		for (Path file : files) {
+			try {
+				result.add(from(content(decoded(file))));
+			} catch (LicensingException e) {
+				failures.add(new Trouble(new ServiceFailedOnMorsel(),
+						String.format(AccessMessages.AccessPacks_failed_on_file, file.toAbsolutePath()), e));
+			}
+		}
+		return new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.emptyList(), failures), result);
 	}
 
 	private byte[] decoded(Path file) throws LicensingException {
