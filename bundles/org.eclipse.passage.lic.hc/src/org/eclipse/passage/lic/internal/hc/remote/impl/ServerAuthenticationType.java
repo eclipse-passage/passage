@@ -14,23 +14,15 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-/**
- * <p>
- * Until proper user management is developed across both server and client, this
- * class supplies the dummy value for a user name for condition mining requests
- * </p>
- * 
- * FIXME: for development: #564815
- */
-final class TemporaryUser extends StringNamedData {
+final class ServerAuthenticationType extends StringNamedData {
 
-	protected TemporaryUser(String value) {
+	protected ServerAuthenticationType(String value) {
 		super(value);
 	}
 
 	@Override
 	public String key() {
-		return "user"; //$NON-NLS-1$
+		return "server.auth.type"; //$NON-NLS-1$
 	}
 
 }
