@@ -58,7 +58,7 @@ final class IssueFloatingLicense {
 		ServiceInvocationResult<List<Path>> license = //
 				persist(pack, product, residence, decryptedFile(pack), encryptedFile(pack));
 		ServiceInvocationResult<List<Path>> files = configs.stream()//
-				.map(access -> persist(pack, product, residence, decryptedFile(access), encryptedFile(access)))//
+				.map(access -> persist(access, product, residence, decryptedFile(access), encryptedFile(access)))//
 				.reduce(license, new BaseServiceInvocationResult.Sum<>(new SumOfLists<Path>()));
 		if (!new NoSevereErrors().test(files.diagnostic())) {
 			return new BaseServiceInvocationResult<>(files.diagnostic());
