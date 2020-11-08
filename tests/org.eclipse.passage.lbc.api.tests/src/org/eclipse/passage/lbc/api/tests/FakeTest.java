@@ -19,7 +19,7 @@ import org.junit.Test;
 public final class FakeTest {
 
 	@Test
-	void fake() {
+	public void fake() {
 		// until we have real tests in this bundle
 		assertEquals(FakeTest.class, getClass());
 	}
