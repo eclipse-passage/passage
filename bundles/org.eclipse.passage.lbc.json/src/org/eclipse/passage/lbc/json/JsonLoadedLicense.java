@@ -17,9 +17,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
+import org.eclipse.passage.lbc.internal.api.persistence.LoadedLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFile;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("restriction")
-public final class JsonLoadedLicense implements Function<Condition, Optional<PersistableLicense>> {
+public final class JsonLoadedLicense implements LoadedLicense {
 
 	private final LockFolder base;
 

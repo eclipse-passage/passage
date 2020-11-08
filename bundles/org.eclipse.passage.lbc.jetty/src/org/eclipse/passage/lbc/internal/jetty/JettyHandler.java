@@ -24,32 +24,54 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.passage.lbc.chains.Acquire;
-import org.eclipse.passage.lbc.chains.CanTake;
-import org.eclipse.passage.lbc.chains.Operation;
-import org.eclipse.passage.lbc.chains.Release;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.internal.api.Chain;
+import org.eclipse.passage.lbc.internal.api.chains.Chain;
 import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingRequest;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingResponse;
 import org.eclipse.passage.lbc.internal.base.BaseRequestDispatcher;
+import org.eclipse.passage.lbc.internal.base.ReleaseReport;
+import org.eclipse.passage.lbc.internal.base.chains.Acquire;
+import org.eclipse.passage.lbc.internal.base.chains.CanTake;
+import org.eclipse.passage.lbc.internal.base.chains.Operation;
+import org.eclipse.passage.lbc.internal.base.chains.Release;
 import org.eclipse.passage.lbc.internal.base.persistence.LockFolder;
+import org.eclipse.passage.lbc.json.JsonDeserialization;
+import org.eclipse.passage.lbc.json.JsonLoadedLicense;
+import org.eclipse.passage.lbc.json.JsonSerialization;
+import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 @SuppressWarnings("restriction")
 public final class JettyHandler extends AbstractHandler {
 
 	private final BackendRequestDispatcher dispatcher;
+	private final LockFolder lock;
 
 	public JettyHandler() {
+		lock = new LockFolder();
 		dispatcher = new BaseRequestDispatcher(chains());
+
 	}
 
 	private Map<BackendAction, Chain> chains() {
-		return Arrays
-				.asList(new Acquire(new LockFolder()), new CanTake(new LockFolder()), new Release(new LockFolder())) //
+		return Arrays.asList(acquire(), canTake(), release()) //
 				.stream() //
 				.collect(Collectors.toMap(Operation::action, Function.identity()));
+	}
+
+	private Acquire acquire() {
+		return new Acquire(new JsonDeserialization<>(ExaminationCertificate.class),
+				new JsonSerialization<ExaminationCertificate>(), new JsonLoadedLicense(lock));
+	}
+
+	private CanTake canTake() {
+		return new CanTake(new JsonDeserialization<>(Condition.class), new JsonLoadedLicense(lock));
+	}
+
+	private Release release() {
+		return new Release(new JsonDeserialization<>(ExaminationCertificate.class),
+				new JsonSerialization<ReleaseReport>(), new JsonLoadedLicense(lock));
 	}
 
 	@Override

@@ -21,7 +21,7 @@ import java.util.function.Function;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
-import org.eclipse.passage.lbc.internal.api.Chain;
+import org.eclipse.passage.lbc.internal.api.chains.Chain;
 
 /**
  * @since 1.0
