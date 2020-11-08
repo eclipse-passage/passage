@@ -19,14 +19,12 @@ import java.util.Arrays;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.api.conditions.UserRole;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
-import org.eclipse.passage.lic.internal.net.LicensingRole;
 
 final class RequestParameters {
 
@@ -53,7 +51,6 @@ final class RequestParameters {
 				new ProductIdentifier(encode(product.identifier())), //
 				new ProductVersion(encode(product.version())), //
 				new LicensingAction(new ConditionAction.Aquire()), //
-				new LicensingRole(new UserRole.Admin()), //
 				new LicensingContentType(new ContentType.Xml()), //
 				new LicenseUser(access.getUser()), //
 				new ServerAuthenticationType(access.getServer()), //
