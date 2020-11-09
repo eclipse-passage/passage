@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -27,7 +28,6 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
@@ -39,7 +39,7 @@ public final class RemoteConditions implements MinedConditions {
 	private final ConditionTransportRegistry transports;
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;
-	private final StringServiceId id = new StringServiceId("remote"); //$NON-NLS-1$
+	private final ConditionMiningTarget id = new ConditionMiningTarget.Remote(); // $NON-NLS-1$
 
 	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports) {
 		this.keys = keys;
@@ -48,7 +48,7 @@ public final class RemoteConditions implements MinedConditions {
 	}
 
 	@Override
-	public StringServiceId id() {
+	public ConditionMiningTarget id() {
 		return id;
 	}
 

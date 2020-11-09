@@ -21,34 +21,34 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.conditions.ConditionsFeatureFilter;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
-@SuppressWarnings("restriction")
 public final class Conditions implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 
-	private final Registry<StringServiceId, MinedConditions> registry;
+	private final Registry<ConditionMiningTarget, MinedConditions> registry;
 	private final LicensedProduct product;
 	private final Function<//
 			ServiceInvocationResult<Collection<ConditionPack>>, //
 			ServiceInvocationResult<Collection<ConditionPack>>> filter;
 
-	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product, String feature) {
+	public Conditions(Registry<ConditionMiningTarget, MinedConditions> registry, LicensedProduct product,
+			String feature) {
 		this(registry, product, new ConditionsFeatureFilter(feature).get());
 	}
 
-	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product) {
+	public Conditions(Registry<ConditionMiningTarget, MinedConditions> registry, LicensedProduct product) {
 		this(registry, product, Function.identity());
 	}
 
-	public Conditions(Registry<StringServiceId, MinedConditions> registry, LicensedProduct product,
+	public Conditions(Registry<ConditionMiningTarget, MinedConditions> registry, LicensedProduct product,
 			Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter) {
 		Objects.requireNonNull(registry, "Conditions::registry"); //$NON-NLS-1$
 		Objects.requireNonNull(product, "Conditions::product"); //$NON-NLS-1$

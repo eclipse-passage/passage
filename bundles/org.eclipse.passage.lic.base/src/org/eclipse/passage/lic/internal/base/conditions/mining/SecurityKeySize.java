@@ -19,7 +19,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-@SuppressWarnings("restriction")
 public final class SecurityKeySize extends BaseNamedData<EncryptionKeySize> {
 
 	public SecurityKeySize(Function<String, EncryptionKeySize> retrieve) {

@@ -17,15 +17,15 @@ import java.util.Collection;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 @SuppressWarnings("restriction")
 public final class FakeMinedConditions implements MinedConditions {
 
 	@Override
-	public StringServiceId id() {
-		return new StringServiceId("fake-mining-service"); //$NON-NLS-1$
+	public ConditionMiningTarget id() {
+		return new ConditionMiningTarget.Of("fake-mining-service"); //$NON-NLS-1$
 	}
 
 	@Override

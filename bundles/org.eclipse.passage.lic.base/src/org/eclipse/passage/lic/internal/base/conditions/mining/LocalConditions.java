@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
@@ -38,13 +38,12 @@ import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
  * declare.
  * </p>
  */
-@SuppressWarnings("restriction")
 public abstract class LocalConditions implements MinedConditions {
 
-	private final StringServiceId id;
+	private final ConditionMiningTarget id;
 	private final MiningEquipment equipment;
 
-	protected LocalConditions(StringServiceId id, MiningEquipment equipment) {
+	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment) {
 		Objects.requireNonNull(id, getClass().getSimpleName() + "::id"); //$NON-NLS-1$
 		Objects.requireNonNull(equipment, getClass().getSimpleName() + "::equipment"); //$NON-NLS-1$
 		this.id = id;
@@ -52,7 +51,7 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	@Override
-	public final StringServiceId id() {
+	public final ConditionMiningTarget id() {
 		return id;
 	}
 
