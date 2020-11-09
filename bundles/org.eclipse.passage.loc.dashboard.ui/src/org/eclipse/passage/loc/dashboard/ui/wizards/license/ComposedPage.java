@@ -22,17 +22,19 @@ import org.eclipse.e4.core.contexts.IEclipseContext;
 public final class ComposedPage implements Supplier<LicenseDataPage> {
 
 	private final String name;
+	private final String description;
 	private final IEclipseContext context;
 	private final List<Fields> blocks = new ArrayList<>();
 	private LicenseDataPage page;
 
-	public ComposedPage(String name, IEclipseContext context) {
+	public ComposedPage(String name, String description, IEclipseContext context) {
 		this.name = name;
+		this.description = description;
 		this.context = context;
 	}
 
 	public PageFields withBlock() {
-		PageFields block = new PageFields(this::get, context);
+		PageFields block = new PageFields(this::page, context);
 		blocks.add(block);
 		return block;
 	}
@@ -45,7 +47,7 @@ public final class ComposedPage implements Supplier<LicenseDataPage> {
 
 	@Override
 	public LicenseDataPage get() {
-		page = new LicenseDataPage(name, units());
+		page = new LicenseDataPage(name, description, units());
 		return page;
 	}
 
@@ -53,6 +55,10 @@ public final class ComposedPage implements Supplier<LicenseDataPage> {
 		return blocks.stream()//
 				.flatMap(block -> block.fields().stream())//
 				.collect(Collectors.toList());
+	}
+
+	private LicenseDataPage page() {
+		return page;
 	}
 
 }

@@ -30,7 +30,10 @@ public final class IssueUserConfigsRequestPage implements Supplier<IWizardPage> 
 	private final Supplier<Optional<Integer>> port;
 
 	IssueUserConfigsRequestPage(IEclipseContext context) {
-		page = new ComposedPage(IssueUserConfigsRequestPage.class.getSimpleName(), context);
+		page = new ComposedPage(//
+				IssueUserConfigsRequestPage.class.getSimpleName(), //
+				IssueLicensePageMessages.IssueUserConfigsRequestPage_page_description, //
+				context);
 		PageFields server = page.withBlock();
 		port = server.withPort();
 		ip = server.withIp();

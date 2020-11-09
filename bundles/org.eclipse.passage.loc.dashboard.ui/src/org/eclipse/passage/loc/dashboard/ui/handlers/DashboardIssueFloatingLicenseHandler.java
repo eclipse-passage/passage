@@ -52,7 +52,7 @@ public class DashboardIssueFloatingLicenseHandler {
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
 		dialog.getShell().setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
-		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
+		dialog.getShell().setSize(Math.max(800, dialog.getShell().getSize().x), 700);
 		dialog.open();
 	}
 

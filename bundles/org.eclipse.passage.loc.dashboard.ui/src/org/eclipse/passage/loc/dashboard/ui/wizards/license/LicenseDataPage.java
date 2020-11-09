@@ -26,12 +26,14 @@ import org.eclipse.swt.widgets.Composite;
 public final class LicenseDataPage extends WizardPage {
 
 	private final List<Field<?>> units;
+	private final String description;
 
-	protected LicenseDataPage(String name, List<Field<?>> units) {
+	protected LicenseDataPage(String name, String description, List<Field<?>> units) {
 		super(name);
+		this.description = description;
 		this.units = units;
 		setTitle(IssueLicensePageMessages.IssueLicenseRequestPage_page_title);
-		setDescription(IssueLicensePageMessages.IssueLicenseRequestPage_page_description);
+		installDefaultMessage();
 	}
 
 	@Override
@@ -54,7 +56,7 @@ public final class LicenseDataPage extends WizardPage {
 	}
 
 	private boolean validatePage() {
-		setMessage("", WizardPage.NONE); //$NON-NLS-1$
+		installDefaultMessage();
 		for (Field<?> unit : units) {
 			Optional<String> error = unit.errorIfAny();
 			if (error.isPresent()) {
@@ -63,6 +65,10 @@ public final class LicenseDataPage extends WizardPage {
 			}
 		}
 		return true;
+	}
+
+	private void installDefaultMessage() {
+		setMessage(description, WizardPage.NONE); // $NON-NLS-1$
 	}
 
 }
