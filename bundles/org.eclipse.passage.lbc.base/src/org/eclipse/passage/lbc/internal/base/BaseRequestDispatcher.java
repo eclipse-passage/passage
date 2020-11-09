@@ -49,6 +49,7 @@ public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 	 * @return serialized result to be sent
 	 */
 	private String execute(BackendLicensingRequest request) {
+		// identify the server
 		return Optional.ofNullable(action.apply(request))//
 				.map(chains::get)//
 				.map(c -> c.apply(request))//
