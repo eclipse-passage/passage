@@ -60,6 +60,10 @@ abstract class Cycle<T> {
 		return examine(this::requirements, this::permissions);
 	}
 
+	protected Optional<String> feature() {
+		return feature;
+	}
+
 	private T examine(Supplier<ServiceInvocationResult<Collection<Requirement>>> requirements, //
 			Supplier<ServiceInvocationResult<Collection<Permission>>> permissions) {
 		ServiceInvocationResult<Collection<Requirement>> reqs = requirements.get();

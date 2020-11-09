@@ -16,7 +16,6 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 
-@SuppressWarnings("restriction")
 public final class BaseDigestExpectation implements DigestExpectation {
 
 	private final byte[] digest;

@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 public class VaultMinedConditions extends LocalConditions {
 
 	protected VaultMinedConditions(MiningEquipment equipment) {
-		super(new StringServiceId("server-conditions"), equipment); //$NON-NLS-1$
+		super(new ConditionMiningTarget.Of("server-conditions"), equipment); //$NON-NLS-1$
 	}
 
 	@Override

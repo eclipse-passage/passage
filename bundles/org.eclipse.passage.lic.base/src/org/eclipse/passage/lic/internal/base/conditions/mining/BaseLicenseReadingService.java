@@ -19,10 +19,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
-@SuppressWarnings("restriction")
 public final class BaseLicenseReadingService implements LicenseReadingService {
 
 	private final LicensedProduct product;
@@ -48,7 +47,7 @@ public final class BaseLicenseReadingService implements LicenseReadingService {
 		private final Path license;
 
 		private OnTheFlyConditions(Path license, MiningEquipment equipment) {
-			super(new StringServiceId("on-the-fly"), equipment); //$NON-NLS-1$
+			super(new ConditionMiningTarget.Of("on-the-fly"), equipment); //$NON-NLS-1$
 			this.license = license;
 		}
 

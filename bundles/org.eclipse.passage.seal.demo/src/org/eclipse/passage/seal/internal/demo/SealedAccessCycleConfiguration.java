@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -69,7 +70,7 @@ import org.osgi.framework.FrameworkUtil;
 final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 
 	private final Registry<StringServiceId, ResolvedRequirements> requirements;
-	private final Registry<StringServiceId, MinedConditions> conditions;
+	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
 	private final Registry<ContentType, ConditionTransport> transports;
 	private final Registry<LicensedProduct, StreamCodec> codecs;
 	private final Registry<LicensedProduct, KeyKeeper> keys;

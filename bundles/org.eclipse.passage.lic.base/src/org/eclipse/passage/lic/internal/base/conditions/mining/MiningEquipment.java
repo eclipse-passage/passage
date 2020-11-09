@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
-@SuppressWarnings("restriction")
 public final class MiningEquipment {
 
 	private final KeyKeeperRegistry keys;

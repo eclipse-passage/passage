@@ -19,7 +19,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-@SuppressWarnings("restriction")
 public final class SecurityKeyAlgorithm extends BaseNamedData<EncryptionAlgorithm> {
 
 	public SecurityKeyAlgorithm(Function<String, EncryptionAlgorithm> retrieve) {
