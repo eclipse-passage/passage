@@ -78,7 +78,7 @@ public final class RemoteConditions implements MinedConditions {
 
 	private ServiceInvocationResult<Collection<ConditionPack>> conditions(LicensedProduct product,
 			FloatingLicenseAccess access) {
-		return new HttpClient().remoteConditions(//
+		return new HttpClient<Collection<ConditionPack>>().request(//
 				new RemoteConditionsRequest(product, access), //
 				new DecryptedConditions(transports, access.getServer()));
 	}

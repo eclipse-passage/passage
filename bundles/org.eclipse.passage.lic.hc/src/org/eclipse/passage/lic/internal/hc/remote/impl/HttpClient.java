@@ -14,11 +14,9 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
@@ -28,14 +26,12 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-public final class HttpClient implements Client<HttpURLConnection> {
+public final class HttpClient<T> implements Client<HttpURLConnection, T> {
 
 	@Override
-	public ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<HttpURLConnection> request,
-			ResponseHandler miner) {
+	public ServiceInvocationResult<T> request(Request<HttpURLConnection> request, ResponseHandler<T> handler) {
 		try {
-			return new BaseServiceInvocationResult<Collection<ConditionPack>>(
-					netConditions(connection(request), miner));
+			return new BaseServiceInvocationResult<T>(netResults(connection(request), handler));
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(//
 					new BaseDiagnostic(//
@@ -50,8 +46,7 @@ public final class HttpClient implements Client<HttpURLConnection> {
 		return request.config().apply((HttpURLConnection) request.url().openConnection());
 	}
 
-	private Collection<ConditionPack> netConditions(HttpURLConnection connection, ResponseHandler miner)
-			throws Exception {
+	private T netResults(HttpURLConnection connection, ResponseHandler<T> handler) throws Exception {
 		// actual connection is happening on the first 'get' (get response code)
 		if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			connection.getInputStream().close(); // close the connection
@@ -59,15 +54,15 @@ public final class HttpClient implements Client<HttpURLConnection> {
 					connection.getResponseCode(), //
 					connection.getResponseMessage()));
 		}
-		return read(connection, miner);
+		return read(connection, handler);
 	}
 
-	private Collection<ConditionPack> read(HttpURLConnection connection, ResponseHandler miner) throws Exception {
+	private T read(HttpURLConnection connection, ResponseHandler<T> handler) throws Exception {
 		byte[] content = new byte[connection.getContentLength()];
 		try (InputStream source = connection.getInputStream()) {
 			source.read(content); // read all and close the connection briefly
 		}
-		return miner.read(content, connection.getHeaderField("Content-Type")); //$NON-NLS-1$
+		return handler.read(content, connection.getHeaderField("Content-Type")); //$NON-NLS-1$
 	}
 
 }
