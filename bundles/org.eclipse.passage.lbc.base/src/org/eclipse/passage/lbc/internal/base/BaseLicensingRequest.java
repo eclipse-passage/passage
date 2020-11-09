@@ -12,46 +12,46 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.Requester;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
 /**
  * @since 1.0
  */
-public final class BaseLicensingRequest implements BackendLicensingRequest {
+public final class BaseLicensingRequest<R> implements BackendLicensingRequest {
 
-	private final HttpServletRequest httpRequest;
-	private final String body;
+	private final R request;
+	private final BiFunction<R, String, String> parameter;
+	private final Function<R, String> body;
 
-	public BaseLicensingRequest(HttpServletRequest httpRequest) throws IOException {
-		this.httpRequest = httpRequest;
-		this.body = body(httpRequest);
+	public BaseLicensingRequest(R request, BiFunction<R, String, String> parameter, Function<R, String> body) {
+		this.request = request;
+		this.parameter = parameter;
+		this.body = body;
+	}
+
+	@Override
+	public ContentType contentType() {
+		return new ContentType.Of(parameter("licensing.content.type")); //$NON-NLS-1$
 	}
 
 	@Override
 	public String body() {
-		return body;
+		return body.apply(request);
 	}
 
 	@Override
 	public String parameter(String key) {
-		return httpRequest.getParameter(key);
+		return parameter.apply(request, key);
 	}
 
 	@Override
 	public Requester requester() {
 		return new BaseRequester(parameter("process"), parameter("hardware"), parameter("feature")); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
-	}
-
-	private String body(HttpServletRequest httpRequest) throws IOException {
-		StringBuilder builder = new StringBuilder();
-		httpRequest.getReader().lines().forEachOrdered(builder::append);
-		String string = builder.toString();
-		return string;
 	}
 
 }

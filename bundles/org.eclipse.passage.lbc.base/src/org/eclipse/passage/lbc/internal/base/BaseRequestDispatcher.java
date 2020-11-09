@@ -29,10 +29,10 @@ import org.eclipse.passage.lbc.internal.api.chains.Chain;
 
 public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 
-	private final Map<BackendAction, Chain> chains;
+	private final Map<String, Chain> chains;
 	private final Function<BackendLicensingRequest, String> action;
 
-	public BaseRequestDispatcher(Map<BackendAction, Chain> chains) {
+	public BaseRequestDispatcher(Map<String, Chain> chains) {
 		this.chains = chains;
 		this.action = r -> r.parameter("action"); //$NON-NLS-1$
 	}
@@ -49,8 +49,8 @@ public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 	 * @return serialized result to be sent
 	 */
 	private String execute(BackendLicensingRequest request) {
+		// identify the server
 		return Optional.ofNullable(action.apply(request))//
-				.map(BackendAction.Of::new)//
 				.map(chains::get)//
 				.map(c -> c.apply(request))//
 				.orElseGet(() -> String.format("{\"error\":\"unsupported action %s\"}", //$NON-NLS-1$
