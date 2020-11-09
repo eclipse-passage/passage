@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * 
  * FIXME: for development: #564815
  */
-final class LicenseUser extends StringNamedData {
+public final class LicenseUser extends StringNamedData {
 
-	protected LicenseUser(String value) {
+	public LicenseUser(String value) {
 		super(value);
 	}
 

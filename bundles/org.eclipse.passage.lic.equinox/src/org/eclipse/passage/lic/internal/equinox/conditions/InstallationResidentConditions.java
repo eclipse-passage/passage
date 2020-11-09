@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
@@ -28,11 +28,10 @@ import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
  * settings folder located under the product installation directory (supplied by
  * the eclipse platform).
  */
-@SuppressWarnings("restriction")
 public final class InstallationResidentConditions extends LocalConditions {
 
 	public InstallationResidentConditions(MiningEquipment equipment) {
-		super(new StringServiceId("installation-conditions"), equipment); //$NON-NLS-1$
+		super(new ConditionMiningTarget.Local().child("installation-conditions"), equipment); //$NON-NLS-1$
 	}
 
 	@Override

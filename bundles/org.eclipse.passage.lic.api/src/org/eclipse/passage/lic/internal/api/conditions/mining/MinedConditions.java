@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 /**
  * <p>
@@ -39,7 +38,7 @@ import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
  * The service is intended to implement the third phase of <i>access cycle</i>.
  * </p>
  */
-public interface MinedConditions extends Service<StringServiceId> {
+public interface MinedConditions extends Service<ConditionMiningTarget> {
 
 	/**
 	 * <p>

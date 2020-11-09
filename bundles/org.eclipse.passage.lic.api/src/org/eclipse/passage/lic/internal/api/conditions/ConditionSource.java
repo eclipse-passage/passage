@@ -10,12 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.mining;
+package org.eclipse.passage.lic.internal.api.conditions;
 
-import java.util.function.Supplier;
-
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-
-public interface MinedConditionsRegistry extends Supplier<Registry<ConditionMiningTarget, MinedConditions>> {
+public interface ConditionSource {
 
 }

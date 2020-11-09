@@ -39,6 +39,9 @@ final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>
 	@Override
 	protected ServiceInvocationResult<ExaminationCertificate> stopOnCertificate(ExaminationCertificate certificate,
 			Diagnostic diagnostic) {
+		if (feature().isPresent()) {
+			return acquire(certificate, diagnostic);
+		}
 		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic, certificate);
 	}
 
@@ -48,6 +51,13 @@ final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>
 				new BaseExaminationCertificate(//
 						Collections.emptyMap(), //
 						Collections.emptySet()));
+	}
+
+	private ServiceInvocationResult<ExaminationCertificate> acquire(ExaminationCertificate certificate,
+			Diagnostic diagnostic) {
+
+		// TODO: YTBD
+		return new BaseServiceInvocationResult<ExaminationCertificate>(diagnostic, certificate);
 	}
 
 }

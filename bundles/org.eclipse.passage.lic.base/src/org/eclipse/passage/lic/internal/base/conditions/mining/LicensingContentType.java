@@ -17,7 +17,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-@SuppressWarnings("restriction")
 public final class LicensingContentType extends BaseNamedData<ContentType> {
 
 	public LicensingContentType(Function<String, ContentType> retrieve) {
