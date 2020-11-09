@@ -63,7 +63,7 @@ public final class Acquire extends Operation<RequestedCertificate, ExaminationCe
 
 	@Override
 	public LicensingAction action() {
-		return new LicensingAction(new ConditionAction.Aquire());
+		return new LicensingAction(new ConditionAction.Acquire());
 	}
 
 }

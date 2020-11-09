@@ -45,9 +45,9 @@ public abstract class ConditionAction {
 		return name;
 	}
 
-	public static final class Aquire extends ConditionAction {
+	public static final class Acquire extends ConditionAction {
 
-		public Aquire() {
+		public Acquire() {
 			super("acquire"); //$NON-NLS-1$
 		}
 

@@ -22,8 +22,6 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.BackendLicensingResponse;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.api.chains.Chain;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 /**
  * @since 1.0
@@ -31,10 +29,10 @@ import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 
-	private final Map<LicensingAction, Chain> chains;
+	private final Map<String, Chain> chains;
 	private final Function<BackendLicensingRequest, String> action;
 
-	public BaseRequestDispatcher(Map<LicensingAction, Chain> chains) {
+	public BaseRequestDispatcher(Map<String, Chain> chains) {
 		this.chains = chains;
 		this.action = r -> r.parameter("action"); //$NON-NLS-1$
 	}
@@ -52,8 +50,6 @@ public final class BaseRequestDispatcher implements BackendRequestDispatcher {
 	 */
 	private String execute(BackendLicensingRequest request) {
 		return Optional.ofNullable(action.apply(request))//
-				.map(ConditionAction.Of::new)//
-				.map(LicensingAction::new)//
 				.map(chains::get)//
 				.map(c -> c.apply(request))//
 				.orElseGet(() -> String.format("{\"error\":\"unsupported action %s\"}", //$NON-NLS-1$

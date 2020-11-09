@@ -50,7 +50,7 @@ final class RequestParameters {
 		return new NamedData[] { //
 				new ProductIdentifier(encode(product.identifier())), //
 				new ProductVersion(encode(product.version())), //
-				new LicensingAction(new ConditionAction.Aquire()), //
+				new LicensingAction(new ConditionAction.Acquire()), //
 				new LicensingContentType(new ContentType.Xml()), //
 				new LicenseUser(access.getUser()), //
 				new ServerAuthenticationType(access.getServer()), //

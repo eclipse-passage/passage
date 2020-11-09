@@ -40,7 +40,6 @@ import org.eclipse.passage.lbc.json.JsonLoadedLicense;
 import org.eclipse.passage.lbc.json.JsonSerialization;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 @SuppressWarnings("restriction")
 public final class JettyHandler extends AbstractHandler {
@@ -54,10 +53,10 @@ public final class JettyHandler extends AbstractHandler {
 
 	}
 
-	private Map<LicensingAction, Chain> chains() {
+	private Map<String, Chain> chains() {
 		return Arrays.asList(acquire(), canTake(), release()) //
 				.stream() //
-				.collect(Collectors.toMap(Operation::action, Function.identity()));
+				.collect(Collectors.toMap(this::key, Function.identity()));
 	}
 
 	private Acquire acquire() {
@@ -78,6 +77,10 @@ public final class JettyHandler extends AbstractHandler {
 	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse response)
 			throws IOException, ServletException {
 		dispatcher.dispatch(new BaseLicensingRequest(wrapper), new BaseLicensingResponse(response));
+	}
+
+	private String key(Operation<?, ?> operation) {
+		return operation.action().get().get().name();
 	}
 
 }
