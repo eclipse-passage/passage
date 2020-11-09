@@ -52,9 +52,13 @@ abstract class TextField extends LabeledField<String> {
 
 	private void installText(Composite parent) {
 		text = new Text(parent, SWT.BORDER);
-		text.addModifyListener(m -> modified.run());
-		text.addModifyListener(m -> text.setData(text.getText().trim()));
+		text.addModifyListener(m -> onModify());
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+	}
+
+	private void onModify() {
+		text.setData(text.getText().trim());
+		modified.run();
 	}
 
 	@Override

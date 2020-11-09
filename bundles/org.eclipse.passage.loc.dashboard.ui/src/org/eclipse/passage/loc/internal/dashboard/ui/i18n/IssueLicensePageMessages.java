@@ -58,6 +58,7 @@ public final class IssueLicensePageMessages extends NLS {
 	public static String IssueFloatingLicenseWizard_success_description;
 	public static String Floating_DataPage_description;
 	public static String Floating_DataPage_title;
+	public static String IssueUserConfigsRequestPage_page_description;
 
 	static {
 		// initialize resource bundle

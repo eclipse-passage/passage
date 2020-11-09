@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.ComposedPage;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.PageFields;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
+import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.request.FloatingLicenseData;
 
 public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
@@ -38,7 +39,10 @@ public final class IssueLicenseRequestPage implements Supplier<IWizardPage> {
 	private final ComposedPage page;
 
 	IssueLicenseRequestPage(IEclipseContext context, FloatingDataPack initial) {
-		page = new ComposedPage(IssueLicenseRequestPage.class.getSimpleName(), context);
+		page = new ComposedPage(//
+				IssueLicenseRequestPage.class.getSimpleName(), //
+				IssueLicensePageMessages.IssueLicenseRequestPage_page_description, //
+				context);
 		PageFields units = page.withBlock();
 		plan = units.withLicensePlan(initial.plan());
 		users = units.withUsers();
