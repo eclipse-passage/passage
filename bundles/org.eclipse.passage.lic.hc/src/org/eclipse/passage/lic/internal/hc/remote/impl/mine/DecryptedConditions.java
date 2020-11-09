@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

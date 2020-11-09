@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
 final class AccessFiles {
+
 	private final LicensedProduct product;
 
 	public AccessFiles(LicensedProduct product) {

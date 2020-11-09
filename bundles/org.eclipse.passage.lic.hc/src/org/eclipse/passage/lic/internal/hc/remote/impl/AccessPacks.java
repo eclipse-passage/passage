@@ -40,13 +40,13 @@ import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfr
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 
-final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {
+public final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {
 
 	private final LicensedProduct product;
 	private final KeyKeeper key;
 	private final StreamCodec codec;
 
-	AccessPacks(LicensedProduct product, KeyKeeper key, StreamCodec codec) {
+	public AccessPacks(LicensedProduct product, KeyKeeper key, StreamCodec codec) {
 		this.product = product;
 		this.key = key;
 		this.codec = codec;

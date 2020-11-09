@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.internal.net.HostPort;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
 
 final class FloatingServerCoordinates implements LicensingServerCoordinates {
+
 	private final FloatingLicenseAccess access;
 
 	FloatingServerCoordinates(FloatingLicenseAccess access) {
