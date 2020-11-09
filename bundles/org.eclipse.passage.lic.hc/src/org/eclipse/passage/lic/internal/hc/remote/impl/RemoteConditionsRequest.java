@@ -54,7 +54,7 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
-					new RequestParameters(product, access).query());
+					new MineRequestParameters(product, access).query());
 		} catch (LicensingException //
 				| NumberFormatException //
 				| MalformedURLException //

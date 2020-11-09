@@ -45,18 +45,18 @@ public abstract class ConditionAction {
 		return name;
 	}
 
-	public static final class Aquire extends ConditionAction {
+	public static final class Mine extends ConditionAction {
 
-		public Aquire() {
-			super("acquire"); //$NON-NLS-1$
+		public Mine() {
+			super("mine"); //$NON-NLS-1$
 		}
 
 	}
 
-	public static final class Keep extends ConditionAction {
+	public static final class Acquire extends ConditionAction {
 
-		public Keep() {
-			super("keep"); //$NON-NLS-1$
+		public Acquire() {
+			super("acquire"); //$NON-NLS-1$
 		}
 
 	}

@@ -26,12 +26,12 @@ import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
-final class RequestParameters {
+final class MineRequestParameters {
 
 	private final LicensedProduct product;
 	private final FloatingLicenseAccess access;
 
-	RequestParameters(LicensedProduct product, FloatingLicenseAccess access) {
+	MineRequestParameters(LicensedProduct product, FloatingLicenseAccess access) {
 		this.product = product;
 		this.access = access;
 	}
@@ -50,7 +50,7 @@ final class RequestParameters {
 		return new NamedData[] { //
 				new ProductIdentifier(encode(product.identifier())), //
 				new ProductVersion(encode(product.version())), //
-				new LicensingAction(new ConditionAction.Aquire()), //
+				new LicensingAction(new ConditionAction.Mine()), //
 				new LicensingContentType(new ContentType.Xml()), //
 				new LicenseUser(access.getUser()), //
 				new ServerAuthenticationType(access.getServer()), //

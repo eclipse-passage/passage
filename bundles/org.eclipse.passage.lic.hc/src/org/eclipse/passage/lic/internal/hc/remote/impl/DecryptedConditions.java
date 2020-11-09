@@ -47,7 +47,7 @@ final class DecryptedConditions implements ResponseHandler {
 			return Collections.singleton(//
 					new BaseConditionPack(//
 							source(), //
-							transport(new ContentType.Of(contentType)).read(stream)//
+							transport(contentType).read(stream)//
 					));
 		} catch (IOException e) {
 			throw new LicensingException(HcMessages.DecryptedConditions_reading_error, e);
@@ -58,12 +58,13 @@ final class DecryptedConditions implements ResponseHandler {
 		return String.format("net:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
-	private ConditionTransport transport(ContentType contentType) throws LicensingException {
-		if (!transports.get().hasService(contentType)) {
-			throw new LicensingException(String.format(HcMessages.DecryptedConditions_no_transport_for_content_type,
-					contentType.contentType()));
+	private ConditionTransport transport(String contentType) throws LicensingException {
+		ContentType type = new ContentType.Of(contentType);
+		if (!transports.get().hasService(type)) {
+			throw new LicensingException(
+					String.format(HcMessages.DecryptedConditions_no_transport_for_content_type, contentType));
 		}
-		return transports.get().service(contentType);
+		return transports.get().service(type);
 	}
 
 }

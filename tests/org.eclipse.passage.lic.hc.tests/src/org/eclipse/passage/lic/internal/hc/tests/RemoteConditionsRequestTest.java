@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
+import org.eclipse.passage.lic.internal.hc.remote.impl.LicenseUser;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServerAuthenticationType;
@@ -57,13 +58,29 @@ public final class RemoteConditionsRequestTest {
 		assertEquals(host, url.getHost());
 		assertEquals(port, url.getPort());
 		assertNotNull(url.getQuery());
-		assertTrue(url.getQuery().contains(new ProductIdentifier("any").key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new ProductVersion("any").key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new LicensingAction(new ConditionAction.Of("any")).key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new ServerAuthenticationExpression("any").key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new ServerAuthenticationType("any").key())); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains("user")); //$NON-NLS-1$
-		assertTrue(url.getQuery().contains(new LicensingContentType(new ContentType.Of("any")).key())); //$NON-NLS-1$
+		queryHas(url, new ProductIdentifier("any").key()); //$NON-NLS-1$
+		queryHas(url, new ProductVersion("any").key()); //$NON-NLS-1$
+		queryHas(url, //
+				new LicensingAction(new ConditionAction.Of("any")).key(), //$NON-NLS-1$
+				new ConditionAction.Mine().name());
+		queryHas(url, //
+				new ServerAuthenticationExpression("any").key(), //$NON-NLS-1$
+				expression);
+		queryHas(url, //
+				new ServerAuthenticationType("any").key(), //$NON-NLS-1$
+				environment);
+		queryHas(url, //
+				new LicenseUser(user).key(), //
+				user);
+		queryHas(url, //
+				new LicensingContentType(new ContentType.Of("any")).key(), //$NON-NLS-1$
+				new ContentType.Xml().contentType());
+	}
+
+	private void queryHas(URL url, String... values) {
+		for (String value : values) {
+			assertTrue(url.getQuery().contains(value));
+		}
 	}
 
 	private URL url() {
