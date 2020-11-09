@@ -22,16 +22,17 @@ import org.eclipse.passage.lbc.internal.api.persistence.LoadedLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.Serialization;
 import org.eclipse.passage.lbc.internal.base.AcquiringFailures;
-import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.SatisfiedRequirements;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 @SuppressWarnings("restriction")
 public final class Acquire extends Operation<RequestedCertificate, ExaminationCertificate> {
@@ -61,8 +62,8 @@ public final class Acquire extends Operation<RequestedCertificate, ExaminationCe
 	}
 
 	@Override
-	public BackendAction action() {
-		return new BackendAction.Acquire();
+	public LicensingAction action() {
+		return new LicensingAction(new ConditionAction.Aquire());
 	}
 
 }

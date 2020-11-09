@@ -22,15 +22,16 @@ import org.eclipse.passage.lbc.internal.api.persistence.Deserialization;
 import org.eclipse.passage.lbc.internal.api.persistence.LoadedLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.Serialization;
-import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.ReleaseReport;
 import org.eclipse.passage.lbc.internal.base.ReleaseReport.ReleaseResult;
 import org.eclipse.passage.lbc.internal.base.SatisfiedRequirements;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 @SuppressWarnings("restriction")
 public final class Release extends Operation<RequestedCertificate, ReleaseReport> {
@@ -63,8 +64,8 @@ public final class Release extends Operation<RequestedCertificate, ReleaseReport
 	}
 
 	@Override
-	public BackendAction action() {
-		return new BackendAction.Release();
+	public LicensingAction action() {
+		return new LicensingAction(new ConditionAction.Release());
 	}
 
 }

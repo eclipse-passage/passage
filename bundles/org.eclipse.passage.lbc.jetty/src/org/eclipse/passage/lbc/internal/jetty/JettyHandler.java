@@ -26,7 +26,6 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.passage.lbc.internal.api.BackendRequestDispatcher;
 import org.eclipse.passage.lbc.internal.api.chains.Chain;
-import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingRequest;
 import org.eclipse.passage.lbc.internal.base.BaseLicensingResponse;
 import org.eclipse.passage.lbc.internal.base.BaseRequestDispatcher;
@@ -41,6 +40,7 @@ import org.eclipse.passage.lbc.json.JsonLoadedLicense;
 import org.eclipse.passage.lbc.json.JsonSerialization;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 @SuppressWarnings("restriction")
 public final class JettyHandler extends AbstractHandler {
@@ -54,7 +54,7 @@ public final class JettyHandler extends AbstractHandler {
 
 	}
 
-	private Map<BackendAction, Chain> chains() {
+	private Map<LicensingAction, Chain> chains() {
 		return Arrays.asList(acquire(), canTake(), release()) //
 				.stream() //
 				.collect(Collectors.toMap(Operation::action, Function.identity()));
