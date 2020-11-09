@@ -12,13 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote;
 
-import java.util.Collection;
-
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
-public interface Client<C> {
+public interface Client<C, T> {
 
-	ServiceInvocationResult<Collection<ConditionPack>> remoteConditions(Request<C> request, ResponseHandler miner);
+	ServiceInvocationResult<T> request(Request<C> request, ResponseHandler<T> handler);
 
 }

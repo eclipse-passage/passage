@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-final class DecryptedConditions implements ResponseHandler {
+final class DecryptedConditions implements ResponseHandler<Collection<ConditionPack>> {
 
 	private final ConditionTransportRegistry transports;
 	private final FloatingServerConnection coordinates;
