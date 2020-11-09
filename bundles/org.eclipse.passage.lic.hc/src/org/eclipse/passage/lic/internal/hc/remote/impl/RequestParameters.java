@@ -31,7 +31,6 @@ public abstract class RequestParameters {
 				.map(NamedData.Writable<String>::new)//
 				.forEach(writable -> writable.write(params, "=", "&")); //$NON-NLS-1$ //$NON-NLS-2$
 		return '?' + params.toString();
-
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -44,4 +43,5 @@ public abstract class RequestParameters {
 			throw new LicensingException(AccessMessages.MineRequestParameters_encoding_failed, e);
 		}
 	}
+
 }
