@@ -20,16 +20,12 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
 final class MineRequestParameters extends RequestParameters {
 
-	private final String feature;
-
-	MineRequestParameters(LicensedProduct product, String feature, FloatingLicenseAccess access) {
+	MineRequestParameters(LicensedProduct product, FloatingLicenseAccess access) {
 		super(product, access);
-		this.feature = feature;
 	}
 
 	@Override
@@ -40,7 +36,7 @@ final class MineRequestParameters extends RequestParameters {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected List<NamedData> actionParameters() throws LicensingException {
-		return Collections.singletonList(new ProductIdentifier(encode(feature)));
+		return Collections.emptyList();
 	}
 
 }
