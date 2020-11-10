@@ -32,10 +32,13 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
@@ -43,17 +46,26 @@ import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 public final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {
 
 	private final LicensedProduct product;
-	private final KeyKeeper key;
-	private final StreamCodec codec;
+	private final KeyKeeperRegistry keys;
+	private final StreamCodecRegistry codecs;
 
-	public AccessPacks(LicensedProduct product, KeyKeeper key, StreamCodec codec) {
+	public AccessPacks(LicensedProduct product, KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
 		this.product = product;
-		this.key = key;
-		this.codec = codec;
+		this.keys = keys;
+		this.codecs = codecs;
 	}
 
 	@Override
 	public ServiceInvocationResult<Collection<FloatingLicenseAccess>> get() {
+		KeyKeeper key;
+		StreamCodec codec;
+		try {
+			codec = codec();
+			key = key();
+		} catch (LicensingException e) {
+			return new BaseServiceInvocationResult<>(
+					new Trouble(new ServiceCannotOperate(), AccessMessages.AccessPacks_insufficient_configuration, e));
+		}
 		List<FloatingLicenseAccess> result = new ArrayList<>();
 		Collection<Path> files;
 		try {
@@ -62,19 +74,25 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 			return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnInfrastructureDenial(),
 					AccessMessages.AccessPacks_files_gaining_failed, e));
 		}
+		List<Trouble> failures = accessPacks(key, codec, result, files);
+		return new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.emptyList(), failures), result);
+	}
+
+	private List<Trouble> accessPacks(KeyKeeper key, StreamCodec codec, List<FloatingLicenseAccess> result,
+			Collection<Path> files) {
 		List<Trouble> failures = new ArrayList<>();
 		for (Path file : files) {
 			try {
-				result.add(from(content(decoded(file))));
+				result.add(from(content(decoded(file, key, codec))));
 			} catch (LicensingException e) {
 				failures.add(new Trouble(new ServiceFailedOnMorsel(),
 						String.format(AccessMessages.AccessPacks_failed_on_file, file.toAbsolutePath()), e));
 			}
 		}
-		return new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.emptyList(), failures), result);
+		return failures;
 	}
 
-	private byte[] decoded(Path file) throws LicensingException {
+	private byte[] decoded(Path file, KeyKeeper key, StreamCodec codec) throws LicensingException {
 		try {
 			return new DecodedContent(file, key, codec).get();
 		} catch (IOException e) {
@@ -102,6 +120,20 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 					String.format(AccessMessages.AccessPacks_unexpected_type, only.eClass().getName()));
 		}
 		return FloatingLicenseAccess.class.cast(only);
+	}
+
+	private KeyKeeper key() throws LicensingException {
+		if (!keys.get().hasService(product)) {
+			throw new LicensingException(String.format(AccessMessages.AccessPacks_no_key_keeper, product));
+		}
+		return keys.get().service(product);
+	}
+
+	private StreamCodec codec() throws LicensingException {
+		if (!codecs.get().hasService(product)) {
+			throw new LicensingException(String.format(AccessMessages.AccessPacks_no_stream_codec, product));
+		}
+		return codecs.get().service(product);
 	}
 
 }
