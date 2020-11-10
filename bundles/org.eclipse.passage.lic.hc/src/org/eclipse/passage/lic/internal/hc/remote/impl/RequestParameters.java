@@ -41,7 +41,7 @@ public abstract class RequestParameters {
 		try {
 			return URLEncoder.encode(value, "UTF-8"); //$NON-NLS-1$
 		} catch (UnsupportedEncodingException e) {
-			throw new LicensingException(AccessMessages.MineRequestParameters_encoding_failed, e);
+			throw new LicensingException(AccessMessages.RequestParameters_encoding_failed, e);
 		}
 	}
 }
