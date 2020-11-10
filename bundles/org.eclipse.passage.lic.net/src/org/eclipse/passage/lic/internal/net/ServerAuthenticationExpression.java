@@ -10,27 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.net;
 
+import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-/**
- * <p>
- * Until proper user management is developed across both server and client, this
- * class supplies the dummy value for a user name for condition mining requests
- * </p>
- * 
- * FIXME: for development: #564815
- */
-public final class LicenseUser extends StringNamedData {
+public final class ServerAuthenticationExpression extends StringNamedData {
 
-	public LicenseUser(String value) {
+	public ServerAuthenticationExpression(String value) {
 		super(value);
+	}
+
+	public ServerAuthenticationExpression(FloatingServerConnection server) {
+		this(server.getAuthentication().getExpression());
 	}
 
 	@Override
 	public String key() {
-		return "user"; //$NON-NLS-1$
+		return "server.auth.expression"; //$NON-NLS-1$
 	}
 
 }

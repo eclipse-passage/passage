@@ -25,6 +25,8 @@ public final class AccessMessages extends NLS {
 	public static String AccessPacks_unexpected_amount;
 	public static String AccessPacks_unexpected_type;
 	public static String AccessPacks_files_gaining_failed;
+
+	public static String MineRequestParameters_encoding_failed;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, AccessMessages.class);

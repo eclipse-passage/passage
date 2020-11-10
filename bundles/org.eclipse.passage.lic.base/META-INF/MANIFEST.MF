@@ -14,7 +14,8 @@ Export-Package: org.eclipse.passage.lic.internal.base;
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.jface,
-   org.eclipse.passage.loc.licenses.core",
+   org.eclipse.passage.loc.licenses.core,
+   org.eclipse.passage.lic.net",
  org.eclipse.passage.lic.internal.base.access;x-internal:=true,
  org.eclipse.passage.lic.internal.base.conditions;
   x-friends:="org.eclipse.passage.lbc.base,

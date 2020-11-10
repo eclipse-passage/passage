@@ -10,24 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.net;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-public final class ServerAuthenticationExpression extends StringNamedData {
+public final class LicenseUser extends StringNamedData {
 
-	public ServerAuthenticationExpression(String value) {
+	public LicenseUser(String value) {
 		super(value);
-	}
-
-	public ServerAuthenticationExpression(FloatingServerConnection server) {
-		this(server.getAuthentication().getExpression());
 	}
 
 	@Override
 	public String key() {
-		return "server.auth.expression"; //$NON-NLS-1$
+		return "user"; //$NON-NLS-1$
 	}
 
 }

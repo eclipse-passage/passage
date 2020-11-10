@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +33,8 @@ import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.hc.i18n.MinerMessages;
+import org.eclipse.passage.lic.internal.hc.remote.impl.AccessPacks;
+import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
 
 public final class RemoteConditions implements MinedConditions {
 

@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,12 +36,12 @@ import org.eclipse.passage.lic.internal.net.HostPort;
  * <li>{@code config()} to gain a proper request headers configuring unit</li>
  * </ul>
  */
-public final class RemoteConditionsRequest implements Request<HttpURLConnection> {
+public abstract class RemoteRequest implements Request<HttpURLConnection> {
 
-	private final LicensedProduct product;
-	private final FloatingLicenseAccess access;
+	protected final LicensedProduct product;
+	protected final FloatingLicenseAccess access;
 
-	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access) {
+	public RemoteRequest(LicensedProduct product, FloatingLicenseAccess access) {
 		this.product = product;
 		this.access = access;
 	}
@@ -54,14 +53,15 @@ public final class RemoteConditionsRequest implements Request<HttpURLConnection>
 			return new URL("http", //$NON-NLS-1$
 					corrdinates.host(), //
 					Integer.parseInt(corrdinates.port()), //
-					new MineRequestParameters(product, access).query());
+					parameters().query());
 		} catch (LicensingException //
 				| NumberFormatException //
-				| MalformedURLException //
-				| UnsupportedEncodingException e) {
+				| MalformedURLException e) {
 			throw new LicensingException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
 		}
 	}
+
+	protected abstract RequestParameters parameters();
 
 	@Override
 	public Configuration<HttpURLConnection> config() {
