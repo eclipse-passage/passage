@@ -15,6 +15,7 @@ package org.eclipse.passage.lbc.base.tests;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.Map;
 
 import org.eclipse.passage.lbc.internal.api.Requester;
 import org.eclipse.passage.lbc.internal.api.persistence.BoundLicense;
@@ -49,6 +50,14 @@ import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertifi
 
 @SuppressWarnings("restriction")
 public abstract class LbcTestsBase {
+
+	protected String requestParameter(Map<String, String> map, String name) {
+		return map.get(name);
+	}
+
+	protected String requestBody(Map<String, String> map) {
+		return map.get("body"); //$NON-NLS-1$
+	}
 
 	protected LicensedProduct product() {
 		return new BaseLicensedProduct(identifierValue(), versionValue());
@@ -122,12 +131,12 @@ public abstract class LbcTestsBase {
 		return new BaseEvaluationInstructions(new EvaluationType.Hardware(), "expression"); //$NON-NLS-1$
 	}
 
-	private ValidityPeriod validityPeriod() {
+	protected ValidityPeriod validityPeriod() {
 		return new BaseValidityPeriodClosed(ZonedDateTime.now(),
 				ZonedDateTime.of(2021, 1, 1, 0, 0, 0, 0, ZoneId.systemDefault())); // $NON-NLS-1$
 	}
 
-	private VersionMatch versionMatch() {
+	protected VersionMatch versionMatch() {
 		return new BaseVersionMatch("version", new MatchingRuleDefault()); //$NON-NLS-1$
 	}
 

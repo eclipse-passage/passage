@@ -20,9 +20,9 @@ import org.eclipse.passage.lbc.internal.api.BackendLicensingRequest;
 import org.eclipse.passage.lbc.internal.api.chains.Chain;
 import org.eclipse.passage.lbc.internal.api.persistence.LoadedLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
-import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 public abstract class Operation<I, O> implements Chain {
 
@@ -47,7 +47,7 @@ public abstract class Operation<I, O> implements Chain {
 
 	protected abstract ServiceInvocationResult<O> execute(I input);
 
-	public abstract BackendAction action();
+	public abstract LicensingAction action();
 
 	@Override
 	public final String apply(BackendLicensingRequest request) {

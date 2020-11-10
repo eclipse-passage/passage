@@ -19,12 +19,13 @@ import org.eclipse.passage.lbc.internal.api.RequestedCondition;
 import org.eclipse.passage.lbc.internal.api.persistence.Deserialization;
 import org.eclipse.passage.lbc.internal.api.persistence.LoadedLicense;
 import org.eclipse.passage.lbc.internal.api.persistence.PersistableLicense;
-import org.eclipse.passage.lbc.internal.base.BackendAction;
 import org.eclipse.passage.lbc.internal.base.troubles.ConditionEntryNotFound;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 public final class CanTake extends Operation<RequestedCondition, Boolean> {
 
@@ -59,8 +60,8 @@ public final class CanTake extends Operation<RequestedCondition, Boolean> {
 	}
 
 	@Override
-	public BackendAction action() {
-		return new BackendAction.CanTake();
+	public LicensingAction action() {
+		return new LicensingAction(new ConditionAction.Of("can-take")); //$NON-NLS-1$
 	}
 
 }

@@ -12,10 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+
 /**
  * @since 1.0
  */
 public interface BackendLicensingRequest {
+
+	ContentType contentType();
 
 	String parameter(String key);
 
