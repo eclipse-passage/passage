@@ -23,11 +23,11 @@ import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
-final class AcquireRequestParameters extends RequestParameters {
+final class ReleaseRequestParameters extends RequestParameters {
 
 	private final String feature;
 
-	AcquireRequestParameters(LicensedProduct product, String feature, FloatingLicenseAccess access) {
+	ReleaseRequestParameters(LicensedProduct product, String feature, FloatingLicenseAccess access) {
 		super(product, access);
 		this.feature = feature;
 	}
