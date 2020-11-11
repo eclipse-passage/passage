@@ -705,6 +705,79 @@ public interface FloatingPackage extends EPackage {
 	int FLOATING_SERVER_CONNECTION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl <em>Grant Acqisition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl
+	 * @see org.eclipse.passage.lic.floating.model.impl.FloatingPackageImpl#getGrantAcqisition()
+	 * @generated
+	 */
+	int GRANT_ACQISITION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION__IDENTIFIER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION__FEATURE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Grant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION__GRANT = 2;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION__USER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Created</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION__CREATED = 4;
+
+	/**
+	 * The number of structural features of the '<em>Grant Acqisition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Grant Acqisition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRANT_ACQISITION_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.FloatingLicensePack <em>License Pack</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack</em>'.
@@ -1176,6 +1249,71 @@ public interface FloatingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFloatingServerConnection_Authentication();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition <em>Grant Acqisition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Grant Acqisition</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition
+	 * @generated
+	 */
+	EClass getGrantAcqisition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier()
+	 * @see #getGrantAcqisition()
+	 * @generated
+	 */
+	EAttribute getGrantAcqisition_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Feature</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature()
+	 * @see #getGrantAcqisition()
+	 * @generated
+	 */
+	EAttribute getGrantAcqisition_Feature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant <em>Grant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grant</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant()
+	 * @see #getGrantAcqisition()
+	 * @generated
+	 */
+	EAttribute getGrantAcqisition_Grant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser()
+	 * @see #getGrantAcqisition()
+	 * @generated
+	 */
+	EAttribute getGrantAcqisition_User();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated <em>Created</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Created</em>'.
+	 * @see org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated()
+	 * @see #getGrantAcqisition()
+	 * @generated
+	 */
+	EAttribute getGrantAcqisition_Created();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
