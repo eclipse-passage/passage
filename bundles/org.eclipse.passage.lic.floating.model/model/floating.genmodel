@@ -75,5 +75,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection/port"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//FloatingServerConnection/authentication"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition/grant"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.floating.ecore/model/floating.ecore#//GrantAcqisition/created"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

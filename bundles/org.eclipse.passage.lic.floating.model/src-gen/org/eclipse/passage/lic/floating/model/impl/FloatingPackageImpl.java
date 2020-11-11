@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.FloatingServer;
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.UserGrant;
@@ -111,6 +112,13 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 	 * @generated
 	 */
 	private EClass floatingServerConnectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass grantAcqisitionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -608,6 +616,66 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getGrantAcqisition() {
+		return grantAcqisitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Identifier() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Feature() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Grant() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_User() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGrantAcqisition_Created() {
+		return (EAttribute) grantAcqisitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -693,6 +761,13 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 		createEAttribute(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__IP);
 		createEAttribute(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__PORT);
 		createEReference(floatingServerConnectionEClass, FLOATING_SERVER_CONNECTION__AUTHENTICATION);
+
+		grantAcqisitionEClass = createEClass(GRANT_ACQISITION);
+		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__IDENTIFIER);
+		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__FEATURE);
+		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__GRANT);
+		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__USER);
+		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__CREATED);
 	}
 
 	/**
@@ -858,6 +933,23 @@ public class FloatingPackageImpl extends EPackageImpl implements FloatingPackage
 		initEReference(getFloatingServerConnection_Authentication(), this.getEvaluationInstructions(), null,
 				"authentication", null, 1, 1, FloatingServerConnection.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(grantAcqisitionEClass, GrantAcqisition.class, "GrantAcqisition", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGrantAcqisition_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				GrantAcqisition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGrantAcqisition_Feature(), ecorePackage.getEString(), "feature", null, 1, 1, //$NON-NLS-1$
+				GrantAcqisition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGrantAcqisition_Grant(), ecorePackage.getEString(), "grant", null, 1, 1, //$NON-NLS-1$
+				GrantAcqisition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGrantAcqisition_User(), ecorePackage.getEString(), "user", null, 1, 1, GrantAcqisition.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGrantAcqisition_Created(), ecorePackage.getEDate(), "created", null, 1, 1, //$NON-NLS-1$
+				GrantAcqisition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

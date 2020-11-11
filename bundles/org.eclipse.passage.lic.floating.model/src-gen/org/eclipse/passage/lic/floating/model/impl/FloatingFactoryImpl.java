@@ -94,6 +94,8 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 			return createFloatingLicenseAccess();
 		case FloatingPackage.FLOATING_SERVER_CONNECTION:
 			return createFloatingServerConnection();
+		case FloatingPackage.GRANT_ACQISITION:
+			return createGrantAcqisition();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -209,6 +211,17 @@ public class FloatingFactoryImpl extends EFactoryImpl implements FloatingFactory
 	public FloatingServerConnection createFloatingServerConnection() {
 		FloatingServerConnectionImpl floatingServerConnection = new FloatingServerConnectionImpl();
 		return floatingServerConnection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GrantAcqisition createGrantAcqisition() {
+		GrantAcqisitionImpl grantAcqisition = new GrantAcqisitionImpl();
+		return grantAcqisition;
 	}
 
 	/**

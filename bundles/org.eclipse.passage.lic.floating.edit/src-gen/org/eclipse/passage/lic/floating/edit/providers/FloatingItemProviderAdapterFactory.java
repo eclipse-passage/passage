@@ -334,6 +334,29 @@ public class FloatingItemProviderAdapterFactory extends FloatingAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GrantAcqisitionItemProvider grantAcqisitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGrantAcqisitionAdapter() {
+		if (grantAcqisitionItemProvider == null) {
+			grantAcqisitionItemProvider = new GrantAcqisitionItemProvider(this);
+		}
+
+		return grantAcqisitionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -460,6 +483,8 @@ public class FloatingItemProviderAdapterFactory extends FloatingAdapterFactory
 			floatingLicenseAccessItemProvider.dispose();
 		if (floatingServerConnectionItemProvider != null)
 			floatingServerConnectionItemProvider.dispose();
+		if (grantAcqisitionItemProvider != null)
+			grantAcqisitionItemProvider.dispose();
 	}
 
 }

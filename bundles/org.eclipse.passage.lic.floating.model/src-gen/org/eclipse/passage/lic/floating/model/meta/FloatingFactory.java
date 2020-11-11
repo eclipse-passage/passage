@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.FloatingServer;
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.api.UserGrant;
@@ -138,6 +139,15 @@ public interface FloatingFactory extends EFactory {
 	 * @generated
 	 */
 	FloatingServerConnection createFloatingServerConnection();
+
+	/**
+	 * Returns a new object of class '<em>Grant Acqisition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Grant Acqisition</em>'.
+	 * @generated
+	 */
+	GrantAcqisition createGrantAcqisition();
 
 	/**
 	 * Returns the package supported by this factory.
