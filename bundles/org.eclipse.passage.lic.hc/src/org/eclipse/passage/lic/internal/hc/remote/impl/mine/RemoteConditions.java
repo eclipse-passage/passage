@@ -26,20 +26,18 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.internal.hc.remote.impl.AccessPacks;
 import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteService;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 
-public final class RemoteConditions implements MinedConditions {
+public final class RemoteConditions extends RemoteService<Collection<ConditionPack>, RemoteServiceData.Bulk>
+		implements MinedConditions {
 
 	private final ConditionTransportRegistry transports;
-	private final KeyKeeperRegistry keys;
-	private final StreamCodecRegistry codecs;
-	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote(); // $NON-NLS-1$
+	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 
 	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports) {
-		this.keys = keys;
-		this.codecs = codecs;
+		super(keys, codecs);
 		this.transports = transports;
 	}
 
@@ -50,18 +48,16 @@ public final class RemoteConditions implements MinedConditions {
 
 	@Override
 	public ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product) {
-		ServiceInvocationResult<Collection<FloatingLicenseAccess>> accesses = accesses(product);
-		if (!new NoSevereErrors().test(accesses.diagnostic())) {
-			return new BaseServiceInvocationResult<>(accesses.diagnostic());
-		}
-		return accesses.data().get().stream()//
-				.map(access -> conditions(product, access))//
-				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<>()))//
-				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
+		return request(new RemoteServiceData.Bulk(product));
 	}
 
-	private ServiceInvocationResult<Collection<FloatingLicenseAccess>> accesses(LicensedProduct product) {
-		return new AccessPacks(product, keys, codecs).get();
+	@Override
+	protected ServiceInvocationResult<Collection<ConditionPack>> withServers(RemoteServiceData.Bulk params,
+			Collection<FloatingLicenseAccess> servers) {
+		return servers.stream()//
+				.map(access -> conditions(params.product(), access))//
+				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<>()))//
+				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
 	}
 
 	private ServiceInvocationResult<Collection<ConditionPack>> conditions(LicensedProduct product,
