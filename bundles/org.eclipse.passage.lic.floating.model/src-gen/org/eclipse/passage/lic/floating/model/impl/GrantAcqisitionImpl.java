@@ -1,43 +1,53 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.impl;
 
 import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Grant Acqisition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Grant
+ * Acqisition</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getGrant <em>Grant</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getUser <em>User</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getCreated <em>Created</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getFeature
+ * <em>Feature</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getGrant
+ * <em>Grant</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getUser
+ * <em>User</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.impl.GrantAcqisitionImpl#getCreated
+ * <em>Created</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements GrantAcqisition {
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -45,9 +55,9 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
@@ -56,8 +66,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 
 	/**
 	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -66,8 +76,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 
 	/**
 	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
@@ -75,9 +85,9 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	private String feature = FEATURE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getGrant() <em>Grant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getGrant() <em>Grant</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGrant()
 	 * @generated
 	 * @ordered
@@ -85,9 +95,9 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	protected static final String GRANT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getGrant() <em>Grant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGrant() <em>Grant</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGrant()
 	 * @generated
 	 * @ordered
@@ -95,9 +105,9 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	private String grant = GRANT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUser() <em>User</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getUser() <em>User</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUser()
 	 * @generated
 	 * @ordered
@@ -105,9 +115,9 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	protected static final String USER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getUser() <em>User</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getUser()
 	 * @generated
 	 * @ordered
@@ -116,8 +126,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 
 	/**
 	 * The default value of the '{@link #getCreated() <em>Created</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreated()
 	 * @generated
 	 * @ordered
@@ -126,8 +136,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 
 	/**
 	 * The cached value of the '{@link #getCreated() <em>Created</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getCreated()
 	 * @generated
 	 * @ordered
@@ -135,8 +145,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	private Date created = CREATED_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GrantAcqisitionImpl() {
@@ -144,8 +154,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,8 +164,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,8 +174,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,8 +189,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,8 +199,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -204,8 +214,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,8 +224,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,8 +239,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,8 +249,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -254,8 +264,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,8 +274,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,8 +289,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,8 +312,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -331,8 +341,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -360,8 +370,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -383,8 +393,8 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -407,4 +417,4 @@ public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements
 		return result.toString();
 	}
 
-} //GrantAcqisitionImpl
+} // GrantAcqisitionImpl

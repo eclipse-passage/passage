@@ -1,5 +1,15 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2020 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.floating.model.api;
 
 import java.util.Date;
@@ -7,19 +17,23 @@ import java.util.Date;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Grant Acqisition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Grant
+ * Acqisition</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant <em>Grant</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser <em>User</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated <em>Created</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier
+ * <em>Identifier</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature
+ * <em>Feature</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant
+ * <em>Grant</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser
+ * <em>User</em>}</li>
+ * <li>{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated
+ * <em>Created</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition()
@@ -28,9 +42,9 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface GrantAcqisition extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition_Identifier()
@@ -40,9 +54,11 @@ public interface GrantAcqisition extends EObject {
 	String getIdentifier();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getIdentifier
+	 * <em>Identifier</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
 	 * @generated
@@ -50,9 +66,9 @@ public interface GrantAcqisition extends EObject {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the value of the '<em><b>Feature</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Feature</em>' attribute.
 	 * @see #setFeature(String)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition_Feature()
@@ -62,9 +78,10 @@ public interface GrantAcqisition extends EObject {
 	String getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getFeature
+	 * <em>Feature</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Feature</em>' attribute.
 	 * @see #getFeature()
 	 * @generated
@@ -72,9 +89,9 @@ public interface GrantAcqisition extends EObject {
 	void setFeature(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Grant</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the value of the '<em><b>Grant</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Grant</em>' attribute.
 	 * @see #setGrant(String)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition_Grant()
@@ -84,9 +101,10 @@ public interface GrantAcqisition extends EObject {
 	String getGrant();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant <em>Grant</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getGrant
+	 * <em>Grant</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Grant</em>' attribute.
 	 * @see #getGrant()
 	 * @generated
@@ -94,9 +112,9 @@ public interface GrantAcqisition extends EObject {
 	void setGrant(String value);
 
 	/**
-	 * Returns the value of the '<em><b>User</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the value of the '<em><b>User</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>User</em>' attribute.
 	 * @see #setUser(String)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition_User()
@@ -106,9 +124,10 @@ public interface GrantAcqisition extends EObject {
 	String getUser();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser <em>User</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getUser
+	 * <em>User</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>User</em>' attribute.
 	 * @see #getUser()
 	 * @generated
@@ -116,9 +135,9 @@ public interface GrantAcqisition extends EObject {
 	void setUser(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Created</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the value of the '<em><b>Created</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Created</em>' attribute.
 	 * @see #setCreated(Date)
 	 * @see org.eclipse.passage.lic.floating.model.meta.FloatingPackage#getGrantAcqisition_Created()
@@ -128,9 +147,10 @@ public interface GrantAcqisition extends EObject {
 	Date getCreated();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated <em>Created</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.passage.lic.floating.model.api.GrantAcqisition#getCreated
+	 * <em>Created</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Created</em>' attribute.
 	 * @see #getCreated()
 	 * @generated
