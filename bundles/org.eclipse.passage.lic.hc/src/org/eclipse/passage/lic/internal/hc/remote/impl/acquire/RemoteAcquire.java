@@ -13,14 +13,19 @@
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.floating.model.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.EObjectFromXmiResponse;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeature;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-final class RemoteAcquire extends SignRequestService {
+final class RemoteAcquire extends ServiceAny<GrantAcqisition, RemoteServiceData.OfFeature> {
 
 	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
 		super(keys, codecs);
@@ -33,18 +38,27 @@ final class RemoteAcquire extends SignRequestService {
 	}
 
 	@Override
-	protected ResponseHandler<Boolean> handler() {
-		return new Response();
+	protected ResponseHandler<GrantAcqisition> handler(FloatingLicenseAccess access) {
+		return new AcquireResponseHandler(//
+				new EObjectFromXmiResponse<>(org.eclipse.passage.lic.floating.model.api.GrantAcqisition.class));
 	}
 
-	private static final class Response implements ResponseHandler<Boolean> {
+	private final static class AcquireResponseHandler implements ResponseHandler<GrantAcqisition> {
+		private final ResponseHandler<org.eclipse.passage.lic.floating.model.api.GrantAcqisition> delegate;
+
+		private AcquireResponseHandler(
+				ResponseHandler<org.eclipse.passage.lic.floating.model.api.GrantAcqisition> delegate) {
+			this.delegate = delegate;
+		}
 
 		@Override
-		public Boolean read(byte[] raw, String contentType) throws LicensingException {
-			// TODO parse the bytes to E-'acquire response'-Object and read boolean result
-			return null;
+		public GrantAcqisition read(byte[] raw, String contentType) throws LicensingException {
+			return apiGrant(delegate.read(raw, contentType));
+		}
+
+		private GrantAcqisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
+			return new PGrantAcquisition(source).get();
 		}
 
 	}
-
 }
