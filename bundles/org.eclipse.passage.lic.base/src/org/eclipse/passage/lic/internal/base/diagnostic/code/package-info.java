@@ -40,6 +40,8 @@
  * permissions.</li>
  * <li>406 - invalid content of attendant license package file (floating license
  * access file, etc)</li>
+ * <li>407 - absence of an expected attendant license package file (floating
+ * license access file, etc)</li>
  * </ul>
  * </li>
  * </ul>
