@@ -12,9 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,10 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -83,7 +77,7 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 		List<Trouble> failures = new ArrayList<>();
 		for (Path file : files) {
 			try {
-				result.add(from(content(decoded(file, key, codec))));
+				result.add(from(decoded(file, key, codec)));
 			} catch (LicensingException e) {
 				failures.add(new Trouble(new ServiceFailedOnMorsel(),
 						String.format(AccessMessages.AccessPacks_failed_on_file, file.toAbsolutePath()), e));
@@ -100,26 +94,8 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 		}
 	}
 
-	private EList<EObject> content(byte[] content) throws LicensingException {
-		Resource resource = new XMIResourceImpl();
-		try (InputStream input = new ByteArrayInputStream(content)) {
-			resource.load(input, Collections.emptyMap());
-		} catch (IOException e) {
-			throw new LicensingException(AccessMessages.AccessPacks_failed_xmi_read, e);
-		}
-		return resource.getContents();
-	}
-
-	private FloatingLicenseAccess from(EList<EObject> contents) throws LicensingException {
-		if (contents.size() != 1) {
-			throw new LicensingException(String.format(AccessMessages.AccessPacks_unexpected_amount, contents.size()));
-		}
-		EObject only = contents.get(0);
-		if (!FloatingLicenseAccess.class.isInstance(only)) {
-			throw new LicensingException(
-					String.format(AccessMessages.AccessPacks_unexpected_type, only.eClass().getName()));
-		}
-		return FloatingLicenseAccess.class.cast(only);
+	private FloatingLicenseAccess from(byte[] content) throws LicensingException {
+		return new EObjectFromBytes<>(content, FloatingLicenseAccess.class).get();
 	}
 
 	private KeyKeeper key() throws LicensingException {
