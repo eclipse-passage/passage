@@ -1,0 +1,98 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Copyright (c) 2020 ArSysOp
+ 
+  This program and the accompanying materials are made available under the
+  terms of the Eclipse Public License 2.0 which is available at
+  https://www.eclipse.org/legal/epl-2.0/.
+ 
+  SPDX-License-Identifier: EPL-2.0
+ 
+  Contributors:
+      ArSysOp - initial API and implementation -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>help.xhtml</title>
+  <link rel="stylesheet" href="styles/root.css" type="text/css" />
+  <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css" />
+</head>
+
+<body class="body">
+  <div class="content-help">
+    <h1>Quick Start Guide</h1>
+    <hr>
+    </hr>
+    <h2><img class="icon-help" src="images/feature.png"></img>Features</h2>
+    <p>
+      The <b>Feature</b> corresponds to the scenario for your product, that you want to restrict. For example, you may
+      want to restrict export to some proprietary format or other actions. You do not need to describe all the
+      functionality of your <b>Product</b>, but only the parts you want to restrict. The <i>identifier</i> attribute of
+      the <b>Feature</b> is important for the licensing configuration.
+    </p>
+    <h4>Feature Sets</h4>
+    <p>
+      The <b>Feature Set</b> groups the related functionality that may be distributed via several <b>Products</b>.
+    </p>
+    <h4>Feature Version</h4>
+    <p>
+      The <b>Feature Version</b> is a state of your <b>Feature</b> that included to the <b>Product Version</b>. The
+      <i>version</i> attribute
+      of the <b>Feature Version</b> is important for the licensing configuration.
+    </p>
+    <hr>
+    </hr>
+    <h2><img class="icon-help" src="images/product.png"></img>Products</h2>
+    <p>
+      The <b>Product</b> corresponds to the ready-to-use item in your offering.The <i>identifier</i> attribute of the
+      <b>Product</b> is
+      important for the licensing configuration.
+    </p>
+    <h4>Product Version</h4>
+    <p>
+      The <b>Product Version</b> corresponds to the binaries you are planning to release or already released for the
+      <b>Product</b>.It is recommended to create the <b>Product Version</b> for each external <b>Product</b>
+      shipment. The <i>version</i>
+      attribute of the <b>Product Version</b> is important for the licensing configuration. The <b>Product Version</b>
+      completes the definition of licensing configuration that will be checked in the user environment.
+    </p>
+    <h4>Product Line</h4>
+    <p>
+      The <b>Product Line</b> groups the related <b>Products</b> in your offering. It may be different editions of the
+      related
+      functionality.
+    </p>
+    <h4>Product Version Feature</h4>
+    <p>
+      The <b>Product Version Feature</b> describes the state of functionality included to the <b>Product Version</b>. It
+      is used as a reference to formulate <b>License Pack</b>.
+    </p>
+    <hr>
+    </hr>
+    <h2><img class="icon-help" src="images/user.png"></img>Users</h2>
+    <p>
+      The <b>User</b> describes the licensee of your functionality. The <i>identifier</i> of the <b>User</b> is a part
+      of
+      the <b>License Pack</b> definition.
+    </p>
+    <h4>Create User Origin</h4>
+    <p>
+      The <b>User Origin</b> provides access to <b>User</b> descriptors. The typical example of the <b>User Origin</b>
+      is
+      the list of
+      users registered on your web site to download <b>Product Version</b>.
+    </p>
+    <hr>
+    </hr>
+    <h2><img class="icon-help" src="images/license.png"></img>License Pack</h2>
+    <p>
+      The <b>License Pack</b> is a container for <b>License Grant</b> descriptors. It has references to the <b>Product
+        Version</b> that is licensed to <b>User</b>. <b>License Pack</b> is intended to be delivered to the <b>User</b>
+      environment to allow usage of restricted functionality.
+    </p>
+    <p><a href="http://org.eclipse.ui.intro/showPage?id=root">Back</a></p>
+  </div>
+</body>
+
+</html>
