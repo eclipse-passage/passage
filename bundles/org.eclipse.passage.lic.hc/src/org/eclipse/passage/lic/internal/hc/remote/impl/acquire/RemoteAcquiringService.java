@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -37,13 +38,13 @@ public final class RemoteAcquiringService implements LicenseAcquisitionService {
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> acquire(LicensedProduct product, String feature) {
+	public ServiceInvocationResult<GrantAcqisition> acquire(LicensedProduct product, String feature) {
 		return new RemoteAcquire(keys, codecs).request(new RemoteServiceData.OfFeature(product, feature));
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> release(LicensedProduct product, String feature) {
-		return new RemoteRelease(keys, codecs).request(new RemoteServiceData.OfFeature(product, feature));
+	public ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcqisition acquisition) {
+		return null; // TODO: YTBD
 	}
 
 }

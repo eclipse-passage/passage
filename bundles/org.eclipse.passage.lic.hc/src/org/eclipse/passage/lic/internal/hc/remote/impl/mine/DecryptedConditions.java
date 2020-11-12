@@ -55,7 +55,7 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 	}
 
 	private String source() {
-		return String.format("net:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
+		return String.format("floating:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
 	private ConditionTransport transport(String contentType) throws LicensingException {

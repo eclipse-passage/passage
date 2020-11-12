@@ -18,9 +18,15 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeature;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-final class RemoteRelease extends SignRequestService {
+/**
+ * FIXME: release is a 'post' request with XML Input and without Output. Both
+ * RemoteRequest and ResponseHandler interfaces must be revised for the purpose
+ */
+final class RemoteRelease extends ServiceAny<Boolean, RemoteServiceData.OfFeature> {
 
 	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
 		super(keys, codecs);
@@ -28,20 +34,18 @@ final class RemoteRelease extends SignRequestService {
 
 	@Override
 	protected RemoteRequest request(OfFeature params, FloatingLicenseAccess access) {
-		return new OfFeatureRequest(params, access, //
-				(data, server) -> new AcquireRequestParameters(data.product(), data.feature(), server));
+		return null; // YTBD
 	}
 
 	@Override
-	protected ResponseHandler<Boolean> handler() {
-		return new Response();
+	protected ResponseHandler<Boolean> handler(FloatingLicenseAccess access) {
+		return new ReleaseResponseHandler();
 	}
 
-	private static final class Response implements ResponseHandler<Boolean> {
+	private static final class ReleaseResponseHandler implements ResponseHandler<Boolean> {
 
 		@Override
 		public Boolean read(byte[] raw, String contentType) throws LicensingException {
-			// TODO parse the bytes to E-'release response'-Object and read boolean result
 			return null;
 		}
 

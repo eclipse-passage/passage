@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.function.BinaryOperator;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -24,13 +25,14 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
-import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
-import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteService;
+import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.Bulk;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceEvery;
 
-public final class RemoteConditions extends RemoteService<Collection<ConditionPack>, RemoteServiceData.Bulk>
+public final class RemoteConditions extends ServiceEvery<Collection<ConditionPack>, RemoteServiceData.Bulk>
 		implements MinedConditions {
 
 	private final ConditionTransportRegistry transports;
@@ -52,19 +54,23 @@ public final class RemoteConditions extends RemoteService<Collection<ConditionPa
 	}
 
 	@Override
-	protected ServiceInvocationResult<Collection<ConditionPack>> withServers(RemoteServiceData.Bulk params,
-			Collection<FloatingLicenseAccess> servers) {
-		return servers.stream()//
-				.map(access -> conditions(params.product(), access))//
-				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<>()))//
-				.orElse(new BaseServiceInvocationResult<>(Collections.emptyList()));
+	protected RemoteRequest request(Bulk params, FloatingLicenseAccess access) {
+		return new RemoteConditionsRequest(params.product(), access);
 	}
 
-	private ServiceInvocationResult<Collection<ConditionPack>> conditions(LicensedProduct product,
-			FloatingLicenseAccess access) {
-		return new HttpClient<Collection<ConditionPack>>().request(//
-				new RemoteConditionsRequest(product, access), //
-				new DecryptedConditions(transports, access.getServer()));
+	@Override
+	protected ResponseHandler<Collection<ConditionPack>> handler(FloatingLicenseAccess access) {
+		return new DecryptedConditions(transports, access.getServer());
+	}
+
+	@Override
+	protected BinaryOperator<Collection<ConditionPack>> sum() {
+		return new SumOfCollections<>();
+	}
+
+	@Override
+	protected Collection<ConditionPack> noResult() {
+		return Collections.emptyList();
 	}
 
 }

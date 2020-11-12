@@ -19,8 +19,8 @@ import org.eclipse.passage.lic.internal.api.registry.Service;
 
 public interface LicenseAcquisitionService extends Service<ConditionMiningTarget> {
 
-	ServiceInvocationResult<Boolean> acquire(LicensedProduct product, String feature);
+	ServiceInvocationResult<GrantAcqisition> acquire(LicensedProduct product, String feature);
 
-	ServiceInvocationResult<Boolean> release(LicensedProduct product, String feature);
+	ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcqisition acquisition);
 
 }

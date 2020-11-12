@@ -61,11 +61,11 @@ public abstract class RemoteRequest implements Request<HttpURLConnection> {
 		}
 	}
 
-	protected abstract RequestParameters parameters();
-
 	@Override
 	public Configuration<HttpURLConnection> config() {
 		return new HttpUrlConnectionConfiguration(1000, new HashMap<>());
 	}
+
+	protected abstract RequestParameters parameters();
 
 }
