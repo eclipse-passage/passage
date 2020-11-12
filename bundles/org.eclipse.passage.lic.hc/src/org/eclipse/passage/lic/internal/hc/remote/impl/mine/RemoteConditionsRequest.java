@@ -12,8 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
+import java.net.HttpURLConnection;
+
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.hc.remote.Configuration;
+import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
@@ -26,6 +30,11 @@ public final class RemoteConditionsRequest extends RemoteRequest {
 	@Override
 	protected RequestParameters parameters() {
 		return new MineRequestParameters(product, access);
+	}
+
+	@Override
+	public Configuration<HttpURLConnection> config() {
+		return new BaseConfiguration.Get();
 	}
 
 }

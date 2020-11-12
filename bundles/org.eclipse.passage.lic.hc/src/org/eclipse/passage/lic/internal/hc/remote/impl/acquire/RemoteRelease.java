@@ -12,29 +12,34 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
+import java.net.HttpURLConnection;
+
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.floating.model.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
+import org.eclipse.passage.lic.internal.hc.remote.impl.EObjectToBytes;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
-import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
-import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeature;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
 /**
  * FIXME: release is a 'post' request with XML Input and without Output. Both
  * RemoteRequest and ResponseHandler interfaces must be revised for the purpose
  */
-final class RemoteRelease extends ServiceAny<Boolean, RemoteServiceData.OfFeature> {
+final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
 
 	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
 		super(keys, codecs);
 	}
 
 	@Override
-	protected RemoteRequest request(OfFeature params, FloatingLicenseAccess access) {
-		return null; // YTBD
+	protected RemoteRequest request(ReleaseServiceData params, FloatingLicenseAccess access) {
+		return new Request(params, access);
 	}
 
 	@Override
@@ -46,7 +51,32 @@ final class RemoteRelease extends ServiceAny<Boolean, RemoteServiceData.OfFeatur
 
 		@Override
 		public Boolean read(byte[] raw, String contentType) throws LicensingException {
-			return null;
+			return null; // FIXME: change signature
+		}
+
+	}
+
+	private final class Request extends RemoteRequest {
+
+		private final ReleaseServiceData data;
+
+		Request(ReleaseServiceData data, FloatingLicenseAccess access) {
+			super(data.product(), access);
+			this.data = data;
+		}
+
+		@Override
+		public Configuration<HttpURLConnection> config() throws LicensingException {
+			return new BaseConfiguration.Post(payload());
+		}
+
+		@Override
+		protected RequestParameters parameters() {
+			return new ReleaseRequestParameters(product, data.acqisition().feature(), access);
+		}
+
+		private byte[] payload() throws LicensingException {
+			return new EObjectToBytes(new EGrantAcquisition(data.acqisition()).get()).get();
 		}
 
 	}

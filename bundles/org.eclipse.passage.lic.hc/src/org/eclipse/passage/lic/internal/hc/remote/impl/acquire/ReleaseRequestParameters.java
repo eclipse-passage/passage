@@ -34,7 +34,7 @@ final class ReleaseRequestParameters extends RequestParameters {
 
 	@Override
 	protected ConditionAction action() {
-		return new ConditionAction.Acquire();
+		return new ConditionAction.Release();
 	}
 
 	@SuppressWarnings("rawtypes")
