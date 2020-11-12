@@ -26,6 +26,8 @@ public final class AccessMessages extends NLS {
 	public static String AccessPacks_no_stream_codec;
 
 	public static String EObjectFromXmiResponse_unexpected_content_type;
+
+	public static String EObjectToBytes_failure;
 	public static String RemoteService_no_server;
 
 	public static String RequestParameters_encoding_failed;
