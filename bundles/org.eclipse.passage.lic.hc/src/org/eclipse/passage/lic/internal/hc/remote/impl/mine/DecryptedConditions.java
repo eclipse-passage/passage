@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
-import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
+import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 
@@ -51,7 +51,7 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 							transport(results.contentType()).read(stream)//
 					));
 		} catch (IOException e) {
-			throw new LicensingException(HcMessages.DecryptedConditions_reading_error, e);
+			throw new LicensingException(MineMessages.DecryptedConditions_reading_error, e);
 		}
 	}
 
@@ -61,7 +61,7 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 
 	private ConditionTransport transport(ContentType contentType) throws LicensingException {
 		if (!transports.get().hasService(contentType)) {
-			throw new LicensingException(String.format(HcMessages.DecryptedConditions_no_transport_for_content_type,
+			throw new LicensingException(String.format(MineMessages.DecryptedConditions_no_transport_for_content_type,
 					contentType.contentType()));
 		}
 		return transports.get().service(contentType);

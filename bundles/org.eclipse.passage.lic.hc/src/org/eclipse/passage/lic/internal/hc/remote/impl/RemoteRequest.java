@@ -19,13 +19,13 @@ import java.net.URL;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
+import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.net.HostPort;
 
 /**
  * <p>
- * Supplies all the data we are to tell a licensing server on mining request.
+ * Supplies all the data we are to tell a licensing server on a request.
  * </p>
  * <ul>
  * use
@@ -55,7 +55,7 @@ public abstract class RemoteRequest implements Request<HttpURLConnection> {
 		} catch (LicensingException //
 				| NumberFormatException //
 				| MalformedURLException e) {
-			throw new LicensingException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
+			throw new LicensingException(AccessMessages.Request_failed_to_compose_url, e);
 		}
 	}
 

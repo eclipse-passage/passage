@@ -35,8 +35,11 @@ public final class AccessMessages extends NLS {
 	public static String XmiToEObject_unexpected_amount;
 	public static String XmiToEObject_unexpected_type;
 
+	public static String Request_failed_to_compose_url;
+
+	public static String HttpClient_failure;
+
 	static {
-		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, AccessMessages.class);
 	}
 
