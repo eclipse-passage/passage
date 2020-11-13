@@ -14,8 +14,14 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType.Of;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 
 public final class ResultsTransfered {
 
@@ -27,14 +33,20 @@ public final class ResultsTransfered {
 	public ResultsTransfered(HttpURLConnection connection) throws Exception {
 		code = connection.getResponseCode();
 		message = connection.getResponseMessage();
-		data = read(connection); // should be eager
-		contentType = new ContentType.Of(connection.getHeaderField("Content-Type")); //$NON-NLS-1$
+		contentType = readContentType(connection);
+		data = readContent(connection); // should be eager
 	}
 
-	private byte[] read(HttpURLConnection connection) throws Exception {
+	private Of readContentType(HttpURLConnection connection) {
+		return new ContentType.Of(connection.getHeaderField("Content-Type")); //$NON-NLS-1$
+	}
+
+	private byte[] readContent(HttpURLConnection connection) throws Exception {
 		byte[] content = new byte[connection.getContentLength()];
 		try (InputStream source = connection.getInputStream()) {
-			source.read(content); // read all and close the connection briefly
+			if (!successful()) {
+				source.read(content); // read all and close the connection briefly
+			}
 		}
 		return content;
 	}
@@ -47,12 +59,21 @@ public final class ResultsTransfered {
 		return data;
 	}
 
-	public int code() {
-		return code;
+	public boolean successful() {
+		return code == HttpURLConnection.HTTP_OK;
 	}
 
-	public String message() {
-		return message;
+	public Diagnostic diagnose() {
+		if (successful()) {
+			return new BaseDiagnostic();
+		}
+		return new BaseDiagnostic(//
+				Collections.emptyList(), //
+				Collections.singletonList(//
+						new Trouble(//
+								new ServiceFailedOnMorsel(), //
+								String.format("%d: %s", code, message)) //$NON-NLS-1$
+				));
 	}
 
 }

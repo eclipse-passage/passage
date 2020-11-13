@@ -52,7 +52,7 @@ final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
 
 		@Override
 		public Boolean read(ResultsTransfered results) throws LicensingException {
-			return null; // FIXME: change signature
+			return results.successful();
 		}
 
 	}

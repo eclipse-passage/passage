@@ -14,18 +14,13 @@ package org.eclipse.passage.lic.internal.hc.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class HcMessages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.HcMessages"; //$NON-NLS-1$
+public class MineMessages extends NLS {
+	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.MineMessages"; //$NON-NLS-1$
 
 	public static String DecryptedConditions_no_transport_for_content_type;
 	public static String DecryptedConditions_reading_error;
 
-	public static String HttpClient_final_error_message;
-	public static String HttpClient_not_ok_response;
-
-	public static String RemoteConditionsRequest_failed_to_compose_url;
-
 	static {
-		NLS.initializeMessages(BUNDLE_NAME, HcMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, MineMessages.class);
 	}
 }
