@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.EObjectToBytes;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
 /**
@@ -50,7 +51,7 @@ final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
 	private static final class ReleaseResponseHandler implements ResponseHandler<Boolean> {
 
 		@Override
-		public Boolean read(byte[] raw, String contentType) throws LicensingException {
+		public Boolean read(ResultsTransfered results) throws LicensingException {
 			return null; // FIXME: change signature
 		}
 

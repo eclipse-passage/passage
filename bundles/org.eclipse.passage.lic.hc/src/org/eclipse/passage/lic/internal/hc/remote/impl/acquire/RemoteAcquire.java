@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeature;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
 final class RemoteAcquire extends ServiceAny<GrantAcqisition, RemoteServiceData.OfFeature> {
@@ -56,8 +57,8 @@ final class RemoteAcquire extends ServiceAny<GrantAcqisition, RemoteServiceData.
 		}
 
 		@Override
-		public GrantAcqisition read(byte[] raw, String contentType) throws LicensingException {
-			return apiGrant(delegate.read(raw, contentType));
+		public GrantAcqisition read(ResultsTransfered results) throws LicensingException {
+			return apiGrant(delegate.read(results));
 		}
 
 		private GrantAcqisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
