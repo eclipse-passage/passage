@@ -15,13 +15,11 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
-import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.net.HostPort;
 
@@ -59,11 +57,6 @@ public abstract class RemoteRequest implements Request<HttpURLConnection> {
 				| MalformedURLException e) {
 			throw new LicensingException(HcMessages.RemoteConditionsRequest_failed_to_compose_url, e);
 		}
-	}
-
-	@Override
-	public Configuration<HttpURLConnection> config() {
-		return new HttpUrlConnectionConfiguration(1000, new HashMap<>());
 	}
 
 	protected abstract RequestParameters parameters();

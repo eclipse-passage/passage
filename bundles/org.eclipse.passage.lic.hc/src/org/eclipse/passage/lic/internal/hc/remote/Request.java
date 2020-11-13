@@ -20,6 +20,6 @@ public interface Request<R> {
 
 	URL url() throws LicensingException;
 
-	Configuration<R> config();
+	Configuration<R> config() throws LicensingException;
 
 }
