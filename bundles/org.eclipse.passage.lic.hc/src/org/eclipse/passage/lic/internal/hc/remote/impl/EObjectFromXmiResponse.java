@@ -26,17 +26,18 @@ public final class EObjectFromXmiResponse<T> implements ResponseHandler<T> {
 	}
 
 	@Override
-	public T read(byte[] raw, String contentType) throws LicensingException {
+	public T read(ResultsTransfered results) throws LicensingException {
 		// TODO we use `transport`s for Conditions,
 		// design transports here too should the need arise
-		contentTypeIsExpected(contentType);
-		return new EObjectFromBytes<>(raw, expected).get();
+		contentTypeIsExpected(results);
+		return new EObjectFromBytes<>(results.data(), expected).get();
 	}
 
-	private void contentTypeIsExpected(String contentType) throws LicensingException {
-		if (!new ContentType.Xml().contentType().equals(contentType)) {
+	private void contentTypeIsExpected(ResultsTransfered results) throws LicensingException {
+		ContentType.Xml xml = new ContentType.Xml();
+		if (!xml.equals(results.contentType())) {
 			throw new LicensingException(String.format(AccessMessages.EObjectFromXmiResponse_unexpected_content_type,
-					contentType, new ContentType.Xml().contentType()));
+					results.contentType(), xml.contentType()));
 		}
 	}
 

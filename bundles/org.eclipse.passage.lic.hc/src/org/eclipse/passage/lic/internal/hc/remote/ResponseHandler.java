@@ -13,9 +13,10 @@
 package org.eclipse.passage.lic.internal.hc.remote;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 
 public interface ResponseHandler<T> {
 
-	T read(byte[] raw, String contentType) throws LicensingException;
+	T read(ResultsTransfered result) throws LicensingException;
 
 }

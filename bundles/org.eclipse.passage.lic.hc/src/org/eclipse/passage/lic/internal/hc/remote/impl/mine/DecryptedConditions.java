@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.HcMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 
 final class DecryptedConditions implements ResponseHandler<Collection<ConditionPack>> {
 
@@ -42,12 +43,12 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 	 * {@linkplain ConditionTransport} evolves to support condition packs #568621
 	 */
 	@Override
-	public Collection<ConditionPack> read(byte[] raw, String contentType) throws LicensingException {
-		try (ByteArrayInputStream stream = new ByteArrayInputStream(raw)) {
+	public Collection<ConditionPack> read(ResultsTransfered results) throws LicensingException {
+		try (ByteArrayInputStream stream = new ByteArrayInputStream(results.data())) {
 			return Collections.singleton(//
 					new BaseConditionPack(//
 							source(), //
-							transport(contentType).read(stream)//
+							transport(results.contentType()).read(stream)//
 					));
 		} catch (IOException e) {
 			throw new LicensingException(HcMessages.DecryptedConditions_reading_error, e);
@@ -58,13 +59,12 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 		return String.format("floating:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
-	private ConditionTransport transport(String contentType) throws LicensingException {
-		ContentType type = new ContentType.Of(contentType);
-		if (!transports.get().hasService(type)) {
-			throw new LicensingException(
-					String.format(HcMessages.DecryptedConditions_no_transport_for_content_type, contentType));
+	private ConditionTransport transport(ContentType contentType) throws LicensingException {
+		if (!transports.get().hasService(contentType)) {
+			throw new LicensingException(String.format(HcMessages.DecryptedConditions_no_transport_for_content_type,
+					contentType.contentType()));
 		}
-		return transports.get().service(type);
+		return transports.get().service(contentType);
 	}
 
 }

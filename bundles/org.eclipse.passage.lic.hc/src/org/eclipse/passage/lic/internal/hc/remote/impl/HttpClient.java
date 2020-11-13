@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Collections;
 
@@ -50,19 +50,15 @@ public final class HttpClient<T> implements Client<HttpURLConnection, T> {
 		// actual connection is happening on the first 'get' (get response code)
 		if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
 			connection.getInputStream().close(); // close the connection
-			throw new RuntimeException(String.format(HcMessages.HttpClient_not_ok_response, //
-					connection.getResponseCode(), //
-					connection.getResponseMessage()));
+			throw notOk(connection);
 		}
-		return read(connection, handler);
+		return handler.read(new ResultsTransfered(connection));
 	}
 
-	private T read(HttpURLConnection connection, ResponseHandler<T> handler) throws Exception {
-		byte[] content = new byte[connection.getContentLength()];
-		try (InputStream source = connection.getInputStream()) {
-			source.read(content); // read all and close the connection briefly
-		}
-		return handler.read(content, connection.getHeaderField("Content-Type")); //$NON-NLS-1$
+	private RuntimeException notOk(HttpURLConnection connection) throws IOException {
+		return new RuntimeException(String.format(HcMessages.HttpClient_not_ok_response, //
+				connection.getResponseCode(), //
+				connection.getResponseMessage()));
 	}
 
 }
