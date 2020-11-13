@@ -17,6 +17,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
+import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -45,6 +47,7 @@ import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
+import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.MunichProtocolExpressionParseService;
@@ -54,6 +57,8 @@ import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentC
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
+import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
+import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.io.BundleKeyKeeper;
@@ -80,6 +85,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
+	private final Registry<ConditionMiningTarget, LicenseAcquisitionService> acquirers;
 
 	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -123,6 +129,12 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 		));
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionsExaminationService()//
+		));
+		acquirers = new ReadOnlyRegistry<>(Arrays.asList(//
+				// new RemoteAcquisitionService(keyKeepers(), codecs()), //
+				new UserHomeLicenseAcquisitionService(), //
+				new InstallationLicenseAcquisitionService(), //
+				new ConfigurationLicenseAcquisitionService()//
 		));
 	}
 
@@ -187,6 +199,11 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	@Override
 	public PermissionsExaminationServicesRegistry examinators() {
 		return () -> examinators;
+	}
+
+	@Override
+	public LicenseAcquisitionServicesRegistry acquirers() {
+		return () -> acquirers;
 	}
 
 }

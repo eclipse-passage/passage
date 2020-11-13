@@ -16,7 +16,6 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
@@ -28,7 +27,7 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 public final class UserHomeResidentConditions extends LocalConditions {
 
 	public UserHomeResidentConditions(MiningEquipment equipment) {
-		super(new ConditionMiningTarget.Local().child("user-home-conditions"), equipment); //$NON-NLS-1$
+		super(new UserHomeMiningTarget().get(), equipment);
 	}
 
 	@Override

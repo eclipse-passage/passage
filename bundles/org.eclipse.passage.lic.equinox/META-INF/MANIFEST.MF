@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="1.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lic.internal.equinox;x-internal:=true,
+ org.eclipse.passage.lic.internal.equinox.acquire;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.events;
   x-friends:="org.eclipse.passage.loc.features.core,

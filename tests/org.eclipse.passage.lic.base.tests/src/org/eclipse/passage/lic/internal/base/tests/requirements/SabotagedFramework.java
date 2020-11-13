@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -53,6 +54,7 @@ final class SabotagedFramework implements Framework {
 	}
 
 	private static class SabotagedAccessCycleConfiguration implements AccessCycleConfiguration {
+
 		private <I extends ServiceId, S extends Service<I>> Registry<I, S> noService() {
 			return new ReadOnlyRegistry<I, S>(new ArrayList<>());
 		}
@@ -109,6 +111,11 @@ final class SabotagedFramework implements Framework {
 
 		@Override
 		public PermissionsExaminationServicesRegistry examinators() {
+			return () -> noService();
+		}
+
+		@Override
+		public LicenseAcquisitionServicesRegistry acquirers() {
 			return () -> noService();
 		}
 
