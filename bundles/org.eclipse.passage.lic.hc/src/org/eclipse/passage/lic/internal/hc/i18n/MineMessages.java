@@ -20,8 +20,6 @@ public class MineMessages extends NLS {
 	public static String DecryptedConditions_no_transport_for_content_type;
 	public static String DecryptedConditions_reading_error;
 
-	public static String HttpClient_final_error_message;
-
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, MineMessages.class);
 	}
