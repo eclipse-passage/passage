@@ -10,14 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.acquire;
+package org.eclipse.passage.lic.internal.api.access;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public interface LicenseAcquisitionServicesRegistry
-		extends Supplier<Registry<ConditionMiningTarget, LicenseAcquisitionService>> {
+public interface GrantLock {
+
+	ExaminationCertificate certificate();
+
+	Optional<GrantAcqisition> grant();
 
 }
