@@ -27,6 +27,8 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
+@Deprecated
+//FIXME: to be reimplemented
 public final class Mine implements Function<ProductLicensesRequest, ServiceInvocationResult<List<Resource>>> {
 
 	private final BackendServerConfiguration configuration;

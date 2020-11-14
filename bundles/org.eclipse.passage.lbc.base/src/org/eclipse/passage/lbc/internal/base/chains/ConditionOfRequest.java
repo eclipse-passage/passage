@@ -20,6 +20,8 @@ import org.eclipse.passage.lbc.internal.base.BaseRequestedCondition;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
+@Deprecated
+// FIXME: to be reimplemented
 public final class ConditionOfRequest implements Function<BackendLicensingRequest, RequestedCondition> {
 
 	private final Function<String, ServiceInvocationResult<Condition>> deserialization;

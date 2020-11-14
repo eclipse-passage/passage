@@ -20,6 +20,8 @@ import org.eclipse.passage.lbc.internal.api.persistence.Deserialization;
 import org.eclipse.passage.lbc.internal.base.BaseRequestedCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
+@Deprecated
+//FIXME: to be reimplemented
 public final class CertificateOfRequest implements Function<BackendLicensingRequest, RequestedCertificate> {
 
 	private final Deserialization<ExaminationCertificate> deserialization;
