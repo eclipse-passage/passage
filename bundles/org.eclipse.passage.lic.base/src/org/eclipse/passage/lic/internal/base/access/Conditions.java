@@ -20,8 +20,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.registry.Registry;

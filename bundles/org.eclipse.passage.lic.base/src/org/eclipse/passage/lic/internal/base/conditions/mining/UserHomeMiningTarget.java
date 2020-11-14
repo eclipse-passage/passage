@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 
 public final class UserHomeMiningTarget implements Supplier<ConditionMiningTarget> {
 

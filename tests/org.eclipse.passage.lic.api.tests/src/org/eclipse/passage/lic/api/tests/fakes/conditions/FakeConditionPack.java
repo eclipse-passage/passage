@@ -15,13 +15,14 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 import java.util.Collection;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 @SuppressWarnings("restriction")
 public final class FakeConditionPack implements ConditionPack {
 
 	@Override
-	public String origin() {
+	public ConditionOrigin origin() {
 		throw new UnsupportedOperationException();
 	}
 

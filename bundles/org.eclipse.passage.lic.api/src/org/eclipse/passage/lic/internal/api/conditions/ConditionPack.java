@@ -27,7 +27,7 @@ import java.util.Collection;
  */
 public interface ConditionPack {
 
-	String origin();
+	ConditionOrigin origin();
 
 	Collection<Condition> conditions();
 

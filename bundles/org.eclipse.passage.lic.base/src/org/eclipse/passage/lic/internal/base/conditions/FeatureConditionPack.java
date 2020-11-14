@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 /**
@@ -36,7 +37,7 @@ public final class FeatureConditionPack implements ConditionPack {
 	}
 
 	@Override
-	public String origin() {
+	public ConditionOrigin origin() {
 		return parent.origin();
 	}
 

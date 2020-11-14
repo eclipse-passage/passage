@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
@@ -27,6 +28,7 @@ public final class FakeCondition implements Condition {
 	private Optional<VersionMatch> version = Optional.empty();
 	private Optional<ValidityPeriod> period = Optional.empty();
 	private Optional<EvaluationInstructions> evaluation = Optional.empty();
+	private Optional<ConditionPack> pack = Optional.empty();
 
 	@Override
 	public String identifier() {
@@ -53,6 +55,11 @@ public final class FakeCondition implements Condition {
 		return getOrFail(evaluation);
 	}
 
+	@Override
+	public ConditionPack pack() {
+		return getOrFail(pack);
+	}
+
 	private <T> T getOrFail(Optional<T> optional) {
 		if (optional.isPresent()) {
 			return optional.get();
@@ -77,6 +84,11 @@ public final class FakeCondition implements Condition {
 
 	public FakeCondition withEvaluationInstructions(EvaluationInstructions e) {
 		this.evaluation = Optional.ofNullable(e);
+		return this;
+	}
+
+	public FakeCondition withConditionPack(ConditionPack p) {
+		this.pack = Optional.ofNullable(p);
 		return this;
 	}
 
