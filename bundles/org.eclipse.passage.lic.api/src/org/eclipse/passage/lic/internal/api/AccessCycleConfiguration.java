@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -50,5 +51,7 @@ public interface AccessCycleConfiguration {
 	RuntimeEnvironmentRegistry environments();
 
 	PermissionsExaminationServicesRegistry examinators();
+
+	LicenseAcquisitionServicesRegistry acquirers();
 
 }

@@ -21,13 +21,13 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 
-public final class RemoteAcquiringService implements LicenseAcquisitionService {
+public final class RemoteAcquisitionService implements LicenseAcquisitionService {
 
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 
-	protected RemoteAcquiringService(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
+	public RemoteAcquisitionService(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
 		this.keys = keys;
 		this.codecs = codecs;
 	}
