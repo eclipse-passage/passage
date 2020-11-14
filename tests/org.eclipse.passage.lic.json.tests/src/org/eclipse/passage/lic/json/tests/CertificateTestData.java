@@ -30,6 +30,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
@@ -62,7 +63,8 @@ public class CertificateTestData {
 	}
 
 	public Permission permission() {
-		return new BasePermission(product(), condition(), ZonedDateTime.now(), nowPlusTwo());
+		return new BasePermission(product(), condition(), ZonedDateTime.now(), nowPlusTwo(),
+				new UnknownConditionOrigin());
 	}
 
 	public Restriction restriction() {

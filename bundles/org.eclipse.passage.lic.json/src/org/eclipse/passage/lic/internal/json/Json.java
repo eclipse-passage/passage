@@ -18,6 +18,8 @@ import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
@@ -28,6 +30,7 @@ import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel.Of;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
@@ -78,9 +81,23 @@ public abstract class Json<T> implements Function<JsonNode, T> {
 
 		@Override
 		public Permission apply(JsonNode node) {
-			return new BasePermission(new Json.Product().apply(node.get("product")), //$NON-NLS-1$
+			return new BasePermission(//
+					new Json.Product().apply(node.get("product")), //$NON-NLS-1$
 					new Json.LicensingCondition().apply(node.get("condition")), //$NON-NLS-1$
-					new Json.Date().apply(node.get("lease")), new Json.Date().apply(node.get("expiration"))); //$NON-NLS-1$//$NON-NLS-2$
+					new Json.Date().apply(node.get("lease")), //$NON-NLS-1$
+					new Json.Date().apply(node.get("expiration")), //$NON-NLS-1$
+					new Json.LicensingConditionOrigin().apply(node.get("origin"))); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class LicensingConditionOrigin extends Json<ConditionOrigin> {
+
+		@Override
+		public ConditionOrigin apply(JsonNode node) {
+			return new BaseConditionOrigin(//
+					new ConditionMiningTarget.Of(node.get("miner").textValue()), //$NON-NLS-1$
+					node.get("coordinates").textValue()); //$NON-NLS-1$
 		}
 
 	}

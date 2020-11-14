@@ -60,7 +60,7 @@ public final class RemoteConditions extends ServiceEvery<Collection<ConditionPac
 
 	@Override
 	protected ResponseHandler<Collection<ConditionPack>> handler(FloatingLicenseAccess access) {
-		return new DecryptedConditions(transports, access.getServer());
+		return new DecryptedConditions(transports, access.getServer(), target);
 	}
 
 	@Override

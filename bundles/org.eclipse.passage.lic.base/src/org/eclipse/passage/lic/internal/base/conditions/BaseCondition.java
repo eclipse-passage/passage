@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.base.conditions;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
@@ -27,22 +26,19 @@ public final class BaseCondition implements Condition {
 	private final VersionMatch version;
 	private final ValidityPeriod period;
 	private final EvaluationInstructions instructions;
-	private final ConditionPack pack;
 
 	public BaseCondition(String identifier, String feature, VersionMatch version, ValidityPeriod period,
-			EvaluationInstructions instructions, ConditionPack pack) {
+			EvaluationInstructions instructions) {
 		Objects.requireNonNull(identifier, "BaseCondition::Identifier"); //$NON-NLS-1$
 		Objects.requireNonNull(feature, "BaseCondition::Feature"); //$NON-NLS-1$
 		Objects.requireNonNull(version, "BaseCondition::VersionMatch"); //$NON-NLS-1$
 		Objects.requireNonNull(period, "BaseCondition::ValidityPeriod"); //$NON-NLS-1$
 		Objects.requireNonNull(instructions, "BaseCondition::EvaluationInstructions"); //$NON-NLS-1$
-		Objects.requireNonNull(pack, "BaseCondition::ConditionPack"); //$NON-NLS-1$
 		this.identifier = identifier;
 		this.feature = feature;
 		this.version = version;
 		this.period = period;
 		this.instructions = instructions;
-		this.pack = pack;
 	}
 
 	@Override
@@ -68,11 +64,6 @@ public final class BaseCondition implements Condition {
 	@Override
 	public EvaluationInstructions evaluationInstructions() {
 		return instructions;
-	}
-
-	@Override
-	public ConditionPack pack() {
-		return pack;
 	}
 
 }

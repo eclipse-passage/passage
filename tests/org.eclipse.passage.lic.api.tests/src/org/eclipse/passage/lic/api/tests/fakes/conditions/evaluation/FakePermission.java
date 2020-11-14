@@ -16,6 +16,7 @@ import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
 @SuppressWarnings("restriction")
@@ -28,6 +29,11 @@ public final class FakePermission implements Permission {
 
 	@Override
 	public Condition condition() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ConditionOrigin conditionOrigin() {
 		throw new UnsupportedOperationException();
 	}
 

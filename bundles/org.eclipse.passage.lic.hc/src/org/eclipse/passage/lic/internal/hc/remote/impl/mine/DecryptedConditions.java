@@ -19,10 +19,12 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
@@ -32,10 +34,13 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 
 	private final ConditionTransportRegistry transports;
 	private final FloatingServerConnection coordinates;
+	private final ConditionMiningTarget target;
 
-	DecryptedConditions(ConditionTransportRegistry transports, FloatingServerConnection coordinates) {
+	DecryptedConditions(ConditionTransportRegistry transports, FloatingServerConnection coordinates,
+			ConditionMiningTarget target) {
 		this.transports = transports;
 		this.coordinates = coordinates;
+		this.target = target;
 	}
 
 	/**
@@ -47,7 +52,7 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(results.data())) {
 			return Collections.singleton(//
 					new BaseConditionPack(//
-							source(), //
+							new BaseConditionOrigin(target, source()), //
 							transport(results.contentType()).read(stream)//
 					));
 		} catch (IOException e) {
@@ -56,7 +61,7 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 	}
 
 	private String source() {
-		return String.format("floating:%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
+		return String.format("%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
 	private ConditionTransport transport(ContentType contentType) throws LicensingException {

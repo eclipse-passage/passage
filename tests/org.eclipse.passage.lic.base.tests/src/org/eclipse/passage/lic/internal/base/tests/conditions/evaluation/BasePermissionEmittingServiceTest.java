@@ -39,6 +39,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
@@ -207,7 +208,6 @@ public final class BasePermissionEmittingServiceTest {
 	private Collection<ConditionPack> packOf(Condition... conditions) {
 		return Collections.singleton(//
 				new BaseConditionPack(//
-						"source0", //$NON-NLS-1$
-						Arrays.asList(conditions)));
+						new UnknownConditionOrigin(), Arrays.asList(conditions)));
 	}
 }

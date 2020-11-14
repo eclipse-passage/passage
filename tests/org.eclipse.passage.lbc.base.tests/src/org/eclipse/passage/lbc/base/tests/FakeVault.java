@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 
 @SuppressWarnings("restriction")
 public class FakeVault implements BackendLicenseVault {
@@ -28,7 +29,7 @@ public class FakeVault implements BackendLicenseVault {
 	@Override
 	public ServiceInvocationResult<Collection<ConditionPack>> availableLicenses(ProductLicensesRequest request) {
 		return new BaseServiceInvocationResult<Collection<ConditionPack>>(
-				Collections.singleton(new BaseConditionPack("floating", Collections.emptyList()))); //$NON-NLS-1$
+				Collections.singleton(new BaseConditionPack(new UnknownConditionOrigin(), Collections.emptyList())));
 	}
 
 }

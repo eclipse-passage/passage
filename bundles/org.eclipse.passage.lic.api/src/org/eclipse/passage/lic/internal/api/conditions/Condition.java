@@ -66,5 +66,4 @@ public interface Condition {
 	 */
 	EvaluationInstructions evaluationInstructions();
 
-	ConditionPack pack();
 }

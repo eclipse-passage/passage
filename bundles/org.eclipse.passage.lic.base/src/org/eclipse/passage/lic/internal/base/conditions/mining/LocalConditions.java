@@ -58,7 +58,7 @@ public abstract class LocalConditions implements MinedConditions {
 	@Override
 	public final ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product) {
 		try {
-			return equipment.tool(product).mine(licenses(product));
+			return equipment.tool(product, id).mine(licenses(product));
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<Collection<ConditionPack>>( //
 					new Trouble(//

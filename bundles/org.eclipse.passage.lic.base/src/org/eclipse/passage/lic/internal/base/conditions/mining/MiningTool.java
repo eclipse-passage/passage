@@ -21,6 +21,7 @@ import java.util.Collections;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -28,6 +29,7 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
@@ -37,11 +39,13 @@ final class MiningTool {
 	private final KeyKeeper key;
 	private final StreamCodec codec;
 	private final ConditionTransport transport;
+	private final ConditionMiningTarget miner;
 
-	public MiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport) {
+	public MiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport, ConditionMiningTarget miner) {
 		this.key = key;
 		this.codec = codec;
 		this.transport = transport;
+		this.miner = miner;
 	}
 
 	ServiceInvocationResult<Collection<ConditionPack>> mine(Collection<Path> sources) {
@@ -54,7 +58,9 @@ final class MiningTool {
 	private ServiceInvocationResult<Collection<ConditionPack>> mine(Path source) {
 		try {
 			return new BaseServiceInvocationResult<>(Collections.singleton(//
-					new BaseConditionPack(source, from(decoded(source)))));
+					new BaseConditionPack(//
+							new BaseConditionOrigin(miner, source(source)), //
+							from(decoded(source)))));
 		} catch (IOException | LicensingException e) {
 			return new BaseServiceInvocationResult<>(//
 					new Trouble(//
@@ -63,6 +69,10 @@ final class MiningTool {
 									source.normalize().toAbsolutePath()), //
 							e));
 		}
+	}
+
+	private String source(Path file) {
+		return file.normalize().toAbsolutePath().toString();
 	}
 
 	private byte[] decoded(Path path) throws IOException, LicensingException {

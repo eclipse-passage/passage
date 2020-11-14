@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.acquire;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeMiningTarget;
 
 public final class UserHomeLicenseAcquisitionService extends LocalLicenseAcquisitionService {

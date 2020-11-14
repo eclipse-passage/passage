@@ -10,24 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions.evaluation;
+package org.eclipse.passage.lic.internal.base.conditions;
 
-import java.time.ZonedDateTime;
-
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 
-public interface Permission {
+public final class UnknownConditionOrigin implements ConditionOrigin {
 
-	LicensedProduct product();
+	private final ConditionMiningTarget target = new ConditionMiningTarget.Of("unknown"); //$NON-NLS-1$
 
-	Condition condition();
+	@Override
+	public ConditionMiningTarget miner() {
+		return target;
+	}
 
-	ConditionOrigin conditionOrigin();
-
-	ZonedDateTime leaseDate();
-
-	ZonedDateTime expireDate();
+	@Override
+	public String coordinates() {
+		return "none"; //$NON-NLS-1$
+	}
 
 }

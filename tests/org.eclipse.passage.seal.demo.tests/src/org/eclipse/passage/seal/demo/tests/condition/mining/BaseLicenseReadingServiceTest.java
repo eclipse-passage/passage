@@ -80,7 +80,7 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private void assertPackState(ConditionPack pack) throws Exception {
-		assertTrue(pack.origin().endsWith(licFile));
+		assertTrue(pack.origin().coordinates().endsWith(licFile));
 		assertEquals(1, pack.conditions().size());
 		assertConditionState(pack.conditions().iterator().next());
 	}
