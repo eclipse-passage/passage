@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -35,8 +36,8 @@ public final class MiningEquipment {
 		this.transports = transports;
 	}
 
-	MiningTool tool(LicensedProduct product) throws LicensingException {
-		return new MiningTool(key(product), codec(product), transport(product));
+	MiningTool tool(LicensedProduct product, ConditionMiningTarget miner) throws LicensingException {
+		return new MiningTool(key(product), codec(product), transport(product), miner);
 	}
 
 	private KeyKeeper key(LicensedProduct product) throws LicensingException {

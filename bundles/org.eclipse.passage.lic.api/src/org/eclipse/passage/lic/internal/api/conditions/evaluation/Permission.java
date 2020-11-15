@@ -16,12 +16,15 @@ import java.time.ZonedDateTime;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 
 public interface Permission {
 
 	LicensedProduct product();
 
 	Condition condition();
+
+	ConditionOrigin conditionOrigin();
 
 	ZonedDateTime leaseDate();
 

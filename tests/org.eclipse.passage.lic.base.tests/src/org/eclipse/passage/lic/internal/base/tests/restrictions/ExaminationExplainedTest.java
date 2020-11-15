@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
@@ -80,7 +81,8 @@ public final class ExaminationExplainedTest {
 												"nose=red" //$NON-NLS-1$
 										)), //
 								ZonedDateTime.now(), //
-								ZonedDateTime.now().plusDays(2))//
+								ZonedDateTime.now().plusDays(2), //
+								new UnknownConditionOrigin())//
 				), //
 				Collections.singleton(//
 						new BaseRestriction(//

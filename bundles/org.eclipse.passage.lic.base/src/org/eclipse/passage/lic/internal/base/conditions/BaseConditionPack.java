@@ -12,35 +12,28 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 
 public final class BaseConditionPack implements ConditionPack {
 
-	private final String origin;
+	private final ConditionOrigin origin;
 	private final Collection<Condition> conditions;
 
-	public BaseConditionPack(String origin, Collection<Condition> conditions) {
+	public BaseConditionPack(ConditionOrigin origin, Collection<Condition> conditions) {
 		Objects.requireNonNull(origin, "BaseConditionPack::origin"); //$NON-NLS-1$
 		Objects.requireNonNull(conditions, "BaseConditionPack::conditions"); //$NON-NLS-1$
 		this.origin = origin;
 		this.conditions = new ArrayList<>(conditions);
 	}
 
-	/**
-	 * Convenience constructor for a pack begotten by a (license) file.
-	 */
-	public BaseConditionPack(Path origin, Collection<Condition> conditions) {
-		this(origin.normalize().toAbsolutePath().toString(), conditions);
-	}
-
 	@Override
-	public String origin() {
+	public ConditionOrigin origin() {
 		return origin;
 	}
 

@@ -24,6 +24,8 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
+@Deprecated
+//FIXME: to be reimplemented
 public abstract class Operation<I, O> implements Chain {
 
 	private final Function<BackendLicensingRequest, I> parse;

@@ -47,7 +47,6 @@ import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
-@SuppressWarnings("restriction")
 public final class BasePermissionEmittingService implements PermissionEmittingService {
 
 	private final StringServiceId id = new StringServiceId("default-emitter"); //$NON-NLS-1$
@@ -135,7 +134,9 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 									product, //
 									condition, //
 									ZonedDateTime.now(), //
-									expiration(condition.validityPeriod())))); // FIXME: #566015
+									expiration(condition.validityPeriod()), // FIXME: #566015
+									pack.origin())//
+					));
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(//
 					new BaseDiagnostic(Collections.singletonList(//

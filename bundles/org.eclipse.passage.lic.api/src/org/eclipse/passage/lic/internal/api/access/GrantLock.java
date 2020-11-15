@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.conditions;
+package org.eclipse.passage.lic.internal.api.access;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public final class ConfigurationMiningTarget implements Supplier<ConditionMiningTarget> {
+public interface GrantLock {
 
-	@Override
-	public ConditionMiningTarget get() {
-		return new ConditionMiningTarget.Local().child("configuration-conditions"); //$NON-NLS-1$
-	}
+	ExaminationCertificate certificate();
+
+	Optional<GrantAcqisition> grant();
 
 }

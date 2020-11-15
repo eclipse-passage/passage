@@ -17,6 +17,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
 @SuppressWarnings("restriction")
@@ -26,12 +27,15 @@ public final class BasePermission implements Permission {
 	private final Condition condition;
 	private final ZonedDateTime lease;
 	private final ZonedDateTime expiration;
+	private final ConditionOrigin origin;
 
-	public BasePermission(LicensedProduct product, Condition condition, ZonedDateTime lease, ZonedDateTime expiration) {
+	public BasePermission(LicensedProduct product, Condition condition, ZonedDateTime lease, ZonedDateTime expiration,
+			ConditionOrigin origin) {
 		Objects.requireNonNull(product, "BasePermission::product"); //$NON-NLS-1$
 		Objects.requireNonNull(condition, "BasePermission::condition"); //$NON-NLS-1$
 		Objects.requireNonNull(lease, "BasePermission::lease"); //$NON-NLS-1$
 		Objects.requireNonNull(expiration, "BasePermission::expiration"); //$NON-NLS-1$
+		Objects.requireNonNull(origin, "BasePermission::conditionOrigin"); //$NON-NLS-1$
 		if (!lease.isBefore(expiration)) {
 			throw new IllegalArgumentException("`Lease` date must strictly less than `expriation` date."); //$NON-NLS-1$
 		}
@@ -39,6 +43,7 @@ public final class BasePermission implements Permission {
 		this.condition = condition;
 		this.lease = lease;
 		this.expiration = expiration;
+		this.origin = origin;
 	}
 
 	@Override
@@ -59,6 +64,11 @@ public final class BasePermission implements Permission {
 	@Override
 	public ZonedDateTime expireDate() {
 		return expiration;
+	}
+
+	@Override
+	public ConditionOrigin conditionOrigin() {
+		return origin;
 	}
 
 }

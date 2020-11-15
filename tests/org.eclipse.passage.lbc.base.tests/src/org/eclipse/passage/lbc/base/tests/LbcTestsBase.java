@@ -26,6 +26,7 @@ import org.eclipse.passage.lbc.internal.base.LicenseCapacity;
 import org.eclipse.passage.lbc.internal.base.LicenseTaken;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
@@ -43,6 +44,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
@@ -91,8 +93,8 @@ public abstract class LbcTestsBase {
 		return "version"; //$NON-NLS-1$
 	}
 
-	protected String origin() {
-		return "floating"; //$NON-NLS-1$
+	protected ConditionOrigin origin() {
+		return new UnknownConditionOrigin();
 	}
 
 	protected ConditionPack conditionPack() {
@@ -109,7 +111,8 @@ public abstract class LbcTestsBase {
 	}
 
 	private Permission permission() {
-		return new BasePermission(product(), condition(), ZonedDateTime.now(), ZonedDateTime.now().plusDays(2));
+		return new BasePermission(product(), condition(), ZonedDateTime.now(), ZonedDateTime.now().plusDays(2),
+				origin());
 	}
 
 	private Requirement requirement() {

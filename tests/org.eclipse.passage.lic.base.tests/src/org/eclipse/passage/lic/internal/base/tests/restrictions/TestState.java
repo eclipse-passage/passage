@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
+import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
@@ -96,17 +97,20 @@ final class TestState {
 				product, //
 				conditionFirst, //
 				ZonedDateTime.now().minusDays(1), //
-				ZonedDateTime.now().plusDays(1));
+				ZonedDateTime.now().plusDays(1), //
+				new UnknownConditionOrigin());
 		permissionSecond = new BasePermission(//
 				product, //
 				conditionSecond, //
 				ZonedDateTime.now(), //
-				ZonedDateTime.now().plusHours(1));
+				ZonedDateTime.now().plusHours(1), //
+				new UnknownConditionOrigin());
 		permissionSecondObsolete = new BasePermission(//
 				product, //
 				conditionSecondObsolete, //
 				ZonedDateTime.now(), //
-				ZonedDateTime.now().plusHours(1));
+				ZonedDateTime.now().plusHours(1), //
+				new UnknownConditionOrigin());
 
 	}
 

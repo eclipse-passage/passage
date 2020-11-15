@@ -33,6 +33,8 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
+@Deprecated
+//FIXME: to be reimplemented
 @SuppressWarnings("restriction")
 public final class Release extends Operation<RequestedCertificate, ReleaseReport> {
 

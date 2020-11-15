@@ -10,17 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.conditions;
-
-import java.util.function.Supplier;
+package org.eclipse.passage.lic.internal.base.conditions;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 
-public final class ConfigurationMiningTarget implements Supplier<ConditionMiningTarget> {
+public final class UnknownConditionOrigin implements ConditionOrigin {
+
+	private final ConditionMiningTarget target = new ConditionMiningTarget.Of("unknown"); //$NON-NLS-1$
 
 	@Override
-	public ConditionMiningTarget get() {
-		return new ConditionMiningTarget.Local().child("configuration-conditions"); //$NON-NLS-1$
+	public ConditionMiningTarget miner() {
+		return target;
+	}
+
+	@Override
+	public String coordinates() {
+		return "none"; //$NON-NLS-1$
 	}
 
 }

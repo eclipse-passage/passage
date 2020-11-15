@@ -19,8 +19,8 @@ import java.util.function.BinaryOperator;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -60,7 +60,7 @@ public final class RemoteConditions extends ServiceEvery<Collection<ConditionPac
 
 	@Override
 	protected ResponseHandler<Collection<ConditionPack>> handler(FloatingLicenseAccess access) {
-		return new DecryptedConditions(transports, access.getServer());
+		return new DecryptedConditions(transports, access.getServer(), target);
 	}
 
 	@Override

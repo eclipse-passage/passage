@@ -27,6 +27,8 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
+@Deprecated
+//FIXME: to be reimplemented
 public final class CanTake extends Operation<RequestedCondition, Boolean> {
 
 	public CanTake(Deserialization<Condition> deserialization, LoadedLicense load) {

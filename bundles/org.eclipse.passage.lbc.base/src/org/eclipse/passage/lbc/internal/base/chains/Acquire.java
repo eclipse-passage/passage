@@ -35,6 +35,8 @@ import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertifi
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
 @SuppressWarnings("restriction")
+@Deprecated
+//FIXME: to be reimplemented
 public final class Acquire extends Operation<RequestedCertificate, ExaminationCertificate> {
 
 	public Acquire(Deserialization<ExaminationCertificate> deserialization,
