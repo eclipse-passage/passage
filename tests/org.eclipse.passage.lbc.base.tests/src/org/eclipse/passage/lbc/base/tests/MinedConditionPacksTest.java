@@ -25,6 +25,7 @@ import org.eclipse.passage.lbc.internal.base.MinedConditionPacks;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.junit.Test;
 
+//FIXME make the test meaningful
 public final class MinedConditionPacksTest extends LbcTestsBase {
 
 	@Test
@@ -35,7 +36,6 @@ public final class MinedConditionPacksTest extends LbcTestsBase {
 				.collect(Collectors.toList());
 		assertFalse(mined.isEmpty());
 		ConditionPack pack = mined.get(0);
-		assertEquals("floating", pack.origin()); //$NON-NLS-1$
 		assertEquals(Collections.emptyList(), pack.conditions());
 	}
 
