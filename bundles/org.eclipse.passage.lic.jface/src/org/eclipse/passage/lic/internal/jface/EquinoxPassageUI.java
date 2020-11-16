@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.PassageUI;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.access.GrantLock;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
@@ -37,10 +38,11 @@ public final class EquinoxPassageUI implements PassageUI {
 	}
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
-		return investigate(//
+	public ServiceInvocationResult<GrantLock> acquireLicense(String feature) {
+		ServiceInvocationResult<ExaminationCertificate> certificate = investigate(//
 				() -> acquire(feature), //
-				certificate -> !new CertificateWorthAttention().test(certificate));
+				cert -> !new CertificateWorthAttention().test(cert));
+		return certificate;
 	}
 
 	@Override

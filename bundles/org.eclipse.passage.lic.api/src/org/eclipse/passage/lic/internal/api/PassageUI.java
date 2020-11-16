@@ -12,13 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
+import org.eclipse.passage.lic.internal.api.access.GrantLock;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * <p>
  * Framework-dependent {@linkplain Passage} service supplies a
  * functionally-sufficient flow of license coverage testing and on-the-fly
- * improving.
+ * improving. Have sense to be used on a product protected by a personal
+ * license.
  * </p>
  * <p>
  * Which inevitably means end user involvement through dialogs exposing current
@@ -50,7 +52,7 @@ public interface PassageUI {
 	 *         existing coverage is not enough and the end user failed to improve
 	 *         it.
 	 */
-	ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature);
+	ServiceInvocationResult<GrantLock> acquireLicense(String feature);
 
 	/**
 	 * Assess the whole product licensing coverage.
