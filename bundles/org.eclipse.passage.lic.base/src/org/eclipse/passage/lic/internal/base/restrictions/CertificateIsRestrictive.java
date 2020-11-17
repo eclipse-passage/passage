@@ -27,7 +27,7 @@ public final class CertificateIsRestrictive implements Predicate<Optional<Examin
 		if (!new NoSevereRestrictions().test(certificate.get())) {
 			return true;
 		}
-		return false;
+		return certificate.get().satisfied().isEmpty();
 	}
 
 }
