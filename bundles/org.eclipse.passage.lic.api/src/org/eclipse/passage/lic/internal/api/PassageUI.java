@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.access.GrantLock;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
@@ -52,7 +52,7 @@ public interface PassageUI {
 	 *         existing coverage is not enough and the end user failed to improve
 	 *         it.
 	 */
-	ServiceInvocationResult<GrantLock> acquireLicense(String feature);
+	ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
 
 	/**
 	 * Assess the whole product licensing coverage.

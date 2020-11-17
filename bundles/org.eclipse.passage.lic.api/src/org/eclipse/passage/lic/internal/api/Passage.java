@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.access.GrantLock;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
@@ -49,7 +49,7 @@ public interface Passage {
 	 * @see org.eclipse.passage.lic.api
 	 * @see Passage#releaseLicense(ExaminationCertificate)
 	 */
-	ServiceInvocationResult<GrantLock> acquireLicense(String feature);
+	ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
 
 	/**
 	 * <p>
@@ -69,7 +69,7 @@ public interface Passage {
 	 * @see org.eclipse.passage.lic.api
 	 * @see Passage#acquireLicense(String)
 	 */
-	ServiceInvocationResult<Boolean> releaseLicense(GrantLock lock);
+	ServiceInvocationResult<Boolean> releaseLicense(GrantLockAttempt lock);
 
 	/**
 	 * <p>

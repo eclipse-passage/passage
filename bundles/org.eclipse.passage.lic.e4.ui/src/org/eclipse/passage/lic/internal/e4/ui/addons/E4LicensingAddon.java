@@ -20,7 +20,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.access.GrantLock;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.e4.ui.restrictions.WorkbenchShutdown;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.LicensedProductFromContext;
@@ -33,7 +33,7 @@ public final class E4LicensingAddon {
 
 	private final IApplicationContext application;
 	private final IEclipseContext context;
-	private java.util.Optional<GrantLock> grant = java.util.Optional.empty();
+	private java.util.Optional<GrantLockAttempt> grant = java.util.Optional.empty();
 
 	@Inject
 	public E4LicensingAddon(IApplicationContext application, IEclipseContext context) {
@@ -47,7 +47,7 @@ public final class E4LicensingAddon {
 			@SuppressWarnings("unused") //
 			@UIEventTopic(UIEvents.UILifeCycle.APP_STARTUP_COMPLETE) //
 			Event event) {
-		ServiceInvocationResult<GrantLock> response = //
+		ServiceInvocationResult<GrantLockAttempt> response = //
 				new EquinoxPassageUI(this::shell)
 						.acquireLicense(new LicensedProductFromContext(application).get().identifier());
 		grant = response.data();

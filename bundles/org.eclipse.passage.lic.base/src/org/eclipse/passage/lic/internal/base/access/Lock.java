@@ -16,7 +16,7 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.access.GrantLock;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
@@ -53,34 +53,34 @@ final class Lock {
 	 * @see CertificateIsRestrictive
 	 * @see LicenseAcquisitionService
 	 */
-	ServiceInvocationResult<GrantLock> lock(ExaminationCertificate certificate) {
+	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
 		if (acquirers.get().hasService(target)) {
-			return noAcquisitionServiceForTarget(new FailedGrantLock(certificate), target);
+			return noAcquisitionServiceForTarget(new BaseGrantLockAttempt.Failed(certificate), target);
 		}
 		ServiceInvocationResult<GrantAcqisition> grant = acquirers.get().service(target)//
 				.acquire(permission.product(), permission.condition().feature());
 		if (!grant.data().isPresent()) {
 			return new BaseServiceInvocationResult<>(//
 					grant.diagnostic(), //
-					new FailedGrantLock(certificate));
+					new BaseGrantLockAttempt.Failed(certificate));
 		}
 		return new BaseServiceInvocationResult<>(//
 				grant.diagnostic(), //
-				new BaseGrantLock(certificate, grant.data().get()));//
+				new BaseGrantLockAttempt.Successful(certificate, grant.data().get()));//
 	}
 
-	ServiceInvocationResult<Boolean> unlock(GrantLock lock) {
-		if (new LockIsFailed().test(lock)) {
-			return wrongLockWarning(); // It's illegal state actually. SHould we?
+	ServiceInvocationResult<Boolean> unlock(GrantLockAttempt lock) {
+		if (!lock.successful()) {
+			return wrongLockWarning(); // It's illegal state actually. Should we throw something?
 		}
 		Permission permission = permission(lock.certificate());
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
 		if (acquirers.get().hasService(target)) {
 			return noAcquisitionServiceForTarget(Boolean.FALSE, target);
 		}
-		return acquirers.get().service(target).release(permission.product(), lock.grant().get());
+		return acquirers.get().service(target).release(permission.product(), lock.grant());
 	}
 
 	private ServiceInvocationResult<Boolean> wrongLockWarning() {
