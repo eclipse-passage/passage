@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 
-@SuppressWarnings("restriction")
 public final class SumOfEmissions implements BinaryOperator<Emission> {
 
 	@Override

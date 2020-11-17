@@ -28,7 +28,6 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
-@SuppressWarnings("restriction")
 public final class Restrictions implements Supplier<ServiceInvocationResult<ExaminationCertificate>> {
 
 	private final Registry<StringServiceId, PermissionsExaminationService> registry;

@@ -33,7 +33,6 @@ import org.eclipse.passage.lic.internal.base.SumOfCollections;
 /**
  * FIXME: Has public visibility only for testing.
  */
-@SuppressWarnings("restriction")
 public final class Permissions implements Supplier<ServiceInvocationResult<Collection<Permission>>> {
 
 	private final Registry<StringServiceId, PermissionEmittingService> registry;

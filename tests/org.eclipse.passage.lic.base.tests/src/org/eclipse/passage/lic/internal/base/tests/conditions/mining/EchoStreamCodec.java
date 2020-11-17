@@ -28,7 +28,6 @@ import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
-@SuppressWarnings("restriction")
 final class EchoStreamCodec implements StreamCodec {
 
 	private final LicensedProduct product;

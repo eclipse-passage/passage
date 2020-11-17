@@ -20,7 +20,6 @@ import java.util.Objects;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
-@SuppressWarnings("restriction")
 public final class SimpleMapExpression implements ParsedExpression {
 
 	private final Map<String, String> checks;

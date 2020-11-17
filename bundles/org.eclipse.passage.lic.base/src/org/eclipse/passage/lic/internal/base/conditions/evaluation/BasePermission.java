@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
-@SuppressWarnings("restriction")
 public final class BasePermission implements Permission {
 
 	private final LicensedProduct product;

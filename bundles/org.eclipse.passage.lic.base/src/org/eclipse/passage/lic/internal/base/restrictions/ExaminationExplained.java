@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
 //FIXME: work for CachingSupplier
-@SuppressWarnings("restriction")
 public final class ExaminationExplained implements Supplier<String> {
 
 	private final ExaminationCertificate certificate;

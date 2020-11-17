@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpressi
 /**
  * 
  */
-@SuppressWarnings("restriction")
 public final class MunichProtocolExpressionParseService implements ExpressionParsingService {
 
 	private final ExpressionProtocol protocol = new ExpressionProtocol.Munich();

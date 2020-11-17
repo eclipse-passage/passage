@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
-@SuppressWarnings("restriction")
 public final class SimpleMapExpressionEvaluationService implements ExpressionEvaluationService {
 
 	private final ExpressionProtocol format = new ExpressionProtocol.Berlin();

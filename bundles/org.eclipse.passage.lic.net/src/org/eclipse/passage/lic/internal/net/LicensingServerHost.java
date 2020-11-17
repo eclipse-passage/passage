@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-@SuppressWarnings("restriction")
 public final class LicensingServerHost extends StringNamedData {
 
 	public LicensingServerHost(Map<String, Object> container) {
