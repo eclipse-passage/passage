@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-@SuppressWarnings("restriction")
 public final class LicenseReadingServiceRequest extends FrameworkAware
 		implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 

@@ -32,7 +32,6 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
  * <li>uses the service to parse content of the expression</li>
  * </ul>
  */
-@SuppressWarnings("restriction")
 final class FormalizedExpression {
 
 	private final String raw;

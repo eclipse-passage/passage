@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationS
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
 
-@SuppressWarnings("restriction")
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {
 
 	private final StringServiceId id = new StringServiceId("base-permissions-examination-service"); //$NON-NLS-1$

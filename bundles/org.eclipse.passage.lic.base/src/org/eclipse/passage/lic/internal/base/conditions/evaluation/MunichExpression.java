@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 
-@SuppressWarnings("restriction")
 public final class MunichExpression implements ParsedExpression {
 
 	private final ExpressionProtocol protocol = new ExpressionProtocol.Munich();

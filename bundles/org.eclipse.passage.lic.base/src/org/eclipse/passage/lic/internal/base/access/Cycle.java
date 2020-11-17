@@ -31,7 +31,6 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 
-@SuppressWarnings("restriction")
 abstract class Cycle<T> {
 
 	private final Framework framework;

@@ -22,10 +22,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProt
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
-/**
- * 
- */
-@SuppressWarnings("restriction")
 public final class BerlinProtocolExpressionParseService implements ExpressionParsingService {
 
 	private final ExpressionProtocol protocol = new ExpressionProtocol.Berlin();

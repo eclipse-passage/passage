@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
-@SuppressWarnings("restriction")
 final class RuntimeKeyKeeper implements KeyKeeper {
 
 	private final LicensedProduct product;
