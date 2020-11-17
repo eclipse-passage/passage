@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.access.GrantLock;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
@@ -21,13 +22,13 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 final class BaseGrantLock implements GrantLock {
 
 	private final ExaminationCertificate certificate;
-	private final GrantAcqisition grant;
+	private final Optional<GrantAcqisition> grant;
 
 	public BaseGrantLock(ExaminationCertificate certificate, GrantAcqisition grant) {
 		Objects.requireNonNull(certificate, "BaseGrantLock::certificate"); //$NON-NLS-1$
 		Objects.requireNonNull(grant, "BaseGrantLock::grant"); //$NON-NLS-1$
 		this.certificate = certificate;
-		this.grant = grant;
+		this.grant = Optional.of(grant);
 	}
 
 	@Override
@@ -36,7 +37,7 @@ final class BaseGrantLock implements GrantLock {
 	}
 
 	@Override
-	public GrantAcqisition grant() {
+	public Optional<GrantAcqisition> grant() {
 		return grant;
 	}
 

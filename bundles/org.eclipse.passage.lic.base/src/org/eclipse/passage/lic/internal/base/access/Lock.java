@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.Collections;
+
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLock;
@@ -24,11 +26,12 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 
-//FIXME: YTBD, including the name
 final class Lock {
 
 	private final LicenseAcquisitionServicesRegistry acquirers;
@@ -54,36 +57,51 @@ final class Lock {
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
 		if (acquirers.get().hasService(target)) {
-			return noAcquisitionServiceForTarget(target);
+			return noAcquisitionServiceForTarget(new FailedGrantLock(certificate), target);
 		}
 		ServiceInvocationResult<GrantAcqisition> grant = acquirers.get().service(target)//
 				.acquire(permission.product(), permission.condition().feature());
 		if (!grant.data().isPresent()) {
-			return new BaseServiceInvocationResult<>(grant.diagnostic());
+			return new BaseServiceInvocationResult<>(//
+					grant.diagnostic(), //
+					new FailedGrantLock(certificate));
 		}
 		return new BaseServiceInvocationResult<>(//
 				grant.diagnostic(), //
-				new BaseGrantLock(certificate, grant.data().get())//
-		);
+				new BaseGrantLock(certificate, grant.data().get()));//
 	}
 
 	ServiceInvocationResult<Boolean> unlock(GrantLock lock) {
+		if (new LockIsFailed().test(lock)) {
+			return wrongLockWarning(); // It's illegal state actually. SHould we?
+		}
 		Permission permission = permission(lock.certificate());
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
 		if (acquirers.get().hasService(target)) {
-			return noAcquisitionServiceForTarget(target);
+			return noAcquisitionServiceForTarget(Boolean.FALSE, target);
 		}
-		return acquirers.get().service(target).release(permission.product(), lock.grant());
+		return acquirers.get().service(target).release(permission.product(), lock.grant().get());
 	}
 
-	private <T> ServiceInvocationResult<T> noAcquisitionServiceForTarget(ConditionMiningTarget target) {
+	private ServiceInvocationResult<Boolean> wrongLockWarning() {
+		return new BaseServiceInvocationResult<>(//
+				new BaseDiagnostic(//
+						Collections.emptyList(), //
+						Collections.singletonList(//
+								new Trouble(//
+										new ServiceFailedOnMorsel(), //
+										AccessCycleMessages.getString("Lock.wrong_release"))))); //$NON-NLS-1$
+	}
+
+	private <T> ServiceInvocationResult<T> noAcquisitionServiceForTarget(T data, ConditionMiningTarget target) {
 		return new BaseServiceInvocationResult<T>(//
-				new Trouble(//
+				new BaseDiagnostic(new Trouble(//
 						new NoServicesOfType(AccessCycleMessages.getString("Lock.no_service")), //$NON-NLS-1$
 						String.format(//
 								AccessCycleMessages.getString("Lock.no_service_for_target"), //$NON-NLS-1$
 								target.toString())//
-				));
+				)), //
+				data);
 	}
 
 	/**

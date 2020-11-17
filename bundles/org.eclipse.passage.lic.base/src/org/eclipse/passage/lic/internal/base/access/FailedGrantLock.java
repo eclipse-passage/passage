@@ -10,17 +10,32 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.access;
+package org.eclipse.passage.lic.internal.base.access;
 
+import java.util.Objects;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.internal.api.access.GrantLock;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public interface GrantLock {
+final class FailedGrantLock implements GrantLock {
 
-	ExaminationCertificate certificate();
+	private final ExaminationCertificate certificate;
 
-	Optional<GrantAcqisition> grant();
+	public FailedGrantLock(ExaminationCertificate certificate) {
+		Objects.requireNonNull(certificate, "BaseGrantLock::certificate"); //$NON-NLS-1$
+		this.certificate = certificate;
+	}
+
+	@Override
+	public ExaminationCertificate certificate() {
+		return certificate;
+	}
+
+	@Override
+	public Optional<GrantAcqisition> grant() {
+		return Optional.empty();
+	}
 
 }

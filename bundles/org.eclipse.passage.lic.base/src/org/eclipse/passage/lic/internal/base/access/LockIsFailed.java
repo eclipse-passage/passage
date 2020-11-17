@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.access;
+package org.eclipse.passage.lic.internal.base.access;
 
-import java.util.Optional;
+import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.access.GrantLock;
 
-public interface GrantLock {
+public final class LockIsFailed implements Predicate<GrantLock> {
 
-	ExaminationCertificate certificate();
-
-	Optional<GrantAcqisition> grant();
+	@Override
+	public boolean test(GrantLock lock) {
+		return !lock.grant().isPresent();
+	}
 
 }
