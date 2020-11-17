@@ -40,14 +40,23 @@ public final class Access {
 
 	public ServiceInvocationResult<GrantLockAttempt> acquire(String feature) {
 		ServiceInvocationResult<ExaminationCertificate> certificate = new Assess(framework, feature).apply();
-		if (!new CertificateIsRestrictive().test(certificate.data())) {
-			return new BaseServiceInvocationResult<>(certificate.diagnostic());
+		if (new CertificateIsRestrictive().test(certificate.data())) {
+			return failOnAccess(certificate);
 		}
 		return new Lock(framework).lock(certificate.data().get());
 	}
 
 	public ServiceInvocationResult<Boolean> release(GrantLockAttempt lock) {
 		return new Lock(framework).unlock(lock);
+	}
+
+	private ServiceInvocationResult<GrantLockAttempt> failOnAccess(
+			ServiceInvocationResult<ExaminationCertificate> assessment) {
+		if (assessment.data().isPresent()) {
+			return new BaseServiceInvocationResult<>(assessment.diagnostic(),
+					new BaseGrantLockAttempt.Failed(assessment.data().get()));
+		}
+		return new BaseServiceInvocationResult<>(assessment.diagnostic());
 	}
 
 }
