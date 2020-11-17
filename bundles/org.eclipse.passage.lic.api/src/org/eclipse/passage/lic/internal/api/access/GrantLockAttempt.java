@@ -12,15 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.access;
 
-import java.util.Optional;
-
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
-public interface GrantLock {
+public interface GrantLockAttempt {
 
 	ExaminationCertificate certificate();
 
-	Optional<GrantAcqisition> grant();
+	boolean successful();
+
+	GrantAcqisition grant();
 
 }

@@ -16,8 +16,7 @@ import java.util.Optional;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Event;
@@ -27,15 +26,15 @@ public class LicensedAction extends Action {
 
 	@Override
 	public void runWithEvent(Event event) {
-		Optional<ServiceInvocationResult<ExaminationCertificate>> response = Optional.empty();
+		Optional<ServiceInvocationResult<GrantLockAttempt>> response = Optional.empty();
 		try {
 			response = Optional.of(new EquinoxPassageUI(event.display::getActiveShell).acquireLicense(getId()));
-			if (!new CertificateIsRestrictive().test(response.get().data())) {
+			if (response.get().data().isPresent()) {
 				super.runWithEvent(event);
 			}
 		} finally {
 			response.flatMap(ServiceInvocationResult::data)//
-					.ifPresent(certificate -> new EquinoxPassage().releaseLicense(certificate));
+					.ifPresent(lock -> new EquinoxPassage().releaseLicense(lock));
 		}
 	}
 

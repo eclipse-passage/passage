@@ -35,6 +35,7 @@ public abstract class GoodIntention {
 	}
 
 	final static class ImportLicense extends GoodIntention {
+
 		private final Supplier<Shell> shell;
 
 		ImportLicense(Supplier<Shell> shell) {

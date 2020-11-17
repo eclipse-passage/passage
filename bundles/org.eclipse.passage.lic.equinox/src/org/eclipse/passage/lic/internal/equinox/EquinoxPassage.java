@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.equinox;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.Passage;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
@@ -28,13 +28,13 @@ public final class EquinoxPassage extends FrameworkAware implements Passage {
 	}
 
 	@Override
-	public ServiceInvocationResult<ExaminationCertificate> acquireLicense(String feature) {
+	public ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
 		return withFrameworkService(framework -> new Access(framework).acquire(feature));
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> releaseLicense(ExaminationCertificate certificate) {
-		return withFrameworkService(framework -> new Access(framework).release(certificate));
+	public ServiceInvocationResult<Boolean> releaseLicense(GrantLockAttempt lock) {
+		return withFrameworkService(framework -> new Access(framework).release(lock));
 	}
 
 	@Override
