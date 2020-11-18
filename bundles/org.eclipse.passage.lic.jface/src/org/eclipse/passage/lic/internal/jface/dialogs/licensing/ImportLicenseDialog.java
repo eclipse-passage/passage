@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.LicenseReadingServiceRequest;
 import org.eclipse.passage.lic.internal.jface.i18n.ImportLicenseDialogMessages;
@@ -155,7 +154,8 @@ public final class ImportLicenseDialog extends NotificationDialog {
 	}
 
 	private void reportError(Diagnostic diagnostic) {
-		setErrorMessage(new DiagnosticExplained(diagnostic).get());
+		setErrorMessage(ImportLicenseDialogMessages.ImportLicenseDialog_lic_read_failed);
+		new DiagnosticDialog(getShell(), diagnostic).open();
 	}
 
 	@Override

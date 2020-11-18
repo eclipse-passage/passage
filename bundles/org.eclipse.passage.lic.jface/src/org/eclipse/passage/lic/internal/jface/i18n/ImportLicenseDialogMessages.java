@@ -23,6 +23,7 @@ public class ImportLicenseDialogMessages extends NLS {
 	public static String ImportLicenseDialog_import_title;
 	public static String ImportLicenseDialog_import_tooltip;
 	public static String ImportLicenseDialog_io_error;
+	public static String ImportLicenseDialog_lic_read_failed;
 	public static String ImportLicenseDialog_path_label;
 	public static String ImportLicenseDialog_prelude;
 	public static String ImportLicenseDialog_title;
