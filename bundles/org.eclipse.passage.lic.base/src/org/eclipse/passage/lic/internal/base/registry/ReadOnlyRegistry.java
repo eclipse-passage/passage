@@ -20,8 +20,8 @@ import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 
 public final class ReadOnlyRegistry<I extends ServiceId, S extends Service<I>> extends BaseRegistry<I, S> {
 
-	public ReadOnlyRegistry(Collection<S> service) {
-		super(service);
+	public ReadOnlyRegistry(Collection<S> services) {
+		super(services);
 	}
 
 	public ReadOnlyRegistry(S service) {
