@@ -42,12 +42,20 @@ public abstract class LocalConditions implements MinedConditions {
 
 	private final ConditionMiningTarget id;
 	private final MiningEquipment equipment;
+	private final PassageFileExtension scope;
 
-	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment) {
-		Objects.requireNonNull(id, getClass().getSimpleName() + "::id"); //$NON-NLS-1$
-		Objects.requireNonNull(equipment, getClass().getSimpleName() + "::equipment"); //$NON-NLS-1$
+	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment, PassageFileExtension scope) {
+		String cls = getClass().getSimpleName();
+		Objects.requireNonNull(id, cls + "::id"); //$NON-NLS-1$
+		Objects.requireNonNull(equipment, cls + "::equipment"); //$NON-NLS-1$
+		Objects.requireNonNull(scope, cls + "::scope"); //$NON-NLS-1$
 		this.id = id;
 		this.equipment = equipment;
+		this.scope = scope;
+	}
+
+	protected LocalConditions(ConditionMiningTarget id, MiningEquipment equipment) {
+		this(id, equipment, new PassageFileExtension.LicenseEncrypted());
 	}
 
 	@Override
@@ -69,7 +77,7 @@ public abstract class LocalConditions implements MinedConditions {
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {
-		return new FileCollection(base(product), new PassageFileExtension.LicenseEncrypted()).get();
+		return new FileCollection(base(product), scope).get();
 	}
 
 	protected abstract Supplier<Path> base(LicensedProduct product);
