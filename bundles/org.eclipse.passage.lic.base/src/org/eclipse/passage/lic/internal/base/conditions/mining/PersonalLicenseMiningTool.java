@@ -34,21 +34,15 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
-final class MiningTool {
+final class PersonalLicenseMiningTool extends ArmedMiningTool {
 
-	private final KeyKeeper key;
-	private final StreamCodec codec;
-	private final ConditionTransport transport;
-	private final ConditionMiningTarget miner;
-
-	public MiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport, ConditionMiningTarget miner) {
-		this.key = key;
-		this.codec = codec;
-		this.transport = transport;
-		this.miner = miner;
+	public PersonalLicenseMiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport,
+			ConditionMiningTarget miner) {
+		super(key, codec, transport, miner);
 	}
 
-	ServiceInvocationResult<Collection<ConditionPack>> mine(Collection<Path> sources) {
+	@Override
+	public ServiceInvocationResult<Collection<ConditionPack>> mine(Collection<Path> sources) {
 		return sources.stream()//
 				.map(path -> mine(path)) //
 				.reduce(new BaseServiceInvocationResult.Sum<>(new SumOfCollections<ConditionPack>())) //
@@ -69,14 +63,6 @@ final class MiningTool {
 									source.normalize().toAbsolutePath()), //
 							e));
 		}
-	}
-
-	private String source(Path file) {
-		return file.normalize().toAbsolutePath().toString();
-	}
-
-	private byte[] decoded(Path path) throws IOException, LicensingException {
-		return new DecodedContent(path, key, codec).get();
 	}
 
 	private Collection<Condition> from(byte[] decoded) throws IOException {

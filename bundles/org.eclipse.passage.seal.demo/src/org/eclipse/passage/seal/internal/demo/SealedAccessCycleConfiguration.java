@@ -35,6 +35,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -52,7 +53,7 @@ import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermissio
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.MunichProtocolExpressionParseService;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
@@ -139,7 +140,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	}
 
 	MiningEquipment miningEquipment() {
-		return new MiningEquipment(keyKeepers(), codecs(), transports());
+		return new PersonalLicenseMiningEquipment(keyKeepers(), codecs(), transports());
 	}
 
 	private Bundle bundle() {
