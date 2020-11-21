@@ -20,7 +20,7 @@ import org.eclipse.passage.lbc.internal.api.ProductLicensesRequest;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
 
 /**
  * @since 1.0
@@ -31,7 +31,7 @@ public final class BaseLicenseVault implements BackendLicenseVault {
 
 	public BaseLicenseVault(BackendServerConfiguration configuration) {
 		this.miner = new VaultMinedConditions(
-				new MiningEquipment(configuration.keyKeepers(), configuration.codecs(), configuration.transports()));
+				new PersonalLicenseMiningEquipment(configuration.keyKeepers(), configuration.codecs(), configuration.transports()));
 	}
 
 	@Override

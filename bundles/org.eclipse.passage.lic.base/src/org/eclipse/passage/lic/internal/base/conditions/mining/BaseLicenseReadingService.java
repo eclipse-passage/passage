@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 
 public final class BaseLicenseReadingService implements LicenseReadingService {
 

@@ -17,8 +17,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 /**
  * @since 1.0
  */
+@Deprecated
 public class VaultMinedConditions extends LocalConditions {
 
 	protected VaultMinedConditions(MiningEquipment equipment) {

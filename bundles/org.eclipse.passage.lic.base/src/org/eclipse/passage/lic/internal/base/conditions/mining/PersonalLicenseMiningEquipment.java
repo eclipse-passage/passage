@@ -18,26 +18,30 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
-public final class MiningEquipment {
+public final class PersonalLicenseMiningEquipment implements MiningEquipment {
 
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;
 	private final ConditionTransportRegistry transports;
 
-	public MiningEquipment(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports) {
+	public PersonalLicenseMiningEquipment(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
+			ConditionTransportRegistry transports) {
 		this.keys = keys;
 		this.codecs = codecs;
 		this.transports = transports;
 	}
 
-	MiningTool tool(LicensedProduct product, ConditionMiningTarget miner) throws LicensingException {
-		return new MiningTool(key(product), codec(product), transport(product), miner);
+	@Override
+	public MiningTool tool(LicensedProduct product, ConditionMiningTarget miner) throws LicensingException {
+		return new PersonalLicenseMiningTool(key(product), codec(product), transport(product), miner);
 	}
 
 	private KeyKeeper key(LicensedProduct product) throws LicensingException {

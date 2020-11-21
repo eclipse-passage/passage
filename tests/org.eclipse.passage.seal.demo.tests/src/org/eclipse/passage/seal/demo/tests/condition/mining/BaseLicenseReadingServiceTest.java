@@ -46,7 +46,7 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.mining.BaseLicenseReadingService;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
@@ -110,7 +110,7 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private LicenseReadingService service() {
-		return new BaseLicenseReadingService(product(), new MiningEquipment(keyKeeper(), codecs(), transports()));
+		return new BaseLicenseReadingService(product(), new PersonalLicenseMiningEquipment(keyKeeper(), codecs(), transports()));
 	}
 
 	private KeyKeeperRegistry keyKeeper() {

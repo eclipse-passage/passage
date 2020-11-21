@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Rule;
@@ -90,8 +90,8 @@ public final class LocalConditionsTest {
 		assertEquals("Conditions has been transported incorrectly", 3, spy.transported); //$NON-NLS-1$
 	}
 
-	private MiningEquipment equipment(Spy spy) {
-		return new MiningEquipment(//
+	private PersonalLicenseMiningEquipment equipment(Spy spy) {
+		return new PersonalLicenseMiningEquipment(//
 				() -> new ReadOnlyRegistry<>(new RuntimeKeyKeeper(product(), spy)), //
 				() -> new ReadOnlyRegistry<>(new EchoStreamCodec(product(), spy)), //
 				() -> new ReadOnlyRegistry<>(new HeadOnlyTransport(spy)));
