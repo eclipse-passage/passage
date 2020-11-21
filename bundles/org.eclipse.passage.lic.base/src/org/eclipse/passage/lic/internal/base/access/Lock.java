@@ -59,7 +59,7 @@ final class Lock {
 		}
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
-		if (acquirers.get().hasService(target)) {
+		if (!acquirers.get().hasService(target)) {
 			return noService(new BaseGrantLockAttempt.Failed(certificate), target);
 		}
 		ServiceInvocationResult<GrantAcqisition> grant = acquirers.get().service(target)//
@@ -76,7 +76,7 @@ final class Lock {
 		}
 		Permission permission = permission(lock.certificate());
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
-		if (acquirers.get().hasService(target)) {
+		if (!acquirers.get().hasService(target)) {
 			return noService(Boolean.FALSE, target);
 		}
 		return acquirers.get().service(target).release(permission.product(), lock.grant());
