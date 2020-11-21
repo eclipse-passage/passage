@@ -54,21 +54,20 @@ final class Lock {
 	 * @see LicenseAcquisitionService
 	 */
 	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
+		if (notPermissive(certificate)) { // #569004
+			return noPermission(certificate);
+		}
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
-		if (acquirers.get().hasService(target)) {
-			return noAcquisitionServiceForTarget(new BaseGrantLockAttempt.Failed(certificate), target);
+		if (!acquirers.get().hasService(target)) {
+			return noService(new BaseGrantLockAttempt.Failed(certificate), target);
 		}
 		ServiceInvocationResult<GrantAcqisition> grant = acquirers.get().service(target)//
 				.acquire(permission.product(), permission.condition().feature());
 		if (!grant.data().isPresent()) {
-			return new BaseServiceInvocationResult<>(//
-					grant.diagnostic(), //
-					new BaseGrantLockAttempt.Failed(certificate));
+			return noGrant(certificate, grant);
 		}
-		return new BaseServiceInvocationResult<>(//
-				grant.diagnostic(), //
-				new BaseGrantLockAttempt.Successful(certificate, grant.data().get()));//
+		return grant(certificate, grant);
 	}
 
 	ServiceInvocationResult<Boolean> unlock(GrantLockAttempt lock) {
@@ -77,23 +76,46 @@ final class Lock {
 		}
 		Permission permission = permission(lock.certificate());
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
-		if (acquirers.get().hasService(target)) {
-			return noAcquisitionServiceForTarget(Boolean.FALSE, target);
+		if (!acquirers.get().hasService(target)) {
+			return noService(Boolean.FALSE, target);
 		}
 		return acquirers.get().service(target).release(permission.product(), lock.grant());
 	}
 
-	private ServiceInvocationResult<Boolean> wrongLockWarning() {
-		return new BaseServiceInvocationResult<>(//
-				new BaseDiagnostic(//
-						Collections.emptyList(), //
-						Collections.singletonList(//
-								new Trouble(//
-										new ServiceFailedOnMorsel(), //
-										AccessCycleMessages.getString("Lock.wrong_release"))))); //$NON-NLS-1$
+	private ServiceInvocationResult<GrantLockAttempt> noPermission(ExaminationCertificate certificate) {
+		return new BaseServiceInvocationResult<>(// #569004
+				fail(AccessCycleMessages.getString("Lock.no_permission")), //$NON-NLS-1$
+				new BaseGrantLockAttempt.Failed(certificate));
 	}
 
-	private <T> ServiceInvocationResult<T> noAcquisitionServiceForTarget(T data, ConditionMiningTarget target) {
+	private BaseServiceInvocationResult<GrantLockAttempt> noGrant(ExaminationCertificate certificate,
+			ServiceInvocationResult<GrantAcqisition> grant) {
+		return new BaseServiceInvocationResult<>(//
+				grant.diagnostic(), //
+				new BaseGrantLockAttempt.Failed(certificate));
+	}
+
+	private BaseServiceInvocationResult<GrantLockAttempt> grant(ExaminationCertificate certificate,
+			ServiceInvocationResult<GrantAcqisition> grant) {
+		return new BaseServiceInvocationResult<>(//
+				grant.diagnostic(), //
+				new BaseGrantLockAttempt.Successful(certificate, grant.data().get()));
+	}
+
+	private ServiceInvocationResult<Boolean> wrongLockWarning() {
+		return new BaseServiceInvocationResult<>(fail("Lock.wrong_release")); //$NON-NLS-1$
+	}
+
+	private BaseDiagnostic fail(String details) {
+		return new BaseDiagnostic(//
+				Collections.emptyList(), //
+				Collections.singletonList(//
+						new Trouble(//
+								new ServiceFailedOnMorsel(), //
+								AccessCycleMessages.getString(details))));
+	}
+
+	private <T> ServiceInvocationResult<T> noService(T data, ConditionMiningTarget target) {
 		return new BaseServiceInvocationResult<T>(//
 				new BaseDiagnostic(new Trouble(//
 						new NoServicesOfType(AccessCycleMessages.getString("Lock.no_service")), //$NON-NLS-1$
@@ -104,9 +126,13 @@ final class Lock {
 				data);
 	}
 
+	private boolean notPermissive(ExaminationCertificate certificate) {
+		return certificate.satisfied().isEmpty(); // #569004
+	}
+
 	/**
-	 * Certificate must be non-restrictive: must contain at least one properly
-	 * satisfied requirement
+	 * Certificate must be permissive: must contain at least one properly satisfied
+	 * requirement // #569004
 	 */
 	private Permission permission(ExaminationCertificate certificate) {
 		Requirement any = certificate.satisfied().iterator().next(); // guaranteed to exist
