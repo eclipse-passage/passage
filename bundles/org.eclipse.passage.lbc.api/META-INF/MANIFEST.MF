@@ -11,5 +11,6 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport
 Export-Package: org.eclipse.passage.lbc.internal.api;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.api.tests",
  org.eclipse.passage.lbc.internal.api.chains;x-friends:="org.eclipse.passage.lbc.base",
- org.eclipse.passage.lbc.internal.api.persistence;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.json"
+ org.eclipse.passage.lbc.internal.api.persistence;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.json",
+ org.eclipse.passage.lbc.internal.api.tobemoved;x-friends:="org.eclipse.passage.lbc.jetty,org.eclipse.passage.lbc.base"
 Bundle-ActivationPolicy: lazy

@@ -24,7 +24,7 @@ public final class JettyServer {
 
 	private Server server;
 
-	public void launch(Port port) throws JettyException {
+	void launch(Port port) throws JettyException {
 		try {
 			server = new Server(port.get());
 			server.setHandler(new JettyHandler());
@@ -37,7 +37,7 @@ public final class JettyServer {
 		}
 	}
 
-	public void terminate() throws JettyException {
+	void terminate() throws JettyException {
 		try {
 			server.stop();
 			logger.info(String.format(Messages.stopped));

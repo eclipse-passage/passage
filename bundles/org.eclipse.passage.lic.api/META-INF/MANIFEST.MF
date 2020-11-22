@@ -53,7 +53,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.licenses.migration,
    org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.equinox,
-   org.eclipse.passage.lic.base.tests",
+   org.eclipse.passage.lic.base.tests,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.diagnostic;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.jface,
