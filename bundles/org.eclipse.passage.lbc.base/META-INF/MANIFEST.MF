@@ -24,5 +24,6 @@ Export-Package: org.eclipse.passage.lbc.internal.base;
    org.eclipse.passage.lbc.internal.base.persistence;x-internal:=true,
    org.eclipse.passage.lbc.internal.base.troubles;x-internal:=true",
  org.eclipse.passage.lbc.internal.base.chains;x-friends:="org.eclipse.passage.lbc.jetty",
- org.eclipse.passage.lbc.internal.base.persistence;x-friends:="org.eclipse.passage.lbc.jetty"
+ org.eclipse.passage.lbc.internal.base.persistence;x-friends:="org.eclipse.passage.lbc.jetty",
+ org.eclipse.passage.lbc.internal.base.tobemoved;x-friends:="org.eclipse.passage.lbc.jetty"
 Bundle-ActivationPolicy: lazy
