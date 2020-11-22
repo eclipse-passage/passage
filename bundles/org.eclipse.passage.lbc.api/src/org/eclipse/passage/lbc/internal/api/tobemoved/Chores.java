@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api.tobemoved;
 
-import java.util.function.Supplier;
+public interface Chores {
 
-public interface FlotingRequestHandled extends Supplier<FloatingResponse> {
+	FloatingResponse workOut(RawRequest request);
 
 }

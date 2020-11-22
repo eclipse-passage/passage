@@ -10,10 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api.tobemoved;
+package org.eclipse.passage.lbc.internal.base.tobemoved;
 
-import java.util.function.Supplier;
+import org.eclipse.passage.lbc.internal.api.tobemoved.Chore;
+import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
+import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
 
-public interface FlotingRequestHandled extends Supplier<FloatingResponse> {
+final class Acquire implements Chore {
+
+	Acquire(RawRequest data) {
+// TODO
+	}
+
+	@Override
+	public FloatingResponse getDone() {
+		// TODO
+		return null;
+	}
 
 }

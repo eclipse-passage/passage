@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
+import java.util.Objects;
+
+import org.eclipse.passage.lbc.internal.api.tobemoved.Chores;
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.tobemoved.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
@@ -19,15 +22,22 @@ import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
 public final class BaseFlotingRequestHandled implements FlotingRequestHandled {
 
 	private final RawRequest request;
+	private final Chores chores;
+
+	public BaseFlotingRequestHandled(RawRequest request, Chores chores) {
+		Objects.requireNonNull(request, "BaseFlotingRequestHandled:request");//$NON-NLS-1$
+		Objects.requireNonNull(chores, "BaseFlotingRequestHandled:chores");//$NON-NLS-1$
+		this.request = request;
+		this.chores = chores;
+	}
 
 	public BaseFlotingRequestHandled(RawRequest request) {
-		this.request = request;
+		this(request, new FloatingCycle());
 	}
 
 	@Override
 	public FloatingResponse get() {
-		// TODO: all the business-logic starts here
-		return null;
+		return chores.workOut(request);
 	}
 
 }
