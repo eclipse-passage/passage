@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.api.conditions;
 
 import java.util.Objects;
 
+//FIXME: evolution demands for renaming
 public abstract class ConditionAction {
 
 	private final String name;
