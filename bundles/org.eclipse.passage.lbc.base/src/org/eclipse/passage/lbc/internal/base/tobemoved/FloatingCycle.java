@@ -35,10 +35,11 @@ final class FloatingCycle implements Chores {
 
 	@Override
 	public FloatingResponse workOut(RawRequest request) {
+		LicensingAction action = action(request);
 		return chores//
 				.getOrDefault(//
-						action(request), //
-						any -> new Failing())//
+						action, //
+						any -> new Failing(action))//
 				.apply(request)//
 				.getDone();
 	}
@@ -48,10 +49,15 @@ final class FloatingCycle implements Chores {
 	}
 
 	private final class Failing implements Chore {
+		private final LicensingAction actual;
+
+		Failing(LicensingAction actual) {
+			this.actual = actual;
+		}
 
 		@Override
 		public FloatingResponse getDone() {
-			return new Failure.BadRequestNoAction();
+			return new Failure.BadRequestUnknownAction(actual.get().get().name());
 		}
 
 	}

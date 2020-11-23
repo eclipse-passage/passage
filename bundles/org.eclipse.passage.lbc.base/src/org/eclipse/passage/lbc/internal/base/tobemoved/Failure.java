@@ -55,12 +55,27 @@ abstract class Failure implements FloatingResponse {
 
 	}
 
-	static final class BadRequestNoAction extends Failure {
+	static final class BadRequestUnknownAction extends Failure {
 
-		BadRequestNoAction() {
-			super(601, "Bad Requets: no 'action' is defined"); //$NON-NLS-1$
+		BadRequestUnknownAction(String actual) {
+			super(601, String.format("Bad Requets: 'action' %s is not supported", actual)); //$NON-NLS-1$
 		}
 
 	}
 
+	static final class BadRequestInvalidProduct extends Failure {
+
+		BadRequestInvalidProduct() {
+			super(602, "Bad Request: licensed product identifier and/or version information is absent"); //$NON-NLS-1$
+		}
+
+	}
+
+	static final class BadRequestNoUser extends Failure {
+
+		BadRequestNoUser() {
+			super(603, "Bad Request: no user identifier"); //$NON-NLS-1$
+		}
+
+	}
 }
