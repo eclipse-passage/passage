@@ -12,12 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net;
 
+import java.util.function.Function;
+
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 public final class LicenseUser extends StringNamedData {
 
 	public LicenseUser(String value) {
 		super(value);
+	}
+
+	public LicenseUser(Function<String, String> retrieve) {
+		super(retrieve);
 	}
 
 	@Override

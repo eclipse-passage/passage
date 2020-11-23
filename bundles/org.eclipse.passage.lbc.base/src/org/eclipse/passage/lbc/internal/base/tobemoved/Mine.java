@@ -12,20 +12,34 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lbc.internal.api.tobemoved.Chore;
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
+import org.eclipse.passage.lbc.internal.base.tobemoved.mine.Conditions;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.net.LicenseUser;
 
 final class Mine implements Chore {
 
+	private RawRequest data;
+
 	Mine(RawRequest data) {
-// TODO
+		this.data = data;
 	}
 
 	@Override
 	public FloatingResponse getDone() {
-		// TODO
-		return null;
+		Optional<LicensedProduct> product = new ProductFromRequest(data).get();
+		if (!product.isPresent()) {
+			return new Failure.BadRequestInvalidProduct();
+		}
+		Optional<String> user = new LicenseUser(data::parameter).get();
+		if (!user.isPresent()) {
+			return new Failure.BadRequestNoUser();
+		}
+		return new Conditions(product.get(), user.get()).get();
 	}
 
 }
