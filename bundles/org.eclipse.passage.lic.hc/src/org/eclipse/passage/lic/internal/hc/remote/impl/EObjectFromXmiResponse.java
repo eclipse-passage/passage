@@ -16,6 +16,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.net.EObjectFromBytes;
 
 public final class EObjectFromXmiResponse<T> implements ResponseHandler<T> {
 
