@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
@@ -29,6 +30,10 @@ public final class UserHomeResidentConditions extends LocalConditions {
 
 	public UserHomeResidentConditions(MiningEquipment equipment) {
 		super(new UserHomeMiningTarget().get(), equipment);
+	}
+
+	public UserHomeResidentConditions(MiningEquipment equipment, PassageFileExtension scope) {
+		super(new UserHomeMiningTarget().get(), equipment, scope);
 	}
 
 	@Override
