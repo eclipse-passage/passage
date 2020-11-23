@@ -14,13 +14,14 @@ package org.eclipse.passage.lbc.internal.base.tobemoved.mine;
 
 import java.util.Collection;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
+import org.eclipse.passage.lbc.internal.base.tobemoved.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.tobemoved.Failure;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
@@ -38,26 +39,27 @@ public final class Conditions implements Supplier<FloatingResponse> {
 
 	@Override
 	public FloatingResponse get() {
-		ServiceInvocationResult<Collection<ConditionPack>> all = new UserHomeResidentConditions(//
-				new ReassemblingMiningEquipment(), //
-				new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
-		).all(product);
-		if (!all.data().isPresent()) {
-			return new Failure.OperationFailed("mine", new DiagnosticExplained(all.diagnostic()).get()); //$NON-NLS-1$
+		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
+				new UserHomeResidentConditions(//
+						new ReassemblingMiningEquipment(user), //
+						new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
+				).all(product);
+		if (!conditions.data().isPresent()) {
+			return new Failure.OperationFailed(//
+					"mine", //$NON-NLS-1$
+					new DiagnosticExplained(conditions.diagnostic()).get());
 		}
-		return null; // TODO
+		return new EObjectTransfer(pack(conditions.data().get()));
 	}
 
 	private LicensePack pack(Collection<ConditionPack> conditions) {
-		return new PersonalLicenseGenerated(product, user, conditions()).get();
-	}
-
-	private Collection<Condition> conditions() {
-		ServiceInvocationResult<Collection<ConditionPack>> all = new UserHomeResidentConditions(//
-				new ReassemblingMiningEquipment(), //
-				new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
-		).all(product);
-		return null;
+		return new PersonalLicenseGenerated(//
+				product, //
+				user, //
+				conditions.stream()//
+						.flatMap(pack -> pack.conditions().stream())//
+						.collect(Collectors.toList())//
+		).get();
 	}
 
 }

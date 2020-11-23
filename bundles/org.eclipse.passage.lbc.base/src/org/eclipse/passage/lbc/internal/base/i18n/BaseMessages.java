@@ -16,7 +16,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class BaseMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.base.i18n.BaseMessages"; //$NON-NLS-1$
+	public static String AssembledConditions_validity_period_type_unknown;
 	public static String BaseRequestDispatcher_e_executor_not_available;
+	public static String ReassemblingMiningTool_path_failed;
 	public static String ServerKeyKeeper_input_stream_error;
 	static {
 		// initialize resource bundle

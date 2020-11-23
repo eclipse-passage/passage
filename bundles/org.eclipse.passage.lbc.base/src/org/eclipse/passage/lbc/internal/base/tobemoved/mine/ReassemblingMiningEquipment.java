@@ -20,9 +20,15 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
 
 final class ReassemblingMiningEquipment implements MiningEquipment {
 
+	private final String user;
+
+	ReassemblingMiningEquipment(String user) {
+		this.user = user;
+	}
+
 	@Override
 	public MiningTool tool(LicensedProduct product, ConditionMiningTarget miner) throws LicensingException {
-		return null;
+		return new ReassemblingMiningTool(product, user, miner);
 	}
 
 }

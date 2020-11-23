@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api.tobemoved;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -28,7 +29,7 @@ public interface FloatingResponse {
 	 * 
 	 * @param output sink-stream for the response payload
 	 */
-	void write(OutputStream output);
+	void write(OutputStream output) throws IOException;
 
 	public static interface Error {
 
