@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
 
-abstract class Failure implements FloatingResponse {
+public abstract class Failure implements FloatingResponse {
 
 	private final int code;
 	private final String message;
@@ -78,4 +78,13 @@ abstract class Failure implements FloatingResponse {
 		}
 
 	}
+
+	public static final class OperationFailed extends Failure {
+
+		public OperationFailed(String name, String details) {
+			super(610, String.format("Operation %s failed: \n%s", name, details)); //$NON-NLS-1$
+		}
+
+	}
+
 }
