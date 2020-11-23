@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.net;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
+import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
 
 /**
  * Reads xmi content from raw byte array and retrieve the single root element of
@@ -47,14 +47,14 @@ public final class EObjectFromBytes<T> {
 		try (InputStream input = new ByteArrayInputStream(content)) {
 			resource.load(input, Collections.emptyMap());
 		} catch (IOException e) {
-			throw new LicensingException(AccessMessages.XmiToEObject_failed_xmi_read, e);
+			throw new LicensingException(NetMessages.XmiToEObject_failed_xmi_read, e);
 		}
 		return resource.getContents();
 	}
 
 	private EObject only(List<EObject> contents) throws LicensingException {
 		if (contents.size() != 1) {
-			throw new LicensingException(String.format(AccessMessages.XmiToEObject_unexpected_amount, contents.size()));
+			throw new LicensingException(String.format(NetMessages.XmiToEObject_unexpected_amount, contents.size()));
 		}
 		return contents.get(0);
 	}
@@ -62,7 +62,7 @@ public final class EObjectFromBytes<T> {
 	private T from(EObject only) throws LicensingException {
 		if (!cls.isInstance(only)) {
 			throw new LicensingException(
-					String.format(AccessMessages.XmiToEObject_unexpected_type, only.eClass().getName()));
+					String.format(NetMessages.XmiToEObject_unexpected_type, only.eClass().getName()));
 		}
 		return cls.cast(only);
 	}

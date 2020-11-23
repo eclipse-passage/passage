@@ -31,9 +31,6 @@ public final class AccessMessages extends NLS {
 	public static String RemoteService_no_server;
 
 	public static String RequestParameters_encoding_failed;
-	public static String XmiToEObject_failed_xmi_read;
-	public static String XmiToEObject_unexpected_amount;
-	public static String XmiToEObject_unexpected_type;
 
 	public static String Request_failed_to_compose_url;
 
