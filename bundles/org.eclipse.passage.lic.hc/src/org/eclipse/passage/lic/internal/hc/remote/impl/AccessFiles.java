@@ -33,7 +33,7 @@ final class AccessFiles {
 	public Collection<Path> get() throws LicensingException {
 		return new FileCollection(//
 				new PathFromLicensedProduct(new UserHomePath(), product),
-				new FloatingFileExtensions.LicenseAccessEncrypted()//
+				new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
 		).get();
 	}
 
