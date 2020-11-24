@@ -33,12 +33,13 @@ final class Acquire extends ChoreDraft {
 		if (!feature.isPresent()) {
 			return new Failure.BadRequestNoFeature();
 		}
+		String decoded;
 		try {
-			String decoded = decode(feature.get());
+			decoded = decode(feature.get());
 		} catch (LicensingException e) {
 			return failed(e.getMessage());
 		}
-		return new Acquisition(product, user, feature.get()).get();
+		return new Acquisition(product, user, decoded).get();
 	}
 
 }
