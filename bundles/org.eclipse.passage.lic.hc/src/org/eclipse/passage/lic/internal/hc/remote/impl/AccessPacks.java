@@ -35,8 +35,8 @@ import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
-import org.eclipse.passage.lic.internal.net.EObjectFromBytes;
 
 public final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {
 

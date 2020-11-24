@@ -37,7 +37,8 @@ import org.eclipse.passage.lic.internal.base.conditions.mining.ArmedMiningTool;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.net.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 
 /**
  * FIXME: There lots of diagnostics is spared in vain. Find a way to pass it to
@@ -52,7 +53,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 		super(//
 				new ServerKeyKeeper(product), //
 				new BcStreamCodec(() -> product), //
-				new AssemblingTransport(), //
+				new XmiConditionTransport(), //
 				miner);
 		this.product = product;
 		this.user = user;
