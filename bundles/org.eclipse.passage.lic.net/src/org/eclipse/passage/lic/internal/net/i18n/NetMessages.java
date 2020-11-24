@@ -21,10 +21,6 @@ public final class NetMessages extends NLS {
 	public static String LicensingServerCoordinates_settings_are_blank;
 	public static String LicensingServerCoordinates_settings_not_found;
 
-	public static String XmiToEObject_failed_xmi_read;
-	public static String XmiToEObject_unexpected_amount;
-	public static String XmiToEObject_unexpected_type;
-
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, NetMessages.class);
