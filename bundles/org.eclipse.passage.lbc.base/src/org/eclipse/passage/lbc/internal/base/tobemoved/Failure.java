@@ -79,6 +79,14 @@ public abstract class Failure implements FloatingResponse {
 
 	}
 
+	static final class BadRequestNoFeature extends Failure {
+
+		BadRequestNoFeature() {
+			super(604, "Bad Request: no feature identifier"); //$NON-NLS-1$
+		}
+
+	}
+
 	public static final class OperationFailed extends Failure {
 
 		public OperationFailed(String name, String details) {
