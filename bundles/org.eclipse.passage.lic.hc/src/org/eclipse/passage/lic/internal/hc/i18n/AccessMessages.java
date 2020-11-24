@@ -18,7 +18,6 @@ public final class AccessMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.hc.i18n.AccessMessages"; //$NON-NLS-1$
 
-	public static String AccessPacks_failure;
 	public static String AccessPacks_failed_on_file;
 	public static String AccessPacks_files_gaining_failed;
 	public static String AccessPacks_insufficient_configuration;

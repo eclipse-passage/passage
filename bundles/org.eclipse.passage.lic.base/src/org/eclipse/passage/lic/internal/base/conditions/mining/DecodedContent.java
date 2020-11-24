@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 public final class DecodedContent {
 
@@ -35,13 +36,19 @@ public final class DecodedContent {
 		this.codec = codec;
 	}
 
-	public byte[] get() throws IOException, LicensingException {
+	public byte[] get() throws LicensingException {
 		try (FileInputStream encoded = new FileInputStream(source.toFile());
 				ByteArrayOutputStream decoded = new ByteArrayOutputStream();
 				InputStream ring = key.productPublicKey()) {
 			codec.decode(encoded, decoded, ring, new DigestExpectation.None());
 			decoded.flush();
 			return decoded.toByteArray();
+		} catch (IOException e) {
+			throw new LicensingException(//
+					String.format(//
+							AccessCycleMessages.getString("DecodedContent.io_failure"), //$NON-NLS-1$
+							source.toAbsolutePath().toString()), //
+					e);
 		}
 	}
 

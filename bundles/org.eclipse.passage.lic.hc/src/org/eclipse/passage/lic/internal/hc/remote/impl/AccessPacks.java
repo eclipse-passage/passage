@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -88,11 +87,7 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 	}
 
 	private byte[] decoded(Path file, KeyKeeper key, StreamCodec codec) throws LicensingException {
-		try {
-			return new DecodedContent(file, key, codec).get();
-		} catch (IOException e) {
-			throw new LicensingException(String.format(AccessMessages.AccessPacks_failure, file.toAbsolutePath()), e);
-		}
+		return new DecodedContent(file, key, codec).get();
 	}
 
 	private FloatingLicenseAccess from(byte[] content) throws LicensingException {
