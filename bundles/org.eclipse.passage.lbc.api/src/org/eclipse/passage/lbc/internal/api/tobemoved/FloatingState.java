@@ -10,21 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.tobemoved;
+package org.eclipse.passage.lbc.internal.api.tobemoved;
 
-import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
-import org.eclipse.passage.lbc.internal.base.tobemoved.mine.Conditions;
+/**
+ * FIXME: temporary
+ * 
+ * Redesign this part. We need a sort of Passage Framework to pull down critical
+ * entities through the codebase
+ */
+public interface FloatingState {
 
-final class Mine extends ChoreDraft {
-
-	Mine(RawRequest data) {
-		super(data);
-	}
-
-	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) {
-		return new Conditions(request).get();
-	}
+	Grants grants();
 
 }

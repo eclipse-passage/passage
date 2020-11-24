@@ -17,14 +17,17 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingState;
 import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
 
 final class JettyRequest implements RawRequest {
 
 	private final HttpServletRequest origin;
+	private final FloatingState state;
 
-	JettyRequest(HttpServletRequest origin) {
+	JettyRequest(HttpServletRequest origin, FloatingState state) {
 		this.origin = origin;
+		this.state = state;
 	}
 
 	@Override
@@ -39,6 +42,11 @@ final class JettyRequest implements RawRequest {
 			stream.read(content);
 		}
 		return content;
+	}
+
+	@Override
+	public FloatingState state() {
+		return state;
 	}
 
 }

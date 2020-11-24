@@ -20,4 +20,6 @@ public interface RawRequest {
 
 	byte[] content() throws IOException;
 
+	FloatingState state();
+
 }

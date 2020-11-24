@@ -10,21 +10,26 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.tobemoved;
+package org.eclipse.passage.lbc.internal.base.tobemoved.acquire;
 
-import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
-import org.eclipse.passage.lbc.internal.base.tobemoved.mine.Conditions;
+import java.util.function.Predicate;
 
-final class Mine extends ChoreDraft {
+import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 
-	Mine(RawRequest data) {
-		super(data);
+final class AvailableForUser implements Predicate<FloatingLicensePack> {
+
+	private final String user;
+
+	AvailableForUser(String user) {
+		this.user = user;
 	}
 
 	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) {
-		return new Conditions(request).get();
+	public boolean test(FloatingLicensePack license) {
+		return license.getUsers().stream() //
+				.filter(grant -> user.equals(grant.getUser()))//
+				.findAny()//
+				.isPresent();
 	}
 
 }

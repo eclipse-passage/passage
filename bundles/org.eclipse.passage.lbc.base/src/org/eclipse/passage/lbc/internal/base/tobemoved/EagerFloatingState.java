@@ -12,19 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
-import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
-import org.eclipse.passage.lbc.internal.base.tobemoved.mine.Conditions;
+import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingState;
+import org.eclipse.passage.lbc.internal.api.tobemoved.Grants;
+import org.eclipse.passage.lbc.internal.base.tobemoved.acquire.AcquiredGrants;
 
-final class Mine extends ChoreDraft {
+public final class EagerFloatingState implements FloatingState {
 
-	Mine(RawRequest data) {
-		super(data);
-	}
+	private final Grants grants = new AcquiredGrants();
 
 	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) {
-		return new Conditions(request).get();
+	public Grants grants() {
+		return grants;
 	}
 
 }

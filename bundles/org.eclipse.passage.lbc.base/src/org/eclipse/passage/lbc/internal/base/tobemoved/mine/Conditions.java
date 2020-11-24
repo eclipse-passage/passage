@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
 import org.eclipse.passage.lbc.internal.base.tobemoved.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.tobemoved.Failure;
+import org.eclipse.passage.lbc.internal.base.tobemoved.ProductUserRequest;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
@@ -29,21 +29,19 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class Conditions implements Supplier<FloatingResponse> {
 
-	private final LicensedProduct product;
-	private final String user;
+	private final ProductUserRequest data;
 
-	public Conditions(LicensedProduct product, String user) {
-		this.product = product;
-		this.user = user;
+	public Conditions(ProductUserRequest data) {
+		this.data = data;
 	}
 
 	@Override
 	public FloatingResponse get() {
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
 				new UserHomeResidentConditions(//
-						new ReassemblingMiningEquipment(user), //
-						new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
-				).all(product);
+						new ReassemblingMiningEquipment(data.user().get()), //
+						new FloatingFileExtensions.FloatingLicenseEncrypted()//
+				).all(data.product().get());
 		if (!conditions.data().isPresent()) {
 			return new Failure.OperationFailed(//
 					"mine", //$NON-NLS-1$
@@ -54,8 +52,8 @@ public final class Conditions implements Supplier<FloatingResponse> {
 
 	private LicensePack pack(Collection<ConditionPack> conditions) {
 		return new PersonalLicenseGenerated(//
-				product, //
-				user, //
+				data.product().get(), //
+				data.user().get(), //
 				conditions.stream()//
 						.flatMap(pack -> pack.conditions().stream())//
 						.collect(Collectors.toList())//
