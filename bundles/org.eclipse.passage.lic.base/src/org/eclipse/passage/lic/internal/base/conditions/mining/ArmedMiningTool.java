@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 public abstract class ArmedMiningTool implements MiningTool {
 
@@ -41,8 +42,16 @@ public abstract class ArmedMiningTool implements MiningTool {
 		return file.normalize().toAbsolutePath().toString();
 	}
 
-	protected final byte[] decoded(Path path) throws IOException, LicensingException {
-		return new DecodedContent(path, key, codec).get();
+	protected final byte[] decoded(Path path) throws LicensingException {
+		try {
+			return new DecodedContent(path, key, codec).get();
+		} catch (IOException e) {
+			throw new LicensingException(//
+					String.format(//
+							AccessCycleMessages.getString("ArmedMiningTool.io_failure"), //$NON-NLS-1$
+							path.toAbsolutePath().toString()), //
+					e);
+		}
 	}
 
 }

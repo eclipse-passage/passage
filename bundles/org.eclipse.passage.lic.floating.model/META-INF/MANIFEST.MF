@@ -20,7 +20,8 @@ Export-Package: org.eclipse.passage.lic.floating.model.api;
    org.eclipse.passage.loc.api,
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.lic.hc,
-   org.eclipse.passage.lic.net",
+   org.eclipse.passage.lic.net,
+   org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.floating.model.convert;x-friends:="org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.floating.model.impl;x-internal:=true,
  org.eclipse.passage.lic.floating.model.meta;
