@@ -41,7 +41,7 @@ abstract class ChoreDraft implements Chore {
 		try {
 			product = product();
 		} catch (LicensingException e) {
-			return new Failure.OperationFailed(getClass().getSimpleName(), e.getMessage());
+			return failed(e.getMessage());
 		}
 		if (!product.isPresent()) {
 			return new Failure.BadRequestInvalidProduct();
@@ -53,6 +53,8 @@ abstract class ChoreDraft implements Chore {
 		return withProductAndUser(product.get(), user.get());
 	}
 
+	protected abstract FloatingResponse withProductAndUser(LicensedProduct product, String user);
+
 	private Optional<LicensedProduct> product() throws LicensingException {
 		Optional<String> id = new ProductIdentifier(data::parameter).get();
 		Optional<String> version = new ProductVersion(data::parameter).get();
@@ -62,7 +64,7 @@ abstract class ChoreDraft implements Chore {
 		return Optional.of(new BaseLicensedProduct(decode(id.get()), decode(version.get())));
 	}
 
-	protected String decode(String value) throws LicensingException {
+	protected final String decode(String value) throws LicensingException {
 		try {
 			return URLDecoder.decode(value, "UTF-8"); //$NON-NLS-1$
 		} catch (UnsupportedEncodingException e) {
@@ -70,6 +72,8 @@ abstract class ChoreDraft implements Chore {
 		}
 	}
 
-	protected abstract FloatingResponse withProductAndUser(LicensedProduct product, String user);
+	protected final FloatingResponse failed(String details) {
+		return new Failure.OperationFailed(getClass().getSimpleName(), details);
+	}
 
 }
