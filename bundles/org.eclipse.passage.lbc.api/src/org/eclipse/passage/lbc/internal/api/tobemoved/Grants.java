@@ -10,8 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.tobemoved.acquire;
+package org.eclipse.passage.lbc.internal.api.tobemoved;
 
-final class AcuiredGrants {
+import java.util.Optional;
+
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
+
+public interface Grants {
+
+	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
 
 }

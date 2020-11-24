@@ -12,24 +12,25 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
-import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
-import org.eclipse.passage.lbc.internal.base.tobemoved.acquire.Acquisition;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-final class Acquire extends ChoreDraft {
+final class DecodedParam {
 
-	Acquire(RawRequest data) {
-		super(data);
+	private final String raw;
+
+	DecodedParam(String raw) {
+		this.raw = raw;
 	}
 
-	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
-		FeatureRequest feature = new FeatureRequest(request);
-		if (!feature.feature().isPresent()) {
-			return new Failure.BadRequestNoFeature();
+	String get() throws LicensingException {
+		try {
+			return URLDecoder.decode(raw, "UTF-8"); //$NON-NLS-1$
+		} catch (UnsupportedEncodingException e) {
+			throw new LicensingException(String.format(BaseMessages.DecodedParam_decode_failed, raw), e);
 		}
-		return new Acquisition(feature).get();
 	}
-
 }

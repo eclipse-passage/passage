@@ -22,10 +22,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
+import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingState;
 import org.eclipse.passage.lbc.internal.base.tobemoved.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.tobemoved.EagerFloatingState;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
+/**
+ * There is one single instance of the handler for a server. All of the rest in
+ * the flow is created per-request, exploited and got rid of.
+ * 
+ * Thus, it's the only place to keep server's {@code state}. Which, for the
+ * floating server, is a persistent grant acquisition ledger.
+ */
 public final class JettyHandler extends AbstractHandler {
+
+	private final FloatingState state = new EagerFloatingState();
 
 	@Override
 	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse envelope)
@@ -34,7 +45,7 @@ public final class JettyHandler extends AbstractHandler {
 	}
 
 	private FloatingResponse response(HttpServletRequest request) {
-		return new BaseFlotingRequestHandled(new JettyRequest(request)).get();
+		return new BaseFlotingRequestHandled(new JettyRequest(request, state)).get();
 	}
 
 	private void write(FloatingResponse response, HttpServletResponse envelope) throws IOException {
@@ -48,4 +59,5 @@ public final class JettyHandler extends AbstractHandler {
 		envelope.setContentType(new ContentType.Xml().contentType());
 		envelope.setStatus(HttpServletResponse.SC_OK);
 	}
+
 }
