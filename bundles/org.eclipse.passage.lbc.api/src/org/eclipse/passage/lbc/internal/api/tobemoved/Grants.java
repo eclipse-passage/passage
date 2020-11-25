@@ -22,4 +22,6 @@ public interface Grants {
 
 	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
 
+	boolean release(GrantAcqisition acquisition);
+
 }

@@ -13,8 +13,6 @@
 package org.eclipse.passage.lbc.internal.base.tobemoved.acquire;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.api.tobemoved.Grants;
@@ -25,46 +23,31 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 
 public final class AcquiredGrants implements Grants {
 
-	private final Object lock = new Object();
-	private final Content content;
+	private final AcquiredGrantsStorage storage;
 
 	public AcquiredGrants() {
-		synchronized (lock) {
-			// TODO : eagerly load from persistent state
-			content = new Content();
-		}
+		storage = new AcquiredGrantsStorage();
 	}
 
+	@Override
 	public Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature)
 			throws LicensingException {
 		Collection<FeatureGrant> grants = new FeatureGrants(product, user, feature).get();
 		if (grants.isEmpty()) {
 			return Optional.empty();
 		}
-		synchronized (lock) {
-			for (FeatureGrant grant : grants) {
-				if (acquire(product, user, grant)) {
-					return Optional.of(acquisition(product, user, grant));
-				}
+		for (FeatureGrant grant : grants) {
+			Optional<GrantAcqisition> acquisition = storage.acquire(product, user, grant);
+			if (acquisition.isPresent()) {
+				return acquisition;
 			}
 		}
 		return Optional.empty();
 	}
 
+	@Override
 	public boolean release(GrantAcqisition acquisition) {
 		return false;
-	}
-
-	private boolean acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		return false;// YTBD
-	}
-
-	private GrantAcqisition acquisition(LicensedProduct product, String user, FeatureGrant grant) {
-		return null;// YTBD
-	}
-
-	private final static class Content {
-		private final Map<LicensedProduct, ?> grants = new HashMap<>();
 	}
 
 }
