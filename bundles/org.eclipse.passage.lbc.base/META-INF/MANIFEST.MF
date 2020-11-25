@@ -16,7 +16,12 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.emf.ecore.xmi;bundle-version="0.0.0",
  org.eclipse.passage.lic.json;bundle-version="0.0.0",
  com.fasterxml.jackson.core.jackson-databind;bundle-version="0.0.0",
- com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0"
+ com.fasterxml.jackson.core.jackson-core;bundle-version="0.0.0",
+ org.eclipse.passage.lic.floating;bundle-version="0.1.0",
+ org.eclipse.passage.lic.bc;bundle-version="1.0.100",
+ org.eclipse.passage.lic.floating.model;bundle-version="0.1.0",
+ org.eclipse.passage.lic.licenses.migration;bundle-version="0.5.300",
+ org.eclipse.passage.lic.emf;bundle-version="1.0.100"
 Export-Package: org.eclipse.passage.lbc.internal.base;
   x-friends:="org.eclipse.passage.lbc.jetty,
    org.eclipse.passage.lbc.json,
@@ -24,5 +29,6 @@ Export-Package: org.eclipse.passage.lbc.internal.base;
    org.eclipse.passage.lbc.internal.base.persistence;x-internal:=true,
    org.eclipse.passage.lbc.internal.base.troubles;x-internal:=true",
  org.eclipse.passage.lbc.internal.base.chains;x-friends:="org.eclipse.passage.lbc.jetty",
- org.eclipse.passage.lbc.internal.base.persistence;x-friends:="org.eclipse.passage.lbc.jetty"
+ org.eclipse.passage.lbc.internal.base.persistence;x-friends:="org.eclipse.passage.lbc.jetty",
+ org.eclipse.passage.lbc.internal.base.tobemoved;x-friends:="org.eclipse.passage.lbc.jetty"
 Bundle-ActivationPolicy: lazy

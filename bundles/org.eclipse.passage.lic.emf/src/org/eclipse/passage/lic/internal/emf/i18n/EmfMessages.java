@@ -14,8 +14,10 @@ package org.eclipse.passage.lic.internal.emf.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class EmfMessages extends NLS {
+public final class EmfMessages extends NLS {
+
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.emf.i18n.EmfMessages"; //$NON-NLS-1$
+
 	public static String BaseDomainRegistry_e_load_failed;
 	public static String BaseDomainRegistry_ok_load;
 	public static String BaseDomainRegistry_ok_unload;
@@ -23,6 +25,11 @@ public class EmfMessages extends NLS {
 	public static String LicensingEcore_input_entry;
 	public static String LicensingEcore_input_invalid;
 	public static String ResourceLoadFailed_explanation;
+
+	public static String XmiToEObject_failed_xmi_read;
+	public static String XmiToEObject_unexpected_amount;
+	public static String XmiToEObject_unexpected_type;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EmfMessages.class);

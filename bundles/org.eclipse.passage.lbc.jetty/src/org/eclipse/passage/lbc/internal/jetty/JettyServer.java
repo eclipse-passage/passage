@@ -17,14 +17,15 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.passage.lbc.internal.base.Port;
 import org.eclipse.passage.lbc.internal.jetty.i18n.Messages;
+import org.eclipse.passage.lbc.internal.jetty.tobemoved.JettyHandler;
 
-public final class JettyServer {
+final class JettyServer {
 
 	private final Logger logger = Log.getLogger(JettyServer.class);
 
 	private Server server;
 
-	public void launch(Port port) throws JettyException {
+	void launch(Port port) throws JettyException {
 		try {
 			server = new Server(port.get());
 			server.setHandler(new JettyHandler());
@@ -37,7 +38,7 @@ public final class JettyServer {
 		}
 	}
 
-	public void terminate() throws JettyException {
+	void terminate() throws JettyException {
 		try {
 			server.stop();
 			logger.info(String.format(Messages.stopped));

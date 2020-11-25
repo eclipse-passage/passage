@@ -7,5 +7,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.passage.lic.floating;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.hc"
+Export-Package: org.eclipse.passage.lic.floating;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base"
 Require-Bundle: org.eclipse.passage.lic.base;bundle-version="1.0.1"

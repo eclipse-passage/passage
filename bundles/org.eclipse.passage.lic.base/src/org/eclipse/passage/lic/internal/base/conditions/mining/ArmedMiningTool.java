@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -41,7 +40,7 @@ public abstract class ArmedMiningTool implements MiningTool {
 		return file.normalize().toAbsolutePath().toString();
 	}
 
-	protected final byte[] decoded(Path path) throws IOException, LicensingException {
+	protected final byte[] decoded(Path path) throws LicensingException {
 		return new DecodedContent(path, key, codec).get();
 	}
 

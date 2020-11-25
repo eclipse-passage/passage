@@ -12,12 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-public final class EObjectFromXmiResponse<T> implements ResponseHandler<T> {
+public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
 	private final Class<T> expected;
 
@@ -30,7 +32,7 @@ public final class EObjectFromXmiResponse<T> implements ResponseHandler<T> {
 		// TODO we use `transport`s for Conditions,
 		// design transports here too should the need arise
 		contentTypeIsExpected(results);
-		return new EObjectFromBytes<>(results.data(), expected).get();
+		return new EObjectFromBytes<T>(results.data(), expected).get();
 	}
 
 	private void contentTypeIsExpected(ResultsTransfered results) throws LicensingException {

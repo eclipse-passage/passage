@@ -68,8 +68,8 @@ public abstract class RequestParameters {
 				new LicensingAction(action()), //
 				new LicensingContentType(new ContentType.Xml()), //
 				new LicenseUser(access.getUser()), //
-				new ServerAuthenticationType(access.getServer()), //
-				new ServerAuthenticationExpression(access.getServer()));
+				new ServerAuthenticationType(access.getServer().getAuthentication().getType()), //
+				new ServerAuthenticationExpression(access.getServer().getAuthentication().getExpression()));
 
 	}
 

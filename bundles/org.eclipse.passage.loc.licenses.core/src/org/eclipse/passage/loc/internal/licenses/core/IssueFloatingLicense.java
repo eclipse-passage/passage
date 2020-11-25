@@ -106,19 +106,19 @@ final class IssueFloatingLicense {
 	}
 
 	private String decryptedFile(FloatingLicensePack pack) {
-		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.LicenseDecrypted().get();
+		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.FloatingLicenseDecrypted().get();
 	}
 
 	private String encryptedFile(FloatingLicensePack pack) {
-		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.LicenseEncrypted().get();
+		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.FloatingLicenseEncrypted().get();
 	}
 
 	private String decryptedFile(FloatingLicenseAccess access) {
-		return accessFile(access, new FloatingFileExtensions.LicenseAccessDecrypted());
+		return accessFile(access, new FloatingFileExtensions.FloatingLicenseAccessDecrypted());
 	}
 
 	private String encryptedFile(FloatingLicenseAccess access) {
-		return accessFile(access, new FloatingFileExtensions.LicenseAccessEncrypted());
+		return accessFile(access, new FloatingFileExtensions.FloatingLicenseAccessEncrypted());
 	}
 
 	private String accessFile(FloatingLicenseAccess access, FloatingFileExtensions ext) {
