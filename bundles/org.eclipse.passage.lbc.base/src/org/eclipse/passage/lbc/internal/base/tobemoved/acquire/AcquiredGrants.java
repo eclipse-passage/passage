@@ -46,8 +46,8 @@ public final class AcquiredGrants implements Grants {
 	}
 
 	@Override
-	public boolean release(GrantAcqisition acquisition) {
-		return false;
+	public boolean release(LicensedProduct product, GrantAcqisition acquisition) {
+		return storage.release(product, acquisition);
 	}
 
 }
