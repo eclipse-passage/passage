@@ -43,18 +43,33 @@ final class AcquiredGrantsStorage {
 
 	AcquiredGrantsStorage() {
 		synchronized (this) {
-			// read locks from persistent state
+			// TODO: read locks from persistent state #569158
 		}
 	}
 
 	synchronized Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		Collection<GrantAcqisition> acquisitions = grantLocks(product, grant);
+		Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
 		if (acquisitions.size() < grant.getCapacity()) {
 			GrantAcqisition acquistion = acquistion(grant, user);
 			acquisitions.add(acquistion);
 			return Optional.of(acquistion);
 		}
 		return Optional.empty();
+	}
+
+	synchronized boolean release(LicensedProduct product, GrantAcqisition acquisition) {
+		Collection<GrantAcqisition> colleagues = grantLocks(product, acquisition.getGrant());
+		for (GrantAcqisition colleage : colleagues) {
+			if (matches(colleage, acquisition)) {
+				colleagues.remove(colleage);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean matches(GrantAcqisition actual, GrantAcqisition expected) {
+		return actual.getIdentifier().equals(expected.getIdentifier());
 	}
 
 	private GrantAcqisition acquistion(FeatureGrant grant, String user) {
@@ -67,8 +82,8 @@ final class AcquiredGrantsStorage {
 		return acquisition;
 	}
 
-	private Collection<GrantAcqisition> grantLocks(LicensedProduct product, FeatureGrant grant) {
-		return productLocks(product).computeIfAbsent(grant.getIdentifier(), id -> new HashSet<>());
+	private Collection<GrantAcqisition> grantLocks(LicensedProduct product, String grant) {
+		return productLocks(product).computeIfAbsent(grant, id -> new HashSet<>());
 	}
 
 	private Map<String, Collection<GrantAcqisition>> productLocks(LicensedProduct product) {
