@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
+import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -49,9 +51,9 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	private final String user;
 	private final LicensedProduct product;
 
-	ReassemblingMiningTool(LicensedProduct product, String user, ConditionMiningTarget miner) {
+	ReassemblingMiningTool(LicensedProduct product, String user, Supplier<Path> base, ConditionMiningTarget miner) {
 		super(//
-				new ServerKeyKeeper(product), //
+				new ServerKeyKeeper(product, base), //
 				new BcStreamCodec(() -> product), //
 				new XmiConditionTransport(), //
 				miner);
@@ -70,7 +72,8 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 				failures.add(new Trouble(//
 						new ServiceFailedOnMorsel(), //
 						String.format(BaseMessages.ReassemblingMiningTool_path_failed,
-								license.toAbsolutePath().toString())));
+								license.toAbsolutePath().toString()),
+						e));
 			}
 		}
 		return new BaseServiceInvocationResult<>(//
@@ -91,7 +94,8 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	}
 
 	private FloatingLicensePack pack(Path source) throws LicensingException {
-		return new EObjectFromBytes<>(decoded(source), FloatingLicensePack.class).get();
+		return new EObjectFromBytes<>(decoded(source), FloatingLicensePack.class).get(//
+				Collections.singletonMap(FloatingPackage.eNAME, FloatingPackage.eINSTANCE));
 	}
 
 	private BaseConditionPack noConditions(Path license) {

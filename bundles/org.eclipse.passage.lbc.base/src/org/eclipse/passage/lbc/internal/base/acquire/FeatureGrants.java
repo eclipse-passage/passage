@@ -12,8 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
@@ -26,11 +28,13 @@ final class FeatureGrants {
 	private final LicensedProduct product;
 	private final String user;
 	private final String feature;
+	private final Supplier<Path> base;
 
-	FeatureGrants(LicensedProduct product, String user, String feature) {
+	FeatureGrants(LicensedProduct product, String user, String feature, Supplier<Path> base) {
 		this.product = product;
 		this.user = user;
 		this.feature = feature;
+		this.base = base;
 	}
 
 	/**
@@ -38,7 +42,7 @@ final class FeatureGrants {
 	 * given {@code feature}, if any
 	 */
 	Collection<FeatureGrant> get() throws LicensingException {
-		return new LicensePacks(product).get().stream()//
+		return new LicensePacks(product, base).get().stream()//
 				.filter(new AvailableForUser(user)) //
 				.map(this::grantForFeature) //
 				.filter(Optional::isPresent) //

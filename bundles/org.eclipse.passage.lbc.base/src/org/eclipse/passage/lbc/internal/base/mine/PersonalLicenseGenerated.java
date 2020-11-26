@@ -62,6 +62,7 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 	private LicenseGrant grant(Condition condition) {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicenseGrant grant = licenseFactory.createLicenseGrant();
+		grant.setIdentifier(condition.identifier());
 		grant.setFeatureIdentifier(condition.feature());
 		grant.setMatchVersion(condition.versionMatch().version());
 		grant.setMatchRule(condition.versionMatch().rule().identifier());
@@ -69,7 +70,7 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 		grant.setConditionExpression(condition.evaluationInstructions().expression());
 		grant.setConditionType(condition.evaluationInstructions().type().identifier());
 		grant.setValidFrom(date(condition, ValidityPeriodClosed::from));
-		grant.setValidUntil(date(condition, ValidityPeriodClosed::to));
+		grant.setValidUntil(date(condition, ValidityPeriodClosed::to)); // FIXME: from + vivid (minutes)
 		return grant;
 	}
 

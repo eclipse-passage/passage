@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.mine;
 
+import java.nio.file.Path;
+import java.util.function.Supplier;
+
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
@@ -21,14 +24,16 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
 final class ReassemblingMiningEquipment implements MiningEquipment {
 
 	private final String user;
+	private final Supplier<Path> base;
 
-	ReassemblingMiningEquipment(String user) {
+	ReassemblingMiningEquipment(String user, Supplier<Path> base) {
 		this.user = user;
+		this.base = base;
 	}
 
 	@Override
 	public MiningTool tool(LicensedProduct product, ConditionMiningTarget miner) throws LicensingException {
-		return new ReassemblingMiningTool(product, user, miner);
+		return new ReassemblingMiningTool(product, user, base, miner);
 	}
 
 }

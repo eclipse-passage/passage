@@ -15,6 +15,7 @@ package org.eclipse.passage.lbc.internal.base.acquire;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
@@ -26,7 +27,7 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
-import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
@@ -35,14 +36,16 @@ final class LicensePacks {
 	private final LicensedProduct product;
 	private final KeyKeeper key;
 	private final StreamCodec codec;
+	private final Supplier<Path> base;
 
-	LicensePacks(LicensedProduct product) {
+	LicensePacks(LicensedProduct product, Supplier<Path> base) {
 		this.product = product;
-		this.key = new ServerKeyKeeper(product);
+		this.key = new ServerKeyKeeper(product, base);
 		this.codec = new BcStreamCodec(() -> product);
+		this.base = base;
 	}
 
-	public Collection<FloatingLicensePack> get() throws LicensingException {
+	Collection<FloatingLicensePack> get() throws LicensingException {
 		return files().stream() //
 				.map(this::pack) //
 				.filter(Optional::isPresent) //
@@ -52,7 +55,7 @@ final class LicensePacks {
 
 	private Collection<Path> files() throws LicensingException {
 		return new FileCollection(//
-				new UserHomeProductResidence(product), //
+				new PathFromLicensedProduct(base, product), //
 				new FloatingFileExtensions.FloatingLicenseEncrypted()//
 		).get();
 	}
