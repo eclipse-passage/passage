@@ -10,20 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.api;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
- * Unrecoverable Jetty Server lifecycle error
- * 
- * @see JettyServer
- *
+ * @since 1.0
  */
-public class JettyException extends Exception {
+public interface FloatingResponse {
 
-	private static final long serialVersionUID = 1L;
+	boolean failed();
 
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
+	Error error();
+
+	/**
+	 * Leave the stream open - must be closed by a calling party.
+	 * 
+	 * @param output sink-stream for the response payload
+	 */
+	void write(OutputStream output) throws IOException;
+
+	public static interface Error {
+
+		int code();
+
+		String message();
 	}
-
 }

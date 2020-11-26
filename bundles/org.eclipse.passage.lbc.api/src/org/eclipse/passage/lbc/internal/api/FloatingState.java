@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.api;
 
 /**
- * Unrecoverable Jetty Server lifecycle error
+ * FIXME: temporary
  * 
- * @see JettyServer
- *
+ * Redesign this part. We need a sort of Passage Framework to pull down critical
+ * entities through the codebase
  */
-public class JettyException extends Exception {
+public interface FloatingState {
 
-	private static final long serialVersionUID = 1L;
-
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
-	}
+	Grants grants();
 
 }

@@ -10,20 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.base;
 
-/**
- * Unrecoverable Jetty Server lifecycle error
- * 
- * @see JettyServer
- *
- */
-public class JettyException extends Exception {
+import org.eclipse.passage.lbc.internal.api.FloatingResponse;
+import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 
-	private static final long serialVersionUID = 1L;
+final class Mine extends ChoreDraft {
 
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
+	Mine(RawRequest data) {
+		super(data);
+	}
+
+	@Override
+	protected FloatingResponse withProductUser(ProductUserRequest request) {
+		return new Conditions(request).get();
 	}
 
 }

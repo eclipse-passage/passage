@@ -17,7 +17,6 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.passage.lbc.internal.base.Port;
 import org.eclipse.passage.lbc.internal.jetty.i18n.Messages;
-import org.eclipse.passage.lbc.internal.jetty.tobemoved.JettyHandler;
 
 final class JettyServer {
 

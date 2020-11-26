@@ -10,20 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.api;
 
-/**
- * Unrecoverable Jetty Server lifecycle error
- * 
- * @see JettyServer
- *
- */
-public class JettyException extends Exception {
+import java.util.Optional;
 
-	private static final long serialVersionUID = 1L;
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
-	}
+public interface Grants {
+
+	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
+
+	boolean release(LicensedProduct product, GrantAcqisition acquisition);
 
 }
