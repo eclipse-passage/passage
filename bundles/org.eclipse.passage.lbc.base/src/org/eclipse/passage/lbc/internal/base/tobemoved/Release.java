@@ -12,20 +12,32 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
-import org.eclipse.passage.lbc.internal.api.tobemoved.Chore;
+import java.io.IOException;
+
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
+import org.eclipse.passage.lbc.internal.base.tobemoved.acquire.Acquisition;
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
-final class Release implements Chore {
+final class Release extends ChoreDraft {
 
 	Release(RawRequest data) {
-// TODO
+		super(data);
 	}
 
 	@Override
-	public FloatingResponse getDone() {
-		// TODO
-		return null;
+	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
+		GrantAcqisition acquisition;
+		try {
+			acquisition = new EObjectFromBytes<>(//
+					request.raw().content(), //
+					GrantAcqisition.class//
+			).get();
+		} catch (IOException e) {
+			return failed(e.getMessage());
+		}
+		return new Acquisition(request).returnBack(acquisition);
 	}
-
 }

@@ -12,20 +12,26 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.tobemoved;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 import org.eclipse.passage.lbc.internal.api.tobemoved.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.tobemoved.RawRequest;
-import org.eclipse.passage.lbc.internal.base.tobemoved.acquire.Acquisition;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
-final class Acquire extends ChoreDraft {
+public final class PlainSuceess implements FloatingResponse {
 
-	Acquire(RawRequest data) {
-		super(data);
+	@Override
+	public boolean failed() {
+		return false;
 	}
 
 	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
-		return new Acquisition(request).get();
+	public Error error() {
+		throw new IllegalStateException("Successful result does not have error information"); //$NON-NLS-1$ dev
+	}
+
+	@Override
+	public void write(OutputStream output) throws IOException {
+		throw new IllegalStateException("Plainn successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
 	}
 
 }
