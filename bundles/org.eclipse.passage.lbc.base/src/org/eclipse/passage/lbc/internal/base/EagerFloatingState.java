@@ -10,20 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.base;
 
-/**
- * Unrecoverable Jetty Server lifecycle error
- * 
- * @see JettyServer
- *
- */
-public class JettyException extends Exception {
+import org.eclipse.passage.lbc.internal.api.FloatingState;
+import org.eclipse.passage.lbc.internal.api.Grants;
+import org.eclipse.passage.lbc.internal.base.acquire.AcquiredGrants;
 
-	private static final long serialVersionUID = 1L;
+public final class EagerFloatingState implements FloatingState {
 
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
+	private final Grants grants = new AcquiredGrants();
+
+	@Override
+	public Grants grants() {
+		return grants;
 	}
 
 }

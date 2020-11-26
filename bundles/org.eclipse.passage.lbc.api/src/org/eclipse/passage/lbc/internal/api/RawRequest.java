@@ -10,20 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lbc.internal.api;
 
-/**
- * Unrecoverable Jetty Server lifecycle error
- * 
- * @see JettyServer
- *
- */
-public class JettyException extends Exception {
+import java.io.IOException;
 
-	private static final long serialVersionUID = 1L;
+public interface RawRequest {
 
-	JettyException(String message, Throwable cause) {
-		super(message, cause);
-	}
+	String parameter(String name);
+
+	byte[] content() throws IOException;
+
+	FloatingState state();
 
 }
