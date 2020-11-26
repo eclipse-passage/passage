@@ -31,10 +31,6 @@
       %license
    </license>
 
-   <requires>
-      <import feature="org.eclipse.passage.lic.json.feature" version="1.0.0.qualifier"/>
-   </requires>
-
    <plugin
          id="javax.inject"
          download-size="0"

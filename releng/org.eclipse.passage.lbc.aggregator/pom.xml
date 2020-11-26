@@ -31,19 +31,11 @@
 
 		<module>../../bundles/org.eclipse.passage.lbc.api</module>
 		<module>../../bundles/org.eclipse.passage.lbc.base</module>
-		<module>../../tests/org.eclipse.passage.lbc.api.tests</module>
 		<module>../../tests/org.eclipse.passage.lbc.base.tests</module>
-
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
-		
-		<module>../../bundles/org.eclipse.passage.lbc.json</module>
-		<module>../../tests/org.eclipse.passage.lbc.json.tests</module>
-
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
 		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
-
 		<module>../../releng/org.eclipse.passage.lbc.repository</module>
-
 		<module>../../products/org.eclipse.passage.lbc.server.product</module>
 	</modules>
 

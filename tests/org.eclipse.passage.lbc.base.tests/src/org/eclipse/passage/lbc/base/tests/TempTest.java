@@ -12,21 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.tests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.eclipse.passage.lbc.internal.base.Port;
 import org.junit.Test;
 
-public class PortTest {
+public final class TempTest {
 
 	@Test
-	public void positive() {
-		assertEquals(new Port.Custom(8080).get(), new Port.OfArgument("8080").get().get()); //$NON-NLS-1$
-	}
-
-	@Test
-	public void negative() {
-		assertEquals(new Port.Default().get(), new Port.OfArgument("not a port").get().get()); //$NON-NLS-1$
+	public void test() {
+		// To keep the bundle compilable
 	}
 
 }
