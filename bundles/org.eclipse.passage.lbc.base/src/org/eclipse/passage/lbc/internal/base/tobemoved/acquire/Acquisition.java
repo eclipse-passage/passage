@@ -20,45 +20,62 @@ import org.eclipse.passage.lbc.internal.api.tobemoved.Grants;
 import org.eclipse.passage.lbc.internal.base.tobemoved.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.tobemoved.Failure;
 import org.eclipse.passage.lbc.internal.base.tobemoved.Failure.NoGrantsAvailable;
-import org.eclipse.passage.lbc.internal.base.tobemoved.FeatureRequest;
+import org.eclipse.passage.lbc.internal.base.tobemoved.PlainSuceess;
+import org.eclipse.passage.lbc.internal.base.tobemoved.ProductUserRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 
 public final class Acquisition {
 
-	private final FeatureRequest data;
+	private final ProductUserRequest data;
 
-	public Acquisition(FeatureRequest data) {
+	public Acquisition(ProductUserRequest data) {
 		Objects.requireNonNull(data, "Acquisition::data"); //$NON-NLS-1$
 		this.data = data;
 	}
 
 	public FloatingResponse get() {
+		Optional<String> feature = new FeatureIdentifier(key -> data.raw().parameter(key)).get();
+		if (!feature.isPresent()) {
+			return new Failure.BadRequestNoFeature();
+		}
 		Optional<GrantAcqisition> acquisition;
 		try {
-			acquisition = acquisition();
+			acquisition = acquisition(feature.get());
 		} catch (LicensingException e) {
 			return new Failure.OperationFailed("Acquire", e.getMessage()); //$NON-NLS-1$
 		}
 		if (acquisition.isEmpty()) {
-			return noGrants();
+			return noGrants(feature.get());
 		}
 		return new EObjectTransfer(acquisition.get());
 	}
 
-	private Optional<GrantAcqisition> acquisition() throws LicensingException {
+	public FloatingResponse returnBack(GrantAcqisition acqisition) {
+		boolean released = grants().release(//
+				data.product().get(), //
+				acqisition);
+		if (!released) {
+			return new Failure.NotReleased(data.product().get(), acqisition);
+		}
+		return new PlainSuceess();
+
+	}
+
+	private Optional<GrantAcqisition> acquisition(String feature) throws LicensingException {
 		return grants().acquire(//
 				data.product().get(), //
 				data.user().get(), //
-				data.feature().get());
+				feature);
 	}
 
 	private Grants grants() {
 		return data.raw().state().grants();
 	}
 
-	private NoGrantsAvailable noGrants() {
-		return new Failure.NoGrantsAvailable(data.product().get(), data.feature().get());
+	private NoGrantsAvailable noGrants(String feature) {
+		return new Failure.NoGrantsAvailable(data.product().get(), feature);
 	}
 
 }
