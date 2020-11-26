@@ -38,8 +38,8 @@ final class FloatingCycle implements Chores {
 		LicensingAction action = action(request);
 		return chores//
 				.getOrDefault(//
-						action, //
-						any -> new Failing(action))//
+						action.get().get(), //
+						unknown -> new Failing(action))//
 				.apply(request)//
 				.getDone();
 	}

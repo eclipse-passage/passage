@@ -21,7 +21,7 @@ public abstract class ConditionAction {
 
 	protected ConditionAction(String name) {
 		Objects.requireNonNull(name, "ConditionAction::name"); //$NON-NLS-1$
-		this.name = name;
+		this.name = name.toLowerCase();
 	}
 
 	@Override

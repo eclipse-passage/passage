@@ -57,25 +57,25 @@ public abstract class Failure implements FloatingResponse {
 
 	}
 
-	static final class BadRequestUnknownAction extends Failure {
+	public static final class BadRequestUnknownAction extends Failure {
 
-		BadRequestUnknownAction(String actual) {
+		public BadRequestUnknownAction(String actual) {
 			super(601, String.format("Bad Requets: 'action' %s is not supported", actual)); //$NON-NLS-1$
 		}
 
 	}
 
-	static final class BadRequestInvalidProduct extends Failure {
+	public static final class BadRequestInvalidProduct extends Failure {
 
-		BadRequestInvalidProduct() {
+		public BadRequestInvalidProduct() {
 			super(602, "Bad Request: licensed product identifier and/or version information is absent"); //$NON-NLS-1$
 		}
 
 	}
 
-	static final class BadRequestNoUser extends Failure {
+	public static final class BadRequestNoUser extends Failure {
 
-		BadRequestNoUser() {
+		public BadRequestNoUser() {
 			super(603, "Bad Request: no user identifier"); //$NON-NLS-1$
 		}
 
@@ -108,7 +108,7 @@ public abstract class Failure implements FloatingResponse {
 	public static final class NotReleased extends Failure {
 
 		public NotReleased(LicensedProduct product, GrantAcqisition acqisition) {
-			super(611, String.format("Failed to release grant %s acquisition for feature %s of product %s", //$NON-NLS-1$
+			super(612, String.format("Failed to release grant %s acquisition for feature %s of product %s", //$NON-NLS-1$
 					acqisition.getGrant(), acqisition.getFeature(), product));
 		}
 
