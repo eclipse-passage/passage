@@ -35,6 +35,11 @@ final class RequestConstructed implements Supplier<RawRequest> {
 		return this;
 	}
 
+	RequestConstructed withParameter(StringNamedData data) {
+		params.put(data.key(), data.get().get());
+		return this;
+	}
+
 	RequestConstructed withAction(ConditionAction action) {
 		LicensingAction parameter = new LicensingAction(action);
 		params.put(parameter.key(), parameter.get().get().name());

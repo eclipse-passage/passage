@@ -28,7 +28,7 @@ public final class ProductUserRequest {
 	private final Optional<LicensedProduct> product;
 	private final Optional<String> user;
 
-	ProductUserRequest(RawRequest raw) throws LicensingException {
+	public ProductUserRequest(RawRequest raw) throws LicensingException {
 		this.raw = raw;
 		this.product = extractProduct();
 		this.user = extractUser();
