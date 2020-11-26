@@ -14,6 +14,9 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.function.Supplier;
 
+/**
+ * @since 1.0
+ */
 public abstract class Port implements Supplier<Integer> {
 
 	private final int port;

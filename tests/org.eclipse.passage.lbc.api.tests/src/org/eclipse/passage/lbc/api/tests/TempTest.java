@@ -10,17 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base.troubles;
+package org.eclipse.passage.lbc.api.tests;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.junit.Test;
 
-/**
- * @since 1.0
- */
-public final class ConditionEntryNotFound extends TroubleCode {
+public final class TempTest {
 
-	public ConditionEntryNotFound() {
-		super(601, "No bound license found for specified condition."); //$NON-NLS-1$
+	@Test
+	public void test() {
+		// To keep the bundle compilable
 	}
 
 }
