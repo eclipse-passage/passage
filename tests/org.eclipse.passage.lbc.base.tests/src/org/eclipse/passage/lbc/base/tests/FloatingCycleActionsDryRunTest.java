@@ -17,8 +17,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
@@ -26,20 +24,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
-import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.junit.Test;
 
 public final class FloatingCycleActionsDryRunTest {
@@ -76,22 +67,7 @@ public final class FloatingCycleActionsDryRunTest {
 	}
 
 	private RawRequest request(ConditionAction action, Optional<EObject> payload) throws LicensingException {
-		RequestConstructed construct = new RequestConstructed()//
-				.withAction(action)//
-				.withParameters(Arrays.asList(//
-						new ProductIdentifier(product), //
-						new ProductVersion(product), //
-						new LicenseUser(user), new FeatureIdentifier(feature)))
-				.withState(new EagerFloatingState());//
-		if (payload.isPresent()) {
-			construct.withContent(raw(payload.get()));
-		}
-		return construct.get();
-	}
-
-	private byte[] raw(EObject obj) throws LicensingException {
-		return new EObjectToBytes(obj)//
-				.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+		return new FeatureRequest(action, product, feature, user, payload).get();
 	}
 
 	private GrantAcqisition acquisition() {

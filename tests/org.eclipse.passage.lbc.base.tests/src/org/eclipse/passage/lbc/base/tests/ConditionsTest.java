@@ -16,8 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -58,7 +56,7 @@ public final class ConditionsTest {
 	}
 
 	private List<LicenseGrant> mineForUser(String user, int conditions) throws IOException, LicensingException {
-		FloatingResponse response = new Conditions(request(user), this::licFolder).get();
+		FloatingResponse response = new Conditions(request(user), new LicFolder()).get();
 		assertFalse(response.failed());
 		EList<LicenseGrant> grants = new License(response).get().getLicenseGrants();
 		assertEquals(conditions, grants.size());
@@ -71,13 +69,9 @@ public final class ConditionsTest {
 						.withParameters(Arrays.asList(//
 								new ProductIdentifier("anti-human-magic.product"), //$NON-NLS-1$
 								new ProductVersion("0.2.1"), //$NON-NLS-1$
-								new LicenseUser(user)) // $NON-NLS-1$
-						).get()//
+								new LicenseUser(user)))
+						.get()//
 		);
-	}
-
-	private Path licFolder() {
-		return Paths.get("resource").resolve("lics"); //$NON-NLS-1$ //$NON-NLS-2$ \
 	}
 
 	private Date expectedFrom() {
