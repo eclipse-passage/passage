@@ -10,16 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote.impl;
+package org.eclipse.passage.lic.internal.emf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
+import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public final class EObjectToBytes {
 
@@ -30,13 +31,17 @@ public final class EObjectToBytes {
 	}
 
 	public byte[] get() throws LicensingException {
+		return get(Collections.emptyMap());
+	}
+
+	public byte[] get(Map<?, ?> options) throws LicensingException {
 		XMIResourceImpl resource = new XMIResourceImpl();
 		resource.getContents().add(source);
 		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-			resource.save(stream, Collections.emptyMap());
+			resource.save(stream, options);
 			return stream.toByteArray();
 		} catch (IOException e) {
-			throw new LicensingException(AccessMessages.EObjectToBytes_failure, e);
+			throw new LicensingException(EmfMessages.EObjectToBytes_failure, e);
 		}
 
 	}

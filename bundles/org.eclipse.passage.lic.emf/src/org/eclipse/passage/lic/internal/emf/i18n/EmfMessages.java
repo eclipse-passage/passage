@@ -29,6 +29,7 @@ public final class EmfMessages extends NLS {
 	public static String XmiToEObject_failed_xmi_read;
 	public static String XmiToEObject_unexpected_amount;
 	public static String XmiToEObject_unexpected_type;
+	public static String EObjectToBytes_failure;
 
 	static {
 		// initialize resource bundle
