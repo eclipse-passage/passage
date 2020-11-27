@@ -18,7 +18,11 @@ import static org.junit.Assert.assertFalse;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -43,8 +47,9 @@ public final class ConditionsTest {
 		assertEquals("d2b83215-b65d-4031-a8c8-a10421d56260#0", grant.getIdentifier()); //$NON-NLS-1$
 		assertEquals("0.1.0", grant.getMatchVersion()); //$NON-NLS-1$
 		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
-		// FIXME: test valid period:
-		// [featureGrant.from, featureGrant.from + featureGrant.vivid]
+		assertEquals(1, grant.getCapacity());
+		assertEquals(expectedFrom(), grant.getValidFrom());
+		assertEquals(expectedUntil(), grant.getValidUntil());
 	}
 
 	@Test
@@ -71,9 +76,17 @@ public final class ConditionsTest {
 		);
 	}
 
-	// FIXME: most probably won't work from jar
 	private Path licFolder() {
 		return Paths.get("resource").resolve("lics"); //$NON-NLS-1$ //$NON-NLS-2$ \
 	}
 
+	private Date expectedFrom() {
+		return Date.from(//
+				ZonedDateTime.of(2020, Month.NOVEMBER.getValue(), 9, 0, 0, 0, 0, ZoneId.of("+0300")) //$NON-NLS-1$
+						.toInstant());
+	}
+
+	private Date expectedUntil() {
+		return new Date(expectedFrom().getTime() + 60 * 60 * 1000);
+	}
 }

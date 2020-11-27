@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<org.eclipse.passage.lic:FloatingLicenseAccess xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/floating/0.1.0" user="elder@magic.com" originLicensePack="d2b83215-b65d-4031-a8c8-a10421d56260">
-  <server ip="localhost" port="8080">
-    <authentication type="hardware" expression="hwdisk.serial=?"/>
-  </server>
-</org.eclipse.passage.lic:FloatingLicenseAccess>

@@ -15,6 +15,8 @@ package org.eclipse.passage.lic.internal.base;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+
 /**
  * On a {@code licensing configuration declaration} we expect
  * {@code product version} to be stored under a precise key, which is
@@ -34,6 +36,10 @@ public final class ProductVersion extends StringNamedData {
 
 	public ProductVersion(Function<String, String> retriever) {
 		super(retriever);
+	}
+
+	public ProductVersion(LicensedProduct product) {
+		super(product.version());
 	}
 
 	@Override
