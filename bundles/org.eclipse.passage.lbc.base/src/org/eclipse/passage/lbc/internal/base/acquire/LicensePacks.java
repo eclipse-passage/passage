@@ -14,6 +14,7 @@ package org.eclipse.passage.lbc.internal.base.acquire;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -63,7 +65,8 @@ final class LicensePacks {
 	private Optional<FloatingLicensePack> pack(Path license) {
 		FloatingLicensePack pack;
 		try {
-			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class).get();
+			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class)//
+					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
 		} catch (LicensingException e) {
 			// TODO extensively log with the server's facilities
 			e.printStackTrace();

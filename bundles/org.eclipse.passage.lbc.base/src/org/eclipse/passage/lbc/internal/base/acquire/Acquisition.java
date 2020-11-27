@@ -19,11 +19,12 @@ import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.Grants;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.Failure;
+import org.eclipse.passage.lbc.internal.base.Failure.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
-import org.eclipse.passage.lbc.internal.base.Failure.NoGrantsAvailable;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 
 public final class Acquisition {
@@ -44,7 +45,7 @@ public final class Acquisition {
 		try {
 			acquisition = acquisition(feature.get());
 		} catch (LicensingException e) {
-			return new Failure.OperationFailed("Acquire", e.getMessage()); //$NON-NLS-1$
+			return new Failure.OperationFailed(new ConditionAction.Acquire().name(), e.getMessage());
 		}
 		if (acquisition.isEmpty()) {
 			return noGrants(feature.get());
