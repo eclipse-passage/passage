@@ -74,4 +74,5 @@ public final class BaseFlotingRequestHandledTest {
 	private RawRequest requestOfAction(ConditionAction action) {
 		return new RequestConstructed().withAction(action).get();
 	}
+
 }
