@@ -15,6 +15,8 @@ package org.eclipse.passage.lic.internal.base;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+
 /**
  * Supplies an {@code identifier} of a product under licensing, which is
  * expected to be stored in a variety of sources under a special key.
@@ -33,6 +35,10 @@ public final class ProductIdentifier extends StringNamedData {
 
 	public ProductIdentifier(Function<String, String> retriever) {
 		super(retriever);
+	}
+
+	public ProductIdentifier(LicensedProduct product) {
+		super(product.identifier());
 	}
 
 	@Override

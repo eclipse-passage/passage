@@ -70,7 +70,7 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 		grant.setConditionExpression(condition.evaluationInstructions().expression());
 		grant.setConditionType(condition.evaluationInstructions().type().identifier());
 		grant.setValidFrom(date(condition, ValidityPeriodClosed::from));
-		grant.setValidUntil(date(condition, ValidityPeriodClosed::to)); // FIXME: from + vivid (minutes)
+		grant.setValidUntil(date(condition, ValidityPeriodClosed::to));
 		return grant;
 	}
 

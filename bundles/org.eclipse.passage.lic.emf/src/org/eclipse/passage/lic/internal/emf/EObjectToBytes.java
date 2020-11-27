@@ -43,6 +43,6 @@ public final class EObjectToBytes {
 		} catch (IOException e) {
 			throw new LicensingException(EmfMessages.EObjectToBytes_failure, e);
 		}
-
 	}
+
 }
