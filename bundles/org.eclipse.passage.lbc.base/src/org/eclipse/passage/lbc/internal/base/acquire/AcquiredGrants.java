@@ -12,27 +12,37 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.Grants;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
 public final class AcquiredGrants implements Grants {
 
 	private final AcquiredGrantsStorage storage;
+	private final Supplier<Path> base;
+
+	public AcquiredGrants(Supplier<Path> base) {
+		this.base = base;
+		storage = new AcquiredGrantsStorage();
+	}
 
 	public AcquiredGrants() {
-		storage = new AcquiredGrantsStorage();
+		this(new LicensingFolder(new UserHomePath()));
 	}
 
 	@Override
 	public Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature)
 			throws LicensingException {
-		Collection<FeatureGrant> grants = new FeatureGrants(product, user, feature).get();
+		Collection<FeatureGrant> grants = new FeatureGrants(product, user, feature, base).get();
 		if (grants.isEmpty()) {
 			return Optional.empty();
 		}

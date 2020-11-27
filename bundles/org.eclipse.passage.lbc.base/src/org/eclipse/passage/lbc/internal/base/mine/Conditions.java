@@ -29,15 +29,19 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Conditions implements Supplier<FloatingResponse> {
 
 	private final ProductUserRequest data;
 	private final Supplier<Path> source;
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	public Conditions(ProductUserRequest data, Supplier<Path> base) {
 		this.data = data;
@@ -57,6 +61,9 @@ public final class Conditions implements Supplier<FloatingResponse> {
 			return new Failure.OperationFailed(//
 					new ConditionAction.Mine().name(), //
 					new DiagnosticExplained(conditions.diagnostic()).get());
+		}
+		if (!new NoErrors().test(conditions.diagnostic())) {
+			log.error(new DiagnosticExplained(conditions.diagnostic()).get());
 		}
 		return new EObjectTransfer(pack(conditions.data().get()));
 	}
@@ -78,7 +85,7 @@ public final class Conditions implements Supplier<FloatingResponse> {
 		Miner(Supplier<Path> base, String user) {
 			super(//
 					new ConditionMiningTarget.Local().child("floating-server"), //$NON-NLS-1$
-					new ReassemblingMiningEquipment(user), //
+					new ReassemblingMiningEquipment(user, base), //
 					new FloatingFileExtensions.FloatingLicenseEncrypted());
 			this.base = base;
 		}

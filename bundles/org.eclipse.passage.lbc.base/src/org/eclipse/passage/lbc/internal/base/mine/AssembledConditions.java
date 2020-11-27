@@ -66,7 +66,7 @@ final class AssembledConditions {
 	private Condition condition(UserGrant user, FeatureGrant feature) throws LicensingException {
 		return new BaseCondition(//
 				feature.getIdentifier(), //
-				feature.getIdentifier(), //
+				feature.getFeature(), //
 				version(feature), //
 				period(feature), //
 				evaluation(user));
