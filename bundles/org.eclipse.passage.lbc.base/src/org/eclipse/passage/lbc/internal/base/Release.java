@@ -17,9 +17,7 @@ import java.io.IOException;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
 final class Release extends ChoreDraft {
 
@@ -29,15 +27,10 @@ final class Release extends ChoreDraft {
 
 	@Override
 	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
-		GrantAcqisition acquisition;
 		try {
-			acquisition = new EObjectFromBytes<>(//
-					request.raw().content(), //
-					GrantAcqisition.class//
-			).get();
+			return new Acquisition(request).returnBack();
 		} catch (IOException e) {
-			return failed(e.getMessage());
+			throw new LicensingException(e.getMessage(), e);
 		}
-		return new Acquisition(request).returnBack(acquisition);
 	}
 }

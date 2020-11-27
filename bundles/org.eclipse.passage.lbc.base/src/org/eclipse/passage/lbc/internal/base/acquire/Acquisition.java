@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,9 +25,11 @@ import org.eclipse.passage.lbc.internal.base.Failure.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
+import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
 public final class Acquisition {
 
@@ -53,12 +57,11 @@ public final class Acquisition {
 		return new EObjectTransfer(acquisition.get());
 	}
 
-	public FloatingResponse returnBack(GrantAcqisition acqisition) {
-		boolean released = grants().release(//
-				data.product().get(), //
-				acqisition);
+	public FloatingResponse returnBack() throws LicensingException, IOException {
+		GrantAcqisition acquisition = acquisition();
+		boolean released = grants().release(data.product().get(), acquisition);
 		if (!released) {
-			return new Failure.NotReleased(data.product().get(), acqisition);
+			return new Failure.NotReleased(data.product().get(), acquisition);
 		}
 		return new PlainSuceess();
 
@@ -69,6 +72,12 @@ public final class Acquisition {
 				data.product().get(), //
 				data.user().get(), //
 				feature);
+	}
+
+	private GrantAcqisition acquisition() throws LicensingException, IOException {
+		return new EObjectFromBytes<>(data.raw().content(), GrantAcqisition.class)//
+				.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+
 	}
 
 	private Grants grants() {

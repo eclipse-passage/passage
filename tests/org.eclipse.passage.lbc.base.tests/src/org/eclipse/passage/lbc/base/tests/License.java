@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 final class License {
+
 	private final FloatingResponse response;
 
 	License(FloatingResponse response) {
@@ -33,6 +34,6 @@ final class License {
 			stream.flush();
 			return new EObjectFromBytes<>(stream.toByteArray(), LicensePack.class).get();
 		}
-
 	}
+
 }

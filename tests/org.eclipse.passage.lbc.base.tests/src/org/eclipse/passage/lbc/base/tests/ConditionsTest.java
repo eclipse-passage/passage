@@ -16,11 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
-import java.time.Month;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -38,16 +34,9 @@ public final class ConditionsTest {
 
 	@Test
 	public void mineAllForRightUser() throws LicensingException, IOException {
-		LicenseGrant grant = mineForUser("Albert_Rose@garden.ga", 1).get(0); //$NON-NLS-1$
-		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
-		assertEquals("os.hwdisk=*777*", grant.getConditionExpression()); //$NON-NLS-1$
-		assertEquals("prince-to-frog", grant.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("d2b83215-b65d-4031-a8c8-a10421d56260#0", grant.getIdentifier()); //$NON-NLS-1$
-		assertEquals("0.1.0", grant.getMatchVersion()); //$NON-NLS-1$
-		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
-		assertEquals(1, grant.getCapacity());
-		assertEquals(expectedFrom(), grant.getValidFrom());
-		assertEquals(expectedUntil(), grant.getValidUntil());
+		TestData data = new TestData();
+		LicenseGrant grant = mineForUser(data.albert.id, 1).get(0);
+		data.assertGrantIsValid(grant);
 	}
 
 	@Test
@@ -74,13 +63,4 @@ public final class ConditionsTest {
 		);
 	}
 
-	private Date expectedFrom() {
-		return Date.from(//
-				ZonedDateTime.of(2020, Month.NOVEMBER.getValue(), 9, 0, 0, 0, 0, ZoneId.of("+0300")) //$NON-NLS-1$
-						.toInstant());
-	}
-
-	private Date expectedUntil() {
-		return new Date(expectedFrom().getTime() + 60 * 60 * 1000);
-	}
 }
