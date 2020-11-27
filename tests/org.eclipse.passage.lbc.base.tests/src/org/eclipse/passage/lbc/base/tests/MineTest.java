@@ -69,4 +69,5 @@ public final class MineTest {
 	private ProductIdentifier id() {
 		return new ProductIdentifier("sample-product");//$NON-NLS-1$
 	}
+
 }

@@ -56,7 +56,7 @@ public final class ExtensiveReleaseTest {
 		Set<Future<Result>> futures = runProtectedActionsConcurrently(amount);
 		// then
 		Map<Result, Integer> results = countResults(futures);
-		assertEquals(0, results.get(Result.Wiered).intValue()); // no one ended wierdly
+		assertEquals(0, results.get(Result.Weird).intValue()); // no one ended weirdly
 		assertTrue(results.get(Result.GainedAndReleased) >= 4); // we have only 4
 		assertEquals(amount, results.get(Result.GainedAndReleased) + results.get(Result.NotGainedNotExecuted));
 	}
@@ -83,7 +83,7 @@ public final class ExtensiveReleaseTest {
 	}
 
 	private enum Result {
-		GainedAndReleased, NotGainedNotExecuted, Wiered
+		GainedAndReleased, NotGainedNotExecuted, Weird
 	}
 
 	private final class ProtectedAction implements Callable<Result> {
@@ -108,7 +108,7 @@ public final class ExtensiveReleaseTest {
 					return Result.GainedAndReleased;
 				}
 			}
-			return Result.Wiered;
+			return Result.Weird;
 		}
 
 		private ProductUserRequest acquireRequest() throws LicensingException {
@@ -132,4 +132,5 @@ public final class ExtensiveReleaseTest {
 		}
 
 	}
+
 }

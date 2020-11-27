@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 
 final class TestData {
+
 	final LicensedProduct product = new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
 	final String feature = "prince-to-frog"; //$NON-NLS-1$
 	final User albert = new User("Albert_Rose@garden.ga", "os.hwdisk=*777*"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -39,7 +40,6 @@ final class TestData {
 		assertEquals(1, grant.getCapacity());
 		assertEquals(expectedFrom(), grant.getValidFrom());
 		assertEquals(expectedUntil(), grant.getValidUntil());
-
 	}
 
 	private Date expectedFrom() {
@@ -53,6 +53,7 @@ final class TestData {
 	}
 
 	final static class User {
+
 		final String id;
 		final String expression;
 
@@ -62,4 +63,5 @@ final class TestData {
 		}
 
 	}
+
 }
