@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
 import java.net.HttpURLConnection;
+import java.nio.file.Path;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.PGrantAcquisition;
@@ -20,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
@@ -31,14 +34,15 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-final class RemoteAcquire extends ServiceAny<GrantAcqisition, RemoteServiceData.OfFeature> {
+final class RemoteAcquire extends ServiceAny<HttpURLConnection, GrantAcqisition, RemoteServiceData.OfFeature> {
 
-	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
-		super(keys, codecs);
+	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
+			Supplier<Client<HttpURLConnection, GrantAcqisition>> client, Supplier<Path> source) {
+		super(keys, codecs, client, source);
 	}
 
 	@Override
-	protected RemoteRequest request(OfFeature params, FloatingLicenseAccess access) {
+	protected RemoteRequest<HttpURLConnection> request(OfFeature params, FloatingLicenseAccess access) {
 		return new Request(params, access);
 	}
 
@@ -67,7 +71,7 @@ final class RemoteAcquire extends ServiceAny<GrantAcqisition, RemoteServiceData.
 
 	}
 
-	private final class Request extends RemoteRequest {
+	private final class Request extends RemoteRequest<HttpURLConnection> {
 
 		private final OfFeature data;
 

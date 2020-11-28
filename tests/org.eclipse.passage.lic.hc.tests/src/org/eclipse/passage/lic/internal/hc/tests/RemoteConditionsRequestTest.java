@@ -55,7 +55,6 @@ public final class RemoteConditionsRequestTest {
 	@Test
 	public void urlContainsAllParameters() throws IOException {
 		URL url = url();
-		System.out.println(url);
 		assertEquals(host, url.getHost());
 		assertEquals(port, url.getPort());
 		assertNotNull(url.getQuery());

@@ -16,10 +16,10 @@ import java.net.URL;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-public interface Request<R> {
+public interface Request<C> {
 
 	URL url() throws LicensingException;
 
-	Configuration<R> config() throws LicensingException;
+	Configuration<C> config() throws LicensingException;
 
 }

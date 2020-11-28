@@ -49,4 +49,18 @@ public abstract class RemoteServiceData {
 
 	}
 
+	public static final class WithPayload<T> extends RemoteServiceData {
+
+		private final T payload;
+
+		public WithPayload(LicensedProduct product, T payload) {
+			super(product);
+			this.payload = payload;
+		}
+
+		public T payload() {
+			return payload;
+		}
+
+	}
 }

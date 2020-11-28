@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
-public final class RemoteConditionsRequest extends RemoteRequest {
+public final class RemoteConditionsRequest extends RemoteRequest<HttpURLConnection> {
 
 	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access) {
 		super(product, access);
