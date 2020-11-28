@@ -19,7 +19,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
@@ -30,6 +29,7 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
@@ -42,7 +42,7 @@ final class LicensePacks {
 
 	LicensePacks(LicensedProduct product, Supplier<Path> base) {
 		this.product = product;
-		this.key = new ServerKeyKeeper(product, base);
+		this.key = new PathKeyKeeper(product, base);
 		this.codec = new BcStreamCodec(() -> product);
 		this.base = base;
 	}

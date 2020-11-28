@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
-final class RequestConstructed implements Supplier<RawRequest> {
+public final class RequestConstructed implements Supplier<RawRequest> {
 
 	private Map<String, String> params = new HashMap<>();
 	private byte[] content;
@@ -62,6 +62,7 @@ final class RequestConstructed implements Supplier<RawRequest> {
 	}
 
 	private static final class Franky implements RawRequest {
+
 		private final Map<String, String> params;
 		private final byte[] content;
 		private final FloatingState state;

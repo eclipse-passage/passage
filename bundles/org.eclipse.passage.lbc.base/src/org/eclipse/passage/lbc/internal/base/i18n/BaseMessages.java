@@ -21,7 +21,6 @@ public final class BaseMessages extends NLS {
 	public static String AssembledConditions_validity_period_type_unknown;
 	public static String DecodedParam_decode_failed;
 	public static String ReassemblingMiningTool_path_failed;
-	public static String ServerKeyKeeper_input_stream_error;
 
 	static {
 		// initialize resource bundle
