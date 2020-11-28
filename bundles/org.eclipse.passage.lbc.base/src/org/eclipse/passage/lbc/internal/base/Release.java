@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.io.IOException;
-
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
@@ -27,10 +25,6 @@ final class Release extends ChoreDraft {
 
 	@Override
 	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
-		try {
-			return new Acquisition(request).returnBack();
-		} catch (IOException e) {
-			throw new LicensingException(e.getMessage(), e);
-		}
+		return new Acquisition(request).returnBack();
 	}
 }

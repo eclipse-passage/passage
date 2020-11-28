@@ -28,12 +28,13 @@ import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
+import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 
-public abstract class RequestParameters {
+public abstract class RequestParameters implements QueryParameters {
 
 	private final LicensedProduct product;
 	private final FloatingLicenseAccess access;
@@ -43,6 +44,7 @@ public abstract class RequestParameters {
 		this.access = access;
 	}
 
+	@Override
 	public final String query() throws LicensingException {
 		StringBuilder params = new StringBuilder();
 		parameters().stream()//

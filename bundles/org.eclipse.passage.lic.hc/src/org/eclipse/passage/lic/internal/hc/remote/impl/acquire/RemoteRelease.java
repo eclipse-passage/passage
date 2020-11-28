@@ -76,7 +76,7 @@ final class RemoteRelease<C extends Connection>
 		}
 
 		@Override
-		protected RequestParameters parameters() {
+		public RequestParameters parameters() {
 			return new ReleaseRequestParameters(product, data.payload().feature(), access);
 		}
 
