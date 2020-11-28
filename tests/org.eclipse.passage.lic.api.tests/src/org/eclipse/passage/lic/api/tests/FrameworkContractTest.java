@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -40,7 +41,6 @@ import org.junit.Test;
  * extend the test, supply a framework instance and succeed at every test.
  * </p>
  */
-@SuppressWarnings("restriction")
 public abstract class FrameworkContractTest {
 
 	@Test
@@ -193,6 +193,15 @@ public abstract class FrameworkContractTest {
 		assertNotNull(service);
 		assertNotNull(service.employFor(FakeLicensedProduct::new));
 		assertNotEquals(service.employFor(FakeLicensedProduct::new), service.employFor(FakeLicensedProduct::new));
+	}
+
+	@Test
+	public final void canAquireLicensesFromMiningTargets() {
+		assertTrue(//
+				config().conditionMiners().get().services().stream()//
+						.map(MinedConditions::id) //
+						.allMatch(target -> config().acquirers().get().hasService(target))//
+		);
 	}
 
 	private <I extends ServiceId, S extends Service<I>> void assertServiceRegistryIsFunctional(

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.seal.demo.tests" version="2">
+    <resource path="src/org/eclipse/passage/seal/demo/tests/DemoFrameworkContractTest.java" type="org.eclipse.passage.seal.demo.tests.DemoFrameworkContractTest">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="FrameworkContractTest"/>
+                <message_argument value="DemoFrameworkContractTest"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
