@@ -12,9 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
+import java.net.HttpURLConnection;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.BinaryOperator;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -26,20 +29,31 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.Bulk;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceEvery;
 
-public final class RemoteConditions extends ServiceEvery<Collection<ConditionPack>, RemoteServiceData.Bulk>
+public final class RemoteConditions //
+		extends ServiceEvery<HttpURLConnection, Collection<ConditionPack>, RemoteServiceData.Bulk>
 		implements MinedConditions {
 
 	private final ConditionTransportRegistry transports;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 
+	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports,
+			Supplier<Client<HttpURLConnection, Collection<ConditionPack>>> client, Supplier<Path> source) {
+		super(keys, codecs, client, source);
+		this.transports = transports;
+	}
+
 	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports) {
-		super(keys, codecs);
+		super(keys, codecs, HttpClient::new, new LicensingFolder(new UserHomePath()));
 		this.transports = transports;
 	}
 
@@ -54,7 +68,7 @@ public final class RemoteConditions extends ServiceEvery<Collection<ConditionPac
 	}
 
 	@Override
-	protected RemoteRequest request(Bulk params, FloatingLicenseAccess access) {
+	protected RemoteRequest<HttpURLConnection> request(Bulk params, FloatingLicenseAccess access) {
 		return new RemoteConditionsRequest(params.product(), access);
 	}
 

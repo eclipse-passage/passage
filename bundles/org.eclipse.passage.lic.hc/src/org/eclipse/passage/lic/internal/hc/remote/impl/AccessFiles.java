@@ -14,25 +14,33 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
 final class AccessFiles {
 
 	private final LicensedProduct product;
+	private final Supplier<Path> source;
+
+	AccessFiles(LicensedProduct product, Supplier<Path> source) {
+		this.product = product;
+		this.source = source;
+	}
 
 	public AccessFiles(LicensedProduct product) {
-		this.product = product;
+		this(product, new LicensingFolder(new UserHomePath()));
 	}
 
 	public Collection<Path> get() throws LicensingException {
 		return new FileCollection(//
-				new PathFromLicensedProduct(new UserHomePath(), product),
+				new PathFromLicensedProduct(source, product),
 				new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
 		).get();
 	}

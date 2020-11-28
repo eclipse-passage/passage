@@ -13,17 +13,22 @@
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
 import java.net.HttpURLConnection;
+import java.nio.file.Path;
+import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
+import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
+import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
@@ -32,14 +37,17 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
  * FIXME: release is a 'post' request with XML Input and without Output. Both
  * RemoteRequest and ResponseHandler interfaces must be revised for the purpose
  */
-final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
+final class RemoteRelease
+		extends ServiceAny<HttpURLConnection, Boolean, RemoteServiceData.WithPayload<GrantAcqisition>> {
 
-	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
-		super(keys, codecs);
+	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
+			Supplier<Client<HttpURLConnection, Boolean>> client, Supplier<Path> source) {
+		super(keys, codecs, client, source);
 	}
 
 	@Override
-	protected RemoteRequest request(ReleaseServiceData params, FloatingLicenseAccess access) {
+	protected RemoteRequest<HttpURLConnection> request(RemoteServiceData.WithPayload<GrantAcqisition> params,
+			FloatingLicenseAccess access) {
 		return new Request(params, access);
 	}
 
@@ -57,11 +65,11 @@ final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
 
 	}
 
-	private final class Request extends RemoteRequest {
+	private final class Request extends RemoteRequest<HttpURLConnection> {
 
-		private final ReleaseServiceData data;
+		private final RemoteServiceData.WithPayload<GrantAcqisition> data;
 
-		Request(ReleaseServiceData data, FloatingLicenseAccess access) {
+		Request(RemoteServiceData.WithPayload<GrantAcqisition> data, FloatingLicenseAccess access) {
 			super(data.product(), access);
 			this.data = data;
 		}
@@ -73,11 +81,11 @@ final class RemoteRelease extends ServiceAny<Boolean, ReleaseServiceData> {
 
 		@Override
 		protected RequestParameters parameters() {
-			return new ReleaseRequestParameters(product, data.acqisition().feature(), access);
+			return new ReleaseRequestParameters(product, data.payload().feature(), access);
 		}
 
 		private byte[] payload() throws LicensingException {
-			return new EObjectToBytes(new EGrantAcquisition(data.acqisition()).get()).get();
+			return new EObjectToBytes(new EGrantAcquisition(data.payload()).get()).get();
 		}
 
 	}

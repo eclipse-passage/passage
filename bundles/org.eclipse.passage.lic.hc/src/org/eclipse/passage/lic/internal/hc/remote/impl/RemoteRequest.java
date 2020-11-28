@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -34,7 +33,7 @@ import org.eclipse.passage.lic.internal.net.HostPort;
  * <li>{@code config()} to gain a proper request headers configuring unit</li>
  * </ul>
  */
-public abstract class RemoteRequest implements Request<HttpURLConnection> {
+public abstract class RemoteRequest<C> implements Request<C> {
 
 	protected final LicensedProduct product;
 	protected final FloatingLicenseAccess access;

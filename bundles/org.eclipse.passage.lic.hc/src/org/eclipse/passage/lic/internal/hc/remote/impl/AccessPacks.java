@@ -34,6 +34,8 @@ import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceCannotOperate;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 
@@ -42,11 +44,18 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 	private final LicensedProduct product;
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;
+	private final Supplier<Path> source;
 
-	public AccessPacks(LicensedProduct product, KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
+	public AccessPacks(LicensedProduct product, KeyKeeperRegistry keys, StreamCodecRegistry codecs,
+			Supplier<Path> source) {
 		this.product = product;
 		this.keys = keys;
 		this.codecs = codecs;
+		this.source = source;
+	}
+
+	public AccessPacks(LicensedProduct product, KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
+		this(product, keys, codecs, new LicensingFolder(new UserHomePath()));
 	}
 
 	@Override
@@ -63,7 +72,7 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 		List<FloatingLicenseAccess> result = new ArrayList<>();
 		Collection<Path> files;
 		try {
-			files = new AccessFiles(product).get();
+			files = new AccessFiles(product, source).get();
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new ServiceFailedOnInfrastructureDenial(),
 					AccessMessages.AccessPacks_files_gaining_failed, e));
