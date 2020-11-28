@@ -24,6 +24,6 @@ Export-Package: org.eclipse.passage.lic.emf.ecore;x-friends:="org.eclipse.passag
    org.eclipse.passage.lic.users.migration,
    org.eclipse.passage.lic.users.migration.tests",
  org.eclipse.passage.lic.emf.edit;x-friends:="org.eclipse.passage.loc.workbench",
- org.eclipse.passage.lic.internal.emf;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base",
+ org.eclipse.passage.lic.internal.emf;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.base.tests",
  org.eclipse.passage.lic.internal.emf.i18n;x-internal:=true
 Bundle-ActivationPolicy: lazy

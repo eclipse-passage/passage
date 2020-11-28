@@ -12,5 +12,9 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="1.0.0",
  org.eclipse.passage.lic.floating.model;bundle-version="0.1.0",
  org.eclipse.emf.ecore.xmi
-Export-Package: org.eclipse.passage.lic.internal.net;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc,org.eclipse.passage.lbc.jetty"
+Export-Package: org.eclipse.passage.lic.internal.net;
+  x-friends:="org.eclipse.passage.lbc.base,
+   org.eclipse.passage.lic.hc,
+   org.eclipse.passage.lbc.jetty,
+   org.eclipse.passage.lbc.base.tests"
 Bundle-ActivationPolicy: lazy

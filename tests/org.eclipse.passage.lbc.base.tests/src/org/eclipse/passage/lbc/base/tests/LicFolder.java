@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Supplier;
 
-final class LicFolder implements Supplier<Path> {
+public final class LicFolder implements Supplier<Path> {
 
 	@Override
 	public Path get() {
