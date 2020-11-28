@@ -25,10 +25,10 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 
 public final class TestData {
 
-	final LicensedProduct product = new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
-	final String feature = "prince-to-frog"; //$NON-NLS-1$
-	final User albert = new User("Albert_Rose@garden.ga", "os.hwdisk=*777*"); //$NON-NLS-1$ //$NON-NLS-2$
-	final User elder = new User("elder@magic.com", "os=win"); //$NON-NLS-1$ //$NON-NLS-2$
+	private final LicensedProduct product = new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
+	private final String feature = "prince-to-frog"; //$NON-NLS-1$
+	private final User albert = new User("Albert_Rose@garden.ga", "os.hwdisk=*777*"); //$NON-NLS-1$ //$NON-NLS-2$
+	private final User elder = new User("elder@magic.com", "os=win"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	void assertGrantIsValid(LicenseGrant grant) {
 		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
@@ -52,14 +52,38 @@ public final class TestData {
 		return new Date(expectedFrom().getTime() + 60 * 60 * 1000);
 	}
 
+	public LicensedProduct product() {
+		return product;
+	}
+
+	public String feature() {
+		return feature;
+	}
+
+	public User albert() {
+		return albert;
+	}
+
+	public User elder() {
+		return elder;
+	}
+
 	final static class User {
 
-		final String id;
-		final String expression;
+		private final String id;
+		private final String expression;
 
 		private User(String id, String expression) {
 			this.id = id;
 			this.expression = expression;
+		}
+
+		public String id() {
+			return id;
+		}
+
+		public String expression() {
+			return expression;
 		}
 
 	}

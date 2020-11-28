@@ -46,7 +46,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.licenses.migration,
    org.eclipse.passage.lic.licenses.migration.tests,
    org.eclipse.passage.lic.base.tests,
-   org.eclipse.passage.lic.equinox",
+   org.eclipse.passage.lic.equinox,
+   org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lic.internal.api.conditions.evaluation;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.api.tests",
  org.eclipse.passage.lic.internal.api.conditions.mining;
   x-friends:="org.eclipse.passage.lbc.api,

@@ -63,7 +63,7 @@ public final class ExtensiveAcquiringTest {
 	private int[] countGainsAndLates(Set<Future<FloatingResponse>> futures) throws InterruptedException {
 		int gains = 0;
 		int lates = 0;
-		int none = new Failure.NoGrantsAvailable(data.product, data.feature).error().code();
+		int none = new Failure.NoGrantsAvailable(data.product(), data.feature()).error().code();
 		for (Future<FloatingResponse> future : futures) {
 			FloatingResponse response;
 			try {
@@ -96,7 +96,7 @@ public final class ExtensiveAcquiringTest {
 
 		private ProductUserRequest request() throws LicensingException {
 			return new ProductUserRequest(new FeatureRequest(//
-					new ConditionAction.Acquire(), data.product, data.feature, data.albert.id, state).get());
+					new ConditionAction.Acquire(), data.product(), data.feature(), data.albert().id(), state).get());
 		}
 
 	}

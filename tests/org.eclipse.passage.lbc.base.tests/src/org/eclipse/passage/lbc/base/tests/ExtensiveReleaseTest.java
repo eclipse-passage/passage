@@ -46,7 +46,7 @@ import org.junit.Test;
 public final class ExtensiveReleaseTest {
 
 	private final TestData data = new TestData();
-	private final int noGrants = new Failure.NoGrantsAvailable(data.product, data.feature).error().code();
+	private final int noGrants = new Failure.NoGrantsAvailable(data.product(), data.feature()).error().code();
 
 	@Test
 	public void concurrentAcquireAndRelease() throws InterruptedException, ExecutionException {
@@ -113,13 +113,13 @@ public final class ExtensiveReleaseTest {
 
 		private ProductUserRequest acquireRequest() throws LicensingException {
 			return new ProductUserRequest(new FeatureRequest(//
-					new ConditionAction.Acquire(), data.product, data.feature, data.albert.id, state).get());
+					new ConditionAction.Acquire(), data.product(), data.feature(), data.albert().id(), state).get());
 		}
 
 		private ProductUserRequest releaseRequest(GrantAcqisition acquisition) throws LicensingException {
 			return new ProductUserRequest(new FeatureRequest(//
-					new ConditionAction.Acquire(), data.product, data.feature, data.elder.id, acquisition, state)
-							.get());
+					new ConditionAction.Acquire(), data.product(), data.feature(), data.elder().id(), acquisition,
+					state).get());
 		}
 
 		private GrantAcqisition acquisition(FloatingResponse response) throws LicensingException, IOException {
