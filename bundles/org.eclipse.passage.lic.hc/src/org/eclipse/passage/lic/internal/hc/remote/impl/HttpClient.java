@@ -25,10 +25,10 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-public final class HttpClient<T> implements Client<HttpURLConnection, T> {
+public final class HttpClient<T> implements Client<NetConnection, T> {
 
 	@Override
-	public ServiceInvocationResult<T> request(Request<HttpURLConnection> request, ResponseHandler<T> handler) {
+	public ServiceInvocationResult<T> request(Request<NetConnection> request, ResponseHandler<T> handler) {
 		try {
 			return netResults(connection(request), handler);
 		} catch (Exception e) {
@@ -41,11 +41,11 @@ public final class HttpClient<T> implements Client<HttpURLConnection, T> {
 		}
 	}
 
-	private HttpURLConnection connection(Request<HttpURLConnection> request) throws Exception {
-		return request.config().apply((HttpURLConnection) request.url().openConnection());
+	private NetConnection connection(Request<NetConnection> request) throws Exception {
+		return request.config().apply(new NetConnection((HttpURLConnection) request.url().openConnection()));
 	}
 
-	private ServiceInvocationResult<T> netResults(HttpURLConnection connection, ResponseHandler<T> handler)
+	private ServiceInvocationResult<T> netResults(NetConnection connection, ResponseHandler<T> handler)
 			throws Exception {
 		// actual connection is happening on this construction of the results
 		ResultsTransfered results = new ResultsTransfered(connection);

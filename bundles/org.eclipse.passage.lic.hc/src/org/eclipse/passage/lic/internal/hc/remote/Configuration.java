@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote;
 
-public interface Configuration<C> {
+public interface Configuration<C extends Connection> {
 
 	C apply(C connection) throws Exception;
 

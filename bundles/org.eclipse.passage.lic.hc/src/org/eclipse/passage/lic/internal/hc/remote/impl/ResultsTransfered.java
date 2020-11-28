@@ -12,16 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType.Of;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 
 public final class ResultsTransfered {
 
@@ -29,26 +27,14 @@ public final class ResultsTransfered {
 	private final int code;
 	private final String message;
 	private final ContentType contentType;
+	private final boolean successful;
 
-	public ResultsTransfered(HttpURLConnection connection) throws Exception {
-		code = connection.getResponseCode();
-		message = connection.getResponseMessage();
-		contentType = readContentType(connection);
-		data = readContent(connection); // should be eager
-	}
-
-	private Of readContentType(HttpURLConnection connection) {
-		return new ContentType.Of(connection.getHeaderField("Content-Type")); //$NON-NLS-1$
-	}
-
-	private byte[] readContent(HttpURLConnection connection) throws Exception {
-		byte[] content = new byte[connection.getContentLength()];
-		try (InputStream source = connection.getInputStream()) {
-			if (!successful()) {
-				source.read(content); // read all and close the connection briefly
-			}
-		}
-		return content;
+	public ResultsTransfered(Connection connection) throws Exception {
+		code = connection.code();
+		message = connection.message();
+		contentType = connection.contentType();
+		data = connection.payload(); // should be eager
+		successful = connection.successful();
 	}
 
 	public ContentType contentType() {
@@ -60,7 +46,7 @@ public final class ResultsTransfered {
 	}
 
 	public boolean successful() {
-		return code == HttpURLConnection.HTTP_OK;
+		return successful;
 	}
 
 	public Diagnostic diagnose() {

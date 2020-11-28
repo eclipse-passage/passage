@@ -23,8 +23,10 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 
-public abstract class ServiceEvery<C, T, D extends RemoteServiceData> extends ServiceRemote<C, T, D> {
+public abstract class ServiceEvery<C extends Connection, T, D extends RemoteServiceData>
+		extends ServiceRemote<C, T, D> {
 
 	protected ServiceEvery(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, T>> client,
 			Supplier<Path> source) {

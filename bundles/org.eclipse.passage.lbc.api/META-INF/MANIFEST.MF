@@ -10,5 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.floating.model;bundle-version="0.1.0"
-Export-Package: org.eclipse.passage.lbc.internal.api;x-friends:="org.eclipse.passage.lbc.jetty,org.eclipse.passage.lbc.base"
+Export-Package: org.eclipse.passage.lbc.internal.api;x-friends:="org.eclipse.passage.lbc.jetty,org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc.tests"
 Bundle-ActivationPolicy: lazy

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.hc.remote;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
-public interface Client<C, T> {
+public interface Client<C extends Connection, T> {
 
 	ServiceInvocationResult<T> request(Request<C> request, ResponseHandler<T> handler);
 

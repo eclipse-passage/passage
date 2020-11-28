@@ -38,6 +38,11 @@ public final class LicensingException extends Exception {
 		stamp = ZonedDateTime.now();
 	}
 
+	public LicensingException(Throwable cause) {
+		super(cause);
+		stamp = ZonedDateTime.now();
+	}
+
 	public ZonedDateTime stamp() {
 		return stamp;
 	}

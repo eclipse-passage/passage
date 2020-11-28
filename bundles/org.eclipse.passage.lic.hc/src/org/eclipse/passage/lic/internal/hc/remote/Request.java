@@ -16,7 +16,7 @@ import java.net.URL;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-public interface Request<C> {
+public interface Request<C extends Connection> {
 
 	URL url() throws LicensingException;
 
