@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.base.io;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -18,22 +18,19 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
-public final class ServerKeyKeeper implements KeyKeeper {
+public final class PathKeyKeeper implements KeyKeeper {
 
 	private final LicensedProduct product;
 	private final Supplier<Path> base;
 
-	public ServerKeyKeeper(LicensedProduct product, Supplier<Path> base) {
-		Objects.requireNonNull(product, "ServerKeyKeeper::product"); //$NON-NLS-1$
-		Objects.requireNonNull(base, "ServerKeyKeeper::base"); //$NON-NLS-1$
+	public PathKeyKeeper(LicensedProduct product, Supplier<Path> base) {
+		Objects.requireNonNull(product, "PathKeyKeeper::product"); //$NON-NLS-1$
+		Objects.requireNonNull(base, "PathKeyKeeper::base"); //$NON-NLS-1$
 		this.product = product;
 		this.base = new PathFromLicensedProduct(base, product);
 	}
@@ -49,7 +46,7 @@ public final class ServerKeyKeeper implements KeyKeeper {
 		try {
 			return new FileInputStream(path.toFile());
 		} catch (Exception e) {
-			throw new LicensingException(BaseMessages.ServerKeyKeeper_input_stream_error, e);
+			throw new LicensingException(AccessCycleMessages.getString("PathKeyKeeper_input_stream_error"), e); //$NON-NLS-1$
 		}
 	}
 

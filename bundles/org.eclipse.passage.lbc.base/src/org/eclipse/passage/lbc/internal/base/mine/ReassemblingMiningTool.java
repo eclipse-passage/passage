@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.base.ServerKeyKeeper;
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
@@ -38,6 +37,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.ArmedMiningTool;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
@@ -53,7 +53,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 
 	ReassemblingMiningTool(LicensedProduct product, String user, Supplier<Path> base, ConditionMiningTarget miner) {
 		super(//
-				new ServerKeyKeeper(product, base), //
+				new PathKeyKeeper(product, base), //
 				new BcStreamCodec(() -> product), //
 				new XmiConditionTransport(), //
 				miner);
