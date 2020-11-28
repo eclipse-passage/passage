@@ -35,7 +35,7 @@ public final class ConditionsTest {
 	@Test
 	public void mineAllForRightUser() throws LicensingException, IOException {
 		TestData data = new TestData();
-		LicenseGrant grant = mineForUser(data.albert.id, 1).get(0);
+		LicenseGrant grant = mineForUser(data.albert().id(), 1).get(0);
 		data.assertGrantIsValid(grant);
 	}
 

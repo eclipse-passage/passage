@@ -56,7 +56,7 @@ Export-Package: org.eclipse.passage.lic.internal.base;
    org.eclipse.passage.lic.base.tests,
    org.eclipse.passage.lbc.base.tests",
  org.eclipse.passage.lic.internal.base.observatory;x-internal:=true,
- org.eclipse.passage.lic.internal.base.registry;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.seal.demo.tests",
+ org.eclipse.passage.lic.internal.base.registry;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.seal.demo.tests,org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lic.internal.base.requirements;x-internal:=true,
  org.eclipse.passage.lic.internal.base.restrictions;x-internal:=true,
  org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests",
