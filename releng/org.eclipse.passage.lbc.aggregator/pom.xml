@@ -31,7 +31,6 @@
 
 		<module>../../bundles/org.eclipse.passage.lbc.api</module>
 		<module>../../bundles/org.eclipse.passage.lbc.base</module>
-		<module>../../tests/org.eclipse.passage.lbc.api.tests</module>
 		<module>../../tests/org.eclipse.passage.lbc.base.tests</module>
 		<module>../../bundles/org.eclipse.passage.lbc.server</module>
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
