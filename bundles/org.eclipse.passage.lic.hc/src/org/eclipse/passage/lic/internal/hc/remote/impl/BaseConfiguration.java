@@ -12,16 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 
-public abstract class BaseConfiguration implements Configuration<HttpURLConnection> {
+public abstract class BaseConfiguration<C extends Connection> implements Configuration<C> {
 
 	private final int timeout;
 	private final Map<String, String> properties;
@@ -41,24 +40,24 @@ public abstract class BaseConfiguration implements Configuration<HttpURLConnecti
 	}
 
 	@Override
-	public final HttpURLConnection apply(HttpURLConnection connection) throws Exception {
+	public final C apply(C connection) throws Exception {
 		installRequestDemands(connection);
 		installRequestProperties(connection);
 		paveRoadForData(connection);
 		return connection;
 	}
 
-	private void installRequestDemands(HttpURLConnection connection) throws Exception {
-		connection.setConnectTimeout(timeout);
+	private void installRequestDemands(C connection) throws Exception {
+		connection.withTimeout(timeout);
 	}
 
-	protected abstract void paveRoadForData(HttpURLConnection connection) throws Exception;
+	protected abstract void paveRoadForData(C connection) throws Exception;
 
-	private void installRequestProperties(HttpURLConnection connection) {
-		properties.forEach((k, v) -> connection.addRequestProperty(k, v));
+	private void installRequestProperties(C connection) {
+		properties.forEach((k, v) -> connection.withProperty(k, v));
 	}
 
-	public static final class Get extends BaseConfiguration {
+	public static final class Get<C extends Connection> extends BaseConfiguration<C> {
 
 		public Get(int timeout, Map<String, String> properties) {
 			super(timeout, properties);
@@ -73,14 +72,15 @@ public abstract class BaseConfiguration implements Configuration<HttpURLConnecti
 		}
 
 		@Override
-		protected void paveRoadForData(HttpURLConnection connection) throws ProtocolException {
-			connection.setRequestMethod("GET"); //$NON-NLS-1$
-			connection.setDoOutput(true);
+		protected void paveRoadForData(C connection) throws LicensingException {
+			connection.beGet();
+			connection.withOutput(true);
+			connection.withInput(false);
 		}
 
 	}
 
-	public static final class Post extends BaseConfiguration {
+	public static final class Post<C extends Connection> extends BaseConfiguration<C> {
 
 		private final byte[] payload;
 
@@ -99,13 +99,11 @@ public abstract class BaseConfiguration implements Configuration<HttpURLConnecti
 		}
 
 		@Override
-		protected void paveRoadForData(HttpURLConnection connection) throws Exception {
-			connection.setRequestMethod("PUT"); //$NON-NLS-1$
-			connection.setDoOutput(false);
-			connection.setDoInput(true);
-			try (OutputStream output = connection.getOutputStream()) {
-				output.write(payload);
-			}
+		protected void paveRoadForData(C connection) throws Exception {
+			connection.bePost();
+			connection.withOutput(false);
+			connection.withInput(true);
+			connection.withPayload(payload);
 		}
 
 	}

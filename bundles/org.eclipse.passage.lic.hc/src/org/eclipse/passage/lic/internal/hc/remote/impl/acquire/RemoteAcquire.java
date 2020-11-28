@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
-import java.net.HttpURLConnection;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
@@ -24,6 +23,7 @@ import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.EObjectFromXmiResponse;
@@ -34,15 +34,15 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-final class RemoteAcquire extends ServiceAny<HttpURLConnection, GrantAcqisition, RemoteServiceData.OfFeature> {
+final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqisition, RemoteServiceData.OfFeature> {
 
-	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
-			Supplier<Client<HttpURLConnection, GrantAcqisition>> client, Supplier<Path> source) {
+	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, GrantAcqisition>> client,
+			Supplier<Path> source) {
 		super(keys, codecs, client, source);
 	}
 
 	@Override
-	protected RemoteRequest<HttpURLConnection> request(OfFeature params, FloatingLicenseAccess access) {
+	protected RemoteRequest<C> request(OfFeature params, FloatingLicenseAccess access) {
 		return new Request(params, access);
 	}
 
@@ -71,7 +71,7 @@ final class RemoteAcquire extends ServiceAny<HttpURLConnection, GrantAcqisition,
 
 	}
 
-	private final class Request extends RemoteRequest<HttpURLConnection> {
+	private final class Request extends RemoteRequest<C> {
 
 		private final OfFeature data;
 
@@ -86,8 +86,8 @@ final class RemoteAcquire extends ServiceAny<HttpURLConnection, GrantAcqisition,
 		}
 
 		@Override
-		public Configuration<HttpURLConnection> config() {
-			return new BaseConfiguration.Get();
+		public Configuration<C> config() {
+			return new BaseConfiguration.Get<C>();
 		}
 
 	}

@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 
-import java.net.HttpURLConnection;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
@@ -25,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
@@ -33,20 +33,16 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-/**
- * FIXME: release is a 'post' request with XML Input and without Output. Both
- * RemoteRequest and ResponseHandler interfaces must be revised for the purpose
- */
-final class RemoteRelease
-		extends ServiceAny<HttpURLConnection, Boolean, RemoteServiceData.WithPayload<GrantAcqisition>> {
+final class RemoteRelease<C extends Connection>
+		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcqisition>> {
 
-	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
-			Supplier<Client<HttpURLConnection, Boolean>> client, Supplier<Path> source) {
+	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, Boolean>> client,
+			Supplier<Path> source) {
 		super(keys, codecs, client, source);
 	}
 
 	@Override
-	protected RemoteRequest<HttpURLConnection> request(RemoteServiceData.WithPayload<GrantAcqisition> params,
+	protected RemoteRequest<C> request(RemoteServiceData.WithPayload<GrantAcqisition> params,
 			FloatingLicenseAccess access) {
 		return new Request(params, access);
 	}
@@ -65,7 +61,7 @@ final class RemoteRelease
 
 	}
 
-	private final class Request extends RemoteRequest<HttpURLConnection> {
+	private final class Request extends RemoteRequest<C> {
 
 		private final RemoteServiceData.WithPayload<GrantAcqisition> data;
 
@@ -75,8 +71,8 @@ final class RemoteRelease
 		}
 
 		@Override
-		public Configuration<HttpURLConnection> config() throws LicensingException {
-			return new BaseConfiguration.Post(payload());
+		public Configuration<C> config() throws LicensingException {
+			return new BaseConfiguration.Post<C>(payload());
 		}
 
 		@Override

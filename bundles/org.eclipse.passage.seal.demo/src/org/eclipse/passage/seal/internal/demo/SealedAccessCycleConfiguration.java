@@ -94,7 +94,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new ComponentRequirements() //
 		));
 		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				// new RemoteConditions(keyKeepers(), codecs(), transports()), //
+				// new RemoteConditions<NetConnection>(keyKeepers(), codecs(), transports()), //
 				new UserHomeResidentConditions(miningEquipment()), //
 				new InstallationResidentConditions(miningEquipment()), //
 				new ConfigurationResidentConditions(miningEquipment())//
@@ -132,7 +132,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new BasePermissionsExaminationService()//
 		));
 		acquirers = new ReadOnlyRegistry<>(Arrays.asList(//
-				// new RemoteAcquisitionService(keyKeepers(), codecs()), //
+				// new RemoteAcquisitionService<NetConnection>(keyKeepers(), codecs()), //
 				new UserHomeLicenseAcquisitionService(), //
 				new InstallationLicenseAcquisitionService(), //
 				new ConfigurationLicenseAcquisitionService()//

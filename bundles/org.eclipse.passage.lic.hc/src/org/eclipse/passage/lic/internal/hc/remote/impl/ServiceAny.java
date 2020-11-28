@@ -28,8 +28,9 @@ import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 
-public abstract class ServiceAny<C, T, D extends RemoteServiceData> extends ServiceRemote<C, T, D> {
+public abstract class ServiceAny<C extends Connection, T, D extends RemoteServiceData> extends ServiceRemote<C, T, D> {
 
 	protected ServiceAny(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, T>> client,
 			Supplier<Path> source) {

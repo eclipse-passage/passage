@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.net.HostPort;
 
@@ -33,7 +34,7 @@ import org.eclipse.passage.lic.internal.net.HostPort;
  * <li>{@code config()} to gain a proper request headers configuring unit</li>
  * </ul>
  */
-public abstract class RemoteRequest<C> implements Request<C> {
+public abstract class RemoteRequest<C extends Connection> implements Request<C> {
 
 	protected final LicensedProduct product;
 	protected final FloatingLicenseAccess access;

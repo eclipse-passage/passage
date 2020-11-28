@@ -29,9 +29,10 @@ import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
-public abstract class ServiceRemote<C, T, D extends RemoteServiceData> {
+public abstract class ServiceRemote<C extends Connection, T, D extends RemoteServiceData> {
 
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;

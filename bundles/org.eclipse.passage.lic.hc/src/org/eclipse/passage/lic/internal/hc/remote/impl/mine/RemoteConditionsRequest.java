@@ -12,16 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
-import java.net.HttpURLConnection;
-
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
-public final class RemoteConditionsRequest extends RemoteRequest<HttpURLConnection> {
+public final class RemoteConditionsRequest<C extends Connection> extends RemoteRequest<C> {
 
 	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access) {
 		super(product, access);
@@ -33,8 +32,8 @@ public final class RemoteConditionsRequest extends RemoteRequest<HttpURLConnecti
 	}
 
 	@Override
-	public Configuration<HttpURLConnection> config() {
-		return new BaseConfiguration.Get();
+	public Configuration<C> config() {
+		return new BaseConfiguration.Get<C>();
 	}
 
 }

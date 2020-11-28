@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
-import java.net.HttpURLConnection;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,6 +31,7 @@ import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
+import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
@@ -39,15 +39,14 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.Bulk;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceEvery;
 
-public final class RemoteConditions //
-		extends ServiceEvery<HttpURLConnection, Collection<ConditionPack>, RemoteServiceData.Bulk>
-		implements MinedConditions {
+public final class RemoteConditions<C extends Connection> //
+		extends ServiceEvery<C, Collection<ConditionPack>, RemoteServiceData.Bulk> implements MinedConditions {
 
 	private final ConditionTransportRegistry transports;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 
 	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports,
-			Supplier<Client<HttpURLConnection, Collection<ConditionPack>>> client, Supplier<Path> source) {
+			Supplier<Client<C, Collection<ConditionPack>>> client, Supplier<Path> source) {
 		super(keys, codecs, client, source);
 		this.transports = transports;
 	}
@@ -68,8 +67,8 @@ public final class RemoteConditions //
 	}
 
 	@Override
-	protected RemoteRequest<HttpURLConnection> request(Bulk params, FloatingLicenseAccess access) {
-		return new RemoteConditionsRequest(params.product(), access);
+	protected RemoteRequest<C> request(Bulk params, FloatingLicenseAccess access) {
+		return new RemoteConditionsRequest<>(params.product(), access);
 	}
 
 	@Override
