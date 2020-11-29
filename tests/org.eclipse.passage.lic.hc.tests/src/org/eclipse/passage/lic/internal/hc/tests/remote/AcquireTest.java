@@ -12,11 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.tests.remote;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.base.tests.LicFolder;
@@ -26,38 +24,35 @@ import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
-import org.eclipse.passage.lbc.internal.base.mine.Conditions;
+import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
-import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
-public final class MineTest {
+public final class AcquireTest {
 
 	private final TestData data = new TestData();
 	private final Supplier<Path> source = new LicFolder();
+	private final FloatingState server = new EagerFloatingState(source);
 
 	@Test
-	public void mine() {
-		ServiceInvocationResult<Collection<ConditionPack>> all = //
-				new RemoteConditions<>(keys(), codecs(), transports(), this::client, source)//
-						.all(data.product());
-		assertTrue(all.data().isPresent());
-		assertEquals(2, all.data().get().size());
-	}
+	public void acquireAndRelease() {
+		RemoteAcquisitionService<ShortcutConnection> service = //
+				new RemoteAcquisitionService<ShortcutConnection>(keys(), codecs(), this::acq, this::rel, source);
+		ServiceInvocationResult<GrantAcqisition> acquisition = service.acquire(data.product(), data.feature());
+		assertTrue(acquisition.data().isPresent());
+		ServiceInvocationResult<Boolean> release = service.release(data.product(), acquisition.data().get());
+		assertTrue(release.data().isPresent());
 
-	private ConditionTransportRegistry transports() {
-		return () -> new ReadOnlyRegistry<>(new XmiConditionTransport());
 	}
 
 	private StreamCodecRegistry codecs() {
@@ -68,22 +63,39 @@ public final class MineTest {
 		return () -> new ReadOnlyRegistry<>(new PathKeyKeeper(data.product(), source));
 	}
 
-	private Client<ShortcutConnection, Collection<ConditionPack>> client() {
-		return new ShortcutClient<Collection<ConditionPack>>(new AskMiner());
+	private Client<ShortcutConnection, GrantAcqisition> acq() {
+		return new ShortcutClient<GrantAcqisition>(new AskAcquirer());
 	}
 
-	private final class AskMiner implements ShortcutClient.Remote {
+	private Client<ShortcutConnection, Boolean> rel() {
+		return new ShortcutClient<Boolean>(new AskReleaser());
+	}
+
+	private final class AskAcquirer implements ShortcutClient.Remote {
 
 		@Override
 		public FloatingResponse invoke(RawRequest raw) throws LicensingException {
-			return new Conditions(new ProductUserRequest(raw), source).get();
+			return new Acquisition(new ProductUserRequest(raw)).get();
 		}
 
 		@Override
 		public FloatingState state() {
-			return new EagerFloatingState();
+			return server;
 		}
 
+	}
+
+	private final class AskReleaser implements ShortcutClient.Remote {
+
+		@Override
+		public FloatingResponse invoke(RawRequest raw) throws LicensingException {
+			return new Acquisition(new ProductUserRequest(raw)).returnBack();
+		}
+
+		@Override
+		public FloatingState state() {
+			return server;
+		}
 	}
 
 }

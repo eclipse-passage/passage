@@ -15,10 +15,8 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
-import java.nio.file.Path;
-import java.util.function.Supplier;
-
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
+import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -30,11 +28,9 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 
 final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 
-	private final Supplier<Path> source;
 	private final Remote remote;
 
-	ShortcutClient(Supplier<Path> source, Remote remote) {
-		this.source = source;
+	ShortcutClient(Remote remote) {
 		this.remote = remote;
 	}
 
@@ -42,7 +38,7 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 	public ServiceInvocationResult<T> request(Request<ShortcutConnection> request, ResponseHandler<T> handler) {
 		try {
 			ShortcutConnection connection = request.config().apply(new ShortcutConnection(request.parameters()));
-			RawRequest raw = new RawRequestFromConnection(connection, source);
+			RawRequest raw = new RawRequestFromConnection(connection, remote.state());
 			FloatingResponse response = remote.invoke(raw);
 			assertFalse(response.failed());
 			connection.installResponse(response);
@@ -55,6 +51,8 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 	}
 
 	static interface Remote {
+
+		FloatingState state();
 
 		FloatingResponse invoke(RawRequest raw) throws LicensingException;
 

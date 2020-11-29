@@ -30,7 +30,7 @@ final class ShortcutConnection implements Connection {
 	private byte[] request;
 	private int code;
 	private String message;
-	private byte[] response;
+	private FloatingResponse response;
 
 	public ShortcutConnection(QueryParameters parameters) throws LicensingException {
 		Arrays.stream(parameters.query().substring(1).split("&")) //$NON-NLS-1$
@@ -99,7 +99,16 @@ final class ShortcutConnection implements Connection {
 
 	@Override
 	public byte[] payload() throws LicensingException {
-		return response;
+		if (!response.carriesPayload()) {
+			return new byte[0];
+		}
+		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+			response.write(stream);
+			stream.flush();
+			return stream.toByteArray();
+		} catch (IOException e) {
+			throw new LicensingException(e);
+		}
 	}
 
 	String param(String name) {
@@ -110,7 +119,7 @@ final class ShortcutConnection implements Connection {
 		return request;
 	}
 
-	void installResponse(FloatingResponse flo) throws IOException {
+	void installResponse(FloatingResponse flo) {
 		if (flo.failed()) {
 			code = flo.error().code();
 			message = flo.error().message();
@@ -118,10 +127,6 @@ final class ShortcutConnection implements Connection {
 			code = 200;
 			message = "ok"; //$NON-NLS-1$
 		}
-		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-			flo.write(stream);
-			stream.flush();
-			response = stream.toByteArray();
-		}
+		response = flo;
 	}
 }

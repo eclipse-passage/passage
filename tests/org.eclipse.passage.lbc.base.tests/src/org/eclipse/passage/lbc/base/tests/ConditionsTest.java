@@ -32,32 +32,38 @@ import org.junit.Test;
 
 public final class ConditionsTest {
 
+	private final TestData data = new TestData();
+
 	@Test
 	public void mineAllForRightUser() throws LicensingException, IOException {
-		TestData data = new TestData();
-		LicenseGrant grant = mineForUser(data.albert().id(), 1).get(0);
+		LicenseGrant grant = mineForUserAndProduct(data.albert().id(), data.product().identifier(), 1).get(0);
 		data.assertGrantIsValid(grant);
 	}
 
 	@Test
 	public void mineNothingForWrongUser() throws LicensingException, IOException {
-		mineForUser("imposter", 0); //$NON-NLS-1$
+		mineForUserAndProduct("imposter", data.product().identifier(), 0); //$NON-NLS-1$
 	}
 
-	private List<LicenseGrant> mineForUser(String user, int conditions) throws IOException, LicensingException {
-		FloatingResponse response = new Conditions(request(user), new LicFolder()).get();
+	@Test
+	public void mineNothingForWrongProduct() throws LicensingException, IOException {
+		mineForUserAndProduct(data.albert().id(), "foreign-product", 0); //$NON-NLS-1$
+	}
+
+	private List<LicenseGrant> mineForUserAndProduct(String user, String product, int conditions)
+			throws IOException, LicensingException {
+		FloatingResponse response = new Conditions(request(user, product), new LicFolder()).get();
 		assertFalse(response.failed());
 		EList<LicenseGrant> grants = new License(response).get().getLicenseGrants();
 		assertEquals(conditions, grants.size());
 		return grants;
 	}
 
-	private ProductUserRequest request(String user) throws LicensingException {
+	private ProductUserRequest request(String user, String product) throws LicensingException {
 		return new ProductUserRequest(//
 				new RequestConstructed()//
 						.withParameters(Arrays.asList(//
-								new ProductIdentifier("anti-human-magic.product"), //$NON-NLS-1$
-								new ProductVersion("0.2.1"), //$NON-NLS-1$
+								new ProductIdentifier(product), new ProductVersion("0.2.1"), //$NON-NLS-1$
 								new LicenseUser(user)))
 						.get()//
 		);

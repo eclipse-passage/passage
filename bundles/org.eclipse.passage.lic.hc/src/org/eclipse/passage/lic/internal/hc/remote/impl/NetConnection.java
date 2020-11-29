@@ -95,18 +95,21 @@ public final class NetConnection implements Connection {
 	}
 
 	private byte[] read() throws Exception {
-		byte[] content = new byte[connection.getContentLength()];
-		try (InputStream source = connection.getInputStream()) {
-			if (!successful()) {
-				source.read(content); // read all and close the connection briefly
+		int length = connection.getContentLength();
+		byte[] content = new byte[length];
+		if (length > 0) {
+			try (InputStream source = connection.getInputStream()) {
+				if (!successful()) {
+					source.read(content); // read all and close the connection briefly
+				}
 			}
 		}
 		return content;
 	}
 
-	private void invoke(Failable action) throws LicensingException {
+	private void invoke(Failable method) throws LicensingException {
 		try {
-			action.act();
+			method.invoke();
 		} catch (Exception e) {
 			throw new LicensingException(e);
 		}
@@ -114,7 +117,7 @@ public final class NetConnection implements Connection {
 
 	private <T> T invoke(FailableWithResult<T> action) throws LicensingException {
 		try {
-			return action.act();
+			return action.invoke();
 		} catch (Exception e) {
 			throw new LicensingException(e);
 		}
@@ -122,13 +125,13 @@ public final class NetConnection implements Connection {
 
 	private static interface Failable {
 
-		void act() throws Exception;
+		void invoke() throws Exception;
 
 	}
 
 	private static interface FailableWithResult<T> {
 
-		T act() throws Exception;
+		T invoke() throws Exception;
 
 	}
 }
