@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -100,7 +101,8 @@ public final class AccessPacks implements Supplier<ServiceInvocationResult<Colle
 	}
 
 	private FloatingLicenseAccess from(byte[] content) throws LicensingException {
-		return new EObjectFromBytes<>(content, FloatingLicenseAccess.class).get();
+		return new EObjectFromBytes<>(content, FloatingLicenseAccess.class)//
+				.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
 	}
 
 	private KeyKeeper key() throws LicensingException {

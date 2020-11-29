@@ -45,7 +45,7 @@ public abstract class RemoteRequest<C extends Connection> implements Request<C> 
 	}
 
 	@Override
-	public URL url() throws LicensingException {
+	public final URL url() throws LicensingException {
 		try {
 			HostPort corrdinates = new FloatingServerCoordinates(access).get();
 			return new URL("http", //$NON-NLS-1$
@@ -58,7 +58,5 @@ public abstract class RemoteRequest<C extends Connection> implements Request<C> 
 			throw new LicensingException(AccessMessages.Request_failed_to_compose_url, e);
 		}
 	}
-
-	protected abstract RequestParameters parameters();
 
 }

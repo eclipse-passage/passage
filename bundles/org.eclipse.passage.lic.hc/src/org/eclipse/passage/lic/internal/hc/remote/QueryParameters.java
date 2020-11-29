@@ -12,16 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote;
 
-import java.net.URL;
-
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-public interface Request<C extends Connection> {
+public interface QueryParameters {
 
-	URL url() throws LicensingException;
-
-	Configuration<C> config() throws LicensingException;
-
-	QueryParameters parameters();
+	String query() throws LicensingException;
 
 }

@@ -10,18 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.hc.remote;
+package org.eclipse.passage.lic.internal.hc.tests.remote;
 
-import java.net.URL;
+import org.eclipse.passage.lic.internal.hc.remote.Request;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+final class ShortcutRequest {
 
-public interface Request<C extends Connection> {
+	private final Request<ShortcutConnection> request;
 
-	URL url() throws LicensingException;
-
-	Configuration<C> config() throws LicensingException;
-
-	QueryParameters parameters();
+	ShortcutRequest(Request<ShortcutConnection> request) {
+		this.request = request;
+	}
 
 }

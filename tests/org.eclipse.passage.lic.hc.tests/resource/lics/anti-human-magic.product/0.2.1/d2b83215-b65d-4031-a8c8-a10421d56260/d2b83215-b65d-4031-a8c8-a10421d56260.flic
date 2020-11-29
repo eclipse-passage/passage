@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:FloatingLicensePack xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/floating/0.1.0">
+  <license identifier="d2b83215-b65d-4031-a8c8-a10421d56260" issueDate="2020-11-09T18:54:21.270+0300" company="magicians" plan="magic-field-license-plan">
+    <product product="anti-human-magic.product" version="0.2.1"/>
+    <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2020-11-09T00:00:00.000+0300" until="2021-11-09T00:00:00.000+0300"/>
+  </license>
+  <host identifier="Floating-Server-A">
+    <authentication type="hardware" expression="hwdisk.serial=?"/>
+  </host>
+  <users user="Albert_Rose@garden.ga">
+    <authentication type="hardware" expression="os.hwdisk=*777*"/>
+  </users>
+  <users user="elder@magic.com">
+    <authentication type="hardware" expression="os=win"/>
+  </users>
+  <features identifier="d2b83215-b65d-4031-a8c8-a10421d56260#0" feature="prince-to-frog" vivid="60" capacity="4">
+    <version version="0.1.0" rule="compatible"/>
+    <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2020-11-09T00:00:00.000+0300" until="2021-11-09T00:00:00.000+0300"/>
+  </features>
+</org.eclipse.passage.lic:FloatingLicensePack>

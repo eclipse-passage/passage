@@ -57,8 +57,13 @@ public final class Acquisition {
 		return new EObjectTransfer(acquisition.get());
 	}
 
-	public FloatingResponse returnBack() throws LicensingException, IOException {
-		GrantAcqisition acquisition = acquisition();
+	public FloatingResponse returnBack() throws LicensingException {
+		GrantAcqisition acquisition;
+		try {
+			acquisition = acquisition();
+		} catch (IOException e) {
+			throw new LicensingException(e);
+		}
 		boolean released = grants().release(data.product().get(), acquisition);
 		if (!released) {
 			return new Failure.NotReleased(data.product().get(), acquisition);

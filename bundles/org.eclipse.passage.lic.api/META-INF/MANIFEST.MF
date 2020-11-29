@@ -31,7 +31,11 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lic.internal.api.access;x-friends:="org.eclipse.passage.lic.base",
- org.eclipse.passage.lic.internal.api.acquire;x-friends:="org.eclipse.passage.lic.hc,org.eclipse.passage.lic.floating.model,org.eclipse.passage.lic.base",
+ org.eclipse.passage.lic.internal.api.acquire;
+  x-friends:="org.eclipse.passage.lic.hc,
+   org.eclipse.passage.lic.floating.model,
+   org.eclipse.passage.lic.base,
+   org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lic.internal.api.conditions;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
