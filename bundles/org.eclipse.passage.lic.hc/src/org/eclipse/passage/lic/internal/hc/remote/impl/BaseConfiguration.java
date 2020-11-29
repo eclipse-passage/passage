@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 
@@ -74,6 +75,7 @@ public abstract class BaseConfiguration<C extends Connection> implements Configu
 		@Override
 		protected void paveRoadForData(C connection) throws LicensingException {
 			connection.beGet();
+			connection.withProperty("Accept", new ContentType.Xml().contentType()); //$NON-NLS-1$
 			connection.withOutput(true);
 			connection.withInput(false);
 		}
@@ -103,6 +105,7 @@ public abstract class BaseConfiguration<C extends Connection> implements Configu
 			connection.bePost();
 			connection.withOutput(false);
 			connection.withInput(true);
+			connection.withProperty("Content-Type", new ContentType.Xml().contentType()); //$NON-NLS-1$
 			connection.withPayload(payload);
 		}
 

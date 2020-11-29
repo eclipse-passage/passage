@@ -22,11 +22,9 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
@@ -68,10 +66,9 @@ public abstract class RequestParameters implements QueryParameters {
 				new ProductIdentifier(encode(product.identifier())), //
 				new ProductVersion(encode(product.version())), //
 				new LicensingAction(action()), //
-				new LicensingContentType(new ContentType.Xml()), //
 				new LicenseUser(access.getUser()), //
 				new ServerAuthenticationType(access.getServer().getAuthentication().getType()), //
-				new ServerAuthenticationExpression(access.getServer().getAuthentication().getExpression()));
+				new ServerAuthenticationExpression(encode(access.getServer().getAuthentication().getExpression())));
 
 	}
 
