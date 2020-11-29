@@ -12,10 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lbc.internal.api.Chore;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 
 abstract class ChoreDraft implements Chore {
 
@@ -27,6 +30,15 @@ abstract class ChoreDraft implements Chore {
 
 	@Override
 	public final FloatingResponse getDone() {
+		Optional<EvaluationInstructions> instructions = new ServerAuthenticationInstructions(data).get();
+		if (!instructions.isPresent()) {
+			return new Failure.BadRequestInvalidServerAuthInstructions();
+		}
+		try {
+			new ServerAuthentication(instructions.get()).evaluate();
+		} catch (Exception e) {
+			return new Failure.ForeignServer(e.getMessage());
+		}
 		ProductUserRequest request;
 		try {
 			request = new ProductUserRequest(data);

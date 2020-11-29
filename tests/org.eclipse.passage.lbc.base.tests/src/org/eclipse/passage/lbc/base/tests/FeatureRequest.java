@@ -24,11 +24,14 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 
 final class FeatureRequest {
 
@@ -69,8 +72,11 @@ final class FeatureRequest {
 				.withParameters(Arrays.asList(//
 						new ProductIdentifier(product), //
 						new ProductVersion(product), //
-						new LicenseUser(user), new FeatureIdentifier(feature)))
-				.withState(state);//
+						new LicenseUser(user), //
+						new FeatureIdentifier(feature), //
+						new ServerAuthenticationType(new EvaluationType.Hardware().identifier()), //
+						new ServerAuthenticationExpression("os.family=*"))) //$NON-NLS-1$
+				.withState(state);
 		if (payload.isPresent()) {
 			construct.withContent(raw(payload.get()));
 		}

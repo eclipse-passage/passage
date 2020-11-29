@@ -27,13 +27,13 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
-public final class Authentification {
+public final class Authentication {
 
 	private final ExpressionPasringRegistry parsers;
 	private final ExpressionTokenAssessorsRegistry assessors;
 	private final ExpressionEvaluatorsRegistry evaluators;
 
-	public Authentification(ExpressionPasringRegistry parsers, ExpressionTokenAssessorsRegistry assessors,
+	public Authentication(ExpressionPasringRegistry parsers, ExpressionTokenAssessorsRegistry assessors,
 			ExpressionEvaluatorsRegistry evaluators) {
 		Objects.requireNonNull(parsers);
 		Objects.requireNonNull(assessors);
