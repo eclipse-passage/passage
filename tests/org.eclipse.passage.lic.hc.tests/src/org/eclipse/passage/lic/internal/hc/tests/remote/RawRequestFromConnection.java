@@ -13,21 +13,18 @@
 package org.eclipse.passage.lic.internal.hc.tests.remote;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
-import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 
 final class RawRequestFromConnection implements RawRequest {
 
 	private final ShortcutConnection connection;
-	private final Supplier<Path> source;
+	private final FloatingState state;
 
-	RawRequestFromConnection(ShortcutConnection connection, Supplier<Path> source) {
+	RawRequestFromConnection(ShortcutConnection connection, FloatingState state) {
 		this.connection = connection;
-		this.source = source;
+		this.state = state;
 	}
 
 	@Override
@@ -42,7 +39,7 @@ final class RawRequestFromConnection implements RawRequest {
 
 	@Override
 	public FloatingState state() {
-		return new EagerFloatingState(source);
+		return state;
 	}
 
 }
