@@ -25,13 +25,18 @@ public final class PlainSuceess implements FloatingResponse {
 	}
 
 	@Override
+	public boolean carriesPayload() {
+		return false;
+	}
+
+	@Override
 	public Error error() {
 		throw new IllegalStateException("Successful result does not have error information"); //$NON-NLS-1$ dev
 	}
 
 	@Override
 	public void write(OutputStream output) throws IOException {
-		throw new IllegalStateException("Plainn successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
+		throw new IllegalStateException("Plain successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
 	}
 
 }

@@ -34,6 +34,11 @@ public abstract class Failure implements FloatingResponse {
 	}
 
 	@Override
+	public boolean carriesPayload() {
+		return false;
+	}
+
+	@Override
 	public Error error() {
 		return new Err();
 	}

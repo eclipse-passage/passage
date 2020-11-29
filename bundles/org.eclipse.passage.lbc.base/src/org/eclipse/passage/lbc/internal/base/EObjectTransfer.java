@@ -35,6 +35,11 @@ public final class EObjectTransfer implements FloatingResponse {
 	}
 
 	@Override
+	public boolean carriesPayload() {
+		return true;
+	}
+
+	@Override
 	public Error error() {
 		throw new IllegalStateException("Successful response does not posess error information"); //$NON-NLS-1$ // dev
 	}

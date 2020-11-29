@@ -24,6 +24,8 @@ public interface FloatingResponse {
 
 	Error error();
 
+	boolean carriesPayload();
+
 	/**
 	 * Leave the stream open - must be closed by a calling party.
 	 * 
