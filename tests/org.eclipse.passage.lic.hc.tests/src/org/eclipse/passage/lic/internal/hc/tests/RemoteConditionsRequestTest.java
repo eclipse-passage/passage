@@ -27,11 +27,9 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.conditions.mining.LicensingContentType;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
@@ -72,9 +70,6 @@ public final class RemoteConditionsRequestTest {
 		queryHas(url, //
 				new LicenseUser(user).key(), //
 				user);
-		queryHas(url, //
-				new LicensingContentType(new ContentType.Of("any")).key(), //$NON-NLS-1$
-				new ContentType.Xml().contentType());
 	}
 
 	private void queryHas(URL url, String... values) {
