@@ -17,6 +17,8 @@ import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.Failure;
@@ -34,14 +36,12 @@ import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public final class Conditions implements Supplier<FloatingResponse> {
 
 	private final ProductUserRequest data;
 	private final Supplier<Path> source;
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	private final Logger log = LogManager.getLogger(getClass());
 
 	public Conditions(ProductUserRequest data, Supplier<Path> base) {
 		this.data = data;
