@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net;
 
+import java.util.function.Function;
+
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
@@ -23,6 +25,10 @@ public final class ServerAuthenticationType extends StringNamedData {
 
 	public ServerAuthenticationType(FloatingServerConnection server) {
 		this(server.getAuthentication().getType());
+	}
+
+	public ServerAuthenticationType(Function<String, String> retrieve) {
+		super(retrieve);
 	}
 
 	@Override

@@ -45,13 +45,13 @@ import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 public final class BasePermissionEmittingService implements PermissionEmittingService {
 
 	private final StringServiceId id = new StringServiceId("default-emitter"); //$NON-NLS-1$
-	private final Authentification authentification;
+	private final Authentication authentification;
 
 	public BasePermissionEmittingService(//
 			ExpressionPasringRegistry parsers, //
 			ExpressionTokenAssessorsRegistry assessors, //
 			ExpressionEvaluatorsRegistry evaluators) {
-		authentification = new Authentification(parsers, assessors, evaluators);
+		authentification = new Authentication(parsers, assessors, evaluators);
 	}
 
 	@Override

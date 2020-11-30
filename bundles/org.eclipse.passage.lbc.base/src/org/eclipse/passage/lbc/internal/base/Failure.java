@@ -62,10 +62,27 @@ public abstract class Failure implements FloatingResponse {
 
 	}
 
+	public static final class ForeignServer extends Failure {
+
+		public ForeignServer(String error) {
+			super(600, String.format("Server authentication failed: %s", error)); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class BadRequestInvalidServerAuthInstructions extends Failure {
+
+		public BadRequestInvalidServerAuthInstructions() {
+			super(602,
+					"Bad Requets: floating server authentication instructions (evaluation type and exrpressions) are absent or incomplete"); //$NON-NLS-1$
+		}
+
+	}
+
 	public static final class BadRequestUnknownAction extends Failure {
 
 		public BadRequestUnknownAction(String actual) {
-			super(601, String.format("Bad Requets: 'action' %s is not supported", actual)); //$NON-NLS-1$
+			super(603, String.format("Bad Requets: 'action' %s is not supported", actual)); //$NON-NLS-1$
 		}
 
 	}
@@ -73,7 +90,7 @@ public abstract class Failure implements FloatingResponse {
 	public static final class BadRequestInvalidProduct extends Failure {
 
 		public BadRequestInvalidProduct() {
-			super(602, "Bad Request: licensed product identifier and/or version information is absent"); //$NON-NLS-1$
+			super(604, "Bad Request: licensed product identifier and/or version information is absent"); //$NON-NLS-1$
 		}
 
 	}
@@ -81,7 +98,7 @@ public abstract class Failure implements FloatingResponse {
 	public static final class BadRequestNoUser extends Failure {
 
 		public BadRequestNoUser() {
-			super(603, "Bad Request: no user identifier"); //$NON-NLS-1$
+			super(605, "Bad Request: no user identifier"); //$NON-NLS-1$
 		}
 
 	}
@@ -89,7 +106,7 @@ public abstract class Failure implements FloatingResponse {
 	public static final class BadRequestNoFeature extends Failure {
 
 		public BadRequestNoFeature() {
-			super(604, "Bad Request: no feature identifier"); //$NON-NLS-1$
+			super(606, "Bad Request: no feature identifier"); //$NON-NLS-1$
 		}
 
 	}

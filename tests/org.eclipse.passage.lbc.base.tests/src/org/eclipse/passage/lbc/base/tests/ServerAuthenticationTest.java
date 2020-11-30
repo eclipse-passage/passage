@@ -15,58 +15,35 @@ package org.eclipse.passage.lbc.base.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 import org.junit.Test;
 
-public final class MineTest {
+public final class ServerAuthenticationTest {
 
 	@Test
-	public void demandsProductIdentifier() {
-		testDemandProductInformation(version());
+	public void demandsServerAuthType() {
+		testDemandServerAuthInformation(expression());
 	}
 
 	@Test
-	public void demandsProductVersion() {
-		testDemandProductInformation(id());
+	public void demandsServerAuthExpression() {
+		testDemandServerAuthInformation(type());
 	}
 
-	@Test
-	public void demandsUser() {
+	private void testDemandServerAuthInformation(StringNamedData half) {
 		FloatingResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new ConditionAction.Mine())//
-						.withParameters(Arrays.asList(//
-								id(), //
-								version(), //
-								authType(), //
-								authExpression()//
-						)).get()//
+						.withParameter(half).get()//
 		).get();
-		assertFailedWithCode(response, new Failure.BadRequestNoUser());
-	}
-
-	private void testDemandProductInformation(StringNamedData half) {
-		FloatingResponse response = new BaseFlotingRequestHandled(//
-				new RequestConstructed()//
-						.withAction(new ConditionAction.Mine())//
-						.withParameters(Arrays.asList(////
-								half, //
-								authType(), //
-								authExpression()//
-						)).get()//
-		).get();
-		assertFailedWithCode(response, new Failure.BadRequestInvalidProduct());
+		assertFailedWithCode(response, new Failure.BadRequestInvalidServerAuthInstructions());
 	}
 
 	private void assertFailedWithCode(FloatingResponse response, Failure expected) {
@@ -74,19 +51,11 @@ public final class MineTest {
 		assertEquals(expected.error().code(), response.error().code());
 	}
 
-	private ProductVersion version() {
-		return new ProductVersion("1.1.0"); //$NON-NLS-1$
-	}
-
-	private ProductIdentifier id() {
-		return new ProductIdentifier("sample-product");//$NON-NLS-1$
-	}
-
-	private ServerAuthenticationType authType() {
+	private ServerAuthenticationType type() {
 		return new ServerAuthenticationType(new EvaluationType.Hardware().identifier());
 	}
 
-	private ServerAuthenticationExpression authExpression() {
+	private ServerAuthenticationExpression expression() {
 		return new ServerAuthenticationExpression("os.family=*"); //$NON-NLS-1$
 	}
 
