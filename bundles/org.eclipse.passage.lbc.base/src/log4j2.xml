@@ -17,7 +17,7 @@
                         <PatternLayout>
               <pattern>%d{HH:mm:ss} %p %c{1.} [%t]: %m%n</pattern>
             </PatternLayout>
-            <SizeBasedTriggeringPolicy size="1024" />
+            <SizeBasedTriggeringPolicy size="500" />
           </RollingFile>
         </Route>
         <Route ref="Console" key="Audit"/>
