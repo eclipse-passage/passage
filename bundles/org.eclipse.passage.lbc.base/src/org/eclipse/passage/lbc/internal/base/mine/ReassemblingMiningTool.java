@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
@@ -50,6 +52,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 
 	private final String user;
 	private final LicensedProduct product;
+	private final Logger log = LogManager.getLogger(getClass());
 
 	ReassemblingMiningTool(LicensedProduct product, String user, Supplier<Path> base, ConditionMiningTarget miner) {
 		super(//
@@ -69,6 +72,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 			try {
 				packs.add(conditions(license));
 			} catch (LicensingException e) {
+				log.error(e);
 				failures.add(new Trouble(//
 						new ServiceFailedOnMorsel(), //
 						String.format(BaseMessages.ReassemblingMiningTool_path_failed,

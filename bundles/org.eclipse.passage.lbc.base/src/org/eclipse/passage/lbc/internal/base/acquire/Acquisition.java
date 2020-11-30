@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.Grants;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
@@ -34,6 +36,7 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 public final class Acquisition {
 
 	private final ProductUserRequest data;
+	private final Logger log = LogManager.getLogger(getClass());
 
 	public Acquisition(ProductUserRequest data) {
 		Objects.requireNonNull(data, "Acquisition::data"); //$NON-NLS-1$
@@ -49,6 +52,7 @@ public final class Acquisition {
 		try {
 			acquisition = acquisition(feature.get());
 		} catch (LicensingException e) {
+			log.error(e);
 			return new Failure.OperationFailed(new ConditionAction.Acquire().name(), e.getMessage());
 		}
 		if (acquisition.isEmpty()) {

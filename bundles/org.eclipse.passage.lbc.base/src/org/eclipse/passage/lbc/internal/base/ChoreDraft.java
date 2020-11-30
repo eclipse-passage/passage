@@ -14,6 +14,8 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.api.Chore;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.RawRequest;
@@ -23,6 +25,7 @@ import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 abstract class ChoreDraft implements Chore {
 
 	protected final RawRequest data;
+	protected final Logger log = LogManager.getLogger(getClass());
 
 	protected ChoreDraft(RawRequest request) {
 		this.data = request;
@@ -37,12 +40,14 @@ abstract class ChoreDraft implements Chore {
 		try {
 			new ServerAuthentication(instructions.get()).evaluate();
 		} catch (Exception e) {
+			log.error(e);
 			return new Failure.ForeignServer(e.getMessage());
 		}
 		ProductUserRequest request;
 		try {
 			request = new ProductUserRequest(data);
 		} catch (LicensingException e) {
+			log.error(e);
 			return failed(e.getMessage());
 		}
 		if (!request.product().isPresent()) {
@@ -54,6 +59,7 @@ abstract class ChoreDraft implements Chore {
 		try {
 			return withProductUser(request);
 		} catch (LicensingException e) {
+			log.error(e);
 			return failed(e.getMessage());
 		}
 	}

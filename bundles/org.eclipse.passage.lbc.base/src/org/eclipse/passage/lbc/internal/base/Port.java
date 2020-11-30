@@ -14,6 +14,9 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.function.Supplier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @since 1.0
  */
@@ -46,12 +49,13 @@ public abstract class Port implements Supplier<Integer> {
 
 	}
 
-	public static final class OfArgument implements Supplier<Port> {
+	public static final class Of implements Supplier<Port> {
 
 		private final Port port;
+		private final Logger log = LogManager.getLogger(getClass());
 
-		public OfArgument(String argument) {
-			this.port = port(argument);
+		public Of(String value) {
+			this.port = port(value);
 		}
 
 		@Override
@@ -63,6 +67,7 @@ public abstract class Port implements Supplier<Integer> {
 			try {
 				return new Custom(Integer.parseInt(argument));
 			} catch (NumberFormatException e) {
+				log.error(e);
 				return new Default();
 			}
 		}
