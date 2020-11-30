@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="WARN" packages="org.eclipse.passage.lbc.internal.base">
+ 
   <Appenders>
+
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36}: %msg%n"/>
     </Console>
+
+    <Routing name="Routing">
+      <Routes pattern="$${sd:type}">
+        <Route>
+		<RollingFile
+              name="logs/FLS"
+              fileName="logs/fl-server.log"
+              filePattern="server.%i.log.gz">
+                        <PatternLayout>
+              <pattern>%d{HH:mm:ss} %p %c{1.} [%t]: %m%n</pattern>
+            </PatternLayout>
+            <SizeBasedTriggeringPolicy size="500" />
+          </RollingFile>
+        </Route>
+        <Route ref="Console" key="Audit"/>
+      </Routes>
+    </Routing>
+
   </Appenders>
+
   <Loggers>
-    <Root level="warn">
-      <AppenderRef ref="Console"/>
+
+    <Root level="debug">
+      <AppenderRef ref="Routing"/>
     </Root>
+
   </Loggers>
+  
 </Configuration>

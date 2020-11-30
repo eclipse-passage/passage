@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
@@ -39,6 +41,7 @@ final class LicensePacks {
 	private final KeyKeeper key;
 	private final StreamCodec codec;
 	private final Supplier<Path> base;
+	private final Logger log = LogManager.getLogger(getClass());
 
 	LicensePacks(LicensedProduct product, Supplier<Path> base) {
 		this.product = product;
@@ -68,8 +71,7 @@ final class LicensePacks {
 			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class)//
 					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
 		} catch (LicensingException e) {
-			// TODO extensively log with the server's facilities
-			e.printStackTrace();
+			log.error(e);
 			return Optional.empty();
 		}
 		return Optional.of(pack);
