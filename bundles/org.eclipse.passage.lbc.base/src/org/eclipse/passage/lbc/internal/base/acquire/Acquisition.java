@@ -52,7 +52,7 @@ public final class Acquisition {
 		try {
 			acquisition = acquisition(feature.get());
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("failed: ", e); //$NON-NLS-1$
 			return new Failure.OperationFailed(new ConditionAction.Acquire().name(), e.getMessage());
 		}
 		if (acquisition.isEmpty()) {

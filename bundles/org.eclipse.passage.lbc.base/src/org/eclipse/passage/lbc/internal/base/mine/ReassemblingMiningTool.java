@@ -72,7 +72,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 			try {
 				packs.add(conditions(license));
 			} catch (LicensingException e) {
-				log.error(e);
+				log.error("failed: ", e); //$NON-NLS-1$
 				failures.add(new Trouble(//
 						new ServiceFailedOnMorsel(), //
 						String.format(BaseMessages.ReassemblingMiningTool_path_failed,
