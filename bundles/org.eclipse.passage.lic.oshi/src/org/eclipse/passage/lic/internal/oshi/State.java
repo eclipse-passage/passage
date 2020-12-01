@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -126,9 +127,9 @@ final class State {
 	}
 
 	private void readHal(HardwareAbstractionLayer hal) {
-		readSystem(hal.getComputerSystem());
-		readProcessor(hal.getProcessor());
-		readDisks(hal.getDiskStores());
+		readHalPart(hal::getComputerSystem, this::readSystem);
+		readHalPart(hal::getProcessor, this::readProcessor);
+		readHalPart(hal::getDiskStores, this::readDisks);
 	}
 
 	private void readSystem(ComputerSystem info) {
@@ -178,6 +179,20 @@ final class State {
 
 	private void store(Supplier<String> value, EnvironmentProperty key, Map<EnvironmentProperty, String> target) {
 		Optional.ofNullable(value.get()).ifPresent(valuable -> target.put(key, valuable));
+	}
+
+	/**
+	 * #569352 HAL likes to fail on native access, thus we isolate each HAL aspect
+	 * assessment and legalize absence of corresponding properties.
+	 */
+	private <T> void readHalPart(Supplier<T> aspect, Consumer<T> read) {
+		T descriptor;
+		try {
+			descriptor = aspect.get();
+		} catch (Throwable any) {
+			return; // legal; 'read' is just is not going to happen
+		}
+		read.accept(descriptor);
 	}
 
 }
