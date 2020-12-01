@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.ldc
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.ldc;singleton:=true
-Bundle-Version: 0.5.401.qualifier
+Bundle-Version: 0.5.500.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright

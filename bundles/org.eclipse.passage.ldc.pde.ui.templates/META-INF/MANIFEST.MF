@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.passage.ldc.pde.ui.templates;singleton:=true
-Bundle-Version: 0.5.301.qualifier
+Bundle-Version: 0.5.400.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.passage.ldc.internal.pde.ui.templates;x-internal:=true,
  org.eclipse.passage.ldc.internal.pde.ui.templates.i18n;x-internal:=true
