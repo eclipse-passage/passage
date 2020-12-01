@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.api.tests.StreamCodecsRegitryTest;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
-@SuppressWarnings("restriction")
 public final class SealedCodecsRegistryTest extends StreamCodecsRegitryTest {
 
 	@Override
