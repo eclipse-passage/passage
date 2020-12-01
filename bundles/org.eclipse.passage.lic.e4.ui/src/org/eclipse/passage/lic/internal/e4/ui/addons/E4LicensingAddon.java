@@ -50,8 +50,9 @@ public final class E4LicensingAddon {
 		ServiceInvocationResult<GrantLockAttempt> response = //
 				new EquinoxPassageUI(this::shell)
 						.acquireLicense(new LicensedProductFromContext(application).get().identifier());
-		grant = response.data();
-		if (grant.isPresent()) {
+		if (grantAcquired(response)) {
+			grant = response.data();
+		} else {
 			new WorkbenchShutdown().run();
 		}
 	}
@@ -62,11 +63,24 @@ public final class E4LicensingAddon {
 			@SuppressWarnings("unused") //
 			@UIEventTopic(UIEvents.UILifeCycle.APP_SHUTDOWN_STARTED) //
 			Event event) {
-		grant.ifPresent(new EquinoxPassage()::releaseLicense);
+		releaseGrant();
 	}
 
 	private Shell shell() {
 		return context.get(Shell.class);
 	}
 
+	private boolean grantAcquired(ServiceInvocationResult<GrantLockAttempt> response) {
+		return response.data().isPresent() && response.data().get().successful();
+	}
+
+	private void releaseGrant() {
+		if (!grant.isPresent()) {
+			return;
+		}
+		ServiceInvocationResult<Boolean> released = new EquinoxPassage().releaseLicense(grant.get());
+		if (released.data().isPresent() && released.data().get()) {
+			grant = java.util.Optional.empty();
+		}
+	}
 }
