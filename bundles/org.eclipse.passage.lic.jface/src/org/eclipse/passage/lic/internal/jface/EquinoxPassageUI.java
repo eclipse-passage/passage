@@ -73,7 +73,7 @@ public final class EquinoxPassageUI implements PassageUI {
 
 	/**
 	 * @return {@code true} if licensing state has been changed and new assessment
-	 *         have sense. {@code false} otherwise.
+	 *         have sense, {@code false} otherwise.
 	 */
 	private <T> boolean exposeAndMayBeEvenFix(//
 			ServiceInvocationResult<T> result, //
