@@ -190,7 +190,7 @@ final class State {
 		try {
 			descriptor = aspect.get();
 		} catch (Throwable any) {
-			return; // legal; 'read' is just is not going to happen
+			return; // legal; 'read' just isn't going to happen
 		}
 		read.accept(descriptor);
 	}
