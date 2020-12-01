@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.base.access;
 
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -22,9 +23,11 @@ import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
@@ -54,8 +57,8 @@ final class Lock {
 	 * @see LicenseAcquisitionService
 	 */
 	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
-		if (notPermissive(certificate)) { // #569004
-			return noPermission(certificate);
+		if (notPermissive(certificate)) {
+			return grant(certificate, tentativeGrant(certificate), tentativeReport(certificate));
 		}
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
@@ -67,12 +70,15 @@ final class Lock {
 		if (!grant.data().isPresent()) {
 			return noGrant(certificate, grant);
 		}
-		return grant(certificate, grant);
+		return grant(certificate, grant.data().get(), grant.diagnostic());
 	}
 
 	ServiceInvocationResult<Boolean> unlock(GrantLockAttempt lock) {
 		if (!lock.successful()) {
 			return wrongLockWarning(); // It's illegal state actually. Should we throw something?
+		}
+		if (new TentativeFeatureAccess().test(lock.grant())) {
+			return new BaseServiceInvocationResult<>(Boolean.TRUE);
 		}
 		Permission permission = permission(lock.certificate());
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
@@ -80,12 +86,6 @@ final class Lock {
 			return noService(Boolean.FALSE, target);
 		}
 		return acquirers.get().service(target).release(permission.product(), lock.grant());
-	}
-
-	private ServiceInvocationResult<GrantLockAttempt> noPermission(ExaminationCertificate certificate) {
-		return new BaseServiceInvocationResult<>(// #569004
-				fail(AccessCycleMessages.getString("Lock.no_permission")), //$NON-NLS-1$
-				new BaseGrantLockAttempt.Failed(certificate));
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> noGrant(ExaminationCertificate certificate,
@@ -96,10 +96,8 @@ final class Lock {
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> grant(ExaminationCertificate certificate,
-			ServiceInvocationResult<GrantAcqisition> grant) {
-		return new BaseServiceInvocationResult<>(//
-				grant.diagnostic(), //
-				new BaseGrantLockAttempt.Successful(certificate, grant.data().get()));
+			GrantAcqisition grant, Diagnostic diagnostic) {
+		return new BaseServiceInvocationResult<>(diagnostic, new BaseGrantLockAttempt.Successful(certificate, grant));
 	}
 
 	private ServiceInvocationResult<Boolean> wrongLockWarning() {
@@ -126,8 +124,12 @@ final class Lock {
 				data);
 	}
 
+	/**
+	 * {@code Warning} and {@code Info} {@code requirement}s can stay unsatisfied
+	 * and still a feature must be accessible for usage
+	 */
 	private boolean notPermissive(ExaminationCertificate certificate) {
-		return certificate.satisfied().isEmpty(); // #569004
+		return certificate.satisfied().isEmpty();
 	}
 
 	/**
@@ -139,4 +141,30 @@ final class Lock {
 		return certificate.satisfaction(any); // guaranteed to exist and be not null
 	}
 
+	private GrantAcqisition tentativeGrant(ExaminationCertificate certificate) {
+		return new TentativeFeatureAccess(feature(certificate)).get();
+	}
+
+	private Diagnostic tentativeReport(ExaminationCertificate certificate) {
+		return new BaseDiagnostic(//
+				Collections.emptyList(), //
+				certificate.restrictions().stream()//
+						.map(this::explained)//
+						.collect(Collectors.toList()));
+	}
+
+	private Trouble explained(Restriction restriction) {
+		return new Trouble(new ServiceFailedOnMorsel(), //
+				String.format(//
+						AccessCycleMessages.getString("Lock.temp_access"), //$NON-NLS-1$
+						feature(restriction)));
+	}
+
+	private String feature(ExaminationCertificate certificate) {
+		return feature(certificate.restrictions().iterator().next());
+	}
+
+	private String feature(Restriction restriction) {
+		return restriction.unsatisfiedRequirement().feature().identifier();
+	}
 }
