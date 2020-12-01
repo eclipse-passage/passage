@@ -67,7 +67,7 @@ public abstract class Port implements Supplier<Integer> {
 			try {
 				return new Custom(Integer.parseInt(argument));
 			} catch (NumberFormatException e) {
-				log.error(e);
+				log.error("failed: ", e); //$NON-NLS-1$ ;
 				return new Default();
 			}
 		}

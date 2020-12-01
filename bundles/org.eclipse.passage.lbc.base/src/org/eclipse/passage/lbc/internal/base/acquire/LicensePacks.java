@@ -71,7 +71,7 @@ final class LicensePacks {
 			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class)//
 					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("failed: ", e); //$NON-NLS-1$
 			return Optional.empty();
 		}
 		return Optional.of(pack);

@@ -40,14 +40,14 @@ abstract class ChoreDraft implements Chore {
 		try {
 			new ServerAuthentication(instructions.get()).evaluate();
 		} catch (Exception e) {
-			log.error(e);
+			log.error("failed: ", e); //$NON-NLS-1$
 			return new Failure.ForeignServer(e.getMessage());
 		}
 		ProductUserRequest request;
 		try {
 			request = new ProductUserRequest(data);
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("failed: ", e); //$NON-NLS-1$ ;
 			return failed(e.getMessage());
 		}
 		if (!request.product().isPresent()) {
@@ -59,7 +59,7 @@ abstract class ChoreDraft implements Chore {
 		try {
 			return withProductUser(request);
 		} catch (LicensingException e) {
-			log.error(e);
+			log.error("failed: ", e); //$NON-NLS-1$ ;
 			return failed(e.getMessage());
 		}
 	}
