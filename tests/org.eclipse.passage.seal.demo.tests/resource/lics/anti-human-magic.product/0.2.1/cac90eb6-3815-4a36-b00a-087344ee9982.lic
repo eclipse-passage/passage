@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:LicensePack xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/1.0.0" identifier="cac90eb6-3815-4a36-b00a-087344ee9982" issueDate="2020-08-29T19:08:46.555+0300" userIdentifier="elder@magic.com" userFullName="The Elder" requestIdentifier="e76c659a-e526-4348-8bd7-7aaa01c84cde" planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1">
+  <licenseGrants identifier="cac90eb6-3815-4a36-b00a-087344ee9982#0" featureIdentifier="prince-to-frog" matchVersion="0.1.0" matchRule="equivalent" validFrom="2020-08-29T00:00:00.000+0300" validUntil="2021-08-29T00:00:00.000+0300" conditionType="hardware" conditionExpression="os.family=Windows"/>
+  <licenseGrants identifier="cac90eb6-3815-4a36-b00a-087344ee9982#1" featureIdentifier="anti-human-magic.product" matchVersion="0.2.1" matchRule="greaterOrEqual" validFrom="2020-08-29T00:00:00.000+0300" validUntil="2021-08-29T00:00:00.000+0300" conditionType="hardware" conditionExpression="os.family=Windows"/>
+</org.eclipse.passage.lic:LicensePack>
