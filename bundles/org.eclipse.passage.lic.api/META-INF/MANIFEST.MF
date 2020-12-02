@@ -32,7 +32,7 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.hc.tests,
    org.eclipse.passage.seal.demo,
    org.eclipse.passage.lic.bc",
- org.eclipse.passage.lic.internal.api.access;x-friends:="org.eclipse.passage.lic.base",
+ org.eclipse.passage.lic.internal.api.access;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.seal.demo.tests",
  org.eclipse.passage.lic.internal.api.acquire;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.floating.model,
@@ -76,7 +76,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.api.tests,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lbc.base.tests,
-   org.eclipse.passage.loc.licenses.core",
+   org.eclipse.passage.loc.licenses.core,
+   org.eclipse.passage.seal.demo.tests",
  org.eclipse.passage.lic.internal.api.inspection;x-friends:="org.eclipse.passage.lic.base,org.eclipse.passage.lic.api.tests,org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.api.io;
   x-friends:="org.eclipse.passage.lbc.api,
@@ -101,7 +102,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lic.equinox.tests,
-   org.eclipse.passage.lic.json",
+   org.eclipse.passage.lic.json,
+   org.eclipse.passage.seal.demo.tests",
  org.eclipse.passage.lic.internal.api.restrictions;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
