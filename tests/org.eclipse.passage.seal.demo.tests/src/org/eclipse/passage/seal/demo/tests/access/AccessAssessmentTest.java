@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.access.Access;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.junit.Test;
 
@@ -36,6 +37,7 @@ public final class AccessAssessmentTest {
 	@Test
 	public void assess() {
 		ServiceInvocationResult<ExaminationCertificate> result = new Access(new TestFramework()).assess();
+		System.out.print(new DiagnosticExplained(result.diagnostic()).get());
 		assertTrue(new NoErrors().test(result.diagnostic()));
 		assertTrue(result.data().isPresent());
 		assertEquals(//

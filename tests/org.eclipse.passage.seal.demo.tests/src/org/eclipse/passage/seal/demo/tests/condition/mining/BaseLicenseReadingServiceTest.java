@@ -110,8 +110,7 @@ public final class BaseLicenseReadingServiceTest {
 	}
 
 	private LicenseReadingService service() {
-		return new BaseLicenseReadingService(product(),
-				new PersonalLicenseMiningEquipment(keyKeeper(), codecs(), transports()));
+		return new BaseLicenseReadingService(product(), new PersonalLicenseMiningEquipment(keyKeeper(), codecs(), transports()));
 	}
 
 	private KeyKeeperRegistry keyKeeper() {
