@@ -59,11 +59,13 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 		ServiceInvocationResult<Collection<Requirement>> read(String key) {
 			Optional<BundleWiring> wiring = Optional.ofNullable(bundle.adapt(BundleWiring.class));
 			if (!wiring.isPresent()) {
-				return fromManifest(AccessMessages.RequirementsFromBundle_no_wiring);
+				return fromManifest(String.format(//
+						AccessMessages.RequirementsFromBundle_no_wiring, bundle.getSymbolicName()));
 			}
 			Optional<List<BundleCapability>> capabilities = Optional.ofNullable(wiring.get().getCapabilities(key));
 			if (!capabilities.isPresent()) {
-				return fromManifest(AccessMessages.RequirementsFromBundle_no_capabilities);
+				return fromManifest(String.format(//
+						AccessMessages.RequirementsFromBundle_no_capabilities, bundle.getSymbolicName()));
 			}
 			return capabilities.get().stream()//
 					.map(capability -> new RequirementFromCapability(bundle, capability))//
@@ -75,8 +77,12 @@ final class RequirementsFromBundle extends BaseNamedData<ServiceInvocationResult
 		private ServiceInvocationResult<Collection<Requirement>> fromManifest(String why) {
 			return new BaseServiceInvocationResult.Sum<>(new SumOfCollections<Requirement>())//
 					.apply(//
-							new BaseServiceInvocationResult<>(new BaseDiagnostic(Collections.singletonList(//
-									new Trouble(new ServiceCannotOperate(), why)))),
+							new BaseServiceInvocationResult<>(//
+									new BaseDiagnostic(//
+											Collections.emptyList(), //
+											Collections.singletonList(//
+													new Trouble(new ServiceCannotOperate(), why)))//
+							), //
 							new RequirementsFromManifest(bundle).get());
 		}
 	}

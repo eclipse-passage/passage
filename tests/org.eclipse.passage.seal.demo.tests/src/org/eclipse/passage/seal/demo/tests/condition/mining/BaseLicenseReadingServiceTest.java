@@ -147,7 +147,7 @@ public final class BaseLicenseReadingServiceTest {
 
 	private Supplier<Path> residence() {
 		return new PathFromLicensedProduct(//
-				() -> Paths.get("resources/org.eclipse.passage.lic.seal.demo.tests.conditions.mining"), //$NON-NLS-1$
+				() -> Paths.get("resource/org.eclipse.passage.lic.seal.demo.tests.conditions.mining"), //$NON-NLS-1$
 				product());
 	}
 
