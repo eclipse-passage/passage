@@ -39,7 +39,6 @@ import org.osgi.framework.FrameworkUtil;
  * @see Requirement
  * @see ResolvedRequirements
  */
-@SuppressWarnings("restriction")
 public final class BundleRequirements implements ResolvedRequirements {
 
 	private final Optional<BundleContext> context;
