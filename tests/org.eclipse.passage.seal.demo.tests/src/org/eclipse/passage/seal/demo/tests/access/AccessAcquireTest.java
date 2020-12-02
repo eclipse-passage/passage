@@ -12,18 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.demo.tests.access;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.access.Access;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
@@ -42,8 +42,8 @@ public final class AccessAcquireTest {
 	public void acquireTentativeGrant() {
 		successfullyAcquireAndRelease("frog-to-prince", //$NON-NLS-1$
 				diagnostic -> {
-					assertEquals(1, diagnostic.bearable().size());
-					assertCodesEqual(new TentativeAccess(), diagnostic.bearable().get(0).code());
+					assertTrue(diagnostic.bearable().size() > 0);
+					assertContainsCode(new TentativeAccess(), diagnostic.bearable());
 				});
 	}
 
@@ -67,8 +67,14 @@ public final class AccessAcquireTest {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework()).acquire("unknown"); //$NON-NLS-1$
 		assertFalse(new NoErrors().test(acquire.diagnostic()));
 		assertFalse(acquire.data().isPresent());
-		assertEquals(1, acquire.diagnostic().severe().size());
-		assertCodesEqual(new NoRequirements(), acquire.diagnostic().severe().get(0).code());
+		assertTrue(acquire.diagnostic().severe().size() > 0);
+		assertContainsCode(new NoRequirements(), acquire.diagnostic().severe());
+	}
+
+	private void assertContainsCode(TroubleCode expected, List<Trouble> actual) {
+		assertTrue(actual.stream()//
+				.map(Trouble::code)//
+				.anyMatch(trouble -> trouble.code() == expected.code()));
 	}
 
 	@Test
@@ -78,8 +84,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyUnlicensedFeatureAcquisition() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework()).acquire("frog-firework"); //$NON-NLS-1$
-		System.out.print(new DiagnosticExplained(acquire.diagnostic()).get());
-		assertTrue(new NoErrors().test(acquire.diagnostic()));
+		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
 		assertTrue(acquire.data().isPresent());
 		assertFalse(acquire.data().get().successful());
 	}
@@ -99,7 +104,6 @@ public final class AccessAcquireTest {
 
 	private GrantLockAttempt successfullyAcquire(String feature, Access access, Consumer<Diagnostic> onDiagnostic) {
 		ServiceInvocationResult<GrantLockAttempt> acquire = access.acquire(feature);
-		System.out.print(new DiagnosticExplained(acquire.diagnostic()).get());
 		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
 		onDiagnostic.accept(acquire.diagnostic());
 		assertTrue(acquire.data().isPresent());
@@ -107,7 +111,4 @@ public final class AccessAcquireTest {
 		return acquire.data().get();
 	}
 
-	private void assertCodesEqual(TroubleCode expected, TroubleCode actual) {
-		assertEquals(expected.code(), actual.code());
-	}
 }
