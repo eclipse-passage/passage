@@ -15,8 +15,13 @@ package org.eclipse.passage.lic.internal.base.access;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 
 /**
@@ -43,6 +48,9 @@ public final class Access {
 		if (new CertificateIsRestrictive().test(certificate.data())) {
 			return failOnAccess(certificate);
 		}
+		if (empty(certificate.data().get())) {
+			return unknownFeature(feature, certificate.diagnostic());
+		}
 		return new Lock(framework).lock(certificate.data().get());
 	}
 
@@ -59,4 +67,15 @@ public final class Access {
 		return new BaseServiceInvocationResult<>(assessment.diagnostic());
 	}
 
+	private ServiceInvocationResult<GrantLockAttempt> unknownFeature(String feature, Diagnostic diagnostic) {
+		return new BaseServiceInvocationResult<>(//
+				new SumOfDiagnostics().apply(//
+						diagnostic, //
+						new BaseDiagnostic(new Trouble(new NoRequirements(), feature))//
+				));
+	}
+
+	private boolean empty(ExaminationCertificate certificate) {
+		return certificate.restrictions().isEmpty() && certificate.satisfied().isEmpty();
+	}
 }

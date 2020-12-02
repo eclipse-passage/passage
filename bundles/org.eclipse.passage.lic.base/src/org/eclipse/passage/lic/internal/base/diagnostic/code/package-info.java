@@ -16,9 +16,9 @@
  * finish operation because of IO error, connection troubles or other outer
  * obstacle.</li>
  * <li>110 - several implementations of Framework has been found. Critical.</li>
- * <li>151 - no requirements defined for a feature on in product as a whole. In
- * the worst case it is a sign of an error in licensing demands
- * declaration.</li>
+ * <li>151 - no requirements defined for a feature on in product as a whole -
+ * the feature is unknown to Passage. In the worst case it is a sign of an error
+ * in licensing demands declaration.</li>
  * </ul>
  * </li>
  * <li>2xx - reserved</li>
@@ -42,8 +42,14 @@
  * access file, etc)</li>
  * <li>407 - absence of an expected attendant license package file (floating
  * license access file, etc)</li>
+ * <li>408 - a feature is not covered by a license (there is no licensing
+ * conditions found for it), but has not-critical restriction level (for
+ * instance @{code info}, {@code warning}) and thus can be used without
+ * license.</li>
  * </ul>
  * </li>
+ * <li>5xx - reserved</li>
+ * <li>6xx - floating server response codes</li>
  * </ul>
  */
 package org.eclipse.passage.lic.internal.base.diagnostic.code;
