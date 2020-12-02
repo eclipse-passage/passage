@@ -69,7 +69,6 @@ import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditio
 import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
 final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
@@ -87,7 +86,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
 	private final Registry<ConditionMiningTarget, LicenseAcquisitionService> acquirers;
 
-	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
+	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleRequirements(), //
 				new ComponentRequirements() //
@@ -106,7 +105,7 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 				new BcStreamCodec(product) //
 		));
 		keys = new ReadOnlyRegistry<>(Arrays.asList(//
-				new BundleKeyKeeper(product, bundle()) //
+				new BundleKeyKeeper(product, bundle.get()) //
 		));
 		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionEmittingService(//
@@ -139,10 +138,6 @@ final class SealedAccessCycleConfiguration implements AccessCycleConfiguration {
 
 	MiningEquipment miningEquipment() {
 		return new PersonalLicenseMiningEquipment(keyKeepers(), codecs(), transports());
-	}
-
-	private Bundle bundle() {
-		return FrameworkUtil.getBundle(getClass());
 	}
 
 	@Override
