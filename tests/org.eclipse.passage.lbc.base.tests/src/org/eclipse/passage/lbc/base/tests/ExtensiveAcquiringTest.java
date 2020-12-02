@@ -52,7 +52,7 @@ public final class ExtensiveAcquiringTest {
 
 	private Set<Future<FloatingResponse>> runConcurrentAcquireRequest(int amount) throws InterruptedException {
 		ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 10);
-		FloatingState state = new EagerFloatingState(new LicFolder());
+		FloatingState state = new EagerFloatingState(new TestLicFolder());
 		Set<Future<FloatingResponse>> futures = IntStream.range(0, amount)//
 				.mapToObj(i -> pool.submit(new Acq(state)))//
 				.collect(Collectors.toSet());
