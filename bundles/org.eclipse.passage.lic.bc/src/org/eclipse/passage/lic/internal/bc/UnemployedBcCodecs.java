@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 
-@SuppressWarnings("restriction")
 public final class UnemployedBcCodecs implements UnemployedCodecs {
 
 	@Override

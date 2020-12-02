@@ -18,7 +18,6 @@ import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
 import org.osgi.service.component.annotations.Component;
 
-@SuppressWarnings("restriction")
 @Component
 public final class DemoFrameworkSupplier implements FrameworkSupplier {
 
