@@ -19,7 +19,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.base.tests.LicFolder;
 import org.eclipse.passage.lbc.base.tests.TestData;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.api.FloatingState;
@@ -45,7 +44,7 @@ import org.junit.Test;
 public final class MineTest {
 
 	private final TestData data = new TestData();
-	private final Supplier<Path> source = new LicFolder();
+	private final Supplier<Path> source = new TestLicFolder();
 
 	@Test
 	public void mine() {

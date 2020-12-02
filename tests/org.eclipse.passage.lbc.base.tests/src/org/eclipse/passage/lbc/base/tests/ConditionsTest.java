@@ -52,7 +52,7 @@ public final class ConditionsTest {
 
 	private List<LicenseGrant> mineForUserAndProduct(String user, String product, int conditions)
 			throws IOException, LicensingException {
-		FloatingResponse response = new Conditions(request(user, product), new LicFolder()).get();
+		FloatingResponse response = new Conditions(request(user, product), new TestLicFolder()).get();
 		assertFalse(response.failed());
 		EList<LicenseGrant> grants = new License(response).get().getLicenseGrants();
 		assertEquals(conditions, grants.size());
