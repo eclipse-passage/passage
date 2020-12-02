@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.internal.equinox.requirements;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
@@ -40,7 +39,7 @@ public class RequirementsFromManifestTest {
 	public void several() {
 		ServiceInvocationResult<Collection<Requirement>> response = //
 				new RequirementsFromManifest(new DataBundle().bundle()).get();
-		assertFalse(new NoSevereErrors().test(response.diagnostic()));
+		assertTrue(new NoSevereErrors().test(response.diagnostic()));
 		assertTrue(response.data().isPresent());
 		assertEquals(3, response.data().get().size());
 	}
