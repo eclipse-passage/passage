@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
-public final class NoRequirements extends TroubleCode {
+public final class TentativeAccess extends TroubleCode {
 
-	public NoRequirements() {
-		super(151, DiagnosticCodeMessages.getString("NoRequirements.explanation")); //$NON-NLS-1$
+	public TentativeAccess() {
+		super(408, DiagnosticCodeMessages.getString("TentativeAccess.explanation")); //$NON-NLS-1$
 	}
 
 }

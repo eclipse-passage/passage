@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.TentativeAccess;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 
@@ -154,7 +155,7 @@ final class Lock {
 	}
 
 	private Trouble explained(Restriction restriction) {
-		return new Trouble(new ServiceFailedOnMorsel(), //
+		return new Trouble(new TentativeAccess(), //
 				String.format(//
 						AccessCycleMessages.getString("Lock.temp_access"), //$NON-NLS-1$
 						feature(restriction)));
