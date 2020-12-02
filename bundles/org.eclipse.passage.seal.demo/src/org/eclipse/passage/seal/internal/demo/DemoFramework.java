@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.internal.demo;
 
+import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -35,6 +36,11 @@ final class DemoFramework extends BaseFramework {
 			prod = new InvalidLicensedProduct();
 		}
 		return prod;
+	}
+
+	@Override
+	protected AccessCycleConfiguration configuration(LicensedProduct product) {
+		return new SealedAccessCycleConfiguration(() -> product);
 	}
 
 }
