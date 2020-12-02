@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -52,7 +53,7 @@ public final class LocalConditionsTest {
 		Spy spy = new Spy();
 		// when
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
-				new TempFolderResidentConditions(//
+				new PathResidentConditions(//
 						folder.getRoot().toPath(), equipment(spy)).all(product());
 		// then
 		assertCrutialServicesHaveBeenProperlyInvolved(spy);
@@ -61,12 +62,12 @@ public final class LocalConditionsTest {
 
 	@Test(expected = NullPointerException.class)
 	public void miningPathIsMandatoryOnRuntime() {
-		new TempFolderResidentConditions(null, equipment(new Spy())).all(product());
+		new PathResidentConditions(null, equipment(new Spy())).all(product());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void miningEquipmentIsMandatory() {
-		new TempFolderResidentConditions(Paths.get("."), null); //$NON-NLS-1$
+		new PathResidentConditions(Paths.get("."), null); //$NON-NLS-1$
 	}
 
 	private void assertMiningResultsAreOk(List<String> features,

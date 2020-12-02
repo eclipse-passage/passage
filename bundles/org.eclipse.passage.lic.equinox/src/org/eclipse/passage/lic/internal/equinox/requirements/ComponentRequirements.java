@@ -35,7 +35,6 @@ import org.osgi.service.component.runtime.ServiceComponentRuntime;
  * @see Requirement
  * @see ResolvedRequirements
  */
-@SuppressWarnings("restriction")
 public final class ComponentRequirements implements ResolvedRequirements {
 
 	private final Optional<BundleContext> context;

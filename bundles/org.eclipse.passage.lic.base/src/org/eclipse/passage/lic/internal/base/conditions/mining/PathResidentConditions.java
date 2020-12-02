@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
+package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -18,15 +18,14 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 
-final class TempFolderResidentConditions extends LocalConditions {
+public final class PathResidentConditions extends LocalConditions {
 
 	private final Path root;
 
-	TempFolderResidentConditions(Path root, MiningEquipment equipment) {
-		super(new ConditionMiningTarget.Of("temp-folder-conditions"), equipment); //$NON-NLS-1$
+	public PathResidentConditions(Path root, MiningEquipment equipment) {
+		super(new ConditionMiningTarget.Local().child(root.toAbsolutePath().toString()), equipment);
 		this.root = root;
 	}
 
