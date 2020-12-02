@@ -44,7 +44,7 @@ public final class BundleRequirementsTest extends ResolvedRequirementsServiceTes
 
 	@Override
 	protected int invalidMorsels() {
-		return 1;
+		return 0;
 	}
 
 }

@@ -94,7 +94,6 @@ public final class ProvidedCapabilitiesFromManifestTest {
 	private void assertCapabilitiesAreOk(Optional<String> declarations) {
 		assertTrue(declarations.isPresent());
 		assertTrue(declarations.get().startsWith("licensing.feature;")); //$NON-NLS-1$
-		assertTrue(declarations.get().endsWith("licensing.feature")); //$NON-NLS-1$
 		assertTrue(declarations.get().contains("\"Euler number\"")); //$NON-NLS-1$
 		assertTrue(declarations.get().contains(";level=\"error\"")); //$NON-NLS-1$
 	}

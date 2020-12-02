@@ -33,7 +33,7 @@ public final class LicensingFeatureCapabilitiesFromBundleTest {
 		Optional<List<BundleCapability>> capabilities = new LicensingFeatureCapabilitiesFromBundle(//
 				new DataBundle().bundle()).get();
 		assertTrue(capabilities.isPresent());
-		assertEquals(4, capabilities.get().size());
+		assertEquals(3, capabilities.get().size());
 		assertExpectedContent(capabilities);
 	}
 

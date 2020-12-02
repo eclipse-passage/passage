@@ -9,8 +9,7 @@ Bundle-Vendor: Eclipse Passage
 Bundle-Copyright: %Bundle-Copyright
 Provide-Capability: licensing.feature;licensing.feature="PI";version="3.14.15";name="PI of version PI";level="error",
  licensing.feature;licensing.feature="E";version="2.71.82";name="Euler number";level="info";provider="Euler",
- licensing.feature;licensing.feature="Incomplete",
- licensing.feature
+ licensing.feature;licensing.feature="Incomplete"
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.osgi.services;bundle-version="3.8.0"
