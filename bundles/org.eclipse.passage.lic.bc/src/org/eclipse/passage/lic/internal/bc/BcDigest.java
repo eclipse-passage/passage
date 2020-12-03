@@ -20,7 +20,6 @@ import java.util.function.Supplier;
 import org.bouncycastle.crypto.digests.SHA512Digest;
 import org.eclipse.passage.lic.internal.base.io.FileContent;
 
-@SuppressWarnings("restriction")
 public final class BcDigest implements Supplier<byte[]> {
 
 	private final byte[] source;

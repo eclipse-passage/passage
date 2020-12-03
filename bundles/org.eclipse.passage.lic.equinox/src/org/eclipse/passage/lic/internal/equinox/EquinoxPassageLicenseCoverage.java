@@ -17,7 +17,6 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-@SuppressWarnings("restriction")
 public final class EquinoxPassageLicenseCoverage extends FrameworkAware implements PassageLicenseCoverage {
 
 	@Override

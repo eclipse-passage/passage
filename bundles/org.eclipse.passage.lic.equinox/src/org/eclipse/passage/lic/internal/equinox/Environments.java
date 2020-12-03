@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
-@SuppressWarnings("restriction")
 public final class Environments extends FrameworkAware implements Supplier<Collection<RuntimeEnvironment>> {
 
 	@Override

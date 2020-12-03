@@ -33,7 +33,8 @@ Export-Package: org.eclipse.passage.lic.floating.model.api;
    org.eclipse.passage.loc.floating.emfforms,
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.lbc.base,
-   org.eclipse.passage.lbc.base.tests",
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.lic.hc",
  org.eclipse.passage.lic.floating.model.util;x-friends:="org.eclipse.passage.lic.floating.edit"
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 
-@SuppressWarnings("restriction")
 final class RequirementStatus {
 
 	private final String feature;

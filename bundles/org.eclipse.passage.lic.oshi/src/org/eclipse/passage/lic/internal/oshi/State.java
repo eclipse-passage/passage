@@ -64,7 +64,6 @@ import oshi.software.os.OperatingSystem;
  * absolutely thread safe.
  * </p>
  */
-@SuppressWarnings("restriction")
 final class State {
 
 	private final Map<EnvironmentProperty, String> hardware = new HashMap<>();

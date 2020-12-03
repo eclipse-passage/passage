@@ -18,7 +18,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-@SuppressWarnings("restriction")
 public final class LicensingAction extends BaseNamedData<ConditionAction> {
 
 	public LicensingAction(Function<String, ConditionAction> retrieve) {

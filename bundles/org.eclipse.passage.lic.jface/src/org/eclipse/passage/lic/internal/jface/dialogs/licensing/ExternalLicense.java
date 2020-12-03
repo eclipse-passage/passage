@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
-@SuppressWarnings("restriction")
 final class ExternalLicense {
 
 	private final LicensedProduct product;

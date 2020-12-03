@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-@SuppressWarnings("restriction")
 public final class EquinoxPassage extends FrameworkAware implements Passage {
 
 	@Override

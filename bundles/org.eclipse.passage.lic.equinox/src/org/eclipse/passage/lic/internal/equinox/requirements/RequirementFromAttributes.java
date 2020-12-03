@@ -40,7 +40,6 @@ import org.osgi.framework.Bundle;
  * @see RequirementsFromBundle
  * @see BundleRequirements
  */
-@SuppressWarnings("restriction")
 final class RequirementFromAttributes implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 
 	private final Bundle bundle;

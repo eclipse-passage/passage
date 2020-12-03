@@ -21,7 +21,6 @@ import java.util.stream.IntStream;
 import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 
-@SuppressWarnings("restriction")
 final class GlanceOfState implements Supplier<String> {
 
 	private final State state;

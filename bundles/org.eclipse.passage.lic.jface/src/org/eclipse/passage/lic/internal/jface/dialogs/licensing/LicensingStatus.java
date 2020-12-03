@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 
-@SuppressWarnings("restriction")
 final class LicensingStatus implements Supplier<List<RequirementStatus>> {
 
 	private final ExaminationCertificate certificate;

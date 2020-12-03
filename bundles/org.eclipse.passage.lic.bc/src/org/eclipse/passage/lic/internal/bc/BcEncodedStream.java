@@ -43,7 +43,6 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
 
-@SuppressWarnings("restriction")
 final class BcEncodedStream {
 
 	private final LicensedProduct product;
