@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.api.diagnostic.code;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
-@SuppressWarnings("restriction")
 public final class ResourceLoadFailed extends TroubleCode {
 
 	public ResourceLoadFailed() {
