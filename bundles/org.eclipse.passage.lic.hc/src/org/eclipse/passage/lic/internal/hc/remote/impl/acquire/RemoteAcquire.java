@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
@@ -34,9 +34,9 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
-final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqisition, RemoteServiceData.OfFeature> {
+final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcquisition, RemoteServiceData.OfFeature> {
 
-	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, GrantAcqisition>> client,
+	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, GrantAcquisition>> client,
 			Supplier<Path> source) {
 		super(keys, codecs, client, source);
 	}
@@ -47,12 +47,12 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqis
 	}
 
 	@Override
-	protected ResponseHandler<GrantAcqisition> handler(FloatingLicenseAccess access) {
+	protected ResponseHandler<GrantAcquisition> handler(FloatingLicenseAccess access) {
 		return new Response(
 				new EObjectFromXmiResponse<>(org.eclipse.passage.lic.floating.model.api.GrantAcqisition.class));
 	}
 
-	private final static class Response implements ResponseHandler<GrantAcqisition> {
+	private final static class Response implements ResponseHandler<GrantAcquisition> {
 
 		private final ResponseHandler<org.eclipse.passage.lic.floating.model.api.GrantAcqisition> delegate;
 
@@ -61,11 +61,11 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqis
 		}
 
 		@Override
-		public GrantAcqisition read(ResultsTransfered results) throws LicensingException {
+		public GrantAcquisition read(ResultsTransfered results) throws LicensingException {
 			return apiGrant(delegate.read(results));
 		}
 
-		private GrantAcqisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
+		private GrantAcquisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
 			return new PGrantAcquisition(source).get();
 		}
 

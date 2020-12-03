@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
@@ -34,12 +34,12 @@ public final class RemoteAcquisitionService<C extends Connection> implements Lic
 	private final KeyKeeperRegistry keys;
 	private final StreamCodecRegistry codecs;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
-	private final Supplier<Client<C, GrantAcqisition>> acquire;
+	private final Supplier<Client<C, GrantAcquisition>> acquire;
 	private final Supplier<Client<C, Boolean>> release;
 	private final Supplier<Path> source;
 
 	public RemoteAcquisitionService(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
-			Supplier<Client<C, GrantAcqisition>> acquire, Supplier<Client<C, Boolean>> release, //
+			Supplier<Client<C, GrantAcquisition>> acquire, Supplier<Client<C, Boolean>> release, //
 			Supplier<Path> source) {
 		this.keys = keys;
 		this.codecs = codecs;
@@ -58,13 +58,13 @@ public final class RemoteAcquisitionService<C extends Connection> implements Lic
 	}
 
 	@Override
-	public ServiceInvocationResult<GrantAcqisition> acquire(LicensedProduct product, String feature) {
+	public ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, String feature) {
 		return new RemoteAcquire<>(keys, codecs, acquire, source)
 				.request(new RemoteServiceData.OfFeature(product, feature));
 	}
 
 	@Override
-	public ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcqisition acquisition) {
+	public ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcquisition acquisition) {
 		return new RemoteRelease<>(keys, codecs, release, source)//
 				.request(new RemoteServiceData.WithPayload<>(product, acquisition));
 	}

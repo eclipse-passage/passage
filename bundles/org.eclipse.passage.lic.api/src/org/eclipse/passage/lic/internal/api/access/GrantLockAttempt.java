@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.access;
 
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 public interface GrantLockAttempt {
@@ -21,6 +21,6 @@ public interface GrantLockAttempt {
 
 	boolean successful();
 
-	GrantAcqisition grant();
+	GrantAcquisition grant();
 
 }

@@ -19,9 +19,9 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 
 public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 
-	private final org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition source;
+	private final org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition source;
 
-	public EGrantAcquisition(org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition source) {
+	public EGrantAcquisition(org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition source) {
 		this.source = source;
 	}
 

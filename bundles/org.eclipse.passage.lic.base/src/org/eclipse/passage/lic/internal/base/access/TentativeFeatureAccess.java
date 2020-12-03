@@ -16,10 +16,10 @@ import java.util.Date;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.base.acquire.BaseGrantAcquisition;
 
-final class TentativeFeatureAccess implements Supplier<GrantAcqisition>, Predicate<GrantAcqisition> {
+final class TentativeFeatureAccess implements Supplier<GrantAcquisition>, Predicate<GrantAcquisition> {
 
 	private final String feature;
 	private final String tentative = "tentative"; //$NON-NLS-1$
@@ -33,7 +33,7 @@ final class TentativeFeatureAccess implements Supplier<GrantAcqisition>, Predica
 	}
 
 	@Override
-	public GrantAcqisition get() {
+	public GrantAcquisition get() {
 		return new BaseGrantAcquisition(//
 				String.format("%s-id", tentative), //$NON-NLS-1$
 				String.format("%s-grant", tentative), //$NON-NLS-1$
@@ -43,7 +43,7 @@ final class TentativeFeatureAccess implements Supplier<GrantAcqisition>, Predica
 	}
 
 	@Override
-	public boolean test(GrantAcqisition grant) {
+	public boolean test(GrantAcquisition grant) {
 		return grant.identifier().startsWith(tentative) //
 				&& grant.grant().startsWith(tentative) //
 				&& grant.user().startsWith(tentative);
