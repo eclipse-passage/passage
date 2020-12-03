@@ -30,7 +30,6 @@ import oshi.SystemInfo;
  * @see State
  */
 
-@SuppressWarnings("restriction")
 public final class HardwareEnvironment implements RuntimeEnvironment {
 
 	private final EvaluationType type = new EvaluationType.Hardware();

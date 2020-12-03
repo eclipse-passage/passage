@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
-@SuppressWarnings("restriction")
 public final class BcStreamCodec implements StreamCodec {
 
 	static {

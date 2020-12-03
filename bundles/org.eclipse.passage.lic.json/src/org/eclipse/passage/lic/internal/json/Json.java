@@ -42,7 +42,6 @@ import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-@SuppressWarnings("restriction")
 public abstract class Json<T> implements Function<JsonNode, T> {
 
 	public static final class Date extends Json<ZonedDateTime> {

@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
  * URL.
  * </p>
  */
-@SuppressWarnings("restriction")
 public final class LicensingServerCoordinatesFromSettings implements LicensingServerCoordinates {
 
 	private final Supplier<Path> settings;

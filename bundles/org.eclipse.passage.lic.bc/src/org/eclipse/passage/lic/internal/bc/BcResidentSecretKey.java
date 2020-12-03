@@ -34,7 +34,6 @@ import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
  * Look for a {@code secret key} in the given {@code residence} input stream,
  * which is supposed to be begotten by a key ring file.
  */
-@SuppressWarnings("restriction")
 final class BcResidentSecretKey {
 
 	private final InputStream residence;

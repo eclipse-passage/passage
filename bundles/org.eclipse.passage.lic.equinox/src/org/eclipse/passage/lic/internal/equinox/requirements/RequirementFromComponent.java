@@ -33,7 +33,6 @@ import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
  * @see RequirementFromCapability
  * @see BundleRequirements
  */
-@SuppressWarnings("restriction")
 final class RequirementFromComponent implements Supplier<Optional<Requirement>> {
 
 	private final ComponentDescriptionDTO component;

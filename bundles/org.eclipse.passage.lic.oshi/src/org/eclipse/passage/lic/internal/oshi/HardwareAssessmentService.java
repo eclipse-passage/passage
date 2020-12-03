@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistr
 import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
-@SuppressWarnings("restriction")
 public final class HardwareAssessmentService implements ExpressionTokenAssessmentService {
 
 	private final EvaluationType type = new EvaluationType.Hardware();

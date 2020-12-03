@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Event;
 
-@SuppressWarnings("restriction")
 public class LicensedAction extends Action {
 
 	@Override

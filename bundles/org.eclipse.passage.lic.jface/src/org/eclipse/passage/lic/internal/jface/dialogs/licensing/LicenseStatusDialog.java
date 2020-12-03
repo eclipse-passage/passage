@@ -25,7 +25,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public final class LicenseStatusDialog extends NotificationDialog {
 
 	private final ExaminationCertificate certificate;

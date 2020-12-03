@@ -28,7 +28,6 @@ import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.event.Event;
 
-@SuppressWarnings("restriction")
 public final class E4LicensingAddon {
 
 	private final IApplicationContext application;

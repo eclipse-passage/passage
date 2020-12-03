@@ -24,7 +24,6 @@ import org.eclipse.passage.lic.internal.jface.i18n.DiagnosticDialogMessages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-@SuppressWarnings("restriction")
 public final class DiagnosticDialog extends NotificationDialog {
 
 	private final Diagnostic diagnostic;

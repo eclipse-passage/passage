@@ -34,7 +34,6 @@ import org.osgi.framework.Bundle;
  * Look for the product's public key into OSGI-INF folder of the configured
  * bundle.
  */
-@SuppressWarnings("restriction")
 public final class BundleKeyKeeper implements KeyKeeper {
 
 	private final Supplier<LicensedProduct> product;

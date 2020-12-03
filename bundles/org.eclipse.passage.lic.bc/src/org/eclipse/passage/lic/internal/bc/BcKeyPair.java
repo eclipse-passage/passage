@@ -60,7 +60,6 @@ import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
  * {@linkplain BcStreamCodec#createKeyPair(Path, Path, String, String)}.
  * </p>
  */
-@SuppressWarnings("restriction")
 final class BcKeyPair {
 
 	private final Targets targets;

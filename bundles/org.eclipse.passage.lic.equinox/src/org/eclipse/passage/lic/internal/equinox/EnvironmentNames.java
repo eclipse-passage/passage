@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
-@SuppressWarnings("restriction")
 public final class EnvironmentNames implements Supplier<List<String>> {
-//FIXME: work for caching supplier
+
+	//FIXME: work for caching supplier
 	private final List<String> names;
 
 	public EnvironmentNames() {

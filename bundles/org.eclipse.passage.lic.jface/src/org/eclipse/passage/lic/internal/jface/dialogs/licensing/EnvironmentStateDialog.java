@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 
-@SuppressWarnings("restriction")
 public final class EnvironmentStateDialog extends Dialog {
 
 	private final List<RuntimeEnvironment> environments;
