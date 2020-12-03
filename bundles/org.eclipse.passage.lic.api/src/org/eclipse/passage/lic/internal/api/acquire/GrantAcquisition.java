@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.api.acquire;
 
 import java.util.Date;
 
-public interface GrantAcqisition {
+public interface GrantAcquisition {
 
 	String identifier();
 

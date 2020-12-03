@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.internal.base.acquire;
 import java.util.Date;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 
-public final class BaseGrantAcquisition implements GrantAcqisition {
+public final class BaseGrantAcquisition implements GrantAcquisition {
 
 	private final String id;
 	private final String grant;

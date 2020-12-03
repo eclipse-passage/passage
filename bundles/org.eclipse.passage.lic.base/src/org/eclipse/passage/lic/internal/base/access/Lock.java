@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
@@ -66,7 +66,7 @@ final class Lock {
 		if (!acquirers.get().hasService(target)) {
 			return noService(new BaseGrantLockAttempt.Failed(certificate), target);
 		}
-		ServiceInvocationResult<GrantAcqisition> grant = acquirers.get().service(target)//
+		ServiceInvocationResult<GrantAcquisition> grant = acquirers.get().service(target)//
 				.acquire(permission.product(), permission.condition().feature());
 		if (!grant.data().isPresent()) {
 			return noGrant(certificate, grant);
@@ -90,14 +90,14 @@ final class Lock {
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> noGrant(ExaminationCertificate certificate,
-			ServiceInvocationResult<GrantAcqisition> grant) {
+			ServiceInvocationResult<GrantAcquisition> grant) {
 		return new BaseServiceInvocationResult<>(//
 				grant.diagnostic(), //
 				new BaseGrantLockAttempt.Failed(certificate));
 	}
 
 	private BaseServiceInvocationResult<GrantLockAttempt> grant(ExaminationCertificate certificate,
-			GrantAcqisition grant, Diagnostic diagnostic) {
+			GrantAcquisition grant, Diagnostic diagnostic) {
 		return new BaseServiceInvocationResult<>(diagnostic, new BaseGrantLockAttempt.Successful(certificate, grant));
 	}
 
@@ -142,7 +142,7 @@ final class Lock {
 		return certificate.satisfaction(any); // guaranteed to exist and be not null
 	}
 
-	private GrantAcqisition tentativeGrant(ExaminationCertificate certificate) {
+	private GrantAcquisition tentativeGrant(ExaminationCertificate certificate) {
 		return new TentativeFeatureAccess(feature(certificate)).get();
 	}
 

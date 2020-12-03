@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
 final class RemoteRelease<C extends Connection>
-		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcqisition>> {
+		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcquisition>> {
 
 	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, Boolean>> client,
 			Supplier<Path> source) {
@@ -42,7 +42,7 @@ final class RemoteRelease<C extends Connection>
 	}
 
 	@Override
-	protected RemoteRequest<C> request(RemoteServiceData.WithPayload<GrantAcqisition> params,
+	protected RemoteRequest<C> request(RemoteServiceData.WithPayload<GrantAcquisition> params,
 			FloatingLicenseAccess access) {
 		return new Request(params, access);
 	}
@@ -63,9 +63,9 @@ final class RemoteRelease<C extends Connection>
 
 	private final class Request extends RemoteRequest<C> {
 
-		private final RemoteServiceData.WithPayload<GrantAcqisition> data;
+		private final RemoteServiceData.WithPayload<GrantAcquisition> data;
 
-		Request(RemoteServiceData.WithPayload<GrantAcqisition> data, FloatingLicenseAccess access) {
+		Request(RemoteServiceData.WithPayload<GrantAcquisition> data, FloatingLicenseAccess access) {
 			super(data.product(), access);
 			this.data = data;
 		}

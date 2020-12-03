@@ -26,7 +26,7 @@ import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
@@ -47,7 +47,7 @@ public final class AcquireTest {
 	public void acquireAndRelease() {
 		RemoteAcquisitionService<ShortcutConnection> service = //
 				new RemoteAcquisitionService<ShortcutConnection>(keys(), codecs(), this::acq, this::rel, source);
-		ServiceInvocationResult<GrantAcqisition> acquisition = service.acquire(data.product(), data.feature());
+		ServiceInvocationResult<GrantAcquisition> acquisition = service.acquire(data.product(), data.feature());
 		assertTrue(acquisition.data().isPresent());
 		ServiceInvocationResult<Boolean> release = service.release(data.product(), acquisition.data().get());
 		assertTrue(release.data().isPresent());
@@ -62,8 +62,8 @@ public final class AcquireTest {
 		return () -> new ReadOnlyRegistry<>(new PathKeyKeeper(data.product(), source));
 	}
 
-	private Client<ShortcutConnection, GrantAcqisition> acq() {
-		return new ShortcutClient<GrantAcqisition>(new AskAcquirer());
+	private Client<ShortcutConnection, GrantAcquisition> acq() {
+		return new ShortcutClient<GrantAcquisition>(new AskAcquirer());
 	}
 
 	private Client<ShortcutConnection, Boolean> rel() {

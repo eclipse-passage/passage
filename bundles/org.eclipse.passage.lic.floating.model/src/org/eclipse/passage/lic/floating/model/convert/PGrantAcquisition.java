@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.base.acquire.BaseGrantAcquisition;
 
-public final class PGrantAcquisition implements Supplier<org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition> {
+public final class PGrantAcquisition implements Supplier<org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition> {
 
 	private final GrantAcqisition source;
 
@@ -28,7 +28,7 @@ public final class PGrantAcquisition implements Supplier<org.eclipse.passage.lic
 	}
 
 	@Override
-	public org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition get() {
+	public org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition get() {
 		return new BaseGrantAcquisition(//
 				source.getIdentifier(), //
 				source.getGrant(), //

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.base.access;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 abstract class BaseGrantLockAttempt implements GrantLockAttempt {
@@ -34,9 +34,9 @@ abstract class BaseGrantLockAttempt implements GrantLockAttempt {
 
 	final static class Successful extends BaseGrantLockAttempt {
 
-		private final GrantAcqisition grant;
+		private final GrantAcquisition grant;
 
-		Successful(ExaminationCertificate certificate, GrantAcqisition grant) {
+		Successful(ExaminationCertificate certificate, GrantAcquisition grant) {
 			super(certificate);
 			Objects.requireNonNull(grant, "BaseGrantLock::grant"); //$NON-NLS-1$
 			this.grant = grant;
@@ -48,7 +48,7 @@ abstract class BaseGrantLockAttempt implements GrantLockAttempt {
 		}
 
 		@Override
-		public GrantAcqisition grant() {
+		public GrantAcquisition grant() {
 			return grant;
 		}
 
@@ -66,7 +66,7 @@ abstract class BaseGrantLockAttempt implements GrantLockAttempt {
 		}
 
 		@Override
-		public GrantAcqisition grant() {
+		public GrantAcquisition grant() {
 			throw new IllegalStateException("Failed lock is not supposed to supply grant"); //$NON-NLS-1$
 		}
 

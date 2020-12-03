@@ -16,7 +16,7 @@ import java.util.Date;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {
 
 	@Override
-	public final ServiceInvocationResult<GrantAcqisition> acquire(LicensedProduct product, String feature) {
+	public final ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, String feature) {
 		return new BaseServiceInvocationResult<>(//
 				new BaseGrantAcquisition(//
 						"local", //$NON-NLS-1$
@@ -36,7 +36,7 @@ public abstract class LocalLicenseAcquisitionService implements LicenseAcquisiti
 	}
 
 	@Override
-	public final ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcqisition acquisition) {
+	public final ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcquisition acquisition) {
 		return new BaseServiceInvocationResult<>(Boolean.TRUE);
 	}
 
