@@ -13,9 +13,10 @@
 package org.eclipse.passage.lbc.internal.jetty;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,6 +43,7 @@ final class JettyHandler extends AbstractHandler {
 	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse envelope)
 			throws IOException, ServletException {
 		write(response(wrapper), envelope);
+		request.setHandled(true);
 	}
 
 	private FloatingResponse response(HttpServletRequest request) {
@@ -49,15 +51,27 @@ final class JettyHandler extends AbstractHandler {
 	}
 
 	private void write(FloatingResponse response, HttpServletResponse envelope) throws IOException {
+		envelope.setContentType(new ContentType.Xml().contentType());
+		envelope.setCharacterEncoding("UTF-8"); //$NON-NLS-1$
 		if (response.failed()) {
 			envelope.sendError(response.error().code(), response.error().message());
 			return;
 		}
-		try (ServletOutputStream stream = envelope.getOutputStream()) {
-			response.write(stream);
-		}
-		envelope.setContentType(new ContentType.Xml().contentType());
 		envelope.setStatus(HttpServletResponse.SC_OK);
+		if (response.carriesPayload()) {
+			byte[] payload;
+			try {
+				payload = response.payload();
+			} catch (Exception e) {
+				throw new IOException(e);
+			}
+			envelope.setContentLength(payload.length);
+			try (PrintWriter out = envelope.getWriter()) {
+				out.write(new String(payload, Charset.forName("UTF-8"))); //$NON-NLS-1$
+				out.flush();
+			}
+			envelope.flushBuffer();
+		}
 	}
 
 }

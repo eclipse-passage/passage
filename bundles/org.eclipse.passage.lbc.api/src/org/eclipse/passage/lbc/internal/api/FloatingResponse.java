@@ -12,8 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.api;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.0
@@ -26,12 +25,7 @@ public interface FloatingResponse {
 
 	boolean carriesPayload();
 
-	/**
-	 * Leave the stream open - must be closed by a calling party.
-	 * 
-	 * @param output sink-stream for the response payload
-	 */
-	void write(OutputStream output) throws IOException;
+	byte[] payload() throws LicensingException;
 
 	public static interface Error {
 
