@@ -14,18 +14,19 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevelComparator;
 
-public final class RestrictionMustStopExecution implements Predicate<Restriction> {
+public final class RequirementDemandsExecutionStop implements Predicate<Requirement> {
 
 	@Override
-	public boolean test(Restriction restriction) {
-		return new RestrictionLevelComparator().compare(//
-				new RestrictionLevel.Error(), //
-				restriction.unsatisfiedRequirement().restrictionLevel())//
-				<= 0;
+	public boolean test(Requirement requirement) {
+		return new RestrictionLevelComparator()//
+				.compare(//
+						new RestrictionLevel.Error(), //
+						requirement.restrictionLevel()//
+				) <= 0;
 	}
 
 }

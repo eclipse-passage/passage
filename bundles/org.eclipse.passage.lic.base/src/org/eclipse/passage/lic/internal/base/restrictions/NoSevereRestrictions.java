@@ -15,12 +15,15 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 
 public final class NoSevereRestrictions implements Predicate<ExaminationCertificate> {
 
 	@Override
 	public boolean test(ExaminationCertificate certificate) {
-		return certificate.restrictions().stream().noneMatch(new RestrictionMustStopExecution());
+		return certificate.restrictions().stream()//
+				.map(Restriction::unsatisfiedRequirement)//
+				.noneMatch(new RequirementDemandsExecutionStop());
 	}
 
 }
