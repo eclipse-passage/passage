@@ -31,21 +31,15 @@ public final class NetConnection implements Connection {
 	@Override
 	public void beGet() throws LicensingException {
 		invoke(() -> connection.setRequestMethod("GET")); //$NON-NLS-1$
+		connection.setDoOutput(false);
+		connection.setDoInput(true);
 	}
 
 	@Override
 	public void bePost() throws LicensingException {
 		invoke(() -> connection.setRequestMethod("POST")); //$NON-NLS-1$
-	}
-
-	@Override
-	public void withOutput(boolean with) {
-		connection.setDoOutput(with);
-	}
-
-	@Override
-	public void withInput(boolean with) {
-		connection.setDoInput(with);
+		connection.setDoOutput(true);
+		connection.setDoInput(true);
 	}
 
 	@Override
@@ -80,7 +74,7 @@ public final class NetConnection implements Connection {
 
 	@Override
 	public ContentType contentType() throws LicensingException {
-		return invoke(() -> new ContentType.Of(connection.getHeaderField("Content-Type"))); //$NON-NLS-1$
+		return new ContentType.Of(connection.getContentType());
 	}
 
 	@Override
@@ -95,14 +89,9 @@ public final class NetConnection implements Connection {
 	}
 
 	private byte[] read() throws Exception {
-		int length = connection.getContentLength();
-		byte[] content = new byte[length];
-		if (length > 0) {
-			try (InputStream source = connection.getInputStream()) {
-				if (!successful()) {
-					source.read(content); // read all and close the connection briefly
-				}
-			}
+		byte[] content = new byte[connection.getContentLength()];
+		try (InputStream source = connection.getInputStream()) {
+			source.read(content); // read all and close the connection briefly
 		}
 		return content;
 	}
