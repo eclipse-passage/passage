@@ -121,8 +121,8 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 							new BasePermission(//
 									product, //
 									condition, //
-									ZonedDateTime.now(), //
-									expiration(condition.validityPeriod()), // FIXME: #566015
+									from(condition.validityPeriod()), expiration(condition.validityPeriod()), // FIXME:
+																												// #566015
 									pack.origin())//
 					));
 		} catch (Exception e) {
@@ -142,6 +142,14 @@ public final class BasePermissionEmittingService implements PermissionEmittingSe
 		return new BaseServiceInvocationResult<Emission>(//
 				new BaseDiagnostic(Collections.singletonList(new Trouble(code, explanation, e))), //
 				new Emission(pack));
+	}
+
+	private ZonedDateTime from(ValidityPeriod period) {
+		if (ValidityPeriodClosed.class.isInstance(period)) {
+			return ((ValidityPeriodClosed) period).from();
+		}
+		return ZonedDateTime.now();
+
 	}
 
 	private ZonedDateTime expiration(ValidityPeriod period) {
