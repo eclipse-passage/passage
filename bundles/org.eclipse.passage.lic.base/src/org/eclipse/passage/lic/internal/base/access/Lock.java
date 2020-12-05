@@ -35,6 +35,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMors
 import org.eclipse.passage.lic.internal.base.diagnostic.code.TentativeAccess;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
+import org.eclipse.passage.lic.internal.base.restrictions.RequirementDemandsExecutionStop;
 
 final class Lock {
 
@@ -59,7 +60,7 @@ final class Lock {
 	 */
 	ServiceInvocationResult<GrantLockAttempt> lock(ExaminationCertificate certificate) {
 		if (notPermissive(certificate)) {
-			return grant(certificate, tentativeGrant(certificate), tentativeReport(certificate));
+			return tentativeGrant(certificate);
 		}
 		Permission permission = permission(certificate);
 		ConditionMiningTarget target = permission.conditionOrigin().miner();
@@ -69,7 +70,9 @@ final class Lock {
 		ServiceInvocationResult<GrantAcquisition> grant = acquirers.get().service(target)//
 				.acquire(permission.product(), permission.condition().feature());
 		if (!grant.data().isPresent()) {
-			return noGrant(certificate, grant);
+			return canIssueTentativeGrant(certificate) //
+					? tentativeGrant(certificate) //
+					: noGrant(certificate, grant);
 		}
 		return grant(certificate, grant.data().get(), grant.diagnostic());
 	}
@@ -96,9 +99,11 @@ final class Lock {
 				new BaseGrantLockAttempt.Failed(certificate));
 	}
 
-	private BaseServiceInvocationResult<GrantLockAttempt> grant(ExaminationCertificate certificate,
-			GrantAcquisition grant, Diagnostic diagnostic) {
-		return new BaseServiceInvocationResult<>(diagnostic, new BaseGrantLockAttempt.Successful(certificate, grant));
+	private ServiceInvocationResult<GrantLockAttempt> grant(ExaminationCertificate certificate, GrantAcquisition grant,
+			Diagnostic diagnostic) {
+		return new BaseServiceInvocationResult<>(//
+				diagnostic, //
+				new BaseGrantLockAttempt.Successful(certificate, grant));
 	}
 
 	private ServiceInvocationResult<Boolean> wrongLockWarning() {
@@ -142,8 +147,8 @@ final class Lock {
 		return certificate.satisfaction(any); // guaranteed to exist and be not null
 	}
 
-	private GrantAcquisition tentativeGrant(ExaminationCertificate certificate) {
-		return new TentativeFeatureAccess(feature(certificate)).get();
+	private ServiceInvocationResult<GrantLockAttempt> tentativeGrant(ExaminationCertificate certificate) {
+		return grant(certificate, new TentativeFeatureAccess(feature(certificate)).get(), tentativeReport(certificate));
 	}
 
 	private Diagnostic tentativeReport(ExaminationCertificate certificate) {
@@ -158,14 +163,27 @@ final class Lock {
 		return new Trouble(new TentativeAccess(), //
 				String.format(//
 						AccessCycleMessages.getString("Lock.temp_access"), //$NON-NLS-1$
-						feature(restriction)));
+						feature(restriction.unsatisfiedRequirement())));
 	}
 
+	/**
+	 * Certificate is guaranteed to be not empty: either restrictions or
+	 * satisfactions are present
+	 */
 	private String feature(ExaminationCertificate certificate) {
-		return feature(certificate.restrictions().iterator().next());
+		return feature(//
+				certificate.restrictions().isEmpty() //
+						? certificate.satisfied().iterator().next()//
+						: certificate.restrictions().iterator().next().unsatisfiedRequirement()//
+		);
 	}
 
-	private String feature(Restriction restriction) {
-		return restriction.unsatisfiedRequirement().feature().identifier();
+	private String feature(Requirement requirement) {
+		return requirement.feature().identifier();
 	}
+
+	private boolean canIssueTentativeGrant(ExaminationCertificate certificate) {
+		return certificate.satisfied().stream().noneMatch(new RequirementDemandsExecutionStop());
+	}
+
 }
