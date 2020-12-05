@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.internal.demo;
 
-import java.util.Arrays;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -22,33 +21,22 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
-import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
+import org.eclipse.passage.lic.internal.hc.remote.impl.NetConnection;
+import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
+import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-final class SealedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
+final class RemoteAccessCycleConfiguration extends BaseAccessCycleConfiguration {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
 	private final Registry<ConditionMiningTarget, LicenseAcquisitionService> acquirers;
 
-	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
-		super(product, () -> FrameworkUtil.getBundle(SealedAccessCycleConfiguration.class));
-		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				new UserHomeResidentConditions(miningEquipment()), //
-				new InstallationResidentConditions(miningEquipment()), //
-				new ConfigurationResidentConditions(miningEquipment())//
-		));
-		acquirers = new ReadOnlyRegistry<>(Arrays.asList(//
-				new UserHomeLicenseAcquisitionService(), //
-				new InstallationLicenseAcquisitionService(), //
-				new ConfigurationLicenseAcquisitionService()//
-		));
+	RemoteAccessCycleConfiguration(Supplier<LicensedProduct> product) {
+		super(product, () -> FrameworkUtil.getBundle(RemoteAccessCycleConfiguration.class));
+		conditions = new ReadOnlyRegistry<>(new RemoteConditions<NetConnection>(keyKeepers(), codecs(), transports()));
+		acquirers = new ReadOnlyRegistry<>(new RemoteAcquisitionService<NetConnection>(keyKeepers(), codecs()));
 	}
 
 	@Override
