@@ -54,7 +54,6 @@ public final class AccessAcquireTest {
 	public void acquireLicenseGrant() {
 		successfullyAcquireAndRelease("prince-to-frog", //$NON-NLS-1$
 				diagnostic -> {
-					assertTrue(new NoErrors().test(diagnostic));
 				});
 	}
 
@@ -65,7 +64,7 @@ public final class AccessAcquireTest {
 	 */
 	public void denyUnknownFeatureAcquisition() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework()).acquire("unknown"); //$NON-NLS-1$
-		assertFalse(new NoErrors().test(acquire.diagnostic()));
+		assertFalse(new NoSevereErrors().test(acquire.diagnostic()));
 		assertFalse(acquire.data().isPresent());
 		assertTrue(acquire.diagnostic().severe().size() > 0);
 		assertContainsCode(new NoRequirements(), acquire.diagnostic().severe());

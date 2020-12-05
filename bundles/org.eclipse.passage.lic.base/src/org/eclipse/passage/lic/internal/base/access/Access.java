@@ -51,7 +51,10 @@ public final class Access {
 		if (empty(certificate.data().get())) {
 			return unknownFeature(feature, certificate.diagnostic());
 		}
-		return new Lock(framework).lock(certificate.data().get());
+		ServiceInvocationResult<GrantLockAttempt> lock = new Lock(framework).lock(certificate.data().get());
+		return new BaseServiceInvocationResult<>(//
+				new SumOfDiagnostics().apply(certificate.diagnostic(), lock.diagnostic()), //
+				lock.data());
 	}
 
 	public ServiceInvocationResult<Boolean> release(GrantLockAttempt lock) {
@@ -78,4 +81,5 @@ public final class Access {
 	private boolean empty(ExaminationCertificate certificate) {
 		return certificate.restrictions().isEmpty() && certificate.satisfied().isEmpty();
 	}
+
 }

@@ -45,7 +45,7 @@ public abstract class ServiceAny<C extends Connection, T, D extends RemoteServic
 				.peek(result -> diagnostics.add(result.diagnostic())) //
 				.filter(result -> new NoSevereErrors().test(result.diagnostic()))//
 				.filter(result -> result.data().isPresent())//
-				.findFirst()//
+				.findAny()//
 				.orElse(new BaseServiceInvocationResult<>(sum(diagnostics)));
 	}
 
