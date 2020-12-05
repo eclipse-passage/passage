@@ -15,7 +15,6 @@ package org.eclipse.passage.lbc.base.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -123,12 +122,9 @@ public final class ExtensiveReleaseTest {
 		}
 
 		private GrantAcqisition acquisition(FloatingResponse response) throws LicensingException, IOException {
-			try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-				response.write(stream);
-				stream.flush();
-				return new EObjectFromBytes<>(stream.toByteArray(), GrantAcqisition.class)//
-						.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
-			}
+			byte[] payload = response.payload();
+			return new EObjectFromBytes<>(payload, GrantAcqisition.class)//
+					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
 		}
 
 	}

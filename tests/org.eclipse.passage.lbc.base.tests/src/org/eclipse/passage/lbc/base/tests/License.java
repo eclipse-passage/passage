@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.base.tests;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
@@ -29,11 +28,7 @@ final class License {
 	}
 
 	LicensePack get() throws IOException, LicensingException {
-		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-			response.write(stream);
-			stream.flush();
-			return new EObjectFromBytes<>(stream.toByteArray(), LicensePack.class).get();
-		}
+		return new EObjectFromBytes<>(response.payload(), LicensePack.class).get();
 	}
 
 }
