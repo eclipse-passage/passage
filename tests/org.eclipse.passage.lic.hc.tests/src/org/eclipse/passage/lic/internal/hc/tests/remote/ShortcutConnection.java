@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.tests.remote;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,16 +47,6 @@ final class ShortcutConnection implements Connection {
 
 	@Override
 	public void bePost() throws LicensingException {
-		// do nothing
-	}
-
-	@Override
-	public void withOutput(boolean with) {
-		// do nothing
-	}
-
-	@Override
-	public void withInput(boolean with) {
 		// do nothing
 	}
 
@@ -102,13 +90,7 @@ final class ShortcutConnection implements Connection {
 		if (!response.carriesPayload()) {
 			return new byte[0];
 		}
-		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-			response.write(stream);
-			stream.flush();
-			return stream.toByteArray();
-		} catch (IOException e) {
-			throw new LicensingException(e);
-		}
+		return response.payload();
 	}
 
 	String param(String name) {

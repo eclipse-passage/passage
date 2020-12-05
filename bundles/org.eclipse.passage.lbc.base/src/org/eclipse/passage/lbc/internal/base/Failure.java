@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.io.OutputStream;
-
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -44,7 +42,7 @@ public abstract class Failure implements FloatingResponse {
 	}
 
 	@Override
-	public void write(OutputStream output) {
+	public byte[] payload() {
 		throw new IllegalStateException("Is not intended to be called for failed response: no valid output"); //$NON-NLS-1$ dev
 	}
 

@@ -21,10 +21,6 @@ public interface Connection {
 
 	void bePost() throws LicensingException;
 
-	void withOutput(boolean with);
-
-	void withInput(boolean with);
-
 	void withTimeout(int timeout);
 
 	void withProperty(String name, String value);

@@ -12,14 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Collections;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
+import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 
 public final class EObjectTransfer implements FloatingResponse {
 
@@ -41,14 +37,12 @@ public final class EObjectTransfer implements FloatingResponse {
 
 	@Override
 	public Error error() {
-		throw new IllegalStateException("Successful response does not posess error information"); //$NON-NLS-1$ // dev
+		throw new IllegalStateException("Successful response does not possess error information"); //$NON-NLS-1$ // dev
 	}
 
 	@Override
-	public void write(OutputStream output) throws IOException {
-		Resource resource = new XMIResourceImpl();
-		resource.getContents().add(payload);
-		resource.save(output, Collections.emptyMap());
+	public byte[] payload() throws LicensingException {
+		return new EObjectToBytes(payload).get();
 	}
 
 }

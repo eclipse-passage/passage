@@ -76,8 +76,6 @@ public abstract class BaseConfiguration<C extends Connection> implements Configu
 		protected void paveRoadForData(C connection) throws LicensingException {
 			connection.beGet();
 			connection.withProperty("Accept", new ContentType.Xml().contentType()); //$NON-NLS-1$
-			connection.withOutput(true);
-			connection.withInput(false);
 		}
 
 	}
@@ -103,8 +101,6 @@ public abstract class BaseConfiguration<C extends Connection> implements Configu
 		@Override
 		protected void paveRoadForData(C connection) throws Exception {
 			connection.bePost();
-			connection.withOutput(false);
-			connection.withInput(true);
 			connection.withProperty("Content-Type", new ContentType.Xml().contentType()); //$NON-NLS-1$
 			connection.withPayload(payload);
 		}

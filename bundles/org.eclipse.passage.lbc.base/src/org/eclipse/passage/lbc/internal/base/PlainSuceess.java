@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 
 public final class PlainSuceess implements FloatingResponse {
@@ -35,7 +32,7 @@ public final class PlainSuceess implements FloatingResponse {
 	}
 
 	@Override
-	public void write(OutputStream output) throws IOException {
+	public byte[] payload() {
 		throw new IllegalStateException("Plain successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
 	}
 
