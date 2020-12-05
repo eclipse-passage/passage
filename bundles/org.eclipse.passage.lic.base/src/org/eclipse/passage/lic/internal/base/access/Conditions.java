@@ -52,7 +52,7 @@ public final class Conditions implements Supplier<ServiceInvocationResult<Collec
 			Function<ServiceInvocationResult<Collection<ConditionPack>>, ServiceInvocationResult<Collection<ConditionPack>>> filter) {
 		Objects.requireNonNull(registry, "Conditions::registry"); //$NON-NLS-1$
 		Objects.requireNonNull(product, "Conditions::product"); //$NON-NLS-1$
-		Objects.requireNonNull(product, "Conditions::product"); //$NON-NLS-1$
+		Objects.requireNonNull(filter, "Conditions::filter"); //$NON-NLS-1$
 		this.registry = registry;
 		this.product = product;
 		this.filter = filter;
