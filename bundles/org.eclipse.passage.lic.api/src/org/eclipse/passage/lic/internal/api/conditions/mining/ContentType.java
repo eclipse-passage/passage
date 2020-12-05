@@ -27,28 +27,33 @@ public abstract class ContentType implements ServiceId {
 
 	public ContentType(String type) {
 		Objects.requireNonNull(type, "ContentType::type"); //$NON-NLS-1$
-		this.type = type;
+		this.type = truncate(type);
+	}
+
+	private String truncate(String value) {
+		int semicolon = value.indexOf(';');
+		return semicolon < 0 ? value : value.substring(0, semicolon);
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (!getClass().isInstance(object)) {
+	public final boolean equals(Object object) {
+		if (!ContentType.class.isInstance(object)) {
 			return false;
 		}
 		return type.equals(((ContentType) object).contentType());
 	}
 
-	public String contentType() {
+	public final String contentType() {
 		return type;
 	}
 
 	@Override
-	public int hashCode() {
+	public final int hashCode() {
 		return type.hashCode();
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return type;
 	}
 
@@ -63,7 +68,7 @@ public abstract class ContentType implements ServiceId {
 	public static final class Xml extends ContentType {
 
 		public Xml() {
-			super("application/xml"); //$NON-NLS-1$
+			super("text/xml"); //$NON-NLS-1$
 		}
 
 	}
