@@ -19,7 +19,7 @@ import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessag
 public final class PortField extends PositiveIntField {
 
 	PortField(Runnable modified, LabelProvider labels, MandatoryService context) {
-		super(8080, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_port, modified, labels, context);
+		super(8090, IssueLicensePageMessages.IssueLicenseRequestPage_lbl_port, modified, labels, context);
 	}
 
 	@Override

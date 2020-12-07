@@ -54,6 +54,7 @@ public final class Conditions implements Supplier<FloatingResponse> {
 
 	@Override
 	public FloatingResponse get() {
+		log.debug(String.format("Mining conditions for product %s", data.product().get())); //$NON-NLS-1$
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
 				new Miner(source, data.user().get())//
 						.all(data.product().get());

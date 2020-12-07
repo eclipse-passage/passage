@@ -20,6 +20,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
@@ -40,6 +42,7 @@ final class AcquiredGrantsStorage {
 	 * </p>
 	 */
 	private final Map<LicensedProduct, Map<String, Collection<GrantAcqisition>>> locks = new HashMap<>();
+	private final Logger log = LogManager.getLogger(getClass());
 
 	AcquiredGrantsStorage() {
 		synchronized (this) {
@@ -52,6 +55,7 @@ final class AcquiredGrantsStorage {
 		if (acquisitions.size() < grant.getCapacity()) {
 			GrantAcqisition acquistion = acquistion(grant, user);
 			acquisitions.add(acquistion);
+			logAcquisition("acquire", acquistion, product); //$NON-NLS-1$
 			return Optional.of(acquistion);
 		}
 		return Optional.empty();
@@ -62,6 +66,7 @@ final class AcquiredGrantsStorage {
 		for (GrantAcqisition colleage : colleagues) {
 			if (matches(colleage, acquisition)) {
 				colleagues.remove(colleage);
+				logAcquisition("release", colleage, product); //$NON-NLS-1$
 				return true;
 			}
 		}
@@ -90,4 +95,14 @@ final class AcquiredGrantsStorage {
 		return locks.computeIfAbsent(product, p -> new HashMap<String, Collection<GrantAcqisition>>());
 	}
 
+	private void logAcquisition(String operation, GrantAcqisition grant, LicensedProduct product) {
+		log.debug(String.format("|%s| acquisiiton [%s] for user %s on feature %s product %s v%s", //$NON-NLS-1$
+				operation, //
+				grant.getIdentifier(), //
+				grant.getUser(), //
+				grant.getFeature(), //
+				product.identifier(), //
+				product.version()));
+
+	}
 }
