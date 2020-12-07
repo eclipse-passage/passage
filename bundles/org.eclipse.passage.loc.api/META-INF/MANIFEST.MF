@@ -17,14 +17,7 @@ Export-Package: org.eclipse.passage.loc.internal.api;
    org.eclipse.passage.loc.products.core,
    org.eclipse.passage.loc.features.core,
    org.eclipse.passage.loc.users.core",
- org.eclipse.passage.loc.internal.emf;
-  x-friends:="org.eclipse.passage.loc.products.core,
-   org.eclipse.passage.loc.features.core,
-   org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.loc.users.core,
-   org.eclipse.passage.loc.workbench,
-   org.eclipse.passage.loc.dashboard.ui",
- org.eclipse.passage.loc.internal.emf;x-friends:="org.eclipse.passage.loc.licenses.core"
+ org.eclipse.passage.loc.internal.emf;x-friends:="org.eclipse.passage.loc.licenses.core,org.eclipse.passage.loc.edit.ui"
 Require-Bundle: org.eclipse.e4.core.services;bundle-version="0.0.0",
  org.eclipse.emf.edit;bundle-version="2.16.0",
  org.eclipse.equinox.common;bundle-version="0.0.0";visibility:=reexport,

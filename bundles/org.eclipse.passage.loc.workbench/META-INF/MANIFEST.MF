@@ -35,9 +35,10 @@ Export-Package: org.eclipse.passage.loc.internal.workbench;
   x-friends:="org.eclipse.passage.loc.licenses.ui,
    org.eclipse.passage.loc.users.ui,
    org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.loc.products.ui",
+   org.eclipse.passage.loc.products.ui,
+   org.eclipse.passage.loc.edit.ui",
  org.eclipse.passage.loc.internal.workbench.i18n;x-internal:=true,
- org.eclipse.passage.loc.internal.workbench.registry;x-internal:=true,
+ org.eclipse.passage.loc.internal.workbench.registry;x-friends:="org.eclipse.passage.loc.edit.ui",
  org.eclipse.passage.loc.jface;x-friends:="org.eclipse.passage.loc.workbench.emfforms",
  org.eclipse.passage.loc.jface.dialogs;
   x-friends:="org.eclipse.passage.loc.licenses.ui,
