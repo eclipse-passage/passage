@@ -237,6 +237,8 @@
             name="org.apache.commons.csv"
             versionRange="[1.4.0,2.0.0)"/>
         <requirement
+            name="org.apache.logging.log4j"/>
+        <requirement
             name="org.bouncycastle.bcpg"/>
         <requirement
             name="org.bouncycastle.bcpkix"/>
@@ -288,7 +290,7 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18M1a-202010120320/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC2-202012021800/"/>
           <repository
               url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
