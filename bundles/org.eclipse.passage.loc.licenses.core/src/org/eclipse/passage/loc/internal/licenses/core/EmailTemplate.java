@@ -33,7 +33,6 @@ import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
-@SuppressWarnings("restriction")
 public class EmailTemplate {
 
 	private final String separator = "%0A"; //$NON-NLS-1$

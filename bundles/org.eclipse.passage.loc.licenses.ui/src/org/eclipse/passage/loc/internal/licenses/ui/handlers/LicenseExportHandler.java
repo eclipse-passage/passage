@@ -52,7 +52,6 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
 //FIXME: should be moved to reduce dependencies
-@SuppressWarnings("restriction")
 public class LicenseExportHandler {
 
 	@Execute

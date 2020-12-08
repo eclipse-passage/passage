@@ -28,7 +28,6 @@ import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.FileContentRenderer;
 
-@SuppressWarnings("restriction")
 public abstract class ProductVersionKeyRenderer extends FileContentRenderer<ProductVersion> {
 
 	@Inject

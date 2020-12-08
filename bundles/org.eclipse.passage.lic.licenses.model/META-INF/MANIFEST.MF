@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=
  org.eclipse.emf.ecore;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.emf.meta;bundle-version="0.6.0",
  org.eclipse.passage.lic.licenses;bundle-version="0.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lic.internal.licenses.model;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.lic.licenses.migration",
+Export-Package: org.eclipse.passage.lic.internal.licenses.model;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.lic.licenses.migration,org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.lic.licenses.model.api,
  org.eclipse.passage.lic.licenses.model.impl,
  org.eclipse.passage.lic.licenses.model.meta,

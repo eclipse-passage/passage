@@ -22,7 +22,6 @@ import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.swt.graphics.Image;
 
 //FIXME: rewrite to avoid restriction warnings
-@SuppressWarnings("restriction")
 class DomainRegistryLabelProvider extends LabelProvider {
 
 	private final LocDomainRegistryAccess access;

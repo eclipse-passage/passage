@@ -27,6 +27,6 @@ Export-Package: org.eclipse.passage.loc.internal.licenses;
    org.eclipse.passage.loc.report.core.tests",
  org.eclipse.passage.loc.internal.licenses.core;x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.loc.internal.licenses.core.i18n;x-internal:=true,
- org.eclipse.passage.loc.internal.licenses.core.request;x-friends:="org.eclipse.passage.loc.dashboard.ui"
+ org.eclipse.passage.loc.internal.licenses.core.request;x-friends:="org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui"
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml

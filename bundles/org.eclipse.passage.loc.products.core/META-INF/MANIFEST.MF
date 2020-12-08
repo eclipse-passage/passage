@@ -22,7 +22,8 @@ Export-Package: org.eclipse.passage.loc.internal.products;
    org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.report.ui,
    org.eclipse.passage.loc.users.ui,
-   org.eclipse.passage.loc.licenses.core",
+   org.eclipse.passage.loc.licenses.core,
+   org.eclipse.passage.loc.licenses.ui",
  org.eclipse.passage.loc.internal.products.core;x-internal:=true,
  org.eclipse.passage.loc.internal.products.core.i18n;x-internal:=true
 Service-Component: OSGI-INF/*.xml

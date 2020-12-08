@@ -44,7 +44,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchActionConstants;
 
 //FIXME: rewrite to avoid restriction warnings
-@SuppressWarnings("restriction")
 public class DomainRegistryExplorerPart {
 
 	private final LocDomainRegistryAccess access;

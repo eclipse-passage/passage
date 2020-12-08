@@ -56,7 +56,6 @@ import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
 import org.osgi.service.event.EventAdmin;
 
-@SuppressWarnings("restriction")
 final class IssuePersonalLicense {
 
 	private final UserRegistry users;
