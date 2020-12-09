@@ -102,6 +102,8 @@
       <plugin id="org.eclipse.passage.lic.emf"/>
       <plugin id="org.eclipse.passage.lic.emf.meta"/>
       <plugin id="org.eclipse.passage.lic.equinox"/>
+      <plugin id="org.eclipse.passage.lic.floating"/>
+      <plugin id="org.eclipse.passage.lic.floating.model"/>
       <plugin id="org.eclipse.passage.lic.hc"/>
       <plugin id="org.eclipse.passage.lic.jface"/>
       <plugin id="org.eclipse.passage.lic.json"/>
