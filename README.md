@@ -1,4 +1,4 @@
-<img src="https://github.com/eclipse/passage/blob/master/bundles/org.eclipse.passage.ldc/images/topiclabel/menu_item.png" width="48px" height="48px" />
+<img src="https://github.com/eclipse-passage/passage-images/blob/master/images/org.eclipse.passage.loc.operator/png/icons/128.png"/>
 
 ## Eclipse Passage
 
@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/eclipse-passage/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse-passage/passage)
 [![Hits-of-Code](https://hitsofcode.com/github/eclipse-passage/passage?branch=master)](https://hitsofcode.com/github/eclipse-passage/passage?branch=master/view?branch=master)
 
-[![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-lightpink.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+[![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
 
 ###### Latest release 
 [![Stable release P2](https://img.shields.io/badge/P2%20Components-1.0.1-lightblue.svg)](https://download.eclipse.org/passage/updates/release/1.0.1/)
