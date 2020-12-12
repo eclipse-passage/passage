@@ -10,12 +10,8 @@
 [![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
 
 ###### Latest release 
-[![Stable release P2](https://img.shields.io/badge/P2%20Components-1.0.1-lightblue.svg)](https://download.eclipse.org/passage/updates/release/1.0.1/)
-[![Stable release Products](https://img.shields.io/badge/Runnable%20Products-1.0.1-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/1.0.1/)
-
-###### Current milestone
-[![Current P2](https://img.shields.io/badge/P2%20Components-1.1.0--RC2-tan.svg)](https://download.eclipse.org/passage/updates/milestone/1.1.0-RC2/)
-[![Current Products](https://img.shields.io/badge/Runnable%20Products-1.1.0--RC2-tan.svg)](https://download.eclipse.org/passage/downloads/milestone/1.1.0-RC2/)
+[![Stable release P2](https://img.shields.io/badge/P2%20Components-1.1.0-lightblue.svg)](https://download.eclipse.org/passage/updates/release/1.1.0/)
+[![Stable release Products](https://img.shields.io/badge/Runnable%20Products-1.1.0-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/1.1.0/)
 
 [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
