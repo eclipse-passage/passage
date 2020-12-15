@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
-import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 
 final class GlanceOfState implements Supplier<String> {
 
@@ -37,18 +36,8 @@ final class GlanceOfState implements Supplier<String> {
 				.collect(Collectors.groupingBy(EnvironmentProperty::family))//
 				.entrySet().stream() //
 				.forEach(e -> appendFamily(e.getKey(), e.getValue(), out));
-		IntStream.range(0, state.disksAmount()) //
-				.forEach(no -> appendDisk(no, out));
+		state.swaths().forEach(swath -> appendSwath(swath, out));
 		return out.toString();
-	}
-
-	private void appendDisk(int no, StringBuilder out) {
-		out.append(new Disk.Model().family())//
-				.append(" #")//$NON-NLS-1$
-				.append(no)//
-				.append("\r\n"); //$NON-NLS-1$
-		state.diskProperties(no).stream() //
-				.forEach(p -> appendProperty(p, state.diskValue(no, p), out));
 	}
 
 	private void appendFamily(String family, List<EnvironmentProperty> properties, StringBuilder out) {
@@ -65,4 +54,17 @@ final class GlanceOfState implements Supplier<String> {
 		return out;
 	}
 
+	private void appendSwath(Swath<?> swath, StringBuilder out) {
+		IntStream.range(0, swath.capacity()) //
+				.forEach(no -> appendSwathMember(swath, no, out));
+	}
+
+	private void appendSwathMember(Swath<?> swath, int no, StringBuilder out) {
+		out.append(swath.family())//
+				.append(" #")//$NON-NLS-1$
+				.append(no)//
+				.append("\r\n"); //$NON-NLS-1$
+		swath.properties(no).stream() //
+				.forEach(p -> appendProperty(p, swath.value(no, p), out));
+	}
 }
