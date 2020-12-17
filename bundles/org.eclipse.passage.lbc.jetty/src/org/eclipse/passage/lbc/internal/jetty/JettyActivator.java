@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lbc.internal.base.Port;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -26,8 +27,7 @@ public class JettyActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		// FIXME: extract configuration parameters
-		jetty.launch(new Port.Default());
+		jetty.launch(new Port(Platform.getApplicationArgs()));
 	}
 
 	@Override

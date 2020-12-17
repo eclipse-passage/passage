@@ -26,7 +26,7 @@ final class JettyServer {
 
 	void launch(Port port) throws JettyException {
 		try {
-			server = new Server(port.get());
+			server = new Server(port.get().get());
 			server.setHandler(new JettyHandler());
 			server.start();
 			logger.info(String.format(Messages.started, port.get()));
