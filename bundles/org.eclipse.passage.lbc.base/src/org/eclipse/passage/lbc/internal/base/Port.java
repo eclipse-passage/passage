@@ -12,66 +12,51 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.util.function.Supplier;
+import java.util.Arrays;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.passage.lic.internal.base.NamedData;
 
 /**
  * @since 1.0
  */
-public abstract class Port implements Supplier<Integer> {
+public final class Port implements NamedData<Integer> {
 
-	private final int port;
+	private final Logger log = LogManager.getLogger(getClass());
+	private final Optional<String> raw;
 
-	public Port(int port) {
-		this.port = port;
+	public Port(String[] sources) {
+		String prefix = String.format("-%s=", key()); //$NON-NLS-1$
+		this.raw = Arrays.stream(sources)//
+				.map(String::toLowerCase)//
+				.filter(source -> source.startsWith(prefix))//
+				.map(source -> source.substring(prefix.length()))//
+				.findAny();
 	}
 
 	@Override
-	public final Integer get() {
-		return port;
+	public String key() {
+		return "server.port"; //$NON-NLS-1$
 	}
 
-	public static final class Custom extends Port {
-
-		public Custom(int argument) {
-			super(argument);
-		}
-
+	@Override
+	public Optional<Integer> get() {
+		return raw.map(this::parse).orElseGet(Optional::empty);
 	}
 
-	public static final class Default extends Port {
-
-		public Default() {
-			super(8090);
-		}
-
+	private Optional<Integer> defaultPort() {
+		return Optional.of(8090);
 	}
 
-	public static final class Of implements Supplier<Port> {
-
-		private final Port port;
-		private final Logger log = LogManager.getLogger(getClass());
-
-		public Of(String value) {
-			this.port = port(value);
+	private Optional<Integer> parse(String port) {
+		try {
+			return Optional.of(Integer.parseInt(port));
+		} catch (NumberFormatException e) {
+			log.error("failed: ", e); //$NON-NLS-1$ ;
+			return defaultPort();
 		}
-
-		@Override
-		public Port get() {
-			return port;
-		}
-
-		private Port port(String argument) {
-			try {
-				return new Custom(Integer.parseInt(argument));
-			} catch (NumberFormatException e) {
-				log.error("failed: ", e); //$NON-NLS-1$ ;
-				return new Default();
-			}
-		}
-
 	}
 
 }
