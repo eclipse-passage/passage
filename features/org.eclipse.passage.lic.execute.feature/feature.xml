@@ -56,6 +56,10 @@
          id="org.eclipse.passage.lic.licenses.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.passage.lic.bc.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.passage.lic.execute.branding"
          download-size="0"
