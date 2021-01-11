@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lbc.execute.feature"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.2.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -60,7 +60,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.passage.lbc.jetty"
          download-size="0"
