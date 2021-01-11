@@ -8,5 +8,5 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Fragment-Host: org.eclipse.passage.loc.workbench
-Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="2.13.0",
+Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="0.0.0",
  org.junit;bundle-version="4.12.0"
