@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
+
 <!--
-	Copyright (c) 2018, 2020 ArSysOp and others
+	Copyright (c) 2018, 2021 ArSysOp and others
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -12,11 +13,8 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
+<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.1.2.qualifier" useFeatures="true" includeLaunchers="true">
 
-<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.1.1.qualifier" useFeatures="true" includeLaunchers="true">
-
-   <aboutInfo>
-   </aboutInfo>
 
    <configIni use="default">
    </configIni>
@@ -27,27 +25,16 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
-   
-   <windowImages 
-   				i16="/org.eclipse.passage.loc.operator/images/loc16.png" 
-   				i32="/org.eclipse.passage.loc.operator/images/loc32.png" 
-   				i48="/org.eclipse.passage.loc.operator/images/loc48.png" 
-   				i64="/org.eclipse.passage.loc.operator/images/loc64.png"/>
+
+   <windowImages i16="/org.eclipse.passage.loc.operator/images/loc16.png" i32="/org.eclipse.passage.loc.operator/images/loc32.png" i48="/org.eclipse.passage.loc.operator/images/loc48.png" i64="/org.eclipse.passage.loc.operator/images/loc64.png"/>
 
    <splash
       location="org.eclipse.passage.loc.operator" />
    <launcher name="PassageOperator">
-   		<win useIco="false">
-   			<png
-   				winSmallHigh="./ico/16.png"
-            	winSmallLow="./ico/16_8.png"
-            	winMediumHigh="./ico/32.png"
-            	winMediumLow="./ico/32_8.png"
-            	winLargeHigh="./ico/48.png"
-            	winLargeLow="./ico/48_8.png"/>
-   		</win>
+      <win useIco="false">
+         <bmp/>
+      </win>
    </launcher>
-
 
    <vm>
    </vm>
@@ -67,12 +54,12 @@
    </features>
 
    <configurations>
-      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
-      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
       <plugin id="org.eclipse.passage.lic.equinox" autoStart="true" startLevel="4" />
    </configurations>
 
