@@ -45,20 +45,23 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component
 public class MailImpl implements Mailing {
-	
+
 	@Activate
 	public void activate() {
-		//it **may** work "out-of-the-box", but let's declare explicitly to know where to dig
-		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
-		mc.addMailcap("text/plain;;		x-java-content-handler=org.apache.geronimo.mail.handlers.TextHandler"); 
-		mc.addMailcap("text/xml;;		x-java-content-handler=org.apache.geronimo.mail.handlers.XMLHandler"); 
-		mc.addMailcap("text/html;;		x-java-content-handler=org.apache.geronimo.mail.handlers.HtmlHandler"); 
-		mc.addMailcap("message/rfc822;;	x-java-content-handler=org.apache.geronimo.mail.handlers.MessageHandler"); 
-		mc.addMailcap("multipart/*;;		x-java-content-handler=org.apache.geronimo.mail.handlers.MultipartHandler; x-java-fallback-entry=true"); 
+		// it **may** work "out-of-the-box", but let's declare explicitly to know where
+		// to dig
+		MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
+		mc.addMailcap("text/plain;;		x-java-content-handler=org.apache.geronimo.mail.handlers.TextHandler"); //$NON-NLS-1$
+		mc.addMailcap("text/xml;;		x-java-content-handler=org.apache.geronimo.mail.handlers.XMLHandler"); //$NON-NLS-1$
+		mc.addMailcap("text/html;;		x-java-content-handler=org.apache.geronimo.mail.handlers.HtmlHandler"); //$NON-NLS-1$
+		mc.addMailcap("message/rfc822;;	x-java-content-handler=org.apache.geronimo.mail.handlers.MessageHandler"); //$NON-NLS-1$
+		mc.addMailcap(
+				"multipart/*;;		x-java-content-handler=org.apache.geronimo.mail.handlers.MultipartHandler; x-java-fallback-entry=true"); //$NON-NLS-1$
 	}
 
 	@Override
-	public void writeEml(EmailDescriptor descriptor, OutputStream output, BiConsumer<String, Throwable> consumerStatus) {
+	public void writeEml(EmailDescriptor descriptor, OutputStream output,
+			BiConsumer<String, Throwable> consumerStatus) {
 		try {
 			Message message = createMessage(descriptor);
 			fulfillMessage(descriptor, message);
@@ -86,7 +89,7 @@ public class MailImpl implements Mailing {
 		Multipart multipart = new MimeMultipart("mixed"); //$NON-NLS-1$
 		MimeBodyPart content = new MimeBodyPart();
 		multipart.addBodyPart(content);
-		content.setText(body, "UTF-8");
+		content.setText(body, "UTF-8"); //$NON-NLS-1$
 		return multipart;
 	}
 
@@ -97,7 +100,7 @@ public class MailImpl implements Mailing {
 			MimeBodyPart attachment = new MimeBodyPart();
 			URLDataSource fds = new URLDataSource(attache.toURI().toURL());
 			attachment.setDataHandler(new DataHandler(fds));
-			attachment.addHeader("Content-Transfer-Encoding", "base64");			
+			attachment.addHeader("Content-Transfer-Encoding", "base64"); //$NON-NLS-1$ //$NON-NLS-2$
 			attachment.setDisposition(Part.ATTACHMENT);
 			attachment.setFileName(attache.getName());
 			multipart.addBodyPart(attachment);

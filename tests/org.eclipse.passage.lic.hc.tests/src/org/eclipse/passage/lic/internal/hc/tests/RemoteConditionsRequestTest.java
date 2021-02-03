@@ -39,7 +39,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-@SuppressWarnings("restriction")
 public final class RemoteConditionsRequestTest {
 
 	private final String host = "fake.licensing.server"; //$NON-NLS-1$
@@ -80,7 +79,7 @@ public final class RemoteConditionsRequestTest {
 
 	private URL url() {
 		try {
-			return new RemoteConditionsRequest(product(), access()).url();
+			return new RemoteConditionsRequest<>(product(), access()).url();
 		} catch (LicensingException e) {
 			fail("Url composition on valid parameters must succssed"); //$NON-NLS-1$
 			throw new RuntimeException(e); // unreachable
