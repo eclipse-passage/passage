@@ -52,17 +52,18 @@ public class MailImplTest {
 	private static final String MAIL_ATTACHMENT_CONTENT = "Content by TimeStamp:"; //$NON-NLS-1$
 
 	private static String resolveOutputDirName() {
-		return System.getProperty("project.build.directory",
-				System.getProperty("user.dir") + File.separator + "target");
+		return System.getProperty("project.build.directory", //$NON-NLS-1$
+				System.getProperty("user.dir") + File.separator + "target"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 	@BeforeClass
 	public static void initialize() {
-		//need this extra setup to avoid java.lang.AssertionError: no object DCH for MIME type multipart/mixed;
+		// need this extra setup to avoid java.lang.AssertionError: no object DCH for
+		// MIME type multipart/mixed;
 		MailImpl mailing = new MailImpl();
 		mailing.activate();
-		System.out.println("multipart/*" + ' '
-				+ ((MailcapCommandMap) CommandMap.getDefaultCommandMap()).createDataContentHandler("multipart/*"));
+		System.out.println("multipart/*" + ' ' //$NON-NLS-1$
+				+ ((MailcapCommandMap) CommandMap.getDefaultCommandMap()).createDataContentHandler("multipart/*")); //$NON-NLS-1$
 	}
 
 	@Test
@@ -73,7 +74,8 @@ public class MailImplTest {
 		EmailDescriptor mailDescriptor = mailing.createMail(MAIL_TO, MAIL_FROM, MAIL_SUBJECT, MAIL_BODY,
 				Collections.singleton(attachment));
 		assertNotNull(mailDescriptor);
-		try (FileOutputStream fileOutput = new FileOutputStream(Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
+		try (FileOutputStream fileOutput = new FileOutputStream(
+				Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
 			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> failure(m, t));
 		} catch (IOException e) {
 			assumeNoException(e);
@@ -90,9 +92,10 @@ public class MailImplTest {
 		MailImpl mailing = new MailImpl();
 		String attachment = createAttachment();
 		assertFalse(attachment.isEmpty());
-		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment));
+		EmailDescriptor mailDescriptor = mailing.createMail("", "", "", "", Collections.singleton(attachment)); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$
 		assertNotNull(mailDescriptor);
-		try (FileOutputStream fileOutput = new FileOutputStream(Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
+		try (FileOutputStream fileOutput = new FileOutputStream(
+				Paths.get(resolveOutputDirName(), MAIL_FILE_OUT).toFile())) {
 			mailing.writeEml(mailDescriptor, fileOutput, (m, t) -> assertEquals(AddressException.class, t.getClass()));
 		} catch (IOException e) {
 			assumeNoException(e);
@@ -103,7 +106,7 @@ public class MailImplTest {
 	public void shouldFailWithNullAttachmentTest() {
 		Mailing mailing = new MailImpl();
 		try {
-			mailing.createMail("", "", "", "", null);
+			mailing.createMail("", "", "", "", null); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$
 			fail();
 		} catch (Exception e) {
 			assertEquals(NullPointerException.class, e.getClass());
@@ -121,7 +124,7 @@ public class MailImplTest {
 		} catch (IOException e) {
 			assumeNoException(e);
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 }
