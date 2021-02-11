@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2021 ArSysOp and others
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License 2.0 which is available at
+ https://www.eclipse.org/legal/epl-2.0/.
+
+ SPDX-License-Identifier: EPL-2.0
+
+ Contributors:
+     ArSysOp - initial API and implementation
+-->
+<site>
+	<category-def
+		name="org.eclipse.passage.lac.category"
+		label="Passage LAC">
+		<description>
+			Passage Licensing Agent Components: 
+				a server to respond on behalf of Passage Access Cycle" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.lac.target.feature">
+		<category name="org.eclipse.passage.lac.category" />
+	</feature>
+	<feature 
+		id="org.eclipse.passage.lac.execute.feature">
+		<category name="org.eclipse.passage.lac.category" />
+	</feature>
+	<category-def
+		name="org.eclipse.passage.lac.category.source"
+		label="Passage LAC Developer Resources">
+		<description>
+			Passage Licensing Agent Components Developer Resources: 
+				a server to respond on behalf of Passage Access Cycle" 
+		</description>
+	</category-def>
+	<feature 
+		id="org.eclipse.passage.lac.execute.feature.source">
+		<category name="org.eclipse.passage.lac.category.source" />
+	</feature>
+</site>

@@ -34,6 +34,7 @@
 		<module>./releng/org.eclipse.passage.lic.aggregator</module>
 		<module>./releng/org.eclipse.passage.loc.aggregator</module>
 		<module>./releng/org.eclipse.passage.lbc.aggregator</module>
+		<module>./releng/org.eclipse.passage.lac.aggregator</module>
 		<module>./releng/org.eclipse.passage.ldc.aggregator</module>
 		<module>./releng/org.eclipse.passage.demo.aggregator</module>
 	</modules>
