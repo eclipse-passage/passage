@@ -19,6 +19,7 @@
 				a server to respond on behalf of Passage Access Cycle" 
 		</description>
 	</category-def>
+	<!--
 	<feature 
 		id="org.eclipse.passage.lac.target.feature">
 		<category name="org.eclipse.passage.lac.category" />
@@ -27,6 +28,7 @@
 		id="org.eclipse.passage.lac.execute.feature">
 		<category name="org.eclipse.passage.lac.category" />
 	</feature>
+	-->
 	<category-def
 		name="org.eclipse.passage.lac.category.source"
 		label="Passage LAC Developer Resources">
@@ -35,8 +37,8 @@
 				a server to respond on behalf of Passage Access Cycle" 
 		</description>
 	</category-def>
-	<feature 
+	<!--feature 
 		id="org.eclipse.passage.lac.execute.feature.source">
 		<category name="org.eclipse.passage.lac.category.source" />
-	</feature>
+	</feature-->
 </site>
