@@ -14,12 +14,12 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lbc.internal.api.Chores;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.internal.net.handle.Chores;
+import org.eclipse.passage.lic.internal.net.handle.NetRequestHandled;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
-public final class BaseFlotingRequestHandled implements FlotingRequestHandled {
+public final class BaseFlotingRequestHandled implements NetRequestHandled {
 
 	private final RawRequest request;
 	private final Chores chores;
@@ -36,7 +36,7 @@ public final class BaseFlotingRequestHandled implements FlotingRequestHandled {
 	}
 
 	@Override
-	public FloatingResponse get() {
+	public NetResponse get() {
 		return chores.workOut(request);
 	}
 

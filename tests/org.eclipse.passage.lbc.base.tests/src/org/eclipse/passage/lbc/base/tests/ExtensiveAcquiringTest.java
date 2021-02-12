@@ -24,14 +24,14 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class ExtensiveAcquiringTest {
@@ -43,29 +43,29 @@ public final class ExtensiveAcquiringTest {
 		// having
 		int amount = 128;
 		// when
-		Set<Future<FloatingResponse>> futures = runConcurrentAcquireRequest(amount);
+		Set<Future<NetResponse>> futures = runConcurrentAcquireRequest(amount);
 		// then
 		int[] counts = countGainsAndLates(futures);
 		assertEquals(4, counts[0]); // gain grant acquisition, we have only 4
 		assertEquals(amount - 4, counts[1]); // all the rest has 'no available grants' response
 	}
 
-	private Set<Future<FloatingResponse>> runConcurrentAcquireRequest(int amount) throws InterruptedException {
+	private Set<Future<NetResponse>> runConcurrentAcquireRequest(int amount) throws InterruptedException {
 		ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 10);
 		FloatingState state = new EagerFloatingState(new TestLicFolder());
-		Set<Future<FloatingResponse>> futures = IntStream.range(0, amount)//
+		Set<Future<NetResponse>> futures = IntStream.range(0, amount)//
 				.mapToObj(i -> pool.submit(new Acq(state)))//
 				.collect(Collectors.toSet());
 		pool.shutdown();
 		return futures;
 	}
 
-	private int[] countGainsAndLates(Set<Future<FloatingResponse>> futures) throws InterruptedException {
+	private int[] countGainsAndLates(Set<Future<NetResponse>> futures) throws InterruptedException {
 		int gains = 0;
 		int lates = 0;
 		int none = new Failure.NoGrantsAvailable(data.product(), data.feature()).error().code();
-		for (Future<FloatingResponse> future : futures) {
-			FloatingResponse response;
+		for (Future<NetResponse> future : futures) {
+			NetResponse response;
 			try {
 				response = future.get();
 			} catch (ExecutionException e) {
@@ -81,7 +81,7 @@ public final class ExtensiveAcquiringTest {
 		return new int[] { gains, lates };
 	}
 
-	private final class Acq implements Callable<FloatingResponse> {
+	private final class Acq implements Callable<NetResponse> {
 
 		private final FloatingState state;
 
@@ -90,7 +90,7 @@ public final class ExtensiveAcquiringTest {
 		}
 
 		@Override
-		public FloatingResponse call() throws Exception {
+		public NetResponse call() throws Exception {
 			return new Acquisition(request()).get();
 		}
 

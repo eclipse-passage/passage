@@ -17,10 +17,12 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
@@ -30,8 +32,6 @@ import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 
 final class FeatureRequest {
 

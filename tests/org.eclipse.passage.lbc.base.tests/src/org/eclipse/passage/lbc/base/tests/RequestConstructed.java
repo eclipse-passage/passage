@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.LicensingAction;

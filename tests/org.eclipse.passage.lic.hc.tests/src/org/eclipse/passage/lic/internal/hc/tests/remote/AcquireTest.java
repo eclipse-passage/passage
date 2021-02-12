@@ -18,12 +18,11 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.base.tests.TestData;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
@@ -34,6 +33,7 @@ import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -73,7 +73,7 @@ public final class AcquireTest {
 	private final class AskAcquirer implements ShortcutClient.Remote {
 
 		@Override
-		public FloatingResponse invoke(RawRequest raw) throws LicensingException {
+		public NetResponse invoke(RawRequest raw) throws LicensingException {
 			return new Acquisition(new ProductUserRequest(raw)).get();
 		}
 
@@ -87,7 +87,7 @@ public final class AcquireTest {
 	private final class AskReleaser implements ShortcutClient.Remote {
 
 		@Override
-		public FloatingResponse invoke(RawRequest raw) throws LicensingException {
+		public NetResponse invoke(RawRequest raw) throws LicensingException {
 			return new Acquisition(new ProductUserRequest(raw)).returnBack();
 		}
 

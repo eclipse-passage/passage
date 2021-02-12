@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,20 +12,22 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.i18n;
 
-import org.eclipse.osgi.util.NLS;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
-public final class NetMessages extends NLS {
-
+public class NetMessages {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lic.internal.net.i18n.NetMessages"; //$NON-NLS-1$
 
-	public static String LicensingServerCoordinates_settings_are_blank;
-	public static String LicensingServerCoordinates_settings_not_found;
-
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, NetMessages.class);
-	}
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private NetMessages() {
+	}
+
+	public static String getString(String key) {
+		try {
+			return RESOURCE_BUNDLE.getString(key);
+		} catch (MissingResourceException e) {
+			return '!' + key + '!';
+		}
 	}
 }

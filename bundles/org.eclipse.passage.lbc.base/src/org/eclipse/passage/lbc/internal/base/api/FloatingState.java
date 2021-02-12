@@ -10,10 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lbc.internal.base.api;
 
-public interface Chore {
+/**
+ * FIXME: temporary
+ * 
+ * Redesign this part. We need a sort of Passage Framework to pull down critical
+ * entities through the codebase
+ * 
+ * @since 1.1
+ */
+public interface FloatingState {
 
-	FloatingResponse getDone();
+	Grants grants();
 
 }

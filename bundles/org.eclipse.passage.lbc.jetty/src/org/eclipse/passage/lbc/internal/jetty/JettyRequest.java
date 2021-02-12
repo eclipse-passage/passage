@@ -17,8 +17,8 @@ import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 
 final class JettyRequest implements RawRequest {
 

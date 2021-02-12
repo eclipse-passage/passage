@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net;
+package org.eclipse.passage.lic.floating.model.net;
 
 import java.util.function.Function;
 

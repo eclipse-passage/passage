@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.mine.Conditions;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 final class Mine extends ChoreDraft {
 
@@ -23,7 +23,7 @@ final class Mine extends ChoreDraft {
 	}
 
 	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) {
+	protected NetResponse withProductUser(ProductUserRequest request) {
 		return new Conditions(request).get();
 	}
 

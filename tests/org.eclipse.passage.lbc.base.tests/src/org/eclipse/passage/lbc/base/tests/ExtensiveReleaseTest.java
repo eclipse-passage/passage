@@ -29,17 +29,17 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class ExtensiveReleaseTest {
@@ -95,14 +95,14 @@ public final class ExtensiveReleaseTest {
 
 		@Override
 		public Result call() throws Exception {
-			FloatingResponse acq = new Acquisition(acquireRequest()).get();
+			NetResponse acq = new Acquisition(acquireRequest()).get();
 			if (acq.failed() && (noGrants == acq.error().code())) {
 				return Result.NotGainedNotExecuted;
 			}
 			if (!acq.failed()) {
 				GrantAcqisition acquisition = acquisition(acq);
 				Thread.sleep(1000); // emulating a protected action work
-				FloatingResponse rel = new Acquisition(releaseRequest(acquisition)).returnBack();
+				NetResponse rel = new Acquisition(releaseRequest(acquisition)).returnBack();
 				if (!rel.failed()) {
 					return Result.GainedAndReleased;
 				}
@@ -121,7 +121,7 @@ public final class ExtensiveReleaseTest {
 					state).get());
 		}
 
-		private GrantAcqisition acquisition(FloatingResponse response) throws LicensingException, IOException {
+		private GrantAcqisition acquisition(NetResponse response) throws LicensingException, IOException {
 			byte[] payload = response.payload();
 			return new EObjectFromBytes<>(payload, GrantAcqisition.class)//
 					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));

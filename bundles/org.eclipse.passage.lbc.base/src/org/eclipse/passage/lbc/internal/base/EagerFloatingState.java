@@ -15,9 +15,9 @@ package org.eclipse.passage.lbc.internal.base;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.Grants;
 import org.eclipse.passage.lbc.internal.base.acquire.AcquiredGrants;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 

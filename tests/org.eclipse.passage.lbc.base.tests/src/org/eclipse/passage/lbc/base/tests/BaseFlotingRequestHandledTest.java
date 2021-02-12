@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class BaseFlotingRequestHandledTest {
@@ -57,14 +57,14 @@ public final class BaseFlotingRequestHandledTest {
 		assertActionIsSupported(new BaseFlotingRequestHandled(requestOfAction(action)).get());
 	}
 
-	private void assertActionIsSupported(FloatingResponse response) {
+	private void assertActionIsSupported(NetResponse response) {
 		assertTrue(response.failed());
 		assertNotEquals(//
 				new Failure.BadRequestUnknownAction("any").error().code(), // //$NON-NLS-1$
 				response.error().code());
 	}
 
-	private void assertActionIsNotSupported(FloatingResponse response) {
+	private void assertActionIsNotSupported(NetResponse response) {
 		assertTrue(response.failed());
 		assertEquals(//
 				new Failure.BadRequestUnknownAction("any").error().code(), // //$NON-NLS-1$

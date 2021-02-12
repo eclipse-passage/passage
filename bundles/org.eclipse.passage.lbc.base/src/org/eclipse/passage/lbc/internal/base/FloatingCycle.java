@@ -16,14 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.eclipse.passage.lbc.internal.api.Chore;
-import org.eclipse.passage.lbc.internal.api.Chores;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.handle.Chore;
+import org.eclipse.passage.lic.internal.net.handle.Chores;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
-final class FloatingCycle implements Chores {
+final class FloatingCycle implements Chores<RawRequest> {
 
 	private final Map<ConditionAction, Function<RawRequest, Chore>> chores = new HashMap<>();
 
@@ -34,7 +34,7 @@ final class FloatingCycle implements Chores {
 	}
 
 	@Override
-	public FloatingResponse workOut(RawRequest request) {
+	public NetResponse workOut(RawRequest request) {
 		LicensingAction action = action(request);
 		return chores//
 				.getOrDefault(//
@@ -56,7 +56,7 @@ final class FloatingCycle implements Chores {
 		}
 
 		@Override
-		public FloatingResponse getDone() {
+		public NetResponse getDone() {
 			return new Failure.BadRequestUnknownAction(actual.get().get().name());
 		}
 

@@ -16,11 +16,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 final class ShortcutConnection implements Connection {
 
@@ -28,7 +28,7 @@ final class ShortcutConnection implements Connection {
 	private byte[] request;
 	private int code;
 	private String message;
-	private FloatingResponse response;
+	private NetResponse response;
 
 	public ShortcutConnection(QueryParameters parameters) throws LicensingException {
 		Arrays.stream(parameters.query().substring(1).split("&")) //$NON-NLS-1$
@@ -101,7 +101,7 @@ final class ShortcutConnection implements Connection {
 		return request;
 	}
 
-	void installResponse(FloatingResponse flo) {
+	void installResponse(NetResponse flo) {
 		if (flo.failed()) {
 			code = flo.error().code();
 			message = flo.error().message();

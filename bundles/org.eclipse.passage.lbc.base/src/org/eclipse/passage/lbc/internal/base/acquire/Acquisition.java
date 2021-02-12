@@ -19,11 +19,10 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.Grants;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.Failure.NoGrantsAvailable;
+import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
@@ -32,6 +31,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 public final class Acquisition {
 
@@ -43,7 +43,7 @@ public final class Acquisition {
 		this.data = data;
 	}
 
-	public FloatingResponse get() {
+	public NetResponse get() {
 		Optional<String> feature = new FeatureIdentifier(key -> data.raw().parameter(key)).get();
 		if (!feature.isPresent()) {
 			return new Failure.BadRequestNoFeature();
@@ -61,7 +61,7 @@ public final class Acquisition {
 		return new EObjectTransfer(acquisition.get());
 	}
 
-	public FloatingResponse returnBack() throws LicensingException {
+	public NetResponse returnBack() throws LicensingException {
 		GrantAcqisition acquisition;
 		try {
 			acquisition = acquisition();

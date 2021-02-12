@@ -16,11 +16,11 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lbc.internal.api.Chore;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
+import org.eclipse.passage.lic.internal.net.handle.Chore;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 abstract class ChoreDraft implements Chore {
 
@@ -32,7 +32,7 @@ abstract class ChoreDraft implements Chore {
 	}
 
 	@Override
-	public final FloatingResponse getDone() {
+	public final NetResponse getDone() {
 		Optional<EvaluationInstructions> instructions = new ServerAuthenticationInstructions(data).get();
 		if (!instructions.isPresent()) {
 			return new Failure.BadRequestInvalidServerAuthInstructions();
@@ -64,9 +64,9 @@ abstract class ChoreDraft implements Chore {
 		}
 	}
 
-	protected abstract FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException;
+	protected abstract NetResponse withProductUser(ProductUserRequest request) throws LicensingException;
 
-	protected final FloatingResponse failed(String details) {
+	protected final NetResponse failed(String details) {
 		return new Failure.OperationFailed(getClass().getSimpleName(), details);
 	}
 

@@ -21,7 +21,8 @@ Export-Package: org.eclipse.passage.lic.internal.base;
    org.eclipse.passage.seal.demo,
    org.eclipse.passage.lic.json,
    org.eclipse.passage.loc.products.core,
-   org.eclipse.passage.loc.products.emfforms",
+   org.eclipse.passage.loc.products.emfforms,
+   org.eclipse.passage.lic.floating.model",
  org.eclipse.passage.lic.internal.base.access;x-friends:="org.eclipse.passage.seal.demo.tests,org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.acquire;x-friends:="org.eclipse.passage.lic.floating.model,org.eclipse.passage.lic.equinox",
  org.eclipse.passage.lic.internal.base.conditions;

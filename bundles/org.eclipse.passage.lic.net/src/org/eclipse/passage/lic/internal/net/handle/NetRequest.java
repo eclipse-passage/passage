@@ -10,27 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lic.internal.net.handle;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import java.io.IOException;
 
-/**
- * @since 1.0
- */
-public interface FloatingResponse {
+public interface NetRequest {
 
-	boolean failed();
+	String parameter(String name);
 
-	Error error();
+	byte[] content() throws IOException;
 
-	boolean carriesPayload();
-
-	byte[] payload() throws LicensingException;
-
-	public static interface Error {
-
-		int code();
-
-		String message();
-	}
 }
