@@ -426,6 +426,12 @@
             xsi:type="predicates:NamePredicate"
             pattern=".*\.ldc\..*"/>
       </workingSet>
+      <workingSet
+          name="${scope.project.label} LAC">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern=".*\.lac\..*"/>
+      </workingSet>
     </setupTask>
     <setupTask
         xsi:type="mylyn:MylynQueriesTask"
