@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,24 +10,32 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lic.internal.jetty;
+
+import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
-import org.eclipse.passage.lbc.internal.base.Port;
-import org.eclipse.passage.lbc.internal.jetty.i18n.Messages;
+import org.eclipse.passage.lic.internal.jetty.i18n.Messages;
+import org.eclipse.passage.lic.internal.net.connect.Port;
 
-final class JettyServer {
+public final class JettyServer {
 
 	private final Logger logger = Log.getLogger(JettyServer.class);
-
+	private final Supplier<JettyHandler> handler;
 	private Server server;
 
-	void launch(Port port) throws JettyException {
+	public JettyServer(Supplier<JettyHandler> handler) {
+		Objects.requireNonNull(handler, "JettyServer::handler"); //$NON-NLS-1$
+		this.handler = handler;
+	}
+
+	public void launch(Port port) throws JettyException {
 		try {
 			server = new Server(port.get().get());
-			server.setHandler(new JettyHandler());
+			server.setHandler(handler.get());
 			server.start();
 			logger.info(String.format(Messages.started, port.get()));
 		} catch (Exception exception) {
@@ -37,7 +45,7 @@ final class JettyServer {
 		}
 	}
 
-	void terminate() throws JettyException {
+	public void terminate() throws JettyException {
 		try {
 			server.stop();
 			logger.info(String.format(Messages.stopped));

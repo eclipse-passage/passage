@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.net.handle;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
 /**
  * @since 1.0
@@ -33,4 +34,7 @@ public interface NetResponse {
 
 		String message();
 	}
+
+	ContentType contentType();
+
 }

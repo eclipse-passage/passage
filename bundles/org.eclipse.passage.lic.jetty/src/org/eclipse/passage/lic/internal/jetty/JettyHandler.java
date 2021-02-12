@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,11 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lic.internal.jetty;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.util.Objects;
+import java.util.function.Function;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.api.FloatingState;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.net.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 /**
@@ -35,9 +34,14 @@ import org.eclipse.passage.lic.internal.net.handle.NetResponse;
  * Thus, it's the only place to keep server's {@code state}. Which, for the
  * floating server, is a persistent grant acquisition ledger.
  */
-final class JettyHandler extends AbstractHandler {
+public final class JettyHandler extends AbstractHandler {
 
-	private final FloatingState state = new EagerFloatingState();
+	private final Function<NetRequest, NetResponse> handler;
+
+	public JettyHandler(Function<NetRequest, NetResponse> handler) {
+		Objects.requireNonNull(handler, "JettyHandler::handler"); //$NON-NLS-1$
+		this.handler = handler;
+	}
 
 	@Override
 	public void handle(String target, Request request, HttpServletRequest wrapper, HttpServletResponse envelope)
@@ -47,11 +51,11 @@ final class JettyHandler extends AbstractHandler {
 	}
 
 	private NetResponse response(HttpServletRequest request) {
-		return new BaseFlotingRequestHandled(new JettyRequest(request, state)).get();
+		return handler.apply(new JettyRequest(request));
 	}
 
 	private void write(NetResponse response, HttpServletResponse envelope) throws IOException {
-		envelope.setContentType(new ContentType.Xml().contentType());
+		envelope.setContentType(response.contentType().contentType());
 		envelope.setCharacterEncoding("UTF-8"); //$NON-NLS-1$
 		if (response.failed()) {
 			envelope.sendError(response.error().code(), response.error().message());

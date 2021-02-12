@@ -38,6 +38,7 @@
       <import feature="org.eclipse.passage.lic.json.feature"/>
       <import feature="org.eclipse.passage.lic.licenses.feature"/>
       <import feature="org.eclipse.passage.lic.net.feature"/>
+      <import feature="org.eclipse.passage.lic.jetty.feature"/>
    </requires>
 
    <plugin
@@ -53,12 +54,12 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+    -->
    <plugin
-         id="org.eclipse.passage.lbc.jetty"
+         id="org.eclipse.passage.lac.jetty"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-    -->
+    
 </feature>

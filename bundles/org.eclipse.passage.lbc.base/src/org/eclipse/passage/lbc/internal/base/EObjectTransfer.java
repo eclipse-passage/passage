@@ -14,6 +14,7 @@ package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
@@ -43,6 +44,11 @@ public final class EObjectTransfer implements NetResponse {
 	@Override
 	public byte[] payload() throws LicensingException {
 		return new EObjectToBytes(payload).get();
+	}
+
+	@Override
+	public ContentType contentType() {
+		return new ContentType.Xml();
 	}
 
 }

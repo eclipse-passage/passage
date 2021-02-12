@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,12 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lac.internal.jetty;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.internal.lac.base.BaseLicensingRequestHandled;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
@@ -25,7 +23,6 @@ import org.osgi.framework.BundleContext;
 public class JettyActivator implements BundleActivator {
 
 	private final JettyServer jetty;
-	private final FloatingState state = new EagerFloatingState();
 
 	public JettyActivator() {
 		jetty = new JettyServer(this::handler);
@@ -42,7 +39,7 @@ public class JettyActivator implements BundleActivator {
 	}
 
 	private JettyHandler handler() {
-		return new JettyHandler(request -> new BaseFlotingRequestHandled(new StatedRequest(request, state)).get());
+		return new JettyHandler(request -> new BaseLicensingRequestHandled(request).get());
 	}
 
 }
