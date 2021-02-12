@@ -16,11 +16,11 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 
 final class ServerAuthenticationInstructions implements Supplier<Optional<EvaluationInstructions>> {
 

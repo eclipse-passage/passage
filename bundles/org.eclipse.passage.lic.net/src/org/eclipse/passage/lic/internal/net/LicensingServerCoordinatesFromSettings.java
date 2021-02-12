@@ -54,11 +54,13 @@ public final class LicensingServerCoordinatesFromSettings implements LicensingSe
 		Optional<String> value = data.get();
 		if (!value.isPresent()) {
 			throw new LicensingException(//
-					String.format(NetMessages.LicensingServerCoordinates_settings_not_found, data.key()));
+					String.format(NetMessages.getString("LicensingServerCoordinatesFromSettings.settings_not_found"), //$NON-NLS-1$
+							data.key()));
 		}
 		if (value.get().trim().isEmpty()) {
 			throw new LicensingException(//
-					String.format(NetMessages.LicensingServerCoordinates_settings_are_blank, data.key()));
+					String.format(NetMessages.getString("LicensingServerCoordinatesFromSettings.settings_are_blank"), //$NON-NLS-1$
+							data.key()));
 
 		}
 		return value.get();
