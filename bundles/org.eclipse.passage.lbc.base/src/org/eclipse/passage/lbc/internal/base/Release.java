@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 final class Release extends ChoreDraft {
 
@@ -24,7 +24,7 @@ final class Release extends ChoreDraft {
 	}
 
 	@Override
-	protected FloatingResponse withProductUser(ProductUserRequest request) throws LicensingException {
+	protected NetResponse withProductUser(ProductUserRequest request) throws LicensingException {
 		return new Acquisition(request).returnBack();
 	}
 }

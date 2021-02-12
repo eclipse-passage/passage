@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
@@ -35,9 +34,10 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
-public final class Conditions implements Supplier<FloatingResponse> {
+public final class Conditions implements Supplier<NetResponse> {
 
 	private final ProductUserRequest data;
 	private final Supplier<Path> source;
@@ -53,7 +53,7 @@ public final class Conditions implements Supplier<FloatingResponse> {
 	}
 
 	@Override
-	public FloatingResponse get() {
+	public NetResponse get() {
 		log.debug(String.format("Mining conditions for product %s", data.product().get())); //$NON-NLS-1$
 		ServiceInvocationResult<Collection<ConditionPack>> conditions = //
 				new Miner(source, data.user().get())//

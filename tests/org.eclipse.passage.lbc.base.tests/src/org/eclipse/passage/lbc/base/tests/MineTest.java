@@ -17,16 +17,16 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class MineTest {
@@ -43,7 +43,7 @@ public final class MineTest {
 
 	@Test
 	public void demandsUser() {
-		FloatingResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new ConditionAction.Mine())//
 						.withParameters(Arrays.asList(//
@@ -57,7 +57,7 @@ public final class MineTest {
 	}
 
 	private void testDemandProductInformation(StringNamedData half) {
-		FloatingResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new ConditionAction.Mine())//
 						.withParameters(Arrays.asList(////
@@ -69,7 +69,7 @@ public final class MineTest {
 		assertFailedWithCode(response, new Failure.BadRequestInvalidProduct());
 	}
 
-	private void assertFailedWithCode(FloatingResponse response, Failure expected) {
+	private void assertFailedWithCode(NetResponse response, Failure expected) {
 		assertTrue(response.failed());
 		assertEquals(expected.error().code(), response.error().code());
 	}

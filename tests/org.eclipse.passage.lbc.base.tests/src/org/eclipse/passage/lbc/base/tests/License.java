@@ -14,16 +14,16 @@ package org.eclipse.passage.lbc.base.tests;
 
 import java.io.IOException;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 final class License {
 
-	private final FloatingResponse response;
+	private final NetResponse response;
 
-	License(FloatingResponse response) {
+	License(NetResponse response) {
 		this.response = response;
 	}
 

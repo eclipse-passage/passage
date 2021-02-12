@@ -10,18 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lic.internal.net.handle;
 
-import java.util.Optional;
-
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
-public interface Grants {
+/**
+ * @since 1.0
+ */
+public interface NetResponse {
 
-	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
+	boolean failed();
 
-	boolean release(LicensedProduct product, GrantAcqisition acquisition);
+	Error error();
 
+	boolean carriesPayload();
+
+	byte[] payload() throws LicensingException;
+
+	public static interface Error {
+
+		int code();
+
+		String message();
+	}
 }

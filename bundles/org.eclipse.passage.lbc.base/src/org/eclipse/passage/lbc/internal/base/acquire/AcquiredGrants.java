@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lbc.internal.api.Grants;
+import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;

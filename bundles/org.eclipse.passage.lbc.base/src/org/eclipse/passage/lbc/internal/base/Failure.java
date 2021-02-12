@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
-public abstract class Failure implements FloatingResponse {
+public abstract class Failure implements NetResponse {
 
 	private final int code;
 	private final String message;

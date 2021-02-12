@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 /**
  * There is one single instance of the handler for a server. All of the rest in
@@ -46,11 +46,11 @@ final class JettyHandler extends AbstractHandler {
 		request.setHandled(true);
 	}
 
-	private FloatingResponse response(HttpServletRequest request) {
+	private NetResponse response(HttpServletRequest request) {
 		return new BaseFlotingRequestHandled(new JettyRequest(request, state)).get();
 	}
 
-	private void write(FloatingResponse response, HttpServletResponse envelope) throws IOException {
+	private void write(NetResponse response, HttpServletResponse envelope) throws IOException {
 		envelope.setContentType(new ContentType.Xml().contentType());
 		envelope.setCharacterEncoding("UTF-8"); //$NON-NLS-1$
 		if (response.failed()) {

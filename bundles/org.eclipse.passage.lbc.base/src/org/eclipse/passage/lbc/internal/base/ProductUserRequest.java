@@ -14,7 +14,7 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;

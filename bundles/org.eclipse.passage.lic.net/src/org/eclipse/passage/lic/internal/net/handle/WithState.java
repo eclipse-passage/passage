@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,16 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.api;
+package org.eclipse.passage.lic.internal.net.handle;
 
-/**
- * FIXME: temporary
- * 
- * Redesign this part. We need a sort of Passage Framework to pull down critical
- * entities through the codebase
- */
-public interface FloatingState {
+public interface WithState<S> {
 
-	Grants grants();
+	S state();
 
 }

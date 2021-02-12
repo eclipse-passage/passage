@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 
 import java.io.IOException;
 
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 
 final class RawRequestFromConnection implements RawRequest {
 

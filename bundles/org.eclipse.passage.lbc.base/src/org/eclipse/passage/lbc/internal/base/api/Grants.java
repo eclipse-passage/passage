@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,22 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lbc.internal.base.api;
 
-import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
-import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import java.util.Optional;
+
+import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
-final class Acquire extends ChoreDraft {
+/**
+ * @since 1.1
+ */
+public interface Grants {
 
-	Acquire(RawRequest data) {
-		super(data);
-	}
+	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, String feature) throws LicensingException;
 
-	@Override
-	protected NetResponse withProductUser(ProductUserRequest request) throws LicensingException {
-		return new Acquisition(request).get();
-	}
+	boolean release(LicensedProduct product, GrantAcqisition acquisition);
 
 }

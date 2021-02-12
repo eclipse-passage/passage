@@ -15,9 +15,8 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
-import org.eclipse.passage.lbc.internal.api.FloatingResponse;
-import org.eclipse.passage.lbc.internal.api.FloatingState;
-import org.eclipse.passage.lbc.internal.api.RawRequest;
+import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
@@ -25,6 +24,7 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
+import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 
@@ -39,7 +39,7 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 		try {
 			ShortcutConnection connection = request.config().apply(new ShortcutConnection(request.parameters()));
 			RawRequest raw = new RawRequestFromConnection(connection, remote.state());
-			FloatingResponse response = remote.invoke(raw);
+			NetResponse response = remote.invoke(raw);
 			assertFalse(response.failed());
 			connection.installResponse(response);
 			return new BaseServiceInvocationResult<>(handler.read(new ResultsTransfered(connection)));
@@ -54,7 +54,7 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 
 		FloatingState state();
 
-		FloatingResponse invoke(RawRequest raw) throws LicensingException;
+		NetResponse invoke(RawRequest raw) throws LicensingException;
 
 	}
 
