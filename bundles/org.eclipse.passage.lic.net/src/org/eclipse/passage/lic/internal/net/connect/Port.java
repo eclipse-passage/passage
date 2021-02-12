@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.connect;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -20,14 +20,16 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.base.NamedData;
 
 /**
- * @since 1.0
+ * @since 1.1
  */
 public final class Port implements NamedData<Integer> {
 
 	private final Logger log = LogManager.getLogger(getClass());
 	private final Optional<String> raw;
+	private final int lazy;
 
-	public Port(String[] sources) {
+	public Port(String[] sources, int lazy) {
+		this.lazy = lazy;
 		String prefix = String.format("-%s=", key()); //$NON-NLS-1$
 		this.raw = Arrays.stream(sources)//
 				.map(String::toLowerCase)//
@@ -47,7 +49,7 @@ public final class Port implements NamedData<Integer> {
 	}
 
 	private Optional<Integer> defaultPort() {
-		return Optional.of(8090);
+		return Optional.of(lazy);
 	}
 
 	private Optional<Integer> parse(String port) {

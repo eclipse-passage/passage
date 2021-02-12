@@ -14,6 +14,7 @@ package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 public abstract class Failure implements NetResponse {
@@ -27,23 +28,28 @@ public abstract class Failure implements NetResponse {
 	}
 
 	@Override
-	public boolean failed() {
+	public final boolean failed() {
 		return true;
 	}
 
 	@Override
-	public boolean carriesPayload() {
+	public final boolean carriesPayload() {
 		return false;
 	}
 
 	@Override
-	public Error error() {
+	public final Error error() {
 		return new Err();
 	}
 
 	@Override
-	public byte[] payload() {
+	public final byte[] payload() {
 		throw new IllegalStateException("Is not intended to be called for failed response: no valid output"); //$NON-NLS-1$ dev
+	}
+
+	@Override
+	public final ContentType contentType() {
+		return new ContentType.Xml();
 	}
 
 	private final class Err implements Error {

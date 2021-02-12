@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 public final class PlainSuceess implements NetResponse {
@@ -34,6 +35,11 @@ public final class PlainSuceess implements NetResponse {
 	@Override
 	public byte[] payload() {
 		throw new IllegalStateException("Plain successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
+	}
+
+	@Override
+	public ContentType contentType() {
+		return new ContentType.Xml();
 	}
 
 }

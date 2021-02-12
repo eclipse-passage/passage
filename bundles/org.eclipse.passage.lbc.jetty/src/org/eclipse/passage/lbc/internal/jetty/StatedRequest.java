@@ -13,35 +13,29 @@
 package org.eclipse.passage.lbc.internal.jetty;
 
 import java.io.IOException;
-import java.io.InputStream;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.internal.net.handle.NetRequest;
 
-final class JettyRequest implements RawRequest {
+final class StatedRequest implements RawRequest {
 
-	private final HttpServletRequest origin;
+	private final NetRequest delegate;
 	private final FloatingState state;
 
-	JettyRequest(HttpServletRequest origin, FloatingState state) {
-		this.origin = origin;
+	StatedRequest(NetRequest delegate, FloatingState state) {
+		this.delegate = delegate;
 		this.state = state;
 	}
 
 	@Override
 	public String parameter(String name) {
-		return origin.getParameter(name);
+		return delegate.parameter(name);
 	}
 
 	@Override
 	public byte[] content() throws IOException {
-		byte[] content = new byte[origin.getContentLength()];
-		try (InputStream stream = origin.getInputStream()) {
-			stream.read(content);
-		}
-		return content;
+		return delegate.content();
 	}
 
 	@Override
