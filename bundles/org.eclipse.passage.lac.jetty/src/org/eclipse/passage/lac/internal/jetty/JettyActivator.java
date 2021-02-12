@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lac.internal.jetty;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.net.connect.Port;
@@ -27,7 +27,7 @@ public class JettyActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		jetty.launch(new Port(Platform.getApplicationArgs(), 8090));
+		jetty.launch(new Port(Platform.getApplicationArgs(), 8099));
 	}
 
 	@Override

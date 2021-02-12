@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lac.internal.jetty;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
-import org.eclipse.passage.lbc.internal.jetty.i18n.Messages;
+import org.eclipse.passage.lac.internal.jetty.i18n.Messages;
 import org.eclipse.passage.lic.internal.net.connect.Port;
 
 final class JettyServer {

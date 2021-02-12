@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 public final class BaseFlotingRequestHandled implements NetRequestHandled {
 
 	private final RawRequest request;
-	private final Chores chores;
+	private final Chores<RawRequest> chores;
 
-	public BaseFlotingRequestHandled(RawRequest request, Chores chores) {
+	public BaseFlotingRequestHandled(RawRequest request, Chores<RawRequest> chores) {
 		Objects.requireNonNull(request, "BaseFlotingRequestHandled:request");//$NON-NLS-1$
 		Objects.requireNonNull(chores, "BaseFlotingRequestHandled:chores");//$NON-NLS-1$
 		this.request = request;
