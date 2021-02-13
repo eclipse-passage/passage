@@ -33,7 +33,7 @@
 		<module>../../features/org.eclipse.passage.lac.target.feature</module>
 		<module>../../features/org.eclipse.passage.lac.execute.feature</module>
 		<module>../../releng/org.eclipse.passage.lac.repository</module>
-		<module>../../products/org.eclipse.passage.lbc.server.product</module>
+		<module>../../products/org.eclipse.passage.lac.server.product</module>
 	</modules>
 
 </project>
