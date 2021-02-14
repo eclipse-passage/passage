@@ -17,14 +17,14 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
-final class Release extends ChoreDraft {
+final class Release extends ChoreDraft<RawRequest> {
 
 	Release(RawRequest data) {
 		super(data);
 	}
 
 	@Override
-	protected NetResponse withProductUser(ProductUserRequest request) throws LicensingException {
+	protected NetResponse withProductUser(ProductUserRequest<RawRequest> request) throws LicensingException {
 		return new Acquisition(request).returnBack();
 	}
 }

@@ -14,21 +14,21 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
-public final class ProductUserRequest {
+public final class ProductUserRequest<R extends NetRequest> {
 
-	private final RawRequest raw;
+	private final R raw;
 	private final Optional<LicensedProduct> product;
 	private final Optional<String> user;
 
-	public ProductUserRequest(RawRequest raw) throws LicensingException {
+	public ProductUserRequest(R raw) throws LicensingException {
 		this.raw = raw;
 		this.product = extractProduct();
 		this.user = extractUser();
@@ -49,7 +49,7 @@ public final class ProductUserRequest {
 		return new LicenseUser(raw::parameter).get();
 	}
 
-	public RawRequest raw() {
+	public R raw() {
 		return raw;
 	}
 

@@ -16,19 +16,19 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.Chore;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 
-abstract class ChoreDraft implements Chore {
+abstract class ChoreDraft<R extends NetRequest> implements Chore {
 
-	protected final RawRequest data;
+	protected final R data;
 	protected final Logger log = LogManager.getLogger(getClass());
 
-	protected ChoreDraft(RawRequest request) {
+	protected ChoreDraft(R request) {
 		this.data = request;
 	}
 
@@ -44,9 +44,9 @@ abstract class ChoreDraft implements Chore {
 			log.error("failed: ", e); //$NON-NLS-1$
 			return new Failure.ForeignServer(e.getMessage());
 		}
-		ProductUserRequest request;
+		ProductUserRequest<R> request;
 		try {
-			request = new ProductUserRequest(data);
+			request = new ProductUserRequest<R>(data);
 		} catch (LicensingException e) {
 			log.error("failed: ", e); //$NON-NLS-1$ ;
 			return failed(e.getMessage());
@@ -65,7 +65,7 @@ abstract class ChoreDraft implements Chore {
 		}
 	}
 
-	protected abstract NetResponse withProductUser(ProductUserRequest request) throws LicensingException;
+	protected abstract NetResponse withProductUser(ProductUserRequest<R> request) throws LicensingException;
 
 	protected final NetResponse failed(String details) {
 		return new Failure.OperationFailed(getClass().getSimpleName(), details);
