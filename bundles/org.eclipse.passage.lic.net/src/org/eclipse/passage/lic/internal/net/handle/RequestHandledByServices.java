@@ -10,33 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.net.handle.Chores;
-import org.eclipse.passage.lic.internal.net.handle.NetRequestHandled;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+public abstract class RequestHandledByServices<R extends NetRequest> implements NetRequestHandled {
 
-public final class BaseFlotingRequestHandled implements NetRequestHandled {
+	private final R request;
+	private final Chores<R> chores;
 
-	private final RawRequest request;
-	private final Chores<RawRequest> chores;
-
-	public BaseFlotingRequestHandled(RawRequest request, Chores<RawRequest> chores) {
+	protected RequestHandledByServices(R request, Chores<R> chores) {
 		Objects.requireNonNull(request, "BaseFlotingRequestHandled:request");//$NON-NLS-1$
 		Objects.requireNonNull(chores, "BaseFlotingRequestHandled:chores");//$NON-NLS-1$
 		this.request = request;
 		this.chores = chores;
 	}
 
-	public BaseFlotingRequestHandled(RawRequest request) {
-		this(request, new FloatingCycle());
-	}
-
 	@Override
-	public NetResponse get() {
+	public final NetResponse get() {
 		return chores.workOut(request);
 	}
 

@@ -13,18 +13,12 @@
 package org.eclipse.passage.internal.lac.base;
 
 import org.eclipse.passage.lic.internal.net.handle.NetRequest;
-import org.eclipse.passage.lic.internal.net.handle.NetRequestHandled;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.RequestHandledByServices;
 
-public final class BaseLicensingRequestHandled implements NetRequestHandled {
+public final class AgentRequestHandled extends RequestHandledByServices<NetRequest> {
 
-	public BaseLicensingRequestHandled(NetRequest origin) {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public NetResponse get() {
-		return null;
+	public AgentRequestHandled(NetRequest request) {
+		super(request, new AgentCycle());
 	}
 
 }

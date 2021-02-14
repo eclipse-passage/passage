@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.lac" version="2">
-    <resource path="src/org/eclipse/passage/internal/lac/base/BaseLicensingRequestHandled.java" type="org.eclipse.passage.internal.lac.base.BaseLicensingRequestHandled">
-        <filter id="576725006">
+    <resource path="src/org/eclipse/passage/internal/lac/base/AgentRequestHandled.java" type="org.eclipse.passage.internal.lac.base.AgentRequestHandled">
+        <filter id="576720909">
             <message_arguments>
-                <message_argument value="NetRequestHandled"/>
-                <message_argument value="BaseLicensingRequestHandled"/>
-            </message_arguments>
-        </filter>
-        <filter id="643842064">
-            <message_arguments>
-                <message_argument value="NetResponse"/>
-                <message_argument value="BaseLicensingRequestHandled"/>
-                <message_argument value="get()"/>
+                <message_argument value="RequestHandledByServices&lt;R&gt;"/>
+                <message_argument value="AgentRequestHandled"/>
             </message_arguments>
         </filter>
         <filter id="643850349">
             <message_arguments>
                 <message_argument value="NetRequest"/>
-                <message_argument value="BaseLicensingRequestHandled"/>
-                <message_argument value="BaseLicensingRequestHandled(NetRequest)"/>
+                <message_argument value="AgentRequestHandled"/>
+                <message_argument value="AgentRequestHandled(NetRequest)"/>
             </message_arguments>
         </filter>
     </resource>

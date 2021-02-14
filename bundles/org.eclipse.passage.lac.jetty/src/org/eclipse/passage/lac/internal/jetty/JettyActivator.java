@@ -13,7 +13,7 @@
 package org.eclipse.passage.lac.internal.jetty;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.internal.lac.base.BaseLicensingRequestHandled;
+import org.eclipse.passage.internal.lac.base.AgentRequestHandled;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
@@ -39,7 +39,7 @@ public class JettyActivator implements BundleActivator {
 	}
 
 	private JettyHandler handler() {
-		return new JettyHandler(request -> new BaseLicensingRequestHandled(request).get());
+		return new JettyHandler(request -> new AgentRequestHandled(request).get());
 	}
 
 }
