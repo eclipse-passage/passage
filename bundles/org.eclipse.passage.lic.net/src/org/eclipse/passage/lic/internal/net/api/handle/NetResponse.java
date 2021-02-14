@@ -10,10 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net.handle;
+package org.eclipse.passage.lic.internal.net.api.handle;
 
-public interface Chores<R extends NetRequest> {
+import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
-	NetResponse workOut(R request);
+/**
+ * @since 1.0
+ */
+public interface NetResponse {
+
+	boolean failed();
+
+	Error error();
+
+	boolean carriesPayload();
+
+	byte[] payload() throws LicensingException;
+
+	public static interface Error {
+
+		int code();
+
+		String message();
+	}
+
+	ContentType contentType();
 
 }

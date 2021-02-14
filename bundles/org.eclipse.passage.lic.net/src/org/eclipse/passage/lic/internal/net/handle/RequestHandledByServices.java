@@ -14,6 +14,11 @@ package org.eclipse.passage.lic.internal.net.handle;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.internal.net.api.handle.Chores;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequestHandled;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+
 public abstract class RequestHandledByServices<R extends NetRequest> implements NetRequestHandled {
 
 	private final R request;

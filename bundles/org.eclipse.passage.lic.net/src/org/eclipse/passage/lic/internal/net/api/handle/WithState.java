@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net.handle;
+package org.eclipse.passage.lic.internal.net.api.handle;
 
 public interface WithState<S> {
 

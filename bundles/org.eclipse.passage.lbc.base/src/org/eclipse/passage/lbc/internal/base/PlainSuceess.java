@@ -13,7 +13,7 @@
 package org.eclipse.passage.lbc.internal.base;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 public final class PlainSuceess implements NetResponse {
 

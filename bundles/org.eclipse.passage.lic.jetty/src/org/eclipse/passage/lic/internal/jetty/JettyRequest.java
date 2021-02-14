@@ -18,7 +18,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
 public final class JettyRequest implements NetRequest {
 

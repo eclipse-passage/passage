@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
 final class StatedRequest implements RawRequest {
 

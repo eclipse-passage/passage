@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
 final class ServerAuthenticationInstructions implements Supplier<Optional<EvaluationInstructions>> {
 

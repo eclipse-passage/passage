@@ -10,14 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net.handle;
+package org.eclipse.passage.lic.internal.net.api.handle;
 
-import java.io.IOException;
+public interface Chore {
 
-public interface NetRequest {
-
-	String parameter(String name);
-
-	byte[] content() throws IOException;
+	NetResponse getDone();
 
 }

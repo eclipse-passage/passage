@@ -18,6 +18,10 @@ import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.api.handle.Chore;
+import org.eclipse.passage.lic.internal.net.api.handle.Chores;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 public abstract class NetServices<R extends NetRequest> implements Chores<R> {
 

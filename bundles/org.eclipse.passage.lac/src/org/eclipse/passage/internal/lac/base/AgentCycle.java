@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.net.handle.Chore;
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.Chore;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.NetServices;
 
 public final class AgentCycle extends NetServices<NetRequest> {
