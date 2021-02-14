@@ -16,14 +16,14 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
-final class Mine extends ChoreDraft {
+final class Mine extends ChoreDraft<RawRequest> {
 
 	Mine(RawRequest data) {
 		super(data);
 	}
 
 	@Override
-	protected NetResponse withProductUser(ProductUserRequest request) {
+	protected NetResponse withProductUser(ProductUserRequest<RawRequest> request) {
 		return new Conditions(request).get();
 	}
 

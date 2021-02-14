@@ -23,6 +23,7 @@ import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -34,10 +35,10 @@ import org.eclipse.passage.lic.internal.net.handle.Failure;
 
 public final class Acquisition {
 
-	private final ProductUserRequest data;
+	private final ProductUserRequest<RawRequest> data;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	public Acquisition(ProductUserRequest data) {
+	public Acquisition(ProductUserRequest<RawRequest> data) {
 		Objects.requireNonNull(data, "Acquisition::data"); //$NON-NLS-1$
 		this.data = data;
 	}

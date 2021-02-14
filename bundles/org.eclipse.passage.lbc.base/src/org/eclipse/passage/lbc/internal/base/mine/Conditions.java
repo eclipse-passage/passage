@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.PassageAction;
@@ -39,16 +40,16 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class Conditions implements Supplier<NetResponse> {
 
-	private final ProductUserRequest data;
+	private final ProductUserRequest<RawRequest> data;
 	private final Supplier<Path> source;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	public Conditions(ProductUserRequest data, Supplier<Path> base) {
+	public Conditions(ProductUserRequest<RawRequest> data, Supplier<Path> base) {
 		this.data = data;
 		this.source = base;
 	}
 
-	public Conditions(ProductUserRequest data) {
+	public Conditions(ProductUserRequest<RawRequest> data) {
 		this(data, new LicensingFolder(new UserHomePath()));
 	}
 
