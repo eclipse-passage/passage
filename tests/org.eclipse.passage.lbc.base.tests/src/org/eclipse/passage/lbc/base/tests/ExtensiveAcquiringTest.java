@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
@@ -63,7 +63,7 @@ public final class ExtensiveAcquiringTest {
 	private int[] countGainsAndLates(Set<Future<NetResponse>> futures) throws InterruptedException {
 		int gains = 0;
 		int lates = 0;
-		int none = new Failure.NoGrantsAvailable(data.product(), data.feature()).error().code();
+		int none = new NoGrantsAvailable(data.product(), data.feature()).error().code();
 		for (Future<NetResponse> future : futures) {
 			NetResponse response;
 			try {

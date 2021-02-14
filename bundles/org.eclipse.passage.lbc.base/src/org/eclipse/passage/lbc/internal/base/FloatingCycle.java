@@ -12,54 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.net.LicensingAction;
 import org.eclipse.passage.lic.internal.net.handle.Chore;
-import org.eclipse.passage.lic.internal.net.handle.Chores;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.NetServices;
 
-final class FloatingCycle implements Chores<RawRequest> {
+final class FloatingCycle extends NetServices<RawRequest> {
 
-	private final Map<PassageAction, Function<RawRequest, Chore>> chores = new HashMap<>();
-
-	FloatingCycle() {
+	@Override
+	protected void defineChores(Map<PassageAction, Function<RawRequest, Chore>> chores) {
 		chores.put(new PassageAction.Mine(), Mine::new);
 		chores.put(new PassageAction.Acquire(), Acquire::new);
 		chores.put(new PassageAction.Release(), Release::new);
-	}
-
-	@Override
-	public NetResponse workOut(RawRequest request) {
-		LicensingAction action = action(request);
-		return chores//
-				.getOrDefault(//
-						action.get().get(), //
-						unknown -> new Failing(action))//
-				.apply(request)//
-				.getDone();
-	}
-
-	private LicensingAction action(RawRequest request) {
-		return new LicensingAction(key -> new PassageAction.Of(String.valueOf(request.parameter(key))));
-	}
-
-	private final class Failing implements Chore {
-		private final LicensingAction actual;
-
-		Failing(LicensingAction actual) {
-			this.actual = actual;
-		}
-
-		@Override
-		public NetResponse getDone() {
-			return new Failure.BadRequestUnknownAction(actual.get().get().name());
-		}
-
 	}
 
 }

@@ -22,7 +22,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.base.Failure;
+import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
+import org.eclipse.passage.lbc.internal.base.acquire.NotReleased;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
@@ -50,7 +51,7 @@ public final class FloatingCycleActionsDryRunTest {
 	public void acquireNothing() throws LicensingException, IOException {
 		NetResponse response = new BaseFlotingRequestHandled(request(new PassageAction.Acquire())).get();
 		assertTrue(response.failed());
-		assertEquals(new Failure.NoGrantsAvailable(product, feature).error().code(), response.error().code());
+		assertEquals(new NoGrantsAvailable(product, feature).error().code(), response.error().code());
 	}
 
 	@Test
@@ -59,7 +60,7 @@ public final class FloatingCycleActionsDryRunTest {
 		NetResponse response = new BaseFlotingRequestHandled(//
 				request(new PassageAction.Release(), Optional.of(acqisition))).get();
 		assertTrue(response.failed());
-		assertEquals(new Failure.NotReleased(product, acqisition).error().code(), response.error().code());
+		assertEquals(new NotReleased(product, acqisition).error().code(), response.error().code());
 	}
 
 	private RawRequest request(PassageAction action) throws LicensingException {

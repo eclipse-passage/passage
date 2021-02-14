@@ -20,17 +20,16 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
-import org.eclipse.passage.lbc.internal.base.Failure;
-import org.eclipse.passage.lbc.internal.base.Failure.NoGrantsAvailable;
-import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
+import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
-import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 public final class Acquisition {
@@ -70,7 +69,7 @@ public final class Acquisition {
 		}
 		boolean released = grants().release(data.product().get(), acquisition);
 		if (!released) {
-			return new Failure.NotReleased(data.product().get(), acquisition);
+			return new NotReleased(data.product().get(), acquisition);
 		}
 		return new PlainSuceess();
 
@@ -93,8 +92,8 @@ public final class Acquisition {
 		return data.raw().state().grants();
 	}
 
-	private NoGrantsAvailable noGrants(String feature) {
-		return new Failure.NoGrantsAvailable(data.product().get(), feature);
+	private Failure noGrants(String feature) {
+		return new NoGrantsAvailable(data.product().get(), feature);
 	}
 
 }
