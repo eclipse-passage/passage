@@ -10,12 +10,9 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 public abstract class Failure implements NetResponse {
 
@@ -123,20 +120,4 @@ public abstract class Failure implements NetResponse {
 
 	}
 
-	public static final class NoGrantsAvailable extends Failure {
-
-		public NoGrantsAvailable(LicensedProduct product, String feature) {
-			super(611, String.format("No license grants available for feature %s of product %s", feature, product)); //$NON-NLS-1$
-		}
-
-	}
-
-	public static final class NotReleased extends Failure {
-
-		public NotReleased(LicensedProduct product, GrantAcqisition acqisition) {
-			super(612, String.format("Failed to release grant %s acquisition for feature %s of product %s", //$NON-NLS-1$
-					acqisition.getGrant(), acqisition.getFeature(), product));
-		}
-
-	}
 }

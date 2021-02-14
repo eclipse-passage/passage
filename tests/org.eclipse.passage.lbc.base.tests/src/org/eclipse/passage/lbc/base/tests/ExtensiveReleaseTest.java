@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
+import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
@@ -45,7 +45,7 @@ import org.junit.Test;
 public final class ExtensiveReleaseTest {
 
 	private final TestData data = new TestData();
-	private final int noGrants = new Failure.NoGrantsAvailable(data.product(), data.feature()).error().code();
+	private final int noGrants = new NoGrantsAvailable(data.product(), data.feature()).error().code();
 
 	@Test
 	public void concurrentAcquireAndRelease() throws InterruptedException, ExecutionException {
