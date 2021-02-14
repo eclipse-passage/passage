@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,7 @@ import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
@@ -40,7 +40,7 @@ public final class ServerAuthenticationTest {
 	private void testDemandServerAuthInformation(StringNamedData half) {
 		NetResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
-						.withAction(new ConditionAction.Mine())//
+						.withAction(new PassageAction.Mine())//
 						.withParameter(half).get()//
 		).get();
 		assertFailedWithCode(response, new Failure.BadRequestInvalidServerAuthInstructions());

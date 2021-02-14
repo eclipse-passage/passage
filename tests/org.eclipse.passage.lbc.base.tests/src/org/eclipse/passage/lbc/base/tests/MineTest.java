@@ -21,7 +21,7 @@ import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -45,7 +45,7 @@ public final class MineTest {
 	public void demandsUser() {
 		NetResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
-						.withAction(new ConditionAction.Mine())//
+						.withAction(new PassageAction.Mine())//
 						.withParameters(Arrays.asList(//
 								id(), //
 								version(), //
@@ -59,7 +59,7 @@ public final class MineTest {
 	private void testDemandProductInformation(StringNamedData half) {
 		NetResponse response = new BaseFlotingRequestHandled(//
 				new RequestConstructed()//
-						.withAction(new ConditionAction.Mine())//
+						.withAction(new PassageAction.Mine())//
 						.withParameters(Arrays.asList(////
 								half, //
 								authType(), //

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
@@ -41,14 +41,14 @@ public final class FloatingCycleActionsDryRunTest {
 
 	@Test
 	public void mineNothing() throws LicensingException, IOException {
-		NetResponse response = new BaseFlotingRequestHandled(request(new ConditionAction.Mine())).get();
+		NetResponse response = new BaseFlotingRequestHandled(request(new PassageAction.Mine())).get();
 		assertFalse(response.failed());
 		assertTrue(new License(response).get().getLicenseGrants().isEmpty());
 	}
 
 	@Test
 	public void acquireNothing() throws LicensingException, IOException {
-		NetResponse response = new BaseFlotingRequestHandled(request(new ConditionAction.Acquire())).get();
+		NetResponse response = new BaseFlotingRequestHandled(request(new PassageAction.Acquire())).get();
 		assertTrue(response.failed());
 		assertEquals(new Failure.NoGrantsAvailable(product, feature).error().code(), response.error().code());
 	}
@@ -57,16 +57,16 @@ public final class FloatingCycleActionsDryRunTest {
 	public void releaseInVain() throws LicensingException, IOException {
 		GrantAcqisition acqisition = acquisition();
 		NetResponse response = new BaseFlotingRequestHandled(//
-				request(new ConditionAction.Release(), Optional.of(acqisition))).get();
+				request(new PassageAction.Release(), Optional.of(acqisition))).get();
 		assertTrue(response.failed());
 		assertEquals(new Failure.NotReleased(product, acqisition).error().code(), response.error().code());
 	}
 
-	private RawRequest request(ConditionAction action) throws LicensingException {
+	private RawRequest request(PassageAction action) throws LicensingException {
 		return request(action, Optional.empty());
 	}
 
-	private RawRequest request(ConditionAction action, Optional<EObject> payload) throws LicensingException {
+	private RawRequest request(PassageAction action, Optional<EObject> payload) throws LicensingException {
 		return new FeatureRequest(action, product, feature, user, payload).get();
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,9 +26,9 @@ import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -58,8 +58,8 @@ public final class RemoteConditionsRequestTest {
 		queryHas(url, new ProductIdentifier("any").key()); //$NON-NLS-1$
 		queryHas(url, new ProductVersion("any").key()); //$NON-NLS-1$
 		queryHas(url, //
-				new LicensingAction(new ConditionAction.Of("any")).key(), //$NON-NLS-1$
-				new ConditionAction.Mine().name());
+				new LicensingAction(new PassageAction.Of("any")).key(), //$NON-NLS-1$
+				new PassageAction.Mine().name());
 		queryHas(url, //
 				new ServerAuthenticationExpression("any").key(), //$NON-NLS-1$
 				expression);

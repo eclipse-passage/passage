@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,9 +23,9 @@ import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
@@ -60,7 +60,7 @@ public final class Conditions implements Supplier<NetResponse> {
 						.all(data.product().get());
 		if (!conditions.data().isPresent()) {
 			return new Failure.OperationFailed(//
-					new ConditionAction.Mine().name(), //
+					new PassageAction.Mine().name(), //
 					new DiagnosticExplained(conditions.diagnostic()).get());
 		}
 		if (!new NoErrors().test(conditions.diagnostic())) {

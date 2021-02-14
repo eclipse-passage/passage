@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.Failure;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
@@ -27,17 +27,17 @@ public final class BaseFlotingRequestHandledTest {
 
 	@Test
 	public void handleMine() {
-		testActionSupported(new ConditionAction.Mine());
+		testActionSupported(new PassageAction.Mine());
 	}
 
 	@Test
 	public void handleAquire() {
-		testActionSupported(new ConditionAction.Acquire());
+		testActionSupported(new PassageAction.Acquire());
 	}
 
 	@Test
 	public void handleRelease() {
-		testActionSupported(new ConditionAction.Release());
+		testActionSupported(new PassageAction.Release());
 	}
 
 	@Test
@@ -49,11 +49,11 @@ public final class BaseFlotingRequestHandledTest {
 	public void doNotHandleForeignAction() {
 		assertActionIsNotSupported(//
 				new BaseFlotingRequestHandled(//
-						requestOfAction(new ConditionAction.Of("strange")) //$NON-NLS-1$
+						requestOfAction(new PassageAction.Of("strange")) //$NON-NLS-1$
 				).get());
 	}
 
-	private void testActionSupported(ConditionAction action) {
+	private void testActionSupported(PassageAction action) {
 		assertActionIsSupported(new BaseFlotingRequestHandled(requestOfAction(action)).get());
 	}
 
@@ -71,7 +71,7 @@ public final class BaseFlotingRequestHandledTest {
 				response.error().code());
 	}
 
-	private RawRequest requestOfAction(ConditionAction action) {
+	private RawRequest requestOfAction(PassageAction action) {
 		return new RequestConstructed().withAction(action).get();
 	}
 
