@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,13 +26,12 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public abstract class RuntimeEnvironmentContractTest {
 	@Test
 	public void isDedicatedToProperEvaluationType() {
