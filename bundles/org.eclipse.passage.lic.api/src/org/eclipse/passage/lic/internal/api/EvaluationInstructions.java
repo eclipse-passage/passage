@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions;
+package org.eclipse.passage.lic.internal.api;
 
 /**
  * <p>
@@ -22,7 +22,6 @@ package org.eclipse.passage.lic.internal.api.conditions;
  * hardware evaluation and assessing it against condition's expectations. These
  * ones can demand particular hardware part of have predefined serial id.
  * </p>
- * FIXME: it's not a mining constructions anymore, promote to upper levels
  */
 public interface EvaluationInstructions {
 

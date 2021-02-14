@@ -17,8 +17,8 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.net.handle.Chore;
 import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 

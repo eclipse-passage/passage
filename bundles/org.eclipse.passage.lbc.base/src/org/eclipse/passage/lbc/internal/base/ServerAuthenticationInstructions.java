@@ -17,8 +17,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
+import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
+import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.net.handle.NetRequest;
 
