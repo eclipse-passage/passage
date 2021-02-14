@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.junit.Test;
 
 public final class FloatingCycleActionsDryRunTest {

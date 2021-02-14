@@ -25,8 +25,8 @@ import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class MineTest {

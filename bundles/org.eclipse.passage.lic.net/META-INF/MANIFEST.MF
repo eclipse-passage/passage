@@ -16,6 +16,13 @@ Export-Package: org.eclipse.passage.lic.internal.net;
    org.eclipse.passage.lic.hc,
    org.eclipse.passage.lbc.jetty,
    org.eclipse.passage.lbc.base.tests",
+ org.eclipse.passage.lic.internal.net.api.handle;
+  x-friends:="org.eclipse.passage.lac,
+   org.eclipse.passage.lac.jetty,
+   org.eclipse.passage.lbc.base,
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.lbc.jetty,
+   org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.net.connect,
  org.eclipse.passage.lic.internal.net.handle;
   x-friends:="org.eclipse.passage.lac,

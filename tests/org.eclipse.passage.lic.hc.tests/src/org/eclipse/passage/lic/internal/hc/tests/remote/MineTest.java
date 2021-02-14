@@ -37,7 +37,7 @@ import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

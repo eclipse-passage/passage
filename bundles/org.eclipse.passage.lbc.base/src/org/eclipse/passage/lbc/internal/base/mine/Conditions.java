@@ -33,8 +33,8 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class Conditions implements Supplier<NetResponse> {

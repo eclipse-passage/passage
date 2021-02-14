@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.net.handle;
 
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 public abstract class Failure implements NetResponse {
 

@@ -10,10 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net.handle;
+package org.eclipse.passage.lic.internal.net.api.handle;
 
-public interface Chore {
+import java.util.function.Supplier;
 
-	NetResponse getDone();
+public interface NetRequestHandled extends Supplier<NetResponse> {
 
 }

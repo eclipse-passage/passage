@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 final class ShortcutConnection implements Connection {
 

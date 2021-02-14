@@ -19,8 +19,8 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.PassageAction;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 import org.junit.Test;
 
 public final class BaseFlotingRequestHandledTest {

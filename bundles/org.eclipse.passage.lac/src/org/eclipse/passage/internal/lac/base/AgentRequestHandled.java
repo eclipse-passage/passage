@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.internal.lac.base;
 
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.RequestHandledByServices;
 
 public final class AgentRequestHandled extends RequestHandledByServices<NetRequest> {

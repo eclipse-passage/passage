@@ -10,31 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.net.handle;
+package org.eclipse.passage.lic.internal.net.api.handle;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import java.io.IOException;
 
-/**
- * @since 1.0
- */
-public interface NetResponse {
+public interface NetRequest {
 
-	boolean failed();
+	String parameter(String name);
 
-	Error error();
-
-	boolean carriesPayload();
-
-	byte[] payload() throws LicensingException;
-
-	public static interface Error {
-
-		int code();
-
-		String message();
-	}
-
-	ContentType contentType();
+	byte[] content() throws IOException;
 
 }

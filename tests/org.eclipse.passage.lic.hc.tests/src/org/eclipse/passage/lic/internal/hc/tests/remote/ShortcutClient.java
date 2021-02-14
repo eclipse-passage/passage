@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 

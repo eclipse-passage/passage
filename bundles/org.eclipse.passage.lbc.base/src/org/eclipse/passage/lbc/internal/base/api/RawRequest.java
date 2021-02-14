@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.api;
 
-import org.eclipse.passage.lic.internal.net.handle.NetRequest;
-import org.eclipse.passage.lic.internal.net.handle.WithState;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.WithState;
 
 /**
  * @since 1.1

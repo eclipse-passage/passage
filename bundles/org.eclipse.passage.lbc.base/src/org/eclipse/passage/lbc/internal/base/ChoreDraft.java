@@ -19,9 +19,9 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.net.handle.Chore;
+import org.eclipse.passage.lic.internal.net.api.handle.Chore;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
-import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 abstract class ChoreDraft implements Chore {
 
