@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ package org.eclipse.passage.lic.internal.api.conditions;
  * hardware evaluation and assessing it against condition's expectations. These
  * ones can demand particular hardware part of have predefined serial id.
  * </p>
+ * FIXME: it's not a mining constructions anymore, promote to upper levels
  */
 public interface EvaluationInstructions {
 
