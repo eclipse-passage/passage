@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.acquire.NotReleased;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
@@ -42,14 +42,14 @@ public final class FloatingCycleActionsDryRunTest {
 
 	@Test
 	public void mineNothing() throws LicensingException, IOException {
-		NetResponse response = new BaseFlotingRequestHandled(request(new PassageAction.Mine())).get();
+		NetResponse response = new FlotingRequestHandled(request(new PassageAction.Mine())).get();
 		assertFalse(response.failed());
 		assertTrue(new License(response).get().getLicenseGrants().isEmpty());
 	}
 
 	@Test
 	public void acquireNothing() throws LicensingException, IOException {
-		NetResponse response = new BaseFlotingRequestHandled(request(new PassageAction.Acquire())).get();
+		NetResponse response = new FlotingRequestHandled(request(new PassageAction.Acquire())).get();
 		assertTrue(response.failed());
 		assertEquals(new NoGrantsAvailable(product, feature).error().code(), response.error().code());
 	}
@@ -57,7 +57,7 @@ public final class FloatingCycleActionsDryRunTest {
 	@Test
 	public void releaseInVain() throws LicensingException, IOException {
 		GrantAcqisition acqisition = acquisition();
-		NetResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new FlotingRequestHandled(//
 				request(new PassageAction.Release(), Optional.of(acqisition))).get();
 		assertTrue(response.failed());
 		assertEquals(new NotReleased(product, acqisition).error().code(), response.error().code());

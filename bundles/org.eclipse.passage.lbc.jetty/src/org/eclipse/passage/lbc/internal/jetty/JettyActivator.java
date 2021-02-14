@@ -13,7 +13,7 @@
 package org.eclipse.passage.lbc.internal.jetty;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
@@ -42,7 +42,7 @@ public class JettyActivator implements BundleActivator {
 	}
 
 	private JettyHandler handler() {
-		return new JettyHandler(request -> new BaseFlotingRequestHandled(new StatedRequest(request, state)).get());
+		return new JettyHandler(request -> new FlotingRequestHandled(new StatedRequest(request, state)).get());
 	}
 
 }

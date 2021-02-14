@@ -15,7 +15,7 @@ package org.eclipse.passage.lbc.base.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
@@ -38,7 +38,7 @@ public final class ServerAuthenticationTest {
 	}
 
 	private void testDemandServerAuthInformation(StringNamedData half) {
-		NetResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//
 						.withParameter(half).get()//

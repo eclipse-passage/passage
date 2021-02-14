@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
@@ -43,7 +43,7 @@ public final class MineTest {
 
 	@Test
 	public void demandsUser() {
-		NetResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//
 						.withParameters(Arrays.asList(//
@@ -57,7 +57,7 @@ public final class MineTest {
 	}
 
 	private void testDemandProductInformation(StringNamedData half) {
-		NetResponse response = new BaseFlotingRequestHandled(//
+		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//
 						.withParameters(Arrays.asList(////

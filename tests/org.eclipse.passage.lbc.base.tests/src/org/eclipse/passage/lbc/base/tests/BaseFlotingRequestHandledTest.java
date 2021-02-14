@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lbc.internal.base.BaseFlotingRequestHandled;
+import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
@@ -42,19 +42,19 @@ public final class BaseFlotingRequestHandledTest {
 
 	@Test
 	public void doNotHandleNull() {
-		assertActionIsNotSupported(new BaseFlotingRequestHandled(new RequestConstructed().get()).get());
+		assertActionIsNotSupported(new FlotingRequestHandled(new RequestConstructed().get()).get());
 	}
 
 	@Test
 	public void doNotHandleForeignAction() {
 		assertActionIsNotSupported(//
-				new BaseFlotingRequestHandled(//
+				new FlotingRequestHandled(//
 						requestOfAction(new PassageAction.Of("strange")) //$NON-NLS-1$
 				).get());
 	}
 
 	private void testActionSupported(PassageAction action) {
-		assertActionIsSupported(new BaseFlotingRequestHandled(requestOfAction(action)).get());
+		assertActionIsSupported(new FlotingRequestHandled(requestOfAction(action)).get());
 	}
 
 	private void assertActionIsSupported(NetResponse response) {
