@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,9 +16,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
@@ -33,8 +33,8 @@ final class AcquireRequestParameters extends RequestParameters {
 	}
 
 	@Override
-	protected ConditionAction action() {
-		return new ConditionAction.Acquire();
+	protected PassageAction action() {
+		return new PassageAction.Acquire();
 	}
 
 	@SuppressWarnings("rawtypes")

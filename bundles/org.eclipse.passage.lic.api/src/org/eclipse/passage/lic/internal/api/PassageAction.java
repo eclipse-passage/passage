@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,26 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.conditions;
+package org.eclipse.passage.lic.internal.api;
 
 import java.util.Objects;
 
-//FIXME: evolution demands for renaming
-public abstract class ConditionAction {
+public abstract class PassageAction {
 
 	private final String name;
 
-	protected ConditionAction(String name) {
+	protected PassageAction(String name) {
 		Objects.requireNonNull(name, "ConditionAction::name"); //$NON-NLS-1$
 		this.name = name.toLowerCase();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!ConditionAction.class.isInstance(obj)) {
+		if (!PassageAction.class.isInstance(obj)) {
 			return false;
 		}
-		return name.equals(((ConditionAction) obj).name());
+		return name.equals(((PassageAction) obj).name());
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public abstract class ConditionAction {
 		return name;
 	}
 
-	public static final class Mine extends ConditionAction {
+	public static final class Mine extends PassageAction {
 
 		public Mine() {
 			super("mine"); //$NON-NLS-1$
@@ -54,7 +53,7 @@ public abstract class ConditionAction {
 
 	}
 
-	public static final class Acquire extends ConditionAction {
+	public static final class Acquire extends PassageAction {
 
 		public Acquire() {
 			super("acquire"); //$NON-NLS-1$
@@ -62,7 +61,7 @@ public abstract class ConditionAction {
 
 	}
 
-	public static final class Release extends ConditionAction {
+	public static final class Release extends PassageAction {
 
 		public Release() {
 			super("release"); //$NON-NLS-1$
@@ -70,7 +69,7 @@ public abstract class ConditionAction {
 
 	}
 
-	public static final class Of extends ConditionAction {
+	public static final class Of extends PassageAction {
 
 		public Of(String name) {
 			super(name);

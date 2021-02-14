@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -80,7 +80,7 @@ public abstract class RequestParameters implements QueryParameters {
 		}
 	}
 
-	protected abstract ConditionAction action() throws LicensingException;
+	protected abstract PassageAction action() throws LicensingException;
 
 	@SuppressWarnings("rawtypes")
 	protected abstract List<NamedData> actionParameters() throws LicensingException;

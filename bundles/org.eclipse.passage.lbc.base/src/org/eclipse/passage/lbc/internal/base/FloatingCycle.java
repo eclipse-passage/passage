@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 import org.eclipse.passage.lic.internal.net.handle.Chore;
 import org.eclipse.passage.lic.internal.net.handle.Chores;
@@ -25,12 +25,12 @@ import org.eclipse.passage.lic.internal.net.handle.NetResponse;
 
 final class FloatingCycle implements Chores<RawRequest> {
 
-	private final Map<ConditionAction, Function<RawRequest, Chore>> chores = new HashMap<>();
+	private final Map<PassageAction, Function<RawRequest, Chore>> chores = new HashMap<>();
 
 	FloatingCycle() {
-		chores.put(new ConditionAction.Mine(), Mine::new);
-		chores.put(new ConditionAction.Acquire(), Acquire::new);
-		chores.put(new ConditionAction.Release(), Release::new);
+		chores.put(new PassageAction.Mine(), Mine::new);
+		chores.put(new PassageAction.Acquire(), Acquire::new);
+		chores.put(new PassageAction.Release(), Release::new);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ final class FloatingCycle implements Chores<RawRequest> {
 	}
 
 	private LicensingAction action(RawRequest request) {
-		return new LicensingAction(key -> new ConditionAction.Of(String.valueOf(request.parameter(key))));
+		return new LicensingAction(key -> new PassageAction.Of(String.valueOf(request.parameter(key))));
 	}
 
 	private final class Failing implements Chore {

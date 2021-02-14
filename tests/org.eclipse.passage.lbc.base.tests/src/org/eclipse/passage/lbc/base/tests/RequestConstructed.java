@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
@@ -40,7 +40,7 @@ final class RequestConstructed implements Supplier<RawRequest> {
 		return this;
 	}
 
-	RequestConstructed withAction(ConditionAction action) {
+	RequestConstructed withAction(PassageAction action) {
 		LicensingAction parameter = new LicensingAction(action);
 		params.put(parameter.key(), parameter.get().get().name());
 		return this;

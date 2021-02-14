@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,20 +15,20 @@ package org.eclipse.passage.lic.internal.net;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
-public final class LicensingAction extends BaseNamedData<ConditionAction> {
+public final class LicensingAction extends BaseNamedData<PassageAction> {
 
-	public LicensingAction(Function<String, ConditionAction> retrieve) {
+	public LicensingAction(Function<String, PassageAction> retrieve) {
 		super(retrieve);
 	}
 
 	public LicensingAction(Map<String, Object> data) {
-		super(key -> new ConditionAction.Of(String.valueOf(data.get(key))));
+		super(key -> new PassageAction.Of(String.valueOf(data.get(key))));
 	}
 
-	public LicensingAction(ConditionAction action) {
+	public LicensingAction(PassageAction action) {
 		super(key -> action);
 	}
 

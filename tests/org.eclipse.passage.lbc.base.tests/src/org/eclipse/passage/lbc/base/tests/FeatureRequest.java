@@ -23,9 +23,9 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionAction;
 import org.eclipse.passage.lic.internal.api.conditions.EvaluationType;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
@@ -35,28 +35,28 @@ import org.eclipse.passage.lic.internal.net.LicenseUser;
 
 final class FeatureRequest {
 
-	private final ConditionAction action;
+	private final PassageAction action;
 	private final LicensedProduct product;
 	private final String feature;
 	private final String user;
 	private final Optional<EObject> payload;
 	private final FloatingState state;
 
-	FeatureRequest(ConditionAction action, LicensedProduct product, String feature, String user, FloatingState state) {
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, FloatingState state) {
 		this(action, product, feature, user, Optional.empty(), state);
 	}
 
-	FeatureRequest(ConditionAction action, LicensedProduct product, String feature, String user, EObject payload,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, EObject payload,
 			FloatingState state) {
 		this(action, product, feature, user, Optional.of(payload), state);
 	}
 
-	FeatureRequest(ConditionAction action, LicensedProduct product, String feature, String user,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user,
 			Optional<EObject> payload) {
 		this(action, product, feature, user, payload, new EagerFloatingState());
 	}
 
-	FeatureRequest(ConditionAction action, LicensedProduct product, String feature, String user,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user,
 			Optional<EObject> payload, FloatingState state) {
 		this.action = action;
 		this.product = product;
