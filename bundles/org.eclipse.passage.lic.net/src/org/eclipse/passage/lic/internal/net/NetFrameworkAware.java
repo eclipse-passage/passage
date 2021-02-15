@@ -19,9 +19,9 @@ import org.eclipse.passage.lic.internal.net.api.FrameworkConstructor;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
-public abstract class NetFrameworkAware<R extends NetRequest> extends FrameworkAware<FrameworkConstructor> {
+public final class NetFrameworkAware<R extends NetRequest> extends FrameworkAware<FrameworkConstructor> {
 
-	protected NetFrameworkAware(ProductUserRequest<R> request) {
+	public NetFrameworkAware(ProductUserRequest<R> request) {
 		super(FrameworkConstructor.class, ctor -> Optional.of(ctor.forRequest(request)));
 	}
 

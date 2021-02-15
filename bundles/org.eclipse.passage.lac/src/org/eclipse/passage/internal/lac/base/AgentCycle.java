@@ -24,8 +24,7 @@ public final class AgentCycle extends NetServices<NetRequest> {
 
 	@Override
 	protected void defineChores(Map<PassageAction, Function<NetRequest, Chore>> services) {
-		// TODO Auto-generated method stub
-
+		services.put(new PassageAction.CanUse(), CanUse::new);
 	}
 
 }

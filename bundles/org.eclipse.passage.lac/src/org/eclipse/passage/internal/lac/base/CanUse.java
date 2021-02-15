@@ -12,6 +12,28 @@
  *******************************************************************************/
 package org.eclipse.passage.internal.lac.base;
 
-final class CanUse {
+import java.util.Optional;
+
+import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
+
+final class CanUse extends ChoreDraft<NetRequest> {
+
+	protected CanUse(NetRequest request) {
+		super(request);
+	}
+
+	@Override
+	protected Optional<NetResponse> invalid() {
+		return Optional.empty();
+	}
+
+	@Override
+	protected NetResponse withProductUser(ProductUserRequest<NetRequest> request) throws LicensingException {
+		return null;
+	}
 
 }

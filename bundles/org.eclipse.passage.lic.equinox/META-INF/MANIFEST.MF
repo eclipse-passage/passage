@@ -16,7 +16,8 @@ Export-Package: org.eclipse.passage.lic.internal.equinox;
   x-friends:="org.eclipse.passage.lic.e4.ui,
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.seal.demo,
-   org.eclipse.passage.lic.net",
+   org.eclipse.passage.lic.net,
+   org.eclipse.passage.lac",
  org.eclipse.passage.lic.internal.equinox.acquire;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.events;
