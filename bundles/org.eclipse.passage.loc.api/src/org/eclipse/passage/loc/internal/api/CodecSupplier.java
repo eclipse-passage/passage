@@ -18,20 +18,27 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.equinox.FrameworkAware;
 import org.eclipse.passage.lic.internal.equinox.SuppliedFrameworkAware;
 
 @SuppressWarnings("restriction")
-public final class CodecSupplier extends SuppliedFrameworkAware implements Supplier<Optional<StreamCodec>> {
+public final class CodecSupplier implements Supplier<Optional<StreamCodec>> {
 
 	private final LicensedProduct product;
+	private final FrameworkAware<?> delegate;
 
 	public CodecSupplier(LicensedProduct product) {
+		this(product, new SuppliedFrameworkAware());
+	}
+
+	public CodecSupplier(LicensedProduct product, FrameworkAware<?> delegate) {
 		this.product = product;
+		this.delegate = delegate;
 	}
 
 	@Override
 	public Optional<StreamCodec> get() {
-		return withFramework(this::codec);
+		return delegate.withFramework(this::codec);
 	}
 
 	private StreamCodec codec(Framework framework) {

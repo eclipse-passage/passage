@@ -53,7 +53,7 @@ public abstract class FrameworkAware<S> {
 		this.constructor = constructor;
 	}
 
-	protected final <T> ServiceInvocationResult<T> withFrameworkService(
+	public final <T> ServiceInvocationResult<T> withFrameworkService(
 			Function<Framework, ServiceInvocationResult<T>> invoke) {
 		return withReference(//
 				reference -> //
@@ -65,7 +65,7 @@ public abstract class FrameworkAware<S> {
 				this::severalFrameworks);
 	}
 
-	protected final <T> Optional<T> withFramework(Function<Framework, T> invoke) {
+	public final <T> Optional<T> withFramework(Function<Framework, T> invoke) {
 		return withReference(//
 				reference -> //
 				Optional.ofNullable(context.getService(reference))//
