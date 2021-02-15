@@ -18,12 +18,21 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class LicenseReadingServiceRequest extends SuppliedFrameworkAware
-		implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
+public final class LicenseReadingServiceRequest implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
+
+	private final FrameworkAware<?> delegate;
+
+	public LicenseReadingServiceRequest() {
+		this(new SuppliedFrameworkAware());
+	}
+
+	public LicenseReadingServiceRequest(FrameworkAware<?> delegate) {
+		this.delegate = delegate;
+	}
 
 	@Override
 	public ServiceInvocationResult<LicenseReadingService> get() {
-		return withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.licenseReader()));
+		return delegate.withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.licenseReader()));
 	}
 
 }

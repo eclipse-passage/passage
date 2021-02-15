@@ -19,26 +19,36 @@ import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-public final class EquinoxPassage extends SuppliedFrameworkAware implements Passage {
+public final class EquinoxPassage implements Passage {
+
+	private final FrameworkAware<?> delegate;
+
+	public EquinoxPassage() {
+		this(new SuppliedFrameworkAware());
+	}
+
+	public EquinoxPassage(FrameworkAware<?> delegate) {
+		this.delegate = delegate;
+	}
 
 	@Override
 	public boolean canUse(String feature) {
-		return withFramework(framework -> new Access(framework).canUse(feature)).orElse(Boolean.FALSE);
+		return delegate.withFramework(framework -> new Access(framework).canUse(feature)).orElse(Boolean.FALSE);
 	}
 
 	@Override
 	public ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
-		return withFrameworkService(framework -> new Access(framework).acquire(feature));
+		return delegate.withFrameworkService(framework -> new Access(framework).acquire(feature));
 	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> releaseLicense(GrantLockAttempt lock) {
-		return withFrameworkService(framework -> new Access(framework).release(lock));
+		return delegate.withFrameworkService(framework -> new Access(framework).release(lock));
 	}
 
 	@Override
 	public ServiceInvocationResult<LicensedProduct> product() {
-		return withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.product()));
+		return delegate.withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.product()));
 	}
 
 }

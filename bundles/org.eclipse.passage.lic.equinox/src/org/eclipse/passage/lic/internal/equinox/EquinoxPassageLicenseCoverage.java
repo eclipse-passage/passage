@@ -17,11 +17,21 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-public final class EquinoxPassageLicenseCoverage extends SuppliedFrameworkAware implements PassageLicenseCoverage {
+public final class EquinoxPassageLicenseCoverage implements PassageLicenseCoverage {
+
+	private final FrameworkAware<?> delegate;
+
+	public EquinoxPassageLicenseCoverage() {
+		this(new SuppliedFrameworkAware());
+	}
+
+	public EquinoxPassageLicenseCoverage(FrameworkAware<?> delegate) {
+		this.delegate = delegate;
+	}
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> assess() {
-		return withFrameworkService(framework -> new Access(framework).assess());
+		return delegate.withFrameworkService(framework -> new Access(framework).assess());
 	}
 
 }

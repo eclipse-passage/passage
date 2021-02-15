@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
  * Use {@code withFrameworkService} to implement client level secondary services
  * or {@code withFramework} to retrieve parts of configuration directly.
  */
-public abstract class SuppliedFrameworkAware extends FrameworkAware<FrameworkSupplier> {
+public final class SuppliedFrameworkAware extends FrameworkAware<FrameworkSupplier> {
 
-	protected SuppliedFrameworkAware() {
+	public SuppliedFrameworkAware() {
 		super(FrameworkSupplier.class, FrameworkSupplier::get);
 	}
 

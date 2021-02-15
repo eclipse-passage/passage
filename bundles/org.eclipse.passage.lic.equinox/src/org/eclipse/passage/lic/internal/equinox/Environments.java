@@ -19,11 +19,21 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
-public final class Environments extends SuppliedFrameworkAware implements Supplier<Collection<RuntimeEnvironment>> {
+public final class Environments implements Supplier<Collection<RuntimeEnvironment>> {
+
+	private final FrameworkAware<?> delegate;
+
+	public Environments() {
+		this(new SuppliedFrameworkAware());
+	}
+
+	public Environments(FrameworkAware<?> delegate) {
+		this.delegate = delegate;
+	}
 
 	@Override
 	public Collection<RuntimeEnvironment> get() {
-		return withFramework(this::environments).orElseGet(Collections::emptySet);
+		return delegate.withFramework(this::environments).orElseGet(Collections::emptySet);
 	}
 
 	private Collection<RuntimeEnvironment> environments(Framework framework) {
