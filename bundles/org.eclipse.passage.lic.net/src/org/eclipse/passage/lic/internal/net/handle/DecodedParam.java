@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
 
 final class DecodedParam {
 
@@ -30,7 +30,8 @@ final class DecodedParam {
 		try {
 			return URLDecoder.decode(raw, "UTF-8"); //$NON-NLS-1$
 		} catch (UnsupportedEncodingException e) {
-			throw new LicensingException(String.format(BaseMessages.DecodedParam_decode_failed, raw), e);
+			throw new LicensingException(
+					String.format(NetMessages.getString("DecodedParam.DecodedParam_decode_failed"), raw), e); //$NON-NLS-1$
 		}
 	}
 }

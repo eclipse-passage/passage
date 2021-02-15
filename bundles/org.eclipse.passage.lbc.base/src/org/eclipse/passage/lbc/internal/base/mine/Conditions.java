@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
-import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.FloatingFileExtensions;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -36,6 +35,7 @@ import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
 public final class Conditions implements Supplier<NetResponse> {

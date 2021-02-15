@@ -16,8 +16,9 @@ import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
-final class Acquire extends ChoreDraft<RawRequest> {
+final class Acquire extends AuthentifiedChoreDraft {
 
 	Acquire(RawRequest data) {
 		super(data);

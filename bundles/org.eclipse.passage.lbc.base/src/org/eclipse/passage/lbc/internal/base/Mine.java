@@ -15,8 +15,9 @@ package org.eclipse.passage.lbc.internal.base;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
-final class Mine extends ChoreDraft<RawRequest> {
+final class Mine extends AuthentifiedChoreDraft {
 
 	Mine(RawRequest data) {
 		super(data);

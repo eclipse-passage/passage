@@ -14,61 +14,31 @@ package org.eclipse.passage.lbc.internal.base;
 
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.net.api.handle.Chore;
-import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 
-abstract class ChoreDraft<R extends NetRequest> implements Chore {
+abstract class AuthentifiedChoreDraft extends ChoreDraft<RawRequest> {
 
-	protected final R data;
-	protected final Logger log = LogManager.getLogger(getClass());
-
-	protected ChoreDraft(R request) {
-		this.data = request;
+	protected AuthentifiedChoreDraft(RawRequest request) {
+		super(request);
 	}
 
 	@Override
-	public final NetResponse getDone() {
+	protected Optional<NetResponse> invalid() {
 		Optional<EvaluationInstructions> instructions = new ServerAuthenticationInstructions(data).get();
 		if (!instructions.isPresent()) {
-			return new Failure.BadRequestInvalidServerAuthInstructions();
+			return Optional.of(new Failure.BadRequestInvalidServerAuthInstructions());
 		}
 		try {
 			new ServerAuthentication(instructions.get()).evaluate();
 		} catch (Exception e) {
 			log.error("failed: ", e); //$NON-NLS-1$
-			return new Failure.ForeignServer(e.getMessage());
+			return Optional.of(new Failure.ForeignServer(e.getMessage()));
 		}
-		ProductUserRequest<R> request;
-		try {
-			request = new ProductUserRequest<R>(data);
-		} catch (LicensingException e) {
-			log.error("failed: ", e); //$NON-NLS-1$ ;
-			return failed(e.getMessage());
-		}
-		if (!request.product().isPresent()) {
-			return new Failure.BadRequestInvalidProduct();
-		}
-		if (!request.user().isPresent()) {
-			return new Failure.BadRequestNoUser();
-		}
-		try {
-			return withProductUser(request);
-		} catch (LicensingException e) {
-			log.error("failed: ", e); //$NON-NLS-1$ ;
-			return failed(e.getMessage());
-		}
-	}
-
-	protected abstract NetResponse withProductUser(ProductUserRequest<R> request) throws LicensingException;
-
-	protected final NetResponse failed(String details) {
-		return new Failure.OperationFailed(getClass().getSimpleName(), details);
+		return Optional.empty();
 	}
 
 }

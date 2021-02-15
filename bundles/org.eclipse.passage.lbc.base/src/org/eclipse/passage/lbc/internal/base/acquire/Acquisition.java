@@ -21,7 +21,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.EObjectTransfer;
 import org.eclipse.passage.lbc.internal.base.PlainSuceess;
-import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
@@ -32,6 +31,7 @@ import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
 public final class Acquisition {
 
