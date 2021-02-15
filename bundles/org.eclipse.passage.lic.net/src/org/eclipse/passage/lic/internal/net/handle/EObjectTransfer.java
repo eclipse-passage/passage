@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.internal.api.LicensingException;
