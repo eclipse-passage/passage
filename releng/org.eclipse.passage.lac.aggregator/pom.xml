@@ -30,6 +30,7 @@
 		<module>../../bundles/org.eclipse.passage.lac</module>
 		<module>../../bundles/org.eclipse.passage.lac.jetty</module>
 		<module>../../bundles/org.eclipse.passage.lac.server</module>
+		<module>../../bundles/org.eclipse.passage.lac.seal</module>
 		<module>../../features/org.eclipse.passage.lac.target.feature</module>
 		<module>../../features/org.eclipse.passage.lac.execute.feature</module>
 		<module>../../releng/org.eclipse.passage.lac.repository</module>
