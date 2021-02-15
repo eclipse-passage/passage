@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-public final class EquinoxPassage extends FrameworkAware implements Passage {
+public final class EquinoxPassage extends SuppliedFrameworkAware implements Passage {
 
 	@Override
 	public boolean canUse(String feature) {

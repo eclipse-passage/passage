@@ -40,6 +40,10 @@ public final class BundleKeyKeeper implements KeyKeeper {
 	private final Bundle bundle;
 	private final String midpath;
 
+	public BundleKeyKeeper(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
+		this(product, bundle.get());
+	}
+
 	public BundleKeyKeeper(Supplier<LicensedProduct> product, Bundle bundle) {
 		this(product, bundle, "OSGI-INF"); //$NON-NLS-1$
 	}

@@ -36,7 +36,9 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.json,
    org.eclipse.passage.lic.oshi,
    org.eclipse.passage.loc.products.core,
-   org.eclipse.passage.lac",
+   org.eclipse.passage.lac,
+   org.eclipse.passage.lic.licenses.migration,
+   org.eclipse.passage.lac.seal",
  org.eclipse.passage.lic.internal.api.access;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.e4.ui,

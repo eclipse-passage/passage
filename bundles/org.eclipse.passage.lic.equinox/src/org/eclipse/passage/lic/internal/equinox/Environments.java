@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
-public final class Environments extends FrameworkAware implements Supplier<Collection<RuntimeEnvironment>> {
+public final class Environments extends SuppliedFrameworkAware implements Supplier<Collection<RuntimeEnvironment>> {
 
 	@Override
 	public Collection<RuntimeEnvironment> get() {

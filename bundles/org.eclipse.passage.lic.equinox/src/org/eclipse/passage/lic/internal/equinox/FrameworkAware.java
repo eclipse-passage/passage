@@ -20,7 +20,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
@@ -41,21 +40,39 @@ import org.osgi.framework.ServiceReference;
  * Use {@code withFrameworkService} to implement client level secondary services
  * or {@code withFramework} to retrieve parts of configuration directly.
  */
-public abstract class FrameworkAware {
+public abstract class FrameworkAware<S> {
 
 	private final BundleContext context;
+	private final Class<S> component;
+	private final Function<S, Optional<Framework>> constructor;
 
-	protected FrameworkAware() {
+	protected FrameworkAware(Class<S> cls, Function<S, Optional<Framework>> constructor) {
+		// get this exact bundle, not a bundle of an ancestor class
 		this.context = FrameworkUtil.getBundle(FrameworkAware.class).getBundleContext();
+		this.component = cls;
+		this.constructor = constructor;
 	}
 
-	private Collection<ServiceReference<FrameworkSupplier>> frameworks() {
-		try {
-			// DI is used only to get rid of overwhelming dependencies here
-			return context.getServiceReferences(FrameworkSupplier.class, null);
-		} catch (InvalidSyntaxException e) {
-			return Collections.emptyList();
-		}
+	protected final <T> ServiceInvocationResult<T> withFrameworkService(
+			Function<Framework, ServiceInvocationResult<T>> invoke) {
+		return withReference(//
+				reference -> //
+				Optional.ofNullable(context.getService(reference))//
+						.flatMap(constructor::apply)//
+						.map(invoke::apply)//
+						.orElseGet(this::noFramework), //
+				this::noFramework, //
+				this::severalFrameworks);
+	}
+
+	protected final <T> Optional<T> withFramework(Function<Framework, T> invoke) {
+		return withReference(//
+				reference -> //
+				Optional.ofNullable(context.getService(reference))//
+						.flatMap(constructor::apply)//
+						.map(invoke::apply), //
+				Optional::empty, //
+				any -> Optional.empty());
 	}
 
 	private <T> ServiceInvocationResult<T> noFramework() {
@@ -66,7 +83,7 @@ public abstract class FrameworkAware {
 		);
 	}
 
-	private <T> ServiceInvocationResult<T> severalFrameworks(Collection<ServiceReference<FrameworkSupplier>> findings) {
+	private <T> ServiceInvocationResult<T> severalFrameworks(Collection<ServiceReference<S>> findings) {
 		return new BaseServiceInvocationResult<T>(//
 				new BaseDiagnostic(//
 						findings.stream()//
@@ -76,39 +93,17 @@ public abstract class FrameworkAware {
 				));
 	}
 
-	private Trouble foreignFramework(int singlings, ServiceReference<FrameworkSupplier> foreign) {
+	private Trouble foreignFramework(int singlings, ServiceReference<S> foreign) {
 		return new Trouble(//
 				new SeveralFrameworks(singlings), //
 				String.format(AccessMessages.EquinoxPassage_foreign_framework, foreign.getBundle().getSymbolicName()));
 	}
 
-	protected <T> ServiceInvocationResult<T> withFrameworkService(
-			Function<Framework, ServiceInvocationResult<T>> invoke) {
-		return withReference(//
-				reference -> //
-				Optional.ofNullable(context.getService(reference))//
-						.flatMap(FrameworkSupplier::get)//
-						.map(invoke::apply)//
-						.orElseGet(this::noFramework), //
-				this::noFramework, //
-				this::severalFrameworks);
-	}
-
-	protected <T> Optional<T> withFramework(Function<Framework, T> invoke) {
-		return withReference(//
-				reference -> //
-				Optional.ofNullable(context.getService(reference))//
-						.flatMap(FrameworkSupplier::get)//
-						.map(invoke::apply), //
-				Optional::empty, //
-				any -> Optional.empty());
-	}
-
 	private <K> K withReference(//
-			Function<ServiceReference<FrameworkSupplier>, K> onFramework, //
+			Function<ServiceReference<S>, K> onFramework, //
 			Supplier<K> onNoFramework, //
-			Function<Collection<ServiceReference<FrameworkSupplier>>, K> onSeveralFrameworks) {
-		Collection<ServiceReference<FrameworkSupplier>> candidates = frameworks();
+			Function<Collection<ServiceReference<S>>, K> onSeveralFrameworks) {
+		Collection<ServiceReference<S>> candidates = frameworks();
 		if (candidates.isEmpty()) {
 			return onNoFramework.get();
 		}
@@ -118,12 +113,20 @@ public abstract class FrameworkAware {
 			// ref.getBundle().getSignerCertificates(Bundle.SIGNERS_TRUSTED);
 			return onSeveralFrameworks.apply(candidates);
 		}
-		ServiceReference<FrameworkSupplier> reference = candidates.iterator().next(); // size is precisely 1
-
+		ServiceReference<S> reference = candidates.iterator().next(); // size is precisely 1
 		try {
 			return onFramework.apply(reference);
 		} finally {
 			context.ungetService(reference);
+		}
+	}
+
+	private Collection<ServiceReference<S>> frameworks() {
+		try {
+			// DI is used only to get rid of overwhelming dependencies here
+			return context.getServiceReferences(component, null);
+		} catch (InvalidSyntaxException e) {
+			return Collections.emptyList();
 		}
 	}
 

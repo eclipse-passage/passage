@@ -12,7 +12,11 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="1.0.0";visibility:=reexport
-Export-Package: org.eclipse.passage.lic.internal.equinox;x-friends:="org.eclipse.passage.seal.demo,org.eclipse.passage.lic.jface,org.eclipse.passage.lic.e4.ui",
+Export-Package: org.eclipse.passage.lic.internal.equinox;
+  x-friends:="org.eclipse.passage.lic.e4.ui,
+   org.eclipse.passage.lic.jface,
+   org.eclipse.passage.seal.demo,
+   org.eclipse.passage.lic.net",
  org.eclipse.passage.lic.internal.equinox.acquire;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.events;

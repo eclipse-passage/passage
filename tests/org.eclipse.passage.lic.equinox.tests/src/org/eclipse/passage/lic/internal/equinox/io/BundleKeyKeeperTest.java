@@ -63,7 +63,7 @@ public final class BundleKeyKeeperTest {
 
 	@Test(expected = NullPointerException.class)
 	public void bundleIsMandatory() {
-		new BundleKeyKeeper(this::productWithKey, null);
+		new BundleKeyKeeper(this::productWithKey, (Bundle) null);
 	}
 
 	private Bundle bundle() {
@@ -77,4 +77,5 @@ public final class BundleKeyKeeperTest {
 	private LicensedProduct productWithoutKey() {
 		return new BaseLicensedProduct("another-fake-product", "1.0.0"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
+
 }
