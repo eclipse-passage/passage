@@ -15,9 +15,12 @@ package org.eclipse.passage.internal.lac.base;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;
+import org.eclipse.passage.lic.internal.net.handle.Failure;
+import org.eclipse.passage.lic.internal.net.handle.PlainSuceess;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
 final class CanUse extends ChoreDraft<NetRequest> {
@@ -28,12 +31,23 @@ final class CanUse extends ChoreDraft<NetRequest> {
 
 	@Override
 	protected Optional<NetResponse> invalid() {
+		Optional<String> feature = feature();
+		if (!feature.isPresent()) {
+			return Optional.of(new Failure.BadRequestNoFeature());
+		}
 		return Optional.empty();
+	}
+
+	private Optional<String> feature() {
+		return new FeatureIdentifier(key -> data.parameter(key)).get();
 	}
 
 	@Override
 	protected NetResponse withProductUser(ProductUserRequest<NetRequest> request) throws LicensingException {
-		return null;
+		String feature = feature().get();
+		return new PassageAgent(request).canUse(feature)//
+				? new PlainSuceess() //
+				: new CannotUseFeature(feature, request.product().get(), request.user().get());
 	}
 
 }
