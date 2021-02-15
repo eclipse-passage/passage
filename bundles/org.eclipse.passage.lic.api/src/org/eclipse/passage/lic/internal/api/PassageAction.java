@@ -69,6 +69,14 @@ public abstract class PassageAction {
 
 	}
 
+	public static final class CanUse extends PassageAction {
+
+		public CanUse() {
+			super("canuse"); //$NON-NLS-1$
+		}
+
+	}
+
 	public static final class Of extends PassageAction {
 
 		public Of(String name) {

@@ -44,7 +44,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.lic.e4.ui,
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.jface,
-   org.eclipse.passage.lic.equinox",
+   org.eclipse.passage.lic.equinox,
+   org.eclipse.passage.lac",
  org.eclipse.passage.lic.internal.api.acquire;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.floating.model,

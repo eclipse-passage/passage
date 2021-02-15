@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.passage.lac" version="2">
+    <resource path="src/org/eclipse/passage/internal/lac/base/AgentCycle.java" type="org.eclipse.passage.internal.lac.base.AgentCycle">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="NetServices&lt;R&gt;"/>
+                <message_argument value="AgentCycle"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/passage/internal/lac/base/AgentRequestHandled.java" type="org.eclipse.passage.internal.lac.base.AgentRequestHandled">
         <filter id="576720909">
             <message_arguments>
