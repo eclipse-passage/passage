@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
-public final class LicenseReadingServiceRequest extends FrameworkAware
+public final class LicenseReadingServiceRequest extends SuppliedFrameworkAware
 		implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 
 	@Override

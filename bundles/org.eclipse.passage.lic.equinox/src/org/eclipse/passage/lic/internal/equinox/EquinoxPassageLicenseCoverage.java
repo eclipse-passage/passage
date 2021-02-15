@@ -17,7 +17,7 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.access.Access;
 
-public final class EquinoxPassageLicenseCoverage extends FrameworkAware implements PassageLicenseCoverage {
+public final class EquinoxPassageLicenseCoverage extends SuppliedFrameworkAware implements PassageLicenseCoverage {
 
 	@Override
 	public ServiceInvocationResult<ExaminationCertificate> assess() {

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.net
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.net
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -10,24 +10,29 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="0.0.0",
  org.eclipse.passage.lic.floating.model;bundle-version="0.1.0",
  org.eclipse.passage.lic.base;bundle-version="1.0.101";visibility:=reexport,
- org.apache.logging.log4j;bundle-version="2.8.2"
+ org.apache.logging.log4j;bundle-version="2.8.2",
+ org.eclipse.passage.lic.equinox;bundle-version="1.0.101"
 Export-Package: org.eclipse.passage.lic.internal.net;
   x-friends:="org.eclipse.passage.lbc.base,
    org.eclipse.passage.lic.hc,
    org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lbc.base.tests",
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.lac",
+ org.eclipse.passage.lic.internal.net.api;x-friends:="org.eclipse.passage.lac.seal",
  org.eclipse.passage.lic.internal.net.api.handle;
   x-friends:="org.eclipse.passage.lac,
    org.eclipse.passage.lac.jetty,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lbc.base.tests,
    org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lic.jetty",
+   org.eclipse.passage.lic.jetty,
+   org.eclipse.passage.lac.seal",
  org.eclipse.passage.lic.internal.net.connect,
  org.eclipse.passage.lic.internal.net.handle;
   x-friends:="org.eclipse.passage.lac,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lic.jetty,
    org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lbc.base.tests"
+   org.eclipse.passage.lbc.base.tests,
+   org.eclipse.passage.lac.seal"
 Bundle-ActivationPolicy: lazy
