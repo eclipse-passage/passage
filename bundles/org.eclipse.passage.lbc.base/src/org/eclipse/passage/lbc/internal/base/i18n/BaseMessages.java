@@ -19,7 +19,6 @@ public final class BaseMessages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.passage.lbc.internal.base.i18n.BaseMessages"; //$NON-NLS-1$
 
 	public static String AssembledConditions_validity_period_type_unknown;
-	public static String DecodedParam_decode_failed;
 	public static String ReassemblingMiningTool_path_failed;
 
 	static {

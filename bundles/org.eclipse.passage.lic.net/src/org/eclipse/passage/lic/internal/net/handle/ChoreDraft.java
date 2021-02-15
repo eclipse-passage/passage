@@ -10,20 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.Chore;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
-import org.eclipse.passage.lic.internal.net.handle.Failure;
 
-abstract class ChoreDraft<R extends NetRequest> implements Chore {
+public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 
 	protected final R data;
 	protected final Logger log = LogManager.getLogger(getClass());
@@ -34,19 +32,13 @@ abstract class ChoreDraft<R extends NetRequest> implements Chore {
 
 	@Override
 	public final NetResponse getDone() {
-		Optional<EvaluationInstructions> instructions = new ServerAuthenticationInstructions(data).get();
-		if (!instructions.isPresent()) {
-			return new Failure.BadRequestInvalidServerAuthInstructions();
-		}
-		try {
-			new ServerAuthentication(instructions.get()).evaluate();
-		} catch (Exception e) {
-			log.error("failed: ", e); //$NON-NLS-1$
-			return new Failure.ForeignServer(e.getMessage());
+		Optional<NetResponse> error = invalid();
+		if (error.isPresent()) {
+			return error.get();
 		}
 		ProductUserRequest<R> request;
 		try {
-			request = new ProductUserRequest<R>(data);
+			request = new ProductUserRequest<>(data);
 		} catch (LicensingException e) {
 			log.error("failed: ", e); //$NON-NLS-1$ ;
 			return failed(e.getMessage());
@@ -64,6 +56,8 @@ abstract class ChoreDraft<R extends NetRequest> implements Chore {
 			return failed(e.getMessage());
 		}
 	}
+
+	protected abstract Optional<NetResponse> invalid();
 
 	protected abstract NetResponse withProductUser(ProductUserRequest<R> request) throws LicensingException;
 

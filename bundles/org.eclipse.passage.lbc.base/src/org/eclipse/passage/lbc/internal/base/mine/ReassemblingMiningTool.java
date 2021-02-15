@@ -58,7 +58,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 		super(//
 				new PathKeyKeeper(product, base), //
 				new BcStreamCodec(() -> product), //
-				new XmiConditionTransport(), //
+				new XmiConditionTransport(), // is not used
 				miner);
 		this.product = product;
 		this.user = user;
@@ -98,8 +98,11 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	}
 
 	private FloatingLicensePack pack(Path source) throws LicensingException {
-		return new EObjectFromBytes<>(decoded(source), FloatingLicensePack.class).get(//
-				Collections.singletonMap(FloatingPackage.eNAME, FloatingPackage.eINSTANCE));
+		return new EObjectFromBytes<>(//
+				decoded(source), //
+				FloatingLicensePack.class).get(//
+						Collections.singletonMap(FloatingPackage.eNAME, FloatingPackage.eINSTANCE)//
+		);
 	}
 
 	private BaseConditionPack noConditions(Path license) {

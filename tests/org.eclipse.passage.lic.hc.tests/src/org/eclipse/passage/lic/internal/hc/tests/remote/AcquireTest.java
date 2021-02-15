@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.base.tests.TestData;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.ProductUserRequest;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
@@ -34,6 +33,7 @@ import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
