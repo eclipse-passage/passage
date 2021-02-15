@@ -10,12 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.base;
+package org.eclipse.passage.lic.internal.net.handle;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
-public final class PlainSuceess implements NetResponse {
+public final class EObjectTransfer implements NetResponse {
+
+	private final EObject payload;
+
+	public EObjectTransfer(EObject payload) {
+		this.payload = payload;
+	}
 
 	@Override
 	public boolean failed() {
@@ -24,17 +33,17 @@ public final class PlainSuceess implements NetResponse {
 
 	@Override
 	public boolean carriesPayload() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public Error error() {
-		throw new IllegalStateException("Successful result does not have error information"); //$NON-NLS-1$ dev
+		throw new IllegalStateException("Successful response does not possess error information"); //$NON-NLS-1$ // dev
 	}
 
 	@Override
-	public byte[] payload() {
-		throw new IllegalStateException("Plain successful result is not intended to contain any payload"); //$NON-NLS-1$ dev
+	public byte[] payload() throws LicensingException {
+		return new EObjectToBytes(payload).get();
 	}
 
 	@Override
