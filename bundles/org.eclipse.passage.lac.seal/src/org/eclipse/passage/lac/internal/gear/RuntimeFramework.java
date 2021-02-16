@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lac.internal.seal;
+package org.eclipse.passage.lac.internal.gear;
 
 import java.util.function.Supplier;
 
@@ -21,20 +21,18 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingServ
 import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-final class AgentFramework implements Framework {
+final class RuntimeFramework implements Framework {
 
 	private final Supplier<String> user;
 	private final Supplier<LicensedProduct> product;
 
-	public AgentFramework(ProductUserRequest<?> request) {
+	public RuntimeFramework(ProductUserRequest<?> request) {
 		this(request.user()::get, request.product()::get);
 	}
 
-	public AgentFramework(Supplier<String> user, Supplier<LicensedProduct> product) {
+	public RuntimeFramework(Supplier<String> user, Supplier<LicensedProduct> product) {
 		this.user = user;
 		this.product = product;
 	}
@@ -46,7 +44,7 @@ final class AgentFramework implements Framework {
 
 	@Override
 	public AccessCycleConfiguration accessCycleConfiguration() {
-		return new AgentConfiguration(new UserHomePath(), user, product, this::bundle);
+		return new RuntimeConfiguration(new UserHomePath(), user, product);
 	}
 
 	@Override
@@ -59,7 +57,4 @@ final class AgentFramework implements Framework {
 		throw new UnsupportedOperationException();
 	}
 
-	private Bundle bundle() {
-		return FrameworkUtil.getBundle(getClass());
-	}
 }
