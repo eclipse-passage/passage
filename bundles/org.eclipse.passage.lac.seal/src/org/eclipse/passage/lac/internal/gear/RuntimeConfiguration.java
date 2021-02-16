@@ -10,10 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lac.internal.seal;
+package org.eclipse.passage.lac.internal.gear;
 
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
@@ -55,20 +56,18 @@ import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtoco
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
+import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.UserFilteringConditionTransport;
 import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
-import org.osgi.framework.Bundle;
 
 @SuppressWarnings("restriction")
-public final class AgentConfiguration implements AccessCycleConfiguration {
+public final class RuntimeConfiguration implements AccessCycleConfiguration {
 
 	private final Registry<StringServiceId, ResolvedRequirements> requirements;
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
@@ -83,8 +82,7 @@ public final class AgentConfiguration implements AccessCycleConfiguration {
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
 
-	public AgentConfiguration(Supplier<Path> source, Supplier<String> user, Supplier<LicensedProduct> product,
-			Supplier<Bundle> bundle) {
+	public RuntimeConfiguration(Supplier<Path> source, Supplier<String> user, Supplier<LicensedProduct> product) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleRequirements(), //
 				new ComponentRequirements() //
@@ -100,7 +98,7 @@ public final class AgentConfiguration implements AccessCycleConfiguration {
 				new UserFilteringConditionTransport(user) //
 		));
 		codecs = new ReadOnlyRegistry<>(new BcStreamCodec(product));
-		keys = new ReadOnlyRegistry<>(new BundleKeyKeeper(product, bundle));
+		keys = new ReadOnlyRegistry<>(new PathKeyKeeper(product.get(), source));
 		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionEmittingService(//
 						expressionParsers(), //
@@ -119,9 +117,7 @@ public final class AgentConfiguration implements AccessCycleConfiguration {
 		environments = new ReadOnlyRegistry<>(Arrays.asList(//
 				new HardwareEnvironment() //
 		));
-		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
-				new BasePermissionsExaminationService()//
-		));
+		examinators = new ReadOnlyRegistry<>(Collections.emptyList());
 	}
 
 	final MiningEquipment miningEquipment() {

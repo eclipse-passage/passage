@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lac.internal.seal;
+package org.eclipse.passage.lac.internal.gear;
 
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.net.api.FrameworkConstructor;
@@ -19,11 +19,11 @@ import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.osgi.service.component.annotations.Component;
 
 @Component
-public final class AgentFrameworkConstructor implements FrameworkConstructor {
+public final class RuntimeFrameworkConstructor implements FrameworkConstructor {
 
 	@Override
 	public <R extends NetRequest> Framework forRequest(ProductUserRequest<R> request) {
-		return new AgentFramework(request);
+		return new RuntimeFramework(request);
 	}
 
 }
