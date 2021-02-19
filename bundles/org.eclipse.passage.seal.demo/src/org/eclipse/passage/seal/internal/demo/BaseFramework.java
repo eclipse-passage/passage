@@ -15,29 +15,16 @@ package org.eclipse.passage.seal.internal.demo;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
-import org.eclipse.passage.lic.internal.base.conditions.mining.BaseLicenseReadingService;
-import org.eclipse.passage.lic.internal.bc.UnemployedBcCodecs;
 
 public abstract class BaseFramework implements Framework {
 
 	private final AccessCycleConfiguration access;
 	private final LicensedProduct product;
-	private final LicenseReadingService reader;
-	private final UnemployedCodecs codecs;
 
 	protected BaseFramework() {
 		this.product = productRead();
 		this.access = configuration(product);
-		this.reader = new BaseLicenseReadingService(product, miningEquipment());
-		this.codecs = new UnemployedBcCodecs();
 	}
-
-	protected abstract LicensedProduct productRead();
-
-	protected abstract AccessCycleConfiguration configuration(LicensedProduct prod);
 
 	@Override
 	public final LicensedProduct product() {
@@ -49,18 +36,8 @@ public abstract class BaseFramework implements Framework {
 		return access;
 	}
 
-	@Override
-	public final LicenseReadingService licenseReader() {
-		return reader;
-	}
+	protected abstract LicensedProduct productRead();
 
-	@Override
-	public final UnemployedCodecs unemployedCodecs() {
-		return codecs;
-	}
-
-	private MiningEquipment miningEquipment() {
-		return new MiningEquipmentConfigured(access).get();
-	}
+	protected abstract AccessCycleConfiguration configuration(LicensedProduct prod);
 
 }

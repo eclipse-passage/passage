@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,19 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.bc;
+package org.eclipse.passage.loc.operator.internal.gear;
 
-import java.util.function.Supplier;
+import org.eclipse.passage.loc.internal.api.OperatorGear;
+import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+import org.osgi.service.component.annotations.Component;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
-
-public final class UnemployedBcCodecs implements UnemployedCodecs {
+@Component
+public final class OperaorGearAvailable implements OperatorGearSupplier {
 
 	@Override
-	public StreamCodec employFor(Supplier<LicensedProduct> product) {
-		return new BcStreamCodec(product);
+	public OperatorGear gear() {
+		return DefaultGear.gear;
 	}
 
 }

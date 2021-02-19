@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
-import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
-
 /**
  * <p>
  * All the framework-relying constructions are to originate from this point this
@@ -31,18 +28,11 @@ import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
  * <li>event bus</li>
  * </ul>
  * <p>
- * <p>
- * Two implementation is currently planned: Equinox-based and Spring based.
- * </p>
  */
 public interface Framework {
 
 	LicensedProduct product();
 
 	AccessCycleConfiguration accessCycleConfiguration();
-
-	LicenseReadingService licenseReader();
-
-	UnemployedCodecs unemployedCodecs();
 
 }

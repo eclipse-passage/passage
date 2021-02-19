@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
-import org.eclipse.passage.loc.internal.api.CodecSupplier;
+import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
 final class PersistedEncoded {
@@ -68,7 +68,8 @@ final class PersistedEncoded {
 	}
 
 	private StreamCodec codec() throws LicensingException {
-		Optional<StreamCodec> codec = new CodecSupplier(product).get();
+		Optional<StreamCodec> codec = new OperatorGearAware()
+				.withGear(gear -> Optional.ofNullable(gear.codec(product)));
 		if (!codec.isPresent()) {
 			throw new LicensingException(
 					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, decrypted));
