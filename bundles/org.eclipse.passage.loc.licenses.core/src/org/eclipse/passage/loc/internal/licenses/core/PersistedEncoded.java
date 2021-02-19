@@ -68,8 +68,7 @@ final class PersistedEncoded {
 	}
 
 	private StreamCodec codec() throws LicensingException {
-		Optional<StreamCodec> codec = new OperatorGearAware()
-				.withGear(gear -> Optional.ofNullable(gear.codec(product)));
+		Optional<StreamCodec> codec = new OperatorGearAware().withGear(gear -> gear.codec(product));
 		if (!codec.isPresent()) {
 			throw new LicensingException(
 					String.format(LicensesCoreMessages.LicenseOperatorServiceImpl_w_no_encoding, decrypted));

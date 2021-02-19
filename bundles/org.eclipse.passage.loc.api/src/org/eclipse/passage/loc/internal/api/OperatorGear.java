@@ -12,11 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
+import java.util.Optional;
+
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 public interface OperatorGear {
 
-	StreamCodec codec(LicensedProduct product);
+	Optional<StreamCodec> codec(LicensedProduct product);
 
 }

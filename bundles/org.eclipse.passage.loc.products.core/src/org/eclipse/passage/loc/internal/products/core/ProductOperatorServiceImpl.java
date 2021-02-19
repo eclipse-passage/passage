@@ -154,7 +154,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	private Optional<StreamCodec> codec(LicensedProduct product) {
-		return new OperatorGearAware().withGear(gear -> Optional.ofNullable(gear.codec(product)));
+		return new OperatorGearAware().withGear(gear -> gear.codec(product));
 	}
 
 }

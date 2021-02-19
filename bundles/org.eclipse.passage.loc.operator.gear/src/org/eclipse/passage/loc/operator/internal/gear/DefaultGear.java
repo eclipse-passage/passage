@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.operator.internal.gear;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -27,9 +28,9 @@ final class DefaultGear implements OperatorGear {
 	}
 
 	@Override
-	public StreamCodec codec(LicensedProduct product) {
+	public Optional<StreamCodec> codec(LicensedProduct product) {
 		Objects.requireNonNull(product, "DefaultGear::codec -> product"); //$NON-NLS-1$
-		return new BcStreamCodec(() -> product);
+		return Optional.of(new BcStreamCodec(() -> product));
 	}
 
 }
