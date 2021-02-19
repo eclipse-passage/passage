@@ -15,8 +15,6 @@ package org.eclipse.passage.lac.internal.gear;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
-import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
@@ -38,16 +36,6 @@ final class RuntimeFramework implements Framework {
 	@Override
 	public AccessCycleConfiguration accessCycleConfiguration() {
 		return new RuntimeConfiguration(new UserHomePath(), request);
-	}
-
-	@Override
-	public LicenseReadingService licenseReader() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public UnemployedCodecs unemployedCodecs() {
-		throw new UnsupportedOperationException();
 	}
 
 }

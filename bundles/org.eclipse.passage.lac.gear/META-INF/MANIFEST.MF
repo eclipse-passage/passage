@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Automatic-Module-Name: org.eclipse.passage.lac.seal
+Automatic-Module-Name: org.eclipse.passage.lac.gear
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lac.gear;singleton:=true
 Bundle-Version: 0.1.0.qualifier

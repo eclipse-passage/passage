@@ -122,7 +122,8 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 		examinators = new ReadOnlyRegistry<>(Collections.emptyList());
 	}
 
-	final MiningEquipment miningEquipment() {
+	@Override
+	public final MiningEquipment miningEquipment() {
 		return new PersonalLicenseMiningEquipment(keyKeepers(), codecs(), transports());
 	}
 
