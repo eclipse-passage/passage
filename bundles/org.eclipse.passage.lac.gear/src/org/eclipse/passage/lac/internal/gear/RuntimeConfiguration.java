@@ -63,6 +63,8 @@ import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.UserFilteringConditionTransport;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
 
@@ -82,7 +84,7 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
 
-	public RuntimeConfiguration(Supplier<Path> source, Supplier<String> user, Supplier<LicensedProduct> product) {
+	public RuntimeConfiguration(Supplier<Path> source, ProductUserRequest<? extends NetRequest> request) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BundleRequirements(), //
 				new ComponentRequirements() //
@@ -95,10 +97,10 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 		);
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
 				new JsonConditionTransport(), //
-				new UserFilteringConditionTransport(user) //
+				new UserFilteringConditionTransport(() -> request.user().get()) //
 		));
-		codecs = new ReadOnlyRegistry<>(new BcStreamCodec(product));
-		keys = new ReadOnlyRegistry<>(new PathKeyKeeper(product.get(), source));
+		codecs = new ReadOnlyRegistry<>(new BcStreamCodec(() -> request.product().get()));
+		keys = new ReadOnlyRegistry<>(new PathKeyKeeper(request.product().get(), source));
 		emitters = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionEmittingService(//
 						expressionParsers(), //
