@@ -13,7 +13,10 @@
 package org.eclipse.passage.loc.workbench.emfforms.renderers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -23,7 +26,10 @@ import org.eclipse.emf.ecp.view.template.model.VTViewTemplateProvider;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
-import org.eclipse.passage.lic.internal.equinox.EnvironmentNames;
+import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
+import org.eclipse.passage.loc.internal.api.OperatorGear;
+import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 
 @SuppressWarnings("restriction")
@@ -36,8 +42,7 @@ public class ConditionTypeRenderer extends ComboControlRenderer {
 			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
 			VTViewTemplateProvider vtViewTemplateProvider) {
 		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-		// FIXME: work for caching supplier
-		environments = new EnvironmentNames().get();
+		environments = new OperatorGearAware().withGear(this::names).orElseGet(Collections::emptyList);
 	}
 
 	@Override
@@ -48,6 +53,14 @@ public class ConditionTypeRenderer extends ComboControlRenderer {
 	@Override
 	protected List<String> getDefinedValues() {
 		return new ArrayList<>(environments);
+	}
+
+	private Optional<List<String>> names(OperatorGear gear) {
+		return Optional.of(//
+				gear.environments().get().services().stream()//
+						.map(RuntimeEnvironment::id)//
+						.map(EvaluationType::identifier)//
+						.collect(Collectors.toList()));
 	}
 
 }
