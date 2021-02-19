@@ -30,9 +30,9 @@ import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
-import org.eclipse.passage.loc.internal.api.CodecSupplier;
 import org.eclipse.passage.loc.internal.api.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
@@ -154,7 +154,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	private Optional<StreamCodec> codec(LicensedProduct product) {
-		return new CodecSupplier(product).get();
+		return new OperatorGearAware().withGear(gear -> Optional.ofNullable(gear.codec(product)));
 	}
 
 }

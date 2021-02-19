@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.bc
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.bc
-Bundle-Version: 1.0.100.qualifier
+Bundle-Version: 1.0.200.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -18,4 +18,5 @@ Export-Package: org.eclipse.passage.lic.internal.bc;
   x-friends:="org.eclipse.passage.lbc.base.tests,
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lic.hc.tests,
-   org.eclipse.passage.seal.demo"
+   org.eclipse.passage.seal.demo,
+   org.eclipse.passage.loc.operator.gear"
