@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.conditions.mining.BaseLicenseReadingService;
 
 public final class LicenseReadingServiceRequest implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 
@@ -32,7 +33,12 @@ public final class LicenseReadingServiceRequest implements Supplier<ServiceInvoc
 
 	@Override
 	public ServiceInvocationResult<LicenseReadingService> get() {
-		return delegate.withFrameworkService(framework -> new BaseServiceInvocationResult<>(framework.licenseReader()));
+		return delegate.withFrameworkService(framework -> new BaseServiceInvocationResult<>(//
+				new BaseLicenseReadingService(//
+						framework.product(), //
+						framework.accessCycleConfiguration().miningEquipment()//
+				)//
+		));
 	}
 
 }

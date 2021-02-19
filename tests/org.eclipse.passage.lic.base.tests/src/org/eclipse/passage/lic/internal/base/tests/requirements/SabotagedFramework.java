@@ -23,12 +23,11 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasr
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
-import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
@@ -119,16 +118,11 @@ final class SabotagedFramework implements Framework {
 			return () -> noService();
 		}
 
-	}
+		@Override
+		public MiningEquipment miningEquipment() {
+			return null;
+		}
 
-	@Override
-	public LicenseReadingService licenseReader() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public UnemployedCodecs unemployedCodecs() {
-		throw new UnsupportedOperationException();
 	}
 
 }

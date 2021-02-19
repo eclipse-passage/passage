@@ -111,7 +111,8 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 		));
 	}
 
-	final MiningEquipment miningEquipment() {
+	@Override
+	public final MiningEquipment miningEquipment() {
 		return new PersonalLicenseMiningEquipment(keyKeepers(), codecs(), transports());
 	}
 
