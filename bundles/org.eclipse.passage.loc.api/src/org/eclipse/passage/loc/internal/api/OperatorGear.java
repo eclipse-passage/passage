@@ -15,10 +15,13 @@ package org.eclipse.passage.loc.internal.api;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 public interface OperatorGear {
 
 	Optional<StreamCodec> codec(LicensedProduct product);
+
+	RuntimeEnvironmentRegistry environments();
 
 }
