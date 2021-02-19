@@ -12,39 +12,32 @@
  *******************************************************************************/
 package org.eclipse.passage.lac.internal.gear;
 
-import java.util.function.Supplier;
-
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.internal.api.io.UnemployedCodecs;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
 @SuppressWarnings("restriction")
 final class RuntimeFramework implements Framework {
 
-	private final Supplier<String> user;
-	private final Supplier<LicensedProduct> product;
+	private final ProductUserRequest<? extends NetRequest> request;
 
-	public RuntimeFramework(ProductUserRequest<?> request) {
-		this(request.user()::get, request.product()::get);
-	}
-
-	public RuntimeFramework(Supplier<String> user, Supplier<LicensedProduct> product) {
-		this.user = user;
-		this.product = product;
+	public RuntimeFramework(ProductUserRequest<? extends NetRequest> request) {
+		this.request = request;
 	}
 
 	@Override
 	public LicensedProduct product() {
-		return product.get();
+		return request.product().get();
 	}
 
 	@Override
 	public AccessCycleConfiguration accessCycleConfiguration() {
-		return new RuntimeConfiguration(new UserHomePath(), user, product);
+		return new RuntimeConfiguration(new UserHomePath(), request);
 	}
 
 	@Override
