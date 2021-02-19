@@ -75,6 +75,8 @@
 		<module>../../bundles/org.eclipse.passage.loc.operator.intro</module>
 		<module>../../features/org.eclipse.passage.loc.operator.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.loc.operator.gear</module>
+
 		<module>../../releng/org.eclipse.passage.loc.repository</module>
 
 		<module>../../products/org.eclipse.passage.loc.operator.product</module>
