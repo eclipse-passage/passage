@@ -182,20 +182,13 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		FeatureGrant grant = FloatingFactory.eINSTANCE.createFeatureGrant();
 		String fid = feature.getFeatureIdentifier();
 		grant.setFeature(fid);
-		grant.setCapacity(featureGrantCapacity(fid));
+		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
 		grant.setValid(featureGrantPeriod(fid));
 		grant.setVivid(featureGrantVivid(fid));
 		grant.setVersion(version(feature));
 		return grant;
-	}
-
-	private int featureGrantCapacity(String feature) {
-		return template//
-				.flatMap(l -> forFeature(l.getFeatures(), feature)) //
-				.map(FeatureGrant::getCapacity)//
-				.orElseGet(request::defaultCapacity);
 	}
 
 	private ValidityPeriod featureGrantPeriod(String feature) {
