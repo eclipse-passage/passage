@@ -40,7 +40,7 @@ abstract class SelectableField<T> extends LabeledField<T> {
 
 	@Override
 	public Optional<String> error() {
-		return data().isEmpty() ? Optional.of(errorText()) : Optional.empty();
+		return noData() ? Optional.of(errorText()) : Optional.empty();
 	}
 
 	@Override
@@ -73,6 +73,17 @@ abstract class SelectableField<T> extends LabeledField<T> {
 		select.setText(IssueLicensePageMessages.IssueLicenseRequestPage_btn_select_text);
 		select.addSelectionListener(widgetSelectedAdapter(event -> installData(select(text))));
 		select.setLayoutData(GridDataFactory.fillDefaults().create());
+	}
+
+	private boolean noData() {
+		Optional<T> data = data();
+		if (!data.isPresent()) {
+			return true;
+		}
+		if (data.get() instanceof Collection<?>) {
+			return ((Collection<?>) data.get()).isEmpty();
+		}
+		return false;
 	}
 
 	@Override
