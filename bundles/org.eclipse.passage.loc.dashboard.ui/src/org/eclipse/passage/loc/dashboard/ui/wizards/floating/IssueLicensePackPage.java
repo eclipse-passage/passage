@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -37,6 +38,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 public final class IssueLicensePackPage extends WizardPage {
 
@@ -45,7 +47,7 @@ public final class IssueLicensePackPage extends WizardPage {
 	private final Adapter update = new EContentAdapter() {
 		@Override
 		public void notifyChanged(Notification notification) {
-			setPageComplete(validatePage());
+			updatePageComplete();
 		}
 	};
 	private FloatingLicensePack license;
@@ -85,21 +87,17 @@ public final class IssueLicensePackPage extends WizardPage {
 	}
 
 	private void init() {
-		boolean render = license == null;
 		createLicensePack();
-		if (render) {
-			updatePage();
-		}
+		updatePage();
 	}
 
 	private void createLicensePack() {
 		if (license != null) {
 			license.eAdapters().remove(update);
-		} else {
-			license = context.get(OperatorLicenseService.class)//
-					.createFloatingLicensePack(data.get(), Optional.ofNullable(license));
-			license.eAdapters().add(update);
 		}
+		license = context.get(OperatorLicenseService.class)//
+				.createFloatingLicensePack(data.get(), Optional.ofNullable(license));
+		license.eAdapters().add(update);
 	}
 
 	private void updatePage() {
@@ -107,14 +105,25 @@ public final class IssueLicensePackPage extends WizardPage {
 			setPageComplete(false);
 			return;
 		}
-		if (license != null) {
-			try {
-				ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
-				base.layout();
-			} catch (ECPRendererException e) {
-			}
-		}
+		renderEmfForms();
+		updatePageComplete();
+	}
+
+	private void updatePageComplete() {
 		setPageComplete(validatePage());
+	}
+
+	private void renderEmfForms() {
+		if (license == null) {
+			return;
+		}
+		try {
+			Arrays.asList(base.getChildren()).forEach(Control::dispose);
+			ECPSWTViewRenderer.INSTANCE.render(base, license, properties);
+			base.layout(); // guaranteed to exist and been not disposed
+		} catch (ECPRendererException e) {
+			// do nothing
+		}
 	}
 
 	protected boolean validatePage() {
