@@ -662,6 +662,12 @@
 						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+						<ignoredPatterns>
+							<pattern>META-INF/ECLIPSE_.RSA</pattern>
+							<pattern>META-INF/ECLIPSE_.SF</pattern>
+						</ignoredPatterns>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -715,10 +721,6 @@
 								<url>${staging.baseline}</url>
 							</repository>
 						</baselineRepositories>
-						<ignoredPatterns>
-							<pattern>META-INF/ECLIPSE_.RSA</pattern>
-							<pattern>META-INF/ECLIPSE_.SF</pattern>
-						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
 					</configuration>
 				</plugin>
