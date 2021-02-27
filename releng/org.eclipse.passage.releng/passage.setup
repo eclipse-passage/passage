@@ -166,21 +166,15 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.17/R-4.17-202009021800/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.18/R-4.18-202012021800/"/>
           <repository
               url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
-              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.23/"/>
+              url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/1.0.0/lic/"/>
+              url="https://download.eclipse.org/passage/updates/release/1.1.2/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/1.0.0/loc/"/>
-          <repository
-              url="https://download.eclipse.org/passage/updates/release/1.0.0/lbc/"/>
-          <repository
-              url="https://download.eclipse.org/passage/updates/release/1.0.0/ldc/"/>
-          <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2020-09"/>
+              url="https://download.eclipse.org/tools/orbit/downloads/2020-12"/>
         </repositoryList>
       </targlet>
     </setupTask>
