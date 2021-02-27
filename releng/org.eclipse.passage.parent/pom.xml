@@ -657,6 +657,10 @@
 								<baseline>${released.baseline}</baseline>
 							</baselines>
 							<comparator>zip</comparator>
+							<ignoredPatterns>
+								<pattern>META-INF/ECLIPSE_.RSA</pattern>
+								<pattern>META-INF/ECLIPSE_.SF</pattern>
+							</ignoredPatterns>
 						</configuration>
 					</execution>
 				</executions>
