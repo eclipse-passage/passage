@@ -657,8 +657,6 @@
 								<baseline>${released.baseline}</baseline>
 							</baselines>
 							<comparator>zip</comparator>
-							<!-- FIXME: AF: temporary solution to avoid failures on sign files -->
-							<onIllegalVersion>warn</onIllegalVersion>
 						</configuration>
 					</execution>
 				</executions>
