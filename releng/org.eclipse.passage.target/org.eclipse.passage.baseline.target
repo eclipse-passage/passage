@@ -21,7 +21,7 @@
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/eclipse/updates/4.17/R-4.17-202009021800/"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.18/R-4.18-202012021800/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.ecp.emfforms.runtime.feature.feature.group" version="0.0.0"/>
@@ -30,23 +30,14 @@
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.23/"/>
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.lbc.execute.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/1.0.0/lbc/"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.ldc.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/1.0.0/ldc/"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.lic.define.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/1.0.0/lic/"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="org.eclipse.passage.loc.operator.feature.feature.group" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/passage/updates/release/1.0.0/loc/"/>
+			<repository location="https://download.eclipse.org/passage/updates/release/1.1.2/"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
@@ -74,7 +65,7 @@
 			<unit id="org.mockito" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
 			<unit id="org.slf4j.api.source" version="0.0.0"/>
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-09/"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/2020-12/"/>
 		</location>
 	</locations>
 </target>
