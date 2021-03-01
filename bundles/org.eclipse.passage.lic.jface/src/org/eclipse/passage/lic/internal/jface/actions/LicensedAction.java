@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.jface.actions;
+package org.eclipse.passage.lic.internal.jface.actions;
 
 import java.util.Optional;
 
@@ -19,27 +19,44 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 
 /**
- * @deprecated use
- *             {@link org.eclipse.passage.lic.internal.jface.actions.LicensedAction}
+ * @since 1.1
  */
-@Deprecated
-public class LicensedAction extends Action {
+public abstract class LicensedAction extends Action {
+
+	protected abstract void doAction();
 
 	@Override
-	public void runWithEvent(Event event) {
+	public final void runWithEvent(Event event) {
+		runEverywhere(event.display);
+	}
+
+	@Override
+	public final void run() {
+		runEverywhere(Display.getDefault());
+	}
+
+	private void runEverywhere(Display display) {
 		Optional<ServiceInvocationResult<GrantLockAttempt>> response = Optional.empty();
 		try {
-			response = Optional.of(new EquinoxPassageUI(event.display::getActiveShell).acquireLicense(getId()));
-			if (response.get().data().isPresent()) {
-				super.runWithEvent(event);
+			response = Optional.of(new EquinoxPassageUI(display::getActiveShell).acquireLicense(getId()));
+			if (grantAcquired(response)) {
+				doAction();
 			}
 		} finally {
 			response.flatMap(ServiceInvocationResult::data)//
 					.ifPresent(lock -> new EquinoxPassage().releaseLicense(lock));
 		}
+	}
+
+	private boolean grantAcquired(Optional<ServiceInvocationResult<GrantLockAttempt>> response) {
+		return response//
+				.flatMap(ServiceInvocationResult::data)//
+				.map(GrantLockAttempt::successful)//
+				.orElse(false);
 	}
 
 }
