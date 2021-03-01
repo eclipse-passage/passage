@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.hc.feature"
       label="%featureName"
-      version="1.0.2.qualifier"
+      version="1.0.100.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.hc"
       license-feature="org.eclipse.license"
