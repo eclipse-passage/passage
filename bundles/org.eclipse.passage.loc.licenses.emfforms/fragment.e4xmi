@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_Nvg8QOjbEeirQd2CUcYMjQ">
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_fd4zwOjhEeirQd2CUcYMjQ" featurename="children" parentElementId="org.eclipse.passage.loc.licenses.ui.partstack.details">
-    <elements xsi:type="basic:Part" xmi:id="_JOabAPFfEeiDoO1zH3kD5g" elementId="org.eclipse.passage.loc.licenses.emfforms.part.details" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.emfforms/org.eclipse.passage.loc.licenses.emfforms.parts.LicensesDetailsPart" label="Details" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/edit.png"/>
+    <elements xsi:type="basic:Part" xmi:id="_JOabAPFfEeiDoO1zH3kD5g" elementId="org.eclipse.passage.loc.licenses.emfforms.part.details" contributionURI="bundleclass://org.eclipse.passage.loc.licenses.emfforms/org.eclipse.passage.loc.licenses.emfforms.parts.LicensesDetailsPart" label="Licenses" iconURI="platform:/plugin/org.eclipse.passage.loc.workbench/images/edit.png"/>
   </fragments>
 </fragment:ModelFragments>
