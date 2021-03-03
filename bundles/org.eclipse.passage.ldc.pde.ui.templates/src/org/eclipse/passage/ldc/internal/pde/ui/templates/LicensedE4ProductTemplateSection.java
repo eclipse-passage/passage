@@ -51,7 +51,7 @@ public class LicensedE4ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	private void createOptions() {
 		addOption(KEY_WINDOW_TITLE, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_window_title_label,
-				"Licensed E4 RCP", 0); //$NON-NLS-1$
+				"Licensed RCP", 0); //$NON-NLS-1$
 		addOption(KEY_PACKAGE_NAME, PdeUiTemplatesMessages.LicensedE4ProductTemplateSection_key_package_name_label,
 				(String) null, 0);
 	}
