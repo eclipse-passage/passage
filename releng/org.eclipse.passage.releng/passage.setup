@@ -284,7 +284,7 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/downloads/drops4/S-4.19RC2-202103031800/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.19-I-builds/I20210303-1800/"/>
           <repository
               url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
