@@ -45,7 +45,7 @@ public final class Port implements NamedData<Integer> {
 
 	@Override
 	public Optional<Integer> get() {
-		return raw.map(this::parse).orElseGet(Optional::empty);
+		return raw.map(this::parse).orElseGet(this::defaultPort);
 	}
 
 	private Optional<Integer> defaultPort() {
@@ -57,7 +57,7 @@ public final class Port implements NamedData<Integer> {
 			return Optional.of(Integer.parseInt(port));
 		} catch (NumberFormatException e) {
 			log.error("failed: ", e); //$NON-NLS-1$ ;
-			return defaultPort();
+			return Optional.empty();
 		}
 	}
 
