@@ -38,6 +38,7 @@ public class JettyActivator implements BundleActivator {
 		jetty.terminate();
 	}
 
+	@SuppressWarnings("restriction")
 	private JettyHandler handler() {
 		return new JettyHandler(request -> new AgentRequestHandled(request).get());
 	}
