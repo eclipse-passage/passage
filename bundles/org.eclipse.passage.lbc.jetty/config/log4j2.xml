@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="DEBUG"
-	packages="org.eclipse.passage.lbc.internal.base">
+	packages="org.eclipse.passage.lbc.internal.base,org.eclipse.passage.lbc.internal.jetty,org.eclipse.passage.lic.internal.jetty,org.eclipse.passage.lic.internal.net">
 
 	<Appenders>
 
@@ -15,9 +15,9 @@
 					<RollingFile name="logs-FLS"
 						fileName="logs/fl-server.log" filePattern="fl-server.%i.log.gz">
 						<PatternLayout>
-							<pattern>%d{HH:mm:ss} %p %c{1.} [%t]: %m%n</pattern>
+							<pattern>%d{HH:mm:ss} %p %c{3.} [%t] %m%n</pattern>
 						</PatternLayout>
-						<SizeBasedTriggeringPolicy size="500" />
+						<SizeBasedTriggeringPolicy size="500000" />
 					</RollingFile>
 				</Route>
 				<Route ref="Console" key="Audit" />

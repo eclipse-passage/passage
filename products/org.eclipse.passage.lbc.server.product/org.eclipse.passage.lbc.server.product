@@ -19,7 +19,7 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-os ${target.os} -ws ${target.ws} -arch ${target.arch} -consoleLog -console
+      <programArgs>-os ${target.os} -ws ${target.ws} -arch ${target.arch} -consoleLog -console -server.port=8090
       </programArgs>
       <vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true
       </vmArgs>
