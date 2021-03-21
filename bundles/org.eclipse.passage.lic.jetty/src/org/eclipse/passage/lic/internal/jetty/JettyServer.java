@@ -15,15 +15,15 @@ package org.eclipse.passage.lic.internal.jetty;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.log.Log;
-import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.passage.lic.internal.jetty.i18n.Messages;
 import org.eclipse.passage.lic.internal.net.connect.Port;
 
 public final class JettyServer {
 
-	private final Logger logger = Log.getLogger(JettyServer.class);
+	private final Logger log = LogManager.getLogger(getClass());
 	private final Supplier<JettyHandler> handler;
 	private Server server;
 
@@ -37,23 +37,25 @@ public final class JettyServer {
 			server = new Server(port.get().get());
 			server.setHandler(handler.get());
 			server.start();
-			logger.info(String.format(Messages.started, port.get()));
-		} catch (Exception exception) {
-			throw new JettyException(//
-					String.format(Messages.error_onstart, exception.getClass(), exception.getMessage()), //
-					exception);
+			log.info(String.format(Messages.started, port.get().get()));
+		} catch (Exception e) {
+			logAndRethrow(e, Messages.error_onstart);
 		}
 	}
 
 	public void terminate() throws JettyException {
 		try {
 			server.stop();
-			logger.info(String.format(Messages.stopped));
-		} catch (Exception exception) {
-			throw new JettyException(//
-					String.format(Messages.error_onstop, exception.getClass(), exception.getMessage()), //
-					exception);
+			log.info(String.format(Messages.stopped));
+		} catch (Exception e) {
+			logAndRethrow(e, Messages.error_onstop);
 		}
+	}
+
+	private void logAndRethrow(Exception e, String template) throws JettyException {
+		String message = String.format(template, e.getClass(), e.getMessage());
+		log.error(message, e);
+		throw new JettyException(message, e);
 	}
 
 }
