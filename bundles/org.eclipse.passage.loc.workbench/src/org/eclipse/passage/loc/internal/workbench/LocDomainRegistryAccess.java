@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,19 +18,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
 import org.eclipse.passage.loc.internal.emf.SelectionCommandAdvisor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component
 public class LocDomainRegistryAccess implements EditingDomainRegistryAccess {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());;
+	private final Logger logger = LogManager.getLogger(getClass());
 
 	private final Map<String, EditingDomainRegistry<?>> domainRegistries = new HashMap<>();
 	private final Map<String, String> domain2extension = new HashMap<>();

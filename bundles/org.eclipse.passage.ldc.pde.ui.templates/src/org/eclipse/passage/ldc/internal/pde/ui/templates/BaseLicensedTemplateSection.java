@@ -189,7 +189,7 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				"org.eclipse.passage.lic.equinox", //$NON-NLS-1$
 				"org.eclipse.passage.lic.e4.ui", //$NON-NLS-1$
 				"org.eclipse.passage.seal.demo", //$NON-NLS-1$
-				"org.slf4j.api"); //$NON-NLS-1$
+				"org.apache.logging.log4j"); //$NON-NLS-1$
 	}
 
 }
