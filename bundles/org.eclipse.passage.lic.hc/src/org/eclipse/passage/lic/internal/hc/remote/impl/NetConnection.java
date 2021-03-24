@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
@@ -74,7 +75,7 @@ public final class NetConnection implements Connection {
 
 	@Override
 	public ContentType contentType() throws LicensingException {
-		return new ContentType.Of(connection.getContentType());
+		return new ContentType.Of(Optional.ofNullable(connection.getContentType()).orElse("none")); //$NON-NLS-1$
 	}
 
 	@Override

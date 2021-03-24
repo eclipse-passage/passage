@@ -69,7 +69,8 @@ public abstract class ServiceRemote<C extends Connection, T, D extends RemoteSer
 	}
 
 	private Trouble noServers() {
-		return new Trouble(new AbsentLicenseAttendantFile(), AccessMessages.RemoteService_no_server);
+		return new Trouble(new AbsentLicenseAttendantFile(),
+				String.format(AccessMessages.RemoteService_no_server, source.get().toAbsolutePath()));
 	}
 
 	private ServiceInvocationResult<Collection<FloatingLicenseAccess>> accesses(LicensedProduct product) {

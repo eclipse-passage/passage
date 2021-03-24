@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG"
+	packages="org.eclipse.passage.lic">
+
+	<Appenders>
+
+		<Console name="ToSysOut" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="** %d{HH:mm:ss} [%t] %-5level %logger{36}: %msg%n" />
+		</Console>
+
+		<Routing name="ToFile">
+			<Routes pattern="$${sd:type}">
+				<Route>
+					<RollingFile name="logs-AC"
+						fileName="logs/access-cycle.log" filePattern="logs/access-cycle.%i.log.gz">
+						<PatternLayout>
+							<pattern>** %d{HH:mm:ss} %p %c{3.} [%t] %m%n</pattern>
+						</PatternLayout>
+						<SizeBasedTriggeringPolicy size="500000" />
+					</RollingFile>
+				</Route>
+			</Routes>
+		</Routing>
+
+	</Appenders>
+
+	<Loggers>
+
+		<Root level="debug">
+			<AppenderRef ref="ToSysOut" />
+			<AppenderRef ref="ToFile" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>
