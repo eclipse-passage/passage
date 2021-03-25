@@ -55,7 +55,7 @@ public final class Acquisition {
 			log.error("failed: ", e); //$NON-NLS-1$
 			return new Failure.OperationFailed(new PassageAction.Acquire().name(), e.getMessage());
 		}
-		if (acquisition.isEmpty()) {
+		if (!acquisition.isPresent()) {
 			return noGrants(feature.get());
 		}
 		return new EObjectTransfer(acquisition.get());
