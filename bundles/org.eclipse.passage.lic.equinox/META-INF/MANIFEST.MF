@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.equinox
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.equinox
-Bundle-Version: 1.0.200.qualifier
+Bundle-Version: 1.0.201.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -31,7 +31,8 @@ Export-Package: org.eclipse.passage.lic.internal.equinox;
    org.eclipse.passage.loc.features.core,
    org.eclipse.passage.loc.products.core,
    org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.loc.users.core",
+   org.eclipse.passage.loc.users.core,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.equinox.requirements;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Provide-Capability: licensing.management;licensing.management="equinox";version="1.0.0"

@@ -16,7 +16,6 @@ import java.nio.file.Path;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -24,6 +23,8 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
+import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
@@ -60,9 +61,8 @@ final class DemoFramework extends BaseFramework {
 	}
 
 	private Path logConfig() throws Exception {
-		return FileLocator.getBundleFile(FrameworkUtil.getBundle(getClass())).toPath()//
-				.resolve("config") //$NON-NLS-1$
-				.resolve("log4j2.xml"); //$NON-NLS-1$
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
+		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}
 
 	private void logConfiguration() {
