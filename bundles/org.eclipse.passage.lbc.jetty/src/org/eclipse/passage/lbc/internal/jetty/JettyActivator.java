@@ -14,20 +14,21 @@ package org.eclipse.passage.lbc.internal.jetty;
 
 import java.nio.file.Path;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
+import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
-public class JettyActivator implements BundleActivator {
+public final class JettyActivator implements BundleActivator {
 
 	private final JettyServer jetty;
 	private final FloatingState state;
@@ -57,9 +58,8 @@ public class JettyActivator implements BundleActivator {
 	}
 
 	private Path logConfig() throws Exception {
-		return FileLocator.getBundleFile(FrameworkUtil.getBundle(getClass())).toPath()//
-				.resolve("config") //$NON-NLS-1$
-				.resolve("log4j2.xml"); //$NON-NLS-1$
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
+		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}
 
 }

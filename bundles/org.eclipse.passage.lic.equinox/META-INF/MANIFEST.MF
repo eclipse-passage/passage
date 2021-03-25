@@ -31,7 +31,8 @@ Export-Package: org.eclipse.passage.lic.internal.equinox;
    org.eclipse.passage.loc.features.core,
    org.eclipse.passage.loc.products.core,
    org.eclipse.passage.loc.licenses.core,
-   org.eclipse.passage.loc.users.core",
+   org.eclipse.passage.loc.users.core,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.equinox.requirements;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Provide-Capability: licensing.management;licensing.management="equinox";version="1.0.0"
