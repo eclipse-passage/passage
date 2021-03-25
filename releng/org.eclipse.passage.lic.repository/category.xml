@@ -36,6 +36,10 @@
 		id="org.eclipse.passage.lic.bc.feature">
 		<category name="org.eclipse.passage.lic.category" />
 	</feature>
+	<feature
+		id="org.eclipse.passage.lic.jetty.feature">
+		<category name="org.eclipse.passage.lic.category" />
+	</feature>
 
 	<category-def
 		name="org.eclipse.passage.lic.category.source"
@@ -59,6 +63,10 @@
 	</feature>
 	<feature
 		id="org.eclipse.passage.lic.bc.feature.source">
+		<category name="org.eclipse.passage.lic.category.source" />
+	</feature>
+	<feature
+		id="org.eclipse.passage.lic.jetty.feature.source">
 		<category name="org.eclipse.passage.lic.category.source" />
 	</feature>
 </site>
