@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lbc.internal.jetty;
+package org.eclipse.passage.lic.internal.jetty.ui;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -18,9 +18,6 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
-import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
-import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -29,30 +26,26 @@ import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
-import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 
-public final class JettyActivator implements BundleActivator {
+public abstract class LicensedJettyActivator implements BundleActivator {
+	
 	private final Logger log;
 	private final JettyServer jetty;
-	private final FloatingState state;
 	private Optional<GrantLockAttempt> lock = Optional.empty();
 
-	public JettyActivator() {
+	public LicensedJettyActivator() {
 		configureLogging();
 		this.log = LogManager.getLogger(getClass());
 		this.jetty = new JettyServer(this::handler);
-		this.state = new EagerFloatingState();
 	}
 
 	@Override
-	public void start(BundleContext context) throws Exception {
+	public final void start(BundleContext context) throws Exception {
 		lock = acquireLicense();
 		if (!lock.isPresent()) {
 			return;
@@ -64,22 +57,13 @@ public final class JettyActivator implements BundleActivator {
 	}
 
 	@Override
-	public void stop(BundleContext context) throws Exception {
+	public final void stop(BundleContext context) throws Exception {
 		lock.ifPresent(acq -> new EquinoxPassage().releaseLicense(acq));
 		jetty.terminate();
 	}
 
-	private JettyHandler handler() {
-		return new JettyHandler(request -> new FlotingRequestHandled(new StatedRequest(request, state)).get());
-	}
-
 	private void configureLogging() {
 		new Logging(this::logConfig).configure();
-	}
-
-	private Path logConfig() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
-		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}
 
 	private Optional<GrantLockAttempt> acquireLicense() {
@@ -110,5 +94,9 @@ public final class JettyActivator implements BundleActivator {
 	private boolean successful(ServiceInvocationResult<GrantLockAttempt> response) {
 		return response.data().map(GrantLockAttempt::successful).orElse(Boolean.FALSE);
 	}
+
+	protected abstract JettyHandler handler();
+
+	protected abstract Path logConfig() throws Exception;
 
 }
