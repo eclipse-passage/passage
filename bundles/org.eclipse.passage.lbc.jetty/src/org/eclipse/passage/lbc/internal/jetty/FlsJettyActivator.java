@@ -23,11 +23,11 @@ import org.eclipse.passage.lic.internal.jetty.ui.LicensedJettyActivator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
-public final class FslJettyActivator extends LicensedJettyActivator {
+public final class FlsJettyActivator extends LicensedJettyActivator {
 
 	private final FloatingState state;
 
-	public FslJettyActivator() {
+	public FlsJettyActivator() {
 		this.state = new EagerFloatingState();
 	}
 
