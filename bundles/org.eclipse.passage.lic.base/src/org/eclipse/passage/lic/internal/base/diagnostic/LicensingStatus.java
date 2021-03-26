@@ -10,26 +10,28 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.base.diagnostic;
 
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 
-final class LicensingStatus implements Supplier<List<RequirementStatus>> {
+public final class LicensingStatus implements Supplier<List<RequirementStatus>> {
 
 	private final ExaminationCertificate certificate;
 
-	LicensingStatus(ExaminationCertificate certificate) {
+	public LicensingStatus(ExaminationCertificate certificate) {
 		this.certificate = certificate;
 	}
 
 	@Override
 	public List<RequirementStatus> get() {
-		return new SumOfLists<RequirementStatus>().apply(restrictions(), satisfactions());
+		return new SumOfLists<RequirementStatus>().apply(//
+				restrictions(), //
+				satisfactions()//
+		);
 	}
 
 	private List<RequirementStatus> restrictions() {

@@ -10,30 +10,30 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.base.diagnostic;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.requirements.Feature;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
+import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
-final class RequirementStatus {
+public final class RequirementStatus {
 
 	private final String feature;
 	private final String status;
 	private final RestrictionLevel level;
 
-	RequirementStatus(Restriction restriction) {
+	public RequirementStatus(Restriction restriction) {
 		this.feature = explain(restriction.unsatisfiedRequirement().feature());
 		this.status = explain(restriction.reason());
 		this.level = restriction.unsatisfiedRequirement().restrictionLevel();
 	}
 
-	RequirementStatus(Requirement requirement) {
+	public RequirementStatus(Requirement requirement) {
 		this.feature = explain(requirement.feature());
-		this.status = LicenseStatusDialogMessages.RequirementStatus_status_ok;
+		this.status = ExaminationExplanedMessages.getString("RequirementStatus.covered"); //$NON-NLS-1$
 		this.level = requirement.restrictionLevel();
 	}
 
@@ -45,15 +45,15 @@ final class RequirementStatus {
 		return String.format("%s (%d)", trouble.explanation(), trouble.code()); //$NON-NLS-1$
 	}
 
-	String feature() {
+	public String feature() {
 		return feature;
 	}
 
-	String status() {
+	public String status() {
 		return status;
 	}
 
-	RestrictionLevel level() {
+	public RestrictionLevel level() {
 		return level;
 	}
 }
