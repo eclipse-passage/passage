@@ -111,7 +111,7 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 	}
 
 	private void registerCommands(BundleContext context) {
-		new Commands().register(context, jetty);
+		// new Commands().register(context, jetty);
 	}
 
 	protected abstract JettyHandler handler();
