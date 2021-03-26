@@ -110,7 +110,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.json,
-   org.eclipse.passage.loc.api",
+   org.eclipse.passage.loc.api,
+   org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.api.inspection;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.api.tests,

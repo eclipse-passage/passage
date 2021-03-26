@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,36 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.internal.demo;
+package org.eclipse.passage.lbc.internal.seal;
 
-import java.nio.file.Path;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.BaseFramework;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
-import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
-import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-final class DemoFramework extends BaseFramework {
+public class FlsFramework extends BaseFramework {
 
-	static final Framework demo = new DemoFramework();
-
-	private final Logger log;
-
-	private DemoFramework() {
-		configureLogging();
-		this.log = LogManager.getLogger(getClass());
-		logConfiguration();
-	}
+	static final Framework instance = new FlsFramework();
 
 	@Override
 	protected final LicensedProduct productRead() {
@@ -55,21 +39,6 @@ final class DemoFramework extends BaseFramework {
 	@Override
 	protected AccessCycleConfiguration configuration(LicensedProduct product) {
 		return new SealedAccessCycleConfiguration(() -> product);
-	}
-
-	private void configureLogging() {
-		new Logging(this::logConfig).configure();
-	}
-
-	private Path logConfig() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
-		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
-	}
-
-	private void logConfiguration() {
-		log.debug(String.format("%s runs for %s", //$NON-NLS-1$
-				getClass().getName(), //
-				product()));
 	}
 
 }
