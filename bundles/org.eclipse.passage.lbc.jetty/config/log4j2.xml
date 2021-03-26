@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2021 ArSysOp 
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	https://www.eclipse.org/legal/epl-2.0/.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+
 <Configuration status="DEBUG"
-	packages="org.eclipse.passage.lbc.internal.base,org.eclipse.passage.lbc.internal.jetty,org.eclipse.passage.lic.internal.jetty,org.eclipse.passage.lic.internal.net">
+	packages="org.eclipse.passage.lbc.internal.base,org.eclipse.passage.lbc.internal.jetty,org.eclipse.passage.lic.internal.jetty,org.eclipse.passage.lic.internal.net,org.apache.logging.log4j2,org.eclipse">
 
 	<Appenders>
 
-		<Console name="Console" target="SYSTEM_OUT">
+		<Console name="ToSysOut" target="SYSTEM_OUT">
 			<PatternLayout
 				pattern="%d{HH:mm:ss} [%t] %-5level %logger{36}: %msg%n" />
 		</Console>
 
-		<Routing name="Routing">
+		<Routing name="ToFile">
 			<Routes pattern="$${sd:type}">
 				<Route>
 					<RollingFile name="logs-FLS"
 						fileName="logs/fl-server.log" filePattern="fl-server.%i.log.gz">
 						<PatternLayout>
-							<pattern>%d{HH:mm:ss} %p %c{3.} [%t] %m%n</pattern>
+							<pattern>%d{HH:mm:ss} %p %c{1.} [%t] %m%n</pattern>
 						</PatternLayout>
 						<SizeBasedTriggeringPolicy size="500000" />
 					</RollingFile>
 				</Route>
-				<Route ref="Console" key="Audit" />
 			</Routes>
 		</Routing>
 
@@ -29,9 +41,10 @@
 	<Loggers>
 
 		<Root level="debug">
-			<AppenderRef ref="Routing" />
+			<AppenderRef ref="ToSysOut" />
+			<AppenderRef ref="ToFile" />
 		</Root>
-
+		
 	</Loggers>
 
 </Configuration>

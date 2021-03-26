@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.api
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.api
-Bundle-Version: 1.0.200.qualifier
+Bundle-Version: 1.0.201.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -40,19 +40,22 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.loc.workbench,
    org.eclipse.passage.seal.demo,
    org.eclipse.passage.seal.demo.tests,
-   org.eclipse.passage.loc.api",
+   org.eclipse.passage.loc.api,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.access;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.e4.ui,
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.lic.equinox,
-   org.eclipse.passage.lac",
+   org.eclipse.passage.lac,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.acquire;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.floating.model,
    org.eclipse.passage.lic.base,
-   org.eclipse.passage.lic.hc.tests",
+   org.eclipse.passage.lic.hc.tests,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.conditions;
   x-friends:="org.eclipse.passage.lbc.api,
    org.eclipse.passage.lbc.base,
