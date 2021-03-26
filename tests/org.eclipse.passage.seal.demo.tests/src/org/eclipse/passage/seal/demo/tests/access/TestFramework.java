@@ -16,8 +16,8 @@ import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.base.BaseFramework;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.seal.internal.demo.BaseFramework;
 import org.eclipse.passage.seal.internal.demo.DirectedAccessCycleConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
