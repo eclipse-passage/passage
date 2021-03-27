@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -27,6 +28,8 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoLicenses;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
@@ -67,7 +70,11 @@ public abstract class LocalConditions implements MinedConditions {
 	@Override
 	public final ServiceInvocationResult<Collection<ConditionPack>> all(LicensedProduct product) {
 		try {
-			return equipment.tool(product, id).mine(licenses(product));
+			Collection<Path> licenses = licenses(product);
+			if (licenses.isEmpty()) {
+				return noLicenses(product);
+			}
+			return equipment.tool(product, id).mine(licenses);
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<Collection<ConditionPack>>( //
 					new Trouble(//
@@ -75,6 +82,15 @@ public abstract class LocalConditions implements MinedConditions {
 							ConditionMiningMessages.getString("LocalConditions.failed"), //$NON-NLS-1$
 							e));
 		}
+	}
+
+	private ServiceInvocationResult<Collection<ConditionPack>> noLicenses(LicensedProduct product) {
+		return new BaseServiceInvocationResult<Collection<ConditionPack>>(//
+				new BaseDiagnostic(//
+						Collections.emptyList(), //
+						Collections.singletonList(//
+								new Trouble(new NoLicenses(), base(product).get().toAbsolutePath().toString()))//
+				));
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {

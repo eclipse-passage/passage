@@ -46,6 +46,8 @@
  * conditions found for it), but has not-critical restriction level (for
  * instance @{code info}, {@code warning}) and thus can be used without
  * license.</li>
+ * <li>409 - a license source does not provide relevant conditions (info)</li>
+ * <li>410 - no licenses found in a source directory (info)</li>
  * </ul>
  * </li>
  * <li>5xx - reserved</li>

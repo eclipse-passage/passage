@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -31,6 +32,8 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRelevantConditions;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
@@ -51,10 +54,14 @@ final class PersonalLicenseMiningTool extends ArmedMiningTool {
 
 	private ServiceInvocationResult<Collection<ConditionPack>> mine(Path source) {
 		try {
-			return new BaseServiceInvocationResult<>(Collections.singleton(//
-					new BaseConditionPack(//
-							new BaseConditionOrigin(miner, source(source)), //
-							from(decoded(source)))));
+			Collection<Condition> conditions = from(decoded(source));
+			return new BaseServiceInvocationResult<>(//
+					diagnostic(conditions, source), //
+					Collections.singleton(//
+							new BaseConditionPack(//
+									new BaseConditionOrigin(miner, source(source)), //
+									conditions)//
+					));
 		} catch (IOException | LicensingException e) {
 			return new BaseServiceInvocationResult<>(//
 					new Trouble(//
@@ -69,6 +76,17 @@ final class PersonalLicenseMiningTool extends ArmedMiningTool {
 		try (ByteArrayInputStream input = new ByteArrayInputStream(decoded)) {
 			return transport.read(input);
 		}
+	}
+
+	private Diagnostic diagnostic(Collection<Condition> conditions, Path source) {
+		if (conditions.isEmpty()) {
+			return new BaseDiagnostic(//
+					Collections.emptyList(), //
+					Collections.singletonList(//
+							new Trouble(new NoRelevantConditions(), source.toAbsolutePath().toString()))//
+			);
+		}
+		return new BaseDiagnostic();
 	}
 
 }
