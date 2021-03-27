@@ -19,7 +19,7 @@ import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
-import org.eclipse.passage.lic.internal.jetty.ui.LicensedJettyActivator;
+import org.eclipse.passage.lic.internal.jetty.interaction.LicensedJettyActivator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
