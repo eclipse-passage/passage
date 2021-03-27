@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<component id="org.eclipse.passage.lic.net" version="2">
-    <resource path="src/org/eclipse/passage/lic/internal/net/connect/Port.java" type="org.eclipse.passage.lic.internal.net.connect.Port">
-        <filter id="576725006">
+<component id="org.eclipse.passage.lic.jetty" version="2">
+    <resource path="src/org/eclipse/passage/lic/internal/jetty/ui/LicensedJettyActivator.java" type="org.eclipse.passage.lic.internal.jetty.ui.LicensedJettyActivator">
+        <filter id="643842064">
             <message_arguments>
-                <message_argument value="NamedData&lt;T&gt;"/>
-                <message_argument value="Port"/>
+                <message_argument value="JettyHandler"/>
+                <message_argument value="LicensedJettyActivator"/>
+                <message_argument value="handler()"/>
             </message_arguments>
         </filter>
     </resource>
