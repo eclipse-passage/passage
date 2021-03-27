@@ -16,5 +16,5 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
  org.eclipse.passage.lic.net;bundle-version="1.0.100",
  org.eclipse.passage.lic.equinox;bundle-version="1.0.201"
 Export-Package: org.eclipse.passage.lic.internal.jetty;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lbc.jetty,org.eclipse.passage.lac.jetty",
- org.eclipse.passage.lic.internal.jetty.ui
+ org.eclipse.passage.lic.internal.jetty.interaction;x-friends:="org.eclipse.passage.lbc.jetty"
 Bundle-ActivationPolicy: lazy
