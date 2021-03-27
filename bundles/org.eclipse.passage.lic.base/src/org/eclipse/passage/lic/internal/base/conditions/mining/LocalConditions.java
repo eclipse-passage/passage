@@ -90,7 +90,9 @@ public abstract class LocalConditions implements MinedConditions {
 						Collections.emptyList(), //
 						Collections.singletonList(//
 								new Trouble(new NoLicenses(), base(product).get().toAbsolutePath().toString()))//
-				));
+				), //
+				Collections.emptyList()//
+		);
 	}
 
 	private Collection<Path> licenses(LicensedProduct product) throws LicensingException {
