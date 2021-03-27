@@ -14,7 +14,7 @@
 <?eclipse version="3.4"?>
 <plugin>
  <extension
-       id="org.eclipse.passage.lbc.server.application"
+       id="org.eclipse.passage.lbc.fls.application"
        point="org.eclipse.core.runtime.applications">
     <application
           cardinality="1"
@@ -23,10 +23,10 @@
     </application>
  </extension>
  <extension
-       id="product"
+       id="org.eclipse.passage.lbc.fls.product"
        point="org.eclipse.core.runtime.products">
     <product
-          application="org.eclipse.passage.lbc.server.application"
+          application="org.eclipse.passage.lbc.fls.application"
           name="%product.name">
        <property
              name="appName"

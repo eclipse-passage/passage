@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
@@ -59,8 +60,8 @@ public final class ConditionsTest {
 		return grants;
 	}
 
-	private ProductUserRequest request(String user, String product) throws LicensingException {
-		return new ProductUserRequest(//
+	private ProductUserRequest<RawRequest> request(String user, String product) throws LicensingException {
+		return new ProductUserRequest<>(//
 				new RequestConstructed()//
 						.withParameters(Arrays.asList(//
 								new ProductIdentifier(product), new ProductVersion("0.2.1"), //$NON-NLS-1$
