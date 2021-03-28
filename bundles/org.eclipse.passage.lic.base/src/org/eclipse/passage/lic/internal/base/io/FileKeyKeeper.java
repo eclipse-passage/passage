@@ -35,7 +35,7 @@ public final class FileKeyKeeper implements KeyKeeper {
 	@Override
 	public LicensedProduct id() {
 		throw new UnsupportedOperationException(
-				"Reads the only key from the given location, product is unknown. Is not inded to be used."); //$NON-NLS-1$
+				"Reads the only key from the given location, product is unknown. Is not intended to be used."); //$NON-NLS-1$
 	}
 
 	@Override
