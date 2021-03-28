@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp and others
+ * Copyright (c) 2019, 2021 ArSysOp and others
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,14 +15,17 @@ package org.eclipse.passage.loc.internal.licenses.core.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class LicensesCoreMessages extends NLS {
+public final class LicensesCoreMessages extends NLS {
+
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages"; //$NON-NLS-1$
+
 	public static String EmfObjectPersisted_failed;
 	public static String LicenseOperatorServiceImpl_error_io;
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
 	public static String LicenseOperatorServiceImpl_failed_to_save_decoded;
 	public static String LicenseOperatorServiceImpl_private_key_not_found;
+	public static String LicenseOperatorServiceImpl_public_key_not_found;
 	public static String LicenseOperatorServiceImpl_status_invalid_licensing_request;
 	public static String LicenseOperatorServiceImpl_w_no_encoding;
 	public static String LicensesSelectionCommandAdvisor_select_lic_plan;
@@ -45,7 +48,9 @@ public class LicensesCoreMessages extends NLS {
 	public static String LicenseOperatorServiceImpl_floating_no_codec;
 	public static String LicenseOperatorServiceImpl_floating_save_decoded_failed;
 	public static String LicenseOperatorServiceImpl_floating_save_encoded_failed;
+	public static String LicenseOperatorServiceImpl_floating_save_product_key;
 	public static String LicenseOperatorServiceImpl_floating_save_encoded_file_error;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, LicensesCoreMessages.class);

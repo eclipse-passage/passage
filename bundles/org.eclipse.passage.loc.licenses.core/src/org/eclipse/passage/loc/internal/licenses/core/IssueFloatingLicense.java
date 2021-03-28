@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,11 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
@@ -57,13 +61,16 @@ final class IssueFloatingLicense {
 		Path residence = residence(pack.getLicense());
 		ServiceInvocationResult<List<Path>> license = //
 				persist(pack, product, residence, decryptedFile(pack), encryptedFile(pack));
-		ServiceInvocationResult<List<Path>> files = configs.stream()//
+		BinaryOperator<ServiceInvocationResult<List<Path>>> sum = new BaseServiceInvocationResult.Sum<>(
+				new SumOfLists<Path>());
+		ServiceInvocationResult<List<Path>> withConfigs = configs.stream()//
 				.map(access -> persist(access, product, residence, decryptedFile(access), encryptedFile(access)))//
-				.reduce(license, new BaseServiceInvocationResult.Sum<>(new SumOfLists<Path>()));
-		if (!new NoSevereErrors().test(files.diagnostic())) {
-			return new BaseServiceInvocationResult<>(files.diagnostic());
+				.reduce(license, sum);
+		ServiceInvocationResult<List<Path>> withKey = sum.apply(withConfigs, replicateKey(product, residence));
+		if (!new NoSevereErrors().test(withKey.diagnostic())) {
+			return new BaseServiceInvocationResult<>(withKey.diagnostic());
 		}
-		return new BaseServiceInvocationResult<>(new BaseIssuedFloatingLicense(residence, files.data().get()));
+		return new BaseServiceInvocationResult<>(new BaseIssuedFloatingLicense(residence, withKey.data().get()));
 	}
 
 	private ServiceInvocationResult<List<Path>> persist(EObject target, LicensedProduct product, //
@@ -87,9 +94,21 @@ final class IssueFloatingLicense {
 			licen = new PersistedEncoded(product, lic, new ProductPassword(products, operator)).write(encrypted);
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), //
-					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_decoded_failed, e));
+					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_encoded_failed, e));
 		}
 		return new BaseServiceInvocationResult<>(Arrays.asList(lic, licen));
+	}
+
+	private ServiceInvocationResult<List<Path>> replicateKey(LicensedProduct product, Path folder) {
+		// copy product public key
+		Path key;
+		try {
+			key = copyPlainFile(new ProductKeyFile(product).pub(), folder);
+		} catch (Exception e) {
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), //
+					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_product_key, e));
+		}
+		return new BaseServiceInvocationResult<>(Collections.singletonList(key));
 	}
 
 	private Path residence(LicenseRequisites license) {
@@ -100,9 +119,14 @@ final class IssueFloatingLicense {
 						.resolve(license.getIdentifier());
 	}
 
+	private Path copyPlainFile(Path origin, Path folder) throws IOException {
+		Path destination = folder.resolve(origin.getFileName().toString());
+		Files.copy(origin, destination);
+		return destination;
+	}
+
 	private LicensedProduct product(ProductRef ref) {
 		return new BaseLicensedProduct(ref.getProduct(), ref.getVersion());
-
 	}
 
 	private String decryptedFile(FloatingLicensePack pack) {
