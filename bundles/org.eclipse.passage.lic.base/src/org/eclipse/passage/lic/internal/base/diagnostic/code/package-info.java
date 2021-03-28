@@ -48,6 +48,7 @@
  * license.</li>
  * <li>409 - a license source does not provide relevant conditions (info)</li>
  * <li>410 - no licenses found in a source directory (info)</li>
+ * <li>411 - no data of a particular type found (info)</li>
  * </ul>
  * </li>
  * <li>5xx - reserved</li>
