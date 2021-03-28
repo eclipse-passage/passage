@@ -74,10 +74,6 @@ final class Pack {
 			).get();
 		}
 
-		String id() {
-			return content.getLicense().getIdentifier();
-		}
-
 		LicensedProduct product() {
 			ProductRef ref = content.getLicense().getProduct();
 			return new BaseLicensedProduct(ref.getProduct(), ref.getVersion());
