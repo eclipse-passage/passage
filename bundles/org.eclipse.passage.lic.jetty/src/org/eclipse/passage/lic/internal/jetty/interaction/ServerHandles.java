@@ -26,13 +26,14 @@ final class ServerHandles extends Command {
 	private final Port port;
 	private final LicenseProtection license = new LicenseProtection();
 
-	ServerHandles(JettyServer server) {
+	ServerHandles(JettyServer server, String name) {
 		super(//
-				new Scope.Server(), //
+				new Scope.Of(name), //
 				new String[] { //
 						"start", //$NON-NLS-1$
 						"stop", //$NON-NLS-1$
-						"restart" //$NON-NLS-1$
+						"restart", //$NON-NLS-1$
+						"state" //$NON-NLS-1$
 				});
 		this.server = server;
 		this.port = new Port(Platform.getApplicationArgs(), 8090);
@@ -61,6 +62,14 @@ final class ServerHandles extends Command {
 	public void restart() {
 		stop();
 		start();
+	}
+
+	public void state() {
+		try {
+			System.out.println(server.state());
+		} catch (JettyException e) {
+			log.error("failed to report state of Jetty server", e); //$NON-NLS-1$
+		}
 	}
 
 }

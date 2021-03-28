@@ -10,30 +10,33 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
+package org.eclipse.passage.lic.internal.base.io;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 
-final class ExternalLicense {
+public final class ExternalLicense {
 
 	private final LicensedProduct product;
 
-	ExternalLicense(LicensedProduct product) {
+	public ExternalLicense(LicensedProduct product) {
 		this.product = product;
 	}
 
-	void install(Path license) throws IOException {
+	public void install(Path... pack) throws IOException {
+		for (Path file : pack) {
+			installLicenseFile(file);
+		}
+	}
+
+	private void installLicenseFile(Path file) throws IOException {
 		Path target = new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get()
-				.resolve(license.getFileName());
+				.resolve(file.getFileName());
 		target.toFile().getParentFile().mkdirs();
-		Files.copy(license, target);
+		Files.copy(file, target);
 	}
 
 }

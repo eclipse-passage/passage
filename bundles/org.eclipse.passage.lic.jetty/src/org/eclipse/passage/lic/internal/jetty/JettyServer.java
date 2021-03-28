@@ -52,6 +52,14 @@ public final class JettyServer {
 		}
 	}
 
+	public String state() throws JettyException {
+		try {
+			return server.getState();
+		} catch (Exception e) {
+			throw new JettyException(Messages.error_onstate, e);
+		}
+	}
+
 	private void logAndRethrow(Exception e, String template) throws JettyException {
 		String message = String.format(template, e.getClass(), e.getMessage());
 		log.error(message, e);

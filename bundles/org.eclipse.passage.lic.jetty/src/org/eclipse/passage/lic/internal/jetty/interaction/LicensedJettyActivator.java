@@ -33,7 +33,7 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 	@Override
 	public final void start(BundleContext context) throws Exception {
 		registerCommands(context);
-		server.start();
+		server.start(); // temporal coupling here: server is initialized during commands registration
 	}
 
 	@Override
@@ -47,12 +47,17 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 
 	private void registerCommands(BundleContext context) {
 		Commands commands = new Commands();
-		commands.register(context, jetty);
+		commands.register(context, jetty, name());
 		this.server = commands.server();
+		registerCustomCommands(context);
 	}
+
+	protected abstract String name();
 
 	protected abstract JettyHandler handler();
 
 	protected abstract Path logConfig() throws Exception;
+
+	protected abstract void registerCustomCommands(BundleContext context);
 
 }

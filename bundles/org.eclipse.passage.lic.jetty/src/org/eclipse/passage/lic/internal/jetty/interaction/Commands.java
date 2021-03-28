@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty.interaction;
 
-import java.util.Hashtable;
-
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.osgi.framework.BundleContext;
 
@@ -21,9 +19,9 @@ final class Commands {
 
 	private ServerHandles server;
 
-	void register(BundleContext context, JettyServer jetty) {
+	void register(BundleContext context, JettyServer jetty, String name) {
 		registerSelfStatus(context);
-		registerServerHandles(context, jetty);
+		registerServerHandles(context, jetty, name);
 	}
 
 	ServerHandles server() {
@@ -31,21 +29,12 @@ final class Commands {
 	}
 
 	private void registerSelfStatus(BundleContext context) {
-		register(context, new LicenseStatus());
+		new LicenseStatus().register(context);
 	}
 
-	private void registerServerHandles(BundleContext context, JettyServer jetty) {
-		this.server = new ServerHandles(jetty);
-		register(context, server);
-	}
-
-	private void register(BundleContext context, Command command) {
-		Hashtable<String, Object> props = new Hashtable<>();
-		props.put("osgi.command.scope", //$NON-NLS-1$
-				command.scope().id());
-		props.put("osgi.command.function", //$NON-NLS-1$
-				command.commands());
-		context.registerService(command.getClass().getName(), command, props);
+	private void registerServerHandles(BundleContext context, JettyServer jetty, String name) {
+		this.server = new ServerHandles(jetty, name);
+		this.server.register(context);
 	}
 
 }
