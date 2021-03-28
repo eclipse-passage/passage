@@ -15,28 +15,37 @@ package org.eclipse.passage.lic.internal.base.io;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 public final class ExternalLicense {
 
-	private final LicensedProduct product;
+	private final Path destination;
 
 	public ExternalLicense(LicensedProduct product) {
-		this.product = product;
+		this(new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get());
 	}
 
-	public void install(Path... pack) throws IOException {
+	public ExternalLicense(LicensedProduct product, String medium) {
+		this(new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get().resolve(medium));
+	}
+
+	public ExternalLicense(Path destination) {
+		this.destination = destination;
+	}
+
+	public Path install(Path... pack) throws IOException {
 		for (Path file : pack) {
 			installLicenseFile(file);
 		}
+		return destination;
 	}
 
 	private void installLicenseFile(Path file) throws IOException {
-		Path target = new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get()
-				.resolve(file.getFileName());
+		Path target = destination.resolve(file.getFileName());
 		target.toFile().getParentFile().mkdirs();
-		Files.copy(file, target);
+		Files.copy(file, target, StandardCopyOption.REPLACE_EXISTING);
 	}
 
 }

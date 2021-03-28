@@ -41,7 +41,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.loc.workbench,
    org.eclipse.passage.seal.demo,
    org.eclipse.passage.seal.demo.tests,
-   org.eclipse.passage.lic.jetty",
+   org.eclipse.passage.lic.jetty,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.access;
   x-friends:="org.eclipse.passage.lac,
    org.eclipse.passage.lic.base,
@@ -111,7 +112,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.json,
    org.eclipse.passage.loc.api,
-   org.eclipse.passage.lic.jetty",
+   org.eclipse.passage.lic.jetty,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.api.inspection;
   x-friends:="org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.api.tests,

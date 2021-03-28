@@ -43,7 +43,7 @@ public final class DiagnosticExplainedTest {
 		assertTrue(explanation.contains("555")); //$NON-NLS-1$
 		assertTrue(explanation.contains("severe demand explanation")); //$NON-NLS-1$
 		assertTrue(explanation.contains("bearable demand explanation")); //$NON-NLS-1$
-		assertTrue(explanation.contains(",")); //$NON-NLS-1$
+		assertTrue(explanation.contains("fail")); //$NON-NLS-1$
 	}
 
 	private Diagnostic diagnostic() {

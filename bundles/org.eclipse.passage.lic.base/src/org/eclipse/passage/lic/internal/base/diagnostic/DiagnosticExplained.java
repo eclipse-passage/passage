@@ -58,9 +58,9 @@ public final class DiagnosticExplained implements Supplier<String> {
 	}
 
 	private void append(Trouble trouble, StringBuilder out) {
-		out.append("\r\n\t") //$NON-NLS-1$
+		out.append("\r\n\t> ") //$NON-NLS-1$
 				.append(trouble.details()) //
-				.append(" (") //$NON-NLS-1$
+				.append("\n\t\t(") //$NON-NLS-1$
 				.append(trouble.code().code()) //
 				.append(": ") //$NON-NLS-1$
 				.append(trouble.code().explanation())//

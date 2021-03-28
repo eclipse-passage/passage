@@ -44,10 +44,6 @@ import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 
-/**
- * FIXME: There lots of diagnostics is spared in vain. Find a way to pass it to
- * a client should the need arise
- */
 final class ReassemblingMiningTool extends ArmedMiningTool {
 
 	private final String user;
@@ -100,9 +96,8 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	private FloatingLicensePack pack(Path source) throws LicensingException {
 		return new EObjectFromBytes<>(//
 				decoded(source), //
-				FloatingLicensePack.class).get(//
-						Collections.singletonMap(FloatingPackage.eNAME, FloatingPackage.eINSTANCE)//
-		);
+				FloatingLicensePack.class//
+		).get(Collections.singletonMap(FloatingPackage.eNAME, FloatingPackage.eINSTANCE));
 	}
 
 	private BaseConditionPack noConditions(Path license) {

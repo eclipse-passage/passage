@@ -12,6 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
+import java.nio.file.Path;
+import java.util.List;
+
+import org.eclipse.passage.lbc.internal.base.interaction.IncomingLicense;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.jetty.interaction.Command;
 import org.eclipse.passage.lic.internal.jetty.interaction.Scope;
 
@@ -22,28 +27,31 @@ final class UploadLicense extends Command {
 	}
 
 	public void upload(String from) {
-		// new IncomingLicense(from).upload();
+		ServiceInvocationResult<List<Path>> result = new IncomingLicense(from).upload();
+		if (result.data().isPresent()) {
+			reportDestination(result.data().get());
+		}
+		reportDiagnostic(result.diagnostic());
+
 	}
 
-	public void upload(String from, String product, String version) {
-		// new IncomingLicense(from).uploadForProduct(product, version);
+	private void reportDestination(List<Path> list) {
+		System.out.println("Floating lincens(es) uploaded to "); //$NON-NLS-1$
+		list.forEach(path -> System.out.println("\t" + path.toAbsolutePath())); //$NON-NLS-1$
 	}
 
 	public void upload(String... args) {
 		if (args.length == 1) {
 			upload(args[0]);
-		} else if (args.length == 3) {
-			upload(args[0], args[1], args[2]);
 		} else {
 			System.out.println(help());
 		}
 	}
 
 	private String help() {
-		return "[fls:upload] places the given floating license pack at the Server's disposal.\n" + //$NON-NLS-1$
-				"Usage:\n\t" + //$NON-NLS-1$
-				scope.id() + ":upload <path-to-license-pack-folder>\n\t" + //$NON-NLS-1$
-				scope.id() + ":upload <path-to-license-pack-folder> <product-id> <product-version>\n"; //$NON-NLS-1$
+		return "[fls:upload] scans the given folder for floating licenses and uploads all findings at the Server's disposal.\n" //$NON-NLS-1$
+				+ "Usage:\n\t" //$NON-NLS-1$
+				+ scope.id() + ":upload <path-to-folder>\n\t"; //$NON-NLS-1$
 	}
 
 }

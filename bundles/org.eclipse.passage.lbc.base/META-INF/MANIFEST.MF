@@ -26,5 +26,6 @@ Require-Bundle: javax.servlet;bundle-version="0.0.0",
 Export-Package: org.eclipse.passage.lbc.internal.base;x-friends:="org.eclipse.passage.lbc.jetty,org.eclipse.passage.lbc.base.tests,org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lbc.internal.base.acquire;x-friends:="org.eclipse.passage.lbc.base.tests,org.eclipse.passage.lic.hc.tests",
  org.eclipse.passage.lbc.internal.base.api,
+ org.eclipse.passage.lbc.internal.base.interaction;x-friends:="org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lbc.internal.base.mine;x-friends:="org.eclipse.passage.lbc.base.tests,org.eclipse.passage.lic.hc.tests"
 Bundle-ActivationPolicy: lazy

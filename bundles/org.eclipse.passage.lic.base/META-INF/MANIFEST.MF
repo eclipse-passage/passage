@@ -55,7 +55,8 @@ Export-Package: org.eclipse.passage.lic.internal.base;
    org.eclipse.passage.loc.licenses.core,
    org.eclipse.passage.loc.licenses.ui,
    org.eclipse.passage.seal.demo.tests,
-   org.eclipse.passage.lic.jetty",
+   org.eclipse.passage.lic.jetty,
+   org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lic.internal.base.diagnostic.code;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.equinox,

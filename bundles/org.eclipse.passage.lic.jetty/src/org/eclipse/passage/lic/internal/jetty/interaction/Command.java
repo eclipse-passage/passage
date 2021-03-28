@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import java.util.Hashtable;
 
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.osgi.framework.BundleContext;
 
 public abstract class Command {
@@ -31,6 +34,13 @@ public abstract class Command {
 		properties.put("osgi.command.scope", scope.id());//$NON-NLS-1$
 		properties.put("osgi.command.function", names);//$NON-NLS-1$
 		context.registerService(getClass().getName(), this, properties);
+	}
+
+	protected final void reportDiagnostic(Diagnostic diagnostic) {
+		if (new NoErrors().test(diagnostic)) {
+			return;
+		}
+		System.out.printf("\n%s\n", new DiagnosticExplained(diagnostic).get()); //$NON-NLS-1$
 	}
 
 }
