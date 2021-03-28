@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.interaction.LicensedJettyActivator;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 public final class FlsJettyActivator extends LicensedJettyActivator {
@@ -32,6 +33,11 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	}
 
 	@Override
+	protected String name() {
+		return "fls"; //$NON-NLS-1$
+	}
+
+	@Override
 	protected JettyHandler handler() {
 		return new JettyHandler(request -> new FlotingRequestHandled(new StatedRequest(request, state)).get());
 	}
@@ -40,6 +46,11 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	protected Path logConfig() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(getClass());
 		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
+	}
+
+	@Override
+	protected void registerCustomCommands(BundleContext context) {
+		new FlsCommands().register(context, name());
 	}
 
 }

@@ -49,7 +49,7 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 		Commands commands = new Commands();
 		commands.register(context, jetty, name());
 		this.server = commands.server();
-		// registerCustomCommands(context);
+		registerCustomCommands(context);
 	}
 
 	protected abstract String name();
@@ -58,6 +58,6 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 
 	protected abstract Path logConfig() throws Exception;
 
-	// protected abstract void registerCustomCommands(BundleContext context);
+	protected abstract void registerCustomCommands(BundleContext context);
 
 }
