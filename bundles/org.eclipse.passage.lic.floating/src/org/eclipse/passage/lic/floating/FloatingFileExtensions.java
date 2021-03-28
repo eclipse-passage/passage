@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.floating;
 
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 
+/**
+ * TODO rename to '*Extension', no plural
+ */
 public abstract class FloatingFileExtensions extends PassageFileExtension {
 
 	public static final class FloatingLicenseEncrypted extends FloatingFileExtensions {
