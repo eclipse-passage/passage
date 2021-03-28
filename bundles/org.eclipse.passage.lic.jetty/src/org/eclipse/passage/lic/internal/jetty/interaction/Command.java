@@ -12,9 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty.interaction;
 
+import java.util.Hashtable;
+
+import org.osgi.framework.BundleContext;
+
 public abstract class Command {
 
-	private final Scope scope;
+	protected final Scope scope;
 	private final String[] names;
 
 	public Command(Scope scope, String[] names) {
@@ -22,12 +26,11 @@ public abstract class Command {
 		this.names = names;
 	}
 
-	public final Scope scope() {
-		return scope;
-	}
-
-	public final String[] commands() {
-		return names;
+	public final void register(BundleContext context) {
+		Hashtable<String, Object> properties = new Hashtable<>();
+		properties.put("osgi.command.scope", scope.id());//$NON-NLS-1$
+		properties.put("osgi.command.function", names);//$NON-NLS-1$
+		context.registerService(getClass().getName(), this, properties);
 	}
 
 }
