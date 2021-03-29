@@ -15,7 +15,6 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Function;
@@ -23,9 +22,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
@@ -57,14 +53,7 @@ final class PersistedEncoded {
 	}
 
 	private Path key() throws LicensingException {
-		Path key = new UserHomeProductResidence(product).get()
-				.resolve(new FileNameFromLicensedProduct(product, new PassageFileExtension.PrivateKey()).get());
-		if (!Files.exists(key)) {
-			throw new LicensingException(String.format(//
-					LicensesCoreMessages.LicenseOperatorServiceImpl_private_key_not_found, key.toAbsolutePath()));
-		}
-		return key;
-
+		return new ProductKeyFile(product).scr();
 	}
 
 	private StreamCodec codec() throws LicensingException {
