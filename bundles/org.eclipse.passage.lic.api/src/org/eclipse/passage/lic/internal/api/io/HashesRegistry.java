@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,12 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.io;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.registry.Service;
+import java.util.function.Supplier;
+
+import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
-public interface Hashes extends Service<StringServiceId> {
-
-	byte[] get(byte[] source) throws LicensingException;
+public interface HashesRegistry extends Supplier<Registry<StringServiceId, Hashes>> {
 
 }
