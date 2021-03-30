@@ -28,4 +28,8 @@ public final class ReadOnlyRegistry<I extends ServiceId, S extends Service<I>> e
 		super(Collections.singleton(service));
 	}
 
+	public ReadOnlyRegistry() {
+		super(Collections.emptyList());
+	}
+
 }
