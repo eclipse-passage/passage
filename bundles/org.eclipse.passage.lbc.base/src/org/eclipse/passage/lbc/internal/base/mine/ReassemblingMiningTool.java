@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +30,10 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
@@ -39,10 +41,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.base.conditions.mining.ArmedMiningTool;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
-import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 
 final class ReassemblingMiningTool extends ArmedMiningTool {
 
@@ -50,12 +49,9 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	private final LicensedProduct product;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	ReassemblingMiningTool(LicensedProduct product, String user, Supplier<Path> base, ConditionMiningTarget miner) {
-		super(//
-				new PathKeyKeeper(product, base), //
-				new BcStreamCodec(() -> product), //
-				new XmiConditionTransport(), // is not used
-				miner);
+	ReassemblingMiningTool(KeyKeeper key, StreamCodec codec, ConditionTransport transport, LicensedProduct product,
+			String user, ConditionMiningTarget miner) {
+		super(key, codec, transport, miner);
 		this.product = product;
 		this.user = user;
 	}

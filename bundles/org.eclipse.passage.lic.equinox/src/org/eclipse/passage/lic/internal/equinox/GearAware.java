@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Function;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.api.Gear;
 import org.eclipse.passage.lic.internal.api.GearSupplier;
 import org.osgi.framework.BundleContext;
@@ -26,15 +28,19 @@ import org.osgi.framework.ServiceReference;
 
 public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
+	private final Logger log = LogManager.getLogger(getClass());
+
 	public final <T> Optional<T> withGear(Function<G, Optional<T>> with) {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 		Collection<ServiceReference<S>> references = Collections.emptyList();
 		try {
 			references = context.getServiceReferences(supplier(), null);
 		} catch (InvalidSyntaxException e) {
+			log.error(e);
 			return Optional.empty();
 		}
 		if (references.isEmpty()) {
+			log.error("No reference of service " + supplier().getName()); //$NON-NLS-1$
 			return Optional.empty();
 		}
 		ServiceReference<S> any = references.iterator().next();

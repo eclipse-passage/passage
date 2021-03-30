@@ -24,6 +24,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
+@SuppressWarnings("restriction")
 public final class FlsJettyActivator extends LicensedJettyActivator {
 
 	private final FloatingState state;

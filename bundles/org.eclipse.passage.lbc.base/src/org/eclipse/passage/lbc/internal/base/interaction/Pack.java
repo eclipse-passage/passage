@@ -15,7 +15,10 @@ package org.eclipse.passage.lbc.internal.base.interaction;
 
 import java.nio.file.Path;
 import java.util.Collections;
+import java.util.Optional;
 
+import org.eclipse.passage.lbc.internal.base.api.FlsGear;
+import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.ProductRef;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
@@ -25,7 +28,6 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.io.FileKeyKeeper;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
 final class Pack {
@@ -67,11 +69,23 @@ final class Pack {
 		}
 
 		private byte[] decoded() throws LicensingException {
-			return new DecodedContent(//
-					license, //
-					new FileKeyKeeper(key), //
-					new BcStreamCodec(InvalidLicensedProduct::new) // not demanded for decoding, only for error handling
-			).get();
+			return new FlsGearAwre()//
+					.withGear(g -> Optional.of(decoded(g)))//
+					.orElseThrow(() -> new LicensingException("Fail resolving gear")); //$NON-NLS-1$
+		}
+
+		private final byte[] decoded(FlsGear gear) {
+			try {
+				return new DecodedContent(//
+						license, //
+						new FileKeyKeeper(key), //
+						// 'product' is not demanded for decoding, only for error handling
+						gear.codec(new InvalidLicensedProduct())//
+				).get();
+			} catch (LicensingException e) {
+				e.printStackTrace(); // truly! outputs a handles by console
+				return new byte[0];
+			}
 		}
 
 		LicensedProduct product() {

@@ -13,12 +13,16 @@
 package org.eclipse.passage.lbc.internal.base.acquire;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lbc.internal.base.EncodedResponse;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
@@ -26,9 +30,10 @@ import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
-import org.eclipse.passage.lic.internal.net.handle.EObjectTransfer;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.PlainSuceess;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
@@ -36,11 +41,18 @@ import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 public final class Acquisition {
 
 	private final ProductUserRequest<RawRequest> data;
+	private final Supplier<Path> source;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	public Acquisition(ProductUserRequest<RawRequest> data) {
+	public Acquisition(ProductUserRequest<RawRequest> data, Supplier<Path> source) {
 		Objects.requireNonNull(data, "Acquisition::data"); //$NON-NLS-1$
+		Objects.requireNonNull(source, "Acquisition::source"); //$NON-NLS-1$
+		this.source = source;
 		this.data = data;
+	}
+
+	public Acquisition(ProductUserRequest<RawRequest> data) {
+		this(data, new LicensingFolder(new UserHomePath()));
 	}
 
 	public NetResponse get() {
@@ -58,7 +70,11 @@ public final class Acquisition {
 		if (!acquisition.isPresent()) {
 			return noGrants(feature.get());
 		}
-		return new EObjectTransfer(acquisition.get());
+		return encodedPack(acquisition.get());
+	}
+
+	private NetResponse encodedPack(GrantAcqisition acqisition) {
+		return new EncodedResponse<EObject>(acqisition, data, source).get();
 	}
 
 	public NetResponse returnBack() throws LicensingException {

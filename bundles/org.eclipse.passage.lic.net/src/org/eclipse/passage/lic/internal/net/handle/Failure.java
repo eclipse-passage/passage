@@ -105,10 +105,18 @@ public abstract class Failure implements NetResponse {
 
 	}
 
+	public static final class BadRequestNoAlgo extends Failure {
+
+		public BadRequestNoAlgo() {
+			super(606, "Bad Request: no encoding algorithm identifier"); //$NON-NLS-1$
+		}
+
+	}
+
 	public static final class BadRequestNoFeature extends Failure {
 
 		public BadRequestNoFeature() {
-			super(606, "Bad Request: no feature identifier"); //$NON-NLS-1$
+			super(607, "Bad Request: no feature identifier"); //$NON-NLS-1$
 		}
 
 	}

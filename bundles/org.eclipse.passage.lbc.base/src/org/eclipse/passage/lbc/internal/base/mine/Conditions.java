@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lbc.internal.base.EncodedResponse;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -28,7 +30,6 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
-import org.eclipse.passage.lic.internal.net.handle.EObjectTransfer;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -62,7 +63,11 @@ public final class Conditions implements Supplier<NetResponse> {
 		if (!new NoErrors().test(conditions.diagnostic())) {
 			log.error(new DiagnosticExplained(conditions.diagnostic()).get());
 		}
-		return new EObjectTransfer(pack(conditions.data().get()));
+		return encodedPack(pack(conditions.data().get()));
+	}
+
+	private NetResponse encodedPack(LicensePack pack) {
+		return new EncodedResponse<EObject>(pack, data, source).get();
 	}
 
 	private LicensePack pack(Collection<ConditionPack> conditions) {

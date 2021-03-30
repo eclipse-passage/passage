@@ -49,6 +49,9 @@ public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 		if (!request.user().isPresent()) {
 			return new Failure.BadRequestNoUser();
 		}
+		if (!request.algorithm().isPresent()) {
+			return new Failure.BadRequestNoAlgo();
+		}
 		try {
 			return withProductUser(request);
 		} catch (LicensingException e) {
