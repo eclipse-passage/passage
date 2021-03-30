@@ -21,7 +21,10 @@ import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRe
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -59,6 +62,11 @@ final class SealedAccessCycleConfiguration extends BaseAccessCycleConfiguration 
 	@Override
 	public LicenseAcquisitionServicesRegistry acquirers() {
 		return () -> acquirers;
+	}
+
+	@Override
+	public HashesRegistry hashes() {
+		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
 	}
 
 }

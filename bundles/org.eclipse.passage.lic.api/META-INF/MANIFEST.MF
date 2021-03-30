@@ -137,7 +137,8 @@ Export-Package: org.eclipse.passage.lic.internal.api;
    org.eclipse.passage.loc.operator.gear,
    org.eclipse.passage.loc.products.core,
    org.eclipse.passage.seal.demo,
-   org.eclipse.passage.loc.api",
+   org.eclipse.passage.loc.api,
+   org.eclipse.passage.lic.net",
  org.eclipse.passage.lic.internal.api.observatory;x-friends:="org.eclipse.passage.lic.base",
  org.eclipse.passage.lic.internal.api.registry;
   x-friends:="org.eclipse.passage.lic.base,

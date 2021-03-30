@@ -21,7 +21,10 @@ import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRe
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.acquire.PathLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
@@ -47,6 +50,11 @@ public final class DirectedAccessCycleConfiguration extends BaseAccessCycleConfi
 	@Override
 	public final LicenseAcquisitionServicesRegistry acquirers() {
 		return () -> acquirers;
+	}
+
+	@Override
+	public HashesRegistry hashes() {
+		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
 	}
 
 }
