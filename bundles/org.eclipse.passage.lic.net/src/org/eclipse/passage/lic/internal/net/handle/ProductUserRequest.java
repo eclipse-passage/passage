@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 
@@ -27,11 +28,13 @@ public final class ProductUserRequest<R extends NetRequest> {
 	private final R raw;
 	private final Optional<LicensedProduct> product;
 	private final Optional<String> user;
+	private final Optional<String> algorithm;
 
 	public ProductUserRequest(R raw) throws LicensingException {
 		this.raw = raw;
 		this.product = extractProduct();
 		this.user = extractUser();
+		this.algorithm = extractAlgorithm();
 	}
 
 	private Optional<LicensedProduct> extractProduct() throws LicensingException {
@@ -49,6 +52,10 @@ public final class ProductUserRequest<R extends NetRequest> {
 		return new LicenseUser(raw::parameter).get();
 	}
 
+	private Optional<String> extractAlgorithm() {
+		return new EncodingAlgorithm(raw::parameter).get();
+	}
+
 	public R raw() {
 		return raw;
 	}
@@ -61,4 +68,7 @@ public final class ProductUserRequest<R extends NetRequest> {
 		return user;
 	}
 
+	public Optional<String> algorithm() {
+		return algorithm;
+	}
 }

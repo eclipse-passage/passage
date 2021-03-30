@@ -29,7 +29,7 @@ public final class RemoteConditionsRequest<C extends Connection> extends RemoteR
 
 	@Override
 	public RequestParameters parameters() {
-		return new MineRequestParameters(product, access);
+		return new MineRequestParameters(product, access, hash);
 	}
 
 	@Override

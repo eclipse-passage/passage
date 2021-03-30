@@ -21,14 +21,15 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
+import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
@@ -36,10 +37,12 @@ public abstract class RequestParameters implements QueryParameters {
 
 	private final LicensedProduct product;
 	private final FloatingLicenseAccess access;
+	private final String hash;
 
-	protected RequestParameters(LicensedProduct product, FloatingLicenseAccess access) {
+	protected RequestParameters(LicensedProduct product, FloatingLicenseAccess access, String hash) {
 		this.product = product;
 		this.access = access;
+		this.hash = hash;
 	}
 
 	@Override
@@ -67,6 +70,8 @@ public abstract class RequestParameters implements QueryParameters {
 				new ProductVersion(encode(product.version())), //
 				new LicensingAction(action()), //
 				new LicenseUser(access.getUser()), //
+				new LicenseUser(access.getUser()), //
+				new EncodingAlgorithm(hash), //
 				new ServerAuthenticationType(access.getServer().getAuthentication().getType()), //
 				new ServerAuthenticationExpression(encode(access.getServer().getAuthentication().getExpression())));
 

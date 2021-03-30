@@ -82,7 +82,7 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 
 		@Override
 		public RequestParameters parameters() {
-			return new AcquireRequestParameters(data.product(), data.feature(), access);
+			return new AcquireRequestParameters(data.product(), data.feature(), access, hash);
 		}
 
 		@Override

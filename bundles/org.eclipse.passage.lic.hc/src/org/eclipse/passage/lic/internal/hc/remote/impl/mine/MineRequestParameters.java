@@ -24,8 +24,8 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
 final class MineRequestParameters extends RequestParameters {
 
-	MineRequestParameters(LicensedProduct product, FloatingLicenseAccess access) {
-		super(product, access);
+	MineRequestParameters(LicensedProduct product, FloatingLicenseAccess access, String hash) {
+		super(product, access, hash);
 	}
 
 	@Override
