@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -39,6 +40,7 @@ public final class MineTest {
 	private final TestData data = new TestData();
 	private final Supplier<Path> source = new TestLicFolder();
 
+	@Ignore
 	@Test
 	public void mine() {
 		ServiceInvocationResult<Collection<ConditionPack>> all = new RemoteConditions<>(//
