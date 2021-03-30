@@ -35,7 +35,7 @@
 		<module>../../bundles/org.eclipse.passage.lbc.jetty</module>
 		<module>../../bundles/org.eclipse.passage.lbc.seal</module>
 		<module>../../features/org.eclipse.passage.lbc.execute.feature</module>
-		<module>../../features/org.eclipse.passage.lbc.seal.feature</module>
+		<module>../../features/org.eclipse.passage.lbc.fls.feature</module>
 		<module>../../releng/org.eclipse.passage.lbc.repository</module>
 		<module>../../products/org.eclipse.passage.lbc.fls.product</module>
 	</modules>

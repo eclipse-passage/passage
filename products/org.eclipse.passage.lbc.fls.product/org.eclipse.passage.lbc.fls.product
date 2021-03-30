@@ -51,9 +51,9 @@
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="org.eclipse.passage.lbc.target.feature"/>
+      <feature id="org.eclipse.passage.lbc.target.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.execute.feature" installMode="root"/>
-      <feature id="org.eclipse.passage.lbc.seal.feature"/>
+      <feature id="org.eclipse.passage.lbc.fls.feature"/>
    </features>
 
    <configurations>
