@@ -10,17 +10,10 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.equinox;
+package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.equinox.GearAware;
-import org.eclipse.passage.loc.internal.api.OperatorGear;
-import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
+public interface GearSupplier<G extends Gear> {
 
-public final class OperatorGearAware extends GearAware<OperatorGear, OperatorGearSupplier> {
-
-	@Override
-	protected Class<OperatorGearSupplier> supplier() {
-		return OperatorGearSupplier.class;
-	}
+	G gear();
 
 }

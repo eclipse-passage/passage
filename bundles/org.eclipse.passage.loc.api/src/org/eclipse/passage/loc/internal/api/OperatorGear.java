@@ -14,11 +14,12 @@ package org.eclipse.passage.loc.internal.api;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.internal.api.Gear;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
-public interface OperatorGear {
+public interface OperatorGear extends Gear {
 
 	Optional<StreamCodec> codec(LicensedProduct product);
 

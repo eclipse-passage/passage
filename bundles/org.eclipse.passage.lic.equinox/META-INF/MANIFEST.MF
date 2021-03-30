@@ -18,7 +18,9 @@ Export-Package: org.eclipse.passage.lic.internal.equinox;
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.lic.net,
    org.eclipse.passage.seal.demo,
-   org.eclipse.passage.lic.jetty",
+   org.eclipse.passage.lic.jetty,
+   org.eclipse.passage.loc.api,
+   org.eclipse.passage.lbc.base",
  org.eclipse.passage.lic.internal.equinox.acquire;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.conditions;x-internal:=true,
  org.eclipse.passage.lic.internal.equinox.events;
