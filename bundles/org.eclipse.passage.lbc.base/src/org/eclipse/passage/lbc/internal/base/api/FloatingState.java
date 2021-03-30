@@ -18,7 +18,6 @@ package org.eclipse.passage.lbc.internal.base.api;
  * Redesign this part. We need a sort of Passage Framework to pull down critical
  * entities through the codebase
  * 
- * @since 1.1
  */
 public interface FloatingState {
 
