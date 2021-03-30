@@ -78,7 +78,7 @@ final class RemoteRelease<C extends Connection>
 
 		@Override
 		public RequestParameters parameters() {
-			return new ReleaseRequestParameters(product, data.payload().feature(), access);
+			return new ReleaseRequestParameters(product, data.payload().feature(), access, hash);
 		}
 
 		private byte[] payload() throws LicensingException {
