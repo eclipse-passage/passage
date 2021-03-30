@@ -18,9 +18,11 @@ import java.net.URL;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
+import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.net.HostPort;
 
 /**
@@ -38,10 +40,12 @@ public abstract class RemoteRequest<C extends Connection> implements Request<C> 
 
 	protected final LicensedProduct product;
 	protected final FloatingLicenseAccess access;
+	protected final String hash;
 
-	public RemoteRequest(LicensedProduct product, FloatingLicenseAccess access) {
+	public RemoteRequest(LicensedProduct product, FloatingLicenseAccess access, HashesRegistry hashes) {
 		this.product = product;
 		this.access = access;
+		this.hash = hashes.get().services().iterator().next().id().toString();
 	}
 
 	@Override
@@ -57,6 +61,11 @@ public abstract class RemoteRequest<C extends Connection> implements Request<C> 
 				| MalformedURLException e) {
 			throw new LicensingException(AccessMessages.Request_failed_to_compose_url, e);
 		}
+	}
+
+	@Override
+	public final RequestContext context() {
+		return new BaseRequestContext(product, hash);
 	}
 
 }

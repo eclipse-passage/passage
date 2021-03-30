@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,8 +19,6 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
@@ -28,9 +26,8 @@ import org.eclipse.passage.lic.internal.hc.remote.Connection;
 public abstract class ServiceEvery<C extends Connection, T, D extends RemoteServiceData>
 		extends ServiceRemote<C, T, D> {
 
-	protected ServiceEvery(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, T>> client,
-			Supplier<Path> source) {
-		super(keys, codecs, client, source);
+	protected ServiceEvery(Equipment equipment, Supplier<Client<C, T>> client, Supplier<Path> source) {
+		super(equipment, client, source);
 	}
 
 	@Override

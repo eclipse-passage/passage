@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
+import org.eclipse.passage.lbc.base.tests.TestData;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -26,12 +27,15 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
+@SuppressWarnings("restriction")
 final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 
 	private final Remote remote;
+	private final TestData data;
 
-	ShortcutClient(Remote remote) {
+	ShortcutClient(Remote remote, TestData data) {
 		this.remote = remote;
+		this.data = data;
 	}
 
 	@Override
@@ -42,7 +46,8 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 			NetResponse response = remote.invoke(raw);
 			assertFalse(response.failed());
 			connection.installResponse(response);
-			return new BaseServiceInvocationResult<>(handler.read(new ResultsTransfered(connection)));
+			return new BaseServiceInvocationResult<>(
+					handler.read(new ResultsTransfered(connection), new TestRequestContext(data).get()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();

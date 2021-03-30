@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,14 +19,15 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
+import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
@@ -36,15 +37,14 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 final class RemoteRelease<C extends Connection>
 		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcquisition>> {
 
-	RemoteRelease(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, Boolean>> client,
-			Supplier<Path> source) {
-		super(keys, codecs, client, source);
+	RemoteRelease(Equipment equipment, Supplier<Client<C, Boolean>> client, Supplier<Path> source) {
+		super(equipment, client, source);
 	}
 
 	@Override
 	protected RemoteRequest<C> request(RemoteServiceData.WithPayload<GrantAcquisition> params,
 			FloatingLicenseAccess access) {
-		return new Request(params, access);
+		return new Request(params, access, equipment.hashes());
 	}
 
 	@Override
@@ -55,7 +55,7 @@ final class RemoteRelease<C extends Connection>
 	private static final class ReleaseResponseHandler implements ResponseHandler<Boolean> {
 
 		@Override
-		public Boolean read(ResultsTransfered results) throws LicensingException {
+		public Boolean read(ResultsTransfered results, RequestContext context) throws LicensingException {
 			return results.successful();
 		}
 
@@ -65,8 +65,9 @@ final class RemoteRelease<C extends Connection>
 
 		private final RemoteServiceData.WithPayload<GrantAcquisition> data;
 
-		Request(RemoteServiceData.WithPayload<GrantAcquisition> data, FloatingLicenseAccess access) {
-			super(data.product(), access);
+		Request(RemoteServiceData.WithPayload<GrantAcquisition> data, FloatingLicenseAccess access,
+				HashesRegistry hashes) {
+			super(data.product(), access, hashes);
 			this.data = data;
 		}
 

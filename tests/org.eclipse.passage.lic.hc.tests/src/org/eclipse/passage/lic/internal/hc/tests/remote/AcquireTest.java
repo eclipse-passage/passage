@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,11 +25,6 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
-import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
@@ -46,7 +41,8 @@ public final class AcquireTest {
 	@Test
 	public void acquireAndRelease() {
 		RemoteAcquisitionService<ShortcutConnection> service = //
-				new RemoteAcquisitionService<ShortcutConnection>(keys(), codecs(), this::acq, this::rel, source);
+				new RemoteAcquisitionService<ShortcutConnection>(//
+						new TestEquipment(data.product(), source).get(), this::acq, this::rel, source);
 		ServiceInvocationResult<GrantAcquisition> acquisition = service.acquire(data.product(), data.feature());
 		assertTrue(acquisition.data().isPresent());
 		ServiceInvocationResult<Boolean> release = service.release(data.product(), acquisition.data().get());
@@ -54,27 +50,19 @@ public final class AcquireTest {
 
 	}
 
-	private StreamCodecRegistry codecs() {
-		return () -> new ReadOnlyRegistry<>(new BcStreamCodec(data::product));
-	}
-
-	private KeyKeeperRegistry keys() {
-		return () -> new ReadOnlyRegistry<>(new PathKeyKeeper(data.product(), source));
-	}
-
 	private Client<ShortcutConnection, GrantAcquisition> acq() {
-		return new ShortcutClient<GrantAcquisition>(new AskAcquirer());
+		return new ShortcutClient<GrantAcquisition>(new AskAcquirer(), data);
 	}
 
 	private Client<ShortcutConnection, Boolean> rel() {
-		return new ShortcutClient<Boolean>(new AskReleaser());
+		return new ShortcutClient<Boolean>(new AskReleaser(), data);
 	}
 
 	private final class AskAcquirer implements ShortcutClient.Remote {
 
 		@Override
 		public NetResponse invoke(RawRequest raw) throws LicensingException {
-			return new Acquisition(new ProductUserRequest(raw)).get();
+			return new Acquisition(new ProductUserRequest<RawRequest>(raw)).get();
 		}
 
 		@Override
@@ -88,7 +76,7 @@ public final class AcquireTest {
 
 		@Override
 		public NetResponse invoke(RawRequest raw) throws LicensingException {
-			return new Acquisition(new ProductUserRequest(raw)).returnBack();
+			return new Acquisition(new ProductUserRequest<RawRequest>(raw)).returnBack();
 		}
 
 		@Override

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
@@ -22,8 +23,8 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 
 public final class RemoteConditionsRequest<C extends Connection> extends RemoteRequest<C> {
 
-	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access) {
-		super(product, access);
+	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access, HashesRegistry hashes) {
+		super(product, access, hashes);
 	}
 
 	@Override

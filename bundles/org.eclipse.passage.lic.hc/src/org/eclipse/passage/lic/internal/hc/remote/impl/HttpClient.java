@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfr
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Request;
+import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
 public final class HttpClient<T> implements Client<NetConnection, T> {
@@ -30,7 +31,7 @@ public final class HttpClient<T> implements Client<NetConnection, T> {
 	@Override
 	public ServiceInvocationResult<T> request(Request<NetConnection> request, ResponseHandler<T> handler) {
 		try {
-			return netResults(connection(request), handler);
+			return netResults(connection(request), handler, request.context());
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(//
 					new BaseDiagnostic(//
@@ -45,14 +46,14 @@ public final class HttpClient<T> implements Client<NetConnection, T> {
 		return request.config().apply(new NetConnection((HttpURLConnection) request.url().openConnection()));
 	}
 
-	private ServiceInvocationResult<T> netResults(NetConnection connection, ResponseHandler<T> handler)
-			throws Exception {
+	private ServiceInvocationResult<T> netResults(NetConnection connection, ResponseHandler<T> handler,
+			RequestContext context) throws Exception {
 		// actual connection is happening on this construction of the results
 		ResultsTransfered results = new ResultsTransfered(connection);
 		if (!results.successful()) {
 			return new BaseServiceInvocationResult<>(results.diagnose());
 		}
-		return new BaseServiceInvocationResult<>(handler.read(results));
+		return new BaseServiceInvocationResult<>(handler.read(results, context));
 	}
 
 }

@@ -17,6 +17,6 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 
 public interface ResponseHandler<T> {
 
-	T read(ResultsTransfered result) throws LicensingException;
+	T read(ResultsTransfered result, RequestContext context) throws LicensingException;
 
 }

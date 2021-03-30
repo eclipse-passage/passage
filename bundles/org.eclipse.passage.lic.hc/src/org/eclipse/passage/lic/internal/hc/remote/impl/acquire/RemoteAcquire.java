@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,14 +19,15 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
+import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.EObjectFromXmiResponse;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeature;
@@ -36,14 +37,13 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
 
 final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcquisition, RemoteServiceData.OfFeature> {
 
-	RemoteAcquire(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, GrantAcquisition>> client,
-			Supplier<Path> source) {
-		super(keys, codecs, client, source);
+	RemoteAcquire(Equipment equipment, Supplier<Client<C, GrantAcquisition>> client, Supplier<Path> source) {
+		super(equipment, client, source);
 	}
 
 	@Override
 	protected RemoteRequest<C> request(OfFeature params, FloatingLicenseAccess access) {
-		return new Request(params, access);
+		return new Request(params, access, equipment.hashes());
 	}
 
 	@Override
@@ -61,8 +61,8 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 		}
 
 		@Override
-		public GrantAcquisition read(ResultsTransfered results) throws LicensingException {
-			return apiGrant(delegate.read(results));
+		public GrantAcquisition read(ResultsTransfered results, RequestContext context) throws LicensingException {
+			return apiGrant(delegate.read(results, context));
 		}
 
 		private GrantAcquisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
@@ -75,8 +75,8 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 
 		private final OfFeature data;
 
-		Request(OfFeature data, FloatingLicenseAccess access) {
-			super(data.product(), access);
+		Request(OfFeature data, FloatingLicenseAccess access, HashesRegistry hashes) {
+			super(data.product(), access, hashes);
 			this.data = data;
 		}
 

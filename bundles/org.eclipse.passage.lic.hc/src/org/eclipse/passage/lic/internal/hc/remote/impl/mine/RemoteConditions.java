@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,16 +23,14 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
@@ -42,18 +40,15 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceEvery;
 public final class RemoteConditions<C extends Connection> //
 		extends ServiceEvery<C, Collection<ConditionPack>, RemoteServiceData.Bulk> implements MinedConditions {
 
-	private final ConditionTransportRegistry transports;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 
-	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports,
-			Supplier<Client<C, Collection<ConditionPack>>> client, Supplier<Path> source) {
-		super(keys, codecs, client, source);
-		this.transports = transports;
+	public RemoteConditions(Equipment equipment, Supplier<Client<C, Collection<ConditionPack>>> client,
+			Supplier<Path> source) {
+		super(equipment, client, source);
 	}
 
-	public RemoteConditions(KeyKeeperRegistry keys, StreamCodecRegistry codecs, ConditionTransportRegistry transports) {
-		super(keys, codecs, HttpClient::new, new LicensingFolder(new UserHomePath()));
-		this.transports = transports;
+	public RemoteConditions(Equipment equipment) {
+		this(equipment, HttpClient::new, new LicensingFolder(new UserHomePath()));
 	}
 
 	@Override
@@ -68,12 +63,12 @@ public final class RemoteConditions<C extends Connection> //
 
 	@Override
 	protected RemoteRequest<C> request(Bulk params, FloatingLicenseAccess access) {
-		return new RemoteConditionsRequest<>(params.product(), access);
+		return new RemoteConditionsRequest<>(params.product(), access, equipment.hashes());
 	}
 
 	@Override
 	protected ResponseHandler<Collection<ConditionPack>> handler(FloatingLicenseAccess access) {
-		return new DecryptedConditions(transports, access.getServer(), target);
+		return new DecryptedConditions(equipment, access.getServer(), target);
 	}
 
 	@Override
