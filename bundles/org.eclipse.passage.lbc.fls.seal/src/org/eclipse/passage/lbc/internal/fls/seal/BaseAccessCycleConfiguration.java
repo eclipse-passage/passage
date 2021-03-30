@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.internal.fls.seal;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
@@ -33,6 +34,8 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -71,6 +74,7 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 	private final Registry<EvaluationType, ExpressionTokenAssessmentService> tokenAssessors;
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
 	private final Registry<StringServiceId, PermissionsExaminationService> examinators;
+	private final Registry<StringServiceId, Hashes> hashes;
 
 	protected BaseAccessCycleConfiguration(Supplier<LicensedProduct> product, Supplier<Bundle> bundle) {
 		requirements = new ReadOnlyRegistry<>(Arrays.asList(//
@@ -107,6 +111,7 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 		examinators = new ReadOnlyRegistry<>(Arrays.asList(//
 				new BasePermissionsExaminationService()//
 		));
+		hashes = new ReadOnlyRegistry<>(Collections.emptyList());
 	}
 
 	@Override
@@ -162,6 +167,11 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 	@Override
 	public final PermissionsExaminationServicesRegistry examinators() {
 		return () -> examinators;
+	}
+
+	@Override
+	public HashesRegistry hashes() {
+		return () -> hashes;
 	}
 
 }

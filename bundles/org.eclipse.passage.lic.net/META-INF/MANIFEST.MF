@@ -35,5 +35,6 @@ Export-Package: org.eclipse.passage.lic.internal.net;
    org.eclipse.passage.lbc.base,
    org.eclipse.passage.lbc.base.tests,
    org.eclipse.passage.lbc.jetty,
-   org.eclipse.passage.lic.jetty"
+   org.eclipse.passage.lic.jetty",
+ org.eclipse.passage.lic.internal.net.io;x-friends:="org.eclipse.passage.lbc.base,org.eclipse.passage.lic.hc"
 Bundle-ActivationPolicy: lazy

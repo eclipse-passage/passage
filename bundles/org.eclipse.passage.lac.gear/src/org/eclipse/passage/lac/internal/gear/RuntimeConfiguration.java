@@ -40,6 +40,8 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsReg
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -185,6 +187,11 @@ public final class RuntimeConfiguration implements AccessCycleConfiguration {
 	@Override
 	public final LicenseAcquisitionServicesRegistry acquirers() {
 		return () -> acquirers;
+	}
+
+	@Override
+	public HashesRegistry hashes() {
+		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
 	}
 
 }

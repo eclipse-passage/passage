@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -121,6 +122,11 @@ final class SabotagedFramework implements Framework {
 		@Override
 		public MiningEquipment miningEquipment() {
 			return null;
+		}
+
+		@Override
+		public HashesRegistry hashes() {
+			return () -> noService();
 		}
 
 	}
