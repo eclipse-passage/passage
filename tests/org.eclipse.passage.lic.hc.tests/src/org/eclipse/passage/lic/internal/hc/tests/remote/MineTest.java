@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,15 +27,8 @@ import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
-import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.junit.Test;
@@ -48,34 +41,22 @@ public final class MineTest {
 
 	@Test
 	public void mine() {
-		ServiceInvocationResult<Collection<ConditionPack>> all = //
-				new RemoteConditions<>(keys(), codecs(), transports(), this::client, source)//
+		ServiceInvocationResult<Collection<ConditionPack>> all = new RemoteConditions<>(//
+				new TestEquipment(data.product(), source).get(), this::client, source)//
 						.all(data.product());
 		assertTrue(all.data().isPresent());
 		assertEquals(2, all.data().get().size());
 	}
 
-	private ConditionTransportRegistry transports() {
-		return () -> new ReadOnlyRegistry<>(new XmiConditionTransport());
-	}
-
-	private StreamCodecRegistry codecs() {
-		return () -> new ReadOnlyRegistry<>(new BcStreamCodec(data::product));
-	}
-
-	private KeyKeeperRegistry keys() {
-		return () -> new ReadOnlyRegistry<>(new PathKeyKeeper(data.product(), source));
-	}
-
 	private Client<ShortcutConnection, Collection<ConditionPack>> client() {
-		return new ShortcutClient<Collection<ConditionPack>>(new AskMiner());
+		return new ShortcutClient<Collection<ConditionPack>>(new AskMiner(), data);
 	}
 
 	private final class AskMiner implements ShortcutClient.Remote {
 
 		@Override
 		public NetResponse invoke(RawRequest raw) throws LicensingException {
-			return new Conditions(new ProductUserRequest(raw), source).get();
+			return new Conditions(new ProductUserRequest<RawRequest>(raw), source).get();
 		}
 
 		@Override

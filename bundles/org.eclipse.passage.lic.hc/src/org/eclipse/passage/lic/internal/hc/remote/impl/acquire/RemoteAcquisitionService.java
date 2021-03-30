@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,36 +20,33 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 
 public final class RemoteAcquisitionService<C extends Connection> implements LicenseAcquisitionService {
 
-	private final KeyKeeperRegistry keys;
-	private final StreamCodecRegistry codecs;
+	private final Equipment equipment;
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Remote();
 	private final Supplier<Client<C, GrantAcquisition>> acquire;
 	private final Supplier<Client<C, Boolean>> release;
 	private final Supplier<Path> source;
 
-	public RemoteAcquisitionService(KeyKeeperRegistry keys, StreamCodecRegistry codecs,
-			Supplier<Client<C, GrantAcquisition>> acquire, Supplier<Client<C, Boolean>> release, //
+	public RemoteAcquisitionService(Equipment equipment, Supplier<Client<C, GrantAcquisition>> acquire,
+			Supplier<Client<C, Boolean>> release, //
 			Supplier<Path> source) {
-		this.keys = keys;
-		this.codecs = codecs;
+		this.equipment = equipment;
 		this.acquire = acquire;
 		this.release = release;
 		this.source = source;
 	}
 
-	public RemoteAcquisitionService(KeyKeeperRegistry keys, StreamCodecRegistry codecs) {
-		this(keys, codecs, HttpClient::new, HttpClient::new, new LicensingFolder(new UserHomePath()));
+	public RemoteAcquisitionService(Equipment equipment) {
+		this(equipment, HttpClient::new, HttpClient::new, new LicensingFolder(new UserHomePath()));
 	}
 
 	@Override
@@ -59,13 +56,13 @@ public final class RemoteAcquisitionService<C extends Connection> implements Lic
 
 	@Override
 	public ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, String feature) {
-		return new RemoteAcquire<>(keys, codecs, acquire, source)
+		return new RemoteAcquire<>(equipment, acquire, source)
 				.request(new RemoteServiceData.OfFeature(product, feature));
 	}
 
 	@Override
 	public ServiceInvocationResult<Boolean> release(LicensedProduct product, GrantAcquisition acquisition) {
-		return new RemoteRelease<>(keys, codecs, release, source)//
+		return new RemoteRelease<>(equipment, release, source)//
 				.request(new RemoteServiceData.WithPayload<>(product, acquisition));
 	}
 

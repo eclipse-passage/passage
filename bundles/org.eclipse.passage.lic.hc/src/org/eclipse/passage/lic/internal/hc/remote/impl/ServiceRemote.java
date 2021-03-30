@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,8 +20,6 @@ import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.AbsentLicenseAttendantFile;
@@ -34,21 +32,18 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 
 public abstract class ServiceRemote<C extends Connection, T, D extends RemoteServiceData> {
 
-	private final KeyKeeperRegistry keys;
-	private final StreamCodecRegistry codecs;
+	protected final Equipment equipment;
 	private final Supplier<Path> source;
 	private final Supplier<Client<C, T>> client;
 
-	protected ServiceRemote(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, T>> client,
-			Supplier<Path> source) {
-		this.keys = keys;
-		this.codecs = codecs;
+	protected ServiceRemote(Equipment equipment, Supplier<Client<C, T>> client, Supplier<Path> source) {
+		this.equipment = equipment;
 		this.source = source;
 		this.client = client;
 	}
 
-	protected ServiceRemote(KeyKeeperRegistry keys, StreamCodecRegistry codecs, Supplier<Client<C, T>> client) {
-		this(keys, codecs, client, new LicensingFolder(new UserHomePath()));
+	protected ServiceRemote(Equipment equipment, Supplier<Client<C, T>> client) {
+		this(equipment, client, new LicensingFolder(new UserHomePath()));
 	}
 
 	public final ServiceInvocationResult<T> request(D parameters) {
@@ -74,7 +69,7 @@ public abstract class ServiceRemote<C extends Connection, T, D extends RemoteSer
 	}
 
 	private ServiceInvocationResult<Collection<FloatingLicenseAccess>> accesses(LicensedProduct product) {
-		return new AccessPacks(product, keys, codecs, source).get();
+		return new AccessPacks(product, equipment.keys(), equipment.codecs(), source).get();
 	}
 
 	protected abstract ServiceInvocationResult<T> withServers(D parameters, Collection<FloatingLicenseAccess> servers);

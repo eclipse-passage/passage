@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,18 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote;
 
-import java.net.URL;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+/**
+ * Subset of Request data that are significant for Response handling
+ */
+public interface RequestContext {
 
-public interface Request<C extends Connection> {
+	LicensedProduct product();
 
-	RequestContext context();
-
-	URL url() throws LicensingException;
-
-	Configuration<C> config() throws LicensingException;
-
-	QueryParameters parameters();
+	String hash();
 
 }

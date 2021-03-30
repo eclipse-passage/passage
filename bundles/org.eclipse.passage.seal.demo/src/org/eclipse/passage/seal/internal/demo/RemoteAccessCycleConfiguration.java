@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.NetConnection;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
@@ -40,8 +41,8 @@ final class RemoteAccessCycleConfiguration extends BaseAccessCycleConfiguration 
 
 	RemoteAccessCycleConfiguration(Supplier<LicensedProduct> product) {
 		super(product, () -> FrameworkUtil.getBundle(RemoteAccessCycleConfiguration.class));
-		conditions = new ReadOnlyRegistry<>(new RemoteConditions<NetConnection>(keyKeepers(), codecs(), transports()));
-		acquirers = new ReadOnlyRegistry<>(new RemoteAcquisitionService<NetConnection>(keyKeepers(), codecs()));
+		conditions = new ReadOnlyRegistry<>(new RemoteConditions<NetConnection>(equipment()));
+		acquirers = new ReadOnlyRegistry<>(new RemoteAcquisitionService<NetConnection>(equipment()));
 		hashes = new ReadOnlyRegistry<>(new MD5Hashes());
 	}
 
@@ -58,6 +59,10 @@ final class RemoteAccessCycleConfiguration extends BaseAccessCycleConfiguration 
 	@Override
 	public HashesRegistry hashes() {
 		return () -> hashes;
+	}
+
+	private Equipment equipment() {
+		return new Equipment(keyKeepers(), codecs(), transports(), hashes());
 	}
 
 }

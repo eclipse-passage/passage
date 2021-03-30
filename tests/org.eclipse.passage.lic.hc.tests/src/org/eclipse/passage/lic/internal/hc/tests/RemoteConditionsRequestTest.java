@@ -26,12 +26,17 @@ import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.PassageAction;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
+import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
+import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
@@ -39,6 +44,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+@SuppressWarnings("restriction")
 public final class RemoteConditionsRequestTest {
 
 	private final String host = "fake.licensing.server"; //$NON-NLS-1$
@@ -79,7 +85,7 @@ public final class RemoteConditionsRequestTest {
 
 	private URL url() {
 		try {
-			return new RemoteConditionsRequest<>(product(), access()).url();
+			return new RemoteConditionsRequest<>(product(), access(), hashes()).url();
 		} catch (LicensingException e) {
 			fail("Url composition on valid parameters must succssed"); //$NON-NLS-1$
 			throw new RuntimeException(e); // unreachable
@@ -103,6 +109,10 @@ public final class RemoteConditionsRequestTest {
 
 	private LicensedProduct product() {
 		return new BaseLicensedProduct("fake-product", "0.1.27"); //$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private HashesRegistry hashes() {
+		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>(new MD5Hashes());
 	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,23 +22,23 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
+import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
+import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 final class DecryptedConditions implements ResponseHandler<Collection<ConditionPack>> {
 
-	private final ConditionTransportRegistry transports;
 	private final FloatingServerConnection coordinates;
 	private final ConditionMiningTarget target;
+	private final Equipment equipment;
 
-	DecryptedConditions(ConditionTransportRegistry transports, FloatingServerConnection coordinates,
-			ConditionMiningTarget target) {
-		this.transports = transports;
+	DecryptedConditions(Equipment equipment, FloatingServerConnection coordinates, ConditionMiningTarget target) {
+		this.equipment = equipment;
 		this.coordinates = coordinates;
 		this.target = target;
 	}
@@ -48,28 +48,28 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 	 * {@linkplain ConditionTransport} evolves to support condition packs #568621
 	 */
 	@Override
-	public Collection<ConditionPack> read(ResultsTransfered results) throws LicensingException {
-		try (ByteArrayInputStream stream = new ByteArrayInputStream(results.data())) {
+	public Collection<ConditionPack> read(ResultsTransfered results, RequestContext context) throws LicensingException {
+		byte[] safe = safeData(results, context);
+		try (ByteArrayInputStream stream = new ByteArrayInputStream(safe)) {
 			return Collections.singleton(//
 					new BaseConditionPack(//
 							new BaseConditionOrigin(target, source()), //
-							transport(results.contentType()).read(stream) //
+							equipment.transport(results.contentType()).read(stream) //
 					));
 		} catch (IOException e) {
 			throw new LicensingException(MineMessages.DecryptedConditions_reading_error, e);
 		}
 	}
 
-	private String source() {
-		return String.format("%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
+	private byte[] safeData(ResultsTransfered results, RequestContext context) throws LicensingException {
+		return new SafePayload(//
+				equipment.keeper(context.product()), //
+				equipment.hash(context.hash())//
+		).decode(results.data());
 	}
 
-	private ConditionTransport transport(ContentType contentType) throws LicensingException {
-		if (!transports.get().hasService(contentType)) {
-			throw new LicensingException(String.format(MineMessages.DecryptedConditions_no_transport_for_content_type,
-					contentType.contentType()));
-		}
-		return transports.get().service(contentType);
+	private String source() {
+		return String.format("%s:%d", coordinates.getIp(), coordinates.getPort());//$NON-NLS-1$
 	}
 
 }
