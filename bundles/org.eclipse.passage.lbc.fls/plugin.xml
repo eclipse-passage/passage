@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2018, 2021 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	https://www.eclipse.org/legal/epl-2.0/.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+       id="org.eclipse.passage.lbc.fls.application"
+       point="org.eclipse.core.runtime.applications">
+    <application
+          cardinality="1"
+          thread="main"
+          visible="true">
+    </application>
+ </extension>
+ <extension
+       id="org.eclipse.passage.lbc.fls.product"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.passage.lbc.fls.application"
+          name="%product.name">
+       <property
+             name="appName"
+             value="%product.appName">
+       </property>
+    </product>
+ </extension>
+</plugin>
