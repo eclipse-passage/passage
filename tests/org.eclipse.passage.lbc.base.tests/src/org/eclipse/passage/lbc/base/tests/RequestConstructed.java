@@ -24,12 +24,19 @@ import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.internal.base.ProductIdentifier;
+import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
+import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 @SuppressWarnings("restriction")
 final class RequestConstructed {
@@ -68,12 +75,12 @@ final class RequestConstructed {
 		return this;
 	}
 
-	RawRequest getValid() {
+	RawRequest getValid() throws LicensingException {
 		addPredefinedParams();
 		return getPure();
 	}
 
-	RawRequest getPure() {
+	RawRequest getPure() throws LicensingException {
 		return new Franky(params, content, state);
 	}
 
@@ -91,10 +98,21 @@ final class RequestConstructed {
 		private final byte[] content;
 		private final FloatingState state;
 
-		Franky(Map<String, String> params, byte[] content, FloatingState state) {
+		Franky(Map<String, String> params, byte[] content, FloatingState state) throws LicensingException {
 			this.params = params;
-			this.content = content;
+			this.content = content == null ? null : encoded(content);
 			this.state = state;
+		}
+
+		private byte[] encoded(byte[] raw) throws LicensingException {
+			LicensedProduct product = product();
+			return new SafePayload(new PathKeyKeeper(product, new TestLicFolder()), new MD5Hashes()).encode(raw);
+		}
+
+		private LicensedProduct product() {
+			return new BaseLicensedProduct(//
+					new ProductIdentifier(params::get).get().get(), //
+					new ProductVersion(params::get).get().get());
 		}
 
 		@Override

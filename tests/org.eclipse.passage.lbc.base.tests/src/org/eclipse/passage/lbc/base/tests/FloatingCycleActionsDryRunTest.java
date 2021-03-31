@@ -85,7 +85,6 @@ public final class FloatingCycleActionsDryRunTest {
 				data.product(), //
 				feature(), //
 				data.albert().id(), //
-				data.hash(), //
 				payload//
 		).get();
 	}

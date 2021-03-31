@@ -48,8 +48,10 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 
 	@Override
 	protected ResponseHandler<GrantAcquisition> handler(FloatingLicenseAccess access) {
-		return new Response(
-				new EObjectFromXmiResponse<>(org.eclipse.passage.lic.floating.model.api.GrantAcqisition.class));
+		return new Response(//
+				new EObjectFromXmiResponse<>(//
+						org.eclipse.passage.lic.floating.model.api.GrantAcqisition.class, //
+						equipment));
 	}
 
 	private final static class Response implements ResponseHandler<GrantAcquisition> {

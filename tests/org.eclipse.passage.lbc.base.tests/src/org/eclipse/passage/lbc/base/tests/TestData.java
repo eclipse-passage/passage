@@ -21,7 +21,6 @@ import java.util.Date;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 
 public final class TestData {
@@ -67,11 +66,6 @@ public final class TestData {
 
 	public User elder() {
 		return elder;
-	}
-
-	@SuppressWarnings("restriction")
-	public String hash() {
-		return new MD5Hashes().id().toString();
 	}
 
 	final static class User {

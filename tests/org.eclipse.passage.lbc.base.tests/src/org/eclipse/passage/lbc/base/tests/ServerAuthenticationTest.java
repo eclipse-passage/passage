@@ -19,6 +19,7 @@ import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
@@ -29,16 +30,16 @@ import org.junit.Test;
 public final class ServerAuthenticationTest {
 
 	@Test
-	public void demandsServerAuthType() {
+	public void demandsServerAuthType() throws LicensingException {
 		testDemandServerAuthInformation(expression());
 	}
 
 	@Test
-	public void demandsServerAuthExpression() {
+	public void demandsServerAuthExpression() throws LicensingException {
 		testDemandServerAuthInformation(type());
 	}
 
-	private void testDemandServerAuthInformation(StringNamedData half) {
+	private void testDemandServerAuthInformation(StringNamedData half) throws LicensingException {
 		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//

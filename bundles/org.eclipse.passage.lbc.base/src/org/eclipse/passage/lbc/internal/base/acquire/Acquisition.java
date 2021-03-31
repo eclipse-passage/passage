@@ -13,22 +13,20 @@
 package org.eclipse.passage.lbc.internal.base.acquire;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lbc.internal.base.DecodedRequest;
 import org.eclipse.passage.lbc.internal.base.EncodedResponse;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
-import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.PlainSuceess;
@@ -89,9 +87,7 @@ public final class Acquisition {
 	}
 
 	private GrantAcqisition acquisition() throws LicensingException, IOException {
-		return new EObjectFromBytes<>(data.raw().content(), GrantAcqisition.class)//
-				.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
-
+		return new DecodedRequest.GrantAck(data.raw()).get();
 	}
 
 	private Grants grants() {

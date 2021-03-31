@@ -116,7 +116,6 @@ public final class ExtensiveReleaseTest {
 					data.product(), //
 					data.feature(), //
 					data.albert().id(), //
-					data.hash(), //
 					state).get());
 		}
 
@@ -126,7 +125,6 @@ public final class ExtensiveReleaseTest {
 					data.product(), //
 					data.feature(), //
 					data.elder().id(), //
-					data.hash(), //
 					acquisition, //
 					state).get());
 		}

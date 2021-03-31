@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
@@ -27,34 +28,34 @@ import org.junit.Test;
 public final class BaseFlotingRequestHandledTest {
 
 	@Test
-	public void handleMine() {
+	public void handleMine() throws LicensingException {
 		testActionSupported(new PassageAction.Mine());
 	}
 
 	@Test
-	public void handleAquire() {
+	public void handleAquire() throws LicensingException {
 		testActionSupported(new PassageAction.Acquire());
 	}
 
 	@Test
-	public void handleRelease() {
+	public void handleRelease() throws LicensingException {
 		testActionSupported(new PassageAction.Release());
 	}
 
 	@Test
-	public void doNotHandleNull() {
+	public void doNotHandleNull() throws LicensingException {
 		assertActionIsNotSupported(new FlotingRequestHandled(new RequestConstructed().getPure()).get());
 	}
 
 	@Test
-	public void doNotHandleForeignAction() {
+	public void doNotHandleForeignAction() throws LicensingException {
 		assertActionIsNotSupported(//
 				new FlotingRequestHandled(//
 						requestOfAction(new PassageAction.Of("strange")) //$NON-NLS-1$
 				).get());
 	}
 
-	private void testActionSupported(PassageAction action) {
+	private void testActionSupported(PassageAction action) throws LicensingException {
 		assertActionIsSupported(new FlotingRequestHandled(requestOfAction(action)).get());
 	}
 
@@ -72,7 +73,7 @@ public final class BaseFlotingRequestHandledTest {
 				response.error().code());
 	}
 
-	private RawRequest requestOfAction(PassageAction action) {
+	private RawRequest requestOfAction(PassageAction action) throws LicensingException {
 		return new RequestConstructed().withAction(action).getPure();
 	}
 

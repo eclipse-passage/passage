@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,21 +19,26 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
 	private final Class<T> expected;
+	private final Equipment equipment;
 
-	public EObjectFromXmiResponse(Class<T> expected) {
+	public EObjectFromXmiResponse(Class<T> expected, Equipment equipment) {
 		this.expected = expected;
+		this.equipment = equipment;
 	}
 
 	@Override
 	public T read(ResultsTransfered results, RequestContext context) throws LicensingException {
-		// TODO we use `transport`s for Conditions,
-		// design transports here too should the need arise
 		contentTypeIsExpected(results);
-		return new EObjectFromBytes<T>(results.data(), expected).get();
+		return new EObjectFromBytes<T>(decoded(results.data(), context), expected).get();
+	}
+
+	private byte[] decoded(byte[] raw, RequestContext context) throws LicensingException {
+		return new SafePayload(equipment.keeper(context.product()), equipment.hash(context.hash())).decode(raw);
 	}
 
 	private void contentTypeIsExpected(ResultsTransfered results) throws LicensingException {
