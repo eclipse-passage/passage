@@ -30,11 +30,16 @@ final class CanUse extends ChoreDraft<NetRequest> {
 	}
 
 	@Override
-	protected Optional<NetResponse> invalid() {
+	protected Optional<NetResponse> rawInvalid() {
 		Optional<String> feature = feature();
 		if (!feature.isPresent()) {
 			return Optional.of(new Failure.BadRequestNoFeature());
 		}
+		return Optional.empty();
+	}
+
+	@Override
+	protected Optional<NetResponse> productUserInvalid(ProductUserRequest<NetRequest> refined) {
 		return Optional.empty();
 	}
 

@@ -56,7 +56,7 @@ public final class MineTest {
 
 		@Override
 		public NetResponse invoke(RawRequest raw) throws LicensingException {
-			return new Conditions(new ProductUserRequest<RawRequest>(raw), source).get();
+			return new Conditions(new ProductUserRequest<RawRequest>(raw)).get();
 		}
 
 		@Override
