@@ -13,25 +13,37 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
+import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.PassageAction;
+import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
+import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 
-final class RequestConstructed implements Supplier<RawRequest> {
+@SuppressWarnings("restriction")
+final class RequestConstructed {
 
 	private Map<String, String> params = new HashMap<>();
 	private byte[] content;
 	private FloatingState state;
 
-	RequestConstructed withParameters(Collection<StringNamedData> data) {
-		data.forEach(p -> params.put(p.key(), p.get().get()));
+	RequestConstructed() {
+		this.state = new EagerFloatingState(new TestLicFolder());
+	}
+
+	RequestConstructed withParameters(Collection<NamedData<?>> data) {
+		data.forEach(p -> params.put(p.key(), p.get().get().toString()));
 		return this;
 	}
 
@@ -52,13 +64,25 @@ final class RequestConstructed implements Supplier<RawRequest> {
 	}
 
 	RequestConstructed withState(FloatingState st) {
-		this.state = st;
+		this.state = new EagerFloatingState(st.grants(), new TestLicFolder().get());
 		return this;
 	}
 
-	@Override
-	public RawRequest get() {
+	RawRequest getValid() {
+		addPredefinedParams();
+		return getPure();
+	}
+
+	RawRequest getPure() {
 		return new Franky(params, content, state);
+	}
+
+	private void addPredefinedParams() {
+		Arrays.asList(//
+				new ServerAuthenticationType(new EvaluationType.Hardware().identifier()), //
+				new ServerAuthenticationExpression("os.family=*"), //$NON-NLS-1$
+				new EncodingAlgorithm(new MD5Hashes().id().toString()) //
+		).forEach(param -> params.put(param.key(), param.get().get()));
 	}
 
 	private static final class Franky implements RawRequest {

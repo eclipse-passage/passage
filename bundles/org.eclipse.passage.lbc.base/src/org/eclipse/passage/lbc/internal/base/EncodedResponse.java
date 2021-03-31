@@ -12,13 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
-import java.nio.file.Path;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.io.Hashes;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
@@ -30,18 +29,16 @@ import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 public final class EncodedResponse<T extends EObject> {
 
 	private final T payload;
-	private final ProductUserRequest<?> data;
-	private final Supplier<Path> source;
+	private final ProductUserRequest<RawRequest> data;
 
-	public EncodedResponse(T payload, ProductUserRequest<?> data, Supplier<Path> source) {
+	public EncodedResponse(T payload, ProductUserRequest<RawRequest> data) {
 		this.payload = payload;
 		this.data = data;
-		this.source = source;
 	}
 
 	public NetResponse get() {
 		return new FlsGearAwre()//
-				.withGear(this::transferable)//
+				.withGear(this::transferable) //
 				.orElse(new Failure.OperationFailed("mine", "Failed exploiting gear")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -50,7 +47,7 @@ public final class EncodedResponse<T extends EObject> {
 	}
 
 	private KeyKeeper keyKeeper(FlsGear gear) {
-		return gear.keyKeper(data.product().get(), source);
+		return gear.keyKeper(data.product().get(), data.raw().state()::source);
 	}
 
 	private Hashes hashes(FlsGear gear) {

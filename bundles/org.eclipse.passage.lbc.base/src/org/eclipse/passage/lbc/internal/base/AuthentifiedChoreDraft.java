@@ -12,13 +12,20 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
+import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
 abstract class AuthentifiedChoreDraft extends ChoreDraft<RawRequest> {
 
@@ -27,7 +34,16 @@ abstract class AuthentifiedChoreDraft extends ChoreDraft<RawRequest> {
 	}
 
 	@Override
-	protected Optional<NetResponse> invalid() {
+	protected Optional<NetResponse> rawInvalid() {
+		return serverIsNotAuthenticated();
+	}
+
+	@Override
+	protected Optional<NetResponse> productUserInvalid(ProductUserRequest<RawRequest> refined) {
+		return productUnknown(refined);
+	}
+
+	private Optional<NetResponse> serverIsNotAuthenticated() {
 		Optional<EvaluationInstructions> instructions = new ServerAuthenticationInstructions(data).get();
 		if (!instructions.isPresent()) {
 			return Optional.of(new Failure.BadRequestInvalidServerAuthInstructions());
@@ -35,8 +51,19 @@ abstract class AuthentifiedChoreDraft extends ChoreDraft<RawRequest> {
 		try {
 			new ServerAuthentication(instructions.get()).evaluate();
 		} catch (Exception e) {
-			log.error("failed: ", e); //$NON-NLS-1$
+			log.error("Failed on server authentication attempt: ", e); //$NON-NLS-1$
 			return Optional.of(new Failure.ForeignServer(e.getMessage()));
+		}
+		return Optional.empty();
+	}
+
+	private Optional<NetResponse> productUnknown(ProductUserRequest<RawRequest> refined) {
+		LicensedProduct product = refined.product().get();
+		Path key = new PathFromLicensedProduct(data.state()::source, product).get()//
+				.resolve(new FileNameFromLicensedProduct(product, new PassageFileExtension.PublicKey()).get());
+		if (!Files.exists(key)) {
+			log.error(String.format("Key file [%s] is not found", product)); //$NON-NLS-1$
+			return Optional.of(new Failure.BadRequestUnkonwnProduct(product));
 		}
 		return Optional.empty();
 	}

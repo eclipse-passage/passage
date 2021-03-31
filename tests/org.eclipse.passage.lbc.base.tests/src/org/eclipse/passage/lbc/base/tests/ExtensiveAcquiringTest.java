@@ -28,12 +28,14 @@ import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class ExtensiveAcquiringTest {
 
 	private final TestData data = new TestData();
@@ -94,9 +96,14 @@ public final class ExtensiveAcquiringTest {
 			return new Acquisition(request()).get();
 		}
 
-		private ProductUserRequest request() throws LicensingException {
-			return new ProductUserRequest(new FeatureRequest(//
-					new PassageAction.Acquire(), data.product(), data.feature(), data.albert().id(), state).get());
+		private ProductUserRequest<RawRequest> request() throws LicensingException {
+			return new ProductUserRequest<>(new FeatureRequest(//
+					new PassageAction.Acquire(), //
+					data.product(), //
+					data.feature(), //
+					data.albert().id(), //
+					data.hash(), //
+					state).get());
 		}
 
 	}

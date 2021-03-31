@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -46,7 +46,11 @@ public final class PathKeyKeeper implements KeyKeeper {
 		try {
 			return new FileInputStream(path.toFile());
 		} catch (Exception e) {
-			throw new LicensingException(AccessCycleMessages.getString("PathKeyKeeper_input_stream_error"), e); //$NON-NLS-1$
+			throw new LicensingException(//
+					String.format(//
+							AccessCycleMessages.getString("PathKeyKeeper_input_stream_error"), //$NON-NLS-1$
+							base.get().toAbsolutePath()), //
+					e);
 		}
 	}
 

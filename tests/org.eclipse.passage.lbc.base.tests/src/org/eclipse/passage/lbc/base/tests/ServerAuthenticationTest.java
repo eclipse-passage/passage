@@ -41,7 +41,8 @@ public final class ServerAuthenticationTest {
 		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//
-						.withParameter(half).get()//
+						.withParameter(half)//
+						.getPure()//
 		).get();
 		assertFailedWithCode(response, new Failure.BadRequestInvalidServerAuthInstructions());
 	}

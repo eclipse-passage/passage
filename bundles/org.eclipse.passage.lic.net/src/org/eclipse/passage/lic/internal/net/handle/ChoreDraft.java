@@ -32,9 +32,9 @@ public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 
 	@Override
 	public final NetResponse getDone() {
-		Optional<NetResponse> error = invalid();
-		if (error.isPresent()) {
-			return error.get();
+		Optional<NetResponse> raw = rawInvalid();
+		if (raw.isPresent()) {
+			return raw.get();
 		}
 		ProductUserRequest<R> request;
 		try {
@@ -46,11 +46,16 @@ public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 		if (!request.product().isPresent()) {
 			return new Failure.BadRequestInvalidProduct();
 		}
+
 		if (!request.user().isPresent()) {
 			return new Failure.BadRequestNoUser();
 		}
 		if (!request.algorithm().isPresent()) {
 			return new Failure.BadRequestNoAlgo();
+		}
+		Optional<NetResponse> refined = productUserInvalid(request);
+		if (refined.isPresent()) {
+			return refined.get();
 		}
 		try {
 			return withProductUser(request);
@@ -60,7 +65,9 @@ public abstract class ChoreDraft<R extends NetRequest> implements Chore {
 		}
 	}
 
-	protected abstract Optional<NetResponse> invalid();
+	protected abstract Optional<NetResponse> rawInvalid();
+
+	protected abstract Optional<NetResponse> productUserInvalid(ProductUserRequest<R> refined);
 
 	protected abstract NetResponse withProductUser(ProductUserRequest<R> request) throws LicensingException;
 
