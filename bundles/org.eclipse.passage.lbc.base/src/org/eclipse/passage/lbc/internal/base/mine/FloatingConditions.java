@@ -15,7 +15,7 @@ package org.eclipse.passage.lbc.internal.base.mine;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
@@ -29,7 +29,7 @@ final class FloatingConditions extends LocalConditions {
 		super(//
 				new ConditionMiningTarget.Local().child("floating-server"), //$NON-NLS-1$
 				new ReassemblingMiningEquipment(user, base), //
-				new FloatingFileExtensions.FloatingLicenseEncrypted());
+				new FloatingFileExtension.FloatingLicenseEncrypted());
 		this.base = base;
 	}
 

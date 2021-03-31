@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 final class PacksFound implements Supplier<ServiceInvocationResult<Collection<Pack>>> {
 
 	private final Path source;
-	private final String flicen = new FloatingFileExtensions.FloatingLicenseEncrypted().get();
+	private final String flicen = new FloatingFileExtension.FloatingLicenseEncrypted().get();
 	private final String pub = new PassageFileExtension.PublicKey().get();
 
 	public PacksFound(Path source) {

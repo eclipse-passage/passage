@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
@@ -41,7 +41,7 @@ final class AccessFiles {
 	public Collection<Path> get() throws LicensingException {
 		return new FileCollection(//
 				new PathFromLicensedProduct(source, product),
-				new FloatingFileExtensions.FloatingLicenseAccessEncrypted()//
+				new FloatingFileExtension.FloatingLicenseAccessEncrypted()//
 		).get();
 	}
 
