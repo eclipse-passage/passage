@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.handle;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
@@ -105,10 +106,26 @@ public abstract class Failure implements NetResponse {
 
 	}
 
+	public static final class BadRequestNoAlgo extends Failure {
+
+		public BadRequestNoAlgo() {
+			super(606, "Bad Request: no encoding algorithm identifier"); //$NON-NLS-1$
+		}
+
+	}
+
 	public static final class BadRequestNoFeature extends Failure {
 
 		public BadRequestNoFeature() {
-			super(606, "Bad Request: no feature identifier"); //$NON-NLS-1$
+			super(607, "Bad Request: no feature identifier"); //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class BadRequestUnkonwnProduct extends Failure {
+
+		public BadRequestUnkonwnProduct(LicensedProduct product) {
+			super(608, String.format("Bad Request: product %s is not known to the server", product)); //$NON-NLS-1$
 		}
 
 	}

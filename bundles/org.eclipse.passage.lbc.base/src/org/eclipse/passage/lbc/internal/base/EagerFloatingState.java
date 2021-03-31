@@ -24,18 +24,29 @@ import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 public final class EagerFloatingState implements FloatingState {
 
 	private final Grants grants;
+	private final Path source;
 
 	public EagerFloatingState() {
 		this(new LicensingFolder(new UserHomePath()));
 	}
 
 	public EagerFloatingState(Supplier<Path> source) {
-		this.grants = new AcquiredGrants(source);
+		this(new AcquiredGrants(source), source.get());
+	}
+
+	public EagerFloatingState(Grants grants, Path source) {
+		this.grants = grants;
+		this.source = source;
 	}
 
 	@Override
 	public Grants grants() {
 		return grants;
+	}
+
+	@Override
+	public Path source() {
+		return source;
 	}
 
 }

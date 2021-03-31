@@ -51,7 +51,7 @@ public final class MineTest {
 								version(), //
 								authType(), //
 								authExpression()//
-						)).get()//
+						)).getPure()//
 		).get();
 		assertFailedWithCode(response, new Failure.BadRequestNoUser());
 	}
@@ -64,7 +64,7 @@ public final class MineTest {
 								half, //
 								authType(), //
 								authExpression()//
-						)).get()//
+						)).getPure()//
 		).get();
 		assertFailedWithCode(response, new Failure.BadRequestInvalidProduct());
 	}

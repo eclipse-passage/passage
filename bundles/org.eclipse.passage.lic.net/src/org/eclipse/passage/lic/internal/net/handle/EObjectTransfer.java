@@ -15,15 +15,22 @@ package org.eclipse.passage.lic.internal.net.handle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.internal.api.io.Hashes;
+import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 public final class EObjectTransfer implements NetResponse {
 
 	private final EObject payload;
+	private final KeyKeeper key;
+	private final Hashes hashes;
 
-	public EObjectTransfer(EObject payload) {
+	public EObjectTransfer(EObject payload, KeyKeeper key, Hashes hashes) {
 		this.payload = payload;
+		this.key = key;
+		this.hashes = hashes;
 	}
 
 	@Override
@@ -43,12 +50,16 @@ public final class EObjectTransfer implements NetResponse {
 
 	@Override
 	public byte[] payload() throws LicensingException {
-		return new EObjectToBytes(payload).get();
+		return encode(new EObjectToBytes(payload).get());
 	}
 
 	@Override
 	public ContentType contentType() {
 		return new ContentType.Xml();
+	}
+
+	private byte[] encode(byte[] plain) throws LicensingException {
+		return new SafePayload(key, hashes).encode(plain);
 	}
 
 }

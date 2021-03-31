@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class BaseFlotingRequestHandledTest {
 
 	@Test
@@ -42,7 +43,7 @@ public final class BaseFlotingRequestHandledTest {
 
 	@Test
 	public void doNotHandleNull() {
-		assertActionIsNotSupported(new FlotingRequestHandled(new RequestConstructed().get()).get());
+		assertActionIsNotSupported(new FlotingRequestHandled(new RequestConstructed().getPure()).get());
 	}
 
 	@Test
@@ -72,7 +73,7 @@ public final class BaseFlotingRequestHandledTest {
 	}
 
 	private RawRequest requestOfAction(PassageAction action) {
-		return new RequestConstructed().withAction(action).get();
+		return new RequestConstructed().withAction(action).getPure();
 	}
 
 }

@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -33,15 +32,15 @@ import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.acquire.Acquisition;
 import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
+import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class ExtensiveReleaseTest {
 
 	private final TestData data = new TestData();
@@ -95,12 +94,13 @@ public final class ExtensiveReleaseTest {
 
 		@Override
 		public Result call() throws Exception {
-			NetResponse acq = new Acquisition(acquireRequest()).get();
+			ProductUserRequest<RawRequest> request = acquireRequest();
+			NetResponse acq = new Acquisition(request).get();
 			if (acq.failed() && (noGrants == acq.error().code())) {
 				return Result.NotGainedNotExecuted;
 			}
 			if (!acq.failed()) {
-				GrantAcqisition acquisition = acquisition(acq);
+				GrantAcqisition acquisition = acquisition(acq, request);
 				Thread.sleep(1000); // emulating a protected action work
 				NetResponse rel = new Acquisition(releaseRequest(acquisition)).returnBack();
 				if (!rel.failed()) {
@@ -110,21 +110,30 @@ public final class ExtensiveReleaseTest {
 			return Result.Weird;
 		}
 
-		private ProductUserRequest acquireRequest() throws LicensingException {
-			return new ProductUserRequest(new FeatureRequest(//
-					new PassageAction.Acquire(), data.product(), data.feature(), data.albert().id(), state).get());
+		private ProductUserRequest<RawRequest> acquireRequest() throws LicensingException {
+			return new ProductUserRequest<>(new FeatureRequest(//
+					new PassageAction.Acquire(), //
+					data.product(), //
+					data.feature(), //
+					data.albert().id(), //
+					data.hash(), //
+					state).get());
 		}
 
-		private ProductUserRequest releaseRequest(GrantAcqisition acquisition) throws LicensingException {
-			return new ProductUserRequest(new FeatureRequest(//
-					new PassageAction.Acquire(), data.product(), data.feature(), data.elder().id(), acquisition, state)
-							.get());
+		private ProductUserRequest<RawRequest> releaseRequest(GrantAcqisition acquisition) throws LicensingException {
+			return new ProductUserRequest<>(new FeatureRequest(//
+					new PassageAction.Acquire(), //
+					data.product(), //
+					data.feature(), //
+					data.elder().id(), //
+					data.hash(), //
+					acquisition, //
+					state).get());
 		}
 
-		private GrantAcqisition acquisition(NetResponse response) throws LicensingException, IOException {
-			byte[] payload = response.payload();
-			return new EObjectFromBytes<>(payload, GrantAcqisition.class)//
-					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+		private GrantAcqisition acquisition(NetResponse response, ProductUserRequest<RawRequest> request)
+				throws LicensingException, IOException {
+			return new DecodedResponse.GrantAck(response, request.raw()).get();
 		}
 
 	}

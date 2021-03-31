@@ -14,10 +14,15 @@ package org.eclipse.passage.lbc.internal.base.acquire;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.passage.lbc.internal.base.api.FlsGear;
+import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
 import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -29,6 +34,7 @@ final class FeatureGrants {
 	private final String user;
 	private final String feature;
 	private final Supplier<Path> base;
+	private final Logger log = LogManager.getLogger(getClass());
 
 	FeatureGrants(LicensedProduct product, String user, String feature, Supplier<Path> base) {
 		this.product = product;
@@ -41,13 +47,34 @@ final class FeatureGrants {
 	 * Explore all licenses for the {@code product} and collect all grants for the
 	 * given {@code feature}, if any
 	 */
-	Collection<FeatureGrant> get() throws LicensingException {
-		return new LicensePacks(product, base).get().stream()//
-				.filter(new AvailableForUser(user)) //
-				.map(this::grantForFeature) //
-				.filter(Optional::isPresent) //
-				.map(Optional::get) //
-				.collect(Collectors.toList());
+	Collection<FeatureGrant> get() {
+		return new FlsGearAwre()//
+				.withGear(gear -> Optional.of(get(gear)))//
+				.orElse(failedOnGathering());
+	}
+
+	private Collection<FeatureGrant> failedOnGathering() {
+		log.error(String.format("Failed on gathering grans for product %s", product)); //$NON-NLS-1$
+		return Collections.emptyList();
+	}
+
+	private Collection<FeatureGrant> get(FlsGear gear) {
+		try {
+			return new LicensePacks(//
+					gear.keyKeper(product, base), //
+					gear.codec(product), //
+					product, //
+					base//
+			).get().stream()//
+					.filter(new AvailableForUser(user)) //
+					.map(this::grantForFeature) //
+					.filter(Optional::isPresent) //
+					.map(Optional::get) //
+					.collect(Collectors.toList());
+		} catch (LicensingException e) {
+			log.error(e);
+			return Collections.emptyList();
+		}
 	}
 
 	/**

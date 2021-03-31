@@ -19,6 +19,8 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lbc.internal.base.EncodedResponse;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
@@ -28,7 +30,6 @@ import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
-import org.eclipse.passage.lic.internal.net.handle.EObjectTransfer;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.PlainSuceess;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
@@ -58,7 +59,11 @@ public final class Acquisition {
 		if (!acquisition.isPresent()) {
 			return noGrants(feature.get());
 		}
-		return new EObjectTransfer(acquisition.get());
+		return encodedPack(acquisition.get());
+	}
+
+	private NetResponse encodedPack(GrantAcqisition acqisition) {
+		return new EncodedResponse<EObject>(acqisition, data).get();
 	}
 
 	public NetResponse returnBack() throws LicensingException {

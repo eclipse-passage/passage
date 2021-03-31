@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -38,6 +39,7 @@ public final class AcquireTest {
 	private final Supplier<Path> source = new TestLicFolder();
 	private final FloatingState server = new EagerFloatingState(source);
 
+	@Ignore
 	@Test
 	public void acquireAndRelease() {
 		RemoteAcquisitionService<ShortcutConnection> service = //
@@ -47,7 +49,6 @@ public final class AcquireTest {
 		assertTrue(acquisition.data().isPresent());
 		ServiceInvocationResult<Boolean> release = service.release(data.product(), acquisition.data().get());
 		assertTrue(release.data().isPresent());
-
 	}
 
 	private Client<ShortcutConnection, GrantAcquisition> acq() {

@@ -31,8 +31,6 @@ import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 
 final class LicensePacks {
@@ -43,10 +41,10 @@ final class LicensePacks {
 	private final Supplier<Path> base;
 	private final Logger log = LogManager.getLogger(getClass());
 
-	LicensePacks(LicensedProduct product, Supplier<Path> base) {
+	public LicensePacks(KeyKeeper key, StreamCodec codec, LicensedProduct product, Supplier<Path> base) {
 		this.product = product;
-		this.key = new PathKeyKeeper(product, base);
-		this.codec = new BcStreamCodec(() -> product);
+		this.key = key;
+		this.codec = codec;
 		this.base = base;
 	}
 
