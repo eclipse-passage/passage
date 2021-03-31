@@ -16,6 +16,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import org.eclipse.passage.lbc.base.tests.TestData;
+import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -42,7 +43,7 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 	public ServiceInvocationResult<T> request(Request<ShortcutConnection> request, ResponseHandler<T> handler) {
 		try {
 			ShortcutConnection connection = request.config().apply(new ShortcutConnection(request.parameters()));
-			RawRequest raw = new RawRequestFromConnection(connection, remote.state());
+			RawRequest raw = new RawRequestFromConnection(connection, state());
 			NetResponse response = remote.invoke(raw);
 			assertFalse(response.failed());
 			connection.installResponse(response);
@@ -53,6 +54,10 @@ final class ShortcutClient<T> implements Client<ShortcutConnection, T> {
 			fail();
 			return null; // unreachable
 		}
+	}
+
+	private EagerFloatingState state() {
+		return new EagerFloatingState(remote.state().grants(), new TestLicFolder().get());
 	}
 
 	static interface Remote {
