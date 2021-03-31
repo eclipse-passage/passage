@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,30 +10,30 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.floating.model.net;
+package org.eclipse.passage.lic.floating.internal.model.net;
 
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
 
-public final class ServerAuthenticationType extends StringNamedData {
+public final class ServerAuthenticationExpression extends StringNamedData {
 
-	public ServerAuthenticationType(String value) {
+	public ServerAuthenticationExpression(String value) {
 		super(value);
 	}
 
-	public ServerAuthenticationType(FloatingServerConnection server) {
-		this(server.getAuthentication().getType());
+	public ServerAuthenticationExpression(FloatingServerConnection server) {
+		this(server.getAuthentication().getExpression());
 	}
 
-	public ServerAuthenticationType(Function<String, String> retrieve) {
+	public ServerAuthenticationExpression(Function<String, String> retrieve) {
 		super(retrieve);
 	}
 
 	@Override
 	public String key() {
-		return "server.auth.type"; //$NON-NLS-1$
+		return "server.auth.expression"; //$NON-NLS-1$
 	}
 
 }

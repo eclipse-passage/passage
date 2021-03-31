@@ -18,9 +18,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;

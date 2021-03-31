@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.floating.model.convert;
+package org.eclipse.passage.lic.floating.internal.model.convert;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -18,7 +18,8 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.base.acquire.BaseGrantAcquisition;
 
-public final class PGrantAcquisition implements Supplier<org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition> {
+public final class PGrantAcquisition
+		implements Supplier<org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition> {
 
 	private final GrantAcqisition source;
 

@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.floating.internal.model.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.convert.PGrantAcquisition;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
