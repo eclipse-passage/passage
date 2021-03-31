@@ -15,8 +15,8 @@ package org.eclipse.passage.lbc.internal.base;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;

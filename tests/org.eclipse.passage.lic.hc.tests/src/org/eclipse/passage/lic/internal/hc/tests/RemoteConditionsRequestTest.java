@@ -20,12 +20,12 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.net.URL;
 
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;

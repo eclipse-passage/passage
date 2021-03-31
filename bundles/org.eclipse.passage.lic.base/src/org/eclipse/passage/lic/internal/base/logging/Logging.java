@@ -29,6 +29,7 @@ public final class Logging {
 	@SuppressWarnings("resource")
 	public void configure() {
 		try {
+			System.setProperty("org.apache.logging.log4j.simplelog.StatusLogger.level", "ERROR"); //$NON-NLS-1$//$NON-NLS-2$
 			ConfigurationSource source = new ConfigurationSource(new FileInputStream(config.get().toFile()));
 			Configurator.initialize(getClass().getClassLoader().getParent(), source);
 		} catch (Exception e) {
