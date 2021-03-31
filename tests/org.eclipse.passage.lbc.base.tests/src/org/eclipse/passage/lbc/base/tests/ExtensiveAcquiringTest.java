@@ -102,7 +102,6 @@ public final class ExtensiveAcquiringTest {
 					data.product(), //
 					data.feature(), //
 					data.albert().id(), //
-					data.hash(), //
 					state).get());
 		}
 

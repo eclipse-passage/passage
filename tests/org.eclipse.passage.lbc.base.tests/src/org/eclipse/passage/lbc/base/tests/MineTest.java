@@ -21,6 +21,7 @@ import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
@@ -33,17 +34,17 @@ import org.junit.Test;
 public final class MineTest {
 
 	@Test
-	public void demandsProductIdentifier() {
+	public void demandsProductIdentifier() throws LicensingException {
 		testDemandProductInformation(version());
 	}
 
 	@Test
-	public void demandsProductVersion() {
+	public void demandsProductVersion() throws LicensingException {
 		testDemandProductInformation(id());
 	}
 
 	@Test
-	public void demandsUser() {
+	public void demandsUser() throws LicensingException {
 		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//
@@ -57,7 +58,7 @@ public final class MineTest {
 		assertFailedWithCode(response, new Failure.BadRequestNoUser());
 	}
 
-	private void testDemandProductInformation(StringNamedData half) {
+	private void testDemandProductInformation(StringNamedData half) throws LicensingException {
 		NetResponse response = new FlotingRequestHandled(//
 				new RequestConstructed()//
 						.withAction(new PassageAction.Mine())//

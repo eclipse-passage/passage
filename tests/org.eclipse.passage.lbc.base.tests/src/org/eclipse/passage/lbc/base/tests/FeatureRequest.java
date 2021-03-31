@@ -37,32 +37,29 @@ final class FeatureRequest {
 	private final LicensedProduct product;
 	private final String feature;
 	private final String user;
-	private final String algo;
 	private final Optional<EObject> payload;
 	private final FloatingState state;
 
-	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, String algo,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, FloatingState state) {
+		this(action, product, feature, user, Optional.empty(), state);
+	}
+
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, EObject payload,
 			FloatingState state) {
-		this(action, product, feature, user, algo, Optional.empty(), state);
+		this(action, product, feature, user, Optional.of(payload), state);
 	}
 
-	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, String algo,
-			EObject payload, FloatingState state) {
-		this(action, product, feature, user, algo, Optional.of(payload), state);
-	}
-
-	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, String algo,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user,
 			Optional<EObject> payload) {
-		this(action, product, feature, user, algo, payload, new EagerFloatingState(new TestLicFolder()));
+		this(action, product, feature, user, payload, new EagerFloatingState(new TestLicFolder()));
 	}
 
-	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user, String algo,
+	FeatureRequest(PassageAction action, LicensedProduct product, String feature, String user,
 			Optional<EObject> payload, FloatingState state) {
 		this.action = action;
 		this.product = product;
 		this.feature = feature;
 		this.user = user;
-		this.algo = algo;
 		this.payload = payload;
 		this.state = state;
 	}
