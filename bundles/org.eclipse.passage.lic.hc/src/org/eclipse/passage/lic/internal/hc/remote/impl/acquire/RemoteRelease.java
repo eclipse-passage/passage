@@ -33,6 +33,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
+import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 final class RemoteRelease<C extends Connection>
 		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcquisition>> {
@@ -73,7 +74,11 @@ final class RemoteRelease<C extends Connection>
 
 		@Override
 		public Configuration<C> config() throws LicensingException {
-			return new BaseConfiguration.Post<C>(payload());
+			return new BaseConfiguration.Post<C>(encoded(payload()));
+		}
+
+		private byte[] encoded(byte[] payload) throws LicensingException {
+			return new SafePayload(equipment.keeper(data.product()), equipment.hash(hash)).encode(payload);
 		}
 
 		@Override
