@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -59,7 +59,7 @@ final class LicensePacks {
 	private Collection<Path> files() throws LicensingException {
 		return new FileCollection(//
 				new PathFromLicensedProduct(base, product), //
-				new FloatingFileExtensions.FloatingLicenseEncrypted()//
+				new FloatingFileExtension.FloatingLicenseEncrypted()//
 		).get();
 	}
 

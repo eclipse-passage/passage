@@ -17,9 +17,9 @@ import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 /**
  * TODO rename to '*Extension', no plural
  */
-public abstract class FloatingFileExtensions extends PassageFileExtension {
+public abstract class FloatingFileExtension extends PassageFileExtension {
 
-	public static final class FloatingLicenseEncrypted extends FloatingFileExtensions {
+	public static final class FloatingLicenseEncrypted extends FloatingFileExtension {
 
 		@Override
 		public String get() {
@@ -28,7 +28,7 @@ public abstract class FloatingFileExtensions extends PassageFileExtension {
 
 	}
 
-	public static final class FloatingLicenseDecrypted extends FloatingFileExtensions {
+	public static final class FloatingLicenseDecrypted extends FloatingFileExtension {
 
 		@Override
 		public String get() {
@@ -37,7 +37,7 @@ public abstract class FloatingFileExtensions extends PassageFileExtension {
 
 	}
 
-	public static final class FloatingLicenseAccessDecrypted extends FloatingFileExtensions {
+	public static final class FloatingLicenseAccessDecrypted extends FloatingFileExtension {
 
 		@Override
 		public String get() {
@@ -46,7 +46,7 @@ public abstract class FloatingFileExtensions extends PassageFileExtension {
 
 	}
 
-	public static final class FloatingLicenseAccessEncrypted extends FloatingFileExtensions {
+	public static final class FloatingLicenseAccessEncrypted extends FloatingFileExtension {
 
 		@Override
 		public String get() {

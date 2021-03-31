@@ -24,7 +24,7 @@ import java.util.function.BinaryOperator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
-import org.eclipse.passage.lic.floating.FloatingFileExtensions;
+import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
@@ -130,22 +130,22 @@ final class IssueFloatingLicense {
 	}
 
 	private String decryptedFile(FloatingLicensePack pack) {
-		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.FloatingLicenseDecrypted().get();
+		return pack.getLicense().getIdentifier() + new FloatingFileExtension.FloatingLicenseDecrypted().get();
 	}
 
 	private String encryptedFile(FloatingLicensePack pack) {
-		return pack.getLicense().getIdentifier() + new FloatingFileExtensions.FloatingLicenseEncrypted().get();
+		return pack.getLicense().getIdentifier() + new FloatingFileExtension.FloatingLicenseEncrypted().get();
 	}
 
 	private String decryptedFile(FloatingLicenseAccess access) {
-		return accessFile(access, new FloatingFileExtensions.FloatingLicenseAccessDecrypted());
+		return accessFile(access, new FloatingFileExtension.FloatingLicenseAccessDecrypted());
 	}
 
 	private String encryptedFile(FloatingLicenseAccess access) {
-		return accessFile(access, new FloatingFileExtensions.FloatingLicenseAccessEncrypted());
+		return accessFile(access, new FloatingFileExtension.FloatingLicenseAccessEncrypted());
 	}
 
-	private String accessFile(FloatingLicenseAccess access, FloatingFileExtensions ext) {
+	private String accessFile(FloatingLicenseAccess access, FloatingFileExtension ext) {
 		return String.format("%s_%s%s", //$NON-NLS-1$
 				access.getOriginLicensePack(), //
 				access.getUser(), //
