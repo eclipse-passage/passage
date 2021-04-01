@@ -13,7 +13,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<product name="Passage Licensing Floating License Server" uid="org.eclipse.passage.lbc.fls.product" id="org.eclipse.passage.lbc.fls.product" application="org.eclipse.passage.lbc.fls.application" version="1.2.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Licensing Floating License Server" uid="org.eclipse.passage.lbc.fls.product" id="org.eclipse.passage.lbc.fls.product" application="org.eclipse.passage.lbc.fls.application" version="1.2.2.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
