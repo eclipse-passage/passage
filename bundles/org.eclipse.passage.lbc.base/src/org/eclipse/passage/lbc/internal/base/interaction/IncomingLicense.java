@@ -30,16 +30,19 @@ import org.eclipse.passage.lic.internal.base.io.ExternalLicense;
 
 public final class IncomingLicense {
 
-	private final Path residence;
+	private final Path origin;
+	private final Path storage;
 
-	public IncomingLicense(String residence) {
-		Objects.requireNonNull(residence, "IncomingLicense:residence");//$NON-NLS-1$
-		this.residence = Paths.get(residence);
-		validateResidence();
+	public IncomingLicense(String origin, Path storage) {
+		Objects.requireNonNull(origin, "IncomingLicense:origin");//$NON-NLS-1$
+		Objects.requireNonNull(storage, "IncomingLicense:storage");//$NON-NLS-1$
+		this.origin = Paths.get(origin);
+		this.storage = storage;
+		validateOrigin();
 	}
 
 	public ServiceInvocationResult<List<Path>> upload() {
-		ServiceInvocationResult<Collection<Pack>> packs = new PacksFound(residence).get();
+		ServiceInvocationResult<Collection<Pack>> packs = new PacksFound(origin).get();
 		if (!packs.data().isPresent() || packs.data().get().isEmpty()) {
 			return new BaseServiceInvocationResult<>(packs.diagnostic());
 		}
@@ -52,7 +55,7 @@ public final class IncomingLicense {
 	private ServiceInvocationResult<List<Path>> uploadPack(Pack pack) {
 		try {
 			Pack.Resolved resolved = pack.resolve();
-			Path destination = new ExternalLicense(resolved.product()).install(pack.content());
+			Path destination = new ExternalLicense(storage, resolved.product()).install(pack.content());
 			return new BaseServiceInvocationResult<>(Collections.singletonList(destination));
 		} catch (Exception e) {
 			return failedToUploadPack(pack, e);
@@ -67,15 +70,15 @@ public final class IncomingLicense {
 						e))));
 	}
 
-	private final void validateResidence() {
-		String info = residence.toAbsolutePath().toString();
-		if (!Files.exists(residence)) {
+	private final void validateOrigin() {
+		String info = origin.toAbsolutePath().toString();
+		if (!Files.exists(origin)) {
 			throw new IllegalArgumentException(String.format("%s does not exist", info)); //$NON-NLS-1$
 		}
-		if (!Files.isDirectory(residence)) {
+		if (!Files.isDirectory(origin)) {
 			throw new IllegalArgumentException(String.format("%s is not a directory", info)); //$NON-NLS-1$
 		}
-		if (!Files.isExecutable(residence)) {
+		if (!Files.isExecutable(origin)) {
 			throw new IllegalArgumentException(String.format("%s cannot be read", info)); //$NON-NLS-1$
 		}
 	}

@@ -27,8 +27,8 @@ public final class ExternalLicense {
 		this(new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get());
 	}
 
-	public ExternalLicense(LicensedProduct product, String medium) {
-		this(new PathFromLicensedProduct(new LicensingFolder(new UserHomePath()), product).get().resolve(medium));
+	public ExternalLicense(Path base, LicensedProduct product) {
+		this(new PathFromLicensedProduct(() -> base, product).get());
 	}
 
 	public ExternalLicense(Path destination) {

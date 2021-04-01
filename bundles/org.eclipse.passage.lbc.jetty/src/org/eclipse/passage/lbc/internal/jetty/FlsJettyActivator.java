@@ -20,6 +20,7 @@ import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.interaction.LicensedJettyActivator;
+import org.eclipse.passage.lic.internal.net.connect.Storage;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -28,9 +29,11 @@ import org.osgi.framework.FrameworkUtil;
 public final class FlsJettyActivator extends LicensedJettyActivator {
 
 	private final FloatingState state;
+	private final Storage storage;
 
 	public FlsJettyActivator() {
-		this.state = new EagerFloatingState();
+		this.storage = new Storage();
+		this.state = new EagerFloatingState(() -> storage.get().get());
 	}
 
 	@Override
@@ -51,7 +54,7 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 
 	@Override
 	protected void registerCustomCommands(BundleContext context) {
-		new FlsCommands().register(context, name());
+		new FlsCommands().register(context, name(), storage);
 	}
 
 }

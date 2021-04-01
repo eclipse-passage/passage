@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lac.internal.jetty;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.internal.lac.base.AgentRequestHandled;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
@@ -30,7 +29,7 @@ public class JettyActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		jetty.launch(new Port(Platform.getApplicationArgs(), 8090));
+		jetty.launch(new Port(8090));
 	}
 
 	@Override

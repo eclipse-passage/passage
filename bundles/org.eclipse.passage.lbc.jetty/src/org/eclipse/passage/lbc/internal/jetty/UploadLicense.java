@@ -17,17 +17,30 @@ import java.util.List;
 
 import org.eclipse.passage.lbc.internal.base.interaction.IncomingLicense;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.jetty.interaction.Command;
 import org.eclipse.passage.lic.internal.jetty.interaction.Scope;
 
 final class UploadLicense extends Command {
 
+	private final Path storage;
+
 	public UploadLicense(String scope) {
-		super(new Scope.Of(scope), new String[] { "upload" }); //$NON-NLS-1$
+		this(scope, new LicensingFolder(new UserHomePath()).get()); // $NON-NLS-1$
+	}
+
+	public UploadLicense(String scope, Path storage) {
+		this(new Scope.Of(scope), new String[] { "upload" }, storage); //$NON-NLS-1$
+	}
+
+	private UploadLicense(Scope scope, String[] names, Path storage) {
+		super(scope, names);
+		this.storage = storage;
 	}
 
 	public void upload(String from) {
-		ServiceInvocationResult<List<Path>> result = new IncomingLicense(from).upload();
+		ServiceInvocationResult<List<Path>> result = new IncomingLicense(from, storage).upload();
 		if (result.data().isPresent()) {
 			reportDestination(result.data().get());
 		}
