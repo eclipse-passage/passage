@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.jetty.JettyException;
 import org.eclipse.passage.lic.internal.jetty.JettyServer;
 import org.eclipse.passage.lic.internal.net.connect.Port;
@@ -36,7 +35,7 @@ final class ServerHandles extends Command {
 						"state" //$NON-NLS-1$
 				});
 		this.server = server;
-		this.port = new Port(Platform.getApplicationArgs(), 8090);
+		this.port = new Port(8090);
 	}
 
 	public void start() {

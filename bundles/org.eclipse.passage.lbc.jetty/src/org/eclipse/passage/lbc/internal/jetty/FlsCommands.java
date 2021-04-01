@@ -12,12 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
+import org.eclipse.passage.lic.internal.net.connect.Storage;
 import org.osgi.framework.BundleContext;
 
 final class FlsCommands {
 
-	void register(BundleContext context, String name) {
-		new UploadLicense(name).register(context);
+	void register(BundleContext context, String name, Storage storage) {
+		new UploadLicense(name, storage.get().get()).register(context);
 	}
 
 }

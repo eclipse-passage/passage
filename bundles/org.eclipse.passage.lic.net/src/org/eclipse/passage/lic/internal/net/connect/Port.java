@@ -12,30 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.connect;
 
-import java.util.Arrays;
 import java.util.Optional;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.internal.base.NamedData;
 
 /**
  * @since 1.1
  */
-public final class Port implements NamedData<Integer> {
+public final class Port extends CliParameter<Integer> {
 
-	private final Logger log = LogManager.getLogger(getClass());
-	private final Optional<String> raw;
-	private final int lazy;
-
-	public Port(String[] sources, int lazy) {
-		this.lazy = lazy;
-		String prefix = String.format("-%s=", key()); //$NON-NLS-1$
-		this.raw = Arrays.stream(sources)//
-				.map(String::toLowerCase)//
-				.filter(source -> source.startsWith(prefix))//
-				.map(source -> source.substring(prefix.length()))//
-				.findAny();
+	public Port(int lazy) {
+		super(lazy);
 	}
 
 	@Override
@@ -44,17 +29,9 @@ public final class Port implements NamedData<Integer> {
 	}
 
 	@Override
-	public Optional<Integer> get() {
-		return raw.map(this::parse).orElseGet(this::defaultPort);
-	}
-
-	private Optional<Integer> defaultPort() {
-		return Optional.of(lazy);
-	}
-
-	private Optional<Integer> parse(String port) {
+	protected Optional<Integer> parse(String value) {
 		try {
-			return Optional.of(Integer.parseInt(port));
+			return Optional.of(Integer.parseInt(value));
 		} catch (NumberFormatException e) {
 			log.error("failed: ", e); //$NON-NLS-1$ ;
 			return Optional.empty();
