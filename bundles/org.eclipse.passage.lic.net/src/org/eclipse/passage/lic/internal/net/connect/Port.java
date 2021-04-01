@@ -23,6 +23,10 @@ public final class Port extends CliParameter<Integer> {
 		super(lazy);
 	}
 
+	public Port(String[] sources, int lazy) {
+		super(sources, lazy);
+	}
+
 	@Override
 	public String key() {
 		return "server.port"; //$NON-NLS-1$

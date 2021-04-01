@@ -30,7 +30,10 @@ public abstract class CliParameter<T> implements NamedData<T> {
 	private final T lazy;
 
 	public CliParameter(T lazy) {
-		String[] sources = Platform.getCommandLineArgs();
+		this(Platform.getCommandLineArgs(), lazy);
+	}
+
+	public CliParameter(String[] sources, T lazy) {
 		this.lazy = lazy;
 		String prefix = String.format("-%s=", key()); //$NON-NLS-1$
 		this.raw = Arrays.stream(sources)//

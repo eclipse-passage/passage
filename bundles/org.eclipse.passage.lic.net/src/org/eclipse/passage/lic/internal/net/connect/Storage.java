@@ -29,6 +29,14 @@ public final class Storage extends CliParameter<Path> {
 		super(new LicensingFolder(new UserHomePath()).get());
 	}
 
+	public Storage(Path lazy) {
+		super(lazy);
+	}
+
+	public Storage(String[] sources, Path lazy) {
+		super(sources, lazy);
+	}
+
 	@Override
 	public String key() {
 		return "server.storage"; //$NON-NLS-1$
