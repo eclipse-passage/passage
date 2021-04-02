@@ -499,7 +499,7 @@
           name="${scope.project.label}">
         <predicate
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LBC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LDC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LIC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LOC']"/>
+            excludedWorkingSet="//@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LAC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LBC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LDC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LIC'] //@streams[name='master']/@setupTasks.6/@workingSets[name='${scope.project.label}%20LOC']"/>
       </workingSet>
       <workingSet
           name="${scope.project.label} LIC">
