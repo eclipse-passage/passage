@@ -1,14 +1,24 @@
-/**
- */
+/*******************************************************************************
+ * Copyright (c) 2021 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.lic.shipments.model.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.passage.lic.shipments.model.api.*;
-
+import org.eclipse.passage.lic.shipments.model.api.Floating;
+import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
+import org.eclipse.passage.lic.shipments.model.api.Personal;
+import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 
 /**
