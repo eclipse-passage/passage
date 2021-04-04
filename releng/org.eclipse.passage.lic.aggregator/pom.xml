@@ -129,8 +129,8 @@
 		<module>../../bundles/org.eclipse.passage.lic.shipments</module>
 		<module>../../bundles/org.eclipse.passage.lic.shipments.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.shipments.model</module>
-		<!--module>../../bundles/org.eclipse.passage.lic.shipments.edit</module>
-		<module>../../bundles/org.eclipse.passage.lic.shipments.e4.ui</module-->
+		<module>../../bundles/org.eclipse.passage.lic.shipments.edit</module>
+		<!--module>../../bundles/org.eclipse.passage.lic.shipments.e4.ui</module-->
 		<module>../../features/org.eclipse.passage.lic.shipments.feature</module>
 
 
