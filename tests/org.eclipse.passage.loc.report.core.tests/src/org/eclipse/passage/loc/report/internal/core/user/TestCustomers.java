@@ -53,11 +53,11 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 		Some() {
 			super(new String[][] { //
 					new String[] { //
-							"erwin.schrodinger@gmail.com", //$NON-NLS-1$
+							"erwin.schroedinger@gmail.com", //$NON-NLS-1$
 							"Erwin Rudolf Josef Alexander Schrödinger" }, //$NON-NLS-1$
 					new String[] { //
 							"lomonosov_1711@yandex.com", //$NON-NLS-1$
-							"Михайло Васиильевич Ломоноосов" } //$NON-NLS-1$
+							"Михайло Васильевич Ломоносов" } //$NON-NLS-1$
 			});
 		}
 	}
