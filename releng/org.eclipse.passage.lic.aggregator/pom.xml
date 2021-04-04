@@ -126,6 +126,14 @@
 		<module>../../bundles/org.eclipse.passage.lic.floating.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.floating.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.shipments</module>
+		<module>../../bundles/org.eclipse.passage.lic.shipments.ecore</module>
+		<!--module>../../bundles/org.eclipse.passage.lic.shipments.model</module>
+		<module>../../bundles/org.eclipse.passage.lic.shipments.edit</module>
+		<module>../../bundles/org.eclipse.passage.lic.shipments.e4.ui</module-->
+		<module>../../features/org.eclipse.passage.lic.shipments.feature</module>
+
+
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 
