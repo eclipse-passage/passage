@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -141,6 +141,34 @@ public interface ShipmentsPackage extends EPackage {
 	int FLOATING_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.shipments.model.impl.PersonalLicenseDescriptorImpl <em>Personal License Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.shipments.model.impl.PersonalLicenseDescriptorImpl
+	 * @see org.eclipse.passage.lic.shipments.model.impl.ShipmentsPackageImpl#getPersonalLicenseDescriptor()
+	 * @generated
+	 */
+	int PERSONAL_LICENSE_DESCRIPTOR = 2;
+
+	/**
+	 * The number of structural features of the '<em>Personal License Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Personal License Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.shipments.model.impl.PersonalLicenseImpl <em>Personal License</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,7 +176,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.shipments.model.impl.ShipmentsPackageImpl#getPersonalLicense()
 	 * @generated
 	 */
-	int PERSONAL_LICENSE = 2;
+	int PERSONAL_LICENSE = 3;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -157,7 +185,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_LICENSE__USER = 0;
+	int PERSONAL_LICENSE__USER = PERSONAL_LICENSE_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>License</b></em>' attribute.
@@ -166,7 +194,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_LICENSE__LICENSE = 1;
+	int PERSONAL_LICENSE__LICENSE = PERSONAL_LICENSE_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Personal License</em>' class.
@@ -175,7 +203,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_LICENSE_FEATURE_COUNT = 2;
+	int PERSONAL_LICENSE_FEATURE_COUNT = PERSONAL_LICENSE_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Personal License</em>' class.
@@ -184,7 +212,35 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_LICENSE_OPERATION_COUNT = 0;
+	int PERSONAL_LICENSE_OPERATION_COUNT = PERSONAL_LICENSE_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.shipments.model.impl.FloatingLicenseDescriptorImpl <em>Floating License Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.shipments.model.impl.FloatingLicenseDescriptorImpl
+	 * @see org.eclipse.passage.lic.shipments.model.impl.ShipmentsPackageImpl#getFloatingLicenseDescriptor()
+	 * @generated
+	 */
+	int FLOATING_LICENSE_DESCRIPTOR = 4;
+
+	/**
+	 * The number of structural features of the '<em>Floating License Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Floating License Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.shipments.model.impl.FloatingLicenseImpl <em>Floating License</em>}' class.
@@ -194,7 +250,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.shipments.model.impl.ShipmentsPackageImpl#getFloatingLicense()
 	 * @generated
 	 */
-	int FLOATING_LICENSE = 3;
+	int FLOATING_LICENSE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Company</b></em>' attribute.
@@ -203,7 +259,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_LICENSE__COMPANY = 0;
+	int FLOATING_LICENSE__COMPANY = FLOATING_LICENSE_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>License</b></em>' attribute.
@@ -212,7 +268,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_LICENSE__LICENSE = 1;
+	int FLOATING_LICENSE__LICENSE = FLOATING_LICENSE_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Floating License</em>' class.
@@ -221,7 +277,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_LICENSE_FEATURE_COUNT = 2;
+	int FLOATING_LICENSE_FEATURE_COUNT = FLOATING_LICENSE_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Floating License</em>' class.
@@ -230,7 +286,7 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_LICENSE_OPERATION_COUNT = 0;
+	int FLOATING_LICENSE_OPERATION_COUNT = FLOATING_LICENSE_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.shipments.model.api.Personal <em>Personal</em>}'.
@@ -275,6 +331,17 @@ public interface ShipmentsPackage extends EPackage {
 	EReference getFloating_Licenses();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor <em>Personal License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Personal License Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor"
+	 * @generated
+	 */
+	EClass getPersonalLicenseDescriptor();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.shipments.model.api.PersonalLicense <em>Personal License</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,6 +372,17 @@ public interface ShipmentsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPersonalLicense_License();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor <em>Floating License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Floating License Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor"
+	 * @generated
+	 */
+	EClass getFloatingLicenseDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.shipments.model.api.FloatingLicense <em>Floating License</em>}'.

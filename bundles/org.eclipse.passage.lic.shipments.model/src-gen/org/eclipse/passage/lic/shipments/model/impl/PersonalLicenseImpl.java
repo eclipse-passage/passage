@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,10 +15,13 @@ package org.eclipse.passage.lic.shipments.model.impl;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
+
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 
 /**
@@ -35,7 +38,7 @@ import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
  *
  * @generated
  */
-public class PersonalLicenseImpl extends MinimalEObjectImpl.Container implements PersonalLicense {
+public class PersonalLicenseImpl extends PersonalLicenseDescriptorImpl implements PersonalLicense {
 	/**
 	 * The default value of the '{@link #getUser() <em>User</em>}' attribute.
 	 * <!-- begin-user-doc -->

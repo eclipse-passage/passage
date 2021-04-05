@@ -7,3 +7,4 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.passage.lic.shipments;x-friends:="org.eclipse.passage.lic.shipments.ecore,org.eclipse.passage.lic.shipments.model,org.eclipse.passage.lic.shipments.edit"

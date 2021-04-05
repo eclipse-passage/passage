@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,12 +15,13 @@ package org.eclipse.passage.lic.shipments.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.passage.lic.shipments.model.api.Floating;
-import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
-import org.eclipse.passage.lic.shipments.model.api.Personal;
-import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
+
+import org.eclipse.passage.lic.shipments.model.api.*;
+
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsFactory;
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 

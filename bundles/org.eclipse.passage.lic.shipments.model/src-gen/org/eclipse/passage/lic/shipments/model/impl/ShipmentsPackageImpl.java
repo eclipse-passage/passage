@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,11 +16,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor;
+import org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor;
+
 import org.eclipse.passage.lic.shipments.model.api.Floating;
 import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
 import org.eclipse.passage.lic.shipments.model.api.Personal;
 import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
+
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsFactory;
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 
@@ -50,7 +56,21 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass personalLicenseDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass personalLicenseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass floatingLicenseDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,6 +189,16 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getPersonalLicenseDescriptor() {
+		return personalLicenseDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPersonalLicense() {
 		return personalLicenseEClass;
 	}
@@ -191,6 +221,16 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 	@Override
 	public EAttribute getPersonalLicense_License() {
 		return (EAttribute) personalLicenseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicenseDescriptor() {
+		return floatingLicenseDescriptorEClass;
 	}
 
 	/**
@@ -259,9 +299,13 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 		floatingEClass = createEClass(FLOATING);
 		createEReference(floatingEClass, FLOATING__LICENSES);
 
+		personalLicenseDescriptorEClass = createEClass(PERSONAL_LICENSE_DESCRIPTOR);
+
 		personalLicenseEClass = createEClass(PERSONAL_LICENSE);
 		createEAttribute(personalLicenseEClass, PERSONAL_LICENSE__USER);
 		createEAttribute(personalLicenseEClass, PERSONAL_LICENSE__LICENSE);
+
+		floatingLicenseDescriptorEClass = createEClass(FLOATING_LICENSE_DESCRIPTOR);
 
 		floatingLicenseEClass = createEClass(FLOATING_LICENSE);
 		createEAttribute(floatingLicenseEClass, FLOATING_LICENSE__COMPANY);
@@ -297,6 +341,8 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		personalLicenseEClass.getESuperTypes().add(this.getPersonalLicenseDescriptor());
+		floatingLicenseEClass.getESuperTypes().add(this.getFloatingLicenseDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(personalEClass, Personal.class, "Personal", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
@@ -311,6 +357,9 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(personalLicenseDescriptorEClass, PersonalLicenseDescriptor.class, "PersonalLicenseDescriptor", //$NON-NLS-1$
+				IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(personalLicenseEClass, PersonalLicense.class, "PersonalLicense", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPersonalLicense_User(), ecorePackage.getEString(), "user", null, 1, 1, PersonalLicense.class, //$NON-NLS-1$
@@ -318,6 +367,9 @@ public class ShipmentsPackageImpl extends EPackageImpl implements ShipmentsPacka
 		initEAttribute(getPersonalLicense_License(), ecorePackage.getEString(), "license", null, 1, 1, //$NON-NLS-1$
 				PersonalLicense.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(floatingLicenseDescriptorEClass, FloatingLicenseDescriptor.class, "FloatingLicenseDescriptor", //$NON-NLS-1$
+				IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(floatingLicenseEClass, FloatingLicense.class, "FloatingLicense", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);

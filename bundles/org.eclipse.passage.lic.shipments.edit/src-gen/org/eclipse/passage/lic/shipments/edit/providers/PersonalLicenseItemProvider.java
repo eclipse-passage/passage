@@ -17,21 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-
-import org.eclipse.passage.lic.shipments.edit.ShipmentsEditPlugin;
-
 import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
 
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
@@ -42,8 +30,7 @@ import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PersonalLicenseItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PersonalLicenseItemProvider extends PersonalLicenseDescriptorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -148,17 +135,6 @@ public class PersonalLicenseItemProvider extends ItemProviderAdapter implements 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ShipmentsEditPlugin.INSTANCE;
 	}
 
 }

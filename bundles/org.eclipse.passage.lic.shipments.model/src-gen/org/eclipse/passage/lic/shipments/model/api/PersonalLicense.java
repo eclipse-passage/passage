@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.shipments.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage#getPersonalLicense()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.shipments.model.api.PersonalLicenseDescriptor"
  * @generated
  */
-public interface PersonalLicense extends EObject {
+public interface PersonalLicense extends EObject, PersonalLicenseDescriptor {
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public interface PersonalLicense extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getUser();
 
 	/**
@@ -64,6 +67,7 @@ public interface PersonalLicense extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getLicense();
 
 	/**
