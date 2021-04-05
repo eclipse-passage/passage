@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,8 @@
 package org.eclipse.passage.lic.shipments.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage#getFloatingLicense()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.shipments.model.api.FloatingLicenseDescriptor"
  * @generated
  */
-public interface FloatingLicense extends EObject {
+public interface FloatingLicense extends EObject, FloatingLicenseDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Company</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public interface FloatingLicense extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getCompany();
 
 	/**
@@ -64,6 +67,7 @@ public interface FloatingLicense extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getLicense();
 
 	/**

@@ -17,27 +17,34 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
 
-import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
+import org.eclipse.emf.common.util.ResourceLocator;
+
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+
+import org.eclipse.passage.lic.shipments.edit.ShipmentsEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.shipments.model.api.FloatingLicense} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FloatingLicenseItemProvider extends FloatingLicenseDescriptorItemProvider {
+public class PersonalLicenseDescriptorItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FloatingLicenseItemProvider(AdapterFactory adapterFactory) {
+	public PersonalLicenseDescriptorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -52,42 +59,8 @@ public class FloatingLicenseItemProvider extends FloatingLicenseDescriptorItemPr
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCompanyPropertyDescriptor(object);
-			addLicensePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Company feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCompanyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FloatingLicense_company_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FloatingLicense_company_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_FloatingLicense_type"), //$NON-NLS-1$
-						ShipmentsPackage.eINSTANCE.getFloatingLicense_Company(), true, false, true,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the License feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLicensePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FloatingLicense_license_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FloatingLicense_license_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_FloatingLicense_type"), //$NON-NLS-1$
-						ShipmentsPackage.eINSTANCE.getFloatingLicense_License(), true, false, true,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -108,9 +81,7 @@ public class FloatingLicenseItemProvider extends FloatingLicenseDescriptorItemPr
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FloatingLicense) object).getCompany();
-		return label == null || label.length() == 0 ? getString("_UI_FloatingLicense_type") : //$NON-NLS-1$
-				getString("_UI_FloatingLicense_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_PersonalLicenseDescriptor_type"); //$NON-NLS-1$
 	}
 
 	/**
@@ -135,6 +106,17 @@ public class FloatingLicenseItemProvider extends FloatingLicenseDescriptorItemPr
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ShipmentsEditPlugin.INSTANCE;
 	}
 
 }

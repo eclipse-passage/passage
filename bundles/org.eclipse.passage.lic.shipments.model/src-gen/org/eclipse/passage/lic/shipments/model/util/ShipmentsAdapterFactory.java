@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,12 +14,16 @@ package org.eclipse.passage.lic.shipments.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.passage.lic.shipments.model.api.Floating;
-import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
-import org.eclipse.passage.lic.shipments.model.api.Personal;
-import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
+
+import org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor;
+import org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor;
+
+import org.eclipse.passage.lic.shipments.model.api.*;
+
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 
 /**
@@ -88,8 +92,18 @@ public class ShipmentsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePersonalLicenseDescriptor(PersonalLicenseDescriptor object) {
+			return createPersonalLicenseDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter casePersonalLicense(PersonalLicense object) {
 			return createPersonalLicenseAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseDescriptor(FloatingLicenseDescriptor object) {
+			return createFloatingLicenseDescriptorAdapter();
 		}
 
 		@Override
@@ -145,6 +159,20 @@ public class ShipmentsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor <em>Personal License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor
+	 * @generated
+	 */
+	public Adapter createPersonalLicenseDescriptorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.shipments.model.api.PersonalLicense <em>Personal License</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -155,6 +183,20 @@ public class ShipmentsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPersonalLicenseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor <em>Floating License Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor
+	 * @generated
+	 */
+	public Adapter createFloatingLicenseDescriptorAdapter() {
 		return null;
 	}
 

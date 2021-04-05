@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,11 +14,14 @@ package org.eclipse.passage.lic.shipments.model.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.passage.lic.shipments.model.api.Floating;
-import org.eclipse.passage.lic.shipments.model.api.FloatingLicense;
-import org.eclipse.passage.lic.shipments.model.api.Personal;
-import org.eclipse.passage.lic.shipments.model.api.PersonalLicense;
+
+import org.eclipse.passage.lic.shipments.FloatingLicenseDescriptor;
+import org.eclipse.passage.lic.shipments.PersonalLicenseDescriptor;
+
+import org.eclipse.passage.lic.shipments.model.api.*;
+
 import org.eclipse.passage.lic.shipments.model.meta.ShipmentsPackage;
 
 /**
@@ -92,9 +95,25 @@ public class ShipmentsSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ShipmentsPackage.PERSONAL_LICENSE_DESCRIPTOR: {
+			PersonalLicenseDescriptor personalLicenseDescriptor = (PersonalLicenseDescriptor) theEObject;
+			T result = casePersonalLicenseDescriptor(personalLicenseDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case ShipmentsPackage.PERSONAL_LICENSE: {
 			PersonalLicense personalLicense = (PersonalLicense) theEObject;
 			T result = casePersonalLicense(personalLicense);
+			if (result == null)
+				result = casePersonalLicenseDescriptor(personalLicense);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ShipmentsPackage.FLOATING_LICENSE_DESCRIPTOR: {
+			FloatingLicenseDescriptor floatingLicenseDescriptor = (FloatingLicenseDescriptor) theEObject;
+			T result = caseFloatingLicenseDescriptor(floatingLicenseDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -102,6 +121,8 @@ public class ShipmentsSwitch<T> extends Switch<T> {
 		case ShipmentsPackage.FLOATING_LICENSE: {
 			FloatingLicense floatingLicense = (FloatingLicense) theEObject;
 			T result = caseFloatingLicense(floatingLicense);
+			if (result == null)
+				result = caseFloatingLicenseDescriptor(floatingLicense);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -142,6 +163,21 @@ public class ShipmentsSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Personal License Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Personal License Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePersonalLicenseDescriptor(PersonalLicenseDescriptor object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Personal License</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -153,6 +189,21 @@ public class ShipmentsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePersonalLicense(PersonalLicense object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Floating License Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Floating License Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFloatingLicenseDescriptor(FloatingLicenseDescriptor object) {
 		return null;
 	}
 
