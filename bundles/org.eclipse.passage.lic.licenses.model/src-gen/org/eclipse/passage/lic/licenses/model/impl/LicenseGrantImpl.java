@@ -58,7 +58,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
-	 * @since 1.0
 	 */
 	protected static final String IDENTIFIER_EDEFAULT = null;
 
