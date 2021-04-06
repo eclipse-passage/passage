@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,18 +32,21 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+
+import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicensePlan} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicensePlanItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class LicenseRequisitesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -48,7 +54,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicensePlanItemProvider(AdapterFactory adapterFactory) {
+	public LicenseRequisitesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,8 +70,9 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
+			addIssueDatePropertyDescriptor(object);
+			addCompanyPropertyDescriptor(object);
+			addPlanPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,42 +86,58 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicensePlan_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlan_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicensePlan_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicensePlan_Identifier(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseRequisites_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicenseRequisites_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Issue Date feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addIssueDatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicensePlan_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlan_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicensePlan_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicensePlan_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseRequisites_issueDate_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_issueDate_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicenseRequisites_IssueDate(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Company feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addCompanyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicensePlan_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlan_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicensePlan_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicensePlan_Description(), true, true, false,
+						getResourceLocator(), getString("_UI_LicenseRequisites_company_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_company_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicenseRequisites_Company(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Plan feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPlanPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicenseRequisites_plan_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_plan_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicenseRequisites_Plan(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -130,9 +153,8 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Personal());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Floating());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Product());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Valid());
 		}
 		return childrenFeatures;
 	}
@@ -151,17 +173,14 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
-	 * This returns license.png.
-	 * 
+	 * This returns LicenseRequisites.gif.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LicenseRequisites")); //$NON-NLS-1$
 	}
 
 	/**
@@ -178,20 +197,13 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		LicensePlan licensePlan = (LicensePlan) object;
-		String identifier = licensePlan.getIdentifier();
-		String name = licensePlan.getName();
-		if (identifier == null || identifier.length() == 0) {
-			return getString("_UI_LicensePlan_type"); //$NON-NLS-1$
-		}
-		if (name == null || name.length() == 0) {
-			return identifier;
-		}
-		return getString("_UI_LicensePlan_text_pattern", new Object[] { identifier, name }); //$NON-NLS-1$
+		String label = ((LicenseRequisites) object).getIdentifier();
+		return label == null || label.length() == 0 ? getString("_UI_LicenseRequisites_type") : //$NON-NLS-1$
+				getString("_UI_LicenseRequisites_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -205,15 +217,15 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicensePlan.class)) {
-		case LicensesPackage.LICENSE_PLAN__IDENTIFIER:
-		case LicensesPackage.LICENSE_PLAN__NAME:
-		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
+		switch (notification.getFeatureID(LicenseRequisites.class)) {
+		case LicensesPackage.LICENSE_REQUISITES__IDENTIFIER:
+		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
+		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
+		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
-		case LicensesPackage.LICENSE_PLAN__PERSONAL:
-		case LicensesPackage.LICENSE_PLAN__FLOATING:
+		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
+		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -233,14 +245,11 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures(),
-				LicensesFactory.eINSTANCE.createLicensePlanFeature()));
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Product(),
+				LicensesFactory.eINSTANCE.createProductRef()));
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Personal(),
-				LicensesFactory.eINSTANCE.createLicensePack()));
-
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Floating(),
-				LicensesFactory.eINSTANCE.createFloatingLicensePack()));
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Valid(),
+				LicensesFactory.eINSTANCE.createValidityPeriodClosed()));
 	}
 
 	/**

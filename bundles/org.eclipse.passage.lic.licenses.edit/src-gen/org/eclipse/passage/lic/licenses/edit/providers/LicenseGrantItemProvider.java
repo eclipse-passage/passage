@@ -85,9 +85,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
-	 * @since 1.0
 	 */
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
