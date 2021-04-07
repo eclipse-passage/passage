@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,10 +22,10 @@ import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 final class AcquiredGrantsStorage {
 
@@ -78,7 +78,7 @@ final class AcquiredGrantsStorage {
 	}
 
 	private GrantAcqisition acquistion(FeatureGrant grant, String user) {
-		GrantAcqisition acquisition = FloatingFactory.eINSTANCE.createGrantAcqisition();
+		GrantAcqisition acquisition = LicensesFactory.eINSTANCE.createGrantAcqisition();
 		acquisition.setCreated(new Date());
 		acquisition.setFeature(grant.getFeature());
 		acquisition.setGrant(grant.getIdentifier());

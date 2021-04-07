@@ -18,8 +18,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
@@ -28,6 +26,7 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -70,7 +69,7 @@ abstract class DecodedResponse<T extends EObject> {
 	static final class GrantAck extends DecodedResponse<GrantAcqisition> {
 
 		GrantAck(NetResponse response, RawRequest request) {
-			super(response, request, Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+			super(response, request, Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 		}
 
 		@Override

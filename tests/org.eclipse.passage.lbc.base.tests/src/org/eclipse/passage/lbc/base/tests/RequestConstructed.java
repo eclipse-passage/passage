@@ -21,8 +21,6 @@ import java.util.Map;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -36,6 +34,8 @@ import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
 import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 
 @SuppressWarnings("restriction")
