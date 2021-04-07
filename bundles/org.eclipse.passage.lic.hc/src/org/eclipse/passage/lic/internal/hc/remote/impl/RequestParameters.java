@@ -18,9 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
@@ -32,6 +29,9 @@ import org.eclipse.passage.lic.internal.hc.remote.QueryParameters;
 import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public abstract class RequestParameters implements QueryParameters {
 

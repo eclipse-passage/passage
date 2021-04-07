@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
@@ -36,6 +35,7 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.Bulk;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceEvery;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public final class RemoteConditions<C extends Connection> //
 		extends ServiceEvery<C, Collection<ConditionPack>, RemoteServiceData.Bulk> implements MinedConditions {

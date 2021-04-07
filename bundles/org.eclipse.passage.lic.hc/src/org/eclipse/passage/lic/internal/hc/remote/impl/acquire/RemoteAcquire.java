@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.internal.model.convert.PGrantAcquisition;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
@@ -34,6 +32,8 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData.OfFeatu
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
+import org.eclipse.passage.lic.internal.licenses.convert.PGrantAcquisition;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcquisition, RemoteServiceData.OfFeature> {
 
@@ -50,15 +50,15 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 	protected ResponseHandler<GrantAcquisition> handler(FloatingLicenseAccess access) {
 		return new Response(//
 				new EObjectFromXmiResponse<>(//
-						org.eclipse.passage.lic.floating.model.api.GrantAcqisition.class, //
+						org.eclipse.passage.lic.licenses.model.api.GrantAcqisition.class, //
 						equipment));
 	}
 
 	private final static class Response implements ResponseHandler<GrantAcquisition> {
 
-		private final ResponseHandler<org.eclipse.passage.lic.floating.model.api.GrantAcqisition> delegate;
+		private final ResponseHandler<org.eclipse.passage.lic.licenses.model.api.GrantAcqisition> delegate;
 
-		private Response(ResponseHandler<org.eclipse.passage.lic.floating.model.api.GrantAcqisition> delegate) {
+		private Response(ResponseHandler<org.eclipse.passage.lic.licenses.model.api.GrantAcqisition> delegate) {
 			this.delegate = delegate;
 		}
 
@@ -67,7 +67,7 @@ final class RemoteAcquire<C extends Connection> extends ServiceAny<C, GrantAcqui
 			return apiGrant(delegate.read(results, context));
 		}
 
-		private GrantAcquisition apiGrant(org.eclipse.passage.lic.floating.model.api.GrantAcqisition source) {
+		private GrantAcquisition apiGrant(org.eclipse.passage.lic.licenses.model.api.GrantAcqisition source) {
 			return new PGrantAcquisition(source).get();
 		}
 

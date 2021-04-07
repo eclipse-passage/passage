@@ -16,7 +16,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
@@ -29,6 +28,7 @@ import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public abstract class ServiceRemote<C extends Connection, T, D extends RemoteServiceData> {
 

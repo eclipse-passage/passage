@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.floating.internal.model.convert;
+package org.eclipse.passage.lic.internal.licenses.convert;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.base.acquire.BaseGrantAcquisition;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
 public final class PGrantAcquisition
 		implements Supplier<org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition> {

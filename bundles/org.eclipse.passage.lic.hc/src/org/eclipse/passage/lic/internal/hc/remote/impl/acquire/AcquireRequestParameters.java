@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 final class AcquireRequestParameters extends RequestParameters {
 
