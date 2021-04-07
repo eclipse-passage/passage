@@ -13,7 +13,7 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.2.2.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Passage Licensing Operator Workbench" uid="org.eclipse.passage.loc.operator.product" id="org.eclipse.passage.loc.operator.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="2.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
 
    <configIni use="default">
