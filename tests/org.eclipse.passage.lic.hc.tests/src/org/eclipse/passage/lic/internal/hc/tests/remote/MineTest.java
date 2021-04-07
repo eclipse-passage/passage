@@ -27,10 +27,12 @@ import org.eclipse.passage.lbc.internal.base.mine.Conditions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -40,12 +42,13 @@ public final class MineTest {
 	private final Supplier<Path> source = new TestLicFolder();
 
 	@Test
+	@Ignore /* test license is to be reissued */
 	public void mine() {
 		ServiceInvocationResult<Collection<ConditionPack>> all = new RemoteConditions<>(//
 				new TestEquipment(data.product(), source).get(), this::client, source)//
 						.all(data.product());
-		assertTrue(all.data().isPresent());
-		assertEquals(2, all.data().get().size());
+		assertTrue(new DiagnosticExplained(all.diagnostic()).get(), all.data().isPresent());
+		assertEquals(new DiagnosticExplained(all.diagnostic()).get(), 2, all.data().get().size());
 	}
 
 	private Client<ShortcutConnection, Collection<ConditionPack>> client() {
