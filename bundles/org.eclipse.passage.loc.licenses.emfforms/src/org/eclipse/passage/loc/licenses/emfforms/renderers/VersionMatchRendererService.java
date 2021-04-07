@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,24 +10,24 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.floating.emfforms;
+package org.eclipse.passage.loc.licenses.emfforms.renderers;
 
 import org.eclipse.emf.ecp.view.spi.model.VControl;
 import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.swt.core.di.EMFFormsDIRendererService;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
-import org.eclipse.passage.loc.workbench.emfforms.renderers.ConditionTypeRenderer;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.loc.workbench.emfforms.renderers.MatchRuleRenderer;
 import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRendererService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 @Component
-public final class EnvironmentRendererService extends StructuredFeatureRendererService
+public final class VersionMatchRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
-	public EnvironmentRendererService() {
-		super(ConditionTypeRenderer.class, FloatingPackage.eINSTANCE.getEvaluationInstructions_Type());
+	public VersionMatchRendererService() {
+		super(MatchRuleRenderer.class, LicensesPackage.eINSTANCE.getVersionMatch_Rule());
 	}
 
 	@Reference

@@ -18,10 +18,10 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
