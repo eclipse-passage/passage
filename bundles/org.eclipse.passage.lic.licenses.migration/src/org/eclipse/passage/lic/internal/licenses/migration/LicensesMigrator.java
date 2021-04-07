@@ -29,6 +29,7 @@ public class LicensesMigrator {
 		migrate033();
 		migrate040();
 		migrate050();
+		migrate100();
 	}
 
 	private void migrate033() {
@@ -48,6 +49,12 @@ public class LicensesMigrator {
 
 	private void migrate050() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+	}
+
+	private void migrate100() {
+		String nsUri = "http://www.eclipse.org/passage/lic/licenses/1.0.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.put(nsUri, delegate);
 	}

@@ -17,8 +17,9 @@ import java.io.InputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -40,6 +41,7 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifie
 import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 abstract class BaseXmiConditionTransport implements ConditionTransport {
 
@@ -62,8 +64,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
 		Resource resource = new XMIResourceImpl();
-		resource.load(input,
-				Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
+		resource.load(input, loadOptions());
 		return resource.getContents().stream() //
 				.filter(LicensePack.class::isInstance) //
 				.map(LicensePack.class::cast) //
@@ -72,6 +73,14 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 				.flatMap(i -> StreamSupport.stream(i.spliterator(), false)) //
 				.map(this::condition) //
 				.collect(Collectors.toList());
+	}
+
+	private Map<String, Object> loadOptions() {
+		Map<String, Object> options = new HashMap<>();
+		options.put(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE);
+		options.put(LicensesPackage.eNAME, LicensesPackage.eINSTANCE);
+		options.put(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler());
+		return options;
 	}
 
 	private Condition condition(LicenseGrant descriptor) {
