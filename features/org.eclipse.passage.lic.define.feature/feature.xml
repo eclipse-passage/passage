@@ -48,10 +48,6 @@
          id="org.eclipse.passage.lic.products.feature"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.passage.lic.shipments.feature"
-         version="0.0.0"/>
- 
   <includes
          id="org.eclipse.passage.lic.users.feature"
          version="0.0.0"/>
