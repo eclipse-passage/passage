@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.floating.edit
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.floating.edit;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.1.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Copyright: %Bundle-Copyright
@@ -14,5 +14,4 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";resolution:=opti
 Import-Package: org.eclipse.passage.lic.internal.api.conditions,
  org.osgi.framework
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.passage.lic.floating.edit.FLoatingLicensesEditPlugin$Implementation$Activator
 Bundle-ActivationPolicy: lazy
