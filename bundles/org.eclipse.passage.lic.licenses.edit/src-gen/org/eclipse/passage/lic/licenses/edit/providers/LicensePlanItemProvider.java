@@ -131,6 +131,8 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Personal());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Floating());
 		}
 		return childrenFeatures;
 	}
@@ -210,6 +212,8 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -231,6 +235,12 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures(),
 				LicensesFactory.eINSTANCE.createLicensePlanFeature()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Personal(),
+				LicensesFactory.eINSTANCE.createLicensePack()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Floating(),
+				LicensesFactory.eINSTANCE.createFloatingLicensePack()));
 	}
 
 	/**

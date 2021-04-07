@@ -129,6 +129,71 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseFloatingLicensePack(FloatingLicensePack object) {
+			return createFloatingLicensePackAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseRequisites(LicenseRequisites object) {
+			return createLicenseRequisitesAdapter();
+		}
+
+		@Override
+		public Adapter caseProductRef(ProductRef object) {
+			return createProductRefAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServer(FloatingServer object) {
+			return createFloatingServerAdapter();
+		}
+
+		@Override
+		public Adapter caseUserGrant(UserGrant object) {
+			return createUserGrantAdapter();
+		}
+
+		@Override
+		public Adapter caseFeatureGrant(FeatureGrant object) {
+			return createFeatureGrantAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriod(ValidityPeriod object) {
+			return createValidityPeriodAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriodClosed(ValidityPeriodClosed object) {
+			return createValidityPeriodClosedAdapter();
+		}
+
+		@Override
+		public Adapter caseEvaluationInstructions(EvaluationInstructions object) {
+			return createEvaluationInstructionsAdapter();
+		}
+
+		@Override
+		public Adapter caseVersionMatch(VersionMatch object) {
+			return createVersionMatchAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseAccess(FloatingLicenseAccess object) {
+			return createFloatingLicenseAccessAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServerConnection(FloatingServerConnection object) {
+			return createFloatingServerConnectionAdapter();
+		}
+
+		@Override
+		public Adapter caseGrantAcqisition(GrantAcqisition object) {
+			return createGrantAcqisitionAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -269,6 +334,188 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseGrantAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack <em>Floating License Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack
+	 * @generated
+	 */
+	public Adapter createFloatingLicensePackAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites <em>License Requisites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseRequisites
+	 * @generated
+	 */
+	public Adapter createLicenseRequisitesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef <em>Product Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.ProductRef
+	 * @generated
+	 */
+	public Adapter createProductRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingServer <em>Floating Server</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingServer
+	 * @generated
+	 */
+	public Adapter createFloatingServerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.UserGrant <em>User Grant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.UserGrant
+	 * @generated
+	 */
+	public Adapter createUserGrantAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant <em>Feature Grant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureGrant
+	 * @generated
+	 */
+	public Adapter createFeatureGrantAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriod <em>Validity Period</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.ValidityPeriod
+	 * @generated
+	 */
+	public Adapter createValidityPeriodAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed <em>Validity Period Closed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed
+	 * @generated
+	 */
+	public Adapter createValidityPeriodClosedAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions <em>Evaluation Instructions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions
+	 * @generated
+	 */
+	public Adapter createEvaluationInstructionsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.VersionMatch <em>Version Match</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.VersionMatch
+	 * @generated
+	 */
+	public Adapter createVersionMatchAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess <em>Floating License Access</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess
+	 * @generated
+	 */
+	public Adapter createFloatingLicenseAccessAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection <em>Floating Server Connection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection
+	 * @generated
+	 */
+	public Adapter createFloatingServerConnectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.GrantAcqisition <em>Grant Acqisition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.GrantAcqisition
+	 * @generated
+	 */
+	public Adapter createGrantAcqisitionAdapter() {
 		return null;
 	}
 

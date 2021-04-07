@@ -80,6 +80,30 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createLicensePack();
 		case LicensesPackage.LICENSE_GRANT:
 			return createLicenseGrant();
+		case LicensesPackage.FLOATING_LICENSE_PACK:
+			return createFloatingLicensePack();
+		case LicensesPackage.LICENSE_REQUISITES:
+			return createLicenseRequisites();
+		case LicensesPackage.PRODUCT_REF:
+			return createProductRef();
+		case LicensesPackage.FLOATING_SERVER:
+			return createFloatingServer();
+		case LicensesPackage.USER_GRANT:
+			return createUserGrant();
+		case LicensesPackage.FEATURE_GRANT:
+			return createFeatureGrant();
+		case LicensesPackage.VALIDITY_PERIOD_CLOSED:
+			return createValidityPeriodClosed();
+		case LicensesPackage.EVALUATION_INSTRUCTIONS:
+			return createEvaluationInstructions();
+		case LicensesPackage.VERSION_MATCH:
+			return createVersionMatch();
+		case LicensesPackage.FLOATING_LICENSE_ACCESS:
+			return createFloatingLicenseAccess();
+		case LicensesPackage.FLOATING_SERVER_CONNECTION:
+			return createFloatingServerConnection();
+		case LicensesPackage.GRANT_ACQISITION:
+			return createGrantAcqisition();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -129,6 +153,138 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	public LicenseGrant createLicenseGrant() {
 		LicenseGrantImpl licenseGrant = new LicenseGrantImpl();
 		return licenseGrant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingLicensePack createFloatingLicensePack() {
+		FloatingLicensePackImpl floatingLicensePack = new FloatingLicensePackImpl();
+		return floatingLicensePack;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LicenseRequisites createLicenseRequisites() {
+		LicenseRequisitesImpl licenseRequisites = new LicenseRequisitesImpl();
+		return licenseRequisites;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProductRef createProductRef() {
+		ProductRefImpl productRef = new ProductRefImpl();
+		return productRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingServer createFloatingServer() {
+		FloatingServerImpl floatingServer = new FloatingServerImpl();
+		return floatingServer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UserGrant createUserGrant() {
+		UserGrantImpl userGrant = new UserGrantImpl();
+		return userGrant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureGrant createFeatureGrant() {
+		FeatureGrantImpl featureGrant = new FeatureGrantImpl();
+		return featureGrant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ValidityPeriodClosed createValidityPeriodClosed() {
+		ValidityPeriodClosedImpl validityPeriodClosed = new ValidityPeriodClosedImpl();
+		return validityPeriodClosed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EvaluationInstructions createEvaluationInstructions() {
+		EvaluationInstructionsImpl evaluationInstructions = new EvaluationInstructionsImpl();
+		return evaluationInstructions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VersionMatch createVersionMatch() {
+		VersionMatchImpl versionMatch = new VersionMatchImpl();
+		return versionMatch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingLicenseAccess createFloatingLicenseAccess() {
+		FloatingLicenseAccessImpl floatingLicenseAccess = new FloatingLicenseAccessImpl();
+		return floatingLicenseAccess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FloatingServerConnection createFloatingServerConnection() {
+		FloatingServerConnectionImpl floatingServerConnection = new FloatingServerConnectionImpl();
+		return floatingServerConnection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public GrantAcqisition createGrantAcqisition() {
+		GrantAcqisitionImpl grantAcqisition = new GrantAcqisitionImpl();
+		return grantAcqisition;
 	}
 
 	/**

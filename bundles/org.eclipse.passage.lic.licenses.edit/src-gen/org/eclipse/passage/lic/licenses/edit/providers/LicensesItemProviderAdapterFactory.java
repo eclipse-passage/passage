@@ -182,6 +182,282 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingLicensePackItemProvider floatingLicensePackItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingLicensePackAdapter() {
+		if (floatingLicensePackItemProvider == null) {
+			floatingLicensePackItemProvider = new FloatingLicensePackItemProvider(this);
+		}
+
+		return floatingLicensePackItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LicenseRequisitesItemProvider licenseRequisitesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLicenseRequisitesAdapter() {
+		if (licenseRequisitesItemProvider == null) {
+			licenseRequisitesItemProvider = new LicenseRequisitesItemProvider(this);
+		}
+
+		return licenseRequisitesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.ProductRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProductRefItemProvider productRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.ProductRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProductRefAdapter() {
+		if (productRefItemProvider == null) {
+			productRefItemProvider = new ProductRefItemProvider(this);
+		}
+
+		return productRefItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingServer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingServerItemProvider floatingServerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingServer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingServerAdapter() {
+		if (floatingServerItemProvider == null) {
+			floatingServerItemProvider = new FloatingServerItemProvider(this);
+		}
+
+		return floatingServerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.UserGrant} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserGrantItemProvider userGrantItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.UserGrant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserGrantAdapter() {
+		if (userGrantItemProvider == null) {
+			userGrantItemProvider = new UserGrantItemProvider(this);
+		}
+
+		return userGrantItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureGrantItemProvider featureGrantItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureGrantAdapter() {
+		if (featureGrantItemProvider == null) {
+			featureGrantItemProvider = new FeatureGrantItemProvider(this);
+		}
+
+		return featureGrantItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValidityPeriodClosedItemProvider validityPeriodClosedItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValidityPeriodClosedAdapter() {
+		if (validityPeriodClosedItemProvider == null) {
+			validityPeriodClosedItemProvider = new ValidityPeriodClosedItemProvider(this);
+		}
+
+		return validityPeriodClosedItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EvaluationInstructionsItemProvider evaluationInstructionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEvaluationInstructionsAdapter() {
+		if (evaluationInstructionsItemProvider == null) {
+			evaluationInstructionsItemProvider = new EvaluationInstructionsItemProvider(this);
+		}
+
+		return evaluationInstructionsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.VersionMatch} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VersionMatchItemProvider versionMatchItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.VersionMatch}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVersionMatchAdapter() {
+		if (versionMatchItemProvider == null) {
+			versionMatchItemProvider = new VersionMatchItemProvider(this);
+		}
+
+		return versionMatchItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingLicenseAccessItemProvider floatingLicenseAccessItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingLicenseAccessAdapter() {
+		if (floatingLicenseAccessItemProvider == null) {
+			floatingLicenseAccessItemProvider = new FloatingLicenseAccessItemProvider(this);
+		}
+
+		return floatingLicenseAccessItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingServerConnectionItemProvider floatingServerConnectionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingServerConnectionAdapter() {
+		if (floatingServerConnectionItemProvider == null) {
+			floatingServerConnectionItemProvider = new FloatingServerConnectionItemProvider(this);
+		}
+
+		return floatingServerConnectionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.GrantAcqisition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GrantAcqisitionItemProvider grantAcqisitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.GrantAcqisition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGrantAcqisitionAdapter() {
+		if (grantAcqisitionItemProvider == null) {
+			grantAcqisitionItemProvider = new GrantAcqisitionItemProvider(this);
+		}
+
+		return grantAcqisitionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -303,6 +579,30 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			licensePackItemProvider.dispose();
 		if (licenseGrantItemProvider != null)
 			licenseGrantItemProvider.dispose();
+		if (floatingLicensePackItemProvider != null)
+			floatingLicensePackItemProvider.dispose();
+		if (licenseRequisitesItemProvider != null)
+			licenseRequisitesItemProvider.dispose();
+		if (productRefItemProvider != null)
+			productRefItemProvider.dispose();
+		if (floatingServerItemProvider != null)
+			floatingServerItemProvider.dispose();
+		if (userGrantItemProvider != null)
+			userGrantItemProvider.dispose();
+		if (featureGrantItemProvider != null)
+			featureGrantItemProvider.dispose();
+		if (validityPeriodClosedItemProvider != null)
+			validityPeriodClosedItemProvider.dispose();
+		if (evaluationInstructionsItemProvider != null)
+			evaluationInstructionsItemProvider.dispose();
+		if (versionMatchItemProvider != null)
+			versionMatchItemProvider.dispose();
+		if (floatingLicenseAccessItemProvider != null)
+			floatingLicenseAccessItemProvider.dispose();
+		if (floatingServerConnectionItemProvider != null)
+			floatingServerConnectionItemProvider.dispose();
+		if (grantAcqisitionItemProvider != null)
+			grantAcqisitionItemProvider.dispose();
 	}
 
 }

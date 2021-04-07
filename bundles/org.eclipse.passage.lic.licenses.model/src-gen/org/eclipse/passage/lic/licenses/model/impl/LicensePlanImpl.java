@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -40,6 +42,8 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getLicensePlanFeatures <em>License Plan Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getPersonal <em>Personal</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanImpl#getFloating <em>Floating</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,6 +118,26 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @ordered
 	 */
 	protected EList<LicensePlanFeatureDescriptor> licensePlanFeatures;
+
+	/**
+	 * The cached value of the '{@link #getPersonal() <em>Personal</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersonal()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LicensePack> personal;
+
+	/**
+	 * The cached value of the '{@link #getFloating() <em>Floating</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFloating()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FloatingLicensePack> floating;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -228,10 +252,42 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 */
 	@Override
+	public EList<LicensePack> getPersonal() {
+		if (personal == null) {
+			personal = new EObjectContainmentEList<LicensePack>(LicensePack.class, this,
+					LicensesPackage.LICENSE_PLAN__PERSONAL);
+		}
+		return personal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<FloatingLicensePack> getFloating() {
+		if (floating == null) {
+			floating = new EObjectContainmentEList<FloatingLicensePack>(FloatingLicensePack.class, this,
+					LicensesPackage.LICENSE_PLAN__FLOATING);
+		}
+		return floating;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
 			return ((InternalEList<?>) getLicensePlanFeatures()).basicRemove(otherEnd, msgs);
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+			return ((InternalEList<?>) getPersonal()).basicRemove(otherEnd, msgs);
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
+			return ((InternalEList<?>) getFloating()).basicRemove(otherEnd, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -253,6 +309,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return getDescription();
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
 			return getLicensePlanFeatures();
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+			return getPersonal();
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
+			return getFloating();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -280,6 +340,14 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			getLicensePlanFeatures().clear();
 			getLicensePlanFeatures().addAll((Collection<? extends LicensePlanFeatureDescriptor>) newValue);
 			return;
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+			getPersonal().clear();
+			getPersonal().addAll((Collection<? extends LicensePack>) newValue);
+			return;
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
+			getFloating().clear();
+			getFloating().addAll((Collection<? extends FloatingLicensePack>) newValue);
+			return;
 		default:
 			super.eSet(featureID, newValue);
 			return;
@@ -306,6 +374,12 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
 			getLicensePlanFeatures().clear();
 			return;
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+			getPersonal().clear();
+			return;
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
+			getFloating().clear();
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -328,6 +402,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
 		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
 			return licensePlanFeatures != null && !licensePlanFeatures.isEmpty();
+		case LicensesPackage.LICENSE_PLAN__PERSONAL:
+			return personal != null && !personal.isEmpty();
+		case LicensesPackage.LICENSE_PLAN__FLOATING:
+			return floating != null && !floating.isEmpty();
 		default:
 			return super.eIsSet(featureID);
 		}

@@ -30,6 +30,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getLicensePlanFeatures <em>License Plan Features</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getPersonal <em>Personal</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFloating <em>Floating</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan()
@@ -118,5 +120,29 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 */
 	@Override
 	EList<LicensePlanFeatureDescriptor> getLicensePlanFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Personal</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.LicensePack}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Personal</em>' containment reference list.
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Personal()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<LicensePack> getPersonal();
+
+	/**
+	 * Returns the value of the '<em><b>Floating</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Floating</em>' containment reference list.
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Floating()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FloatingLicensePack> getFloating();
 
 } // LicensePlan

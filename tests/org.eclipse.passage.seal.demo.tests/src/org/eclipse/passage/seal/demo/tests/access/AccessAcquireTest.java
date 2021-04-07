@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.access.Access;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
@@ -83,7 +84,9 @@ public final class AccessAcquireTest {
 	 */
 	public void denyUnlicensedFeatureAcquisition() {
 		ServiceInvocationResult<GrantLockAttempt> acquire = new Access(new TestFramework()).acquire("frog-firework"); //$NON-NLS-1$
-		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
+		assertTrue(//
+				new DiagnosticExplained(acquire.diagnostic()).get(), //
+				new NoSevereErrors().test(acquire.diagnostic()));
 		assertTrue(acquire.data().isPresent());
 		assertFalse(acquire.data().get().successful());
 	}
@@ -103,7 +106,9 @@ public final class AccessAcquireTest {
 
 	private GrantLockAttempt successfullyAcquire(String feature, Access access, Consumer<Diagnostic> onDiagnostic) {
 		ServiceInvocationResult<GrantLockAttempt> acquire = access.acquire(feature);
-		assertTrue(new NoSevereErrors().test(acquire.diagnostic()));
+		assertTrue(//
+				new DiagnosticExplained(acquire.diagnostic()).get(), //
+				new NoSevereErrors().test(acquire.diagnostic()));
 		onDiagnostic.accept(acquire.diagnostic());
 		assertTrue(acquire.data().isPresent());
 		assertTrue(acquire.data().get().successful());

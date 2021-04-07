@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.loc.licenses.core
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.loc.licenses.core
-Bundle-Version: 0.6.102.qualifier
+Bundle-Version: 0.6.103.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.eclipse.passage.lic.email;bundle-version="0.0.0",
  org.eclipse.passage.lic.emf;bundle-version="1.0.100",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
- org.eclipse.passage.lic.licenses.model;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.passage.lic.licenses.model;bundle-version="1.1.0";visibility:=reexport,
  org.eclipse.passage.lic.users.model;bundle-version="1.0.0",
  org.eclipse.passage.loc.api;bundle-version="0.0.0",
  org.eclipse.passage.loc.products.core;bundle-version="0.6.0",
