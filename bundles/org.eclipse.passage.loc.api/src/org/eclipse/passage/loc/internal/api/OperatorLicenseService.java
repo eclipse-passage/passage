@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,10 +15,10 @@ package org.eclipse.passage.loc.internal.api;
 import java.util.Collection;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 
 /**
  * @since 0.5.0

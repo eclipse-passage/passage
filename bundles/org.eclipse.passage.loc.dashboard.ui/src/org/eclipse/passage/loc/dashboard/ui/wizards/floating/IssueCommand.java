@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
-import org.eclipse.passage.lic.floating.model.api.UserGrant;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
+import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 
@@ -55,7 +55,7 @@ final class IssueCommand {
 	}
 
 	private FloatingLicenseAccess personalAccess(String user) {
-		FloatingLicenseAccess access = FloatingFactory.eINSTANCE.createFloatingLicenseAccess();
+		FloatingLicenseAccess access = LicensesFactory.eINSTANCE.createFloatingLicenseAccess();
 		access.setUser(user);
 		access.setOriginLicensePack(pack.getLicense().getIdentifier());
 		access.setServer(server());
@@ -63,7 +63,7 @@ final class IssueCommand {
 	}
 
 	private FloatingServerConnection server() {
-		FloatingServerConnection connection = FloatingFactory.eINSTANCE.createFloatingServerConnection();
+		FloatingServerConnection connection = LicensesFactory.eINSTANCE.createFloatingServerConnection();
 		connection.setIp(config.ip());
 		connection.setPort(config.port());
 		connection.setAuthentication(EcoreUtil.copy(pack.getHost().getAuthentication()));
