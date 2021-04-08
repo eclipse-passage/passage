@@ -27,6 +27,18 @@
       <file
             filePath="viewmodels/LicenseGrant.view">
       </file>
+	<file filePath="viewmodels/FloatingServerConnection.view"/>
+	<file filePath="viewmodels/FloatingLicenseAccess.view"/>
+	<file filePath="viewmodels/VersionMatch.view"/>
+	<file filePath="viewmodels/EvaluationInstructions.view"/>
+	<file filePath="viewmodels/ValidityPeriodClosed.view"/>
+	<file filePath="viewmodels/ValidityPeriod.view"/>
+	<file filePath="viewmodels/FeatureGrant.view"/>
+	<file filePath="viewmodels/UserGrant.view"/>
+	<file filePath="viewmodels/FloatingServer.view"/>
+	<file filePath="viewmodels/ProductRef.view"/>
+	<file filePath="viewmodels/LicenseRequisites.view"/>
+	<file filePath="viewmodels/FloatingLicensePack.view"/>
    </extension>
 
    <extension

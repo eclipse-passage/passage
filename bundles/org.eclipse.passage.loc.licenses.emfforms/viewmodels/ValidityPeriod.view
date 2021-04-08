@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4Q7toBrKEeuMV_ofZRuPaw" name="ValidityPeriod">
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//ValidityPeriod"/>
+  <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>
