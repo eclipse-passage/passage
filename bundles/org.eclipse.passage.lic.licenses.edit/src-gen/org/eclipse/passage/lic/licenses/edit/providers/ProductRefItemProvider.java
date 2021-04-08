@@ -17,9 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,11 +28,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
-
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -126,16 +122,20 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ProductRef) object).getProduct();
-		return label == null || label.length() == 0 ? getString("_UI_ProductRef_type") : //$NON-NLS-1$
-				getString("_UI_ProductRef_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		ProductRef product = (ProductRef) object;
+		return getString("_UI_ProductRef_type_detailed", //$NON-NLS-1$
+				new Object[] { //
+						new GetOrUnknown(product.getProduct()).get(), //
+						new GetOrUnknown(product.getVersion()).get() //
+				});
+
 	}
 
 	/**

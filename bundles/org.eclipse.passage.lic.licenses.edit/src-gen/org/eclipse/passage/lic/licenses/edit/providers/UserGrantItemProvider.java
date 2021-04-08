@@ -14,14 +14,12 @@ package org.eclipse.passage.lic.licenses.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,11 +30,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-
+import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
-
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -142,17 +139,21 @@ public class UserGrantItemProvider extends ItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserGrant) object).getUser();
-		return label == null || label.length() == 0 ? getString("_UI_UserGrant_type") : //$NON-NLS-1$
-				getString("_UI_UserGrant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		UserGrant grant = (UserGrant) object;
+		String user = new GetOrUnknown(grant.getUser()).get();
+		Optional<EvaluationInstructions> auth = Optional.ofNullable(grant.getAuthentication());
+		String env = auth.map(EvaluationInstructions::getType).orElse("undefined"); //$NON-NLS-1$
+		String expression = auth.map(EvaluationInstructions::getExpression).orElse("undefined"); //$NON-NLS-1$
+		return getString("_UI_UserGrant_type_detailed", new Object[] { user, env, expression }); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
