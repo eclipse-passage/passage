@@ -57,8 +57,6 @@
 		<module>../../bundles/org.eclipse.passage.loc.licenses.emfforms</module>
 		<module>../../features/org.eclipse.passage.loc.licenses.feature</module>
 
-		<module>../../bundles/org.eclipse.passage.loc.floating.emfforms</module>
-
 		<module>../../bundles/org.eclipse.passage.loc.billing.core</module>
 		<module>../../features/org.eclipse.passage.loc.billing.feature</module>
 		<module>../../tests/org.eclipse.passage.loc.billing.core.tests</module>
