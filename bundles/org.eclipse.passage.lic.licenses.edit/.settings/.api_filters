@@ -168,4 +168,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/licenses/edit/ClosedPeriodPrinted.java" type="org.eclipse.passage.lic.licenses.edit.ClosedPeriodPrinted">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="ValidityPeriod"/>
+                <message_argument value="ClosedPeriodPrinted"/>
+                <message_argument value="ClosedPeriodPrinted(ValidityPeriod)"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

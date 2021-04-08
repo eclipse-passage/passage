@@ -14,14 +14,12 @@ package org.eclipse.passage.lic.licenses.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,11 +30,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eclipse.passage.lic.licenses.edit.ClosedPeriodPrinted;
+import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
-
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -194,17 +192,24 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FeatureGrant) object).getIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_FeatureGrant_type") : //$NON-NLS-1$
-				getString("_UI_FeatureGrant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		FeatureGrant grant = (FeatureGrant) object;
+		String feature = new GetOrUnknown(grant.getFeature()).get();
+		Optional<VersionMatch> match = Optional.of(grant.getVersion());
+		String version = match.map(VersionMatch::getVersion).orElse("unknown"); //$NON-NLS-1$
+		String rule = match.map(VersionMatch::getRule).orElse("unknown"); //$NON-NLS-1$
+		ClosedPeriodPrinted period = new ClosedPeriodPrinted(grant.getValid());
+		return getString("_UI_FeatureGrant_type_detailed", //$NON-NLS-1$
+				new Object[] { feature, version, rule, grant.getCapacity(), //
+						period.from(), period.until(), grant.getVivid() });
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
