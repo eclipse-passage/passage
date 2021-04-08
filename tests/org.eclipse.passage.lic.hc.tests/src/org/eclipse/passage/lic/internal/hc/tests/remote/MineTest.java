@@ -46,7 +46,7 @@ public final class MineTest {
 				new TestEquipment(data.product(), source).get(), this::client, source)//
 						.all(data.product());
 		assertTrue(new DiagnosticExplained(all.diagnostic()).get(), all.data().isPresent());
-		assertEquals(new DiagnosticExplained(all.diagnostic()).get(), 2, all.data().get().size());
+		assertEquals(new DiagnosticExplained(all.diagnostic()).get(), 1, all.data().get().size());
 	}
 
 	private Client<ShortcutConnection, Collection<ConditionPack>> client() {

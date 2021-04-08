@@ -52,7 +52,7 @@ public abstract class ServiceRemote<C extends Connection, T, D extends RemoteSer
 			return new BaseServiceInvocationResult<>(accesses.diagnostic());
 		}
 		if (accesses.data().get().isEmpty()) {
-			new BaseServiceInvocationResult<>(noServers());
+			return new BaseServiceInvocationResult<>(noServers());
 		}
 		return withServers(parameters, accesses.data().get());
 	}
