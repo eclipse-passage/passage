@@ -156,17 +156,6 @@ public class GrantAcqisitionItemProvider extends ItemProviderAdapter implements 
 	}
 
 	/**
-	 * This returns GrantAcqisition.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GrantAcqisition")); //$NON-NLS-1$
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
