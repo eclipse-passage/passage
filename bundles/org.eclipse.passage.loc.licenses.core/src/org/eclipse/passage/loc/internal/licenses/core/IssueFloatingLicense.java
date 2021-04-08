@@ -24,7 +24,6 @@ import java.util.function.BinaryOperator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
-import org.eclipse.passage.lic.floating.FloatingFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -33,6 +32,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
+import org.eclipse.passage.lic.internal.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;

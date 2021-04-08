@@ -10,13 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.floating;
+package org.eclipse.passage.lic.internal.base.io;
 
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-
-/**
- * TODO rename to '*Extension', no plural
- */
 public abstract class FloatingFileExtension extends PassageFileExtension {
 
 	public static final class FloatingLicenseEncrypted extends FloatingFileExtension {
