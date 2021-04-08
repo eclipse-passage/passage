@@ -20,12 +20,6 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationExpression;
-import org.eclipse.passage.lic.floating.internal.model.net.ServerAuthenticationType;
-import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
-import org.eclipse.passage.lic.floating.model.api.FloatingServerConnection;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
@@ -40,6 +34,12 @@ import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
+import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
+import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -93,12 +93,12 @@ public final class RemoteConditionsRequestTest {
 	}
 
 	private FloatingLicenseAccess access() {
-		FloatingLicenseAccess access = FloatingFactory.eINSTANCE.createFloatingLicenseAccess();
+		FloatingLicenseAccess access = LicensesFactory.eINSTANCE.createFloatingLicenseAccess();
 		access.setUser(user);
-		FloatingServerConnection connection = FloatingFactory.eINSTANCE.createFloatingServerConnection();
+		FloatingServerConnection connection = LicensesFactory.eINSTANCE.createFloatingServerConnection();
 		connection.setIp(host);
 		connection.setPort(port);
-		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
+		EvaluationInstructions auth = LicensesFactory.eINSTANCE.createEvaluationInstructions();
 		auth.setType(environment);
 		auth.setExpression(expression);
 		connection.setAuthentication(auth);

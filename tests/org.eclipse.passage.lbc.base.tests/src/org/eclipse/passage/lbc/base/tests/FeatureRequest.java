@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
@@ -29,6 +28,7 @@ import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 @SuppressWarnings("restriction")
 final class FeatureRequest {
@@ -81,7 +81,7 @@ final class FeatureRequest {
 
 	private byte[] raw(EObject obj) throws LicensingException {
 		return new EObjectToBytes(obj)//
-				.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+				.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 	}
 
 }

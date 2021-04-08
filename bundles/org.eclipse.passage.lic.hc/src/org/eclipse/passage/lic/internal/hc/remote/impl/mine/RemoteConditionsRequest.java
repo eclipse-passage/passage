@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.hc.remote.impl.mine;
 
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.Configuration;
@@ -20,6 +19,7 @@ import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.impl.BaseConfiguration;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public final class RemoteConditionsRequest<C extends Connection> extends RemoteRequest<C> {
 

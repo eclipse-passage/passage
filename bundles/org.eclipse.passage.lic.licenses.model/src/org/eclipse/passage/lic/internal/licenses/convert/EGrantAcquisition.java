@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.floating.internal.model.convert;
+package org.eclipse.passage.lic.internal.licenses.convert;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 
@@ -27,7 +27,7 @@ public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 
 	@Override
 	public GrantAcqisition get() {
-		GrantAcqisition grant = FloatingFactory.eINSTANCE.createGrantAcqisition();
+		GrantAcqisition grant = LicensesFactory.eINSTANCE.createGrantAcqisition();
 		grant.setIdentifier(source.identifier());
 		grant.setGrant(source.grant());
 		grant.setFeature(source.feature());

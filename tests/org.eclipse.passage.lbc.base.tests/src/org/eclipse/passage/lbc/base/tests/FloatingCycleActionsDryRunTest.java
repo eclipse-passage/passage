@@ -30,13 +30,13 @@ import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
 import org.eclipse.passage.lbc.internal.base.acquire.NoGrantsAvailable;
 import org.eclipse.passage.lbc.internal.base.acquire.NotReleased;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -90,7 +90,7 @@ public final class FloatingCycleActionsDryRunTest {
 	}
 
 	private GrantAcqisition acquisition() {
-		GrantAcqisition acqisition = FloatingFactory.eINSTANCE.createGrantAcqisition();
+		GrantAcqisition acqisition = LicensesFactory.eINSTANCE.createGrantAcqisition();
 		acqisition.setIdentifier("fake-acquisition-id"); //$NON-NLS-1$
 		acqisition.setFeature(feature());
 		acqisition.setGrant("fake-grant-id"); //$NON-NLS-1$

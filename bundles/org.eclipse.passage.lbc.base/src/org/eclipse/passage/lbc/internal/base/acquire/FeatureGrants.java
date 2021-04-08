@@ -23,10 +23,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
-import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 
 final class FeatureGrants {
 

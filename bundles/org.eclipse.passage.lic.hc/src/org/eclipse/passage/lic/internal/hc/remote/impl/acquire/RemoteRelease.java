@@ -15,8 +15,6 @@ package org.eclipse.passage.lic.internal.hc.remote.impl.acquire;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.floating.internal.model.convert.EGrantAcquisition;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
@@ -33,7 +31,9 @@ import org.eclipse.passage.lic.internal.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.internal.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.internal.hc.remote.impl.ServiceAny;
+import org.eclipse.passage.lic.internal.licenses.convert.EGrantAcquisition;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 final class RemoteRelease<C extends Connection>
 		extends ServiceAny<C, Boolean, RemoteServiceData.WithPayload<GrantAcquisition>> {

@@ -22,22 +22,22 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.passage.lic.floating.model.api.EvaluationInstructions;
-import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.floating.model.api.FloatingServer;
-import org.eclipse.passage.lic.floating.model.api.LicenseRequisites;
-import org.eclipse.passage.lic.floating.model.api.ProductRef;
-import org.eclipse.passage.lic.floating.model.api.UserGrant;
-import org.eclipse.passage.lic.floating.model.api.ValidityPeriod;
-import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
-import org.eclipse.passage.lic.floating.model.api.VersionMatch;
-import org.eclipse.passage.lic.floating.model.meta.FloatingFactory;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
+import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
+import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -60,7 +60,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	@Override
 	public FloatingLicensePack get() {
-		FloatingLicensePack pack = FloatingFactory.eINSTANCE.createFloatingLicensePack();
+		FloatingLicensePack pack = LicensesFactory.eINSTANCE.createFloatingLicensePack();
 		pack.setLicense(license());
 		pack.setHost(floatingServer());
 		userGrants().forEach(pack.getUsers()::add);
@@ -69,7 +69,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private LicenseRequisites license() {
-		LicenseRequisites license = FloatingFactory.eINSTANCE.createLicenseRequisites();
+		LicenseRequisites license = LicensesFactory.eINSTANCE.createLicenseRequisites();
 		license.setCompany(company());
 		license.setIdentifier(request.identifier());
 		license.setIssueDate(new Date());
@@ -80,7 +80,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private FloatingServer floatingServer() {
-		FloatingServer server = FloatingFactory.eINSTANCE.createFloatingServer();
+		FloatingServer server = LicensesFactory.eINSTANCE.createFloatingServer();
 		server.setIdentifier(serverId());
 		server.setAuthentication(serverAuthentication());
 		return server;
@@ -93,7 +93,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private EvaluationInstructions serverAuthentication() {
-		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
+		EvaluationInstructions auth = LicensesFactory.eINSTANCE.createEvaluationInstructions();
 		auth.setType(serverAuthenticationType());
 		auth.setExpression(serverAuthenticationExpression());
 		return auth;
@@ -116,14 +116,14 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private ValidityPeriod period() {
-		ValidityPeriodClosed period = FloatingFactory.eINSTANCE.createValidityPeriodClosed();
+		ValidityPeriodClosed period = LicensesFactory.eINSTANCE.createValidityPeriodClosed();
 		period.setFrom(request.validFrom());
 		period.setUntil(request.validUntil());
 		return period;
 	}
 
 	private ProductRef product() {
-		ProductRef product = FloatingFactory.eINSTANCE.createProductRef();
+		ProductRef product = LicensesFactory.eINSTANCE.createProductRef();
 		product.setProduct(request.productIdentifier());
 		product.setVersion(request.productVersion());
 		return product;
@@ -137,14 +137,14 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private UserGrant userGrant(UserDescriptor user) {
-		UserGrant grant = FloatingFactory.eINSTANCE.createUserGrant();
+		UserGrant grant = LicensesFactory.eINSTANCE.createUserGrant();
 		grant.setAuthentication(userAuthentication(user));
 		grant.setUser(user.getEmail());
 		return grant;
 	}
 
 	private EvaluationInstructions userAuthentication(UserDescriptor user) {
-		EvaluationInstructions auth = FloatingFactory.eINSTANCE.createEvaluationInstructions();
+		EvaluationInstructions auth = LicensesFactory.eINSTANCE.createEvaluationInstructions();
 		auth.setExpression(userAuthenticationExpression(user));
 		auth.setType(userAuthenticationType(user));
 		return auth;
@@ -179,7 +179,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
-		FeatureGrant grant = FloatingFactory.eINSTANCE.createFeatureGrant();
+		FeatureGrant grant = LicensesFactory.eINSTANCE.createFeatureGrant();
 		String fid = feature.getFeatureIdentifier();
 		grant.setFeature(fid);
 		grant.setCapacity(request.defaultCapacity());
@@ -210,7 +210,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
-		VersionMatch version = FloatingFactory.eINSTANCE.createVersionMatch();
+		VersionMatch version = LicensesFactory.eINSTANCE.createVersionMatch();
 		version.setVersion(feature.getMatchVersion());
 		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(feature.getMatchRule())).get().identifier());
 		return version;

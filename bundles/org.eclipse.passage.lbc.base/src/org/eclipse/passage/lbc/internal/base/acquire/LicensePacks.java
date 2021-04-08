@@ -22,8 +22,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.floating.FloatingFileExtension;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.floating.model.meta.FloatingPackage;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -32,6 +30,8 @@ import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.base.io.FileCollection;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 final class LicensePacks {
 
@@ -67,7 +67,7 @@ final class LicensePacks {
 		FloatingLicensePack pack;
 		try {
 			pack = new EObjectFromBytes<>(decoded(license), FloatingLicensePack.class)//
-					.get(Collections.singletonMap(FloatingPackage.eNS_URI, FloatingPackage.eINSTANCE));
+					.get(Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 		} catch (LicensingException e) {
 			log.error("failed: ", e); //$NON-NLS-1$
 			return Optional.empty();

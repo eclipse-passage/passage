@@ -21,10 +21,6 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.base.i18n.BaseMessages;
-import org.eclipse.passage.lic.floating.model.api.FeatureGrant;
-import org.eclipse.passage.lic.floating.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.floating.model.api.UserGrant;
-import org.eclipse.passage.lic.floating.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -36,6 +32,10 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
+import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
 final class AssembledConditions {
 
@@ -79,7 +79,7 @@ final class AssembledConditions {
 	}
 
 	private ValidityPeriod period(FeatureGrant feature) throws LicensingException {
-		org.eclipse.passage.lic.floating.model.api.ValidityPeriod origin = feature.getValid();
+		org.eclipse.passage.lic.licenses.model.api.ValidityPeriod origin = feature.getValid();
 		if (!ValidityPeriodClosed.class.isInstance(origin)) {
 			throw new LicensingException(String.format(BaseMessages.AssembledConditions_validity_period_type_unknown,
 					origin.eClass().getName()));

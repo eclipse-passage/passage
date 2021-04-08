@@ -14,9 +14,9 @@ package org.eclipse.passage.lbc.internal.base.api;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
 public interface Grants {
 

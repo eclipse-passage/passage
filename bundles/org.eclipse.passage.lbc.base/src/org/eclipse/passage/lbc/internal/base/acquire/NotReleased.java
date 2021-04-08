@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
-import org.eclipse.passage.lic.floating.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 
 /**
  * Public only for test purposes
