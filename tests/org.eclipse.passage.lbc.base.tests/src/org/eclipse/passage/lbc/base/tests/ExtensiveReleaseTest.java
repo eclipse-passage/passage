@@ -38,7 +38,6 @@ import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -48,7 +47,6 @@ public final class ExtensiveReleaseTest {
 	private final int noGrants = new NoGrantsAvailable(data.product(), data.feature()).error().code();
 
 	@Test
-	@Ignore /* reissue test license */
 	public void concurrentAcquireAndRelease() throws InterruptedException, ExecutionException {
 		// having
 		int amount = 128;
@@ -57,8 +55,10 @@ public final class ExtensiveReleaseTest {
 		// then
 		Map<Result, Integer> results = countResults(futures);
 		assertEquals(0, results.get(Result.Weird).intValue()); // no one ended weirdly
-		assertTrue(results.get(Result.GainedAndReleased) >= 4); // we have only 4
-		assertEquals(amount, results.get(Result.GainedAndReleased) + results.get(Result.NotGainedNotExecuted));
+		int grantedAndReleased = results.get(Result.GainedAndReleased);
+		assertTrue(String.format("granted and released: %d", grantedAndReleased), //$NON-NLS-1$
+				grantedAndReleased >= 3); // we have only 3, can possible grant several times each
+		assertEquals(amount, grantedAndReleased + results.get(Result.NotGainedNotExecuted));
 	}
 
 	private Set<Future<Result>> runProtectedActionsConcurrently(int amount) throws InterruptedException {

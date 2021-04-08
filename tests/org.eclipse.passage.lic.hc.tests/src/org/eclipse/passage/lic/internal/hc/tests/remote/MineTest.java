@@ -32,7 +32,6 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -42,7 +41,6 @@ public final class MineTest {
 	private final Supplier<Path> source = new TestLicFolder();
 
 	@Test
-	@Ignore /* test license is to be reissued */
 	public void mine() {
 		ServiceInvocationResult<Collection<ConditionPack>> all = new RemoteConditions<>(//
 				new TestEquipment(data.product(), source).get(), this::client, source)//

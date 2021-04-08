@@ -30,7 +30,6 @@ import org.eclipse.passage.lic.internal.hc.remote.Client;
 import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -41,7 +40,6 @@ public final class AcquireTest {
 	private final FloatingState server = new EagerFloatingState(source);
 
 	@Test
-	@Ignore /* test license is to be reissued */
 	public void acquireAndRelease() {
 		RemoteAcquisitionService<ShortcutConnection> service = //
 				new RemoteAcquisitionService<ShortcutConnection>(//

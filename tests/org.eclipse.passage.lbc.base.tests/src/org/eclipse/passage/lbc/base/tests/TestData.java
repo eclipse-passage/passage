@@ -27,16 +27,16 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 public final class TestData {
 
 	private final LicensedProduct product = new BaseLicensedProduct("anti-human-magic.product", "0.2.1"); //$NON-NLS-1$ //$NON-NLS-2$
-	private final String feature = "prince-to-frog"; //$NON-NLS-1$
-	private final User albert = new User("Albert_Rose@garden.ga", "os.hwdisk=*777*"); //$NON-NLS-1$ //$NON-NLS-2$
+	private final String feature = "anti-human-magic.product"; //$NON-NLS-1$
+	private final User albert = new User("Albert_Rose@garden.ga", "os.family=*"); //$NON-NLS-1$ //$NON-NLS-2$
 	private final User elder = new User("elder@magic.com", "os=win"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	void assertGrantIsValid(LicenseGrant grant) {
 		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
-		assertEquals("os.hwdisk=*777*", grant.getConditionExpression()); //$NON-NLS-1$
-		assertEquals("prince-to-frog", grant.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("d2b83215-b65d-4031-a8c8-a10421d56260#0", grant.getIdentifier()); //$NON-NLS-1$
-		assertEquals("0.1.0", grant.getMatchVersion()); //$NON-NLS-1$
+		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
+		assertEquals("anti-human-magic.product", grant.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("a77adb87-5a36-4f28-b2e4-274e6b565bed#1", grant.getIdentifier()); //$NON-NLS-1$
+		assertEquals("0.0.0", grant.getMatchVersion()); //$NON-NLS-1$
 		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
 		assertEquals(expectedFrom(), grant.getValidFrom());
@@ -45,7 +45,7 @@ public final class TestData {
 
 	private Date expectedFrom() {
 		return Date.from(//
-				ZonedDateTime.of(2020, Month.NOVEMBER.getValue(), 9, 0, 0, 0, 0, ZoneId.of("+0300")) //$NON-NLS-1$
+				ZonedDateTime.of(2021, Month.APRIL.getValue(), 8, 0, 0, 0, 0, ZoneId.of("+0300")) //$NON-NLS-1$
 						.toInstant());
 	}
 
