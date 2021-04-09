@@ -40,23 +40,33 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
+import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 
+@SuppressWarnings("restriction")
 final class IssueFloatingLicense {
 
+	private final LicenseRegistry licenses;
 	private final ProductRegistry products;
 	private final OperatorProductService operator;
 
-	IssueFloatingLicense(ProductRegistry products, OperatorProductService operator) {
+	IssueFloatingLicense(LicenseRegistry licenses, ProductRegistry products, OperatorProductService operator) {
+		this.licenses = licenses;
 		this.products = products;
 		this.operator = operator;
 	}
 
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
+		try {
+			new UpdateLicensePlan(licenses).withFloating(pack);
+		} catch (IOException e) {
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
+					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
+		}
 		LicensedProduct product = product(pack.getLicense().getProduct());
 		Path residence = residence(pack.getLicense());
 		ServiceInvocationResult<List<Path>> license = //

@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
@@ -118,7 +118,7 @@ public class IssueLicenseWizard extends Wizard {
 	}
 
 	private void broadcast(IssuedLicense result) {
-		UserLicense userLicense = result.license();
+		LicensePack userLicense = result.license();
 		String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
 		LocWokbench.switchPerspective(context, perspectiveId);
 		IEventBroker broker = context.get(IEventBroker.class);
