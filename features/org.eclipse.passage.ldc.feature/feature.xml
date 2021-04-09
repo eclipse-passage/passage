@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Copyright (c) 2019, 2021 ArSysOp and others
+	Copyright (c) 2019, 2021 ArSysOp
 
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License 2.0 which is available at
@@ -39,6 +39,13 @@
 
    <plugin
          id="org.eclipse.passage.ldc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.passage.ldc.pde.core.templates"
          download-size="0"
          install-size="0"
          version="0.0.0"
