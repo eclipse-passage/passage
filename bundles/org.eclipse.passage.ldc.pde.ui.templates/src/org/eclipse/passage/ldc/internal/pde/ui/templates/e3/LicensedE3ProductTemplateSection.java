@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates;
+package org.eclipse.passage.ldc.internal.pde.ui.templates.e3;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +19,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedTemplateSection;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.HelpContexts;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
@@ -90,7 +92,7 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	@Override
 	protected List<Requirement> requirements(String product) {
-		return Arrays.asList(new DefaultProductRequirement(product, getManifestHeader("Bundle-Version")).get()); //$NON-NLS-1$
+		return Arrays.asList(createProductRequirement(product));
 	}
 
 	private void createPerspectiveExtension() throws CoreException {

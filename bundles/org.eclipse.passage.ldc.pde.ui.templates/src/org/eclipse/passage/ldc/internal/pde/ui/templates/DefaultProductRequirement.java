@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,22 +22,27 @@ import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 @SuppressWarnings("restriction")
 final class DefaultProductRequirement implements Supplier<Requirement> {
 
-	private final String product;
-	private final String version;
+	private final Supplier<String> product;
+	private final Supplier<String> version;
+	private final Supplier<String> name;
+	private final Supplier<String> provider;
 
-	DefaultProductRequirement(String product, String version) {
+	DefaultProductRequirement(Supplier<String> product, Supplier<String> name, Supplier<String> version,
+			Supplier<String> provider) {
 		this.product = product;
 		this.version = version;
+		this.name = name;
+		this.provider = provider;
 	}
 
 	@Override
 	public Requirement get() {
 		return new BaseRequirement(//
 				new BaseFeature(//
-						product, //
-						version, //
-						product, //
-						"Eclipse Passage Template"), //$NON-NLS-1$
+						product.get(), //
+						version.get(), //
+						name.get(), //
+						provider.get()), //
 				new RestrictionLevel.Warning(), //
 				this);
 	}

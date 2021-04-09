@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -190,6 +190,14 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				"org.eclipse.passage.lic.e4.ui", //$NON-NLS-1$
 				"org.eclipse.passage.seal.demo", //$NON-NLS-1$
 				"org.apache.logging.log4j"); //$NON-NLS-1$
+	}
+
+	protected Requirement createProductRequirement(String product) {
+		return new DefaultProductRequirement(() -> product, //
+				() -> getManifestHeader("Bundle-Name"), // //$NON-NLS-1$
+				() -> getManifestHeader("Bundle-Version"), // //$NON-NLS-1$
+				() -> getManifestHeader("Bundle-Vendor")// //$NON-NLS-1$
+		).get();
 	}
 
 }
