@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.passage.ldc.internal.pde.core.templates.DefaultProductRequirement;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.equinox.requirements.RequirementsToBundle;
 import org.eclipse.pde.core.plugin.IMatchRules;

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates;
+package org.eclipse.passage.ldc.internal.pde.core.templates;
 
 import java.util.function.Supplier;
 
@@ -20,14 +20,14 @@ import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 
 @SuppressWarnings("restriction")
-final class DefaultProductRequirement implements Supplier<Requirement> {
+public final class DefaultProductRequirement implements Supplier<Requirement> {
 
 	private final Supplier<String> product;
 	private final Supplier<String> version;
 	private final Supplier<String> name;
 	private final Supplier<String> provider;
 
-	DefaultProductRequirement(Supplier<String> product, Supplier<String> name, Supplier<String> version,
+	public DefaultProductRequirement(Supplier<String> product, Supplier<String> name, Supplier<String> version,
 			Supplier<String> provider) {
 		this.product = product;
 		this.version = version;

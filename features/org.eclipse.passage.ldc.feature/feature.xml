@@ -45,6 +45,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.passage.ldc.pde.core.templates"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.passage.ldc.pde.ui.templates"
          download-size="0"
          install-size="0"
