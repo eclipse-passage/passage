@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates;
+package org.eclipse.passage.ldc.internal.pde.ui.templates.fullfeather;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.ldc.internal.pde.ui.templates.fullfeather.AntimagicShieldFeatureLicRequirement;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedTemplateSection;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.HelpContexts;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;

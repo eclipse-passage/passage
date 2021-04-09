@@ -16,7 +16,7 @@
    <extension
          point="org.eclipse.pde.ui.pluginContent">
       <wizard
-            class="org.eclipse.passage.ldc.internal.pde.ui.templates.LicensedE3ProductContentWizard"
+            class="org.eclipse.passage.ldc.internal.pde.ui.templates.e3.LicensedE3ProductContentWizard"
             icon="platform:/plugin/org.eclipse.passage.lic.jface/$nl$/icons/obj16/passage.png"
             id="org.eclipse.passage.ldc.pde.ui.pluginContent.rcp3"
             java="true"
@@ -30,7 +30,7 @@
          </description>
       </wizard>
       <wizard
-            class="org.eclipse.passage.ldc.internal.pde.ui.templates.LicensedE4ProductContentWizard"
+            class="org.eclipse.passage.ldc.internal.pde.ui.templates.e4.LicensedE4ProductContentWizard"
             icon="platform:/plugin/org.eclipse.passage.lic.jface/$nl$/icons/obj16/passage.png"
             id="org.eclipse.passage.ldc.pde.ui.pluginContent.rcp4"
             java="true"
@@ -44,7 +44,7 @@
          </description>
       </wizard>
       <wizard
-            class="org.eclipse.passage.ldc.internal.pde.ui.templates.LicensedE4FullFeatherProductContentWizard"
+            class="org.eclipse.passage.ldc.internal.pde.ui.templates.fullfeather.LicensedE4FullFeatherProductContentWizard"
             icon="platform:/plugin/org.eclipse.passage.lic.jface/$nl$/icons/obj16/passage.png"
             id="org.eclipse.passage.ldc.pde.ui.fullFeatherPassageProduct.rcp4"
             java="true"
