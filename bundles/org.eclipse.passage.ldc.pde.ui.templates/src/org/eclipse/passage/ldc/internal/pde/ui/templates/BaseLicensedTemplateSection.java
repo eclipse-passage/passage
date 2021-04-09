@@ -192,4 +192,12 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				"org.apache.logging.log4j"); //$NON-NLS-1$
 	}
 
+	protected Requirement createProductRequirement(String product) {
+		return new DefaultProductRequirement(() -> product, //
+				() -> getManifestHeader("Bundle-Name"), // //$NON-NLS-1$
+				() -> getManifestHeader("Bundle-Version"), // //$NON-NLS-1$
+				() -> getManifestHeader("Bundle-Vendor")// //$NON-NLS-1$
+		).get();
+	}
+
 }

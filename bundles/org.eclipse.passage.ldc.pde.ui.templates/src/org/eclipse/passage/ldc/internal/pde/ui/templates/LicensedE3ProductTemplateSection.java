@@ -90,7 +90,7 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 
 	@Override
 	protected List<Requirement> requirements(String product) {
-		return Arrays.asList(new DefaultProductRequirement(product, getManifestHeader("Bundle-Version")).get()); //$NON-NLS-1$
+		return Arrays.asList(createProductRequirement(product));
 	}
 
 	private void createPerspectiveExtension() throws CoreException {
