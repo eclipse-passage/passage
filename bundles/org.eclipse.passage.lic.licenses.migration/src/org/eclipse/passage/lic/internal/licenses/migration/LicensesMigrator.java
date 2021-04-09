@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
+@SuppressWarnings("restriction")
 @Component
 public class LicensesMigrator {
 

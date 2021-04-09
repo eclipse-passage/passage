@@ -36,6 +36,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
+@SuppressWarnings("restriction")
 @Component
 public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
@@ -125,7 +126,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Supplier<LicensePack> pack = (template instanceof LicensePack) //
 				? () -> LicensePack.class.cast(template)//
 				: () -> createLicensePack(request);
-		return new IssuePersonalLicense(users, products, operator, events).issue(request, pack);
+		return new IssuePersonalLicense(licenses, products, operator, events).issue(pack);
 	}
 
 	@Override
@@ -140,7 +141,7 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 		Objects.requireNonNull(pack,
 				"LicenseOperatorServiceImpl::issueFloatingLicensePack: cannot issue license over no data"); //$NON-NLS-1$
 		Objects.requireNonNull(configs, "LicenseOperatorServiceImpl::configs"); //$NON-NLS-1$
-		return new IssueFloatingLicense(products, operator).issue(pack, configs);
+		return new IssueFloatingLicense(licenses, products, operator).issue(pack, configs);
 	}
 
 }

@@ -20,7 +20,7 @@ final class TestLicFolder implements Supplier<Path> {
 
 	@Override
 	public Path get() {
-		return Paths.get("resource").resolve("lics"); //$NON-NLS-1$ //$NON-NLS-2$
+		return Paths.get("../org.eclipse.passage.lbc.base.tests/resource/lics"); //$NON-NLS-1$
 	}
 
 }

@@ -32,10 +32,10 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
@@ -52,6 +52,7 @@ import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.widgets.Shell;
 
 //FIXME: should be moved to reduce dependencies
+@SuppressWarnings("restriction")
 public class LicenseExportHandler {
 
 	@Execute
@@ -106,7 +107,7 @@ public class LicenseExportHandler {
 					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
 							result.data().get().encrypted().toAbsolutePath().toString(), //
 							result.data().get().decrypted().toAbsolutePath().toString()));
-			UserLicense userLicense = result.data().get().license();
+			LicensePack userLicense = result.data().get().license();
 			String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
 			LocWokbench.switchPerspective(context, perspectiveId);
 			IEventBroker broker = context.get(IEventBroker.class);

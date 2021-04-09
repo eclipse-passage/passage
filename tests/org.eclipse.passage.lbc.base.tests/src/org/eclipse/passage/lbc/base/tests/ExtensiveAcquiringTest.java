@@ -33,7 +33,6 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
-import org.junit.Ignore;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -42,7 +41,6 @@ public final class ExtensiveAcquiringTest {
 	private final TestData data = new TestData();
 
 	@Test
-	@Ignore /* reissue test license */
 	public void concurrentAcquire() throws InterruptedException {
 		// having
 		int amount = 128;
@@ -50,8 +48,8 @@ public final class ExtensiveAcquiringTest {
 		Set<Future<NetResponse>> futures = runConcurrentAcquireRequest(amount);
 		// then
 		int[] counts = countGainsAndLates(futures);
-		assertEquals(4, counts[0]); // gain grant acquisition, we have only 4
-		assertEquals(amount - 4, counts[1]); // all the rest has 'no available grants' response
+		assertEquals(3, counts[0]); // gain grant acquisition, we have only 3
+		assertEquals(amount - 3, counts[1]); // all the rest has 'no available grants' response
 	}
 
 	private Set<Future<NetResponse>> runConcurrentAcquireRequest(int amount) throws InterruptedException {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,16 +15,17 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.users.model.api.UserLicense;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 
+@SuppressWarnings("restriction")
 final class BaseIssuedLicense implements IssuedLicense {
 
-	private final UserLicense license;
+	private final LicensePack license;
 	private final Path encrypted;
 	private final Path decrypted;
 
-	BaseIssuedLicense(UserLicense license, Path encrypted, Path decrypted) {
+	BaseIssuedLicense(LicensePack license, Path encrypted, Path decrypted) {
 		Objects.requireNonNull(license, "BaseIssuedLicense::license"); //$NON-NLS-1$
 		Objects.requireNonNull(encrypted, "BaseIssuedLicense::encrypted"); //$NON-NLS-1$
 		Objects.requireNonNull(decrypted, "BaseIssuedLicense::decrypted"); //$NON-NLS-1$
@@ -34,7 +35,7 @@ final class BaseIssuedLicense implements IssuedLicense {
 	}
 
 	@Override
-	public UserLicense license() {
+	public LicensePack license() {
 		return license;
 	}
 
