@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.passage.ldc.pde.ui.templates;singleton:=true
-Bundle-Version: 0.5.501.qualifier
+Bundle-Version: 0.6.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.passage.ldc.internal.pde.ui.templates;x-internal:=true,
  org.eclipse.passage.ldc.internal.pde.ui.templates.i18n;x-internal:=true
@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0",
  org.eclipse.e4.core.di;bundle-version="0.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Copyright: %Bundle-Copyright
 Automatic-Module-Name: org.eclipse.passage.ldc.pde.ui.templates
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
