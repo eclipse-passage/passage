@@ -7,12 +7,16 @@
 [![codecov](https://codecov.io/gh/eclipse-passage/passage/branch/master/graph/badge.svg)](https://codecov.io/gh/eclipse-passage/passage)
 [![Hits-of-Code](https://hitsofcode.com/github/eclipse-passage/passage?branch=master)](https://hitsofcode.com/github/eclipse-passage/passage?branch=master/view?branch=master)
 
-[![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE)
+###### License 
+Copyright ©️ 2018, 2021 ArSysOp and others
+
+[![Eclipse License](https://img.shields.io/badge/License-EPL--2.0-thistle.svg)](https://github.com/eclipse/passage/blob/master/LICENSE) 
 
 ###### Latest release 
 [![Stable release P2](https://img.shields.io/badge/P2%20Components-1.2.1-lightblue.svg)](https://download.eclipse.org/passage/updates/release/1.2.1/)
 [![Stable release Products](https://img.shields.io/badge/Runnable%20Products-1.2.1-lightblue.svg)](https://download.eclipse.org/passage/downloads/release/1.2.1/)
 
+### About
 [Eclipse Passage](https://projects.eclipse.org/projects/technology.passage) helps to verify that the software has sufficient license grants in accordance with the specified licensing requirements.
 The Equinox-based implementation includes various validators for the time-limited, node-locked and other types of licenses.
 
@@ -28,13 +32,3 @@ The Eclipse Passage works inside your product installed on the user side. Its ba
 3. Compare the license specified configuration with the current system state (the current date, node id, etc) to confirm the license is active and valid.
 4. Use the system configuration and the evaluated license state to make a decision.
 5. If there are uncovered licensing requirements, call the required constraint functions to impose restrictions: limit certain functionality or disable everything.
-
-### License
-
-Copyright (c) 2018, 2021 ArSysOp and others
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-[https://www.eclipse.org/legal/epl-2.0/](https://www.eclipse.org/legal/epl-2.0/).
-
-SPDX-License-Identifier: EPL-2.0
