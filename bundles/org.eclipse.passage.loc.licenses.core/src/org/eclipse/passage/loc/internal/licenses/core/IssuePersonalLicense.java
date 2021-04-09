@@ -63,7 +63,7 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors));
 		}
 		try {
-			new UpdateLicensePlan(licenses).withPersonal(license);
+			new UpdateLicensePlan(licenses).withPersonal(EcoreUtil.copy(license));
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));

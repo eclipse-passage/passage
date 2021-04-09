@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.function.BinaryOperator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -62,11 +63,16 @@ final class IssueFloatingLicense {
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
 		try {
-			new UpdateLicensePlan(licenses).withFloating(pack);
+			new UpdateLicensePlan(licenses).withFloating(EcoreUtil.copy(pack));
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
+		return persistLicenseFiles(EcoreUtil.copy(pack), configs);
+	}
+
+	private ServiceInvocationResult<IssuedFloatingLicense> persistLicenseFiles(FloatingLicensePack pack,
+			Collection<FloatingLicenseAccess> configs) {
 		LicensedProduct product = product(pack.getLicense().getProduct());
 		Path residence = residence(pack.getLicense());
 		ServiceInvocationResult<List<Path>> license = //

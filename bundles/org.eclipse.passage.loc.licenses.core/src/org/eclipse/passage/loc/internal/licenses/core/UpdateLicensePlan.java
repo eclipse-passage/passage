@@ -59,9 +59,9 @@ final class UpdateLicensePlan {
 			throws IOException {
 		LicensePlan plan = plan(license, id);
 		if (domain.isPresent()) {
-			upateUndoable(license, ref, plan);
+			augmentUndoable(license, ref, plan);
 		} else {
-			augment(license, ref, plan);
+			augmentPlain(license, ref, plan);
 		}
 		savePlanResource(plan);
 	}
@@ -71,11 +71,11 @@ final class UpdateLicensePlan {
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T extends EObject> void augment(T license, EStructuralFeature ref, LicensePlan plan) {
+	private <T extends EObject> void augmentPlain(T license, EStructuralFeature ref, LicensePlan plan) {
 		((EList<T>) plan.eGet(ref)).add(license);
 	}
 
-	private <T extends EObject> void upateUndoable(T license, EStructuralFeature ref, LicensePlan plan) {
+	private <T extends EObject> void augmentUndoable(T license, EStructuralFeature ref, LicensePlan plan) {
 		EditingDomain edit = domain.get().getEditingDomain();
 		edit.getCommandStack().execute(AddCommand.create(edit, plan, ref, license));
 	}
