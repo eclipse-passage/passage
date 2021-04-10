@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,7 +23,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
@@ -33,10 +32,8 @@ import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.EmailTemplate;
-import org.eclipse.passage.loc.internal.licenses.ui.i18n.LicensesUiMessages;
 import org.eclipse.passage.loc.users.ui.UsersUi;
 import org.eclipse.passage.loc.workbench.LocWokbench;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -85,13 +82,7 @@ public class IssueLicenseWizard extends Wizard {
 			return false;
 		} else {
 			new WizardInfoBar(this).wipe();
-			int kind = new NoErrors().test(result.diagnostic()) ? MessageDialog.INFORMATION : MessageDialog.WARNING;
-			MessageDialog.open(kind, getShell(), //
-					IssueLicensePageMessages.IssueLicenseWizard_ok_licensed_title,
-					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
-							result.data().get().encrypted().toAbsolutePath().toString(), //
-							result.data().get().decrypted().toAbsolutePath().toString()),
-					SWT.NONE);
+			new LicenseIssuedNotification(getShell()).showPersonal(result.data().get());
 			String mailFrom = info.mailFrom();
 			if (!mailFrom.isEmpty()) {
 				processingMail(mailFrom, licensePack, result.data().get());

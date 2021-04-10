@@ -15,16 +15,15 @@ package org.eclipse.passage.loc.dashboard.ui.wizards.floating;
 import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.loc.dashboard.ui.wizards.LicenseIssuedNotification;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
-import org.eclipse.swt.SWT;
 
 public final class IssueFloatingLicenseWizard extends Wizard {
 
@@ -61,17 +60,8 @@ public final class IssueFloatingLicenseWizard extends Wizard {
 			return false;
 		}
 		new WizardInfoBar(this).wipe();
-		reportSuccess(result.data().get());
+		new LicenseIssuedNotification(getShell()).showFloating(result.data().get());
 		return true;
-	}
-
-	private void reportSuccess(IssuedFloatingLicense data) {
-		MessageDialog.open(MessageDialog.INFORMATION, //
-				getShell(), //
-				IssueLicensePageMessages.IssueFloatingLicenseWizard_success,
-				String.format(IssueLicensePageMessages.IssueFloatingLicenseWizard_success_description,
-						data.residence().toAbsolutePath()),
-				SWT.NONE);
 	}
 
 }
