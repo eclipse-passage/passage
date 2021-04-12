@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -42,40 +42,47 @@ public abstract class ComboControlRenderer extends SimpleControlSWTControlSWTRen
 	private Combo combo;
 
 	@Inject
-	public ComboControlRenderer(VControl vElement, ViewModelContext viewContext, ReportService reportService,
-			EMFFormsDatabinding emfFormsDatabinding, EMFFormsLabelProvider emfFormsLabelProvider,
-			VTViewTemplateProvider vtViewTemplateProvider) {
-		super(vElement, viewContext, reportService, emfFormsDatabinding, emfFormsLabelProvider, vtViewTemplateProvider);
-
+	public ComboControlRenderer(VControl element, ViewModelContext context, ReportService report,
+			EMFFormsDatabinding databinding, EMFFormsLabelProvider labels, VTViewTemplateProvider templates) {
+		super(element, context, report, databinding, labels, templates);
 	}
 
 	@Override
-	protected Binding[] createBindings(Control control) throws DatabindingFailedException {
+	protected final Binding[] createBindings(Control control) throws DatabindingFailedException {
 		DataBindingContext context = getDataBindingContext();
 		ISWTObservableValue<String> observed = WidgetProperties.comboSelection().observe(combo);
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		final Binding binding = context.bindValue(observed, getModelValue(),
-				withPreSetValidation(new UpdateValueStrategy()), null);
+		Binding binding = context.bindValue(observed, getModelValue(), withPreSetValidation(new UpdateValueStrategy()),
+				null);
 		return new Binding[] { binding };
 	}
 
 	@Override
-	protected Control createSWTControl(Composite parent) {
-		combo = new Combo(parent, SWT.BORDER | SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, false).span(2, 1).applyTo(combo);
-		List<String> definedValues = getDefinedValues();
-		String[] array = definedValues.toArray(new String[definedValues.size()]);
-		combo.setItems(array);
-		String currentValue = getCurrentValue();
-		if (currentValue == null || currentValue.isEmpty()) {
+	protected final Control createSWTControl(Composite parent) {
+		combo = create(parent);
+		installValues(getDefinedValues());
+		return combo;
+	}
+
+	private Combo create(Composite parent) {
+		Combo newbie = new Combo(parent, SWT.BORDER | SWT.READ_ONLY);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(false, false).span(2, 1).applyTo(newbie);
+		newbie.setBackground(Display.getDefault().getSystemColor(SWT.BACKGROUND));
+		return newbie;
+	}
+
+	private void installValues(List<String> values) {
+		combo.setItems(values.toArray(new String[values.size()]));
+		selectCurrentValue(values);
+	}
+
+	private void selectCurrentValue(List<String> values) {
+		String current = getCurrentValue();
+		if (current == null || current.isEmpty()) {
 			combo.select(0);
 		} else {
-			int curIndex = definedValues.indexOf(currentValue);
-			combo.select(curIndex);
+			combo.select(values.indexOf(current));
 		}
-
-		combo.setBackground(Display.getDefault().getSystemColor(SWT.BACKGROUND));
-		return combo;
 	}
 
 	@Override
@@ -88,7 +95,7 @@ public abstract class ComboControlRenderer extends SimpleControlSWTControlSWTRen
 
 	protected abstract List<String> getDefinedValues();
 
-	protected String getCurrentValue() {
+	protected final String getCurrentValue() {
 		try {
 			Object value = getModelValue().getValue();
 			if (value instanceof String) {
