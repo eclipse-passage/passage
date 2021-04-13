@@ -64,14 +64,21 @@ public abstract class ExplainedComboControlRenderer extends WithComboRenderer {
 	private void createDescription(Composite owner) {
 		description = new StyledText(owner, SWT.READ_ONLY);
 		description.setBackground(owner.getBackground());
+		describeUnset();
 	}
 
 	private Composite owner(Composite parent) {
 		Composite owner = new Composite(parent, SWT.NONE);
-		owner.setLayout(new GridLayout());
+		GridLayout layout = new GridLayout();
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		layout.verticalSpacing = 0;
+		owner.setLayout(layout);
 		owner.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		return owner;
 	}
+
+	protected abstract void describeUnset();
 
 	protected abstract void describe(int index);
 

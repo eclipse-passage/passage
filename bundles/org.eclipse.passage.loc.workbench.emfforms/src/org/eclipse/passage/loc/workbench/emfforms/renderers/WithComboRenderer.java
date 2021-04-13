@@ -34,7 +34,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 public abstract class WithComboRenderer extends SimpleControlSWTControlSWTRenderer {
 
@@ -58,7 +57,7 @@ public abstract class WithComboRenderer extends SimpleControlSWTControlSWTRender
 
 	protected final void createCombo(Composite parent) {
 		combo = new Combo(parent, SWT.BORDER | SWT.READ_ONLY);
-		combo.setBackground(Display.getDefault().getSystemColor(SWT.BACKGROUND));
+		combo.setBackground(parent.getBackground());
 		installValues();
 	}
 
