@@ -145,6 +145,16 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePersonalLicenseRequisites(PersonalLicenseRequisites object) {
+			return createPersonalLicenseRequisitesAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseRequisites(FloatingLicenseRequisites object) {
+			return createFloatingLicenseRequisitesAdapter();
+		}
+
+		@Override
 		public Adapter caseProductRef(ProductRef object) {
 			return createProductRefAdapter();
 		}
@@ -382,6 +392,34 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseRequisitesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites <em>Personal License Requisites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites
+	 * @generated
+	 */
+	public Adapter createPersonalLicenseRequisitesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites <em>Floating License Requisites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites
+	 * @generated
+	 */
+	public Adapter createFloatingLicenseRequisitesAdapter() {
 		return null;
 	}
 

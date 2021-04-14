@@ -10,14 +10,14 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.osgi.services;bundle-version="0.0.0",
  org.eclipse.osgi;bundle-version="0.0.0",
  org.eclipse.passage.lic.email;bundle-version="0.0.0",
- org.eclipse.passage.lic.emf;bundle-version="1.0.100",
+ org.eclipse.passage.lic.emf;bundle-version="0.0.0",
  org.eclipse.passage.lic.equinox;bundle-version="0.0.0",
- org.eclipse.passage.lic.licenses.model;bundle-version="1.1.0";visibility:=reexport,
- org.eclipse.passage.lic.users.model;bundle-version="1.0.0",
+ org.eclipse.passage.lic.licenses.model;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.passage.lic.users.model;bundle-version="0.0.0",
  org.eclipse.passage.loc.api;bundle-version="0.0.0",
- org.eclipse.passage.loc.products.core;bundle-version="0.6.0",
- org.eclipse.passage.loc.users.core;bundle-version="1.0.0",
- org.eclipse.passage.lic.base;bundle-version="1.0.100"
+ org.eclipse.passage.loc.products.core;bundle-version="0.0.0",
+ org.eclipse.passage.loc.users.core;bundle-version="0.0.0",
+ org.eclipse.passage.lic.base;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.internal.licenses;
   x-friends:="org.eclipse.passage.loc.licenses.emfforms,
    org.eclipse.passage.loc.licenses.ui,

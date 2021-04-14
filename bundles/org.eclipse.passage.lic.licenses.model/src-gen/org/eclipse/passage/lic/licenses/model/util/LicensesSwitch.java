@@ -171,6 +171,24 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LicensesPackage.PERSONAL_LICENSE_REQUISITES: {
+			PersonalLicenseRequisites personalLicenseRequisites = (PersonalLicenseRequisites) theEObject;
+			T result = casePersonalLicenseRequisites(personalLicenseRequisites);
+			if (result == null)
+				result = caseLicenseRequisites(personalLicenseRequisites);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES: {
+			FloatingLicenseRequisites floatingLicenseRequisites = (FloatingLicenseRequisites) theEObject;
+			T result = caseFloatingLicenseRequisites(floatingLicenseRequisites);
+			if (result == null)
+				result = caseLicenseRequisites(floatingLicenseRequisites);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
@@ -427,6 +445,36 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLicenseRequisites(LicenseRequisites object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Personal License Requisites</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Personal License Requisites</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePersonalLicenseRequisites(PersonalLicenseRequisites object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Floating License Requisites</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Floating License Requisites</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFloatingLicenseRequisites(FloatingLicenseRequisites object) {
 		return null;
 	}
 

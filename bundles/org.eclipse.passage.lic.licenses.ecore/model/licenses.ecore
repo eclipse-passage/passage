@@ -75,7 +75,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack">
     <eStructuralFeatures xsi:type="ecore:EReference" name="license" lowerBound="1"
-        eType="#//LicenseRequisites" containment="true"/>
+        eType="#//FloatingLicenseRequisites" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="host" lowerBound="1" eType="#//FloatingServer"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="users" lowerBound="1" upperBound="-1"
@@ -83,18 +83,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
         upperBound="-1" eType="#//FeatureGrant" containment="true" eOpposite="#//FeatureGrant/pack"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites">
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="issueDate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="company" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="plan" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//ProductRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PersonalLicenseRequisites" eSuperTypes="#//LicenseRequisites">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicenseRequisites" eSuperTypes="#//LicenseRequisites">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="company" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductRef" eSuperTypes="#//ProductRefDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="product" lowerBound="1"

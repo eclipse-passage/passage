@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.licenses.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -32,7 +31,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
-import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -67,7 +65,6 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 
 			addIdentifierPropertyDescriptor(object);
 			addIssueDatePropertyDescriptor(object);
-			addCompanyPropertyDescriptor(object);
 			addPlanPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -102,22 +99,6 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_issueDate_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicenseRequisites_IssueDate(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Company feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCompanyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseRequisites_company_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_company_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseRequisites_Company(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -190,28 +171,17 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		LicenseRequisites license = (LicenseRequisites) object;
-		String company = license.getCompany() == null ? "unknown" : license.getCompany(); //$NON-NLS-1$
-		String product = Optional.ofNullable(license.getProduct())//
-				.map(ProductRef::getProduct) //
-				.orElse("unknown"); //$NON-NLS-1$
-		String version = Optional.ofNullable(license.getProduct())//
-				.map(ProductRef::getVersion) //
-				.orElse("unknown"); //$NON-NLS-1$
-		return getString("_UI_LicenseRequisites_type_detailed", //$NON-NLS-1$
-				new Object[] { //
-						company, //
-						product, //
-						version });
+		String label = ((LicenseRequisites) object).getIdentifier();
+		return label == null || label.length() == 0 ? getString("_UI_LicenseRequisites_type") : //$NON-NLS-1$
+				getString("_UI_LicenseRequisites_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -227,7 +197,6 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 		switch (notification.getFeatureID(LicenseRequisites.class)) {
 		case LicensesPackage.LICENSE_REQUISITES__IDENTIFIER:
 		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
-		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
 		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

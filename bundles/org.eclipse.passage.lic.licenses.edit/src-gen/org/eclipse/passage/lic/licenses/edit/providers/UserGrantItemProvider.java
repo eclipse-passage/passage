@@ -154,7 +154,6 @@ public class UserGrantItemProvider extends ItemProviderAdapter implements IEditi
 		return getString("_UI_UserGrant_type_detailed", new Object[] { user, env, expression }); //$NON-NLS-1$
 	}
 
-
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.

@@ -205,26 +205,49 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseRequisitesItemProvider licenseRequisitesItemProvider;
+	protected PersonalLicenseRequisitesItemProvider personalLicenseRequisitesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites}.
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLicenseRequisitesAdapter() {
-		if (licenseRequisitesItemProvider == null) {
-			licenseRequisitesItemProvider = new LicenseRequisitesItemProvider(this);
+	public Adapter createPersonalLicenseRequisitesAdapter() {
+		if (personalLicenseRequisitesItemProvider == null) {
+			personalLicenseRequisitesItemProvider = new PersonalLicenseRequisitesItemProvider(this);
 		}
 
-		return licenseRequisitesItemProvider;
+		return personalLicenseRequisitesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FloatingLicenseRequisitesItemProvider floatingLicenseRequisitesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFloatingLicenseRequisitesAdapter() {
+		if (floatingLicenseRequisitesItemProvider == null) {
+			floatingLicenseRequisitesItemProvider = new FloatingLicenseRequisitesItemProvider(this);
+		}
+
+		return floatingLicenseRequisitesItemProvider;
 	}
 
 	/**
@@ -581,8 +604,10 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			licenseGrantItemProvider.dispose();
 		if (floatingLicensePackItemProvider != null)
 			floatingLicensePackItemProvider.dispose();
-		if (licenseRequisitesItemProvider != null)
-			licenseRequisitesItemProvider.dispose();
+		if (personalLicenseRequisitesItemProvider != null)
+			personalLicenseRequisitesItemProvider.dispose();
+		if (floatingLicenseRequisitesItemProvider != null)
+			floatingLicenseRequisitesItemProvider.dispose();
 		if (productRefItemProvider != null)
 			productRefItemProvider.dispose();
 		if (floatingServerItemProvider != null)
