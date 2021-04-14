@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_cVrewIdoEemHgffLhDrdUQ" name="LicensePlanFeature">
-  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.0.0#//LicensePlanFeature"/>
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlanFeature"/>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_cVxlYIdoEemHgffLhDrdUQ" name="Control featureIdentifier">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_cVxlYYdoEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.0.0#//LicensePlanFeature/featureIdentifier"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlanFeature/featureIdentifier"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_cVxlYodoEemHgffLhDrdUQ" name="Control matchVersion">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_cVxlY4doEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.0.0#//LicensePlanFeature/matchVersion"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlanFeature/matchVersion"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_cVxlZIdoEemHgffLhDrdUQ" name="Control matchRule">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_cVxlZYdoEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.0.0#//LicensePlanFeature/matchRule"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlanFeature/matchRule"/>
     </domainModelReference>
   </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>

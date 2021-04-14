@@ -21,6 +21,7 @@
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeatureDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePackDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrantDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRefDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlan">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlan/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlan/name"/>

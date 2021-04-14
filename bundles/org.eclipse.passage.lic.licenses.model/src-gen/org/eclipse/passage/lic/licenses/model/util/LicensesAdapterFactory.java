@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -106,6 +107,11 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
 			return createLicenseGrantDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseProductRefDescriptor(ProductRefDescriptor object) {
+			return createProductRefDescriptorAdapter();
 		}
 
 		@Override
@@ -272,6 +278,20 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseGrantDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.ProductRefDescriptor <em>Product Ref Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.ProductRefDescriptor
+	 * @generated
+	 */
+	public Adapter createProductRefDescriptorAdapter() {
 		return null;
 	}
 
