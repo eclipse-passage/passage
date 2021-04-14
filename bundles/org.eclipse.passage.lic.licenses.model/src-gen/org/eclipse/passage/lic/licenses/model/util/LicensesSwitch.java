@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -113,6 +114,13 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LicensesPackage.PRODUCT_REF_DESCRIPTOR: {
+			ProductRefDescriptor productRefDescriptor = (ProductRefDescriptor) theEObject;
+			T result = caseProductRefDescriptor(productRefDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.LICENSE_PLAN: {
 			LicensePlan licensePlan = (LicensePlan) theEObject;
 			T result = caseLicensePlan(licensePlan);
@@ -166,6 +174,8 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
+			if (result == null)
+				result = caseProductRefDescriptor(productRef);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -308,6 +318,21 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Product Ref Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Product Ref Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProductRefDescriptor(ProductRefDescriptor object) {
 		return null;
 	}
 

@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +29,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getProductRef()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.ProductRefDescriptor"
  * @generated
  */
-public interface ProductRef extends EObject {
+public interface ProductRef extends EObject, ProductRefDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Product</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +43,7 @@ public interface ProductRef extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getProduct();
 
 	/**
@@ -64,6 +66,7 @@ public interface ProductRef extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getVersion();
 
 	/**

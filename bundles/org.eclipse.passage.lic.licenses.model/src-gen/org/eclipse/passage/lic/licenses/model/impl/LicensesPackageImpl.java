@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
@@ -79,6 +80,13 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass licenseGrantDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass productRefDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -308,6 +316,16 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getLicenseGrantDescriptor() {
 		return licenseGrantDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getProductRefDescriptor() {
+		return productRefDescriptorEClass;
 	}
 
 	/**
@@ -1229,6 +1247,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		licenseGrantDescriptorEClass = createEClass(LICENSE_GRANT_DESCRIPTOR);
 
+		productRefDescriptorEClass = createEClass(PRODUCT_REF_DESCRIPTOR);
+
 		licensePlanEClass = createEClass(LICENSE_PLAN);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__IDENTIFIER);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__NAME);
@@ -1368,6 +1388,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		licensePlanFeatureEClass.getESuperTypes().add(this.getLicensePlanFeatureDescriptor());
 		licensePackEClass.getESuperTypes().add(this.getLicensePackDescriptor());
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
+		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriod());
 
 		// Initialize classes, features, and operations; add parameters
@@ -1381,6 +1402,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(licenseGrantDescriptorEClass, LicenseGrantDescriptor.class, "LicenseGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(productRefDescriptorEClass, ProductRefDescriptor.class, "ProductRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(licensePlanEClass, LicensePlan.class, "LicensePlan", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
