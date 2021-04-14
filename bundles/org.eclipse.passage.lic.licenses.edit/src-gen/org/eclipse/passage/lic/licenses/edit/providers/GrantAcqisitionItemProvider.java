@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
+@SuppressWarnings("restriction")
 public class GrantAcqisitionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**

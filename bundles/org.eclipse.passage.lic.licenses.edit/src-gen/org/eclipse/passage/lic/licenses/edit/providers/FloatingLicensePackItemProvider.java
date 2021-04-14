@@ -99,14 +99,14 @@ public class FloatingLicensePackItemProvider extends ItemProviderAdapter impleme
 	}
 
 	/**
-	 * This returns FloatingLicensePack.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FloatingLicensePack")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**

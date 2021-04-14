@@ -101,14 +101,14 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns ProductRef.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProductRef")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**

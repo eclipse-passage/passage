@@ -115,14 +115,14 @@ public class FloatingServerItemProvider extends ItemProviderAdapter implements I
 	}
 
 	/**
-	 * This returns FloatingServer.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FloatingServer")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**
