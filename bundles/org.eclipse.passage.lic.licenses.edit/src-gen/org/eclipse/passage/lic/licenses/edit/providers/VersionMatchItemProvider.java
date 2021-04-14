@@ -100,14 +100,14 @@ public class VersionMatchItemProvider extends ItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns VersionMatch.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VersionMatch")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**

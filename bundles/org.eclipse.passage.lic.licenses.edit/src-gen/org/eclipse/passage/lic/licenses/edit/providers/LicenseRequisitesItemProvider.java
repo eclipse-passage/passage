@@ -169,14 +169,14 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns LicenseRequisites.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LicenseRequisites")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**

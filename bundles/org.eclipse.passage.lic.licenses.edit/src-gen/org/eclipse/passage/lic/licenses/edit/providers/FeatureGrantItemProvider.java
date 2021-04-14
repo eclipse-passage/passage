@@ -171,14 +171,14 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This returns FeatureGrant.gif.
+	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureGrant")); //$NON-NLS-1$
+		return null;
 	}
 
 	/**
