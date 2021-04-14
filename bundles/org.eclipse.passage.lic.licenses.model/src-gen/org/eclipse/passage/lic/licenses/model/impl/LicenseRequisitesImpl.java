@@ -40,7 +40,6 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getCompany <em>Company</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getValid <em>Valid</em>}</li>
@@ -48,7 +47,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *
  * @generated
  */
-public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {
+public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,26 +87,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	private Date issueDate = ISSUE_DATE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getCompany() <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCompany()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMPANY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCompany() <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCompany()
-	 * @generated
-	 * @ordered
-	 */
-	private String company = COMPANY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPlan() <em>Plan</em>}' attribute.
@@ -215,31 +194,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE,
 					oldIssueDate, issueDate));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCompany() {
-		return company;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCompany(String newCompany) {
-		String oldCompany = company;
-		company = newCompany;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__COMPANY,
-					oldCompany, company));
 		}
 	}
 
@@ -403,8 +357,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 			return getIdentifier();
 		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
 			return getIssueDate();
-		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
-			return getCompany();
 		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			return getPlan();
 		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
@@ -429,9 +381,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 			return;
 		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
 			setIssueDate((Date) newValue);
-			return;
-		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
-			setCompany((String) newValue);
 			return;
 		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			setPlan((String) newValue);
@@ -462,9 +411,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
 			setIssueDate(ISSUE_DATE_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
-			setCompany(COMPANY_EDEFAULT);
-			return;
 		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			setPlan(PLAN_EDEFAULT);
 			return;
@@ -492,8 +438,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
 			return !Objects.equals(ISSUE_DATE_EDEFAULT, issueDate);
-		case LicensesPackage.LICENSE_REQUISITES__COMPANY:
-			return !Objects.equals(COMPANY_EDEFAULT, company);
 		case LicensesPackage.LICENSE_REQUISITES__PLAN:
 			return !Objects.equals(PLAN_EDEFAULT, plan);
 		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
@@ -520,8 +464,6 @@ public class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implemen
 		result.append(identifier);
 		result.append(", issueDate: "); //$NON-NLS-1$
 		result.append(issueDate);
-		result.append(", company: "); //$NON-NLS-1$
-		result.append(company);
 		result.append(", plan: "); //$NON-NLS-1$
 		result.append(plan);
 		result.append(')');

@@ -17,6 +17,7 @@ import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
@@ -24,7 +25,7 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
-import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
@@ -98,13 +99,22 @@ public interface LicensesFactory extends EFactory {
 	FloatingLicensePack createFloatingLicensePack();
 
 	/**
-	 * Returns a new object of class '<em>License Requisites</em>'.
+	 * Returns a new object of class '<em>Personal License Requisites</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>License Requisites</em>'.
+	 * @return a new object of class '<em>Personal License Requisites</em>'.
 	 * @generated
 	 */
-	LicenseRequisites createLicenseRequisites();
+	PersonalLicenseRequisites createPersonalLicenseRequisites();
+
+	/**
+	 * Returns a new object of class '<em>Floating License Requisites</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Floating License Requisites</em>'.
+	 * @generated
+	 */
+	FloatingLicenseRequisites createFloatingLicenseRequisites();
 
 	/**
 	 * Returns a new object of class '<em>Product Ref</em>'.

@@ -166,7 +166,7 @@ public class FloatingLicensePackItemProvider extends ItemProviderAdapter impleme
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getFloatingLicensePack_License(),
-				LicensesFactory.eINSTANCE.createLicenseRequisites()));
+				LicensesFactory.eINSTANCE.createFloatingLicenseRequisites()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getFloatingLicensePack_Host(),
 				LicensesFactory.eINSTANCE.createFloatingServer()));

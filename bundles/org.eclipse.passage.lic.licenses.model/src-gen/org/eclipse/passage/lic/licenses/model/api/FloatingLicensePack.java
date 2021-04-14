@@ -41,12 +41,12 @@ public interface FloatingLicensePack extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>License</em>' containment reference.
-	 * @see #setLicense(LicenseRequisites)
+	 * @see #setLicense(FloatingLicenseRequisites)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicensePack_License()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	LicenseRequisites getLicense();
+	FloatingLicenseRequisites getLicense();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack#getLicense <em>License</em>}' containment reference.
@@ -56,7 +56,7 @@ public interface FloatingLicensePack extends EObject {
 	 * @see #getLicense()
 	 * @generated
 	 */
-	void setLicense(LicenseRequisites value);
+	void setLicense(FloatingLicenseRequisites value);
 
 	/**
 	 * Returns the value of the '<em><b>Host</b></em>' containment reference.

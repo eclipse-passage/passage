@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
-import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -62,7 +62,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected LicenseRequisites license;
+	protected FloatingLicenseRequisites license;
 
 	/**
 	 * The cached value of the '{@link #getHost() <em>Host</em>}' containment reference.
@@ -119,7 +119,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public LicenseRequisites getLicense() {
+	public FloatingLicenseRequisites getLicense() {
 		return license;
 	}
 
@@ -128,8 +128,8 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLicense(LicenseRequisites newLicense, NotificationChain msgs) {
-		LicenseRequisites oldLicense = license;
+	public NotificationChain basicSetLicense(FloatingLicenseRequisites newLicense, NotificationChain msgs) {
+		FloatingLicenseRequisites oldLicense = license;
 		license = newLicense;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -148,7 +148,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public void setLicense(LicenseRequisites newLicense) {
+	public void setLicense(FloatingLicenseRequisites newLicense) {
 		if (newLicense != license) {
 			NotificationChain msgs = null;
 			if (license != null)
@@ -315,7 +315,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_PACK__LICENSE:
-			setLicense((LicenseRequisites) newValue);
+			setLicense((FloatingLicenseRequisites) newValue);
 			return;
 		case LicensesPackage.FLOATING_LICENSE_PACK__HOST:
 			setHost((FloatingServer) newValue);
@@ -343,7 +343,7 @@ public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_PACK__LICENSE:
-			setLicense((LicenseRequisites) null);
+			setLicense((FloatingLicenseRequisites) null);
 			return;
 		case LicensesPackage.FLOATING_LICENSE_PACK__HOST:
 			setHost((FloatingServer) null);

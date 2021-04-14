@@ -27,14 +27,13 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getIssueDate <em>Issue Date</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getCompany <em>Company</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getValid <em>Valid</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface LicenseRequisites extends EObject {
@@ -81,28 +80,6 @@ public interface LicenseRequisites extends EObject {
 	 * @generated
 	 */
 	void setIssueDate(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>Company</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Company</em>' attribute.
-	 * @see #setCompany(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites_Company()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getCompany();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getCompany <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Company</em>' attribute.
-	 * @see #getCompany()
-	 * @generated
-	 */
-	void setCompany(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Plan</b></em>' attribute.

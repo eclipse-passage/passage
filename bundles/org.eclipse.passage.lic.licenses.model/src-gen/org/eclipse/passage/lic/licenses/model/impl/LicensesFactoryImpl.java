@@ -17,9 +17,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.passage.lic.licenses.model.api.*;
+import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
+import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
+import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
+import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -29,14 +43,15 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * An implementation of the model <b>Factory</b>.
  * 
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static LicensesFactory init() {
@@ -53,10 +68,10 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LicensesFactoryImpl() {
@@ -67,6 +82,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,8 +98,10 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createLicenseGrant();
 		case LicensesPackage.FLOATING_LICENSE_PACK:
 			return createFloatingLicensePack();
-		case LicensesPackage.LICENSE_REQUISITES:
-			return createLicenseRequisites();
+		case LicensesPackage.PERSONAL_LICENSE_REQUISITES:
+			return createPersonalLicenseRequisites();
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES:
+			return createFloatingLicenseRequisites();
 		case LicensesPackage.PRODUCT_REF:
 			return createProductRef();
 		case LicensesPackage.FLOATING_SERVER:
@@ -110,8 +128,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,8 +139,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,6 +153,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,6 +166,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,8 +176,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,19 +187,30 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public LicenseRequisites createLicenseRequisites() {
-		LicenseRequisitesImpl licenseRequisites = new LicenseRequisitesImpl();
-		return licenseRequisites;
+	public PersonalLicenseRequisites createPersonalLicenseRequisites() {
+		PersonalLicenseRequisitesImpl personalLicenseRequisites = new PersonalLicenseRequisitesImpl();
+		return personalLicenseRequisites;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public FloatingLicenseRequisites createFloatingLicenseRequisites() {
+		FloatingLicenseRequisitesImpl floatingLicenseRequisites = new FloatingLicenseRequisitesImpl();
+		return floatingLicenseRequisites;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,8 +220,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,8 +231,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,8 +242,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,8 +253,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,8 +264,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,8 +275,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,8 +286,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,8 +297,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -277,8 +308,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -291,6 +322,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,6 +334,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

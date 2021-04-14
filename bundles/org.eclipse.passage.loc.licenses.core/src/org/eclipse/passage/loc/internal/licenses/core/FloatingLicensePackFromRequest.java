@@ -30,8 +30,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
-import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
@@ -68,8 +68,8 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		return pack;
 	}
 
-	private LicenseRequisites license() {
-		LicenseRequisites license = LicensesFactory.eINSTANCE.createLicenseRequisites();
+	private FloatingLicenseRequisites license() {
+		FloatingLicenseRequisites license = LicensesFactory.eINSTANCE.createFloatingLicenseRequisites();
 		license.setCompany(company());
 		license.setIdentifier(request.identifier());
 		license.setIssueDate(new Date());

@@ -705,22 +705,13 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_REQUISITES__ISSUE_DATE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Company</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_REQUISITES__COMPANY = 2;
-
-	/**
 	 * The feature id for the '<em><b>Plan</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_REQUISITES__PLAN = 3;
+	int LICENSE_REQUISITES__PLAN = 2;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' containment reference.
@@ -729,7 +720,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_REQUISITES__PRODUCT = 4;
+	int LICENSE_REQUISITES__PRODUCT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
@@ -738,7 +729,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_REQUISITES__VALID = 5;
+	int LICENSE_REQUISITES__VALID = 4;
 
 	/**
 	 * The number of structural features of the '<em>License Requisites</em>' class.
@@ -747,7 +738,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_REQUISITES_FEATURE_COUNT = 6;
+	int LICENSE_REQUISITES_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>License Requisites</em>' class.
@@ -759,6 +750,170 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_REQUISITES_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.PersonalLicenseRequisitesImpl <em>Personal License Requisites</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.PersonalLicenseRequisitesImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getPersonalLicenseRequisites()
+	 * @generated
+	 */
+	int PERSONAL_LICENSE_REQUISITES = 11;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__IDENTIFIER = LICENSE_REQUISITES__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__ISSUE_DATE = LICENSE_REQUISITES__ISSUE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Plan</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__PLAN = LICENSE_REQUISITES__PLAN;
+
+	/**
+	 * The feature id for the '<em><b>Product</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__PRODUCT = LICENSE_REQUISITES__PRODUCT;
+
+	/**
+	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__VALID = LICENSE_REQUISITES__VALID;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES__USER = LICENSE_REQUISITES_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Personal License Requisites</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES_FEATURE_COUNT = LICENSE_REQUISITES_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Personal License Requisites</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_LICENSE_REQUISITES_OPERATION_COUNT = LICENSE_REQUISITES_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseRequisitesImpl <em>Floating License Requisites</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseRequisitesImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicenseRequisites()
+	 * @generated
+	 */
+	int FLOATING_LICENSE_REQUISITES = 12;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__IDENTIFIER = LICENSE_REQUISITES__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__ISSUE_DATE = LICENSE_REQUISITES__ISSUE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Plan</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__PLAN = LICENSE_REQUISITES__PLAN;
+
+	/**
+	 * The feature id for the '<em><b>Product</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__PRODUCT = LICENSE_REQUISITES__PRODUCT;
+
+	/**
+	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__VALID = LICENSE_REQUISITES__VALID;
+
+	/**
+	 * The feature id for the '<em><b>Company</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__COMPANY = LICENSE_REQUISITES_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Floating License Requisites</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES_FEATURE_COUNT = LICENSE_REQUISITES_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Floating License Requisites</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES_OPERATION_COUNT = LICENSE_REQUISITES_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.ProductRefImpl <em>Product Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,7 +921,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getProductRef()
 	 * @generated
 	 */
-	int PRODUCT_REF = 11;
+	int PRODUCT_REF = 13;
 
 	/**
 	 * The feature id for the '<em><b>Product</b></em>' attribute.
@@ -812,7 +967,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingServer()
 	 * @generated
 	 */
-	int FLOATING_SERVER = 12;
+	int FLOATING_SERVER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -858,7 +1013,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getUserGrant()
 	 * @generated
 	 */
-	int USER_GRANT = 13;
+	int USER_GRANT = 15;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -904,7 +1059,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFeatureGrant()
 	 * @generated
 	 */
-	int FEATURE_GRANT = 14;
+	int FEATURE_GRANT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -995,7 +1150,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriod()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD = 15;
+	int VALIDITY_PERIOD = 17;
 
 	/**
 	 * The number of structural features of the '<em>Validity Period</em>' class.
@@ -1023,7 +1178,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriodClosed()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD_CLOSED = 16;
+	int VALIDITY_PERIOD_CLOSED = 18;
 
 	/**
 	 * The feature id for the '<em><b>From</b></em>' attribute.
@@ -1069,7 +1224,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getEvaluationInstructions()
 	 * @generated
 	 */
-	int EVALUATION_INSTRUCTIONS = 17;
+	int EVALUATION_INSTRUCTIONS = 19;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1115,7 +1270,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getVersionMatch()
 	 * @generated
 	 */
-	int VERSION_MATCH = 18;
+	int VERSION_MATCH = 20;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -1161,7 +1316,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicenseAccess()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_ACCESS = 19;
+	int FLOATING_LICENSE_ACCESS = 21;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -1216,7 +1371,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingServerConnection()
 	 * @generated
 	 */
-	int FLOATING_SERVER_CONNECTION = 20;
+	int FLOATING_SERVER_CONNECTION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
@@ -1271,7 +1426,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getGrantAcqisition()
 	 * @generated
 	 */
-	int GRANT_ACQISITION = 21;
+	int GRANT_ACQISITION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1857,17 +2012,6 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseRequisites_IssueDate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getCompany <em>Company</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Company</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getCompany()
-	 * @see #getLicenseRequisites()
-	 * @generated
-	 */
-	EAttribute getLicenseRequisites_Company();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getPlan <em>Plan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1899,6 +2043,48 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLicenseRequisites_Valid();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites <em>Personal License Requisites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Personal License Requisites</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites
+	 * @generated
+	 */
+	EClass getPersonalLicenseRequisites();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser()
+	 * @see #getPersonalLicenseRequisites()
+	 * @generated
+	 */
+	EAttribute getPersonalLicenseRequisites_User();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites <em>Floating License Requisites</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Floating License Requisites</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites
+	 * @generated
+	 */
+	EClass getFloatingLicenseRequisites();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Company</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany()
+	 * @see #getFloatingLicenseRequisites()
+	 * @generated
+	 */
+	EAttribute getFloatingLicenseRequisites_Company();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef <em>Product Ref</em>}'.
