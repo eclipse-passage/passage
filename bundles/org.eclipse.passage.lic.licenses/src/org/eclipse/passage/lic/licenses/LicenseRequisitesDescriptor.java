@@ -1,0 +1,33 @@
+/*******************************************************************************
+ * Copyright (c) 2021 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.passage.lic.licenses;
+
+import java.util.Date;
+
+/**
+ * @since 1.1
+ */
+
+public interface LicenseRequisitesDescriptor {
+
+	String getIdentifier();
+
+	Date getIssueDate();
+
+	String getPlan();
+
+	ProductRefDescriptor getProduct();
+
+	ValidityPeriodDescriptor getValid();
+
+}

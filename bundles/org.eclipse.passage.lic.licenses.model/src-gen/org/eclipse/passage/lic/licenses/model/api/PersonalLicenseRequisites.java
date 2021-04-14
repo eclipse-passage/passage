@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
 
+import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Personal License Requisites</b></em>'.
@@ -25,10 +27,10 @@ package org.eclipse.passage.lic.licenses.model.api;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicenseRequisites()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisites org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisitesDescriptor"
  * @generated
  */
-public interface PersonalLicenseRequisites extends LicenseRequisites {
+public interface PersonalLicenseRequisites extends LicenseRequisites, PersonalLicenseRequisitesDescriptor {
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -39,6 +41,7 @@ public interface PersonalLicenseRequisites extends LicenseRequisites {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getUser();
 
 	/**

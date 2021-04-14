@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.licenses.model.api;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,10 +34,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisitesDescriptor"
  * @generated
  */
-public interface LicenseRequisites extends EObject {
+public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,6 +48,7 @@ public interface LicenseRequisites extends EObject {
 	 * @model id="true" required="true"
 	 * @generated
 	 */
+	@Override
 	String getIdentifier();
 
 	/**
@@ -69,6 +71,7 @@ public interface LicenseRequisites extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	Date getIssueDate();
 
 	/**
@@ -91,6 +94,7 @@ public interface LicenseRequisites extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getPlan();
 
 	/**
@@ -113,6 +117,7 @@ public interface LicenseRequisites extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	ProductRef getProduct();
 
 	/**
@@ -135,6 +140,7 @@ public interface LicenseRequisites extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	ValidityPeriod getValid();
 
 	/**

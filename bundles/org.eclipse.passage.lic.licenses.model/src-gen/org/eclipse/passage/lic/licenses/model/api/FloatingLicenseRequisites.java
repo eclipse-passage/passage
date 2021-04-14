@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
 
+import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Floating License Requisites</b></em>'.
@@ -25,10 +27,10 @@ package org.eclipse.passage.lic.licenses.model.api;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicenseRequisites()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseRequisites org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisitesDescriptor"
  * @generated
  */
-public interface FloatingLicenseRequisites extends LicenseRequisites {
+public interface FloatingLicenseRequisites extends LicenseRequisites, FloatingLicenseRequisitesDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Company</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -39,6 +41,7 @@ public interface FloatingLicenseRequisites extends LicenseRequisites {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getCompany();
 
 	/**
