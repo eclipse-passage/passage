@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getValidityPeriod()
- * @model interface="true" abstract="true"
+ * @model interface="true" abstract="true" superTypes="org.eclipse.passage.lic.licenses.model.api.ValidityPeriodDescriptor"
  * @generated
  */
-public interface ValidityPeriod extends EObject {
+public interface ValidityPeriod extends EObject, ValidityPeriodDescriptor {
 } // ValidityPeriod

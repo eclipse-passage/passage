@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import java.util.Date;
+import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,10 +29,10 @@ import java.util.Date;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getValidityPeriodClosed()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.ValidityPeriod org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosedDescriptor"
  * @generated
  */
-public interface ValidityPeriodClosed extends ValidityPeriod {
+public interface ValidityPeriodClosed extends ValidityPeriod, ValidityPeriodClosedDescriptor {
 	/**
 	 * Returns the value of the '<em><b>From</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +43,7 @@ public interface ValidityPeriodClosed extends ValidityPeriod {
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	Date getFrom();
 
 	/**
@@ -64,6 +66,7 @@ public interface ValidityPeriodClosed extends ValidityPeriod {
 	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	Date getUntil();
 
 	/**

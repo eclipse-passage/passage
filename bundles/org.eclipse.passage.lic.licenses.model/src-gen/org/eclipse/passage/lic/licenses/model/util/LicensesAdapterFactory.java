@@ -16,11 +16,16 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
+import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -112,6 +117,31 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseProductRefDescriptor(ProductRefDescriptor object) {
 			return createProductRefDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseRequisitesDescriptor(LicenseRequisitesDescriptor object) {
+			return createLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter casePersonalLicenseRequisitesDescriptor(PersonalLicenseRequisitesDescriptor object) {
+			return createPersonalLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseRequisitesDescriptor(FloatingLicenseRequisitesDescriptor object) {
+			return createFloatingLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriodDescriptor(ValidityPeriodDescriptor object) {
+			return createValidityPeriodDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriodClosedDescriptor(ValidityPeriodClosedDescriptor object) {
+			return createValidityPeriodClosedDescriptorAdapter();
 		}
 
 		@Override
@@ -302,6 +332,76 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProductRefDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor <em>License Requisites Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor
+	 * @generated
+	 */
+	public Adapter createLicenseRequisitesDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor <em>Personal License Requisites Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor
+	 * @generated
+	 */
+	public Adapter createPersonalLicenseRequisitesDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor <em>Floating License Requisites Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor
+	 * @generated
+	 */
+	public Adapter createFloatingLicenseRequisitesDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor <em>Validity Period Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor
+	 * @generated
+	 */
+	public Adapter createValidityPeriodDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor <em>Validity Period Closed Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor
+	 * @generated
+	 */
+	public Adapter createValidityPeriodClosedDescriptorAdapter() {
 		return null;
 	}
 

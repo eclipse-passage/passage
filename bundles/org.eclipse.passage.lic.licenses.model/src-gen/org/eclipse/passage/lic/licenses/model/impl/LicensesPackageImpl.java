@@ -17,11 +17,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
+import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
@@ -89,6 +94,41 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass productRefDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass licenseRequisitesDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass personalLicenseRequisitesDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass floatingLicenseRequisitesDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass validityPeriodDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass validityPeriodClosedDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,6 +382,56 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getProductRefDescriptor() {
 		return productRefDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLicenseRequisitesDescriptor() {
+		return licenseRequisitesDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPersonalLicenseRequisitesDescriptor() {
+		return personalLicenseRequisitesDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicenseRequisitesDescriptor() {
+		return floatingLicenseRequisitesDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getValidityPeriodDescriptor() {
+		return validityPeriodDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getValidityPeriodClosedDescriptor() {
+		return validityPeriodClosedDescriptorEClass;
 	}
 
 	/**
@@ -1295,6 +1385,16 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		productRefDescriptorEClass = createEClass(PRODUCT_REF_DESCRIPTOR);
 
+		licenseRequisitesDescriptorEClass = createEClass(LICENSE_REQUISITES_DESCRIPTOR);
+
+		personalLicenseRequisitesDescriptorEClass = createEClass(PERSONAL_LICENSE_REQUISITES_DESCRIPTOR);
+
+		floatingLicenseRequisitesDescriptorEClass = createEClass(FLOATING_LICENSE_REQUISITES_DESCRIPTOR);
+
+		validityPeriodDescriptorEClass = createEClass(VALIDITY_PERIOD_DESCRIPTOR);
+
+		validityPeriodClosedDescriptorEClass = createEClass(VALIDITY_PERIOD_CLOSED_DESCRIPTOR);
+
 		licensePlanEClass = createEClass(LICENSE_PLAN);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__IDENTIFIER);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__NAME);
@@ -1435,14 +1535,21 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		personalLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
+		floatingLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
 		licensePlanEClass.getESuperTypes().add(this.getLicensePlanDescriptor());
 		licensePlanFeatureEClass.getESuperTypes().add(this.getLicensePlanFeatureDescriptor());
 		licensePackEClass.getESuperTypes().add(this.getLicensePackDescriptor());
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
+		licenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
 		personalLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
+		personalLicenseRequisitesEClass.getESuperTypes().add(this.getPersonalLicenseRequisitesDescriptor());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
+		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getFloatingLicenseRequisitesDescriptor());
 		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
+		validityPeriodEClass.getESuperTypes().add(this.getValidityPeriodDescriptor());
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriod());
+		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriodClosedDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(licensePlanDescriptorEClass, LicensePlanDescriptor.class, "LicensePlanDescriptor", IS_ABSTRACT, //$NON-NLS-1$
@@ -1459,6 +1566,21 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(productRefDescriptorEClass, ProductRefDescriptor.class, "ProductRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(licenseRequisitesDescriptorEClass, LicenseRequisitesDescriptor.class, "LicenseRequisitesDescriptor", //$NON-NLS-1$
+				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(personalLicenseRequisitesDescriptorEClass, PersonalLicenseRequisitesDescriptor.class,
+				"PersonalLicenseRequisitesDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(floatingLicenseRequisitesDescriptorEClass, FloatingLicenseRequisitesDescriptor.class,
+				"FloatingLicenseRequisitesDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(validityPeriodDescriptorEClass, ValidityPeriodDescriptor.class, "ValidityPeriodDescriptor", //$NON-NLS-1$
+				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(validityPeriodClosedDescriptorEClass, ValidityPeriodClosedDescriptor.class,
+				"ValidityPeriodClosedDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(licensePlanEClass, LicensePlan.class, "LicensePlan", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
