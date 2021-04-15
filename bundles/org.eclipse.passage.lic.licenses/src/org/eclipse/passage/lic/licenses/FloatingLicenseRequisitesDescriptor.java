@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.licenses;
 
 /**
- * @since 1.1
+ * @since 2.0
  */
 public interface FloatingLicenseRequisitesDescriptor extends LicenseRequisitesDescriptor {
 
