@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4QJDcBrKEeuMV_ofZRuPaw" name="LicenseRequisites">
-  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites"/>
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites"/>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGwBrKEeuMV_ofZRuPaw" name="Control identifier" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGwRrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/identifier"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/identifier"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGwhrKEeuMV_ofZRuPaw" name="Control issueDate" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGwxrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/issueDate"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/issueDate"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGxBrKEeuMV_ofZRuPaw" name="Control company" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGxRrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/company"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/company"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGxhrKEeuMV_ofZRuPaw" name="Control plan" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGxxrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/plan"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/plan"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGyBrKEeuMV_ofZRuPaw" name="Control product" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGyRrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/product"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/product"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4QMGyhrKEeuMV_ofZRuPaw" name="Control valid" readonly="true">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4QMGyxrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicenseRequisites/valid"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/valid"/>
     </domainModelReference>
   </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>

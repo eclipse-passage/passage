@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_PPv1MIdmEemHgffLhDrdUQ" name="LicensePlan">
-  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlan"/>
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan"/>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_PP2i4IdmEemHgffLhDrdUQ" name="Control identifier">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_PP2i4YdmEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlan/identifier"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan/identifier"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_PP2i4odmEemHgffLhDrdUQ" name="Control name">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_PP2i44dmEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlan/name"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan/name"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_PP2i5IdmEemHgffLhDrdUQ" name="Control description">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_PP2i5YdmEemHgffLhDrdUQ">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//LicensePlan/description"/>
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicensePlan/description"/>
     </domainModelReference>
   </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>

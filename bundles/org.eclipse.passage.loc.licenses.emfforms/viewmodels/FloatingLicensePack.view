@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_4NW1MBrKEeuMV_ofZRuPaw" name="Floating License Pack">
-  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//FloatingLicensePack"/>
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicensePack"/>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4P8PIBrKEeuMV_ofZRuPaw" name="License Information">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4P8PIRrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//FloatingLicensePack/license"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicensePack/license"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4P8PIhrKEeuMV_ofZRuPaw" name="Floating Server">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4P8PIxrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//FloatingLicensePack/host"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicensePack/host"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4P8PJBrKEeuMV_ofZRuPaw" name="Users">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4P8PJRrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//FloatingLicensePack/users"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicensePack/users"/>
     </domainModelReference>
   </children>
   <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4P8PJhrKEeuMV_ofZRuPaw" name="Features Grants">
     <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_4P8PJxrKEeuMV_ofZRuPaw">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/1.1.0#//FloatingLicensePack/features"/>
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicensePack/features"/>
     </domainModelReference>
   </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
