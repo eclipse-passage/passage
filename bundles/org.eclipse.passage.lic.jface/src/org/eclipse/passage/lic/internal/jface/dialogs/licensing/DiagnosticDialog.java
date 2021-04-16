@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,17 +21,20 @@ import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.internal.base.diagnostic.TroubleHasException;
 import org.eclipse.passage.lic.internal.jface.i18n.DiagnosticDialogMessages;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
 public final class DiagnosticDialog extends NotificationDialog {
 
 	private final Diagnostic diagnostic;
+	private final DiagnosticColors colors;
 	private ButtonConfig error;
 
 	public DiagnosticDialog(Shell shell, Diagnostic diagnostic) {
 		super(shell);
 		this.diagnostic = diagnostic;
+		this.colors = new DiagnosticColors();
 	}
 
 	@Override
@@ -39,7 +42,7 @@ public final class DiagnosticDialog extends NotificationDialog {
 		super.configureShell(shell);
 		shell.setText(DiagnosticDialogMessages.DiagnosticDialog_title);
 		shell.setImage(getDefaultImage());
-		shell.setSize(850, 600);
+		shell.setSize(1250, 500);
 	}
 
 	@Override
@@ -56,10 +59,12 @@ public final class DiagnosticDialog extends NotificationDialog {
 
 	@Override
 	protected void buildUI(Composite parent) {
-		viewer = new HereTable<Trouble>(parent, Trouble.class) //
-				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_details, 750, Trouble::details)
+		viewer = new HereTable<Trouble>(parent, Trouble.class, this::backdround) //
+				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_details, 900, Trouble::details)
 				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_code, 50,
 						trouble -> Integer.toString(trouble.code().code()))//
+				.withColumn(DiagnosticDialogMessages.DiagnosticDialog_column_type, 250,
+						trouble -> trouble.code().explanation())//
 				.viewer();
 	}
 
@@ -94,6 +99,15 @@ public final class DiagnosticDialog extends NotificationDialog {
 
 	private Optional<Trouble> selectedTrouble() {
 		return new FirstSelected<Trouble>(viewer.getSelection(), Trouble.class).get();
+	}
+
+	private Color backdround(Object element, int column) {
+		if (column != 1) {
+			return null; // framework driven null
+		}
+		boolean failure = ((Trouble) element).exception().isPresent();
+		boolean severe = diagnostic.severe().contains(element);
+		return colors.get(severe, failure);
 	}
 
 }

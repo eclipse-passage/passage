@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.e4.ui.feature"
       label="%featureName"
-      version="0.6.301.qualifier"
+      version="0.6.400.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.e4.ui"
       license-feature="org.eclipse.license"
