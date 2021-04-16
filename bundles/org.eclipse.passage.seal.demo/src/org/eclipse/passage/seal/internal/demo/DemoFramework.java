@@ -54,7 +54,7 @@ final class DemoFramework extends BaseFramework {
 
 	@Override
 	protected AccessCycleConfiguration configuration(LicensedProduct product) {
-		return new SealedAccessCycleConfiguration(() -> product);
+		return new FocusedAccessCycleConfiguration.Wide(() -> product);
 	}
 
 	private void configureLogging() {
