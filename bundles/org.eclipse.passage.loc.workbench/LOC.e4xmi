@@ -97,4 +97,5 @@
   <addons xmi:id="_6wlLd8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_6wlLeMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
   <addons xmi:id="_UDwQEPPUEeidN5pWK-UnUQ" elementId="org.eclipse.passage.loc.workbench.addon.licensing" contributionURI="bundleclass://org.eclipse.passage.loc.workbench/org.eclipse.passage.loc.internal.workbench.BrandingAddon"/>
+  <addons xmi:id="_9m654J6rEeu3DPeB9oNoEg" elementId="org.eclipse.passage.lic.intenal.e4.ui.licensing" contributionURI="bundleclass://org.eclipse.passage.lic.e4.ui/org.eclipse.passage.lic.internal.e4.ui.addons.E4LicensingAddon"/>
 </application:Application>
