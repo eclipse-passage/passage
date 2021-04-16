@@ -11,3 +11,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.passage.loc.workbench;bundle-version="0.0.0",
  org.eclipse.passage.lic.e4.ui;bundle-version="0.0.0"
 Eclipse-BundleShape: dir
+Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.product";name="Eclipse Passage Operator";version="2.0.0";provider="Eclispe Passage";level="warn",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issuepersonal";version="2.0.0";name="Issue Personal License";level="error";provider="Eclipse Passage",
+ licensing.feature;licensing.feature="org.eclipse.passage.loc.operator.issuefloating";version="2.0.0";name="Issue Floating License";level="warn";provider="Eclipse Passage"
