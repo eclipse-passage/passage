@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.registry.JointRegistry;
+import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 
 @SuppressWarnings("restriction")
 interface LicensingDirection {
@@ -45,9 +46,10 @@ interface LicensingDirection {
 
 		private <I extends ServiceId, S extends Service<I>> Registry<I, S> registries(
 				Function<LicensingDirection, Supplier<Registry<I, S>>> retrieve) {
-			return new JointRegistry<>(delegates.stream()//
-					.map(delegate -> retrieve.apply(delegate).get())//
-					.collect(Collectors.toList()));
+			return new ReadOnlyRegistry<>(//
+					new JointRegistry<>(delegates.stream()//
+							.map(delegate -> retrieve.apply(delegate).get())//
+							.collect(Collectors.toList())));
 		}
 
 		@Override
