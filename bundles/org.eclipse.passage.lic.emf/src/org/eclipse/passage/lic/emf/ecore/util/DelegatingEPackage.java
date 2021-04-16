@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.emf.ecore.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class DelegatingEPackage extends EPackageImpl {
 
-	public static Diagnostic delegate(String nsUri, EPackage delegate, Iterable<String> classifierNames) {
+	public static void delegate(String nsUri, EPackage delegate, Iterable<String> chosen) {
 		EPackage existing = EPackage.Registry.INSTANCE.getEPackage(nsUri);
 		DelegatingEPackage delegatingEPackage;
 		if (existing instanceof DelegatingEPackage) {
@@ -49,10 +48,10 @@ public class DelegatingEPackage extends EPackageImpl {
 			EPackage.Registry.INSTANCE.put(nsUri, delegatingEPackage);
 		}
 		Map<EClass, EClass> delegated = new HashMap<>();
-		for (String name : classifierNames) {
-			EClassifier eClassifier = delegate.getEClassifier(name);
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass) eClassifier;
+		for (String name : chosen) {
+			EClassifier classifier = delegate.getEClassifier(name);
+			if (classifier instanceof EClass) {
+				EClass eClass = (EClass) classifier;
 				EClass key = EcoreUtil.copy(eClass);
 				delegated.put(key, eClass);
 			}
@@ -60,7 +59,6 @@ public class DelegatingEPackage extends EPackageImpl {
 		delegatingEPackage.getEClassifiers().addAll(delegated.keySet());
 		DelegatingEFactory delegatingEFactory = delegatingEPackage.getDelegatingEFactory();
 		delegatingEFactory.addEClassDelegate(delegate.getEFactoryInstance(), delegated);
-		return Diagnostic.OK_INSTANCE;
 	}
 
 	private final DelegatingEFactory delegatingEFactory = new DelegatingEFactory();

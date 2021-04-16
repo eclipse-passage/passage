@@ -53,8 +53,9 @@ public class EmailTemplate {
 		Optional.ofNullable(licensePack.getIdentifier())//
 				.ifPresent(x -> builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_package_lbl, x)));
 		builder.add(""); //$NON-NLS-1$
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_lbl, licensePack.getProductIdentifier()));
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl, licensePack.getProductVersion()));
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_lbl, licensePack.getProduct().getProduct()));
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl,
+				licensePack.getProduct().getVersion()));
 		for (LicenseGrantDescriptor grant : licensePack.getLicenseGrants()) {
 			builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_feature_lbl, grant.getFeatureIdentifier()));
 			String conditionExpression = grant.getConditionExpression();

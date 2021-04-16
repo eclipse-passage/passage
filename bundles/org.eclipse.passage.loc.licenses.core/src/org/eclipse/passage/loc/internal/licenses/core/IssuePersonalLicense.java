@@ -68,7 +68,8 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
-		LicensedProduct product = new BaseLicensedProduct(license.getProductIdentifier(), license.getProductVersion());
+		LicensedProduct product = new BaseLicensedProduct(license.getProduct().getProduct(),
+				license.getProduct().getVersion());
 		Path path = new UserHomeProductResidence(product).get();
 		Path decrypted;
 		try {

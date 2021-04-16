@@ -83,20 +83,11 @@ public interface LicensePackDescriptor {
 	String getPlanIdentifier();
 
 	/**
-	 * Returns the <code>"Product"</code>" identifier of this license pack. This is
-	 * the value of its <code>"productIdentifier"</code> attribute.
-	 *
-	 * @return the product identifier
+	 * Returns the <code>"ProductRef"</code>" container of this license pack.
+	 * 
+	 * @since 2.0
 	 */
-	String getProductIdentifier();
-
-	/**
-	 * Returns the <code>"Product Version"</code>" version of this license pack.
-	 * This is the value of its <code>"productVersion"</code> attribute.
-	 *
-	 * @return the product version
-	 */
-	String getProductVersion();
+	ProductRefDescriptor getProduct();
 
 	/**
 	 * Returns the <code>"License Grant"</code>(s) contained in this license pack.

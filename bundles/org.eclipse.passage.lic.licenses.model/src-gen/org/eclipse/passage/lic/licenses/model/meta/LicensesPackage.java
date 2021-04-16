@@ -51,7 +51,7 @@ public interface LicensesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/1.1.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/2.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -572,24 +572,13 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PACK__PLAN_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Product Identifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Product</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__PRODUCT_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Product Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__PRODUCT_VERSION = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 7;
+	int LICENSE_PACK__PRODUCT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>License Grants</b></em>' containment reference list.
@@ -599,7 +588,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 8;
+	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>License Pack</em>' class.
@@ -609,7 +598,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 9;
+	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>License Pack</em>' class.
@@ -1909,30 +1898,6 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePack_IssueDate();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Product Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_ProductIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Product Version</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_ProductVersion();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -1976,6 +1941,17 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLicensePack_PlanIdentifier();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProduct <em>Product</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Product</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProduct()
+	 * @see #getLicensePack()
+	 * @generated
+	 */
+	EReference getLicensePack_Product();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.

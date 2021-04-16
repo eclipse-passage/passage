@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 final class PersonalLicenseGenerated implements Supplier<LicensePack> {
@@ -44,8 +45,7 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 		pack.setIdentifier(generated());
 		pack.setIssueDate(new Date());
 		pack.setPlanIdentifier("ignored"); //$NON-NLS-1$
-		pack.setProductIdentifier(product.identifier());
-		pack.setProductVersion(product.version());
+		pack.setProduct(product());
 		pack.setUserFullName(user);
 		pack.setUserIdentifier(user);
 		pack.setRequestIdentifier(generated());
@@ -77,6 +77,13 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 	private Date date(Condition condition, Function<ValidityPeriodClosed, ZonedDateTime> source) {
 		ValidityPeriodClosed closed = (ValidityPeriodClosed) condition.validityPeriod();
 		return Date.from(source.apply(closed).toInstant());
+	}
+
+	private ProductRef product() {
+		ProductRef ref = LicensesFactory.eINSTANCE.createProductRef();
+		ref.setProduct(product.identifier());
+		ref.setVersion(product.version());
+		return ref;
 	}
 
 }

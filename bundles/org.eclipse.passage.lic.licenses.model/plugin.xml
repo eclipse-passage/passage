@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated licenses. -->
       <package
-            uri="http://www.eclipse.org/passage/lic/licenses/1.1.0"
+            uri="http://www.eclipse.org/passage/lic/licenses/2.0.0"
             class="org.eclipse.passage.lic.licenses.model.meta.LicensesPackage"
             genModel="model/licenses..genmodel"/>
    </extension>

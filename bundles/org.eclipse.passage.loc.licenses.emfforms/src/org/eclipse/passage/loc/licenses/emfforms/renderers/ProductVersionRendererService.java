@@ -27,7 +27,8 @@ public class ProductVersionRendererService extends StructuredFeatureRendererServ
 		implements EMFFormsDIRendererService<VControl> {
 
 	public ProductVersionRendererService() {
-		super(ProductVersionRenderer.class, LicensesPackage.eINSTANCE.getLicensePack_ProductVersion());
+		super(ProductVersionRenderer.class, LicensesPackage.eINSTANCE.getLicensePack_Product(),
+				LicensesPackage.eINSTANCE.getProductRef_Version());
 	}
 
 	@Reference

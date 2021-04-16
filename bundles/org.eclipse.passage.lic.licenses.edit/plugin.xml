@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated licenses. -->
       <factory
-            uri="http://www.eclipse.org/passage/lic/licenses/1.1.0"
+            uri="http://www.eclipse.org/passage/lic/licenses/2.0.0"
             class="org.eclipse.passage.lic.licenses.edit.providers.LicensesItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

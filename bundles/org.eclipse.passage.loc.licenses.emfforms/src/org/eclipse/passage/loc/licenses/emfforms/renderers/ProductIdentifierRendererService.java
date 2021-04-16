@@ -27,7 +27,8 @@ public class ProductIdentifierRendererService extends StructuredFeatureRendererS
 		implements EMFFormsDIRendererService<VControl> {
 
 	public ProductIdentifierRendererService() {
-		super(ProductIdentifierRenderer.class, LicensesPackage.eINSTANCE.getLicensePack_ProductIdentifier());
+		super(ProductIdentifierRenderer.class, LicensesPackage.eINSTANCE.getLicensePack_Product(),
+				LicensesPackage.eINSTANCE.getProductRef_Product());
 	}
 
 	@Reference

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -45,8 +46,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getUserFullName <em>User Full Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getRequestIdentifier <em>Request Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getPlanIdentifier <em>Plan Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getProductIdentifier <em>Product Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getProductVersion <em>Product Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl#getLicenseGrants <em>License Grants</em>}</li>
  * </ul>
  *
@@ -180,48 +180,14 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	private String planIdentifier = PLAN_IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
+	 * The cached value of the '{@link #getProduct() <em>Product</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
-	 * @see #getProductIdentifier()
+	 * @see #getProduct()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PRODUCT_IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getProductIdentifier() <em>Product Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see #getProductIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	private String productIdentifier = PRODUCT_IDENTIFIER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see #getProductVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PRODUCT_VERSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getProductVersion() <em>Product Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @see #getProductVersion()
-	 * @generated
-	 * @ordered
-	 */
-	private String productVersion = PRODUCT_VERSION_EDEFAULT;
+	protected ProductRef product;
 
 	/**
 	 * The cached value of the '{@link #getLicenseGrants() <em>License Grants</em>}' containment reference list.
@@ -306,60 +272,6 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__ISSUE_DATE,
 					oldIssueDate, issueDate));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getProductIdentifier() {
-		return productIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setProductIdentifier(String newProductIdentifier) {
-		String oldProductIdentifier = productIdentifier;
-		productIdentifier = newProductIdentifier;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER,
-					oldProductIdentifier, productIdentifier));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getProductVersion() {
-		return productVersion;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setProductVersion(String newProductVersion) {
-		String oldProductVersion = productVersion;
-		productVersion = newProductVersion;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PRODUCT_VERSION,
-					oldProductVersion, productVersion));
 		}
 	}
 
@@ -467,6 +379,59 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ProductRef getProduct() {
+		return product;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProduct(ProductRef newProduct, NotificationChain msgs) {
+		ProductRef oldProduct = product;
+		product = newProduct;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_PACK__PRODUCT, oldProduct, newProduct);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setProduct(ProductRef newProduct) {
+		if (newProduct != product) {
+			NotificationChain msgs = null;
+			if (product != null)
+				msgs = ((InternalEObject) product).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PACK__PRODUCT, null, msgs);
+			if (newProduct != null)
+				msgs = ((InternalEObject) newProduct).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PACK__PRODUCT, null, msgs);
+			msgs = basicSetProduct(newProduct, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PACK__PRODUCT, newProduct,
+					newProduct));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -506,6 +471,8 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
+			return basicSetProduct(null, msgs);
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return ((InternalEList<?>) getLicenseGrants()).basicRemove(otherEnd, msgs);
 		default:
@@ -534,10 +501,8 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			return getRequestIdentifier();
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
 			return getPlanIdentifier();
-		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-			return getProductIdentifier();
-		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-			return getProductVersion();
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
+			return getProduct();
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return getLicenseGrants();
 		default:
@@ -573,11 +538,8 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
 			setPlanIdentifier((String) newValue);
 			return;
-		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-			setProductIdentifier((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-			setProductVersion((String) newValue);
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
+			setProduct((ProductRef) newValue);
 			return;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			getLicenseGrants().clear();
@@ -616,11 +578,8 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
 			setPlanIdentifier(PLAN_IDENTIFIER_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-			setProductIdentifier(PRODUCT_IDENTIFIER_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-			setProductVersion(PRODUCT_VERSION_EDEFAULT);
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
+			setProduct((ProductRef) null);
 			return;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			getLicenseGrants().clear();
@@ -652,10 +611,8 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 			return !Objects.equals(REQUEST_IDENTIFIER_EDEFAULT, requestIdentifier);
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
 			return !Objects.equals(PLAN_IDENTIFIER_EDEFAULT, planIdentifier);
-		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-			return !Objects.equals(PRODUCT_IDENTIFIER_EDEFAULT, productIdentifier);
-		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
-			return !Objects.equals(PRODUCT_VERSION_EDEFAULT, productVersion);
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
+			return product != null;
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			return licenseGrants != null && !licenseGrants.isEmpty();
 		default:
@@ -687,10 +644,6 @@ public class LicensePackImpl extends MinimalEObjectImpl.Container implements Lic
 		result.append(requestIdentifier);
 		result.append(", planIdentifier: "); //$NON-NLS-1$
 		result.append(planIdentifier);
-		result.append(", productIdentifier: "); //$NON-NLS-1$
-		result.append(productIdentifier);
-		result.append(", productVersion: "); //$NON-NLS-1$
-		result.append(productVersion);
 		result.append(')');
 		return result.toString();
 	}

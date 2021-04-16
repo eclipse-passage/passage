@@ -19,6 +19,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -40,8 +41,7 @@ final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 		pack.setRequestIdentifier(request.identifier());
 		pack.setUserIdentifier(request.user());
 		pack.setUserFullName(request.userFullName());
-		pack.setProductIdentifier(request.productIdentifier());
-		pack.setProductVersion(request.productVersion());
+		pack.setProduct(product());
 		String planIdentifier = request.plan();
 		pack.setPlanIdentifier(planIdentifier);
 		LicensePlanDescriptor plan = licenses.getLicensePlan(planIdentifier);
@@ -55,6 +55,13 @@ final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 			grants.add(grant);
 		}
 		return pack;
+	}
+
+	private ProductRef product() {
+		ProductRef product = LicensesFactory.eINSTANCE.createProductRef();
+		product.setProduct(request.productIdentifier());
+		product.setVersion(request.productVersion());
+		return product;
 	}
 
 }

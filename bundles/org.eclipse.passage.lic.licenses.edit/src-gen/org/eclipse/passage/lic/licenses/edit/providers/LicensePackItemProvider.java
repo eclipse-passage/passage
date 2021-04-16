@@ -72,8 +72,6 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 			addUserFullNamePropertyDescriptor(object);
 			addRequestIdentifierPropertyDescriptor(object);
 			addPlanIdentifierPropertyDescriptor(object);
-			addProductIdentifierPropertyDescriptor(object);
-			addProductVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -109,40 +107,6 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_issueDate_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePack_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicensePack_IssueDate(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Product Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProductIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicensePack_productIdentifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicensePack_ProductIdentifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Product Version feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addProductVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicensePack_productVersion_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicensePack_productVersion_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicensePack_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicensePack_ProductVersion(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -224,6 +188,7 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePack_Product());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePack_LicenseGrants());
 		}
 		return childrenFeatures;
@@ -281,8 +246,8 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 	public String getText(Object object) {
 		LicensePack licensePack = (LicensePack) object;
 		String packId = licensePack.getIdentifier();
-		String productId = licensePack.getProductIdentifier();
-		String productVersion = licensePack.getProductVersion();
+		String productId = licensePack.getProduct().getProduct();
+		String productVersion = licensePack.getProduct().getVersion();
 		return getString("_UI_LicensePack_text_pattern", new Object[] { packId, productId, productVersion }); //$NON-NLS-1$
 	}
 
@@ -305,10 +270,9 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 		case LicensesPackage.LICENSE_PACK__USER_FULL_NAME:
 		case LicensesPackage.LICENSE_PACK__REQUEST_IDENTIFIER:
 		case LicensesPackage.LICENSE_PACK__PLAN_IDENTIFIER:
-		case LicensesPackage.LICENSE_PACK__PRODUCT_IDENTIFIER:
-		case LicensesPackage.LICENSE_PACK__PRODUCT_VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
+		case LicensesPackage.LICENSE_PACK__PRODUCT:
 		case LicensesPackage.LICENSE_PACK__LICENSE_GRANTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -329,6 +293,9 @@ public class LicensePackItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePack_Product(),
+				LicensesFactory.eINSTANCE.createProductRef()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePack_LicenseGrants(),
 				LicensesFactory.eINSTANCE.createLicenseGrant()));

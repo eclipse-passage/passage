@@ -35,8 +35,7 @@ import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName <em>User Full Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier <em>Request Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier <em>Plan Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}</li>
  * </ul>
  *
@@ -100,62 +99,6 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @generated
 	 */
 	void setIssueDate(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>Product Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Product Identifier</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Product Identifier</em>' attribute.
-	 * @see #setProductIdentifier(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_ProductIdentifier()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getProductIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product Identifier</em>' attribute.
-	 * @see #getProductIdentifier()
-	 * @generated
-	 */
-	void setProductIdentifier(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Product Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Product Version</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Product Version</em>' attribute.
-	 * @see #setProductVersion(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_ProductVersion()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getProductVersion();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product Version</em>' attribute.
-	 * @see #getProductVersion()
-	 * @generated
-	 */
-	void setProductVersion(String value);
 
 	/**
 	 * Returns the value of the '<em><b>User Identifier</b></em>' attribute.
@@ -253,6 +196,28 @@ public interface LicensePack extends EObject, LicensePackDescriptor {
 	 * @generated
 	 */
 	void setPlanIdentifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Product</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Product</em>' containment reference.
+	 * @see #setProduct(ProductRef)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePack_Product()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ProductRef getProduct();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProduct <em>Product</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Product</em>' containment reference.
+	 * @see #getProduct()
+	 * @generated
+	 */
+	void setProduct(ProductRef value);
 
 	/**
 	 * Returns the value of the '<em><b>License Grants</b></em>' containment reference list.

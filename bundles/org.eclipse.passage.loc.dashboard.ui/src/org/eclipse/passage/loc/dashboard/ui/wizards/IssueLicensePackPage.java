@@ -31,6 +31,8 @@ import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -59,8 +61,7 @@ public class IssueLicensePackPage extends WizardPage {
 		PersonalLicenseRequest request = data.get();
 		if (license != null) {
 			license.setPlanIdentifier(request.plan());
-			license.setProductIdentifier(request.productIdentifier());
-			license.setProductVersion(request.productVersion());
+			license.setProduct(product(request));
 			license.setUserIdentifier(request.user());
 			EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
 			for (LicenseGrant licenseGrant : licenseGrants) {
@@ -124,4 +125,10 @@ public class IssueLicensePackPage extends WizardPage {
 		return license;
 	}
 
+	private ProductRef product(PersonalLicenseRequest request) {
+		ProductRef product = LicensesFactory.eINSTANCE.createProductRef();
+		product.setProduct(request.productIdentifier());
+		product.setVersion(request.productVersion());
+		return product;
+	}
 }
