@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -25,27 +26,27 @@ class HereLabelProvider<T> implements ITableLabelProvider, ITableColorProvider {
 
 	private final Map<Integer, Function<T, String>> texts;
 	private final Class<T> cls;
+	private final BiFunction<Object, Integer, Color> background;
 
-	HereLabelProvider(Map<Integer, Function<T, String>> texts, Class<T> cls) {
+	HereLabelProvider(Map<Integer, Function<T, String>> texts, Class<T> cls,
+			BiFunction<Object, Integer, Color> background) {
 		this.texts = texts;
 		this.cls = cls;
+		this.background = background;
 	}
 
 	@Override
 	public Color getForeground(Object element, int column) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Color getBackground(Object element, int column) {
-		// TODO Auto-generated method stub
-		return null;
+		return background.apply(element, column);
 	}
 
 	@Override
 	public Image getColumnImage(Object element, int column) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -69,6 +70,5 @@ class HereLabelProvider<T> implements ITableLabelProvider, ITableColorProvider {
 
 	@Override
 	public void removeListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
 	}
 }
