@@ -52,12 +52,12 @@ public final class EquinoxPassageUI implements PassageUI {
 	}
 
 	private <T> ServiceInvocationResult<T> investigate(//
-			Supplier<ServiceInvocationResult<T>> gain, //
-			Function<T, ExaminationCertificate> get, //
+			Supplier<ServiceInvocationResult<T>> service, //
+			Function<T, ExaminationCertificate> certificate, //
 			Predicate<Optional<ExaminationCertificate>> ok) {
-		ServiceInvocationResult<T> result = gain.get();
-		while (exposeAndMayBeEvenFix(result, get, ok)) {
-			result = gain.get();
+		ServiceInvocationResult<T> result = service.get();
+		while (exposeAndMayBeEvenFix(result, certificate, ok)) {
+			result = service.get();
 		}
 		return result;
 	}
