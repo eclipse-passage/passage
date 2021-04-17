@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 @SuppressWarnings("restriction")
 public class DashboardIssueLicenseHandler {
 
-	private final String feature = "org.eclipse.passage.loc.operator.issuepersonal"; //$NON-NLS-1$
+	private final String feature = "org.eclipse.passage.loc.operator.issue.personal"; //$NON-NLS-1$
 
 	@Execute
 	public void execute(IEclipseContext context,

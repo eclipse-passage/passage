@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Shell;
 @SuppressWarnings("restriction")
 public class DashboardIssueFloatingLicenseHandler {
 
-	private final String feature = "org.eclipse.passage.loc.operator.issuefloating"; //$NON-NLS-1$
+	private final String feature = "org.eclipse.passage.loc.operator.issue.floating"; //$NON-NLS-1$
 
 	@Execute
 	public void execute(IEclipseContext context,
