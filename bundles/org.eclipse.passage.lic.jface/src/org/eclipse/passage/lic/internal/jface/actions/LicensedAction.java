@@ -31,7 +31,7 @@ public abstract class LicensedAction extends Action {
 	}
 
 	private void runEverywhere(Display display) {
-		new LicensedRunnable(display::getActiveShell, getId(), this::doAction).run();
+		new LicensedRunnableUi(display::getActiveShell, getId(), this::doAction).run();
 	}
 
 }

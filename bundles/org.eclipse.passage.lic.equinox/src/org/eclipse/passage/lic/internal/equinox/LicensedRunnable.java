@@ -10,45 +10,34 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.jface.actions;
+package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
-public final class LicensedRunnable implements Runnable {
+public abstract class LicensedRunnable implements Runnable {
 
-	private final Supplier<Shell> shell;
 	private final String feature;
 	private final Runnable action;
 
-	public LicensedRunnable(Supplier<Shell> shell, String feature, Runnable action) {
-		this.shell = shell;
+	public LicensedRunnable(String feature, Runnable action) {
 		this.feature = feature;
 		this.action = action;
 	}
 
-	public LicensedRunnable(String feature, Runnable action) {
-		this(Display.getDefault()::getActiveShell, feature, action);
-	}
-
 	@Override
-	public void run() {
+	public final void run() {
 		Optional<ServiceInvocationResult<GrantLockAttempt>> response = Optional.empty();
 		try {
-			response = Optional.of(new EquinoxPassageUI(shell).acquireLicense(feature));
+			response = Optional.of(acquireLicense(feature));
 			if (grantAcquired(response)) {
 				action.run();
 			}
 		} finally {
 			response.flatMap(ServiceInvocationResult::data)//
-					.ifPresent(lock -> new EquinoxPassage().releaseLicense(lock));
+					.ifPresent(new EquinoxPassage()::releaseLicense);
 		}
 	}
 
@@ -57,6 +46,22 @@ public final class LicensedRunnable implements Runnable {
 				.flatMap(ServiceInvocationResult::data)//
 				.map(GrantLockAttempt::successful)//
 				.orElse(false);
+	}
+
+	@SuppressWarnings("hiding")
+	protected abstract ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature);
+
+	public static final class Default extends LicensedRunnable {
+
+		public Default(String feature, Runnable action) {
+			super(feature, action);
+		}
+
+		@Override
+		protected ServiceInvocationResult<GrantLockAttempt> acquireLicense(String feature) {
+			return new EquinoxPassage().acquireLicense(feature);
+		}
+
 	}
 
 }
