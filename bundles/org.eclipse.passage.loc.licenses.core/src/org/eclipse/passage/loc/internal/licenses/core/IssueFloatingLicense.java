@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -39,10 +40,12 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
+import org.eclipse.passage.loc.internal.licenses.core.issue.FloatingLicenseIssuingProtection;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
@@ -62,13 +65,25 @@ final class IssueFloatingLicense {
 
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
+		FloatingLicensePack license = shielded(EcoreUtil.copy(pack), configs);
 		try {
-			new UpdateLicensePlan(licenses).withFloating(EcoreUtil.copy(pack));
+			new UpdateLicensePlan(licenses).withFloating(license);
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
-		return persistLicenseFiles(EcoreUtil.copy(pack), configs);
+		return persistLicenseFiles(EcoreUtil.copy(license), configs);
+	}
+
+	private FloatingLicensePack shielded(FloatingLicensePack pack, Collection<FloatingLicenseAccess> configs) {
+		new FloatingLicenseIssuingProtection().accept(pack);
+		Collection<String> users = pack.getUsers().stream()//
+				.map(UserGrant::getUser)//
+				.collect(Collectors.toSet());
+		Collection<FloatingLicenseAccess> redundant = configs.stream()//
+				.filter(c -> !users.contains(c.getUser())).collect(Collectors.toSet());
+		configs.removeAll(redundant);
+		return pack;
 	}
 
 	private ServiceInvocationResult<IssuedFloatingLicense> persistLicenseFiles(FloatingLicensePack pack,
