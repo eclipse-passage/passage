@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (
+c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +13,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.actions;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -25,9 +27,15 @@ public final class LicensedRunnableUi extends LicensedRunnable {
 
 	private final Supplier<Shell> shell;
 
-	public LicensedRunnableUi(Supplier<Shell> shell, String feature, Runnable action) {
-		super(feature, action);
+	public LicensedRunnableUi(Supplier<Shell> shell, String feature, Runnable action,
+			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
+		super(feature, action, fallback);
 		this.shell = shell;
+	}
+
+	public LicensedRunnableUi(Supplier<Shell> shell, String feature, Runnable action) {
+		this(shell, feature, action, response -> {
+		});
 	}
 
 	public LicensedRunnableUi(String feature, Runnable action) {

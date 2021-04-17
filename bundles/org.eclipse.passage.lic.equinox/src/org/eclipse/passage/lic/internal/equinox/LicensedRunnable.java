@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
@@ -21,10 +22,18 @@ public abstract class LicensedRunnable implements Runnable {
 
 	private final String feature;
 	private final Runnable action;
+	private final Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback;
 
-	public LicensedRunnable(String feature, Runnable action) {
+	public LicensedRunnable(String feature, Runnable action,
+			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 		this.feature = feature;
 		this.action = action;
+		this.fallback = fallback;
+	}
+
+	public LicensedRunnable(String feature, Runnable action) {
+		this(feature, action, response -> {
+		});
 	}
 
 	@Override
@@ -34,6 +43,8 @@ public abstract class LicensedRunnable implements Runnable {
 			response = Optional.of(acquireLicense(feature));
 			if (grantAcquired(response)) {
 				action.run();
+			} else {
+				fallback.accept(response.get());
 			}
 		} finally {
 			response.flatMap(ServiceInvocationResult::data)//
@@ -55,6 +66,10 @@ public abstract class LicensedRunnable implements Runnable {
 
 		public Default(String feature, Runnable action) {
 			super(feature, action);
+		}
+
+		public Default(String feature, Runnable action, Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
+			super(feature, action, fallback);
 		}
 
 		@Override
