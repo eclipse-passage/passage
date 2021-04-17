@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.base.ui
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.jface
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -18,7 +18,6 @@ Export-Package: org.eclipse.passage.lic.internal.jface;x-friends:="org.eclipse.p
  org.eclipse.passage.lic.internal.jface.dialogs.licensing;x-friends:="org.eclipse.passage.lic.e4.ui,org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.ui",
  org.eclipse.passage.lic.internal.jface.i18n;x-internal:=true,
  org.eclipse.passage.lic.jface;x-friends:="org.eclipse.passage.loc.workbench",
- org.eclipse.passage.lic.jface.actions,
  org.eclipse.passage.lic.jface.resource;
   x-friends:="org.eclipse.passage.loc.dashboard.ui,
    org.eclipse.passage.loc.workbench,
