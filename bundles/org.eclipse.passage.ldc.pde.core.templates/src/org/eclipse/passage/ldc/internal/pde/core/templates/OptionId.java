@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,18 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.ldc.internal.pde.ui.templates.e4;
+package org.eclipse.passage.ldc.internal.pde.core.templates;
 
-import org.eclipse.pde.ui.templates.ITemplateSection;
-import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
+@FunctionalInterface
+public interface OptionId {
 
-@Deprecated
-public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
+	String id();
 
-	@Override
-	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] { //
-				new LicensedE4ProductTemplateSection(), //
-		};
-	}
 }

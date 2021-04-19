@@ -19,7 +19,8 @@ public final class LicensedE4FullFeatherProductContentWizard extends NewPluginTe
 
 	@Override
 	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] { new LicensedE4FullFeatherProductTemplateSection() };
+		return new ITemplateSection[] { //
+				new LicensedE4FullFeatherProductTemplateSection(), //
+		};
 	}
-
 }
