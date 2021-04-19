@@ -20,19 +20,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedTemplateSection;
+import org.eclipse.passage.ldc.internal.pde.core.templates.TemplateId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.dev.DevMinimalTemplateId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductIdentifierOptionId;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedProductSection;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.HelpContexts;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
-import org.eclipse.pde.ui.IFieldData;
 
 @SuppressWarnings("restriction")
-public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedTemplateSection {
+public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedProductSection {
 
 	public LicensedE4FullFeatherProductTemplateSection() {
 		setPageCount(1);
@@ -49,30 +50,20 @@ public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicen
 	}
 
 	@Override
-	protected void initializeFields(IFieldData data) {
-		// In a new project wizard, we don't know this yet - the
-		// model has not been created
-		String packageName = getFormattedPackageName(data.getId());
-		initializeOption(KEY_PACKAGE_NAME, packageName);
-	}
-
-	@Override
-	public void initializeFields(IPluginModelBase modelBase) {
-		String packageName = getFormattedPackageName(modelBase.getPluginBase().getId());
-		initializeOption(KEY_PACKAGE_NAME, packageName);
-	}
-
-	@Override
 	public String getSectionId() {
 		return "LicensedE4FullFeatherProduct"; //$NON-NLS-1$
+	}
+
+	@Override
+	protected TemplateId getDevTemplate() {
+		return new DevMinimalTemplateId();
 	}
 
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
 		setManifestHeader("Service-Component", "OSGI-INF/*"); //$NON-NLS-1$ //$NON-NLS-2$
-		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
-		createLicensingCapability(productFqn);
+		createLicensingCapability(getStringOption(new ProductIdentifierOptionId().id()));
 		createProductExtension();
 	}
 
