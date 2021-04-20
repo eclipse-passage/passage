@@ -19,14 +19,11 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
@@ -38,10 +35,9 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
-import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 abstract class BaseXmiConditionTransport implements ConditionTransport {
 
@@ -63,8 +59,8 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
-		Resource resource = new XMIResourceImpl();
-		resource.load(input, loadOptions());
+		Resource resource = new LicensesResourceImpl();
+		resource.load(input, new HashMap<>());
 		return resource.getContents().stream() //
 				.filter(LicensePack.class::isInstance) //
 				.map(LicensePack.class::cast) //
@@ -73,14 +69,6 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 				.flatMap(i -> StreamSupport.stream(i.spliterator(), false)) //
 				.map(this::condition) //
 				.collect(Collectors.toList());
-	}
-
-	private Map<String, Object> loadOptions() {
-		Map<String, Object> options = new HashMap<>();
-		options.put(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE);
-		options.put(LicensesPackage.eNAME, LicensesPackage.eINSTANCE);
-		options.put(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler());
-		return options;
 	}
 
 	private Condition condition(LicenseGrant descriptor) {

@@ -10,24 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.migration;
+package org.eclipse.passage.lic.internal.licenses.model;
 
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
-import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 
-@SuppressWarnings("restriction")
 public class LicensesResourceHandler extends BasicResourceHandler {
 
 	@Override
 	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
+		resource.getEObjectToExtensionMap().entrySet().forEach(this::convertEntry);
 		resource.getContents().stream()//
 				.filter(LicensePack.class::isInstance)//
 				.map(LicensePack.class::cast).forEach(new AssignGrantIdentifiers());
+	}
+
+	private void convertEntry(Entry<EObject, AnyType> entry) {
+		// FIXME: AF: here we read what is unknown and create what is needed
+		entry.getValue().getAnyAttribute().forEach(e -> System.out.println(e));
 	}
 
 }

@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
-import org.eclipse.passage.lic.internal.licenses.migration.to200.To200Package;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -44,20 +43,21 @@ public class LicensesMigrator {
 	}
 
 	private void migrate040() {
-		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
+		String namespace = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.put(namespace, delegate);
 	}
 
 	private void migrate050() {
-		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
+		String namespace = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.put(namespace, delegate);
 	}
 
 	private void migrate100() {
 		String namespace = "http://www.eclipse.org/passage/lic/licenses/1.0.0"; //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(namespace, new To200Package(namespace));
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.put(namespace, delegate);
 	}
 
 }

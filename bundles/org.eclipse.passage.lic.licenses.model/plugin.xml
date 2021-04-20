@@ -22,4 +22,11 @@
             genModel="model/licenses..genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated licenses. -->
+      <parser
+            type="licenses"
+            class="org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl"/>
+   </extension>
+
 </plugin>

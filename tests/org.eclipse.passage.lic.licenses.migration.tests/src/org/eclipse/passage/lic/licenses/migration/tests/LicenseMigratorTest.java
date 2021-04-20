@@ -19,18 +19,16 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -74,8 +72,8 @@ public class LicenseMigratorTest {
 	private void loaded(String path) throws IOException, ParseException {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
-		Resource resource = new XMIResourceImpl(uri);
-		resource.load(Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
+		Resource resource = new LicensesResourceImpl(uri);
+		resource.load(new HashMap<>());
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
 

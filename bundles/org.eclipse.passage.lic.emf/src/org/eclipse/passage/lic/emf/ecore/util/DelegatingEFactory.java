@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 
-public class DelegatingEFactory extends EFactoryImpl {
+public final class DelegatingEFactory extends EFactoryImpl {
 
 	public final Map<String, EClass> eClassMap = new HashMap<>();
 	public final Map<String, EDataType> eDataTypeMap = new HashMap<>();
