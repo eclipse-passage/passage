@@ -20,9 +20,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.passage.lic.keys.KeyPairRO;
-import org.eclipse.passage.lic.keys.ProductRefRO;
-
 import org.eclipse.passage.lic.keys.model.api.*;
 
 import org.eclipse.passage.lic.keys.model.meta.KeysFactory;
@@ -75,10 +72,6 @@ public class KeysFactoryImpl extends EFactoryImpl implements KeysFactory {
 			return createKeyPair();
 		case KeysPackage.PRODUCT_REF:
 			return createProductRef();
-		case KeysPackage.KEY_PAIR_RO:
-			return (EObject) createKeyPairRO();
-		case KeysPackage.PRODUCT_REF_RO:
-			return (EObject) createProductRefRO();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -104,28 +97,6 @@ public class KeysFactoryImpl extends EFactoryImpl implements KeysFactory {
 	public ProductRef createProductRef() {
 		ProductRefImpl productRef = new ProductRefImpl();
 		return productRef;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public KeyPairRO createKeyPairRO() {
-		KeyPairROImpl keyPairRO = new KeyPairROImpl();
-		return keyPairRO;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ProductRefRO createProductRefRO() {
-		ProductRefROImpl productRefRO = new ProductRefROImpl();
-		return productRefRO;
 	}
 
 	/**

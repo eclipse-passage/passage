@@ -14,4 +14,13 @@ package org.eclipse.passage.lic.keys;
 
 public interface KeyPairRO {
 
+	ProductRefRO getProduct();
+
+	String getAlgorithm();
+
+	int getKey();
+
+	String getPub();
+
+	String getScr();
 }

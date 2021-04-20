@@ -14,9 +14,6 @@ package org.eclipse.passage.lic.keys.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import org.eclipse.passage.lic.keys.KeyPairRO;
-import org.eclipse.passage.lic.keys.ProductRefRO;
-
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
 
@@ -54,24 +51,6 @@ public interface KeysFactory extends EFactory {
 	 * @generated
 	 */
 	ProductRef createProductRef();
-
-	/**
-	 * Returns a new object of class '<em>Key Pair RO</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Key Pair RO</em>'.
-	 * @generated
-	 */
-	KeyPairRO createKeyPairRO();
-
-	/**
-	 * Returns a new object of class '<em>Product Ref RO</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Product Ref RO</em>'.
-	 * @generated
-	 */
-	ProductRefRO createProductRefRO();
 
 	/**
 	 * Returns the package supported by this factory.

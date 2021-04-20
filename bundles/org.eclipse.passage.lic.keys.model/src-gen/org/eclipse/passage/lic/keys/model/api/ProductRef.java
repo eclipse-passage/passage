@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.keys.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.passage.lic.keys.ProductRefRO;
 
 /**
@@ -44,6 +43,7 @@ public interface ProductRef extends EObject, ProductRefRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getIdentifier();
 
 	/**
@@ -66,6 +66,7 @@ public interface ProductRef extends EObject, ProductRefRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getVersion();
 
 	/**

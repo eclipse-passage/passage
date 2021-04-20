@@ -13,7 +13,6 @@
 package org.eclipse.passage.lic.keys.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.passage.lic.keys.KeyPairRO;
 
 /**
@@ -47,6 +46,7 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	ProductRef getProduct();
 
 	/**
@@ -69,6 +69,7 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getAlgorithm();
 
 	/**
@@ -91,6 +92,7 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	int getKey();
 
 	/**
@@ -113,6 +115,7 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getPub();
 
 	/**
@@ -135,6 +138,7 @@ public interface KeyPair extends EObject, KeyPairRO {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getScr();
 
 	/**

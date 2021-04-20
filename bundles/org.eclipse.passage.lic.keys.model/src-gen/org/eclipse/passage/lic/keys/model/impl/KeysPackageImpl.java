@@ -337,10 +337,10 @@ public class KeysPackageImpl extends EPackageImpl implements KeysPackage {
 		initEAttribute(getProductRef_Version(), ecorePackage.getEString(), "version", null, 1, 1, ProductRef.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(keyPairROEClass, KeyPairRO.class, "KeyPairRO", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+		initEClass(keyPairROEClass, KeyPairRO.class, "KeyPairRO", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
 				!IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(productRefROEClass, ProductRefRO.class, "ProductRefRO", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+		initEClass(productRefROEClass, ProductRefRO.class, "ProductRefRO", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
 				!IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
@@ -44,7 +45,7 @@ import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
  *
  * @generated
  */
-public class KeyPairImpl extends KeyPairROImpl implements KeyPair {
+public class KeyPairImpl extends MinimalEObjectImpl.Container implements KeyPair {
 	/**
 	 * The cached value of the '{@link #getProduct() <em>Product</em>}' containment reference.
 	 * <!-- begin-user-doc -->

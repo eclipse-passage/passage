@@ -67,10 +67,10 @@ public interface KeysPackage extends EPackage {
 	KeysPackage eINSTANCE = org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.model.impl.KeyPairROImpl <em>Key Pair RO</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.KeyPairRO <em>Key Pair RO</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.keys.model.impl.KeyPairROImpl
+	 * @see org.eclipse.passage.lic.keys.KeyPairRO
 	 * @see org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl#getKeyPairRO()
 	 * @generated
 	 */
@@ -168,10 +168,10 @@ public interface KeysPackage extends EPackage {
 	int KEY_PAIR_OPERATION_COUNT = KEY_PAIR_RO_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.model.impl.ProductRefROImpl <em>Product Ref RO</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.keys.ProductRefRO <em>Product Ref RO</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.keys.model.impl.ProductRefROImpl
+	 * @see org.eclipse.passage.lic.keys.ProductRefRO
 	 * @see org.eclipse.passage.lic.keys.model.impl.KeysPackageImpl#getProductRefRO()
 	 * @generated
 	 */

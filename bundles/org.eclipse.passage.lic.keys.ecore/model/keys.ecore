@@ -17,6 +17,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KeyPairRO" instanceClassName="org.eclipse.passage.lic.keys.KeyPairRO"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductRefRO" instanceClassName="org.eclipse.passage.lic.keys.ProductRefRO"/>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyPairRO" instanceClassName="org.eclipse.passage.lic.keys.KeyPairRO"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductRefRO" instanceClassName="org.eclipse.passage.lic.keys.ProductRefRO"
+      abstract="true" interface="true"/>
 </ecore:EPackage>

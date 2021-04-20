@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
 
@@ -38,7 +39,7 @@ import org.eclipse.passage.lic.keys.model.meta.KeysPackage;
  *
  * @generated
  */
-public class ProductRefImpl extends ProductRefROImpl implements ProductRef {
+public class ProductRefImpl extends MinimalEObjectImpl.Container implements ProductRef {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
