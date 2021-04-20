@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.passage.lic.keys
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.passage.lic.keys
+Bundle-Version: 2.0.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Copyright: %Bundle-Copyright
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.passage.lic.api;bundle-version="0.0.0";visibility:=reexport
+Export-Package: org.eclipse.passage.lic.keys
