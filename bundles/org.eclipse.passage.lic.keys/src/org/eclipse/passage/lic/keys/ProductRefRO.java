@@ -14,4 +14,8 @@ package org.eclipse.passage.lic.keys;
 
 public interface ProductRefRO {
 
+	String getIdentifier();
+
+	String getVersion();
+
 }
