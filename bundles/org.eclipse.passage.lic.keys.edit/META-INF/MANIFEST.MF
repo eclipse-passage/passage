@@ -11,7 +11,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=greedy;resolution:=optional,
  org.eclipse.passage.lic.keys.model;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.emf.edit;bundle-version="0.0.0";visibility:=reexport
-Import-Package: org.osgi.framework
 Export-Package: org.eclipse.passage.lic.keys.edit,
  org.eclipse.passage.lic.keys.edit.providers
 Bundle-ClassPath: .
