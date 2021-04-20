@@ -119,7 +119,9 @@
 		<module>../../tests/org.eclipse.passage.lic.licenses.model.tests</module>
 		<module>../../tests/org.eclipse.passage.lic.licenses.migration.tests</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.keys</module>
 		<module>../../bundles/org.eclipse.passage.lic.keys.ecore</module>
+
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
