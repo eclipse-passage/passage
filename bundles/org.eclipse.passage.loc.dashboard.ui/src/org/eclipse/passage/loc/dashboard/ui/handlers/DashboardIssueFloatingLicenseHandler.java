@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,6 +21,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.passage.lic.internal.jface.actions.LicensedRunnableUi;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -31,28 +32,33 @@ import org.eclipse.passage.loc.dashboard.ui.wizards.floating.IssueFloatingLicens
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class DashboardIssueFloatingLicenseHandler {
+
+	private final String feature = "org.eclipse.passage.loc.operator.issue.floating"; //$NON-NLS-1$
 
 	@Execute
 	public void execute(IEclipseContext context,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
-		open(context, //
+		new LicensedRunnableUi(feature, () -> open(context, //
 				new IssueFloatingLicenseWizard(//
 						context, //
 						new FloatingDataPack(//
 								java.util.Optional.ofNullable(plan), //
 								java.util.Optional.ofNullable(user), //
 								java.util.Optional.ofNullable(product))) //
-		);
+		)).run();
 	}
 
 	private void open(IEclipseContext context, Wizard wizard) {
 		WizardDialog dialog = new WizardDialog(context.get(Shell.class), wizard);
 		dialog.create();
-		dialog.getShell().setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
-		dialog.getShell().setSize(Math.max(800, dialog.getShell().getSize().x), 700);
+		Shell shell = dialog.getShell();
+		// TODO: floating license pack icon
+		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		shell.setSize(Math.max(800, shell.getSize().x), 700);
 		dialog.open();
 	}
 

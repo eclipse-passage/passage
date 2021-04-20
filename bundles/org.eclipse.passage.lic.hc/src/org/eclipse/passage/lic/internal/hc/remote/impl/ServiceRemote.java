@@ -14,15 +14,18 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.AbsentLicenseAttendantFile;
 import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
+import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Client;
@@ -52,7 +55,7 @@ public abstract class ServiceRemote<C extends Connection, T, D extends RemoteSer
 			return new BaseServiceInvocationResult<>(accesses.diagnostic());
 		}
 		if (accesses.data().get().isEmpty()) {
-			return new BaseServiceInvocationResult<>(noServers());
+			return noServers(parameters.product());
 		}
 		return withServers(parameters, accesses.data().get());
 	}
@@ -63,9 +66,14 @@ public abstract class ServiceRemote<C extends Connection, T, D extends RemoteSer
 				handler(access));
 	}
 
-	private Trouble noServers() {
-		return new Trouble(new AbsentLicenseAttendantFile(),
-				String.format(AccessMessages.RemoteService_no_server, source.get().toAbsolutePath()));
+	private ServiceInvocationResult<T> noServers(LicensedProduct product) {
+		return new BaseServiceInvocationResult<>(//
+				new BaseDiagnostic(Collections.singletonList(//
+						new Trouble(//
+								new AbsentLicenseAttendantFile(), //
+								String.format(//
+										AccessMessages.RemoteService_no_server, //
+										new PathFromLicensedProduct(source, product).get().toAbsolutePath())))));
 	}
 
 	private ServiceInvocationResult<Collection<FloatingLicenseAccess>> accesses(LicensedProduct product) {

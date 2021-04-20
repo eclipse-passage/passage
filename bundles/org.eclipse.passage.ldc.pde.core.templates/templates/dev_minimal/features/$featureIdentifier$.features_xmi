@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<features:FeatureSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:features="http://www.eclipse.org/passage/lic/features/0.5.0" identifier="$featureIdentifier$" name="$featureName$">
+  <features identifier="$featureIdentifier$" provider="$featureProvider$" name="$featureName$">
+    <featureVersions version="$featureVersionVersion$"/>
+  </features>
+</features:FeatureSet>

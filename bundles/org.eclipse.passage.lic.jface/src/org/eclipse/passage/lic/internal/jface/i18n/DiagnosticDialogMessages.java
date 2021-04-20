@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ public class DiagnosticDialogMessages extends NLS {
 	public static String DiagnosticDialog_action_view_failure_tooltip;
 	public static String DiagnosticDialog_column_code;
 	public static String DiagnosticDialog_column_details;
+	public static String DiagnosticDialog_column_type;
 	public static String DiagnosticDialog_description;
 	public static String DiagnosticDialog_error_title;
 	public static String DiagnosticDialog_title;

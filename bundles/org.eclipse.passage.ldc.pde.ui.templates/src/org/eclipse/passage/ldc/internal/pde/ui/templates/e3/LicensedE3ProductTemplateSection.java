@@ -19,19 +19,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedTemplateSection;
+import org.eclipse.passage.ldc.internal.pde.core.templates.TemplateId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.dev.DevMinimalTemplateId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductIdentifierOptionId;
+import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedProductSection;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.HelpContexts;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
-import org.eclipse.pde.ui.IFieldData;
 
 @SuppressWarnings("restriction")
-public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSection {
+public class LicensedE3ProductTemplateSection extends BaseLicensedProductSection {
 
 	private static final String LICENSED_E3_PRODUCT = "LicensedE3Product"; //$NON-NLS-1$
 
@@ -60,29 +61,19 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 	}
 
 	@Override
-	protected void initializeFields(IFieldData data) {
-		// In a new project wizard, we don't know this yet - the
-		// model has not been created
-		String packageName = getFormattedPackageName(data.getId());
-		initializeOption(KEY_PACKAGE_NAME, packageName);
-	}
-
-	@Override
-	public void initializeFields(IPluginModelBase modelBase) {
-		String packageName = getFormattedPackageName(modelBase.getPluginBase().getId());
-		initializeOption(KEY_PACKAGE_NAME, packageName);
-	}
-
-	@Override
 	public String getSectionId() {
 		return LICENSED_E3_PRODUCT;
 	}
 
 	@Override
+	protected TemplateId getDevTemplate() {
+		return new DevMinimalTemplateId();
+	}
+
+	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		setManifestHeader("Bundle-ActivationPolicy", "lazy"); //$NON-NLS-1$ //$NON-NLS-2$
-		String productFqn = model.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID;
-		createLicensingCapability(productFqn);
+		createLicensingCapability(getStringOption(new ProductIdentifierOptionId().id()));
 		String classValue = getStringOption(KEY_PACKAGE_NAME) + '.' + getStringOption(KEY_APPLICATION_CLASS);
 		createApplicationExtension(VALUE_APPLICATION_ID, classValue);
 		createPerspectiveExtension();
@@ -131,6 +122,11 @@ public class LicensedE3ProductTemplateSection extends BaseLicensedTemplateSectio
 	@Override
 	public IPluginReference[] getDependencies(String schemaVersion) {
 		return getDependencies(getRCP3xDependencies());
+	}
+
+	@Override
+	public String[] getNewFiles() {
+		return new String[0];
 	}
 
 }

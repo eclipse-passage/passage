@@ -20,7 +20,8 @@ public class LicensedE4ProductContentWizard extends NewPluginTemplateWizard {
 
 	@Override
 	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] { new LicensedE4ProductTemplateSection() };
+		return new ITemplateSection[] { //
+				new LicensedE4ProductTemplateSection(), //
+		};
 	}
-
 }

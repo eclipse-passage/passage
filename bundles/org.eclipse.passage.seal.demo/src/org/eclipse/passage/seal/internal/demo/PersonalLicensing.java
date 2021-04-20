@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,12 +15,12 @@ package org.eclipse.passage.seal.internal.demo;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.io.Hashes;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
@@ -32,22 +32,20 @@ import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcqu
 import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
 import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
-import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-final class SealedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
+final class PersonalLicensing implements LicensingDirection {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;
 	private final Registry<ConditionMiningTarget, LicenseAcquisitionService> acquirers;
 
-	SealedAccessCycleConfiguration(Supplier<LicensedProduct> product) {
-		super(product, () -> FrameworkUtil.getBundle(SealedAccessCycleConfiguration.class));
-		conditions = new ReadOnlyRegistry<>(Arrays.asList(//
-				new UserHomeResidentConditions(miningEquipment()), //
-				new InstallationResidentConditions(miningEquipment()), //
-				new ConfigurationResidentConditions(miningEquipment())//
+	PersonalLicensing(Supplier<MiningEquipment> equipment) {
+		this.conditions = new ReadOnlyRegistry<>(Arrays.asList(//
+				new UserHomeResidentConditions(equipment.get()), //
+				new InstallationResidentConditions(equipment.get()), //
+				new ConfigurationResidentConditions(equipment.get())//
 		));
-		acquirers = new ReadOnlyRegistry<>(Arrays.asList(//
+		this.acquirers = new ReadOnlyRegistry<>(Arrays.asList(//
 				new UserHomeLicenseAcquisitionService(), //
 				new InstallationLicenseAcquisitionService(), //
 				new ConfigurationLicenseAcquisitionService()//
@@ -55,17 +53,17 @@ final class SealedAccessCycleConfiguration extends BaseAccessCycleConfiguration 
 	}
 
 	@Override
-	public MinedConditionsRegistry conditionMiners() {
+	public final MinedConditionsRegistry conditionMiners() {
 		return () -> conditions;
 	}
 
 	@Override
-	public LicenseAcquisitionServicesRegistry acquirers() {
+	public final LicenseAcquisitionServicesRegistry acquirers() {
 		return () -> acquirers;
 	}
 
 	@Override
-	public HashesRegistry hashes() {
+	public final HashesRegistry hashes() {
 		return () -> new ReadOnlyRegistry<StringServiceId, Hashes>();
 	}
 

@@ -12,49 +12,62 @@
  *******************************************************************************/
 package org.eclipse.passage.ldc.internal.pde.ui.templates;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.passage.ldc.internal.pde.core.templates.DefaultProductRequirement;
+import org.eclipse.passage.ldc.internal.pde.core.templates.TemplateId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.features.FeatureIdentifierOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.features.FeatureNameOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.features.FeatureProviderOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.features.FeatureVersionVersionOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductIdentifierOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductNameOptionId;
+import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductVersionVersionOptionId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.equinox.requirements.RequirementsToBundle;
 import org.eclipse.pde.core.plugin.IMatchRules;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.core.plugin.ISharedPluginModel;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginBase;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
-import org.eclipse.pde.ui.templates.OptionTemplateSection;
+import org.eclipse.pde.ui.IFieldData;
 import org.eclipse.pde.ui.templates.PluginReference;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-public abstract class BaseLicensedTemplateSection extends OptionTemplateSection {
+public abstract class BaseLicensedProductSection extends BaseLicensingSection {
 
 	public static final String KEY_APPLICATION_CLASS = "applicationClass"; //$NON-NLS-1$
 	public static final String KEY_WINDOW_TITLE = "windowTitle"; //$NON-NLS-1$
-	public static final String KEY_PRODUCT_BRANDING = "productBranding"; //$NON-NLS-1$
-	public static final String KEY_PRODUCT_NAME = "productName"; //$NON-NLS-1$
 
 	public static final String VALUE_PRODUCT_ID = "product"; //$NON-NLS-1$
-	public static final String VALUE_PRODUCT_NAME = "Licensed Product"; //$NON-NLS-1$
 	public static final String VALUE_PERSPECTIVE_NAME = "Licensed Perspective"; //$NON-NLS-1$
 	public static final String VALUE_APPLICATION_ID = "application"; //$NON-NLS-1$
 
 	protected static final String VALUE_PROCESSOR_LICENSING_ID = "licensing"; //$NON-NLS-1$
 	protected static final String VALUE_PROCESSOR_LICENSING_CLASS = "org.eclipse.passage.lic.internal.e4.ui.addons.E4LicensingProcessor"; //$NON-NLS-1$
 
-	private Bundle bundle = FrameworkUtil.getBundle(BaseLicensedTemplateSection.class);
+	public BaseLicensedProductSection() {
+		super(BaseLicensedProductSection.class);
+	}
+
+	public BaseLicensedProductSection(Class<?> clazz) {
+		super(FrameworkUtil.getBundle(clazz));
+	}
+
+	public BaseLicensedProductSection(Bundle bundle) {
+		super(bundle);
+	}
 
 	@Override
 	public boolean isDependentOnParentWizard() {
@@ -62,43 +75,31 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 	}
 
 	@Override
-	public String getUsedExtensionPoint() {
-		return null;
-	}
-
-	@Override
-	public String[] getNewFiles() {
-		return new String[0];
-	}
-
-	@Override
-	protected URL getInstallURL() {
-		return bundle.getEntry("/"); //$NON-NLS-1$
-	}
-
-	@Override
-	protected ResourceBundle getPluginResourceBundle() {
-		return Platform.getResourceBundle(bundle);
-	}
-
-	@Override
 	protected String getTemplateDirectory() {
 		return "templates"; //$NON-NLS-1$
 	}
 
-	protected String getFormattedPackageName(String id) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i < id.length(); i++) {
-			char ch = id.charAt(i);
-			if (buffer.length() == 0) {
-				if (Character.isJavaIdentifierStart(ch))
-					buffer.append(Character.toLowerCase(ch));
-			} else {
-				if (Character.isJavaIdentifierPart(ch) || ch == '.')
-					buffer.append(ch);
-			}
-		}
-		return buffer.toString().toLowerCase(Locale.ENGLISH);
+	protected abstract TemplateId getDevTemplate();
+
+	@Override
+	protected void initializeFields(IFieldData data) {
+		// In a new project wizard, we don't know this yet - the
+		// model has not been created
+		String packageName = getFormattedPackageName(data.getId());
+		initializeOption(KEY_PACKAGE_NAME, packageName);
+	}
+
+	@Override
+	public void initializeFields(IPluginModelBase modelBase) {
+		initializeProductDev(modelBase);
+		String packageName = getFormattedPackageName(modelBase.getPluginBase().getId());
+		initializeOption(KEY_PACKAGE_NAME, packageName);
+	}
+
+	@Override
+	protected void generateFiles(IProgressMonitor monitor) throws CoreException {
+		super.generateFiles(monitor);
+		generateFiles(monitor, bundleTemplate(getDevTemplate()));
 	}
 
 	protected IPluginReference[] getDependencies(List<String> symbolicNames) {
@@ -128,19 +129,15 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 
 	protected void createApplicationExtension(String identifier, String classValue) throws CoreException {
 		IPluginBase plugin = model.getPluginBase();
-
 		IPluginExtension extension = createExtension("org.eclipse.core.runtime.applications", true); //$NON-NLS-1$
 		extension.setId(identifier);
-
 		IPluginElement element = model.getPluginFactory().createElement(extension);
 		element.setName("application"); //$NON-NLS-1$
 		extension.add(element);
-
 		IPluginElement run = model.getPluginFactory().createElement(element);
 		run.setName("run"); //$NON-NLS-1$
 		run.setAttribute("class", classValue); //$NON-NLS-1$
 		element.add(run);
-
 		if (!extension.isInTheModel()) {
 			plugin.add(extension);
 		}
@@ -199,6 +196,16 @@ public abstract class BaseLicensedTemplateSection extends OptionTemplateSection 
 				() -> getManifestHeader("Bundle-Version"), // //$NON-NLS-1$
 				() -> getManifestHeader("Bundle-Vendor")// //$NON-NLS-1$
 		).get();
+	}
+
+	protected void initializeProductDev(IPluginModelBase base) {
+		systemOption(new FeatureIdentifierOptionId(), base.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID);
+		systemOption(new FeatureNameOptionId(), base.getPluginBase().getName());
+		systemOption(new FeatureProviderOptionId(), base.getPluginBase().getProviderName());
+		systemOption(new FeatureVersionVersionOptionId(), base.getPluginBase().getVersion());
+		systemOption(new ProductIdentifierOptionId(), base.getPluginBase().getId() + '.' + VALUE_PRODUCT_ID);
+		systemOption(new ProductNameOptionId(), base.getPluginBase().getName());
+		systemOption(new ProductVersionVersionOptionId(), base.getPluginBase().getVersion());
 	}
 
 }

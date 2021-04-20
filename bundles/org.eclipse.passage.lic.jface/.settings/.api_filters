@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.jface" version="2">
+    <resource path="src/org/eclipse/passage/lic/internal/jface/actions/LicensedAction.java" type="org.eclipse.passage.lic.internal.jface.actions.LicensedAction">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.passage.lic.internal.jface.actions.LicensedAction"/>
+                <message_argument value="org.eclipse.passage.lic.jface_1.2.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

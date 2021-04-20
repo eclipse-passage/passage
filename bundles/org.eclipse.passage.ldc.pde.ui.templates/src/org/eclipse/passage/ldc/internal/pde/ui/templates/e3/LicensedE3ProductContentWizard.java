@@ -19,7 +19,8 @@ public class LicensedE3ProductContentWizard extends NewPluginTemplateWizard {
 
 	@Override
 	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] { new LicensedE3ProductTemplateSection() };
+		return new ITemplateSection[] { //
+				new LicensedE3ProductTemplateSection(), //
+		};
 	}
-
 }

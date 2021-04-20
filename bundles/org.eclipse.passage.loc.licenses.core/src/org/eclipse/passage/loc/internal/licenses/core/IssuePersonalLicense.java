@@ -35,6 +35,7 @@ import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
+import org.eclipse.passage.loc.internal.licenses.core.issue.PersonalLicenseIssuingProtection;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
@@ -71,6 +72,7 @@ final class IssuePersonalLicense {
 		LicensedProduct product = new BaseLicensedProduct(license.getProduct().getProduct(),
 				license.getProduct().getVersion());
 		Path path = new UserHomeProductResidence(product).get();
+
 		Path decrypted;
 		try {
 			decrypted = new PersistedDecoded(path, license)//
@@ -98,6 +100,7 @@ final class IssuePersonalLicense {
 		license.setIdentifier(UUID.randomUUID().toString());
 		license.setIssueDate(issueDate);
 		new AssignGrantIdentifiers().accept(license);
+		new PersonalLicenseIssuingProtection().accept(license);
 		return license;
 	}
 

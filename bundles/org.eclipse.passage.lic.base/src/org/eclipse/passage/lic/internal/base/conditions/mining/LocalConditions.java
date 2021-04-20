@@ -89,7 +89,11 @@ public abstract class LocalConditions implements MinedConditions {
 				new BaseDiagnostic(//
 						Collections.emptyList(), //
 						Collections.singletonList(//
-								new Trouble(new NoLicenses(), base(product).get().toAbsolutePath().toString()))//
+								new Trouble(//
+										new NoLicenses(), //
+										String.format(//
+												ConditionMiningMessages.getString("LocalConditions.no_licenses"), //$NON-NLS-1$
+												base(product).get().toAbsolutePath())))//
 				), //
 				Collections.emptyList()//
 		);

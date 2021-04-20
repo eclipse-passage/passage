@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/products/0.5.0" identifier="$productIdentifier$" name="$productName$">
+  <products identifier="$productIdentifier$" name="$productName$">
+    <productVersions version="$productVersionVersion$">
+      <productVersionFeatures featureIdentifier="$featureIdentifier$" featureVersion="$featureVersionVersion$"/>
+    </productVersions>
+  </products>
+</org.eclipse.passage.lic:ProductLine>

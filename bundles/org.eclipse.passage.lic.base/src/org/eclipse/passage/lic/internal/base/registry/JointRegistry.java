@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public final class JointRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
+
 	private final List<Registry<I, S>> delegates;
 
 	public JointRegistry(List<Registry<I, S>> delegates) {
