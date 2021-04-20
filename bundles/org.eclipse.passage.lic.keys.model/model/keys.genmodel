@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.passage.lic.keys.model/src-gen" creationIcons="false"
+    editDirectory="org.eclipse.passage.lic.keys.edit/src-gen" editorDirectory="org.eclipse.passage.lic.keys.editor/src-gen"
+    modelPluginID="org.eclipse.passage.lic.keys.model" templateDirectory="/org.eclipse.passage.lic.emf/templates"
+    dynamicTemplates="true" modelName="Keys" editPluginClass="org.eclipse.passage.lic.keys.edit.KeysEditPlugin"
+    editorPluginClass="org.eclipse.passage.lic.keys.editor.KeysEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testSuiteClass="org.eclipse.passage.lic.keys.model.tests.KeysAllTests" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" language="" operationReflection="true"
+    runtimePlatform="RCP" importOrganizing="true">
+  <foreignModel>platform:/resource/org.eclipse.passage.lic.keys.ecore/model/keys.ecore</foreignModel>
+  <genPackages prefix="Keys" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
+      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
+      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#/">
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair/product"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair/algorithm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair/pub"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPair/scr"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//ProductRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//ProductRef/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//ProductRef/version"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//KeyPairRO"/>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.keys.ecore/model/keys.ecore#//ProductRefRO"/>
+  </genPackages>
+</genmodel:GenModel>
