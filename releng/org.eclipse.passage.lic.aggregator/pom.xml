@@ -123,6 +123,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.keys.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.keys.model</module>
 		<module>../../bundles/org.eclipse.passage.lic.keys.edit</module>
+		<module>../../features/org.eclipse.passage.lic.keys.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>

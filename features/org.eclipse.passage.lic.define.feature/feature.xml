@@ -48,6 +48,10 @@
          id="org.eclipse.passage.lic.users.feature"
          version="0.0.0"/>
 
+  <includes
+         id="org.eclipse.passage.lic.keys.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.passage.lic.define.branding"
          download-size="0"
