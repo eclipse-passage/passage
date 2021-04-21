@@ -26,9 +26,8 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
-import org.junit.Ignore;
 
-@Ignore // fix TODOs to make it test something reasonable
+//@Ignore // fix TODOs to make it test something reasonable
 @SuppressWarnings("restriction")
 public class XmiConditionTransportTest extends ConditionTransportContractTest {
 	@Override

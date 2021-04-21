@@ -21,8 +21,15 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 public class LicensesResourceHandler extends BasicResourceHandler {
+
+	private final EnsureProductRef product;
+
+	public LicensesResourceHandler() {
+		product = new EnsureProductRef();
+	}
 
 	@Override
 	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
@@ -33,8 +40,14 @@ public class LicensesResourceHandler extends BasicResourceHandler {
 	}
 
 	private void convertEntry(Entry<EObject, AnyType> entry) {
-		// FIXME: AF: here we read what is unknown and create what is needed
-		entry.getValue().getAnyAttribute().forEach(e -> System.out.println(e));
+		EObject key = entry.getKey();
+		if (key instanceof LicensePack) {
+			LicensePack pack = (LicensePack) key;
+			SimpleFeatureRoute route = new SimpleFeatureRoute();
+			route.add("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Product()); //$NON-NLS-1$
+			route.add("productVersion", LicensesPackage.eINSTANCE.getProductRef_Version()); //$NON-NLS-1$
+			new ApplyFeatureMap(entry.getValue().getAnyAttribute(), route).apply(product.apply(pack));
+		}
 	}
 
 }

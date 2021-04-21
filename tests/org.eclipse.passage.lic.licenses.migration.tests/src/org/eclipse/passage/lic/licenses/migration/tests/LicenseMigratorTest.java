@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class LicenseMigratorTest {
@@ -47,46 +46,63 @@ public class LicenseMigratorTest {
 	}
 
 	@Test
-	@Ignore
 	public void from0_3_3() throws Exception {
-		loaded("model/0_3_3.lic_licenses"); //$NON-NLS-1$
+		LicensePack pack = loaded("model/0_3_3.lic_licenses"); //$NON-NLS-1$
+		checkPack0xx(pack);
+		checkGrants(pack);
 	}
 
 	@Test
-	@Ignore
 	public void from0_4_0() throws Exception {
-		loaded("model/0_4_0.lic"); //$NON-NLS-1$
+		LicensePack pack = loaded("model/0_4_0.lic"); //$NON-NLS-1$
+		checkPack0xx(pack);
+		checkGrants(pack);
 	}
 
 	@Test
-	@Ignore
 	public void from0_5_0() throws Exception {
-		loaded("model/0_5_0.lic"); //$NON-NLS-1$
+		LicensePack pack = loaded("model/0_5_0.lic"); //$NON-NLS-1$
+		checkPack0xx(pack);
+		checkGrants(pack);
 	}
 
 	@Test
 	public void from1_0_0() throws Exception {
-		loaded("model/1_0_0.lic"); //$NON-NLS-1$
+		LicensePack pack = loaded("model/1_0_0.lic"); //$NON-NLS-1$
+		checkPack100(pack);
+		checkGrants(pack);
 	}
 
-	private void loaded(String path) throws IOException, ParseException {
+	private LicensePack loaded(String path) throws IOException, ParseException {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
 		Resource resource = new LicensesResourceImpl(uri);
 		resource.load(new HashMap<>());
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
+		return LicensePack.class.cast(eObject);
+	}
 
-		LicensePack pack = LicensePack.class.cast(eObject);
+	private void checkPack0xx(LicensePack pack) throws ParseException {
 		assertEquals("org.eclipse.passage.lic.evaluation", pack.getIdentifier()); //$NON-NLS-1$
 		assertEquals(null, pack.getIssueDate());
 		assertEquals("org.eclipse.passage.lic.product", pack.getProduct().getProduct()); //$NON-NLS-1$
 		assertEquals("0.4.0", pack.getProduct().getVersion()); //$NON-NLS-1$
 		assertEquals("", pack.getUserIdentifier()); //$NON-NLS-1$
+	}
 
+	private void checkPack100(LicensePack pack) throws ParseException {
+		assertEquals("org.eclipse.passage.lic.evaluation", pack.getIdentifier()); //$NON-NLS-1$
+		assertEquals(getLicensingDateFormat().parse("2020-12-02T16:30:50.176+0300"), //$NON-NLS-1$
+				pack.getIssueDate());
+		assertEquals("org.eclipse.passage.lic.product", pack.getProduct().getProduct()); //$NON-NLS-1$
+		assertEquals("0.4.0", pack.getProduct().getVersion()); //$NON-NLS-1$
+		assertEquals("elder@magic.com", pack.getUserIdentifier()); //$NON-NLS-1$
+	}
+
+	private void checkGrants(LicensePack pack) throws ParseException {
 		EList<LicenseGrant> grants = pack.getLicenseGrants();
 		assertEquals(1, grants.size());
-
 		LicenseGrant grant = grants.get(0);
 		assertEquals("org.eclipse.passage.lic.evaluation#0", grant.getIdentifier()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
@@ -100,4 +116,5 @@ public class LicenseMigratorTest {
 		assertEquals(getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
 				grant.getValidUntil());
 	}
+
 }
