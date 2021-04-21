@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,7 +26,6 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
-import org.eclipse.passage.lic.products.ProductDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
@@ -43,52 +42,41 @@ import org.osgi.service.event.EventAdmin;
 @Component
 public class ProductOperatorServiceImpl implements OperatorProductService {
 
-	private String pluginId;
+	private String plugin;
 
-	private EnvironmentInfo environmentInfo;
-	private EventAdmin eventAdmin;
+	private EnvironmentInfo environment;
+	private EventAdmin events;
 
 	@Activate
 	public void activate(BundleContext context) {
-		pluginId = context.getBundle().getSymbolicName();
+		plugin = context.getBundle().getSymbolicName();
 	}
 
 	@Reference
 	public void bindEnvironmentInfo(EnvironmentInfo info) {
-		this.environmentInfo = info;
+		this.environment = info;
 	}
 
 	public void unbindEnvironmentInfo(EnvironmentInfo info) {
-		if (environmentInfo == info) {
-			this.environmentInfo = null;
+		if (environment == info) {
+			this.environment = null;
 		}
 	}
 
 	@Reference
 	public void bindEventAdmin(EventAdmin admin) {
-		this.eventAdmin = admin;
+		this.events = admin;
 	}
 
 	public void unbindEventAdmin(EventAdmin admin) {
-		if (this.eventAdmin == admin) {
-			this.eventAdmin = null;
+		if (this.events == admin) {
+			this.events = null;
 		}
 	}
 
 	@Override
 	public String createPassword(ProductVersionDescriptor descriptor) {
-		String id = null;
-		String version = null;
-		if (descriptor != null) {
-			ProductDescriptor product = descriptor.getProduct();
-			if (product != null) {
-				id = product.getIdentifier();
-			}
-			version = descriptor.getVersion();
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(id).append("###").append(version); //$NON-NLS-1$
-		return sb.toString();
+		return new ProductVersionPassword(descriptor).get();
 	}
 
 	@Override
@@ -98,7 +86,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			productVersion = (ProductVersion) descriptor;
 		}
 		if (productVersion == null) {
-			return new Status(IStatus.ERROR, pluginId,
+			return new Status(IStatus.ERROR, plugin,
 					ProductsCoreMessages.ProductOperatorServiceImpl_e_invalid_product_version);
 		}
 		String installationToken = productVersion.getInstallationToken();
@@ -107,7 +95,7 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			if (publicFile.exists()) {
 				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_public_key_already_defined;
 				String message = String.format(pattern, publicFile.getAbsolutePath());
-				return new Status(IStatus.ERROR, pluginId, message);
+				return new Status(IStatus.ERROR, plugin, message);
 			}
 		}
 		String secureToken = productVersion.getSecureToken();
@@ -116,21 +104,21 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			if (privateFile.exists()) {
 				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined;
 				String message = String.format(pattern, privateFile.getAbsolutePath());
-				return new Status(IStatus.ERROR, pluginId, message);
+				return new Status(IStatus.ERROR, plugin, message);
 			}
 		}
 
 		Product product = productVersion.getProduct();
 		String errors = LicensingEcore.extractValidationError(product);
 		if (errors != null) {
-			return new Status(IStatus.ERROR, pluginId, errors);
+			return new Status(IStatus.ERROR, plugin, errors);
 		}
 		LicensedProduct licensed = new BaseLicensedProduct(product.getIdentifier(), productVersion.getVersion());
 		Optional<StreamCodec> codec = codec(licensed);
 		if (codec.isEmpty()) {
 			String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys;
 			String message = String.format(pattern, licensed.version(), product.getName());
-			return new Status(IStatus.ERROR, pluginId, message);
+			return new Status(IStatus.ERROR, plugin, message);
 		}
 		Path path = new UserHomeProductResidence(licensed).get();
 		try {
@@ -142,14 +130,13 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 			codec.get().createKeyPair(open, secret, licensed.identifier(), createPassword(productVersion));
 			productVersion.setInstallationToken(open.toString());
 			productVersion.setSecureToken(secret.toString());
-			eventAdmin.postEvent(OperatorProductEvents.publicCreated(open.toString()));
-			eventAdmin.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
+			events.postEvent(OperatorProductEvents.publicCreated(open.toString()));
+			events.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
 			String format = ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported;
 			String message = String.format(format, open, secret);
-			return new Status(IStatus.OK, pluginId, message);
+			return new Status(IStatus.OK, plugin, message);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, pluginId, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error,
-					e);
+			return new Status(IStatus.ERROR, plugin, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
 		}
 	}
 
