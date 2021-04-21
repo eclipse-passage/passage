@@ -31,6 +31,7 @@ public class LicensesMigrator {
 		migrate040();
 		migrate050();
 		migrate100();
+		migrate110();
 	}
 
 	private void migrate033() {
@@ -60,4 +61,9 @@ public class LicensesMigrator {
 		EPackage.Registry.INSTANCE.put(namespace, delegate);
 	}
 
+	private void migrate110() {
+		String namespace = "http://www.eclipse.org/passage/lic/licenses/1.1.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.put(namespace, delegate);
+	}
 }
