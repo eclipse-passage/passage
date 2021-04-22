@@ -15,19 +15,20 @@ package org.eclipse.passage.loc.internal.products.core;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
-import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.loc.internal.api.OperatorProductEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
@@ -80,68 +81,107 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 	}
 
 	@Override
-	public IStatus createProductKeys(ProductVersionDescriptor descriptor) {
-		ProductVersion productVersion = null;
-		if (descriptor instanceof ProductVersion) {
-			productVersion = (ProductVersion) descriptor;
+	public IStatus createProductKeys(ProductVersionDescriptor target) {
+		Optional<String> existing = keysArePresent(target);
+		if (existing.isPresent()) {
+			return error(existing.get());
 		}
-		if (productVersion == null) {
-			return new Status(IStatus.ERROR, plugin,
-					ProductsCoreMessages.ProductOperatorServiceImpl_e_invalid_product_version);
+		Optional<String> errors = validate(target);
+		if (errors.isPresent()) {
+			return error(errors.get());
 		}
-		String installationToken = productVersion.getInstallationToken();
-		if (installationToken != null) {
-			File publicFile = new File(installationToken);
-			if (publicFile.exists()) {
-				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_public_key_already_defined;
-				String message = String.format(pattern, publicFile.getAbsolutePath());
-				return new Status(IStatus.ERROR, plugin, message);
-			}
-		}
-		String secureToken = productVersion.getSecureToken();
-		if (secureToken != null) {
-			File privateFile = new File(secureToken);
-			if (privateFile.exists()) {
-				String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined;
-				String message = String.format(pattern, privateFile.getAbsolutePath());
-				return new Status(IStatus.ERROR, plugin, message);
-			}
-		}
-
-		Product product = productVersion.getProduct();
-		String errors = LicensingEcore.extractValidationError(product);
-		if (errors != null) {
-			return new Status(IStatus.ERROR, plugin, errors);
-		}
-		LicensedProduct licensed = new BaseLicensedProduct(product.getIdentifier(), productVersion.getVersion());
-		Optional<StreamCodec> codec = codec(licensed);
+		LicensedProduct product = product(target);
+		Optional<StreamCodec> codec = codec(product);
 		if (codec.isEmpty()) {
-			String pattern = ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys;
-			String message = String.format(pattern, licensed.version(), product.getName());
-			return new Status(IStatus.ERROR, plugin, message);
+			return noCodec(target, product);
 		}
-		Path path = new UserHomeProductResidence(licensed).get();
+		Path destination = new UserHomeProductResidence(product).get();
 		try {
-			new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey());
-			Path open = path.resolve(//
-					new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PublicKey()).get());
-			Path secret = path.resolve(//
-					new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey()).get());
-			codec.get().createKeyPair(open, secret, licensed.identifier(), createPassword(productVersion));
-			productVersion.setInstallationToken(open.toString());
-			productVersion.setSecureToken(secret.toString());
-			events.postEvent(OperatorProductEvents.publicCreated(open.toString()));
-			events.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
-			String format = ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported;
-			String message = String.format(format, open, secret);
-			return new Status(IStatus.OK, plugin, message);
+			return createKeyPair(target, product, codec.get(), destination);
 		} catch (Exception e) {
-			return new Status(IStatus.ERROR, plugin, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
+			return failed(e);
 		}
+	}
+
+	private IStatus createKeyPair(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec,
+			Path path) throws LicensingException {
+		Path open = open(product, path);
+		Path secret = secret(product, path);
+		codec.createKeyPair(open, secret, product.identifier(), createPassword(target));
+		notify(open, secret);
+		return created(open, secret);
+	}
+
+	private Status error(String errors) {
+		return new Status(IStatus.ERROR, plugin, errors);
+	}
+
+	private Status noCodec(ProductVersionDescriptor target, LicensedProduct product) {
+		return error(String.format(ProductsCoreMessages.ProductOperatorServiceImpl_e_unable_to_create_keys,
+				product.version(), target.getProduct().getName()));
+	}
+
+	private Status failed(Exception e) {
+		return new Status(IStatus.ERROR, plugin, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
+	}
+
+	private Status created(Path open, Path secret) {
+		return new Status(IStatus.OK, plugin,
+				String.format(ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported, open, secret));
+	}
+
+	private BaseLicensedProduct product(ProductVersionDescriptor target) {
+		return new BaseLicensedProduct(//
+				target.getProduct().getIdentifier(), //
+				target.getVersion());
+	}
+
+	private void notify(Path open, Path secret) {
+		events.postEvent(OperatorProductEvents.publicCreated(open.toString()));
+		events.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
+	}
+
+	private Path secret(LicensedProduct licensed, Path path) {
+		return path.resolve(//
+				new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey()).get());
+	}
+
+	private Path open(LicensedProduct licensed, Path path) {
+		return path.resolve(//
+				new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PublicKey()).get());
 	}
 
 	private Optional<StreamCodec> codec(LicensedProduct product) {
 		return new OperatorGearAware().withGear(gear -> gear.codec(product));
+	}
+
+	private Optional<String> validate(ProductVersionDescriptor target) {
+		if (!(target instanceof ProductVersion)) {
+			return Optional.empty();
+		}
+		return Optional.ofNullable(LicensingEcore.extractValidationError(((ProductVersion) target).getProduct()));
+	}
+
+	private Optional<String> keysArePresent(ProductVersionDescriptor target) {
+		Optional<String> pub = keyIsPresent(target::getInstallationToken,
+				ProductsCoreMessages.ProductOperatorServiceImpl_e_public_key_already_defined);
+		if (pub.isPresent()) {
+			return pub;
+		}
+		return keyIsPresent(target::getSecureToken,
+				ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined);
+	}
+
+	private Optional<String> keyIsPresent(Supplier<String> path, String error) {
+		String existing = path.get();
+		if (existing == null) {
+			return Optional.empty();
+		}
+		File file = new File(existing);
+		if (file.exists()) {
+			return Optional.of(String.format(error, file.getAbsolutePath()));
+		}
+		return Optional.empty();
 	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -30,21 +30,23 @@ import org.eclipse.swt.widgets.Shell;
 public class ProductExportHandler {
 
 	@Execute
-	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) ProductVersionDescriptor productVersion,
+	public void execute(@Named(IServiceConstants.ACTIVE_SELECTION) ProductVersionDescriptor owner,
 			IEclipseContext context) {
 		OperatorProductService service = context.get(OperatorProductService.class);
-		IStatus status = service.createProductKeys(productVersion);
+		IStatus status = service.createProductKeys(owner);
 		Shell shell = context.get(Shell.class);
 		if (status.isOK()) {
 			String message = status.getMessage();
 			MessageDialog.openInformation(shell, ProductsUiMessages.ProductExportHandler_title_ok, message);
 		} else {
-			ErrorDialog.openError(shell, ProductsUiMessages.ProductExportHandler_title_error, ProductsUiMessages.ProductExportHandler_message_error, status);
+			ErrorDialog.openError(shell, ProductsUiMessages.ProductExportHandler_title_error,
+					ProductsUiMessages.ProductExportHandler_message_error, status);
 		}
 	}
 
 	@CanExecute
-	public boolean canExecute(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor productVersion) {
+	public boolean canExecute(
+			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor productVersion) {
 		return productVersion != null;
 	}
 
