@@ -73,6 +73,7 @@ final class ProductVersionKeys {
 		Path secret = secret(product, destination);
 		codec.createKeyPair(open, secret, product.identifier(), new ProductVersionPassword(target).get());
 		notify.accept(open, secret);
+		// TODO: store .keys_xmi under workspace
 		return created(open, secret);
 	}
 
@@ -132,6 +133,7 @@ final class ProductVersionKeys {
 				ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined);
 	}
 
+	// TODO: appeal to workspace here
 	private Optional<String> keyIsPresent(Supplier<String> path, String error) {
 		String existing = path.get();
 		if (existing == null) { // model(emf)-driven null
