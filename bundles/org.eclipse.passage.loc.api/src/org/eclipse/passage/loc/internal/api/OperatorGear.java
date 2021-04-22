@@ -18,11 +18,14 @@ import org.eclipse.passage.lic.internal.api.Gear;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 
 public interface OperatorGear extends Gear {
 
 	Optional<StreamCodec> codec(LicensedProduct product);
 
 	RuntimeEnvironmentRegistry environments();
+
+	OperatorWorkspace workspace();
 
 }
