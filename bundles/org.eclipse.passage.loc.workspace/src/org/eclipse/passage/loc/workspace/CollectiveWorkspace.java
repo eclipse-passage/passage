@@ -10,22 +10,22 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.api;
+package org.eclipse.passage.loc.workspace;
 
-import java.util.Optional;
-
-import org.eclipse.passage.lic.internal.api.Gear;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 
-public interface OperatorGear extends Gear {
+public final class CollectiveWorkspace implements OperatorWorkspace {
 
-	Optional<StreamCodec> codec(LicensedProduct product);
+	private final Keys keys;
 
-	RuntimeEnvironmentRegistry environments();
+	public CollectiveWorkspace() {
+		this.keys = new HomeBasedKeys();
+	}
 
-	OperatorWorkspace workspace();
+	@Override
+	public Keys keys() {
+		return keys;
+	}
 
 }

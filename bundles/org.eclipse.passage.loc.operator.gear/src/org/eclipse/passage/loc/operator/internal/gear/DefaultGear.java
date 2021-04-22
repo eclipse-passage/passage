@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
+import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
+import org.eclipse.passage.loc.workspace.CollectiveWorkspace;
 
 @SuppressWarnings("restriction")
 final class DefaultGear implements OperatorGear {
@@ -33,11 +35,13 @@ final class DefaultGear implements OperatorGear {
 	final static DefaultGear gear = new DefaultGear();
 
 	private final Registry<EvaluationType, RuntimeEnvironment> environments;
+	private final OperatorWorkspace workspace;
 
 	private DefaultGear() {
 		this.environments = new ReadOnlyRegistry<>(Arrays.asList(//
 				new HardwareEnvironment() //
 		));
+		this.workspace = new CollectiveWorkspace();
 	}
 
 	@Override
@@ -49,6 +53,11 @@ final class DefaultGear implements OperatorGear {
 	@Override
 	public RuntimeEnvironmentRegistry environments() {
 		return () -> environments;
+	}
+
+	@Override
+	public OperatorWorkspace workspace() {
+		return workspace;
 	}
 
 }
