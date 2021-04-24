@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.internal.bc;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Path;
 import java.security.Security;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -62,8 +61,9 @@ public final class BcStreamCodec implements StreamCodec {
 		return keySize;
 	}
 
+	@SuppressWarnings("resource")
 	@Override
-	public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
+	public void createKeyPair(OutputStream publicKey, OutputStream privateKey, String username, String password)
 			throws LicensingException {
 		Objects.requireNonNull(publicKey, "BcStreamCodec::createKeyPair::publicKey"); //$NON-NLS-1$
 		Objects.requireNonNull(privateKey, "BcStreamCodec::createKeyPair::privateKey"); //$NON-NLS-1$
