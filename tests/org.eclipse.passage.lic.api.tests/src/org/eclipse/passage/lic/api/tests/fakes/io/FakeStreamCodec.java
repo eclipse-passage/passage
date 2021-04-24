@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.api.tests.fakes.io;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -23,7 +22,6 @@ import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
-@SuppressWarnings("restriction")
 public final class FakeStreamCodec implements StreamCodec, LicensedProduct {
 
 	@Override
@@ -42,7 +40,7 @@ public final class FakeStreamCodec implements StreamCodec, LicensedProduct {
 	}
 
 	@Override
-	public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
+	public void createKeyPair(OutputStream publicKey, OutputStream privateKey, String username, String password)
 			throws LicensingException {
 		throw new UnsupportedOperationException();
 

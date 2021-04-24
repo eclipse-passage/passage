@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,9 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.io;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
+import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -37,16 +40,17 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	EncryptionKeySize keySize();
 
 	/**
-	 * Create a public/private keys pair and store them to {@code publicKeyPath} and
-	 * {@code privateKeyPath} respectively.
+	 * Create a public/private keys pair and store them to {@code publicKey} stream
+	 * and {@code privateKey} stream respectively.
 	 *
-	 * @param publicKey  file system path for <i>public key</i> to be generated
-	 * @param privateKey file system path for <i>private key</i> to be generated
+	 * @param publicKey  a stream for <i>public key</i> content to be stored in
+	 * @param privateKey a stream for <i>private key</i> content to be stored in
 	 * @param username   of the keys owner user
-	 * @param password   of the keys owner user
+	 * @param password   of the keys owner password
 	 * @throws LicensingException in case of any i/o misbehavior
 	 */
-	void createKeyPair(Path publicKey, Path privateKey, String username, String password) throws LicensingException;
+	void createKeyPair(OutputStream publicKey, OutputStream privateKey, String username, String password)
+			throws LicensingException;
 
 	/**
 	 * Encode {@code input} stream data with a private key retrieved form the given
@@ -57,7 +61,7 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	 * @param output   target stream to place encoded data into
 	 * @param key      source for a private key
 	 * @param username of the private key owner user
-	 * @param password of the private key owner user
+	 * @param password of the private key owner password
 	 * @throws LicensingException in case of any i/o misbehavior
 	 */
 	void encode(InputStream input, OutputStream output, InputStream key, String username, String password)
@@ -77,5 +81,69 @@ public interface StreamCodec extends Service<LicensedProduct> {
 	 */
 	void decode(InputStream input, OutputStream output, InputStream key, DigestExpectation digest)
 			throws LicensingException;
+
+	public static final class Smart implements StreamCodec {
+		private final StreamCodec delegate;
+
+		public Smart(StreamCodec delegate) {
+			Objects.requireNonNull(delegate, "StreamCodec.Smart::delegate"); //$NON-NLS-1$
+			this.delegate = delegate;
+		}
+
+		@Override
+		public LicensedProduct id() {
+			return delegate.id();
+		}
+
+		@Override
+		public EncryptionAlgorithm algorithm() {
+			return delegate.algorithm();
+		}
+
+		@Override
+		public EncryptionKeySize keySize() {
+			return delegate.keySize();
+		}
+
+		@Override
+		public void createKeyPair(OutputStream publicKey, OutputStream privateKey, String username, String password)
+				throws LicensingException {
+			delegate.createKeyPair(publicKey, privateKey, username, password);
+		}
+
+		/**
+		 * Create a public/private keys pair and store them to {@code publicKey} path
+		 * and {@code privateKey} path respectively.
+		 *
+		 * @param publicKey  file system path for <i>public key</i> to be generated
+		 * @param privateKey file system path for <i>private key</i> to be generated
+		 * @param username   of the keys owner user
+		 * @param password   of the keys owner password
+		 * @throws LicensingException in case of any i/o misbehavior
+		 */
+		public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
+				throws LicensingException {
+			try (FileOutputStream pub = new FileOutputStream(publicKey.toFile()); //
+					FileOutputStream scr = new FileOutputStream(privateKey.toFile())) {
+				delegate.createKeyPair(pub, scr, username, password);
+			} catch (IOException e) {
+				throw new LicensingException("failed to create encryption keys", e); //$NON-NLS-1$
+			}
+
+		}
+
+		@Override
+		public void encode(InputStream input, OutputStream output, InputStream key, String username, String password)
+				throws LicensingException {
+			delegate.encode(input, output, key, username, password);
+		}
+
+		@Override
+		public void decode(InputStream input, OutputStream output, InputStream key, DigestExpectation digest)
+				throws LicensingException {
+			delegate.decode(input, output, key, digest);
+		}
+
+	}
 
 }

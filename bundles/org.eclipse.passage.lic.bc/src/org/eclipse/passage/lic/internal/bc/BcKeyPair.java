@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
 package org.eclipse.passage.lic.internal.bc;
 
 import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -94,9 +94,8 @@ final class BcKeyPair {
 		}
 	}
 
-	private void persist(PGPKeyRing key, Path target, String error) throws LicensingException {
-		try (FileOutputStream fos = new FileOutputStream(target.toFile());
-				ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(fos))) {
+	private void persist(PGPKeyRing key, OutputStream target, String error) throws LicensingException {
+		try (ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(target))) {
 			key.encode(output);
 		} catch (IOException e) {
 			throw new LicensingException(BcMessages.getString(error), e); // $NON-NLS-1$
@@ -128,10 +127,10 @@ final class BcKeyPair {
 
 	static final class Targets {
 
-		private final Path publicPath;
-		private final Path privatePath;
+		private final OutputStream publicPath;
+		private final OutputStream privatePath;
 
-		Targets(Path publicPath, Path privatePath) {
+		Targets(OutputStream publicPath, OutputStream privatePath) {
 			this.publicPath = publicPath;
 			this.privatePath = privatePath;
 		}

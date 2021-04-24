@@ -71,7 +71,8 @@ final class ProductVersionKeys {
 		Path destination = new UserHomeProductResidence(product).get();
 		Path open = open(product, destination);
 		Path secret = secret(product, destination);
-		codec.createKeyPair(open, secret, product.identifier(), new ProductVersionPassword(target).get());
+		new StreamCodec.Smart(codec).createKeyPair(open, secret, product.identifier(),
+				new ProductVersionPassword(target).get());
 		notify.accept(open, secret);
 		// TODO: store .keys_xmi under workspace
 		return created(open, secret);
