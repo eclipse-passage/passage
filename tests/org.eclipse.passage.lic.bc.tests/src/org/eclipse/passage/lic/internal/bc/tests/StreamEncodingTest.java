@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.io.FileContent;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
@@ -119,7 +120,7 @@ public final class StreamEncodingTest extends BcStreamCodecTest {
 	private Path privateKey(String user, String pass) throws IOException {
 		Path key = new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey());
 		try {
-			new BcStreamCodec(this::product).createKeyPair(//
+			new StreamCodec.Smart(new BcStreamCodec(this::product)).createKeyPair(//
 					new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 					key, user, pass);
 		} catch (LicensingException e) {

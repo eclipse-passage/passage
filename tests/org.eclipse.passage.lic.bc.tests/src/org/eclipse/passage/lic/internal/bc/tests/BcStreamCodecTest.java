@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,6 +25,7 @@ import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
@@ -49,7 +50,7 @@ abstract class BcStreamCodecTest {
 	protected final <I> PairInfo<I> pair(ThrowingCtor<I> ctor, String user, String pass) throws IOException {
 		Path pub = new TmpFile(root).keyFile(new PassageFileExtension.PublicKey());
 		Path secret = new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey());
-		BcStreamCodec codec = new BcStreamCodec(this::product);
+		StreamCodec.Smart codec = new StreamCodec.Smart(new BcStreamCodec(this::product));
 		try {
 			codec.createKeyPair(pub, secret, user, pass);
 		} catch (LicensingException e) {

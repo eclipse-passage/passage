@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -26,6 +26,8 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.internal.api.io.StreamCodec.Smart;
 import org.eclipse.passage.lic.internal.base.io.FileContent;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
@@ -107,7 +109,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test(expected = NullPointerException.class)
 	public void publicKeyPathIsMandatory() throws LicensingException, IOException {
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				null, //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
@@ -116,7 +118,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test(expected = NullPointerException.class)
 	public void privateKeyPathIsMandatory() throws LicensingException, IOException {
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				null, //
 				"u", //$NON-NLS-1$
@@ -125,7 +127,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test(expected = NullPointerException.class)
 	public void usernameIsMandatory() throws LicensingException, IOException {
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				null, //
@@ -134,7 +136,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test(expected = NullPointerException.class)
 	public void passwordIsMandatory() throws LicensingException, IOException {
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
@@ -146,7 +148,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 		// given
 		Path privatePath = new TmpFile(root).keyPath(new PassageFileExtension.PrivateKey());
 		// when
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				new TmpFile(root).keyFile(new PassageFileExtension.PublicKey()), //
 				privatePath, //
 				"u", //$NON-NLS-1$
@@ -160,7 +162,7 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 		// given
 		Path publicPath = new TmpFile(root).keyPath(new PassageFileExtension.PublicKey());
 		// when
-		new BcStreamCodec(this::product).createKeyPair(//
+		codec().createKeyPair(//
 				publicPath, //
 				new TmpFile(root).keyFile(new PassageFileExtension.PrivateKey()), //
 				"u", //$NON-NLS-1$
@@ -171,6 +173,10 @@ public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	private <I> PairInfo<I> pair(ThrowingCtor<I> ctor) throws IOException {
 		return pair(ctor, "test-user", "test-pass-word");//$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private Smart codec() {
+		return new StreamCodec.Smart(new BcStreamCodec(this::product));
 	}
 
 }

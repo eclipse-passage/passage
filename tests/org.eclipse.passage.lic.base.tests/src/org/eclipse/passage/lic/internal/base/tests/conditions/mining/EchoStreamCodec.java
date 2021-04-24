@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,7 +18,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.file.Path;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -54,7 +53,7 @@ final class EchoStreamCodec implements StreamCodec {
 	}
 
 	@Override
-	public void createKeyPair(Path publicKey, Path privateKey, String username, String password)
+	public void createKeyPair(OutputStream publicKey, OutputStream privateKey, String username, String password)
 			throws LicensingException {
 		throw new UnsupportedOperationException();
 	}
