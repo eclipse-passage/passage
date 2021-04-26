@@ -67,7 +67,6 @@
 		<module>../../features/org.eclipse.passage.loc.users.feature</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.workspace</module>
-		<module>../../bundles/org.eclipse.passage.loc.store</module>
 
 		<module>../../bundles/org.eclipse.passage.loc.dashboard.ui</module>
 		<module>../../features/org.eclipse.passage.loc.dashboard.feature</module>
