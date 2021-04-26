@@ -47,7 +47,7 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 		try {
 			return with.apply(context.getService(any).gear());
 		} catch (Exception e) {
-			throw new LicensingException("Error on service invokation", e); //$NON-NLS-1$
+			throw new LicensingException("Error on service invocation", e); //$NON-NLS-1$
 		} finally {
 			context.ungetService(any);
 		}

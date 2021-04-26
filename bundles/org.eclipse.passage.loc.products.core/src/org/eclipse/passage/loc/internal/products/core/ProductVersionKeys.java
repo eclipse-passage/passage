@@ -12,13 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
-import java.io.File;
-import java.nio.file.Path;
+import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.BiConsumer;
-import java.util.function.Supplier;
+import java.util.function.Consumer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
@@ -26,27 +26,40 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
+import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
+import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.products.core.i18n.ProductsCoreMessages;
 
+@SuppressWarnings("restriction")
 final class ProductVersionKeys {
 
 	private final String plugin;
-	private final BiConsumer<Path, Path> notify;
+	private final Consumer<String> notify;
+	private final Logger log = LogManager.getLogger(getClass());
 
-	ProductVersionKeys(String plugin, BiConsumer<Path, Path> notify) {
-		this.notify = notify;
+	ProductVersionKeys(String plugin, Consumer<String> notify) {
 		Objects.requireNonNull(plugin, "ProductVersionPassword::plugin"); //$NON-NLS-1$
+		Objects.requireNonNull(notify, "ProductVersionPassword::notify"); //$NON-NLS-1$
 		this.plugin = plugin;
+		this.notify = notify;
+	}
+
+	ProductVersionKeys(String plugin) {
+		this(plugin, p -> {
+		});
 	}
 
 	public IStatus createKeys(ProductVersionDescriptor target) {
-		Optional<String> existing = keysArePresent(target);
+		LicensedProduct product = product(target);
+		Optional<String> existing;
+		try {
+			existing = keyIsPresent(product);
+		} catch (LicensingException e) {
+			return failed(e);
+		}
 		if (existing.isPresent()) {
 			return error(existing.get());
 		}
@@ -54,8 +67,12 @@ final class ProductVersionKeys {
 		if (invalid.isPresent()) {
 			return error(invalid.get());
 		}
-		LicensedProduct product = product(target);
-		Optional<StreamCodec> codec = codec(product);
+		Optional<StreamCodec> codec;
+		try {
+			codec = codec(product);
+		} catch (LicensingException e) {
+			return failed(e);
+		}
 		if (codec.isEmpty()) {
 			return noCodec(target, product);
 		}
@@ -66,16 +83,54 @@ final class ProductVersionKeys {
 		}
 	}
 
+	private BaseLicensedProduct product(ProductVersionDescriptor target) {
+		return new BaseLicensedProduct(//
+				target.getProduct().getIdentifier(), //
+				target.getVersion());
+	}
+
+	private Optional<StreamCodec> codec(LicensedProduct product) throws LicensingException {
+		return new OperatorGearAware().withGear(gear -> gear.codec(product));
+	}
+
+	private Optional<String> validate(ProductVersionDescriptor target) {
+		if (!(target instanceof ProductVersion)) {
+			return Optional.empty();
+		}
+		return Optional.ofNullable(LicensingEcore.extractValidationError(((ProductVersion) target).getProduct()));
+	}
+
+	private Optional<String> keyIsPresent(LicensedProduct target) throws LicensingException {
+		Keys service = new OperatorGearAware().withGear(gear -> Optional.of(gear.workspace().keys())).get();
+		Optional<String> exists = service.existing(target.identifier(), target.version());
+		return exists.map(
+				path -> String.format(ProductsCoreMessages.ProductOperatorServiceImpl_e_key_already_defined, path));
+	}
+
 	private IStatus createKeyPair(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec)
 			throws LicensingException {
-		Path destination = new UserHomeProductResidence(product).get();
-		Path open = open(product, destination);
-		Path secret = secret(product, destination);
-		new StreamCodec.Smart(codec).createKeyPair(open, secret, product.identifier(),
-				new ProductVersionPassword(target).get());
-		notify.accept(open, secret);
-		// TODO: store .keys_xmi under workspace
-		return created(open, secret);
+		Optional<String> stored = store(generate(target, product, codec));
+		if (!stored.isPresent()) {
+			notify.accept(stored.get());
+		}
+		return created(stored);
+	}
+
+	private Optional<String> store(KeyPair pair) throws LicensingException {
+		return new KeyPairStored(pair).get();
+	}
+
+	private KeyPair generate(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec)
+			throws LicensingException {
+		try (ByteArrayOutputStream open = new ByteArrayOutputStream();
+				ByteArrayOutputStream secret = new ByteArrayOutputStream()) {
+			codec.createKeyPair(open, secret, product.identifier(), new ProductVersionPassword(target).get());
+			open.flush();
+			secret.flush();
+			return new KeyPairGeneraged(codec, open.toByteArray(), secret.toByteArray()).get();
+		} catch (Exception e) {
+			throw new LicensingException("failed to generate keys", e); //$NON-NLS-1$ // TODO: l10n
+		}
 	}
 
 	private Status error(String errors) {
@@ -88,66 +143,13 @@ final class ProductVersionKeys {
 	}
 
 	private Status failed(Exception e) {
+		log.error("", e); //$NON-NLS-1$
 		return new Status(IStatus.ERROR, plugin, ProductsCoreMessages.ProductOperatorServiceImpl_e_export_error, e);
 	}
 
-	private Status created(Path open, Path secret) {
-		return new Status(IStatus.OK, plugin,
-				String.format(ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported, open, secret));
+	private Status created(Optional<String> persisted) {
+		return new Status(IStatus.OK, plugin, String
+				.format(ProductsCoreMessages.ProductOperatorServiceImpl_ok_keys_exported, persisted.orElse("unknown"))); //$NON-NLS-1$
 	}
 
-	private BaseLicensedProduct product(ProductVersionDescriptor target) {
-		return new BaseLicensedProduct(//
-				target.getProduct().getIdentifier(), //
-				target.getVersion());
-	}
-
-	private Path secret(LicensedProduct licensed, Path path) {
-		return path.resolve(//
-				new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PrivateKey()).get());
-	}
-
-	private Path open(LicensedProduct licensed, Path path) {
-		return path.resolve(//
-				new FileNameFromLicensedProduct(licensed, new PassageFileExtension.PublicKey()).get());
-	}
-
-	@SuppressWarnings("restriction")
-	private Optional<StreamCodec> codec(LicensedProduct product) {
-		try {
-			return new OperatorGearAware().withGear(gear -> gear.codec(product));
-		} catch (LicensingException e) {
-			return Optional.empty();// TODO: under construction
-		}
-	}
-
-	private Optional<String> validate(ProductVersionDescriptor target) {
-		if (!(target instanceof ProductVersion)) {
-			return Optional.empty();
-		}
-		return Optional.ofNullable(LicensingEcore.extractValidationError(((ProductVersion) target).getProduct()));
-	}
-
-	private Optional<String> keysArePresent(ProductVersionDescriptor target) {
-		Optional<String> pub = keyIsPresent(target::getInstallationToken,
-				ProductsCoreMessages.ProductOperatorServiceImpl_e_public_key_already_defined);
-		if (pub.isPresent()) {
-			return pub;
-		}
-		return keyIsPresent(target::getSecureToken,
-				ProductsCoreMessages.ProductOperatorServiceImpl_e_private_key_already_defined);
-	}
-
-	// TODO: appeal to workspace here
-	private Optional<String> keyIsPresent(Supplier<String> path, String error) {
-		String existing = path.get();
-		if (existing == null) { // model(emf)-driven null
-			return Optional.empty();
-		}
-		File file = new File(existing);
-		if (file.exists()) {
-			return Optional.of(String.format(error, file.getAbsolutePath()));
-		}
-		return Optional.empty();
-	}
 }

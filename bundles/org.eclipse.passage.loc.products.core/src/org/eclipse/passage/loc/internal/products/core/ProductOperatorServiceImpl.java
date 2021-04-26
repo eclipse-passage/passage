@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.products.core;
 
-import java.nio.file.Path;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
@@ -69,9 +67,8 @@ public class ProductOperatorServiceImpl implements OperatorProductService {
 		return new ProductVersionKeys(plugin, this::broadcast).createKeys(target);
 	}
 
-	private void broadcast(Path open, Path secret) {
-		events.postEvent(OperatorProductEvents.publicCreated(open.toString()));
-		events.postEvent(OperatorProductEvents.privateCreated(secret.toString()));
+	private void broadcast(String info) {
+		events.postEvent(OperatorProductEvents.keysCreated(info));
 	}
 
 }
