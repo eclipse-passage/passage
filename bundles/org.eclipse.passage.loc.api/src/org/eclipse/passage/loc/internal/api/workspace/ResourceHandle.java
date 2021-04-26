@@ -12,12 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api.workspace;
 
-import java.util.Optional;
+public interface ResourceHandle {
 
-public interface Keys {
+	/**
+	 * Tell a client where the content is hosted (path to a file, for instance)
+	 */
+	String info();
 
-	Optional<String> existing(String product, String version);
-
-	ResourceHandle located(String product, String version);
+	void write(byte[] content) throws Exception;
 
 }

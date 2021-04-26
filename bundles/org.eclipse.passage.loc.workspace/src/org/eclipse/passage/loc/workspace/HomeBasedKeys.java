@@ -22,11 +22,13 @@ import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
+import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 
 @SuppressWarnings("restriction")
 final class HomeBasedKeys implements Keys {
 
 	private final Path residence;
+	private final PassageFileExtension ext = new DomainFileExtension.Keys();
 
 	HomeBasedKeys() {
 		this.residence = new LicensingFolder(new UserHomePath()).get();
@@ -34,17 +36,17 @@ final class HomeBasedKeys implements Keys {
 
 	@Override
 	public Optional<String> existing(String product, String version) {
-		Optional<String> pub = existing(product, version, new PassageFileExtension.PublicKey());
-		if (pub.isPresent()) {
-			return pub;
-		}
-		return existing(product, version, new PassageFileExtension.PrivateKey());
+		return reportExistance(keysFile(product, version));
 	}
 
-	public Optional<String> existing(String product, String version, PassageFileExtension ext) {
-		return reportExistance(//
-				productResidence(product, version).resolve(//
-						productFile(product, version, ext)));
+	private Path keysFile(String product, String version) {
+		return productResidence(product, version).resolve(//
+				productFile(product, version));
+	}
+
+	@Override
+	public ResourceHandle located(String product, String version) {
+		return new LocalFileHandle(keysFile(product, version));
 	}
 
 	private Optional<String> reportExistance(Path file) {
@@ -53,7 +55,7 @@ final class HomeBasedKeys implements Keys {
 				: Optional.empty();
 	}
 
-	private String productFile(String product, String version, PassageFileExtension ext) {
+	private String productFile(String product, String version) {
 		return new FileNameFromLicensedProduct(product, version, ext).get();
 	}
 

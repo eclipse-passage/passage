@@ -10,14 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.api.workspace;
+package org.eclipse.passage.loc.workspace;
 
-import java.util.Optional;
+import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 
-public interface Keys {
+@SuppressWarnings("restriction")
+interface DomainFileExtension {
 
-	Optional<String> existing(String product, String version);
+	public static final class Keys extends PassageFileExtension {
 
-	ResourceHandle located(String product, String version);
+		@Override
+		public String get() {
+			return ".keys_xmi"; //$NON-NLS-1$
+		}
+
+	}
 
 }
