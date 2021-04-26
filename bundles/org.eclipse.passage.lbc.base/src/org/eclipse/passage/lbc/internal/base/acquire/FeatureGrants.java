@@ -48,13 +48,22 @@ final class FeatureGrants {
 	 * given {@code feature}, if any
 	 */
 	Collection<FeatureGrant> get() {
-		return new FlsGearAwre()//
-				.withGear(gear -> Optional.of(get(gear)))//
-				.orElse(failedOnGathering());
+		try {
+			return new FlsGearAwre()//
+					.withGear(gear -> Optional.of(get(gear)))//
+					.orElse(failedOnGathering());
+		} catch (LicensingException e) {
+			return exceptionOnGathering(e);
+		}
 	}
 
 	private Collection<FeatureGrant> failedOnGathering() {
 		log.error(String.format("Failed on gathering grants for product %s", product)); //$NON-NLS-1$
+		return Collections.emptyList();
+	}
+
+	private Collection<FeatureGrant> exceptionOnGathering(LicensingException e) {
+		log.error(String.format("Failed on gathering grants for product %s", product), e); //$NON-NLS-1$
 		return Collections.emptyList();
 	}
 

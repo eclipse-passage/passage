@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.api.Gear;
 import org.eclipse.passage.lic.internal.api.GearSupplier;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
@@ -30,7 +30,7 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
 	private final Logger log = LogManager.getLogger(getClass());
 
-	public final <T> Optional<T> withGear(Function<G, Optional<T>> with) {
+	public final <T> Optional<T> withGear(Unsafe<G, T> with) throws LicensingException {
 		BundleContext context = FrameworkUtil.getBundle(getClass()).getBundleContext();
 		Collection<ServiceReference<S>> references = Collections.emptyList();
 		try {
@@ -46,6 +46,8 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 		ServiceReference<S> any = references.iterator().next();
 		try {
 			return with.apply(context.getService(any).gear());
+		} catch (Exception e) {
+			throw new LicensingException("Error on service invokation", e); //$NON-NLS-1$
 		} finally {
 			context.ungetService(any);
 		}
@@ -53,4 +55,10 @@ public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
 	protected abstract Class<S> supplier();
 
+	@FunctionalInterface
+	public interface Unsafe<G extends Gear, T> {
+
+		Optional<T> apply(G gear) throws Exception;
+
+	}
 }

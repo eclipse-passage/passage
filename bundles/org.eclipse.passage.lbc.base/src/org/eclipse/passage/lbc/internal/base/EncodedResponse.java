@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.Hashes;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
@@ -37,9 +38,14 @@ public final class EncodedResponse<T extends EObject> {
 	}
 
 	public NetResponse get() {
-		return new FlsGearAwre()//
-				.withGear(this::transferable) //
-				.orElse(new Failure.OperationFailed("mine", "Failed exploiting gear")); //$NON-NLS-1$ //$NON-NLS-2$
+		try {
+			return new FlsGearAwre()//
+					.withGear(this::transferable) //
+					.orElse(new Failure.OperationFailed("mine", "Failed exploiting gear")); //$NON-NLS-1$ //$NON-NLS-2$
+		} catch (LicensingException e) {
+			// unreachable, development mistake
+			throw new IllegalStateException("FLS configurational is not complete", e); //$NON-NLS-1$
+		}
 	}
 
 	private Optional<NetResponse> transferable(FlsGear gear) {

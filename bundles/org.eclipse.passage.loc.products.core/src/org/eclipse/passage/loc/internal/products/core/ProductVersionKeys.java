@@ -114,7 +114,11 @@ final class ProductVersionKeys {
 
 	@SuppressWarnings("restriction")
 	private Optional<StreamCodec> codec(LicensedProduct product) {
-		return new OperatorGearAware().withGear(gear -> gear.codec(product));
+		try {
+			return new OperatorGearAware().withGear(gear -> gear.codec(product));
+		} catch (LicensingException e) {
+			return Optional.empty();// TODO: under construction
+		}
 	}
 
 	private Optional<String> validate(ProductVersionDescriptor target) {
