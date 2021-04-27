@@ -14,10 +14,44 @@ package org.eclipse.passage.loc.internal.api.workspace;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+
 public interface Keys {
 
 	Optional<String> existing(String product, String version);
 
 	ResourceHandle located(String product, String version);
+
+	public static final class Smart implements Keys {
+
+		private final Keys delegate;
+
+		public Smart(Keys delegate) {
+			this.delegate = delegate;
+		}
+
+		@Override
+		public Optional<String> existing(String product, String version) {
+			return delegate.existing(product, version);
+		}
+
+		public Optional<String> existing(LicensedProduct product) {
+			return existing(product.identifier(), product.version());
+		}
+
+		public boolean exists(LicensedProduct product) {
+			return existing(product).isPresent();
+		}
+
+		@Override
+		public ResourceHandle located(String product, String version) {
+			return delegate.located(product, version);
+		}
+
+		public ResourceHandle located(LicensedProduct product) {
+			return delegate.located(product.identifier(), product.version());
+		}
+
+	}
 
 }

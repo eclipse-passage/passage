@@ -24,8 +24,6 @@ public final class LicensesCoreMessages extends NLS {
 	public static String LicenseOperatorServiceImpl_export_error;
 	public static String LicenseOperatorServiceImpl_export_success;
 	public static String LicenseOperatorServiceImpl_failed_to_save_decoded;
-	public static String LicenseOperatorServiceImpl_private_key_not_found;
-	public static String LicenseOperatorServiceImpl_public_key_not_found;
 	public static String LicenseOperatorServiceImpl_status_invalid_licensing_request;
 	public static String LicenseOperatorServiceImpl_w_no_encoding;
 	public static String LicensesSelectionCommandAdvisor_select_lic_plan;

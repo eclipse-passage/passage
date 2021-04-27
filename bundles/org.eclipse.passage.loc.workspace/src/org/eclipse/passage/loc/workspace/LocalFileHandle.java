@@ -13,6 +13,7 @@
 package org.eclipse.passage.loc.workspace;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
@@ -42,6 +43,13 @@ class LocalFileHandle implements ResourceHandle {
 		try (OutputStream out = new FileOutputStream(file)) {
 			out.write(content);
 			out.flush();
+		}
+	}
+
+	@Override
+	public byte[] content() throws Exception {
+		try (FileInputStream stream = new FileInputStream(path.toFile())) {
+			return stream.readAllBytes();
 		}
 	}
 
