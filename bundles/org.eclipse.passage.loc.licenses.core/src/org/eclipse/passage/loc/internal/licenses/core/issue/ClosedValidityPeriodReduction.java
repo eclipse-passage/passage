@@ -18,16 +18,21 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
 
 final class ClosedValidityPeriodReduction<L> implements Reduction<L> {
 
+	private final Logger log = LogManager.getLogger(getClass());
 	private final Function<L, Optional<ValidityPeriodClosed>> get;
 	private final BiConsumer<L, ValidityPeriodClosed> set;
 	private final int length = 1;
 
-	ClosedValidityPeriodReduction(Function<L, Optional<ValidityPeriodClosed>> get, BiConsumer<L, ValidityPeriodClosed> set) {
+	ClosedValidityPeriodReduction(Function<L, Optional<ValidityPeriodClosed>> get,
+			BiConsumer<L, ValidityPeriodClosed> set) {
 		this.get = get;
 		this.set = set;
 	}
@@ -40,6 +45,10 @@ final class ClosedValidityPeriodReduction<L> implements Reduction<L> {
 		}
 		ZonedDateTime allowed = allowed(valid.get().from());
 		if (allowed.isBefore(valid.get().to())) {
+			log.warn(String.format(
+					ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_length, length));
+			log.warn(String.format(ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_allowed, valid.get().from(),
+					valid.get().to(), valid.get().from(), allowed));
 			set.accept(license, new BaseValidityPeriodClosed(valid.get().from(), allowed));
 		}
 	}

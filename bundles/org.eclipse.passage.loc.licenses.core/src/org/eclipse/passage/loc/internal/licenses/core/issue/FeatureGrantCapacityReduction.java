@@ -12,16 +12,27 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.licenses.core.issue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
 
 @SuppressWarnings("restriction")
 final class FeatureGrantCapacityReduction implements Reduction<FeatureGrant> {
 
+	private final Logger log = LogManager.getLogger(getClass());
 	private final int capacity = 3;
 
 	@Override
 	public void accept(FeatureGrant grant) {
-		grant.setCapacity(Math.min(capacity, grant.getCapacity()));
+		if (grant.getCapacity() <= capacity) {
+			return;
+		}
+		log.warn(String.format(ReductionMessages.FeatureGrantCapacityReduction_reduction_featuregrant_capacity,
+				capacity));
+		log.warn(String.format(ReductionMessages.FeatureGrantCapacityReduction_reduction_featuregrant_feature,
+				grant.getFeature(), capacity));
+		grant.setCapacity(capacity);
 	}
 
 }
