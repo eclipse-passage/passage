@@ -21,4 +21,6 @@ public interface ResourceHandle {
 
 	void write(byte[] content) throws Exception;
 
+	byte[] content() throws Exception;
+
 }

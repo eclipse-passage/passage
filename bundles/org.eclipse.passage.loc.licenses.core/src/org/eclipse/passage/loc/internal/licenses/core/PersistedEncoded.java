@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Function;
@@ -41,7 +42,7 @@ final class PersistedEncoded {
 		Path encrypted = decrypted.getParent().resolve(file);
 		try (FileInputStream input = new FileInputStream(decrypted.toFile());
 				FileOutputStream output = new FileOutputStream(encrypted.toFile());
-				FileInputStream key = new FileInputStream(key().toFile())) {
+				InputStream key = key()) {
 			codec().encode(input, output, key, product.identifier(), password.apply(product));
 			return encrypted;
 		} catch (IOException e) {
@@ -52,8 +53,8 @@ final class PersistedEncoded {
 		}
 	}
 
-	private Path key() throws LicensingException {
-		return new ProductKeyFile(product).scr();
+	private InputStream key() throws LicensingException {
+		return new ProductKeys(product).scrStream();
 	}
 
 	private StreamCodec codec() throws LicensingException {
