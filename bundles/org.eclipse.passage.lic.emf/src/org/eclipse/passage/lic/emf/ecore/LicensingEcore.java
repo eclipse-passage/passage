@@ -68,17 +68,6 @@ public class LicensingEcore {
 		return null;
 	}
 
-	public static Resource extractResource(Object object) {
-		if (object instanceof EObject) {
-			EObject eObject = (EObject) object;
-			return eObject.eResource();
-		}
-		if (object instanceof Resource) {
-			return (Resource) object;
-		}
-		return null;
-	}
-
 	public static String extractValidationError(EObject eObject) {
 		if (eObject == null) {
 			return EmfMessages.LicensingEcore_input_invalid;

@@ -52,6 +52,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.passage.lic.emf.ecore.ExtractResource;
 import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
@@ -118,7 +119,7 @@ public class DetailsView {
 			return;
 		}
 		this.root = LicensingEcore.extractEObject(input);
-		Resource resource = LicensingEcore.extractResource(input);
+		java.util.Optional<Resource> resource = new ExtractResource().apply(input);
 		configurePart(resource, context);
 		Control[] children = content.getChildren();
 		for (Control control : children) {
@@ -202,7 +203,7 @@ public class DetailsView {
 		return menuProvider;
 	}
 
-	protected void configurePart(Resource resource, IEclipseContext context) {
+	protected void configurePart(java.util.Optional<Resource> resource, IEclipseContext context) {
 		EditingDomain editingDomain = AdapterFactoryEditingDomain
 				.getEditingDomainFor(LicensingEcore.extractEObject(resource));
 		context.set(EditingDomain.class, editingDomain);
@@ -215,8 +216,8 @@ public class DetailsView {
 			}
 			commandStack.flush();
 		}
-		if (resource != null) {
-			URI uri = resource.getURI();
+		if (!resource.isEmpty()) {
+			URI uri = resource.get().getURI();
 			if (uri != null) {
 				part.setLabel(uri.lastSegment());
 				part.setTooltip(String.valueOf(uri));
