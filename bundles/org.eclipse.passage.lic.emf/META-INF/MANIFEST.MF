@@ -26,6 +26,7 @@ Export-Package: org.eclipse.passage.lic.emf.ecore;
    org.eclipse.passage.lic.products.migration.tests,
    org.eclipse.passage.lic.users.migration,
    org.eclipse.passage.lic.users.migration.tests",
+ org.eclipse.passage.lic.emf.meta,
  org.eclipse.passage.lic.emf.resource,
  org.eclipse.passage.lic.internal.emf;
   x-friends:="org.eclipse.passage.lic.hc,
