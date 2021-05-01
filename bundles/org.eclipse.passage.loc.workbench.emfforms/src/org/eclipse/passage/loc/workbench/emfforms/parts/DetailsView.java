@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench.emfforms.parts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -52,8 +53,8 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.passage.lic.emf.ecore.ExtractEObject;
 import org.eclipse.passage.lic.emf.ecore.ExtractResource;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
 import org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages;
 import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.passage.loc.workbench.viewers.DomainRegistryLabelProvider;
@@ -72,7 +73,7 @@ public class DetailsView {
 	private Composite content;
 
 	// TreeMasterDetailComposite implies the Resource has root EObject
-	private EObject root;
+	private final List<EObject> root;
 
 	private final CommandStackListener dirtyStackListener;
 	private final ISelectionChangedListener selectionChangedListener;
@@ -80,6 +81,7 @@ public class DetailsView {
 
 	@Inject
 	public DetailsView(MPart part, ESelectionService selectionService) {
+		root = new ArrayList<>();
 		this.part = part;
 		this.dirtyStackListener = e -> {
 			Object source = e.getSource();
@@ -118,21 +120,22 @@ public class DetailsView {
 		if (input == null) {
 			return;
 		}
-		this.root = LicensingEcore.extractEObject(input);
+		root.clear();
+		new ExtractEObject().apply(input).ifPresent(root::add);
 		java.util.Optional<Resource> resource = new ExtractResource().apply(input);
 		configurePart(resource, context);
 		Control[] children = content.getChildren();
 		for (Control control : children) {
 			control.dispose();
 		}
-		if (this.root != null) {
+		if (!root.isEmpty()) {
 			try {
 				TreeMasterDetailComposite rootView = createRootView(content, resource, getCreateElementCallback(),
 						context);
 				TreeViewer selectionProvider = rootView.getSelectionProvider();
 				selectionProvider.addSelectionChangedListener(selectionChangedListener);
 				selectionProvider.refresh();
-				EObject objectToReveal = this.root;
+				EObject objectToReveal = root.get(0);
 				while (objectToReveal != null) {
 					selectionProvider.reveal(objectToReveal);
 					if (selectionProvider.testFindItem(objectToReveal) != null) {
@@ -204,18 +207,12 @@ public class DetailsView {
 	}
 
 	protected void configurePart(java.util.Optional<Resource> resource, IEclipseContext context) {
-		EditingDomain editingDomain = AdapterFactoryEditingDomain
-				.getEditingDomainFor(LicensingEcore.extractEObject(resource));
-		context.set(EditingDomain.class, editingDomain);
-		if (editingDomain instanceof AdapterFactoryEditingDomain) {
-			AdapterFactory adapterFactory = ((AdapterFactoryEditingDomain) editingDomain).getAdapterFactory();
-			context.set(AdapterFactory.class, adapterFactory);
-			if (commandStack == null) {
-				commandStack = editingDomain.getCommandStack();
-				commandStack.addCommandStackListener(dirtyStackListener);
-			}
-			commandStack.flush();
-		}
+		resource.//
+				flatMap(new ExtractEObject())//
+				.map(AdapterFactoryEditingDomain::getEditingDomainFor)//
+				.filter(AdapterFactoryEditingDomain.class::isInstance)//
+				.map(AdapterFactoryEditingDomain.class::cast)//
+				.ifPresent(d -> configureCommandStack(d, context));
 		if (!resource.isEmpty()) {
 			URI uri = resource.get().getURI();
 			if (uri != null) {
@@ -227,6 +224,17 @@ public class DetailsView {
 		}
 	}
 
+	protected void configureCommandStack(AdapterFactoryEditingDomain domain, IEclipseContext context) {
+		AdapterFactory adapters = domain.getAdapterFactory();
+		context.set(EditingDomain.class, domain);
+		context.set(AdapterFactory.class, adapters);
+		if (commandStack == null) {
+			commandStack = domain.getCommandStack();
+			commandStack.addCommandStackListener(dirtyStackListener);
+		}
+		commandStack.flush();
+	}
+
 	@PreDestroy
 	public void dispose() {
 		if (commandStack != null) {
@@ -236,11 +244,11 @@ public class DetailsView {
 
 	@Persist
 	public void save() {
-		if (root == null) {
+		if (root.isEmpty()) {
 			part.setDirty(false);
 			return;
 		}
-		Resource eResource = root.eResource();
+		Resource eResource = root.get(0).eResource();
 		if (eResource != null) {
 			IStatus status = LocWokbench.save(eResource);
 			if (status.isOK()) {
