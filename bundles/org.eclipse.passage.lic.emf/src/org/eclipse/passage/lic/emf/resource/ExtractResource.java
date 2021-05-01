@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.ecore;
+package org.eclipse.passage.lic.emf.resource;
 
 import java.util.Optional;
 import java.util.function.Function;
