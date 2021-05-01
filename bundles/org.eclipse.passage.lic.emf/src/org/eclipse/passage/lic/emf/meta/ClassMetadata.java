@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,7 +18,7 @@ import java.util.Optional;
  * 
  * Searches for EMF metadata for a given java type
  * 
- * @since 0.6
+ * @since 2.0
  *
  */
 @FunctionalInterface

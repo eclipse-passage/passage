@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * Encapsulates the ECore metadata for the object to reduce the number of
  * arguments in methods
  * 
- * @since 0.6
+ * @since 2.0
  *
  */
 public final class PlainEntityMetadata implements EntityMetadata {
