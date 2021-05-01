@@ -13,12 +13,10 @@
 package org.eclipse.passage.lic.emf.ecore;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
@@ -52,31 +50,6 @@ public class LicensingEcore {
 		sb.append(ePackage.getName()).append('.');
 		sb.append(eDataType.getName());
 		return sb.toString();
-	}
-
-	public static EObject extractEObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject) object;
-		}
-		if (object instanceof Resource) {
-			Resource resource = (Resource) object;
-			EList<EObject> contents = resource.getContents();
-			if (!contents.isEmpty()) {
-				return contents.get(0);
-			}
-		}
-		return null;
-	}
-
-	public static Resource extractResource(Object object) {
-		if (object instanceof EObject) {
-			EObject eObject = (EObject) object;
-			return eObject.eResource();
-		}
-		if (object instanceof Resource) {
-			return (Resource) object;
-		}
-		return null;
 	}
 
 	public static String extractValidationError(EObject eObject) {
