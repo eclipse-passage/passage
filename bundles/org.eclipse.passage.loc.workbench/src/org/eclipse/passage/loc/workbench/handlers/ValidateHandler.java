@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.passage.lic.emf.edit.LabeledDiagnostician;
+import org.eclipse.passage.loc.internal.emf.LabeledDiagnostician;
 import org.eclipse.swt.widgets.Shell;
 
 public class ValidateHandler {
