@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.dashboard.ui.wizards;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
@@ -27,7 +28,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
@@ -43,6 +44,7 @@ public class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<PersonalLicenseRequest> data;
+	private final ErrorMessages validate;
 	private LicensePack license;
 	private VViewModelProperties properties;
 	private Composite base;
@@ -51,6 +53,7 @@ public class IssueLicensePackPage extends WizardPage {
 		super(name);
 		this.context = context;
 		this.data = data;
+		this.validate = new ErrorMessages();
 		setTitle(IssueLicensePageMessages.IssueLicensePackPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
@@ -115,9 +118,9 @@ public class IssueLicensePackPage extends WizardPage {
 	}
 
 	protected boolean validatePage() {
-		String errors = LicensingEcore.extractValidationError(license);
-		setErrorMessage(errors);
-		return errors == null;
+		Optional<String> errors = validate.apply(license);
+		setErrorMessage(errors.orElse(null));// framework requires null
+		return errors.isEmpty();
 	}
 
 	public LicensePackDescriptor pack() {

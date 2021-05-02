@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -110,7 +110,7 @@ final class IssueFloatingLicense {
 	private ServiceInvocationResult<List<Path>> persist(EObject target, LicensedProduct product, //
 			Path folder, String decrypted, String encrypted) {
 		// validate
-		Optional<String> errors = Optional.ofNullable(LicensingEcore.extractValidationError(target));
+		Optional<String> errors = new ErrorMessages().apply(target);
 		if (errors.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
 		}
