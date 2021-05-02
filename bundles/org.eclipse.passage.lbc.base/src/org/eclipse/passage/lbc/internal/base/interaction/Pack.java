@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 final class Pack {
 
@@ -62,9 +63,11 @@ final class Pack {
 		}
 
 		private FloatingLicensePack read(byte[] bytes) throws LicensingException {
+			// FIXME:AF: should be done via factory
 			return new EObjectFromBytes<>(//
 					bytes, //
-					FloatingLicensePack.class//
+					FloatingLicensePack.class, //
+					LicensesResourceImpl::new//
 			).get(Collections.singletonMap(LicensesPackage.eNAME, LicensesPackage.eINSTANCE));
 		}
 

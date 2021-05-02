@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.function.Function;
 
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
@@ -63,7 +64,9 @@ public final class ProductKeys {
 		}
 		ResourceHandle source = keys.located(product);
 		try {
-			KeyPair pair = new EObjectFromBytes<KeyPair>(source.content(), KeyPair.class).get();
+			// FIXME:AF: should be done via factory
+			// FIXME:AF: generate XMI factory for keys
+			KeyPair pair = new EObjectFromBytes<KeyPair>(source.content(), KeyPair.class, XMIResourceImpl::new).get();
 			return get.apply(pair).getBytes();
 		} catch (Exception e) {
 			throw new LicensingException(

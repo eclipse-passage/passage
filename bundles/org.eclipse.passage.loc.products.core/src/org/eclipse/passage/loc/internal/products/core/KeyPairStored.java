@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
@@ -38,7 +39,9 @@ final class KeyPairStored {
 		String product = pair.getProduct().getIdentifier();
 		String version = pair.getProduct().getVersion();
 		ResourceHandle locator = keys.located(product, version);
-		byte[] content = new EObjectToBytes(pair).get();
+		// FIXME:AF: should be done via factory
+		// FIXME:AF: generate XMI factory for keys
+		byte[] content = new EObjectToBytes(pair, XMIResourceImpl::new).get();
 		try {
 			locator.write(content);
 		} catch (Exception e) {
