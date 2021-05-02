@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.users.migration.tests;
+package org.eclipse.passage.lic.users.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,19 +20,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
+import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
 import org.junit.Test;
 
-public class UsersMigratorTest {
+public final class UsersMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
 		File legacy = new File(
 				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_users"); //$NON-NLS-1$ //$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
-		Resource resource = new XMIResourceImpl(uri);
+		Resource resource = new UsersResourceImpl(uri);
 		resource.load(null);
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
@@ -50,7 +50,7 @@ public class UsersMigratorTest {
 		assertEquals("alexander.fedorov@arsysop.ru", u0.getEmail()); //$NON-NLS-1$
 		assertEquals("Alexander Fedorov", u0.getFullName()); //$NON-NLS-1$
 		assertEquals(null, u0.getDescription());
-		
+
 		User u1 = users.get(1);
 		assertEquals(null, u1.getIdentifier());
 		assertEquals("sergei.kovalchuk@arsysop.ru", u1.getEmail()); //$NON-NLS-1$

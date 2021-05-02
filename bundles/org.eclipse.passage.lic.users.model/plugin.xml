@@ -23,4 +23,11 @@
             genModel="model/users.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated users -->
+      <parser
+            type="users"
+            class="org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl"/>
+   </extension>
+
 </plugin>

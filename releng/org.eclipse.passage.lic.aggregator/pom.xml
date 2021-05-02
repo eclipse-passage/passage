@@ -97,12 +97,10 @@
 		<module>../../bundles/org.eclipse.passage.lic.users</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.users.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.users.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.users.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.users.model.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.users.migration.tests</module>
 
 		<module>../../bundles/org.eclipse.passage.lic.licenses</module>
 		<module>../../bundles/org.eclipse.passage.lic.licenses.ecore</module>

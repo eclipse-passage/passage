@@ -12,10 +12,11 @@
     editorPluginID="org.eclipse.passage.lic.users.editor" language="" operationReflection="true"
     runtimePlatform="RCP" importOrganizing="true" cleanup="true" oSGiCompatible="true">
   <foreignModel>platform:/resource/org.eclipse.passage.lic.users.ecore/model/users.ecore</foreignModel>
-  <genPackages prefix="Users" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
-      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
-      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
-      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
+  <genPackages prefix="Users" basePackage="org.eclipse.passage.lic" resource="XMI"
+      disposableProviderFactory="true" interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta"
+      classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
+      presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
+      ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserLicenseDescriptor"/>
