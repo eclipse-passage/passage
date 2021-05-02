@@ -85,6 +85,7 @@ public class XmiLicensingConditionExtractorTest {
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
+			// FIXME:AF: should be done via factory
 			Resource saved = new XMIResourceImpl();
 			saved.getContents().add(license);
 			saved.save(fos, new HashMap<>());

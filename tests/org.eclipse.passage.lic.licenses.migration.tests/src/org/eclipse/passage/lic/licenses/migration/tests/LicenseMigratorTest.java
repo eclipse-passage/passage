@@ -65,6 +65,7 @@ public class LicenseMigratorTest {
 	private void loaded(String path) throws IOException, ParseException {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
+		// FIXME:AF: should be done via factory
 		Resource resource = new XMIResourceImpl(uri);
 		resource.load(Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
 		EList<EObject> contents = resource.getContents();

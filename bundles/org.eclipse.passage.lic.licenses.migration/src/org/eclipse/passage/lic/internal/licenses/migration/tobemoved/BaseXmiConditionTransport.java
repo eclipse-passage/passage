@@ -63,6 +63,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
+		// FIXME:AF: should be done via factory
 		Resource resource = new XMIResourceImpl();
 		resource.load(input, loadOptions());
 		return resource.getContents().stream() //

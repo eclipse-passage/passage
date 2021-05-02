@@ -45,6 +45,7 @@ public abstract class EObjectFromStream<T extends EObject> {
 	protected abstract InputStream stream() throws IOException;
 
 	private List<EObject> content(Map<?, ?> options) throws LicensingException {
+		// FIXME:AF: should be done via factory
 		Resource resource = new XMIResourceImpl();
 		try (InputStream input = stream()) {
 			resource.load(input, options);

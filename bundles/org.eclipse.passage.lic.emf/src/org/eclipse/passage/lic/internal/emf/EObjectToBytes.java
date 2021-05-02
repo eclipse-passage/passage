@@ -35,6 +35,7 @@ public final class EObjectToBytes {
 	}
 
 	public byte[] get(Map<?, ?> options) throws LicensingException {
+		// FIXME:AF: should be done via factory
 		XMIResourceImpl resource = new XMIResourceImpl();
 		resource.getContents().add(source);
 		try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
