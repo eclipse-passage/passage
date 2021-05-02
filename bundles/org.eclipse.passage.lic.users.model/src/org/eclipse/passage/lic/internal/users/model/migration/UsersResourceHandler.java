@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,24 +10,31 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.users.migration;
+package org.eclipse.passage.lic.internal.users.model.migration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
+import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
 
-@Component
-public class UsersMigrator {
+public final class UsersResourceHandler extends MigratingResourceHandler {
 
-	@Activate
-	public void activate() {
+	@Override
+	protected void ensureMigrations() {
 		migrate033();
 		migrate040();
+	}
+
+	@Override
+	protected void convertEntry(Entry<EObject, AnyType> entry) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void migrate033() {
