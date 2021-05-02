@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.features.migration.tests;
+package org.eclipse.passage.lic.features.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,19 +20,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
+import org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl;
 import org.junit.Test;
 
-public class FeaturesMigratorTest {
+public final class FeaturesMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_features");  //$NON-NLS-1$//$NON-NLS-2$
+		File legacy = new File(
+				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_features"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
-		Resource resource = new XMIResourceImpl(uri);
+		Resource resource = new FeaturesResourceImpl(uri);
 		resource.load(null);
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
@@ -49,7 +50,7 @@ public class FeaturesMigratorTest {
 		assertEquals("org.eclipse.passage.lic.launch", f0.getIdentifier()); //$NON-NLS-1$
 		assertEquals("Eclipse Passage Launch", f0.getName()); //$NON-NLS-1$
 		assertEquals("Eclipse Passage startup feature", f0.getDescription()); //$NON-NLS-1$
-		
+
 		EList<FeatureVersion> f0vs = f0.getFeatureVersions();
 		assertEquals(1, f0vs.size());
 		FeatureVersion f0v0 = f0vs.get(0);

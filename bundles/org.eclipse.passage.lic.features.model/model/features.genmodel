@@ -13,10 +13,11 @@
     language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
     cleanup="true" oSGiCompatible="true">
   <foreignModel>platform:/resource/org.eclipse.passage.lic.features.ecore/model/features.ecore</foreignModel>
-  <genPackages prefix="Features" basePackage="org.eclipse.passage.lic" disposableProviderFactory="true"
-      interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta" classPackageSuffix="model.impl"
-      utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers" presentationPackageSuffix="editor"
-      testsPackageSuffix="model.tests" literalsInterface="false" ecorePackage="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#/">
+  <genPackages prefix="Features" basePackage="org.eclipse.passage.lic" resource="XMI"
+      disposableProviderFactory="true" interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta"
+      classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
+      presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
+      ecorePackage="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureSetDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.features.ecore/model/features.ecore#//FeatureVersionDescriptor"/>

@@ -33,6 +33,7 @@ public class DelegatingEPackage extends EPackageImpl {
 		} else {
 			delegatingEPackage = new DelegatingEPackage(nsUri);
 			if (existing != null) {
+				// FIXME: AF: ensure that delegation occurs only once
 				Map<EClass, EClass> wrapped = new HashMap<>();
 				EList<EClassifier> classifiers = existing.getEClassifiers();
 				for (EClassifier eClassifier : classifiers) {
