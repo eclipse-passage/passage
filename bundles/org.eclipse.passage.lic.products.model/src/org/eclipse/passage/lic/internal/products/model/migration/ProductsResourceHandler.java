@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,24 +10,30 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.products.migration;
+package org.eclipse.passage.lic.internal.products.model.migration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
+import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
 
-@Component
-public class ProductsMigrator {
+public final class ProductsResourceHandler extends MigratingResourceHandler {
 
-	@Activate
-	public void activate() {
+	@Override
+	protected void ensureMigrations() {
 		migrate030();
 		migrate040();
+	}
+
+	@Override
+	protected void convertEntry(Entry<EObject, AnyType> entry) {
+		// not yet needed
 	}
 
 	private void migrate030() {
@@ -44,7 +50,7 @@ public class ProductsMigrator {
 	private void migrate040() {
 		String nsUri = "http://www.eclipse.org/passage/lic/products/0.4.0"; //$NON-NLS-1$
 		ProductsPackage delegate = ProductsPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 }

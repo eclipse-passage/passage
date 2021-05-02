@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.products.migration.tests;
+package org.eclipse.passage.lic.products.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,21 +20,21 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.products.model.api.Product;
 import org.eclipse.passage.lic.products.model.api.ProductLine;
 import org.eclipse.passage.lic.products.model.api.ProductVersion;
 import org.eclipse.passage.lic.products.model.api.ProductVersionFeature;
+import org.eclipse.passage.lic.products.model.util.ProductsResourceImpl;
 import org.junit.Test;
 
-public class ProductsMigratorTest {
+public final class ProductsMigratorTest {
 
 	@Test
 	public void testMigratorPositive() throws Exception {
 		File legacy = new File(
 				System.getProperty("user.dir") + File.separator + "model/org.eclipse.passage.lic.lic_products"); //$NON-NLS-1$//$NON-NLS-2$
 		URI uri = URI.createFileURI(legacy.getPath());
-		Resource resource = new XMIResourceImpl(uri);
+		Resource resource = new ProductsResourceImpl(uri);
 		resource.load(null);
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
@@ -51,7 +51,7 @@ public class ProductsMigratorTest {
 		assertEquals("org.eclipse.passage.lic.product", p0.getIdentifier()); //$NON-NLS-1$
 		assertEquals("Eclipse Passage LIC", p0.getName()); //$NON-NLS-1$
 		assertEquals("Eclipse Passage Licensing Integration Components product", p0.getDescription()); //$NON-NLS-1$
-			
+
 		EList<ProductVersion> p0vs = p0.getProductVersions();
 		assertEquals(2, p0vs.size());
 		ProductVersion p0v0 = p0vs.get(0);
