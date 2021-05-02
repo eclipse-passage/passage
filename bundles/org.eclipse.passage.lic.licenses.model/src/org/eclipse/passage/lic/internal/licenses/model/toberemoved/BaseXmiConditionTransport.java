@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.migration.tobemoved;
+package org.eclipse.passage.lic.internal.licenses.model.toberemoved;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +38,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
-import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
+import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;

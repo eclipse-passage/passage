@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 
 @SuppressWarnings("restriction")
 final class TestEquipment implements Supplier<Equipment> {

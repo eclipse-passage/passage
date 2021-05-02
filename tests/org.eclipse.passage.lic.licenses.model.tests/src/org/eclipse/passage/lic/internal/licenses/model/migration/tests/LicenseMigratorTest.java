@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.migration.tests;
+package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,21 +19,19 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.licenses.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Test;
 
-public class LicenseMigratorTest {
+public final class LicenseMigratorTest {
 
 	private final String pattern = "yyyy-MM-dd'T'HH:mm:ss'.'SSSZ"; //$NON-NLS-1$
 
@@ -66,8 +64,8 @@ public class LicenseMigratorTest {
 		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
 		URI uri = URI.createFileURI(legacy.getPath());
 		// FIXME:AF: should be done via factory
-		Resource resource = new XMIResourceImpl(uri);
-		resource.load(Collections.singletonMap(XMLResource.OPTION_RESOURCE_HANDLER, new LicensesResourceHandler()));
+		Resource resource = new LicensesResourceImpl(uri);
+		resource.load(new HashMap<>());
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.migration.tests.tobemoved;
+package org.eclipse.passage.lic.internal.licenses.model.toberemoved.tests;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructio
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.junit.Ignore;
 
 @Ignore // fix TODOs to make it test something reasonable
