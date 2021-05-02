@@ -88,12 +88,10 @@
 		<module>../../bundles/org.eclipse.passage.lic.products</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.ecore</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.model</module>
-		<module>../../bundles/org.eclipse.passage.lic.products.migration</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.edit</module>
 		<module>../../bundles/org.eclipse.passage.lic.products.e4.ui</module>
 		<module>../../features/org.eclipse.passage.lic.products.feature</module>
 		<module>../../tests/org.eclipse.passage.lic.products.model.tests</module>
-		<module>../../tests/org.eclipse.passage.lic.products.migration.tests</module>
 
 
 		<module>../../bundles/org.eclipse.passage.lic.users</module>

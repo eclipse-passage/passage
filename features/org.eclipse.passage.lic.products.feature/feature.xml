@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lic.products.feature"
       label="%featureName"
-      version="1.0.200.qualifier"
+      version="2.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.passage.lic.products"
       license-feature="org.eclipse.license"
@@ -54,13 +54,6 @@
 
    <plugin
          id="org.eclipse.passage.lic.products.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.passage.lic.products.migration"
          download-size="0"
          install-size="0"
          version="0.0.0"

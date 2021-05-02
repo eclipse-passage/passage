@@ -22,4 +22,11 @@
             genModel="model/products.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated products -->
+      <parser
+            type="products"
+            class="org.eclipse.passage.lic.products.model.util.ProductsResourceFactoryImpl"/>
+   </extension>
+
 </plugin>
