@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,7 +22,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.QualifiedNames;
+import org.eclipse.passage.lic.emf.SimpleQualifiedNames;
 
 public class DelegatingEFactory extends EFactoryImpl {
 
@@ -31,13 +32,16 @@ public class DelegatingEFactory extends EFactoryImpl {
 	public final Map<String, EFactory> eClassFactories = new HashMap<>();
 	public final Map<String, EFactory> eDataTypeFactories = new HashMap<>();
 
+	private final QualifiedNames names;
+
 	public DelegatingEFactory() {
+		names = new SimpleQualifiedNames();
 	}
 
 	public void addEClassDelegate(EFactory factory, Map<EClass, EClass> eClasses) {
 		Set<Entry<EClass, EClass>> entrySet = eClasses.entrySet();
 		for (Entry<EClass, EClass> entry : entrySet) {
-			String key = LicensingEcore.composeFullQualifiedName(entry.getKey());
+			String key = names.caseEClass(entry.getKey());
 			eClassFactories.put(key, factory);
 			eClassMap.put(key, entry.getValue());
 		}
@@ -46,7 +50,7 @@ public class DelegatingEFactory extends EFactoryImpl {
 	public void addEDataTypeDelegate(EFactory factory, Map<EDataType, EDataType> eDataTypes) {
 		Set<Entry<EDataType, EDataType>> entrySet = eDataTypes.entrySet();
 		for (Entry<EDataType, EDataType> entry : entrySet) {
-			String key = LicensingEcore.composeFullQualifiedName(entry.getKey());
+			String key = names.caseEDataType(entry.getKey());
 			eDataTypeFactories.put(key, factory);
 			eDataTypeMap.put(key, entry.getValue());
 		}
@@ -83,23 +87,19 @@ public class DelegatingEFactory extends EFactoryImpl {
 	}
 
 	protected EFactory resolveDelegate(EClass eClass) {
-		String key = LicensingEcore.composeFullQualifiedName(eClass);
-		return eClassFactories.get(key);
+		return eClassFactories.get(names.caseEClass(eClass));
 	}
 
 	protected EFactory resolveDelegate(EDataType eDataType) {
-		String key = LicensingEcore.composeFullQualifiedName(eDataType);
-		return eDataTypeFactories.get(key);
+		return eDataTypeFactories.get(names.caseEDataType(eDataType));
 	}
 
 	protected EClass resolveEClass(EClass eClass) {
-		String key = LicensingEcore.composeFullQualifiedName(eClass);
-		return eClassMap.get(key);
+		return eClassMap.get(names.caseEClass(eClass));
 	}
 
 	protected EDataType resolveEDataType(EDataType eDataType) {
-		String key = LicensingEcore.composeFullQualifiedName(eDataType);
-		return eDataTypeMap.get(key);
+		return eDataTypeMap.get(names.caseEDataType(eDataType));
 	}
 
 }
