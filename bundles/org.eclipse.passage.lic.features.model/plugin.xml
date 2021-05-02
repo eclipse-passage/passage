@@ -22,4 +22,11 @@
             genModel="model/features.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated features -->
+      <parser
+            type="features"
+            class="org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl"/>
+   </extension>
+
 </plugin>
