@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Test;
 
-public class ComposedClassMetadataTest {
+public final class ComposedClassMetadataTest {
 
 	private final EClass type = EcoreFactory.eINSTANCE.createEClass();
 	private final EStructuralFeature id = EcoreFactory.eINSTANCE.createEAttribute();

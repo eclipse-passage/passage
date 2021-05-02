@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Test;
 
-public class PlainEntityMetadataTest {
+public final class PlainEntityMetadataTest {
 
 	private final EClass type = EcoreFactory.eINSTANCE.createEClass();
 	private final EStructuralFeature id = EcoreFactory.eINSTANCE.createEAttribute();

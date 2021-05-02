@@ -21,29 +21,27 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.junit.Test;
 
-public class ExtractResourceTest {
-
-	private final ExtractResource cut = new ExtractResource();
+public final class ExtractResourceTest {
 
 	@Test
 	public void resource() {
 		Resource resource = new ResourceImpl();
-		assertEquals(resource, cut.apply(resource).get());
+		assertEquals(resource, new ExtractResource().apply(resource).get());
 	}
 
 	@Test
 	public void eobject() {
 		EObject eo = EcoreFactory.eINSTANCE.createEObject();
-		assertFalse(cut.apply(eo).isPresent());
+		assertFalse(new ExtractResource().apply(eo).isPresent());
 		Resource resource = new ResourceImpl();
 		resource.getContents().add(eo);
-		assertEquals(resource, cut.apply(eo).get());
+		assertEquals(resource, new ExtractResource().apply(eo).get());
 	}
 
 	@Test
 	public void invalid() {
-		assertFalse(cut.apply(null).isPresent());
-		assertFalse(cut.apply(this).isPresent());
+		assertFalse(new ExtractResource().apply(null).isPresent());
+		assertFalse(new ExtractResource().apply(this).isPresent());
 	}
 
 }
