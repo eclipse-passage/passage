@@ -20,24 +20,22 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Test;
 
-public class SimpleQualifiedNamesTest {
-
-	private final SimpleQualifiedNames cut = new SimpleQualifiedNames();
+public final class SimpleQualifiedNamesTest {
 
 	@Test
 	public void invalid() {
-		assertEquals("", cut.caseEClass(null)); //$NON-NLS-1$
-		assertEquals("", cut.caseEDataType(null)); //$NON-NLS-1$
+		assertEquals("", new SimpleQualifiedNames().caseEClass(null)); //$NON-NLS-1$
+		assertEquals("", new SimpleQualifiedNames().caseEDataType(null)); //$NON-NLS-1$
 	}
 
 	@Test
 	public void plain() {
 		EClass ec = EcoreFactory.eINSTANCE.createEClass();
 		ec.setName("ec"); //$NON-NLS-1$
-		assertEquals("ec", cut.caseEClass(ec)); //$NON-NLS-1$
+		assertEquals("ec", new SimpleQualifiedNames().caseEClass(ec)); //$NON-NLS-1$
 		EDataType edt = EcoreFactory.eINSTANCE.createEDataType();
 		edt.setName("edt"); //$NON-NLS-1$
-		assertEquals("edt", cut.caseEDataType(edt)); //$NON-NLS-1$
+		assertEquals("edt", new SimpleQualifiedNames().caseEDataType(edt)); //$NON-NLS-1$
 	}
 
 	@Test
@@ -48,10 +46,10 @@ public class SimpleQualifiedNamesTest {
 		EClass ec = EcoreFactory.eINSTANCE.createEClass();
 		ec.setName("ec"); //$NON-NLS-1$
 		ep.getEClassifiers().add(ec);
-		assertEquals("nsp.ep.ec", cut.caseEClass(ec)); //$NON-NLS-1$
+		assertEquals("nsp.ep.ec", new SimpleQualifiedNames().caseEClass(ec)); //$NON-NLS-1$
 		EDataType edt = EcoreFactory.eINSTANCE.createEDataType();
 		edt.setName("edt"); //$NON-NLS-1$
 		ep.getEClassifiers().add(edt);
-		assertEquals("nsp.ep.edt", cut.caseEDataType(edt)); //$NON-NLS-1$
+		assertEquals("nsp.ep.edt", new SimpleQualifiedNames().caseEDataType(edt)); //$NON-NLS-1$
 	}
 }

@@ -20,23 +20,21 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 import org.junit.Test;
 
-public class ErrorMessagesTest {
-
-	private final ErrorMessages cut = new ErrorMessages();
+public final class ErrorMessagesTest {
 
 	@Test
 	public void fufilled() {
-		assertTrue(cut.apply(EcoreFactory.eINSTANCE.createEClass()).isPresent());
+		assertTrue(new ErrorMessages().apply(EcoreFactory.eINSTANCE.createEClass()).isPresent());
 	}
 
 	@Test
 	public void ok() {
-		assertFalse(cut.apply(EcoreFactory.eINSTANCE.createEObject()).isPresent());
+		assertFalse(new ErrorMessages().apply(EcoreFactory.eINSTANCE.createEObject()).isPresent());
 	}
 
 	@Test
 	public void invalid() {
-		assertEquals(EmfMessages.LicensingEcore_input_invalid, cut.apply(null).get());
+		assertEquals(EmfMessages.LicensingEcore_input_invalid, new ErrorMessages().apply(null).get());
 	}
 
 }
