@@ -15,11 +15,12 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -59,9 +60,9 @@ final class IssuePersonalLicense {
 
 	ServiceInvocationResult<IssuedLicense> issue(Supplier<LicensePack> template) {
 		LicensePack license = adjsut(EcoreUtil.copy(template.get()));
-		String errors = LicensingEcore.extractValidationError(license);
-		if (errors != null) {
-			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors));
+		Optional<String> errors = new ErrorMessages().apply(license);
+		if (errors.isPresent()) {
+			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
 		}
 		try {
 			new UpdateLicensePlan(licenses).withPersonal(EcoreUtil.copy(license));

@@ -29,7 +29,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
@@ -44,6 +44,7 @@ public final class IssueLicensePackPage extends WizardPage {
 
 	private final IEclipseContext context;
 	private final Supplier<FloatingLicenseRequest> data;
+	private final ErrorMessages validate;
 	private final Adapter update = new EContentAdapter() {
 		@Override
 		public void notifyChanged(Notification notification) {
@@ -58,6 +59,7 @@ public final class IssueLicensePackPage extends WizardPage {
 		super(name);
 		this.context = context;
 		this.data = data;
+		this.validate = new ErrorMessages();
 		setTitle(IssueLicensePageMessages.IssueLicensePackPage_page_title);
 		setDescription(IssueLicensePageMessages.IssueLicensePackPage_page_description);
 	}
@@ -127,9 +129,9 @@ public final class IssueLicensePackPage extends WizardPage {
 	}
 
 	protected boolean validatePage() {
-		String errors = LicensingEcore.extractValidationError(license);
-		setErrorMessage(errors);
-		return errors == null;
+		Optional<String> errors = validate.apply(license);
+		setErrorMessage(errors.orElse(null));// framework requires null
+		return errors.isEmpty();
 	}
 
 	FloatingLicensePack pack() {

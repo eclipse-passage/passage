@@ -21,7 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.passage.lic.emf.ecore.LicensingEcore;
+import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -97,7 +97,7 @@ final class ProductVersionKeys {
 		if (!(target instanceof ProductVersion)) {
 			return Optional.empty();
 		}
-		return Optional.ofNullable(LicensingEcore.extractValidationError(((ProductVersion) target).getProduct()));
+		return new ErrorMessages().apply(((ProductVersion) target).getProduct());
 	}
 
 	private Optional<String> keyIsPresent(LicensedProduct target) throws LicensingException {
