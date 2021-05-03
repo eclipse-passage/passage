@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
+import org.eclipse.passage.lic.emf.migration.ApplyFeatureMap;
+import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -50,7 +52,16 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	@Override
 	protected void convertEntry(Entry<EObject, AnyType> entry) {
 		EObject key = entry.getKey();
-		AnyType value = entry.getValue();
+		if (key instanceof LicensePack) {
+//			LicensePack pack = (LicensePack) key;
+			SimpleFeatureRoutes route = new SimpleFeatureRoutes();
+			route.add("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Product()); //$NON-NLS-1$
+			route.add("productVersion", LicensesPackage.eINSTANCE.getProductRef_Version()); //$NON-NLS-1$
+			new ApplyFeatureMap(entry.getValue().getAnyAttribute(), route)//
+			// FIXME: here we will create a ProductRef
+//			.apply(product.apply(pack));
+			;
+		}
 	}
 
 	private void migrate033() {
@@ -59,7 +70,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		List<String> classifiers = new ArrayList<>();
 		classifiers.add(delegate.getLicensePack().getName());
 		classifiers.add(delegate.getLicenseGrant().getName());
-		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
+		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
 	}
 
 	private void migrate040() {
