@@ -19,8 +19,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 public final class ProductsResourceHandler extends MigratingResourceHandler {
@@ -44,7 +44,7 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 		classifiers.add(delegate.getProduct().getName());
 		classifiers.add(delegate.getProductVersion().getName());
 		classifiers.add(delegate.getProductVersionFeature().getName());
-		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
+		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
 	}
 
 	private void migrate040() {

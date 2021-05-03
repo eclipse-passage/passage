@@ -19,9 +19,9 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
+import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 
 public final class FeaturesResourceHandler extends MigratingResourceHandler {
 
@@ -43,7 +43,7 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 		classifiers.add(delegate.getFeatureSet().getName());
 		classifiers.add(delegate.getFeature().getName());
 		classifiers.add(delegate.getFeatureVersion().getName());
-		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
+		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
 	}
 
 	private void migrate040() {

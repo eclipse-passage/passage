@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.ecore.util;
+package org.eclipse.passage.lic.internal.emf.migration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.passage.lic.emf.QualifiedNames;
 import org.eclipse.passage.lic.emf.SimpleQualifiedNames;
 
-public class DelegatingEFactory extends EFactoryImpl {
+final class DelegatingEFactory extends EFactoryImpl {
 
 	public final Map<String, EClass> eClassMap = new HashMap<>();
 	public final Map<String, EDataType> eDataTypeMap = new HashMap<>();
@@ -34,11 +34,11 @@ public class DelegatingEFactory extends EFactoryImpl {
 
 	private final QualifiedNames names;
 
-	public DelegatingEFactory() {
+	DelegatingEFactory() {
 		names = new SimpleQualifiedNames();
 	}
 
-	public void addEClassDelegate(EFactory factory, Map<EClass, EClass> eClasses) {
+	void addEClassDelegate(EFactory factory, Map<EClass, EClass> eClasses) {
 		Set<Entry<EClass, EClass>> entrySet = eClasses.entrySet();
 		for (Entry<EClass, EClass> entry : entrySet) {
 			String key = names.caseEClass(entry.getKey());
@@ -47,7 +47,7 @@ public class DelegatingEFactory extends EFactoryImpl {
 		}
 	}
 
-	public void addEDataTypeDelegate(EFactory factory, Map<EDataType, EDataType> eDataTypes) {
+	void addEDataTypeDelegate(EFactory factory, Map<EDataType, EDataType> eDataTypes) {
 		Set<Entry<EDataType, EDataType>> entrySet = eDataTypes.entrySet();
 		for (Entry<EDataType, EDataType> entry : entrySet) {
 			String key = names.caseEDataType(entry.getKey());
@@ -86,19 +86,19 @@ public class DelegatingEFactory extends EFactoryImpl {
 		return super.convertToString(eDataType, objectValue);
 	}
 
-	protected EFactory resolveDelegate(EClass eClass) {
+	private EFactory resolveDelegate(EClass eClass) {
 		return eClassFactories.get(names.caseEClass(eClass));
 	}
 
-	protected EFactory resolveDelegate(EDataType eDataType) {
+	private EFactory resolveDelegate(EDataType eDataType) {
 		return eDataTypeFactories.get(names.caseEDataType(eDataType));
 	}
 
-	protected EClass resolveEClass(EClass eClass) {
+	private EClass resolveEClass(EClass eClass) {
 		return eClassMap.get(names.caseEClass(eClass));
 	}
 
-	protected EDataType resolveEDataType(EDataType eDataType) {
+	private EDataType resolveEDataType(EDataType eDataType) {
 		return eDataTypeMap.get(names.caseEDataType(eDataType));
 	}
 

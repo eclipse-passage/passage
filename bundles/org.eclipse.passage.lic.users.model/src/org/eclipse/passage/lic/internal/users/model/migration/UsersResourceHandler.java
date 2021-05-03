@@ -19,8 +19,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 public final class UsersResourceHandler extends MigratingResourceHandler {
@@ -33,8 +33,7 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 
 	@Override
 	protected void convertEntry(Entry<EObject, AnyType> entry) {
-		// TODO Auto-generated method stub
-		
+		// not yet needed
 	}
 
 	private void migrate033() {
@@ -43,7 +42,7 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 		List<String> classifiers = new ArrayList<>();
 		classifiers.add(delegate.getUserOrigin().getName());
 		classifiers.add(delegate.getUser().getName());
-		DelegatingEPackage.delegate(nsUri, delegate, classifiers);
+		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
 	}
 
 	private void migrate040() {
