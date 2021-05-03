@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 public abstract class DecodedRequest<T extends EObject> {
 
@@ -39,7 +40,8 @@ public abstract class DecodedRequest<T extends EObject> {
 	}
 
 	public final T get() throws IOException, LicensingException {
-		return new EObjectFromBytes<>(decoded(request.content()), target()).get(options);
+		// FIXME:AF: should be done via factory
+		return new EObjectFromBytes<>(decoded(request.content()), target(), LicensesResourceImpl::new).get(options);
 	}
 
 	protected abstract Class<T> target();

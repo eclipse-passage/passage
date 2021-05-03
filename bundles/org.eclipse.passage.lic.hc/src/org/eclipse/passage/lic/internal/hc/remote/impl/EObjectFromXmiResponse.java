@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
 import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
@@ -34,7 +35,8 @@ public final class EObjectFromXmiResponse<T extends EObject> implements Response
 	@Override
 	public T read(ResultsTransfered results, RequestContext context) throws LicensingException {
 		contentTypeIsExpected(results);
-		return new EObjectFromBytes<T>(decoded(results.data(), context), expected).get();
+		// FIXME:AF: should be done via factory
+		return new EObjectFromBytes<T>(decoded(results.data(), context), expected, LicensesResourceImpl::new).get();
 	}
 
 	private byte[] decoded(byte[] raw, RequestContext context) throws LicensingException {

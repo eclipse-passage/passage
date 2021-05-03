@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses.migration.tests;
+package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.licenses.migration.tobemoved.XmiConditionTransport;
+import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -85,6 +85,7 @@ public class XmiLicensingConditionExtractorTest {
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
+			// FIXME:AF: should be done via factory
 			Resource saved = new XMIResourceImpl();
 			saved.getContents().add(license);
 			saved.save(fos, new HashMap<>());

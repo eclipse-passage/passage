@@ -51,7 +51,7 @@ public interface LicensesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/1.1.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/licenses/2.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

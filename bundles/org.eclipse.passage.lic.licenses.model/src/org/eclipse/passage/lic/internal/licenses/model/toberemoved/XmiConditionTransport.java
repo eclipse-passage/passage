@@ -10,16 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.migration.tobemoved;
+package org.eclipse.passage.lic.internal.licenses.model.toberemoved;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
-public final class UserFilteringConditionTransport extends BaseXmiConditionTransport {
-
-	public UserFilteringConditionTransport(Supplier<String> user) {
-		super(pack -> user.get().equals(pack.getUserIdentifier()));
-		Objects.requireNonNull(user, "UserFilteringConditionTransport::user"); //$NON-NLS-1$
-	}
+public final class XmiConditionTransport extends BaseXmiConditionTransport {
 
 }

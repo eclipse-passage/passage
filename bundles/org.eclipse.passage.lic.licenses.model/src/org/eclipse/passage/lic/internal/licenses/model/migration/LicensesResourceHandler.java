@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,27 +10,47 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.licenses.migration;
+package org.eclipse.passage.lic.internal.licenses.model.migration;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.ecore.util.DelegatingEPackage;
+import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
+import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
 
-@SuppressWarnings("restriction")
-@Component
-public class LicensesMigrator {
+public class LicensesResourceHandler extends MigratingResourceHandler {
 
-	@Activate
-	public void activate() {
+	@Override
+	protected void ensureMigrations() {
 		migrate033();
 		migrate040();
 		migrate050();
 		migrate100();
+		migrate110();
+	}
+
+	@Override
+	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
+		super.postLoad(resource, inputStream, options);
+		resource.getContents().stream()//
+				.filter(LicensePack.class::isInstance)//
+				.map(LicensePack.class::cast).forEach(new AssignGrantIdentifiers());
+	}
+
+	@Override
+	protected void convertEntry(Entry<EObject, AnyType> entry) {
+		EObject key = entry.getKey();
+		AnyType value = entry.getValue();
 	}
 
 	private void migrate033() {
@@ -45,19 +65,25 @@ public class LicensesMigrator {
 	private void migrate040() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 	private void migrate050() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 	private void migrate100() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/1.0.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
+	}
+
+	private void migrate110() {
+		String nsUri = "http://www.eclipse.org/passage/lic/licenses/1.1.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 }

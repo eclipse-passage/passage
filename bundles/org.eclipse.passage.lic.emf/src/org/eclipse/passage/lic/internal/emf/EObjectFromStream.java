@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,20 +18,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public abstract class EObjectFromStream<T extends EObject> {
 
 	private final Class<T> expected;
+	private final Supplier<Resource> factory;
 
-	public EObjectFromStream(Class<T> expected) {
+	public EObjectFromStream(Class<T> expected, Supplier<Resource> factory) {
 		Objects.requireNonNull(expected, getClass().getSimpleName() + "::expected"); //$NON-NLS-1$
+		Objects.requireNonNull(factory, getClass().getSimpleName() + "::factory"); //$NON-NLS-1$
 		this.expected = expected;
+		this.factory = factory;
 	}
 
 	public T get() throws LicensingException {
@@ -45,7 +48,7 @@ public abstract class EObjectFromStream<T extends EObject> {
 	protected abstract InputStream stream() throws IOException;
 
 	private List<EObject> content(Map<?, ?> options) throws LicensingException {
-		Resource resource = new XMIResourceImpl();
+		Resource resource = factory.get();
 		try (InputStream input = stream()) {
 			resource.load(input, options);
 		} catch (IOException e) {
@@ -63,8 +66,8 @@ public abstract class EObjectFromStream<T extends EObject> {
 
 	private T from(EObject only) throws LicensingException {
 		if (!expected.isInstance(only)) {
-			throw new LicensingException(
-					String.format(EmfMessages.XmiToEObject_unexpected_type, only.eClass().getName()));
+			throw new LicensingException(String.format(EmfMessages.XmiToEObject_unexpected_type,
+					only.getClass().getName(), expected.getName()));
 		}
 		return expected.cast(only);
 	}
