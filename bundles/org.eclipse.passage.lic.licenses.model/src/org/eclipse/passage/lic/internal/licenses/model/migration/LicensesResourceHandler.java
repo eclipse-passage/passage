@@ -36,6 +36,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		migrate040();
 		migrate050();
 		migrate100();
+		migrate110();
 	}
 
 	@Override
@@ -48,8 +49,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 
 	@Override
 	protected void convertEntry(Entry<EObject, AnyType> entry) {
-		// TODO Auto-generated method stub
-
+		EObject key = entry.getKey();
+		AnyType value = entry.getValue();
 	}
 
 	private void migrate033() {
@@ -64,19 +65,25 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	private void migrate040() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.4.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 	private void migrate050() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/0.5.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 	private void migrate100() {
 		String nsUri = "http://www.eclipse.org/passage/lic/licenses/1.0.0"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
+	}
+
+	private void migrate110() {
+		String nsUri = "http://www.eclipse.org/passage/lic/licenses/1.1.0"; //$NON-NLS-1$
+		LicensesPackage delegate = LicensesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
 	}
 
 }

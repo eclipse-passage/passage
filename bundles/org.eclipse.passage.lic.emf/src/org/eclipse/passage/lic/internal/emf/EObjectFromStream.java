@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -66,8 +66,8 @@ public abstract class EObjectFromStream<T extends EObject> {
 
 	private T from(EObject only) throws LicensingException {
 		if (!expected.isInstance(only)) {
-			throw new LicensingException(
-					String.format(EmfMessages.XmiToEObject_unexpected_type, only.eClass().getName()));
+			throw new LicensingException(String.format(EmfMessages.XmiToEObject_unexpected_type,
+					only.getClass().getName(), expected.getName()));
 		}
 		return expected.cast(only);
 	}
