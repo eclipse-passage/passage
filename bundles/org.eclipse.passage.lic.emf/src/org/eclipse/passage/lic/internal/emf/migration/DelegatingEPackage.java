@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 final class DelegatingEPackage extends EPackageImpl {
 
-	private final DelegatingEFactory delegatingEFactory = new DelegatingEFactory();
+	private final DelegatingEFactory factory = new DelegatingEFactory();
 
 	DelegatingEPackage(String nsUri) {
 		setNsURI(nsUri);
-		setEFactoryInstance(delegatingEFactory);
+		setEFactoryInstance(factory);
 	}
 
 	DelegatingEFactory getDelegatingEFactory() {
-		return delegatingEFactory;
+		return factory;
 	}
 
 }
