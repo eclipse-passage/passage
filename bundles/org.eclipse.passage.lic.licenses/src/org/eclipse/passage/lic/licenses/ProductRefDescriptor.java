@@ -17,7 +17,7 @@ package org.eclipse.passage.lic.licenses;
  */
 public interface ProductRefDescriptor {
 
-	String getProduct();
+	String getIdentifier();
 
 	String getVersion();
 

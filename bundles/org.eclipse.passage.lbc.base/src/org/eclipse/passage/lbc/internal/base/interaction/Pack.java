@@ -93,7 +93,7 @@ final class Pack {
 
 		LicensedProduct product() {
 			ProductRef ref = content.getLicense().getProduct();
-			return new BaseLicensedProduct(ref.getProduct(), ref.getVersion());
+			return new BaseLicensedProduct(ref.getIdentifier(), ref.getVersion());
 		}
 
 	}

@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getProduct <em>Product</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getVersion <em>Version</em>}</li>
  * </ul>
  *
@@ -34,27 +34,27 @@ import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
  */
 public interface ProductRef extends EObject, ProductRefDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Product</b></em>' attribute.
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Product</em>' attribute.
-	 * @see #setProduct(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getProductRef_Product()
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getProductRef_Identifier()
 	 * @model required="true"
 	 * @generated
 	 */
 	@Override
-	String getProduct();
+	String getIdentifier();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getProduct <em>Product</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getIdentifier <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Product</em>' attribute.
-	 * @see #getProduct()
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
 	 * @generated
 	 */
-	void setProduct(String value);
+	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.

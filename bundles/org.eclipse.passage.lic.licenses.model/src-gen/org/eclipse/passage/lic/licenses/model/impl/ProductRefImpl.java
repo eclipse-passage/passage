@@ -33,7 +33,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.ProductRefImpl#getProduct <em>Product</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.ProductRefImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.ProductRefImpl#getVersion <em>Version</em>}</li>
  * </ul>
  *
@@ -41,24 +41,24 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  */
 public class ProductRefImpl extends MinimalEObjectImpl.Container implements ProductRef {
 	/**
-	 * The default value of the '{@link #getProduct() <em>Product</em>}' attribute.
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProduct()
+	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PRODUCT_EDEFAULT = null;
+	protected static final String IDENTIFIER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProduct() <em>Product</em>}' attribute.
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProduct()
+	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	private String product = PRODUCT_EDEFAULT;
+	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -105,8 +105,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	 * @generated
 	 */
 	@Override
-	public String getProduct() {
-		return product;
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	/**
@@ -115,12 +115,12 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	 * @generated
 	 */
 	@Override
-	public void setProduct(String newProduct) {
-		String oldProduct = product;
-		product = newProduct;
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PRODUCT_REF__PRODUCT, oldProduct,
-					product));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PRODUCT_REF__IDENTIFIER,
+					oldIdentifier, identifier));
 		}
 	}
 
@@ -157,8 +157,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case LicensesPackage.PRODUCT_REF__PRODUCT:
-			return getProduct();
+		case LicensesPackage.PRODUCT_REF__IDENTIFIER:
+			return getIdentifier();
 		case LicensesPackage.PRODUCT_REF__VERSION:
 			return getVersion();
 		default:
@@ -174,8 +174,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case LicensesPackage.PRODUCT_REF__PRODUCT:
-			setProduct((String) newValue);
+		case LicensesPackage.PRODUCT_REF__IDENTIFIER:
+			setIdentifier((String) newValue);
 			return;
 		case LicensesPackage.PRODUCT_REF__VERSION:
 			setVersion((String) newValue);
@@ -194,8 +194,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.PRODUCT_REF__PRODUCT:
-			setProduct(PRODUCT_EDEFAULT);
+		case LicensesPackage.PRODUCT_REF__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
 		case LicensesPackage.PRODUCT_REF__VERSION:
 			setVersion(VERSION_EDEFAULT);
@@ -214,8 +214,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.PRODUCT_REF__PRODUCT:
-			return !Objects.equals(PRODUCT_EDEFAULT, product);
+		case LicensesPackage.PRODUCT_REF__IDENTIFIER:
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.PRODUCT_REF__VERSION:
 			return !Objects.equals(VERSION_EDEFAULT, version);
 		default:
@@ -234,8 +234,8 @@ public class ProductRefImpl extends MinimalEObjectImpl.Container implements Prod
 			return super.toString();
 		}
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (product: "); //$NON-NLS-1$
-		result.append(product);
+		result.append(" (identifier: "); //$NON-NLS-1$
+		result.append(identifier);
 		result.append(", version: "); //$NON-NLS-1$
 		result.append(version);
 		result.append(')');

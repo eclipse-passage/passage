@@ -30,16 +30,6 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LicensesResourceImpl() {
-		super();
-	}
-
-	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
@@ -47,6 +37,16 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 		super(uri);
 	}
 	
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public LicensesResourceImpl() {
+		super();
+	}
+
 	@Override
 	protected void init() {
 		super.init();
