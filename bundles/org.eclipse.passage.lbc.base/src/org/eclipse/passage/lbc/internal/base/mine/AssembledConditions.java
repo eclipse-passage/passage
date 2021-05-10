@@ -85,12 +85,11 @@ final class AssembledConditions {
 					origin.eClass().getName()));
 		}
 		ValidityPeriodClosed closed = ValidityPeriodClosed.class.cast(origin);
-		ZonedDateTime from = date(closed.getFrom());
-		return new BaseValidityPeriodClosed(from, to(feature, closed, from));
+		return new BaseValidityPeriodClosed(date(closed.getFrom()), to(feature, closed));
 	}
 
-	private ZonedDateTime to(FeatureGrant feature, ValidityPeriodClosed closed, ZonedDateTime from) {
-		return min(date(closed.getUntil()), from.plusMinutes(feature.getVivid()));
+	private ZonedDateTime to(FeatureGrant feature, ValidityPeriodClosed closed) {
+		return min(date(closed.getUntil()), ZonedDateTime.now().plusMinutes(feature.getVivid()));
 	}
 
 	private ZonedDateTime date(Date date) {

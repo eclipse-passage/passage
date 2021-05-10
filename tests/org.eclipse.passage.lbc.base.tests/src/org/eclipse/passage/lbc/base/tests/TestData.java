@@ -35,7 +35,7 @@ public final class TestData {
 		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
 		assertEquals("anti-human-magic.product", grant.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("a77adb87-5a36-4f28-b2e4-274e6b565bed#1", grant.getIdentifier()); //$NON-NLS-1$
+		assertEquals("35c32f83-41c9-4f17-b580-cce3f7f0d4f1#1", grant.getIdentifier()); //$NON-NLS-1$
 		assertEquals("0.0.0", grant.getMatchVersion()); //$NON-NLS-1$
 		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
@@ -50,7 +50,9 @@ public final class TestData {
 	}
 
 	private Date expectedUntil() {
-		return new Date(expectedFrom().getTime() + 60 * 60 * 1000);
+		return Date.from(//
+				ZonedDateTime.of(2021, Month.MAY.getValue(), 8, 0, 0, 0, 0, ZoneId.of("+0300")) //$NON-NLS-1$
+						.toInstant());
 	}
 
 	public LicensedProduct product() {
