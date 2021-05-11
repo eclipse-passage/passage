@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,6 +18,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -29,6 +30,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.passage.lic.users.model.util.UsersAdapterFactory;
 
 /**
@@ -37,7 +39,6 @@ import org.eclipse.passage.lic.users.model.util.UsersAdapterFactory;
  * The adapters also support Eclipse property sheets.
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
- * 
  * <!-- end-user-doc -->
  * @generated
  */
@@ -46,7 +47,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -55,7 +55,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -64,7 +63,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -73,7 +71,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -88,7 +85,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserOrigin} instances.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -97,7 +93,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -113,7 +108,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.User} instances.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -122,7 +116,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.User}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -136,32 +129,8 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserLicense} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UserLicenseItemProvider userLicenseItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserLicense}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUserLicenseAdapter() {
-		if (userLicenseItemProvider == null) {
-			userLicenseItemProvider = new UserLicenseItemProvider(this);
-		}
-
-		return userLicenseItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -173,7 +142,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -184,7 +152,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -196,7 +163,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -207,7 +173,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -226,7 +191,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -238,7 +202,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -250,7 +213,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -266,7 +228,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	/**
 	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -276,8 +237,6 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 			userOriginItemProvider.dispose();
 		if (userItemProvider != null)
 			userItemProvider.dispose();
-		if (userLicenseItemProvider != null)
-			userLicenseItemProvider.dispose();
 	}
 
 }

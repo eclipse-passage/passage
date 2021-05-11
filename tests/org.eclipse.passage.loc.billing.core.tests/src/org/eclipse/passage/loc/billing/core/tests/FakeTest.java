@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2021 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,19 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.users;
+package org.eclipse.passage.loc.billing.core.tests;
 
-import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.junit.Test;
 
-public interface UserRegistry {
+/**
+ * Just to keep bundle compilable (must contain at least on test. Remove when
+ * the bundle starts having sense
+ */
+public final class FakeTest {
+	
+	@Test
+	public void fake() {
 
-	Iterable<? extends UserOriginDescriptor> getUserOrigins();
-
-	UserOriginDescriptor getUserOrigin(String userOriginId);
-
-	Iterable<? extends UserDescriptor> getUsers();
-
-	UserDescriptor getUser(String userId);
+	}
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,12 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.user;
 
+import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -33,6 +31,8 @@ import org.osgi.service.component.annotations.Reference;
  * </p>
  * 
  * @since 0.2
+ *
+ *        TODO: https://bugs.eclipse.org/bugs/show_bug.cgi?id=573488
  */
 @Component
 public final class Customers implements CustomerStorage {
@@ -41,17 +41,12 @@ public final class Customers implements CustomerStorage {
 
 	@Override
 	public Set<UserDescriptor> forProducts(Set<String> products) {
-		return StreamSupport.stream(users.getUserLicenses().spliterator(), false)//
-				.filter(lic -> products.contains(lic.getProductIdentifier())) //
-				.map(UserLicenseDescriptor::getUser) //
-				.collect(Collectors.toSet());
+		return Collections.emptySet(); // TODO: fix after LicensePlanDescriptor gains 'personal' licenses
 	}
 
 	@Override
 	public Set<String> products() {
-		return StreamSupport.stream(users.getUserLicenses().spliterator(), false)//
-				.map(UserLicenseDescriptor::getProductIdentifier) //
-				.collect(Collectors.toSet());
+		return Collections.emptySet(); // TODO:
 	}
 
 	/**

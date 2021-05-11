@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,16 +13,14 @@
 package org.eclipse.passage.lic.users.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
+
 import org.eclipse.passage.lic.users.model.api.User;
-import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 /**
  * <!-- begin-user-doc -->
- * 
- * The <b>Factory</b> for the model. It provides a create method for each
- * non-abstract class of the model.
- * 
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage
  * @generated
@@ -31,7 +29,6 @@ public interface UsersFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -40,7 +37,6 @@ public interface UsersFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>User Origin</em>'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User Origin</em>'.
 	 * @generated
@@ -50,7 +46,6 @@ public interface UsersFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>User</em>'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User</em>'.
 	 * @generated
@@ -58,22 +53,12 @@ public interface UsersFactory extends EFactory {
 	User createUser();
 
 	/**
-	 * Returns a new object of class '<em>User License</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>User License</em>'.
-	 * @generated
-	 */
-	UserLicense createUserLicense();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
 	UsersPackage getUsersPackage();
 
-} // UsersFactory
+} //UsersFactory

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,7 +24,6 @@ import java.util.Set;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.report.internal.core.FakeLicenseDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeLicensePlanDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeLicenseRegistry;
 import org.eclipse.passage.loc.report.internal.core.FakeUserDescriptor;
@@ -126,17 +125,18 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 			UserDescriptor zena = user("zena").get(); //$NON-NLS-1$
 			LicensePlanDescriptor planA = plan("plan-a").get(); //$NON-NLS-1$
 			LicensePlanDescriptor planB = plan("plan-b").get(); //$NON-NLS-1$
-			Arrays.asList(//
-					new FakeLicenseDescriptor(planA, evan, new MovedNow(date -> date.plus(2, ChronoUnit.MONTHS)).get()), //
-					new FakeLicenseDescriptor(planB, evan, new Date()), //
-					new FakeLicenseDescriptor(planA, zena, new Date()), //
-					new FakeLicenseDescriptor(planB, zena, new Date()), //
-					new FakeLicenseDescriptor(planA, dorothea,
-							new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get()), //
-					new FakeLicenseDescriptor(planB, dorothea, new Date()))//
-					.forEach(lic -> {
-						((FakeUserDescriptor) lic.getUser()).bindLicense(lic);
-					});
+			/*
+			 * TODO: 573488 --------------------------------------
+			 * 
+			 * Arrays.asList(// new FakeLicenseDescriptor(planA, evan, new MovedNow(date ->
+			 * date.plus(2, ChronoUnit.MONTHS)).get()), // new FakeLicenseDescriptor(planB,
+			 * evan, new Date()), // new FakeLicenseDescriptor(planA, zena, new Date()), //
+			 * new FakeLicenseDescriptor(planB, zena, new Date()), // new
+			 * FakeLicenseDescriptor(planA, dorothea, new MovedNow(date -> date.minus(2,
+			 * ChronoUnit.MONTHS)).get()), // new FakeLicenseDescriptor(planB, dorothea, new
+			 * Date()))// .forEach(lic -> { ((FakeUserDescriptor)
+			 * lic.getUser()).bindLicense(lic); }); --------------------------------------
+			 */
 		}
 
 		@Override

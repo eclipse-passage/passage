@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,7 +28,6 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
@@ -52,7 +51,6 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 
 	private final Map<String, UserOriginDescriptor> userOriginIndex = new HashMap<>();
 	private final Map<String, UserDescriptor> userIndex = new HashMap<>();
-	private final Map<String, UserLicenseDescriptor> userLicenseIndex = new HashMap<>();
 
 	private EventAdmin events;
 
@@ -123,11 +121,6 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	@Override
-	public Iterable<? extends UserLicenseDescriptor> getUserLicenses() {
-		return new ArrayList<>(userLicenseIndex.values());
-	}
-
-	@Override
 	protected DomainContentAdapter<UserOriginDescriptor, UserDomainRegistry> createContentAdapter() {
 		return new UsersDomainRegistryTracker(this);
 	}
@@ -151,17 +144,6 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 			Platform.getLog(getClass()).warn(msg);
 		}
 		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_CREATE, user).get());
-		user.getUserLicenses().forEach(u -> registerUserLicense(u));
-	}
-
-	public void registerUserLicense(UserLicenseDescriptor userLicense) {
-		String identifier = userLicense.getPackIdentifier();
-		UserLicenseDescriptor existing = userLicenseIndex.put(identifier, userLicense);
-		if (existing != null) {
-			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, userLicense);
-			Platform.getLog(getClass()).warn(msg);
-		}
-		events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_LICENSE_CREATE, userLicense).get());
 	}
 
 	public void unregisterUserOrigin(String userOriginId) {
@@ -178,13 +160,6 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		UserDescriptor removed = userIndex.remove(userId);
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_DELETE, removed).get());
-		}
-	}
-
-	public void unregisterUserLicense(String packId) {
-		UserLicenseDescriptor removed = userLicenseIndex.remove(packId);
-		if (removed != null) {
-			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_LICENSE_DELETE, removed).get());
 		}
 	}
 

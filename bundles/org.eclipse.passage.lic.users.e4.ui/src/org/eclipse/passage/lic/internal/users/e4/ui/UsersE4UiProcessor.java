@@ -45,7 +45,6 @@ public class UsersE4UiProcessor {
 		paths.put(users.getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
 		paths.put(users.getUserOrigin().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
 		paths.put(users.getUser().getName(), String.format(pattern, "user.png")); //$NON-NLS-1$
-		paths.put(users.getUserLicense().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(UsersEditPlugin.class, paths);
 	}
 

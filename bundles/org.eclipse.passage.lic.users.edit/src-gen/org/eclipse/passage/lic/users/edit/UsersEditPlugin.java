@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,13 +13,14 @@
 package org.eclipse.passage.lic.users.edit;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.osgi.framework.BundleActivator;
 
 /**
  * This is the central singleton for the Users edit plugin.
  * <!-- begin-user-doc -->
- * 
  * <!-- end-user-doc -->
  * @generated
  */
@@ -27,7 +28,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -36,7 +36,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -45,7 +44,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -56,7 +54,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the singleton instance.
 	 * @generated
@@ -69,7 +66,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the singleton instance.
 	 * @generated
@@ -81,7 +77,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -89,7 +84,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
-		 * 
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -104,7 +98,6 @@ public final class UsersEditPlugin extends EMFPlugin {
 		/**
 		 * The actual implementation of the purely OSGi-compatible <b>Bundle Activator</b>.
 		 * <!-- begin-user-doc -->
-		 * 
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,15 +32,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
+
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
+
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin} object.
  * <!-- begin-user-doc -->
- * 
  * <!-- end-user-doc -->
  * @generated
  */
@@ -46,7 +51,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -57,7 +61,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -77,7 +80,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -94,7 +96,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -111,7 +112,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -128,7 +128,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * This adds a property descriptor for the Users feature.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -146,7 +145,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -161,7 +159,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -174,22 +171,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This returns User.gif.
-	 * 
 	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -200,32 +182,21 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * 
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		UserOrigin userOrigin = (UserOrigin) object;
-		String identifier = userOrigin.getIdentifier();
-		if (identifier == null || identifier.length() == 0) {
-			return getString("_UI_UserOrigin_type"); //$NON-NLS-1$
-		}
-		String name = userOrigin.getName();
-		if (name == null || name.length() == 0) {
-			return identifier;
-		}
-		return getString("_UI_UserOrigin_text_pattern", new Object[] { identifier, name }); //$NON-NLS-1$
+		String label = ((UserOrigin) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_UserOrigin_type") : //$NON-NLS-1$
+				getString("_UI_UserOrigin_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -252,7 +223,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -267,7 +237,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
