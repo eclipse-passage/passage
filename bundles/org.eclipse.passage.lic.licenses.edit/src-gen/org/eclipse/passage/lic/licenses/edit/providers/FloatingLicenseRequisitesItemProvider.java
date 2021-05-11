@@ -96,7 +96,7 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 		FloatingLicenseRequisites license = (FloatingLicenseRequisites) object;
 		String company = license.getCompany() == null ? "unknown" : license.getCompany(); //$NON-NLS-1$
 		String product = Optional.ofNullable(license.getProduct())//
-				.map(ProductRef::getProduct) //
+				.map(ProductRef::getIdentifier) //
 				.orElse("unknown"); //$NON-NLS-1$
 		String version = Optional.ofNullable(license.getProduct())//
 				.map(ProductRef::getVersion) //

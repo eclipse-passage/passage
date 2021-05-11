@@ -62,25 +62,25 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProductPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
 			addVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Product feature.
+	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProductPropertyDescriptor(Object object) {
+	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ProductRef_product_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ProductRef_product_feature", //$NON-NLS-1$//$NON-NLS-2$
+						getResourceLocator(), getString("_UI_ProductRef_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_ProductRef_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_ProductRef_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getProductRef_Product(), true, false, false,
+						LicensesPackage.eINSTANCE.getProductRef_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -132,7 +132,7 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 		ProductRef product = (ProductRef) object;
 		return getString("_UI_ProductRef_type_detailed", //$NON-NLS-1$
 				new Object[] { //
-						new GetOrUnknown(product.getProduct()).get(), //
+						new GetOrUnknown(product.getIdentifier()).get(), //
 						new GetOrUnknown(product.getVersion()).get() //
 				});
 
@@ -150,7 +150,7 @@ public class ProductRefItemProvider extends ItemProviderAdapter implements IEdit
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProductRef.class)) {
-		case LicensesPackage.PRODUCT_REF__PRODUCT:
+		case LicensesPackage.PRODUCT_REF__IDENTIFIER:
 		case LicensesPackage.PRODUCT_REF__VERSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;

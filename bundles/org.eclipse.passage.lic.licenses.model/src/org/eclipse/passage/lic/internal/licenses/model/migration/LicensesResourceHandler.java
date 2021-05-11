@@ -55,7 +55,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		if (key instanceof LicensePack) {
 //			LicensePack pack = (LicensePack) key;
 			SimpleFeatureRoutes route = new SimpleFeatureRoutes();
-			route.add("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Product()); //$NON-NLS-1$
+			route.add("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Identifier()); //$NON-NLS-1$
 			route.add("productVersion", LicensesPackage.eINSTANCE.getProductRef_Version()); //$NON-NLS-1$
 			new ApplyFeatureMap(entry.getValue().getAnyAttribute(), route)//
 			// FIXME: here we will create a ProductRef

@@ -19,7 +19,7 @@
       <package
             uri="http://www.eclipse.org/passage/lic/licenses/2.0.0"
             class="org.eclipse.passage.lic.licenses.model.meta.LicensesPackage"
-            genModel="model/licenses..genmodel"/>
+            genModel="model/licenses.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">

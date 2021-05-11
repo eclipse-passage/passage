@@ -147,7 +147,7 @@ final class IssueFloatingLicense {
 
 	private Path residence(LicenseRequisites license) {
 		return new UserHomeProductResidence(//
-				license.getProduct().getProduct(), //
+				license.getProduct().getIdentifier(), //
 				license.getProduct().getVersion())//
 						.get()//
 						.resolve(license.getIdentifier());
@@ -164,7 +164,7 @@ final class IssueFloatingLicense {
 	}
 
 	private LicensedProduct product(ProductRef ref) {
-		return new BaseLicensedProduct(ref.getProduct(), ref.getVersion());
+		return new BaseLicensedProduct(ref.getIdentifier(), ref.getVersion());
 	}
 
 	private String decryptedFile(FloatingLicensePack pack) {

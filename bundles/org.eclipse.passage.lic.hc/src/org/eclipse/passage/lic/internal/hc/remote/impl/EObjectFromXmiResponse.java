@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.internal.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
+@SuppressWarnings("restriction")
 public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
 	private final Class<T> expected;

@@ -124,7 +124,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private ProductRef product() {
 		ProductRef product = LicensesFactory.eINSTANCE.createProductRef();
-		product.setProduct(request.productIdentifier());
+		product.setIdentifier(request.productIdentifier());
 		product.setVersion(request.productVersion());
 		return product;
 	}

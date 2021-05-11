@@ -948,7 +948,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProductRef_Product() {
+	public EAttribute getProductRef_Identifier() {
 		return (EAttribute) productRefEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1452,7 +1452,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEAttribute(floatingLicenseRequisitesEClass, FLOATING_LICENSE_REQUISITES__COMPANY);
 
 		productRefEClass = createEClass(PRODUCT_REF);
-		createEAttribute(productRefEClass, PRODUCT_REF__PRODUCT);
+		createEAttribute(productRefEClass, PRODUCT_REF__IDENTIFIER);
 		createEAttribute(productRefEClass, PRODUCT_REF__VERSION);
 
 		floatingServerEClass = createEClass(FLOATING_SERVER);
@@ -1725,8 +1725,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(productRefEClass, ProductRef.class, "ProductRef", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProductRef_Product(), ecorePackage.getEString(), "product", null, 1, 1, ProductRef.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProductRef_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				ProductRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProductRef_Version(), ecorePackage.getEString(), "version", null, 1, 1, ProductRef.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

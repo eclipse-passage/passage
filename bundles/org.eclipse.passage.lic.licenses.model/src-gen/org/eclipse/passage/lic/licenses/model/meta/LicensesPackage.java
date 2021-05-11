@@ -1064,13 +1064,13 @@ public interface LicensesPackage extends EPackage {
 	int PRODUCT_REF = 18;
 
 	/**
-	 * The feature id for the '<em><b>Product</b></em>' attribute.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRODUCT_REF__PRODUCT = PRODUCT_REF_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PRODUCT_REF__IDENTIFIER = PRODUCT_REF_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -2292,15 +2292,15 @@ public interface LicensesPackage extends EPackage {
 	EClass getProductRef();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getProduct <em>Product</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Product</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.ProductRef#getProduct()
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.ProductRef#getIdentifier()
 	 * @see #getProductRef()
 	 * @generated
 	 */
-	EAttribute getProductRef_Product();
+	EAttribute getProductRef_Identifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef#getVersion <em>Version</em>}'.

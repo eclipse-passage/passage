@@ -87,7 +87,7 @@ final class ReassemblingMiningTool extends ArmedMiningTool {
 	}
 
 	private boolean productFits(ProductRef ref) {
-		return new BaseLicensedProduct(ref.getProduct(), ref.getVersion()).equals(product);
+		return new BaseLicensedProduct(ref.getIdentifier(), ref.getVersion()).equals(product);
 	}
 
 	private FloatingLicensePack pack(Path source) throws LicensingException {
