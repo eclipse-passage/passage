@@ -117,7 +117,7 @@ final class ProductVersionKeys {
 	}
 
 	private Optional<String> store(KeyPair pair) throws LicensingException {
-		return new KeyPairStored(pair).get();
+		return new KeyPairStored(pair).store();
 	}
 
 	private KeyPair generate(ProductVersionDescriptor target, LicensedProduct product, StreamCodec codec)
@@ -125,8 +125,6 @@ final class ProductVersionKeys {
 		try (ByteArrayOutputStream open = new ByteArrayOutputStream();
 				ByteArrayOutputStream secret = new ByteArrayOutputStream()) {
 			codec.createKeyPair(open, secret, product.identifier(), new ProductVersionPassword(target).get());
-			open.flush();
-			secret.flush();
 			return new KeyPairGeneraged(codec, open.toByteArray(), secret.toByteArray()).get();
 		} catch (Exception e) {
 			throw new LicensingException("failed to generate keys", e); //$NON-NLS-1$ // TODO: l10n

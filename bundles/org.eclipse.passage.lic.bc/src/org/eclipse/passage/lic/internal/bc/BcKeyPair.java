@@ -97,6 +97,7 @@ final class BcKeyPair {
 	private void persist(PGPKeyRing key, OutputStream target, String error) throws LicensingException {
 		try (ArmoredOutputStream output = new ArmoredOutputStream(new BufferedOutputStream(target))) {
 			key.encode(output);
+			output.flush();
 		} catch (IOException e) {
 			throw new LicensingException(BcMessages.getString(error), e); // $NON-NLS-1$
 		}

@@ -23,15 +23,15 @@ import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 
 @SuppressWarnings("restriction")
-final class KeyPairStored {
+public final class KeyPairStored {
 
 	private final KeyPair pair;
 
-	KeyPairStored(KeyPair pair) {
+	public KeyPairStored(KeyPair pair) {
 		this.pair = pair;
 	}
 
-	public Optional<String> get() throws LicensingException {
+	public Optional<String> store() throws LicensingException {
 		return new OperatorGearAware().withGear(gear -> store(gear.workspace().keys()));
 	}
 
