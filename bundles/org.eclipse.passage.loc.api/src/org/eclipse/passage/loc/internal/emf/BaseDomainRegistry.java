@@ -113,8 +113,9 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 
 	public ServiceInvocationResult<Boolean> loadSource(String source) {
 		URI uri = createURI(source);
-		ResourceSet resourceSet = editingDomain.getResourceSet();
-		Resource resource = resourceSet.createResource(uri);
+		ResourceSet set = editingDomain.getResourceSet();
+		Resource resource = createResource(uri);
+		set.getResources().add(resource);
 		try {
 			resource.load(getLoadOptions());
 			return new BaseServiceInvocationResult<>(true);
@@ -123,6 +124,8 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 					new ResourceLoadFailed(), NLS.bind(EmfMessages.BaseDomainRegistry_e_load_failed, source), e));
 		}
 	}
+
+	protected abstract Resource createResource(URI uri);
 
 	public void unloadSource(String source) {
 		URI uri = createURI(source);

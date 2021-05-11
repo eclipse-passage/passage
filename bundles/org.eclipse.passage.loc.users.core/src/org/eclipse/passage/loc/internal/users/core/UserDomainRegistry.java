@@ -20,8 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.internal.equinox.events.EquinoxEvent;
 import org.eclipse.passage.lic.internal.equinox.io.InstallationPath;
@@ -29,6 +31,7 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
+import org.eclipse.passage.lic.users.model.util.UsersResourceImpl;
 import org.eclipse.passage.loc.internal.emf.BaseDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
@@ -215,6 +218,11 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		Path passagePath = new InstallationPath().get();
 		Files.createDirectories(passagePath);
 		return passagePath.resolve(domainName);
+	}
+
+	@Override
+	protected final Resource createResource(URI uri) {
+		return new UsersResourceImpl(uri);
 	}
 
 }
