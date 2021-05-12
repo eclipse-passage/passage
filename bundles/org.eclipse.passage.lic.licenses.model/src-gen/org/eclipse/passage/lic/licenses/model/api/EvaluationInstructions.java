@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Evaluation Instructions</b></em>'.
@@ -28,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getEvaluationInstructions()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.EvaluationInstructionsDescriptor"
  * @generated
  */
-public interface EvaluationInstructions extends EObject {
+public interface EvaluationInstructions extends EObject, EvaluationInstructionsDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public interface EvaluationInstructions extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getType();
 
 	/**
@@ -64,6 +67,7 @@ public interface EvaluationInstructions extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getExpression();
 
 	/**

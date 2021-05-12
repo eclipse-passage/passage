@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -103,7 +104,8 @@ public interface LicensePackDescriptor {
 	 * This is the value of its <code>"licenseGrants"</code> reference.
 	 *
 	 * @return the license grants
+	 * @since 2.0
 	 */
-	Iterable<? extends LicenseGrantDescriptor> getLicenseGrants();
+	List<? extends LicenseGrantDescriptor> getLicenseGrants();
 
 }

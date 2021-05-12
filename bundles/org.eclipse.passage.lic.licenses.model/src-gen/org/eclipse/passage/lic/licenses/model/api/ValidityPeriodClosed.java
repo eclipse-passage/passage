@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import java.util.Date;
+
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 
 /**

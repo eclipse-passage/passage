@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 
 /**

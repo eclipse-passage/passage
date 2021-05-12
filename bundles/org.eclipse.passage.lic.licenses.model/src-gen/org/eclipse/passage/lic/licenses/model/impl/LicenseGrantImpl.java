@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,24 +13,27 @@
 package org.eclipse.passage.lic.licenses.model.impl;
 
 import java.util.Date;
-
 import java.util.Objects;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model object '<em><b>License Grant</b></em>'.
- * 
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -74,7 +77,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getFeatureIdentifier()
 	 * @generated
@@ -85,7 +87,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getFeatureIdentifier()
 	 * @generated
@@ -96,7 +97,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getMatchVersion()
 	 * @generated
@@ -107,7 +107,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getMatchVersion()
 	 * @generated
@@ -118,7 +117,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getMatchRule()
 	 * @generated
@@ -129,7 +127,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getMatchRule()
 	 * @generated
@@ -140,7 +137,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getValidFrom()
 	 * @generated
@@ -151,7 +147,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getValidFrom()
 	 * @generated
@@ -162,7 +157,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getValidUntil()
 	 * @generated
@@ -173,7 +167,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getValidUntil()
 	 * @generated
@@ -184,7 +177,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getConditionType()
 	 * @generated
@@ -195,7 +187,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getConditionType()
 	 * @generated
@@ -206,7 +197,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getConditionExpression()
 	 * @generated
@@ -217,7 +207,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getConditionExpression()
 	 * @generated
@@ -228,7 +217,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
@@ -239,7 +227,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getCapacity()
 	 * @generated
@@ -249,7 +236,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -259,7 +245,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -270,7 +255,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -281,7 +265,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -297,7 +280,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -308,7 +290,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -324,7 +305,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -335,7 +315,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -351,7 +330,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -362,7 +340,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -378,7 +355,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -389,7 +365,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -405,7 +380,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -416,7 +390,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -432,7 +405,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -443,7 +415,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -459,7 +430,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -470,7 +440,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -486,7 +455,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -497,7 +465,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -513,7 +480,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -527,7 +493,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -538,7 +503,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -567,7 +531,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -586,7 +549,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -602,7 +564,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -619,7 +580,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -653,7 +613,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -698,7 +657,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -743,7 +701,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -777,7 +734,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -809,4 +765,4 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		return result.toString();
 	}
 
-} // LicenseGrantImpl
+} //LicenseGrantImpl

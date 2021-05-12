@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.licenses.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
+
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
@@ -33,10 +34,8 @@ import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 
 /**
  * <!-- begin-user-doc -->
- * 
- * The <b>Factory</b> for the model. It provides a create method for each
- * non-abstract class of the model.
- * 
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage
  * @generated
@@ -45,7 +44,6 @@ public interface LicensesFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -72,7 +70,6 @@ public interface LicensesFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>License Pack</em>'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>License Pack</em>'.
 	 * @generated
@@ -82,7 +79,6 @@ public interface LicensesFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>License Grant</em>'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>License Grant</em>'.
 	 * @generated
@@ -209,11 +205,10 @@ public interface LicensesFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
 	LicensesPackage getLicensesPackage();
 
-} // LicensesFactory
+} //LicensesFactory

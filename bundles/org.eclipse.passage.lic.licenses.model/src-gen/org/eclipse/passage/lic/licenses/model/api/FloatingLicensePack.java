@@ -16,6 +16,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Floating License Pack</b></em>'.
@@ -32,10 +34,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicensePack()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.FloatingLicensePackDescriptor"
  * @generated
  */
-public interface FloatingLicensePack extends EObject {
+public interface FloatingLicensePack extends EObject, FloatingLicensePackDescriptor {
 	/**
 	 * Returns the value of the '<em><b>License</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -46,6 +48,7 @@ public interface FloatingLicensePack extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	FloatingLicenseRequisites getLicense();
 
 	/**
@@ -68,6 +71,7 @@ public interface FloatingLicensePack extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	FloatingServer getHost();
 
 	/**
@@ -90,6 +94,7 @@ public interface FloatingLicensePack extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	EList<UserGrant> getUsers();
 
 	/**
@@ -104,6 +109,7 @@ public interface FloatingLicensePack extends EObject {
 	 * @model opposite="pack" containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	EList<FeatureGrant> getFeatures();
 
 } // FloatingLicensePack
