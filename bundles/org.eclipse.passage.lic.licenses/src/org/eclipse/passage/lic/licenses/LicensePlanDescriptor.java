@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
+import java.util.List;
+
 /**
  * <p>
  * A <code>"License Plan"</code> describes the what is allowed to use for the
@@ -53,7 +55,18 @@ public interface LicensePlanDescriptor {
 	 * plan. This is the value of its <code>"licensePlanFeatures"</code> reference.
 	 *
 	 * @return the license plan features
+	 * @since 2.0
 	 */
-	Iterable<? extends LicensePlanFeatureDescriptor> getLicensePlanFeatures();
+	List<? extends LicensePlanFeatureDescriptor> getLicensePlanFeatures();
+
+	/**
+	 * @since 2.0
+	 */
+	List<? extends LicensePackDescriptor> getPersonal();
+
+	/**
+	 * @since 2.0
+	 */
+	List<? extends FloatingLicensePackDescriptor> getFloating();
 
 }
