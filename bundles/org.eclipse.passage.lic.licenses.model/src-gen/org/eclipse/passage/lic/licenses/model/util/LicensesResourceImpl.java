@@ -12,22 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.util;
 
-import org.eclipse.emf.common.util.URI;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource </b> associated with the package.
+ * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl
  * @generated
  */
 public class LicensesResourceImpl extends XMIResourceImpl {
 	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
@@ -35,4 +37,22 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 		super(uri);
 	}
 
-} //LicensesResourceImpl
+	/**
+	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public LicensesResourceImpl() {
+		super();
+	}
+
+	@Override
+	protected void init() {
+		super.init();
+		Map<Object, Object> options = getDefaultLoadOptions();
+		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		options.put(OPTION_RESOURCE_HANDLER, new LicensesResourceHandler());
+	}
+
+} // LicensesResourceImpl
