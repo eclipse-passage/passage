@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Version Match</b></em>'.
@@ -28,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getVersionMatch()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.VersionMatchDescriptor"
  * @generated
  */
-public interface VersionMatch extends EObject {
+public interface VersionMatch extends EObject, VersionMatchDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public interface VersionMatch extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getVersion();
 
 	/**
@@ -64,6 +67,7 @@ public interface VersionMatch extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getRule();
 
 	/**

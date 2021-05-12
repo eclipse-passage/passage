@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Floating Server</b></em>'.
@@ -28,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingServer()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.FloatingServerDescriptor"
  * @generated
  */
-public interface FloatingServer extends EObject {
+public interface FloatingServer extends EObject, FloatingServerDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -42,6 +44,7 @@ public interface FloatingServer extends EObject {
 	 * @model id="true" required="true"
 	 * @generated
 	 */
+	@Override
 	String getIdentifier();
 
 	/**
@@ -64,6 +67,7 @@ public interface FloatingServer extends EObject {
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
+	@Override
 	EvaluationInstructions getAuthentication();
 
 	/**

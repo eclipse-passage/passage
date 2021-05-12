@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +13,9 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 
@@ -131,6 +133,7 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
+	@Override
 	EList<LicensePack> getPersonal();
 
 	/**
@@ -143,6 +146,7 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @model containment="true"
 	 * @generated
 	 */
+	@Override
 	EList<FloatingLicensePack> getFloating();
 
 } // LicensePlan

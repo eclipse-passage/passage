@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,9 +14,16 @@ package org.eclipse.passage.lic.licenses.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
+import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -24,19 +31,19 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
+import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
+
 import org.eclipse.passage.lic.licenses.model.api.*;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
- * The <b>Adapter Factory</b> for the model. It provides an adapter
- * <code>createXXX</code> method for each class of the model.
- * 
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage
  * @generated
@@ -45,7 +52,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -54,7 +60,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -67,10 +72,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Returns whether this factory is applicable for the type of the object.
 	 * <!-- begin-user-doc -->
-	 * 
-	 * This implementation returns <code>true</code> if the object is either the
-	 * model's package or is an instance object of the model.
-	 * 
+	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
@@ -89,7 +91,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -142,6 +143,36 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseValidityPeriodClosedDescriptor(ValidityPeriodClosedDescriptor object) {
 			return createValidityPeriodClosedDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicensePackDescriptor(FloatingLicensePackDescriptor object) {
+			return createFloatingLicensePackDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServerDescriptor(FloatingServerDescriptor object) {
+			return createFloatingServerDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseUserGrantDescriptor(UserGrantDescriptor object) {
+			return createUserGrantDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFeatureGrantDescriptor(FeatureGrantDescriptor object) {
+			return createFeatureGrantDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseEvaluationInstructionsDescriptor(EvaluationInstructionsDescriptor object) {
+			return createEvaluationInstructionsDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseVersionMatchDescriptor(VersionMatchDescriptor object) {
+			return createVersionMatchDescriptorAdapter();
 		}
 
 		@Override
@@ -248,7 +279,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
@@ -290,11 +320,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
@@ -307,11 +334,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
@@ -406,6 +430,90 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor <em>Floating License Pack Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor
+	 * @generated
+	 */
+	public Adapter createFloatingLicensePackDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.FloatingServerDescriptor <em>Floating Server Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.FloatingServerDescriptor
+	 * @generated
+	 */
+	public Adapter createFloatingServerDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.UserGrantDescriptor <em>User Grant Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.UserGrantDescriptor
+	 * @generated
+	 */
+	public Adapter createUserGrantDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.FeatureGrantDescriptor <em>Feature Grant Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.FeatureGrantDescriptor
+	 * @generated
+	 */
+	public Adapter createFeatureGrantDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor <em>Evaluation Instructions Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor
+	 * @generated
+	 */
+	public Adapter createEvaluationInstructionsDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.VersionMatchDescriptor <em>Version Match Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.VersionMatchDescriptor
+	 * @generated
+	 */
+	public Adapter createVersionMatchDescriptorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan <em>License Plan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -436,11 +544,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack <em>License Pack</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack
@@ -453,11 +558,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant <em>License Grant</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases
-	 * anyway.
-	 * 
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant
@@ -680,9 +782,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * This default implementation returns null.
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @generated
@@ -691,4 +791,4 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} // LicensesAdapterFactory
+} //LicensesAdapterFactory

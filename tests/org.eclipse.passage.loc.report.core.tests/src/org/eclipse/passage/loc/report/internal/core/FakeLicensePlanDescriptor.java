@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
+import java.util.List;
+
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 
@@ -41,8 +45,18 @@ public final class FakeLicensePlanDescriptor implements LicensePlanDescriptor {
 	}
 
 	@Override
-	public Iterable<? extends LicensePlanFeatureDescriptor> getLicensePlanFeatures() {
+	public List<? extends LicensePlanFeatureDescriptor> getLicensePlanFeatures() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<? extends LicensePackDescriptor> getPersonal() {
+		throw new UnsupportedOperationException("MUST be implemented for test purposes"); //$NON-NLS-1$
+	}
+
+	@Override
+	public List<? extends FloatingLicensePackDescriptor> getFloating() {
+		throw new UnsupportedOperationException("MUST be implemented for test purposes"); //$NON-NLS-1$
 	}
 
 }
