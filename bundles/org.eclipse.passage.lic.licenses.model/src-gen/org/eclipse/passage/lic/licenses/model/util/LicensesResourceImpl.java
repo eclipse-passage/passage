@@ -12,11 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.util;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,24 +33,6 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 	 */
 	public LicensesResourceImpl(URI uri) {
 		super(uri);
-	}
-	
-	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public LicensesResourceImpl() {
-		super();
-	}
-
-	@Override
-	protected void init() {
-		super.init();
-		Map<Object, Object> options = getDefaultLoadOptions();
-		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-		options.put(OPTION_RESOURCE_HANDLER, new LicensesResourceHandler());
 	}
 
 } //LicensesResourceImpl

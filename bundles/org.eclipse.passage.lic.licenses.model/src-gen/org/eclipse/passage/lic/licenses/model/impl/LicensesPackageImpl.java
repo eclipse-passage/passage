@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,8 +16,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
+import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -25,8 +31,11 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
+import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
+
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
@@ -46,14 +55,13 @@ import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model <b>Package</b>.
- * 
  * <!-- end-user-doc -->
  * @generated
  */
@@ -74,7 +82,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -82,7 +89,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -135,6 +141,48 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass floatingLicensePackDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass floatingServerDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userGrantDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureGrantDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass evaluationInstructionsDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass versionMatchDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass licensePlanEClass = null;
 
 	/**
@@ -146,7 +194,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -154,7 +201,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -274,7 +320,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#eNS_URI
@@ -287,7 +332,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -299,7 +343,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * <p>This method is used to initialize {@link LicensesPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -354,7 +397,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -365,7 +407,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -432,6 +473,66 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getValidityPeriodClosedDescriptor() {
 		return validityPeriodClosedDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingLicensePackDescriptor() {
+		return floatingLicensePackDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFloatingServerDescriptor() {
+		return floatingServerDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUserGrantDescriptor() {
+		return userGrantDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureGrantDescriptor() {
+		return featureGrantDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEvaluationInstructionsDescriptor() {
+		return evaluationInstructionsDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getVersionMatchDescriptor() {
+		return versionMatchDescriptorEClass;
 	}
 
 	/**
@@ -556,7 +657,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -567,7 +667,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -578,7 +677,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -589,29 +687,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicensePack_ProductIdentifier() {
-		return (EAttribute) licensePackEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicensePack_ProductVersion() {
-		return (EAttribute) licensePackEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -652,7 +727,26 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicensePack_ProductIdentifier() {
+		return (EAttribute) licensePackEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicensePack_ProductVersion() {
+		return (EAttribute) licensePackEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -663,7 +757,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -674,7 +767,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -685,7 +777,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -696,7 +787,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -707,7 +797,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -718,7 +807,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -729,7 +817,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -740,7 +827,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -751,7 +837,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -762,7 +847,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -773,7 +857,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1344,7 +1427,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1355,7 +1437,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1365,7 +1446,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1394,6 +1474,18 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		validityPeriodDescriptorEClass = createEClass(VALIDITY_PERIOD_DESCRIPTOR);
 
 		validityPeriodClosedDescriptorEClass = createEClass(VALIDITY_PERIOD_CLOSED_DESCRIPTOR);
+
+		floatingLicensePackDescriptorEClass = createEClass(FLOATING_LICENSE_PACK_DESCRIPTOR);
+
+		floatingServerDescriptorEClass = createEClass(FLOATING_SERVER_DESCRIPTOR);
+
+		userGrantDescriptorEClass = createEClass(USER_GRANT_DESCRIPTOR);
+
+		featureGrantDescriptorEClass = createEClass(FEATURE_GRANT_DESCRIPTOR);
+
+		evaluationInstructionsDescriptorEClass = createEClass(EVALUATION_INSTRUCTIONS_DESCRIPTOR);
+
+		versionMatchDescriptorEClass = createEClass(VERSION_MATCH_DESCRIPTOR);
 
 		licensePlanEClass = createEClass(LICENSE_PLAN);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__IDENTIFIER);
@@ -1506,7 +1598,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1516,7 +1607,6 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1541,15 +1631,21 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		licensePlanFeatureEClass.getESuperTypes().add(this.getLicensePlanFeatureDescriptor());
 		licensePackEClass.getESuperTypes().add(this.getLicensePackDescriptor());
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
+		floatingLicensePackEClass.getESuperTypes().add(this.getFloatingLicensePackDescriptor());
 		licenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
 		personalLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
 		personalLicenseRequisitesEClass.getESuperTypes().add(this.getPersonalLicenseRequisitesDescriptor());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getFloatingLicenseRequisitesDescriptor());
 		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
+		floatingServerEClass.getESuperTypes().add(this.getFloatingServerDescriptor());
+		userGrantEClass.getESuperTypes().add(this.getUserGrantDescriptor());
+		featureGrantEClass.getESuperTypes().add(this.getFeatureGrantDescriptor());
 		validityPeriodEClass.getESuperTypes().add(this.getValidityPeriodDescriptor());
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriod());
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriodClosedDescriptor());
+		evaluationInstructionsEClass.getESuperTypes().add(this.getEvaluationInstructionsDescriptor());
+		versionMatchEClass.getESuperTypes().add(this.getVersionMatchDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(licensePlanDescriptorEClass, LicensePlanDescriptor.class, "LicensePlanDescriptor", IS_ABSTRACT, //$NON-NLS-1$
@@ -1581,6 +1677,24 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(validityPeriodClosedDescriptorEClass, ValidityPeriodClosedDescriptor.class,
 				"ValidityPeriodClosedDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(floatingLicensePackDescriptorEClass, FloatingLicensePackDescriptor.class,
+				"FloatingLicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(floatingServerDescriptorEClass, FloatingServerDescriptor.class, "FloatingServerDescriptor", //$NON-NLS-1$
+				IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(userGrantDescriptorEClass, UserGrantDescriptor.class, "UserGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(featureGrantDescriptorEClass, FeatureGrantDescriptor.class, "FeatureGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(evaluationInstructionsDescriptorEClass, EvaluationInstructionsDescriptor.class,
+				"EvaluationInstructionsDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(versionMatchDescriptorEClass, VersionMatchDescriptor.class, "VersionMatchDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(licensePlanEClass, LicensePlan.class, "LicensePlan", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1842,4 +1956,4 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createResource(eNS_URI);
 	}
 
-} // LicensesPackageImpl
+} //LicensesPackageImpl

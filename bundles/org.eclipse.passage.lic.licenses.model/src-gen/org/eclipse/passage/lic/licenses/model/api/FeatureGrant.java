@@ -14,6 +14,8 @@ package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Feature Grant</b></em>'.
@@ -33,10 +35,10 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureGrant()
- * @model
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.FeatureGrantDescriptor"
  * @generated
  */
-public interface FeatureGrant extends EObject {
+public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,6 +49,7 @@ public interface FeatureGrant extends EObject {
 	 * @model id="true" required="true"
 	 * @generated
 	 */
+	@Override
 	String getIdentifier();
 
 	/**
@@ -69,6 +72,7 @@ public interface FeatureGrant extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	String getFeature();
 
 	/**
@@ -91,6 +95,7 @@ public interface FeatureGrant extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	VersionMatch getVersion();
 
 	/**
@@ -113,6 +118,7 @@ public interface FeatureGrant extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	ValidityPeriod getValid();
 
 	/**
@@ -135,6 +141,7 @@ public interface FeatureGrant extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	long getVivid();
 
 	/**
@@ -157,6 +164,7 @@ public interface FeatureGrant extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
+	@Override
 	int getCapacity();
 
 	/**
@@ -181,6 +189,7 @@ public interface FeatureGrant extends EObject {
 	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
+	@Override
 	FloatingLicensePack getPack();
 
 	/**

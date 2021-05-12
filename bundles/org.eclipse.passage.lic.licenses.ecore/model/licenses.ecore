@@ -24,6 +24,18 @@
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValidityPeriodClosedDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePackDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingServerDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FloatingServerDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserGrantDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.UserGrantDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrantDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.FeatureGrantDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructionsDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VersionMatchDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.VersionMatchDescriptor"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="LicensePlan" eSuperTypes="#//LicensePlanDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
@@ -85,7 +97,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="licensePack" lowerBound="1"
         eType="#//LicensePack" eOpposite="#//LicensePack/licenseGrants"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack">
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack" eSuperTypes="#//FloatingLicensePackDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="license" lowerBound="1"
         eType="#//FloatingLicenseRequisites" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="host" lowerBound="1" eType="#//FloatingServer"
@@ -119,18 +131,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatingServer">
+  <eClassifiers xsi:type="ecore:EClass" name="FloatingServer" eSuperTypes="#//FloatingServerDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" ordered="false"
         unique="false" lowerBound="1" eType="#//EvaluationInstructions" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UserGrant">
+  <eClassifiers xsi:type="ecore:EClass" name="UserGrant" eSuperTypes="#//UserGrantDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authentication" lowerBound="1"
         eType="#//EvaluationInstructions" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant" eSuperTypes="#//FeatureGrantDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
@@ -153,12 +165,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="until" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructions">
+  <eClassifiers xsi:type="ecore:EClass" name="EvaluationInstructions" eSuperTypes="#//EvaluationInstructionsDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VersionMatch">
+  <eClassifiers xsi:type="ecore:EClass" name="VersionMatch" eSuperTypes="#//VersionMatchDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rule" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
