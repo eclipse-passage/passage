@@ -12,8 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users.model.util;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.passage.lic.internal.users.model.migration.UsersResourceHandler;
 
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
@@ -33,6 +36,18 @@ public class UsersResourceImpl extends XMIResourceImpl {
 	 */
 	public UsersResourceImpl(URI uri) {
 		super(uri);
+	}
+
+	/**
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	protected void init() {
+		super.init();
+		Map<Object, Object> options = getDefaultLoadOptions();
+		options.put(OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		options.put(OPTION_RESOURCE_HANDLER, new UsersResourceHandler());
 	}
 
 } //UsersResourceImpl
