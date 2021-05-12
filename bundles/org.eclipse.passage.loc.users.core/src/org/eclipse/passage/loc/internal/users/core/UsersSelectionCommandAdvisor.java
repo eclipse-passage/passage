@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -46,9 +46,6 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user;
 		}
-		if (UsersPackage.eINSTANCE.getUserLicense().getName().equals(classifier)) {
-			return UsersCoreMessages.UsersSelectionCommandAdvisor_select_user_license;
-		}
 		return null;
 	}
 
@@ -62,9 +59,6 @@ public class UsersSelectionCommandAdvisor implements SelectionCommandAdvisor {
 		}
 		if (UsersPackage.eINSTANCE.getUser().getName().equals(classifier)) {
 			return userRegistry.getUsers();
-		}
-		if (UsersPackage.eINSTANCE.getUserLicense().getName().equals(classifier)) {
-			return userRegistry.getUserLicenses();
 		}
 		return Collections.emptyList();
 	}

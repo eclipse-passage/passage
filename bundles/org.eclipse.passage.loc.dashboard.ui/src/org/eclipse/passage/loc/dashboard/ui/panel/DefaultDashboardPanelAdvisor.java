@@ -57,7 +57,6 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 
 	private DashboardPanelBlock userOrigins;
 	private DashboardPanelBlock users;
-	private DashboardPanelBlock userLicenses;
 
 	private DashboardPanelBlock licensePlans;
 
@@ -196,7 +195,6 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		createLinks(group, UsersPackage.eNAME);
 		userOrigins = createUserOriginBlock(group);
 		users = createUserBlock(group);
-		userLicenses = createUserLicenseBlock(group);
 		updateUserInfo(userRegistry);
 	}
 
@@ -220,21 +218,10 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		return createBlock(parent, domain, eClass, label, info, warning, show);
 	}
 
-	protected DashboardPanelBlock createUserLicenseBlock(Composite parent) {
-		String domain = UsersPackage.eNAME;
-		EClass eClass = UsersPackage.eINSTANCE.getUserLicense();
-		String label = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_title;
-		String info = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_info;
-		String warning = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_warning;
-		String show = DashboardUiMessages.DefaultDashboardPanelAdvisor_user_license_show;
-		return createBlock(parent, domain, eClass, label, info, warning, show);
-	}
-
 	@Override
 	public void updateUserInfo(UserRegistry userRegistry) {
 		userOrigins.update(userRegistry.getUserOrigins());
 		users.update(userRegistry.getUsers());
-		userLicenses.update(userRegistry.getUserLicenses());
 	}
 
 	@Override

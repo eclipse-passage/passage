@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,7 +17,6 @@ import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.lic.users.model.api.User;
-import org.eclipse.passage.lic.users.model.api.UserLicense;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 import org.eclipse.passage.loc.internal.emf.DomainContentAdapter;
@@ -48,18 +47,6 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			switch (notification.getFeatureID(User.class)) {
 			case UsersPackage.USER__EMAIL:
 				processUserEmail(user, notification);
-				break;
-			case UsersPackage.USER__USER_LICENSES:
-				processUserUserLicenses(user, notification);
-				break;
-			default:
-				break;
-			}
-		} else if (notifier instanceof UserLicense) {
-			UserLicense userLicense = (UserLicense) notifier;
-			switch (notification.getFeatureID(User.class)) {
-			case UsersPackage.USER_LICENSE__PACK_IDENTIFIER:
-				processUserLicensePackageIdentifier(userLicense, notification);
 				break;
 			default:
 				break;
@@ -133,61 +120,6 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			}
 			if (newValue != null) {
 				registry.registerUser(user);
-			}
-			break;
-		default:
-			break;
-		}
-	}
-
-	protected void processUserUserLicenses(User user, Notification notification) {
-		Object oldValue = notification.getOldValue();
-		Object newValue = notification.getNewValue();
-		switch (notification.getEventType()) {
-		case Notification.ADD:
-			if (newValue instanceof UserLicense) {
-				UserLicense userLicense = (UserLicense) newValue;
-				if (Objects.equals(user, userLicense.getUser())) {
-					// FIXME: warning
-				}
-				String identifier = userLicense.getPackIdentifier();
-				if (identifier != null) {
-					registry.registerUserLicense(userLicense);
-				} else {
-					// FIXME: warning
-				}
-			}
-			break;
-		case Notification.REMOVE:
-			if (oldValue instanceof UserLicense) {
-				UserLicense userLicense = (UserLicense) oldValue;
-				if (Objects.equals(user, userLicense.getUser())) {
-					// FIXME: warning
-				}
-				String packIdentifier = userLicense.getPackIdentifier();
-				if (packIdentifier != null) {
-					registry.unregisterUserLicense(packIdentifier);
-				} else {
-					// FIXME: warning
-				}
-			}
-			break;
-
-		default:
-			break;
-		}
-	}
-
-	protected void processUserLicensePackageIdentifier(UserLicense userLicense, Notification notification) {
-		String oldValue = notification.getOldStringValue();
-		String newValue = notification.getNewStringValue();
-		switch (notification.getEventType()) {
-		case Notification.SET:
-			if (oldValue != null) {
-				registry.unregisterUserLicense(oldValue);
-			}
-			if (newValue != null) {
-				registry.registerUserLicense(userLicense);
 			}
 			break;
 		default:

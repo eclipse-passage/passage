@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,19 +15,19 @@ package org.eclipse.passage.lic.users.model.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.passage.lic.users.model.api.*;
-import org.eclipse.passage.lic.users.model.api.User;
-import org.eclipse.passage.lic.users.model.api.UserOrigin;
+
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model <b>Factory</b>.
- * 
  * <!-- end-user-doc -->
  * @generated
  */
@@ -35,7 +35,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -54,7 +53,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -64,7 +62,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -75,8 +72,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 			return createUserOrigin();
 		case UsersPackage.USER:
 			return createUser();
-		case UsersPackage.USER_LICENSE:
-			return createUserLicense();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -84,7 +79,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -96,7 +90,6 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -112,25 +105,12 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	 * @generated
 	 */
 	@Override
-	public UserLicense createUserLicense() {
-		UserLicenseImpl userLicense = new UserLicenseImpl();
-		return userLicense;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public UsersPackage getUsersPackage() {
 		return (UsersPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
@@ -140,4 +120,4 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 		return UsersPackage.eINSTANCE;
 	}
 
-} // UsersFactoryImpl
+} //UsersFactoryImpl

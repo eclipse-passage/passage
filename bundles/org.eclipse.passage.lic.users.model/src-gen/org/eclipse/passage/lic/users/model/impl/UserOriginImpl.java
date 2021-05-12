@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,26 +13,30 @@
 package org.eclipse.passage.lic.users.model.impl;
 
 import java.util.Collection;
-
 import java.util.Objects;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
+
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model object '<em><b>User Origin</b></em>'.
- * 
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -50,7 +54,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
@@ -61,7 +64,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getIdentifier()
 	 * @generated
@@ -72,7 +74,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
@@ -83,7 +84,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
@@ -94,7 +94,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
@@ -105,7 +104,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
@@ -116,7 +114,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #getUsers()
 	 * @generated
@@ -126,7 +123,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -136,7 +132,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,7 +142,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -158,7 +152,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -174,7 +167,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -185,7 +177,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -200,7 +191,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -211,7 +201,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -227,7 +216,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -242,7 +230,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -259,7 +246,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -275,7 +261,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -297,7 +282,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -326,7 +310,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -353,7 +336,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -375,7 +357,6 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -395,4 +376,4 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		return result.toString();
 	}
 
-} // UserOriginImpl
+} //UserOriginImpl

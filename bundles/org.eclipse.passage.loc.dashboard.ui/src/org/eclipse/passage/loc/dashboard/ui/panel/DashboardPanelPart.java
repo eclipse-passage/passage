@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -38,7 +38,6 @@ import org.eclipse.passage.lic.products.ProductLineDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionFeatureDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.features.FeatureRegistry;
 import org.eclipse.passage.loc.internal.features.FeatureRegistryEvents;
@@ -232,18 +231,6 @@ public class DashboardPanelPart {
 	@Inject
 	@Optional
 	public void deletedUser(@UIEventTopic(UserRegistryEvents.USER_DELETE) UserDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
-	}
-
-	@Inject
-	@Optional
-	public void createdUserLicense(@UIEventTopic(UserRegistryEvents.USER_LICENSE_CREATE) UserLicenseDescriptor input) {
-		dashboardAdvisor.updateUserInfo(userRegistry);
-	}
-
-	@Inject
-	@Optional
-	public void deletedUserLicense(@UIEventTopic(UserRegistryEvents.USER_LICENSE_DELETE) UserLicenseDescriptor input) {
 		dashboardAdvisor.updateUserInfo(userRegistry);
 	}
 

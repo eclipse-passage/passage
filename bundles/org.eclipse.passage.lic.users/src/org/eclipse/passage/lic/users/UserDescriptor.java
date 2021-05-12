@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -81,11 +81,4 @@ public interface UserDescriptor {
 	 */
 	UserOriginDescriptor getUserOrigin();
 
-	/**
-	 * Returns the <code>"User License"</code>(s) issued for this user plan. This is
-	 * the value of its <code>"userLicenses"</code> reference.
-	 *
-	 * @return the user licenses
-	 */
-	Iterable<? extends UserLicenseDescriptor> getUserLicenses();
 }

@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
 /**
@@ -48,7 +48,7 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 		if (!plan.isPresent()) {
 			return Optional.empty();
 		}
-		List<UserLicenseDescriptor> licenses = storage.licenses(id).stream()//
+		List<LicensePackDescriptor> licenses = storage.licenses(id).stream()//
 				.filter(lic -> lic.getIssueDate().after(parameters.from())) //
 				.filter(lic -> lic.getIssueDate().before(parameters.to()))//
 				.collect(Collectors.toList());
@@ -57,7 +57,7 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 						plan.get(), //
 						licenses.size(), //
 						licenses.stream() //
-								.collect(Collectors.groupingBy(UserLicenseDescriptor::getUser)), //
+								.collect(Collectors.groupingBy(LicensePackDescriptor::getUserIdentifier)), //
 						parameters.explain()//
 				)//
 		);

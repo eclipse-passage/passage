@@ -12,20 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.license;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.users.UserLicenseDescriptor;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @since 0.2
+ * @since 0.2 TODO: https://bugs.eclipse.org/bugs/show_bug.cgi?id=573488
  */
 @Component
 public final class Licenses implements LicenseStorage {
@@ -40,10 +41,8 @@ public final class Licenses implements LicenseStorage {
 	}
 
 	@Override
-	public List<UserLicenseDescriptor> licenses(String plan) {
-		return StreamSupport.stream(users.getUserLicenses().spliterator(), false)//
-				.filter(lic -> plan.equals(lic.getPlanIdentifier())) //
-				.collect(Collectors.toList());
+	public List<LicensePackDescriptor> licenses(String plan) {
+		return Collections.emptyList(); // TODO: 573488
 	}
 
 	@Override

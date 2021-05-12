@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.users.model.migration.UsersResourceHandler;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource </b> associated with the package.
+ * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl
  * @generated
  * @since 2.0
@@ -38,6 +38,10 @@ public class UsersResourceImpl extends XMIResourceImpl {
 		super(uri);
 	}
 
+	/**
+	 * 
+	 * @generated NOT
+	 */
 	@Override
 	protected void init() {
 		super.init();
