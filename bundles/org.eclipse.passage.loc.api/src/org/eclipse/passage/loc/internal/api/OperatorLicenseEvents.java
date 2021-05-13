@@ -29,12 +29,12 @@ public final class OperatorLicenseEvents {
 	public static final String TOPIC = "org/eclipse/passage/loc/api/OperatorLicenseEvents"; //$NON-NLS-1$
 
 	/**
-	 * Sent when decoded {@link LicensePack} is issued
+	 * Sent when decoded {@link PersonalLicensePack} is issued
 	 */
 	public static final String DECODED_ISSUED = TOPIC + TOPIC_SEP + "decodedIssued"; //$NON-NLS-1$
 
 	/**
-	 * Sent when encoded {@link LicensePack} is issued in encoded form
+	 * Sent when encoded {@link PersonalLicensePack} is issued in encoded form
 	 */
 	public static final String ENCODED_ISSUED = TOPIC + TOPIC_SEP + "encodedIssued"; //$NON-NLS-1$
 

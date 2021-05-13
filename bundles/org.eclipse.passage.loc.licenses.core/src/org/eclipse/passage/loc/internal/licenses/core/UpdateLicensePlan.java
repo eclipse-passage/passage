@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
@@ -41,10 +41,10 @@ final class UpdateLicensePlan {
 				: Optional.empty();
 	}
 
-	void withPersonal(LicensePack license) throws IOException {
+	void withPersonal(PersonalLicensePack license) throws IOException {
 		updatePlan(//
 				license, //
-				LicensePack::getPlanIdentifier, //
+				lic -> lic.getLicense().getPlan(), //
 				LicensesPackage.eINSTANCE.getLicensePlan_Personal());
 	}
 

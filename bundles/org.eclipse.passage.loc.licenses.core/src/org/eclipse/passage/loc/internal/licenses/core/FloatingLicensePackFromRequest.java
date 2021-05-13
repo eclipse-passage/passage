@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifie
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
@@ -39,10 +40,12 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 
+@SuppressWarnings("restriction")
 final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePack> {
 
 	private final FloatingLicenseRequest request;
@@ -111,8 +114,13 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.orElse(String.format("%s=%s", new Disk.Serial().toString(), "?")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	private String company() {
-		return users.getUser(request.users().iterator().next()).getUserOrigin().getIdentifier();
+	private CompanyRef company() {
+		UserOriginDescriptor origin = users.getUser(request.users().iterator().next()).getUserOrigin();
+		CompanyRef company = LicensesFactory.eINSTANCE.createCompanyRef();
+		company.setIdentifier(origin.getIdentifier());
+		company.setName(origin.getName());
+		company.setInfo(origin.getDescription());
+		return company;
 	}
 
 	private ValidityPeriod period() {

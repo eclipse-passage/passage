@@ -32,26 +32,26 @@ import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
  */
 public interface FloatingLicenseRequisites extends LicenseRequisites, FloatingLicenseRequisitesDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Company</b></em>' attribute.
+	 * Returns the value of the '<em><b>Company</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Company</em>' attribute.
-	 * @see #setCompany(String)
+	 * @return the value of the '<em>Company</em>' containment reference.
+	 * @see #setCompany(CompanyRef)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicenseRequisites_Company()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getCompany();
+	CompanyRef getCompany();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Company</em>' attribute.
+	 * @param value the new value of the '<em>Company</em>' containment reference.
 	 * @see #getCompany()
 	 * @generated
 	 */
-	void setCompany(String value);
+	void setCompany(CompanyRef value);
 
 } // FloatingLicenseRequisites

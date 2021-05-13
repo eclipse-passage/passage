@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 public class LicensesResourceHandler extends MigratingResourceHandler {
@@ -45,14 +45,14 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
 		super.postLoad(resource, inputStream, options);
 		resource.getContents().stream()//
-				.filter(LicensePack.class::isInstance)//
-				.map(LicensePack.class::cast).forEach(new AssignGrantIdentifiers());
+				.filter(PersonalLicensePack.class::isInstance)//
+				.map(PersonalLicensePack.class::cast).forEach(new AssignGrantIdentifiers());
 	}
 
 	@Override
 	protected void convertEntry(Entry<EObject, AnyType> entry) {
 		EObject key = entry.getKey();
-		if (key instanceof LicensePack) {
+		if (key instanceof PersonalLicensePack) {
 //			LicensePack pack = (LicensePack) key;
 			SimpleFeatureRoutes route = new SimpleFeatureRoutes();
 			route.add("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Identifier()); //$NON-NLS-1$
@@ -68,7 +68,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		List<String> classifiers = new ArrayList<>();
-		classifiers.add(delegate.getLicensePack().getName());
+		classifiers.add(delegate.getPersonalLicensePack().getName());
 		classifiers.add(delegate.getLicenseGrant().getName());
 		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
 	}

@@ -21,7 +21,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.email.Mailing;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
 import org.eclipse.passage.loc.internal.licenses.core.EmailTemplate;
 import org.eclipse.swt.SWT;
@@ -34,12 +34,12 @@ import org.eclipse.swt.widgets.Text;
 public class IssueLicenseDetailsPage extends WizardPage {
 
 	private final IEclipseContext context;
-	private final Supplier<LicensePackDescriptor> data;
+	private final Supplier<PersonalLicensePackDescriptor> data;
 	private Text info;
 	private Text from;
 	private String mailFrom = ""; //$NON-NLS-1$
 
-	protected IssueLicenseDetailsPage(String pageName, Supplier<LicensePackDescriptor> data, IEclipseContext context) {
+	protected IssueLicenseDetailsPage(String pageName, Supplier<PersonalLicensePackDescriptor> data, IEclipseContext context) {
 		super(pageName);
 		this.context = context;
 		this.data = data;

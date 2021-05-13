@@ -32,26 +32,26 @@ import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
  */
 public interface PersonalLicenseRequisites extends LicenseRequisites, PersonalLicenseRequisitesDescriptor {
 	/**
-	 * Returns the value of the '<em><b>User</b></em>' attribute.
+	 * Returns the value of the '<em><b>User</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>User</em>' attribute.
-	 * @see #setUser(String)
+	 * @return the value of the '<em>User</em>' containment reference.
+	 * @see #setUser(UserRef)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicenseRequisites_User()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getUser();
+	UserRef getUser();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser <em>User</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser <em>User</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>User</em>' attribute.
+	 * @param value the new value of the '<em>User</em>' containment reference.
 	 * @see #getUser()
 	 * @generated
 	 */
-	void setUser(String value);
+	void setUser(UserRef value);
 
 } // PersonalLicenseRequisites

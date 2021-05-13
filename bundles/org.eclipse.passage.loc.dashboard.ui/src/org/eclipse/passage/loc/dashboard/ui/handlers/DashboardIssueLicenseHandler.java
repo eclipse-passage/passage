@@ -64,7 +64,7 @@ public class DashboardIssueLicenseHandler {
 
 	private void shape(WizardDialog dialog) {
 		Shell shell = dialog.getShell();
-		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getPersonalLicensePack().getName()));
 		shell.setSize(Math.max(500, shell.getSize().x), 500);
 	}
 

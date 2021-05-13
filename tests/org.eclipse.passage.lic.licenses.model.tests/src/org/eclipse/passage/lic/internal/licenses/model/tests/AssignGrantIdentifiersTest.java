@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,31 +17,46 @@ import static org.junit.Assert.assertEquals;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Test;
 
 public class AssignGrantIdentifiersTest {
 
+	private final String id = "pack-id"; //$NON-NLS-1$
+
 	@Test
 	public void positive() {
-		LicensesFactory factory = LicensesFactory.eINSTANCE;
-		LicensePack pack = factory.createLicensePack();
-		pack.setIdentifier("pack-id"); //$NON-NLS-1$
-		EList<LicenseGrant> grants = pack.getLicenseGrants();
-		LicenseGrant nullId = factory.createLicenseGrant();
-		nullId.setIdentifier(null);
-		grants.add(nullId);
-		LicenseGrant emptyId = factory.createLicenseGrant();
-		emptyId.setIdentifier(""); //$NON-NLS-1$
-		grants.add(emptyId);
-		LicenseGrant hasId = factory.createLicenseGrant();
-		hasId.setIdentifier("grant-id"); //$NON-NLS-1$
-		grants.add(hasId);
+		// given
+		PersonalLicensePack pack = pack();
+		addGrantOfIdentifier(pack, null);
+		addGrantOfIdentifier(pack, ""); //$NON-NLS-1$
+		addGrantOfIdentifier(pack, "grant-id"); //$NON-NLS-1$
+		// when
 		new AssignGrantIdentifiers().accept(pack);
-		assertEquals("pack-id#0", grants.get(0).getIdentifier()); //$NON-NLS-1$
-		assertEquals("pack-id#1", grants.get(1).getIdentifier()); //$NON-NLS-1$
-		assertEquals("grant-id", grants.get(2).getIdentifier()); //$NON-NLS-1$
+		// then
+		expect("pack-id#0", pack, 0); //$NON-NLS-1$
+		assertEquals("pack-id#1", pack, 1); //$NON-NLS-1$
+		assertEquals("grant-id", pack, 2); //$NON-NLS-1$
+	}
+
+	private void expect(String expected, PersonalLicensePack pack, int no) {
+		assertEquals(expected, pack.getGrants().get(no).getIdentifier());
+	}
+
+	private PersonalLicensePack pack() {
+		PersonalLicensePack pack = LicensesFactory.eINSTANCE.createPersonalLicensePack();
+		PersonalLicenseRequisites license = LicensesFactory.eINSTANCE.createPersonalLicenseRequisites();
+		license.setIdentifier(id);
+		return pack;
+	}
+
+	private void addGrantOfIdentifier(PersonalLicensePack pack, String identifier) {
+		EList<LicenseGrant> grants = pack.getGrants();
+		LicenseGrant grant = LicensesFactory.eINSTANCE.createLicenseGrant();
+		grant.setIdentifier(identifier);
+		grants.add(grant);
 	}
 
 }

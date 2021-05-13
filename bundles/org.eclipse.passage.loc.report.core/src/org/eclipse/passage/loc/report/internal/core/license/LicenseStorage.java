@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,17 +15,17 @@ package org.eclipse.passage.loc.report.internal.core.license;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
 /**
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-public interface LicenseStorage extends Storage<LicensePackDescriptor> {
+public interface LicenseStorage extends Storage<PersonalLicensePackDescriptor> {
 
-	List<LicensePackDescriptor> licenses(String plan);
+	List<PersonalLicensePackDescriptor> licenses(String plan);
 
 	List<LicensePlanDescriptor> plans();
 

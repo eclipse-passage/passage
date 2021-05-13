@@ -17,6 +17,6 @@ package org.eclipse.passage.lic.licenses;
  */
 public interface PersonalLicenseRequisitesDescriptor extends LicenseRequisitesDescriptor {
 
-	String getUser();
+	UserRefDescriptor getUser();
 
 }

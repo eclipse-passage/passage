@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
@@ -56,15 +56,15 @@ abstract class DecodedResponse<T extends EObject> {
 		return new SafePayload(new PathKeyKeeper(product, request.state()::source), new MD5Hashes()).decode(raw);
 	}
 
-	static final class License extends DecodedResponse<LicensePack> {
+	static final class License extends DecodedResponse<PersonalLicensePack> {
 
 		License(NetResponse response, RawRequest request) {
 			super(response, request, Collections.singletonMap(LicensesPackage.eNS_URI, LicensesPackage.eINSTANCE));
 		}
 
 		@Override
-		protected Class<LicensePack> target() {
-			return LicensePack.class;
+		protected Class<PersonalLicensePack> target() {
+			return PersonalLicensePack.class;
 		}
 	}
 

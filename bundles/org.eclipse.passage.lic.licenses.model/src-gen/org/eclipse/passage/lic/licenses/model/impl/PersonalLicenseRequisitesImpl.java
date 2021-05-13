@@ -12,16 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
-import java.util.Objects;
-
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 
+import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -39,24 +40,14 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  */
 public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl implements PersonalLicenseRequisites {
 	/**
-	 * The default value of the '{@link #getUser() <em>User</em>}' attribute.
+	 * The cached value of the '{@link #getUser() <em>User</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUser()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String USER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUser()
-	 * @generated
-	 * @ordered
-	 */
-	private String user = USER_EDEFAULT;
+	protected UserRef user;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,7 +74,7 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * @generated
 	 */
 	@Override
-	public String getUser() {
+	public UserRef getUser() {
 		return user;
 	}
 
@@ -92,13 +83,56 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setUser(String newUser) {
-		String oldUser = user;
+	public NotificationChain basicSetUser(UserRef newUser, NotificationChain msgs) {
+		UserRef oldUser = user;
 		user = newUser;
 		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, oldUser, newUser);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUser(UserRef newUser) {
+		if (newUser != user) {
+			NotificationChain msgs = null;
+			if (user != null)
+				msgs = ((InternalEObject) user).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, null, msgs);
+			if (newUser != null)
+				msgs = ((InternalEObject) newUser).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER, null, msgs);
+			msgs = basicSetUser(newUser, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER,
-					oldUser, user));
+					newUser, newUser));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER:
+			return basicSetUser(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -126,7 +160,7 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER:
-			setUser((String) newValue);
+			setUser((UserRef) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -143,7 +177,7 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER:
-			setUser(USER_EDEFAULT);
+			setUser((UserRef) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -160,27 +194,10 @@ public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.PERSONAL_LICENSE_REQUISITES__USER:
-			return !Objects.equals(USER_EDEFAULT, user);
+			return user != null;
 		default:
 			return super.eIsSet(featureID);
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (user: "); //$NON-NLS-1$
-		result.append(user);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PersonalLicenseRequisitesImpl

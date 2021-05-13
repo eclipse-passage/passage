@@ -22,7 +22,7 @@ import java.util.List;
  * <p>
  * 
  * @since 0.5.0
- * @see LicensePackDescriptor
+ * @see PersonalLicensePackDescriptor
  */
 public interface LicensePlanDescriptor {
 
@@ -62,7 +62,7 @@ public interface LicensePlanDescriptor {
 	/**
 	 * @since 2.0
 	 */
-	List<? extends LicensePackDescriptor> getPersonal();
+	List<? extends PersonalLicensePackDescriptor> getPersonal();
 
 	/**
 	 * @since 2.0

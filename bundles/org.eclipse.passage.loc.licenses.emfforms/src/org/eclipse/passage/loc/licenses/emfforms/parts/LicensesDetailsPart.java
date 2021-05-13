@@ -20,7 +20,7 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistryEvents;
 import org.eclipse.passage.loc.workbench.emfforms.parts.DetailsView;
@@ -41,7 +41,7 @@ public class LicensesDetailsPart extends DetailsView {
 
 	@Inject
 	@Optional
-	public void showLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) LicensePack input,
+	public void showLicensePack(@UIEventTopic(LicenseRegistryEvents.LICENSE_PACK_CREATE) PersonalLicensePack input,
 			IEclipseContext context) {
 		show(input, context);
 	}

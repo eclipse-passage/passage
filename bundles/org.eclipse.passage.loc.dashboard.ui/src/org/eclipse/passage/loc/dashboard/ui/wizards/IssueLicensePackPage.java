@@ -29,9 +29,9 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -45,7 +45,7 @@ public class IssueLicensePackPage extends WizardPage {
 	private final IEclipseContext context;
 	private final Supplier<PersonalLicenseRequest> data;
 	private final ErrorMessages validate;
-	private LicensePack license;
+	private PersonalLicensePack license;
 	private VViewModelProperties properties;
 	private Composite base;
 
@@ -61,11 +61,11 @@ public class IssueLicensePackPage extends WizardPage {
 	public void init() {
 		PersonalLicenseRequest request = data.get();
 		if (license != null) {
-			license.setPlanIdentifier(request.plan());
-			license.setProductIdentifier(request.productIdentifier());
-			license.setProductVersion(request.productVersion());
-			license.setUserIdentifier(request.user());
-			EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+			license.getLicense().setPlan(request.plan());
+			license.getLicense().getProduct().setIdentifier(request.productIdentifier());
+			license.getLicense().getProduct().setVersion(request.productVersion());
+			license.getLicense().getUser().setIdentifier(request.user());
+			EList<LicenseGrant> licenseGrants = license.getGrants();
 			for (LicenseGrant licenseGrant : licenseGrants) {
 				licenseGrant.setValidFrom(request.validFrom());
 				licenseGrant.setValidUntil(request.validUntil());
@@ -73,9 +73,9 @@ public class IssueLicensePackPage extends WizardPage {
 			return;
 		}
 		OperatorLicenseService operatorLicenseService = context.get(OperatorLicenseService.class);
-		LicensePackDescriptor licensePackDescriptor = operatorLicenseService.createLicensePack(request);
-		if (licensePackDescriptor instanceof LicensePack) {
-			license = (LicensePack) licensePackDescriptor;
+		PersonalLicensePackDescriptor licensePackDescriptor = operatorLicenseService.createLicensePack(request);
+		if (licensePackDescriptor instanceof PersonalLicensePack) {
+			license = (PersonalLicensePack) licensePackDescriptor;
 			license.eAdapters().add(new EContentAdapter() {
 				@Override
 				public void notifyChanged(Notification notification) {
@@ -123,7 +123,7 @@ public class IssueLicensePackPage extends WizardPage {
 		return errors.isEmpty();
 	}
 
-	public LicensePackDescriptor pack() {
+	public PersonalLicensePackDescriptor pack() {
 		return license;
 	}
 

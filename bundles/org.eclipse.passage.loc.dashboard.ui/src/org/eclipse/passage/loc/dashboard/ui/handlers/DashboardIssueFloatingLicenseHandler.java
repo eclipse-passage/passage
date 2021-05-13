@@ -57,7 +57,7 @@ public class DashboardIssueFloatingLicenseHandler {
 		dialog.create();
 		Shell shell = dialog.getShell();
 		// TODO: floating license pack icon
-		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		shell.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getPersonalLicensePack().getName()));
 		shell.setSize(Math.max(800, shell.getSize().x), 700);
 		dialog.open();
 	}

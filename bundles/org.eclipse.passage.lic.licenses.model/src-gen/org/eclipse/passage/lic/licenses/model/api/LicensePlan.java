@@ -125,7 +125,7 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 
 	/**
 	 * Returns the value of the '<em><b>Personal</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.LicensePack}.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Personal</em>' containment reference list.
@@ -134,7 +134,7 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * @generated
 	 */
 	@Override
-	EList<LicensePack> getPersonal();
+	EList<PersonalLicensePack> getPersonal();
 
 	/**
 	 * Returns the value of the '<em><b>Floating</b></em>' containment reference list.

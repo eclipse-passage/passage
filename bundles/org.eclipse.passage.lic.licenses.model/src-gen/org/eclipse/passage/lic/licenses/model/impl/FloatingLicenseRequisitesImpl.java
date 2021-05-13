@@ -12,14 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
-import java.util.Objects;
-
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -39,24 +40,14 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  */
 public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl implements FloatingLicenseRequisites {
 	/**
-	 * The default value of the '{@link #getCompany() <em>Company</em>}' attribute.
+	 * The cached value of the '{@link #getCompany() <em>Company</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCompany()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String COMPANY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCompany() <em>Company</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCompany()
-	 * @generated
-	 * @ordered
-	 */
-	private String company = COMPANY_EDEFAULT;
+	protected CompanyRef company;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,7 +74,7 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * @generated
 	 */
 	@Override
-	public String getCompany() {
+	public CompanyRef getCompany() {
 		return company;
 	}
 
@@ -92,13 +83,56 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setCompany(String newCompany) {
-		String oldCompany = company;
+	public NotificationChain basicSetCompany(CompanyRef newCompany, NotificationChain msgs) {
+		CompanyRef oldCompany = company;
 		company = newCompany;
 		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, oldCompany, newCompany);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCompany(CompanyRef newCompany) {
+		if (newCompany != company) {
+			NotificationChain msgs = null;
+			if (company != null)
+				msgs = ((InternalEObject) company).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, null, msgs);
+			if (newCompany != null)
+				msgs = ((InternalEObject) newCompany).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY, null, msgs);
+			msgs = basicSetCompany(newCompany, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY,
-					oldCompany, company));
+					newCompany, newCompany));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
+			return basicSetCompany(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -126,7 +160,7 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
-			setCompany((String) newValue);
+			setCompany((CompanyRef) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -143,7 +177,7 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
-			setCompany(COMPANY_EDEFAULT);
+			setCompany((CompanyRef) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -160,27 +194,10 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
-			return !Objects.equals(COMPANY_EDEFAULT, company);
+			return company != null;
 		default:
 			return super.eIsSet(featureID);
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (company: "); //$NON-NLS-1$
-		result.append(company);
-		result.append(')');
-		return result.toString();
 	}
 
 } //FloatingLicenseRequisitesImpl

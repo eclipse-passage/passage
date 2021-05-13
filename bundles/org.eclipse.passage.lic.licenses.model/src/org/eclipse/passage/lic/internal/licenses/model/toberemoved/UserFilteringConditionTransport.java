@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 public final class UserFilteringConditionTransport extends BaseXmiConditionTransport {
 
 	public UserFilteringConditionTransport(Supplier<String> user) {
-		super(pack -> user.get().equals(pack.getUserIdentifier()));
+		super(pack -> user.get().equals(pack.getLicense().getUser().getIdentifier()));
 		Objects.requireNonNull(user, "UserFilteringConditionTransport::user"); //$NON-NLS-1$
 	}
 

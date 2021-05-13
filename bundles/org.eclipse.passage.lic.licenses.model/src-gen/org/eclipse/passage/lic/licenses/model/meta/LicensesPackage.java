@@ -123,10 +123,10 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN_FEATURE_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor <em>License Pack Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePackDescriptor()
 	 * @generated
 	 */
@@ -207,6 +207,62 @@ public interface LicensesPackage extends EPackage {
 	int PRODUCT_REF_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.UserRefDescriptor <em>User Ref Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.UserRefDescriptor
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getUserRefDescriptor()
+	 * @generated
+	 */
+	int USER_REF_DESCRIPTOR = 5;
+
+	/**
+	 * The number of structural features of the '<em>User Ref Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>User Ref Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.CompanyRefDescriptor <em>Company Ref Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.CompanyRefDescriptor
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getCompanyRefDescriptor()
+	 * @generated
+	 */
+	int COMPANY_REF_DESCRIPTOR = 6;
+
+	/**
+	 * The number of structural features of the '<em>Company Ref Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Company Ref Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor <em>License Requisites Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,7 +270,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseRequisitesDescriptor()
 	 * @generated
 	 */
-	int LICENSE_REQUISITES_DESCRIPTOR = 5;
+	int LICENSE_REQUISITES_DESCRIPTOR = 7;
 
 	/**
 	 * The number of structural features of the '<em>License Requisites Descriptor</em>' class.
@@ -242,7 +298,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getPersonalLicenseRequisitesDescriptor()
 	 * @generated
 	 */
-	int PERSONAL_LICENSE_REQUISITES_DESCRIPTOR = 6;
+	int PERSONAL_LICENSE_REQUISITES_DESCRIPTOR = 8;
 
 	/**
 	 * The number of structural features of the '<em>Personal License Requisites Descriptor</em>' class.
@@ -270,7 +326,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicenseRequisitesDescriptor()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_REQUISITES_DESCRIPTOR = 7;
+	int FLOATING_LICENSE_REQUISITES_DESCRIPTOR = 9;
 
 	/**
 	 * The number of structural features of the '<em>Floating License Requisites Descriptor</em>' class.
@@ -298,7 +354,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriodDescriptor()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD_DESCRIPTOR = 8;
+	int VALIDITY_PERIOD_DESCRIPTOR = 10;
 
 	/**
 	 * The number of structural features of the '<em>Validity Period Descriptor</em>' class.
@@ -326,7 +382,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriodClosedDescriptor()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD_CLOSED_DESCRIPTOR = 9;
+	int VALIDITY_PERIOD_CLOSED_DESCRIPTOR = 11;
 
 	/**
 	 * The number of structural features of the '<em>Validity Period Closed Descriptor</em>' class.
@@ -354,7 +410,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicensePackDescriptor()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_PACK_DESCRIPTOR = 10;
+	int FLOATING_LICENSE_PACK_DESCRIPTOR = 12;
 
 	/**
 	 * The number of structural features of the '<em>Floating License Pack Descriptor</em>' class.
@@ -382,7 +438,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingServerDescriptor()
 	 * @generated
 	 */
-	int FLOATING_SERVER_DESCRIPTOR = 11;
+	int FLOATING_SERVER_DESCRIPTOR = 13;
 
 	/**
 	 * The number of structural features of the '<em>Floating Server Descriptor</em>' class.
@@ -410,7 +466,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getUserGrantDescriptor()
 	 * @generated
 	 */
-	int USER_GRANT_DESCRIPTOR = 12;
+	int USER_GRANT_DESCRIPTOR = 14;
 
 	/**
 	 * The number of structural features of the '<em>User Grant Descriptor</em>' class.
@@ -438,7 +494,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFeatureGrantDescriptor()
 	 * @generated
 	 */
-	int FEATURE_GRANT_DESCRIPTOR = 13;
+	int FEATURE_GRANT_DESCRIPTOR = 15;
 
 	/**
 	 * The number of structural features of the '<em>Feature Grant Descriptor</em>' class.
@@ -466,7 +522,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getEvaluationInstructionsDescriptor()
 	 * @generated
 	 */
-	int EVALUATION_INSTRUCTIONS_DESCRIPTOR = 14;
+	int EVALUATION_INSTRUCTIONS_DESCRIPTOR = 16;
 
 	/**
 	 * The number of structural features of the '<em>Evaluation Instructions Descriptor</em>' class.
@@ -494,7 +550,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getVersionMatchDescriptor()
 	 * @generated
 	 */
-	int VERSION_MATCH_DESCRIPTOR = 15;
+	int VERSION_MATCH_DESCRIPTOR = 17;
 
 	/**
 	 * The number of structural features of the '<em>Version Match Descriptor</em>' class.
@@ -522,7 +578,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlan()
 	 * @generated
 	 */
-	int LICENSE_PLAN = 16;
+	int LICENSE_PLAN = 18;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -604,7 +660,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePlanFeature()
 	 * @generated
 	 */
-	int LICENSE_PLAN_FEATURE = 17;
+	int LICENSE_PLAN_FEATURE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Feature Identifier</b></em>' attribute.
@@ -661,113 +717,50 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN_FEATURE_OPERATION_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl <em>License Pack</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.PersonalLicensePackImpl <em>Personal License Pack</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensePackImpl
-	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicensePack()
+	 * @see org.eclipse.passage.lic.licenses.model.impl.PersonalLicensePackImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getPersonalLicensePack()
 	 * @generated
 	 */
-	int LICENSE_PACK = 18;
+	int PERSONAL_LICENSE_PACK = 20;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * The feature id for the '<em><b>License</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 0;
+	int PERSONAL_LICENSE_PACK__LICENSE = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Issue Date</b></em>' attribute.
+	 * The feature id for the '<em><b>Grants</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__ISSUE_DATE = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 1;
+	int PERSONAL_LICENSE_PACK__GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>User Identifier</b></em>' attribute.
+	 * The number of structural features of the '<em>Personal License Pack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__USER_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 2;
+	int PERSONAL_LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>User Full Name</b></em>' attribute.
+	 * The number of operations of the '<em>Personal License Pack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PACK__USER_FULL_NAME = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Request Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__REQUEST_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Plan Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__PLAN_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Product Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__PRODUCT_IDENTIFIER = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Product Version</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__PRODUCT_VERSION = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>License Grants</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK__LICENSE_GRANTS = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 8;
-
-	/**
-	 * The number of structural features of the '<em>License Pack</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK_FEATURE_COUNT = LICENSE_PACK_DESCRIPTOR_FEATURE_COUNT + 9;
-
-	/**
-	 * The number of operations of the '<em>License Pack</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LICENSE_PACK_OPERATION_COUNT = LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT + 0;
+	int PERSONAL_LICENSE_PACK_OPERATION_COUNT = LICENSE_PACK_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl <em>License Grant</em>}' class.
@@ -777,7 +770,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseGrant()
 	 * @generated
 	 */
-	int LICENSE_GRANT = 19;
+	int LICENSE_GRANT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -895,7 +888,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicensePack()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_PACK = 20;
+	int FLOATING_LICENSE_PACK = 22;
 
 	/**
 	 * The feature id for the '<em><b>License</b></em>' containment reference.
@@ -959,7 +952,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getLicenseRequisites()
 	 * @generated
 	 */
-	int LICENSE_REQUISITES = 21;
+	int LICENSE_REQUISITES = 23;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1032,7 +1025,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getPersonalLicenseRequisites()
 	 * @generated
 	 */
-	int PERSONAL_LICENSE_REQUISITES = 22;
+	int PERSONAL_LICENSE_REQUISITES = 24;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1080,7 +1073,7 @@ public interface LicensesPackage extends EPackage {
 	int PERSONAL_LICENSE_REQUISITES__VALID = LICENSE_REQUISITES__VALID;
 
 	/**
-	 * The feature id for the '<em><b>User</b></em>' attribute.
+	 * The feature id for the '<em><b>User</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1114,7 +1107,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicenseRequisites()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_REQUISITES = 23;
+	int FLOATING_LICENSE_REQUISITES = 25;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1162,7 +1155,7 @@ public interface LicensesPackage extends EPackage {
 	int FLOATING_LICENSE_REQUISITES__VALID = LICENSE_REQUISITES__VALID;
 
 	/**
-	 * The feature id for the '<em><b>Company</b></em>' attribute.
+	 * The feature id for the '<em><b>Company</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1196,7 +1189,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getProductRef()
 	 * @generated
 	 */
-	int PRODUCT_REF = 24;
+	int PRODUCT_REF = 26;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1235,6 +1228,107 @@ public interface LicensesPackage extends EPackage {
 	int PRODUCT_REF_OPERATION_COUNT = PRODUCT_REF_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.UserRefImpl <em>User Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.UserRefImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getUserRef()
+	 * @generated
+	 */
+	int USER_REF = 27;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF__IDENTIFIER = USER_REF_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF__NAME = USER_REF_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>User Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF_FEATURE_COUNT = USER_REF_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>User Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_REF_OPERATION_COUNT = USER_REF_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.CompanyRefImpl <em>Company Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.licenses.model.impl.CompanyRefImpl
+	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getCompanyRef()
+	 * @generated
+	 */
+	int COMPANY_REF = 28;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF__IDENTIFIER = COMPANY_REF_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF__NAME = COMPANY_REF_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Info</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF__INFO = COMPANY_REF_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Company Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF_FEATURE_COUNT = COMPANY_REF_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Company Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY_REF_OPERATION_COUNT = COMPANY_REF_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.licenses.model.impl.FloatingServerImpl <em>Floating Server</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1242,7 +1336,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingServer()
 	 * @generated
 	 */
-	int FLOATING_SERVER = 25;
+	int FLOATING_SERVER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1288,7 +1382,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getUserGrant()
 	 * @generated
 	 */
-	int USER_GRANT = 26;
+	int USER_GRANT = 30;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -1334,7 +1428,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFeatureGrant()
 	 * @generated
 	 */
-	int FEATURE_GRANT = 27;
+	int FEATURE_GRANT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1425,7 +1519,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriod()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD = 28;
+	int VALIDITY_PERIOD = 32;
 
 	/**
 	 * The number of structural features of the '<em>Validity Period</em>' class.
@@ -1453,7 +1547,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getValidityPeriodClosed()
 	 * @generated
 	 */
-	int VALIDITY_PERIOD_CLOSED = 29;
+	int VALIDITY_PERIOD_CLOSED = 33;
 
 	/**
 	 * The feature id for the '<em><b>From</b></em>' attribute.
@@ -1499,7 +1593,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getEvaluationInstructions()
 	 * @generated
 	 */
-	int EVALUATION_INSTRUCTIONS = 30;
+	int EVALUATION_INSTRUCTIONS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1545,7 +1639,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getVersionMatch()
 	 * @generated
 	 */
-	int VERSION_MATCH = 31;
+	int VERSION_MATCH = 35;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -1591,7 +1685,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingLicenseAccess()
 	 * @generated
 	 */
-	int FLOATING_LICENSE_ACCESS = 32;
+	int FLOATING_LICENSE_ACCESS = 36;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -1646,7 +1740,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getFloatingServerConnection()
 	 * @generated
 	 */
-	int FLOATING_SERVER_CONNECTION = 33;
+	int FLOATING_SERVER_CONNECTION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Ip</b></em>' attribute.
@@ -1701,7 +1795,7 @@ public interface LicensesPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.licenses.model.impl.LicensesPackageImpl#getGrantAcqisition()
 	 * @generated
 	 */
-	int GRANT_ACQISITION = 34;
+	int GRANT_ACQISITION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1789,11 +1883,11 @@ public interface LicensesPackage extends EPackage {
 	EClass getLicensePlanFeatureDescriptor();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicensePackDescriptor <em>License Pack Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor <em>License Pack Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>License Pack Descriptor</em>'.
-	 * @see org.eclipse.passage.lic.licenses.LicensePackDescriptor
+	 * @see org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor
 	 * @model instanceClass="org.eclipse.passage.lic.licenses.LicensePackDescriptor"
 	 * @generated
 	 */
@@ -1820,6 +1914,28 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProductRefDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.UserRefDescriptor <em>User Ref Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Ref Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.licenses.UserRefDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.UserRefDescriptor"
+	 * @generated
+	 */
+	EClass getUserRefDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.CompanyRefDescriptor <em>Company Ref Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Company Ref Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.licenses.CompanyRefDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.licenses.CompanyRefDescriptor"
+	 * @generated
+	 */
+	EClass getCompanyRefDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor <em>License Requisites Descriptor</em>}'.
@@ -2073,113 +2189,36 @@ public interface LicensesPackage extends EPackage {
 	EReference getLicensePlanFeature_LicensePlan();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack <em>License Pack</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack <em>Personal License Pack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>License Pack</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack
+	 * @return the meta object for class '<em>Personal License Pack</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack
 	 * @generated
 	 */
-	EClass getLicensePack();
+	EClass getPersonalLicensePack();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getLicense <em>License</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getIdentifier()
-	 * @see #getLicensePack()
+	 * @return the meta object for the containment reference '<em>License</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getLicense()
+	 * @see #getPersonalLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicensePack_Identifier();
+	EReference getPersonalLicensePack_License();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate <em>Issue Date</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants <em>Grants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Issue Date</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getIssueDate()
-	 * @see #getLicensePack()
+	 * @return the meta object for the containment reference list '<em>Grants</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants()
+	 * @see #getPersonalLicensePack()
 	 * @generated
 	 */
-	EAttribute getLicensePack_IssueDate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier <em>User Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>User Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserIdentifier()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_UserIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName <em>User Full Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>User Full Name</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getUserFullName()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_UserFullName();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier <em>Request Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Request Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getRequestIdentifier()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_RequestIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier <em>Plan Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Plan Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getPlanIdentifier()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_PlanIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier <em>Product Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Product Identifier</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductIdentifier()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_ProductIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion <em>Product Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Product Version</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getProductVersion()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EAttribute getLicensePack_ProductVersion();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>License Grants</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants()
-	 * @see #getLicensePack()
-	 * @generated
-	 */
-	EReference getLicensePack_LicenseGrants();
+	EReference getPersonalLicensePack_Grants();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant <em>License Grant</em>}'.
@@ -2431,15 +2470,15 @@ public interface LicensesPackage extends EPackage {
 	EClass getPersonalLicenseRequisites();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser <em>User</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>User</em>'.
+	 * @return the meta object for the containment reference '<em>User</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites#getUser()
 	 * @see #getPersonalLicenseRequisites()
 	 * @generated
 	 */
-	EAttribute getPersonalLicenseRequisites_User();
+	EReference getPersonalLicenseRequisites_User();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites <em>Floating License Requisites</em>}'.
@@ -2452,15 +2491,15 @@ public interface LicensesPackage extends EPackage {
 	EClass getFloatingLicenseRequisites();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Company</em>'.
+	 * @return the meta object for the containment reference '<em>Company</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany()
 	 * @see #getFloatingLicenseRequisites()
 	 * @generated
 	 */
-	EAttribute getFloatingLicenseRequisites_Company();
+	EReference getFloatingLicenseRequisites_Company();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.ProductRef <em>Product Ref</em>}'.
@@ -2493,6 +2532,81 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProductRef_Version();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.UserRef <em>User Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Ref</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.UserRef
+	 * @generated
+	 */
+	EClass getUserRef();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.UserRef#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.UserRef#getIdentifier()
+	 * @see #getUserRef()
+	 * @generated
+	 */
+	EAttribute getUserRef_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.UserRef#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.UserRef#getName()
+	 * @see #getUserRef()
+	 * @generated
+	 */
+	EAttribute getUserRef_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.CompanyRef <em>Company Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Company Ref</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.CompanyRef
+	 * @generated
+	 */
+	EClass getCompanyRef();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.CompanyRef#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.CompanyRef#getIdentifier()
+	 * @see #getCompanyRef()
+	 * @generated
+	 */
+	EAttribute getCompanyRef_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.CompanyRef#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.CompanyRef#getName()
+	 * @see #getCompanyRef()
+	 * @generated
+	 */
+	EAttribute getCompanyRef_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.CompanyRef#getInfo <em>Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Info</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.CompanyRef#getInfo()
+	 * @see #getCompanyRef()
+	 * @generated
+	 */
+	EAttribute getCompanyRef_Info();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingServer <em>Floating Server</em>}'.

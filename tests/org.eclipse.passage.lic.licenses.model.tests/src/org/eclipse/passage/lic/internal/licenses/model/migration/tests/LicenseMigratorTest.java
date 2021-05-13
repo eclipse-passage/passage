@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Test;
 
@@ -69,14 +69,14 @@ public final class LicenseMigratorTest {
 		EList<EObject> contents = resource.getContents();
 		EObject eObject = contents.get(0);
 
-		LicensePack pack = LicensePack.class.cast(eObject);
-		assertEquals("org.eclipse.passage.lic.evaluation", pack.getIdentifier()); //$NON-NLS-1$
-		assertEquals(null, pack.getIssueDate());
-		assertEquals("org.eclipse.passage.lic.product", pack.getProductIdentifier()); //$NON-NLS-1$
-		assertEquals("0.4.0", pack.getProductVersion()); //$NON-NLS-1$
-		assertEquals("", pack.getUserIdentifier()); //$NON-NLS-1$
+		PersonalLicensePack pack = PersonalLicensePack.class.cast(eObject);
+		assertEquals("org.eclipse.passage.lic.evaluation", pack.getLicense().getIdentifier()); //$NON-NLS-1$
+		assertEquals(null, pack.getLicense().getIssueDate());
+		assertEquals("org.eclipse.passage.lic.product", pack.getLicense().getProduct().getIdentifier()); //$NON-NLS-1$
+		assertEquals("0.4.0", pack.getLicense().getProduct().getVersion()); //$NON-NLS-1$
+		assertEquals("", pack.getLicense().getUser().getIdentifier()); //$NON-NLS-1$
 
-		EList<LicenseGrant> grants = pack.getLicenseGrants();
+		EList<LicenseGrant> grants = pack.getGrants();
 		assertEquals(1, grants.size());
 
 		LicenseGrant grant = grants.get(0);

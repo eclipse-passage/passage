@@ -40,19 +40,20 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
+@SuppressWarnings("restriction")
 abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	private final ContentType type = new ContentType.Xml();
-	private final Predicate<LicensePack> filter;
+	private final Predicate<PersonalLicensePack> filter;
 
 	protected BaseXmiConditionTransport() {
 		this(p -> true);
 	}
 
-	protected BaseXmiConditionTransport(Predicate<LicensePack> filter) {
+	protected BaseXmiConditionTransport(Predicate<PersonalLicensePack> filter) {
 		this.filter = filter;
 	}
 
@@ -67,10 +68,10 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		Resource resource = new XMIResourceImpl();
 		resource.load(input, loadOptions());
 		return resource.getContents().stream() //
-				.filter(LicensePack.class::isInstance) //
-				.map(LicensePack.class::cast) //
+				.filter(PersonalLicensePack.class::isInstance) //
+				.map(PersonalLicensePack.class::cast) //
 				.filter(filter) //
-				.map(LicensePack::getLicenseGrants) //
+				.map(PersonalLicensePack::getGrants) //
 				.flatMap(i -> StreamSupport.stream(i.spliterator(), false)) //
 				.map(this::condition) //
 				.collect(Collectors.toList());

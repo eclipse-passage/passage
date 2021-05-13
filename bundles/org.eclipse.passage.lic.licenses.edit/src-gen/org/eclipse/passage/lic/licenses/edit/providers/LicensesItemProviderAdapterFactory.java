@@ -132,28 +132,26 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicensePack} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack} instances.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicensePackItemProvider licensePackItemProvider;
+	protected PersonalLicensePackItemProvider personalLicensePackItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicensePack}.
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack}.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLicensePackAdapter() {
-		if (licensePackItemProvider == null) {
-			licensePackItemProvider = new LicensePackItemProvider(this);
+	public Adapter createPersonalLicensePackAdapter() {
+		if (personalLicensePackItemProvider == null) {
+			personalLicensePackItemProvider = new PersonalLicensePackItemProvider(this);
 		}
 
-		return licensePackItemProvider;
+		return personalLicensePackItemProvider;
 	}
 
 	/**
@@ -271,6 +269,52 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 		}
 
 		return productRefItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.UserRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserRefItemProvider userRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.UserRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserRefAdapter() {
+		if (userRefItemProvider == null) {
+			userRefItemProvider = new UserRefItemProvider(this);
+		}
+
+		return userRefItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.CompanyRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompanyRefItemProvider companyRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.CompanyRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompanyRefAdapter() {
+		if (companyRefItemProvider == null) {
+			companyRefItemProvider = new CompanyRefItemProvider(this);
+		}
+
+		return companyRefItemProvider;
 	}
 
 	/**
@@ -598,8 +642,8 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			licensePlanItemProvider.dispose();
 		if (licensePlanFeatureItemProvider != null)
 			licensePlanFeatureItemProvider.dispose();
-		if (licensePackItemProvider != null)
-			licensePackItemProvider.dispose();
+		if (personalLicensePackItemProvider != null)
+			personalLicensePackItemProvider.dispose();
 		if (licenseGrantItemProvider != null)
 			licenseGrantItemProvider.dispose();
 		if (floatingLicensePackItemProvider != null)
@@ -610,6 +654,10 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			floatingLicenseRequisitesItemProvider.dispose();
 		if (productRefItemProvider != null)
 			productRefItemProvider.dispose();
+		if (userRefItemProvider != null)
+			userRefItemProvider.dispose();
+		if (companyRefItemProvider != null)
+			companyRefItemProvider.dispose();
 		if (floatingServerItemProvider != null)
 			floatingServerItemProvider.dispose();
 		if (userGrantItemProvider != null)

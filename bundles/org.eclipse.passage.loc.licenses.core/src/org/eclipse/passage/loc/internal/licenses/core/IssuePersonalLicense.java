@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseEvents;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
@@ -58,8 +58,8 @@ final class IssuePersonalLicense {
 		this.events = events;
 	}
 
-	ServiceInvocationResult<IssuedLicense> issue(Supplier<LicensePack> template) {
-		LicensePack license = adjsut(EcoreUtil.copy(template.get()));
+	ServiceInvocationResult<IssuedLicense> issue(Supplier<PersonalLicensePack> template) {
+		PersonalLicensePack license = adjsut(EcoreUtil.copy(template.get()));
 		Optional<String> errors = new ErrorMessages().apply(license);
 		if (errors.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
@@ -70,13 +70,15 @@ final class IssuePersonalLicense {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_error_io, e));
 		}
-		LicensedProduct product = new BaseLicensedProduct(license.getProductIdentifier(), license.getProductVersion());
+		LicensedProduct product = new BaseLicensedProduct(//
+				license.getLicense().getProduct().getIdentifier(), //
+				license.getLicense().getProduct().getVersion());
 		Path path = new UserHomeProductResidence(product).get();
 
 		Path decrypted;
 		try {
 			decrypted = new PersistedDecoded(path, license)//
-					.write(license.getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
+					.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseDecrypted().get());
 			events.postEvent(OperatorLicenseEvents.decodedIssued(decrypted.toString()));
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
@@ -86,7 +88,7 @@ final class IssuePersonalLicense {
 		Path encrypted;
 		try {
 			encrypted = new PersistedEncoded(product, decrypted, new ProductPassword(products, operator))//
-					.write(license.getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
+					.write(license.getLicense().getIdentifier() + new PassageFileExtension.LicenseEncrypted().get());
 		} catch (LicensingException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(),
 					LicensesCoreMessages.LicenseOperatorServiceImpl_export_error, e));
@@ -95,10 +97,10 @@ final class IssuePersonalLicense {
 		return new BaseServiceInvocationResult<>(new BaseIssuedLicense(license, encrypted, decrypted));
 	}
 
-	private LicensePack adjsut(LicensePack license) {
+	private PersonalLicensePack adjsut(PersonalLicensePack license) {
 		Date issueDate = new Date();
-		license.setIdentifier(UUID.randomUUID().toString());
-		license.setIssueDate(issueDate);
+		license.getLicense().setIdentifier(UUID.randomUUID().toString());
+		license.getLicense().setIssueDate(issueDate);
 		new AssignGrantIdentifiers().accept(license);
 		new PersonalLicenseIssuingProtection().accept(license);
 		return license;

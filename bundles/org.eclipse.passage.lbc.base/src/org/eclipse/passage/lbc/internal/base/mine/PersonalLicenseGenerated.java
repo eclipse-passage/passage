@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,11 +22,13 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
-final class PersonalLicenseGenerated implements Supplier<LicensePack> {
+@SuppressWarnings("restriction")
+final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 
 	private final LicensedProduct product;
 	private final String user;
@@ -39,19 +41,18 @@ final class PersonalLicenseGenerated implements Supplier<LicensePack> {
 	}
 
 	@Override
-	public LicensePack get() {
-		LicensePack pack = LicensesFactory.eINSTANCE.createLicensePack();
-		pack.setIdentifier(generated());
-		pack.setIssueDate(new Date());
-		pack.setPlanIdentifier("ignored"); //$NON-NLS-1$
-		pack.setProductIdentifier(product.identifier());
-		pack.setProductVersion(product.version());
-		pack.setUserFullName(user);
-		pack.setUserIdentifier(user);
-		pack.setRequestIdentifier(generated());
+	public PersonalLicensePack get() {
+		PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
+		pack.getLicense().setIdentifier(generated());
+		pack.getLicense().setIssueDate(new Date());
+		pack.getLicense().setPlan("ignored"); //$NON-NLS-1$
+		pack.getLicense().getProduct().setIdentifier(product.identifier());
+		pack.getLicense().getProduct().setVersion(product.version());
+		pack.getLicense().getUser().setName(user);
+		pack.getLicense().getUser().setIdentifier(user);
 		conditions.stream()//
 				.map(this::grant)//
-				.forEach(pack.getLicenseGrants()::add);
+				.forEach(pack.getGrants()::add);
 		return pack;
 	}
 

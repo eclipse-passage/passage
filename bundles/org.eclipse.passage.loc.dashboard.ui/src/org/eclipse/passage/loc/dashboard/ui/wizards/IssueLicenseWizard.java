@@ -25,8 +25,8 @@ import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.dashboard.ui.wizards.license.WizardInfoBar;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
@@ -74,7 +74,7 @@ public class IssueLicenseWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		OperatorLicenseService licenseService = context.get(OperatorLicenseService.class);
-		LicensePackDescriptor licensePack = pack.pack();
+		PersonalLicensePackDescriptor licensePack = pack.pack();
 		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request.request(), licensePack);
 		if (!new NoSevereErrors().test(result.diagnostic())) {
 			new WizardInfoBar(this).installError("Export failed"); //$NON-NLS-1$
@@ -92,7 +92,7 @@ public class IssueLicenseWizard extends Wizard {
 		}
 	}
 
-	private void processingMail(String from, LicensePackDescriptor licensePack, IssuedLicense result) {
+	private void processingMail(String from, PersonalLicensePackDescriptor licensePack, IssuedLicense result) {
 		Mailing mailing = context.get(Mailing.class);
 		EmailTemplate template = new EmailTemplate(mailing);
 		try {
@@ -109,7 +109,7 @@ public class IssueLicenseWizard extends Wizard {
 	}
 
 	private void broadcast(IssuedLicense result) {
-		LicensePack userLicense = result.license();
+		PersonalLicensePack userLicense = result.license();
 		String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
 		LocWokbench.switchPerspective(context, perspectiveId);
 		IEventBroker broker = context.get(IEventBroker.class);

@@ -14,16 +14,15 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.util.function.Supplier;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 
-final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
+@SuppressWarnings("restriction")
+final class PersonalLicensePackFromRequest implements Supplier<PersonalLicensePack> {
 
 	private final PersonalLicenseRequest request;
 	private final LicenseRegistry licenses;
@@ -34,27 +33,26 @@ final class PersonalLicensePackFromRequest implements Supplier<LicensePack> {
 	}
 
 	@Override
-	public LicensePack get() {
-		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
-		LicensePack pack = licenseFactory.createLicensePack();
-		pack.setRequestIdentifier(request.identifier());
-		pack.setUserIdentifier(request.user());
-		pack.setUserFullName(request.userFullName());
-		pack.setProductIdentifier(request.productIdentifier());
-		pack.setProductVersion(request.productVersion());
-		String planIdentifier = request.plan();
-		pack.setPlanIdentifier(planIdentifier);
-		LicensePlanDescriptor plan = licenses.getLicensePlan(planIdentifier);
-		if (plan == null) {
-			return pack; // FIXME: ServiceInvocationResult<LicensePack> should probably be used
-		}
-		Iterable<? extends LicensePlanFeatureDescriptor> features = plan.getLicensePlanFeatures();
-		EList<LicenseGrant> grants = pack.getLicenseGrants();
-		for (LicensePlanFeatureDescriptor planFeature : features) {
-			LicenseGrant grant = new LicenseGrantFromRequest(planFeature, request).get();
-			grants.add(grant);
-		}
+	public PersonalLicensePack get() {
+		PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
+		installRequisites(pack);
+		installGrants(pack);
 		return pack;
+	}
+
+	private void installRequisites(PersonalLicensePack pack) {
+		pack.getLicense().getUser().setIdentifier(request.user());
+		pack.getLicense().getUser().setName(request.userFullName());
+		pack.getLicense().getProduct().setIdentifier(request.productIdentifier());
+		pack.getLicense().getProduct().setVersion(request.productVersion());
+		pack.getLicense().setPlan(request.plan());
+	}
+
+	private void installGrants(PersonalLicensePack pack) {
+		LicensePlanDescriptor plan = licenses.getLicensePlan(pack.getLicense().getPlan());
+		for (LicensePlanFeatureDescriptor feature : plan.getLicensePlanFeatures()) {
+			pack.getGrants().add(new LicenseGrantFromRequest(feature, request).get());
+		}
 	}
 
 }

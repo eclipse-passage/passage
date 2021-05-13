@@ -32,9 +32,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -134,7 +134,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LicensePack> personal;
+	protected EList<PersonalLicensePack> personal;
 
 	/**
 	 * The cached value of the '{@link #getFloating() <em>Floating</em>}' containment reference list.
@@ -259,9 +259,9 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 */
 	@Override
-	public EList<LicensePack> getPersonal() {
+	public EList<PersonalLicensePack> getPersonal() {
 		if (personal == null) {
-			personal = new EObjectContainmentEList<LicensePack>(LicensePack.class, this,
+			personal = new EObjectContainmentEList<PersonalLicensePack>(PersonalLicensePack.class, this,
 					LicensesPackage.LICENSE_PLAN__PERSONAL);
 		}
 		return personal;
@@ -349,7 +349,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return;
 		case LicensesPackage.LICENSE_PLAN__PERSONAL:
 			getPersonal().clear();
-			getPersonal().addAll((Collection<? extends LicensePack>) newValue);
+			getPersonal().addAll((Collection<? extends PersonalLicensePack>) newValue);
 			return;
 		case LicensesPackage.LICENSE_PLAN__FLOATING:
 			getFloating().clear();

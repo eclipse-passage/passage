@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
@@ -23,12 +24,13 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
+import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 
@@ -68,13 +70,13 @@ public interface LicensesFactory extends EFactory {
 	LicensePlanFeature createLicensePlanFeature();
 
 	/**
-	 * Returns a new object of class '<em>License Pack</em>'.
+	 * Returns a new object of class '<em>Personal License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>License Pack</em>'.
+	 * @return a new object of class '<em>Personal License Pack</em>'.
 	 * @generated
 	 */
-	LicensePack createLicensePack();
+	PersonalLicensePack createPersonalLicensePack();
 
 	/**
 	 * Returns a new object of class '<em>License Grant</em>'.
@@ -120,6 +122,24 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	ProductRef createProductRef();
+
+	/**
+	 * Returns a new object of class '<em>User Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Ref</em>'.
+	 * @generated
+	 */
+	UserRef createUserRef();
+
+	/**
+	 * Returns a new object of class '<em>Company Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Company Ref</em>'.
+	 * @generated
+	 */
+	CompanyRef createCompanyRef();
 
 	/**
 	 * Returns a new object of class '<em>Floating Server</em>'.

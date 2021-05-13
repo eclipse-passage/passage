@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -29,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 
@@ -45,17 +45,19 @@ public class EmailTemplate {
 		this.mailing = mailing;
 	}
 
-	public List<String> details(LicensePackDescriptor licensePack) {
+	public List<String> details(PersonalLicensePackDescriptor pack) {
 		List<String> builder = new ArrayList<>();
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_request_lbl, licensePack.getRequestIdentifier()));
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_request_lbl, pack.getLicense().getIdentifier()));
 		builder.add(""); //$NON-NLS-1$
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_plan_lbl, licensePack.getPlanIdentifier()));
-		Optional.ofNullable(licensePack.getIdentifier())//
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_plan_lbl, pack.getLicense().getPlan()));
+		Optional.ofNullable(pack.getLicense().getIdentifier())//
 				.ifPresent(x -> builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_package_lbl, x)));
 		builder.add(""); //$NON-NLS-1$
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_lbl, licensePack.getProductIdentifier()));
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl, licensePack.getProductVersion()));
-		for (LicenseGrantDescriptor grant : licensePack.getLicenseGrants()) {
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_lbl,
+				pack.getLicense().getProduct().getIdentifier()));
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl,
+				pack.getLicense().getProduct().getVersion()));
+		for (LicenseGrantDescriptor grant : pack.getGrants()) {
 			builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_feature_lbl, grant.getFeatureIdentifier()));
 			String conditionExpression = grant.getConditionExpression();
 			if (conditionExpression != null && !conditionExpression.isEmpty()) {
@@ -63,37 +65,39 @@ public class EmailTemplate {
 			}
 		}
 		builder.add(""); //$NON-NLS-1$
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_user_lbl, licensePack.getUserIdentifier()));
-		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_user_name_lbl, licensePack.getUserFullName()));
+		builder.add(
+				NLS.bind(LicensesCoreMessages.LicenseRequest_user_lbl, pack.getLicense().getUser().getIdentifier()));
+		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_user_name_lbl, pack.getLicense().getUser().getName()));
 		builder.add(""); //$NON-NLS-1$
-		Optional.ofNullable(licensePack.getIssueDate())//
+		Optional.ofNullable(pack.getLicense().getIssueDate())//
 				.ifPresent(x -> builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_issue_date_lbl, x)));
 		builder.add(""); //$NON-NLS-1$
 		return builder;
 	}
 
-	public String mailTo(LicensePackDescriptor licensePack) {
+	public String mailTo(PersonalLicensePackDescriptor pack) {
 		StringBuilder builder = new StringBuilder("mailto:"); //$NON-NLS-1$
-		builder.append(licensePack.getUserIdentifier());
+		builder.append(pack.getLicense().getUser().getIdentifier());
 		builder.append("?subject="); //$NON-NLS-1$
 		builder.append(LicensesCoreMessages.LicenseRequest_mailto_subject_lbl);
 		builder.append("&body="); //$NON-NLS-1$
-		builder.append(NLS.bind(LicensesCoreMessages.LicenseRequest_mailto_appeal_lbl, licensePack.getUserFullName()));
+		builder.append(
+				NLS.bind(LicensesCoreMessages.LicenseRequest_mailto_appeal_lbl, pack.getLicense().getUser().getName()));
 		builder.append(separator);
 		builder.append(LicensesCoreMessages.LicenseRequest_mailto_body_base_lbl);
 		builder.append(separator).append(separator);
 		builder.append(LicensesCoreMessages.LicenseRequest_mailto_body_details_lbl);
 		builder.append(separator);
-		builder.append(details(licensePack).stream().collect(Collectors.joining(separator)));
+		builder.append(details(pack).stream().collect(Collectors.joining(separator)));
 		return builder.toString();
 	}
 
-	public File createEmlFile(String from, LicensePackDescriptor licensePack, IssuedLicense result) throws IOException {
+	public File createEmlFile(String from, PersonalLicensePackDescriptor licensePack, IssuedLicense result) throws IOException {
 		File attachment = result.encrypted().toFile();
 		File emlFile = new File(attachment.toString() + dotEml);
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {
 			Mailing service = mailing;
-			EmailDescriptor descriptor = service.createMail(licensePack.getUserIdentifier(), from,
+			EmailDescriptor descriptor = service.createMail(licensePack.getLicense().getUser().getIdentifier(), from,
 					LicensesCoreMessages.LicenseRequest_mailto_subject_lbl, //
 					details(licensePack).stream().collect(Collectors.joining(System.lineSeparator())), //
 					Collections.singleton(attachment.getPath()));
