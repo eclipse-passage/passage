@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -35,7 +35,7 @@ public final class TestData {
 		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
 		assertEquals("anti-human-magic.product", grant.getFeatureIdentifier()); //$NON-NLS-1$
-		assertEquals("35c32f83-41c9-4f17-b580-cce3f7f0d4f1#1", grant.getIdentifier()); //$NON-NLS-1$
+		assertEquals("2fa76bd6-f1b0-4d6b-9e86-280483aedc32#1", grant.getIdentifier()); //$NON-NLS-1$
 		assertEquals("0.0.0", grant.getMatchVersion()); //$NON-NLS-1$
 		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());

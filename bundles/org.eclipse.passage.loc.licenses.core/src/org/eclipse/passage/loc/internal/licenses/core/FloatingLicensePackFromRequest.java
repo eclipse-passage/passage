@@ -119,7 +119,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 		CompanyRef company = LicensesFactory.eINSTANCE.createCompanyRef();
 		company.setIdentifier(origin.getIdentifier());
 		company.setName(origin.getName());
-		company.setInfo(origin.getDescription());
+		company.setInfo(Optional.ofNullable(origin.getDescription()).orElse("")); //$NON-NLS-1$
 		return company;
 	}
 
