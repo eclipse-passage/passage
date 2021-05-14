@@ -27,6 +27,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 import org.osgi.framework.Bundle;
@@ -110,7 +111,7 @@ public abstract class BaseClassifierWizard<N extends BaseClassifierWizardPage> e
 		}
 	}
 
-	protected abstract void store();
+	protected abstract ServiceInvocationResult<Boolean> store();
 
 	protected void failed(Throwable target) {
 		Bundle bundle = FrameworkUtil.getBundle(getClass());

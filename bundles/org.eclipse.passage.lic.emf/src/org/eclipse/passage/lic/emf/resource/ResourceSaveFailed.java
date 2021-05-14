@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,16 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.api.diagnostic.code;
+package org.eclipse.passage.lic.emf.resource;
 
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
-@SuppressWarnings("restriction")
-public final class ResourceLoadFailed extends TroubleCode {
+/**
+ * @since 2.0
+ */
+public final class ResourceSaveFailed extends TroubleCode {
 
-	public ResourceLoadFailed() {
-		super(899, EmfMessages.ResourceLoadFailed_explanation);
+	public ResourceSaveFailed() {
+		super(898, EmfMessages.ResourceSaveFailed_explanation);
 	}
 
 }

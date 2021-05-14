@@ -29,6 +29,7 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 	protected void ensureMigrations() {
 		migrate033();
 		migrate040();
+		migrate050();
 	}
 
 	@Override
@@ -47,6 +48,12 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 
 	private void migrate040() {
 		String nsUri = "http://www.eclipse.org/passage/lic/users/0.4.0"; //$NON-NLS-1$
+		UsersPackage delegate = UsersPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.put(nsUri, delegate);
+	}
+
+	private void migrate050() {
+		String nsUri = "http://www.eclipse.org/passage/lic/users/0.5.0"; //$NON-NLS-1$
 		UsersPackage delegate = UsersPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.put(nsUri, delegate);
 	}
