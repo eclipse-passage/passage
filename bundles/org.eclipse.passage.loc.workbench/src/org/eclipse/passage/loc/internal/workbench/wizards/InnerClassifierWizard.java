@@ -1,5 +1,7 @@
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -9,10 +11,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
+import org.eclipse.passage.lic.emf.resource.ResourceSaveFailed;
 import org.eclipse.passage.lic.internal.api.MandatoryService;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.workbench.SelectRequest;
-import org.eclipse.passage.loc.workbench.LocWokbench;
+import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
 
 /**
  * Creates new root licensing object. Can be asked for a reference to a created
@@ -62,18 +68,28 @@ public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<Inne
 	}
 
 	@Override
-	protected void store() {
-		store(newClassifierPage.container(), newClassifierPage.candidate());
+	protected ServiceInvocationResult<Boolean> store() {
+		return store(newClassifierPage.container(), newClassifierPage.candidate());
 	}
 
-	protected void store(Optional<R> container, EObject candidate) {
+	// FIXME: AF: rework to remove Optional
+	protected ServiceInvocationResult<Boolean> store(Optional<R> container, EObject candidate) {
 		if (!container.isPresent()) {
-			return;
+			return new BaseServiceInvocationResult<>(Boolean.FALSE);
 		}
 		EReference reference = containerEReference(candidate.eClass()).get();
 		candidate.eSet(reference, container.get());
 		Resource resource = candidate.eResource();
-		Optional.ofNullable(resource).ifPresent(LocWokbench::save);
+		if (resource == null) {
+			return new BaseServiceInvocationResult<>(Boolean.FALSE);
+		}
+		try {
+			resource.save(new HashMap<>());
+			return new BaseServiceInvocationResult<>(Boolean.TRUE);
+		} catch (IOException e) {
+			return new BaseServiceInvocationResult<>(
+					new Trouble(new ResourceSaveFailed(), WorkbenchMessages.InnerClassifierWizard_e_store, e));
+		}
 	}
 
 	private Optional<EReference> containerEReference(EClass eClass) {

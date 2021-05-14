@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,25 +12,24 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
+import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistryAccess;
@@ -48,8 +47,6 @@ import org.eclipse.swt.widgets.Shell;
  * @since 1.0
  */
 public class LocWokbench {
-
-	public static final String BUNDLE_SYMBOLIC_NAME = "org.eclipse.passage.loc.workbench"; //$NON-NLS-1$
 
 	public static final String COMMAND_VIEW_PERSPECTIVE = "org.eclipse.passage.loc.workbench.command.view.perspective"; //$NON-NLS-1$
 	public static final String COMMANDPARAMETER_VIEW_PERSPECTIVE_ID = "org.eclipse.passage.loc.workbench.commandparameter.perspective.id"; //$NON-NLS-1$
@@ -104,7 +101,10 @@ public class LocWokbench {
 			return;
 		}
 		switchPerspective(eclipseContext, perspectiveId);
-		registry.registerSource(selected);
+		ServiceInvocationResult<Boolean> source = registry.registerSource(selected);
+		if (!new NoErrors().test(source.diagnostic())) {
+			new DiagnosticDialog(shell, source.diagnostic()).open();
+		}
 	}
 
 	public static void switchPerspective(IEclipseContext eclipseContext, String perspectiveId) {
@@ -170,16 +170,6 @@ public class LocWokbench {
 			return dialog.getFirstResult().orElse(null);
 		}
 		return null;
-	}
-
-	public static IStatus save(Resource resource) {
-		try {
-			// FIXME: define parameters
-			resource.save(null);
-			return Status.OK_STATUS;
-		} catch (IOException e) {
-			return new Status(IStatus.ERROR, BUNDLE_SYMBOLIC_NAME, WorkbenchMessages.LocWokbench_e_saving, e);
-		}
 	}
 
 	public static EditingDomain extractEditingDomain(IEclipseContext context) {

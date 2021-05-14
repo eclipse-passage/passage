@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,11 +32,14 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.emf.resource.ResourceLoadFailed;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
-import org.eclipse.passage.loc.internal.api.diagnostic.code.ResourceLoadFailed;
 
 @SuppressWarnings("restriction")
 public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>, IEditingDomainProvider {
@@ -69,11 +73,18 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 			if (!Files.exists(domainPath)) {
 				return;
 			}
-			Files.readAllLines(domainPath).forEach(this::registerSource);
+			Files.readAllLines(domainPath).stream()//
+					.map(this::registerSource)//
+					.map(ServiceInvocationResult::diagnostic)//
+					.filter(new NoErrors().negate())//
+					.forEach(this::logDiagnostic);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Platform.getLog(getClass()).error(EmfMessages.BaseDomainRegistry_e_load_workspace, e);
 		}
+	}
+
+	protected void logDiagnostic(Diagnostic diagnostic) {
+		Platform.getLog(getClass()).error(new DiagnosticExplained(diagnostic).get());
 	}
 
 	protected abstract Path getResourceSetPath() throws Exception;
@@ -115,6 +126,7 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		URI uri = createURI(source);
 		ResourceSet set = editingDomain.getResourceSet();
 		Resource resource = createResource(uri);
+		resource.eAdapters().add(contentAdapter);
 		set.getResources().add(resource);
 		try {
 			resource.load(getLoadOptions());

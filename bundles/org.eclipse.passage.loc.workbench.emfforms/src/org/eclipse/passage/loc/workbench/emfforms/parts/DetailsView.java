@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workbench.emfforms.parts;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +22,7 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Persist;
@@ -46,6 +49,7 @@ import org.eclipse.emfforms.spi.swt.treemasterdetail.actions.ActionCollector;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.actions.MasterDetailAction;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelection;
@@ -250,13 +254,17 @@ public class DetailsView {
 		}
 		Resource eResource = root.get(0).eResource();
 		if (eResource != null) {
-			IStatus status = LocWokbench.save(eResource);
-			if (status.isOK()) {
+			try {
+				eResource.save(new HashMap<>());
 				if (commandStack instanceof BasicCommandStack) {
 					BasicCommandStack basicCommandStack = (BasicCommandStack) commandStack;
 					basicCommandStack.saveIsDone();
 					part.setDirty(basicCommandStack.isSaveNeeded());
 				}
+			} catch (IOException e) {
+				String message = WorkbenchEmfformsMessages.DetailsView_e_save_title;
+				IStatus error = new Status(IStatus.ERROR, getClass(), message, e);
+				ErrorDialog.openError(content.getShell(), message, message, error);
 			}
 		}
 	}
