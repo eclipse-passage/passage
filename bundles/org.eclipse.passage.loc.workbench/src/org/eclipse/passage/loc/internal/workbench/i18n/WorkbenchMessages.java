@@ -47,6 +47,7 @@ public class WorkbenchMessages extends NLS {
 	public static String RedoHandler_label_base;
 	public static String RedoHandler_label_pattern;
 	public static String BaseClassifierWizard_e_registry_null;
+	public static String InnerClassifierWizard_e_store;
 	public static String InnerClassifierWizardPage_e_specify_container;
 	public static String InnerClassifierWizardPage_text_select;
 	public static String BaseClassifierWizard_message_e_cancelled;

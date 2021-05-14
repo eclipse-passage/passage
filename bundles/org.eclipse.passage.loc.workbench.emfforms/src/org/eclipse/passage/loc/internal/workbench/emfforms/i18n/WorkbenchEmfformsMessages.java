@@ -18,6 +18,8 @@ public final class WorkbenchEmfformsMessages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.workbench.emfforms.i18n.WorkbenchEmfformsMessages"; //$NON-NLS-1$
 
+	public static String DetailsView_e_save_title;
+
 	public static String DetailsView_label_details;
 	public static String TextWithButtonRenderer_button_edit;
 	public static String ConditionExpressionRenderer_condition_expression;

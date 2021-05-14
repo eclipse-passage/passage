@@ -31,7 +31,6 @@ import org.eclipse.emfforms.spi.core.services.label.NoLabelFoundException;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.passage.lic.jface.resource.LicensingColorResolver;
-import org.eclipse.passage.loc.workbench.LocWokbench;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
@@ -106,7 +105,7 @@ public class ValidatedTextRenderer extends SimpleControlSWTControlSWTRenderer {
 					.getDisplayName(getVElement().getDomainModelReference(), getViewModelContext().getDomainModel())
 					.getValue();
 		} catch (final NoLabelFoundException ex) {
-			Status status = new Status(IStatus.ERROR, LocWokbench.BUNDLE_SYMBOLIC_NAME, ex.getMessage(), ex);
+			Status status = new Status(IStatus.ERROR, getClass(), ex.getMessage(), ex);
 			getReportService().report(new StatusReport(status));
 		}
 		return TEXT_MESSAGE_DEFAULT;
