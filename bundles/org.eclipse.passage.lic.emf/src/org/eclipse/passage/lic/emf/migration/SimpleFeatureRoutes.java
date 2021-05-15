@@ -32,12 +32,12 @@ public final class SimpleFeatureRoutes implements EFeatureRoutes {
 	}
 
 	@Override
-	public Optional<EStructuralFeature> apply(String found) {
+	public Optional<EStructuralFeature> route(String found) {
 		return Optional.ofNullable(map.get(found));
 	}
 
 	@Override
-	public void add(String found, EStructuralFeature destination) {
+	public void define(String found, EStructuralFeature destination) {
 		map.put(found, destination);
 	}
 

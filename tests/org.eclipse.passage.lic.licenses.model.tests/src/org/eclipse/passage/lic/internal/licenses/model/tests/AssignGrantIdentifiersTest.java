@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
+import org.eclipse.passage.lic.internal.licenses.model.migration.EnsurePersonalPackLicense;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
@@ -37,8 +38,8 @@ public class AssignGrantIdentifiersTest {
 		new AssignGrantIdentifiers().accept(pack);
 		// then
 		expect("pack-id#0", pack, 0); //$NON-NLS-1$
-		assertEquals("pack-id#1", pack, 1); //$NON-NLS-1$
-		assertEquals("grant-id", pack, 2); //$NON-NLS-1$
+		expect("pack-id#1", pack, 1); //$NON-NLS-1$
+		expect("grant-id", pack, 2); //$NON-NLS-1$
 	}
 
 	private void expect(String expected, PersonalLicensePack pack, int no) {
@@ -47,7 +48,8 @@ public class AssignGrantIdentifiersTest {
 
 	private PersonalLicensePack pack() {
 		PersonalLicensePack pack = LicensesFactory.eINSTANCE.createPersonalLicensePack();
-		PersonalLicenseRequisites license = LicensesFactory.eINSTANCE.createPersonalLicenseRequisites();
+		new EnsurePersonalPackLicense().apply(pack);
+		PersonalLicenseRequisites license = pack.getLicense();
 		license.setIdentifier(id);
 		return pack;
 	}

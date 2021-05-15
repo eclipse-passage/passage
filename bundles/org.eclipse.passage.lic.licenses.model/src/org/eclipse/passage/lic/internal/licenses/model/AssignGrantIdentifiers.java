@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lic.internal.licenses.model.migration.EnsurePersonalPackProduct;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
@@ -30,6 +31,7 @@ public final class AssignGrantIdentifiers implements Consumer<PersonalLicensePac
 
 	@Override
 	public void accept(PersonalLicensePack pack) {
+		new EnsurePersonalPackProduct().apply(pack);
 		String identifier = pack.getLicense().getIdentifier();
 		EList<LicenseGrant> grants = pack.getGrants();
 		for (int i = 0; i < grants.size(); i++) {

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.emf.migration;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-final class DelegatingEPackage extends EPackageImpl {
+public final class DelegatingEPackage extends EPackageImpl {
 
 	private final DelegatingEFactory factory = new DelegatingEFactory();
 
@@ -23,7 +23,7 @@ final class DelegatingEPackage extends EPackageImpl {
 		setEFactoryInstance(factory);
 	}
 
-	DelegatingEFactory getDelegatingEFactory() {
+	public DelegatingEFactory getDelegatingEFactory() {
 		return factory;
 	}
 

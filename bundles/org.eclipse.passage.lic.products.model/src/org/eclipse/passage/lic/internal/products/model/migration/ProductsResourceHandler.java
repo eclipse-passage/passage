@@ -12,15 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.products.model.migration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
+import org.eclipse.passage.lic.emf.migration.EClassRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
-import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
 public final class ProductsResourceHandler extends MigratingResourceHandler {
@@ -37,20 +37,20 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 	}
 
 	private void migrate030() {
-		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
+		String uri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		ProductsPackage delegate = ProductsPackage.eINSTANCE;
-		List<String> classifiers = new ArrayList<>();
-		classifiers.add(delegate.getProductLine().getName());
-		classifiers.add(delegate.getProduct().getName());
-		classifiers.add(delegate.getProductVersion().getName());
-		classifiers.add(delegate.getProductVersionFeature().getName());
-		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
+		EClassRoutes.Smart smart = new EClassRoutes.Smart(new SimpleClassRoutes());
+		smart.define(delegate.getProductLine());
+		smart.define(delegate.getProduct());
+		smart.define(delegate.getProductVersion());
+		smart.define(delegate.getProductVersionFeature());
+		new DelegateClassifiers(uri).delegate(smart);
 	}
 
 	private void migrate040() {
-		String nsUri = "http://www.eclipse.org/passage/lic/products/0.4.0"; //$NON-NLS-1$
+		String uri = "http://www.eclipse.org/passage/lic/products/0.4.0"; //$NON-NLS-1$
 		ProductsPackage delegate = ProductsPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
 
 }

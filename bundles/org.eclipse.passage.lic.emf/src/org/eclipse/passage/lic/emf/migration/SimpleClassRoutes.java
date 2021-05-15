@@ -12,17 +12,38 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.migration;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EClass;
 
 /**
+ * 
  * @since 2.0
+ *
  */
-public interface EFeatureRoutes {
+public final class SimpleClassRoutes implements EClassRoutes {
 
-	void define(String found, EStructuralFeature destination);
+	private final Map<String, EClass> map;
 
-	Optional<EStructuralFeature> route(String found);
+	public SimpleClassRoutes() {
+		map = new LinkedHashMap<>();
+	}
+
+	@Override
+	public void define(String found, EClass destination) {
+		map.put(found, destination);
+	}
+
+	@Override
+	public Map<String, EClass> defined() {
+		return new LinkedHashMap<>(map);
+	}
+
+	@Override
+	public Optional<EClass> route(String found) {
+		return Optional.ofNullable(map.get(found));
+	}
 
 }

@@ -10,15 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.emf.migration;
+package org.eclipse.passage.lic.emf.migration;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.passage.lic.internal.emf.migration.DelegateEPackage;
+import org.eclipse.passage.lic.internal.emf.migration.DelegatingEFactory;
+import org.eclipse.passage.lic.internal.emf.migration.DelegatingEPackage;
 
 /**
  * @since 2.0
@@ -31,19 +33,19 @@ public final class DelegateClassifiers {
 		this.uri = uri;
 	}
 
-	public void delegate(EPackage delegate, Iterable<String> classifierNames) {
+	public void delegate(EClassRoutes routes) {
 		DelegatingEPackage delegating = new DelegateEPackage().apply(uri);
+		DelegatingEFactory factory = delegating.getDelegatingEFactory();
 		Map<EClass, EClass> delegated = new HashMap<>();
-		for (String name : classifierNames) {
-			EClassifier eClassifier = delegate.getEClassifier(name);
-			if (eClassifier instanceof EClass) {
-				EClass eClass = (EClass) eClassifier;
-				EClass key = EcoreUtil.copy(eClass);
-				delegated.put(key, eClass);
-			}
+		Map<String, EClass> defined = routes.defined();
+		for (Entry<String, EClass> entry : defined.entrySet()) {
+			EClass to = entry.getValue();
+			EClass from = EcoreUtil.copy(to);
+			from.setName(entry.getKey());
+			delegated.put(from, to);
+			delegating.getEClassifiers().add(from);
+			factory.delegateEClass(to.getEPackage().getEFactoryInstance(), from, to);
 		}
-		delegating.getEClassifiers().addAll(delegated.keySet());
-		delegating.getDelegatingEFactory().addEClassDelegate(delegate.getEFactoryInstance(), delegated);
 	}
 
 }

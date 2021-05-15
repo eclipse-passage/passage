@@ -14,8 +14,6 @@ package org.eclipse.passage.lic.internal.emf.migration;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -25,7 +23,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.passage.lic.emf.QualifiedNames;
 import org.eclipse.passage.lic.emf.SimpleQualifiedNames;
 
-final class DelegatingEFactory extends EFactoryImpl {
+public final class DelegatingEFactory extends EFactoryImpl {
 
 	public final Map<String, EClass> eClassMap = new HashMap<>();
 	public final Map<String, EDataType> eDataTypeMap = new HashMap<>();
@@ -38,22 +36,16 @@ final class DelegatingEFactory extends EFactoryImpl {
 		names = new SimpleQualifiedNames();
 	}
 
-	void addEClassDelegate(EFactory factory, Map<EClass, EClass> eClasses) {
-		Set<Entry<EClass, EClass>> entrySet = eClasses.entrySet();
-		for (Entry<EClass, EClass> entry : entrySet) {
-			String key = names.caseEClass(entry.getKey());
-			eClassFactories.put(key, factory);
-			eClassMap.put(key, entry.getValue());
-		}
+	public void delegateEClass(EFactory factory, EClass from, EClass to) {
+		String key = names.caseEClass(from);
+		eClassFactories.put(key, factory);
+		eClassMap.put(key, to);
 	}
 
-	void addEDataTypeDelegate(EFactory factory, Map<EDataType, EDataType> eDataTypes) {
-		Set<Entry<EDataType, EDataType>> entrySet = eDataTypes.entrySet();
-		for (Entry<EDataType, EDataType> entry : entrySet) {
-			String key = names.caseEDataType(entry.getKey());
-			eDataTypeFactories.put(key, factory);
-			eDataTypeMap.put(key, entry.getValue());
-		}
+	public void delegateEDataType(EFactory factory, EDataType from, EDataType to) {
+		String key = names.caseEDataType(from);
+		eDataTypeFactories.put(key, factory);
+		eDataTypeMap.put(key, to);
 	}
 
 	@Override

@@ -12,16 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.features.model.migration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
+import org.eclipse.passage.lic.emf.migration.EClassRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
-import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 
 public final class FeaturesResourceHandler extends MigratingResourceHandler {
 
@@ -37,18 +37,18 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 	}
 
 	private void migrate033() {
-		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
+		String uri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
-		List<String> classifiers = new ArrayList<>();
-		classifiers.add(delegate.getFeatureSet().getName());
-		classifiers.add(delegate.getFeature().getName());
-		classifiers.add(delegate.getFeatureVersion().getName());
-		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
+		EClassRoutes.Smart smart = new EClassRoutes.Smart(new SimpleClassRoutes());
+		smart.define(delegate.getFeatureSet());
+		smart.define(delegate.getFeature());
+		smart.define(delegate.getFeatureVersion());
+		new DelegateClassifiers(uri).delegate(smart);
 	}
 
 	private void migrate040() {
-		String nsUri = "http://www.eclipse.org/passage/lic/features/0.4.0"; //$NON-NLS-1$
+		String uri = "http://www.eclipse.org/passage/lic/features/0.4.0"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
-		EPackage.Registry.INSTANCE.computeIfAbsent(nsUri, ns -> delegate);
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
 }
