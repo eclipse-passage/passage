@@ -132,26 +132,26 @@ public class DetailsView {
 		for (Control control : children) {
 			control.dispose();
 		}
-		if (!root.isEmpty()) {
+		if (!root.isEmpty() && resource.isPresent()) {
 			try {
-				TreeMasterDetailComposite rootView = createRootView(content, resource, getCreateElementCallback(),
+				TreeMasterDetailComposite rootView = createRootView(content, resource.get(), getCreateElementCallback(),
 						context);
-				TreeViewer selectionProvider = rootView.getSelectionProvider();
-				selectionProvider.addSelectionChangedListener(selectionChangedListener);
-				selectionProvider.refresh();
-				EObject objectToReveal = root.get(0);
-				while (objectToReveal != null) {
-					selectionProvider.reveal(objectToReveal);
-					if (selectionProvider.testFindItem(objectToReveal) != null) {
+				TreeViewer viewer = rootView.getSelectionProvider();
+				viewer.addSelectionChangedListener(selectionChangedListener);
+				viewer.refresh();
+				EObject reveal = root.get(0);
+				while (reveal != null) {
+					viewer.reveal(reveal);
+					if (viewer.testFindItem(reveal) != null) {
 						break;
 					}
-					objectToReveal = objectToReveal.eContainer();
+					reveal = reveal.eContainer();
 				}
-				if (objectToReveal == null) {
+				if (reveal == null) {
 					return;
 				}
 
-				rootView.setSelection(new StructuredSelection(objectToReveal));
+				rootView.setSelection(new StructuredSelection(reveal));
 			} catch (final Exception e) {
 				e.printStackTrace();
 			}
