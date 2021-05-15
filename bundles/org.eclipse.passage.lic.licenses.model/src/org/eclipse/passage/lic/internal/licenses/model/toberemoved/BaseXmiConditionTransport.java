@@ -26,7 +26,6 @@ import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
@@ -42,6 +41,7 @@ import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourc
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 @SuppressWarnings("restriction")
 abstract class BaseXmiConditionTransport implements ConditionTransport {
@@ -65,7 +65,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 	@Override
 	public Collection<Condition> read(InputStream input) throws IOException {
 		// FIXME:AF: should be done via factory
-		Resource resource = new XMIResourceImpl();
+		Resource resource = new LicensesResourceImpl();
 		resource.load(input, loadOptions());
 		return resource.getContents().stream() //
 				.filter(PersonalLicensePack.class::isInstance) //
