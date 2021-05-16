@@ -14,11 +14,11 @@ package org.eclipse.passage.loc.internal.api;
 
 import java.nio.file.Path;
 
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
 public interface IssuedLicense {
 
-	LicensePack license();
+	PersonalLicensePack license();
 
 	Path encrypted();
 

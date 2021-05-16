@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 
@@ -30,7 +30,7 @@ public interface OperatorLicenseService {
 	 * 
 	 * @since 0.5.0
 	 */
-	LicensePackDescriptor createLicensePack(PersonalLicenseRequest request);
+	PersonalLicensePackDescriptor createLicensePack(PersonalLicenseRequest request);
 
 	/**
 	 * Physically issue new Personal License Pack according to all the data supplied
@@ -39,7 +39,7 @@ public interface OperatorLicenseService {
 	 * @since 0.5.0
 	 */
 	ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request,
-			LicensePackDescriptor template);
+			PersonalLicensePackDescriptor template);
 
 	/**
 	 * Create new instance of Floating License Pack to be verified and issued. Base

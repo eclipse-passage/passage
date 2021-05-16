@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.swt.widgets.Display;
 
+@SuppressWarnings("restriction")
 public class LicensesE4UiProcessor {
 
 	@Execute
@@ -45,7 +46,8 @@ public class LicensesE4UiProcessor {
 		paths.put(licenses.getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicensePlan().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicensePlanFeature().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
-		paths.put(licenses.getLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
+		paths.put(licenses.getPersonalLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
+		paths.put(licenses.getFloatingLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getLicenseGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(LicensesEditPlugin.class, paths);
 	}

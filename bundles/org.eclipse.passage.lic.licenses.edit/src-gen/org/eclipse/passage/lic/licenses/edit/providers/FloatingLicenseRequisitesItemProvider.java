@@ -20,8 +20,8 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -71,8 +71,8 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 						getResourceLocator(), getString("_UI_FloatingLicenseRequisites_company_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_FloatingLicenseRequisites_company_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FloatingLicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getFloatingLicenseRequisites_Company(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+						LicensesPackage.eINSTANCE.getFloatingLicenseRequisites_Company(), true, false, false, null,
+						null, null));
 	}
 
 	/**
@@ -94,7 +94,9 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 	@Override
 	public String getText(Object object) {
 		FloatingLicenseRequisites license = (FloatingLicenseRequisites) object;
-		String company = license.getCompany() == null ? "unknown" : license.getCompany(); //$NON-NLS-1$
+		String company = Optional.ofNullable(license.getCompany())//
+				.map(CompanyRef::getName) //
+				.orElse("unknown"); //$NON-NLS-1$
 		String product = Optional.ofNullable(license.getProduct())//
 				.map(ProductRef::getIdentifier) //
 				.orElse("unknown"); //$NON-NLS-1$

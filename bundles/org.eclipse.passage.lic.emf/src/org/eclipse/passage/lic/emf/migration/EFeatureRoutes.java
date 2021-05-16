@@ -13,15 +13,17 @@
 package org.eclipse.passage.lic.emf.migration;
 
 import java.util.Optional;
-import java.util.function.Function;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * @since 2.0
  */
-public interface EFeatureRoutes extends Function<String, Optional<EStructuralFeature>> {
+public interface EFeatureRoutes {
 
-	void add(String found, EStructuralFeature destination);
+	void define(String found, EStructuralFeature destination);
+
+	Optional<EStructuralFeature> route(String found, EClass scope);
 
 }

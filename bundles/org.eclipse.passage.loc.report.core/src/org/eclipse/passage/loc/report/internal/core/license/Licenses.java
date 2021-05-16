@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,8 +18,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
@@ -41,7 +41,7 @@ public final class Licenses implements LicenseStorage {
 	}
 
 	@Override
-	public List<LicensePackDescriptor> licenses(String plan) {
+	public List<PersonalLicensePackDescriptor> licenses(String plan) {
 		return Collections.emptyList(); // TODO: 573488
 	}
 

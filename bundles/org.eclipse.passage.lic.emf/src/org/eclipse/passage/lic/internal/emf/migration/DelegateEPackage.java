@@ -1,7 +1,5 @@
 package org.eclipse.passage.lic.internal.emf.migration;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.emf.common.util.EList;
@@ -22,19 +20,17 @@ public final class DelegateEPackage implements Function<String, DelegatingEPacka
 			return (DelegatingEPackage) existing;
 		} else {
 			DelegatingEPackage delegating = new DelegatingEPackage(nsUri);
+			DelegatingEFactory factory = delegating.getDelegatingEFactory();
 			if (existing != null) {
-				Map<EClass, EClass> wrapped = new HashMap<>();
 				EList<EClassifier> classifiers = existing.getEClassifiers();
 				for (EClassifier eClassifier : classifiers) {
 					if (eClassifier instanceof EClass) {
-						EClass eClass = (EClass) eClassifier;
-						EClass key = EcoreUtil.copy(eClass);
-						wrapped.put(key, eClass);
+						EClass to = (EClass) eClassifier;
+						EClass from = EcoreUtil.copy(to);
+						delegating.getEClassifiers().add(from);
+						factory.delegateEClass(existing.getEFactoryInstance(), from, to);
 					}
 				}
-				delegating.getEClassifiers().addAll(wrapped.keySet());
-				DelegatingEFactory factory = delegating.getDelegatingEFactory();
-				factory.addEClassDelegate(existing.getEFactoryInstance(), wrapped);
 			}
 			EPackage.Registry.INSTANCE.put(nsUri, delegating);
 			return delegating;

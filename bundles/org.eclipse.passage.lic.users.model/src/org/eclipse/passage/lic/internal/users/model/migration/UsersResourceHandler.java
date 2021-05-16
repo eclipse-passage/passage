@@ -12,15 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.users.model.migration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
+import org.eclipse.passage.lic.emf.migration.EClassRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
-import org.eclipse.passage.lic.internal.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 public final class UsersResourceHandler extends MigratingResourceHandler {
@@ -40,10 +40,10 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 	private void migrate033() {
 		String nsUri = "http://www.eclipse.org/passage/lic/0.3.3"; //$NON-NLS-1$
 		UsersPackage delegate = UsersPackage.eINSTANCE;
-		List<String> classifiers = new ArrayList<>();
-		classifiers.add(delegate.getUserOrigin().getName());
-		classifiers.add(delegate.getUser().getName());
-		new DelegateClassifiers(nsUri).delegate(delegate, classifiers);
+		EClassRoutes.Smart smart = new EClassRoutes.Smart(new SimpleClassRoutes());
+		smart.define(delegate.getUserOrigin());
+		smart.define(delegate.getUser());
+		new DelegateClassifiers(nsUri).delegate(smart);
 	}
 
 	private void migrate040() {

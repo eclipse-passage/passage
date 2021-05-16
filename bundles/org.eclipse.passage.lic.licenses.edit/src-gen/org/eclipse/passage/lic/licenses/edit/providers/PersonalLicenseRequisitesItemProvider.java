@@ -20,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
@@ -67,13 +66,12 @@ public class PersonalLicenseRequisitesItemProvider extends LicenseRequisitesItem
 	 * @generated
 	 */
 	protected void addUserPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_PersonalLicenseRequisites_user_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_PersonalLicenseRequisites_user_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_PersonalLicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getPersonalLicenseRequisites_User(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+				getString("_UI_PersonalLicenseRequisites_user_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_PersonalLicenseRequisites_user_feature", //$NON-NLS-1$//$NON-NLS-2$
+						"_UI_PersonalLicenseRequisites_type"), //$NON-NLS-1$
+				LicensesPackage.eINSTANCE.getPersonalLicenseRequisites_User(), true, false, false, null, null, null));
 	}
 
 	/**

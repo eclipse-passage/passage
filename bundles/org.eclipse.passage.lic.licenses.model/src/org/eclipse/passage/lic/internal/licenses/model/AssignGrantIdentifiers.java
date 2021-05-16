@@ -17,10 +17,11 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.passage.lic.internal.licenses.model.migration.EnsurePersonalPackProduct;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
-public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
+public final class AssignGrantIdentifiers implements Consumer<PersonalLicensePack> {
 
 	private final Predicate<String> predicate;
 
@@ -29,9 +30,10 @@ public final class AssignGrantIdentifiers implements Consumer<LicensePack> {
 	}
 
 	@Override
-	public void accept(LicensePack pack) {
-		String identifier = pack.getIdentifier();
-		EList<LicenseGrant> grants = pack.getLicenseGrants();
+	public void accept(PersonalLicensePack pack) {
+		new EnsurePersonalPackProduct().apply(pack);
+		String identifier = pack.getLicense().getIdentifier();
+		EList<LicenseGrant> grants = pack.getGrants();
 		for (int i = 0; i < grants.size(); i++) {
 			LicenseGrant grant = grants.get(i);
 			if (Optional.ofNullable(grant.getIdentifier()).filter(predicate).isPresent()) {

@@ -49,7 +49,7 @@ public final class FloatingCycleActionsDryRunTest {
 		RawRequest request = request(new PassageAction.Mine());
 		NetResponse response = new FlotingRequestHandled(request).get();
 		assertFalse(response.failed());
-		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getLicenseGrants();
+		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
 		assertTrue(ofFeature(grants, request).isEmpty());
 	}
 

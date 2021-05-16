@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -28,12 +28,13 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+@SuppressWarnings("restriction")
 public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$
@@ -66,8 +67,8 @@ public class XmiLicensingConditionExtractorTest {
 		XmiConditionTransport extractor = new XmiConditionTransport();
 
 		LicensesFactory factory = LicensesFactory.eINSTANCE;
-		LicensePack license = factory.createLicensePack();
-		EList<LicenseGrant> licenseGrants = license.getLicenseGrants();
+		PersonalLicensePack license = factory.createPersonalLicensePack();
+		EList<LicenseGrant> licenseGrants = license.getGrants();
 		LicenseGrant cond1 = factory.createLicenseGrant();
 		cond1.setFeatureIdentifier(COND1_FEATURE_ID);
 		cond1.setConditionType(COND1_CONDITION_TYPE);

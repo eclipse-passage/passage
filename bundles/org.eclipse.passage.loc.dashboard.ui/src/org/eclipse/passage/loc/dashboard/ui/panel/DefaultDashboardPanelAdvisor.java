@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -290,7 +290,7 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 	private void appendIssueLicenseButton(Composite parent, GridDataFactory gdf, //
 			String text, String tooltip, Runnable issuing) {
 		Button issue = new Button(parent, SWT.PUSH);
-		issue.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getLicensePack().getName()));
+		issue.setImage(LicensingImages.getImage(LicensesPackage.eINSTANCE.getPersonalLicensePack().getName()));
 		issue.setLayoutData(gdf.create());
 		issue.setText(text);
 		issue.setToolTipText(tooltip);

@@ -255,18 +255,18 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 
 	/**
 	 * Returns the value of the '<em><b>License Pack</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants <em>License Grants</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants <em>Grants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>License Pack</em>' container reference.
-	 * @see #setLicensePack(LicensePack)
+	 * @see #setLicensePack(PersonalLicensePack)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_LicensePack()
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePack#getLicenseGrants
-	 * @model opposite="licenseGrants" required="true" transient="false"
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants
+	 * @model opposite="grants" required="true" transient="false"
 	 * @generated
 	 */
 	@Override
-	LicensePack getLicensePack();
+	PersonalLicensePack getLicensePack();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}' container reference.
@@ -276,6 +276,6 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * @see #getLicensePack()
 	 * @generated
 	 */
-	void setLicensePack(LicensePack value);
+	void setLicensePack(PersonalLicensePack value);
 
 } // LicenseGrant

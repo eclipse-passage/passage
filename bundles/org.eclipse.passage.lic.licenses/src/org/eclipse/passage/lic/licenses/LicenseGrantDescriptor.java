@@ -22,7 +22,7 @@ import java.util.Date;
  * <p>
  * 
  * @since 0.4.0
- * @see LicensePackDescriptor
+ * @see PersonalLicensePackDescriptor
  */
 public interface LicenseGrantDescriptor {
 
@@ -110,6 +110,6 @@ public interface LicenseGrantDescriptor {
 	 *
 	 * @return the license pack
 	 */
-	LicensePackDescriptor getLicensePack();
+	PersonalLicensePackDescriptor getLicensePack();
 
 }

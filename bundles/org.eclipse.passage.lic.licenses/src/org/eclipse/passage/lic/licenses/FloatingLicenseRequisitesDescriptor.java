@@ -17,6 +17,6 @@ package org.eclipse.passage.lic.licenses;
  */
 public interface FloatingLicenseRequisitesDescriptor extends LicenseRequisitesDescriptor {
 
-	String getCompany();
+	CompanyRefDescriptor getCompany();
 
 }

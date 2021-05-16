@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.yars.internal.api.DosHandleMedia;
 import org.eclipse.passage.loc.yars.internal.api.ExportData;
 import org.eclipse.passage.loc.yars.internal.api.Progress;
@@ -34,11 +34,11 @@ public final class LicensePlanReport implements ExportData<LicensePlanReport, Do
 
 	private final LicensePlanDescriptor plan;
 	private final int amount;
-	private final Map<String, List<LicensePackDescriptor>> licenses;
+	private final Map<String, List<PersonalLicensePackDescriptor>> licenses;
 	private final boolean explain;
 	private final SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd"); //$NON-NLS-1$
 
-	LicensePlanReport(LicensePlanDescriptor plan, int amount, Map<String, List<LicensePackDescriptor>> licenses,
+	LicensePlanReport(LicensePlanDescriptor plan, int amount, Map<String, List<PersonalLicensePackDescriptor>> licenses,
 			boolean explain) {
 		this.plan = plan;
 		this.amount = amount;
@@ -65,7 +65,7 @@ public final class LicensePlanReport implements ExportData<LicensePlanReport, Do
 		return String.format("%s (%s)", //$NON-NLS-1$
 				user, //
 				licenses.get(user).stream()//
-						.map(LicensePackDescriptor::getIssueDate)//
+						.map(pack -> pack.getLicense().getIssueDate())//
 						.map(format::format) //
 						.collect(Collectors.joining(", "))//$NON-NLS-1$
 		);

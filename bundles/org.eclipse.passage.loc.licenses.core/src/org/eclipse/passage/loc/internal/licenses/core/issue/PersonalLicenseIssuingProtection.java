@@ -24,10 +24,10 @@ import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
 @SuppressWarnings("restriction")
-public final class PersonalLicenseIssuingProtection implements Consumer<LicensePack> {
+public final class PersonalLicenseIssuingProtection implements Consumer<PersonalLicensePack> {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.personal.full"; //$NON-NLS-1$
 	private final List<Reduction<LicenseGrant>> reductions;
@@ -39,15 +39,15 @@ public final class PersonalLicenseIssuingProtection implements Consumer<LicenseP
 	}
 
 	@Override
-	public void accept(LicensePack license) {
+	public void accept(PersonalLicensePack license) {
 		if (new EquinoxPassage().canUse(feature)) {
 			return;
 		}
 		diminish(license);
 	}
 
-	private void diminish(LicensePack license) {
-		license.getLicenseGrants().forEach(this::diminishGrant);
+	private void diminish(PersonalLicensePack license) {
+		license.getGrants().forEach(this::diminishGrant);
 	}
 
 	private void diminishGrant(LicenseGrant grant) {

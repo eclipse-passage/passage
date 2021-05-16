@@ -30,9 +30,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
@@ -99,7 +99,7 @@ public class LicenseExportHandler {
 		PersonalLicenseRequest request = createLicensingRequest(user.get(), licensePlan, productVersion,
 				fromLocal.toLocalDate(), untilLocal.toLocalDate());
 
-		LicensePackDescriptor licensePack = licenseService.createLicensePack(request);
+		PersonalLicensePackDescriptor licensePack = licenseService.createLicensePack(request);
 
 		ServiceInvocationResult<IssuedLicense> result = licenseService.issueLicensePack(request, licensePack);
 		if (new NoSevereErrors().test(result.diagnostic()) && result.data().isPresent()) {
@@ -107,7 +107,7 @@ public class LicenseExportHandler {
 					String.format(LicensesUiMessages.LicenseExportHandler_success_description, //
 							result.data().get().encrypted().toAbsolutePath().toString(), //
 							result.data().get().decrypted().toAbsolutePath().toString()));
-			LicensePack userLicense = result.data().get().license();
+			PersonalLicensePack userLicense = result.data().get().license();
 			String perspectiveId = UsersUi.PERSPECTIVE_MAIN;
 			LocWokbench.switchPerspective(context, perspectiveId);
 			IEventBroker broker = context.get(IEventBroker.class);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,10 +19,10 @@ import java.util.function.Supplier;
 
 import org.eclipse.osgi.service.environment.EnvironmentInfo;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.licenses.LicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.api.IssuedFloatingLicense;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -114,17 +114,17 @@ public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 	}
 
 	@Override
-	public LicensePack createLicensePack(PersonalLicenseRequest request) {
+	public PersonalLicensePack createLicensePack(PersonalLicenseRequest request) {
 		return new PersonalLicensePackFromRequest(request, licenses).get();
 	}
 
 	@Override
 	public ServiceInvocationResult<IssuedLicense> issueLicensePack(PersonalLicenseRequest request,
-			LicensePackDescriptor template) {
+			PersonalLicensePackDescriptor template) {
 		Objects.requireNonNull(request,
 				"LicenseOperatorServiceImpl::issueLicensePack: cannot issue license for null request"); //$NON-NLS-1$
-		Supplier<LicensePack> pack = (template instanceof LicensePack) //
-				? () -> LicensePack.class.cast(template)//
+		Supplier<PersonalLicensePack> pack = (template instanceof PersonalLicensePack) //
+				? () -> PersonalLicensePack.class.cast(template)//
 				: () -> createLicensePack(request);
 		return new IssuePersonalLicense(licenses, products, operator, events).issue(pack);
 	}

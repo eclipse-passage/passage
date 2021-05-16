@@ -136,14 +136,6 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src-gen/org/eclipse/passage/lic/licenses/edit/providers/LicensePackItemProvider.java" type="org.eclipse.passage.lic.licenses.edit.providers.LicensePackItemProvider">
-        <filter id="305365105">
-            <message_arguments>
-                <message_argument value="org.eclipse.passage.lic.licenses.edit.providers.LicensePackItemProvider"/>
-                <message_argument value="org.eclipse.passage.lic.licenses.edit_1.0.201"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src-gen/org/eclipse/passage/lic/licenses/edit/providers/LicensePlanFeatureItemProvider.java" type="org.eclipse.passage.lic.licenses.edit.providers.LicensePlanFeatureItemProvider">
         <filter id="305365105">
             <message_arguments>

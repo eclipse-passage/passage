@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
 public final class Conditions implements Supplier<NetResponse> {
 
@@ -57,11 +57,11 @@ public final class Conditions implements Supplier<NetResponse> {
 		return encodedPack(pack(conditions.data().get()));
 	}
 
-	private NetResponse encodedPack(LicensePack pack) {
+	private NetResponse encodedPack(PersonalLicensePack pack) {
 		return new EncodedResponse<EObject>(pack, data).get();
 	}
 
-	private LicensePack pack(Collection<ConditionPack> conditions) {
+	private PersonalLicensePack pack(Collection<ConditionPack> conditions) {
 		return new PersonalLicenseGenerated(//
 				data.product().get(), //
 				data.user().get(), //

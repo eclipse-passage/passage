@@ -73,8 +73,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createLicensePlan();
 		case LicensesPackage.LICENSE_PLAN_FEATURE:
 			return createLicensePlanFeature();
-		case LicensesPackage.LICENSE_PACK:
-			return createLicensePack();
+		case LicensesPackage.PERSONAL_LICENSE_PACK:
+			return createPersonalLicensePack();
 		case LicensesPackage.LICENSE_GRANT:
 			return createLicenseGrant();
 		case LicensesPackage.FLOATING_LICENSE_PACK:
@@ -85,6 +85,10 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createFloatingLicenseRequisites();
 		case LicensesPackage.PRODUCT_REF:
 			return createProductRef();
+		case LicensesPackage.USER_REF:
+			return createUserRef();
+		case LicensesPackage.COMPANY_REF:
+			return createCompanyRef();
 		case LicensesPackage.FLOATING_SERVER:
 			return createFloatingServer();
 		case LicensesPackage.USER_GRANT:
@@ -136,9 +140,9 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * @generated
 	 */
 	@Override
-	public LicensePack createLicensePack() {
-		LicensePackImpl licensePack = new LicensePackImpl();
-		return licensePack;
+	public PersonalLicensePack createPersonalLicensePack() {
+		PersonalLicensePackImpl personalLicensePack = new PersonalLicensePackImpl();
+		return personalLicensePack;
 	}
 
 	/**
@@ -194,6 +198,28 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	public ProductRef createProductRef() {
 		ProductRefImpl productRef = new ProductRefImpl();
 		return productRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UserRef createUserRef() {
+		UserRefImpl userRef = new UserRefImpl();
+		return userRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompanyRef createCompanyRef() {
+		CompanyRefImpl companyRef = new CompanyRefImpl();
+		return companyRef;
 	}
 
 	/**

@@ -15,17 +15,17 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.licenses.model.api.LicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 
 @SuppressWarnings("restriction")
 final class BaseIssuedLicense implements IssuedLicense {
 
-	private final LicensePack license;
+	private final PersonalLicensePack license;
 	private final Path encrypted;
 	private final Path decrypted;
 
-	BaseIssuedLicense(LicensePack license, Path encrypted, Path decrypted) {
+	BaseIssuedLicense(PersonalLicensePack license, Path encrypted, Path decrypted) {
 		Objects.requireNonNull(license, "BaseIssuedLicense::license"); //$NON-NLS-1$
 		Objects.requireNonNull(encrypted, "BaseIssuedLicense::encrypted"); //$NON-NLS-1$
 		Objects.requireNonNull(decrypted, "BaseIssuedLicense::decrypted"); //$NON-NLS-1$
@@ -35,7 +35,7 @@ final class BaseIssuedLicense implements IssuedLicense {
 	}
 
 	@Override
-	public LicensePack license() {
+	public PersonalLicensePack license() {
 		return license;
 	}
 

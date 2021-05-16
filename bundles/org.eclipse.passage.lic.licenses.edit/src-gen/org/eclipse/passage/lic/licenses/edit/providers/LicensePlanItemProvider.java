@@ -237,7 +237,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 				LicensesFactory.eINSTANCE.createLicensePlanFeature()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Personal(),
-				LicensesFactory.eINSTANCE.createLicensePack()));
+				LicensesFactory.eINSTANCE.createPersonalLicensePack()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Floating(),
 				LicensesFactory.eINSTANCE.createFloatingLicensePack()));

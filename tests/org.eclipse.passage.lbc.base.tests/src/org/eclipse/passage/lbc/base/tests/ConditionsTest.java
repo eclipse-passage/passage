@@ -66,7 +66,7 @@ public final class ConditionsTest {
 		RawRequest request = request(user, product);
 		NetResponse response = new FlotingRequestHandled(request).get();
 		assertFalse(response.failed());
-		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getLicenseGrants();
+		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
 		assertEquals(conditions, grants.size());
 		return grants;
 	}
