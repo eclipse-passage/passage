@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -108,9 +109,12 @@ public final class LicenseMigratorTest {
 		return pack;
 	}
 
-	private void loadedTwoGrants(String path) throws IOException {
+	private void loadedTwoGrants(String path) throws IOException, ParseException {
 		PersonalLicensePack pack = pack(path);
-		assertEquals("3251ddf1-bd2c-48e4-993a-26fbf7eb3a42", pack.getLicense().getIdentifier()); //$NON-NLS-1$
+		String identifier = pack.getLicense().getIdentifier();
+		assertEquals("3251ddf1-bd2c-48e4-993a-26fbf7eb3a42", identifier); //$NON-NLS-1$
+		assertEquals(getLicensingDateFormat().parse("2020-12-02T16:30:50.176+0300"), //$NON-NLS-1$
+				pack.getLicense().getIssueDate());
 		assertEquals(issueDate().getTime(), pack.getLicense().getIssueDate().getTime()); // $NON-NLS-1$
 		assertEquals("anti-human-magic.product", pack.getLicense().getProduct().getIdentifier()); //$NON-NLS-1$
 		assertEquals("0.2.1", pack.getLicense().getProduct().getVersion()); //$NON-NLS-1$
@@ -120,6 +124,32 @@ public final class LicenseMigratorTest {
 
 		EList<LicenseGrant> grants = pack.getGrants();
 		assertEquals(2, grants.size());
+
+		assertGrant(grant(identifier, grants, 0), "prince-to-frog", "0.1.0"); //$NON-NLS-1$//$NON-NLS-2$
+		assertGrant(grant(identifier, grants, 1), "anti-human-magic.product", "0.2.1"); //$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private LicenseGrant grant(String pack, EList<LicenseGrant> grants, int no) {
+		String id = String.format("%s#%d", pack, no); //$NON-NLS-1$
+		for (LicenseGrant grant : grants) {
+			if (id.equals(grant.getIdentifier())) {
+				return grant;
+			}
+		}
+		fail(String.format("There is no grant with id %s", id)); //$NON-NLS-1$
+		return null;// unreachable
+	}
+
+	private void assertGrant(LicenseGrant grant, String feature, String version) throws ParseException {
+		assertEquals(feature, grant.getFeatureIdentifier());
+		assertEquals(version, grant.getMatchVersion());
+		assertEquals(null, grant.getMatchRule());
+		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
+		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
+		assertEquals(getLicensingDateFormat().parse("2020-12-02T00:00:00.000+0300"), //$NON-NLS-1$
+				grant.getValidFrom());
+		assertEquals(getLicensingDateFormat().parse("2021-12-02T00:00:00.000+0300"), //$NON-NLS-1$
+				grant.getValidUntil());
 	}
 
 	private final Date issueDate() {
@@ -129,4 +159,5 @@ public final class LicenseMigratorTest {
 								ZoneId.ofOffset("", ZoneOffset.ofHours(3))) //$NON-NLS-1$
 						.toInstant());
 	}
+
 }
