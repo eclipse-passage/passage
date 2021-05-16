@@ -54,16 +54,26 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		if (key instanceof PersonalLicensePack) {
 			PersonalLicensePack pack = (PersonalLicensePack) key;
 			SimpleFeatureRoutes attributes = new SimpleFeatureRoutes();
-//LicensePack
-			attributes.define("identifier", LicensesPackage.eINSTANCE.getLicenseRequisites_Identifier()); //$NON-NLS-1$
-			attributes.define("productIdentifier", LicensesPackage.eINSTANCE.getProductRef_Identifier()); //$NON-NLS-1$
+			attributes.define("identifier", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseRequisites_Identifier());
+			attributes.define("issueDate", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseRequisites_IssueDate());
+			attributes.define("licenseGrants", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getPersonalLicensePack_Grants());
+			attributes.define("planIdentifier", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseRequisites_Plan());
+			attributes.define("productIdentifier", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getProductRef_Identifier());
 			attributes.define("productVersion", LicensesPackage.eINSTANCE.getProductRef_Version()); //$NON-NLS-1$
 			attributes.define("userIdentifier", LicensesPackage.eINSTANCE.getUserRef_Identifier()); //$NON-NLS-1$
-			attributes.define("licenseGrants", LicensesPackage.eINSTANCE.getPersonalLicensePack_Grants()); //$NON-NLS-1$
-//LicenseGrant
-			attributes.define("conditionExpression", LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression()); //$NON-NLS-1$
+			attributes.define("userFullName", LicensesPackage.eINSTANCE.getUserRef_Name()); //$NON-NLS-1$
+			attributes.define("conditionExpression", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
 			attributes.define("conditionType", LicensesPackage.eINSTANCE.getLicenseGrant_ConditionType()); //$NON-NLS-1$
-			attributes.define("featureIdentifier", LicensesPackage.eINSTANCE.getLicenseGrant_FeatureIdentifier()); //$NON-NLS-1$
+			attributes.define("featureIdentifier", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseGrant_FeatureIdentifier());
+			attributes.define("identifier", //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getLicenseGrant_Identifier());
 			attributes.define("matchRule", LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule()); //$NON-NLS-1$
 			attributes.define("matchVersion", LicensesPackage.eINSTANCE.getLicenseGrant_MatchVersion()); //$NON-NLS-1$
 			attributes.define("validFrom", LicensesPackage.eINSTANCE.getLicenseGrant_ValidFrom()); //$NON-NLS-1$

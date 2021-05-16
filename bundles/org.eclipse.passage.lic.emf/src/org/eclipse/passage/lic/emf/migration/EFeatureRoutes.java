@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.emf.migration;
 
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -23,6 +24,6 @@ public interface EFeatureRoutes {
 
 	void define(String found, EStructuralFeature destination);
 
-	Optional<EStructuralFeature> route(String found);
+	Optional<EStructuralFeature> route(String found, EClass scope);
 
 }

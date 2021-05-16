@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -32,13 +33,27 @@ public final class SimpleFeatureRoutes implements EFeatureRoutes {
 	}
 
 	@Override
-	public Optional<EStructuralFeature> route(String found) {
-		return Optional.ofNullable(map.get(found));
+	public Optional<EStructuralFeature> route(String found, EClass context) {
+		Optional<EStructuralFeature> candidate = Optional.ofNullable(map.get(key(found, context)));
+		if (candidate.isPresent()) {
+			return candidate;
+		}
+		for (EClass upper : context.getEAllSuperTypes()) {
+			Optional<EStructuralFeature> inherited = route(found, upper);
+			if (inherited.isPresent()) {
+				return inherited;
+			}
+		}
+		return Optional.empty();
 	}
 
 	@Override
 	public void define(String found, EStructuralFeature destination) {
-		map.put(found, destination);
+		map.put(destination.getEContainingClass().getName() + '.' + found, destination);
+	}
+
+	private String key(String found, EClass scope) {
+		return scope.getName() + '.' + found;
 	}
 
 }

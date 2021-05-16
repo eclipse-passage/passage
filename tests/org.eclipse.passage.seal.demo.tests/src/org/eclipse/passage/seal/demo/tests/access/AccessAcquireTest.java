@@ -54,8 +54,7 @@ public final class AccessAcquireTest {
 	 */
 	public void acquireLicenseGrant() {
 		successfullyAcquireAndRelease("prince-to-frog", //$NON-NLS-1$
-				diagnostic -> {
-				});
+				diagnostic -> System.out.println(new DiagnosticExplained(diagnostic).get()));
 	}
 
 	@Test

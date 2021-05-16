@@ -12,8 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.emf.migration;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -43,12 +44,12 @@ public final class RecognizeFeatures {
 		this.features = features;
 	}
 
+	@SuppressWarnings("unchecked")
 	public RecognizeFeatures mixed(EObject object) {
 		EList<EReference> references = object.eClass().getEAllReferences();
 		for (Iterator<Entry> iterator = any.getMixed().iterator(); iterator.hasNext();) {
 			Entry entry = iterator.next();
-			Optional<EStructuralFeature> candidate = features.route(entry.getEStructuralFeature().getName())//
-					.filter(references::contains);
+			Optional<EStructuralFeature> candidate = candidate(object, entry, references);
 			if (!candidate.isPresent()) {
 				continue;
 			}
@@ -61,7 +62,7 @@ public final class RecognizeFeatures {
 				EObject created = type.getEPackage().getEFactoryInstance().create(type);
 				new RecognizeFeatures(child, features).attributes(created);
 				if (feature.isMany()) {
-					object.eSet(feature, Collections.singletonList(created));
+					((List<EObject>) object.eGet(feature)).add(created);
 				} else {
 					object.eSet(feature, created);
 				}
@@ -70,12 +71,17 @@ public final class RecognizeFeatures {
 		return this;
 	}
 
+	private Optional<EStructuralFeature> candidate(EObject object, Entry entry,
+			Collection<? extends EStructuralFeature> all) {
+		return features.route(entry.getEStructuralFeature().getName(), object.eClass())//
+				.filter(all::contains);
+	}
+
 	public RecognizeFeatures attributes(EObject object) {
 		EList<EAttribute> attributes = object.eClass().getEAllAttributes();
 		for (Iterator<Entry> iterator = any.getAnyAttribute().iterator(); iterator.hasNext();) {
 			Entry entry = iterator.next();
-			Optional<EStructuralFeature> candidate = features.route(entry.getEStructuralFeature().getName())//
-					.filter(attributes::contains);
+			Optional<EStructuralFeature> candidate = candidate(object, entry, attributes);
 			if (!candidate.isPresent()) {
 				continue;
 			}
