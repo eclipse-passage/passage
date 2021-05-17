@@ -109,6 +109,7 @@ public interface LicenseGrantDescriptor {
 	 * Returns the containing license pack of this license grant.
 	 *
 	 * @return the license pack
+	 * @since 2.0
 	 */
 	PersonalLicensePackDescriptor getLicensePack();
 

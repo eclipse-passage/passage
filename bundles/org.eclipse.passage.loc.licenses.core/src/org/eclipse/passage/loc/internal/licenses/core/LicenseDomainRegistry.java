@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,7 +91,7 @@ public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescrip
 	}
 
 	@Override
-	public Iterable<LicensePlanDescriptor> getLicensePlans() {
+	public Collection<LicensePlanDescriptor> getLicensePlans() {
 		return new ArrayList<>(licensePlanIndex.values());
 	}
 

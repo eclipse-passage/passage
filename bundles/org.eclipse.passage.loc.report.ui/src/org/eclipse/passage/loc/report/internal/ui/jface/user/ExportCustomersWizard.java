@@ -21,6 +21,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
+import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.FileForExport;
 import org.eclipse.passage.loc.report.internal.ui.jface.TargetPage;
@@ -43,6 +44,7 @@ final class ExportCustomersWizard extends Wizard {
 		this.preview = new PreviewPage(customers, data);
 		this.scope = new ScopePage(new Products(products, customers), preview);
 		this.target = new TargetPage(preview);
+		setWindowTitle(ExportCustomersWizardMessages.ExposedExportCustomersWizard_dialogTitle);
 	}
 
 	@Override

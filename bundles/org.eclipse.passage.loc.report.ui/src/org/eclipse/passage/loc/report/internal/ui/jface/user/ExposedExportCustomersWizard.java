@@ -18,7 +18,6 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerExportService;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
-import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -43,7 +42,6 @@ public final class ExposedExportCustomersWizard implements Consumer<Shell> {
 				shell, //
 				new ExportCustomersWizard(products, customers, export)//
 		);
-		dialog.setTitle(ExportCustomersWizardMessages.ExposedExportCustomersWizard_dialogTitle);
 		dialog.setPageSize(700, 400);
 		dialog.open();
 	}

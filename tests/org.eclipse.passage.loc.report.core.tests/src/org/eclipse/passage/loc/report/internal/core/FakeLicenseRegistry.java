@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
@@ -26,7 +27,7 @@ public final class FakeLicenseRegistry implements LicenseRegistry {
 	}
 
 	@Override
-	public Iterable<? extends LicensePlanDescriptor> getLicensePlans() {
+	public Collection<LicensePlanDescriptor> getLicensePlans() {
 		return plans;
 	}
 
