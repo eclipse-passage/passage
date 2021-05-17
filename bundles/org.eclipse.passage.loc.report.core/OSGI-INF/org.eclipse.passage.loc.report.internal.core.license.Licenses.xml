@@ -4,6 +4,5 @@
       <provide interface="org.eclipse.passage.loc.report.internal.core.license.LicenseStorage"/>
    </service>
    <reference bind="installLicenseRegistry" interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry" name="installLicenseRegistry"/>
-   <reference bind="installUserRegistry" interface="org.eclipse.passage.loc.internal.users.UserRegistry" name="installUserRegistry"/>
    <implementation class="org.eclipse.passage.loc.report.internal.core.license.Licenses"/>
 </scr:component>
