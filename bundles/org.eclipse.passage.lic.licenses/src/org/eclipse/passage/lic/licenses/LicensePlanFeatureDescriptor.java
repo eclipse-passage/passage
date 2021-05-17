@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,31 +25,9 @@ package org.eclipse.passage.lic.licenses;
 public interface LicensePlanFeatureDescriptor {
 
 	/**
-	 * Returns the <code>"Feature"</code> identifier of this license plan feature.
-	 * This is the value of its <code>"featureIdentifier"</code> attribute.
-	 *
-	 * @return the feature identifier
-	 * @see LicenseGrantDescriptor#getFeatureIdentifier()
+	 * @since 2.0
 	 */
-	String getFeatureIdentifier();
-
-	/**
-	 * Returns the <code>"Feature"</code> match version of this license plan
-	 * feature. This is the value of its <code>"matchVersion"</code> attribute.
-	 *
-	 * @return the match version
-	 * @see LicenseGrantDescriptor#getMatchVersion()
-	 */
-	String getMatchVersion();
-
-	/**
-	 * Returns the <code>"Feature"</code> match rule of this license plan feature.
-	 * This is the value of its <code>"matchRule"</code> attribute.
-	 *
-	 * @return the match rule
-	 * @see LicenseGrantDescriptor#getMatchRule()
-	 */
-	String getMatchRule();
+	FeatureRefDescriptor getFeature();
 
 	/**
 	 * Returns the containing license plan of this license plan feature.
