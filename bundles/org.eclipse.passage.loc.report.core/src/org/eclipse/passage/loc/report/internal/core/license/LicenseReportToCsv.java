@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -59,13 +59,15 @@ public final class LicenseReportToCsv {
 		List<String> header = new ArrayList<>(Arrays.asList(//
 				LicensesReportMessages.getString("LicenseReportToCsv_header_planName"), // //$NON-NLS-1$
 				LicensesReportMessages.getString("LicenseReportToCsv_header_planId"), // //$NON-NLS-1$
-				LicensesReportMessages.getString("LicenseReportToCsv_header_amountOfLicenses"))); // //$NON-NLS-1$
+				LicensesReportMessages.getString("LicenseReportToCsv_header_amountOfLicenses"), //$NON-NLS-1$
+				LicensesReportMessages.getString("LicenseReportToCsv_header_amountOfFloatingLicenses"))); // //$NON-NLS-1$
 		if (parameters.explain()) {
 			header.add(String.format(//
 					LicensesReportMessages.getString("LicenseReportToCsv_details"), // //$NON-NLS-1$
 					format.format(parameters.from()), //
 					format.format(parameters.to())//
 			));
+			header.add(LicensesReportMessages.getString("LicenseReportToCsv_floatingDetails")); //$NON-NLS-1$
 		}
 		return header.toArray(new String[header.size()]);
 	}
