@@ -20,14 +20,15 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
 import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
@@ -111,9 +112,9 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.LICENSE_PACK_DESCRIPTOR: {
-			PersonalLicensePackDescriptor licensePackDescriptor = (PersonalLicensePackDescriptor) theEObject;
-			T result = caseLicensePackDescriptor(licensePackDescriptor);
+		case LicensesPackage.PERSONAL_LICENSE_PACK_DESCRIPTOR: {
+			PersonalLicensePackDescriptor personalLicensePackDescriptor = (PersonalLicensePackDescriptor) theEObject;
+			T result = casePersonalLicensePackDescriptor(personalLicensePackDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -125,6 +126,13 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LicensesPackage.USER_REF_DESCRIPTOR: {
+			UserRefDescriptor userRefDescriptor = (UserRefDescriptor) theEObject;
+			T result = caseUserRefDescriptor(userRefDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.PRODUCT_REF_DESCRIPTOR: {
 			ProductRefDescriptor productRefDescriptor = (ProductRefDescriptor) theEObject;
 			T result = caseProductRefDescriptor(productRefDescriptor);
@@ -132,9 +140,9 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.USER_REF_DESCRIPTOR: {
-			UserRefDescriptor userRefDescriptor = (UserRefDescriptor) theEObject;
-			T result = caseUserRefDescriptor(userRefDescriptor);
+		case LicensesPackage.FEATURE_REF_DESCRIPTOR: {
+			FeatureRefDescriptor featureRefDescriptor = (FeatureRefDescriptor) theEObject;
+			T result = caseFeatureRefDescriptor(featureRefDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -249,7 +257,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 			PersonalLicensePack personalLicensePack = (PersonalLicensePack) theEObject;
 			T result = casePersonalLicensePack(personalLicensePack);
 			if (result == null)
-				result = caseLicensePackDescriptor(personalLicensePack);
+				result = casePersonalLicensePackDescriptor(personalLicensePack);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -307,6 +315,15 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LicensesPackage.USER_REF: {
+			UserRef userRef = (UserRef) theEObject;
+			T result = caseUserRef(userRef);
+			if (result == null)
+				result = caseUserRefDescriptor(userRef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
@@ -316,11 +333,11 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.USER_REF: {
-			UserRef userRef = (UserRef) theEObject;
-			T result = caseUserRef(userRef);
+		case LicensesPackage.FEATURE_REF: {
+			FeatureRef featureRef = (FeatureRef) theEObject;
+			T result = caseFeatureRef(featureRef);
 			if (result == null)
-				result = caseUserRefDescriptor(userRef);
+				result = caseFeatureRefDescriptor(featureRef);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -458,17 +475,17 @@ public class LicensesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>License Pack Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Personal License Pack Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License Pack Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Personal License Pack Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLicensePackDescriptor(PersonalLicensePackDescriptor object) {
+	public T casePersonalLicensePackDescriptor(PersonalLicensePackDescriptor object) {
 		return null;
 	}
 
@@ -499,6 +516,21 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProductRefDescriptor(ProductRefDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Ref Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Ref Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureRefDescriptor(FeatureRefDescriptor object) {
 		return null;
 	}
 
@@ -829,6 +861,21 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProductRef(ProductRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureRef(FeatureRef object) {
 		return null;
 	}
 

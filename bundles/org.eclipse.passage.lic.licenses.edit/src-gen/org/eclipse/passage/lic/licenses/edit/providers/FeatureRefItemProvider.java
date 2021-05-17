@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,8 +17,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,20 +27,23 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureRef} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class FeatureRefItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -47,7 +51,7 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicensePlanFeatureItemProvider(AdapterFactory adapterFactory) {
+	public FeatureRefItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,68 +66,70 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLicensePlanPropertyDescriptor(object);
+			addIdentifierPropertyDescriptor(object);
+			addVersionPropertyDescriptor(object);
+			addMatchingRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the License Plan feature.
+	 * This adds a property descriptor for the Identifier feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLicensePlanPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_LicensePlanFeature_licensePlan_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_licensePlan_feature", //$NON-NLS-1$//$NON-NLS-2$
-						"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
-				LicensesPackage.eINSTANCE.getLicensePlanFeature_LicensePlan(), true, false, true, null, null, null));
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FeatureRef_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureRef_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FeatureRef_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getFeatureRef_Identifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Version feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlanFeature_Feature());
-		}
-		return childrenFeatures;
+	protected void addVersionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FeatureRef_version_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureRef_version_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FeatureRef_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getFeatureRef_Version(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Matching Rule feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addMatchingRulePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FeatureRef_matchingRule_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureRef_matchingRule_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FeatureRef_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getFeatureRef_MatchingRule(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns license.png.
-	 * 
+	 * This returns FeatureRef.gif.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FeatureRef")); //$NON-NLS-1$
 	}
 
 	/**
@@ -140,20 +146,13 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		LicensePlanFeature planFeature = (LicensePlanFeature) object;
-		String identifier = planFeature.getFeature().getIdentifier();
-		if (identifier == null || identifier.length() == 0) {
-			identifier = getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
-		}
-		String version = planFeature.getFeature().getVersion();
-		if (version == null || version.length() == 0) {
-			return identifier;
-		}
-		return getString("_UI_LicensePlanFeature_text_pattern", new Object[] { identifier, version }); //$NON-NLS-1$
+		String label = ((FeatureRef) object).getIdentifier();
+		return label == null || label.length() == 0 ? getString("_UI_FeatureRef_type") : //$NON-NLS-1$
+				getString("_UI_FeatureRef_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -167,9 +166,11 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicensePlanFeature.class)) {
-		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(FeatureRef.class)) {
+		case LicensesPackage.FEATURE_REF__IDENTIFIER:
+		case LicensesPackage.FEATURE_REF__VERSION:
+		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -187,9 +188,6 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlanFeature_Feature(),
-				LicensesFactory.eINSTANCE.createFeatureRef()));
 	}
 
 	/**

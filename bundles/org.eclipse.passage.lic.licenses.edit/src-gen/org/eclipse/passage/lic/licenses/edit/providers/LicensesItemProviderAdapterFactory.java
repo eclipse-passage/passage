@@ -272,6 +272,29 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FeatureRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureRefItemProvider featureRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFeatureRefAdapter() {
+		if (featureRefItemProvider == null) {
+			featureRefItemProvider = new FeatureRefItemProvider(this);
+		}
+
+		return featureRefItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.UserRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -652,10 +675,12 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			personalLicenseRequisitesItemProvider.dispose();
 		if (floatingLicenseRequisitesItemProvider != null)
 			floatingLicenseRequisitesItemProvider.dispose();
-		if (productRefItemProvider != null)
-			productRefItemProvider.dispose();
 		if (userRefItemProvider != null)
 			userRefItemProvider.dispose();
+		if (productRefItemProvider != null)
+			productRefItemProvider.dispose();
+		if (featureRefItemProvider != null)
+			featureRefItemProvider.dispose();
 		if (companyRefItemProvider != null)
 			companyRefItemProvider.dispose();
 		if (floatingServerItemProvider != null)

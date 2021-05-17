@@ -68,16 +68,16 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 			attributes.define("userIdentifier", LicensesPackage.eINSTANCE.getUserRef_Identifier()); //$NON-NLS-1$
 			attributes.define("userFullName", LicensesPackage.eINSTANCE.getUserRef_Name()); //$NON-NLS-1$
 			attributes.define("conditionExpression", //$NON-NLS-1$
-					LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
-			attributes.define("conditionType", LicensesPackage.eINSTANCE.getLicenseGrant_ConditionType()); //$NON-NLS-1$
+					LicensesPackage.eINSTANCE.getEvaluationInstructions_Expression());
+			attributes.define("conditionType", LicensesPackage.eINSTANCE.getEvaluationInstructions_Type()); //$NON-NLS-1$
 			attributes.define("featureIdentifier", //$NON-NLS-1$
-					LicensesPackage.eINSTANCE.getLicenseGrant_FeatureIdentifier());
+					LicensesPackage.eINSTANCE.getFeatureRef_Identifier());
 			attributes.define("identifier", //$NON-NLS-1$
 					LicensesPackage.eINSTANCE.getLicenseGrant_Identifier());
-			attributes.define("matchRule", LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule()); //$NON-NLS-1$
-			attributes.define("matchVersion", LicensesPackage.eINSTANCE.getLicenseGrant_MatchVersion()); //$NON-NLS-1$
-			attributes.define("validFrom", LicensesPackage.eINSTANCE.getLicenseGrant_ValidFrom()); //$NON-NLS-1$
-			attributes.define("validUntil", LicensesPackage.eINSTANCE.getLicenseGrant_ValidUntil()); //$NON-NLS-1$
+			attributes.define("matchRule", LicensesPackage.eINSTANCE.getFeatureRef_MatchingRule()); //$NON-NLS-1$
+			attributes.define("matchVersion", LicensesPackage.eINSTANCE.getFeatureRef_Version()); //$NON-NLS-1$
+			attributes.define("validFrom", LicensesPackage.eINSTANCE.getValidityPeriodClosed_From()); //$NON-NLS-1$
+			attributes.define("validUntil", LicensesPackage.eINSTANCE.getValidityPeriodClosed_Until()); //$NON-NLS-1$
 			RecognizeFeatures unknown = new RecognizeFeatures(entry.getValue(), attributes);
 			unknown//
 					.mixed(pack)//

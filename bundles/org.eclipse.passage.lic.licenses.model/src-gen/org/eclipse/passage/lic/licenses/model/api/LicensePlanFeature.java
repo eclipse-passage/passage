@@ -25,9 +25,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeatureIdentifier <em>Feature Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchVersion <em>Match Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan <em>License Plan</em>}</li>
  * </ul>
  *
@@ -37,74 +35,27 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  */
 public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescriptor {
 	/**
-	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature Identifier</em>' attribute.
-	 * @see #setFeatureIdentifier(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_FeatureIdentifier()
-	 * @model required="true"
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(FeatureRef)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Feature()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getFeatureIdentifier();
+	FeatureRef getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeatureIdentifier <em>Feature Identifier</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Identifier</em>' attribute.
-	 * @see #getFeatureIdentifier()
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
+	 * @see #getFeature()
 	 * @generated
 	 */
-	void setFeatureIdentifier(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Match Version</b></em>' attribute.
-	 * The default value is <code>"0.0.0"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Match Version</em>' attribute.
-	 * @see #setMatchVersion(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_MatchVersion()
-	 * @model default="0.0.0" required="true"
-	 * @generated
-	 */
-	@Override
-	String getMatchVersion();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchVersion <em>Match Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Match Version</em>' attribute.
-	 * @see #getMatchVersion()
-	 * @generated
-	 */
-	void setMatchVersion(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Match Rule</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Match Rule</em>' attribute.
-	 * @see #setMatchRule(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_MatchRule()
-	 * @model
-	 * @generated
-	 */
-	@Override
-	String getMatchRule();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getMatchRule <em>Match Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Match Rule</em>' attribute.
-	 * @see #getMatchRule()
-	 * @generated
-	 */
-	void setMatchRule(String value);
+	void setFeature(FeatureRef value);
 
 	/**
 	 * Returns the value of the '<em><b>License Plan</b></em>' reference.

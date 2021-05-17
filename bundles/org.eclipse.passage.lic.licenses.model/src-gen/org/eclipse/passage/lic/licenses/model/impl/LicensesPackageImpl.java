@@ -22,14 +22,15 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.passage.lic.licenses.CompanyRefDescriptor;
 import org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor;
 import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
+import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
-import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
 import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
@@ -41,6 +42,7 @@ import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
@@ -89,7 +91,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass licensePackDescriptorEClass = null;
+	private EClass personalLicensePackDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,6 +106,13 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass productRefDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureRefDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -258,6 +267,13 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass productRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featureRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -433,8 +449,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getLicensePackDescriptor() {
-		return licensePackDescriptorEClass;
+	public EClass getPersonalLicensePackDescriptor() {
+		return personalLicensePackDescriptorEClass;
 	}
 
 	/**
@@ -455,6 +471,16 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getProductRefDescriptor() {
 		return productRefDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureRefDescriptor() {
+		return featureRefDescriptorEClass;
 	}
 
 	/**
@@ -673,28 +699,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicensePlanFeature_FeatureIdentifier() {
-		return (EAttribute) licensePlanFeatureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicensePlanFeature_MatchVersion() {
-		return (EAttribute) licensePlanFeatureEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicensePlanFeature_MatchRule() {
-		return (EAttribute) licensePlanFeatureEClass.getEStructuralFeatures().get(2);
+	public EReference getLicensePlanFeature_Feature() {
+		return (EReference) licensePlanFeatureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -704,7 +710,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 */
 	@Override
 	public EReference getLicensePlanFeature_LicensePlan() {
-		return (EReference) licensePlanFeatureEClass.getEStructuralFeatures().get(3);
+		return (EReference) licensePlanFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -763,8 +769,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_FeatureIdentifier() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(1);
+	public EReference getLicenseGrant_Feature() {
+		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -773,8 +779,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_MatchVersion() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(2);
+	public EReference getLicenseGrant_Valid() {
+		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -783,48 +789,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLicenseGrant_MatchRule() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseGrant_ValidFrom() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseGrant_ValidUntil() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseGrant_ConditionType() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getLicenseGrant_ConditionExpression() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(7);
+	public EReference getLicenseGrant_UserAuthentication() {
+		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -834,7 +800,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 */
 	@Override
 	public EAttribute getLicenseGrant_Capacity() {
-		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(8);
+		return (EAttribute) licenseGrantEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -844,7 +810,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 */
 	@Override
 	public EReference getLicenseGrant_LicensePack() {
-		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(9);
+		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1025,6 +991,46 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EAttribute getProductRef_Version() {
 		return (EAttribute) productRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFeatureRef() {
+		return featureRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureRef_Identifier() {
+		return (EAttribute) featureRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureRef_Version() {
+		return (EAttribute) featureRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureRef_MatchingRule() {
+		return (EAttribute) featureRefEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1511,13 +1517,15 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		licensePlanFeatureDescriptorEClass = createEClass(LICENSE_PLAN_FEATURE_DESCRIPTOR);
 
-		licensePackDescriptorEClass = createEClass(LICENSE_PACK_DESCRIPTOR);
+		personalLicensePackDescriptorEClass = createEClass(PERSONAL_LICENSE_PACK_DESCRIPTOR);
 
 		licenseGrantDescriptorEClass = createEClass(LICENSE_GRANT_DESCRIPTOR);
 
+		userRefDescriptorEClass = createEClass(USER_REF_DESCRIPTOR);
+
 		productRefDescriptorEClass = createEClass(PRODUCT_REF_DESCRIPTOR);
 
-		userRefDescriptorEClass = createEClass(USER_REF_DESCRIPTOR);
+		featureRefDescriptorEClass = createEClass(FEATURE_REF_DESCRIPTOR);
 
 		companyRefDescriptorEClass = createEClass(COMPANY_REF_DESCRIPTOR);
 
@@ -1552,9 +1560,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEReference(licensePlanEClass, LICENSE_PLAN__FLOATING);
 
 		licensePlanFeatureEClass = createEClass(LICENSE_PLAN_FEATURE);
-		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER);
-		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__MATCH_VERSION);
-		createEAttribute(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__MATCH_RULE);
+		createEReference(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__FEATURE);
 		createEReference(licensePlanFeatureEClass, LICENSE_PLAN_FEATURE__LICENSE_PLAN);
 
 		personalLicensePackEClass = createEClass(PERSONAL_LICENSE_PACK);
@@ -1563,13 +1569,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		licenseGrantEClass = createEClass(LICENSE_GRANT);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__IDENTIFIER);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__FEATURE_IDENTIFIER);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__MATCH_VERSION);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__MATCH_RULE);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__VALID_FROM);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__VALID_UNTIL);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__CONDITION_TYPE);
-		createEAttribute(licenseGrantEClass, LICENSE_GRANT__CONDITION_EXPRESSION);
+		createEReference(licenseGrantEClass, LICENSE_GRANT__FEATURE);
+		createEReference(licenseGrantEClass, LICENSE_GRANT__VALID);
+		createEReference(licenseGrantEClass, LICENSE_GRANT__USER_AUTHENTICATION);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__CAPACITY);
 		createEReference(licenseGrantEClass, LICENSE_GRANT__LICENSE_PACK);
 
@@ -1592,13 +1594,18 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		floatingLicenseRequisitesEClass = createEClass(FLOATING_LICENSE_REQUISITES);
 		createEReference(floatingLicenseRequisitesEClass, FLOATING_LICENSE_REQUISITES__COMPANY);
 
+		userRefEClass = createEClass(USER_REF);
+		createEAttribute(userRefEClass, USER_REF__IDENTIFIER);
+		createEAttribute(userRefEClass, USER_REF__NAME);
+
 		productRefEClass = createEClass(PRODUCT_REF);
 		createEAttribute(productRefEClass, PRODUCT_REF__IDENTIFIER);
 		createEAttribute(productRefEClass, PRODUCT_REF__VERSION);
 
-		userRefEClass = createEClass(USER_REF);
-		createEAttribute(userRefEClass, USER_REF__IDENTIFIER);
-		createEAttribute(userRefEClass, USER_REF__NAME);
+		featureRefEClass = createEClass(FEATURE_REF);
+		createEAttribute(featureRefEClass, FEATURE_REF__IDENTIFIER);
+		createEAttribute(featureRefEClass, FEATURE_REF__VERSION);
+		createEAttribute(featureRefEClass, FEATURE_REF__MATCHING_RULE);
 
 		companyRefEClass = createEClass(COMPANY_REF);
 		createEAttribute(companyRefEClass, COMPANY_REF__IDENTIFIER);
@@ -1687,7 +1694,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		floatingLicenseRequisitesDescriptorEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
 		licensePlanEClass.getESuperTypes().add(this.getLicensePlanDescriptor());
 		licensePlanFeatureEClass.getESuperTypes().add(this.getLicensePlanFeatureDescriptor());
-		personalLicensePackEClass.getESuperTypes().add(this.getLicensePackDescriptor());
+		personalLicensePackEClass.getESuperTypes().add(this.getPersonalLicensePackDescriptor());
 		licenseGrantEClass.getESuperTypes().add(this.getLicenseGrantDescriptor());
 		floatingLicensePackEClass.getESuperTypes().add(this.getFloatingLicensePackDescriptor());
 		licenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisitesDescriptor());
@@ -1695,8 +1702,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		personalLicenseRequisitesEClass.getESuperTypes().add(this.getPersonalLicenseRequisitesDescriptor());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getLicenseRequisites());
 		floatingLicenseRequisitesEClass.getESuperTypes().add(this.getFloatingLicenseRequisitesDescriptor());
-		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
 		userRefEClass.getESuperTypes().add(this.getUserRefDescriptor());
+		productRefEClass.getESuperTypes().add(this.getProductRefDescriptor());
+		featureRefEClass.getESuperTypes().add(this.getFeatureRefDescriptor());
 		companyRefEClass.getESuperTypes().add(this.getCompanyRefDescriptor());
 		floatingServerEClass.getESuperTypes().add(this.getFloatingServerDescriptor());
 		userGrantEClass.getESuperTypes().add(this.getUserGrantDescriptor());
@@ -1714,17 +1722,20 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEClass(licensePlanFeatureDescriptorEClass, LicensePlanFeatureDescriptor.class,
 				"LicensePlanFeatureDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(licensePackDescriptorEClass, PersonalLicensePackDescriptor.class, "LicensePackDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEClass(personalLicensePackDescriptorEClass, PersonalLicensePackDescriptor.class,
+				"PersonalLicensePackDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(licenseGrantDescriptorEClass, LicenseGrantDescriptor.class, "LicenseGrantDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(userRefDescriptorEClass, UserRefDescriptor.class, "UserRefDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
+				!IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(productRefDescriptorEClass, ProductRefDescriptor.class, "ProductRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(userRefDescriptorEClass, UserRefDescriptor.class, "UserRefDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
-				!IS_GENERATED_INSTANCE_CLASS);
+		initEClass(featureRefDescriptorEClass, FeatureRefDescriptor.class, "FeatureRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(companyRefDescriptorEClass, CompanyRefDescriptor.class, "CompanyRefDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -1784,15 +1795,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(licensePlanFeatureEClass, LicensePlanFeature.class, "LicensePlanFeature", !IS_ABSTRACT, //$NON-NLS-1$
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLicensePlanFeature_FeatureIdentifier(), ecorePackage.getEString(), "featureIdentifier", null, //$NON-NLS-1$
-				1, 1, LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicensePlanFeature_MatchVersion(), ecorePackage.getEString(), "matchVersion", "0.0.0", 1, 1, //$NON-NLS-1$//$NON-NLS-2$
-				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicensePlanFeature_MatchRule(), ecorePackage.getEString(), "matchRule", null, 0, 1, //$NON-NLS-1$
-				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getLicensePlanFeature_Feature(), this.getFeatureRef(), null, "feature", null, 1, 1, //$NON-NLS-1$
+				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLicensePlanFeature_LicensePlan(), this.getLicensePlan(), null, "licensePlan", null, 1, 1, //$NON-NLS-1$
 				LicensePlanFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1811,27 +1816,15 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEAttribute(getLicenseGrant_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, //$NON-NLS-1$
 				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_FeatureIdentifier(), ecorePackage.getEString(), "featureIdentifier", null, 1, 1, //$NON-NLS-1$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_MatchVersion(), ecorePackage.getEString(), "matchVersion", "0.0.0", 1, 1, //$NON-NLS-1$//$NON-NLS-2$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_MatchRule(), ecorePackage.getEString(), "matchRule", null, 0, 1, //$NON-NLS-1$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_ValidFrom(), ecorePackage.getEDate(), "validFrom", null, 1, 1, //$NON-NLS-1$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_ValidUntil(), ecorePackage.getEDate(), "validUntil", null, 1, 1, //$NON-NLS-1$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_ConditionType(), ecorePackage.getEString(), "conditionType", null, 1, 1, //$NON-NLS-1$
-				LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLicenseGrant_ConditionExpression(), ecorePackage.getEString(), "conditionExpression", null, 1, //$NON-NLS-1$
-				1, LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseGrant_Feature(), this.getFeatureRef(), null, "feature", null, 1, 1, LicenseGrant.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseGrant_Valid(), this.getValidityPeriod(), null, "valid", null, 1, 1, LicenseGrant.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseGrant_UserAuthentication(), this.getEvaluationInstructions(), null,
+				"userAuthentication", null, 1, 1, LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLicenseGrant_Capacity(), ecorePackage.getEInt(), "capacity", "1", 0, 1, LicenseGrant.class, //$NON-NLS-1$//$NON-NLS-2$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLicenseGrant_LicensePack(), this.getPersonalLicensePack(),
@@ -1884,6 +1877,12 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				FloatingLicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(userRefEClass, UserRef.class, "UserRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getUserRef_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, UserRef.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserRef_Name(), ecorePackage.getEString(), "name", null, 1, 1, UserRef.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(productRefEClass, ProductRef.class, "ProductRef", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProductRef_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
@@ -1892,11 +1891,16 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEAttribute(getProductRef_Version(), ecorePackage.getEString(), "version", null, 1, 1, ProductRef.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(userRefEClass, UserRef.class, "UserRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUserRef_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, UserRef.class, //$NON-NLS-1$
+		initEClass(featureRefEClass, FeatureRef.class, "FeatureRef", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFeatureRef_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				FeatureRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureRef_Version(), ecorePackage.getEString(), "version", null, 1, 1, FeatureRef.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserRef_Name(), ecorePackage.getEString(), "name", null, 1, 1, UserRef.class, !IS_TRANSIENT, //$NON-NLS-1$
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureRef_MatchingRule(), ecorePackage.getEString(), "matchingRule", null, 1, 1, //$NON-NLS-1$
+				FeatureRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(companyRefEClass, CompanyRef.class, "CompanyRef", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
