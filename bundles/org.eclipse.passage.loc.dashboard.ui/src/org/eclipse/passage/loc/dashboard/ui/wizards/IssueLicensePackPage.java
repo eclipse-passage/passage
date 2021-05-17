@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.dashboard.ui.i18n.IssueLicensePageMessages;
@@ -66,9 +67,10 @@ public class IssueLicensePackPage extends WizardPage {
 			license.getLicense().getProduct().setVersion(request.productVersion());
 			license.getLicense().getUser().setIdentifier(request.user());
 			EList<LicenseGrant> licenseGrants = license.getGrants();
-			for (LicenseGrant licenseGrant : licenseGrants) {
-				licenseGrant.setValidFrom(request.validFrom());
-				licenseGrant.setValidUntil(request.validUntil());
+			for (LicenseGrant grant : licenseGrants) {
+				ValidityPeriodClosed valid = (ValidityPeriodClosed) grant.getValid();
+				valid.setFrom(request.validFrom());
+				valid.setUntil(request.validUntil());
 			}
 			return;
 		}

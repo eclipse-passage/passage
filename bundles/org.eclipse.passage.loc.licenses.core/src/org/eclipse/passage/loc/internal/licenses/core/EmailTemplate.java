@@ -58,8 +58,8 @@ public class EmailTemplate {
 		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl,
 				pack.getLicense().getProduct().getVersion()));
 		for (LicenseGrantDescriptor grant : pack.getGrants()) {
-			builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_feature_lbl, grant.getFeatureIdentifier()));
-			String conditionExpression = grant.getConditionExpression();
+			builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_feature_lbl, grant.getFeature().getIdentifier()));
+			String conditionExpression = grant.getUserAuthentication().getExpression();
 			if (conditionExpression != null && !conditionExpression.isEmpty()) {
 				builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_condition_expr_lbl, conditionExpression));
 			}
@@ -92,7 +92,8 @@ public class EmailTemplate {
 		return builder.toString();
 	}
 
-	public File createEmlFile(String from, PersonalLicensePackDescriptor licensePack, IssuedLicense result) throws IOException {
+	public File createEmlFile(String from, PersonalLicensePackDescriptor licensePack, IssuedLicense result)
+			throws IOException {
 		File attachment = result.encrypted().toFile();
 		File emlFile = new File(attachment.toString() + dotEml);
 		try (FileOutputStream stream = new FileOutputStream(emlFile)) {

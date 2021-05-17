@@ -188,7 +188,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = LicensesFactory.eINSTANCE.createFeatureGrant();
-		String fid = feature.getFeatureIdentifier();
+		String fid = feature.getFeature().getIdentifier();
 		grant.setFeature(fid);
 		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
@@ -219,8 +219,9 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
 		VersionMatch version = LicensesFactory.eINSTANCE.createVersionMatch();
-		version.setVersion(feature.getMatchVersion());
-		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(feature.getMatchRule())).get().identifier());
+		version.setVersion(feature.getFeature().getVersion());
+		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(//
+				feature.getFeature().getMatchingRule())).get().identifier());
 		return version;
 	}
 

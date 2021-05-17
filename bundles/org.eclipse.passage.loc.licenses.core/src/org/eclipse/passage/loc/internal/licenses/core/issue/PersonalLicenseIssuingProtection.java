@@ -55,12 +55,16 @@ public final class PersonalLicenseIssuingProtection implements Consumer<Personal
 	}
 
 	private Optional<ValidityPeriodClosed> validGet(LicenseGrant grant) {
-		return Optional.of(new BaseValidityPeriodClosed(date(grant.getValidFrom()), date(grant.getValidUntil())));
+		return Optional.of(new BaseValidityPeriodClosed(//
+				date(((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid()).getFrom()), //
+				date(((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid()).getUntil())));
 	}
 
 	private void validSet(LicenseGrant grant, ValidityPeriodClosed period) {
-		grant.setValidFrom(Date.from(period.from().toInstant()));
-		grant.setValidUntil(Date.from(period.to().toInstant()));
+		((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid())
+				.setFrom(Date.from(period.from().toInstant()));
+		((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid())
+				.setUntil(Date.from(period.to().toInstant()));
 	}
 
 	private ZonedDateTime date(Date date) {

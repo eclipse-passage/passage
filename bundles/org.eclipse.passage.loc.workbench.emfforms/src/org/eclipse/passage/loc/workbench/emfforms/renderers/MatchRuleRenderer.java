@@ -123,9 +123,9 @@ public class MatchRuleRenderer extends ExplainedComboControlRenderer {
 	private Optional<String> guide() {
 		EObject owner = getViewModelContext().getDomainModel();
 		if (owner instanceof LicensePlanFeatureDescriptor) {
-			return Optional.ofNullable(((LicensePlanFeatureDescriptor) owner).getMatchVersion());
+			return Optional.ofNullable(((LicensePlanFeatureDescriptor) owner).getFeature().getVersion());
 		} else if (owner instanceof LicenseGrantDescriptor) {
-			return Optional.ofNullable(((LicenseGrantDescriptor) owner).getMatchVersion());
+			return Optional.ofNullable(((LicenseGrantDescriptor) owner).getFeature().getVersion());
 		} else if (owner instanceof VersionMatch) {
 			return Optional.ofNullable(((VersionMatch) owner).getVersion());
 		}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -22,12 +22,13 @@ import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRen
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+@SuppressWarnings("restriction")
 @Component
 public class ConditionExpressionRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
 	public ConditionExpressionRendererService() {
-		super(ConditionExpressionRenderer.class, LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression());
+		super(ConditionExpressionRenderer.class, LicensesPackage.eINSTANCE.getEvaluationInstructions_Expression());
 	}
 
 	@Reference

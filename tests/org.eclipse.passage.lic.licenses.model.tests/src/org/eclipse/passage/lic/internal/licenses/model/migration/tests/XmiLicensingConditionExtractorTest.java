@@ -29,6 +29,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Rule;
 import org.junit.Test;
@@ -70,18 +71,18 @@ public class XmiLicensingConditionExtractorTest {
 		PersonalLicensePack license = factory.createPersonalLicensePack();
 		EList<LicenseGrant> licenseGrants = license.getGrants();
 		LicenseGrant cond1 = factory.createLicenseGrant();
-		cond1.setFeatureIdentifier(COND1_FEATURE_ID);
-		cond1.setConditionType(COND1_CONDITION_TYPE);
-		cond1.setConditionExpression(COND1_CONDITION_EXPRESSION);
-		cond1.setValidFrom(new Date());
-		cond1.setValidUntil(new Date(System.currentTimeMillis() + 1));
+		cond1.getFeature().setIdentifier(COND1_FEATURE_ID);
+		cond1.getUserAuthentication().setType(COND1_CONDITION_TYPE);
+		cond1.getUserAuthentication().setExpression(COND1_CONDITION_EXPRESSION);
+		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
+		((ValidityPeriodClosed) cond1.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond1);
 		LicenseGrant cond2 = factory.createLicenseGrant();
-		cond2.setFeatureIdentifier(COND2_FEATURE_ID);
-		cond2.setConditionType(COND2_CONDITION_TYPE);
-		cond2.setConditionExpression(COND2_CONDITION_EXPRESSION);
-		cond2.setValidFrom(new Date());
-		cond2.setValidUntil(new Date(System.currentTimeMillis() + 1));
+		cond2.getFeature().setIdentifier(COND2_FEATURE_ID);
+		cond2.getUserAuthentication().setType(COND2_CONDITION_TYPE);
+		cond2.getUserAuthentication().setExpression(COND2_CONDITION_EXPRESSION);
+		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
+		((ValidityPeriodClosed) cond1.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond2);
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
