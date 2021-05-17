@@ -3,6 +3,7 @@
    <service>
       <provide interface="org.eclipse.passage.loc.report.internal.core.user.CustomerStorage"/>
    </service>
+   <reference bind="installLicensesRegistry" interface="org.eclipse.passage.loc.internal.licenses.LicenseRegistry" name="installLicensesRegistry"/>
    <reference bind="installUserRegistry" interface="org.eclipse.passage.loc.internal.users.UserRegistry" name="installUserRegistry"/>
    <implementation class="org.eclipse.passage.loc.report.internal.core.user.Customers"/>
 </scr:component>
