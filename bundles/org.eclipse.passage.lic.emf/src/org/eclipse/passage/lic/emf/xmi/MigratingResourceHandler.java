@@ -20,6 +20,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.internal.emf.migration.RecognizeFeatures;
 
 /**
  * Adds hooks for migrating legacy data
@@ -43,5 +46,11 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 		resource.getEObjectToExtensionMap().entrySet().forEach(this::convertEntry);
 	}
 
-	protected abstract void convertEntry(Entry<EObject, AnyType> entry);
+	protected void convertEntry(Entry<EObject, AnyType> entry) {
+		new RecognizeFeatures(entry.getValue(), attributes(), structures()).mixed(entry.getKey());
+	}
+
+	protected abstract EFeatureRoutes attributes();
+
+	protected abstract EnsureStructure structures();
 }

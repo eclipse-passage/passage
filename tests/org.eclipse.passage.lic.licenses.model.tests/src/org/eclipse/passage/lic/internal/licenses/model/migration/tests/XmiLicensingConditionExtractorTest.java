@@ -24,13 +24,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
+import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -39,10 +39,12 @@ import org.junit.rules.TemporaryFolder;
 public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$
+	private static final String COND1_FEATURE_VERSION = "1.0.0"; //$NON-NLS-1$
 	private static final String COND1_CONDITION_TYPE = "hardware"; //$NON-NLS-1$
 	private static final String COND1_CONDITION_EXPRESSION = "mac=*"; //$NON-NLS-1$
 
 	private static final String COND2_FEATURE_ID = "loc.products.matrix"; //$NON-NLS-1$
+	private static final String COND2_FEATURE_VERSION = "2.0.0"; //$NON-NLS-1$
 	private static final String COND2_CONDITION_TYPE = "hardware"; //$NON-NLS-1$
 	private static final String COND2_CONDITION_EXPRESSION = "hdd=*"; //$NON-NLS-1$
 
@@ -72,6 +74,7 @@ public class XmiLicensingConditionExtractorTest {
 		EList<LicenseGrant> licenseGrants = license.getGrants();
 		LicenseGrant cond1 = factory.createLicenseGrant();
 		cond1.getFeature().setIdentifier(COND1_FEATURE_ID);
+		cond1.getFeature().setVersion(COND1_FEATURE_VERSION);
 		cond1.getUserAuthentication().setType(COND1_CONDITION_TYPE);
 		cond1.getUserAuthentication().setExpression(COND1_CONDITION_EXPRESSION);
 		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
@@ -79,16 +82,17 @@ public class XmiLicensingConditionExtractorTest {
 		licenseGrants.add(cond1);
 		LicenseGrant cond2 = factory.createLicenseGrant();
 		cond2.getFeature().setIdentifier(COND2_FEATURE_ID);
+		cond2.getFeature().setVersion(COND2_FEATURE_VERSION);
 		cond2.getUserAuthentication().setType(COND2_CONDITION_TYPE);
 		cond2.getUserAuthentication().setExpression(COND2_CONDITION_EXPRESSION);
-		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
-		((ValidityPeriodClosed) cond1.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
+		((ValidityPeriodClosed) cond2.getValid()).setFrom(new Date());
+		((ValidityPeriodClosed) cond2.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond2);
 
 		File file = baseFolder.newFile("some.lic"); //$NON-NLS-1$
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			// FIXME:AF: should be done via factory
-			Resource saved = new XMIResourceImpl();
+			Resource saved = new LicensesResourceImpl();
 			saved.getContents().add(license);
 			saved.save(fos, new HashMap<>());
 		}
@@ -100,10 +104,12 @@ public class XmiLicensingConditionExtractorTest {
 		assertEquals(2, actual.size());
 		Condition actual1 = actual.get(0);
 		assertEquals(COND1_FEATURE_ID, actual1.feature());
+		assertEquals(COND1_FEATURE_VERSION, actual1.versionMatch().version());
 		assertEquals(COND1_CONDITION_TYPE, actual1.evaluationInstructions().type().identifier());
 		assertEquals(COND1_CONDITION_EXPRESSION, actual1.evaluationInstructions().expression());
 		Condition actual2 = actual.get(1);
 		assertEquals(COND2_FEATURE_ID, actual2.feature());
+		assertEquals(COND2_FEATURE_VERSION, actual2.versionMatch().version());
 		assertEquals(COND2_CONDITION_TYPE, actual2.evaluationInstructions().type().identifier());
 		assertEquals(COND2_CONDITION_EXPRESSION, actual2.evaluationInstructions().expression());
 	}
