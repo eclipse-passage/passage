@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,36 +10,37 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.report.internal.core.user;
-
-import java.util.Collections;
-import java.util.Set;
+package org.eclipse.passage.loc.report.internal.core;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
-final class FakeCustomersBase implements CustomerStorage {
+public final class FakeCompanyDescriptor implements UserOriginDescriptor {
 
-	private final TestCustomers customers;
+	private final String name;
 
-	FakeCustomersBase(TestCustomers customers) {
-		this.customers = customers;
+	public FakeCompanyDescriptor(String name) {
+		this.name = name;
 	}
 
 	@Override
-	public Set<UserDescriptor> personsUsedProducts(Set<String> products) {
-		return customers.users();
+	public String getIdentifier() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getName() {
+		return name;
 	}
 
 	@Override
-	public Set<String> products() {
-		return Collections.emptySet();
+	public String getDescription() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Iterable<? extends UserDescriptor> getUsers() {
+		throw new UnsupportedOperationException();
 	}
 
 }

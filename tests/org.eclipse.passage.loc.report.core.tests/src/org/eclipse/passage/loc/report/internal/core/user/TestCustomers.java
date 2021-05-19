@@ -15,31 +15,44 @@ package org.eclipse.passage.loc.report.internal.core.user;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.loc.report.internal.core.FakeCompanyDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeUserDescriptor;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
 abstract class TestCustomers implements TestData<CustomerStorage> {
 
-	private final String[][] records;
+	private final String[][] persons;
+	private final String[][] companies;
 
-	protected TestCustomers(String[][] records) {
-		this.records = records;
+	protected TestCustomers(String[][] persons, String[][] companies) {
+		this.persons = persons;
+		this.companies = companies;
 	}
 
-	Set<UserDescriptor> descriptors() {
-		return Arrays.stream(records)//
+	Set<UserDescriptor> users() {
+		return Arrays.stream(persons)//
 				.map(r -> new FakeUserDescriptor(r[0], r[1]))//
+				.collect(Collectors.toSet());
+	}
+
+	Set<UserOriginDescriptor> companies() {
+		return Arrays.stream(companies)//
+				.map(r -> new FakeCompanyDescriptor(r[0]))//
 				.collect(Collectors.toSet());
 	}
 
 	@Override
 	public Set<String> csv() {
-		Set<String> data = Arrays.stream(records)//
-				.map(r -> r[0] + ";" + r[1]) //$NON-NLS-1$
+		Set<String> data = Stream.concat(//
+				Arrays.stream(persons), //
+				Arrays.stream(companies))//
+				.map(r -> String.format("%s;%s;%s", r[0], r[1], r[2])) //$NON-NLS-1$
 				.collect(Collectors.toSet());
-		data.add("email;name"); //$NON-NLS-1$
+		data.add("name;usage;contact"); //$NON-NLS-1$
 		return data;
 	}
 
@@ -53,22 +66,27 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 		Some() {
 			super(new String[][] { //
 					new String[] { //
-							"erwin.schroedinger@gmail.com", //$NON-NLS-1$
-							"Erwin Rudolf Josef Alexander Schrödinger" }, //$NON-NLS-1$
+							"Erwin Rudolf Josef Alexander Schrödinger", //$NON-NLS-1$
+							ProductCustomer.Usage.personal.name(), //
+							"erwin.schroedinger@gmail.com" }, //$NON-NLS-1$
 					new String[] { //
-							"lomonosov_1711@yandex.com", //$NON-NLS-1$
-							"Михайло Васильевич Ломоносов" } //$NON-NLS-1$
+							"Михайло Васильевич Ломоносов", //$NON-NLS-1$
+							ProductCustomer.Usage.personal.name(), //
+							"lomonosov_1711@yandex.com" } //$NON-NLS-1$
+			}, new String[][] { //
+					new String[] { //
+							"Santa Claus and Co", //$NON-NLS-1$
+							ProductCustomer.Usage.company.name(), //
+							"santa@lapland.org" }, //$NON-NLS-1$
 			});
 		}
-
 	}
 
 	static final class Empty extends TestCustomers {
 
 		Empty() {
-			super(new String[0][0]);
+			super(new String[0][0], new String[0][0]);
 		}
 
 	}
-
 }

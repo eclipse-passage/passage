@@ -39,7 +39,7 @@ public class ExportCustomersCommandTest extends ExportCommandTest<TestCustomers>
 
 	@Override
 	protected void export(TestCustomers data, Path output) throws ReportException {
-		new ProductCustomersToCsv(data.storage())//
+		new ProductPersonalUsersToCsv(data.storage())//
 				.export( //
 						fakeProducts(), //
 						output, //

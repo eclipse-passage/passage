@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,9 +12,14 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.ui.jface.user;
 
+import java.util.Collection;
+import java.util.Set;
+import java.util.function.Function;
+
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.report.internal.core.user.CustomerStorage;
 import org.eclipse.passage.loc.report.internal.ui.i18n.ExportCustomersWizardMessages;
 import org.eclipse.passage.loc.report.internal.ui.jface.PageObserver;
@@ -64,14 +69,25 @@ final class PreviewPage extends WizardPage implements PageObserver {
 
 	private void updateUsers() {
 		users.removeAll();
-		customers.forProducts(data.products()).stream() //
-				.map(this::userInfo) //
+		Set<String> products = data.products();
+		addUsers("Users", storage -> storage.personsUsedProducts(products), this::userInfo); //$NON-NLS-1$
+		addUsers("Companies", storage -> storage.companiesUsedProducts(products), this::companyInfo); //$NON-NLS-1$
+	}
+
+	private <T> void addUsers(String title, Function<CustomerStorage, Collection<T>> target, Function<T, String> info) {
+		users.add(String.format("--- %s ---", title)); //$NON-NLS-1$
+		target.apply(customers).stream() //
+				.map(info) //
 				.sorted() //
 				.forEach(users::add);
 	}
 
 	private String userInfo(UserDescriptor user) {
 		return NLS.bind("{0} ({1})", user.getFullName(), user.getEmail()); //$NON-NLS-1$
+	}
+
+	private String companyInfo(UserOriginDescriptor company) {
+		return NLS.bind("{0} ({1})", company.getName(), company.getIdentifier()); //$NON-NLS-1$
 	}
 
 }

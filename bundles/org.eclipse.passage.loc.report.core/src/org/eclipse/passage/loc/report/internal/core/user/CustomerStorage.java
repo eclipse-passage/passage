@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core.user;
 import java.util.Set;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
 
@@ -28,15 +29,26 @@ import org.eclipse.passage.loc.yars.internal.api.Storage;
 public interface CustomerStorage extends Storage<UserDescriptor> {
 
 	/**
-	 * Retrieve information of all users who ever got licenses for any product from
-	 * the given set of {@code products}.
+	 * Retrieve information of all users who ever got licenses (personal type of
+	 * license) for any product from the given set of {@code products}.
 	 * 
 	 * @param products set of product identifiers
 	 * @return set of {@linkplain UserDescriptor}s for all users that are interested
 	 *         in a product from the given set
 	 * @since 0.1
 	 */
-	Set<UserDescriptor> forProducts(Set<String> products);
+	Set<UserDescriptor> personsUsedProducts(Set<String> products);
+
+	/**
+	 * Retrieve information of all companies who ever got licenses (floating) for
+	 * any product from the given set of {@code products}.
+	 * 
+	 * @param products set of product identifiers
+	 * @return set of {@linkplain UserDescriptor}s for all companies that are
+	 *         interested in a product from the given set
+	 * @since 0.1
+	 */
+	Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products);
 
 	/**
 	 * Find all products for which any known user ever has got a license.

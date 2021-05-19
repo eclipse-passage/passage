@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -41,7 +41,7 @@ public final class CsvCustomerExportService implements CustomerExportService {
 	@Override
 	public void exportCustomersForProducts(Set<String> products, Path target, Progress<ProductCustomer> progress)
 			throws ReportException {
-		new ProductCustomersToCsv(source).export(products, target, progress);
+		new ProductPersonalUsersToCsv(source).export(products, target, progress);
 	}
 
 	/**
