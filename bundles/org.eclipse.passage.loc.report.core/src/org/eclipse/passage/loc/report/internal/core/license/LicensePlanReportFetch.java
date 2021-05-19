@@ -13,10 +13,14 @@
 package org.eclipse.passage.loc.report.internal.core.license;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
@@ -48,20 +52,31 @@ final class LicensePlanReportFetch implements FetchedData<LicenseStorage, Licens
 		if (!plan.isPresent()) {
 			return Optional.empty();
 		}
-		List<PersonalLicensePackDescriptor> licenses = storage.licenses(id).stream()//
-				.filter(lic -> lic.getLicense().getIssueDate().after(parameters.from())) //
-				.filter(lic -> lic.getLicense().getIssueDate().before(parameters.to()))//
-				.collect(Collectors.toList());
 		return Optional.of(//
 				new LicensePlanReport(//
 						plan.get(), //
-						licenses.size(), //
-						licenses.stream() //
-								.collect(Collectors.groupingBy(lic -> lic.getLicense().getUser().getIdentifier())), //
+						licenses(//
+								all -> all.personal(id), //
+								PersonalLicensePackDescriptor::getLicense, //
+								pack -> pack.getLicense().getUser().getIdentifier()), //
+						licenses(//
+								all -> all.floating(id), //
+								FloatingLicensePackDescriptor::getLicense, //
+								pack -> pack.getLicense().getCompany().getIdentifier()), //
 						parameters.explain()//
 				)//
 		);
 
+	}
+
+	private <P> Map<String, List<P>> licenses(//
+			Function<LicenseStorage, List<? extends P>> packs, //
+			Function<P, LicenseRequisitesDescriptor> license, //
+			Function<P, String> owner) {
+		return packs.apply(storage).stream()//
+				.filter(pack -> license.apply(pack).getIssueDate().after(parameters.from())) //
+				.filter(pack -> license.apply(pack).getIssueDate().before(parameters.to()))//
+				.collect(Collectors.groupingBy(owner));
 	}
 
 }

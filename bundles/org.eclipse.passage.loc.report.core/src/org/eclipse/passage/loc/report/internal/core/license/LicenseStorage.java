@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core.license;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.yars.internal.api.Storage;
@@ -25,7 +26,9 @@ import org.eclipse.passage.loc.yars.internal.api.Storage;
 @SuppressWarnings("restriction")
 public interface LicenseStorage extends Storage<PersonalLicensePackDescriptor> {
 
-	List<PersonalLicensePackDescriptor> licenses(String plan);
+	List<? extends PersonalLicensePackDescriptor> personal(String plan);
+
+	List<? extends FloatingLicensePackDescriptor> floating(String plan);
 
 	List<LicensePlanDescriptor> plans();
 

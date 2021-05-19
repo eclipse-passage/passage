@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeLicensePlanDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeLicenseRegistry;
 import org.eclipse.passage.loc.report.internal.core.FakeUserDescriptor;
-import org.eclipse.passage.loc.report.internal.core.FakeUserRegistry;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
 abstract class TestLicenses implements TestData<LicenseStorage> {
@@ -50,7 +49,6 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 	public LicenseStorage storage() {
 		Licenses storage = new Licenses();
 		storage.installLicenseRegistry(new FakeLicenseRegistry(plans));
-		storage.installUserRegistry(new FakeUserRegistry(users));
 		return storage;
 	}
 

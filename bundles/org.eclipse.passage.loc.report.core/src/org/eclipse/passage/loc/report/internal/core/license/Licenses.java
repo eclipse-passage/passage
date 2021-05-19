@@ -15,13 +15,14 @@ package org.eclipse.passage.loc.report.internal.core.license;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
-import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -32,7 +33,6 @@ import org.osgi.service.component.annotations.Reference;
 public final class Licenses implements LicenseStorage {
 
 	private LicenseRegistry licenses;
-	private UserRegistry users;
 
 	@Override
 	public List<LicensePlanDescriptor> plans() {
@@ -41,8 +41,21 @@ public final class Licenses implements LicenseStorage {
 	}
 
 	@Override
-	public List<PersonalLicensePackDescriptor> licenses(String plan) {
-		return Collections.emptyList(); // TODO: 573488
+	public List<? extends PersonalLicensePackDescriptor> personal(String plan) {
+		return licenses(plan, LicensePlanDescriptor::getPersonal);
+	}
+
+	@Override
+	public List<? extends FloatingLicensePackDescriptor> floating(String plan) {
+		return licenses(plan, LicensePlanDescriptor::getFloating);
+	}
+
+	private <T> List<T> licenses(String plan, Function<LicensePlanDescriptor, List<T>> get) {
+		Optional<LicensePlanDescriptor> mayBePlan = plan(plan);
+		if (!mayBePlan.isPresent()) {
+			return Collections.emptyList();
+		}
+		return get.apply(mayBePlan.get());
 	}
 
 	@Override
@@ -53,11 +66,6 @@ public final class Licenses implements LicenseStorage {
 	@Reference
 	public void installLicenseRegistry(LicenseRegistry registry) {
 		this.licenses = registry;
-	}
-
-	@Reference
-	public void installUserRegistry(UserRegistry registry) {
-		this.users = registry;
 	}
 
 }
