@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,7 @@ package org.eclipse.passage.loc.report.internal.core.user;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.passage.loc.yars.internal.api.FetchedData;
 
@@ -48,9 +49,10 @@ final class CustomersFetch implements FetchedData<CustomerStorage, ProductCustom
 	 */
 	@Override
 	public List<ProductCustomer> get() {
-		return source.forProducts(products).stream()//
-				.map(user -> new ProductCustomer(user.getFullName(), user.getEmail()))//
-				.collect(Collectors.toList());
+		return Stream.concat(//
+				source.personsUsedProducts(products).stream().map(ProductCustomer::new), //
+				source.companiesUsedProducts(products).stream().map(ProductCustomer::new)//
+		).collect(Collectors.toList());
 	}
 
 }

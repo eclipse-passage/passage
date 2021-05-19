@@ -30,11 +30,11 @@ import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-public final class ProductCustomersToCsv {
+public final class ProductPersonalUsersToCsv {
 
 	private final CustomerStorage source;
 
-	public ProductCustomersToCsv(CustomerStorage storage) {
+	public ProductPersonalUsersToCsv(CustomerStorage storage) {
 		this.source = storage;
 	}
 
@@ -47,16 +47,16 @@ public final class ProductCustomersToCsv {
 	public void export(Set<String> products, Path target, Progress<ProductCustomer> progress) throws ReportException {
 		new SingleSwoopExport<CustomerStorage, ProductCustomer>(//
 				new CustomersForProductsQuery()//
-						.fetch(source, //
-								new ProductNames(products)))//
-										.write(//
-												new DosHandleMedia<ProductCustomer>( //
-														new Csv<ProductCustomer>( //
-																new ExistingFileStream(target), //
-																"email", //$NON-NLS-1$
-																"name"), //$NON-NLS-1$
-														new DefaultDosHandler()), //
-												progress);
+						.fetch(source, new ProductNames(products)))//
+								.write(//
+										new DosHandleMedia<ProductCustomer>( //
+												new Csv<ProductCustomer>( //
+														new ExistingFileStream(target), //
+														"name", //$NON-NLS-1$
+														"usage", //$NON-NLS-1$
+														"contact"), //$NON-NLS-1$
+												new DefaultDosHandler()), //
+										progress);
 
 	}
 

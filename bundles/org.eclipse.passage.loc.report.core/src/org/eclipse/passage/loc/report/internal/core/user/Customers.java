@@ -14,11 +14,15 @@ package org.eclipse.passage.loc.report.internal.core.user;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 import org.osgi.service.component.annotations.Component;
@@ -35,8 +39,6 @@ import org.osgi.service.component.annotations.Reference;
  * </p>
  * 
  * @since 0.2
- *
- *        TODO: https://bugs.eclipse.org/bugs/show_bug.cgi?id=573488
  */
 @Component
 public final class Customers implements CustomerStorage {
@@ -45,13 +47,24 @@ public final class Customers implements CustomerStorage {
 	private LicenseRegistry licenses;
 
 	@Override
-	public Set<UserDescriptor> forProducts(Set<String> products) {
+	public Set<UserDescriptor> personsUsedProducts(Set<String> products) {
 		return licenses.getLicensePlans().stream() //
-				.map(plan -> productLicenses(plan, products))//
+				.map(plan -> licenses(plan.getPersonal(), products, PersonalLicensePackDescriptor::getLicense))//
 				.flatMap(Collection::stream)//
 				.map(this::user)//
 				.distinct()//
 				.map(users::getUser)//
+				.collect(Collectors.toSet());
+	}
+
+	@Override
+	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
+		return licenses.getLicensePlans().stream() //
+				.map(plan -> licenses(plan.getFloating(), products, FloatingLicensePackDescriptor::getLicense))//
+				.flatMap(Collection::stream)//
+				.map(this::company)//
+				.distinct()//
+				.map(users::getUserOrigin)//
 				.collect(Collectors.toSet());
 	}
 
@@ -86,18 +99,23 @@ public final class Customers implements CustomerStorage {
 		this.licenses = registry;
 	}
 
-	private Set<PersonalLicensePackDescriptor> productLicenses(LicensePlanDescriptor plan, Set<String> products) {
-		return plan.getPersonal().stream()//
-				.filter(lic -> forProduct(lic, products))//
+	private <T> Set<T> licenses(Collection<T> packs, Set<String> products,
+			Function<T, LicenseRequisitesDescriptor> license) {
+		return packs.stream()//
+				.filter(pack -> forProduct(license.apply(pack), products))//
 				.collect(Collectors.toSet());
 	}
 
-	private boolean forProduct(PersonalLicensePackDescriptor lic, Set<String> products) {
-		return products.contains(lic.getLicense().getProduct().getIdentifier());
+	private boolean forProduct(LicenseRequisitesDescriptor lic, Set<String> products) {
+		return products.contains(lic.getProduct().getIdentifier());
 	}
 
 	private String user(PersonalLicensePackDescriptor pack) {
 		return pack.getLicense().getUser().getIdentifier();
+	}
+
+	private String company(FloatingLicensePackDescriptor pack) {
+		return pack.getLicense().getCompany().getIdentifier();
 	}
 
 	private String product(PersonalLicensePackDescriptor pack) {
