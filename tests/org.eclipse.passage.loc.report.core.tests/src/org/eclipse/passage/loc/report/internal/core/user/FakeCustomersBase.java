@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2020 ArSysOp
+ * Copyright (c) 2019, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.report.internal.core.user;
 
-import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
@@ -33,13 +32,12 @@ final class FakeCustomersBase implements CustomerStorage {
 
 	@Override
 	public Set<UserOriginDescriptor> companiesUsedProducts(Set<String> products) {
-		// TODO Auto-generated method stub
-		return null;
+		return customers.companies();
 	}
 
 	@Override
 	public Set<String> products() {
-		return Collections.emptySet();
+		throw new UnsupportedOperationException("Is not expected to be called"); //$NON-NLS-1$
 	}
 
 }

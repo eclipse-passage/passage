@@ -22,28 +22,33 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.users.UserDescriptor;
-import org.eclipse.passage.loc.report.internal.core.FakeLicensePlanDescriptor;
+import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.report.internal.core.FakeLicenseRegistry;
-import org.eclipse.passage.loc.report.internal.core.FakeUserDescriptor;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
-abstract class TestLicenses implements TestData<LicenseStorage> {
+@SuppressWarnings("restriction")
+abstract class TestLicenses extends TestData<LicenseStorage> {
 
-	private final List<LicensePlanDescriptor> plans;
-	protected final List<UserDescriptor> users;
+	protected List<LicensePlanDescriptor> plans = Collections.emptyList();
+	protected List<UserDescriptor> users = Collections.emptyList();
+	protected List<UserOriginDescriptor> companies = Collections.emptyList();
 	protected final Date from;
 	protected final Date to;
 
-	protected TestLicenses(//
-			List<LicensePlanDescriptor> plans, List<UserDescriptor> users, //
-			Date from, Date to) {
-		this.plans = plans;
-		this.users = users;
+	protected TestLicenses(Date from, Date to) {
 		this.from = from;
 		this.to = to;
+		initData();
 	}
+
+	protected abstract void initData();
 
 	@Override
 	public LicenseStorage storage() {
@@ -54,10 +59,11 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 
 	abstract LicensePlanReportParameters params();
 
-	protected Optional<LicensePlanDescriptor> plan(String id) {
+	protected LicensePlanDescriptor plan(String id) {
 		return plans.stream()//
 				.filter(plan -> id.equals(plan.getIdentifier()))//
-				.findFirst();
+				.findFirst()//
+				.get();
 	}
 
 	protected Optional<UserDescriptor> user(String segment) {
@@ -68,21 +74,26 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 
 	protected String header(boolean explain) {
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY"); //$NON-NLS-1$
-		return "License plan;Plan id;Amount of licenses" // //$NON-NLS-1$
+		return "License plan;Plan id;Personal licenses;Floating licenses" // //$NON-NLS-1$
 				+ (explain //
 						? String.format(//
 								";Users (issue dates from %s to %s)", //$NON-NLS-1$
 								format.format(from), //
 								format.format(to)) //
-						: ""); //$NON-NLS-1$
+						: "") //$NON-NLS-1$
+				+ (explain ? ";Companies" : ""); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	static final class Empty extends TestLicenses {
 
 		protected Empty() {
-			super(Collections.emptyList(), Collections.emptyList(), //
-					new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get(), //
+			super(new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get(), //
 					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get());
+		}
+
+		@Override
+		protected void initData() {
+			// do nothing, all empty
 		}
 
 		@Override
@@ -100,41 +111,41 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 	static final class Some extends TestLicenses {
 
 		protected Some() {
-			super(//
-					Arrays.asList(//
-							new FakeLicensePlanDescriptor("plan-a", "Plan A"), //$NON-NLS-1$ //$NON-NLS-2$
-							new FakeLicensePlanDescriptor("plan-b", "Plan B"), //$NON-NLS-1$ //$NON-NLS-2$
-							new FakeLicensePlanDescriptor("plan-c", "Plan C") //$NON-NLS-1$ //$NON-NLS-2$
-					), //
-					Arrays.asList(//
-							new FakeUserDescriptor("evan@universe.com", "Evan Almighty"), //$NON-NLS-1$ //$NON-NLS-2$
-							new FakeUserDescriptor("dorothea-the-elder@nest.ant", "Dorothea Vollenhovia"), //$NON-NLS-1$ //$NON-NLS-2$
-							new FakeUserDescriptor("zena-the-queen@kindom.com", "Zena") //$NON-NLS-1$ //$NON-NLS-2$
-					), //
-					new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
+			super(new MovedNow(date -> date.minus(1, ChronoUnit.MONTHS)).get(), //
 					new MovedNow(date -> date.plus(1, ChronoUnit.MONTHS)).get()//
 			);
+
+		}
+
+		@Override
+		protected void initData() {
+			this.plans = Arrays.asList(//
+					plan("plan-a", "Plan A"), //$NON-NLS-1$ //$NON-NLS-2$
+					plan("plan-b", "Plan B"), //$NON-NLS-1$ //$NON-NLS-2$
+					plan("plan-c", "Plan C") //$NON-NLS-1$ //$NON-NLS-2$
+			);
+			this.users = Arrays.asList(//
+					user("evan", "evan@universe.com", "Evan Almighty"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					user("dorothea", "dorothea-the-elder@nest.ant", "Dorothea Vollenhovia"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					user("zena", "zena-the-queen@kindom.com", "Zena The queen") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			);
+			this.companies = Arrays.asList(); // TODO
 			issueLicenses();
+
 		}
 
 		private void issueLicenses() {
 			UserDescriptor evan = user("evan").get(); //$NON-NLS-1$
 			UserDescriptor dorothea = user("dorothea").get(); //$NON-NLS-1$
 			UserDescriptor zena = user("zena").get(); //$NON-NLS-1$
-			LicensePlanDescriptor planA = plan("plan-a").get(); //$NON-NLS-1$
-			LicensePlanDescriptor planB = plan("plan-b").get(); //$NON-NLS-1$
-			/*
-			 * TODO: 573488 --------------------------------------
-			 * 
-			 * Arrays.asList(// new FakeLicenseDescriptor(planA, evan, new MovedNow(date ->
-			 * date.plus(2, ChronoUnit.MONTHS)).get()), // new FakeLicenseDescriptor(planB,
-			 * evan, new Date()), // new FakeLicenseDescriptor(planA, zena, new Date()), //
-			 * new FakeLicenseDescriptor(planB, zena, new Date()), // new
-			 * FakeLicenseDescriptor(planA, dorothea, new MovedNow(date -> date.minus(2,
-			 * ChronoUnit.MONTHS)).get()), // new FakeLicenseDescriptor(planB, dorothea, new
-			 * Date()))// .forEach(lic -> { ((FakeUserDescriptor)
-			 * lic.getUser()).bindLicense(lic); }); --------------------------------------
-			 */
+			LicensePlanDescriptor planA = plan("plan-a"); //$NON-NLS-1$
+			LicensePlanDescriptor planB = plan("plan-b"); //$NON-NLS-1$
+			issuePersonal(planA, evan, new MovedNow(date -> date.plus(2, ChronoUnit.MONTHS)).get());
+			issuePersonal(planB, evan, new Date());
+			issuePersonal(planA, zena, new Date());
+			issuePersonal(planB, zena, new Date());
+			issuePersonal(planA, dorothea, new MovedNow(date -> date.minus(2, ChronoUnit.MONTHS)).get());
+			issuePersonal(planB, dorothea, new Date());
 		}
 
 		@Override
@@ -153,12 +164,22 @@ abstract class TestLicenses implements TestData<LicenseStorage> {
 		@Override
 		public Set<String> csv() {
 			return new HashSet<>(Arrays.asList(//
-					"Plan B;plan-b;3", //$NON-NLS-1$
-					"Plan A;plan-a;1", //$NON-NLS-1$
-					"Plan C;plan-c;0", //$NON-NLS-1$
+					"Plan B;plan-b;3;0", //$NON-NLS-1$
+					"Plan A;plan-a;1;0", //$NON-NLS-1$
+					"Plan C;plan-c;0;0", //$NON-NLS-1$
 					header(false)));
 		}
 
+		private void issuePersonal(LicensePlanDescriptor plan, UserDescriptor user, Date issued) {
+			LicensedProduct product = new BaseLicensedProduct("pop", "1.0.1"); //$NON-NLS-1$ //$NON-NLS-2$
+			PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
+			pack.getLicense().setPlan(plan.getIdentifier());
+			pack.getLicense().getUser().setIdentifier(user.getIdentifier());
+			pack.getLicense().getUser().setName(user.getFullName());
+			pack.getLicense().getProduct().setIdentifier(product.identifier());
+			pack.getLicense().getProduct().setVersion(product.version());
+			pack.getLicense().setIssueDate(issued);
+			((List<PersonalLicensePackDescriptor>) plan.getPersonal()).add(pack);
+		}
 	}
-
 }

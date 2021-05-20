@@ -25,7 +25,7 @@ public class ExportCustomersCommandFailureTest extends ExportCommandFailureTest<
 
 	@Override
 	protected void export(TestCustomers data, Path output) throws ReportException {
-		new ProductPersonalUsersToCsv(data.storage())//
+		new ProductCustomersToCsv(data.storage())//
 				.export(//
 						new HashSet<>(Arrays.asList("none")), //$NON-NLS-1$
 						output, //

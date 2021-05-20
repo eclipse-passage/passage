@@ -18,11 +18,11 @@ import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 
-public final class FakeUserRegistry implements UserRegistry {
+final class FakeUserRegistry implements UserRegistry {
 
 	private final List<UserDescriptor> users;
 
-	public FakeUserRegistry(List<UserDescriptor> users) {
+	FakeUserRegistry(List<UserDescriptor> users) {
 		this.users = users;
 	}
 
@@ -42,9 +42,9 @@ public final class FakeUserRegistry implements UserRegistry {
 	}
 
 	@Override
-	public UserDescriptor getUser(String userId) {
+	public UserDescriptor getUser(String id) {
 		return users.stream() //
-				.filter(user -> user.getIdentifier().equals(userId)) //
+				.filter(user -> user.getIdentifier().equals(id)) //
 				.findFirst() //
 				.get();
 	}

@@ -19,11 +19,9 @@ import java.util.stream.Stream;
 
 import org.eclipse.passage.lic.users.UserDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
-import org.eclipse.passage.loc.report.internal.core.FakeCompanyDescriptor;
-import org.eclipse.passage.loc.report.internal.core.FakeUserDescriptor;
 import org.eclipse.passage.loc.report.internal.core.TestData;
 
-abstract class TestCustomers implements TestData<CustomerStorage> {
+abstract class TestCustomers extends TestData<CustomerStorage> {
 
 	private final String[][] persons;
 	private final String[][] companies;
@@ -35,13 +33,13 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 
 	Set<UserDescriptor> users() {
 		return Arrays.stream(persons)//
-				.map(r -> new FakeUserDescriptor(r[0], r[1]))//
+				.map(this::userWithUsage)//
 				.collect(Collectors.toSet());
 	}
 
 	Set<UserOriginDescriptor> companies() {
 		return Arrays.stream(companies)//
-				.map(r -> new FakeCompanyDescriptor(r[0]))//
+				.map(this::company)//
 				.collect(Collectors.toSet());
 	}
 
@@ -61,6 +59,10 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 		return new FakeCustomersBase(this);
 	}
 
+	private UserDescriptor userWithUsage(String[] data) {
+		return user("", data[2], data[0]); //$NON-NLS-1$
+	}
+
 	static final class Some extends TestCustomers {
 
 		Some() {
@@ -77,7 +79,7 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 					new String[] { //
 							"Santa Claus and Co", //$NON-NLS-1$
 							ProductCustomer.Usage.company.name(), //
-							"santa@lapland.org" }, //$NON-NLS-1$
+							"" }, //$NON-NLS-1$ // TODO: is not supported un 'users' model yet
 			});
 		}
 	}
@@ -89,4 +91,5 @@ abstract class TestCustomers implements TestData<CustomerStorage> {
 		}
 
 	}
+
 }
