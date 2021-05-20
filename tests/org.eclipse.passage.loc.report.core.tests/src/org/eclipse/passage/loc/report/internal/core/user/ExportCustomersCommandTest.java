@@ -39,15 +39,15 @@ public class ExportCustomersCommandTest extends ExportCommandTest<TestCustomers>
 
 	@Override
 	protected void export(TestCustomers data, Path output) throws ReportException {
-		new ProductPersonalUsersToCsv(data.storage())//
+		new ProductCustomersToCsv(data.storage())//
 				.export( //
-						fakeProducts(), //
+						products(), //
 						output, //
 						new Progress.Inane<ProductCustomer>()//
 				);
 	}
 
-	private Set<String> fakeProducts() {
+	private Set<String> products() {
 		return new HashSet<>(Arrays.asList("culture")); //$NON-NLS-1$
 	}
 

@@ -30,11 +30,11 @@ import org.eclipse.passage.loc.yars.internal.api.SingleSwoopExport;
  * @since 0.2
  */
 @SuppressWarnings("restriction")
-public final class ProductPersonalUsersToCsv {
+public final class ProductCustomersToCsv {
 
 	private final CustomerStorage source;
 
-	public ProductPersonalUsersToCsv(CustomerStorage storage) {
+	public ProductCustomersToCsv(CustomerStorage storage) {
 		this.source = storage;
 	}
 

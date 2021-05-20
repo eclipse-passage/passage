@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Path;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -30,18 +29,14 @@ import org.junit.Test;
  * </ul>
  * 
  * @param <T> domain-specific subclass of {@linkplain TestData}
- * 
- *            TODO: https://bugs.eclipse.org/bugs/show_bug.cgi?id=573488
  */
 public abstract class ExportCommandTest<T extends TestData<?>> extends BaseExportCommandTest<T> {
 	@Test
-	@Ignore // TODO
 	public void exportSome() {
 		testExport(some());
 	}
 
 	@Test
-	@Ignore // TODO
 	public void exportNone() {
 		testExport(none());
 	}

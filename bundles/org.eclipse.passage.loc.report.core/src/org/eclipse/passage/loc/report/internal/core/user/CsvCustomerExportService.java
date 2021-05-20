@@ -41,7 +41,7 @@ public final class CsvCustomerExportService implements CustomerExportService {
 	@Override
 	public void exportCustomersForProducts(Set<String> products, Path target, Progress<ProductCustomer> progress)
 			throws ReportException {
-		new ProductPersonalUsersToCsv(source).export(products, target, progress);
+		new ProductCustomersToCsv(source).export(products, target, progress);
 	}
 
 	/**
