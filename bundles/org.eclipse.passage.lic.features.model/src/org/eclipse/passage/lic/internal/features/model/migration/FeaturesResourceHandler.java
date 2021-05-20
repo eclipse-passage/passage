@@ -12,14 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.features.model.migration;
 
-import java.util.Map.Entry;
+import java.util.Collections;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
+import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.EnsureStructure;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
@@ -32,8 +33,13 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected void convertEntry(Entry<EObject, AnyType> entry) {
-		// not yet needed
+	protected EFeatureRoutes attributes() {
+		return new SimpleFeatureRoutes();
+	}
+
+	@Override
+	protected EnsureStructure structures() {
+		return e -> Collections.emptyList();
 	}
 
 	private void migrate033() {

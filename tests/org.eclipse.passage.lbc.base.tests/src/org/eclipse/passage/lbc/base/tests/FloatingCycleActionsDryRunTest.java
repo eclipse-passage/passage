@@ -55,7 +55,7 @@ public final class FloatingCycleActionsDryRunTest {
 
 	private List<LicenseGrant> ofFeature(EList<LicenseGrant> grants, RawRequest request) {
 		String feature = new FeatureIdentifier((Function<String, String>) request::parameter).get().get();
-		Predicate<LicenseGrant> featured = grant -> feature.equals(grant.getFeatureIdentifier());
+		Predicate<LicenseGrant> featured = grant -> feature.equals(grant.getFeature().getIdentifier());
 		return grants.stream().filter(featured).collect(Collectors.toList());
 	}
 

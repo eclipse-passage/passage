@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
+import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -87,15 +88,15 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	private Condition condition(LicenseGrant descriptor) {
 		return new BaseCondition(descriptor.getIdentifier(), //
-				descriptor.getFeatureIdentifier(), //
-				new BaseVersionMatch(descriptor.getMatchVersion(), //
-						rule(descriptor.getMatchRule())), //
+				descriptor.getFeature().getIdentifier(), //
+				new BaseVersionMatch(descriptor.getFeature().getVersion(), //
+						rule(descriptor.getFeature().getMatchingRule())), //
 				new BaseValidityPeriodClosed(//
-						fromDate(descriptor.getValidFrom()), //
-						fromDate(descriptor.getValidUntil())), //
+						fromDate(((ValidityPeriodClosedDescriptor) descriptor.getValid()).getFrom()), //
+						fromDate(((ValidityPeriodClosedDescriptor) descriptor.getValid()).getUntil())), //
 				new BaseEvaluationInstructions(//
-						new EvaluationType.Of(descriptor.getConditionType()), //
-						descriptor.getConditionExpression()));
+						new EvaluationType.Of(descriptor.getUserAuthentication().getType()), //
+						descriptor.getUserAuthentication().getExpression()));
 	}
 
 	/**

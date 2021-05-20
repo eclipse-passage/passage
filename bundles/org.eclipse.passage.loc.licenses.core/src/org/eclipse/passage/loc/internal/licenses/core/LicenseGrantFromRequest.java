@@ -16,9 +16,11 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
+@SuppressWarnings("restriction")
 final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
 
 	private final LicensePlanFeatureDescriptor feature;
@@ -33,14 +35,14 @@ final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
 	public LicenseGrant get() {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicenseGrant grant = licenseFactory.createLicenseGrant();
-		grant.setFeatureIdentifier(feature.getFeatureIdentifier());
-		grant.setMatchVersion(feature.getMatchVersion());
-		grant.setMatchRule(feature.getMatchRule());
+		grant.getFeature().setIdentifier(feature.getFeature().getIdentifier());
+		grant.getFeature().setVersion(feature.getFeature().getVersion());
+		grant.getFeature().setMatchingRule(feature.getFeature().getMatchingRule());
 		grant.setCapacity(1);
-		grant.setConditionExpression(request.conditionExpression());
-		grant.setConditionType(request.conditionType());
-		grant.setValidFrom(request.validFrom());
-		grant.setValidUntil(request.validUntil());
+		grant.getUserAuthentication().setExpression(request.conditionExpression());
+		grant.getUserAuthentication().setType(request.conditionType());
+		((ValidityPeriodClosed) grant.getValid()).setFrom(request.validFrom());
+		((ValidityPeriodClosed) grant.getValid()).setUntil(request.validUntil());
 		return grant;
 	}
 

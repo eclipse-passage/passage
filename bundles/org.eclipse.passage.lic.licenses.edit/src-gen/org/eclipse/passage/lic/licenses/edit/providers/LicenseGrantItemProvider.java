@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -33,6 +34,8 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -68,13 +71,6 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addFeatureIdentifierPropertyDescriptor(object);
-			addMatchVersionPropertyDescriptor(object);
-			addMatchRulePropertyDescriptor(object);
-			addValidFromPropertyDescriptor(object);
-			addValidUntilPropertyDescriptor(object);
-			addConditionTypePropertyDescriptor(object);
-			addConditionExpressionPropertyDescriptor(object);
 			addCapacityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -98,125 +94,6 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Feature Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFeatureIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_featureIdentifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_featureIdentifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_FeatureIdentifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Match Version feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMatchVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_matchVersion_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchVersion_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_MatchVersion(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Match Rule feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMatchRulePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_matchRule_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_matchRule_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_MatchRule(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Valid From feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValidFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_validFrom_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validFrom_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_ValidFrom(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Valid Until feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addValidUntilPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_validUntil_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_validUntil_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_ValidUntil(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Condition Type feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConditionTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_conditionType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionType_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_ConditionType(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Condition Expression feature.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConditionExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_conditionExpression_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_conditionExpression_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_ConditionExpression(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Capacity feature.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -231,6 +108,38 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 								"_UI_LicenseGrant_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicenseGrant_Capacity(), true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_Feature());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_Valid());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_UserAuthentication());
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -272,15 +181,15 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		String unknownDate = String.valueOf('?');
 		String from = unknownDate;
 		String until = unknownDate;
-		LicenseGrant licenseGrant = (LicenseGrant) object;
-		String feature = licenseGrant.getFeatureIdentifier();
-		String version = licenseGrant.getMatchVersion();
-		String rule = licenseGrant.getMatchRule();
-		Date validFrom = licenseGrant.getValidFrom();
+		LicenseGrant grant = (LicenseGrant) object;
+		String feature = grant.getFeature().getIdentifier();
+		String version = grant.getFeature().getVersion();
+		String rule = grant.getFeature().getMatchingRule();
+		Date validFrom = ((ValidityPeriodClosed) grant.getValid()).getFrom();
 		if (validFrom != null) {
 			from = LocalDateTime.ofInstant(validFrom.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
-		Date validUntil = licenseGrant.getValidUntil();
+		Date validUntil = ((ValidityPeriodClosed) grant.getValid()).getUntil();
 		if (validUntil != null) {
 			until = LocalDateTime.ofInstant(validUntil.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
@@ -306,15 +215,13 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 
 		switch (notification.getFeatureID(LicenseGrant.class)) {
 		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
-		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -333,6 +240,15 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_Feature(),
+				LicensesFactory.eINSTANCE.createFeatureRef()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_Valid(),
+				LicensesFactory.eINSTANCE.createValidityPeriodClosed()));
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_UserAuthentication(),
+				LicensesFactory.eINSTANCE.createEvaluationInstructions()));
 	}
 
 	/**

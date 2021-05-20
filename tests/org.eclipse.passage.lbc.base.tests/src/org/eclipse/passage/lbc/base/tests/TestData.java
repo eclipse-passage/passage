@@ -13,6 +13,7 @@
 package org.eclipse.passage.lbc.base.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.Month;
 import java.time.ZoneId;
@@ -22,6 +23,7 @@ import java.util.Date;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
 @SuppressWarnings("restriction")
 public final class TestData {
@@ -32,15 +34,16 @@ public final class TestData {
 	private final User elder = new User("elder@magic.com", "os=win"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	void assertGrantIsValid(LicenseGrant grant) {
-		assertEquals("hardware", grant.getConditionType()); //$NON-NLS-1$
-		assertEquals("os.family=*", grant.getConditionExpression()); //$NON-NLS-1$
-		assertEquals("anti-human-magic.product", grant.getFeatureIdentifier()); //$NON-NLS-1$
+		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
+		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
+		assertEquals("anti-human-magic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$
 		assertEquals("2fa76bd6-f1b0-4d6b-9e86-280483aedc32#1", grant.getIdentifier()); //$NON-NLS-1$
-		assertEquals("0.0.0", grant.getMatchVersion()); //$NON-NLS-1$
-		assertEquals("compatible", grant.getMatchRule()); //$NON-NLS-1$
+		assertEquals("0.0.0", grant.getFeature().getVersion()); //$NON-NLS-1$
+		assertEquals("compatible", grant.getFeature().getMatchingRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
-		assertEquals(expectedFrom(), grant.getValidFrom());
-		assertEquals(expectedUntil(), grant.getValidUntil());
+		assertTrue(grant.getValid() instanceof ValidityPeriodClosed);
+		assertEquals(expectedFrom(), ((ValidityPeriodClosed)grant.getValid()).getFrom());
+		assertEquals(expectedUntil(), ((ValidityPeriodClosed)grant.getValid()).getUntil());
 	}
 
 	private Date expectedFrom() {

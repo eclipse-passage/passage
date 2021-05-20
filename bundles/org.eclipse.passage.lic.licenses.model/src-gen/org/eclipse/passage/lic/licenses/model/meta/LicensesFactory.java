@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
@@ -122,6 +123,15 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	ProductRef createProductRef();
+
+	/**
+	 * Returns a new object of class '<em>Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Ref</em>'.
+	 * @generated
+	 */
+	FeatureRef createFeatureRef();
 
 	/**
 	 * Returns a new object of class '<em>User Ref</em>'.

@@ -12,22 +12,21 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
-import java.util.Date;
 import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
+import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -39,13 +38,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchVersion <em>Match Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getMatchRule <em>Match Rule</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidFrom <em>Valid From</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValidUntil <em>Valid Until</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionType <em>Condition Type</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getCapacity <em>Capacity</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getLicensePack <em>License Pack</em>}</li>
  * </ul>
@@ -74,144 +69,34 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeatureIdentifier()
+	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FEATURE_IDENTIFIER_EDEFAULT = null;
+	protected FeatureRef feature;
 
 	/**
-	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
+	 * The cached value of the '{@link #getValid() <em>Valid</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeatureIdentifier()
+	 * @see #getValid()
 	 * @generated
 	 * @ordered
 	 */
-	private String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
+	protected ValidityPeriod valid;
 
 	/**
-	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
+	 * The cached value of the '{@link #getUserAuthentication() <em>User Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMatchVersion()
+	 * @see #getUserAuthentication()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MATCH_VERSION_EDEFAULT = "0.0.0"; //$NON-NLS-1$
-
-	/**
-	 * The cached value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchVersion()
-	 * @generated
-	 * @ordered
-	 */
-	private String matchVersion = MATCH_VERSION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MATCH_RULE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchRule()
-	 * @generated
-	 * @ordered
-	 */
-	private String matchRule = MATCH_RULE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValidFrom()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date VALID_FROM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValidFrom()
-	 * @generated
-	 * @ordered
-	 */
-	private Date validFrom = VALID_FROM_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValidUntil()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date VALID_UNTIL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValidUntil()
-	 * @generated
-	 * @ordered
-	 */
-	private Date validUntil = VALID_UNTIL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConditionType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CONDITION_TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConditionType() <em>Condition Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConditionType()
-	 * @generated
-	 * @ordered
-	 */
-	private String conditionType = CONDITION_TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConditionExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CONDITION_EXPRESSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConditionExpression() <em>Condition Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConditionExpression()
-	 * @generated
-	 * @ordered
-	 */
-	private String conditionExpression = CONDITION_EXPRESSION_EDEFAULT;
+	protected EvaluationInstructions userAuthentication;
 
 	/**
 	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
@@ -283,8 +168,27 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public String getFeatureIdentifier() {
-		return featureIdentifier;
+	public FeatureRef getFeature() {
+		return feature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		FeatureRef oldFeature = feature;
+		feature = newFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_GRANT__FEATURE, oldFeature, newFeature);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -293,12 +197,21 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public void setFeatureIdentifier(String newFeatureIdentifier) {
-		String oldFeatureIdentifier = featureIdentifier;
-		featureIdentifier = newFeatureIdentifier;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER,
-					oldFeatureIdentifier, featureIdentifier));
+	public void setFeature(FeatureRef newFeature) {
+		if (newFeature != feature) {
+			NotificationChain msgs = null;
+			if (feature != null)
+				msgs = ((InternalEObject) feature).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__FEATURE, null, msgs);
+			if (newFeature != null)
+				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__FEATURE, null, msgs);
+			msgs = basicSetFeature(newFeature, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__FEATURE, newFeature,
+					newFeature));
 		}
 	}
 
@@ -308,8 +221,27 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public String getMatchVersion() {
-		return matchVersion;
+	public ValidityPeriod getValid() {
+		return valid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
+		ValidityPeriod oldValid = valid;
+		valid = newValid;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_GRANT__VALID, oldValid, newValid);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -318,12 +250,21 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public void setMatchVersion(String newMatchVersion) {
-		String oldMatchVersion = matchVersion;
-		matchVersion = newMatchVersion;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__MATCH_VERSION,
-					oldMatchVersion, matchVersion));
+	public void setValid(ValidityPeriod newValid) {
+		if (newValid != valid) {
+			NotificationChain msgs = null;
+			if (valid != null)
+				msgs = ((InternalEObject) valid).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__VALID, null, msgs);
+			if (newValid != null)
+				msgs = ((InternalEObject) newValid).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__VALID, null, msgs);
+			msgs = basicSetValid(newValid, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID, newValid,
+					newValid));
 		}
 	}
 
@@ -333,8 +274,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public String getMatchRule() {
-		return matchRule;
+	public EvaluationInstructions getUserAuthentication() {
+		return userAuthentication;
 	}
 
 	/**
@@ -342,14 +283,19 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setMatchRule(String newMatchRule) {
-		String oldMatchRule = matchRule;
-		matchRule = newMatchRule;
+	public NotificationChain basicSetUserAuthentication(EvaluationInstructions newUserAuthentication,
+			NotificationChain msgs) {
+		EvaluationInstructions oldUserAuthentication = userAuthentication;
+		userAuthentication = newUserAuthentication;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__MATCH_RULE,
-					oldMatchRule, matchRule));
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, oldUserAuthentication, newUserAuthentication);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
+		return msgs;
 	}
 
 	/**
@@ -358,97 +304,21 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public Date getValidFrom() {
-		return validFrom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValidFrom(Date newValidFrom) {
-		Date oldValidFrom = validFrom;
-		validFrom = newValidFrom;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID_FROM,
-					oldValidFrom, validFrom));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Date getValidUntil() {
-		return validUntil;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setValidUntil(Date newValidUntil) {
-		Date oldValidUntil = validUntil;
-		validUntil = newValidUntil;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID_UNTIL,
-					oldValidUntil, validUntil));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getConditionType() {
-		return conditionType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setConditionType(String newConditionType) {
-		String oldConditionType = conditionType;
-		conditionType = newConditionType;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CONDITION_TYPE,
-					oldConditionType, conditionType));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getConditionExpression() {
-		return conditionExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setConditionExpression(String newConditionExpression) {
-		String oldConditionExpression = conditionExpression;
-		conditionExpression = newConditionExpression;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION,
-					oldConditionExpression, conditionExpression));
+	public void setUserAuthentication(EvaluationInstructions newUserAuthentication) {
+		if (newUserAuthentication != userAuthentication) {
+			NotificationChain msgs = null;
+			if (userAuthentication != null)
+				msgs = ((InternalEObject) userAuthentication).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, null, msgs);
+			if (newUserAuthentication != null)
+				msgs = ((InternalEObject) newUserAuthentication).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, null, msgs);
+			msgs = basicSetUserAuthentication(newUserAuthentication, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION,
+					newUserAuthentication, newUserAuthentication));
 		}
 	}
 
@@ -554,6 +424,12 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+			return basicSetFeature(null, msgs);
+		case LicensesPackage.LICENSE_GRANT__VALID:
+			return basicSetValid(null, msgs);
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			return basicSetUserAuthentication(null, msgs);
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
 			return basicSetLicensePack(null, msgs);
 		default:
@@ -587,20 +463,12 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
 			return getIdentifier();
-		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-			return getFeatureIdentifier();
-		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-			return getMatchVersion();
-		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-			return getMatchRule();
-		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-			return getValidFrom();
-		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-			return getValidUntil();
-		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-			return getConditionType();
-		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
-			return getConditionExpression();
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+			return getFeature();
+		case LicensesPackage.LICENSE_GRANT__VALID:
+			return getValid();
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			return getUserAuthentication();
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			return getCapacity();
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
@@ -615,32 +483,21 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-			setFeatureIdentifier((String) newValue);
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+			setFeature((FeatureRef) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-			setMatchVersion((String) newValue);
+		case LicensesPackage.LICENSE_GRANT__VALID:
+			setValid((ValidityPeriod) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-			setMatchRule((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-			setValidFrom((Date) newValue);
-			return;
-		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-			setValidUntil((Date) newValue);
-			return;
-		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-			setConditionType((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
-			setConditionExpression((String) newValue);
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			setUserAuthentication((EvaluationInstructions) newValue);
 			return;
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			setCapacity((Integer) newValue);
@@ -665,26 +522,14 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-			setFeatureIdentifier(FEATURE_IDENTIFIER_EDEFAULT);
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+			setFeature((FeatureRef) null);
 			return;
-		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-			setMatchVersion(MATCH_VERSION_EDEFAULT);
+		case LicensesPackage.LICENSE_GRANT__VALID:
+			setValid((ValidityPeriod) null);
 			return;
-		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-			setMatchRule(MATCH_RULE_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-			setValidFrom(VALID_FROM_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-			setValidUntil(VALID_UNTIL_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-			setConditionType(CONDITION_TYPE_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
-			setConditionExpression(CONDITION_EXPRESSION_EDEFAULT);
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			setUserAuthentication((EvaluationInstructions) null);
 			return;
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
@@ -708,20 +553,12 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case LicensesPackage.LICENSE_GRANT__FEATURE_IDENTIFIER:
-			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
-		case LicensesPackage.LICENSE_GRANT__MATCH_VERSION:
-			return !Objects.equals(MATCH_VERSION_EDEFAULT, matchVersion);
-		case LicensesPackage.LICENSE_GRANT__MATCH_RULE:
-			return !Objects.equals(MATCH_RULE_EDEFAULT, matchRule);
-		case LicensesPackage.LICENSE_GRANT__VALID_FROM:
-			return !Objects.equals(VALID_FROM_EDEFAULT, validFrom);
-		case LicensesPackage.LICENSE_GRANT__VALID_UNTIL:
-			return !Objects.equals(VALID_UNTIL_EDEFAULT, validUntil);
-		case LicensesPackage.LICENSE_GRANT__CONDITION_TYPE:
-			return !Objects.equals(CONDITION_TYPE_EDEFAULT, conditionType);
-		case LicensesPackage.LICENSE_GRANT__CONDITION_EXPRESSION:
-			return !Objects.equals(CONDITION_EXPRESSION_EDEFAULT, conditionExpression);
+		case LicensesPackage.LICENSE_GRANT__FEATURE:
+			return feature != null;
+		case LicensesPackage.LICENSE_GRANT__VALID:
+			return valid != null;
+		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+			return userAuthentication != null;
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
 		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
@@ -744,20 +581,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", featureIdentifier: "); //$NON-NLS-1$
-		result.append(featureIdentifier);
-		result.append(", matchVersion: "); //$NON-NLS-1$
-		result.append(matchVersion);
-		result.append(", matchRule: "); //$NON-NLS-1$
-		result.append(matchRule);
-		result.append(", validFrom: "); //$NON-NLS-1$
-		result.append(validFrom);
-		result.append(", validUntil: "); //$NON-NLS-1$
-		result.append(validUntil);
-		result.append(", conditionType: "); //$NON-NLS-1$
-		result.append(conditionType);
-		result.append(", conditionExpression: "); //$NON-NLS-1$
-		result.append(conditionExpression);
 		result.append(", capacity: "); //$NON-NLS-1$
 		result.append(capacity);
 		result.append(')');

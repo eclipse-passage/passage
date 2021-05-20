@@ -12,8 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.api;
 
-import java.util.Date;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
@@ -28,13 +26,9 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}</li>
  * </ul>
@@ -68,166 +62,73 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature Identifier</b></em>' attribute.
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature Identifier</em>' attribute.
-	 * @see #setFeatureIdentifier(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_FeatureIdentifier()
-	 * @model required="true"
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(FeatureRef)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Feature()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getFeatureIdentifier();
+	FeatureRef getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeatureIdentifier <em>Feature Identifier</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Identifier</em>' attribute.
-	 * @see #getFeatureIdentifier()
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
+	 * @see #getFeature()
 	 * @generated
 	 */
-	void setFeatureIdentifier(String value);
+	void setFeature(FeatureRef value);
 
 	/**
-	 * Returns the value of the '<em><b>Match Version</b></em>' attribute.
-	 * The default value is <code>"0.0.0"</code>.
+	 * Returns the value of the '<em><b>Valid</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Match Version</em>' attribute.
-	 * @see #setMatchVersion(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_MatchVersion()
-	 * @model default="0.0.0" required="true"
-	 * @generated
-	 */
-	@Override
-	String getMatchVersion();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchVersion <em>Match Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Match Version</em>' attribute.
-	 * @see #getMatchVersion()
-	 * @generated
-	 */
-	void setMatchVersion(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Match Rule</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Match Rule</em>' attribute.
-	 * @see #setMatchRule(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_MatchRule()
-	 * @model
+	 * @return the value of the '<em>Valid</em>' containment reference.
+	 * @see #setValid(ValidityPeriod)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Valid()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getMatchRule();
+	ValidityPeriod getValid();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getMatchRule <em>Match Rule</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValid <em>Valid</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Match Rule</em>' attribute.
-	 * @see #getMatchRule()
+	 * @param value the new value of the '<em>Valid</em>' containment reference.
+	 * @see #getValid()
 	 * @generated
 	 */
-	void setMatchRule(String value);
+	void setValid(ValidityPeriod value);
 
 	/**
-	 * Returns the value of the '<em><b>Valid From</b></em>' attribute.
+	 * Returns the value of the '<em><b>User Authentication</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Valid From</em>' attribute.
-	 * @see #setValidFrom(Date)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ValidFrom()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	Date getValidFrom();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidFrom <em>Valid From</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Valid From</em>' attribute.
-	 * @see #getValidFrom()
-	 * @generated
-	 */
-	void setValidFrom(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Valid Until</em>' attribute.
-	 * @see #setValidUntil(Date)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ValidUntil()
-	 * @model required="true"
+	 * @return the value of the '<em>User Authentication</em>' containment reference.
+	 * @see #setUserAuthentication(EvaluationInstructions)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_UserAuthentication()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	Date getValidUntil();
+	EvaluationInstructions getUserAuthentication();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValidUntil <em>Valid Until</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getUserAuthentication <em>User Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Valid Until</em>' attribute.
-	 * @see #getValidUntil()
+	 * @param value the new value of the '<em>User Authentication</em>' containment reference.
+	 * @see #getUserAuthentication()
 	 * @generated
 	 */
-	void setValidUntil(Date value);
-
-	/**
-	 * Returns the value of the '<em><b>Condition Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Type</em>' attribute.
-	 * @see #setConditionType(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ConditionType()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getConditionType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionType <em>Condition Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition Type</em>' attribute.
-	 * @see #getConditionType()
-	 * @generated
-	 */
-	void setConditionType(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Condition Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Expression</em>' attribute.
-	 * @see #setConditionExpression(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_ConditionExpression()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getConditionExpression();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getConditionExpression <em>Condition Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition Expression</em>' attribute.
-	 * @see #getConditionExpression()
-	 * @generated
-	 */
-	void setConditionExpression(String value);
+	void setUserAuthentication(EvaluationInstructions value);
 
 	/**
 	 * Returns the value of the '<em><b>Capacity</b></em>' attribute.

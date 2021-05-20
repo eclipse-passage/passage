@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.EnsureStructure;
 
 /**
  * @since 2.0
@@ -36,16 +37,18 @@ public final class RecognizeFeatures {
 
 	private final AnyType any;
 	private final EFeatureRoutes features;
+	private final EnsureStructure ensure;
 
-	public RecognizeFeatures(AnyType any, EFeatureRoutes features) {
+	public RecognizeFeatures(AnyType any, EFeatureRoutes features, EnsureStructure ensure) {
 		Objects.requireNonNull(any, "ApplyFeatureMap::any"); //$NON-NLS-1$
 		Objects.requireNonNull(features, "ApplyFeatureMap::features"); //$NON-NLS-1$
 		this.any = any;
 		this.features = features;
+		this.ensure = ensure;
 	}
 
 	@SuppressWarnings("unchecked")
-	public RecognizeFeatures mixed(EObject object) {
+	public void mixed(EObject object) {
 		EList<EReference> references = object.eClass().getEAllReferences();
 		for (Iterator<Entry> iterator = any.getMixed().iterator(); iterator.hasNext();) {
 			Entry entry = iterator.next();
@@ -60,7 +63,9 @@ public final class RecognizeFeatures {
 			if (value instanceof AnyType) {
 				AnyType child = (AnyType) value;
 				EObject created = type.getEPackage().getEFactoryInstance().create(type);
-				new RecognizeFeatures(child, features).attributes(created);
+				RecognizeFeatures restore = new RecognizeFeatures(child, features, ensure);
+				restore.attributes(created);
+				ensure.apply(created).forEach(restore::attributes);
 				if (feature.isMany()) {
 					((List<EObject>) object.eGet(feature)).add(created);
 				} else {
@@ -68,7 +73,7 @@ public final class RecognizeFeatures {
 				}
 			}
 		}
-		return this;
+		ensure.apply(object).forEach(this::attributes);
 	}
 
 	private Optional<EStructuralFeature> candidate(EObject object, Entry entry,
@@ -77,7 +82,7 @@ public final class RecognizeFeatures {
 				.filter(all::contains);
 	}
 
-	public RecognizeFeatures attributes(EObject object) {
+	public void attributes(EObject object) {
 		EList<EAttribute> attributes = object.eClass().getEAllAttributes();
 		for (Iterator<Entry> iterator = any.getAnyAttribute().iterator(); iterator.hasNext();) {
 			Entry entry = iterator.next();
@@ -92,7 +97,6 @@ public final class RecognizeFeatures {
 					String.valueOf(entry.getValue()));
 			object.eSet(feature, value);
 		}
-		return this;
 	}
 
 }

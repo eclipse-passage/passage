@@ -15,7 +15,6 @@ package org.eclipse.passage.lic.licenses.model.api;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 
 /**
@@ -32,7 +31,7 @@ import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicensePack()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicensePackDescriptor"
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.PersonalLicensePackDescriptor"
  * @generated
  */
 public interface PersonalLicensePack extends EObject, PersonalLicensePackDescriptor {
@@ -46,6 +45,7 @@ public interface PersonalLicensePack extends EObject, PersonalLicensePackDescrip
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
+	@Override
 	PersonalLicenseRequisites getLicense();
 
 	/**
@@ -70,6 +70,7 @@ public interface PersonalLicensePack extends EObject, PersonalLicensePackDescrip
 	 * @model opposite="licensePack" containment="true"
 	 * @generated
 	 */
+	@Override
 	EList<LicenseGrant> getGrants();
 
 } // PersonalLicensePack

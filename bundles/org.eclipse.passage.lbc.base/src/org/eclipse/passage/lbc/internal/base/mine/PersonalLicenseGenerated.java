@@ -64,14 +64,16 @@ final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicenseGrant grant = licenseFactory.createLicenseGrant();
 		grant.setIdentifier(condition.identifier());
-		grant.setFeatureIdentifier(condition.feature());
-		grant.setMatchVersion(condition.versionMatch().version());
-		grant.setMatchRule(condition.versionMatch().rule().identifier());
+		grant.getFeature().setIdentifier(condition.feature());
+		grant.getFeature().setVersion(condition.versionMatch().version());
+		grant.getFeature().setMatchingRule(condition.versionMatch().rule().identifier());
 		grant.setCapacity(1);
-		grant.setConditionExpression(condition.evaluationInstructions().expression());
-		grant.setConditionType(condition.evaluationInstructions().type().identifier());
-		grant.setValidFrom(date(condition, ValidityPeriodClosed::from));
-		grant.setValidUntil(date(condition, ValidityPeriodClosed::to));
+		grant.getUserAuthentication().setExpression(condition.evaluationInstructions().expression());
+		grant.getUserAuthentication().setType(condition.evaluationInstructions().type().identifier());
+		((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid())
+				.setFrom(date(condition, ValidityPeriodClosed::from));
+		((org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed) grant.getValid())
+				.setUntil(date(condition, ValidityPeriodClosed::to));
 		return grant;
 	}
 

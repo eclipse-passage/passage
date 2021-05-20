@@ -20,10 +20,11 @@
       ecorePackage="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#/">
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeatureDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePackDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalLicensePackDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrantDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRefDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRefDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRefDescriptor"/>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRefDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//CompanyRefDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseRequisitesDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalLicenseRequisitesDescriptor"/>
@@ -45,9 +46,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlan/floating"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/featureIdentifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/matchVersion"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/matchRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/feature"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicensePlanFeature/licensePlan"/>
     </genClasses>
     <genClasses ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//PersonalLicensePack">
@@ -56,13 +55,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/featureIdentifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/matchVersion"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/matchRule"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/validFrom"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/validUntil"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/conditionType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/conditionExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/valid"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/userAuthentication"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/capacity"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//LicenseGrant/licensePack"/>
     </genClasses>
@@ -85,13 +80,18 @@
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FloatingLicenseRequisites">
       <genFeatures createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FloatingLicenseRequisites/company"/>
     </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef/name"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRef/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//ProductRef/version"/>
     </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//UserRef/name"/>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRef/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRef/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//FeatureRef/matchingRule"/>
     </genClasses>
     <genClasses ecoreClass="../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//CompanyRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore#//CompanyRef/identifier"/>

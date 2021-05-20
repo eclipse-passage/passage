@@ -12,16 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
-import java.util.Objects;
-
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 
@@ -35,9 +35,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getFeatureIdentifier <em>Feature Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getMatchVersion <em>Match Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getMatchRule <em>Match Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getLicensePlan <em>License Plan</em>}</li>
  * </ul>
  *
@@ -45,64 +43,14 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  */
 public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container implements LicensePlanFeature {
 	/**
-	 * The default value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeatureIdentifier()
+	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FEATURE_IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFeatureIdentifier() <em>Feature Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeatureIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	private String featureIdentifier = FEATURE_IDENTIFIER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MATCH_VERSION_EDEFAULT = "0.0.0"; //$NON-NLS-1$
-
-	/**
-	 * The cached value of the '{@link #getMatchVersion() <em>Match Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchVersion()
-	 * @generated
-	 * @ordered
-	 */
-	private String matchVersion = MATCH_VERSION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MATCH_RULE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMatchRule() <em>Match Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchRule()
-	 * @generated
-	 * @ordered
-	 */
-	private String matchRule = MATCH_RULE_EDEFAULT;
+	protected FeatureRef feature;
 
 	/**
 	 * The cached value of the '{@link #getLicensePlan() <em>License Plan</em>}' reference.
@@ -139,8 +87,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String getFeatureIdentifier() {
-		return featureIdentifier;
+	public FeatureRef getFeature() {
+		return feature;
 	}
 
 	/**
@@ -148,14 +96,18 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setFeatureIdentifier(String newFeatureIdentifier) {
-		String oldFeatureIdentifier = featureIdentifier;
-		featureIdentifier = newFeatureIdentifier;
+	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		FeatureRef oldFeature = feature;
+		feature = newFeature;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER, oldFeatureIdentifier, featureIdentifier));
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, oldFeature, newFeature);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
+		return msgs;
 	}
 
 	/**
@@ -164,47 +116,21 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public String getMatchVersion() {
-		return matchVersion;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMatchVersion(String newMatchVersion) {
-		String oldMatchVersion = matchVersion;
-		matchVersion = newMatchVersion;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION,
-					oldMatchVersion, matchVersion));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getMatchRule() {
-		return matchRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMatchRule(String newMatchRule) {
-		String oldMatchRule = matchRule;
-		matchRule = newMatchRule;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE,
-					oldMatchRule, matchRule));
+	public void setFeature(FeatureRef newFeature) {
+		if (newFeature != feature) {
+			NotificationChain msgs = null;
+			if (feature != null)
+				msgs = ((InternalEObject) feature).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, null, msgs);
+			if (newFeature != null)
+				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE, null, msgs);
+			msgs = basicSetFeature(newFeature, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE,
+					newFeature, newFeature));
 		}
 	}
 
@@ -258,14 +184,25 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+			return basicSetFeature(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER:
-			return getFeatureIdentifier();
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION:
-			return getMatchVersion();
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE:
-			return getMatchRule();
+		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+			return getFeature();
 		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
 			if (resolve)
 				return getLicensePlan();
@@ -283,14 +220,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER:
-			setFeatureIdentifier((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION:
-			setMatchVersion((String) newValue);
-			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE:
-			setMatchRule((String) newValue);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+			setFeature((FeatureRef) newValue);
 			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
 			setLicensePlan((LicensePlan) newValue);
@@ -309,14 +240,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER:
-			setFeatureIdentifier(FEATURE_IDENTIFIER_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION:
-			setMatchVersion(MATCH_VERSION_EDEFAULT);
-			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE:
-			setMatchRule(MATCH_RULE_EDEFAULT);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+			setFeature((FeatureRef) null);
 			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
 			setLicensePlan((LicensePlan) null);
@@ -335,38 +260,13 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE_IDENTIFIER:
-			return !Objects.equals(FEATURE_IDENTIFIER_EDEFAULT, featureIdentifier);
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_VERSION:
-			return !Objects.equals(MATCH_VERSION_EDEFAULT, matchVersion);
-		case LicensesPackage.LICENSE_PLAN_FEATURE__MATCH_RULE:
-			return !Objects.equals(MATCH_RULE_EDEFAULT, matchRule);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
+			return feature != null;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
 			return licensePlan != null;
 		default:
 			return super.eIsSet(featureID);
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (featureIdentifier: "); //$NON-NLS-1$
-		result.append(featureIdentifier);
-		result.append(", matchVersion: "); //$NON-NLS-1$
-		result.append(matchVersion);
-		result.append(", matchRule: "); //$NON-NLS-1$
-		result.append(matchRule);
-		result.append(')');
-		return result.toString();
 	}
 
 } //LicensePlanFeatureImpl
