@@ -183,8 +183,8 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		String until = unknownDate;
 		LicenseGrant grant = (LicenseGrant) object;
 		String feature = grant.getFeature().getIdentifier();
-		String version = grant.getFeature().getVersion();
-		String rule = grant.getFeature().getMatchingRule();
+		String version = grant.getFeature().getVersionMatch().getVersion();
+		String rule = grant.getFeature().getVersionMatch().getRule();
 		Date validFrom = ((ValidityPeriodClosed) grant.getValid()).getFrom();
 		if (validFrom != null) {
 			from = LocalDateTime.ofInstant(validFrom.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();

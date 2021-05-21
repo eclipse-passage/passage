@@ -16,13 +16,16 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -34,8 +37,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureRefImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureRefImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureRefImpl#getMatchingRule <em>Matching Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureRefImpl#getVersionMatch <em>Version Match</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,44 +64,14 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * The cached value of the '{@link #getVersionMatch() <em>Version Match</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVersion()
+	 * @see #getVersionMatch()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VERSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	private String version = VERSION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMatchingRule() <em>Matching Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchingRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MATCHING_RULE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMatchingRule() <em>Matching Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatchingRule()
-	 * @generated
-	 * @ordered
-	 */
-	private String matchingRule = MATCHING_RULE_EDEFAULT;
+	protected VersionMatch versionMatch;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,8 +123,27 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 */
 	@Override
-	public String getVersion() {
-		return version;
+	public VersionMatch getVersionMatch() {
+		return versionMatch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetVersionMatch(VersionMatch newVersionMatch, NotificationChain msgs) {
+		VersionMatch oldVersionMatch = versionMatch;
+		versionMatch = newVersionMatch;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.FEATURE_REF__VERSION_MATCH, oldVersionMatch, newVersionMatch);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -161,12 +152,21 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 */
 	@Override
-	public void setVersion(String newVersion) {
-		String oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_REF__VERSION, oldVersion,
-					version));
+	public void setVersionMatch(VersionMatch newVersionMatch) {
+		if (newVersionMatch != versionMatch) {
+			NotificationChain msgs = null;
+			if (versionMatch != null)
+				msgs = ((InternalEObject) versionMatch).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_REF__VERSION_MATCH, null, msgs);
+			if (newVersionMatch != null)
+				msgs = ((InternalEObject) newVersionMatch).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_REF__VERSION_MATCH, null, msgs);
+			msgs = basicSetVersionMatch(newVersionMatch, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_REF__VERSION_MATCH,
+					newVersionMatch, newVersionMatch));
 		}
 	}
 
@@ -176,22 +176,12 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 	 * @generated
 	 */
 	@Override
-	public String getMatchingRule() {
-		return matchingRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMatchingRule(String newMatchingRule) {
-		String oldMatchingRule = matchingRule;
-		matchingRule = newMatchingRule;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_REF__MATCHING_RULE,
-					oldMatchingRule, matchingRule));
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			return basicSetVersionMatch(null, msgs);
+		default:
+			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -205,10 +195,8 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		switch (featureID) {
 		case LicensesPackage.FEATURE_REF__IDENTIFIER:
 			return getIdentifier();
-		case LicensesPackage.FEATURE_REF__VERSION:
-			return getVersion();
-		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
-			return getMatchingRule();
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			return getVersionMatch();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -225,11 +213,8 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		case LicensesPackage.FEATURE_REF__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case LicensesPackage.FEATURE_REF__VERSION:
-			setVersion((String) newValue);
-			return;
-		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
-			setMatchingRule((String) newValue);
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			setVersionMatch((VersionMatch) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -248,11 +233,8 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		case LicensesPackage.FEATURE_REF__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case LicensesPackage.FEATURE_REF__VERSION:
-			setVersion(VERSION_EDEFAULT);
-			return;
-		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
-			setMatchingRule(MATCHING_RULE_EDEFAULT);
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			setVersionMatch((VersionMatch) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -270,10 +252,8 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		switch (featureID) {
 		case LicensesPackage.FEATURE_REF__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case LicensesPackage.FEATURE_REF__VERSION:
-			return !Objects.equals(VERSION_EDEFAULT, version);
-		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
-			return !Objects.equals(MATCHING_RULE_EDEFAULT, matchingRule);
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			return versionMatch != null;
 		default:
 			return super.eIsSet(featureID);
 		}
@@ -292,10 +272,6 @@ public class FeatureRefImpl extends MinimalEObjectImpl.Container implements Feat
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", version: "); //$NON-NLS-1$
-		result.append(version);
-		result.append(", matchingRule: "); //$NON-NLS-1$
-		result.append(matchingRule);
 		result.append(')');
 		return result.toString();
 	}

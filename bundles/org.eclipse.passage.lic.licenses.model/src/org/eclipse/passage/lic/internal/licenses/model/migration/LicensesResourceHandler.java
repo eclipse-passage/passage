@@ -56,8 +56,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("identifier", licenses.getLicenseRequisites_Identifier()); //$NON-NLS-1$
 		routes.define("issueDate", licenses.getLicenseRequisites_IssueDate()); //$NON-NLS-1$
 		routes.define("licenseGrants", licenses.getPersonalLicensePack_Grants()); //$NON-NLS-1$
-		routes.define("matchRule", licenses.getFeatureRef_MatchingRule()); //$NON-NLS-1$
-		routes.define("matchVersion", licenses.getFeatureRef_Version()); //$NON-NLS-1$
+		routes.define("matchRule", licenses.getVersionMatch_Rule()); //$NON-NLS-1$
+		routes.define("matchVersion", licenses.getVersionMatch_Version()); //$NON-NLS-1$
 		routes.define("planIdentifier", licenses.getLicenseRequisites_Plan()); //$NON-NLS-1$
 		routes.define("productIdentifier", licenses.getProductRef_Identifier()); //$NON-NLS-1$
 		routes.define("productVersion", licenses.getProductRef_Version()); //$NON-NLS-1$
@@ -65,6 +65,10 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("userFullName", licenses.getUserRef_Name()); //$NON-NLS-1$
 		routes.define("validFrom", licenses.getValidityPeriodClosed_From()); //$NON-NLS-1$
 		routes.define("validUntil", licenses.getValidityPeriodClosed_Until()); //$NON-NLS-1$
+		routes.define("licensePlanFeatures", licenses.getLicensePlan_Features()); //$NON-NLS-1$
+		routes.define("licensePlan", licenses.getLicensePlanFeature_Plan()); //$NON-NLS-1$
+		routes.define("feature", licenses.getFeatureRef_Identifier()); //$NON-NLS-1$
+		routes.define("version", licenses.getFeatureRef_VersionMatch()); //$NON-NLS-1$
 		return routes;
 	}
 
@@ -103,6 +107,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		EClassRoutes routes = new SimpleClassRoutes();
 		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$
 		routes.define("LicenseGrant", delegate.getLicenseGrant()); //$NON-NLS-1$
+		routes.define("LicensePlan", delegate.getLicensePlan()); //$NON-NLS-1$
+		routes.define("LicensePlanFeature", delegate.getLicensePlanFeature()); //$NON-NLS-1$
 		return routes;
 	}
 

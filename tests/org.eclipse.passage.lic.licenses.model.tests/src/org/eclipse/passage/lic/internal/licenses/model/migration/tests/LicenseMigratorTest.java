@@ -89,8 +89,8 @@ public final class LicenseMigratorTest {
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("org.eclipse.passage.lic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$
-		assertEquals("perfect", grant.getFeature().getMatchingRule()); //$NON-NLS-1$
-		assertEquals("0.4.0", grant.getFeature().getVersion()); //$NON-NLS-1$
+		assertEquals("perfect", grant.getFeature().getVersionMatch().getRule()); //$NON-NLS-1$
+		assertEquals("0.4.0", grant.getFeature().getVersionMatch()); //$NON-NLS-1$
 		assertEquals(getLicensingDateFormat().parse("2019-03-14T00:00:00.000+0300"), //$NON-NLS-1$
 				((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom());
 		assertEquals(getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
@@ -143,8 +143,8 @@ public final class LicenseMigratorTest {
 
 	private void assertGrant(LicenseGrant grant, String feature, String version) throws ParseException {
 		assertEquals(feature, grant.getFeature().getIdentifier());
-		assertEquals(version, grant.getFeature().getVersion());
-		assertEquals(null, grant.getFeature().getMatchingRule());
+		assertEquals(version, grant.getFeature().getVersionMatch().getVersion());
+		assertEquals(null, grant.getFeature().getVersionMatch().getRule());
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals(getLicensingDateFormat().parse("2020-12-02T00:00:00.000+0300"), //$NON-NLS-1$

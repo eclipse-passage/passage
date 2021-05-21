@@ -130,7 +130,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Features());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Personal());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicensePlan_Floating());
 		}
@@ -211,7 +211,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 		case LicensesPackage.LICENSE_PLAN__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case LicensesPackage.LICENSE_PLAN__LICENSE_PLAN_FEATURES:
+		case LicensesPackage.LICENSE_PLAN__FEATURES:
 		case LicensesPackage.LICENSE_PLAN__PERSONAL:
 		case LicensesPackage.LICENSE_PLAN__FLOATING:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -233,7 +233,7 @@ public class LicensePlanItemProvider extends ItemProviderAdapter implements IEdi
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_LicensePlanFeatures(),
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Features(),
 				LicensesFactory.eINSTANCE.createLicensePlanFeature()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicensePlan_Personal(),

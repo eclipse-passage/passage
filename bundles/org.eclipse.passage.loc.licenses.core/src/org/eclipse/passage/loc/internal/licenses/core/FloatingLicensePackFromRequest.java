@@ -181,7 +181,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {
 		LicensePlanDescriptor plan = licenses.getLicensePlan(request.plan());
 		AtomicInteger counter = new AtomicInteger(0);
-		return StreamSupport.stream(plan.getLicensePlanFeatures().spliterator(), false)//
+		return StreamSupport.stream(plan.getFeatures().spliterator(), false)//
 				.map(feature -> featureGrant(feature, pack, counter.getAndIncrement())) //
 				.collect(Collectors.toSet());
 	}
@@ -189,13 +189,13 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
 		FeatureGrant grant = LicensesFactory.eINSTANCE.createFeatureGrant();
 		String fid = feature.getFeature().getIdentifier();
-		grant.setFeature(fid);
+		grant.getFeature().setIdentifier(fid);
 		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
 		grant.setValid(featureGrantPeriod(fid));
 		grant.setVivid(featureGrantVivid(fid));
-		grant.setVersion(version(feature));
+		grant.getFeature().setVersionMatch(version(feature));
 		return grant;
 	}
 
@@ -219,9 +219,9 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
 		VersionMatch version = LicensesFactory.eINSTANCE.createVersionMatch();
-		version.setVersion(feature.getFeature().getVersion());
+		version.setVersion(feature.getFeature().getVersionMatch().getVersion());
 		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(//
-				feature.getFeature().getMatchingRule())).get().identifier());
+				feature.getFeature().getVersionMatch().getRule())).get().identifier());
 		return version;
 	}
 

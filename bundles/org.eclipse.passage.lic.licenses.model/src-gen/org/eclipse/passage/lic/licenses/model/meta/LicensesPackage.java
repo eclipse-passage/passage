@@ -636,13 +636,13 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN__DESCRIPTION = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>License Plan Features</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN__LICENSE_PLAN_FEATURES = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 3;
+	int LICENSE_PLAN__FEATURES = LICENSE_PLAN_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Personal</b></em>' containment reference list.
@@ -700,13 +700,13 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN_FEATURE__FEATURE = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>License Plan</b></em>' reference.
+	 * The feature id for the '<em><b>Plan</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN_FEATURE__LICENSE_PLAN = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
+	int LICENSE_PLAN_FEATURE__PLAN = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>License Plan Feature</em>' class.
@@ -1267,22 +1267,13 @@ public interface LicensesPackage extends EPackage {
 	int FEATURE_REF__IDENTIFIER = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * The feature id for the '<em><b>Version Match</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REF__VERSION = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Matching Rule</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REF__MATCHING_RULE = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 2;
+	int FEATURE_REF__VERSION_MATCH = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Feature Ref</em>' class.
@@ -1291,7 +1282,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REF_FEATURE_COUNT = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE_REF_FEATURE_COUNT = FEATURE_REF_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Feature Ref</em>' class.
@@ -1469,7 +1460,7 @@ public interface LicensesPackage extends EPackage {
 	int FEATURE_GRANT__IDENTIFIER = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * The feature id for the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1478,22 +1469,13 @@ public interface LicensesPackage extends EPackage {
 	int FEATURE_GRANT__FEATURE = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_GRANT__VERSION = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Valid</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__VALID = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE_GRANT__VALID = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Vivid</b></em>' attribute.
@@ -1502,7 +1484,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__VIVID = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
+	int FEATURE_GRANT__VIVID = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
@@ -1511,7 +1493,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__CAPACITY = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int FEATURE_GRANT__CAPACITY = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Pack</b></em>' container reference.
@@ -1520,7 +1502,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT__PACK = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
+	int FEATURE_GRANT__PACK = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Feature Grant</em>' class.
@@ -1529,7 +1511,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_GRANT_FEATURE_COUNT = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
+	int FEATURE_GRANT_FEATURE_COUNT = FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Feature Grant</em>' class.
@@ -2142,15 +2124,15 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicensePlan_Description();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getLicensePlanFeatures <em>License Plan Features</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>License Plan Features</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getLicensePlanFeatures()
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures()
 	 * @see #getLicensePlan()
 	 * @generated
 	 */
-	EReference getLicensePlan_LicensePlanFeatures();
+	EReference getLicensePlan_Features();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getPersonal <em>Personal</em>}'.
@@ -2196,15 +2178,15 @@ public interface LicensesPackage extends EPackage {
 	EReference getLicensePlanFeature_Feature();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan <em>License Plan</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>License Plan</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan()
+	 * @return the meta object for the reference '<em>Plan</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan()
 	 * @see #getLicensePlanFeature()
 	 * @generated
 	 */
-	EReference getLicensePlanFeature_LicensePlan();
+	EReference getLicensePlanFeature_Plan();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack <em>Personal License Pack</em>}'.
@@ -2529,26 +2511,15 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getFeatureRef_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersion <em>Version</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersionMatch <em>Version Match</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Version</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersion()
+	 * @return the meta object for the containment reference '<em>Version Match</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersionMatch()
 	 * @see #getFeatureRef()
 	 * @generated
 	 */
-	EAttribute getFeatureRef_Version();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getMatchingRule <em>Matching Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Matching Rule</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureRef#getMatchingRule()
-	 * @see #getFeatureRef()
-	 * @generated
-	 */
-	EAttribute getFeatureRef_MatchingRule();
+	EReference getFeatureRef_VersionMatch();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.UserRef <em>User Ref</em>}'.
@@ -2711,26 +2682,15 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getFeatureGrant_Identifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Feature</em>'.
+	 * @return the meta object for the containment reference '<em>Feature</em>'.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature()
 	 * @see #getFeatureGrant()
 	 * @generated
 	 */
-	EAttribute getFeatureGrant_Feature();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getVersion <em>Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Version</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getVersion()
-	 * @see #getFeatureGrant()
-	 * @generated
-	 */
-	EReference getFeatureGrant_Version();
+	EReference getFeatureGrant_Feature();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getValid <em>Valid</em>}'.

@@ -26,10 +26,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
-import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
-
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -42,7 +41,6 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getCapacity <em>Capacity</em>}</li>
@@ -73,34 +71,14 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FEATURE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeature()
-	 * @generated
-	 * @ordered
-	 */
-	private String feature = FEATURE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getVersion() <em>Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVersion()
-	 * @generated
-	 * @ordered
-	 */
-	protected VersionMatch version;
+	protected FeatureRef feature;
 
 	/**
 	 * The cached value of the '{@link #getValid() <em>Valid</em>}' containment reference.
@@ -202,7 +180,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 * @generated
 	 */
 	@Override
-	public String getFeature() {
+	public FeatureRef getFeature() {
 		return feature;
 	}
 
@@ -211,37 +189,12 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setFeature(String newFeature) {
-		String oldFeature = feature;
+	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
+		FeatureRef oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__FEATURE, oldFeature,
-					feature));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public VersionMatch getVersion() {
-		return version;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetVersion(VersionMatch newVersion, NotificationChain msgs) {
-		VersionMatch oldVersion = version;
-		version = newVersion;
-		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					LicensesPackage.FEATURE_GRANT__VERSION, oldVersion, newVersion);
+					LicensesPackage.FEATURE_GRANT__FEATURE, oldFeature, newFeature);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -256,21 +209,21 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	 * @generated
 	 */
 	@Override
-	public void setVersion(VersionMatch newVersion) {
-		if (newVersion != version) {
+	public void setFeature(FeatureRef newFeature) {
+		if (newFeature != feature) {
 			NotificationChain msgs = null;
-			if (version != null)
-				msgs = ((InternalEObject) version).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__VERSION, null, msgs);
-			if (newVersion != null)
-				msgs = ((InternalEObject) newVersion).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__VERSION, null, msgs);
-			msgs = basicSetVersion(newVersion, msgs);
+			if (feature != null)
+				msgs = ((InternalEObject) feature).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__FEATURE, null, msgs);
+			if (newFeature != null)
+				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.FEATURE_GRANT__FEATURE, null, msgs);
+			msgs = basicSetFeature(newFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__VERSION, newVersion,
-					newVersion));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FEATURE_GRANT__FEATURE, newFeature,
+					newFeature));
 		}
 	}
 
@@ -454,8 +407,8 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case LicensesPackage.FEATURE_GRANT__VERSION:
-			return basicSetVersion(null, msgs);
+		case LicensesPackage.FEATURE_GRANT__FEATURE:
+			return basicSetFeature(null, msgs);
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			return basicSetValid(null, msgs);
 		case LicensesPackage.FEATURE_GRANT__PACK:
@@ -493,8 +446,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			return getIdentifier();
 		case LicensesPackage.FEATURE_GRANT__FEATURE:
 			return getFeature();
-		case LicensesPackage.FEATURE_GRANT__VERSION:
-			return getVersion();
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			return getValid();
 		case LicensesPackage.FEATURE_GRANT__VIVID:
@@ -520,10 +471,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			setIdentifier((String) newValue);
 			return;
 		case LicensesPackage.FEATURE_GRANT__FEATURE:
-			setFeature((String) newValue);
-			return;
-		case LicensesPackage.FEATURE_GRANT__VERSION:
-			setVersion((VersionMatch) newValue);
+			setFeature((FeatureRef) newValue);
 			return;
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) newValue);
@@ -555,10 +503,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
 		case LicensesPackage.FEATURE_GRANT__FEATURE:
-			setFeature(FEATURE_EDEFAULT);
-			return;
-		case LicensesPackage.FEATURE_GRANT__VERSION:
-			setVersion((VersionMatch) null);
+			setFeature((FeatureRef) null);
 			return;
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) null);
@@ -589,9 +534,7 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		case LicensesPackage.FEATURE_GRANT__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case LicensesPackage.FEATURE_GRANT__FEATURE:
-			return !Objects.equals(FEATURE_EDEFAULT, feature);
-		case LicensesPackage.FEATURE_GRANT__VERSION:
-			return version != null;
+			return feature != null;
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			return valid != null;
 		case LicensesPackage.FEATURE_GRANT__VIVID:
@@ -618,8 +561,6 @@ public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements Fe
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", feature: "); //$NON-NLS-1$
-		result.append(feature);
 		result.append(", vivid: "); //$NON-NLS-1$
 		result.append(vivid);
 		result.append(", capacity: "); //$NON-NLS-1$

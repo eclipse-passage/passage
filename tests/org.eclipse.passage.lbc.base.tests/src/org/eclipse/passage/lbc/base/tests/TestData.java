@@ -38,12 +38,12 @@ public final class TestData {
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals("anti-human-magic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$
 		assertEquals("2fa76bd6-f1b0-4d6b-9e86-280483aedc32#1", grant.getIdentifier()); //$NON-NLS-1$
-		assertEquals("0.0.0", grant.getFeature().getVersion()); //$NON-NLS-1$
-		assertEquals("compatible", grant.getFeature().getMatchingRule()); //$NON-NLS-1$
+		assertEquals("0.0.0", grant.getFeature().getVersionMatch()); //$NON-NLS-1$
+		assertEquals("compatible", grant.getFeature().getVersionMatch().getRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
 		assertTrue(grant.getValid() instanceof ValidityPeriodClosed);
-		assertEquals(expectedFrom(), ((ValidityPeriodClosed)grant.getValid()).getFrom());
-		assertEquals(expectedUntil(), ((ValidityPeriodClosed)grant.getValid()).getUntil());
+		assertEquals(expectedFrom(), ((ValidityPeriodClosed) grant.getValid()).getFrom());
+		assertEquals(expectedUntil(), ((ValidityPeriodClosed) grant.getValid()).getUntil());
 	}
 
 	private Date expectedFrom() {
