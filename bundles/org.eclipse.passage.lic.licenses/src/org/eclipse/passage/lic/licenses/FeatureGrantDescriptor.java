@@ -19,9 +19,7 @@ public interface FeatureGrantDescriptor {
 
 	String getIdentifier();
 
-	String getFeature();
-
-	VersionMatchDescriptor getVersion();
+	FeatureRefDescriptor getFeature();
 
 	ValidityPeriodDescriptor getValid();
 

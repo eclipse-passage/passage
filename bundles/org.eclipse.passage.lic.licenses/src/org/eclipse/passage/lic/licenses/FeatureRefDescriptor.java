@@ -19,8 +19,6 @@ public interface FeatureRefDescriptor {
 
 	String getIdentifier();
 
-	String getVersion();
-
-	String getMatchingRule();
+	VersionMatchDescriptor getVersion();
 
 }

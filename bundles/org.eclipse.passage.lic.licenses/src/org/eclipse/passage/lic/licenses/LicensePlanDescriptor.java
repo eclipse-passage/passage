@@ -57,7 +57,7 @@ public interface LicensePlanDescriptor {
 	 * @return the license plan features
 	 * @since 2.0
 	 */
-	List<? extends LicensePlanFeatureDescriptor> getLicensePlanFeatures();
+	List<? extends LicensePlanFeatureDescriptor> getFeatures();
 
 	/**
 	 * @since 2.0
