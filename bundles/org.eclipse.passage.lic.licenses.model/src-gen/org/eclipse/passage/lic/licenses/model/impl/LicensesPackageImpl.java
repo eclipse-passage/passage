@@ -809,7 +809,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getLicenseGrant_LicensePack() {
+	public EReference getLicenseGrant_Pack() {
 		return (EReference) licenseGrantEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1553,7 +1553,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEReference(licenseGrantEClass, LICENSE_GRANT__VALID);
 		createEReference(licenseGrantEClass, LICENSE_GRANT__USER_AUTHENTICATION);
 		createEAttribute(licenseGrantEClass, LICENSE_GRANT__CAPACITY);
-		createEReference(licenseGrantEClass, LICENSE_GRANT__LICENSE_PACK);
+		createEReference(licenseGrantEClass, LICENSE_GRANT__PACK);
 
 		floatingLicensePackEClass = createEClass(FLOATING_LICENSE_PACK);
 		createEReference(floatingLicensePackEClass, FLOATING_LICENSE_PACK__LICENSE);
@@ -1785,9 +1785,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		initEReference(getPersonalLicensePack_License(), this.getPersonalLicenseRequisites(), null, "license", null, 1, //$NON-NLS-1$
 				1, PersonalLicensePack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPersonalLicensePack_Grants(), this.getLicenseGrant(), this.getLicenseGrant_LicensePack(),
-				"grants", null, 0, -1, PersonalLicensePack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPersonalLicensePack_Grants(), this.getLicenseGrant(), this.getLicenseGrant_Pack(), "grants", //$NON-NLS-1$
+				null, 0, -1, PersonalLicensePack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(licenseGrantEClass, LicenseGrant.class, "LicenseGrant", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1805,10 +1805,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLicenseGrant_Capacity(), ecorePackage.getEInt(), "capacity", "1", 0, 1, LicenseGrant.class, //$NON-NLS-1$//$NON-NLS-2$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLicenseGrant_LicensePack(), this.getPersonalLicensePack(),
-				this.getPersonalLicensePack_Grants(), "licensePack", null, 1, 1, LicenseGrant.class, !IS_TRANSIENT, //$NON-NLS-1$
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getLicenseGrant_Pack(), this.getPersonalLicensePack(), this.getPersonalLicensePack_Grants(),
+				"pack", null, 1, 1, LicenseGrant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(floatingLicensePackEClass, FloatingLicensePack.class, "FloatingLicensePack", !IS_ABSTRACT, //$NON-NLS-1$
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

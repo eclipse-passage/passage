@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.util.LicensesSwitch;
@@ -44,6 +45,13 @@ public class LicensesContainers extends LicensesSwitch<List<EObject>> implements
 		result.add(new EnsurePersonalPackLicense().apply(object));
 		result.add(new EnsurePersonalPackProduct().apply(object));
 		result.add(new EnsurePersonalPackUser().apply(object));
+		return result;
+	}
+
+	@Override
+	public List<EObject> caseFeatureRef(FeatureRef object) {
+		List<EObject> result = new ArrayList<>();
+		result.add(new EnsureFeatureVersionMatch().apply(object));
 		return result;
 	}
 

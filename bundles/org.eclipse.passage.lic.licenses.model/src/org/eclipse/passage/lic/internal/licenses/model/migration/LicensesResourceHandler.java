@@ -33,7 +33,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		super.postLoad(resource, inputStream, options);
 		resource.getContents().stream()//
 				.filter(PersonalLicensePack.class::isInstance)//
-				.map(PersonalLicensePack.class::cast).forEach(new AssignGrantIdentifiers());
+				.map(PersonalLicensePack.class::cast)//
+				.forEach(new AssignGrantIdentifiers());
 	}
 
 	@Override
@@ -53,6 +54,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("conditionType", licenses.getEvaluationInstructions_Type()); //$NON-NLS-1$
 		routes.define("featureIdentifier", licenses.getFeatureRef_Identifier()); //$NON-NLS-1$
 		routes.define("identifier", licenses.getLicenseGrant_Identifier()); //$NON-NLS-1$
+		routes.define("licensePack", licenses.getLicenseGrant_Pack()); //$NON-NLS-1$
 		routes.define("identifier", licenses.getLicenseRequisites_Identifier()); //$NON-NLS-1$
 		routes.define("issueDate", licenses.getLicenseRequisites_IssueDate()); //$NON-NLS-1$
 		routes.define("licenseGrants", licenses.getPersonalLicensePack_Grants()); //$NON-NLS-1$
@@ -67,8 +69,6 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("validUntil", licenses.getValidityPeriodClosed_Until()); //$NON-NLS-1$
 		routes.define("licensePlanFeatures", licenses.getLicensePlan_Features()); //$NON-NLS-1$
 		routes.define("licensePlan", licenses.getLicensePlanFeature_Plan()); //$NON-NLS-1$
-		routes.define("feature", licenses.getFeatureRef_Identifier()); //$NON-NLS-1$
-		routes.define("version", licenses.getFeatureRef_VersionMatch()); //$NON-NLS-1$
 		return routes;
 	}
 

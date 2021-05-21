@@ -42,7 +42,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getLicensePack <em>License Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getPack <em>Pack</em>}</li>
  * </ul>
  *
  * @generated
@@ -353,8 +353,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public PersonalLicensePack getLicensePack() {
-		if (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__LICENSE_PACK) {
+	public PersonalLicensePack getPack() {
+		if (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__PACK) {
 			return null;
 		}
 		return (PersonalLicensePack) eInternalContainer();
@@ -365,8 +365,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLicensePack(PersonalLicensePack newLicensePack, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLicensePack, LicensesPackage.LICENSE_GRANT__LICENSE_PACK, msgs);
+	public NotificationChain basicSetPack(PersonalLicensePack newPack, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.LICENSE_GRANT__PACK, msgs);
 		return msgs;
 	}
 
@@ -376,25 +376,25 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public void setLicensePack(PersonalLicensePack newLicensePack) {
-		if (newLicensePack != eInternalContainer()
-				|| (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__LICENSE_PACK && newLicensePack != null)) {
-			if (EcoreUtil.isAncestor(this, newLicensePack)) {
+	public void setPack(PersonalLicensePack newPack) {
+		if (newPack != eInternalContainer()
+				|| (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__PACK && newPack != null)) {
+			if (EcoreUtil.isAncestor(this, newPack)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			if (newLicensePack != null)
-				msgs = ((InternalEObject) newLicensePack).eInverseAdd(this,
-						LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS, PersonalLicensePack.class, msgs);
-			msgs = basicSetLicensePack(newLicensePack, msgs);
+			if (newPack != null)
+				msgs = ((InternalEObject) newPack).eInverseAdd(this, LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS,
+						PersonalLicensePack.class, msgs);
+			msgs = basicSetPack(newPack, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__LICENSE_PACK,
-					newLicensePack, newLicensePack));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__PACK, newPack,
+					newPack));
 		}
 	}
 
@@ -406,11 +406,11 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
+		case LicensesPackage.LICENSE_GRANT__PACK:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			return basicSetLicensePack((PersonalLicensePack) otherEnd, msgs);
+			return basicSetPack((PersonalLicensePack) otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -430,8 +430,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return basicSetValid(null, msgs);
 		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
 			return basicSetUserAuthentication(null, msgs);
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			return basicSetLicensePack(null, msgs);
+		case LicensesPackage.LICENSE_GRANT__PACK:
+			return basicSetPack(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -445,7 +445,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
+		case LicensesPackage.LICENSE_GRANT__PACK:
 			return eInternalContainer().eInverseRemove(this, LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS,
 					PersonalLicensePack.class, msgs);
 		default:
@@ -471,8 +471,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return getUserAuthentication();
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			return getCapacity();
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			return getLicensePack();
+		case LicensesPackage.LICENSE_GRANT__PACK:
+			return getPack();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -502,8 +502,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			setCapacity((Integer) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			setLicensePack((PersonalLicensePack) newValue);
+		case LicensesPackage.LICENSE_GRANT__PACK:
+			setPack((PersonalLicensePack) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -534,8 +534,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			setLicensePack((PersonalLicensePack) null);
+		case LicensesPackage.LICENSE_GRANT__PACK:
+			setPack((PersonalLicensePack) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -561,8 +561,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			return userAuthentication != null;
 		case LicensesPackage.LICENSE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
-		case LicensesPackage.LICENSE_GRANT__LICENSE_PACK:
-			return getLicensePack() != null;
+		case LicensesPackage.LICENSE_GRANT__PACK:
+			return getPack() != null;
 		default:
 			return super.eIsSet(featureID);
 		}

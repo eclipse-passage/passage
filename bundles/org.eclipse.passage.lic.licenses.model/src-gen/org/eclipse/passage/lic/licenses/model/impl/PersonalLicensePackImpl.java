@@ -150,7 +150,7 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 	public EList<LicenseGrant> getGrants() {
 		if (grants == null) {
 			grants = new EObjectContainmentWithInverseEList<LicenseGrant>(LicenseGrant.class, this,
-					LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS, LicensesPackage.LICENSE_GRANT__LICENSE_PACK);
+					LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS, LicensesPackage.LICENSE_GRANT__PACK);
 		}
 		return grants;
 	}

@@ -62,6 +62,6 @@ public interface LicenseGrantDescriptor {
 	 * @return the license pack
 	 * @since 2.0
 	 */
-	PersonalLicensePackDescriptor getLicensePack();
+	PersonalLicensePackDescriptor getPack();
 
 }

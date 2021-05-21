@@ -828,13 +828,13 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_GRANT__CAPACITY = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>License Pack</b></em>' container reference.
+	 * The feature id for the '<em><b>Pack</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_GRANT__LICENSE_PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int LICENSE_GRANT__PACK = LICENSE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>License Grant</em>' class.
@@ -2286,15 +2286,15 @@ public interface LicensesPackage extends EPackage {
 	EAttribute getLicenseGrant_Capacity();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>License Pack</em>'.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack()
+	 * @return the meta object for the container reference '<em>Pack</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack()
 	 * @see #getLicenseGrant()
 	 * @generated
 	 */
-	EReference getLicenseGrant_LicensePack();
+	EReference getLicenseGrant_Pack();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack <em>Floating License Pack</em>}'.
