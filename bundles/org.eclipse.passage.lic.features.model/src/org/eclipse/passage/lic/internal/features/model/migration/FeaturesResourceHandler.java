@@ -12,15 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.features.model.migration;
 
-import java.util.Collections;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
-import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
-import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
-import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
@@ -33,13 +30,8 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected EFeatureRoutes attributes() {
-		return new SimpleFeatureRoutes();
-	}
-
-	@Override
-	protected EnsureStructure structures() {
-		return e -> Collections.emptyList();
+	protected MigrationRoutes attributes() {
+		return new SimpleMigrationRoutes();
 	}
 
 	private void migrate033() {

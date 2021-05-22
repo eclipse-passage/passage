@@ -90,7 +90,7 @@ public final class LicenseMigratorTest {
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("org.eclipse.passage.lic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$
 		assertEquals("perfect", grant.getFeature().getVersionMatch().getRule()); //$NON-NLS-1$
-		assertEquals("0.4.0", grant.getFeature().getVersionMatch()); //$NON-NLS-1$
+		assertEquals("0.4.0", grant.getFeature().getVersionMatch().getVersion()); //$NON-NLS-1$
 		assertEquals(getLicensingDateFormat().parse("2019-03-14T00:00:00.000+0300"), //$NON-NLS-1$
 				((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom());
 		assertEquals(getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$

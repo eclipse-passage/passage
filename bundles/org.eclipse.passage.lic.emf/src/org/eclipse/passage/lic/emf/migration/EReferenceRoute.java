@@ -12,18 +12,17 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.migration;
 
-import java.util.Optional;
+import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * @since 2.0
  */
-public interface EFeatureRoutes {
+public interface EReferenceRoute {
 
-	void define(String found, EStructuralFeature destination);
+	EReference destination();
 
-	Optional<EStructuralFeature> route(String found, EClass scope);
+	List<EReference> path();
 
 }

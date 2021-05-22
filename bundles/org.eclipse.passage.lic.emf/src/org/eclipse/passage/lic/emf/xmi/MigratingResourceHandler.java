@@ -15,13 +15,16 @@ package org.eclipse.passage.lic.emf.xmi;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
-import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
+import org.eclipse.passage.lic.emf.migration.MigrationException;
 import org.eclipse.passage.lic.internal.emf.migration.RecognizeFeatures;
 
 /**
@@ -43,14 +46,23 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 
 	@Override
 	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
-		resource.getEObjectToExtensionMap().entrySet().forEach(this::convertEntry);
+		Set<Entry<EObject, AnyType>> entries = resource.getEObjectToExtensionMap().entrySet();
+		for (Entry<EObject, AnyType> entry : entries) {
+			try {
+				convertEntry(entry);
+			} catch (MigrationException e) {
+				String message = Optional.ofNullable(resource.getURI())//
+						.map(URI::toString)//
+						.orElseGet(e::getMessage);
+				throw new RuntimeException(message, e);
+			}
+		}
 	}
 
-	protected void convertEntry(Entry<EObject, AnyType> entry) {
-		new RecognizeFeatures(entry.getValue(), attributes(), structures()).mixed(entry.getKey());
+	protected void convertEntry(Entry<EObject, AnyType> entry) throws MigrationException {
+		new RecognizeFeatures(entry.getValue(), attributes()).apply(entry.getKey());
 	}
 
-	protected abstract EFeatureRoutes attributes();
+	protected abstract MigrationRoutes attributes();
 
-	protected abstract EnsureStructure structures();
 }
