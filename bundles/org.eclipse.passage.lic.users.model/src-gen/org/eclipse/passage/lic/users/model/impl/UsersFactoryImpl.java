@@ -72,6 +72,10 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 			return createUserOrigin();
 		case UsersPackage.USER:
 			return createUser();
+		case UsersPackage.USER_GROUP:
+			return createUserGroup();
+		case UsersPackage.CONTACT:
+			return createContact();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -97,6 +101,28 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UserGroup createUserGroup() {
+		UserGroupImpl userGroup = new UserGroupImpl();
+		return userGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Contact createContact() {
+		ContactImpl contact = new ContactImpl();
+		return contact;
 	}
 
 	/**

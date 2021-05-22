@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.users;
 
+import java.util.List;
+
 /**
  * <p>
  * A <code>"User Origin"</code> provides access to <code>"User"</code>
@@ -52,7 +54,13 @@ public interface UserOriginDescriptor {
 	 * value of its <code>"users"</code> reference.
 	 *
 	 * @return the users
+	 * @since 2.0
 	 */
-	Iterable<? extends UserDescriptor> getUsers();
+	List<? extends UserDescriptor> getUsers();
+
+	/**
+	 * @since 2.0
+	 */
+	List<? extends UserGroupDescriptor> getGroups();
 
 }

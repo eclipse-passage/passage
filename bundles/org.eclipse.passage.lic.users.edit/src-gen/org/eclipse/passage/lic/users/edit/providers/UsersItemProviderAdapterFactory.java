@@ -129,6 +129,52 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserGroup} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UserGroupItemProvider userGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUserGroupAdapter() {
+		if (userGroupItemProvider == null) {
+			userGroupItemProvider = new UserGroupItemProvider(this);
+		}
+
+		return userGroupItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.Contact} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContactItemProvider contactItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.Contact}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContactAdapter() {
+		if (contactItemProvider == null) {
+			contactItemProvider = new ContactItemProvider(this);
+		}
+
+		return contactItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +283,10 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 			userOriginItemProvider.dispose();
 		if (userItemProvider != null)
 			userItemProvider.dispose();
+		if (userGroupItemProvider != null)
+			userGroupItemProvider.dispose();
+		if (contactItemProvider != null)
+			contactItemProvider.dispose();
 	}
 
 }

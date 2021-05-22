@@ -18,67 +18,34 @@ package org.eclipse.passage.lic.users;
  * <p>
  *
  */
-public interface UserDescriptor {
-
-	/**
-	 * Returns the identifier of this user. Currently identification is performed
-	 * via <code>"email"</code> attribute This is the value of its
-	 * <code>"identifier"</code> attribute.
-	 *
-	 * @return the identifier
-	 * @see #getEmail()
-	 */
-	String getIdentifier();
-
-	/**
-	 * Returns the email of this user, currently used as an identifier. This is the
-	 * value of its <code>"email"</code> attribute.
-	 *
-	 * @return the email
-	 */
-	String getEmail();
-
-	/**
-	 * Returns the full name of this user. This is the value of its
-	 * <code>"fullName"</code> attribute.
-	 *
-	 * @return the full name
-	 */
-	String getFullName();
-
-	/**
-	 * Returns the description of this user. This is the value of its
-	 * <code>"description"</code> attribute.
-	 *
-	 * @return the description
-	 */
-	String getDescription();
+public interface UserDescriptor extends LicenseOwnerDescriptor {
 
 	/**
 	 * Returns the preferred condition type of this user. This is the value of its
 	 * <code>"preferredConditionType"</code> attribute.
 	 *
 	 * @return the preferred condition type
-	 * @since 0.5.0
+	 * @since 2.0
 	 * @see LicenseGrantDescriptor#getConditionType()
 	 */
-	String getPreferredConditionType();
+	String getPreferredEvaluationType();
 
 	/**
 	 * Returns the preferred condition expression of this user. This is the value of
 	 * its <code>"preferredConditionExpression"</code> attribute.
 	 *
 	 * @return the preferred condition expression
-	 * @since 0.5.0
+	 * @since 2.0
 	 * @see LicenseGrantDescriptor#getConditionExpression()
 	 */
-	String getPreferredConditionExpression();
+	String getPreferredEvaluationExpression();
 
 	/**
 	 * Returns the containing origin of this user.
 	 *
 	 * @return the user origin
+	 * @since 2.0
 	 */
-	UserOriginDescriptor getUserOrigin();
+	UserOriginDescriptor getOrigin();
 
 }

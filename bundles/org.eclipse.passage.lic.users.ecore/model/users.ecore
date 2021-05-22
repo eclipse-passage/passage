@@ -4,28 +4,52 @@
     nsPrefix="org.eclipse.passage.lic">
   <eClassifiers xsi:type="ecore:EClass" name="UserOriginDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserOriginDescriptor"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContactDescriptor" instanceClassName="org.eclipse.passage.lic.users.ContactDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseOwnerDescriptor" instanceClassName="org.eclipse.passage.lic.users.LicenseOwnerDescriptor"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserDescriptor"
       abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UserLicenseDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserLicenseDescriptor"
+  <eClassifiers xsi:type="ecore:EClass" name="UserGroupDescriptor" instanceClassName="org.eclipse.passage.lic.users.UserGroupDescriptor"
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="UserOrigin" eSuperTypes="#//UserOriginDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
-        eType="#//User" containment="true" eOpposite="#//User/userOrigin"/>
+        eType="#//User" containment="true" eOpposite="#//User/origin"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//UserGroup" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//UserDescriptor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredConditionType"
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//UserDescriptor #//LicenseOwner">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredEvaluationType"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredConditionExpression"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preferredEvaluationExpression"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="userOrigin" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
         eType="#//UserOrigin" eOpposite="#//UserOrigin/users"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserGroup" eSuperTypes="#//UserGroupDescriptor #//LicenseOwner">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+        eType="#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
+        eType="#//UserOrigin"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contact" eSuperTypes="#//ContactDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LicenseOwner" abstract="true" interface="true"
+      eSuperTypes="#//LicenseOwnerDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contact" lowerBound="1"
+        eType="#//Contact" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

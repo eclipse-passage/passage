@@ -68,7 +68,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 
 	protected Optional<UserDescriptor> user(String segment) {
 		return users.stream()//
-				.filter(user -> user.getEmail().contains(segment))//
+				.filter(user -> user.getContact().getEmail().contains(segment))//
 				.findFirst();
 	}
 
@@ -175,7 +175,7 @@ abstract class TestLicenses extends TestData<LicenseStorage> {
 			PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
 			pack.getLicense().setPlan(plan.getIdentifier());
 			pack.getLicense().getUser().setIdentifier(user.getIdentifier());
-			pack.getLicense().getUser().setName(user.getFullName());
+			pack.getLicense().getUser().setName(user.getContact().getName());
 			pack.getLicense().getProduct().setIdentifier(product.identifier());
 			pack.getLicense().getProduct().setVersion(product.version());
 			pack.getLicense().setIssueDate(issued);

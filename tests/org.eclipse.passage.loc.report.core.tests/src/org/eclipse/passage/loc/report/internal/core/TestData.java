@@ -34,8 +34,8 @@ public abstract class TestData<S extends Storage<?>> {
 	protected final UserDescriptor user(String id, String email, String name) {
 		User user = UsersFactory.eINSTANCE.createUser();
 		user.setIdentifier(id);
-		user.setEmail(email);
-		user.setFullName(name);
+		user.getContact().setEmail(email);
+		user.getContact().setName(name);
 		return user;
 	}
 

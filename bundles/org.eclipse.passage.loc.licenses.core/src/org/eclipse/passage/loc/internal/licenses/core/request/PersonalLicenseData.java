@@ -34,21 +34,21 @@ public final class PersonalLicenseData extends GeneralLicenseData implements Per
 
 	@Override
 	public String user() {
-		return user.get().getEmail();
+		return user.get().getContact().getEmail();
 	}
 
 	@Override
 	public String userFullName() {
-		return user.get().getFullName();
+		return user.get().getContact().getName();
 	}
 
 	@Override
 	public String conditionType() {
-		return user.get().getPreferredConditionType();
+		return user.get().getPreferredEvaluationType();
 	}
 
 	@Override
 	public String conditionExpression() {
-		return user.get().getPreferredConditionExpression();
+		return user.get().getPreferredEvaluationExpression();
 	}
 }

@@ -42,15 +42,6 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			default:
 				break;
 			}
-		} else if (notifier instanceof User) {
-			User user = (User) notifier;
-			switch (notification.getFeatureID(User.class)) {
-			case UsersPackage.USER__EMAIL:
-				processUserEmail(user, notification);
-				break;
-			default:
-				break;
-			}
 		}
 		super.notifyChanged(notification);
 	}
@@ -79,10 +70,10 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		case Notification.ADD:
 			if (newValue instanceof User) {
 				User user = (User) newValue;
-				if (Objects.equals(userOrigin, user.getUserOrigin())) {
+				if (Objects.equals(userOrigin, user.getOrigin())) {
 					// FIXME: warning
 				}
-				String email = user.getEmail();
+				String email = user.getContact().getEmail();
 				if (email != null) {
 					registry.registerUser(user);
 				} else {
@@ -93,10 +84,10 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		case Notification.REMOVE:
 			if (oldValue instanceof User) {
 				User user = (User) oldValue;
-				if (Objects.equals(userOrigin, user.getUserOrigin())) {
+				if (Objects.equals(userOrigin, user.getOrigin())) {
 					// FIXME: warning
 				}
-				String email = user.getEmail();
+				String email = user.getContact().getEmail();
 				if (email != null) {
 					registry.unregisterUser(email);
 				} else {

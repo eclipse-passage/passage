@@ -19,7 +19,10 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.passage.lic.users.ContactDescriptor;
+import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserGroupDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 import org.eclipse.passage.lic.users.model.api.*;
@@ -87,8 +90,23 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseContactDescriptor(ContactDescriptor object) {
+			return createContactDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseOwnerDescriptor(LicenseOwnerDescriptor object) {
+			return createLicenseOwnerDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseUserDescriptor(UserDescriptor object) {
 			return createUserDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseUserGroupDescriptor(UserGroupDescriptor object) {
+			return createUserGroupDescriptorAdapter();
 		}
 
 		@Override
@@ -99,6 +117,21 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseUser(User object) {
 			return createUserAdapter();
+		}
+
+		@Override
+		public Adapter caseUserGroup(UserGroup object) {
+			return createUserGroupAdapter();
+		}
+
+		@Override
+		public Adapter caseContact(Contact object) {
+			return createContactAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseOwner(LicenseOwner object) {
+			return createLicenseOwnerAdapter();
 		}
 
 		@Override
@@ -135,6 +168,34 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.ContactDescriptor
+	 * @generated
+	 */
+	public Adapter createContactDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
+	 * @generated
+	 */
+	public Adapter createLicenseOwnerDescriptorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -145,6 +206,20 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
+	 * @generated
+	 */
+	public Adapter createUserGroupDescriptorAdapter() {
 		return null;
 	}
 
@@ -173,6 +248,48 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.model.api.UserGroup <em>User Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.model.api.UserGroup
+	 * @generated
+	 */
+	public Adapter createUserGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.model.api.Contact <em>Contact</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact
+	 * @generated
+	 */
+	public Adapter createContactAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner <em>License Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner
+	 * @generated
+	 */
+	public Adapter createLicenseOwnerAdapter() {
 		return null;
 	}
 

@@ -21,10 +21,8 @@ import org.eclipse.passage.lic.internal.users.model.migration.UsersResourceHandl
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.users.model.util.UsersResourceFactoryImpl
  * @generated
- * @since 2.0
  */
 public class UsersResourceImpl extends XMIResourceImpl {
 	/**

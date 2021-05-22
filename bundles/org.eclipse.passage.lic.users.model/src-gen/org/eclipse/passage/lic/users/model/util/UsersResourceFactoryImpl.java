@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 /**
  * <!-- begin-user-doc --> The <b>Resource Factory</b> associated with the
  * package. <!-- end-user-doc -->
- * 
  * @see org.eclipse.passage.lic.users.model.util.UsersResourceImpl
  * @generated
- * @since 2.0
  */
 public class UsersResourceFactoryImpl extends ResourceFactoryImpl {
 	/**

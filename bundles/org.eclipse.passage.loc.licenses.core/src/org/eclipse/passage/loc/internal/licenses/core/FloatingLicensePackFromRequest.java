@@ -115,7 +115,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private CompanyRef company() {
-		UserOriginDescriptor origin = users.getUser(request.users().iterator().next()).getUserOrigin();
+		UserOriginDescriptor origin = users.getUser(request.users().iterator().next()).getOrigin();
 		CompanyRef company = LicensesFactory.eINSTANCE.createCompanyRef();
 		company.setIdentifier(origin.getIdentifier());
 		company.setName(origin.getName());
@@ -147,7 +147,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private UserGrant userGrant(UserDescriptor user) {
 		UserGrant grant = LicensesFactory.eINSTANCE.createUserGrant();
 		grant.setAuthentication(userAuthentication(user));
-		grant.setUser(user.getEmail());
+		grant.setUser(user.getContact().getEmail());
 		return grant;
 	}
 
@@ -163,7 +163,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.flatMap(l -> forUser(l.getUsers(), user))//
 				.map(UserGrant::getAuthentication)//
 				.map(EvaluationInstructions::getType)//
-				.orElseGet(user::getPreferredConditionType);
+				.orElseGet(user::getPreferredEvaluationType);
 	}
 
 	private String userAuthenticationExpression(UserDescriptor user) {
@@ -171,11 +171,11 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 				.flatMap(l -> forUser(l.getUsers(), user))//
 				.map(UserGrant::getAuthentication)//
 				.map(EvaluationInstructions::getExpression)//
-				.orElseGet(user::getPreferredConditionExpression);
+				.orElseGet(user::getPreferredEvaluationExpression);
 	}
 
 	private Optional<UserGrant> forUser(List<UserGrant> all, UserDescriptor user) {
-		return all.stream().filter(u -> user.getEmail().equals(u.getUser())).findFirst();
+		return all.stream().filter(u -> user.getContact().getEmail().equals(u.getUser())).findFirst();
 	}
 
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {

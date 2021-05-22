@@ -42,8 +42,8 @@ public final class UsersClassMetadata implements ClassMetadata {
 		map.put(UserDescriptor.class, //
 				new PlainEntityMetadata(//
 						meta.getUser(), //
-						meta.getUser_Email(), //
-						meta.getUser_FullName()));
+						meta.getLicenseOwner_Identifier(), //
+						meta.getLicenseOwner_Name()));
 		map.put(User.class, map.get(UserDescriptor.class));
 	}
 

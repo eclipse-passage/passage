@@ -35,18 +35,18 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
 
-import org.eclipse.passage.lic.users.model.api.UserOrigin;
+import org.eclipse.passage.lic.users.model.api.UserGroup;
 
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.UserGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserOriginItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class UserGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -54,7 +54,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserOriginItemProvider(AdapterFactory adapterFactory) {
+	public UserGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -73,6 +73,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addUsersPropertyDescriptor(object);
+			addOriginPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,10 +87,10 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Identifier(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -102,10 +103,10 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -118,10 +119,10 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Description(), true, true, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Description(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -134,10 +135,25 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void addUsersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Users(), true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_UserGroup_users_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserGroup_users_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserGroup_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getUserGroup_Users(), true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Origin feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOriginPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_UserGroup_origin_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_UserGroup_origin_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_UserGroup_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getUserGroup_Origin(), true, false, true, null, null, null));
 	}
 
 	/**
@@ -152,8 +168,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(UsersPackage.eINSTANCE.getUserOrigin_Users());
-			childrenFeatures.add(UsersPackage.eINSTANCE.getUserOrigin_Groups());
+			childrenFeatures.add(UsersPackage.eINSTANCE.getLicenseOwner_Contact());
 		}
 		return childrenFeatures;
 	}
@@ -169,6 +184,17 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns UserGroup.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserGroup")); //$NON-NLS-1$
 	}
 
 	/**
@@ -189,9 +215,9 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserOrigin) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UserOrigin_type") : //$NON-NLS-1$
-				getString("_UI_UserOrigin_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((UserGroup) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_UserGroup_type") : //$NON-NLS-1$
+				getString("_UI_UserGroup_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -205,14 +231,13 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UserOrigin.class)) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
-		case UsersPackage.USER_ORIGIN__NAME:
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		switch (notification.getFeatureID(UserGroup.class)) {
+		case UsersPackage.USER_GROUP__IDENTIFIER:
+		case UsersPackage.USER_GROUP__NAME:
+		case UsersPackage.USER_GROUP__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case UsersPackage.USER_ORIGIN__USERS:
-		case UsersPackage.USER_ORIGIN__GROUPS:
+		case UsersPackage.USER_GROUP__CONTACT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -232,11 +257,8 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getUserOrigin_Users(),
-				UsersFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getUserOrigin_Groups(),
-				UsersFactory.eINSTANCE.createUserGroup()));
+		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getLicenseOwner_Contact(),
+				UsersFactory.eINSTANCE.createContact()));
 	}
 
 	/**

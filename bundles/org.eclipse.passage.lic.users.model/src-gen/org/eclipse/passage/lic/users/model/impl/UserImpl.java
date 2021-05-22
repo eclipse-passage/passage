@@ -25,6 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
+import org.eclipse.passage.lic.users.model.api.Contact;
+import org.eclipse.passage.lic.users.model.api.LicenseOwner;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
@@ -39,12 +42,12 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getEmail <em>Email</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getFullName <em>Full Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionType <em>Preferred Condition Type</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredConditionExpression <em>Preferred Condition Expression</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getUserOrigin <em>User Origin</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getContact <em>Contact</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredEvaluationType <em>Preferred Evaluation Type</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getPreferredEvaluationExpression <em>Preferred Evaluation Expression</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserImpl#getOrigin <em>Origin</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,44 +74,24 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	private String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEmail()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EMAIL_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEmail()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	private String email = EMAIL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FULL_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFullName() <em>Full Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullName()
-	 * @generated
-	 * @ordered
-	 */
-	private String fullName = FULL_NAME_EDEFAULT;
+	private String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -131,44 +114,54 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	private String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPreferredConditionType() <em>Preferred Condition Type</em>}' attribute.
+	 * The cached value of the '{@link #getContact() <em>Contact</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreferredConditionType()
+	 * @see #getContact()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PREFERRED_CONDITION_TYPE_EDEFAULT = null;
+	protected Contact contact;
 
 	/**
-	 * The cached value of the '{@link #getPreferredConditionType() <em>Preferred Condition Type</em>}' attribute.
+	 * The default value of the '{@link #getPreferredEvaluationType() <em>Preferred Evaluation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreferredConditionType()
+	 * @see #getPreferredEvaluationType()
 	 * @generated
 	 * @ordered
 	 */
-	private String preferredConditionType = PREFERRED_CONDITION_TYPE_EDEFAULT;
+	protected static final String PREFERRED_EVALUATION_TYPE_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getPreferredConditionExpression() <em>Preferred Condition Expression</em>}' attribute.
+	 * The cached value of the '{@link #getPreferredEvaluationType() <em>Preferred Evaluation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreferredConditionExpression()
+	 * @see #getPreferredEvaluationType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PREFERRED_CONDITION_EXPRESSION_EDEFAULT = null;
+	private String preferredEvaluationType = PREFERRED_EVALUATION_TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPreferredConditionExpression() <em>Preferred Condition Expression</em>}' attribute.
+	 * The default value of the '{@link #getPreferredEvaluationExpression() <em>Preferred Evaluation Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreferredConditionExpression()
+	 * @see #getPreferredEvaluationExpression()
 	 * @generated
 	 * @ordered
 	 */
-	private String preferredConditionExpression = PREFERRED_CONDITION_EXPRESSION_EDEFAULT;
+	protected static final String PREFERRED_EVALUATION_EXPRESSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPreferredEvaluationExpression() <em>Preferred Evaluation Expression</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferredEvaluationExpression()
+	 * @generated
+	 * @ordered
+	 */
+	private String preferredEvaluationExpression = PREFERRED_EVALUATION_EXPRESSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,8 +213,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public String getEmail() {
-		return email;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -230,35 +223,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public void setEmail(String newEmail) {
-		String oldEmail = email;
-		email = newEmail;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__EMAIL, oldEmail, email));
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getFullName() {
-		return fullName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFullName(String newFullName) {
-		String oldFullName = fullName;
-		fullName = newFullName;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__FULL_NAME, oldFullName, fullName));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__NAME, oldName, name));
 		}
 	}
 
@@ -293,8 +262,27 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public String getPreferredConditionType() {
-		return preferredConditionType;
+	public Contact getContact() {
+		return contact;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContact(Contact newContact, NotificationChain msgs) {
+		Contact oldContact = contact;
+		contact = newContact;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UsersPackage.USER__CONTACT,
+					oldContact, newContact);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -303,12 +291,20 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public void setPreferredConditionType(String newPreferredConditionType) {
-		String oldPreferredConditionType = preferredConditionType;
-		preferredConditionType = newPreferredConditionType;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_TYPE,
-					oldPreferredConditionType, preferredConditionType));
+	public void setContact(Contact newContact) {
+		if (newContact != contact) {
+			NotificationChain msgs = null;
+			if (contact != null)
+				msgs = ((InternalEObject) contact).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - UsersPackage.USER__CONTACT, null, msgs);
+			if (newContact != null)
+				msgs = ((InternalEObject) newContact).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - UsersPackage.USER__CONTACT, null, msgs);
+			msgs = basicSetContact(newContact, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__CONTACT, newContact, newContact));
 		}
 	}
 
@@ -318,8 +314,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public String getPreferredConditionExpression() {
-		return preferredConditionExpression;
+	public String getPreferredEvaluationType() {
+		return preferredEvaluationType;
 	}
 
 	/**
@@ -328,12 +324,12 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public void setPreferredConditionExpression(String newPreferredConditionExpression) {
-		String oldPreferredConditionExpression = preferredConditionExpression;
-		preferredConditionExpression = newPreferredConditionExpression;
+	public void setPreferredEvaluationType(String newPreferredEvaluationType) {
+		String oldPreferredEvaluationType = preferredEvaluationType;
+		preferredEvaluationType = newPreferredEvaluationType;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION,
-					oldPreferredConditionExpression, preferredConditionExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_EVALUATION_TYPE,
+					oldPreferredEvaluationType, preferredEvaluationType));
 		}
 	}
 
@@ -343,8 +339,33 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public UserOrigin getUserOrigin() {
-		if (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN) {
+	public String getPreferredEvaluationExpression() {
+		return preferredEvaluationExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPreferredEvaluationExpression(String newPreferredEvaluationExpression) {
+		String oldPreferredEvaluationExpression = preferredEvaluationExpression;
+		preferredEvaluationExpression = newPreferredEvaluationExpression;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION,
+					oldPreferredEvaluationExpression, preferredEvaluationExpression));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UserOrigin getOrigin() {
+		if (eContainerFeatureID() != UsersPackage.USER__ORIGIN) {
 			return null;
 		}
 		return (UserOrigin) eInternalContainer();
@@ -355,8 +376,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUserOrigin(UserOrigin newUserOrigin, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newUserOrigin, UsersPackage.USER__USER_ORIGIN, msgs);
+	public NotificationChain basicSetOrigin(UserOrigin newOrigin, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newOrigin, UsersPackage.USER__ORIGIN, msgs);
 		return msgs;
 	}
 
@@ -366,25 +387,24 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 */
 	@Override
-	public void setUserOrigin(UserOrigin newUserOrigin) {
-		if (newUserOrigin != eInternalContainer()
-				|| (eContainerFeatureID() != UsersPackage.USER__USER_ORIGIN && newUserOrigin != null)) {
-			if (EcoreUtil.isAncestor(this, newUserOrigin)) {
+	public void setOrigin(UserOrigin newOrigin) {
+		if (newOrigin != eInternalContainer()
+				|| (eContainerFeatureID() != UsersPackage.USER__ORIGIN && newOrigin != null)) {
+			if (EcoreUtil.isAncestor(this, newOrigin)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			if (newUserOrigin != null)
-				msgs = ((InternalEObject) newUserOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__USERS,
+			if (newOrigin != null)
+				msgs = ((InternalEObject) newOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__USERS,
 						UserOrigin.class, msgs);
-			msgs = basicSetUserOrigin(newUserOrigin, msgs);
+			msgs = basicSetOrigin(newOrigin, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__USER_ORIGIN, newUserOrigin,
-					newUserOrigin));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER__ORIGIN, newOrigin, newOrigin));
 		}
 	}
 
@@ -396,11 +416,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UsersPackage.USER__USER_ORIGIN:
+		case UsersPackage.USER__ORIGIN:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
-			return basicSetUserOrigin((UserOrigin) otherEnd, msgs);
+			return basicSetOrigin((UserOrigin) otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
@@ -414,8 +434,10 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UsersPackage.USER__USER_ORIGIN:
-			return basicSetUserOrigin(null, msgs);
+		case UsersPackage.USER__CONTACT:
+			return basicSetContact(null, msgs);
+		case UsersPackage.USER__ORIGIN:
+			return basicSetOrigin(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -429,7 +451,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case UsersPackage.USER__USER_ORIGIN:
+		case UsersPackage.USER__ORIGIN:
 			return eInternalContainer().eInverseRemove(this, UsersPackage.USER_ORIGIN__USERS, UserOrigin.class, msgs);
 		default:
 			return super.eBasicRemoveFromContainerFeature(msgs);
@@ -446,18 +468,18 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (featureID) {
 		case UsersPackage.USER__IDENTIFIER:
 			return getIdentifier();
-		case UsersPackage.USER__EMAIL:
-			return getEmail();
-		case UsersPackage.USER__FULL_NAME:
-			return getFullName();
+		case UsersPackage.USER__NAME:
+			return getName();
 		case UsersPackage.USER__DESCRIPTION:
 			return getDescription();
-		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-			return getPreferredConditionType();
-		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
-			return getPreferredConditionExpression();
-		case UsersPackage.USER__USER_ORIGIN:
-			return getUserOrigin();
+		case UsersPackage.USER__CONTACT:
+			return getContact();
+		case UsersPackage.USER__PREFERRED_EVALUATION_TYPE:
+			return getPreferredEvaluationType();
+		case UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION:
+			return getPreferredEvaluationExpression();
+		case UsersPackage.USER__ORIGIN:
+			return getOrigin();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -474,23 +496,23 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case UsersPackage.USER__EMAIL:
-			setEmail((String) newValue);
-			return;
-		case UsersPackage.USER__FULL_NAME:
-			setFullName((String) newValue);
+		case UsersPackage.USER__NAME:
+			setName((String) newValue);
 			return;
 		case UsersPackage.USER__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-			setPreferredConditionType((String) newValue);
+		case UsersPackage.USER__CONTACT:
+			setContact((Contact) newValue);
 			return;
-		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
-			setPreferredConditionExpression((String) newValue);
+		case UsersPackage.USER__PREFERRED_EVALUATION_TYPE:
+			setPreferredEvaluationType((String) newValue);
 			return;
-		case UsersPackage.USER__USER_ORIGIN:
-			setUserOrigin((UserOrigin) newValue);
+		case UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION:
+			setPreferredEvaluationExpression((String) newValue);
+			return;
+		case UsersPackage.USER__ORIGIN:
+			setOrigin((UserOrigin) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -509,23 +531,23 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		case UsersPackage.USER__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case UsersPackage.USER__EMAIL:
-			setEmail(EMAIL_EDEFAULT);
-			return;
-		case UsersPackage.USER__FULL_NAME:
-			setFullName(FULL_NAME_EDEFAULT);
+		case UsersPackage.USER__NAME:
+			setName(NAME_EDEFAULT);
 			return;
 		case UsersPackage.USER__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-			setPreferredConditionType(PREFERRED_CONDITION_TYPE_EDEFAULT);
+		case UsersPackage.USER__CONTACT:
+			setContact((Contact) null);
 			return;
-		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
-			setPreferredConditionExpression(PREFERRED_CONDITION_EXPRESSION_EDEFAULT);
+		case UsersPackage.USER__PREFERRED_EVALUATION_TYPE:
+			setPreferredEvaluationType(PREFERRED_EVALUATION_TYPE_EDEFAULT);
 			return;
-		case UsersPackage.USER__USER_ORIGIN:
-			setUserOrigin((UserOrigin) null);
+		case UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION:
+			setPreferredEvaluationExpression(PREFERRED_EVALUATION_EXPRESSION_EDEFAULT);
+			return;
+		case UsersPackage.USER__ORIGIN:
+			setOrigin((UserOrigin) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -543,21 +565,81 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (featureID) {
 		case UsersPackage.USER__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case UsersPackage.USER__EMAIL:
-			return !Objects.equals(EMAIL_EDEFAULT, email);
-		case UsersPackage.USER__FULL_NAME:
-			return !Objects.equals(FULL_NAME_EDEFAULT, fullName);
+		case UsersPackage.USER__NAME:
+			return !Objects.equals(NAME_EDEFAULT, name);
 		case UsersPackage.USER__DESCRIPTION:
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
-		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-			return !Objects.equals(PREFERRED_CONDITION_TYPE_EDEFAULT, preferredConditionType);
-		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
-			return !Objects.equals(PREFERRED_CONDITION_EXPRESSION_EDEFAULT, preferredConditionExpression);
-		case UsersPackage.USER__USER_ORIGIN:
-			return getUserOrigin() != null;
+		case UsersPackage.USER__CONTACT:
+			return contact != null;
+		case UsersPackage.USER__PREFERRED_EVALUATION_TYPE:
+			return !Objects.equals(PREFERRED_EVALUATION_TYPE_EDEFAULT, preferredEvaluationType);
+		case UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION:
+			return !Objects.equals(PREFERRED_EVALUATION_EXPRESSION_EDEFAULT, preferredEvaluationExpression);
+		case UsersPackage.USER__ORIGIN:
+			return getOrigin() != null;
 		default:
 			return super.eIsSet(featureID);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == LicenseOwnerDescriptor.class) {
+			switch (derivedFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == LicenseOwner.class) {
+			switch (derivedFeatureID) {
+			case UsersPackage.USER__IDENTIFIER:
+				return UsersPackage.LICENSE_OWNER__IDENTIFIER;
+			case UsersPackage.USER__NAME:
+				return UsersPackage.LICENSE_OWNER__NAME;
+			case UsersPackage.USER__DESCRIPTION:
+				return UsersPackage.LICENSE_OWNER__DESCRIPTION;
+			case UsersPackage.USER__CONTACT:
+				return UsersPackage.LICENSE_OWNER__CONTACT;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == LicenseOwnerDescriptor.class) {
+			switch (baseFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == LicenseOwner.class) {
+			switch (baseFeatureID) {
+			case UsersPackage.LICENSE_OWNER__IDENTIFIER:
+				return UsersPackage.USER__IDENTIFIER;
+			case UsersPackage.LICENSE_OWNER__NAME:
+				return UsersPackage.USER__NAME;
+			case UsersPackage.LICENSE_OWNER__DESCRIPTION:
+				return UsersPackage.USER__DESCRIPTION;
+			case UsersPackage.LICENSE_OWNER__CONTACT:
+				return UsersPackage.USER__CONTACT;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -573,16 +655,14 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifier);
-		result.append(", email: "); //$NON-NLS-1$
-		result.append(email);
-		result.append(", fullName: "); //$NON-NLS-1$
-		result.append(fullName);
+		result.append(", name: "); //$NON-NLS-1$
+		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
-		result.append(", preferredConditionType: "); //$NON-NLS-1$
-		result.append(preferredConditionType);
-		result.append(", preferredConditionExpression: "); //$NON-NLS-1$
-		result.append(preferredConditionExpression);
+		result.append(", preferredEvaluationType: "); //$NON-NLS-1$
+		result.append(preferredEvaluationType);
+		result.append(", preferredEvaluationExpression: "); //$NON-NLS-1$
+		result.append(preferredEvaluationExpression);
 		result.append(')');
 		return result.toString();
 	}
