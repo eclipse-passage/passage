@@ -65,8 +65,8 @@ final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 		LicenseGrant grant = licenseFactory.createLicenseGrant();
 		grant.setIdentifier(condition.identifier());
 		grant.getFeature().setIdentifier(condition.feature());
-		grant.getFeature().setVersion(condition.versionMatch().version());
-		grant.getFeature().setMatchingRule(condition.versionMatch().rule().identifier());
+		grant.getFeature().getVersionMatch().setVersion(condition.versionMatch().version());
+		grant.getFeature().getVersionMatch().setRule(condition.versionMatch().rule().identifier());
 		grant.setCapacity(1);
 		grant.getUserAuthentication().setExpression(condition.evaluationInstructions().expression());
 		grant.getUserAuthentication().setType(condition.evaluationInstructions().type().identifier());

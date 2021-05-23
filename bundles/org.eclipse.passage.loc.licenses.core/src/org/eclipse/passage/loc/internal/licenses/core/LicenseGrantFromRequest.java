@@ -36,8 +36,8 @@ final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
 		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
 		LicenseGrant grant = licenseFactory.createLicenseGrant();
 		grant.getFeature().setIdentifier(feature.getFeature().getIdentifier());
-		grant.getFeature().setVersion(feature.getFeature().getVersion());
-		grant.getFeature().setMatchingRule(feature.getFeature().getMatchingRule());
+		grant.getFeature().getVersionMatch().setVersion(feature.getFeature().getVersionMatch().getVersion());
+		grant.getFeature().getVersionMatch().setRule(feature.getFeature().getVersionMatch().getRule());
 		grant.setCapacity(1);
 		grant.getUserAuthentication().setExpression(request.conditionExpression());
 		grant.getUserAuthentication().setType(request.conditionType());

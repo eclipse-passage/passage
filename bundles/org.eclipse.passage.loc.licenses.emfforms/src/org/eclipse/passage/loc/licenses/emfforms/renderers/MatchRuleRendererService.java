@@ -22,12 +22,13 @@ import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRen
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+@SuppressWarnings("restriction")
 @Component
 public class MatchRuleRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
 	public MatchRuleRendererService() {
-		super(MatchRuleRenderer.class, LicensesPackage.eINSTANCE.getFeatureRef_MatchingRule());
+		super(MatchRuleRenderer.class, LicensesPackage.eINSTANCE.getVersionMatch_Rule());
 	}
 
 	@Reference

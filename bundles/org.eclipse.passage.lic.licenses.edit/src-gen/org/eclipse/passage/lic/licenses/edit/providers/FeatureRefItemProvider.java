@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -35,6 +36,7 @@ import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
@@ -67,8 +69,6 @@ public class FeatureRefItemProvider extends ItemProviderAdapter implements IEdit
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addVersionPropertyDescriptor(object);
-			addMatchingRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -90,35 +90,33 @@ public class FeatureRefItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Version feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVersionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureRef_version_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FeatureRef_version_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_FeatureRef_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getFeatureRef_Version(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getFeatureRef_VersionMatch());
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Matching Rule feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMatchingRulePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_FeatureRef_matchingRule_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FeatureRef_matchingRule_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_FeatureRef_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getFeatureRef_MatchingRule(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -168,9 +166,10 @@ public class FeatureRefItemProvider extends ItemProviderAdapter implements IEdit
 
 		switch (notification.getFeatureID(FeatureRef.class)) {
 		case LicensesPackage.FEATURE_REF__IDENTIFIER:
-		case LicensesPackage.FEATURE_REF__VERSION:
-		case LicensesPackage.FEATURE_REF__MATCHING_RULE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case LicensesPackage.FEATURE_REF__VERSION_MATCH:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -188,6 +187,9 @@ public class FeatureRefItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getFeatureRef_VersionMatch(),
+				LicensesFactory.eINSTANCE.createVersionMatch()));
 	}
 
 	/**

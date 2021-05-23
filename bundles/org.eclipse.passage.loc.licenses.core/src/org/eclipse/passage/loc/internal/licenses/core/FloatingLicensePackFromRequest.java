@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyFeatureGrant;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
@@ -181,21 +182,21 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {
 		LicensePlanDescriptor plan = licenses.getLicensePlan(request.plan());
 		AtomicInteger counter = new AtomicInteger(0);
-		return StreamSupport.stream(plan.getLicensePlanFeatures().spliterator(), false)//
+		return StreamSupport.stream(plan.getFeatures().spliterator(), false)//
 				.map(feature -> featureGrant(feature, pack, counter.getAndIncrement())) //
 				.collect(Collectors.toSet());
 	}
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
-		FeatureGrant grant = LicensesFactory.eINSTANCE.createFeatureGrant();
+		FeatureGrant grant = new EmptyFeatureGrant().get();
 		String fid = feature.getFeature().getIdentifier();
-		grant.setFeature(fid);
+		grant.getFeature().setIdentifier(fid);
 		grant.setCapacity(request.defaultCapacity());
 		grant.setIdentifier(String.format("%s#%d", request.identifier(), no)); //$NON-NLS-1$
 		grant.setPack(pack);
 		grant.setValid(featureGrantPeriod(fid));
 		grant.setVivid(featureGrantVivid(fid));
-		grant.setVersion(version(feature));
+		grant.getFeature().setVersionMatch(version(feature));
 		return grant;
 	}
 
@@ -219,9 +220,9 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 
 	private VersionMatch version(LicensePlanFeatureDescriptor feature) {
 		VersionMatch version = LicensesFactory.eINSTANCE.createVersionMatch();
-		version.setVersion(feature.getFeature().getVersion());
+		version.setVersion(feature.getFeature().getVersionMatch().getVersion());
 		version.setRule(new MatchingRuleForIdentifier(Optional.ofNullable(//
-				feature.getFeature().getMatchingRule())).get().identifier());
+				feature.getFeature().getVersionMatch().getRule())).get().identifier());
 		return version;
 	}
 

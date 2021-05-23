@@ -30,13 +30,13 @@ import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
+import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
+@SuppressWarnings("restriction")
 final class AssembledConditions {
 
 	private final FloatingLicensePack license;
@@ -66,7 +66,7 @@ final class AssembledConditions {
 	private Condition condition(UserGrant user, FeatureGrant feature) throws LicensingException {
 		return new BaseCondition(//
 				feature.getIdentifier(), //
-				feature.getFeature(), //
+				feature.getFeature().getIdentifier(), //
 				version(feature), //
 				period(feature), //
 				evaluation(user));
@@ -101,9 +101,7 @@ final class AssembledConditions {
 	}
 
 	private VersionMatch version(FeatureGrant feature) {
-		return new BaseVersionMatch(//
-				feature.getVersion().getVersion(), //
-				new MatchingRuleForIdentifier(feature.getVersion().getRule()).get());
+		return new PVersionMatch(feature.getFeature().getVersionMatch()).get();
 	}
 
 }

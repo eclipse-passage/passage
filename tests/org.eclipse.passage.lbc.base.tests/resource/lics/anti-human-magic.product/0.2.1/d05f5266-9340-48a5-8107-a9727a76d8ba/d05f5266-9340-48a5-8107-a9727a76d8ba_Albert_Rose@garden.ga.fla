@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:FloatingLicenseAccess xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/2.0.0" user="Albert_Rose@garden.ga" originLicensePack="d05f5266-9340-48a5-8107-a9727a76d8ba">
+  <server ip="localhost" port="8090">
+    <authentication type="hardware" expression="os.family=*"/>
+  </server>
+</org.eclipse.passage.lic:FloatingLicenseAccess>

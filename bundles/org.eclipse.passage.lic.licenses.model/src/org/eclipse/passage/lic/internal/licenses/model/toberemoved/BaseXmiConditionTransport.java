@@ -28,15 +28,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
+import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
@@ -86,28 +83,16 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		return options;
 	}
 
-	private Condition condition(LicenseGrant descriptor) {
-		return new BaseCondition(descriptor.getIdentifier(), //
-				descriptor.getFeature().getIdentifier(), //
-				new BaseVersionMatch(descriptor.getFeature().getVersion(), //
-						rule(descriptor.getFeature().getMatchingRule())), //
+	private Condition condition(LicenseGrant grant) {
+		return new BaseCondition(grant.getIdentifier(), //
+				grant.getFeature().getIdentifier(), //
+				new PVersionMatch(grant.getFeature().getVersionMatch()).get(), //
 				new BaseValidityPeriodClosed(//
-						fromDate(((ValidityPeriodClosedDescriptor) descriptor.getValid()).getFrom()), //
-						fromDate(((ValidityPeriodClosedDescriptor) descriptor.getValid()).getUntil())), //
+						fromDate(((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom()), //
+						fromDate(((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil())), //
 				new BaseEvaluationInstructions(//
-						new EvaluationType.Of(descriptor.getUserAuthentication().getType()), //
-						descriptor.getUserAuthentication().getExpression()));
-	}
-
-	/**
-	 * It looks like default matching rule is not persisted my EMF, this we expect
-	 * {@code null} here
-	 */
-	private MatchingRule rule(String origin) {
-		if (origin == null) {
-			return new MatchingRuleDefault();
-		}
-		return new MatchingRuleForIdentifier(origin).get();
+						new EvaluationType.Of(grant.getUserAuthentication().getType()), //
+						grant.getUserAuthentication().getExpression()));
 	}
 
 	private ZonedDateTime fromDate(Date date) {

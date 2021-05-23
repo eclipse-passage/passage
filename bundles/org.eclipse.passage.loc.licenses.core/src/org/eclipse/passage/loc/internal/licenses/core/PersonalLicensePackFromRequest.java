@@ -50,7 +50,7 @@ final class PersonalLicensePackFromRequest implements Supplier<PersonalLicensePa
 
 	private void installGrants(PersonalLicensePack pack) {
 		LicensePlanDescriptor plan = licenses.getLicensePlan(pack.getLicense().getPlan());
-		for (LicensePlanFeatureDescriptor feature : plan.getLicensePlanFeatures()) {
+		for (LicensePlanFeatureDescriptor feature : plan.getFeatures()) {
 			pack.getGrants().add(new LicenseGrantFromRequest(feature, request).get());
 		}
 	}

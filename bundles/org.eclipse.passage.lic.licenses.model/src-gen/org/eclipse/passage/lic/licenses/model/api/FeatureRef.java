@@ -26,8 +26,7 @@ import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersion <em>Version</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getMatchingRule <em>Matching Rule</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersionMatch <em>Version Match</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureRef()
@@ -59,49 +58,26 @@ public interface FeatureRef extends EObject, FeatureRefDescriptor {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * Returns the value of the '<em><b>Version Match</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Version</em>' attribute.
-	 * @see #setVersion(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureRef_Version()
-	 * @model required="true"
+	 * @return the value of the '<em>Version Match</em>' containment reference.
+	 * @see #setVersionMatch(VersionMatch)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureRef_VersionMatch()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	String getVersion();
+	VersionMatch getVersionMatch();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersion <em>Version</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getVersionMatch <em>Version Match</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' attribute.
-	 * @see #getVersion()
+	 * @param value the new value of the '<em>Version Match</em>' containment reference.
+	 * @see #getVersionMatch()
 	 * @generated
 	 */
-	void setVersion(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Matching Rule</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matching Rule</em>' attribute.
-	 * @see #setMatchingRule(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureRef_MatchingRule()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getMatchingRule();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureRef#getMatchingRule <em>Matching Rule</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matching Rule</em>' attribute.
-	 * @see #getMatchingRule()
-	 * @generated
-	 */
-	void setMatchingRule(String value);
+	void setVersionMatch(VersionMatch value);
 
 } // FeatureRef

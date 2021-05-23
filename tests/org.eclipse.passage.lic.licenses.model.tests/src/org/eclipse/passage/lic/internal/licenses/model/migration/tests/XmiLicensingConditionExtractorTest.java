@@ -74,7 +74,7 @@ public class XmiLicensingConditionExtractorTest {
 		EList<LicenseGrant> licenseGrants = license.getGrants();
 		LicenseGrant cond1 = factory.createLicenseGrant();
 		cond1.getFeature().setIdentifier(COND1_FEATURE_ID);
-		cond1.getFeature().setVersion(COND1_FEATURE_VERSION);
+		cond1.getFeature().getVersionMatch().setVersion(COND1_FEATURE_VERSION);
 		cond1.getUserAuthentication().setType(COND1_CONDITION_TYPE);
 		cond1.getUserAuthentication().setExpression(COND1_CONDITION_EXPRESSION);
 		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
@@ -82,7 +82,7 @@ public class XmiLicensingConditionExtractorTest {
 		licenseGrants.add(cond1);
 		LicenseGrant cond2 = factory.createLicenseGrant();
 		cond2.getFeature().setIdentifier(COND2_FEATURE_ID);
-		cond2.getFeature().setVersion(COND2_FEATURE_VERSION);
+		cond2.getFeature().getVersionMatch().setVersion(COND2_FEATURE_VERSION);
 		cond2.getUserAuthentication().setType(COND2_CONDITION_TYPE);
 		cond2.getUserAuthentication().setExpression(COND2_CONDITION_EXPRESSION);
 		((ValidityPeriodClosed) cond2.getValid()).setFrom(new Date());

@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan <em>License Plan</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature()
@@ -58,26 +58,26 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	void setFeature(FeatureRef value);
 
 	/**
-	 * Returns the value of the '<em><b>License Plan</b></em>' reference.
+	 * Returns the value of the '<em><b>Plan</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>License Plan</em>' reference.
-	 * @see #setLicensePlan(LicensePlan)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_LicensePlan()
+	 * @return the value of the '<em>Plan</em>' reference.
+	 * @see #setPlan(LicensePlan)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Plan()
 	 * @model required="true"
 	 * @generated
 	 */
 	@Override
-	LicensePlan getLicensePlan();
+	LicensePlan getPlan();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getLicensePlan <em>License Plan</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>License Plan</em>' reference.
-	 * @see #getLicensePlan()
+	 * @param value the new value of the '<em>Plan</em>' reference.
+	 * @see #getPlan()
 	 * @generated
 	 */
-	void setLicensePlan(LicensePlan value);
+	void setPlan(LicensePlan value);
 
 } // LicensePlanFeature

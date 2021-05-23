@@ -18,9 +18,11 @@ import java.util.Map;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
-import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleAttributeRoute;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
-import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleReferenceRoute;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
@@ -33,7 +35,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		super.postLoad(resource, inputStream, options);
 		resource.getContents().stream()//
 				.filter(PersonalLicensePack.class::isInstance)//
-				.map(PersonalLicensePack.class::cast).forEach(new AssignGrantIdentifiers());
+				.map(PersonalLicensePack.class::cast)//
+				.forEach(new AssignGrantIdentifiers());
 	}
 
 	@Override
@@ -46,31 +49,60 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected SimpleFeatureRoutes attributes() {
-		SimpleFeatureRoutes routes = new SimpleFeatureRoutes();
+	protected MigrationRoutes attributes() {
+		MigrationRoutes routes = new SimpleMigrationRoutes();
 		LicensesPackage licenses = LicensesPackage.eINSTANCE;
-		routes.define("conditionExpression", licenses.getEvaluationInstructions_Expression()); //$NON-NLS-1$
-		routes.define("conditionType", licenses.getEvaluationInstructions_Type()); //$NON-NLS-1$
-		routes.define("featureIdentifier", licenses.getFeatureRef_Identifier()); //$NON-NLS-1$
-		routes.define("identifier", licenses.getLicenseGrant_Identifier()); //$NON-NLS-1$
-		routes.define("identifier", licenses.getLicenseRequisites_Identifier()); //$NON-NLS-1$
-		routes.define("issueDate", licenses.getLicenseRequisites_IssueDate()); //$NON-NLS-1$
-		routes.define("licenseGrants", licenses.getPersonalLicensePack_Grants()); //$NON-NLS-1$
-		routes.define("matchRule", licenses.getFeatureRef_MatchingRule()); //$NON-NLS-1$
-		routes.define("matchVersion", licenses.getFeatureRef_Version()); //$NON-NLS-1$
-		routes.define("planIdentifier", licenses.getLicenseRequisites_Plan()); //$NON-NLS-1$
-		routes.define("productIdentifier", licenses.getProductRef_Identifier()); //$NON-NLS-1$
-		routes.define("productVersion", licenses.getProductRef_Version()); //$NON-NLS-1$
-		routes.define("userIdentifier", licenses.getUserRef_Identifier()); //$NON-NLS-1$
-		routes.define("userFullName", licenses.getUserRef_Name()); //$NON-NLS-1$
-		routes.define("validFrom", licenses.getValidityPeriodClosed_From()); //$NON-NLS-1$
-		routes.define("validUntil", licenses.getValidityPeriodClosed_Until()); //$NON-NLS-1$
+
+		routes.define("licenseGrants", new SimpleReferenceRoute(licenses.getPersonalLicensePack_Grants())); //$NON-NLS-1$
+		routes.define("licensePack", new SimpleReferenceRoute(licenses.getLicenseGrant_Pack())); //$NON-NLS-1$
+		routes.define("licensePlanFeatures", new SimpleReferenceRoute(licenses.getLicensePlan_Features())); //$NON-NLS-1$
+		routes.define("licensePlan", new SimpleReferenceRoute(licenses.getLicensePlanFeature_Plan())); //$NON-NLS-1$
+
+		routes.define("conditionExpression", new SimpleAttributeRoute(licenses.getEvaluationInstructions_Expression(), //$NON-NLS-1$
+				licenses.getLicenseGrant_UserAuthentication()));
+		routes.define("conditionType", new SimpleAttributeRoute(licenses.getEvaluationInstructions_Type(), //$NON-NLS-1$
+				licenses.getLicenseGrant_UserAuthentication()));
+		routes.define("featureIdentifier", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getFeatureRef_Identifier(), licenses.getLicenseGrant_Feature()));
+		routes.define("identifier", new SimpleAttributeRoute(licenses.getLicenseGrant_Identifier())); //$NON-NLS-1$
+		routes.define("identifier", new SimpleAttributeRoute(licenses.getLicenseRequisites_Identifier(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License()));
+		routes.define("issueDate", new SimpleAttributeRoute(licenses.getLicenseRequisites_IssueDate(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License()));
+		routes.define("matchRule", new SimpleAttributeRoute(licenses.getVersionMatch_Rule(), //$NON-NLS-1$
+				licenses.getLicenseGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
+		routes.define("matchVersion", new SimpleAttributeRoute(licenses.getVersionMatch_Version(), //$NON-NLS-1$
+				licenses.getLicenseGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
+		routes.define("planIdentifier", new SimpleAttributeRoute(licenses.getLicenseRequisites_Plan(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License()));
+		routes.define("productIdentifier", new SimpleAttributeRoute(licenses.getProductRef_Identifier(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License(), licenses.getLicenseRequisites_Product()));
+		routes.define("productVersion", new SimpleAttributeRoute(licenses.getProductRef_Version(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License(), licenses.getLicenseRequisites_Product()));
+		routes.define("userIdentifier", new SimpleAttributeRoute(licenses.getUserRef_Identifier(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License(), licenses.getPersonalLicenseRequisites_User()));
+		routes.define("userFullName", new SimpleAttributeRoute(licenses.getUserRef_Name(), //$NON-NLS-1$
+				licenses.getPersonalLicensePack_License(), licenses.getPersonalLicenseRequisites_User()));
+		routes.define("validFrom", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_From(), licenses.getLicenseGrant_Valid()));
+		routes.define("validUntil", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_Until(), licenses.getLicenseGrant_Valid()));
+		routes.ignore("requestIdentifier", licenses.getPersonalLicensePack()); //$NON-NLS-1$
+
+		defineLicensePlanRouts(routes, licenses);
 		return routes;
 	}
 
-	@Override
-	protected EnsureStructure structures() {
-		return new LicensesContainers();
+	private void defineLicensePlanRouts(MigrationRoutes routes, LicensesPackage licenses) {
+		routes.define("featureIdentifier", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getFeatureRef_Identifier(),
+						licenses.getLicensePlanFeature_Feature()));
+		routes.define("matchVersion", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getVersionMatch_Version(), licenses.getLicensePlanFeature_Feature(),
+						licenses.getFeatureRef_VersionMatch()));
+		routes.define("matchRule", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getVersionMatch_Rule(), licenses.getLicensePlanFeature_Feature(),
+						licenses.getFeatureRef_VersionMatch()));
 	}
 
 	private void migrate033() {
@@ -101,8 +133,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	private EClassRoutes classRoutes200() {
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		EClassRoutes routes = new SimpleClassRoutes();
-		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$
-		routes.define("LicenseGrant", delegate.getLicenseGrant()); //$NON-NLS-1$
+		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$ \
+		routes.define("LicensePlan", delegate.getLicensePlan()); //$NON-NLS-1$
 		return routes;
 	}
 

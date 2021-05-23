@@ -10,23 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses;
+package org.eclipse.passage.lic.emf.migration;
+
+import java.util.List;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * @since 2.0
  */
-public interface FeatureGrantDescriptor {
+public interface EAttributeRoute {
 
-	String getIdentifier();
+	EAttribute destination();
 
-	FeatureRefDescriptor getFeature();
-
-	ValidityPeriodDescriptor getValid();
-
-	long getVivid();
-
-	int getCapacity();
-
-	FloatingLicensePackDescriptor getPack();
+	List<EReference> path();
 
 }

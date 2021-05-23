@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:LicensePlan 
+   xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/1.0.0" 
+   identifier="magic-field-license-plan" 
+   name="Magic Field License Plan">
+   
+  <licensePlanFeatures 
+	  xsi:type="org.eclipse.passage.lic:LicensePlanFeature" 
+	  featureIdentifier="prince-to-frog" 
+	  matchVersion="1.5.0" 
+	  matchRule="perfect"/>
+  
+  <licensePlanFeatures 
+	  xsi:type="org.eclipse.passage.lic:LicensePlanFeature" 
+	  featureIdentifier="anti-human-magic.product"
+	  matchVersion="0.2.1" 
+  	  matchRule="compatible"/>
+  
+</org.eclipse.passage.lic:LicensePlan>
