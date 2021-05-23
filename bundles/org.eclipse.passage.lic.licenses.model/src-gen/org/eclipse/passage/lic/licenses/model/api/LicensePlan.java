@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,16 +111,16 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 
 	/**
 	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor}.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Features()
-	 * @model type="org.eclipse.passage.lic.licenses.model.api.LicensePlanFeatureDescriptor" containment="true" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	EList<LicensePlanFeatureDescriptor> getFeatures();
+	EList<LicensePlanFeature> getFeatures();
 
 	/**
 	 * Returns the value of the '<em><b>Personal</b></em>' containment reference list.

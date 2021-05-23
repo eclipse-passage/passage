@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.licenses.model.migration.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -24,9 +25,10 @@ import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -34,6 +36,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Test;
@@ -72,6 +76,11 @@ public final class LicenseMigratorTest {
 		loadedTwoGrants("model/1_0_0.lic"); //$NON-NLS-1$
 	}
 
+	@Test
+	public void from1_0_0PLan() throws Exception {
+		verifyPlan("model/1_0_0_plan.licenses_xmi"); //$NON-NLS-1$
+	}
+
 	private void loaded(String path) throws IOException, ParseException {
 		PersonalLicensePack pack = pack(path);
 		assertEquals("org.eclipse.passage.lic.evaluation", pack.getLicense().getIdentifier()); //$NON-NLS-1$
@@ -95,19 +104,6 @@ public final class LicenseMigratorTest {
 				((ValidityPeriodClosedDescriptor) grant.getValid()).getFrom());
 		assertEquals(getLicensingDateFormat().parse("2019-06-14T00:00:00.000+0300"), //$NON-NLS-1$
 				((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil());
-	}
-
-	private PersonalLicensePack pack(String path) throws IOException {
-		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
-		URI uri = URI.createFileURI(legacy.getPath());
-		// FIXME:AF: should be done via factory
-		Resource resource = new LicensesResourceImpl(uri);
-		resource.load(new HashMap<>());
-		EList<EObject> contents = resource.getContents();
-		EObject eObject = contents.get(0);
-
-		PersonalLicensePack pack = PersonalLicensePack.class.cast(eObject);
-		return pack;
 	}
 
 	private void loadedTwoGrants(String path) throws IOException, ParseException {
@@ -153,12 +149,51 @@ public final class LicenseMigratorTest {
 				((ValidityPeriodClosedDescriptor) grant.getValid()).getUntil());
 	}
 
+	private void verifyPlan(String path) throws IOException, ParseException {
+		LicensePlan plan = plan(path);
+		assertEquals(plan.getIdentifier(), "magic-field-license-plan"); //$NON-NLS-1$
+		EList<LicensePlanFeature> features = plan.getFeatures();
+		assertEquals(2, features.size());
+		assertPlanFeature(planFeature(features, "prince-to-frog"), "1.5.0", "perfect"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertPlanFeature(planFeature(features, "anti-human-magic.product"), "0.2.1", "compatible"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	private void assertPlanFeature(LicensePlanFeature feature, String version, String rule) {
+		assertEquals(version, feature.getFeature().getVersionMatch().getVersion());
+		assertEquals(rule, feature.getFeature().getVersionMatch().getRule());
+	}
+
+	private LicensePlanFeature planFeature(EList<LicensePlanFeature> all, String id) {
+		Optional<LicensePlanFeature> found = all.stream()//
+				.filter(feature -> id.equals(feature.getFeature().getIdentifier()))//
+				.findAny();
+		assertTrue(found.isPresent());
+		return found.get();
+	}
+
 	private final Date issueDate() {
 		return Date.from(//
 				ZonedDateTime
 						.of(2020, Month.DECEMBER.getValue(), 2, 16, 30, 50, 176000000,
 								ZoneId.ofOffset("", ZoneOffset.ofHours(3))) //$NON-NLS-1$
 						.toInstant());
+	}
+
+	private PersonalLicensePack pack(String path) throws IOException {
+		return read(path, PersonalLicensePack.class);
+	}
+
+	private LicensePlan plan(String path) throws IOException {
+		return read(path, LicensePlan.class);
+	}
+
+	private <T extends EObject> T read(String path, Class<T> expected) throws IOException {
+		File legacy = new File(System.getProperty("user.dir") + File.separator + path); //$NON-NLS-1$
+		URI uri = URI.createFileURI(legacy.getPath());
+		// FIXME:AF: should be done via factory
+		Resource resource = new LicensesResourceImpl(uri);
+		resource.load(Collections.emptyMap());
+		return expected.cast(resource.getContents().get(0));
 	}
 
 }

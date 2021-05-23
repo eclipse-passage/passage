@@ -28,12 +28,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
-
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -124,7 +122,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LicensePlanFeatureDescriptor> features;
+	protected EList<LicensePlanFeature> features;
 
 	/**
 	 * The cached value of the '{@link #getPersonal() <em>Personal</em>}' containment reference list.
@@ -245,10 +243,10 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * @generated
 	 */
 	@Override
-	public EList<LicensePlanFeatureDescriptor> getFeatures() {
+	public EList<LicensePlanFeature> getFeatures() {
 		if (features == null) {
-			features = new EObjectContainmentEList<LicensePlanFeatureDescriptor>(LicensePlanFeatureDescriptor.class,
-					this, LicensesPackage.LICENSE_PLAN__FEATURES);
+			features = new EObjectContainmentEList<LicensePlanFeature>(LicensePlanFeature.class, this,
+					LicensesPackage.LICENSE_PLAN__FEATURES);
 		}
 		return features;
 	}
@@ -345,7 +343,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 			return;
 		case LicensesPackage.LICENSE_PLAN__FEATURES:
 			getFeatures().clear();
-			getFeatures().addAll((Collection<? extends LicensePlanFeatureDescriptor>) newValue);
+			getFeatures().addAll((Collection<? extends LicensePlanFeature>) newValue);
 			return;
 		case LicensesPackage.LICENSE_PLAN__PERSONAL:
 			getPersonal().clear();

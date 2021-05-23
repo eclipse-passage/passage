@@ -88,7 +88,21 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("validUntil", //$NON-NLS-1$
 				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_Until(), licenses.getLicenseGrant_Valid()));
 		routes.ignore("requestIdentifier", licenses.getPersonalLicensePack()); //$NON-NLS-1$
+
+		defineLicensePlanRouts(routes, licenses);
 		return routes;
+	}
+
+	private void defineLicensePlanRouts(MigrationRoutes routes, LicensesPackage licenses) {
+		routes.define("featureIdentifier", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getFeatureRef_Identifier(),
+						licenses.getLicensePlanFeature_Feature()));
+		routes.define("matchVersion", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getVersionMatch_Version(), licenses.getLicensePlanFeature_Feature(),
+						licenses.getFeatureRef_VersionMatch()));
+		routes.define("matchRule", //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getVersionMatch_Rule(), licenses.getLicensePlanFeature_Feature(),
+						licenses.getFeatureRef_VersionMatch()));
 	}
 
 	private void migrate033() {
@@ -119,10 +133,8 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	private EClassRoutes classRoutes200() {
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		EClassRoutes routes = new SimpleClassRoutes();
-		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$
-		routes.define("LicenseGrant", delegate.getLicenseGrant()); //$NON-NLS-1$
+		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$ \
 		routes.define("LicensePlan", delegate.getLicensePlan()); //$NON-NLS-1$
-		routes.define("LicensePlanFeature", delegate.getLicensePlanFeature()); //$NON-NLS-1$
 		return routes;
 	}
 
