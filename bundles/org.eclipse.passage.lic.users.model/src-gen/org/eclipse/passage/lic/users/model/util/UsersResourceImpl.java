@@ -37,6 +37,16 @@ public class UsersResourceImpl extends XMIResourceImpl {
 	}
 
 	/**
+	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public UsersResourceImpl() {
+		super();
+	}
+
+	/**
 	 * 
 	 * @generated NOT
 	 */

@@ -126,10 +126,10 @@ public abstract class BaseDomainRegistry<I> implements EditingDomainRegistry<I>,
 		URI uri = createURI(source);
 		ResourceSet set = editingDomain.getResourceSet();
 		Resource resource = createResource(uri);
-		resource.eAdapters().add(contentAdapter);
 		set.getResources().add(resource);
 		try {
 			resource.load(getLoadOptions());
+			resource.eAdapters().add(contentAdapter);
 			return new BaseServiceInvocationResult<>(true);
 		} catch (IOException e) {
 			return new BaseServiceInvocationResult<>(new Trouble(//

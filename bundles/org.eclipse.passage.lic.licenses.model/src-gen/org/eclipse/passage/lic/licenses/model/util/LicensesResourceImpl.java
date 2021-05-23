@@ -46,6 +46,9 @@ public class LicensesResourceImpl extends XMIResourceImpl {
 		super();
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	protected void init() {
 		super.init();
