@@ -37,8 +37,8 @@ public final class TestData {
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals("anti-human-magic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$
-		assertEquals("2fa76bd6-f1b0-4d6b-9e86-280483aedc32#1", grant.getIdentifier()); //$NON-NLS-1$
-		assertEquals("0.0.0", grant.getFeature().getVersionMatch()); //$NON-NLS-1$
+		assertEquals("d05f5266-9340-48a5-8107-a9727a76d8ba#1", grant.getIdentifier()); //$NON-NLS-1$
+		assertEquals("0.2.1", grant.getFeature().getVersionMatch().getVersion()); //$NON-NLS-1$
 		assertEquals("compatible", grant.getFeature().getVersionMatch().getRule()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
 		assertTrue(grant.getValid() instanceof ValidityPeriodClosed);
