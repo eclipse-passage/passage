@@ -12,9 +12,6 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.licenses.model.migration;
 
-import java.io.InputStream;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
@@ -31,8 +28,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 public class LicensesResourceHandler extends MigratingResourceHandler {
 
 	@Override
-	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
-		super.postLoad(resource, inputStream, options);
+	protected final void complete(XMLResource resource) {
 		resource.getContents().stream()//
 				.filter(PersonalLicensePack.class::isInstance)//
 				.map(PersonalLicensePack.class::cast)//
@@ -40,7 +36,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected void register() {
+	protected final void register() {
 		migrate033();
 		migrate040();
 		migrate050();
@@ -49,7 +45,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected MigrationRoutes attributes() {
+	protected final MigrationRoutes attributes() {
 		MigrationRoutes routes = new SimpleMigrationRoutes();
 		LicensesPackage licenses = LicensesPackage.eINSTANCE;
 
