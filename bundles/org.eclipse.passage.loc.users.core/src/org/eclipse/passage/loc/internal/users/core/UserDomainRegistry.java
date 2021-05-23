@@ -137,7 +137,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 	}
 
 	public void registerUser(UserDescriptor user) {
-		String identifier = user.getEmail();
+		String identifier = user.getContact().getEmail();
 		UserDescriptor existing = userIndex.put(identifier, user);
 		if (existing != null) {
 			String msg = NLS.bind(UsersCoreMessages.UserDomain_instance_duplication_message, existing, user);
@@ -151,7 +151,7 @@ public class UserDomainRegistry extends BaseDomainRegistry<UserOriginDescriptor>
 		if (removed != null) {
 			events.postEvent(new EquinoxEvent(UserRegistryEvents.USER_ORIGIN_DELETE, removed).get());
 			removed.getUsers().forEach(u -> {
-				unregisterUser(u.getEmail());
+				unregisterUser(u.getContact().getEmail());
 			});
 		}
 	}

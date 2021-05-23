@@ -46,7 +46,7 @@ public final class ProductCustomer implements ExportData<ProductCustomer, DosHan
 	private final Usage usage;
 
 	public ProductCustomer(UserDescriptor user) {
-		this(user.getFullName(), user.getEmail(), Usage.personal);
+		this(user.getContact().getName(), user.getContact().getEmail(), Usage.personal);
 	}
 
 	public ProductCustomer(UserOriginDescriptor company) {

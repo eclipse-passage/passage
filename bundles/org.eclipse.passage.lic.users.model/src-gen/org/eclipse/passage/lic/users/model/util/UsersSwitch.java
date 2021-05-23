@@ -17,7 +17,10 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.passage.lic.users.ContactDescriptor;
+import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserGroupDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
 import org.eclipse.passage.lic.users.model.api.*;
@@ -88,9 +91,30 @@ public class UsersSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case UsersPackage.CONTACT_DESCRIPTOR: {
+			ContactDescriptor contactDescriptor = (ContactDescriptor) theEObject;
+			T result = caseContactDescriptor(contactDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case UsersPackage.LICENSE_OWNER_DESCRIPTOR: {
+			LicenseOwnerDescriptor licenseOwnerDescriptor = (LicenseOwnerDescriptor) theEObject;
+			T result = caseLicenseOwnerDescriptor(licenseOwnerDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case UsersPackage.USER_DESCRIPTOR: {
 			UserDescriptor userDescriptor = (UserDescriptor) theEObject;
 			T result = caseUserDescriptor(userDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case UsersPackage.USER_GROUP_DESCRIPTOR: {
+			UserGroupDescriptor userGroupDescriptor = (UserGroupDescriptor) theEObject;
+			T result = caseUserGroupDescriptor(userGroupDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -109,6 +133,41 @@ public class UsersSwitch<T> extends Switch<T> {
 			T result = caseUser(user);
 			if (result == null)
 				result = caseUserDescriptor(user);
+			if (result == null)
+				result = caseLicenseOwner(user);
+			if (result == null)
+				result = caseLicenseOwnerDescriptor(user);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case UsersPackage.USER_GROUP: {
+			UserGroup userGroup = (UserGroup) theEObject;
+			T result = caseUserGroup(userGroup);
+			if (result == null)
+				result = caseUserGroupDescriptor(userGroup);
+			if (result == null)
+				result = caseLicenseOwner(userGroup);
+			if (result == null)
+				result = caseLicenseOwnerDescriptor(userGroup);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case UsersPackage.CONTACT: {
+			Contact contact = (Contact) theEObject;
+			T result = caseContact(contact);
+			if (result == null)
+				result = caseContactDescriptor(contact);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case UsersPackage.LICENSE_OWNER: {
+			LicenseOwner licenseOwner = (LicenseOwner) theEObject;
+			T result = caseLicenseOwner(licenseOwner);
+			if (result == null)
+				result = caseLicenseOwnerDescriptor(licenseOwner);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -134,6 +193,36 @@ public class UsersSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contact Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contact Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContactDescriptor(ContactDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Owner Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Owner Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicenseOwnerDescriptor(LicenseOwnerDescriptor object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>User Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -145,6 +234,21 @@ public class UsersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUserDescriptor(UserDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Group Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Group Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserGroupDescriptor(UserGroupDescriptor object) {
 		return null;
 	}
 
@@ -175,6 +279,51 @@ public class UsersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUser(User object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>User Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>User Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUserGroup(UserGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contact</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contact</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContact(Contact object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>License Owner</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>License Owner</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLicenseOwner(LicenseOwner object) {
 		return null;
 	}
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:UserOrigin xmi:version="2.0" 
+	xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/0.3.3" 
+	identifier="org.eclipse.passage.lic" 
+	name="Eclipse Passage LIC" 
+	description="Eclipse Passage Licensing Integration Components users">
+	
+	  <users 
+		  email="alexander.fedorov@arsysop.ru" 
+		  fullName="Alexander Fedorov"/>
+	  
+	  <users 
+		  email="sergei.kovalchuk@arsysop.ru" 
+		  fullName="Sergei Kovalchuk"/>
+  
+</org.eclipse.passage.lic:UserOrigin>

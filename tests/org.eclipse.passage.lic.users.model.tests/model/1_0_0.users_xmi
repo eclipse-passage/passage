@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.passage.lic:UserOrigin 
+	xmi:version="2.0" 
+	xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/users/1.0.0" 
+	identifier="magicians" 
+	name="Magicians Co">
+  <users 
+	  email="elder@magic.com" 
+	  fullName="The Elder" 
+	  preferredConditionType="hardware" 
+	  preferredConditionExpression="os.family=*">  
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-08-20T00:00:00.000+0300" validUntil="2021-08-20T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="e121463c-309e-43a7-b199-189c84ffb753" issueDate="2020-08-20T13:06:07.736+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-20T00:00:00.000+0300" validUntil="2021-08-20T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="f460d01f-6540-4b71-97c8-e8c7e07dbe83" issueDate="2020-08-20T19:39:39.272+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-22T00:00:00.000+0300" validUntil="2021-08-22T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="4b040072-94cc-41f3-b893-13e7e14b4627" issueDate="2020-08-22T14:53:59.068+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-22T00:00:00.000+0300" validUntil="2021-08-22T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="4114f3dd-004a-416b-ac75-8d7f617b4eb5" issueDate="2020-08-22T14:58:38.580+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-22T00:00:00.000+0300" validUntil="2021-08-22T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="359e5643-2eee-4029-8c08-4f7fed3998a0" issueDate="2020-08-22T16:01:17.430+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-22T00:00:00.000+0300" validUntil="2021-08-22T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="58c0d58d-9714-41e4-8a67-c27d06f5a636" issueDate="2020-08-22T17:18:32.029+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-22T00:00:00.000+0300" validUntil="2021-08-22T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="960ab02e-add8-41b0-bfc7-f78d165109aa" issueDate="2020-08-22T17:19:04.236+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-08-29T00:00:00.000+0300" validUntil="2021-08-29T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="cac90eb6-3815-4a36-b00a-087344ee9982" issueDate="2020-08-29T19:08:46.555+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="b88e7986-6ba4-4525-8a82-f5abd4c5ca09" issueDate="2020-09-01T19:49:57.363+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="fea73cb9-57c8-4b64-a90d-6162de4c5589" issueDate="2020-09-01T19:52:29.388+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="6b445d21-43f2-4c00-baab-69ee16ee5ee0" issueDate="2020-09-01T19:53:33.852+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="38857ade-8bc3-41df-a2dc-7665cfed9e95" issueDate="2020-09-01T19:55:26.268+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="d88c26a0-21f4-4a90-9925-3bafab073b35" issueDate="2020-09-01T19:56:22.212+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="d646f0d7-07e5-44b7-86ba-9829d0759f28" issueDate="2020-09-01T19:58:20.444+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="40546245-837e-45eb-b736-68f8c2754c98" issueDate="2020-09-01T19:59:02.547+0300"/>
+	    <userLicenses planIdentifier="anti-human-magic-product" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-09-01T00:00:00.000+0300" validUntil="2021-09-01T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="0de28f8d-bd7d-4401-a916-1d940880528b" issueDate="2020-09-01T20:04:11.427+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="48af330c-f0bc-4d70-9e9e-7eb7ba0ece07" issueDate="2020-10-13T15:31:23.193+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic" productVersion="0.2" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="b2732363-0cfd-4d36-a0f6-b4b6eef7c61e" issueDate="2020-10-13T15:31:58.097+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="0644e19b-8f9e-4ded-8337-ccc7164d96eb" issueDate="2020-10-13T17:04:34.236+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="1167362d-4800-49f0-9e9f-4aaec3c59394" issueDate="2020-10-13T17:06:03.804+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="5c33315c-72f7-4b29-91c2-d16e21b4a6d2" issueDate="2020-10-13T17:06:42.332+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-10-13T00:00:00.000+0300" validUntil="2021-10-13T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="083b5b12-8f6e-4520-9ee1-9542d26b2b4c" issueDate="2020-10-13T17:13:54.819+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-10-18T00:00:00.000+0300" validUntil="2021-10-18T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="0bed5fc2-5a12-4735-9cf7-b9704d196843" issueDate="2020-10-18T18:48:55.223+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-11-17T00:00:00.000+0300" validUntil="2021-11-17T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="252122bd-2db5-4057-ae51-38e8bbd48206" issueDate="2020-11-17T11:35:57.775+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-11-17T00:00:00.000+0300" validUntil="2021-11-17T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="576a03f1-c98f-491e-86db-fbc419f1ee25" issueDate="2020-11-17T11:36:36.628+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-12-02T00:00:00.000+0300" validUntil="2021-12-02T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="3251ddf1-bd2c-48e4-993a-26fbf7eb3a42" issueDate="2020-12-02T16:30:50.176+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-12-15T00:00:00.000+0300" validUntil="2021-12-15T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="455bfb8b-76f9-4ee4-bad2-3b24295fd76d" issueDate="2020-12-15T19:00:56.229+0300"/>
+	    <userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-12-15T00:00:00.000+0300" validUntil="2021-12-15T00:00:00.000+0300" conditionType="hardware" conditionExpression="os=win" packIdentifier="5bf17460-c00f-4423-9f7d-fc2c7fa8f613" issueDate="2020-12-15T19:02:51.396+0300"/>
+  </users>
+
+  <users 
+	  email="Albert_Rose@garden.ga" 
+	  fullName="Albert Red Rose" 
+	  preferredConditionType="hardware" 
+	  preferredConditionExpression="os.family=*">
+    	<userLicenses planIdentifier="magic-field-license-plan" productIdentifier="anti-human-magic.product" productVersion="0.2.1" validFrom="2020-11-17T00:00:00.000+0300" validUntil="2021-11-17T00:00:00.000+0300" conditionType="hardware" conditionExpression="os.hwdisk=*777*" packIdentifier="fa286caa-9c14-402d-be05-b606aed5bfac" issueDate="2020-11-17T11:38:15.350+0300"/>
+  </users>
+
+  <users 
+	  email="junior@magic.com" 
+	  fullName="The Junior" 
+	  preferredConditionType="hardware" 
+	  preferredConditionExpression="os.family=*"/>
+	  
+</org.eclipse.passage.lic:UserOrigin>

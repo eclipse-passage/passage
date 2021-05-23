@@ -27,7 +27,7 @@ public class UserEmailRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {
 
 	public UserEmailRendererService() {
-		super(ValidatedTextRenderer.class, UsersPackage.eINSTANCE.getUser_Email());
+		super(ValidatedTextRenderer.class, UsersPackage.eINSTANCE.getContact_Email());
 	}
 
 	@Reference

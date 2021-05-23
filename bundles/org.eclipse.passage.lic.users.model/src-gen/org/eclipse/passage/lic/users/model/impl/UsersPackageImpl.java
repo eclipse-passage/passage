@@ -19,10 +19,16 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.passage.lic.users.ContactDescriptor;
+import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;
+import org.eclipse.passage.lic.users.UserGroupDescriptor;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
 
+import org.eclipse.passage.lic.users.model.api.Contact;
+import org.eclipse.passage.lic.users.model.api.LicenseOwner;
 import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserGroup;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 import org.eclipse.passage.lic.users.model.meta.UsersFactory;
@@ -47,7 +53,28 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass contactDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass licenseOwnerDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass userDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userGroupDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,6 +89,27 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	private EClass userEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userGroupEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contactEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass licenseOwnerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -143,8 +191,38 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getContactDescriptor() {
+		return contactDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLicenseOwnerDescriptor() {
+		return licenseOwnerDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getUserDescriptor() {
 		return userDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getUserGroupDescriptor() {
+		return userGroupDescriptorEClass;
 	}
 
 	/**
@@ -203,6 +281,16 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getUserOrigin_Groups() {
+		return (EReference) userOriginEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getUser() {
 		return userEClass;
 	}
@@ -213,7 +301,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_Identifier() {
+	public EAttribute getUser_PreferredEvaluationType() {
 		return (EAttribute) userEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -223,7 +311,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_Email() {
+	public EAttribute getUser_PreferredEvaluationExpression() {
 		return (EAttribute) userEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -233,8 +321,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_FullName() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(2);
+	public EReference getUser_Origin() {
+		return (EReference) userEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -243,8 +331,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_Description() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(3);
+	public EClass getUserGroup() {
+		return userGroupEClass;
 	}
 
 	/**
@@ -253,8 +341,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_PreferredConditionType() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(4);
+	public EReference getUserGroup_Users() {
+		return (EReference) userGroupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -263,8 +351,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUser_PreferredConditionExpression() {
-		return (EAttribute) userEClass.getEStructuralFeatures().get(5);
+	public EReference getUserGroup_Origin() {
+		return (EReference) userGroupEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -273,8 +361,108 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getUser_UserOrigin() {
-		return (EReference) userEClass.getEStructuralFeatures().get(6);
+	public EClass getContact() {
+		return contactEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getContact_Name() {
+		return (EAttribute) contactEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getContact_Title() {
+		return (EAttribute) contactEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getContact_Position() {
+		return (EAttribute) contactEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getContact_Email() {
+		return (EAttribute) contactEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getContact_Address() {
+		return (EAttribute) contactEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLicenseOwner() {
+		return licenseOwnerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseOwner_Identifier() {
+		return (EAttribute) licenseOwnerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseOwner_Name() {
+		return (EAttribute) licenseOwnerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getLicenseOwner_Description() {
+		return (EAttribute) licenseOwnerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseOwner_Contact() {
+		return (EReference) licenseOwnerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -309,22 +497,42 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Create classes and their features
 		userOriginDescriptorEClass = createEClass(USER_ORIGIN_DESCRIPTOR);
 
+		contactDescriptorEClass = createEClass(CONTACT_DESCRIPTOR);
+
+		licenseOwnerDescriptorEClass = createEClass(LICENSE_OWNER_DESCRIPTOR);
+
 		userDescriptorEClass = createEClass(USER_DESCRIPTOR);
+
+		userGroupDescriptorEClass = createEClass(USER_GROUP_DESCRIPTOR);
 
 		userOriginEClass = createEClass(USER_ORIGIN);
 		createEAttribute(userOriginEClass, USER_ORIGIN__IDENTIFIER);
 		createEAttribute(userOriginEClass, USER_ORIGIN__NAME);
 		createEAttribute(userOriginEClass, USER_ORIGIN__DESCRIPTION);
 		createEReference(userOriginEClass, USER_ORIGIN__USERS);
+		createEReference(userOriginEClass, USER_ORIGIN__GROUPS);
 
 		userEClass = createEClass(USER);
-		createEAttribute(userEClass, USER__IDENTIFIER);
-		createEAttribute(userEClass, USER__EMAIL);
-		createEAttribute(userEClass, USER__FULL_NAME);
-		createEAttribute(userEClass, USER__DESCRIPTION);
-		createEAttribute(userEClass, USER__PREFERRED_CONDITION_TYPE);
-		createEAttribute(userEClass, USER__PREFERRED_CONDITION_EXPRESSION);
-		createEReference(userEClass, USER__USER_ORIGIN);
+		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_TYPE);
+		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_EXPRESSION);
+		createEReference(userEClass, USER__ORIGIN);
+
+		userGroupEClass = createEClass(USER_GROUP);
+		createEReference(userGroupEClass, USER_GROUP__USERS);
+		createEReference(userGroupEClass, USER_GROUP__ORIGIN);
+
+		contactEClass = createEClass(CONTACT);
+		createEAttribute(contactEClass, CONTACT__NAME);
+		createEAttribute(contactEClass, CONTACT__TITLE);
+		createEAttribute(contactEClass, CONTACT__POSITION);
+		createEAttribute(contactEClass, CONTACT__EMAIL);
+		createEAttribute(contactEClass, CONTACT__ADDRESS);
+
+		licenseOwnerEClass = createEClass(LICENSE_OWNER);
+		createEAttribute(licenseOwnerEClass, LICENSE_OWNER__IDENTIFIER);
+		createEAttribute(licenseOwnerEClass, LICENSE_OWNER__NAME);
+		createEAttribute(licenseOwnerEClass, LICENSE_OWNER__DESCRIPTION);
+		createEReference(licenseOwnerEClass, LICENSE_OWNER__CONTACT);
 	}
 
 	/**
@@ -358,13 +566,27 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Add supertypes to classes
 		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
 		userEClass.getESuperTypes().add(this.getUserDescriptor());
+		userEClass.getESuperTypes().add(this.getLicenseOwner());
+		userGroupEClass.getESuperTypes().add(this.getUserGroupDescriptor());
+		userGroupEClass.getESuperTypes().add(this.getLicenseOwner());
+		contactEClass.getESuperTypes().add(this.getContactDescriptor());
+		licenseOwnerEClass.getESuperTypes().add(this.getLicenseOwnerDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(contactDescriptorEClass, ContactDescriptor.class, "ContactDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
+				!IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(licenseOwnerDescriptorEClass, LicenseOwnerDescriptor.class, "LicenseOwnerDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(userDescriptorEClass, UserDescriptor.class, "UserDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
 				!IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(userGroupDescriptorEClass, UserGroupDescriptor.class, "UserGroupDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -373,31 +595,61 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUserOrigin_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserOrigin.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserOrigin_Description(), ecorePackage.getEString(), "description", null, 0, 1, //$NON-NLS-1$
+		initEAttribute(getUserOrigin_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
 				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_UserOrigin(), "users", null, 0, -1, //$NON-NLS-1$
+		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_Origin(), "users", null, 0, -1, //$NON-NLS-1$
 				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserOrigin_Groups(), this.getUserGroup(), null, "groups", null, 0, -1, UserOrigin.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUser_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, User.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_Email(), ecorePackage.getEString(), "email", null, 1, 1, User.class, !IS_TRANSIENT, //$NON-NLS-1$
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, User.class, !IS_TRANSIENT, //$NON-NLS-1$
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_Description(), ecorePackage.getEString(), "description", null, 0, 1, User.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_PreferredConditionType(), ecorePackage.getEString(), "preferredConditionType", null, 0, //$NON-NLS-1$
+		initEAttribute(getUser_PreferredEvaluationType(), ecorePackage.getEString(), "preferredEvaluationType", null, 0, //$NON-NLS-1$
 				1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_PreferredConditionExpression(), ecorePackage.getEString(),
-				"preferredConditionExpression", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+		initEAttribute(getUser_PreferredEvaluationExpression(), ecorePackage.getEString(),
+				"preferredEvaluationExpression", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUser_UserOrigin(), this.getUserOrigin(), this.getUserOrigin_Users(), "userOrigin", null, 1, 1, //$NON-NLS-1$
+		initEReference(getUser_Origin(), this.getUserOrigin(), this.getUserOrigin_Users(), "origin", null, 1, 1, //$NON-NLS-1$
 				User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userGroupEClass, UserGroup.class, "UserGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserGroup_Users(), this.getUser(), null, "users", null, 0, -1, UserGroup.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getUserGroup_Origin(), this.getUserOrigin(), null, "origin", null, 1, 1, UserGroup.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(contactEClass, Contact.class, "Contact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getContact_Name(), ecorePackage.getEString(), "name", null, 0, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContact_Title(), ecorePackage.getEString(), "title", null, 0, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContact_Position(), ecorePackage.getEString(), "position", null, 0, 1, Contact.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContact_Email(), ecorePackage.getEString(), "email", null, 1, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContact_Address(), ecorePackage.getEString(), "address", null, 0, 1, Contact.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(licenseOwnerEClass, LicenseOwner.class, "LicenseOwner", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLicenseOwner_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, //$NON-NLS-1$
+				LicenseOwner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLicenseOwner_Name(), ecorePackage.getEString(), "name", null, 0, 1, LicenseOwner.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLicenseOwner_Description(), ecorePackage.getEString(), "description", null, 0, 1, //$NON-NLS-1$
+				LicenseOwner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseOwner_Contact(), this.getContact(), null, "contact", null, 1, 1, LicenseOwner.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

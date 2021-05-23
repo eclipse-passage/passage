@@ -19,17 +19,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 
+import org.eclipse.passage.lic.users.model.api.Contact;
+import org.eclipse.passage.lic.users.model.api.LicenseOwner;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserGroup;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
@@ -38,22 +38,23 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>User Origin</b></em>'.
+ * An implementation of the model object '<em><b>User Group</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getUsers <em>Users</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl#getGroups <em>Groups</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getContact <em>Contact</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getUsers <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getOrigin <em>Origin</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class UserOriginImpl extends MinimalEObjectImpl.Container implements UserOrigin {
+public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserGroup {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -115,7 +116,17 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	private String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUsers() <em>Users</em>}' containment reference list.
+	 * The cached value of the '{@link #getContact() <em>Contact</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContact()
+	 * @generated
+	 * @ordered
+	 */
+	protected Contact contact;
+
+	/**
+	 * The cached value of the '{@link #getUsers() <em>Users</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUsers()
@@ -125,21 +136,21 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	protected EList<User> users;
 
 	/**
-	 * The cached value of the '{@link #getGroups() <em>Groups</em>}' containment reference list.
+	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGroups()
+	 * @see #getOrigin()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<UserGroup> groups;
+	protected UserOrigin origin;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UserOriginImpl() {
+	protected UserGroupImpl() {
 		super();
 	}
 
@@ -150,7 +161,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UsersPackage.eINSTANCE.getUserOrigin();
+		return UsersPackage.eINSTANCE.getUserGroup();
 	}
 
 	/**
@@ -173,7 +184,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__IDENTIFIER, oldIdentifier,
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__IDENTIFIER, oldIdentifier,
 					identifier));
 		}
 	}
@@ -198,7 +209,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__NAME, oldName, name));
 		}
 	}
 
@@ -222,8 +233,61 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_ORIGIN__DESCRIPTION, oldDescription,
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__DESCRIPTION, oldDescription,
 					description));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Contact getContact() {
+		return contact;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContact(Contact newContact, NotificationChain msgs) {
+		Contact oldContact = contact;
+		contact = newContact;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					UsersPackage.USER_GROUP__CONTACT, oldContact, newContact);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setContact(Contact newContact) {
+		if (newContact != contact) {
+			NotificationChain msgs = null;
+			if (contact != null)
+				msgs = ((InternalEObject) contact).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - UsersPackage.USER_GROUP__CONTACT, null, msgs);
+			if (newContact != null)
+				msgs = ((InternalEObject) newContact).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - UsersPackage.USER_GROUP__CONTACT, null, msgs);
+			msgs = basicSetContact(newContact, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__CONTACT, newContact,
+					newContact));
 		}
 	}
 
@@ -235,8 +299,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public EList<User> getUsers() {
 		if (users == null) {
-			users = new EObjectContainmentWithInverseEList<User>(User.class, this, UsersPackage.USER_ORIGIN__USERS,
-					UsersPackage.USER__ORIGIN);
+			users = new EObjectResolvingEList<User>(User.class, this, UsersPackage.USER_GROUP__USERS);
 		}
 		return users;
 	}
@@ -247,11 +310,18 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * @generated
 	 */
 	@Override
-	public EList<UserGroup> getGroups() {
-		if (groups == null) {
-			groups = new EObjectContainmentEList<UserGroup>(UserGroup.class, this, UsersPackage.USER_ORIGIN__GROUPS);
+	public UserOrigin getOrigin() {
+		if (origin != null && origin.eIsProxy()) {
+			InternalEObject oldOrigin = (InternalEObject) origin;
+			origin = (UserOrigin) eResolveProxy(oldOrigin);
+			if (origin != oldOrigin) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UsersPackage.USER_GROUP__ORIGIN,
+							oldOrigin, origin));
+				}
+			}
 		}
-		return groups;
+		return origin;
 	}
 
 	/**
@@ -259,14 +329,21 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public UserOrigin basicGetOrigin() {
+		return origin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__USERS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsers()).basicAdd(otherEnd, msgs);
-		default:
-			return super.eInverseAdd(otherEnd, featureID, msgs);
+	public void setOrigin(UserOrigin newOrigin) {
+		UserOrigin oldOrigin = origin;
+		origin = newOrigin;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__ORIGIN, oldOrigin, origin));
 		}
 	}
 
@@ -278,10 +355,8 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__USERS:
-			return ((InternalEList<?>) getUsers()).basicRemove(otherEnd, msgs);
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			return ((InternalEList<?>) getGroups()).basicRemove(otherEnd, msgs);
+		case UsersPackage.USER_GROUP__CONTACT:
+			return basicSetContact(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -295,16 +370,20 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
+		case UsersPackage.USER_GROUP__IDENTIFIER:
 			return getIdentifier();
-		case UsersPackage.USER_ORIGIN__NAME:
+		case UsersPackage.USER_GROUP__NAME:
 			return getName();
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		case UsersPackage.USER_GROUP__DESCRIPTION:
 			return getDescription();
-		case UsersPackage.USER_ORIGIN__USERS:
+		case UsersPackage.USER_GROUP__CONTACT:
+			return getContact();
+		case UsersPackage.USER_GROUP__USERS:
 			return getUsers();
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			return getGroups();
+		case UsersPackage.USER_GROUP__ORIGIN:
+			if (resolve)
+				return getOrigin();
+			return basicGetOrigin();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -319,22 +398,24 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
+		case UsersPackage.USER_GROUP__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case UsersPackage.USER_ORIGIN__NAME:
+		case UsersPackage.USER_GROUP__NAME:
 			setName((String) newValue);
 			return;
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		case UsersPackage.USER_GROUP__DESCRIPTION:
 			setDescription((String) newValue);
 			return;
-		case UsersPackage.USER_ORIGIN__USERS:
+		case UsersPackage.USER_GROUP__CONTACT:
+			setContact((Contact) newValue);
+			return;
+		case UsersPackage.USER_GROUP__USERS:
 			getUsers().clear();
 			getUsers().addAll((Collection<? extends User>) newValue);
 			return;
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			getGroups().clear();
-			getGroups().addAll((Collection<? extends UserGroup>) newValue);
+		case UsersPackage.USER_GROUP__ORIGIN:
+			setOrigin((UserOrigin) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -350,20 +431,23 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
+		case UsersPackage.USER_GROUP__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case UsersPackage.USER_ORIGIN__NAME:
+		case UsersPackage.USER_GROUP__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		case UsersPackage.USER_GROUP__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
 			return;
-		case UsersPackage.USER_ORIGIN__USERS:
+		case UsersPackage.USER_GROUP__CONTACT:
+			setContact((Contact) null);
+			return;
+		case UsersPackage.USER_GROUP__USERS:
 			getUsers().clear();
 			return;
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			getGroups().clear();
+		case UsersPackage.USER_GROUP__ORIGIN:
+			setOrigin((UserOrigin) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -379,19 +463,81 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
+		case UsersPackage.USER_GROUP__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case UsersPackage.USER_ORIGIN__NAME:
+		case UsersPackage.USER_GROUP__NAME:
 			return !Objects.equals(NAME_EDEFAULT, name);
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		case UsersPackage.USER_GROUP__DESCRIPTION:
 			return !Objects.equals(DESCRIPTION_EDEFAULT, description);
-		case UsersPackage.USER_ORIGIN__USERS:
+		case UsersPackage.USER_GROUP__CONTACT:
+			return contact != null;
+		case UsersPackage.USER_GROUP__USERS:
 			return users != null && !users.isEmpty();
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			return groups != null && !groups.isEmpty();
+		case UsersPackage.USER_GROUP__ORIGIN:
+			return origin != null;
 		default:
 			return super.eIsSet(featureID);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == LicenseOwnerDescriptor.class) {
+			switch (derivedFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == LicenseOwner.class) {
+			switch (derivedFeatureID) {
+			case UsersPackage.USER_GROUP__IDENTIFIER:
+				return UsersPackage.LICENSE_OWNER__IDENTIFIER;
+			case UsersPackage.USER_GROUP__NAME:
+				return UsersPackage.LICENSE_OWNER__NAME;
+			case UsersPackage.USER_GROUP__DESCRIPTION:
+				return UsersPackage.LICENSE_OWNER__DESCRIPTION;
+			case UsersPackage.USER_GROUP__CONTACT:
+				return UsersPackage.LICENSE_OWNER__CONTACT;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == LicenseOwnerDescriptor.class) {
+			switch (baseFeatureID) {
+			default:
+				return -1;
+			}
+		}
+		if (baseClass == LicenseOwner.class) {
+			switch (baseFeatureID) {
+			case UsersPackage.LICENSE_OWNER__IDENTIFIER:
+				return UsersPackage.USER_GROUP__IDENTIFIER;
+			case UsersPackage.LICENSE_OWNER__NAME:
+				return UsersPackage.USER_GROUP__NAME;
+			case UsersPackage.LICENSE_OWNER__DESCRIPTION:
+				return UsersPackage.USER_GROUP__DESCRIPTION;
+			case UsersPackage.LICENSE_OWNER__CONTACT:
+				return UsersPackage.USER_GROUP__CONTACT;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -415,4 +561,4 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		return result.toString();
 	}
 
-} //UserOriginImpl
+} //UserGroupImpl

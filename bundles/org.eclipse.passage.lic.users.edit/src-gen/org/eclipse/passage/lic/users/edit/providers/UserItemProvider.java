@@ -17,9 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,11 +29,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
-
 import org.eclipse.passage.lic.users.model.api.User;
-
+import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
@@ -67,12 +64,10 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addEmailPropertyDescriptor(object);
-			addFullNamePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addPreferredConditionTypePropertyDescriptor(object);
-			addPreferredConditionExpressionPropertyDescriptor(object);
-			addUserOriginPropertyDescriptor(object);
+			addPreferredEvaluationTypePropertyDescriptor(object);
+			addPreferredEvaluationExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,39 +81,26 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_identifier_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.eINSTANCE.getUser_Identifier(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Email feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEmailPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_email_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_email_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.eINSTANCE.getUser_Email(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Full Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFullNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_fullName_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_fullName_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.eINSTANCE.getUser_FullName(), true, false, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -131,57 +113,73 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_User_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUser_Description(), true, true, false,
+						getResourceLocator(), getString("_UI_LicenseOwner_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Description(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Preferred Condition Type feature.
+	 * This adds a property descriptor for the Preferred Evaluation Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreferredConditionTypePropertyDescriptor(Object object) {
+	protected void addPreferredEvaluationTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_preferredConditionType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_preferredConditionType_feature", //$NON-NLS-1$//$NON-NLS-2$
+						getResourceLocator(), getString("_UI_User_preferredEvaluationType_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_User_preferredEvaluationType_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_User_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUser_PreferredConditionType(), true, false, false,
+						UsersPackage.eINSTANCE.getUser_PreferredEvaluationType(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Preferred Condition Expression feature.
+	 * This adds a property descriptor for the Preferred Evaluation Expression feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreferredConditionExpressionPropertyDescriptor(Object object) {
+	protected void addPreferredEvaluationExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_preferredConditionExpression_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_preferredConditionExpression_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_User_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUser_PreferredConditionExpression(), true, false, false,
+						getResourceLocator(), getString("_UI_User_preferredEvaluationExpression_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", //$NON-NLS-1$
+								"_UI_User_preferredEvaluationExpression_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$
+						UsersPackage.eINSTANCE.getUser_PreferredEvaluationExpression(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the User Origin feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUserOriginPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_User_userOrigin_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_User_userOrigin_feature", "_UI_User_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UsersPackage.eINSTANCE.getUser_UserOrigin(), true, false, true, null, null, null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(UsersPackage.eINSTANCE.getLicenseOwner_Contact());
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -202,7 +200,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((User) object).getFullName();
+		String label = ((User) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_User_type") : //$NON-NLS-1$
 				getString("_UI_User_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -220,12 +218,14 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 
 		switch (notification.getFeatureID(User.class)) {
 		case UsersPackage.USER__IDENTIFIER:
-		case UsersPackage.USER__EMAIL:
-		case UsersPackage.USER__FULL_NAME:
+		case UsersPackage.USER__NAME:
 		case UsersPackage.USER__DESCRIPTION:
-		case UsersPackage.USER__PREFERRED_CONDITION_TYPE:
-		case UsersPackage.USER__PREFERRED_CONDITION_EXPRESSION:
+		case UsersPackage.USER__PREFERRED_EVALUATION_TYPE:
+		case UsersPackage.USER__PREFERRED_EVALUATION_EXPRESSION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case UsersPackage.USER__CONTACT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -243,6 +243,9 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getLicenseOwner_Contact(),
+				UsersFactory.eINSTANCE.createContact()));
 	}
 
 	/**

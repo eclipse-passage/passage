@@ -14,7 +14,9 @@ package org.eclipse.passage.lic.users.model.meta;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import org.eclipse.passage.lic.users.model.api.Contact;
 import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserGroup;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 
 /**
@@ -51,6 +53,24 @@ public interface UsersFactory extends EFactory {
 	 * @generated
 	 */
 	User createUser();
+
+	/**
+	 * Returns a new object of class '<em>User Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>User Group</em>'.
+	 * @generated
+	 */
+	UserGroup createUserGroup();
+
+	/**
+	 * Returns a new object of class '<em>Contact</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Contact</em>'.
+	 * @generated
+	 */
+	Contact createContact();
 
 	/**
 	 * Returns the package supported by this factory.

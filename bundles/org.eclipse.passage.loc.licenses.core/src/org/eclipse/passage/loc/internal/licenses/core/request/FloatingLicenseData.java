@@ -43,7 +43,7 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 	@Override
 	public Collection<String> users() {
 		return users.get().stream()//
-				.map(UserDescriptor::getEmail) //
+				.map(user -> user.getContact().getEmail()) //
 				.collect(Collectors.toList());
 	}
 
@@ -51,13 +51,13 @@ public final class FloatingLicenseData extends GeneralLicenseData implements Flo
 	public EvaluationInstructions userAuthentication(String user) {
 		UserDescriptor target = user(user);
 		return new BaseEvaluationInstructions(//
-				new EvaluationType.Of(target.getPreferredConditionExpression()), //
-				target.getPreferredConditionType());
+				new EvaluationType.Of(target.getPreferredEvaluationExpression()), //
+				target.getPreferredEvaluationType());
 	}
 
 	private UserDescriptor user(String identifier) {
 		return users.get().stream()//
-				.filter(user -> identifier.equals(user.getEmail()))//
+				.filter(user -> identifier.equals(user.getContact().getEmail()))//
 				.findAny()//
 				.get(); // yah, fail if not found, it's a development problem
 	}

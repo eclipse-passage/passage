@@ -14,6 +14,7 @@ package org.eclipse.passage.loc.report.internal.core;
 
 import java.util.Set;
 
+import org.eclipse.passage.lic.internal.users.model.EmptyUser;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -32,10 +33,10 @@ public abstract class TestData<S extends Storage<?>> {
 	public abstract S storage();
 
 	protected final UserDescriptor user(String id, String email, String name) {
-		User user = UsersFactory.eINSTANCE.createUser();
+		User user = new EmptyUser().get();
 		user.setIdentifier(id);
-		user.setEmail(email);
-		user.setFullName(name);
+		user.getContact().setEmail(email);
+		user.getContact().setName(name);
 		return user;
 	}
 

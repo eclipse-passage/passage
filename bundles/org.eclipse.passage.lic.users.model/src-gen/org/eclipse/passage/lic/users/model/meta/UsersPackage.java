@@ -95,6 +95,62 @@ public interface UsersPackage extends EPackage {
 	int USER_ORIGIN_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.ContactDescriptor
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getContactDescriptor()
+	 * @generated
+	 */
+	int CONTACT_DESCRIPTOR = 1;
+
+	/**
+	 * The number of structural features of the '<em>Contact Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Contact Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getLicenseOwnerDescriptor()
+	 * @generated
+	 */
+	int LICENSE_OWNER_DESCRIPTOR = 2;
+
+	/**
+	 * The number of structural features of the '<em>License Owner Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>License Owner Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,7 +158,7 @@ public interface UsersPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserDescriptor()
 	 * @generated
 	 */
-	int USER_DESCRIPTOR = 1;
+	int USER_DESCRIPTOR = 3;
 
 	/**
 	 * The number of structural features of the '<em>User Descriptor</em>' class.
@@ -123,6 +179,34 @@ public interface UsersPackage extends EPackage {
 	int USER_DESCRIPTOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserGroupDescriptor()
+	 * @generated
+	 */
+	int USER_GROUP_DESCRIPTOR = 4;
+
+	/**
+	 * The number of structural features of the '<em>User Group Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP_DESCRIPTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>User Group Descriptor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP_DESCRIPTOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserOriginImpl <em>User Origin</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +214,7 @@ public interface UsersPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserOrigin()
 	 * @generated
 	 */
-	int USER_ORIGIN = 2;
+	int USER_ORIGIN = 5;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -169,13 +253,22 @@ public interface UsersPackage extends EPackage {
 	int USER_ORIGIN__USERS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_ORIGIN__GROUPS = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>User Origin</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_ORIGIN_FEATURE_COUNT = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER_ORIGIN_FEATURE_COUNT = USER_ORIGIN_DESCRIPTOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>User Origin</em>' class.
@@ -194,7 +287,7 @@ public interface UsersPackage extends EPackage {
 	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUser()
 	 * @generated
 	 */
-	int USER = 3;
+	int USER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -206,22 +299,13 @@ public interface UsersPackage extends EPackage {
 	int USER__IDENTIFIER = USER_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__EMAIL = USER_DESCRIPTOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Full Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER__FULL_NAME = USER_DESCRIPTOR_FEATURE_COUNT + 2;
+	int USER__NAME = USER_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -230,34 +314,43 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 3;
+	int USER__DESCRIPTION = USER_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Preferred Condition Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__PREFERRED_CONDITION_TYPE = USER_DESCRIPTOR_FEATURE_COUNT + 4;
+	int USER__CONTACT = USER_DESCRIPTOR_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Preferred Condition Expression</b></em>' attribute.
+	 * The feature id for the '<em><b>Preferred Evaluation Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__PREFERRED_CONDITION_EXPRESSION = USER_DESCRIPTOR_FEATURE_COUNT + 5;
+	int USER__PREFERRED_EVALUATION_TYPE = USER_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>User Origin</b></em>' container reference.
+	 * The feature id for the '<em><b>Preferred Evaluation Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__USER_ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 6;
+	int USER__PREFERRED_EVALUATION_EXPRESSION = USER_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__ORIGIN = USER_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -278,6 +371,225 @@ public interface UsersPackage extends EPackage {
 	int USER_OPERATION_COUNT = USER_DESCRIPTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl <em>User Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.model.impl.UserGroupImpl
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getUserGroup()
+	 * @generated
+	 */
+	int USER_GROUP = 7;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__IDENTIFIER = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__NAME = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__DESCRIPTION = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__CONTACT = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Users</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__USERS = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Origin</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP__ORIGIN = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>User Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP_FEATURE_COUNT = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>User Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_GROUP_OPERATION_COUNT = USER_GROUP_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.impl.ContactImpl <em>Contact</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.model.impl.ContactImpl
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getContact()
+	 * @generated
+	 */
+	int CONTACT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT__NAME = CONTACT_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT__TITLE = CONTACT_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT__POSITION = CONTACT_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT__EMAIL = CONTACT_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Address</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT__ADDRESS = CONTACT_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Contact</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT_FEATURE_COUNT = CONTACT_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Contact</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTACT_OPERATION_COUNT = CONTACT_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner <em>License Owner</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner
+	 * @see org.eclipse.passage.lic.users.model.impl.UsersPackageImpl#getLicenseOwner()
+	 * @generated
+	 */
+	int LICENSE_OWNER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER__IDENTIFIER = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER__NAME = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER__DESCRIPTION = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Contact</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER__CONTACT = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>License Owner</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER_FEATURE_COUNT = LICENSE_OWNER_DESCRIPTOR_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>License Owner</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_OWNER_OPERATION_COUNT = LICENSE_OWNER_DESCRIPTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserOriginDescriptor <em>User Origin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +601,28 @@ public interface UsersPackage extends EPackage {
 	EClass getUserOriginDescriptor();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.ContactDescriptor <em>Contact Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contact Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.users.ContactDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.users.ContactDescriptor"
+	 * @generated
+	 */
+	EClass getContactDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.LicenseOwnerDescriptor <em>License Owner Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Owner Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.users.LicenseOwnerDescriptor"
+	 * @generated
+	 */
+	EClass getLicenseOwnerDescriptor();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserDescriptor <em>User Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,6 +632,17 @@ public interface UsersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUserDescriptor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.UserGroupDescriptor <em>User Group Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Group Descriptor</em>'.
+	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
+	 * @model instanceClass="org.eclipse.passage.lic.users.UserGroupDescriptor"
+	 * @generated
+	 */
+	EClass getUserGroupDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.UserOrigin <em>User Origin</em>}'.
@@ -354,6 +699,17 @@ public interface UsersPackage extends EPackage {
 	EReference getUserOrigin_Users();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getGroups <em>Groups</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Groups</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.UserOrigin#getGroups()
+	 * @see #getUserOrigin()
+	 * @generated
+	 */
+	EReference getUserOrigin_Groups();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,81 +720,188 @@ public interface UsersPackage extends EPackage {
 	EClass getUser();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getIdentifier <em>Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredEvaluationType <em>Preferred Evaluation Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getIdentifier()
+	 * @return the meta object for the attribute '<em>Preferred Evaluation Type</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredEvaluationType()
 	 * @see #getUser()
 	 * @generated
 	 */
-	EAttribute getUser_Identifier();
+	EAttribute getUser_PreferredEvaluationType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getEmail <em>Email</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredEvaluationExpression <em>Preferred Evaluation Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Preferred Evaluation Expression</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredEvaluationExpression()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_PreferredEvaluationExpression();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.users.model.api.User#getOrigin <em>Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Origin</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.User#getOrigin()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Origin();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.UserGroup <em>User Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Group</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.UserGroup
+	 * @generated
+	 */
+	EClass getUserGroup();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.passage.lic.users.model.api.UserGroup#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Users</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.UserGroup#getUsers()
+	 * @see #getUserGroup()
+	 * @generated
+	 */
+	EReference getUserGroup_Users();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.users.model.api.UserGroup#getOrigin <em>Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Origin</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.UserGroup#getOrigin()
+	 * @see #getUserGroup()
+	 * @generated
+	 */
+	EReference getUserGroup_Origin();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.Contact <em>Contact</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contact</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact
+	 * @generated
+	 */
+	EClass getContact();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.Contact#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact#getName()
+	 * @see #getContact()
+	 * @generated
+	 */
+	EAttribute getContact_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.Contact#getTitle <em>Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact#getTitle()
+	 * @see #getContact()
+	 * @generated
+	 */
+	EAttribute getContact_Title();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.Contact#getPosition <em>Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Position</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact#getPosition()
+	 * @see #getContact()
+	 * @generated
+	 */
+	EAttribute getContact_Position();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.Contact#getEmail <em>Email</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Email</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getEmail()
-	 * @see #getUser()
+	 * @see org.eclipse.passage.lic.users.model.api.Contact#getEmail()
+	 * @see #getContact()
 	 * @generated
 	 */
-	EAttribute getUser_Email();
+	EAttribute getContact_Email();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getFullName <em>Full Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.Contact#getAddress <em>Address</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Full Name</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getFullName()
-	 * @see #getUser()
+	 * @return the meta object for the attribute '<em>Address</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.Contact#getAddress()
+	 * @see #getContact()
 	 * @generated
 	 */
-	EAttribute getUser_FullName();
+	EAttribute getContact_Address();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getDescription <em>Description</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner <em>License Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>License Owner</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner
+	 * @generated
+	 */
+	EClass getLicenseOwner();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner#getIdentifier()
+	 * @see #getLicenseOwner()
+	 * @generated
+	 */
+	EAttribute getLicenseOwner_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner#getName()
+	 * @see #getLicenseOwner()
+	 * @generated
+	 */
+	EAttribute getLicenseOwner_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getDescription()
-	 * @see #getUser()
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner#getDescription()
+	 * @see #getLicenseOwner()
 	 * @generated
 	 */
-	EAttribute getUser_Description();
+	EAttribute getLicenseOwner_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType <em>Preferred Condition Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.passage.lic.users.model.api.LicenseOwner#getContact <em>Contact</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Preferred Condition Type</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredConditionType()
-	 * @see #getUser()
+	 * @return the meta object for the containment reference '<em>Contact</em>'.
+	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner#getContact()
+	 * @see #getLicenseOwner()
 	 * @generated
 	 */
-	EAttribute getUser_PreferredConditionType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression <em>Preferred Condition Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Preferred Condition Expression</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getPreferredConditionExpression()
-	 * @see #getUser()
-	 * @generated
-	 */
-	EAttribute getUser_PreferredConditionExpression();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>User Origin</em>'.
-	 * @see org.eclipse.passage.lic.users.model.api.User#getUserOrigin()
-	 * @see #getUser()
-	 * @generated
-	 */
-	EReference getUser_UserOrigin();
+	EReference getLicenseOwner_Contact();
 
 	/**
 	 * Returns the factory that creates the instances of the model.

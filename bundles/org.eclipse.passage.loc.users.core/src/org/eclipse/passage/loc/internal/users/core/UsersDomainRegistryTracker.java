@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.users.core;
 
-import java.util.Objects;
-
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.passage.lic.users.UserOriginDescriptor;
+import org.eclipse.passage.lic.users.model.api.Contact;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -36,17 +36,23 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			case UsersPackage.USER_ORIGIN__IDENTIFIER:
 				processUserOriginIdentifier(userOrigin, notification);
 				break;
-			case UsersPackage.USER_ORIGIN__USERS:
-				processUserOriginUsers(userOrigin, notification);
-				break;
 			default:
 				break;
 			}
 		} else if (notifier instanceof User) {
 			User user = (User) notifier;
-			switch (notification.getFeatureID(User.class)) {
-			case UsersPackage.USER__EMAIL:
-				processUserEmail(user, notification);
+			switch (notification.getFeatureID(UserOrigin.class)) {
+			case UsersPackage.USER__CONTACT:
+				processUserContact(user, notification);
+				break;
+			default:
+				break;
+			}
+		} else if (notifier instanceof Contact) {
+			Contact contact = (Contact) notifier;
+			switch (notification.getFeatureID(UserOrigin.class)) {
+			case UsersPackage.CONTACT__EMAIL:
+				processContactEmail(contact, notification);
 				break;
 			default:
 				break;
@@ -72,17 +78,14 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		}
 	}
 
-	protected void processUserOriginUsers(UserOrigin userOrigin, Notification notification) {
+	protected void processUserContact(User user, Notification notification) {
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
 		switch (notification.getEventType()) {
 		case Notification.ADD:
-			if (newValue instanceof User) {
-				User user = (User) newValue;
-				if (Objects.equals(userOrigin, user.getUserOrigin())) {
-					// FIXME: warning
-				}
-				String email = user.getEmail();
+			if (newValue instanceof Contact) {
+				Contact contact = (Contact) newValue;
+				String email = contact.getEmail();
 				if (email != null) {
 					registry.registerUser(user);
 				} else {
@@ -92,11 +95,8 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			break;
 		case Notification.REMOVE:
 			if (oldValue instanceof User) {
-				User user = (User) oldValue;
-				if (Objects.equals(userOrigin, user.getUserOrigin())) {
-					// FIXME: warning
-				}
-				String email = user.getEmail();
+				Contact contact = (Contact) oldValue;
+				String email = contact.getEmail();
 				if (email != null) {
 					registry.unregisterUser(email);
 				} else {
@@ -110,7 +110,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		}
 	}
 
-	protected void processUserEmail(User user, Notification notification) {
+	protected void processContactEmail(Contact contact, Notification notification) {
 		String oldValue = notification.getOldStringValue();
 		String newValue = notification.getNewStringValue();
 		switch (notification.getEventType()) {
@@ -119,7 +119,11 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 				registry.unregisterUser(oldValue);
 			}
 			if (newValue != null) {
-				registry.registerUser(user);
+				EObject eContainer = contact.eContainer();
+				if (eContainer instanceof User) {
+					User user = (User) eContainer;
+					registry.registerUser(user);
+				}
 			}
 			break;
 		default:

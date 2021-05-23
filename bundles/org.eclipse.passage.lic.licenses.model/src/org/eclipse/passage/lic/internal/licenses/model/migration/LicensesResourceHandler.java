@@ -40,7 +40,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected void ensureMigrations() {
+	protected void register() {
 		migrate033();
 		migrate040();
 		migrate050();

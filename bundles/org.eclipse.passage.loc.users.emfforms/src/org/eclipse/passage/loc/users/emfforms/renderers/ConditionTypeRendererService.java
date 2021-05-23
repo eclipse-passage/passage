@@ -27,7 +27,7 @@ public class ConditionTypeRendererService extends StructuredFeatureRendererServi
 		implements EMFFormsDIRendererService<VControl> {
 
 	public ConditionTypeRendererService() {
-		super(ConditionTypeRenderer.class, UsersPackage.eINSTANCE.getUser_PreferredConditionType());
+		super(ConditionTypeRenderer.class, UsersPackage.eINSTANCE.getUser_PreferredEvaluationType());
 	}
 
 	@Reference

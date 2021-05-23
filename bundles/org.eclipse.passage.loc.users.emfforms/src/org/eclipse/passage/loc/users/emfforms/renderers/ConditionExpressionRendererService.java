@@ -27,7 +27,7 @@ public class ConditionExpressionRendererService extends StructuredFeatureRendere
 		implements EMFFormsDIRendererService<VControl> {
 
 	public ConditionExpressionRendererService() {
-		super(ConditionExpressionRenderer.class, UsersPackage.eINSTANCE.getUser_PreferredConditionExpression());
+		super(ConditionExpressionRenderer.class, UsersPackage.eINSTANCE.getUser_PreferredEvaluationExpression());
 	}
 
 	@Reference

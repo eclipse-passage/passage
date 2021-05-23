@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 public final class ProductsResourceHandler extends MigratingResourceHandler {
 
 	@Override
-	protected void ensureMigrations() {
+	protected void register() {
 		migrate030();
 		migrate040();
 	}

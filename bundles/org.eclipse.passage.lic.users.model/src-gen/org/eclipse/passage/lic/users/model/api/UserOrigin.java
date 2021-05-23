@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.users.UserOriginDescriptor;
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getUsers <em>Users</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.users.model.api.UserOrigin#getGroups <em>Groups</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin()
@@ -91,7 +92,7 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin_Description()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	@Override
@@ -110,16 +111,28 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Users</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.passage.lic.users.model.api.User}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.users.model.api.User#getUserOrigin <em>User Origin</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.users.model.api.User#getOrigin <em>Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Users</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin_Users()
-	 * @see org.eclipse.passage.lic.users.model.api.User#getUserOrigin
-	 * @model opposite="userOrigin" containment="true"
+	 * @see org.eclipse.passage.lic.users.model.api.User#getOrigin
+	 * @model opposite="origin" containment="true"
 	 * @generated
 	 */
 	@Override
 	EList<User> getUsers();
+
+	/**
+	 * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.passage.lic.users.model.api.UserGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Groups</em>' containment reference list.
+	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin_Groups()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<UserGroup> getGroups();
 
 } // UserOrigin

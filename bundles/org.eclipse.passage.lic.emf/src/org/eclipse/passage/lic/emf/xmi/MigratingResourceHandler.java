@@ -36,13 +36,13 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 
 	@Override
 	public void preLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
-		ensureMigrations();
+		register();
 	}
 
 	/**
 	 * Ensure that everything required to read the legacy models is registered
 	 */
-	protected abstract void ensureMigrations();
+	protected abstract void register();
 
 	@Override
 	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {

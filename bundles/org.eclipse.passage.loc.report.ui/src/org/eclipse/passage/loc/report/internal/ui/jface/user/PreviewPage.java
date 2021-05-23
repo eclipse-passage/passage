@@ -83,7 +83,7 @@ final class PreviewPage extends WizardPage implements PageObserver {
 	}
 
 	private String userInfo(UserDescriptor user) {
-		return NLS.bind("{0} ({1})", user.getFullName(), user.getEmail()); //$NON-NLS-1$
+		return NLS.bind("{0} ({1})", user.getContact().getName(), user.getContact().getEmail()); //$NON-NLS-1$
 	}
 
 	private String companyInfo(UserOriginDescriptor company) {

@@ -20,8 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -35,18 +33,17 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.passage.lic.users.edit.UsersEditPlugin;
 
-import org.eclipse.passage.lic.users.model.api.UserOrigin;
+import org.eclipse.passage.lic.users.model.api.Contact;
 
-import org.eclipse.passage.lic.users.model.meta.UsersFactory;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.Contact} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class UserOriginItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class ContactItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -54,7 +51,7 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserOriginItemProvider(AdapterFactory adapterFactory) {
+	public ContactItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,28 +66,13 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdentifierPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addUsersPropertyDescriptor(object);
+			addTitlePropertyDescriptor(object);
+			addPositionPropertyDescriptor(object);
+			addEmailPropertyDescriptor(object);
+			addAddressPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Identifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -102,73 +84,85 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_Contact_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Contact_name_feature", "_UI_Contact_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						UsersPackage.eINSTANCE.getContact_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Title feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addTitlePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_description_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_description_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Description(), true, true, false,
+						getResourceLocator(), getString("_UI_Contact_title_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Contact_title_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Contact_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getContact_Title(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Users feature.
+	 * This adds a property descriptor for the Position feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUsersPropertyDescriptor(Object object) {
+	protected void addPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_UserOrigin_users_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_UserOrigin_users_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_UserOrigin_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getUserOrigin_Users(), true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_Contact_position_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Contact_position_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Contact_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getContact_Position(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Email feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEmailPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Contact_email_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Contact_email_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Contact_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getContact_Email(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Address feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAddressPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Contact_address_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_Contact_address_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_Contact_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getContact_Address(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns Contact.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(UsersPackage.eINSTANCE.getUserOrigin_Users());
-			childrenFeatures.add(UsersPackage.eINSTANCE.getUserOrigin_Groups());
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Contact")); //$NON-NLS-1$
 	}
 
 	/**
@@ -189,9 +183,9 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserOrigin) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UserOrigin_type") : //$NON-NLS-1$
-				getString("_UI_UserOrigin_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((Contact) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Contact_type") : //$NON-NLS-1$
+				getString("_UI_Contact_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -205,15 +199,13 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(UserOrigin.class)) {
-		case UsersPackage.USER_ORIGIN__IDENTIFIER:
-		case UsersPackage.USER_ORIGIN__NAME:
-		case UsersPackage.USER_ORIGIN__DESCRIPTION:
+		switch (notification.getFeatureID(Contact.class)) {
+		case UsersPackage.CONTACT__NAME:
+		case UsersPackage.CONTACT__TITLE:
+		case UsersPackage.CONTACT__POSITION:
+		case UsersPackage.CONTACT__EMAIL:
+		case UsersPackage.CONTACT__ADDRESS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case UsersPackage.USER_ORIGIN__USERS:
-		case UsersPackage.USER_ORIGIN__GROUPS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -231,12 +223,6 @@ public class UserOriginItemProvider extends ItemProviderAdapter implements IEdit
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getUserOrigin_Users(),
-				UsersFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add(createChildParameter(UsersPackage.eINSTANCE.getUserOrigin_Groups(),
-				UsersFactory.eINSTANCE.createUserGroup()));
 	}
 
 	/**

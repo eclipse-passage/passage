@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 public final class FeaturesResourceHandler extends MigratingResourceHandler {
 
 	@Override
-	protected void ensureMigrations() {
+	protected void register() {
 		migrate033();
 		migrate040();
 	}
