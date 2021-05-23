@@ -91,7 +91,7 @@ final class FeatureGrants {
 	 */
 	private Optional<FeatureGrant> grantForFeature(FloatingLicensePack license) {
 		return license.getFeatures().stream()//
-				.filter(grant -> feature.equals(grant.getFeature()))//
+				.filter(grant -> feature.equals(grant.getFeature().getIdentifier()))//
 				.findAny();//
 	}
 

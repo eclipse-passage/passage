@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant()
@@ -155,28 +155,28 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	void setCapacity(int value);
 
 	/**
-	 * Returns the value of the '<em><b>License Pack</b></em>' container reference.
+	 * Returns the value of the '<em><b>Pack</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants <em>Grants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>License Pack</em>' container reference.
-	 * @see #setLicensePack(PersonalLicensePack)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_LicensePack()
+	 * @return the value of the '<em>Pack</em>' container reference.
+	 * @see #setPack(PersonalLicensePack)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Pack()
 	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants
 	 * @model opposite="grants" required="true" transient="false"
 	 * @generated
 	 */
 	@Override
-	PersonalLicensePack getLicensePack();
+	PersonalLicensePack getPack();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getLicensePack <em>License Pack</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>License Pack</em>' container reference.
-	 * @see #getLicensePack()
+	 * @param value the new value of the '<em>Pack</em>' container reference.
+	 * @see #getPack()
 	 * @generated
 	 */
-	void setLicensePack(PersonalLicensePack value);
+	void setPack(PersonalLicensePack value);
 
 } // LicenseGrant

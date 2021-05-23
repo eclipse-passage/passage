@@ -12,15 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.products.model.migration;
 
-import java.util.Collections;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
-import org.eclipse.passage.lic.emf.migration.EFeatureRoutes;
-import org.eclipse.passage.lic.emf.migration.EnsureStructure;
+import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
-import org.eclipse.passage.lic.emf.migration.SimpleFeatureRoutes;
+import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.products.model.meta.ProductsPackage;
 
@@ -33,14 +30,8 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	protected EFeatureRoutes attributes() {
-		return new SimpleFeatureRoutes();
-	}
-
-	@Override
-	protected EnsureStructure structures() {
-		// not yet needed
-		return e -> Collections.emptyList();
+	protected MigrationRoutes attributes() {
+		return new SimpleMigrationRoutes();
 	}
 
 	private void migrate030() {

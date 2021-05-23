@@ -10,23 +10,27 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses;
+package org.eclipse.passage.lic.emf.migration;
+
+import java.util.Optional;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * @since 2.0
  */
-public interface FeatureGrantDescriptor {
+public interface MigrationRoutes {
 
-	String getIdentifier();
+	void define(String found, EAttributeRoute path);
 
-	FeatureRefDescriptor getFeature();
+	void define(String found, EReferenceRoute path);
 
-	ValidityPeriodDescriptor getValid();
+	void ignore(String found, EClass location);
 
-	long getVivid();
+	Optional<EAttributeRoute> attribute(String found, EClass scope);
 
-	int getCapacity();
+	Optional<EReferenceRoute> reference(String found, EClass scope);
 
-	FloatingLicensePackDescriptor getPack();
+	boolean ignored(String found, EClass location);
 
 }

@@ -10,23 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.licenses;
+package org.eclipse.passage.lic.emf.migration;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * @since 2.0
  */
-public interface FeatureGrantDescriptor {
+public interface MigrateFeatures {
 
-	String getIdentifier();
-
-	FeatureRefDescriptor getFeature();
-
-	ValidityPeriodDescriptor getValid();
-
-	long getVivid();
-
-	int getCapacity();
-
-	FloatingLicensePackDescriptor getPack();
+	void apply(EObject root) throws MigrationException;
 
 }

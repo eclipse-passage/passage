@@ -80,7 +80,7 @@ final class AcquiredGrantsStorage {
 	private GrantAcqisition acquistion(FeatureGrant grant, String user) {
 		GrantAcqisition acquisition = LicensesFactory.eINSTANCE.createGrantAcqisition();
 		acquisition.setCreated(new Date());
-		acquisition.setFeature(grant.getFeature());
+		acquisition.setFeature(grant.getFeature().getIdentifier());
 		acquisition.setGrant(grant.getIdentifier());
 		acquisition.setIdentifier(UUID.randomUUID().toString());
 		acquisition.setUser(user);

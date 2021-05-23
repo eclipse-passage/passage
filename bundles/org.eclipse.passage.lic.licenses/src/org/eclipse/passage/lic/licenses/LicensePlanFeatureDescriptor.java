@@ -33,7 +33,8 @@ public interface LicensePlanFeatureDescriptor {
 	 * Returns the containing license plan of this license plan feature.
 	 *
 	 * @return the license plan
+	 * @since 2.0
 	 */
-	LicensePlanDescriptor getLicensePlan();
+	LicensePlanDescriptor getPlan();
 
 }

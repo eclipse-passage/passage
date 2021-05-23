@@ -164,11 +164,12 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 */
 	@Override
 	public LicenseGrant createLicenseGrant() {
-		LicenseGrantImpl licenseGrant = new LicenseGrantImpl();
-		licenseGrant.setFeature(createFeatureRef());
-		licenseGrant.setUserAuthentication(createEvaluationInstructions());
-		licenseGrant.setValid(createValidityPeriodClosed());
-		return licenseGrant;
+		LicenseGrantImpl grant = new LicenseGrantImpl();
+		grant.setFeature(createFeatureRef());
+		grant.getFeature().setVersionMatch(createVersionMatch());
+		grant.setUserAuthentication(createEvaluationInstructions());
+		grant.setValid(createValidityPeriodClosed());
+		return grant;
 	}
 
 	/**

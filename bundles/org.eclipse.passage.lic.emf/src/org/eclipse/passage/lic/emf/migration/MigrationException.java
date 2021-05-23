@@ -12,16 +12,19 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.migration;
 
-import java.util.List;
-import java.util.function.Function;
-
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 
 /**
- * Helps to ensure that inner data structures exists for the given EObject
+ * Indicates failure to recognize and migrate the data entry
  * 
  * @since 2.0
  */
-public interface EnsureStructure extends Function<EObject, List<EObject>> {
+public class MigrationException extends Exception {
+
+	private static final long serialVersionUID = 1L;
+
+	public MigrationException(Entry entry) {
+		super(entry.toString());
+	}
 
 }

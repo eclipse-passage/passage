@@ -36,7 +36,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getLicensePlan <em>License Plan</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getPlan <em>Plan</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,14 +53,14 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	protected FeatureRef feature;
 
 	/**
-	 * The cached value of the '{@link #getLicensePlan() <em>License Plan</em>}' reference.
+	 * The cached value of the '{@link #getPlan() <em>Plan</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLicensePlan()
+	 * @see #getPlan()
 	 * @generated
 	 * @ordered
 	 */
-	protected LicensePlan licensePlan;
+	protected LicensePlan plan;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,18 +140,18 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public LicensePlan getLicensePlan() {
-		if (licensePlan != null && licensePlan.eIsProxy()) {
-			InternalEObject oldLicensePlan = (InternalEObject) licensePlan;
-			licensePlan = (LicensePlan) eResolveProxy(oldLicensePlan);
-			if (licensePlan != oldLicensePlan) {
+	public LicensePlan getPlan() {
+		if (plan != null && plan.eIsProxy()) {
+			InternalEObject oldPlan = (InternalEObject) plan;
+			plan = (LicensePlan) eResolveProxy(oldPlan);
+			if (plan != oldPlan) {
 				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN, oldLicensePlan, licensePlan));
+							LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, oldPlan, plan));
 				}
 			}
 		}
-		return licensePlan;
+		return plan;
 	}
 
 	/**
@@ -159,8 +159,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicensePlan basicGetLicensePlan() {
-		return licensePlan;
+	public LicensePlan basicGetPlan() {
+		return plan;
 	}
 
 	/**
@@ -169,12 +169,12 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setLicensePlan(LicensePlan newLicensePlan) {
-		LicensePlan oldLicensePlan = licensePlan;
-		licensePlan = newLicensePlan;
+	public void setPlan(LicensePlan newPlan) {
+		LicensePlan oldPlan = plan;
+		plan = newPlan;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN,
-					oldLicensePlan, licensePlan));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, oldPlan,
+					plan));
 		}
 	}
 
@@ -203,10 +203,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			return getFeature();
-		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			if (resolve)
-				return getLicensePlan();
-			return basicGetLicensePlan();
+				return getPlan();
+			return basicGetPlan();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -223,8 +223,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			setFeature((FeatureRef) newValue);
 			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
-			setLicensePlan((LicensePlan) newValue);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			setPlan((LicensePlan) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -243,8 +243,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			setFeature((FeatureRef) null);
 			return;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
-			setLicensePlan((LicensePlan) null);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			setPlan((LicensePlan) null);
 			return;
 		default:
 			super.eUnset(featureID);
@@ -262,8 +262,8 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			return feature != null;
-		case LicensesPackage.LICENSE_PLAN_FEATURE__LICENSE_PLAN:
-			return licensePlan != null;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			return plan != null;
 		default:
 			return super.eIsSet(featureID);
 		}

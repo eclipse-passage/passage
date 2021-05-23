@@ -103,8 +103,7 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 						getResourceLocator(), getString("_UI_FeatureGrant_feature_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_FeatureGrant_feature_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FeatureGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getFeatureGrant_Feature(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+						LicensesPackage.eINSTANCE.getFeatureGrant_Feature(), true, false, false, null, null, null));
 	}
 
 	/**
@@ -151,7 +150,6 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getFeatureGrant_Version());
 			childrenFeatures.add(LicensesPackage.eINSTANCE.getFeatureGrant_Valid());
 		}
 		return childrenFeatures;
@@ -200,8 +198,8 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object) {
 		FeatureGrant grant = (FeatureGrant) object;
-		String feature = new GetOrUnknown(grant.getFeature()).get();
-		Optional<VersionMatch> match = Optional.of(grant.getVersion());
+		String feature = new GetOrUnknown(grant.getFeature().getIdentifier()).get();
+		Optional<VersionMatch> match = Optional.of(grant.getFeature().getVersionMatch());
 		String version = match.map(VersionMatch::getVersion).orElse("unknown"); //$NON-NLS-1$
 		String rule = match.map(VersionMatch::getRule).orElse("unknown"); //$NON-NLS-1$
 		ClosedPeriodPrinted period = new ClosedPeriodPrinted(grant.getValid());
@@ -228,7 +226,6 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 		case LicensesPackage.FEATURE_GRANT__CAPACITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case LicensesPackage.FEATURE_GRANT__VERSION:
 		case LicensesPackage.FEATURE_GRANT__VALID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -248,9 +245,6 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getFeatureGrant_Version(),
-				LicensesFactory.eINSTANCE.createVersionMatch()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getFeatureGrant_Valid(),
 				LicensesFactory.eINSTANCE.createValidityPeriodClosed()));

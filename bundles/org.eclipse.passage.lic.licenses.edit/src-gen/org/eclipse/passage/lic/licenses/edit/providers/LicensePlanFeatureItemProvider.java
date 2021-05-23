@@ -62,24 +62,24 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLicensePlanPropertyDescriptor(object);
+			addPlanPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the License Plan feature.
+	 * This adds a property descriptor for the Plan feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLicensePlanPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_LicensePlanFeature_licensePlan_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_licensePlan_feature", //$NON-NLS-1$//$NON-NLS-2$
-						"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
-				LicensesPackage.eINSTANCE.getLicensePlanFeature_LicensePlan(), true, false, true, null, null, null));
+	protected void addPlanPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePlanFeature_plan_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_plan_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePlanFeature_Plan(), true, false, true, null, null, null));
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		if (identifier == null || identifier.length() == 0) {
 			identifier = getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
 		}
-		String version = planFeature.getFeature().getVersion();
+		String version = planFeature.getFeature().getVersionMatch().getVersion();
 		if (version == null || version.length() == 0) {
 			return identifier;
 		}

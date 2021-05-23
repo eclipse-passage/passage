@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <org.eclipse.passage.lic:FloatingLicensePack xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.passage.lic="http://www.eclipse.org/passage/lic/licenses/2.0.0">
-  <license identifier="2fa76bd6-f1b0-4d6b-9e86-280483aedc32" issueDate="2021-05-14T15:34:43.679+0300" plan="magic-field-license-plan">
+  <license identifier="d05f5266-9340-48a5-8107-a9727a76d8ba" issueDate="2021-05-23T12:21:04.252+0300" plan="magic-field-license-plan">
     <product identifier="anti-human-magic.product" version="0.2.1"/>
     <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2021-04-08T00:00:00.000+0300" until="2021-05-08T00:00:00.000+0300"/>
-    <company identifier="magicians" name="Magicians" info=""/>
+    <company identifier="magicians" name="Magicians Co" info=""/>
   </license>
   <host identifier="Floating-Server-A">
     <authentication type="hardware" expression="os.family=*"/>
@@ -11,12 +11,16 @@
   <users user="Albert_Rose@garden.ga">
     <authentication type="hardware" expression="os.family=*"/>
   </users>
-  <features identifier="2fa76bd6-f1b0-4d6b-9e86-280483aedc32#0" feature="prince-to-frog" vivid="60" capacity="3">
-    <version version="1.5.0" rule="perfect"/>
+  <features identifier="d05f5266-9340-48a5-8107-a9727a76d8ba#0" vivid="60" capacity="3">
+    <feature identifier="prince-to-frog">
+      <versionMatch version="1.5.0" rule="perfect"/>
+    </feature>
     <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2021-04-08T00:00:00.000+0300" until="2021-05-08T00:00:00.000+0300"/>
   </features>
-  <features identifier="2fa76bd6-f1b0-4d6b-9e86-280483aedc32#1" feature="anti-human-magic.product" vivid="60" capacity="3">
-    <version version="0.0.0" rule="compatible"/>
+  <features identifier="d05f5266-9340-48a5-8107-a9727a76d8ba#1" vivid="60" capacity="3">
+    <feature identifier="anti-human-magic.product">
+      <versionMatch version="0.2.1" rule="compatible"/>
+    </feature>
     <valid xsi:type="org.eclipse.passage.lic:ValidityPeriodClosed" from="2021-04-08T00:00:00.000+0300" until="2021-05-08T00:00:00.000+0300"/>
   </features>
 </org.eclipse.passage.lic:FloatingLicensePack>

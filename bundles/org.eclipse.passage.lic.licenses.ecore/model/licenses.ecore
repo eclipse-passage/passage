@@ -47,8 +47,8 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="licensePlanFeatures" upperBound="-1"
-        eType="#//LicensePlanFeatureDescriptor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
+        upperBound="-1" eType="#//LicensePlanFeature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="personal" upperBound="-1"
         eType="#//PersonalLicensePack" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="floating" upperBound="-1"
@@ -57,14 +57,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="LicensePlanFeature" eSuperTypes="#//LicensePlanFeatureDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="#//FeatureRef" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="licensePlan" lowerBound="1"
-        eType="#//LicensePlan"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plan" lowerBound="1" eType="#//LicensePlan"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PersonalLicensePack" eSuperTypes="#//PersonalLicensePackDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="license" lowerBound="1"
         eType="#//PersonalLicenseRequisites" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="grants" upperBound="-1"
-        eType="#//LicenseGrant" containment="true" eOpposite="#//LicenseGrant/licensePack"/>
+        eType="#//LicenseGrant" containment="true" eOpposite="#//LicenseGrant/pack"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseGrant" eSuperTypes="#//LicenseGrantDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -77,8 +76,8 @@
         eType="#//EvaluationInstructions" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="licensePack" lowerBound="1"
-        eType="#//PersonalLicensePack" eOpposite="#//PersonalLicensePack/grants"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pack" lowerBound="1" eType="#//PersonalLicensePack"
+        eOpposite="#//PersonalLicensePack/grants"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FloatingLicensePack" eSuperTypes="#//FloatingLicensePackDescriptor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="license" lowerBound="1"
@@ -123,10 +122,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureRef" eSuperTypes="#//FeatureRefDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="matchingRule" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="versionMatch" lowerBound="1"
+        eType="#//VersionMatch" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompanyRef" eSuperTypes="#//CompanyRefDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
@@ -148,10 +145,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureGrant" eSuperTypes="#//FeatureGrantDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="version" lowerBound="1"
-        eType="#//VersionMatch" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="#//FeatureRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vivid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>

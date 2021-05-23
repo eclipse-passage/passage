@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.licenses.FeatureGrantDescriptor;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getCapacity <em>Capacity</em>}</li>
@@ -63,50 +62,27 @@ public interface FeatureGrant extends EObject, FeatureGrantDescriptor {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' attribute.
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature</em>' attribute.
-	 * @see #setFeature(String)
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(FeatureRef)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureGrant_Feature()
-	 * @model required="true"
-	 * @generated
-	 */
-	@Override
-	String getFeature();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature <em>Feature</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' attribute.
-	 * @see #getFeature()
-	 * @generated
-	 */
-	void setFeature(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Version</em>' containment reference.
-	 * @see #setVersion(VersionMatch)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFeatureGrant_Version()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	@Override
-	VersionMatch getVersion();
+	FeatureRef getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getVersion <em>Version</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Version</em>' containment reference.
-	 * @see #getVersion()
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
+	 * @see #getFeature()
 	 * @generated
 	 */
-	void setVersion(VersionMatch value);
+	void setFeature(FeatureRef value);
 
 	/**
 	 * Returns the value of the '<em><b>Valid</b></em>' containment reference.
