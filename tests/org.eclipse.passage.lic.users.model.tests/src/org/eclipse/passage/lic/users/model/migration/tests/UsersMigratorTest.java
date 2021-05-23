@@ -74,13 +74,11 @@ public final class UsersMigratorTest {
 		assertEquals(2, users.size());
 
 		User u0 = users.get(0);
-		assertEquals(null, u0.getIdentifier());
 		assertEquals("alexander.fedorov@arsysop.ru", u0.getContact().getEmail()); //$NON-NLS-1$
 		assertEquals("Alexander Fedorov", u0.getContact().getName()); //$NON-NLS-1$
 		assertEquals(null, u0.getDescription());
 
 		User u1 = users.get(1);
-		assertEquals(null, u1.getIdentifier());
 		assertEquals("sergei.kovalchuk@arsysop.ru", u1.getContact().getEmail()); //$NON-NLS-1$
 		assertEquals("Sergei Kovalchuk", u1.getContact().getName()); //$NON-NLS-1$
 		assertEquals(null, u1.getDescription());
