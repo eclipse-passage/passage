@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.products.model.migration;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
 import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
@@ -32,6 +33,11 @@ public final class ProductsResourceHandler extends MigratingResourceHandler {
 	@Override
 	protected MigrationRoutes attributes() {
 		return new SimpleMigrationRoutes();
+	}
+
+	@Override
+	protected void complete(XMLResource resource) {
+		// do nothing
 	}
 
 	private void migrate030() {

@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.internal.features.model.migration;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
 import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
@@ -22,6 +23,11 @@ import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 public final class FeaturesResourceHandler extends MigratingResourceHandler {
+
+	@Override
+	protected void complete(XMLResource resource) {
+		// do nothing
+	}
 
 	@Override
 	protected void register() {
@@ -49,4 +55,5 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
+
 }

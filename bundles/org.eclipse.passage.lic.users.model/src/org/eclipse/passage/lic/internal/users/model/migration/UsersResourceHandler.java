@@ -12,21 +12,16 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.users.model.migration;
 
-import java.io.InputStream;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.passage.lic.emf.migration.DelegateClassifiers;
 import org.eclipse.passage.lic.emf.migration.EClassRoutes;
-import org.eclipse.passage.lic.emf.migration.MigrationException;
 import org.eclipse.passage.lic.emf.migration.MigrationRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleAttributeRoute;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.users.model.api.User;
+import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
 
 public final class UsersResourceHandler extends MigratingResourceHandler {
@@ -41,15 +36,11 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 	}
 
 	@Override
-	public void postLoad(XMLResource resource, InputStream inputStream, Map<?, ?> options) {
-		// TODO For test purposes: remove
-		super.postLoad(resource, inputStream, options);
-	}
-
-	@Override
-	protected void convertEntry(Entry<EObject, AnyType> entry) throws MigrationException {
-		// TODO For test purposes: remove
-		super.convertEntry(entry);
+	protected void complete(XMLResource resource) {
+		resource.getContents().stream()//
+		.filter(UserOrigin.class::isInstance)//
+		.map(UserOrigin.class::cast) //
+				.forEach(this::complete);
 	}
 
 	@Override
@@ -98,6 +89,19 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 		routes.define(delegate.getUserOrigin());
 		routes.define(delegate.getUser());
 		return routes;
+	}
+
+	private void complete(UserOrigin origin) {
+		origin.getUsers().forEach(this::complete);
+	}
+
+	private void complete(User user) {
+		if(user.getIdentifier() == null) {
+			user.setIdentifier(user.getContact().getEmail());
+		}
+		if(user.getName() == null) {
+			user.setName(user.getContact().getName());
+		}
 	}
 
 }
