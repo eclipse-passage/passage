@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyFeatureGrant;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
@@ -187,7 +188,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	}
 
 	private FeatureGrant featureGrant(LicensePlanFeatureDescriptor feature, FloatingLicensePack pack, int no) {
-		FeatureGrant grant = LicensesFactory.eINSTANCE.createFeatureGrant();
+		FeatureGrant grant = new EmptyFeatureGrant().get();
 		String fid = feature.getFeature().getIdentifier();
 		grant.getFeature().setIdentifier(fid);
 		grant.setCapacity(request.defaultCapacity());
