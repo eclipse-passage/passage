@@ -12,23 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses;
 
-import java.util.Date;
-
 /**
  * @since 2.0
  */
-public interface LicenseRequisitesDescriptor {
+public interface SignatureAttributeDescriptor {
 
-	String getIdentifier();
+	String getName();
 
-	Date getIssueDate();
-
-	String getPlan();
-
-	ProductRefDescriptor getProduct();
-
-	ValidityPeriodDescriptor getValid();
-
-	SignatureDescriptor getSignature();
+	String getValue();
 
 }

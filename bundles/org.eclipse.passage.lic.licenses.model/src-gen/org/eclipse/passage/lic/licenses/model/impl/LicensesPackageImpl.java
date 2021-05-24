@@ -33,6 +33,8 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureDescriptor;
 import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 import org.eclipse.passage.lic.licenses.UserRefDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
@@ -56,6 +58,8 @@ import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.Signature;
+import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
@@ -210,6 +214,20 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass signatureDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass signatureAttributeDescriptorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass licensePlanEClass = null;
 
 	/**
@@ -358,6 +376,20 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	private EClass grantAcqisitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass signatureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass signatureAttributeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -611,6 +643,26 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EClass getVersionMatchDescriptor() {
 		return versionMatchDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSignatureDescriptor() {
+		return signatureDescriptorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSignatureAttributeDescriptor() {
+		return signatureAttributeDescriptorEClass;
 	}
 
 	/**
@@ -921,6 +973,16 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	@Override
 	public EReference getLicenseRequisites_Valid() {
 		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLicenseRequisites_Signature() {
+		return (EReference) licenseRequisitesEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1469,6 +1531,66 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 	 * @generated
 	 */
 	@Override
+	public EClass getSignature() {
+		return signatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSignature_Attributes() {
+		return (EReference) signatureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSignature_Parent() {
+		return (EReference) signatureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSignatureAttribute() {
+		return signatureAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSignatureAttribute_Name() {
+		return (EAttribute) signatureAttributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSignatureAttribute_Value() {
+		return (EAttribute) signatureAttributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public LicensesFactory getLicensesFactory() {
 		return (LicensesFactory) getEFactoryInstance();
 	}
@@ -1531,6 +1653,10 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		versionMatchDescriptorEClass = createEClass(VERSION_MATCH_DESCRIPTOR);
 
+		signatureDescriptorEClass = createEClass(SIGNATURE_DESCRIPTOR);
+
+		signatureAttributeDescriptorEClass = createEClass(SIGNATURE_ATTRIBUTE_DESCRIPTOR);
+
 		licensePlanEClass = createEClass(LICENSE_PLAN);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__IDENTIFIER);
 		createEAttribute(licensePlanEClass, LICENSE_PLAN__NAME);
@@ -1567,6 +1693,7 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEAttribute(licenseRequisitesEClass, LICENSE_REQUISITES__PLAN);
 		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__PRODUCT);
 		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__VALID);
+		createEReference(licenseRequisitesEClass, LICENSE_REQUISITES__SIGNATURE);
 
 		personalLicenseRequisitesEClass = createEClass(PERSONAL_LICENSE_REQUISITES);
 		createEReference(personalLicenseRequisitesEClass, PERSONAL_LICENSE_REQUISITES__USER);
@@ -1637,6 +1764,14 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__GRANT);
 		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__USER);
 		createEAttribute(grantAcqisitionEClass, GRANT_ACQISITION__CREATED);
+
+		signatureEClass = createEClass(SIGNATURE);
+		createEReference(signatureEClass, SIGNATURE__ATTRIBUTES);
+		createEReference(signatureEClass, SIGNATURE__PARENT);
+
+		signatureAttributeEClass = createEClass(SIGNATURE_ATTRIBUTE);
+		createEAttribute(signatureAttributeEClass, SIGNATURE_ATTRIBUTE__NAME);
+		createEAttribute(signatureAttributeEClass, SIGNATURE_ATTRIBUTE__VALUE);
 	}
 
 	/**
@@ -1692,6 +1827,8 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 		validityPeriodClosedEClass.getESuperTypes().add(this.getValidityPeriodClosedDescriptor());
 		evaluationInstructionsEClass.getESuperTypes().add(this.getEvaluationInstructionsDescriptor());
 		versionMatchEClass.getESuperTypes().add(this.getVersionMatchDescriptor());
+		signatureEClass.getESuperTypes().add(this.getSignatureDescriptor());
+		signatureAttributeEClass.getESuperTypes().add(this.getSignatureAttributeDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(licensePlanDescriptorEClass, LicensePlanDescriptor.class, "LicensePlanDescriptor", IS_ABSTRACT, //$NON-NLS-1$
@@ -1750,6 +1887,12 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 
 		initEClass(versionMatchDescriptorEClass, VersionMatchDescriptor.class, "VersionMatchDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(signatureDescriptorEClass, SignatureDescriptor.class, "SignatureDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(signatureAttributeDescriptorEClass, SignatureAttributeDescriptor.class,
+				"SignatureAttributeDescriptor", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(licensePlanEClass, LicensePlan.class, "LicensePlan", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1839,6 +1982,9 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLicenseRequisites_Valid(), this.getValidityPeriod(), null, "valid", null, 1, 1, //$NON-NLS-1$
+				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLicenseRequisites_Signature(), this.getSignature(), null, "signature", null, 0, 1, //$NON-NLS-1$
 				LicenseRequisites.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1990,6 +2136,24 @@ public class LicensesPackageImpl extends EPackageImpl implements LicensesPackage
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGrantAcqisition_Created(), ecorePackage.getEDate(), "created", null, 1, 1, //$NON-NLS-1$
 				GrantAcqisition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEClass(signatureEClass, Signature.class, "Signature", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSignature_Attributes(), this.getSignatureAttribute(), null, "attributes", null, 0, -1, //$NON-NLS-1$
+				Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSignature_Parent(), this.getSignature(), null, "parent", null, 0, 1, Signature.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(signatureAttributeEClass, SignatureAttribute.class, "SignatureAttribute", !IS_ABSTRACT, //$NON-NLS-1$
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSignatureAttribute_Name(), ecorePackage.getEString(), "name", null, 1, 1, //$NON-NLS-1$
+				SignatureAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSignatureAttribute_Value(), ecorePackage.getEString(), "value", null, 1, 1, //$NON-NLS-1$
+				SignatureAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource

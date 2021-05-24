@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getSignature <em>Signature</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites()
@@ -153,5 +154,28 @@ public interface LicenseRequisites extends EObject, LicenseRequisitesDescriptor 
 	 * @generated
 	 */
 	void setValid(ValidityPeriod value);
+
+	/**
+	 * Returns the value of the '<em><b>Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature</em>' containment reference.
+	 * @see #setSignature(Signature)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseRequisites_Signature()
+	 * @model containment="true"
+	 * @generated
+	 */
+	@Override
+	Signature getSignature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites#getSignature <em>Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Signature</em>' containment reference.
+	 * @see #getSignature()
+	 * @generated
+	 */
+	void setSignature(Signature value);
 
 } // LicenseRequisites

@@ -33,6 +33,8 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureDescriptor;
 import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 import org.eclipse.passage.lic.licenses.UserRefDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
@@ -194,6 +196,16 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSignatureDescriptor(SignatureDescriptor object) {
+			return createSignatureDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseSignatureAttributeDescriptor(SignatureAttributeDescriptor object) {
+			return createSignatureAttributeDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseLicensePlan(LicensePlan object) {
 			return createLicensePlanAdapter();
 		}
@@ -301,6 +313,16 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseGrantAcqisition(GrantAcqisition object) {
 			return createGrantAcqisitionAdapter();
+		}
+
+		@Override
+		public Adapter caseSignature(Signature object) {
+			return createSignatureAdapter();
+		}
+
+		@Override
+		public Adapter caseSignatureAttribute(SignatureAttribute object) {
+			return createSignatureAttributeAdapter();
 		}
 
 		@Override
@@ -585,6 +607,34 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVersionMatchDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.SignatureDescriptor <em>Signature Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.SignatureDescriptor
+	 * @generated
+	 */
+	public Adapter createSignatureDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor <em>Signature Attribute Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor
+	 * @generated
+	 */
+	public Adapter createSignatureAttributeDescriptorAdapter() {
 		return null;
 	}
 
@@ -893,6 +943,34 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGrantAcqisitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.Signature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.Signature
+	 * @generated
+	 */
+	public Adapter createSignatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute <em>Signature Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.SignatureAttribute
+	 * @generated
+	 */
+	public Adapter createSignatureAttributeAdapter() {
 		return null;
 	}
 

@@ -548,6 +548,52 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.Signature} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SignatureItemProvider signatureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.Signature}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSignatureAdapter() {
+		if (signatureItemProvider == null) {
+			signatureItemProvider = new SignatureItemProvider(this);
+		}
+
+		return signatureItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SignatureAttributeItemProvider signatureAttributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSignatureAttributeAdapter() {
+		if (signatureAttributeItemProvider == null) {
+			signatureAttributeItemProvider = new SignatureAttributeItemProvider(this);
+		}
+
+		return signatureAttributeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * 
@@ -701,6 +747,10 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			floatingServerConnectionItemProvider.dispose();
 		if (grantAcqisitionItemProvider != null)
 			grantAcqisitionItemProvider.dispose();
+		if (signatureItemProvider != null)
+			signatureItemProvider.dispose();
+		if (signatureAttributeItemProvider != null)
+			signatureAttributeItemProvider.dispose();
 	}
 
 }

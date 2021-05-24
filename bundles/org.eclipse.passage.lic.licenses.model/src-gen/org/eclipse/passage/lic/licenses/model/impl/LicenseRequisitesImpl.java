@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -43,6 +44,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getPlan <em>Plan</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getProduct <em>Product</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getSignature <em>Signature</em>}</li>
  * </ul>
  *
  * @generated
@@ -127,6 +129,16 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected ValidityPeriod valid;
+
+	/**
+	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Signature signature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -334,12 +346,67 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
+	public Signature getSignature() {
+		return signature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSignature(Signature newSignature, NotificationChain msgs) {
+		Signature oldSignature = signature;
+		signature = newSignature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.LICENSE_REQUISITES__SIGNATURE, oldSignature, newSignature);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSignature(Signature newSignature) {
+		if (newSignature != signature) {
+			NotificationChain msgs = null;
+			if (signature != null)
+				msgs = ((InternalEObject) signature).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__SIGNATURE, null, msgs);
+			if (newSignature != null)
+				msgs = ((InternalEObject) newSignature).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_REQUISITES__SIGNATURE, null, msgs);
+			msgs = basicSetSignature(newSignature, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_REQUISITES__SIGNATURE,
+					newSignature, newSignature));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
 			return basicSetProduct(null, msgs);
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			return basicSetValid(null, msgs);
+		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+			return basicSetSignature(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -363,6 +430,8 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return getProduct();
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			return getValid();
+		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+			return getSignature();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -390,6 +459,9 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return;
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			setValid((ValidityPeriod) newValue);
+			return;
+		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+			setSignature((Signature) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -420,6 +492,9 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			setValid((ValidityPeriod) null);
 			return;
+		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+			setSignature((Signature) null);
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -444,6 +519,8 @@ public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container
 			return product != null;
 		case LicensesPackage.LICENSE_REQUISITES__VALID:
 			return valid != null;
+		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+			return signature != null;
 		default:
 			return super.eIsSet(featureID);
 		}

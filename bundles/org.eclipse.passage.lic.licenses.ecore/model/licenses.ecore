@@ -42,6 +42,10 @@
       abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="VersionMatchDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.VersionMatchDescriptor"
       abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SignatureDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.SignatureDescriptor"
+      abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SignatureAttributeDescriptor" instanceClassName="org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor"
+      abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="LicensePlan" eSuperTypes="#//LicensePlanDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
@@ -98,6 +102,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="product" lowerBound="1"
         eType="#//ProductRef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valid" lowerBound="1" eType="#//ValidityPeriod"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//Signature"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PersonalLicenseRequisites" eSuperTypes="#//LicenseRequisites #//PersonalLicenseRequisitesDescriptor">
@@ -195,5 +201,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="created" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Signature" eSuperTypes="#//SignatureDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//SignatureAttribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Signature"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SignatureAttribute" eSuperTypes="#//SignatureAttributeDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
