@@ -30,6 +30,8 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.Signature;
+import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
@@ -231,6 +233,24 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	GrantAcqisition createGrantAcqisition();
+
+	/**
+	 * Returns a new object of class '<em>Signature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Signature</em>'.
+	 * @generated
+	 */
+	Signature createSignature();
+
+	/**
+	 * Returns a new object of class '<em>Signature Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Signature Attribute</em>'.
+	 * @generated
+	 */
+	SignatureAttribute createSignatureAttribute();
 
 	/**
 	 * Returns the package supported by this factory.

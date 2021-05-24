@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
@@ -122,6 +123,10 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createFloatingServerConnection();
 		case LicensesPackage.GRANT_ACQISITION:
 			return createGrantAcqisition();
+		case LicensesPackage.SIGNATURE:
+			return createSignature();
+		case LicensesPackage.SIGNATURE_ATTRIBUTE:
+			return createSignatureAttribute();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -330,6 +335,28 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	public GrantAcqisition createGrantAcqisition() {
 		GrantAcqisitionImpl grantAcqisition = new GrantAcqisitionImpl();
 		return grantAcqisition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Signature createSignature() {
+		SignatureImpl signature = new SignatureImpl();
+		return signature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SignatureAttribute createSignatureAttribute() {
+		SignatureAttributeImpl signatureAttribute = new SignatureAttributeImpl();
+		return signatureAttribute;
 	}
 
 	/**

@@ -17,30 +17,34 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
+
+import org.eclipse.passage.lic.licenses.model.api.Signature;
+
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.Signature} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LicenseRequisitesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class SignatureItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -48,7 +52,7 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseRequisitesItemProvider(AdapterFactory adapterFactory) {
+	public SignatureItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,59 +67,8 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdentifierPropertyDescriptor(object);
-			addIssueDatePropertyDescriptor(object);
-			addPlanPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseRequisites_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseRequisites_Identifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Issue Date feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIssueDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseRequisites_issueDate_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_issueDate_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseRequisites_IssueDate(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Plan feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPlanPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseRequisites_plan_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseRequisites_plan_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseRequisites_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseRequisites_Plan(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -130,9 +83,8 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Product());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Valid());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseRequisites_Signature());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getSignature_Attributes());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getSignature_Parent());
 		}
 		return childrenFeatures;
 	}
@@ -151,14 +103,14 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns EvaluationInstructions.gif.
+	 * This returns Signature.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return null;
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Signature")); //$NON-NLS-1$
 	}
 
 	/**
@@ -179,9 +131,7 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LicenseRequisites) object).getIdentifier();
-		return label == null || label.length() == 0 ? getString("_UI_LicenseRequisites_type") : //$NON-NLS-1$
-				getString("_UI_LicenseRequisites_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_Signature_type"); //$NON-NLS-1$
 	}
 
 	/**
@@ -195,15 +145,9 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicenseRequisites.class)) {
-		case LicensesPackage.LICENSE_REQUISITES__IDENTIFIER:
-		case LicensesPackage.LICENSE_REQUISITES__ISSUE_DATE:
-		case LicensesPackage.LICENSE_REQUISITES__PLAN:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case LicensesPackage.LICENSE_REQUISITES__PRODUCT:
-		case LicensesPackage.LICENSE_REQUISITES__VALID:
-		case LicensesPackage.LICENSE_REQUISITES__SIGNATURE:
+		switch (notification.getFeatureID(Signature.class)) {
+		case LicensesPackage.SIGNATURE__ATTRIBUTES:
+		case LicensesPackage.SIGNATURE__PARENT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -223,13 +167,10 @@ public class LicenseRequisitesItemProvider extends ItemProviderAdapter implement
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Product(),
-				LicensesFactory.eINSTANCE.createProductRef()));
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getSignature_Attributes(),
+				LicensesFactory.eINSTANCE.createSignatureAttribute()));
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Valid(),
-				LicensesFactory.eINSTANCE.createValidityPeriodClosed()));
-
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseRequisites_Signature(),
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getSignature_Parent(),
 				LicensesFactory.eINSTANCE.createSignature()));
 	}
 

@@ -31,6 +31,8 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor;
+import org.eclipse.passage.lic.licenses.SignatureDescriptor;
 import org.eclipse.passage.lic.licenses.UserGrantDescriptor;
 import org.eclipse.passage.lic.licenses.UserRefDescriptor;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
@@ -235,6 +237,20 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LicensesPackage.SIGNATURE_DESCRIPTOR: {
+			SignatureDescriptor signatureDescriptor = (SignatureDescriptor) theEObject;
+			T result = caseSignatureDescriptor(signatureDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.SIGNATURE_ATTRIBUTE_DESCRIPTOR: {
+			SignatureAttributeDescriptor signatureAttributeDescriptor = (SignatureAttributeDescriptor) theEObject;
+			T result = caseSignatureAttributeDescriptor(signatureAttributeDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.LICENSE_PLAN: {
 			LicensePlan licensePlan = (LicensePlan) theEObject;
 			T result = caseLicensePlan(licensePlan);
@@ -435,6 +451,24 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.GRANT_ACQISITION: {
 			GrantAcqisition grantAcqisition = (GrantAcqisition) theEObject;
 			T result = caseGrantAcqisition(grantAcqisition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.SIGNATURE: {
+			Signature signature = (Signature) theEObject;
+			T result = caseSignature(signature);
+			if (result == null)
+				result = caseSignatureDescriptor(signature);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.SIGNATURE_ATTRIBUTE: {
+			SignatureAttribute signatureAttribute = (SignatureAttribute) theEObject;
+			T result = caseSignatureAttribute(signatureAttribute);
+			if (result == null)
+				result = caseSignatureAttributeDescriptor(signatureAttribute);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -726,6 +760,36 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVersionMatchDescriptor(VersionMatchDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Signature Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Signature Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSignatureDescriptor(SignatureDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Signature Attribute Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Signature Attribute Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSignatureAttributeDescriptor(SignatureAttributeDescriptor object) {
 		return null;
 	}
 
@@ -1056,6 +1120,36 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGrantAcqisition(GrantAcqisition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Signature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Signature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSignature(Signature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Signature Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Signature Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSignatureAttribute(SignatureAttribute object) {
 		return null;
 	}
 
