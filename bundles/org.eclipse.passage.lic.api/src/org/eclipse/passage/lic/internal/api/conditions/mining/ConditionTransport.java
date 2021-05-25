@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.internal.api.registry.Service;
 
 /**
@@ -37,7 +37,7 @@ public interface ConditionTransport extends Service<ContentType> {
 	public static final class Data {
 
 		private final Collection<Condition> conditions;
-		private final Optional<LicenseSignature> signature;
+		private final Optional<IssuerSignature> signature;
 
 		public Data() {
 			this(Collections.emptyList(), Optional.empty());
@@ -47,7 +47,7 @@ public interface ConditionTransport extends Service<ContentType> {
 			this(conditions, Optional.empty());
 		}
 
-		public Data(Collection<Condition> conditions, Optional<LicenseSignature> signature) {
+		public Data(Collection<Condition> conditions, Optional<IssuerSignature> signature) {
 			this.conditions = conditions;
 			this.signature = signature;
 		}
@@ -56,7 +56,7 @@ public interface ConditionTransport extends Service<ContentType> {
 			return conditions;
 		}
 
-		public Optional<LicenseSignature> signature() {
+		public Optional<IssuerSignature> signature() {
 			return signature;
 		}
 

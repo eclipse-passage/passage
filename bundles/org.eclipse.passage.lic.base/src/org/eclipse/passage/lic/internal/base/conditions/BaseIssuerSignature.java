@@ -18,26 +18,26 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 
-public final class BaseLicenseSignature implements LicenseSignature {
+public final class BaseIssuerSignature implements IssuerSignature {
 
 	private final Map<String, String> attributes;
-	private final Optional<LicenseSignature> parent;
+	private final Optional<IssuerSignature> parent;
 
-	public BaseLicenseSignature(Map<String, String> attributes, LicenseSignature parent) {
+	public BaseIssuerSignature(Map<String, String> attributes, IssuerSignature parent) {
 		this(attributes, Optional.of(parent));
 	}
 
-	public BaseLicenseSignature(Map<String, String> attributes) {
+	public BaseIssuerSignature(Map<String, String> attributes) {
 		this(attributes, Optional.empty());
 	}
 
-	public BaseLicenseSignature() {
+	public BaseIssuerSignature() {
 		this(Collections.emptyMap());
 	}
 
-	public BaseLicenseSignature(Map<String, String> attributes, Optional<LicenseSignature> parent) {
+	public BaseIssuerSignature(Map<String, String> attributes, Optional<IssuerSignature> parent) {
 		Objects.requireNonNull(attributes, "BaseLicenseSignature::attributes"); //$NON-NLS-1$
 		Objects.requireNonNull(parent, "BaseLicenseSignature::parent"); //$NON-NLS-1$
 		this.attributes = attributes;
@@ -50,7 +50,7 @@ public final class BaseLicenseSignature implements LicenseSignature {
 	}
 
 	@Override
-	public Optional<LicenseSignature> parent() {
+	public Optional<IssuerSignature> parent() {
 		return parent;
 	}
 

@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
@@ -78,7 +78,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		return new Data(conditions(license.get()), signature(license.get()));
 	}
 
-	private Optional<LicenseSignature> signature(PersonalLicensePack pack) {
+	private Optional<IssuerSignature> signature(PersonalLicensePack pack) {
 		if (pack.getLicense().getSignature() == null) {
 			return Optional.empty();
 		}

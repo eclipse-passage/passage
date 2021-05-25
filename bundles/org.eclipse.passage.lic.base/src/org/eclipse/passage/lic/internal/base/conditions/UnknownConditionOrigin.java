@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 
 public final class UnknownConditionOrigin implements ConditionOrigin {
 
@@ -31,8 +31,8 @@ public final class UnknownConditionOrigin implements ConditionOrigin {
 	}
 
 	@Override
-	public LicenseSignature signature() {
-		return new BaseLicenseSignature();
+	public IssuerSignature signature() {
+		return new BaseIssuerSignature();
 	}
 
 }

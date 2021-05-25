@@ -60,7 +60,20 @@ public abstract class SignatureData implements NamedData<String> {
 
 		@Override
 		public String key() {
-			return "lic.operator.name"; //$NON-NLS-1$
+			return "issuer.name"; //$NON-NLS-1$
+		}
+
+	}
+
+	public static final class LicensingOperatorVersion extends SignatureData {
+
+		public LicensingOperatorVersion(Signature signature) {
+			super(signature);
+		}
+
+		@Override
+		public String key() {
+			return "issuer.version"; //$NON-NLS-1$
 		}
 
 	}
@@ -73,7 +86,7 @@ public abstract class SignatureData implements NamedData<String> {
 
 		@Override
 		public String key() {
-			return "lic.operator.licensing_status"; //$NON-NLS-1$
+			return "issuer.licensing_status"; //$NON-NLS-1$
 		}
 
 		public void notRequired() {
@@ -87,19 +100,6 @@ public abstract class SignatureData implements NamedData<String> {
 		public void insufficient() {
 			put("insufficient"); //$NON-NLS-1$
 		}
-	}
-
-	public static final class LicensingOperatorVersion extends SignatureData {
-
-		public LicensingOperatorVersion(Signature signature) {
-			super(signature);
-		}
-
-		@Override
-		public String key() {
-			return "lic.operator.version"; //$NON-NLS-1$
-		}
-
 	}
 
 	public static final class Of extends SignatureData {

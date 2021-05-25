@@ -18,6 +18,6 @@ public interface ConditionOrigin {
 
 	String coordinates();
 
-	LicenseSignature signature();
+	IssuerSignature signature();
 
 }

@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.api.conditions;
 import java.util.Map;
 import java.util.Optional;
 
-public interface LicenseSignature {
+public interface IssuerSignature {
 
 	Map<String, String> attributes();
 
-	Optional<LicenseSignature> parent();
+	Optional<IssuerSignature> parent();
 
 }

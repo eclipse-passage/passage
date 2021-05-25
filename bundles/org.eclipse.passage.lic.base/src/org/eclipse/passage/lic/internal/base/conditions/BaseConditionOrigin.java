@@ -17,23 +17,23 @@ import java.util.Optional;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 
 public final class BaseConditionOrigin implements ConditionOrigin {
 
 	private final ConditionMiningTarget miner;
 	private final String coordinates;
-	private final LicenseSignature signature;
+	private final IssuerSignature signature;
 
 	public BaseConditionOrigin(ConditionMiningTarget miner, String coordinates) {
-		this(miner, coordinates, new BaseLicenseSignature());
+		this(miner, coordinates, new BaseIssuerSignature());
 	}
 
-	public BaseConditionOrigin(ConditionMiningTarget miner, String coordinates, Optional<LicenseSignature> signature) {
-		this(miner, coordinates, signature.orElse(new BaseLicenseSignature()));
+	public BaseConditionOrigin(ConditionMiningTarget miner, String coordinates, Optional<IssuerSignature> signature) {
+		this(miner, coordinates, signature.orElse(new BaseIssuerSignature()));
 	}
 
-	public BaseConditionOrigin(ConditionMiningTarget miner, String coordinates, LicenseSignature signature) {
+	public BaseConditionOrigin(ConditionMiningTarget miner, String coordinates, IssuerSignature signature) {
 		Objects.requireNonNull(miner, "BaseConditionOrigin::miner"); //$NON-NLS-1$
 		Objects.requireNonNull(coordinates, "BaseConditionOrigin::coordinates"); //$NON-NLS-1$
 		Objects.requireNonNull(signature, "BaseConditionOrigin::signature"); //$NON-NLS-1$
@@ -53,7 +53,7 @@ public final class BaseConditionOrigin implements ConditionOrigin {
 	}
 
 	@Override
-	public LicenseSignature signature() {
+	public IssuerSignature signature() {
 		return signature;
 	}
 

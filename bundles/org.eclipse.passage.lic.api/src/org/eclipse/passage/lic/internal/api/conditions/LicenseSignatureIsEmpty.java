@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.internal.api.conditions;
 
 import java.util.function.Predicate;
 
-public final class LicenseSignatureIsEmpty implements Predicate<LicenseSignature> {
+public final class LicenseSignatureIsEmpty implements Predicate<IssuerSignature> {
 
 	@Override
-	public boolean test(LicenseSignature signature) {
+	public boolean test(IssuerSignature signature) {
 		return signature.attributes().isEmpty() && !signature.parent().isPresent();
 	}
 

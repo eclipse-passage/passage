@@ -16,7 +16,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.internal.api.conditions.LicenseSignatureIsEmpty;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
@@ -25,9 +25,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 @SuppressWarnings("restriction")
 public final class ELicenseSignature implements Supplier<Signature> {
 
-	private final LicenseSignature signature;
+	private final IssuerSignature signature;
 
-	public ELicenseSignature(LicenseSignature signature) {
+	public ELicenseSignature(IssuerSignature signature) {
 		Objects.requireNonNull(signature, "ELicenseSignature::signature"); //$NON-NLS-1$
 		this.signature = signature;
 	}

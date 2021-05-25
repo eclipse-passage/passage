@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.base.conditions.BaseLicenseSignature;
+import org.eclipse.passage.lic.internal.base.conditions.BaseIssuerSignature;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
@@ -98,7 +98,7 @@ public abstract class Json<T> implements Function<JsonNode, T> {
 			return new BaseConditionOrigin(//
 					new ConditionMiningTarget.Of(node.get("miner").textValue()), //$NON-NLS-1$
 					node.get("coordinates").textValue(), //$NON-NLS-1$
-					new BaseLicenseSignature()); // TODO:
+					new BaseIssuerSignature()); // TODO:
 		}
 
 	}

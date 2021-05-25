@@ -17,13 +17,13 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignature;
-import org.eclipse.passage.lic.internal.base.conditions.BaseLicenseSignature;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
+import org.eclipse.passage.lic.internal.base.conditions.BaseIssuerSignature;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 
 @SuppressWarnings("restriction")
-public final class PLicenseSignature implements Supplier<LicenseSignature> {
+public final class PLicenseSignature implements Supplier<IssuerSignature> {
 
 	private final Signature signature;
 
@@ -32,8 +32,8 @@ public final class PLicenseSignature implements Supplier<LicenseSignature> {
 	}
 
 	@Override
-	public LicenseSignature get() {
-		return new BaseLicenseSignature(attributes(), parent());
+	public IssuerSignature get() {
+		return new BaseIssuerSignature(attributes(), parent());
 	}
 
 	private Map<String, String> attributes() {
@@ -43,7 +43,7 @@ public final class PLicenseSignature implements Supplier<LicenseSignature> {
 						SignatureAttribute::getValue));
 	}
 
-	private Optional<LicenseSignature> parent() {
+	private Optional<IssuerSignature> parent() {
 		Signature parent = signature.getParent();
 		return parent == null //
 				? Optional.empty() //
