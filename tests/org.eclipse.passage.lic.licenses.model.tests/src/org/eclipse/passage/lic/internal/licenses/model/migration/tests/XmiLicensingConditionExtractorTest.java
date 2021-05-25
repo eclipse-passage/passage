@@ -99,7 +99,7 @@ public class XmiLicensingConditionExtractorTest {
 
 		List<Condition> actual = new ArrayList<>();
 		try (FileInputStream fis = new FileInputStream(file)) {
-			extractor.read(fis).forEach(actual::add);
+			extractor.read(fis).conditions().forEach(actual::add);
 		}
 		assertEquals(2, actual.size());
 		Condition actual1 = actual.get(0);

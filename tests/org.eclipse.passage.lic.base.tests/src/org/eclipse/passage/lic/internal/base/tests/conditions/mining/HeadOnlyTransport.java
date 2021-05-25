@@ -49,7 +49,7 @@ final class HeadOnlyTransport implements ConditionTransport {
 	}
 
 	@Override
-	public Collection<Condition> read(InputStream input) throws IOException {
+	public Data read(InputStream input) throws IOException {
 		Collection<Condition> conditions = new ArrayList<>();
 		try (LineNumberReader lines = new LineNumberReader(new InputStreamReader(input))) {
 			for (String line = lines.readLine(); line != null; line = lines.readLine()) {
@@ -60,7 +60,7 @@ final class HeadOnlyTransport implements ConditionTransport {
 						commonVersion(), commonPeriod(), commonInstructions()));
 			}
 		}
-		return conditions;
+		return new Data(conditions);
 	}
 
 	private VersionMatch commonVersion() {
