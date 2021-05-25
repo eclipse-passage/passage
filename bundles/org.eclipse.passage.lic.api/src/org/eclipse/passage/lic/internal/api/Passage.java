@@ -111,6 +111,12 @@ public interface Passage {
 	boolean canUse(String feature);
 
 	/**
+	 * Examines all the requirements against all the permissions and summarizes the
+	 * aggregative licensing status for all features declared to be licensed.
+	 */
+	ServiceInvocationResult<ExaminationCertificate> assess();
+
+	/**
 	 * Get the product identification found and used by Passage across all the
 	 * access cycle phases
 	 */
