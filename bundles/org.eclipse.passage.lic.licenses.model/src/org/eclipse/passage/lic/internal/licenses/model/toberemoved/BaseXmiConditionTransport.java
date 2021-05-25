@@ -34,7 +34,7 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.licenses.convert.PLicenseSignature;
+import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
@@ -82,7 +82,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		if (pack.getLicense().getSignature() == null) {
 			return Optional.empty();
 		}
-		return Optional.of(new PLicenseSignature(pack.getLicense().getSignature()).get());
+		return Optional.of(new PIssuerSignature(pack.getLicense().getSignature()).get());
 	}
 
 	private Collection<Condition> conditions(PersonalLicensePack license) {

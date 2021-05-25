@@ -23,11 +23,11 @@ import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 @SuppressWarnings("restriction")
-public final class ELicenseSignature implements Supplier<Signature> {
+public final class EIssuerSignature implements Supplier<Signature> {
 
 	private final IssuerSignature signature;
 
-	public ELicenseSignature(IssuerSignature signature) {
+	public EIssuerSignature(IssuerSignature signature) {
 		Objects.requireNonNull(signature, "ELicenseSignature::signature"); //$NON-NLS-1$
 		this.signature = signature;
 	}
@@ -47,7 +47,7 @@ public final class ELicenseSignature implements Supplier<Signature> {
 		if (!signature.parent().isPresent()) {
 			return;
 		}
-		esignature.setParent(new ELicenseSignature(signature.parent().get()).get());
+		esignature.setParent(new EIssuerSignature(signature.parent().get()).get());
 	}
 
 	private void installAttributes(Signature esignature) {

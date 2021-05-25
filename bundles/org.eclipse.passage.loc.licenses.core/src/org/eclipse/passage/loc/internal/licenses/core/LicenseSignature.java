@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.SuppliedFrameworkAware;
-import org.eclipse.passage.lic.internal.licenses.convert.ELicenseSignature;
+import org.eclipse.passage.lic.internal.licenses.convert.EIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.model.signature.SignatureData;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
@@ -87,7 +87,7 @@ final class LicenseSignature implements Consumer<LicenseRequisites> {
 	}
 
 	private void installParentSignature(Signature signature, ConditionOrigin origin) {
-		signature.setParent(new ELicenseSignature(origin.signature()).get());
+		signature.setParent(new EIssuerSignature(origin.signature()).get());
 	}
 
 }

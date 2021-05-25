@@ -23,11 +23,11 @@ import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 
 @SuppressWarnings("restriction")
-public final class PLicenseSignature implements Supplier<IssuerSignature> {
+public final class PIssuerSignature implements Supplier<IssuerSignature> {
 
 	private final Signature signature;
 
-	public PLicenseSignature(Signature signature) {
+	public PIssuerSignature(Signature signature) {
 		this.signature = signature;
 	}
 
@@ -47,7 +47,7 @@ public final class PLicenseSignature implements Supplier<IssuerSignature> {
 		Signature parent = signature.getParent();
 		return parent == null //
 				? Optional.empty() //
-				: Optional.of(new PLicenseSignature(parent).get());
+				: Optional.of(new PIssuerSignature(parent).get());
 	}
 
 }
