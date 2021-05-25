@@ -42,4 +42,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/passage/lic/internal/licenses/model/signature/SignatureData.java" type="org.eclipse.passage.lic.internal.licenses.model.signature.SignatureData$OperatorLicensingStatus">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Signature"/>
+                <message_argument value="OperatorLicensingStatus"/>
+                <message_argument value="OperatorLicensingStatus(Signature)"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

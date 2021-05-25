@@ -19,7 +19,6 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
@@ -182,7 +181,7 @@ final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePa
 	private Collection<FeatureGrant> featureGrants(FloatingLicensePack pack) {
 		LicensePlanDescriptor plan = licenses.getLicensePlan(request.plan());
 		AtomicInteger counter = new AtomicInteger(0);
-		return StreamSupport.stream(plan.getFeatures().spliterator(), false)//
+		return plan.getFeatures().stream()//
 				.map(feature -> featureGrant(feature, pack, counter.getAndIncrement())) //
 				.collect(Collectors.toSet());
 	}

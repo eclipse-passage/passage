@@ -47,6 +47,7 @@ public abstract class SignatureData implements NamedData<String> {
 		if (!attribute.isPresent()) {
 			attribute = Optional.of(LicensesFactory.eINSTANCE.createSignatureAttribute());
 			attribute.get().setName(key());
+			signature.getAttributes().add(attribute.get());
 		}
 		attribute.get().setValue(value);
 	}
