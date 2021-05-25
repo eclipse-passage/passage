@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.internal.base.conditions;
 
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 
 public final class UnknownConditionOrigin implements ConditionOrigin {
 
@@ -27,6 +28,11 @@ public final class UnknownConditionOrigin implements ConditionOrigin {
 	@Override
 	public String coordinates() {
 		return "none"; //$NON-NLS-1$
+	}
+
+	@Override
+	public IssuerSignature signature() {
+		return new BaseIssuerSignature();
 	}
 
 }

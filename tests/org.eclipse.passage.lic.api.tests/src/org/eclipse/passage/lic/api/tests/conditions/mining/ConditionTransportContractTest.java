@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -59,7 +59,7 @@ public abstract class ConditionTransportContractTest {
 	}
 
 	private Collection<Condition> read(ConditionTransport transport, String source) throws IOException {
-		return transport.read(new ByteArrayInputStream(source.getBytes()));
+		return transport.read(new ByteArrayInputStream(source.getBytes())).conditions();
 	}
 
 	private Set<String> textual(Collection<Condition> condition) {

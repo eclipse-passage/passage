@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,13 +14,10 @@ package org.eclipse.passage.lic.api.tests.fakes.io;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 
-@SuppressWarnings("restriction")
 public final class FakeConditionTransport implements ConditionTransport {
 
 	@Override
@@ -29,7 +26,7 @@ public final class FakeConditionTransport implements ConditionTransport {
 	}
 
 	@Override
-	public Collection<Condition> read(InputStream input) throws IOException {
+	public Data read(InputStream input) throws IOException {
 		throw new UnsupportedOperationException();
 	}
 

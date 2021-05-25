@@ -68,7 +68,7 @@ final class IssueFloatingLicense {
 
 	ServiceInvocationResult<IssuedFloatingLicense> issue(FloatingLicensePack pack,
 			Collection<FloatingLicenseAccess> configs) {
-		FloatingLicensePack license = shielded(EcoreUtil.copy(pack), configs);
+		FloatingLicensePack license = shielded(signed(EcoreUtil.copy(pack)), configs);
 		try {
 			new UpdateLicensePlan(licenses).withFloating(license);
 		} catch (IOException e) {
@@ -86,6 +86,11 @@ final class IssueFloatingLicense {
 		Collection<FloatingLicenseAccess> redundant = configs.stream()//
 				.filter(c -> !users.contains(c.getUser())).collect(Collectors.toSet());
 		configs.removeAll(redundant);
+		return pack;
+	}
+
+	private FloatingLicensePack signed(FloatingLicensePack pack) {
+		new LicenseSignature().accept(pack.getLicense());
 		return pack;
 	}
 

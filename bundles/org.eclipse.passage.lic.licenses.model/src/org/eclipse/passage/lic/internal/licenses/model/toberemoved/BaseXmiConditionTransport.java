@@ -20,19 +20,21 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
@@ -61,16 +63,30 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 	}
 
 	@Override
-	public Collection<Condition> read(InputStream input) throws IOException {
+	public Data read(InputStream input) throws IOException {
 		// FIXME:AF: should be done via factory
 		Resource resource = new LicensesResourceImpl();
 		resource.load(input, loadOptions());
-		return resource.getContents().stream() //
+		Optional<PersonalLicensePack> license = resource.getContents().stream() //
 				.filter(PersonalLicensePack.class::isInstance) //
 				.map(PersonalLicensePack.class::cast) //
-				.filter(filter) //
-				.map(PersonalLicensePack::getGrants) //
-				.flatMap(i -> StreamSupport.stream(i.spliterator(), false)) //
+				.filter(filter)//
+				.findAny();
+		if (!license.isPresent()) {
+			return new Data();
+		}
+		return new Data(conditions(license.get()), signature(license.get()));
+	}
+
+	private Optional<IssuerSignature> signature(PersonalLicensePack pack) {
+		if (pack.getLicense().getSignature() == null) {
+			return Optional.empty();
+		}
+		return Optional.of(new PIssuerSignature(pack.getLicense().getSignature()).get());
+	}
+
+	private Collection<Condition> conditions(PersonalLicensePack license) {
+		return license.getGrants().stream() //
 				.map(this::condition) //
 				.collect(Collectors.toList());
 	}

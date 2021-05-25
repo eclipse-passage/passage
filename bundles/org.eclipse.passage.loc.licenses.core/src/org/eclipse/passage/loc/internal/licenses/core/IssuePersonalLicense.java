@@ -59,7 +59,7 @@ final class IssuePersonalLicense {
 	}
 
 	ServiceInvocationResult<IssuedLicense> issue(Supplier<PersonalLicensePack> template) {
-		PersonalLicensePack license = adjsut(EcoreUtil.copy(template.get()));
+		PersonalLicensePack license = adjsut(signed(EcoreUtil.copy(template.get())));
 		Optional<String> errors = new ErrorMessages().apply(license);
 		if (errors.isPresent()) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseValidationFailed(), errors.get()));
@@ -104,6 +104,11 @@ final class IssuePersonalLicense {
 		new AssignGrantIdentifiers().accept(license);
 		new PersonalLicenseIssuingProtection().accept(license);
 		return license;
+	}
+
+	private PersonalLicensePack signed(PersonalLicensePack pack) {
+		new LicenseSignature().accept(pack.getLicense());
+		return pack;
 	}
 
 }

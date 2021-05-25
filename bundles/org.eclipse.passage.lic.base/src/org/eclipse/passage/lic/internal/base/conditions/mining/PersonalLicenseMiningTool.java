@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,6 +24,7 @@ import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport.Data;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -54,13 +55,13 @@ final class PersonalLicenseMiningTool extends ArmedMiningTool {
 
 	private ServiceInvocationResult<Collection<ConditionPack>> mine(Path source) {
 		try {
-			Collection<Condition> conditions = from(decoded(source));
+			Data data = from(decoded(source));
 			return new BaseServiceInvocationResult<>(//
-					diagnostic(conditions, source), //
+					diagnostic(data.conditions(), source), //
 					Collections.singleton(//
 							new BaseConditionPack(//
-									new BaseConditionOrigin(miner, source(source)), //
-									conditions)//
+									new BaseConditionOrigin(miner, source(source), data.signature()), //
+									data.conditions())//
 					));
 		} catch (IOException | LicensingException e) {
 			return new BaseServiceInvocationResult<>(//
@@ -72,7 +73,7 @@ final class PersonalLicenseMiningTool extends ArmedMiningTool {
 		}
 	}
 
-	private Collection<Condition> from(byte[] decoded) throws IOException {
+	private Data from(byte[] decoded) throws IOException {
 		try (ByteArrayInputStream input = new ByteArrayInputStream(decoded)) {
 			return transport.read(input);
 		}

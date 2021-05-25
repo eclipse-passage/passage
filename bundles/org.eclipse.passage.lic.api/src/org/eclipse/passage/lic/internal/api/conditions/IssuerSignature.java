@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,12 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions;
 
-public interface ConditionOrigin {
+import java.util.Map;
+import java.util.Optional;
 
-	ConditionMiningTarget miner();
+public interface IssuerSignature {
 
-	String coordinates();
+	Map<String, String> attributes();
 
-	IssuerSignature signature();
+	Optional<IssuerSignature> parent();
 
 }

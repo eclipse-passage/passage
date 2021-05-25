@@ -16,11 +16,13 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.Passage;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.net.NetFrameworkAware;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
+@SuppressWarnings("restriction")
 final class PassageAgent implements Passage {
 
 	private final EquinoxPassage delegate;
@@ -47,6 +49,11 @@ final class PassageAgent implements Passage {
 	@Override
 	public ServiceInvocationResult<LicensedProduct> product() {
 		return delegate.product();
+	}
+
+	@Override
+	public ServiceInvocationResult<ExaminationCertificate> assess() {
+		return delegate.assess();
 	}
 
 }

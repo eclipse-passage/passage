@@ -21,6 +21,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport.Data;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
@@ -51,10 +52,11 @@ final class DecryptedConditions implements ResponseHandler<Collection<ConditionP
 	public Collection<ConditionPack> read(ResultsTransfered results, RequestContext context) throws LicensingException {
 		byte[] safe = safeData(results, context);
 		try (ByteArrayInputStream stream = new ByteArrayInputStream(safe)) {
+			Data data = equipment.transport(results.contentType()).read(stream);
 			return Collections.singleton(//
 					new BaseConditionPack(//
-							new BaseConditionOrigin(target, source()), //
-							equipment.transport(results.contentType()).read(stream) //
+							new BaseConditionOrigin(target, source(), data.signature()), //
+							data.conditions() //
 					));
 		} catch (IOException e) {
 			throw new LicensingException(MineMessages.DecryptedConditions_reading_error, e);
