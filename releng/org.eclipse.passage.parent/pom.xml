@@ -44,10 +44,7 @@
 
 		<eclipserun-repo>https://download.eclipse.org/eclipse/updates/4.19/R-4.19-202103031800/</eclipserun-repo>
 		<released.baseline>https://download.eclipse.org/passage/updates/release/1.2.1/</released.baseline>
-<!-- 
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
- -->
-		<staging.baseline>https://download.eclipse.org/passage/updates/release/1.2.1/</staging.baseline>
 
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
