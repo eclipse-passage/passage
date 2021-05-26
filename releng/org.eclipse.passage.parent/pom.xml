@@ -404,6 +404,7 @@
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200a-plugin</artifactId>
+						<version>${tycho.version}</version>
 						<executions>
 							<execution>
 								<id>pack200-normalize</id>
@@ -417,6 +418,7 @@
 					<plugin>
 						<groupId>org.eclipse.cbi.maven.plugins</groupId>
 						<artifactId>eclipse-jarsigner-plugin</artifactId>
+						<version>${jarsigner.version}</version>
 						<executions>
 							<execution>
 								<id>sign</id>
@@ -430,6 +432,7 @@
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200b-plugin</artifactId>
+						<version>${tycho.version}</version>
 						<executions>
 							<execution>
 								<id>pack200-pack</id>
@@ -716,9 +719,13 @@
 						<baselineReplace>all</baselineReplace>
 						<baselineRepositories>
 							<repository>
-								<url>${released.baseline}</url>
+								<url>${staging.baseline}</url>
 							</repository>
 						</baselineRepositories>
+						<ignoredPatterns>
+							<pattern>META-INF/ECLIPSE_.RSA</pattern>
+							<pattern>META-INF/ECLIPSE_.SF</pattern>
+						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
 					</configuration>
 				</plugin>
