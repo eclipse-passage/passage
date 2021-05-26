@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,8 +27,6 @@ import org.eclipse.passage.loc.internal.workbench.registry.UnregisterSelected;
 import org.eclipse.passage.loc.internal.workbench.registry.UnregisterUri;
 import org.eclipse.swt.widgets.Shell;
 
-//FIXME: rewrite to avoid restriction warnings
-@SuppressWarnings("restriction")
 public class DomainRegistryRemoveHandler {
 
 	@CanExecute
