@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.products.model.migration.ProductsResourceHandler;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource </b> associated with the package.
+ * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.products.model.util.ProductsResourceFactoryImpl
- * @since 2.0
+ * @since 1.1
  * @generated
  */
 public class ProductsResourceImpl extends XMIResourceImpl {
