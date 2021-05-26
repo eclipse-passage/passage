@@ -13,18 +13,16 @@
 package org.eclipse.passage.lic.features.model.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource Factory</b> associated with the package.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Resource Factory</b> associated with the
+ * package. <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl
  * @generated
- * @since 2.0
+ * @since 1.1
  */
 public class FeaturesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
