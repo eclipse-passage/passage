@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.workbench.LocDomainRegistryAccess;
 import org.eclipse.swt.graphics.Image;
 
-//FIXME: rewrite to avoid restriction warnings
 class DomainRegistryLabelProvider extends LabelProvider {
 
 	private final LocDomainRegistryAccess access;
