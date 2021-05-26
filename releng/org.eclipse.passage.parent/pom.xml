@@ -716,7 +716,7 @@
 						<baselineReplace>all</baselineReplace>
 						<baselineRepositories>
 							<repository>
-								<url>${staging.baseline}</url>
+								<url>${released.baseline}</url>
 							</repository>
 						</baselineRepositories>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
