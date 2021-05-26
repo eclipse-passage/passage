@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.features.model.migration.FeaturesResourceHandler;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Resource </b> associated with the package.
+ * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl
  * @generated
- * @since 2.0
+ * @since 1.1
  */
 public class FeaturesResourceImpl extends XMIResourceImpl {
 	/**

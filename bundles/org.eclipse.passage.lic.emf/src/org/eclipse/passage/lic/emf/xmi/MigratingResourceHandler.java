@@ -57,7 +57,12 @@ public abstract class MigratingResourceHandler extends BasicResourceHandler {
 				throw new RuntimeException(message, e);
 			}
 		}
+		evaporizeUnknownParticles(resource);
 		complete(resource);
+	}
+
+	private void evaporizeUnknownParticles(XMLResource resource) {
+
 	}
 
 	protected void convertEntry(Entry<EObject, AnyType> entry) throws MigrationException {
