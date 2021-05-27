@@ -177,61 +177,15 @@
 			</build>
 		</profile>
 		<profile>
-			<id>baseline</id>
+			<id>baseline-check</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.tycho.extras</groupId>
-						<artifactId>tycho-p2-extras-plugin</artifactId>
-						<version>${tycho.version}</version>
-						<executions>
-							<execution> 
-								<id>compare-attached-artifacts-with-release</id>
-								<goals>
-									<goal>compare-version-with-baselines</goal>
-								</goals>
-								<configuration>
-									<skip>${compare-version-with-baselines.skip}</skip>
-									<baselines>
-										<baseline>${released.baseline}</baseline>
-									</baselines>
-									<comparator>zip</comparator>
-								</configuration>
-							</execution>
-						</executions>
-						<configuration>
-								<ignoredPatterns>
-									<pattern>META-INF/ECLIPSE_.RSA</pattern>
-									<pattern>META-INF/ECLIPSE_.SF</pattern>
-								</ignoredPatterns>
-						</configuration>
-					</plugin>
-<!--  do we need the baseline replacement below? what for? -->
-<!-- 
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>tycho-p2-plugin</artifactId>
-						<version>${tycho.version}</version>
-						<configuration>
-							<baselineMode>warn</baselineMode>
-							<baselineReplace>all</baselineReplace>
-							<baselineRepositories>
-								<repository>
-									<url>${staging.baseline}</url>
-								</repository>
-							</baselineRepositories>
-							<ignoredPatterns>
-								<pattern>META-INF/ECLIPSE_.RSA</pattern>
-								<pattern>META-INF/ECLIPSE_.SF</pattern>
-							</ignoredPatterns>
-						</configuration>
-					</plugin>
- -->
-				</plugins>
-			</build>
+			<properties>
+				<compare-version-with-baselines.skip>false</compare-version-with-baselines.skip>
+				<replace-version-with-baselines.mode>fail</replace-version-with-baselines.mode>
+				<replace-version-with-baselines.replace>all</replace-version-with-baselines.replace>
+			</properties>
 		</profile>
 
 		<profile>
@@ -392,7 +346,7 @@
 										<args>-project</args>
 										<args>${project.basedir}</args>
 										<args>-baseline</args>
-										<args>${project.build.directory}/../../../releng/org.eclipse.passage.target/org.eclipse.passage.baseline.target
+										<args>${project.build.directory}/${project.artifactId}-apiBaseline.target
 										</args>
 										<args>-dependencyList</args>
 										<args>${project.build.directory}/dependencies-list.txt</args>
