@@ -46,6 +46,10 @@
 		<released.baseline>https://download.eclipse.org/passage/updates/release/1.2.1/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
+		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
+		<replace-version-with-baselines.mode>disable</replace-version-with-baselines.mode>
+		<replace-version-with-baselines.replace>none</replace-version-with-baselines.replace>
+
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
 			activation of specific configuration in modules. -->
@@ -206,6 +210,7 @@
 						</configuration>
 					</plugin>
 <!--  do we need the baseline replacement below? what for? -->
+<!-- 
 					<plugin>
 						<groupId>org.eclipse.tycho</groupId>
 						<artifactId>tycho-p2-plugin</artifactId>
@@ -224,6 +229,7 @@
 							</ignoredPatterns>
 						</configuration>
 					</plugin>
+ -->
 				</plugins>
 			</build>
 		</profile>
@@ -386,7 +392,7 @@
 										<args>-project</args>
 										<args>${project.basedir}</args>
 										<args>-baseline</args>
-										<args>${project.build.directory}/${project.artifactId}-apiBaseline.target
+										<args>${project.build.directory}/../../../releng/org.eclipse.passage.target/org.eclipse.passage.baseline.target
 										</args>
 										<args>-dependencyList</args>
 										<args>${project.build.directory}/dependencies-list.txt</args>
@@ -742,7 +748,30 @@
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-p2-plugin</artifactId>
 					<version>${tycho.version}</version>
+					<executions>
+						<execution>
+							<id>baselinereplace-p2-metadata</id>
+							<goals>
+								<goal>p2-metadata</goal>
+							</goals>
+							<phase>verify</phase>
+							<configuration>
+								<baselineMode>${replace-version-with-baselines.mode}</baselineMode>
+								<baselineReplace>${replace-version-with-baselines.replace}</baselineReplace>
+								<baselineRepositories>
+									<repository>
+										<url>${comparator.repo}</url>
+									</repository>
+								</baselineRepositories>
+							</configuration>
+						</execution>
+					</executions>
 					<configuration>
+						<ignoredPatterns>
+							<pattern>META-INF/ECLIPSE_.RSA</pattern>
+							<pattern>META-INF/ECLIPSE_.SF</pattern>
+							<pattern>about.mappings</pattern>
+						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
 					</configuration>
 				</plugin>
