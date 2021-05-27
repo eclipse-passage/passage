@@ -173,11 +173,65 @@
 			</build>
 		</profile>
 		<profile>
+			<id>baseline</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-p2-extras-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<executions>
+							<execution> 
+								<id>compare-attached-artifacts-with-release</id>
+								<goals>
+									<goal>compare-version-with-baselines</goal>
+								</goals>
+								<configuration>
+									<skip>${compare-version-with-baselines.skip}</skip>
+									<baselines>
+										<baseline>${released.baseline}</baseline>
+									</baselines>
+									<comparator>zip</comparator>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+								<ignoredPatterns>
+									<pattern>META-INF/ECLIPSE_.RSA</pattern>
+									<pattern>META-INF/ECLIPSE_.SF</pattern>
+								</ignoredPatterns>
+						</configuration>
+					</plugin>
+<!--  do we need the baseline replacement below? what for? -->
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<configuration>
+							<baselineMode>warn</baselineMode>
+							<baselineReplace>all</baselineReplace>
+							<baselineRepositories>
+								<repository>
+									<url>${staging.baseline}</url>
+								</repository>
+							</baselineRepositories>
+							<ignoredPatterns>
+								<pattern>META-INF/ECLIPSE_.RSA</pattern>
+								<pattern>META-INF/ECLIPSE_.SF</pattern>
+							</ignoredPatterns>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
 			<id>api-generation</id>
 			<activation>
-				<property>
-					<name>!longnotexistingproperty</name>
-				</property>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
@@ -644,34 +698,6 @@
 					</additionalFileSets>
 				</configuration>
 			</plugin>
-<!-- restore
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-p2-extras-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<executions>
-					<execution> 
-						<id>compare-attached-artifacts-with-release</id>
-						<goals>
-							<goal>compare-version-with-baselines</goal>
-						</goals>
-						<configuration>
-							<skip>${compare-version-with-baselines.skip}</skip>
-							<baselines>
-								<baseline>${released.baseline}</baseline>
-							</baselines>
-							<comparator>zip</comparator>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-						<ignoredPatterns>
-							<pattern>META-INF/ECLIPSE_.RSA</pattern>
-							<pattern>META-INF/ECLIPSE_.SF</pattern>
-						</ignoredPatterns>
-				</configuration>
-			</plugin>
- -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-surefire-plugin</artifactId>
@@ -712,27 +738,14 @@
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
-<!--  restore 571998
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-p2-plugin</artifactId>
 					<version>${tycho.version}</version>
 					<configuration>
-						<baselineMode>warn</baselineMode>
-						<baselineReplace>all</baselineReplace>
-						<baselineRepositories>
-							<repository>
-								<url>${staging.baseline}</url>
-							</repository>
-						</baselineRepositories>
-						<ignoredPatterns>
-							<pattern>META-INF/ECLIPSE_.RSA</pattern>
-							<pattern>META-INF/ECLIPSE_.SF</pattern>
-						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
 					</configuration>
 				</plugin>
- -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
