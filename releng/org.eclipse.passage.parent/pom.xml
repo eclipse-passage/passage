@@ -46,6 +46,10 @@
 		<released.baseline>https://download.eclipse.org/passage/updates/release/1.2.1/</released.baseline>
 		<staging.baseline>https://download.eclipse.org/passage/drops/integration/latest/</staging.baseline>
 
+		<compare-version-with-baselines.skip>true</compare-version-with-baselines.skip>
+		<replace-version-with-baselines.mode>disable</replace-version-with-baselines.mode>
+		<replace-version-with-baselines.replace>none</replace-version-with-baselines.replace>
+
 		<!-- Declaration of properties that contribute to the arg line for the tycho-surefire-plugin. 
 			The properties are declared empty by default and are overridden by automatic 
 			activation of specific configuration in modules. -->
@@ -173,11 +177,21 @@
 			</build>
 		</profile>
 		<profile>
+			<id>baseline-check</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<compare-version-with-baselines.skip>false</compare-version-with-baselines.skip>
+				<replace-version-with-baselines.mode>fail</replace-version-with-baselines.mode>
+				<replace-version-with-baselines.replace>all</replace-version-with-baselines.replace>
+			</properties>
+		</profile>
+
+		<profile>
 			<id>api-generation</id>
 			<activation>
-				<property>
-					<name>!longnotexistingproperty</name>
-				</property>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
@@ -644,34 +658,6 @@
 					</additionalFileSets>
 				</configuration>
 			</plugin>
-<!-- restore
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-p2-extras-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<executions>
-					<execution> 
-						<id>compare-attached-artifacts-with-release</id>
-						<goals>
-							<goal>compare-version-with-baselines</goal>
-						</goals>
-						<configuration>
-							<skip>${compare-version-with-baselines.skip}</skip>
-							<baselines>
-								<baseline>${released.baseline}</baseline>
-							</baselines>
-							<comparator>zip</comparator>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-						<ignoredPatterns>
-							<pattern>META-INF/ECLIPSE_.RSA</pattern>
-							<pattern>META-INF/ECLIPSE_.SF</pattern>
-						</ignoredPatterns>
-				</configuration>
-			</plugin>
- -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-surefire-plugin</artifactId>
@@ -712,27 +698,37 @@
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
-<!--  restore 571998
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-p2-plugin</artifactId>
 					<version>${tycho.version}</version>
+					<executions>
+						<execution>
+							<id>baselinereplace-p2-metadata</id>
+							<goals>
+								<goal>p2-metadata</goal>
+							</goals>
+							<phase>verify</phase>
+							<configuration>
+								<baselineMode>${replace-version-with-baselines.mode}</baselineMode>
+								<baselineReplace>${replace-version-with-baselines.replace}</baselineReplace>
+								<baselineRepositories>
+									<repository>
+										<url>${comparator.repo}</url>
+									</repository>
+								</baselineRepositories>
+							</configuration>
+						</execution>
+					</executions>
 					<configuration>
-						<baselineMode>warn</baselineMode>
-						<baselineReplace>all</baselineReplace>
-						<baselineRepositories>
-							<repository>
-								<url>${staging.baseline}</url>
-							</repository>
-						</baselineRepositories>
 						<ignoredPatterns>
 							<pattern>META-INF/ECLIPSE_.RSA</pattern>
 							<pattern>META-INF/ECLIPSE_.SF</pattern>
+							<pattern>about.mappings</pattern>
 						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
 					</configuration>
 				</plugin>
- -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
