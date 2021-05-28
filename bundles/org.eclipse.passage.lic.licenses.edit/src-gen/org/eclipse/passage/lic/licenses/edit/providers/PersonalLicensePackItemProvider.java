@@ -14,6 +14,7 @@ package org.eclipse.passage.lic.licenses.edit.providers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,8 +28,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
+import org.eclipse.passage.lic.licenses.model.api.ProductRef;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
@@ -132,10 +136,15 @@ public class PersonalLicensePackItemProvider extends ItemProviderAdapter impleme
 	@Override
 	public String getText(Object object) {
 		PersonalLicensePack pack = (PersonalLicensePack) object;
+		PersonalLicenseRequisites license = pack.getLicense();
 		return getString("_UI_LicensePack_text_pattern", new Object[] { //$NON-NLS-1$
-				pack.getLicense().getIdentifier(), //
-				pack.getLicense().getProduct().getIdentifier(), //
-				pack.getLicense().getProduct().getVersion() });
+				Optional.ofNullable(license).map(PersonalLicenseRequisites::getIdentifier)
+						.orElseGet(new GetOrUnknown()),
+				Optional.ofNullable(license).map(PersonalLicenseRequisites::getProduct).map(ProductRef::getIdentifier)
+						.orElseGet(new GetOrUnknown()),
+				Optional.ofNullable(license).map(PersonalLicenseRequisites::getProduct).map(ProductRef::getVersion)
+						.orElseGet(new GetOrUnknown()),
+		});
 	}
 
 	/**

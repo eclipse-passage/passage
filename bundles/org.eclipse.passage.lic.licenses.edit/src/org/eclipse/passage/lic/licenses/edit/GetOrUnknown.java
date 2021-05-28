@@ -18,6 +18,14 @@ public final class GetOrUnknown implements Supplier<String> {
 
 	private final String nullable;
 
+	public GetOrUnknown() {
+		this.nullable = null;
+	}
+
+	public GetOrUnknown(Supplier<String> supplier) {
+		this(supplier.get());
+	}
+
 	public GetOrUnknown(String nullable) {
 		this.nullable = nullable;
 	}
