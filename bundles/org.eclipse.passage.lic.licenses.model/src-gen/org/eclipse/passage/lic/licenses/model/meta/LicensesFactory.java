@@ -77,6 +77,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Personal License Pack</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	PersonalLicensePack createPersonalLicensePack();
@@ -95,6 +96,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Floating License Pack</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FloatingLicensePack createFloatingLicensePack();
@@ -104,6 +106,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Personal License Requisites</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	PersonalLicenseRequisites createPersonalLicenseRequisites();
@@ -113,6 +116,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Floating License Requisites</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FloatingLicenseRequisites createFloatingLicenseRequisites();
@@ -122,6 +126,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Product Ref</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	ProductRef createProductRef();
@@ -131,6 +136,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Feature Ref</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FeatureRef createFeatureRef();
@@ -140,6 +146,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User Ref</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	UserRef createUserRef();
@@ -149,6 +156,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Company Ref</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	CompanyRef createCompanyRef();
@@ -158,6 +166,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Floating Server</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FloatingServer createFloatingServer();
@@ -167,6 +176,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User Grant</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	UserGrant createUserGrant();
@@ -176,6 +186,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Feature Grant</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FeatureGrant createFeatureGrant();
@@ -185,6 +196,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Validity Period Closed</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	ValidityPeriodClosed createValidityPeriodClosed();
@@ -194,6 +206,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Evaluation Instructions</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	EvaluationInstructions createEvaluationInstructions();
@@ -203,6 +216,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Version Match</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	VersionMatch createVersionMatch();
@@ -212,6 +226,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Floating License Access</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FloatingLicenseAccess createFloatingLicenseAccess();
@@ -221,6 +236,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Floating Server Connection</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	FloatingServerConnection createFloatingServerConnection();
@@ -230,6 +246,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Grant Acqisition</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	GrantAcqisition createGrantAcqisition();
@@ -239,6 +256,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Signature</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	Signature createSignature();
@@ -248,6 +266,7 @@ public interface LicensesFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Signature Attribute</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	SignatureAttribute createSignatureAttribute();

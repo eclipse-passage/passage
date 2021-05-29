@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseRequisites} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * @since 2.0
  * @generated
  */
 public class LicenseRequisitesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,

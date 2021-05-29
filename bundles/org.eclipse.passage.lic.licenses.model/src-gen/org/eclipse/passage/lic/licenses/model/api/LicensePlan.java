@@ -112,11 +112,16 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Features()
-	 * @model containment="true" required="true"
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan
+	 * @model opposite="plan" containment="true" required="true"
 	 * @generated
 	 */
 	@Override
@@ -127,6 +132,9 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Personal</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Personal()
 	 * @model containment="true"
@@ -140,6 +148,9 @@ public interface LicensePlan extends EObject, LicensePlanDescriptor {
 	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Floating</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlan_Floating()
 	 * @model containment="true"

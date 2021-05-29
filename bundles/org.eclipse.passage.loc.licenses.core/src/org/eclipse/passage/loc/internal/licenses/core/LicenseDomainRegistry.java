@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -43,7 +43,6 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@SuppressWarnings("restriction")
 @Component(property = { EditingDomainRegistryAccess.PROPERTY_DOMAIN_NAME + '=' + LicensesPackage.eNAME,
 		EditingDomainRegistryAccess.PROPERTY_FILE_EXTENSION + '=' + "licenses_xmi" })
 public class LicenseDomainRegistry extends BaseDomainRegistry<LicensePlanDescriptor>

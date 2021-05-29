@@ -21,6 +21,10 @@ import org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor;
  * A representation of the model object '<em><b>Validity Period</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * @since 2.0
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getValidityPeriod()
  * @model interface="true" abstract="true" superTypes="org.eclipse.passage.lic.licenses.model.api.ValidityPeriodDescriptor"

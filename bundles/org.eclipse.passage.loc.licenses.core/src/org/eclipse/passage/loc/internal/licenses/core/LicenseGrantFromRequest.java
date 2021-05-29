@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
-@SuppressWarnings("restriction")
 final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
 
 	private final LicensePlanFeatureDescriptor feature;

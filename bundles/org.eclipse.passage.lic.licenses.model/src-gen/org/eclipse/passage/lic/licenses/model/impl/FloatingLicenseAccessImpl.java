@@ -41,6 +41,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseAccessImpl#getOriginLicensePack <em>Origin License Pack</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FloatingLicenseAccessImpl extends MinimalEObjectImpl.Container implements FloatingLicenseAccess {

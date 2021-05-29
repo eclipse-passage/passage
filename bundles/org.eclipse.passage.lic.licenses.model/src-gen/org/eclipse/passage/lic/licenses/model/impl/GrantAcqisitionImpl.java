@@ -41,6 +41,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.GrantAcqisitionImpl#getCreated <em>Created</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class GrantAcqisitionImpl extends MinimalEObjectImpl.Container implements GrantAcqisition {

@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
 
-@SuppressWarnings("restriction")
 final class UserGrantsAmountReduction implements Reduction<FloatingLicensePack> {
 
 	private final Logger log = LogManager.getLogger(getClass());
@@ -32,7 +31,8 @@ final class UserGrantsAmountReduction implements Reduction<FloatingLicensePack> 
 			log.warn(String.format(ReductionMessages.UserGrantsAmountReduction_reduction_usergrant_amount, amount));
 			for (int i = users.size() - 1; i >= amount; i--) {
 				UserGrant victim = users.remove(i);
-				log.warn(String.format(ReductionMessages.UserGrantsAmountReduction_reduction_usergrant_user, victim.getUser()));
+				log.warn(String.format(ReductionMessages.UserGrantsAmountReduction_reduction_usergrant_user,
+						victim.getUser()));
 			}
 		}
 	}

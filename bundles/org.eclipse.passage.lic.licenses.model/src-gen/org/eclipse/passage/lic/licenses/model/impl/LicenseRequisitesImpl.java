@@ -47,6 +47,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseRequisitesImpl#getSignature <em>Signature</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public abstract class LicenseRequisitesImpl extends MinimalEObjectImpl.Container implements LicenseRequisites {

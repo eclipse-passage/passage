@@ -42,6 +42,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * @since 2.0
  * @generated
  */
 public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,

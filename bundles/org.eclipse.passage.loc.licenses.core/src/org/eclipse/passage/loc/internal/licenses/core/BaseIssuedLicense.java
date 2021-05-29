@@ -18,7 +18,6 @@ import java.util.Objects;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 
-@SuppressWarnings("restriction")
 final class BaseIssuedLicense implements IssuedLicense {
 
 	private final PersonalLicensePack license;

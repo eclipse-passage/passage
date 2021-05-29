@@ -42,7 +42,6 @@ import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationF
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.osgi.service.event.EventAdmin;
 
-@SuppressWarnings("restriction")
 final class IssuePersonalLicense {
 
 	private final LicenseRegistry licenses;

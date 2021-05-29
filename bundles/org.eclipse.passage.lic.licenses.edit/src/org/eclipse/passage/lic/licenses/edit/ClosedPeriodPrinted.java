@@ -18,7 +18,6 @@ import java.util.function.Function;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
-@SuppressWarnings("restriction")
 public final class ClosedPeriodPrinted {
 
 	private final String from;

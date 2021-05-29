@@ -53,7 +53,6 @@ import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFail
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 
-@SuppressWarnings("restriction")
 final class IssueFloatingLicense {
 
 	private final LicenseRegistry licenses;

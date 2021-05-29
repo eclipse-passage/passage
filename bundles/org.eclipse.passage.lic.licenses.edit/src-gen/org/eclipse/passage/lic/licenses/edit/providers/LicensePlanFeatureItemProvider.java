@@ -72,6 +72,7 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	 * This adds a property descriptor for the Plan feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected void addPlanPropertyDescriptor(Object object) {

@@ -45,7 +45,6 @@ import org.eclipse.passage.loc.internal.api.FloatingLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.users.UserRegistry;
 
-@SuppressWarnings("restriction")
 final class FloatingLicensePackFromRequest implements Supplier<FloatingLicensePack> {
 
 	private final FloatingLicenseRequest request;

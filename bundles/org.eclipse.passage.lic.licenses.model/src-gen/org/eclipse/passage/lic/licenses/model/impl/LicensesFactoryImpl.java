@@ -45,14 +45,13 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static LicensesFactory init() {
@@ -80,56 +79,55 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case LicensesPackage.LICENSE_PLAN:
-			return createLicensePlan();
-		case LicensesPackage.LICENSE_PLAN_FEATURE:
-			return createLicensePlanFeature();
-		case LicensesPackage.PERSONAL_LICENSE_PACK:
-			return createPersonalLicensePack();
-		case LicensesPackage.LICENSE_GRANT:
-			return createLicenseGrant();
-		case LicensesPackage.FLOATING_LICENSE_PACK:
-			return createFloatingLicensePack();
-		case LicensesPackage.PERSONAL_LICENSE_REQUISITES:
-			return createPersonalLicenseRequisites();
-		case LicensesPackage.FLOATING_LICENSE_REQUISITES:
-			return createFloatingLicenseRequisites();
-		case LicensesPackage.USER_REF:
-			return createUserRef();
-		case LicensesPackage.PRODUCT_REF:
-			return createProductRef();
-		case LicensesPackage.FEATURE_REF:
-			return createFeatureRef();
 		case LicensesPackage.COMPANY_REF:
 			return createCompanyRef();
-		case LicensesPackage.FLOATING_SERVER:
-			return createFloatingServer();
-		case LicensesPackage.USER_GRANT:
-			return createUserGrant();
-		case LicensesPackage.FEATURE_GRANT:
-			return createFeatureGrant();
-		case LicensesPackage.VALIDITY_PERIOD_CLOSED:
-			return createValidityPeriodClosed();
 		case LicensesPackage.EVALUATION_INSTRUCTIONS:
 			return createEvaluationInstructions();
-		case LicensesPackage.VERSION_MATCH:
-			return createVersionMatch();
+		case LicensesPackage.FEATURE_GRANT:
+			return createFeatureGrant();
+		case LicensesPackage.FEATURE_REF:
+			return createFeatureRef();
 		case LicensesPackage.FLOATING_LICENSE_ACCESS:
 			return createFloatingLicenseAccess();
+		case LicensesPackage.FLOATING_LICENSE_PACK:
+			return createFloatingLicensePack();
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES:
+			return createFloatingLicenseRequisites();
+		case LicensesPackage.FLOATING_SERVER:
+			return createFloatingServer();
 		case LicensesPackage.FLOATING_SERVER_CONNECTION:
 			return createFloatingServerConnection();
 		case LicensesPackage.GRANT_ACQISITION:
 			return createGrantAcqisition();
+		case LicensesPackage.LICENSE_PLAN:
+			return createLicensePlan();
+		case LicensesPackage.LICENSE_PLAN_FEATURE:
+			return createLicensePlanFeature();
+		case LicensesPackage.LICENSE_GRANT:
+			return createLicenseGrant();
+		case LicensesPackage.PERSONAL_LICENSE_PACK:
+			return createPersonalLicensePack();
+		case LicensesPackage.PERSONAL_LICENSE_REQUISITES:
+			return createPersonalLicenseRequisites();
+		case LicensesPackage.PRODUCT_REF:
+			return createProductRef();
 		case LicensesPackage.SIGNATURE:
 			return createSignature();
 		case LicensesPackage.SIGNATURE_ATTRIBUTE:
 			return createSignatureAttribute();
+		case LicensesPackage.USER_GRANT:
+			return createUserGrant();
+		case LicensesPackage.USER_REF:
+			return createUserRef();
+		case LicensesPackage.VALIDITY_PERIOD_CLOSED:
+			return createValidityPeriodClosed();
+		case LicensesPackage.VERSION_MATCH:
+			return createVersionMatch();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -137,7 +135,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +145,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +155,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -185,7 +181,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -196,7 +192,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -207,7 +203,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -218,7 +214,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -229,7 +225,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -240,7 +236,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -251,7 +247,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -262,7 +258,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -273,7 +269,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -284,7 +280,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -295,7 +291,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -306,7 +302,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -317,7 +313,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -328,7 +324,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -339,7 +335,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -350,7 +346,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -361,7 +357,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -372,7 +368,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -383,7 +379,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -393,7 +388,6 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

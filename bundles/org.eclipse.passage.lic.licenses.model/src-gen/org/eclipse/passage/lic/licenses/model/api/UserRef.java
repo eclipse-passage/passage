@@ -21,6 +21,10 @@ import org.eclipse.passage.lic.licenses.UserRefDescriptor;
  * A representation of the model object '<em><b>User Ref</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * @since 2.0
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

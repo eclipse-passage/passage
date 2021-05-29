@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2020, 2021 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
 import java.io.IOException;
@@ -28,6 +40,7 @@ import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
  * @param <R> root classifier to store created if not present
  * 
  */
+@SuppressWarnings("restriction")
 public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<R>> {
 
 	private final Class<I> clazz;

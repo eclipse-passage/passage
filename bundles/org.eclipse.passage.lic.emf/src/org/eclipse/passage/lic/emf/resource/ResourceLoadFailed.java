@@ -18,6 +18,7 @@ import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 /**
  * @since 2.0
  */
+@SuppressWarnings("restriction")
 public final class ResourceLoadFailed extends TroubleCode {
 
 	public ResourceLoadFailed() {

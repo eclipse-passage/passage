@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
@@ -47,20 +48,11 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
 	protected FeatureRef feature;
-
-	/**
-	 * The cached value of the '{@link #getPlan() <em>Plan</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPlan()
-	 * @generated
-	 * @ordered
-	 */
-	protected LicensePlan plan;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,6 +76,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -94,6 +87,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
@@ -113,6 +107,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -137,30 +132,55 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
 	public LicensePlan getPlan() {
-		if (plan != null && plan.eIsProxy()) {
-			InternalEObject oldPlan = (InternalEObject) plan;
-			plan = (LicensePlan) eResolveProxy(oldPlan);
-			if (plan != oldPlan) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, oldPlan, plan));
-				}
-			}
+		if (eContainerFeatureID() != LicensesPackage.LICENSE_PLAN_FEATURE__PLAN) {
+			return null;
 		}
-		return plan;
+		return (LicensePlan) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
-	public LicensePlan basicGetPlan() {
-		return plan;
+	public NotificationChain basicSetPlan(LicensePlan newPlan, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newPlan, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public void setPlan(LicensePlan newPlan) {
+		if (newPlan != eInternalContainer()
+				|| (eContainerFeatureID() != LicensesPackage.LICENSE_PLAN_FEATURE__PLAN && newPlan != null)) {
+			if (EcoreUtil.isAncestor(this, newPlan)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newPlan != null)
+				msgs = ((InternalEObject) newPlan).eInverseAdd(this, LicensesPackage.LICENSE_PLAN__FEATURES,
+						LicensePlan.class, msgs);
+			msgs = basicSetPlan(newPlan, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, newPlan,
+					newPlan));
+		}
 	}
 
 	/**
@@ -169,12 +189,15 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public void setPlan(LicensePlan newPlan) {
-		LicensePlan oldPlan = plan;
-		plan = newPlan;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN, oldPlan,
-					plan));
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			return basicSetPlan((LicensePlan) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -188,8 +211,26 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			return basicSetFeature(null, msgs);
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			return basicSetPlan(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
+			return eInternalContainer().eInverseRemove(this, LicensesPackage.LICENSE_PLAN__FEATURES, LicensePlan.class,
+					msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
 	}
 
@@ -204,9 +245,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			return getFeature();
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
-			if (resolve)
-				return getPlan();
-			return basicGetPlan();
+			return getPlan();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -263,7 +302,7 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			return feature != null;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
-			return plan != null;
+			return getPlan() != null;
 		default:
 			return super.eIsSet(featureID);
 		}

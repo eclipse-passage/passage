@@ -38,6 +38,9 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' containment reference.
 	 * @see #setFeature(FeatureRef)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Feature()
@@ -53,29 +56,36 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature</em>' containment reference.
 	 * @see #getFeature()
+	 * @since 2.0
 	 * @generated
 	 */
 	void setFeature(FeatureRef value);
 
 	/**
-	 * Returns the value of the '<em><b>Plan</b></em>' reference.
+	 * Returns the value of the '<em><b>Plan</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Plan</em>' reference.
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Plan</em>' container reference.
 	 * @see #setPlan(LicensePlan)
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Plan()
-	 * @model required="true"
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlan#getFeatures
+	 * @model opposite="features" required="true" transient="false"
 	 * @generated
 	 */
 	@Override
 	LicensePlan getPlan();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Plan</em>' reference.
+	 * @param value the new value of the '<em>Plan</em>' container reference.
 	 * @see #getPlan()
+	 * @since 2.0
 	 * @generated
 	 */
 	void setPlan(LicensePlan value);

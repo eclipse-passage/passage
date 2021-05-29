@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * @since 2.0
  * @generated
  */
 public class PersonalLicensePackItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
@@ -142,11 +143,8 @@ public class PersonalLicensePackItemProvider extends ItemProviderAdapter impleme
 		}
 		return getString("_UI_LicensePack_text_pattern", new Object[] { //$NON-NLS-1$
 				new GetOrUnknown(license.getIdentifier()).get(),
-				Optional.ofNullable(license.getProduct()).map(ProductRef::getIdentifier)
-						.orElseGet(new GetOrUnknown()),
-				Optional.ofNullable(license.getProduct()).map(ProductRef::getVersion)
-						.orElseGet(new GetOrUnknown()),
-		});
+				Optional.ofNullable(license.getProduct()).map(ProductRef::getIdentifier).orElseGet(new GetOrUnknown()),
+				Optional.ofNullable(license.getProduct()).map(ProductRef::getVersion).orElseGet(new GetOrUnknown()), });
 	}
 
 	/**

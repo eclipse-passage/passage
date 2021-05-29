@@ -36,7 +36,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.EventAdmin;
 
-@SuppressWarnings("restriction")
 @Component
 public class LicenseOperatorServiceImpl implements OperatorLicenseService {
 
