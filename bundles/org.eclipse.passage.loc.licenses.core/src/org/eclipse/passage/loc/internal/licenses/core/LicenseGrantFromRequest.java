@@ -14,13 +14,13 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 
-final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
+final class LicenseGrantFromRequest implements Supplier<PersonalFeatureGrant> {
 
 	private final LicensePlanFeatureDescriptor feature;
 	private final PersonalLicenseRequest request;
@@ -31,9 +31,8 @@ final class LicenseGrantFromRequest implements Supplier<LicenseGrant> {
 	}
 
 	@Override
-	public LicenseGrant get() {
-		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
-		LicenseGrant grant = licenseFactory.createLicenseGrant();
+	public PersonalFeatureGrant get() {
+		PersonalFeatureGrant grant = new EmptyPersonalFeatureGrant().get();
 		grant.getFeature().setIdentifier(feature.getFeature().getIdentifier());
 		grant.getFeature().getVersionMatch().setVersion(feature.getFeature().getVersionMatch().getVersion());
 		grant.getFeature().getVersionMatch().setRule(feature.getFeature().getVersionMatch().getRule());

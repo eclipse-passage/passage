@@ -27,9 +27,9 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
@@ -108,8 +108,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 			return createLicensePlan();
 		case LicensesPackage.LICENSE_PLAN_FEATURE:
 			return createLicensePlanFeature();
-		case LicensesPackage.LICENSE_GRANT:
-			return createLicenseGrant();
+		case LicensesPackage.PERSONAL_FEATURE_GRANT:
+			return createPersonalFeatureGrant();
 		case LicensesPackage.PERSONAL_LICENSE_PACK:
 			return createPersonalLicensePack();
 		case LicensesPackage.PERSONAL_LICENSE_REQUISITES:
@@ -159,24 +159,20 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	 * @generated
 	 */
 	@Override
-	public PersonalLicensePack createPersonalLicensePack() {
-		PersonalLicensePackImpl personalLicensePack = new PersonalLicensePackImpl();
-		return personalLicensePack;
+	public PersonalFeatureGrant createPersonalFeatureGrant() {
+		PersonalFeatureGrantImpl personalFeatureGrant = new PersonalFeatureGrantImpl();
+		return personalFeatureGrant;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @since 2.0
+	 * @generated
 	 */
 	@Override
-	public LicenseGrant createLicenseGrant() {
-		LicenseGrantImpl grant = new LicenseGrantImpl();
-		grant.setFeature(createFeatureRef());
-		grant.getFeature().setVersionMatch(createVersionMatch());
-		grant.setUserAuthentication(createEvaluationInstructions());
-		grant.setValid(createValidityPeriodClosed());
-		return grant;
+	public PersonalLicensePack createPersonalLicensePack() {
+		PersonalLicensePackImpl personalLicensePack = new PersonalLicensePackImpl();
+		return personalLicensePack;
 	}
 
 	/**

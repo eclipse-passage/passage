@@ -132,6 +132,31 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	protected PersonalFeatureGrantItemProvider personalFeatureGrantItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public Adapter createPersonalFeatureGrantAdapter() {
+		if (personalFeatureGrantItemProvider == null) {
+			personalFeatureGrantItemProvider = new PersonalFeatureGrantItemProvider(this);
+		}
+
+		return personalFeatureGrantItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,31 +179,6 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 		}
 
 		return personalLicensePackItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant} instances.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LicenseGrantItemProvider licenseGrantItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant}.
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLicenseGrantAdapter() {
-		if (licenseGrantItemProvider == null) {
-			licenseGrantItemProvider = new LicenseGrantItemProvider(this);
-		}
-
-		return licenseGrantItemProvider;
 	}
 
 	/**
@@ -769,8 +769,8 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 			licensePlanItemProvider.dispose();
 		if (licensePlanFeatureItemProvider != null)
 			licensePlanFeatureItemProvider.dispose();
-		if (licenseGrantItemProvider != null)
-			licenseGrantItemProvider.dispose();
+		if (personalFeatureGrantItemProvider != null)
+			personalFeatureGrantItemProvider.dispose();
 		if (personalLicensePackItemProvider != null)
 			personalLicensePackItemProvider.dispose();
 		if (personalLicenseRequisitesItemProvider != null)

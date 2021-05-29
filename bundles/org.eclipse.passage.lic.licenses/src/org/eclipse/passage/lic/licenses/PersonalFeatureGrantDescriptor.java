@@ -19,10 +19,10 @@ package org.eclipse.passage.lic.licenses;
  * particular <code>"Feature Version"</code>.
  * <p>
  * 
- * @since 0.4.0
+ * @since 2.0
  * @see PersonalLicensePackDescriptor
  */
-public interface LicenseGrantDescriptor {
+public interface PersonalFeatureGrantDescriptor {
 
 	/**
 	 * Returns the identifier of this license pack. This is the value of its

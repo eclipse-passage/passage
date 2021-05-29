@@ -184,7 +184,7 @@ public class PersonalLicensePackItemProvider extends ItemProviderAdapter impleme
 				LicensesFactory.eINSTANCE.createPersonalLicenseRequisites()));
 
 		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getPersonalLicensePack_Grants(),
-				LicensesFactory.eINSTANCE.createLicenseGrant()));
+				LicensesFactory.eINSTANCE.createPersonalFeatureGrant()));
 	}
 
 	/**

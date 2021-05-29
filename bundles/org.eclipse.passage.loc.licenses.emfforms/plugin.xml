@@ -21,9 +21,9 @@
 		<file filePath="viewmodels/FloatingLicenseRequisites.view" />
 		<file filePath="viewmodels/FloatingServer.view" />
 		<file filePath="viewmodels/FloatingServerConnection.view" />
-		<file filePath="viewmodels/LicenseGrant.view" />
 		<file filePath="viewmodels/LicensePlan.view" />
 		<file filePath="viewmodels/LicensePlanFeature.view" />
+		<file filePath="viewmodels/PersonalFeatureGrant.view" />
 		<file filePath="viewmodels/PersonalLicensePack.view" />
 		<file filePath="viewmodels/ProductRef.view" />
 		<file filePath="viewmodels/UserGrant.view" />

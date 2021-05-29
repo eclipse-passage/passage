@@ -77,9 +77,9 @@
       </children>
     </children>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_XCODQMBQEeuw7f5-0ea7hA" name="Grants" groupType="Embedded">
-    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_h7z54r_KEeuw7f5-0ea7hA" name="Control grants" labelAlignment="None">
-      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_h7z547_KEeuw7f5-0ea7hA">
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_XCODQMBQEeuw7f5-0ea7hA" name="Grants">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XJB2EMB1Eeuw7f5-0ea7hA" labelAlignment="None">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Zz5g4MB1Eeuw7f5-0ea7hA">
         <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/grants"/>
       </domainModelReference>
     </children>

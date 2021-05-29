@@ -20,7 +20,7 @@ package org.eclipse.passage.lic.licenses;
  * <p>
  * 
  * @since 0.5.0
- * @see LicenseGrantDescriptor
+ * @see PersonalFeatureGrantDescriptor
  */
 public interface LicensePlanFeatureDescriptor {
 

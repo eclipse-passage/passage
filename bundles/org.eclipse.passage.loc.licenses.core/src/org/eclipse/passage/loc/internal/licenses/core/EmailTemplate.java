@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.email.EmailDescriptor;
 import org.eclipse.passage.lic.email.Mailing;
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
@@ -57,7 +57,7 @@ public class EmailTemplate {
 				pack.getLicense().getProduct().getIdentifier()));
 		builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_product_version_lbl,
 				pack.getLicense().getProduct().getVersion()));
-		for (LicenseGrantDescriptor grant : pack.getGrants()) {
+		for (PersonalFeatureGrantDescriptor grant : pack.getGrants()) {
 			builder.add(NLS.bind(LicensesCoreMessages.LicenseRequest_feature_lbl, grant.getFeature().getIdentifier()));
 			String conditionExpression = grant.getUserAuthentication().getExpression();
 			if (conditionExpression != null && !conditionExpression.isEmpty()) {

@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")
@@ -42,7 +42,7 @@ public final class ConditionsTest {
 
 	@Test
 	public void mineAllForRightUser() throws LicensingException, IOException {
-		LicenseGrant grant = mineForUserAndProduct(data.albert().id(), data.product().identifier(), 2).get(1);
+		PersonalFeatureGrant grant = mineForUserAndProduct(data.albert().id(), data.product().identifier(), 2).get(1);
 		data.assertGrantIsValid(grant);
 	}
 
@@ -61,12 +61,12 @@ public final class ConditionsTest {
 				response.error().code());
 	}
 
-	private List<LicenseGrant> mineForUserAndProduct(String user, String product, int conditions)
+	private List<PersonalFeatureGrant> mineForUserAndProduct(String user, String product, int conditions)
 			throws IOException, LicensingException {
 		RawRequest request = request(user, product);
 		NetResponse response = new FlotingRequestHandled(request).get();
 		assertFalse(response.failed());
-		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
+		EList<PersonalFeatureGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
 		assertEquals(conditions, grants.size());
 		return grants;
 	}

@@ -17,6 +17,7 @@ import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -32,20 +33,24 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
+import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant} object.
  * <!-- begin-user-doc -->
  * 
  * <!-- end-user-doc -->
+ * @since 2.0
  * @generated
  */
-public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class PersonalFeatureGrantItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -54,7 +59,7 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LicenseGrantItemProvider(AdapterFactory adapterFactory) {
+	public PersonalFeatureGrantItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -86,10 +91,10 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_Identifier(), true, false, false,
+						getResourceLocator(), getString("_UI_PersonalFeatureGrant_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_PersonalFeatureGrant_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_PersonalFeatureGrant_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -103,10 +108,10 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	protected void addCapacityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_LicenseGrant_capacity_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_LicenseGrant_capacity_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_LicenseGrant_type"), //$NON-NLS-1$
-						LicensesPackage.eINSTANCE.getLicenseGrant_Capacity(), true, false, false,
+						getResourceLocator(), getString("_UI_PersonalFeatureGrant_capacity_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_PersonalFeatureGrant_capacity_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_PersonalFeatureGrant_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Capacity(), true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -122,9 +127,9 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_Feature());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_Valid());
-			childrenFeatures.add(LicensesPackage.eINSTANCE.getLicenseGrant_UserAuthentication());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Feature());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Valid());
+			childrenFeatures.add(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_UserAuthentication());
 		}
 		return childrenFeatures;
 	}
@@ -181,10 +186,19 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		String unknownDate = String.valueOf('?');
 		String from = unknownDate;
 		String until = unknownDate;
-		LicenseGrant grant = (LicenseGrant) object;
-		String feature = grant.getFeature().getIdentifier();
-		String version = grant.getFeature().getVersionMatch().getVersion();
-		String rule = grant.getFeature().getVersionMatch().getRule();
+		PersonalFeatureGrant grant = (PersonalFeatureGrant) object;
+		FeatureRef feature = grant.getFeature();
+		String fid = Optional.ofNullable(feature)//
+				.map(FeatureRef::getIdentifier)//
+				.orElseGet(new GetOrUnknown());
+		String version = Optional.ofNullable(feature)//
+				.map(FeatureRef::getVersionMatch)//
+				.map(VersionMatch::getVersion)//
+				.orElse("0.0.0"); //$NON-NLS-1$
+		String rule = Optional.ofNullable(feature)//
+				.map(FeatureRef::getVersionMatch)//
+				.map(VersionMatch::getRule)//
+				.orElse(""); //$NON-NLS-1$
 		Date validFrom = ((ValidityPeriodClosed) grant.getValid()).getFrom();
 		if (validFrom != null) {
 			from = LocalDateTime.ofInstant(validFrom.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
@@ -193,12 +207,12 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 		if (validUntil != null) {
 			until = LocalDateTime.ofInstant(validUntil.toInstant(), ZoneId.systemDefault()).toLocalDate().toString();
 		}
-		if (rule != null && !rule.isEmpty()) {
+		if (!rule.isEmpty()) {
 			return getString("_UI_LicenseGrant_text_pattern_dates_rules", //$NON-NLS-1$
-					new Object[] { from, until, feature, version, rule });
+					new Object[] { from, until, fid, version, rule });
 		}
 		return getString("_UI_LicenseGrant_text_pattern_dates", //$NON-NLS-1$
-				new Object[] { from, until, feature, version });
+				new Object[] { from, until, fid, version });
 	}
 
 	/**
@@ -213,14 +227,14 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LicenseGrant.class)) {
-		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
-		case LicensesPackage.LICENSE_GRANT__CAPACITY:
+		switch (notification.getFeatureID(PersonalFeatureGrant.class)) {
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
-		case LicensesPackage.LICENSE_GRANT__VALID:
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
@@ -241,14 +255,15 @@ public class LicenseGrantItemProvider extends ItemProviderAdapter implements IEd
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_Feature(),
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Feature(),
 				LicensesFactory.eINSTANCE.createFeatureRef()));
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_Valid(),
+		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Valid(),
 				LicensesFactory.eINSTANCE.createValidityPeriodClosed()));
 
-		newChildDescriptors.add(createChildParameter(LicensesPackage.eINSTANCE.getLicenseGrant_UserAuthentication(),
-				LicensesFactory.eINSTANCE.createEvaluationInstructions()));
+		newChildDescriptors
+				.add(createChildParameter(LicensesPackage.eINSTANCE.getPersonalFeatureGrant_UserAuthentication(),
+						LicensesFactory.eINSTANCE.createEvaluationInstructions()));
 	}
 
 	/**

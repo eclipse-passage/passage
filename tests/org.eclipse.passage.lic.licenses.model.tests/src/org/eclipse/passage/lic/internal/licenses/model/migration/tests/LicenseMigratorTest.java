@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
@@ -89,10 +89,10 @@ public final class LicenseMigratorTest {
 		assertEquals("0.4.0", pack.getLicense().getProduct().getVersion()); //$NON-NLS-1$
 		assertEquals("", pack.getLicense().getUser().getIdentifier()); //$NON-NLS-1$
 
-		EList<LicenseGrant> grants = pack.getGrants();
+		EList<PersonalFeatureGrant> grants = pack.getGrants();
 		assertEquals(1, grants.size());
 
-		LicenseGrant grant = grants.get(0);
+		PersonalFeatureGrant grant = grants.get(0);
 		assertEquals("org.eclipse.passage.lic.evaluation#0", grant.getIdentifier()); //$NON-NLS-1$
 		assertEquals(1, grant.getCapacity());
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
@@ -119,16 +119,16 @@ public final class LicenseMigratorTest {
 		assertEquals("The Elder", pack.getLicense().getUser().getName()); //$NON-NLS-1$
 		assertEquals("magic-field-license-plan", pack.getLicense().getPlan()); //$NON-NLS-1$
 
-		EList<LicenseGrant> grants = pack.getGrants();
+		EList<PersonalFeatureGrant> grants = pack.getGrants();
 		assertEquals(2, grants.size());
 
 		assertGrant(grant(identifier, grants, 0), "prince-to-frog", "0.1.0"); //$NON-NLS-1$//$NON-NLS-2$
 		assertGrant(grant(identifier, grants, 1), "anti-human-magic.product", "0.2.1"); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
-	private LicenseGrant grant(String pack, EList<LicenseGrant> grants, int no) {
+	private PersonalFeatureGrant grant(String pack, EList<PersonalFeatureGrant> grants, int no) {
 		String id = String.format("%s#%d", pack, no); //$NON-NLS-1$
-		for (LicenseGrant grant : grants) {
+		for (PersonalFeatureGrant grant : grants) {
 			if (id.equals(grant.getIdentifier())) {
 				return grant;
 			}
@@ -137,7 +137,7 @@ public final class LicenseMigratorTest {
 		return null;// unreachable
 	}
 
-	private void assertGrant(LicenseGrant grant, String feature, String version) throws ParseException {
+	private void assertGrant(PersonalFeatureGrant grant, String feature, String version) throws ParseException {
 		assertEquals(feature, grant.getFeature().getIdentifier());
 		assertEquals(version, grant.getFeature().getVersionMatch().getVersion());
 		assertEquals(null, grant.getFeature().getVersionMatch().getRule());

@@ -13,38 +13,41 @@
 package org.eclipse.passage.lic.licenses.model.api;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>License Grant</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * @since 2.0
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValid <em>Valid</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getUserAuthentication <em>User Authentication</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication <em>User Authentication</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}</li>
  * </ul>
  *
- * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant()
- * @model superTypes="org.eclipse.passage.lic.licenses.model.api.LicenseGrantDescriptor"
+ * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant()
+ * @model superTypes="org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrantDescriptor"
  * @generated
  */
-public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
+public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Identifier()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Identifier()
 	 * @model id="true"
 	 * @generated
 	 */
@@ -52,7 +55,7 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	String getIdentifier();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getIdentifier <em>Identifier</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getIdentifier <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
@@ -65,12 +68,9 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * @since 2.0
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' containment reference.
 	 * @see #setFeature(FeatureRef)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Feature()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Feature()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -78,12 +78,11 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	FeatureRef getFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getFeature <em>Feature</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature</em>' containment reference.
 	 * @see #getFeature()
-	 * @since 2.0
 	 * @generated
 	 */
 	void setFeature(FeatureRef value);
@@ -92,12 +91,9 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * Returns the value of the '<em><b>Valid</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * @since 2.0
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Valid</em>' containment reference.
 	 * @see #setValid(ValidityPeriod)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Valid()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Valid()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -105,12 +101,11 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	ValidityPeriod getValid();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getValid <em>Valid</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid <em>Valid</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Valid</em>' containment reference.
 	 * @see #getValid()
-	 * @since 2.0
 	 * @generated
 	 */
 	void setValid(ValidityPeriod value);
@@ -119,12 +114,9 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * Returns the value of the '<em><b>User Authentication</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * @since 2.0
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>User Authentication</em>' containment reference.
 	 * @see #setUserAuthentication(EvaluationInstructions)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_UserAuthentication()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_UserAuthentication()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -132,12 +124,11 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	EvaluationInstructions getUserAuthentication();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getUserAuthentication <em>User Authentication</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication <em>User Authentication</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>User Authentication</em>' containment reference.
 	 * @see #getUserAuthentication()
-	 * @since 2.0
 	 * @generated
 	 */
 	void setUserAuthentication(EvaluationInstructions value);
@@ -149,7 +140,7 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Capacity</em>' attribute.
 	 * @see #setCapacity(int)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Capacity()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Capacity()
 	 * @model default="1"
 	 * @generated
 	 */
@@ -157,7 +148,7 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	int getCapacity();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getCapacity <em>Capacity</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity <em>Capacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Capacity</em>' attribute.
@@ -171,12 +162,9 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants <em>Grants</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * @since 2.0
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Pack</em>' container reference.
 	 * @see #setPack(PersonalLicensePack)
-	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicenseGrant_Pack()
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Pack()
 	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack#getGrants
 	 * @model opposite="grants" required="true" transient="false"
 	 * @generated
@@ -185,12 +173,11 @@ public interface LicenseGrant extends EObject, LicenseGrantDescriptor {
 	PersonalLicensePack getPack();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pack</em>' container reference.
 	 * @see #getPack()
-	 * @since 2.0
 	 * @generated
 	 */
 	void setPack(PersonalLicensePack value);

@@ -103,10 +103,24 @@ public final class RecognizeFeatures implements MigrateFeatures {
 	}
 
 	private EObject ensureReferenceFulfilled(EObject host, EReference reference) {
-		EClass type = reference.getEReferenceType();
+		EClass type = resolveConcrete(reference.getEReferenceType());
 		EObject created = type.getEPackage().getEFactoryInstance().create(type);
 		host.eSet(reference, created);
 		return created;
+	}
+
+	private EClass resolveConcrete(EClass specified) {
+		if (specified.isAbstract()) {
+			Optional<EClass> candidate = specified.getEPackage().getEClassifiers().stream()//
+					.filter(EClass.class::isInstance)//
+					.map(EClass.class::cast)//
+					.filter(c -> c.getEAllSuperTypes().contains(specified))//
+					.findFirst();
+			if (candidate.isPresent()) {
+				return candidate.get();
+			}
+		}
+		return specified;
 	}
 
 	private void applyAttributeValue(EObject object, EAttribute attribute, Object raw) {

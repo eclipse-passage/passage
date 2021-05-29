@@ -38,7 +38,7 @@ import org.eclipse.passage.lic.internal.licenses.convert.PIssuerSignature;
 import org.eclipse.passage.lic.internal.licenses.convert.PVersionMatch;
 import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourceHandler;
 import org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
@@ -99,7 +99,7 @@ abstract class BaseXmiConditionTransport implements ConditionTransport {
 		return options;
 	}
 
-	private Condition condition(LicenseGrant grant) {
+	private Condition condition(PersonalFeatureGrant grant) {
 		return new BaseCondition(grant.getIdentifier(), //
 				grant.getFeature().getIdentifier(), //
 				new PVersionMatch(grant.getFeature().getVersionMatch()).get(), //
