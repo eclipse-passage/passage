@@ -106,7 +106,7 @@ public abstract class TextWithButtonRenderer extends SimpleControlSWTControlSWTR
 		edit.setText(WorkbenchEmfformsMessages.TextWithButtonRenderer_button_edit);
 		edit.setImage(locImages.getImage(LocImages.IMG_TOOL_EDIT));
 		edit.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-		edit.setEnabled(!getVElement().isReadonly());
+		edit.setEnabled(!getVElement().isEffectivelyReadonly());
 		return edit;
 	}
 

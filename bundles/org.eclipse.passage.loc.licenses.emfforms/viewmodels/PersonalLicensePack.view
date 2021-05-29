@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_h7uaUL_KEeuw7f5-0ea7hA" name="PersonalLicensePack" readonly="true">
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_K-c2wMBNEeuw7f5-0ea7hA" name="General">
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_gPNeoMBNEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="__QurYMBMEeuw7f5-0ea7hA" name="identifier">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_JuzMwMBNEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/identifier"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_No1ZYMBNEeuw7f5-0ea7hA" name="issueDate">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Pr42QMBNEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/issueDate"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Z0gsEMBNEeuw7f5-0ea7hA" name="plan">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_bd0MMMBNEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/plan"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_fI5Q4L_LEeuw7f5-0ea7hA" name="Product">
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_h1Cw0MBJEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_gHVPEL_LEeuw7f5-0ea7hA" name="ProductRef identifier">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_lbX7kL_LEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ProductRef/identifier"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/product"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_pGqhkL_LEeuw7f5-0ea7hA" name="ProductRef version">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_rURooL_LEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ProductRef/version"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/product"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_k8m-sMBJEeuw7f5-0ea7hA" name="Valid">
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_0PMX8MBJEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_pu0JcMBJEeuw7f5-0ea7hA" name="ValidityPeriodOpen from">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_ydaRQMBJEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ValidityPeriodClosed/from"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/valid"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_ExIyMMBIEeuw7f5-0ea7hA" name="ValidityPeriodClosed to">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_ZUruwMBIEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ValidityPeriodClosed/until"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/valid"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_zUl0EMBNEeuw7f5-0ea7hA" name="User">
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_22plkMBNEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_0MzOcMBNEeuw7f5-0ea7hA" name="UserRef identifier">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_5MfbkMBNEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//UserRef/identifier"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicenseRequisites/user"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_7G22gMBNEeuw7f5-0ea7hA" name="UserRef name">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_9IunoMBNEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//UserRef/name"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicenseRequisites/user"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_XCODQMBQEeuw7f5-0ea7hA" name="Grants" groupType="Embedded">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_h7z54r_KEeuw7f5-0ea7hA" name="Control grants" labelAlignment="None">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_h7z547_KEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/grants"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_WPwy8MBNEeuw7f5-0ea7hA" name="Signature">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_h064MMBNEeuw7f5-0ea7hA" name="Signature">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_kryiMMBOEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/signature"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalLicensePack/license"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>

@@ -31,9 +31,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.ClosedPeriodPrinted;
-import org.eclipse.passage.lic.licenses.edit.GetOrUnknown;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -172,11 +172,11 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return null;
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
 	}
 
 	/**
@@ -198,8 +198,8 @@ public class FeatureGrantItemProvider extends ItemProviderAdapter implements IEd
 	@Override
 	public String getText(Object object) {
 		FeatureGrant grant = (FeatureGrant) object;
-		String feature = new GetOrUnknown(grant.getFeature().getIdentifier()).get();
-		Optional<VersionMatch> match = Optional.of(grant.getFeature().getVersionMatch());
+		String feature = Optional.ofNullable(grant.getFeature()).map(FeatureRef::getIdentifier).orElse("unknown"); //$NON-NLS-1$
+		Optional<VersionMatch> match = Optional.ofNullable(grant.getFeature()).map(FeatureRef::getVersionMatch);
 		String version = match.map(VersionMatch::getVersion).orElse("unknown"); //$NON-NLS-1$
 		String rule = match.map(VersionMatch::getRule).orElse("unknown"); //$NON-NLS-1$
 		ClosedPeriodPrinted period = new ClosedPeriodPrinted(grant.getValid());

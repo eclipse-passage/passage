@@ -107,11 +107,11 @@ public class UserRefItemProvider extends ItemProviderAdapter implements IEditing
 	 * This returns UserRef.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserRef")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
 	}
 
 	/**

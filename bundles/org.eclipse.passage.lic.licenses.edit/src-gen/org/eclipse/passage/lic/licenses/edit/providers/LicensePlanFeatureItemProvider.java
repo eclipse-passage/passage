@@ -29,6 +29,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
+import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -145,11 +146,15 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 	@Override
 	public String getText(Object object) {
 		LicensePlanFeature planFeature = (LicensePlanFeature) object;
-		String identifier = planFeature.getFeature().getIdentifier();
+		FeatureRef feature = planFeature.getFeature();
+		if (feature == null) {
+			return getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
+		}
+		String identifier = feature.getIdentifier();
 		if (identifier == null || identifier.length() == 0) {
 			identifier = getString("_UI_LicensePlanFeature_type"); //$NON-NLS-1$
 		}
-		String version = planFeature.getFeature().getVersionMatch().getVersion();
+		String version = feature.getVersionMatch().getVersion();
 		if (version == null || version.length() == 0) {
 			return identifier;
 		}

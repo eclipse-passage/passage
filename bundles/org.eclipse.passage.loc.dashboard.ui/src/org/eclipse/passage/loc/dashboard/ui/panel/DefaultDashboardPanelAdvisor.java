@@ -272,8 +272,8 @@ public class DefaultDashboardPanelAdvisor implements DashboardPanelAdvisor {
 		GridDataFactory gdf = GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.TOP).indent(0, 10).grab(true, false);
 		appendSummary(parent, gdf);
 		appendIssueLicenseButton(parent, gdf, //
-				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_text, //
-				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_description, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_personal_text, //
+				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_personal_description, //
 				this::executeIssueLicenseCommand);
 		appendIssueLicenseButton(parent, gdf, //
 				DashboardUiMessages.DefaultDashboardPanelAdvisor_btn_issue_floating_text, //

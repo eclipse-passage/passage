@@ -13,40 +13,26 @@
 -->
 <plugin>
 
-   <extension
-         point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
-      <file
-            filePath="viewmodels/LicensePlan.view">
-      </file>
-      <file
-            filePath="viewmodels/LicensePlanFeature.view">
-      </file>
-      <file
-            filePath="viewmodels/LicensePack.view">
-      </file>
-      <file
-            filePath="viewmodels/LicenseGrant.view">
-      </file>
-	<file filePath="viewmodels/FloatingServerConnection.view"/>
-	<file filePath="viewmodels/FloatingLicenseAccess.view"/>
-	<file filePath="viewmodels/VersionMatch.view"/>
-	<file filePath="viewmodels/EvaluationInstructions.view"/>
-	<file filePath="viewmodels/ValidityPeriodClosed.view"/>
-	<file filePath="viewmodels/ValidityPeriod.view"/>
-	<file filePath="viewmodels/FeatureGrant.view"/>
-	<file filePath="viewmodels/UserGrant.view"/>
-	<file filePath="viewmodels/FloatingServer.view"/>
-	<file filePath="viewmodels/ProductRef.view"/>
-	<file filePath="viewmodels/LicenseRequisites.view"/>
-	<file filePath="viewmodels/FloatingLicensePack.view"/>
-   </extension>
+	<extension point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
+		<file filePath="viewmodels/EvaluationInstructions.view" />
+		<file filePath="viewmodels/FeatureGrant.view" />
+		<file filePath="viewmodels/FloatingLicenseAccess.view" />
+		<file filePath="viewmodels/FloatingLicensePack.view" />
+		<file filePath="viewmodels/FloatingLicenseRequisites.view" />
+		<file filePath="viewmodels/FloatingServer.view" />
+		<file filePath="viewmodels/FloatingServerConnection.view" />
+		<file filePath="viewmodels/LicenseGrant.view" />
+		<file filePath="viewmodels/LicensePlan.view" />
+		<file filePath="viewmodels/LicensePlanFeature.view" />
+		<file filePath="viewmodels/PersonalLicensePack.view" />
+		<file filePath="viewmodels/ProductRef.view" />
+		<file filePath="viewmodels/UserGrant.view" />
+		<file filePath="viewmodels/ValidityPeriodClosed.view" />
+		<file filePath="viewmodels/VersionMatch.view" />
+	</extension>
 
-   <extension
-         id="org.eclipse.passage.loc.licenses.emfforms.fragment"
-         point="org.eclipse.e4.workbench.model">
-      <fragment
-            uri="fragment.e4xmi">
-      </fragment>
-   </extension>
+	<extension id="org.eclipse.passage.loc.licenses.emfforms.fragment" point="org.eclipse.e4.workbench.model">
+		<fragment uri="fragment.e4xmi" />
+	</extension>
 
 </plugin>
