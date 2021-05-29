@@ -59,6 +59,7 @@ public interface UsersFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>User Group</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	UserGroup createUserGroup();
@@ -68,6 +69,7 @@ public interface UsersFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Contact</em>'.
+	 * @since 2.0
 	 * @generated
 	 */
 	Contact createContact();

@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.ContactImpl#getAddress <em>Address</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class ContactImpl extends MinimalEObjectImpl.Container implements Contact {

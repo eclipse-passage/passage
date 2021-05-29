@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.lic.users.ecore" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="breaking changes in ecore" id="925892614">
+            <message_arguments>
+                <message_argument value="2.0.0"/>
+                <message_argument value="0.5.300"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

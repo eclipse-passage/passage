@@ -85,11 +85,6 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected UsersSwitch<Adapter> modelSwitch = new UsersSwitch<Adapter>() {
 		@Override
-		public Adapter caseUserOriginDescriptor(UserOriginDescriptor object) {
-			return createUserOriginDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseContactDescriptor(ContactDescriptor object) {
 			return createContactDescriptorAdapter();
 		}
@@ -110,8 +105,18 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseUserOrigin(UserOrigin object) {
-			return createUserOriginAdapter();
+		public Adapter caseUserOriginDescriptor(UserOriginDescriptor object) {
+			return createUserOriginDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseContact(Contact object) {
+			return createContactAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseOwner(LicenseOwner object) {
+			return createLicenseOwnerAdapter();
 		}
 
 		@Override
@@ -125,13 +130,8 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseContact(Contact object) {
-			return createContactAdapter();
-		}
-
-		@Override
-		public Adapter caseLicenseOwner(LicenseOwner object) {
-			return createLicenseOwnerAdapter();
+		public Adapter caseUserOrigin(UserOrigin object) {
+			return createUserOriginAdapter();
 		}
 
 		@Override
@@ -175,6 +175,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.ContactDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createContactDescriptorAdapter() {
@@ -189,6 +190,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.LicenseOwnerDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createLicenseOwnerDescriptorAdapter() {
@@ -217,6 +219,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.UserGroupDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserGroupDescriptorAdapter() {
@@ -259,6 +262,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.model.api.UserGroup
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserGroupAdapter() {
@@ -273,6 +277,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.model.api.Contact
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createContactAdapter() {
@@ -287,6 +292,7 @@ public class UsersAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.users.model.api.LicenseOwner
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createLicenseOwnerAdapter() {

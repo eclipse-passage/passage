@@ -13,12 +13,17 @@
 package org.eclipse.passage.lic.users.model.api;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.passage.lic.users.ContactDescriptor;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Contact</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * @since 2.0
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:

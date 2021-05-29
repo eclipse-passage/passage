@@ -128,6 +128,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPreferredEvaluationType()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -138,6 +139,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPreferredEvaluationType()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -148,6 +150,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPreferredEvaluationExpression()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -158,6 +161,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPreferredEvaluationExpression()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -311,6 +315,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -321,6 +326,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -336,6 +342,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -346,6 +353,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -361,6 +369,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -374,6 +383,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetOrigin(UserOrigin newOrigin, NotificationChain msgs) {
@@ -384,6 +394,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

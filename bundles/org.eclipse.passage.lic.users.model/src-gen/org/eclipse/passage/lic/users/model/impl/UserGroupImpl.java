@@ -52,6 +52,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  *   <li>{@link org.eclipse.passage.lic.users.model.impl.UserGroupImpl#getOrigin <em>Origin</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserGroup {
