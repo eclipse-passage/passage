@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
+import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 public class LicensesCreateElementCallback implements CreateElementCallback {
 
@@ -23,9 +24,9 @@ public class LicensesCreateElementCallback implements CreateElementCallback {
 	public void initElement(EObject parent, EReference reference, EObject newObject) {
 		if (newObject instanceof LicensePlanFeature) {
 			LicensePlanFeature lpf = (LicensePlanFeature) newObject;
+			lpf.setFeature(LicensesFactory.eINSTANCE.createFeatureRef());
+			lpf.getFeature().setVersionMatch(LicensesFactory.eINSTANCE.createVersionMatch());
 		}
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

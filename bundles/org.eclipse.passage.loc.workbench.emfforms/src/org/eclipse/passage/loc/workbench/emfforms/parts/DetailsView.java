@@ -177,18 +177,18 @@ public class DetailsView {
 				createElementCallback);
 		treeMasterDetail.setLayoutData(treeMasterDetailLayoutData);
 		TreeViewer viewer = treeMasterDetail.getSelectionProvider();
-		customizeLabelProvider().ifPresent(viewer::setLabelProvider);
-		customizeContentProvider().ifPresent(viewer::setContentProvider);
+		customizedLabelProvider().ifPresent(viewer::setLabelProvider);
+		customizedContentProvider().ifPresent(viewer::setContentProvider);
 		viewer.setLabelProvider(new DomainRegistryLabelProvider());
 
 		return treeMasterDetail;
 	}
 
-	protected java.util.Optional<LabelProvider> customizeLabelProvider() {
+	protected java.util.Optional<LabelProvider> customizedLabelProvider() {
 		return java.util.Optional.of(new DomainRegistryLabelProvider());
 	}
 
-	protected java.util.Optional<IStructuredContentProvider> customizeContentProvider() {
+	protected java.util.Optional<IStructuredContentProvider> customizedContentProvider() {
 		return java.util.Optional.empty();
 	}
 

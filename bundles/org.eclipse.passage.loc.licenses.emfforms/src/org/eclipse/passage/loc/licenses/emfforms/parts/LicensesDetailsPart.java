@@ -53,7 +53,7 @@ public class LicensesDetailsPart extends DetailsView {
 	}
 
 	@Override
-	protected java.util.Optional<IStructuredContentProvider> customizeContentProvider() {
+	protected java.util.Optional<IStructuredContentProvider> customizedContentProvider() {
 		return java.util.Optional.of(new LicensePlanContentProvider());
 	}
 

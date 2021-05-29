@@ -149,14 +149,12 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public LicensePlanFeature createLicensePlanFeature() {
-		LicensePlanFeatureImpl lpf = new LicensePlanFeatureImpl();
-		lpf.setFeature(createFeatureRef());
-		lpf.getFeature().setVersionMatch(createVersionMatch());
-		return lpf;
+		LicensePlanFeatureImpl licensePlanFeature = new LicensePlanFeatureImpl();
+		return licensePlanFeature;
 	}
 
 	/**
