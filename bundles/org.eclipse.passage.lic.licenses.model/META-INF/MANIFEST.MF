@@ -18,19 +18,9 @@ Export-Package: org.eclipse.passage.lic.internal.licenses.convert;x-friends:="or
  org.eclipse.passage.lic.internal.licenses.model;x-friends:="org.eclipse.passage.lic.licenses.migration,org.eclipse.passage.loc.dashboard.ui,org.eclipse.passage.loc.licenses.core",
  org.eclipse.passage.lic.internal.licenses.model.signature,
  org.eclipse.passage.lic.internal.licenses.model.toberemoved;x-internal:=true,
- org.eclipse.passage.lic.licenses.model.api;
-  x-friends:="org.eclipse.passage.lic.hc,
-   org.eclipse.passage.lbc.base,
-   org.eclipse.passage.loc.api,
-   org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.lic.licenses.edit",
+ org.eclipse.passage.lic.licenses.model.api,
  org.eclipse.passage.lic.licenses.model.impl;x-internal:=true,
- org.eclipse.passage.lic.licenses.model.meta;
-  x-friends:="org.eclipse.passage.lic.hc,
-   org.eclipse.passage.lbc.base,
-   org.eclipse.passage.loc.api,
-   org.eclipse.passage.loc.dashboard.ui,
-   org.eclipse.passage.lic.licenses.edit",
- org.eclipse.passage.lic.licenses.model.util;x-internal:=true
+ org.eclipse.passage.lic.licenses.model.meta,
+ org.eclipse.passage.lic.licenses.model.util
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy

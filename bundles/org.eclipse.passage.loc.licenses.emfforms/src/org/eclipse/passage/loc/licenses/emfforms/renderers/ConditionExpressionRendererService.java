@@ -22,7 +22,6 @@ import org.eclipse.passage.loc.workbench.emfforms.renderers.StructuredFeatureRen
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@SuppressWarnings("restriction")
 @Component
 public class ConditionExpressionRendererService extends StructuredFeatureRendererService
 		implements EMFFormsDIRendererService<VControl> {

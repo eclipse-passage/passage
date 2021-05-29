@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.loc.internal.api.PersonalLicenseRequest;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 
-@SuppressWarnings("restriction")
 final class PersonalLicensePackFromRequest implements Supplier<PersonalLicensePack> {
 
 	private final PersonalLicenseRequest request;

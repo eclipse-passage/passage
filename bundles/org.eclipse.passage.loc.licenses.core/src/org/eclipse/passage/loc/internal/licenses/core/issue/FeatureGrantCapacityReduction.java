@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
 
-@SuppressWarnings("restriction")
 final class FeatureGrantCapacityReduction implements Reduction<FeatureGrant> {
 
 	private final Logger log = LogManager.getLogger(getClass());
