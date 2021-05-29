@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.passage.lic.licenses.model.api.*;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
@@ -34,6 +33,8 @@ import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;
+import org.eclipse.passage.lic.licenses.model.api.Signature;
+import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.api.UserGrant;
 import org.eclipse.passage.lic.licenses.model.api.UserRef;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
@@ -44,13 +45,14 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static LicensesFactory init() {
@@ -78,6 +80,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,6 +137,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,16 +148,20 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public LicensePlanFeature createLicensePlanFeature() {
-		LicensePlanFeatureImpl licensePlanFeature = new LicensePlanFeatureImpl();
-		return licensePlanFeature;
+		LicensePlanFeatureImpl lpf = new LicensePlanFeatureImpl();
+		lpf.setFeature(createFeatureRef());
+		lpf.getFeature().setVersionMatch(createVersionMatch());
+		return lpf;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,6 +187,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,6 +198,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,6 +209,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -209,6 +220,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -219,6 +231,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,6 +242,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,6 +253,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,6 +264,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,6 +275,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -269,6 +286,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,6 +297,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,6 +308,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,6 +319,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -309,6 +330,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -319,6 +341,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -329,6 +352,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -338,8 +362,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -349,8 +373,8 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -361,6 +385,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -370,6 +395,7 @@ public class LicensesFactoryImpl extends EFactoryImpl implements LicensesFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

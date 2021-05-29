@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_EpDbML-uEeuw7f5-0ea7hA" name="FloatingLicenseRequisites">
+  <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicenseRequisites"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpUg8L-uEeuw7f5-0ea7hA" name="Control identifier">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVIAL-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/identifier"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVIAb-uEeuw7f5-0ea7hA" name="Control issueDate">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVIAr-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/issueDate"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVIA7-uEeuw7f5-0ea7hA" name="Control plan">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVIBL-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/plan"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVIBb-uEeuw7f5-0ea7hA" name="Control product">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVIBr-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/product"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVIB7-uEeuw7f5-0ea7hA" name="Control valid">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVICL-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/valid"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVICb-uEeuw7f5-0ea7hA" name="Control signature">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVICr-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//LicenseRequisites/signature"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_EpVIC7-uEeuw7f5-0ea7hA" name="Control company">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_EpVIDL-uEeuw7f5-0ea7hA">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FloatingLicenseRequisites/company"/>
+    </domainModelReference>
+  </children>
+  <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>

@@ -103,11 +103,11 @@ public class EvaluationInstructionsItemProvider extends ItemProviderAdapter impl
 	 * This returns EvaluationInstructions.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return null;
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/license.png")); //$NON-NLS-1$
 	}
 
 	/**

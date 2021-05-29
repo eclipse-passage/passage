@@ -28,8 +28,6 @@ public class ProductVersionRendererService extends StructuredFeatureRendererServ
 
 	public ProductVersionRendererService() {
 		super(ProductVersionRenderer.class, //
-				LicensesPackage.eINSTANCE.getPersonalLicensePack_License(), //
-				LicensesPackage.eINSTANCE.getLicenseRequisites_Product(), //
 				LicensesPackage.eINSTANCE.getProductRef_Version());
 	}
 

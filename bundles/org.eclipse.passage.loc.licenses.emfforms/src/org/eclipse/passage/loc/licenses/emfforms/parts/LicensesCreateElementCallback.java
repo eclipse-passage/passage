@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,13 +15,17 @@ package org.eclipse.passage.loc.licenses.emfforms.parts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
+import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 
 public class LicensesCreateElementCallback implements CreateElementCallback {
 
 	@Override
 	public void initElement(EObject parent, EReference reference, EObject newObject) {
+		if (newObject instanceof LicensePlanFeature) {
+			LicensePlanFeature lpf = (LicensePlanFeature) newObject;
+		}
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -33,7 +37,7 @@ public class LicensesCreateElementCallback implements CreateElementCallback {
 	@Override
 	public void afterCreateElement(Object newElement) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

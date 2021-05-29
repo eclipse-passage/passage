@@ -137,12 +137,14 @@ public class PersonalLicensePackItemProvider extends ItemProviderAdapter impleme
 	public String getText(Object object) {
 		PersonalLicensePack pack = (PersonalLicensePack) object;
 		PersonalLicenseRequisites license = pack.getLicense();
+		if (license == null) {
+			return getString("_UI_PersonalLicensePack_type"); //$NON-NLS-1$
+		}
 		return getString("_UI_LicensePack_text_pattern", new Object[] { //$NON-NLS-1$
-				Optional.ofNullable(license).map(PersonalLicenseRequisites::getIdentifier)
+				new GetOrUnknown(license.getIdentifier()).get(),
+				Optional.ofNullable(license.getProduct()).map(ProductRef::getIdentifier)
 						.orElseGet(new GetOrUnknown()),
-				Optional.ofNullable(license).map(PersonalLicenseRequisites::getProduct).map(ProductRef::getIdentifier)
-						.orElseGet(new GetOrUnknown()),
-				Optional.ofNullable(license).map(PersonalLicenseRequisites::getProduct).map(ProductRef::getVersion)
+				Optional.ofNullable(license.getProduct()).map(ProductRef::getVersion)
 						.orElseGet(new GetOrUnknown()),
 		});
 	}

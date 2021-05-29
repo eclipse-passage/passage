@@ -54,7 +54,9 @@ import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.passage.lic.emf.resource.ExtractEObject;
@@ -174,9 +176,20 @@ public class DetailsView {
 		final TreeMasterDetailComposite treeMasterDetail = createTreeMasterDetail(composite, editorInput,
 				createElementCallback);
 		treeMasterDetail.setLayoutData(treeMasterDetailLayoutData);
-		TreeViewer selectionProvider = treeMasterDetail.getSelectionProvider();
-		selectionProvider.setLabelProvider(new DomainRegistryLabelProvider());
+		TreeViewer viewer = treeMasterDetail.getSelectionProvider();
+		customizeLabelProvider().ifPresent(viewer::setLabelProvider);
+		customizeContentProvider().ifPresent(viewer::setContentProvider);
+		viewer.setLabelProvider(new DomainRegistryLabelProvider());
+
 		return treeMasterDetail;
+	}
+
+	protected java.util.Optional<LabelProvider> customizeLabelProvider() {
+		return java.util.Optional.of(new DomainRegistryLabelProvider());
+	}
+
+	protected java.util.Optional<IStructuredContentProvider> customizeContentProvider() {
+		return java.util.Optional.empty();
 	}
 
 	protected TreeMasterDetailComposite createTreeMasterDetail(final Composite composite, Object editorInput,

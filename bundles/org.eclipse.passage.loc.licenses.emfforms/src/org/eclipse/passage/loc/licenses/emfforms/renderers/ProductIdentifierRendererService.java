@@ -28,8 +28,6 @@ public class ProductIdentifierRendererService extends StructuredFeatureRendererS
 
 	public ProductIdentifierRendererService() {
 		super(ProductIdentifierRenderer.class, //
-				LicensesPackage.eINSTANCE.getPersonalLicensePack_License(), //
-				LicensesPackage.eINSTANCE.getLicenseRequisites_Product(), //
 				LicensesPackage.eINSTANCE.getProductRef_Identifier());
 	}
 
