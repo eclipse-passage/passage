@@ -64,17 +64,17 @@ public interface PersonalLicensePack extends EObject, PersonalLicensePackDescrip
 
 	/**
 	 * Returns the value of the '<em><b>Grants</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack <em>Pack</em>}'.
+	 * The list contents are of type {@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grants</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalLicensePack_Grants()
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant#getPack
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack
 	 * @model opposite="pack" containment="true"
 	 * @generated
 	 */
 	@Override
-	EList<LicenseGrant> getGrants();
+	EList<PersonalFeatureGrant> getGrants();
 
 } // PersonalLicensePack

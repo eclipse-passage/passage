@@ -36,7 +36,7 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleGreaterOrEqu
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
 import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
 import org.eclipse.passage.lic.internal.base.version.SafeVersion;
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.swt.SWT;
@@ -124,8 +124,8 @@ public class MatchRuleRenderer extends ExplainedComboControlRenderer {
 		EObject owner = getViewModelContext().getDomainModel();
 		if (owner instanceof LicensePlanFeatureDescriptor) {
 			return Optional.ofNullable(((LicensePlanFeatureDescriptor) owner).getFeature().getVersionMatch().getVersion());
-		} else if (owner instanceof LicenseGrantDescriptor) {
-			return Optional.ofNullable(((LicenseGrantDescriptor) owner).getFeature().getVersionMatch().getVersion());
+		} else if (owner instanceof PersonalFeatureGrantDescriptor) {
+			return Optional.ofNullable(((PersonalFeatureGrantDescriptor) owner).getFeature().getVersionMatch().getVersion());
 		} else if (owner instanceof VersionMatch) {
 			return Optional.ofNullable(((VersionMatch) owner).getVersion());
 		}

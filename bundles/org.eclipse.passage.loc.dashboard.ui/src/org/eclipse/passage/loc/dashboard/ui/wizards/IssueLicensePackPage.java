@@ -30,7 +30,7 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.loc.internal.api.OperatorLicenseService;
@@ -66,8 +66,8 @@ public class IssueLicensePackPage extends WizardPage {
 			license.getLicense().getProduct().setIdentifier(request.productIdentifier());
 			license.getLicense().getProduct().setVersion(request.productVersion());
 			license.getLicense().getUser().setIdentifier(request.user());
-			EList<LicenseGrant> licenseGrants = license.getGrants();
-			for (LicenseGrant grant : licenseGrants) {
+			EList<PersonalFeatureGrant> licenseGrants = license.getGrants();
+			for (PersonalFeatureGrant grant : licenseGrants) {
 				ValidityPeriodClosed valid = (ValidityPeriodClosed) grant.getValid();
 				valid.setFrom(request.validFrom());
 				valid.setUntil(request.validUntil());

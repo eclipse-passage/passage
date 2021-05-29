@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.internal.api.PassageAction;
 import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Test;
 
@@ -49,13 +49,13 @@ public final class FloatingCycleActionsDryRunTest {
 		RawRequest request = request(new PassageAction.Mine());
 		NetResponse response = new FlotingRequestHandled(request).get();
 		assertFalse(response.failed());
-		EList<LicenseGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
+		EList<PersonalFeatureGrant> grants = new DecodedResponse.License(response, request).get().getGrants();
 		assertTrue(ofFeature(grants, request).isEmpty());
 	}
 
-	private List<LicenseGrant> ofFeature(EList<LicenseGrant> grants, RawRequest request) {
+	private List<PersonalFeatureGrant> ofFeature(EList<PersonalFeatureGrant> grants, RawRequest request) {
 		String feature = new FeatureIdentifier((Function<String, String>) request::parameter).get().get();
-		Predicate<LicenseGrant> featured = grant -> feature.equals(grant.getFeature().getIdentifier());
+		Predicate<PersonalFeatureGrant> featured = grant -> feature.equals(grant.getFeature().getIdentifier());
 		return grants.stream().filter(featured).collect(Collectors.toList());
 	}
 

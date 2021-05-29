@@ -24,10 +24,10 @@ import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
@@ -151,13 +151,6 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.LICENSE_GRANT_DESCRIPTOR: {
-			LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor) theEObject;
-			T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.LICENSE_PLAN_DESCRIPTOR: {
 			LicensePlanDescriptor licensePlanDescriptor = (LicensePlanDescriptor) theEObject;
 			T result = caseLicensePlanDescriptor(licensePlanDescriptor);
@@ -175,6 +168,13 @@ public class LicensesSwitch<T> extends Switch<T> {
 		case LicensesPackage.LICENSE_REQUISITES_DESCRIPTOR: {
 			LicenseRequisitesDescriptor licenseRequisitesDescriptor = (LicenseRequisitesDescriptor) theEObject;
 			T result = caseLicenseRequisitesDescriptor(licenseRequisitesDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.PERSONAL_FEATURE_GRANT_DESCRIPTOR: {
+			PersonalFeatureGrantDescriptor personalFeatureGrantDescriptor = (PersonalFeatureGrantDescriptor) theEObject;
+			T result = casePersonalFeatureGrantDescriptor(personalFeatureGrantDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -357,20 +357,20 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.LICENSE_GRANT: {
-			LicenseGrant licenseGrant = (LicenseGrant) theEObject;
-			T result = caseLicenseGrant(licenseGrant);
-			if (result == null)
-				result = caseLicenseGrantDescriptor(licenseGrant);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.LICENSE_REQUISITES: {
 			LicenseRequisites licenseRequisites = (LicenseRequisites) theEObject;
 			T result = caseLicenseRequisites(licenseRequisites);
 			if (result == null)
 				result = caseLicenseRequisitesDescriptor(licenseRequisites);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.PERSONAL_FEATURE_GRANT: {
+			PersonalFeatureGrant personalFeatureGrant = (PersonalFeatureGrant) theEObject;
+			T result = casePersonalFeatureGrant(personalFeatureGrant);
+			if (result == null)
+				result = casePersonalFeatureGrantDescriptor(personalFeatureGrant);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -525,21 +525,6 @@ public class LicensesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>License Grant Descriptor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License Grant Descriptor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Product Ref Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -616,6 +601,22 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLicenseRequisitesDescriptor(LicenseRequisitesDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Personal Feature Grant Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Personal Feature Grant Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
+	 * @generated
+	 */
+	public T casePersonalFeatureGrantDescriptor(PersonalFeatureGrantDescriptor object) {
 		return null;
 	}
 
@@ -842,6 +843,22 @@ public class LicensesSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Personal Feature Grant</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Personal Feature Grant</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
+	 * @generated
+	 */
+	public T casePersonalFeatureGrant(PersonalFeatureGrant object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Personal License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -854,21 +871,6 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePersonalLicensePack(PersonalLicensePack object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>License Grant</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>License Grant</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLicenseGrant(LicenseGrant object) {
 		return null;
 	}
 

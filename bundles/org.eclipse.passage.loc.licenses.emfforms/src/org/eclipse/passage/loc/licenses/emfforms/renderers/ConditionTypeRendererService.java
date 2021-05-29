@@ -28,7 +28,6 @@ public class ConditionTypeRendererService extends StructuredFeatureRendererServi
 
 	public ConditionTypeRendererService() {
 		super(ConditionTypeRenderer.class, //
-				LicensesPackage.eINSTANCE.getLicenseGrant_UserAuthentication(), //
 				LicensesPackage.eINSTANCE.getEvaluationInstructions_Type());
 	}
 

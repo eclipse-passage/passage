@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServer;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
@@ -73,6 +73,16 @@ public interface LicensesFactory extends EFactory {
 	LicensePlanFeature createLicensePlanFeature();
 
 	/**
+	 * Returns a new object of class '<em>Personal Feature Grant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Personal Feature Grant</em>'.
+	 * @since 2.0
+	 * @generated
+	 */
+	PersonalFeatureGrant createPersonalFeatureGrant();
+
+	/**
 	 * Returns a new object of class '<em>Personal License Pack</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,15 +91,6 @@ public interface LicensesFactory extends EFactory {
 	 * @generated
 	 */
 	PersonalLicensePack createPersonalLicensePack();
-
-	/**
-	 * Returns a new object of class '<em>License Grant</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>License Grant</em>'.
-	 * @generated
-	 */
-	LicenseGrant createLicenseGrant();
 
 	/**
 	 * Returns a new object of class '<em>Floating License Pack</em>'.

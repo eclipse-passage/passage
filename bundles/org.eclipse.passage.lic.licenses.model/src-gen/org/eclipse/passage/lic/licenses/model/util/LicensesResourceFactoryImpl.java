@@ -23,7 +23,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl
- * @generated
+ * @since 2.0
+ * @generated NOT
  */
 public class LicensesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**

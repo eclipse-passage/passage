@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
-import org.eclipse.passage.lic.internal.licenses.model.migration.EnsurePersonalPackLicense;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.junit.Test;
 
 public class AssignGrantIdentifiersTest {
@@ -47,16 +47,15 @@ public class AssignGrantIdentifiersTest {
 	}
 
 	private PersonalLicensePack pack() {
-		PersonalLicensePack pack = LicensesFactory.eINSTANCE.createPersonalLicensePack();
-		new EnsurePersonalPackLicense().apply(pack);
+		PersonalLicensePack pack = new EmptyPersonalLicensePack().get();
 		PersonalLicenseRequisites license = pack.getLicense();
 		license.setIdentifier(id);
 		return pack;
 	}
 
 	private void addGrantOfIdentifier(PersonalLicensePack pack, String identifier) {
-		EList<LicenseGrant> grants = pack.getGrants();
-		LicenseGrant grant = LicensesFactory.eINSTANCE.createLicenseGrant();
+		EList<PersonalFeatureGrant> grants = pack.getGrants();
+		PersonalFeatureGrant grant = new EmptyPersonalFeatureGrant().get();
 		grant.setIdentifier(identifier);
 		grants.add(grant);
 	}

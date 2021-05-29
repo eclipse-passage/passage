@@ -22,7 +22,7 @@ import java.util.Date;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 
 public final class TestData {
@@ -32,7 +32,7 @@ public final class TestData {
 	private final User albert = new User("Albert_Rose@garden.ga", "os.family=*"); //$NON-NLS-1$ //$NON-NLS-2$
 	private final User elder = new User("elder@magic.com", "os=win"); //$NON-NLS-1$ //$NON-NLS-2$
 
-	void assertGrantIsValid(LicenseGrant grant) {
+	void assertGrantIsValid(PersonalFeatureGrant grant) {
 		assertEquals("hardware", grant.getUserAuthentication().getType()); //$NON-NLS-1$
 		assertEquals("os.family=*", grant.getUserAuthentication().getExpression()); //$NON-NLS-1$
 		assertEquals("anti-human-magic.product", grant.getFeature().getIdentifier()); //$NON-NLS-1$

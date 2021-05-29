@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites;
 
@@ -68,7 +68,7 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LicenseGrant> grants;
+	protected EList<PersonalFeatureGrant> grants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,10 +148,10 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 */
 	@Override
-	public EList<LicenseGrant> getGrants() {
+	public EList<PersonalFeatureGrant> getGrants() {
 		if (grants == null) {
-			grants = new EObjectContainmentWithInverseEList<LicenseGrant>(LicenseGrant.class, this,
-					LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS, LicensesPackage.LICENSE_GRANT__PACK);
+			grants = new EObjectContainmentWithInverseEList<PersonalFeatureGrant>(PersonalFeatureGrant.class, this,
+					LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS, LicensesPackage.PERSONAL_FEATURE_GRANT__PACK);
 		}
 		return grants;
 	}
@@ -220,7 +220,7 @@ public class PersonalLicensePackImpl extends MinimalEObjectImpl.Container implem
 			return;
 		case LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS:
 			getGrants().clear();
-			getGrants().addAll((Collection<? extends LicenseGrant>) newValue);
+			getGrants().addAll((Collection<? extends PersonalFeatureGrant>) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);

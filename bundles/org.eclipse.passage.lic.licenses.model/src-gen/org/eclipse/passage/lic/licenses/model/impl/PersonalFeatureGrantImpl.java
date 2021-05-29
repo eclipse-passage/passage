@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions;
 import org.eclipse.passage.lic.licenses.model.api.FeatureRef;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -37,17 +37,18 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getValid <em>Valid</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getUserAuthentication <em>User Authentication</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getCapacity <em>Capacity</em>}</li>
- *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicenseGrantImpl#getPack <em>Pack</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getValid <em>Valid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getUserAuthentication <em>User Authentication</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getPack <em>Pack</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
-public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements LicenseGrant {
+public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container implements PersonalFeatureGrant {
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,7 +74,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
-	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -84,7 +84,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValid()
-	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -95,7 +94,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUserAuthentication()
-	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -126,7 +124,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LicenseGrantImpl() {
+	protected PersonalFeatureGrantImpl() {
 		super();
 	}
 
@@ -137,7 +135,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LicensesPackage.eINSTANCE.getLicenseGrant();
+		return LicensesPackage.eINSTANCE.getPersonalFeatureGrant();
 	}
 
 	/**
@@ -160,7 +158,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__IDENTIFIER,
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER,
 					oldIdentifier, identifier));
 		}
 	}
@@ -168,7 +166,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -179,7 +176,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
@@ -187,7 +183,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		feature = newFeature;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					LicensesPackage.LICENSE_GRANT__FEATURE, oldFeature, newFeature);
+					LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE, oldFeature, newFeature);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -199,7 +195,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -208,23 +203,22 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			NotificationChain msgs = null;
 			if (feature != null)
 				msgs = ((InternalEObject) feature).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__FEATURE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE, null, msgs);
 			if (newFeature != null)
 				msgs = ((InternalEObject) newFeature).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__FEATURE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE, null, msgs);
 			msgs = basicSetFeature(newFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__FEATURE, newFeature,
-					newFeature));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE,
+					newFeature, newFeature));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -235,7 +229,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
@@ -243,7 +236,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		valid = newValid;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					LicensesPackage.LICENSE_GRANT__VALID, oldValid, newValid);
+					LicensesPackage.PERSONAL_FEATURE_GRANT__VALID, oldValid, newValid);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -255,7 +248,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -264,23 +256,22 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			NotificationChain msgs = null;
 			if (valid != null)
 				msgs = ((InternalEObject) valid).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__VALID, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__VALID, null, msgs);
 			if (newValid != null)
 				msgs = ((InternalEObject) newValid).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__VALID, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__VALID, null, msgs);
 			msgs = basicSetValid(newValid, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__VALID, newValid,
-					newValid));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__VALID,
+					newValid, newValid));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -291,7 +282,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetUserAuthentication(EvaluationInstructions newUserAuthentication,
@@ -300,7 +290,8 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		userAuthentication = newUserAuthentication;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, oldUserAuthentication, newUserAuthentication);
+					LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION, oldUserAuthentication,
+					newUserAuthentication);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -312,7 +303,6 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -321,16 +311,19 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			NotificationChain msgs = null;
 			if (userAuthentication != null)
 				msgs = ((InternalEObject) userAuthentication).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION, null,
+						msgs);
 			if (newUserAuthentication != null)
 				msgs = ((InternalEObject) newUserAuthentication).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION, null, msgs);
+						EOPPOSITE_FEATURE_BASE - LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION, null,
+						msgs);
 			msgs = basicSetUserAuthentication(newUserAuthentication, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION,
-					newUserAuthentication, newUserAuthentication));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION, newUserAuthentication,
+					newUserAuthentication));
 		}
 	}
 
@@ -354,20 +347,19 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 		int oldCapacity = capacity;
 		capacity = newCapacity;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__CAPACITY, oldCapacity,
-					capacity));
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY,
+					oldCapacity, capacity));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
 	public PersonalLicensePack getPack() {
-		if (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__PACK) {
+		if (eContainerFeatureID() != LicensesPackage.PERSONAL_FEATURE_GRANT__PACK) {
 			return null;
 		}
 		return (PersonalLicensePack) eInternalContainer();
@@ -376,24 +368,22 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(PersonalLicensePack newPack, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.LICENSE_GRANT__PACK, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newPack, LicensesPackage.PERSONAL_FEATURE_GRANT__PACK, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 2.0
 	 * @generated
 	 */
 	@Override
 	public void setPack(PersonalLicensePack newPack) {
 		if (newPack != eInternalContainer()
-				|| (eContainerFeatureID() != LicensesPackage.LICENSE_GRANT__PACK && newPack != null)) {
+				|| (eContainerFeatureID() != LicensesPackage.PERSONAL_FEATURE_GRANT__PACK && newPack != null)) {
 			if (EcoreUtil.isAncestor(this, newPack)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
@@ -408,7 +398,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_GRANT__PACK, newPack,
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__PACK, newPack,
 					newPack));
 		}
 	}
@@ -421,7 +411,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
 			}
@@ -439,13 +429,13 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
 			return basicSetFeature(null, msgs);
-		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
 			return basicSetValid(null, msgs);
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			return basicSetUserAuthentication(null, msgs);
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return basicSetPack(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -460,7 +450,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return eInternalContainer().eInverseRemove(this, LicensesPackage.PERSONAL_LICENSE_PACK__GRANTS,
 					PersonalLicensePack.class, msgs);
 		default:
@@ -476,17 +466,17 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
 			return getIdentifier();
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
 			return getFeature();
-		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
 			return getValid();
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			return getUserAuthentication();
-		case LicensesPackage.LICENSE_GRANT__CAPACITY:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			return getCapacity();
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return getPack();
 		default:
 			return super.eGet(featureID, resolve, coreType);
@@ -501,22 +491,22 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
 			setIdentifier((String) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
 			setFeature((FeatureRef) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			setUserAuthentication((EvaluationInstructions) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__CAPACITY:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			setCapacity((Integer) newValue);
 			return;
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			setPack((PersonalLicensePack) newValue);
 			return;
 		default:
@@ -533,22 +523,22 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
 			setFeature((FeatureRef) null);
 			return;
-		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
 			setValid((ValidityPeriod) null);
 			return;
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			setUserAuthentication((EvaluationInstructions) null);
 			return;
-		case LicensesPackage.LICENSE_GRANT__CAPACITY:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
 			return;
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			setPack((PersonalLicensePack) null);
 			return;
 		default:
@@ -565,17 +555,17 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case LicensesPackage.LICENSE_GRANT__IDENTIFIER:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
 			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
-		case LicensesPackage.LICENSE_GRANT__FEATURE:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:
 			return feature != null;
-		case LicensesPackage.LICENSE_GRANT__VALID:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VALID:
 			return valid != null;
-		case LicensesPackage.LICENSE_GRANT__USER_AUTHENTICATION:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__USER_AUTHENTICATION:
 			return userAuthentication != null;
-		case LicensesPackage.LICENSE_GRANT__CAPACITY:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
-		case LicensesPackage.LICENSE_GRANT__PACK:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return getPack() != null;
 		default:
 			return super.eIsSet(featureID);

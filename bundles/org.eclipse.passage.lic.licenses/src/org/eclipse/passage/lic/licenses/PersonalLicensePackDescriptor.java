@@ -23,7 +23,7 @@ import java.util.List;
  * <p>
  * 
  * @since 2.0
- * @see LicenseGrantDescriptor
+ * @see PersonalFeatureGrantDescriptor
  */
 public interface PersonalLicensePackDescriptor {
 
@@ -35,6 +35,6 @@ public interface PersonalLicensePackDescriptor {
 	/**
 	 * @since 2.0
 	 */
-	List<? extends LicenseGrantDescriptor> getGrants();
+	List<? extends PersonalFeatureGrantDescriptor> getGrants();
 
 }

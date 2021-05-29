@@ -48,7 +48,7 @@ public class LicensesE4UiProcessor {
 		paths.put(licenses.getLicensePlanFeature().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getPersonalLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		paths.put(licenses.getFloatingLicensePack().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
-		paths.put(licenses.getLicenseGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
+		paths.put(licenses.getPersonalFeatureGrant().getName(), String.format(pattern, "license.png")); //$NON-NLS-1$
 		LicensingImages.declareImages(LicensesEditPlugin.class, paths);
 	}
 

@@ -25,11 +25,12 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 import org.junit.Rule;
 import org.junit.Test;
@@ -69,10 +70,9 @@ public class XmiLicensingConditionExtractorTest {
 	public void testExtractorPositive() throws Exception {
 		XmiConditionTransport extractor = new XmiConditionTransport();
 
-		LicensesFactory factory = LicensesFactory.eINSTANCE;
-		PersonalLicensePack license = factory.createPersonalLicensePack();
-		EList<LicenseGrant> licenseGrants = license.getGrants();
-		LicenseGrant cond1 = factory.createLicenseGrant();
+		PersonalLicensePack license = new EmptyPersonalLicensePack().get();
+		EList<PersonalFeatureGrant> licenseGrants = license.getGrants();
+		PersonalFeatureGrant cond1 = new EmptyPersonalFeatureGrant().get();
 		cond1.getFeature().setIdentifier(COND1_FEATURE_ID);
 		cond1.getFeature().getVersionMatch().setVersion(COND1_FEATURE_VERSION);
 		cond1.getUserAuthentication().setType(COND1_CONDITION_TYPE);
@@ -80,7 +80,7 @@ public class XmiLicensingConditionExtractorTest {
 		((ValidityPeriodClosed) cond1.getValid()).setFrom(new Date());
 		((ValidityPeriodClosed) cond1.getValid()).setUntil(new Date(System.currentTimeMillis() + 1));
 		licenseGrants.add(cond1);
-		LicenseGrant cond2 = factory.createLicenseGrant();
+		PersonalFeatureGrant cond2 = new EmptyPersonalFeatureGrant().get();
 		cond2.getFeature().setIdentifier(COND2_FEATURE_ID);
 		cond2.getFeature().getVersionMatch().setVersion(COND2_FEATURE_VERSION);
 		cond2.getUserAuthentication().setType(COND2_CONDITION_TYPE);

@@ -26,10 +26,10 @@ import org.eclipse.passage.lic.licenses.FeatureRefDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.FloatingServerDescriptor;
-import org.eclipse.passage.lic.licenses.LicenseGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
+import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor;
 import org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor;
 import org.eclipse.passage.lic.licenses.ProductRefDescriptor;
@@ -136,11 +136,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
-			return createLicenseGrantDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseLicensePlanDescriptor(LicensePlanDescriptor object) {
 			return createLicensePlanDescriptorAdapter();
 		}
@@ -153,6 +148,11 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseLicenseRequisitesDescriptor(LicenseRequisitesDescriptor object) {
 			return createLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter casePersonalFeatureGrantDescriptor(PersonalFeatureGrantDescriptor object) {
+			return createPersonalFeatureGrantDescriptorAdapter();
 		}
 
 		@Override
@@ -266,13 +266,13 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseLicenseGrant(LicenseGrant object) {
-			return createLicenseGrantAdapter();
+		public Adapter caseLicenseRequisites(LicenseRequisites object) {
+			return createLicenseRequisitesAdapter();
 		}
 
 		@Override
-		public Adapter caseLicenseRequisites(LicenseRequisites object) {
-			return createLicenseRequisitesAdapter();
+		public Adapter casePersonalFeatureGrant(PersonalFeatureGrant object) {
+			return createPersonalFeatureGrantAdapter();
 		}
 
 		@Override
@@ -388,20 +388,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.LicenseGrantDescriptor <em>License Grant Descriptor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.licenses.LicenseGrantDescriptor
-	 * @generated
-	 */
-	public Adapter createLicenseGrantDescriptorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.ProductRefDescriptor <em>Product Ref Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -473,6 +459,21 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLicenseRequisitesDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor <em>Personal Feature Grant Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor
+	 * @since 2.0
+	 * @generated
+	 */
+	public Adapter createPersonalFeatureGrantDescriptorAdapter() {
 		return null;
 	}
 
@@ -685,6 +686,21 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant <em>Personal Feature Grant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant
+	 * @since 2.0
+	 * @generated
+	 */
+	public Adapter createPersonalFeatureGrantAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack <em>Personal License Pack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -696,20 +712,6 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPersonalLicensePackAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.passage.lic.licenses.model.api.LicenseGrant <em>License Grant</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseGrant
-	 * @generated
-	 */
-	public Adapter createLicenseGrantAdapter() {
 		return null;
 	}
 

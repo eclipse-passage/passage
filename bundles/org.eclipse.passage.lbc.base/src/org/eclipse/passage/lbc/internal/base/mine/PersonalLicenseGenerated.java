@@ -22,10 +22,10 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
-import org.eclipse.passage.lic.licenses.model.api.LicenseGrant;
+import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
-import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 @SuppressWarnings("restriction")
 final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
@@ -60,9 +60,8 @@ final class PersonalLicenseGenerated implements Supplier<PersonalLicensePack> {
 		return String.format("generated:%s", UUID.randomUUID().toString());//$NON-NLS-1$
 	}
 
-	private LicenseGrant grant(Condition condition) {
-		LicensesFactory licenseFactory = LicensesFactory.eINSTANCE;
-		LicenseGrant grant = licenseFactory.createLicenseGrant();
+	private PersonalFeatureGrant grant(Condition condition) {
+		PersonalFeatureGrant grant = new EmptyPersonalFeatureGrant().get();
 		grant.setIdentifier(condition.identifier());
 		grant.getFeature().setIdentifier(condition.feature());
 		grant.getFeature().getVersionMatch().setVersion(condition.versionMatch().version());

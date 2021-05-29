@@ -50,25 +50,26 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		LicensesPackage licenses = LicensesPackage.eINSTANCE;
 
 		routes.define("licenseGrants", new SimpleReferenceRoute(licenses.getPersonalLicensePack_Grants())); //$NON-NLS-1$
-		routes.define("licensePack", new SimpleReferenceRoute(licenses.getLicenseGrant_Pack())); //$NON-NLS-1$
+		routes.define("licensePack", new SimpleReferenceRoute(licenses.getPersonalFeatureGrant_Pack())); //$NON-NLS-1$
 		routes.define("licensePlanFeatures", new SimpleReferenceRoute(licenses.getLicensePlan_Features())); //$NON-NLS-1$
 		routes.define("licensePlan", new SimpleReferenceRoute(licenses.getLicensePlanFeature_Plan())); //$NON-NLS-1$
 
 		routes.define("conditionExpression", new SimpleAttributeRoute(licenses.getEvaluationInstructions_Expression(), //$NON-NLS-1$
-				licenses.getLicenseGrant_UserAuthentication()));
+				licenses.getPersonalFeatureGrant_UserAuthentication()));
 		routes.define("conditionType", new SimpleAttributeRoute(licenses.getEvaluationInstructions_Type(), //$NON-NLS-1$
-				licenses.getLicenseGrant_UserAuthentication()));
+				licenses.getPersonalFeatureGrant_UserAuthentication()));
 		routes.define("featureIdentifier", //$NON-NLS-1$
-				new SimpleAttributeRoute(licenses.getFeatureRef_Identifier(), licenses.getLicenseGrant_Feature()));
-		routes.define("identifier", new SimpleAttributeRoute(licenses.getLicenseGrant_Identifier())); //$NON-NLS-1$
+				new SimpleAttributeRoute(licenses.getFeatureRef_Identifier(),
+						licenses.getPersonalFeatureGrant_Feature()));
+		routes.define("identifier", new SimpleAttributeRoute(licenses.getPersonalFeatureGrant_Identifier())); //$NON-NLS-1$
 		routes.define("identifier", new SimpleAttributeRoute(licenses.getLicenseRequisites_Identifier(), //$NON-NLS-1$
 				licenses.getPersonalLicensePack_License()));
 		routes.define("issueDate", new SimpleAttributeRoute(licenses.getLicenseRequisites_IssueDate(), //$NON-NLS-1$
 				licenses.getPersonalLicensePack_License()));
 		routes.define("matchRule", new SimpleAttributeRoute(licenses.getVersionMatch_Rule(), //$NON-NLS-1$
-				licenses.getLicenseGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
+				licenses.getPersonalFeatureGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
 		routes.define("matchVersion", new SimpleAttributeRoute(licenses.getVersionMatch_Version(), //$NON-NLS-1$
-				licenses.getLicenseGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
+				licenses.getPersonalFeatureGrant_Feature(), licenses.getFeatureRef_VersionMatch()));
 		routes.define("planIdentifier", new SimpleAttributeRoute(licenses.getLicenseRequisites_Plan(), //$NON-NLS-1$
 				licenses.getPersonalLicensePack_License()));
 		routes.define("productIdentifier", new SimpleAttributeRoute(licenses.getProductRef_Identifier(), //$NON-NLS-1$
@@ -80,9 +81,11 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 		routes.define("userFullName", new SimpleAttributeRoute(licenses.getUserRef_Name(), //$NON-NLS-1$
 				licenses.getPersonalLicensePack_License(), licenses.getPersonalLicenseRequisites_User()));
 		routes.define("validFrom", //$NON-NLS-1$
-				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_From(), licenses.getLicenseGrant_Valid()));
+				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_From(),
+						licenses.getPersonalFeatureGrant_Valid()));
 		routes.define("validUntil", //$NON-NLS-1$
-				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_Until(), licenses.getLicenseGrant_Valid()));
+				new SimpleAttributeRoute(licenses.getValidityPeriodClosed_Until(),
+						licenses.getPersonalFeatureGrant_Valid()));
 		routes.ignore("requestIdentifier", licenses.getPersonalLicensePack()); //$NON-NLS-1$
 
 		defineLicensePlanRouts(routes, licenses);
@@ -129,6 +132,7 @@ public class LicensesResourceHandler extends MigratingResourceHandler {
 	private EClassRoutes classRoutes200() {
 		LicensesPackage delegate = LicensesPackage.eINSTANCE;
 		EClassRoutes routes = new SimpleClassRoutes();
+		routes.define("LicenseGrant", delegate.getPersonalFeatureGrant()); //$NON-NLS-1$ \
 		routes.define("LicensePack", delegate.getPersonalLicensePack()); //$NON-NLS-1$ \
 		routes.define("LicensePlan", delegate.getLicensePlan()); //$NON-NLS-1$
 		return routes;
