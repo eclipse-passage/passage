@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicensePlan;
@@ -119,6 +120,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeatures()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -129,6 +131,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPersonal()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -139,6 +142,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFloating()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -240,13 +244,14 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
 	public EList<LicensePlanFeature> getFeatures() {
 		if (features == null) {
-			features = new EObjectContainmentEList<LicensePlanFeature>(LicensePlanFeature.class, this,
-					LicensesPackage.LICENSE_PLAN__FEATURES);
+			features = new EObjectContainmentWithInverseEList<LicensePlanFeature>(LicensePlanFeature.class, this,
+					LicensesPackage.LICENSE_PLAN__FEATURES, LicensesPackage.LICENSE_PLAN_FEATURE__PLAN);
 		}
 		return features;
 	}
@@ -254,6 +259,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -268,6 +274,7 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -277,6 +284,22 @@ public class LicensePlanImpl extends MinimalEObjectImpl.Container implements Lic
 					LicensesPackage.LICENSE_PLAN__FLOATING);
 		}
 		return floating;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case LicensesPackage.LICENSE_PLAN__FEATURES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFeatures()).basicAdd(otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
+		}
 	}
 
 	/**

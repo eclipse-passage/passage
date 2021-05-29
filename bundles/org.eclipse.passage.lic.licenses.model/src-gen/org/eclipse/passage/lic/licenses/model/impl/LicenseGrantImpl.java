@@ -73,6 +73,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -83,6 +84,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValid()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -93,6 +95,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUserAuthentication()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -165,6 +168,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -175,6 +179,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetFeature(FeatureRef newFeature, NotificationChain msgs) {
@@ -194,6 +199,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -218,6 +224,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -228,6 +235,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetValid(ValidityPeriod newValid, NotificationChain msgs) {
@@ -247,6 +255,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -271,6 +280,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -281,6 +291,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetUserAuthentication(EvaluationInstructions newUserAuthentication,
@@ -301,6 +312,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -350,6 +362,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -363,6 +376,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetPack(PersonalLicensePack newPack, NotificationChain msgs) {
@@ -373,6 +387,7 @@ public class LicenseGrantImpl extends MinimalEObjectImpl.Container implements Li
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

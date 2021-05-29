@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.UserRefImpl#getName <em>Name</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class UserRefImpl extends MinimalEObjectImpl.Container implements UserRef {

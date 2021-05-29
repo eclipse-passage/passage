@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.UserGrantImpl#getAuthentication <em>Authentication</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class UserGrantImpl extends MinimalEObjectImpl.Container implements UserGrant {

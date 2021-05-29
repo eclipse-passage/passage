@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.EvaluationInstructionsImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class EvaluationInstructionsImpl extends MinimalEObjectImpl.Container implements EvaluationInstructions {

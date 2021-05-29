@@ -47,6 +47,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureGrantImpl#getPack <em>Pack</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FeatureGrantImpl extends MinimalEObjectImpl.Container implements FeatureGrant {

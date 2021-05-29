@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.ProductRefImpl#getVersion <em>Version</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class ProductRefImpl extends MinimalEObjectImpl.Container implements ProductRef {

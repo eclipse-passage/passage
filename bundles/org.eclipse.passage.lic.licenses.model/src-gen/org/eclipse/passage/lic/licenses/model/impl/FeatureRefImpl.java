@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FeatureRefImpl#getVersionMatch <em>Version Match</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FeatureRefImpl extends MinimalEObjectImpl.Container implements FeatureRef {

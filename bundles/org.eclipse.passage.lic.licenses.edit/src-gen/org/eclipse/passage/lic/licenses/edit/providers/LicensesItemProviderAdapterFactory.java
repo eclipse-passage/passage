@@ -135,6 +135,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected PersonalLicensePackItemProvider personalLicensePackItemProvider;
@@ -143,6 +144,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -183,6 +185,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FloatingLicensePackItemProvider floatingLicensePackItemProvider;
@@ -191,6 +194,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -206,6 +210,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected PersonalLicenseRequisitesItemProvider personalLicenseRequisitesItemProvider;
@@ -214,6 +219,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -229,6 +235,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FloatingLicenseRequisitesItemProvider floatingLicenseRequisitesItemProvider;
@@ -237,6 +244,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -252,6 +260,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.ProductRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected ProductRefItemProvider productRefItemProvider;
@@ -260,6 +269,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.ProductRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -275,6 +285,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FeatureRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FeatureRefItemProvider featureRefItemProvider;
@@ -283,6 +294,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -298,6 +310,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.UserRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected UserRefItemProvider userRefItemProvider;
@@ -306,6 +319,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.UserRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -321,6 +335,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.CompanyRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected CompanyRefItemProvider companyRefItemProvider;
@@ -329,6 +344,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.CompanyRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -344,6 +360,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingServer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FloatingServerItemProvider floatingServerItemProvider;
@@ -352,6 +369,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingServer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -367,6 +385,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.UserGrant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected UserGrantItemProvider userGrantItemProvider;
@@ -375,6 +394,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.UserGrant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -390,6 +410,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FeatureGrantItemProvider featureGrantItemProvider;
@@ -398,6 +419,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FeatureGrant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -413,6 +435,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected ValidityPeriodClosedItemProvider validityPeriodClosedItemProvider;
@@ -421,6 +444,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -436,6 +460,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected EvaluationInstructionsItemProvider evaluationInstructionsItemProvider;
@@ -444,6 +469,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -459,6 +485,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.VersionMatch} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected VersionMatchItemProvider versionMatchItemProvider;
@@ -467,6 +494,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.VersionMatch}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -482,6 +510,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FloatingLicenseAccessItemProvider floatingLicenseAccessItemProvider;
@@ -490,6 +519,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -505,6 +535,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected FloatingServerConnectionItemProvider floatingServerConnectionItemProvider;
@@ -513,6 +544,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -528,6 +560,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.GrantAcqisition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected GrantAcqisitionItemProvider grantAcqisitionItemProvider;
@@ -536,6 +569,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.GrantAcqisition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -551,6 +585,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.Signature} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected SignatureItemProvider signatureItemProvider;
@@ -559,6 +594,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.Signature}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -574,6 +610,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected SignatureAttributeItemProvider signatureAttributeItemProvider;
@@ -582,6 +619,7 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.licenses.model.api.SignatureAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -707,50 +745,50 @@ public class LicensesItemProviderAdapterFactory extends LicensesAdapterFactory
 	 */
 	@Override
 	public void dispose() {
-		if (licensePlanItemProvider != null)
-			licensePlanItemProvider.dispose();
-		if (licensePlanFeatureItemProvider != null)
-			licensePlanFeatureItemProvider.dispose();
-		if (personalLicensePackItemProvider != null)
-			personalLicensePackItemProvider.dispose();
-		if (licenseGrantItemProvider != null)
-			licenseGrantItemProvider.dispose();
-		if (floatingLicensePackItemProvider != null)
-			floatingLicensePackItemProvider.dispose();
-		if (personalLicenseRequisitesItemProvider != null)
-			personalLicenseRequisitesItemProvider.dispose();
-		if (floatingLicenseRequisitesItemProvider != null)
-			floatingLicenseRequisitesItemProvider.dispose();
-		if (userRefItemProvider != null)
-			userRefItemProvider.dispose();
-		if (productRefItemProvider != null)
-			productRefItemProvider.dispose();
-		if (featureRefItemProvider != null)
-			featureRefItemProvider.dispose();
 		if (companyRefItemProvider != null)
 			companyRefItemProvider.dispose();
-		if (floatingServerItemProvider != null)
-			floatingServerItemProvider.dispose();
-		if (userGrantItemProvider != null)
-			userGrantItemProvider.dispose();
-		if (featureGrantItemProvider != null)
-			featureGrantItemProvider.dispose();
-		if (validityPeriodClosedItemProvider != null)
-			validityPeriodClosedItemProvider.dispose();
 		if (evaluationInstructionsItemProvider != null)
 			evaluationInstructionsItemProvider.dispose();
-		if (versionMatchItemProvider != null)
-			versionMatchItemProvider.dispose();
+		if (featureGrantItemProvider != null)
+			featureGrantItemProvider.dispose();
+		if (featureRefItemProvider != null)
+			featureRefItemProvider.dispose();
 		if (floatingLicenseAccessItemProvider != null)
 			floatingLicenseAccessItemProvider.dispose();
+		if (floatingLicensePackItemProvider != null)
+			floatingLicensePackItemProvider.dispose();
+		if (floatingLicenseRequisitesItemProvider != null)
+			floatingLicenseRequisitesItemProvider.dispose();
+		if (floatingServerItemProvider != null)
+			floatingServerItemProvider.dispose();
 		if (floatingServerConnectionItemProvider != null)
 			floatingServerConnectionItemProvider.dispose();
 		if (grantAcqisitionItemProvider != null)
 			grantAcqisitionItemProvider.dispose();
+		if (licensePlanItemProvider != null)
+			licensePlanItemProvider.dispose();
+		if (licensePlanFeatureItemProvider != null)
+			licensePlanFeatureItemProvider.dispose();
+		if (licenseGrantItemProvider != null)
+			licenseGrantItemProvider.dispose();
+		if (personalLicensePackItemProvider != null)
+			personalLicensePackItemProvider.dispose();
+		if (personalLicenseRequisitesItemProvider != null)
+			personalLicenseRequisitesItemProvider.dispose();
+		if (productRefItemProvider != null)
+			productRefItemProvider.dispose();
 		if (signatureItemProvider != null)
 			signatureItemProvider.dispose();
 		if (signatureAttributeItemProvider != null)
 			signatureAttributeItemProvider.dispose();
+		if (userGrantItemProvider != null)
+			userGrantItemProvider.dispose();
+		if (userRefItemProvider != null)
+			userRefItemProvider.dispose();
+		if (validityPeriodClosedItemProvider != null)
+			validityPeriodClosedItemProvider.dispose();
+		if (versionMatchItemProvider != null)
+			versionMatchItemProvider.dispose();
 	}
 
 }

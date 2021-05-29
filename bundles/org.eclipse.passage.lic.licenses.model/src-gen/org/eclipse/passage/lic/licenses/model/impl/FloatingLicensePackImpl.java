@@ -51,6 +51,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicensePackImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FloatingLicensePackImpl extends MinimalEObjectImpl.Container implements FloatingLicensePack {

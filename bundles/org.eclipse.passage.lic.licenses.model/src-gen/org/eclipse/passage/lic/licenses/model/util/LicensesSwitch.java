@@ -100,6 +100,64 @@ public class LicensesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+		case LicensesPackage.COMPANY_REF_DESCRIPTOR: {
+			CompanyRefDescriptor companyRefDescriptor = (CompanyRefDescriptor) theEObject;
+			T result = caseCompanyRefDescriptor(companyRefDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.EVALUATION_INSTRUCTIONS_DESCRIPTOR: {
+			EvaluationInstructionsDescriptor evaluationInstructionsDescriptor = (EvaluationInstructionsDescriptor) theEObject;
+			T result = caseEvaluationInstructionsDescriptor(evaluationInstructionsDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FEATURE_GRANT_DESCRIPTOR: {
+			FeatureGrantDescriptor featureGrantDescriptor = (FeatureGrantDescriptor) theEObject;
+			T result = caseFeatureGrantDescriptor(featureGrantDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FEATURE_REF_DESCRIPTOR: {
+			FeatureRefDescriptor featureRefDescriptor = (FeatureRefDescriptor) theEObject;
+			T result = caseFeatureRefDescriptor(featureRefDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_PACK_DESCRIPTOR: {
+			FloatingLicensePackDescriptor floatingLicensePackDescriptor = (FloatingLicensePackDescriptor) theEObject;
+			T result = caseFloatingLicensePackDescriptor(floatingLicensePackDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES_DESCRIPTOR: {
+			FloatingLicenseRequisitesDescriptor floatingLicenseRequisitesDescriptor = (FloatingLicenseRequisitesDescriptor) theEObject;
+			T result = caseFloatingLicenseRequisitesDescriptor(floatingLicenseRequisitesDescriptor);
+			if (result == null)
+				result = caseLicenseRequisitesDescriptor(floatingLicenseRequisitesDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_SERVER_DESCRIPTOR: {
+			FloatingServerDescriptor floatingServerDescriptor = (FloatingServerDescriptor) theEObject;
+			T result = caseFloatingServerDescriptor(floatingServerDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.LICENSE_GRANT_DESCRIPTOR: {
+			LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor) theEObject;
+			T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case LicensesPackage.LICENSE_PLAN_DESCRIPTOR: {
 			LicensePlanDescriptor licensePlanDescriptor = (LicensePlanDescriptor) theEObject;
 			T result = caseLicensePlanDescriptor(licensePlanDescriptor);
@@ -114,51 +172,16 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.PERSONAL_LICENSE_PACK_DESCRIPTOR: {
-			PersonalLicensePackDescriptor personalLicensePackDescriptor = (PersonalLicensePackDescriptor) theEObject;
-			T result = casePersonalLicensePackDescriptor(personalLicensePackDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.LICENSE_GRANT_DESCRIPTOR: {
-			LicenseGrantDescriptor licenseGrantDescriptor = (LicenseGrantDescriptor) theEObject;
-			T result = caseLicenseGrantDescriptor(licenseGrantDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.USER_REF_DESCRIPTOR: {
-			UserRefDescriptor userRefDescriptor = (UserRefDescriptor) theEObject;
-			T result = caseUserRefDescriptor(userRefDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.PRODUCT_REF_DESCRIPTOR: {
-			ProductRefDescriptor productRefDescriptor = (ProductRefDescriptor) theEObject;
-			T result = caseProductRefDescriptor(productRefDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FEATURE_REF_DESCRIPTOR: {
-			FeatureRefDescriptor featureRefDescriptor = (FeatureRefDescriptor) theEObject;
-			T result = caseFeatureRefDescriptor(featureRefDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.COMPANY_REF_DESCRIPTOR: {
-			CompanyRefDescriptor companyRefDescriptor = (CompanyRefDescriptor) theEObject;
-			T result = caseCompanyRefDescriptor(companyRefDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.LICENSE_REQUISITES_DESCRIPTOR: {
 			LicenseRequisitesDescriptor licenseRequisitesDescriptor = (LicenseRequisitesDescriptor) theEObject;
 			T result = caseLicenseRequisitesDescriptor(licenseRequisitesDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.PERSONAL_LICENSE_PACK_DESCRIPTOR: {
+			PersonalLicensePackDescriptor personalLicensePackDescriptor = (PersonalLicensePackDescriptor) theEObject;
+			T result = casePersonalLicensePackDescriptor(personalLicensePackDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -172,67 +195,16 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FLOATING_LICENSE_REQUISITES_DESCRIPTOR: {
-			FloatingLicenseRequisitesDescriptor floatingLicenseRequisitesDescriptor = (FloatingLicenseRequisitesDescriptor) theEObject;
-			T result = caseFloatingLicenseRequisitesDescriptor(floatingLicenseRequisitesDescriptor);
-			if (result == null)
-				result = caseLicenseRequisitesDescriptor(floatingLicenseRequisitesDescriptor);
+		case LicensesPackage.PRODUCT_REF_DESCRIPTOR: {
+			ProductRefDescriptor productRefDescriptor = (ProductRefDescriptor) theEObject;
+			T result = caseProductRefDescriptor(productRefDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.VALIDITY_PERIOD_DESCRIPTOR: {
-			ValidityPeriodDescriptor validityPeriodDescriptor = (ValidityPeriodDescriptor) theEObject;
-			T result = caseValidityPeriodDescriptor(validityPeriodDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.VALIDITY_PERIOD_CLOSED_DESCRIPTOR: {
-			ValidityPeriodClosedDescriptor validityPeriodClosedDescriptor = (ValidityPeriodClosedDescriptor) theEObject;
-			T result = caseValidityPeriodClosedDescriptor(validityPeriodClosedDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FLOATING_LICENSE_PACK_DESCRIPTOR: {
-			FloatingLicensePackDescriptor floatingLicensePackDescriptor = (FloatingLicensePackDescriptor) theEObject;
-			T result = caseFloatingLicensePackDescriptor(floatingLicensePackDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FLOATING_SERVER_DESCRIPTOR: {
-			FloatingServerDescriptor floatingServerDescriptor = (FloatingServerDescriptor) theEObject;
-			T result = caseFloatingServerDescriptor(floatingServerDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.USER_GRANT_DESCRIPTOR: {
-			UserGrantDescriptor userGrantDescriptor = (UserGrantDescriptor) theEObject;
-			T result = caseUserGrantDescriptor(userGrantDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FEATURE_GRANT_DESCRIPTOR: {
-			FeatureGrantDescriptor featureGrantDescriptor = (FeatureGrantDescriptor) theEObject;
-			T result = caseFeatureGrantDescriptor(featureGrantDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.EVALUATION_INSTRUCTIONS_DESCRIPTOR: {
-			EvaluationInstructionsDescriptor evaluationInstructionsDescriptor = (EvaluationInstructionsDescriptor) theEObject;
-			T result = caseEvaluationInstructionsDescriptor(evaluationInstructionsDescriptor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.VERSION_MATCH_DESCRIPTOR: {
-			VersionMatchDescriptor versionMatchDescriptor = (VersionMatchDescriptor) theEObject;
-			T result = caseVersionMatchDescriptor(versionMatchDescriptor);
+		case LicensesPackage.SIGNATURE_ATTRIBUTE_DESCRIPTOR: {
+			SignatureAttributeDescriptor signatureAttributeDescriptor = (SignatureAttributeDescriptor) theEObject;
+			T result = caseSignatureAttributeDescriptor(signatureAttributeDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -244,9 +216,125 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.SIGNATURE_ATTRIBUTE_DESCRIPTOR: {
-			SignatureAttributeDescriptor signatureAttributeDescriptor = (SignatureAttributeDescriptor) theEObject;
-			T result = caseSignatureAttributeDescriptor(signatureAttributeDescriptor);
+		case LicensesPackage.USER_GRANT_DESCRIPTOR: {
+			UserGrantDescriptor userGrantDescriptor = (UserGrantDescriptor) theEObject;
+			T result = caseUserGrantDescriptor(userGrantDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.USER_REF_DESCRIPTOR: {
+			UserRefDescriptor userRefDescriptor = (UserRefDescriptor) theEObject;
+			T result = caseUserRefDescriptor(userRefDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.VALIDITY_PERIOD_CLOSED_DESCRIPTOR: {
+			ValidityPeriodClosedDescriptor validityPeriodClosedDescriptor = (ValidityPeriodClosedDescriptor) theEObject;
+			T result = caseValidityPeriodClosedDescriptor(validityPeriodClosedDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.VALIDITY_PERIOD_DESCRIPTOR: {
+			ValidityPeriodDescriptor validityPeriodDescriptor = (ValidityPeriodDescriptor) theEObject;
+			T result = caseValidityPeriodDescriptor(validityPeriodDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.VERSION_MATCH_DESCRIPTOR: {
+			VersionMatchDescriptor versionMatchDescriptor = (VersionMatchDescriptor) theEObject;
+			T result = caseVersionMatchDescriptor(versionMatchDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.COMPANY_REF: {
+			CompanyRef companyRef = (CompanyRef) theEObject;
+			T result = caseCompanyRef(companyRef);
+			if (result == null)
+				result = caseCompanyRefDescriptor(companyRef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.EVALUATION_INSTRUCTIONS: {
+			EvaluationInstructions evaluationInstructions = (EvaluationInstructions) theEObject;
+			T result = caseEvaluationInstructions(evaluationInstructions);
+			if (result == null)
+				result = caseEvaluationInstructionsDescriptor(evaluationInstructions);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FEATURE_GRANT: {
+			FeatureGrant featureGrant = (FeatureGrant) theEObject;
+			T result = caseFeatureGrant(featureGrant);
+			if (result == null)
+				result = caseFeatureGrantDescriptor(featureGrant);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FEATURE_REF: {
+			FeatureRef featureRef = (FeatureRef) theEObject;
+			T result = caseFeatureRef(featureRef);
+			if (result == null)
+				result = caseFeatureRefDescriptor(featureRef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_ACCESS: {
+			FloatingLicenseAccess floatingLicenseAccess = (FloatingLicenseAccess) theEObject;
+			T result = caseFloatingLicenseAccess(floatingLicenseAccess);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_PACK: {
+			FloatingLicensePack floatingLicensePack = (FloatingLicensePack) theEObject;
+			T result = caseFloatingLicensePack(floatingLicensePack);
+			if (result == null)
+				result = caseFloatingLicensePackDescriptor(floatingLicensePack);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES: {
+			FloatingLicenseRequisites floatingLicenseRequisites = (FloatingLicenseRequisites) theEObject;
+			T result = caseFloatingLicenseRequisites(floatingLicenseRequisites);
+			if (result == null)
+				result = caseLicenseRequisites(floatingLicenseRequisites);
+			if (result == null)
+				result = caseFloatingLicenseRequisitesDescriptor(floatingLicenseRequisites);
+			if (result == null)
+				result = caseLicenseRequisitesDescriptor(floatingLicenseRequisites);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_SERVER: {
+			FloatingServer floatingServer = (FloatingServer) theEObject;
+			T result = caseFloatingServer(floatingServer);
+			if (result == null)
+				result = caseFloatingServerDescriptor(floatingServer);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.FLOATING_SERVER_CONNECTION: {
+			FloatingServerConnection floatingServerConnection = (FloatingServerConnection) theEObject;
+			T result = caseFloatingServerConnection(floatingServerConnection);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.GRANT_ACQISITION: {
+			GrantAcqisition grantAcqisition = (GrantAcqisition) theEObject;
+			T result = caseGrantAcqisition(grantAcqisition);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -269,15 +357,6 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.PERSONAL_LICENSE_PACK: {
-			PersonalLicensePack personalLicensePack = (PersonalLicensePack) theEObject;
-			T result = casePersonalLicensePack(personalLicensePack);
-			if (result == null)
-				result = casePersonalLicensePackDescriptor(personalLicensePack);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.LICENSE_GRANT: {
 			LicenseGrant licenseGrant = (LicenseGrant) theEObject;
 			T result = caseLicenseGrant(licenseGrant);
@@ -287,20 +366,20 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FLOATING_LICENSE_PACK: {
-			FloatingLicensePack floatingLicensePack = (FloatingLicensePack) theEObject;
-			T result = caseFloatingLicensePack(floatingLicensePack);
-			if (result == null)
-				result = caseFloatingLicensePackDescriptor(floatingLicensePack);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.LICENSE_REQUISITES: {
 			LicenseRequisites licenseRequisites = (LicenseRequisites) theEObject;
 			T result = caseLicenseRequisites(licenseRequisites);
 			if (result == null)
 				result = caseLicenseRequisitesDescriptor(licenseRequisites);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LicensesPackage.PERSONAL_LICENSE_PACK: {
+			PersonalLicensePack personalLicensePack = (PersonalLicensePack) theEObject;
+			T result = casePersonalLicensePack(personalLicensePack);
+			if (result == null)
+				result = casePersonalLicensePackDescriptor(personalLicensePack);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -318,28 +397,6 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FLOATING_LICENSE_REQUISITES: {
-			FloatingLicenseRequisites floatingLicenseRequisites = (FloatingLicenseRequisites) theEObject;
-			T result = caseFloatingLicenseRequisites(floatingLicenseRequisites);
-			if (result == null)
-				result = caseLicenseRequisites(floatingLicenseRequisites);
-			if (result == null)
-				result = caseFloatingLicenseRequisitesDescriptor(floatingLicenseRequisites);
-			if (result == null)
-				result = caseLicenseRequisitesDescriptor(floatingLicenseRequisites);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.USER_REF: {
-			UserRef userRef = (UserRef) theEObject;
-			T result = caseUserRef(userRef);
-			if (result == null)
-				result = caseUserRefDescriptor(userRef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.PRODUCT_REF: {
 			ProductRef productRef = (ProductRef) theEObject;
 			T result = caseProductRef(productRef);
@@ -349,29 +406,20 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FEATURE_REF: {
-			FeatureRef featureRef = (FeatureRef) theEObject;
-			T result = caseFeatureRef(featureRef);
+		case LicensesPackage.SIGNATURE: {
+			Signature signature = (Signature) theEObject;
+			T result = caseSignature(signature);
 			if (result == null)
-				result = caseFeatureRefDescriptor(featureRef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.COMPANY_REF: {
-			CompanyRef companyRef = (CompanyRef) theEObject;
-			T result = caseCompanyRef(companyRef);
-			if (result == null)
-				result = caseCompanyRefDescriptor(companyRef);
+				result = caseSignatureDescriptor(signature);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FLOATING_SERVER: {
-			FloatingServer floatingServer = (FloatingServer) theEObject;
-			T result = caseFloatingServer(floatingServer);
+		case LicensesPackage.SIGNATURE_ATTRIBUTE: {
+			SignatureAttribute signatureAttribute = (SignatureAttribute) theEObject;
+			T result = caseSignatureAttribute(signatureAttribute);
 			if (result == null)
-				result = caseFloatingServerDescriptor(floatingServer);
+				result = caseSignatureAttributeDescriptor(signatureAttribute);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -385,11 +433,11 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.FEATURE_GRANT: {
-			FeatureGrant featureGrant = (FeatureGrant) theEObject;
-			T result = caseFeatureGrant(featureGrant);
+		case LicensesPackage.USER_REF: {
+			UserRef userRef = (UserRef) theEObject;
+			T result = caseUserRef(userRef);
 			if (result == null)
-				result = caseFeatureGrantDescriptor(featureGrant);
+				result = caseUserRefDescriptor(userRef);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -416,59 +464,11 @@ public class LicensesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LicensesPackage.EVALUATION_INSTRUCTIONS: {
-			EvaluationInstructions evaluationInstructions = (EvaluationInstructions) theEObject;
-			T result = caseEvaluationInstructions(evaluationInstructions);
-			if (result == null)
-				result = caseEvaluationInstructionsDescriptor(evaluationInstructions);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case LicensesPackage.VERSION_MATCH: {
 			VersionMatch versionMatch = (VersionMatch) theEObject;
 			T result = caseVersionMatch(versionMatch);
 			if (result == null)
 				result = caseVersionMatchDescriptor(versionMatch);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FLOATING_LICENSE_ACCESS: {
-			FloatingLicenseAccess floatingLicenseAccess = (FloatingLicenseAccess) theEObject;
-			T result = caseFloatingLicenseAccess(floatingLicenseAccess);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.FLOATING_SERVER_CONNECTION: {
-			FloatingServerConnection floatingServerConnection = (FloatingServerConnection) theEObject;
-			T result = caseFloatingServerConnection(floatingServerConnection);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.GRANT_ACQISITION: {
-			GrantAcqisition grantAcqisition = (GrantAcqisition) theEObject;
-			T result = caseGrantAcqisition(grantAcqisition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.SIGNATURE: {
-			Signature signature = (Signature) theEObject;
-			T result = caseSignature(signature);
-			if (result == null)
-				result = caseSignatureDescriptor(signature);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case LicensesPackage.SIGNATURE_ATTRIBUTE: {
-			SignatureAttribute signatureAttribute = (SignatureAttribute) theEObject;
-			T result = caseSignatureAttribute(signatureAttribute);
-			if (result == null)
-				result = caseSignatureAttributeDescriptor(signatureAttribute);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -517,6 +517,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Personal License Pack Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T casePersonalLicensePackDescriptor(PersonalLicensePackDescriptor object) {
@@ -547,6 +548,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Product Ref Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseProductRefDescriptor(ProductRefDescriptor object) {
@@ -562,6 +564,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Ref Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFeatureRefDescriptor(FeatureRefDescriptor object) {
@@ -577,6 +580,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>User Ref Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseUserRefDescriptor(UserRefDescriptor object) {
@@ -592,6 +596,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Company Ref Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseCompanyRefDescriptor(CompanyRefDescriptor object) {
@@ -607,6 +612,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>License Requisites Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseLicenseRequisitesDescriptor(LicenseRequisitesDescriptor object) {
@@ -622,6 +628,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Personal License Requisites Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T casePersonalLicenseRequisitesDescriptor(PersonalLicenseRequisitesDescriptor object) {
@@ -637,6 +644,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating License Requisites Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingLicenseRequisitesDescriptor(FloatingLicenseRequisitesDescriptor object) {
@@ -652,6 +660,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Validity Period Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseValidityPeriodDescriptor(ValidityPeriodDescriptor object) {
@@ -667,6 +676,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Validity Period Closed Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseValidityPeriodClosedDescriptor(ValidityPeriodClosedDescriptor object) {
@@ -682,6 +692,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating License Pack Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingLicensePackDescriptor(FloatingLicensePackDescriptor object) {
@@ -697,6 +708,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating Server Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingServerDescriptor(FloatingServerDescriptor object) {
@@ -712,6 +724,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>User Grant Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseUserGrantDescriptor(UserGrantDescriptor object) {
@@ -727,6 +740,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Grant Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFeatureGrantDescriptor(FeatureGrantDescriptor object) {
@@ -742,6 +756,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Evaluation Instructions Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseEvaluationInstructionsDescriptor(EvaluationInstructionsDescriptor object) {
@@ -757,6 +772,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Version Match Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseVersionMatchDescriptor(VersionMatchDescriptor object) {
@@ -772,6 +788,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Signature Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseSignatureDescriptor(SignatureDescriptor object) {
@@ -787,6 +804,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Signature Attribute Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseSignatureAttributeDescriptor(SignatureAttributeDescriptor object) {
@@ -832,6 +850,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Personal License Pack</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T casePersonalLicensePack(PersonalLicensePack object) {
@@ -862,6 +881,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating License Pack</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingLicensePack(FloatingLicensePack object) {
@@ -877,6 +897,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>License Requisites</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseLicenseRequisites(LicenseRequisites object) {
@@ -892,6 +913,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Personal License Requisites</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T casePersonalLicenseRequisites(PersonalLicenseRequisites object) {
@@ -907,6 +929,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating License Requisites</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingLicenseRequisites(FloatingLicenseRequisites object) {
@@ -922,6 +945,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Product Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseProductRef(ProductRef object) {
@@ -937,6 +961,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFeatureRef(FeatureRef object) {
@@ -952,6 +977,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>User Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseUserRef(UserRef object) {
@@ -967,6 +993,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Company Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseCompanyRef(CompanyRef object) {
@@ -982,6 +1009,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating Server</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingServer(FloatingServer object) {
@@ -997,6 +1025,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>User Grant</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseUserGrant(UserGrant object) {
@@ -1012,6 +1041,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Grant</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFeatureGrant(FeatureGrant object) {
@@ -1027,6 +1057,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Validity Period</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseValidityPeriod(ValidityPeriod object) {
@@ -1042,6 +1073,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Validity Period Closed</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseValidityPeriodClosed(ValidityPeriodClosed object) {
@@ -1057,6 +1089,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Evaluation Instructions</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseEvaluationInstructions(EvaluationInstructions object) {
@@ -1072,6 +1105,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Version Match</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseVersionMatch(VersionMatch object) {
@@ -1087,6 +1121,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating License Access</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingLicenseAccess(FloatingLicenseAccess object) {
@@ -1102,6 +1137,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Floating Server Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseFloatingServerConnection(FloatingServerConnection object) {
@@ -1117,6 +1153,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Grant Acqisition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseGrantAcqisition(GrantAcqisition object) {
@@ -1132,6 +1169,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Signature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseSignature(Signature object) {
@@ -1147,6 +1185,7 @@ public class LicensesSwitch<T> extends Switch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Signature Attribute</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @since 2.0
 	 * @generated
 	 */
 	public T caseSignatureAttribute(SignatureAttribute object) {

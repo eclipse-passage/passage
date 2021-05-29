@@ -40,6 +40,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingServerImpl#getAuthentication <em>Authentication</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FloatingServerImpl extends MinimalEObjectImpl.Container implements FloatingServer {

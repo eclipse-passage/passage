@@ -36,6 +36,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalLicenseRequisitesImpl#getUser <em>User</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class PersonalLicenseRequisitesImpl extends LicenseRequisitesImpl implements PersonalLicenseRequisites {

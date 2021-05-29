@@ -23,6 +23,10 @@ import org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor;
  * A representation of the model object '<em><b>License Requisites</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * @since 2.0
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

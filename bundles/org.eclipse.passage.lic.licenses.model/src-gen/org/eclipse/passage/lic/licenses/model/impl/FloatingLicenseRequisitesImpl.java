@@ -36,6 +36,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseRequisitesImpl#getCompany <em>Company</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl implements FloatingLicenseRequisites {

@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * @since 1.0
  */
+@SuppressWarnings("restriction")
 public class LocWokbench {
 
 	public static final String COMMAND_VIEW_PERSPECTIVE = "org.eclipse.passage.loc.workbench.command.view.perspective"; //$NON-NLS-1$

@@ -38,6 +38,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.CompanyRefImpl#getInfo <em>Info</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class CompanyRefImpl extends MinimalEObjectImpl.Container implements CompanyRef {

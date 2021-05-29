@@ -37,6 +37,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.SignatureAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
+ * @since 2.0
  * @generated
  */
 public class SignatureAttributeImpl extends MinimalEObjectImpl.Container implements SignatureAttribute {

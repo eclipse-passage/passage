@@ -22,7 +22,8 @@ import org.eclipse.passage.lic.internal.licenses.model.migration.LicensesResourc
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.licenses.model.util.LicensesResourceFactoryImpl
- * @generated
+ * @since 2.0
+ * @generated NOT
  */
 public class LicensesResourceImpl extends XMIResourceImpl {
 	/**

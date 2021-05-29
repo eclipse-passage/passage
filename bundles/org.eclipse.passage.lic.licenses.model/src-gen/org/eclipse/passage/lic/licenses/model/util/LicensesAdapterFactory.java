@@ -101,6 +101,46 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected LicensesSwitch<Adapter> modelSwitch = new LicensesSwitch<Adapter>() {
 		@Override
+		public Adapter caseCompanyRefDescriptor(CompanyRefDescriptor object) {
+			return createCompanyRefDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseEvaluationInstructionsDescriptor(EvaluationInstructionsDescriptor object) {
+			return createEvaluationInstructionsDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFeatureGrantDescriptor(FeatureGrantDescriptor object) {
+			return createFeatureGrantDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFeatureRefDescriptor(FeatureRefDescriptor object) {
+			return createFeatureRefDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicensePackDescriptor(FloatingLicensePackDescriptor object) {
+			return createFloatingLicensePackDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseRequisitesDescriptor(FloatingLicenseRequisitesDescriptor object) {
+			return createFloatingLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServerDescriptor(FloatingServerDescriptor object) {
+			return createFloatingServerDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
+			return createLicenseGrantDescriptorAdapter();
+		}
+
+		@Override
 		public Adapter caseLicensePlanDescriptor(LicensePlanDescriptor object) {
 			return createLicensePlanDescriptorAdapter();
 		}
@@ -111,38 +151,13 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePersonalLicensePackDescriptor(PersonalLicensePackDescriptor object) {
-			return createPersonalLicensePackDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseLicenseGrantDescriptor(LicenseGrantDescriptor object) {
-			return createLicenseGrantDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseUserRefDescriptor(UserRefDescriptor object) {
-			return createUserRefDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseProductRefDescriptor(ProductRefDescriptor object) {
-			return createProductRefDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureRefDescriptor(FeatureRefDescriptor object) {
-			return createFeatureRefDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseCompanyRefDescriptor(CompanyRefDescriptor object) {
-			return createCompanyRefDescriptorAdapter();
-		}
-
-		@Override
 		public Adapter caseLicenseRequisitesDescriptor(LicenseRequisitesDescriptor object) {
 			return createLicenseRequisitesDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter casePersonalLicensePackDescriptor(PersonalLicensePackDescriptor object) {
+			return createPersonalLicensePackDescriptorAdapter();
 		}
 
 		@Override
@@ -151,53 +166,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseFloatingLicenseRequisitesDescriptor(FloatingLicenseRequisitesDescriptor object) {
-			return createFloatingLicenseRequisitesDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseValidityPeriodDescriptor(ValidityPeriodDescriptor object) {
-			return createValidityPeriodDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseValidityPeriodClosedDescriptor(ValidityPeriodClosedDescriptor object) {
-			return createValidityPeriodClosedDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFloatingLicensePackDescriptor(FloatingLicensePackDescriptor object) {
-			return createFloatingLicensePackDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFloatingServerDescriptor(FloatingServerDescriptor object) {
-			return createFloatingServerDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseUserGrantDescriptor(UserGrantDescriptor object) {
-			return createUserGrantDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureGrantDescriptor(FeatureGrantDescriptor object) {
-			return createFeatureGrantDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseEvaluationInstructionsDescriptor(EvaluationInstructionsDescriptor object) {
-			return createEvaluationInstructionsDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseVersionMatchDescriptor(VersionMatchDescriptor object) {
-			return createVersionMatchDescriptorAdapter();
-		}
-
-		@Override
-		public Adapter caseSignatureDescriptor(SignatureDescriptor object) {
-			return createSignatureDescriptorAdapter();
+		public Adapter caseProductRefDescriptor(ProductRefDescriptor object) {
+			return createProductRefDescriptorAdapter();
 		}
 
 		@Override
@@ -206,58 +176,33 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseLicensePlan(LicensePlan object) {
-			return createLicensePlanAdapter();
+		public Adapter caseSignatureDescriptor(SignatureDescriptor object) {
+			return createSignatureDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseLicensePlanFeature(LicensePlanFeature object) {
-			return createLicensePlanFeatureAdapter();
+		public Adapter caseUserGrantDescriptor(UserGrantDescriptor object) {
+			return createUserGrantDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter casePersonalLicensePack(PersonalLicensePack object) {
-			return createPersonalLicensePackAdapter();
+		public Adapter caseUserRefDescriptor(UserRefDescriptor object) {
+			return createUserRefDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseLicenseGrant(LicenseGrant object) {
-			return createLicenseGrantAdapter();
+		public Adapter caseValidityPeriodClosedDescriptor(ValidityPeriodClosedDescriptor object) {
+			return createValidityPeriodClosedDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseFloatingLicensePack(FloatingLicensePack object) {
-			return createFloatingLicensePackAdapter();
+		public Adapter caseValidityPeriodDescriptor(ValidityPeriodDescriptor object) {
+			return createValidityPeriodDescriptorAdapter();
 		}
 
 		@Override
-		public Adapter caseLicenseRequisites(LicenseRequisites object) {
-			return createLicenseRequisitesAdapter();
-		}
-
-		@Override
-		public Adapter casePersonalLicenseRequisites(PersonalLicenseRequisites object) {
-			return createPersonalLicenseRequisitesAdapter();
-		}
-
-		@Override
-		public Adapter caseFloatingLicenseRequisites(FloatingLicenseRequisites object) {
-			return createFloatingLicenseRequisitesAdapter();
-		}
-
-		@Override
-		public Adapter caseUserRef(UserRef object) {
-			return createUserRefAdapter();
-		}
-
-		@Override
-		public Adapter caseProductRef(ProductRef object) {
-			return createProductRefAdapter();
-		}
-
-		@Override
-		public Adapter caseFeatureRef(FeatureRef object) {
-			return createFeatureRefAdapter();
+		public Adapter caseVersionMatchDescriptor(VersionMatchDescriptor object) {
+			return createVersionMatchDescriptorAdapter();
 		}
 
 		@Override
@@ -266,13 +211,8 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseFloatingServer(FloatingServer object) {
-			return createFloatingServerAdapter();
-		}
-
-		@Override
-		public Adapter caseUserGrant(UserGrant object) {
-			return createUserGrantAdapter();
+		public Adapter caseEvaluationInstructions(EvaluationInstructions object) {
+			return createEvaluationInstructionsAdapter();
 		}
 
 		@Override
@@ -281,28 +221,28 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseValidityPeriod(ValidityPeriod object) {
-			return createValidityPeriodAdapter();
-		}
-
-		@Override
-		public Adapter caseValidityPeriodClosed(ValidityPeriodClosed object) {
-			return createValidityPeriodClosedAdapter();
-		}
-
-		@Override
-		public Adapter caseEvaluationInstructions(EvaluationInstructions object) {
-			return createEvaluationInstructionsAdapter();
-		}
-
-		@Override
-		public Adapter caseVersionMatch(VersionMatch object) {
-			return createVersionMatchAdapter();
+		public Adapter caseFeatureRef(FeatureRef object) {
+			return createFeatureRefAdapter();
 		}
 
 		@Override
 		public Adapter caseFloatingLicenseAccess(FloatingLicenseAccess object) {
 			return createFloatingLicenseAccessAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicensePack(FloatingLicensePack object) {
+			return createFloatingLicensePackAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingLicenseRequisites(FloatingLicenseRequisites object) {
+			return createFloatingLicenseRequisitesAdapter();
+		}
+
+		@Override
+		public Adapter caseFloatingServer(FloatingServer object) {
+			return createFloatingServerAdapter();
 		}
 
 		@Override
@@ -316,6 +256,41 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseLicensePlan(LicensePlan object) {
+			return createLicensePlanAdapter();
+		}
+
+		@Override
+		public Adapter caseLicensePlanFeature(LicensePlanFeature object) {
+			return createLicensePlanFeatureAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseGrant(LicenseGrant object) {
+			return createLicenseGrantAdapter();
+		}
+
+		@Override
+		public Adapter caseLicenseRequisites(LicenseRequisites object) {
+			return createLicenseRequisitesAdapter();
+		}
+
+		@Override
+		public Adapter casePersonalLicensePack(PersonalLicensePack object) {
+			return createPersonalLicensePackAdapter();
+		}
+
+		@Override
+		public Adapter casePersonalLicenseRequisites(PersonalLicenseRequisites object) {
+			return createPersonalLicenseRequisitesAdapter();
+		}
+
+		@Override
+		public Adapter caseProductRef(ProductRef object) {
+			return createProductRefAdapter();
+		}
+
+		@Override
 		public Adapter caseSignature(Signature object) {
 			return createSignatureAdapter();
 		}
@@ -323,6 +298,31 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSignatureAttribute(SignatureAttribute object) {
 			return createSignatureAttributeAdapter();
+		}
+
+		@Override
+		public Adapter caseUserGrant(UserGrant object) {
+			return createUserGrantAdapter();
+		}
+
+		@Override
+		public Adapter caseUserRef(UserRef object) {
+			return createUserRefAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriod(ValidityPeriod object) {
+			return createValidityPeriodAdapter();
+		}
+
+		@Override
+		public Adapter caseValidityPeriodClosed(ValidityPeriodClosed object) {
+			return createValidityPeriodClosedAdapter();
+		}
+
+		@Override
+		public Adapter caseVersionMatch(VersionMatch object) {
+			return createVersionMatchAdapter();
 		}
 
 		@Override
@@ -380,6 +380,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.PersonalLicensePackDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createPersonalLicensePackDescriptorAdapter() {
@@ -408,6 +409,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.ProductRefDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createProductRefDescriptorAdapter() {
@@ -422,6 +424,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.FeatureRefDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFeatureRefDescriptorAdapter() {
@@ -436,6 +439,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.UserRefDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserRefDescriptorAdapter() {
@@ -450,6 +454,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.CompanyRefDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createCompanyRefDescriptorAdapter() {
@@ -464,6 +469,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.LicenseRequisitesDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createLicenseRequisitesDescriptorAdapter() {
@@ -478,6 +484,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.PersonalLicenseRequisitesDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createPersonalLicenseRequisitesDescriptorAdapter() {
@@ -492,6 +499,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingLicenseRequisitesDescriptorAdapter() {
@@ -506,6 +514,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.ValidityPeriodDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createValidityPeriodDescriptorAdapter() {
@@ -520,6 +529,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.ValidityPeriodClosedDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createValidityPeriodClosedDescriptorAdapter() {
@@ -534,6 +544,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.FloatingLicensePackDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingLicensePackDescriptorAdapter() {
@@ -548,6 +559,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.FloatingServerDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingServerDescriptorAdapter() {
@@ -562,6 +574,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.UserGrantDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserGrantDescriptorAdapter() {
@@ -576,6 +589,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.FeatureGrantDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFeatureGrantDescriptorAdapter() {
@@ -590,6 +604,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.EvaluationInstructionsDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createEvaluationInstructionsDescriptorAdapter() {
@@ -604,6 +619,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.VersionMatchDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createVersionMatchDescriptorAdapter() {
@@ -618,6 +634,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.SignatureDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createSignatureDescriptorAdapter() {
@@ -632,6 +649,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.SignatureAttributeDescriptor
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createSignatureAttributeDescriptorAdapter() {
@@ -674,6 +692,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createPersonalLicensePackAdapter() {
@@ -702,6 +721,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingLicensePackAdapter() {
@@ -716,6 +736,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.LicenseRequisites
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createLicenseRequisitesAdapter() {
@@ -730,6 +751,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalLicenseRequisites
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createPersonalLicenseRequisitesAdapter() {
@@ -744,6 +766,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingLicenseRequisitesAdapter() {
@@ -758,6 +781,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.ProductRef
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createProductRefAdapter() {
@@ -772,6 +796,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureRef
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFeatureRefAdapter() {
@@ -786,6 +811,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.UserRef
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserRefAdapter() {
@@ -800,6 +826,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.CompanyRef
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createCompanyRefAdapter() {
@@ -814,6 +841,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingServer
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingServerAdapter() {
@@ -828,6 +856,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.UserGrant
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createUserGrantAdapter() {
@@ -842,6 +871,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FeatureGrant
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFeatureGrantAdapter() {
@@ -856,6 +886,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.ValidityPeriod
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createValidityPeriodAdapter() {
@@ -870,6 +901,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createValidityPeriodClosedAdapter() {
@@ -884,6 +916,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.EvaluationInstructions
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createEvaluationInstructionsAdapter() {
@@ -898,6 +931,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.VersionMatch
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createVersionMatchAdapter() {
@@ -912,6 +946,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingLicenseAccessAdapter() {
@@ -926,6 +961,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createFloatingServerConnectionAdapter() {
@@ -940,6 +976,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.GrantAcqisition
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createGrantAcqisitionAdapter() {
@@ -954,6 +991,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.Signature
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createSignatureAdapter() {
@@ -968,6 +1006,7 @@ public class LicensesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.passage.lic.licenses.model.api.SignatureAttribute
+	 * @since 2.0
 	 * @generated
 	 */
 	public Adapter createSignatureAttributeAdapter() {
