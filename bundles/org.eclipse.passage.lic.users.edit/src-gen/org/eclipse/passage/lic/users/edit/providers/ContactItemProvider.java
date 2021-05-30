@@ -41,6 +41,7 @@ import org.eclipse.passage.lic.users.model.meta.UsersPackage;
  * This is the item provider adapter for a {@link org.eclipse.passage.lic.users.model.api.Contact} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * @since 2.0
  * @generated
  */
 public class ContactItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,

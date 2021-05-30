@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="0.0.0";x-installation:=
 Export-Package: org.eclipse.passage.lic.internal.users.model;
   x-friends:="org.eclipse.passage.loc.dashboard.ui",
  org.eclipse.passage.lic.users.model.api,
- org.eclipse.passage.lic.users.model.impl,
+ org.eclipse.passage.lic.users.model.impl;x-internal:=true,
  org.eclipse.passage.lic.users.model.meta,
  org.eclipse.passage.lic.users.model.util
 Bundle-ClassPath: .

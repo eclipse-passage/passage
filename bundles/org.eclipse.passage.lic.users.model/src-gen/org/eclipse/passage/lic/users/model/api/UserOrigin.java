@@ -128,11 +128,15 @@ public interface UserOrigin extends EObject, UserOriginDescriptor {
 	 * The list contents are of type {@link org.eclipse.passage.lic.users.model.api.UserGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Groups</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getUserOrigin_Groups()
 	 * @model containment="true"
 	 * @generated
 	 */
+	@Override
 	EList<UserGroup> getGroups();
 
 } // UserOrigin

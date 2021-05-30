@@ -92,6 +92,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -124,6 +125,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * This adds a property descriptor for the Preferred Evaluation Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected void addPreferredEvaluationTypePropertyDescriptor(Object object) {
@@ -140,6 +142,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * This adds a property descriptor for the Preferred Evaluation Expression feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected void addPreferredEvaluationExpressionPropertyDescriptor(Object object) {

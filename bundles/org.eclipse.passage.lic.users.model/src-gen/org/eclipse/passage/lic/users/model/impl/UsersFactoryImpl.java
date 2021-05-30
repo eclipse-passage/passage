@@ -68,14 +68,14 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case UsersPackage.USER_ORIGIN:
-			return createUserOrigin();
+		case UsersPackage.CONTACT:
+			return createContact();
 		case UsersPackage.USER:
 			return createUser();
 		case UsersPackage.USER_GROUP:
 			return createUserGroup();
-		case UsersPackage.CONTACT:
-			return createContact();
+		case UsersPackage.USER_ORIGIN:
+			return createUserOrigin();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -106,6 +106,7 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -117,6 +118,7 @@ public class UsersFactoryImpl extends EFactoryImpl implements UsersFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

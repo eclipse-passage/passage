@@ -129,6 +129,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGroups()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -244,6 +245,7 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

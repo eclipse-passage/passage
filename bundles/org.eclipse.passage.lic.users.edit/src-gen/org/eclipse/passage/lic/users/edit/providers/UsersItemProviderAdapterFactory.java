@@ -83,26 +83,28 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserOrigin} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.Contact} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
-	protected UserOriginItemProvider userOriginItemProvider;
+	protected ContactItemProvider contactItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin}.
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.Contact}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
-	public Adapter createUserOriginAdapter() {
-		if (userOriginItemProvider == null) {
-			userOriginItemProvider = new UserOriginItemProvider(this);
+	public Adapter createContactAdapter() {
+		if (contactItemProvider == null) {
+			contactItemProvider = new ContactItemProvider(this);
 		}
 
-		return userOriginItemProvider;
+		return contactItemProvider;
 	}
 
 	/**
@@ -132,6 +134,7 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected UserGroupItemProvider userGroupItemProvider;
@@ -140,6 +143,7 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -152,26 +156,26 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.Contact} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.passage.lic.users.model.api.UserOrigin} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContactItemProvider contactItemProvider;
+	protected UserOriginItemProvider userOriginItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.Contact}.
+	 * This creates an adapter for a {@link org.eclipse.passage.lic.users.model.api.UserOrigin}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createContactAdapter() {
-		if (contactItemProvider == null) {
-			contactItemProvider = new ContactItemProvider(this);
+	public Adapter createUserOriginAdapter() {
+		if (userOriginItemProvider == null) {
+			userOriginItemProvider = new UserOriginItemProvider(this);
 		}
 
-		return contactItemProvider;
+		return userOriginItemProvider;
 	}
 
 	/**
@@ -279,14 +283,14 @@ public class UsersItemProviderAdapterFactory extends UsersAdapterFactory
 	 */
 	@Override
 	public void dispose() {
-		if (userOriginItemProvider != null)
-			userOriginItemProvider.dispose();
+		if (contactItemProvider != null)
+			contactItemProvider.dispose();
 		if (userItemProvider != null)
 			userItemProvider.dispose();
 		if (userGroupItemProvider != null)
 			userGroupItemProvider.dispose();
-		if (contactItemProvider != null)
-			contactItemProvider.dispose();
+		if (userOriginItemProvider != null)
+			userOriginItemProvider.dispose();
 	}
 
 }

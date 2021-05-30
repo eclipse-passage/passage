@@ -51,6 +51,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass contactDescriptorEClass = null;
@@ -58,6 +59,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass licenseOwnerDescriptorEClass = null;
@@ -72,6 +74,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass userGroupDescriptorEClass = null;
@@ -93,6 +96,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass userGroupEClass = null;
@@ -100,6 +104,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass contactEClass = null;
@@ -107,6 +112,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	private EClass licenseOwnerEClass = null;
@@ -188,6 +194,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -198,6 +205,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -218,6 +226,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -278,6 +287,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -298,6 +308,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -308,6 +319,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -318,6 +330,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -328,6 +341,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -338,6 +352,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -348,6 +363,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -358,6 +374,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -368,6 +385,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -378,6 +396,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -388,6 +407,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -398,6 +418,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -408,6 +429,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -418,6 +440,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -428,6 +451,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -438,6 +462,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -448,6 +473,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -458,6 +484,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -495,8 +522,6 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		userOriginDescriptorEClass = createEClass(USER_ORIGIN_DESCRIPTOR);
-
 		contactDescriptorEClass = createEClass(CONTACT_DESCRIPTOR);
 
 		licenseOwnerDescriptorEClass = createEClass(LICENSE_OWNER_DESCRIPTOR);
@@ -505,21 +530,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 
 		userGroupDescriptorEClass = createEClass(USER_GROUP_DESCRIPTOR);
 
-		userOriginEClass = createEClass(USER_ORIGIN);
-		createEAttribute(userOriginEClass, USER_ORIGIN__IDENTIFIER);
-		createEAttribute(userOriginEClass, USER_ORIGIN__NAME);
-		createEAttribute(userOriginEClass, USER_ORIGIN__DESCRIPTION);
-		createEReference(userOriginEClass, USER_ORIGIN__USERS);
-		createEReference(userOriginEClass, USER_ORIGIN__GROUPS);
-
-		userEClass = createEClass(USER);
-		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_TYPE);
-		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_EXPRESSION);
-		createEReference(userEClass, USER__ORIGIN);
-
-		userGroupEClass = createEClass(USER_GROUP);
-		createEReference(userGroupEClass, USER_GROUP__USERS);
-		createEReference(userGroupEClass, USER_GROUP__ORIGIN);
+		userOriginDescriptorEClass = createEClass(USER_ORIGIN_DESCRIPTOR);
 
 		contactEClass = createEClass(CONTACT);
 		createEAttribute(contactEClass, CONTACT__NAME);
@@ -533,6 +544,22 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		createEAttribute(licenseOwnerEClass, LICENSE_OWNER__NAME);
 		createEAttribute(licenseOwnerEClass, LICENSE_OWNER__DESCRIPTION);
 		createEReference(licenseOwnerEClass, LICENSE_OWNER__CONTACT);
+
+		userEClass = createEClass(USER);
+		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_TYPE);
+		createEAttribute(userEClass, USER__PREFERRED_EVALUATION_EXPRESSION);
+		createEReference(userEClass, USER__ORIGIN);
+
+		userGroupEClass = createEClass(USER_GROUP);
+		createEReference(userGroupEClass, USER_GROUP__USERS);
+		createEReference(userGroupEClass, USER_GROUP__ORIGIN);
+
+		userOriginEClass = createEClass(USER_ORIGIN);
+		createEAttribute(userOriginEClass, USER_ORIGIN__IDENTIFIER);
+		createEAttribute(userOriginEClass, USER_ORIGIN__NAME);
+		createEAttribute(userOriginEClass, USER_ORIGIN__DESCRIPTION);
+		createEReference(userOriginEClass, USER_ORIGIN__USERS);
+		createEReference(userOriginEClass, USER_ORIGIN__GROUPS);
 	}
 
 	/**
@@ -564,18 +591,15 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
+		contactEClass.getESuperTypes().add(this.getContactDescriptor());
+		licenseOwnerEClass.getESuperTypes().add(this.getLicenseOwnerDescriptor());
 		userEClass.getESuperTypes().add(this.getUserDescriptor());
 		userEClass.getESuperTypes().add(this.getLicenseOwner());
 		userGroupEClass.getESuperTypes().add(this.getUserGroupDescriptor());
 		userGroupEClass.getESuperTypes().add(this.getLicenseOwner());
-		contactEClass.getESuperTypes().add(this.getContactDescriptor());
-		licenseOwnerEClass.getESuperTypes().add(this.getLicenseOwnerDescriptor());
+		userOriginEClass.getESuperTypes().add(this.getUserOriginDescriptor());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, //$NON-NLS-1$
-				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(contactDescriptorEClass, ContactDescriptor.class, "ContactDescriptor", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
 				!IS_GENERATED_INSTANCE_CLASS);
 
@@ -588,42 +612,8 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		initEClass(userGroupDescriptorEClass, UserGroupDescriptor.class, "UserGroupDescriptor", IS_ABSTRACT, //$NON-NLS-1$
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUserOrigin_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
-				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserOrigin_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserOrigin.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUserOrigin_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
-				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_Origin(), "users", null, 0, -1, //$NON-NLS-1$
-				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserOrigin_Groups(), this.getUserGroup(), null, "groups", null, 0, -1, UserOrigin.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getUser_PreferredEvaluationType(), ecorePackage.getEString(), "preferredEvaluationType", null, 0, //$NON-NLS-1$
-				1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUser_PreferredEvaluationExpression(), ecorePackage.getEString(),
-				"preferredEvaluationExpression", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUser_Origin(), this.getUserOrigin(), this.getUserOrigin_Users(), "origin", null, 1, 1, //$NON-NLS-1$
-				User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(userGroupEClass, UserGroup.class, "UserGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUserGroup_Users(), this.getUser(), null, "users", null, 0, -1, UserGroup.class, !IS_TRANSIENT, //$NON-NLS-1$
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getUserGroup_Origin(), this.getUserOrigin(), null, "origin", null, 1, 1, UserGroup.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(userOriginDescriptorEClass, UserOriginDescriptor.class, "UserOriginDescriptor", IS_ABSTRACT, //$NON-NLS-1$
+				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(contactEClass, Contact.class, "Contact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getContact_Name(), ecorePackage.getEString(), "name", null, 0, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
@@ -648,6 +638,43 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 				LicenseOwner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getLicenseOwner_Contact(), this.getContact(), null, "contact", null, 1, 1, LicenseOwner.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getUser_PreferredEvaluationType(), ecorePackage.getEString(), "preferredEvaluationType", null, 0, //$NON-NLS-1$
+				1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUser_PreferredEvaluationExpression(), ecorePackage.getEString(),
+				"preferredEvaluationExpression", null, 0, 1, User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, //$NON-NLS-1$
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUser_Origin(), this.getUserOrigin(), this.getUserOrigin_Users(), "origin", null, 1, 1, //$NON-NLS-1$
+				User.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userGroupEClass, UserGroup.class, "UserGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserGroup_Users(), this.getUser(), null, "users", null, 0, -1, UserGroup.class, !IS_TRANSIENT, //$NON-NLS-1$
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getUserGroup_Origin(), this.getUserOrigin(), null, "origin", null, 1, 1, UserGroup.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUserOrigin_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserOrigin_Name(), ecorePackage.getEString(), "name", null, 0, 1, UserOrigin.class, //$NON-NLS-1$
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserOrigin_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$
+				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_Origin(), "users", null, 0, -1, //$NON-NLS-1$
+				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserOrigin_Groups(), this.getUserGroup(), null, "groups", null, 0, -1, UserOrigin.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

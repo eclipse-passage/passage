@@ -17,27 +17,11 @@
       classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
       presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
       ecorePackage="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#/">
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//ContactDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwnerDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserDescriptor"/>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroupDescriptor"/>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/name"/>
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/description"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/users"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/groups"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredEvaluationType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredEvaluationExpression"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/origin"/>
-    </genClasses>
-    <genClasses ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup/users"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup/origin"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOriginDescriptor"/>
     <genClasses ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/title"/>
@@ -50,6 +34,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/contact"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredEvaluationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredEvaluationExpression"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/origin"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup/users"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserGroup/origin"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/name"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/description"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/users"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//UserOrigin/groups"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
