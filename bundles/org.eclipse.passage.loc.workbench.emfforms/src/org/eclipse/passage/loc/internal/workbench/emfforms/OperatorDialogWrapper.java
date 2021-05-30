@@ -24,7 +24,7 @@ public class OperatorDialogWrapper implements DialogWrapper {
 	public void openDialog(Dialog dialog, ECPDialogExecutor callBack) {
 		dialog.create();
 		Shell shell = dialog.getShell();
-		shell.setSize(Math.max(900, shell.getSize().x), Math.max(500, shell.getSize().y));
+		shell.setSize(Math.max(1000, shell.getSize().x), Math.max(600, shell.getSize().y));
 		callBack.handleResult(dialog.open());
 	}
 

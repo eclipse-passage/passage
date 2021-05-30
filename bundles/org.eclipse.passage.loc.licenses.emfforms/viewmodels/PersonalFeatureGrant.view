@@ -1,35 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_Aa4foMB0Eeuw7f5-0ea7hA" name="PersonalFeatureGrant" readonly="true">
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_Aa4foMB0Eeuw7f5-0ea7hA" name="PersonalFeatureGrant" readonly="true">
   <rootEClass href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant"/>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YIMB0Eeuw7f5-0ea7hA" name="Control identifier">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YIcB0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/identifier"/>
-    </domainModelReference>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_WECuQMEVEeuw7f5-0ea7hA" name="General">
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_YKy_YMEVEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YIMB0Eeuw7f5-0ea7hA" name="Control identifier">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YIcB0Eeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/identifier"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YKMB0Eeuw7f5-0ea7hA" name="Control capacity">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YKcB0Eeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/capacity"/>
+        </domainModelReference>
+      </children>
+    </children>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YIsB0Eeuw7f5-0ea7hA" name="Control feature">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YI8B0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/feature"/>
-    </domainModelReference>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_aIv50MEVEeuw7f5-0ea7hA" name="Feature">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_zKrtQMEVEeuw7f5-0ea7hA" name="FeatureRef identifier">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_104CoMEVEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FeatureRef/identifier"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/feature"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_RezzEMEWEeuw7f5-0ea7hA">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_IS9ukMEWEeuw7f5-0ea7hA" name="VersionMatch version">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_K1G7MMEWEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//VersionMatch/version"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/feature"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FeatureRef/versionMatch"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_NWU6wMEWEeuw7f5-0ea7hA" name="VersionMatch rule">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Q2t4UMEWEeuw7f5-0ea7hA">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//VersionMatch/rule"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/feature"/>
+          <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//FeatureRef/versionMatch"/>
+        </domainModelReference>
+      </children>
+    </children>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YJMB0Eeuw7f5-0ea7hA" name="Control valid">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YJcB0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/valid"/>
-    </domainModelReference>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_aKyEsMEWEeuw7f5-0ea7hA" name="Valid">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YJMB0Eeuw7f5-0ea7hA" name="from">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YJcB0Eeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ValidityPeriodClosed/from"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/valid"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_1TJZIMEWEeuw7f5-0ea7hA" name="to">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_3hrGMMEWEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//ValidityPeriodClosed/until"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/valid"/>
+      </domainModelReference>
+    </children>
   </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YJsB0Eeuw7f5-0ea7hA" name="Control userAuthentication">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YJ8B0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/userAuthentication"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YKMB0Eeuw7f5-0ea7hA" name="Control capacity">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YKcB0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/capacity"/>
-    </domainModelReference>
-  </children>
-  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_Aa9YKsB0Eeuw7f5-0ea7hA" name="Control pack">
-    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_Aa9YK8B0Eeuw7f5-0ea7hA">
-      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/pack"/>
-    </domainModelReference>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_gHHgQMEWEeuw7f5-0ea7hA" name="User Authentication">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_mkmhEMEWEeuw7f5-0ea7hA" name="EvaluationInstrutions type">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_oNXOoMEWEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//EvaluationInstructions/type"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/userAuthentication"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_sOmPcMEWEeuw7f5-0ea7hA" name="EvaluationInstrutions expression">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_vdLEQMEWEeuw7f5-0ea7hA">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//EvaluationInstructions/expression"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/licenses/2.0.0#//PersonalFeatureGrant/userAuthentication"/>
+      </domainModelReference>
+    </children>
   </children>
   <ecorePaths>/org.eclipse.passage.lic.licenses.ecore/model/licenses.ecore</ecorePaths>
 </org.eclipse.emf.ecp.view.model:View>
