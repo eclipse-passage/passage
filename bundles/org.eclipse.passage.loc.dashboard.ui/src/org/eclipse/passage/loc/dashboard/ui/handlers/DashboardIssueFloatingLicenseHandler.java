@@ -21,7 +21,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.passage.lic.internal.jface.actions.LicensedRunnableUi;
+import org.eclipse.passage.lic.internal.jface.actions.LicensedRunnableUI;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
@@ -42,7 +42,7 @@ public class DashboardIssueFloatingLicenseHandler {
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional LicensePlanDescriptor plan,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional UserDescriptor user,
 			@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ProductVersionDescriptor product) {
-		new LicensedRunnableUi(feature, () -> open(context, //
+		new LicensedRunnableUI(feature, () -> open(context, //
 				new IssueFloatingLicenseWizard(//
 						context, //
 						new FloatingDataPack(//

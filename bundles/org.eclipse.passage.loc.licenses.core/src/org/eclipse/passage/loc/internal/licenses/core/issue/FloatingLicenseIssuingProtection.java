@@ -51,7 +51,6 @@ public final class FloatingLicenseIssuingProtection implements Consumer<Floating
 		if (new EquinoxPassage().canUse(feature)) {
 			return;
 		}
-		// TODO: log diminishing
 		diminish(license);
 	}
 
