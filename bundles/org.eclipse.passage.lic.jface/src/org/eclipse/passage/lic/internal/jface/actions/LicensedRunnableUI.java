@@ -22,22 +22,22 @@ import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public final class LicensedRunnableUi extends LicensedRunnable {
+public final class LicensedRunnableUI extends LicensedRunnable {
 
 	private final Supplier<Shell> shell;
 
-	public LicensedRunnableUi(Supplier<Shell> shell, String feature, Runnable action,
+	public LicensedRunnableUI(Supplier<Shell> shell, String feature, Runnable action,
 			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 		super(feature, action, fallback);
 		this.shell = shell;
 	}
 
-	public LicensedRunnableUi(Supplier<Shell> shell, String feature, Runnable action) {
+	public LicensedRunnableUI(Supplier<Shell> shell, String feature, Runnable action) {
 		this(shell, feature, action, response -> {
 		});
 	}
 
-	public LicensedRunnableUi(String feature, Runnable action) {
+	public LicensedRunnableUI(String feature, Runnable action) {
 		this(Display.getDefault()::getActiveShell, feature, action);
 	}
 

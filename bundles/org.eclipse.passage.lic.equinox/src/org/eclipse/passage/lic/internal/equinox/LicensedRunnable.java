@@ -24,7 +24,7 @@ public abstract class LicensedRunnable implements Runnable {
 	private final Runnable action;
 	private final Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback;
 
-	public LicensedRunnable(String feature, Runnable action,
+	protected LicensedRunnable(String feature, Runnable action,
 			Consumer<ServiceInvocationResult<GrantLockAttempt>> fallback) {
 		this.feature = feature;
 		this.action = action;
