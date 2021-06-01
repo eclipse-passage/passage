@@ -33,6 +33,7 @@ import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}</li>
  * </ul>
  *
@@ -156,6 +157,29 @@ public interface PersonalFeatureGrant extends EObject, PersonalFeatureGrantDescr
 	 * @generated
 	 */
 	void setCapacity(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vivid</em>' attribute.
+	 * @see #setVivid(long)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getPersonalFeatureGrant_Vivid()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	long getVivid();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vivid</em>' attribute.
+	 * @see #getVivid()
+	 * @generated
+	 */
+	void setVivid(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Pack</b></em>' container reference.

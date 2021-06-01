@@ -77,6 +77,7 @@ public class PersonalFeatureGrantItemProvider extends ItemProviderAdapter implem
 
 			addIdentifierPropertyDescriptor(object);
 			addCapacityPropertyDescriptor(object);
+			addVividPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,22 @@ public class PersonalFeatureGrantItemProvider extends ItemProviderAdapter implem
 						getString("_UI_PropertyDescriptor_description", "_UI_PersonalFeatureGrant_capacity_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_PersonalFeatureGrant_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Capacity(), true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Vivid feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVividPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PersonalFeatureGrant_vivid_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_PersonalFeatureGrant_vivid_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_PersonalFeatureGrant_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getPersonalFeatureGrant_Vivid(), true, false, false,
 						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
@@ -230,6 +247,7 @@ public class PersonalFeatureGrantItemProvider extends ItemProviderAdapter implem
 		switch (notification.getFeatureID(PersonalFeatureGrant.class)) {
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__IDENTIFIER:
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__FEATURE:

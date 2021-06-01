@@ -42,6 +42,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getValid <em>Valid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getUserAuthentication <em>User Authentication</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getVivid <em>Vivid</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.PersonalFeatureGrantImpl#getPack <em>Pack</em>}</li>
  * </ul>
  *
@@ -118,6 +119,26 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	private int capacity = CAPACITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long VIVID_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @generated
+	 * @ordered
+	 */
+	private long vivid = VIVID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -358,6 +379,31 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
+	public long getVivid() {
+		return vivid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVivid(long newVivid) {
+		long oldVivid = vivid;
+		vivid = newVivid;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID,
+					oldVivid, vivid));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PersonalLicensePack getPack() {
 		if (eContainerFeatureID() != LicensesPackage.PERSONAL_FEATURE_GRANT__PACK) {
 			return null;
@@ -476,6 +522,8 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 			return getUserAuthentication();
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			return getCapacity();
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID:
+			return getVivid();
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return getPack();
 		default:
@@ -505,6 +553,9 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 			return;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			setCapacity((Integer) newValue);
+			return;
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID:
+			setVivid((Long) newValue);
 			return;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			setPack((PersonalLicensePack) newValue);
@@ -538,6 +589,9 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			setCapacity(CAPACITY_EDEFAULT);
 			return;
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID:
+			setVivid(VIVID_EDEFAULT);
+			return;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			setPack((PersonalLicensePack) null);
 			return;
@@ -565,6 +619,8 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 			return userAuthentication != null;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__CAPACITY:
 			return capacity != CAPACITY_EDEFAULT;
+		case LicensesPackage.PERSONAL_FEATURE_GRANT__VIVID:
+			return vivid != VIVID_EDEFAULT;
 		case LicensesPackage.PERSONAL_FEATURE_GRANT__PACK:
 			return getPack() != null;
 		default:
@@ -587,6 +643,8 @@ public class PersonalFeatureGrantImpl extends MinimalEObjectImpl.Container imple
 		result.append(identifier);
 		result.append(", capacity: "); //$NON-NLS-1$
 		result.append(capacity);
+		result.append(", vivid: "); //$NON-NLS-1$
+		result.append(vivid);
 		result.append(')');
 		return result.toString();
 	}

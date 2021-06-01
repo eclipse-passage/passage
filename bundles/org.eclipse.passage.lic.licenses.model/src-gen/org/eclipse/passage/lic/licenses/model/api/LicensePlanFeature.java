@@ -27,6 +27,8 @@ import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getPlan <em>Plan</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getVivid <em>Vivid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getCapacity <em>Capacity</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature()
@@ -89,5 +91,59 @@ public interface LicensePlanFeature extends EObject, LicensePlanFeatureDescripto
 	 * @generated
 	 */
 	void setPlan(LicensePlan value);
+
+	/**
+	 * Returns the value of the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Vivid</em>' attribute.
+	 * @see #setVivid(long)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Vivid()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	long getVivid();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getVivid <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vivid</em>' attribute.
+	 * @see #getVivid()
+	 * @since 2.0
+	 * @generated
+	 */
+	void setVivid(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Capacity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Capacity</em>' attribute.
+	 * @see #setCapacity(int)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getLicensePlanFeature_Capacity()
+	 * @model required="true"
+	 * @generated
+	 */
+	@Override
+	int getCapacity();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getCapacity <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Capacity</em>' attribute.
+	 * @see #getCapacity()
+	 * @since 2.0
+	 * @generated
+	 */
+	void setCapacity(int value);
 
 } // LicensePlanFeature

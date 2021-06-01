@@ -193,6 +193,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="company" lowerBound="1"
         eType="#//CompanyRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FloatingServer" eSuperTypes="#//FloatingServerDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -262,6 +263,17 @@
         <details key="documentation" value="@since 2.0"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vivid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="@since 2.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="@since 2.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LicenseRequisites" abstract="true" eSuperTypes="#//LicenseRequisitesDescriptor">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -293,6 +305,7 @@
         eType="#//EvaluationInstructions" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vivid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pack" lowerBound="1" eType="#//PersonalLicensePack"
         eOpposite="#//PersonalLicensePack/grants"/>
   </eClassifiers>

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.model.api.CompanyRef;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites;
@@ -56,6 +57,7 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 			super.getPropertyDescriptors(object);
 
 			addCompanyPropertyDescriptor(object);
+			addGroupPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -74,6 +76,22 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 								"_UI_FloatingLicenseRequisites_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getFloatingLicenseRequisites_Company(), true, false, false, null,
 						null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Group feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGroupPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FloatingLicenseRequisites_group_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FloatingLicenseRequisites_group_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FloatingLicenseRequisites_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getFloatingLicenseRequisites_Group(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -124,6 +142,7 @@ public class FloatingLicenseRequisitesItemProvider extends LicenseRequisitesItem
 
 		switch (notification.getFeatureID(FloatingLicenseRequisites.class)) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		default:

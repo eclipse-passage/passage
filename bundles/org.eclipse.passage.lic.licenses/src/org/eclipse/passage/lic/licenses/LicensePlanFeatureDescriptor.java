@@ -30,6 +30,16 @@ public interface LicensePlanFeatureDescriptor {
 	FeatureRefDescriptor getFeature();
 
 	/**
+	 * @since 2.0
+	 */
+	int getCapacity();
+
+	/**
+	 * @since 2.0
+	 */
+	long getVivid();
+
+	/**
 	 * Returns the containing license plan of this license plan feature.
 	 *
 	 * @return the license plan
