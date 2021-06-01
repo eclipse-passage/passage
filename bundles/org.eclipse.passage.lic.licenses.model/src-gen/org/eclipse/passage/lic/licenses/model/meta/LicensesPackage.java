@@ -1270,6 +1270,16 @@ public interface LicensesPackage extends EPackage {
 	int FLOATING_LICENSE_REQUISITES__COMPANY = LICENSE_REQUISITES_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_LICENSE_REQUISITES__GROUP = LICENSE_REQUISITES_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Floating License Requisites</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1277,7 +1287,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_LICENSE_REQUISITES_FEATURE_COUNT = LICENSE_REQUISITES_FEATURE_COUNT + 1;
+	int FLOATING_LICENSE_REQUISITES_FEATURE_COUNT = LICENSE_REQUISITES_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Floating License Requisites</em>' class.
@@ -1598,13 +1608,33 @@ public interface LicensesPackage extends EPackage {
 	int LICENSE_PLAN_FEATURE__PLAN = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__VIVID = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	int LICENSE_PLAN_FEATURE__CAPACITY = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>License Plan Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LICENSE_PLAN_FEATURE_FEATURE_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 2;
+	int LICENSE_PLAN_FEATURE_FEATURE_COUNT = LICENSE_PLAN_FEATURE_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>License Plan Feature</em>' class.
@@ -1677,6 +1707,16 @@ public interface LicensesPackage extends EPackage {
 	int PERSONAL_FEATURE_GRANT__CAPACITY = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Vivid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_FEATURE_GRANT__VIVID = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Pack</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1684,7 +1724,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_FEATURE_GRANT__PACK = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 5;
+	int PERSONAL_FEATURE_GRANT__PACK = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Personal Feature Grant</em>' class.
@@ -1694,7 +1734,7 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERSONAL_FEATURE_GRANT_FEATURE_COUNT = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 6;
+	int PERSONAL_FEATURE_GRANT_FEATURE_COUNT = PERSONAL_FEATURE_GRANT_DESCRIPTOR_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Personal Feature Grant</em>' class.
@@ -2826,6 +2866,18 @@ public interface LicensesPackage extends EPackage {
 	EReference getFloatingLicenseRequisites_Company();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Group</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getGroup()
+	 * @see #getFloatingLicenseRequisites()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getFloatingLicenseRequisites_Group();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.FloatingServer <em>Floating Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3092,6 +3144,30 @@ public interface LicensesPackage extends EPackage {
 	EReference getLicensePlanFeature_Plan();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getVivid <em>Vivid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vivid</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getVivid()
+	 * @see #getLicensePlanFeature()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_Vivid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Capacity</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.LicensePlanFeature#getCapacity()
+	 * @see #getLicensePlanFeature()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getLicensePlanFeature_Capacity();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant <em>Personal Feature Grant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3161,6 +3237,18 @@ public interface LicensesPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPersonalFeatureGrant_Capacity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid <em>Vivid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Vivid</em>'.
+	 * @see org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getVivid()
+	 * @see #getPersonalFeatureGrant()
+	 * @since 2.0
+	 * @generated
+	 */
+	EAttribute getPersonalFeatureGrant_Vivid();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant#getPack <em>Pack</em>}'.

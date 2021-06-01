@@ -38,6 +38,8 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getPlan <em>Plan</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getVivid <em>Vivid</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.LicensePlanFeatureImpl#getCapacity <em>Capacity</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,6 +55,47 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected FeatureRef feature;
+
+	/**
+	 * The default value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long VIVID_EDEFAULT = 0L;
+	/**
+	 * The cached value of the '{@link #getVivid() <em>Vivid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVivid()
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	private long vivid = VIVID_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCapacity()
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int CAPACITY_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCapacity()
+	 * @since 2.0
+	 * @generated
+	 * @ordered
+	 */
+	private int capacity = CAPACITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,6 +229,60 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public long getVivid() {
+		return vivid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public void setVivid(long newVivid) {
+		long oldVivid = vivid;
+		vivid = newVivid;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__VIVID, oldVivid,
+					vivid));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public int getCapacity() {
+		return capacity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	@Override
+	public void setCapacity(int newCapacity) {
+		int oldCapacity = capacity;
+		capacity = newCapacity;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY,
+					oldCapacity, capacity));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,6 +343,10 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return getFeature();
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			return getPlan();
+		case LicensesPackage.LICENSE_PLAN_FEATURE__VIVID:
+			return getVivid();
+		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
+			return getCapacity();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -264,6 +365,12 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			setPlan((LicensePlan) newValue);
+			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__VIVID:
+			setVivid((Long) newValue);
+			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
+			setCapacity((Integer) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -285,6 +392,12 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			setPlan((LicensePlan) null);
 			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__VIVID:
+			setVivid(VIVID_EDEFAULT);
+			return;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
+			setCapacity(CAPACITY_EDEFAULT);
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -303,9 +416,32 @@ public class LicensePlanFeatureImpl extends MinimalEObjectImpl.Container impleme
 			return feature != null;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__PLAN:
 			return getPlan() != null;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__VIVID:
+			return vivid != VIVID_EDEFAULT;
+		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
+			return capacity != CAPACITY_EDEFAULT;
 		default:
 			return super.eIsSet(featureID);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (vivid: "); //$NON-NLS-1$
+		result.append(vivid);
+		result.append(", capacity: "); //$NON-NLS-1$
+		result.append(capacity);
+		result.append(')');
+		return result.toString();
 	}
 
 } //LicensePlanFeatureImpl

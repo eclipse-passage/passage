@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.licenses.model.impl;
 
+import java.util.Objects;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -34,6 +35,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseRequisitesImpl#getCompany <em>Company</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.impl.FloatingLicenseRequisitesImpl#getGroup <em>Group</em>}</li>
  * </ul>
  *
  * @since 2.0
@@ -49,6 +51,25 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * @ordered
 	 */
 	protected CompanyRef company;
+
+	/**
+	 * The default value of the '{@link #getGroup() <em>Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroup()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GROUP_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getGroup() <em>Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroup()
+	 * @generated
+	 * @ordered
+	 */
+	private String group = GROUP_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,6 +149,31 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 	 * @generated
 	 */
 	@Override
+	public String getGroup() {
+		return group;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGroup(String newGroup) {
+		String oldGroup = group;
+		group = newGroup;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP,
+					oldGroup, group));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
@@ -147,6 +193,8 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
 			return getCompany();
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP:
+			return getGroup();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -162,6 +210,9 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
 			setCompany((CompanyRef) newValue);
+			return;
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP:
+			setGroup((String) newValue);
 			return;
 		default:
 			super.eSet(featureID, newValue);
@@ -180,6 +231,9 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
 			setCompany((CompanyRef) null);
 			return;
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP:
+			setGroup(GROUP_EDEFAULT);
+			return;
 		default:
 			super.eUnset(featureID);
 			return;
@@ -196,9 +250,28 @@ public class FloatingLicenseRequisitesImpl extends LicenseRequisitesImpl impleme
 		switch (featureID) {
 		case LicensesPackage.FLOATING_LICENSE_REQUISITES__COMPANY:
 			return company != null;
+		case LicensesPackage.FLOATING_LICENSE_REQUISITES__GROUP:
+			return !Objects.equals(GROUP_EDEFAULT, group);
 		default:
 			return super.eIsSet(featureID);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (group: "); //$NON-NLS-1$
+		result.append(group);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FloatingLicenseRequisitesImpl

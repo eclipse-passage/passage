@@ -28,6 +28,7 @@ import org.eclipse.passage.lic.licenses.FloatingLicenseRequisitesDescriptor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getCompany <em>Company</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getGroup <em>Group</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicenseRequisites()
@@ -57,5 +58,27 @@ public interface FloatingLicenseRequisites extends LicenseRequisites, FloatingLi
 	 * @generated
 	 */
 	void setCompany(CompanyRef value);
+
+	/**
+	 * Returns the value of the '<em><b>Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group</em>' attribute.
+	 * @see #setGroup(String)
+	 * @see org.eclipse.passage.lic.licenses.model.meta.LicensesPackage#getFloatingLicenseRequisites_Group()
+	 * @model
+	 * @generated
+	 */
+	String getGroup();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.licenses.model.api.FloatingLicenseRequisites#getGroup <em>Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Group</em>' attribute.
+	 * @see #getGroup()
+	 * @generated
+	 */
+	void setGroup(String value);
 
 } // FloatingLicenseRequisites

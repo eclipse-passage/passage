@@ -29,23 +29,13 @@ public interface PersonalFeatureGrantDescriptor {
 	 * <code>"identifier"</code> attribute.
 	 *
 	 * @return the identifier
-	 * @since 1.0
 	 */
 	String getIdentifier();
 
-	/**
-	 * @since 2.0
-	 */
 	FeatureRefDescriptor getFeature();
 
-	/**
-	 * @since 2.0
-	 */
 	ValidityPeriodDescriptor getValid();
 
-	/**
-	 * @since 2.0
-	 */
 	EvaluationInstructionsDescriptor getUserAuthentication();
 
 	/**
@@ -56,11 +46,12 @@ public interface PersonalFeatureGrantDescriptor {
 	 */
 	int getCapacity();
 
+	long getVivid();
+
 	/**
 	 * Returns the containing license pack of this license grant.
 	 *
 	 * @return the license pack
-	 * @since 2.0
 	 */
 	PersonalLicensePackDescriptor getPack();
 

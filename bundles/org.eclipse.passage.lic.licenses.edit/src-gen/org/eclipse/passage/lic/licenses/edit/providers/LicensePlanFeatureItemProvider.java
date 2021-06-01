@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.licenses.edit.LicensesEditPlugin;
@@ -64,6 +65,8 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 			super.getPropertyDescriptors(object);
 
 			addPlanPropertyDescriptor(object);
+			addVividPropertyDescriptor(object);
+			addCapacityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,6 +85,40 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_plan_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
 						LicensesPackage.eINSTANCE.getLicensePlanFeature_Plan(), true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Vivid feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	protected void addVividPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePlanFeature_vivid_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_vivid_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePlanFeature_Vivid(), true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Capacity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	protected void addCapacityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicensePlanFeature_capacity_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicensePlanFeature_capacity_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicensePlanFeature_type"), //$NON-NLS-1$
+						LicensesPackage.eINSTANCE.getLicensePlanFeature_Capacity(), true, false, false,
+						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -174,6 +211,10 @@ public class LicensePlanFeatureItemProvider extends ItemProviderAdapter implemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LicensePlanFeature.class)) {
+		case LicensesPackage.LICENSE_PLAN_FEATURE__VIVID:
+		case LicensesPackage.LICENSE_PLAN_FEATURE__CAPACITY:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case LicensesPackage.LICENSE_PLAN_FEATURE__FEATURE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
