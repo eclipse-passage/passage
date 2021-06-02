@@ -29,7 +29,7 @@ final class ClosedValidityPeriodReduction<L> implements Reduction<L> {
 	private final Logger log = LogManager.getLogger(getClass());
 	private final Function<L, Optional<ValidityPeriodClosed>> get;
 	private final BiConsumer<L, ValidityPeriodClosed> set;
-	private final int length = 1;
+	private final int length = 3;
 
 	ClosedValidityPeriodReduction(Function<L, Optional<ValidityPeriodClosed>> get,
 			BiConsumer<L, ValidityPeriodClosed> set) {
@@ -45,10 +45,10 @@ final class ClosedValidityPeriodReduction<L> implements Reduction<L> {
 		}
 		ZonedDateTime allowed = allowed(valid.get().from());
 		if (allowed.isBefore(valid.get().to())) {
-			log.warn(String.format(
-					ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_length, length));
-			log.warn(String.format(ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_allowed, valid.get().from(),
-					valid.get().to(), valid.get().from(), allowed));
+			log.warn(String.format(ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_length,
+					length));
+			log.warn(String.format(ReductionMessages.ClosedValidityPeriodReduction_reduction_validityperiod_allowed,
+					valid.get().from(), valid.get().to(), valid.get().from(), allowed));
 			set.accept(license, new BaseValidityPeriodClosed(valid.get().from(), allowed));
 		}
 	}

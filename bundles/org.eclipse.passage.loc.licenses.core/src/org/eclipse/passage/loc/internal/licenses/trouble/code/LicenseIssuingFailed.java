@@ -18,7 +18,7 @@ import org.eclipse.passage.loc.internal.licenses.core.i18n.LicenseTroubleCodeMes
 public final class LicenseIssuingFailed extends TroubleCode {
 
 	public LicenseIssuingFailed() {
-		super(900, LicenseTroubleCodeMessages.LicenseValidationFailed_explanation);
+		super(900, LicenseTroubleCodeMessages.LicenseIssuingFailed_explanation);
 	}
 
 }

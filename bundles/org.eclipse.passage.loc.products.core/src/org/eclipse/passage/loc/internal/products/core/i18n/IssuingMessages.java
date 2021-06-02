@@ -10,13 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.licenses.core.i18n;
+package org.eclipse.passage.loc.internal.products.core.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
 public final class IssuingMessages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.licenses.core.i18n.IssuingMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.passage.loc.internal.products.core.i18n.IssuingMessages"; //$NON-NLS-1$
 	public static String ProductKeys_keys_no_service;
 	public static String ProductKeys_keys_no_storage_for_product;
 	public static String ProductKeys_keys_reading_failed;

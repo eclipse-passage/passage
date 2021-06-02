@@ -28,7 +28,8 @@ import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 final class HomeBasedKeys implements Keys {
 
 	private final Path residence;
-	private final PassageFileExtension ext = new DomainFileExtension.Keys();
+	private final PassageFileExtension keys = new DomainFileExtension.Keys();
+	private final PassageFileExtension pub = new PassageFileExtension.PublicKey();
 
 	HomeBasedKeys() {
 		this.residence = new LicensingFolder(new UserHomePath()).get();
@@ -36,17 +37,22 @@ final class HomeBasedKeys implements Keys {
 
 	@Override
 	public Optional<String> existing(String product, String version) {
-		return reportExistance(keysFile(product, version));
-	}
-
-	private Path keysFile(String product, String version) {
-		return productResidence(product, version).resolve(//
-				productFile(product, version));
+		return reportExistance(residentFile(product, version, keys));
 	}
 
 	@Override
 	public ResourceHandle located(String product, String version) {
-		return new LocalFileHandle(keysFile(product, version));
+		return new LocalFileHandle(residentFile(product, version, keys));
+	}
+
+	@Override
+	public ResourceHandle locatedPub(String product, String version) {
+		return new LocalFileHandle(residentFile(product, version, pub));
+	}
+
+	private Path residentFile(String product, String version, PassageFileExtension ext) {
+		return productResidence(product, version).resolve(//
+				fileForProduct(product, version, ext));
 	}
 
 	private Optional<String> reportExistance(Path file) {
@@ -55,7 +61,7 @@ final class HomeBasedKeys implements Keys {
 				: Optional.empty();
 	}
 
-	private String productFile(String product, String version) {
+	private String fileForProduct(String product, String version, PassageFileExtension ext) {
 		return new FileNameFromLicensedProduct(product, version, ext).get();
 	}
 

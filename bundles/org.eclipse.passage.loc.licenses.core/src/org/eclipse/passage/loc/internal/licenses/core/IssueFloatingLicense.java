@@ -13,9 +13,7 @@
 package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,9 +33,7 @@ import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.internal.base.io.FloatingFileExtension;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
@@ -52,7 +48,9 @@ import org.eclipse.passage.loc.internal.licenses.core.issue.FloatingLicenseIssui
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
 import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
+import org.eclipse.passage.loc.internal.products.core.PublicKeyReplcated;
 
+@SuppressWarnings("restriction")
 final class IssueFloatingLicense {
 
 	private final LicenseRegistry licenses;
@@ -141,7 +139,7 @@ final class IssueFloatingLicense {
 		// copy product public key
 		Path key;
 		try {
-			key = copyPlainFile(product, folder);
+			key = new PublicKeyReplcated(product, folder).store();
 		} catch (Exception e) {
 			return new BaseServiceInvocationResult<>(new Trouble(new LicenseIssuingFailed(), //
 					LicensesCoreMessages.LicenseOperatorServiceImpl_floating_save_product_key, e));
@@ -155,16 +153,6 @@ final class IssueFloatingLicense {
 				license.getProduct().getVersion())//
 						.get()//
 						.resolve(license.getIdentifier());
-	}
-
-	private Path copyPlainFile(LicensedProduct product, Path folder) throws IOException, LicensingException {
-		Path destination = folder
-				.resolve(new FileNameFromLicensedProduct(product, new PassageFileExtension.PublicKey()).get());
-		if (Files.exists(destination)) {
-			return destination;
-		}
-		Files.write(destination, new ProductKeys(product).pubBytes(), StandardOpenOption.CREATE_NEW);
-		return destination;
 	}
 
 	private LicensedProduct product(ProductRef ref) {

@@ -22,6 +22,8 @@ public interface Keys {
 
 	ResourceHandle located(String product, String version);
 
+	ResourceHandle locatedPub(String product, String version);
+
 	public static final class Smart implements Keys {
 
 		private final Keys delegate;
@@ -50,6 +52,15 @@ public interface Keys {
 
 		public ResourceHandle located(LicensedProduct product) {
 			return delegate.located(product.identifier(), product.version());
+		}
+
+		@Override
+		public ResourceHandle locatedPub(String product, String version) {
+			return delegate.locatedPub(product, version);
+		}
+
+		public ResourceHandle locatedPub(LicensedProduct product) {
+			return delegate.locatedPub(product.identifier(), product.version());
 		}
 
 	}
