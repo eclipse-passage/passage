@@ -50,13 +50,16 @@ final class AcquiredGrantsStorage {
 		}
 	}
 
-	synchronized Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
-		Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
-		if (acquisitions.size() < grant.getCapacity()) {
-			GrantAcqisition acquistion = acquistion(grant, user);
-			acquisitions.add(acquistion);
-			logAcquisition("acquire", acquistion, product); //$NON-NLS-1$
-			return Optional.of(acquistion);
+	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
+		final int capacity = new ProtectedGrantCapacity(grant).get();
+		synchronized (this) {
+			Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
+			if (acquisitions.size() < capacity) {
+				GrantAcqisition acquistion = acquistion(grant, user);
+				acquisitions.add(acquistion);
+				logAcquisition("acquire", acquistion, product); //$NON-NLS-1$
+				return Optional.of(acquistion);
+			}
 		}
 		return Optional.empty();
 	}
