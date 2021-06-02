@@ -32,7 +32,7 @@ public final class AcquiredGrants implements Grants {
 
 	public AcquiredGrants(Supplier<Path> base) {
 		this.base = base;
-		storage = new AcquiredGrantsStorage();
+		this.storage = new AcquiredGrantsStorage();
 	}
 
 	public AcquiredGrants() {

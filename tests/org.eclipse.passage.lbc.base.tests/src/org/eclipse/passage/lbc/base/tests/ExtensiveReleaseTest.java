@@ -47,6 +47,8 @@ public final class ExtensiveReleaseTest {
 	private final int noGrants = new NoGrantsAvailable(data.product(), data.feature()).error().code();
 
 	@Test
+	// TODO: add enough test grants to check capacity protection:
+	// TODO: min {grant.capacity, unlicensedCapacity}
 	public void concurrentAcquireAndRelease() throws InterruptedException, ExecutionException {
 		// having
 		int amount = 128;
