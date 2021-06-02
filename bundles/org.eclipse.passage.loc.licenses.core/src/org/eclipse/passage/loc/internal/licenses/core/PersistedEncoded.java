@@ -25,6 +25,7 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
+import org.eclipse.passage.loc.internal.products.core.ProductKeys;
 
 final class PersistedEncoded {
 

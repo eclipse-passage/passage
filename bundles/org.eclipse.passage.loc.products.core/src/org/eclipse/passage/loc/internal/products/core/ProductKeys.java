@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.loc.internal.licenses.core;
+package org.eclipse.passage.loc.internal.products.core;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -20,35 +20,40 @@ import java.util.function.Function;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
-import org.eclipse.passage.loc.internal.licenses.core.i18n.IssuingMessages;
+import org.eclipse.passage.loc.internal.products.core.i18n.IssuingMessages;
 
 @SuppressWarnings("restriction")
 public final class ProductKeys {
 
 	private final LicensedProduct product;
 
-	ProductKeys(LicensedProduct product) {
+	public ProductKeys(LicensedProduct product) {
 		this.product = product;
 	}
 
-	InputStream scrStream() throws LicensingException {
+	public ProductKeys(String product, String version) {
+		this(new BaseLicensedProduct(product, version));
+	}
+
+	public InputStream scrStream() throws LicensingException {
 		return getStream(KeyPair::getScr);
 	}
 
-	InputStream pubStream() throws LicensingException {
+	public InputStream pubStream() throws LicensingException {
 		return getStream(KeyPair::getPub);
 	}
 
-	byte[] scrBytes() throws LicensingException {
+	public byte[] scrBytes() throws LicensingException {
 		return getBytes(KeyPair::getScr);
 	}
 
-	byte[] pubBytes() throws LicensingException {
+	public byte[] pubBytes() throws LicensingException {
 		return getBytes(KeyPair::getPub);
 	}
 

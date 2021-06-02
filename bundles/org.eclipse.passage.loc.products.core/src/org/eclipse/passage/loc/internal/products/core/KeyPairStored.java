@@ -22,6 +22,10 @@ import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 import org.eclipse.passage.loc.internal.equinox.OperatorGearAware;
 
+/**
+ * Stores both coupled-keys file (*.keys_xmi) and product public-key file
+ * (*.pub)
+ */
 @SuppressWarnings("restriction")
 public final class KeyPairStored {
 
@@ -38,6 +42,12 @@ public final class KeyPairStored {
 	private Optional<String> store(Keys keys) throws LicensingException {
 		String product = pair.getProduct().getIdentifier();
 		String version = pair.getProduct().getVersion();
+		ResourceHandle locator = storeCoupled(keys, product, version);
+		storePublic(keys, product, version);
+		return Optional.of(locator.info());
+	}
+
+	private ResourceHandle storeCoupled(Keys keys, String product, String version) throws LicensingException {
 		ResourceHandle locator = keys.located(product, version);
 		// FIXME:AF: should be done via factory
 		// FIXME:AF: generate XMI factory for keys
@@ -49,7 +59,15 @@ public final class KeyPairStored {
 					String.format("Failed to store keys for %s %s", product, version), // //$NON-NLS-1$
 					e);
 		}
-		return Optional.of(locator.info());
+		return locator;
 	}
 
+	private void storePublic(Keys keys, String product, String version) throws LicensingException {
+		ResourceHandle locator = keys.locatedPub(product, version);
+		try {
+			locator.write(new ProductKeys(product, version).pubBytes());
+		} catch (Exception e) {
+			throw new LicensingException("Failed to store public key", e); //$NON-NLS-1$
+		}
+	}
 }
