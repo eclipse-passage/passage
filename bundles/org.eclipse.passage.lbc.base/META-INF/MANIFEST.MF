@@ -22,5 +22,5 @@ Export-Package: org.eclipse.passage.lbc.internal.base;x-friends:="org.eclipse.pa
  org.eclipse.passage.lbc.internal.base.interaction;x-friends:="org.eclipse.passage.lbc.jetty",
  org.eclipse.passage.lbc.internal.base.mine;x-friends:="org.eclipse.passage.lbc.base.tests,org.eclipse.passage.lic.hc.tests"
 Bundle-ActivationPolicy: lazy
-Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.lbc.acquire.concurrent";version="2.0.0";name="FLS: Concurrent access to a feature grant for several users";level="warn";provider="Eclipse Passage",
+Provide-Capability: licensing.feature;licensing.feature="org.eclipse.passage.lbc.acquire.concurrent";version="2.0.0";name="FLS: Concurrent access to a feature grant for several users";level="info";provider="Eclipse Passage",
  licensing.feature;licensing.feature="org.eclipse.passage.lbc.acquire.concurrent.full";version="2.0.0";name="FLS: Concurrent access to a feature grant for any amount of users";level="error";provider="Eclipse Passage"

@@ -23,6 +23,7 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
@@ -42,6 +43,7 @@ final class AcquiredGrantsStorage {
 	 * </p>
 	 */
 	private final Map<LicensedProduct, Map<String, Collection<GrantAcqisition>>> locks = new HashMap<>();
+	private final String feature = "org.eclipse.passage.lbc.acquire.concurrent"; //$NON-NLS-1$
 	private final Logger log = LogManager.getLogger(getClass());
 
 	AcquiredGrantsStorage() {
@@ -51,6 +53,7 @@ final class AcquiredGrantsStorage {
 	}
 
 	Optional<GrantAcqisition> acquire(LicensedProduct product, String user, FeatureGrant grant) {
+		checkFlsLicense();
 		final int capacity = new ProtectedGrantCapacity(grant).get();
 		synchronized (this) {
 			Collection<GrantAcqisition> acquisitions = grantLocks(product, grant.getIdentifier());
@@ -62,6 +65,14 @@ final class AcquiredGrantsStorage {
 			}
 		}
 		return Optional.empty();
+	}
+
+	// TODO: evolve LicenseRunnable to return a result, re-implement with proper
+	// grant acquisition
+	private void checkFlsLicense() {
+		if (!new EquinoxPassage().canUse(feature)) {
+			log.error(String.format("FLS feature %s is not covered by a license", feature)); //$NON-NLS-1$
+		}
 	}
 
 	synchronized boolean release(LicensedProduct product, GrantAcqisition acquisition) {
