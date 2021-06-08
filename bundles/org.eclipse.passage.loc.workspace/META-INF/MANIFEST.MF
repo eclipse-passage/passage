@@ -6,7 +6,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.passage.loc.api;bundle-version="0.0.0"
 Export-Package: org.eclipse.passage.loc.workspace;x-friends:="org.eclipse.passage.loc.operator.gear"
