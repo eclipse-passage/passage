@@ -12,14 +12,14 @@
 	Contributors:
 		ArSysOp - initial API and implementation
 -->
-<target name="org.eclipse.passage.target" sequenceNumber="93">
+<target name="org.eclipse.passage.target" sequenceNumber="94">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/cbi/updates/license/"/>
 			<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/eclipse/updates/4.19/R-4.19-202103031800/"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.20-I-builds/I20210603-0040/"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
@@ -62,7 +62,7 @@
 			<unit id="org.eclipse.uml2.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/sirius/updates/releases/6.3.4/2020-09/"/>
+			<repository location="https://download.eclipse.org/sirius/updates/releases/6.5.0/2020-09/"/>
 			<unit id="org.eclipse.sirius.runtime.aql.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sirius.runtime.feature.group" version="0.0.0"/>
 		</location>
@@ -71,32 +71,23 @@
 			<unit id="org.eclipse.gef.sdk.feature.group" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/tools/orbit/downloads/2021-03/"/>
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/2021-06/"/>
 			<unit id="com.fasterxml.jackson.core.jackson-annotations" version="0.0.0"/>
-			<unit id="com.fasterxml.jackson.core.jackson-annotations.source" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-core" version="0.0.0"/>
-			<unit id="com.fasterxml.jackson.core.jackson-core.source" version="0.0.0"/>
 			<unit id="com.fasterxml.jackson.core.jackson-databind" version="0.0.0"/>
-			<unit id="com.fasterxml.jackson.core.jackson-databind.source" version="0.0.0"/>
 			<unit id="com.github.oshi.oshi-core" version="0.0.0"/>
-			<unit id="com.github.oshi.oshi-core.source" version="0.0.0"/>
-			<unit id="com.sun.jna" version="4.5.1.v20190425-1842"/>
-			<unit id="com.sun.jna.source" version="4.5.1.v20190425-1842"/>
+			<unit id="com.sun.jna" version="4.5.1.v20210503-0343"/>
 			<unit id="com.sun.jna.platform" version="4.5.1.v20190425-1842"/>
-			<unit id="com.sun.jna.platform.source" version="4.5.1.v20190425-1842"/>
 			<unit id="javax.activation" version="0.0.0"/>
 			<unit id="javax.mail" version="0.0.0"/>
+			<unit id="javax.servlet" version="0.0.0"/>
 			<unit id="org.apache.commons.csv" version="0.0.0"/>
 			<unit id="org.apache.logging.log4j" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcpg.source" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpkix" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcpkix.source" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcprov" version="0.0.0"/>
-			<unit id="org.bouncycastle.bcprov.source" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
 			<unit id="org.slf4j.api" version="0.0.0"/>
-			<unit id="org.slf4j.api.source" version="0.0.0"/>
 			<unit id="org.slf4j.apis.log4j" version="0.0.0"/>
 		</location>
 	</locations>
