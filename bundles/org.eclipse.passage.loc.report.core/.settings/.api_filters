@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.passage.loc.report.core" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="increment with new API publishing" id="927989779">
+            <message_arguments>
+                <message_argument value="0.2.300"/>
+                <message_argument value="org.eclipse.passage.loc.yars.api"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
