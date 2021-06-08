@@ -80,6 +80,7 @@
 			<unit id="com.sun.jna.platform" version="4.5.1.v20190425-1842"/>
 			<unit id="javax.activation" version="0.0.0"/>
 			<unit id="javax.mail" version="0.0.0"/>
+			<unit id="javax.servlet" version="0.0.0"/>
 			<unit id="org.apache.commons.csv" version="0.0.0"/>
 			<unit id="org.apache.logging.log4j" version="0.0.0"/>
 			<unit id="org.bouncycastle.bcpg" version="0.0.0"/>

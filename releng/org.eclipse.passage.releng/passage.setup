@@ -269,6 +269,8 @@
         <requirement
             name="javax.mail"/>
         <requirement
+            name="javax.servlet"/>
+        <requirement
             name="org.apache.commons.csv"
             versionRange="[1.4.0,2.0.0)"/>
         <requirement
