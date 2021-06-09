@@ -30,6 +30,7 @@
 		<module>../../bundles/org.eclipse.passage.seal.demo</module>
 		<module>../../features/org.eclipse.passage.demo.feature</module>
 		<module>../../tests/org.eclipse.passage.seal.demo.tests</module>
+		<module>../../releng/org.eclipse.passage.demo.repository</module>
 	</modules>
 
 </project>

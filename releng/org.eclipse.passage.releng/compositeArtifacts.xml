@@ -18,10 +18,12 @@
 	<properties size='1'>
 		<property name='p2.timestamp' value='1243822502499' />
 	</properties>
-	<children size='4'>
+	<children size='6'>
 		<child location='lic' />
 		<child location='loc' />
 		<child location='lbc' />
 		<child location='ldc' />
+		<child location='lac' />
+		<child location='demo' />
 	</children>
 </repository>
