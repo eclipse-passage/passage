@@ -156,14 +156,14 @@ public class ContactItemProvider extends ItemProviderAdapter implements IEditing
 	}
 
 	/**
-	 * This returns Contact.gif.
+	 * This returns user.png
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Contact")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
 	}
 
 	/**
