@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -251,7 +249,8 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 	@Override
 	public EList<UserGroup> getGroups() {
 		if (groups == null) {
-			groups = new EObjectContainmentEList<UserGroup>(UserGroup.class, this, UsersPackage.USER_ORIGIN__GROUPS);
+			groups = new EObjectContainmentWithInverseEList<UserGroup>(UserGroup.class, this,
+					UsersPackage.USER_ORIGIN__GROUPS, UsersPackage.USER_GROUP__ORIGIN);
 		}
 		return groups;
 	}
@@ -267,6 +266,8 @@ public class UserOriginImpl extends MinimalEObjectImpl.Container implements User
 		switch (featureID) {
 		case UsersPackage.USER_ORIGIN__USERS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsers()).basicAdd(otherEnd, msgs);
+		case UsersPackage.USER_ORIGIN__GROUPS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGroups()).basicAdd(otherEnd, msgs);
 		default:
 			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}

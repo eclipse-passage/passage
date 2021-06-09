@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.users.LicenseOwnerDescriptor;
 
 import org.eclipse.passage.lic.users.model.api.Contact;
@@ -81,6 +82,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -91,6 +93,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -121,6 +124,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContact()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -135,16 +139,6 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * @ordered
 	 */
 	protected EList<User> users;
-
-	/**
-	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOrigin()
-	 * @generated
-	 * @ordered
-	 */
-	protected UserOrigin origin;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,6 +187,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -203,6 +198,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -242,6 +238,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -252,6 +249,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetContact(Contact newContact, NotificationChain msgs) {
@@ -271,6 +269,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -312,17 +311,10 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 */
 	@Override
 	public UserOrigin getOrigin() {
-		if (origin != null && origin.eIsProxy()) {
-			InternalEObject oldOrigin = (InternalEObject) origin;
-			origin = (UserOrigin) eResolveProxy(oldOrigin);
-			if (origin != oldOrigin) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UsersPackage.USER_GROUP__ORIGIN,
-							oldOrigin, origin));
-				}
-			}
+		if (eContainerFeatureID() != UsersPackage.USER_GROUP__ORIGIN) {
+			return null;
 		}
-		return origin;
+		return (UserOrigin) eInternalContainer();
 	}
 
 	/**
@@ -330,8 +322,9 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserOrigin basicGetOrigin() {
-		return origin;
+	public NotificationChain basicSetOrigin(UserOrigin newOrigin, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newOrigin, UsersPackage.USER_GROUP__ORIGIN, msgs);
+		return msgs;
 	}
 
 	/**
@@ -341,10 +334,42 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 	 */
 	@Override
 	public void setOrigin(UserOrigin newOrigin) {
-		UserOrigin oldOrigin = origin;
-		origin = newOrigin;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__ORIGIN, oldOrigin, origin));
+		if (newOrigin != eInternalContainer()
+				|| (eContainerFeatureID() != UsersPackage.USER_GROUP__ORIGIN && newOrigin != null)) {
+			if (EcoreUtil.isAncestor(this, newOrigin)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newOrigin != null)
+				msgs = ((InternalEObject) newOrigin).eInverseAdd(this, UsersPackage.USER_ORIGIN__GROUPS,
+						UserOrigin.class, msgs);
+			msgs = basicSetOrigin(newOrigin, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, UsersPackage.USER_GROUP__ORIGIN, newOrigin,
+					newOrigin));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case UsersPackage.USER_GROUP__ORIGIN:
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			return basicSetOrigin((UserOrigin) otherEnd, msgs);
+		default:
+			return super.eInverseAdd(otherEnd, featureID, msgs);
 		}
 	}
 
@@ -358,8 +383,25 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 		switch (featureID) {
 		case UsersPackage.USER_GROUP__CONTACT:
 			return basicSetContact(null, msgs);
+		case UsersPackage.USER_GROUP__ORIGIN:
+			return basicSetOrigin(null, msgs);
 		default:
 			return super.eInverseRemove(otherEnd, featureID, msgs);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case UsersPackage.USER_GROUP__ORIGIN:
+			return eInternalContainer().eInverseRemove(this, UsersPackage.USER_ORIGIN__GROUPS, UserOrigin.class, msgs);
+		default:
+			return super.eBasicRemoveFromContainerFeature(msgs);
 		}
 	}
 
@@ -382,9 +424,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 		case UsersPackage.USER_GROUP__USERS:
 			return getUsers();
 		case UsersPackage.USER_GROUP__ORIGIN:
-			if (resolve)
-				return getOrigin();
-			return basicGetOrigin();
+			return getOrigin();
 		default:
 			return super.eGet(featureID, resolve, coreType);
 		}
@@ -475,7 +515,7 @@ public class UserGroupImpl extends MinimalEObjectImpl.Container implements UserG
 		case UsersPackage.USER_GROUP__USERS:
 			return users != null && !users.isEmpty();
 		case UsersPackage.USER_GROUP__ORIGIN:
-			return origin != null;
+			return getOrigin() != null;
 		default:
 			return super.eIsSet(featureID);
 		}

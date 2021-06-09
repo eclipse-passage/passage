@@ -48,7 +48,7 @@ public interface Contact extends EObject, ContactDescriptor {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getContact_Name()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	@Override

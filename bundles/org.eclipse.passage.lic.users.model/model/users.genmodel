@@ -27,13 +27,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/email"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/address"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//Contact/address"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/contact"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/description"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//LicenseOwner/contact"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.users.ecore/model/users.ecore#//User/preferredEvaluationType"/>

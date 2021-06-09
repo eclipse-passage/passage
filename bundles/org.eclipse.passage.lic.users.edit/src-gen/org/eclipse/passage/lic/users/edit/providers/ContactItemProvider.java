@@ -151,7 +151,7 @@ public class ContactItemProvider extends ItemProviderAdapter implements IEditing
 						getResourceLocator(), getString("_UI_Contact_address_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_Contact_address_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_Contact_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getContact_Address(), true, false, false,
+						UsersPackage.eINSTANCE.getContact_Address(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 

@@ -537,7 +537,7 @@ public interface UsersPackage extends EPackage {
 	int USER_GROUP__USERS = USER_GROUP_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Origin</b></em>' reference.
+	 * The feature id for the '<em><b>Origin</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @since 2.0
@@ -824,10 +824,10 @@ public interface UsersPackage extends EPackage {
 	EReference getUserGroup_Users();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.passage.lic.users.model.api.UserGroup#getOrigin <em>Origin</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.users.model.api.UserGroup#getOrigin <em>Origin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Origin</em>'.
+	 * @return the meta object for the container reference '<em>Origin</em>'.
 	 * @see org.eclipse.passage.lic.users.model.api.UserGroup#getOrigin()
 	 * @see #getUserGroup()
 	 * @since 2.0
