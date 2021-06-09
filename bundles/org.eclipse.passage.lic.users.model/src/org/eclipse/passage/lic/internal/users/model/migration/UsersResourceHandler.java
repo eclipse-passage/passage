@@ -20,6 +20,7 @@ import org.eclipse.passage.lic.emf.migration.SimpleAttributeRoute;
 import org.eclipse.passage.lic.emf.migration.SimpleClassRoutes;
 import org.eclipse.passage.lic.emf.migration.SimpleMigrationRoutes;
 import org.eclipse.passage.lic.emf.xmi.MigratingResourceHandler;
+import org.eclipse.passage.lic.users.model.api.Contact;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.lic.users.model.meta.UsersPackage;
@@ -96,11 +97,12 @@ public final class UsersResourceHandler extends MigratingResourceHandler {
 	}
 
 	private void complete(User user) {
+		Contact contact = new EnsureLicenseOwnerContact().apply(user);
 		if(user.getIdentifier() == null) {
-			user.setIdentifier(user.getContact().getEmail());
+			user.setIdentifier(contact.getEmail());
 		}
 		if(user.getName() == null) {
-			user.setName(user.getContact().getName());
+			user.setName(contact.getName());
 		}
 	}
 

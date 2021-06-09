@@ -36,12 +36,18 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			case UsersPackage.USER_ORIGIN__IDENTIFIER:
 				processUserOriginIdentifier(userOrigin, notification);
 				break;
+			case UsersPackage.USER_ORIGIN__USERS:
+				processUserOriginUsers(notification);
+				break;
 			default:
 				break;
 			}
 		} else if (notifier instanceof User) {
 			User user = (User) notifier;
-			switch (notification.getFeatureID(UserOrigin.class)) {
+			switch (notification.getFeatureID(User.class)) {
+			case UsersPackage.USER__IDENTIFIER:
+				processUserIdentifier(user, notification);
+				break;
 			case UsersPackage.USER__CONTACT:
 				processUserContact(user, notification);
 				break;
@@ -50,7 +56,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 			}
 		} else if (notifier instanceof Contact) {
 			Contact contact = (Contact) notifier;
-			switch (notification.getFeatureID(UserOrigin.class)) {
+			switch (notification.getFeatureID(Contact.class)) {
 			case UsersPackage.CONTACT__EMAIL:
 				processContactEmail(contact, notification);
 				break;
@@ -78,11 +84,56 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		}
 	}
 
-	protected void processUserContact(User user, Notification notification) {
+	protected void processUserOriginUsers(Notification notification) {
 		Object oldValue = notification.getOldValue();
 		Object newValue = notification.getNewValue();
 		switch (notification.getEventType()) {
 		case Notification.ADD:
+			if (newValue instanceof User) {
+				User user = (User) newValue;
+				String identifier = user.getIdentifier();
+				if (identifier != null) {
+					registry.registerUser(user);
+				}
+			}
+			break;
+		case Notification.REMOVE:
+			if (oldValue instanceof User) {
+				User user = (User) oldValue;
+				String identifier = user.getIdentifier();
+				if (identifier != null) {
+					registry.unregisterUser(identifier);
+				}
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	protected void processUserIdentifier(User user, Notification notification) {
+		String oldValue = notification.getOldStringValue();
+		String newValue = notification.getNewStringValue();
+		switch (notification.getEventType()) {
+		case Notification.SET:
+			if (oldValue != null) {
+				registry.unregisterUser(oldValue);
+			}
+			if (newValue != null) {
+				registry.registerUser(user);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+	protected void processUserContact(User user, Notification notification) {
+		Object oldValue = notification.getOldValue();
+		Object newValue = notification.getNewValue();
+		switch (notification.getEventType()) {
+		case Notification.SET:
 			if (newValue instanceof Contact) {
 				Contact contact = (Contact) newValue;
 				String email = contact.getEmail();
@@ -93,7 +144,7 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 				}
 			}
 			break;
-		case Notification.REMOVE:
+		case Notification.UNSET:
 			if (oldValue instanceof User) {
 				Contact contact = (Contact) oldValue;
 				String email = contact.getEmail();
