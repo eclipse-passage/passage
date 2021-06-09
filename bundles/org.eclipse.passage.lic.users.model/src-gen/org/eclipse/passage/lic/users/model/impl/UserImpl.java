@@ -78,6 +78,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -88,6 +89,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -118,6 +120,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContact()
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -214,6 +217,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -224,6 +228,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -263,6 +268,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
@@ -273,6 +279,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	public NotificationChain basicSetContact(Contact newContact, NotificationChain msgs) {
@@ -292,6 +299,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

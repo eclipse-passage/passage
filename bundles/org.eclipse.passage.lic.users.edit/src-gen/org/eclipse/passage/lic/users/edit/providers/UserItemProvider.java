@@ -66,6 +66,7 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 			addIdentifierPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addContactPropertyDescriptor(object);
 			addPreferredEvaluationTypePropertyDescriptor(object);
 			addPreferredEvaluationExpressionPropertyDescriptor(object);
 		}
@@ -117,8 +118,24 @@ public class UserItemProvider extends ItemProviderAdapter implements IEditingDom
 						getResourceLocator(), getString("_UI_LicenseOwner_description_feature"), //$NON-NLS-1$
 						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_description_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_LicenseOwner_type"), //$NON-NLS-1$
-						UsersPackage.eINSTANCE.getLicenseOwner_Description(), true, false, false,
+						UsersPackage.eINSTANCE.getLicenseOwner_Description(), true, true, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Contact feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	protected void addContactPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_LicenseOwner_contact_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_LicenseOwner_contact_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_LicenseOwner_type"), //$NON-NLS-1$
+						UsersPackage.eINSTANCE.getLicenseOwner_Contact(), true, false, false, null, null, null));
 	}
 
 	/**

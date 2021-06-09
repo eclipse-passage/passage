@@ -66,6 +66,9 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getLicenseOwner_Name()
@@ -81,6 +84,7 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
+	 * @since 2.0
 	 * @generated
 	 */
 	void setName(String value);
@@ -112,6 +116,9 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * Returns the value of the '<em><b>Contact</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Contact</em>' containment reference.
 	 * @see #setContact(Contact)
 	 * @see org.eclipse.passage.lic.users.model.meta.UsersPackage#getLicenseOwner_Contact()
@@ -127,6 +134,7 @@ public interface LicenseOwner extends EObject, LicenseOwnerDescriptor {
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Contact</em>' containment reference.
 	 * @see #getContact()
+	 * @since 2.0
 	 * @generated
 	 */
 	void setContact(Contact value);

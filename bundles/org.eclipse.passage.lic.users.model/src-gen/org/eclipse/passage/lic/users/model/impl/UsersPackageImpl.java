@@ -616,7 +616,7 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 				IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(contactEClass, Contact.class, "Contact", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getContact_Name(), ecorePackage.getEString(), "name", null, 0, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
+		initEAttribute(getContact_Name(), ecorePackage.getEString(), "name", null, 1, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getContact_Title(), ecorePackage.getEString(), "title", null, 0, 1, Contact.class, !IS_TRANSIENT, //$NON-NLS-1$
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -657,9 +657,9 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		initEReference(getUserGroup_Users(), this.getUser(), null, "users", null, 0, -1, UserGroup.class, !IS_TRANSIENT, //$NON-NLS-1$
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getUserGroup_Origin(), this.getUserOrigin(), null, "origin", null, 1, 1, UserGroup.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserGroup_Origin(), this.getUserOrigin(), this.getUserOrigin_Groups(), "origin", null, 1, 1, //$NON-NLS-1$
+				UserGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userOriginEClass, UserOrigin.class, "UserOrigin", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
@@ -674,9 +674,9 @@ public class UsersPackageImpl extends EPackageImpl implements UsersPackage {
 		initEReference(getUserOrigin_Users(), this.getUser(), this.getUser_Origin(), "users", null, 0, -1, //$NON-NLS-1$
 				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserOrigin_Groups(), this.getUserGroup(), null, "groups", null, 0, -1, UserOrigin.class, //$NON-NLS-1$
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserOrigin_Groups(), this.getUserGroup(), this.getUserGroup_Origin(), "groups", null, 0, -1, //$NON-NLS-1$
+				UserOrigin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
