@@ -99,6 +99,7 @@ public class UserGroupItemProvider extends ItemProviderAdapter implements IEditi
 	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @since 2.0
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -188,14 +189,14 @@ public class UserGroupItemProvider extends ItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This returns UserGroup.gif.
+	 * This returns user.png
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserGroup")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/user.png")); //$NON-NLS-1$
 	}
 
 	/**
