@@ -90,11 +90,12 @@ public class UsersDomainRegistryTracker extends DomainContentAdapter<UserOriginD
 		switch (notification.getEventType()) {
 		case Notification.ADD:
 			if (newValue instanceof User) {
-				User user = (User) newValue;
-				String identifier = user.getIdentifier();
-				if (identifier != null) {
-					registry.registerUser(user);
-				}
+				// FIXME: AF: not yet
+//				User user = (User) newValue;
+//				String identifier = user.getIdentifier();
+//				if (identifier != null) {
+//					registry.registerUser(user);
+//				}
 			}
 			break;
 		case Notification.REMOVE:

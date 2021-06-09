@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1180" xmi:id="_XIUVAMk0Eeu_A_MX1Jqasg" name="UserGroup">
+  <rootEClass href="http://www.eclipse.org/passage/lic/users/2.0.0#//UserGroup"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_YMAmoMk0Eeu_A_MX1Jqasg" name="Licensee">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XIX_YMk0Eeu_A_MX1Jqasg" name="Control identifier">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XIX_Yck0Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/identifier"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XIX_Ysk0Eeu_A_MX1Jqasg" name="Control name">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XIX_Y8k0Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/name"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XIX_ZMk0Eeu_A_MX1Jqasg" name="Control description">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XIX_Zck0Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/description"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_XIYmcsk0Eeu_A_MX1Jqasg" name="Control users">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_XIYmc8k0Eeu_A_MX1Jqasg">
+      <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/passage/lic/users/2.0.0#//UserGroup/users"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_cFBfkMk0Eeu_A_MX1Jqasg" name="Contact">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_qV7j8Mk1Eeu_A_MX1Jqasg" name="Control contact.email">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_s-pSoMk1Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//Contact/email"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/contact"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_wI95kMk1Eeu_A_MX1Jqasg" name="Control contact.name">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_yYVUIMk1Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//Contact/name"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/contact"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_yw6MMMk1Eeu_A_MX1Jqasg" name="Control contact.title">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_0w6VEMk1Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//Contact/title"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/contact"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_1YAKQMk1Eeu_A_MX1Jqasg" name="Control contact.position">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_3Wcz8Mk1Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//Contact/position"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/contact"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_4wvAoMk1Eeu_A_MX1Jqasg" name="Control contact.address">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_71qKMMk1Eeu_A_MX1Jqasg">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/passage/lic/users/2.0.0#//Contact/address"/>
+        <domainModelEReferencePath href="http://www.eclipse.org/passage/lic/users/2.0.0#//LicenseOwner/contact"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <ecorePaths>/org.eclipse.passage.lic.users.ecore/model/users.ecore</ecorePaths>
+</org.eclipse.emf.ecp.view.model:View>
