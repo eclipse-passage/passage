@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -25,6 +25,7 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.spi.ChildrenDescriptorCollector;
 import org.eclipse.emfforms.spi.swt.treemasterdetail.util.CreateElementCallback;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.passage.lic.users.model.api.User;
 import org.eclipse.passage.lic.users.model.api.UserOrigin;
 import org.eclipse.passage.loc.internal.users.UserRegistryEvents;
@@ -62,6 +63,11 @@ public class UsersDetailsPart extends DetailsView {
 	@Override
 	protected CreateElementCallback getCreateElementCallback() {
 		return new UsersCreateElementCallback();
+	}
+
+	@Override
+	protected java.util.Optional<IStructuredContentProvider> customizedContentProvider() {
+		return java.util.Optional.of(new UserOriginContentProvider());
 	}
 
 }
