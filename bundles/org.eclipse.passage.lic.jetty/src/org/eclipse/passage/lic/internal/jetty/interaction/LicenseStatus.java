@@ -19,10 +19,10 @@ import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicenseCoverage;
 final class LicenseStatus extends Command {
 
 	public LicenseStatus() {
-		super(new Scope.Self(), new String[] { "status" });//$NON-NLS-1$
+		super(new Scope.Self(), new String[] { "licstatus" });//$NON-NLS-1$
 	}
 
-	public void status() {
+	public void licstatus() {
 		ServiceInvocationResult<ExaminationCertificate> response = new EquinoxPassageLicenseCoverage().assess();
 		if (response.data().isPresent()) {
 			reportCertificate(response.data().get());

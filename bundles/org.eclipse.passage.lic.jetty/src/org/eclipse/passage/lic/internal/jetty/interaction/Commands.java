@@ -20,7 +20,7 @@ final class Commands {
 	private ServerHandles server;
 
 	void register(BundleContext context, JettyServer jetty, String name) {
-		registerSelfStatus(context);
+		registerSelfLicensingCommands(context);
 		registerServerHandles(context, jetty, name);
 	}
 
@@ -28,8 +28,9 @@ final class Commands {
 		return server;
 	}
 
-	private void registerSelfStatus(BundleContext context) {
+	private void registerSelfLicensingCommands(BundleContext context) {
 		new LicenseStatus().register(context);
+		new LicenseRequest().register(context);
 	}
 
 	private void registerServerHandles(BundleContext context, JettyServer jetty, String name) {
