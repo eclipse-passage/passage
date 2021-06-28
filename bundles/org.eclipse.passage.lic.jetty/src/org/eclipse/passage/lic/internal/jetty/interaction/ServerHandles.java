@@ -32,7 +32,7 @@ final class ServerHandles extends Command {
 						"start", //$NON-NLS-1$
 						"stop", //$NON-NLS-1$
 						"restart", //$NON-NLS-1$
-						"licstatus" //$NON-NLS-1$
+						"state" //$NON-NLS-1$
 				});
 		this.server = server;
 		this.port = new Port(8090);
@@ -63,7 +63,7 @@ final class ServerHandles extends Command {
 		start();
 	}
 
-	public void licstatus() {
+	public void state() {
 		try {
 			System.out.println(server.state());
 		} catch (JettyException e) {
