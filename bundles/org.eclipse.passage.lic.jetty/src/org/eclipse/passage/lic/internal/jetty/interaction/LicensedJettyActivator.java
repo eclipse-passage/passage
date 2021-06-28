@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jetty.interaction;
 
-import java.nio.file.Path;
+import java.io.InputStream;
 
 import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.jetty.JettyHandler;
@@ -56,7 +56,7 @@ public abstract class LicensedJettyActivator implements BundleActivator {
 
 	protected abstract JettyHandler handler();
 
-	protected abstract Path logConfig() throws Exception;
+	protected abstract InputStream logConfig() throws Exception;
 
 	protected abstract void registerCustomCommands(BundleContext context);
 

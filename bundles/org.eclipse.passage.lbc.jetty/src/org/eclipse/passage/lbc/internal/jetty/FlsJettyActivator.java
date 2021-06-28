@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.jetty;
 
-import java.nio.file.Path;
+import java.io.InputStream;
 
 import org.eclipse.passage.lbc.internal.base.EagerFloatingState;
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
@@ -47,7 +47,7 @@ public final class FlsJettyActivator extends LicensedJettyActivator {
 	}
 
 	@Override
-	protected Path logConfig() throws Exception {
+	protected InputStream logConfig() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(getClass());
 		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}
