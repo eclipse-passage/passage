@@ -749,7 +749,6 @@
 						<ignoredPatterns>
 							<pattern>META-INF/ECLIPSE_.RSA</pattern>
 							<pattern>META-INF/ECLIPSE_.SF</pattern>
-							<pattern>META-INF/MANIFEST.MF</pattern>
 							<pattern>about.mappings</pattern>
 						</ignoredPatterns>
 						<generateDownloadStatsProperty>true</generateDownloadStatsProperty>
