@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.operator.seal;
 
-import java.nio.file.Path;
+import java.io.InputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,7 +61,7 @@ final class OperatorFramework extends BaseFramework {
 		new Logging(this::logConfig).configure();
 	}
 
-	private Path logConfig() throws Exception {
+	private InputStream logConfig() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(getClass());
 		return new FileFromBundle(bundle, "config/log4j2.xml").get(); //$NON-NLS-1$
 	}

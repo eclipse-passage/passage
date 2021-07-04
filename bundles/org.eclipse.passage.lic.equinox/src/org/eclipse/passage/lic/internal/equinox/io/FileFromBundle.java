@@ -12,9 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.io;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -35,10 +34,8 @@ public final class FileFromBundle {
 		this(() -> bundle, path);
 	}
 
-	public java.nio.file.Path get() throws IOException {
-		URL url = FileLocator.find(bundle.get(), new Path(path), null);
-		URL uri = FileLocator.resolve(url);
-		return new File(uri.getPath()).toPath();
+	public InputStream get() throws IOException {
+		return FileLocator.find(bundle.get(), new Path(path), null).openStream();
 	}
 
 }
