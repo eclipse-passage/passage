@@ -187,7 +187,7 @@
         <repositoryList
             name="Passage Latest Released">
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.19/R-4.19-202103031800/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.20/R-4.20-202106111600/"/>
           <repository
               url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
@@ -209,13 +209,13 @@
           <repository
               url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24/"/>
           <repository
-              url="https://download.eclipse.org/passage/updates/release/1.2.1/"/>
+              url="https://download.eclipse.org/passage/updates/release/2.0.0/"/>
           <repository
               url="https://download.eclipse.org/sirius/updates/releases/6.3.4/2020-09/"/>
           <repository
               url="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/"/>
           <repository
-              url="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
+              url="https://download.eclipse.org/sirius/updates/releases/6.5.0/2020-09/"/>
         </repositoryList>
       </targlet>
     </setupTask>
@@ -329,7 +329,7 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.20/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.20/R-4.20-202106111600/"/>
           <repository
               url="https://download.eclipse.org/ecp/releases/releases_125/1250/"/>
           <repository
