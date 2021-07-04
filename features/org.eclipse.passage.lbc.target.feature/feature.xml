@@ -14,7 +14,7 @@
 <feature
       id="org.eclipse.passage.lbc.target.feature"
       label="%featureName"
-      version="1.0.100.qualifier"
+      version="1.0.101.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -31,7 +31,7 @@
       %license
    </license>
 
-  <plugin
+   <plugin
          id="org.apache.logging.log4j"
          download-size="0"
          install-size="0"
