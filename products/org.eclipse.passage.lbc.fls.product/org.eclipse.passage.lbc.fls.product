@@ -44,13 +44,8 @@
    <features>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
-      <feature id="org.eclipse.equinox.server.p2"/>
       <feature id="org.eclipse.equinox.core.feature"/>
       <feature id="org.eclipse.equinox.executable"/>
-      <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="org.eclipse.ecf.core.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.passage.lbc.target.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.execute.feature" installMode="root"/>
       <feature id="org.eclipse.passage.lbc.fls.feature"/>
