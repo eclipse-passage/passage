@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,10 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.passage.lic.internal.api.PassageUI;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicenseCoverage;
@@ -56,8 +59,15 @@ public final class EquinoxPassageUI implements PassageUI {
 			Function<T, ExaminationCertificate> certificate, //
 			Predicate<Optional<ExaminationCertificate>> ok) {
 		ServiceInvocationResult<T> result = service.get();
-		while (exposeAndMayBeEvenFix(result, certificate, ok)) {
-			result = service.get();
+		try {
+			while (exposeAndMayBeEvenFix(result, certificate, ok)) {
+				result = service.get();
+			}
+		} catch (Exception e) {
+			return new BaseServiceInvocationResult<>(new Trouble(//
+					new TroubleCode.Of(-1, "Unexpected error"), //$NON-NLS-1$
+					"One of supplied subservices failed", //$NON-NLS-1$
+					e));
 		}
 		return result;
 	}

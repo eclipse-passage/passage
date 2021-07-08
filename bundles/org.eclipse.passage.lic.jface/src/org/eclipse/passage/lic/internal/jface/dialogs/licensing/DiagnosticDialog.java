@@ -34,7 +34,7 @@ public final class DiagnosticDialog extends NotificationDialog {
 	public DiagnosticDialog(Shell shell, Diagnostic diagnostic) {
 		super(shell);
 		this.diagnostic = diagnostic;
-		this.colors = new DiagnosticColors();
+		this.colors = new DiagnosticColors(shell.getDisplay());
 	}
 
 	@Override
