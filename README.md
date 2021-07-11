@@ -31,4 +31,8 @@ The Eclipse Passage works inside your product installed on the user side. Its ba
 2. Get the license conditions. The LIC may be tuned to look through different locations like `user.home` and `osgi.instance.area`.
 3. Compare the license specified configuration with the current system state (the current date, node id, etc) to confirm the license is active and valid.
 4. Use the system configuration and the evaluated license state to make a decision.
-5. If there are uncovered licensing requirements, call the required constraint functions to impose restrictions: limit certain functionality or disable everything.
+
+### Documentation
+
+[Passage Docs](https://eclipse-passage.github.io/passage-docs/)
+6. If there are uncovered licensing requirements, call the required constraint functions to impose restrictions: limit certain functionality or disable everything.
