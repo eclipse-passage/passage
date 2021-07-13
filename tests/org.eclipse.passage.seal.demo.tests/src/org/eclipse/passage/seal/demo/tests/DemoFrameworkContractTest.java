@@ -16,9 +16,9 @@ import org.eclipse.passage.lic.internal.api.Framework;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.tests.FrameworkContractTest;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
+import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 /**

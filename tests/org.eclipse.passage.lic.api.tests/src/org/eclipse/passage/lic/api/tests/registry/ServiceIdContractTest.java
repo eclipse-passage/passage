@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.tests.registry;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.junit.Test;
 
 public abstract class ServiceIdContractTest {

@@ -16,8 +16,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.eclipse.passage.lic.api.io.Hashes;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 public final class MD5Hashes implements Hashes {
 

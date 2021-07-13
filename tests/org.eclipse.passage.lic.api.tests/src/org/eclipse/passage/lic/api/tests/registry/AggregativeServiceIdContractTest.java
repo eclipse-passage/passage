@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.registry;
 
-import org.eclipse.passage.lic.internal.api.registry.AggregativeServiceId;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.api.registry.AggregativeServiceId;
+import org.eclipse.passage.lic.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 
 public class AggregativeServiceIdContractTest extends ServiceIdContractTest {
 

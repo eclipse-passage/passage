@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.api.restrictions;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 
 public interface PermissionsExaminationServicesRegistry
 		extends Supplier<Registry<StringServiceId, PermissionsExaminationService>> {

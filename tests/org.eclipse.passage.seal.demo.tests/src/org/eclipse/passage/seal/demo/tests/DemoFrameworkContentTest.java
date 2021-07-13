@@ -19,11 +19,11 @@ import static org.junit.Assume.assumeTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;

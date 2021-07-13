@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.acquire;
 
+import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.registry.Service;
 
 public interface LicenseAcquisitionService extends Service<ConditionMiningTarget> {
 

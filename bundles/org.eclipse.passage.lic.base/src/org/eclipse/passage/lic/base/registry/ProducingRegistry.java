@@ -10,17 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.registry;
+package org.eclipse.passage.lic.base.registry;
 
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.ServiceId;
 
 /**
  * Begets new instance of a service for each {@code service} request.
+ * 
+ * @since 1.1
  */
 public abstract class ProducingRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 

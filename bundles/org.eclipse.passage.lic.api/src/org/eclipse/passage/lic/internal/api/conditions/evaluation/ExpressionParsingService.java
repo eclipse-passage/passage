@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
-import org.eclipse.passage.lic.internal.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.Service;
 
 /**
  * An implementation must follow the contract defined in

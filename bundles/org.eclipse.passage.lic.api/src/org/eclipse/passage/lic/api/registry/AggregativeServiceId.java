@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,10 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.registry;
+package org.eclipse.passage.lic.api.registry;
 
 import java.util.Objects;
 
+/**
+ * @since 1.1
+ */
 public final class AggregativeServiceId<I1 extends ServiceId, I2 extends ServiceId> implements ServiceId {
 
 	private final I1 first;

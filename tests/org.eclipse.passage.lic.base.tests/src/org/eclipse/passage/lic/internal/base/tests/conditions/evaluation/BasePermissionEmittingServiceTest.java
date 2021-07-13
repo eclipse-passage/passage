@@ -23,6 +23,7 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -45,7 +46,6 @@ import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtoco
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.api.io;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
 
 public interface StreamCodecRegistry extends Supplier<Registry<LicensedProduct, StreamCodec>> {
 

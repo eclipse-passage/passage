@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,20 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.registry;
-
-import java.util.Collection;
+package org.eclipse.passage.lic.api.registry;
 
 /**
+ * <p>
+ * General notion of a {@code service} interface which can potentially have
+ * multiple implementations that need to be somehow <i>collected and managed
+ * together</i>.
+ * </p>
  * 
- * @param <S> sub type of {@linkplain Service}
+ * @param <I> sub type of {@linkplain ServiceId}
  */
-public interface Registry<I extends ServiceId, S extends Service<I>> {
+public interface Service<I extends ServiceId> {
 
-	boolean hasService(I id);
-
-	S service(I id);
-
-	Collection<S> services();
+	I id();
 
 }
