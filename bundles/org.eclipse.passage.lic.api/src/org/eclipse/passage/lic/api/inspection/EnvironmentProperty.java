@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020, 2021 ArSysOp
+ * Copyright (c) 2020 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,13 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.inspection;
+package org.eclipse.passage.lic.api.inspection;
 
-import java.util.function.Supplier;
+public interface EnvironmentProperty {
 
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
+	String family();
 
-public interface RuntimeEnvironmentRegistry extends Supplier<Registry<EvaluationType, RuntimeEnvironment>> {
+	String name();
 
 }

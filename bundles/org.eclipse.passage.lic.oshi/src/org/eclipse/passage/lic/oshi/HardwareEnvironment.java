@@ -10,14 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi;
+package org.eclipse.passage.lic.oshi;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
 import oshi.SystemInfo;
 

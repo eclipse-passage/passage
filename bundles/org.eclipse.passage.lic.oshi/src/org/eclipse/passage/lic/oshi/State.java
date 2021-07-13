@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi;
+package org.eclipse.passage.lic.oshi;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.BaseBoard;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Computer;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Cpu;

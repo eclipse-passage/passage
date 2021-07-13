@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi;
+package org.eclipse.passage.lic.oshi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 
 final class EnvironmentProperties {
 

@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi;
+package org.eclipse.passage.lic.oshi;
 
 import java.net.SocketException;
 import java.util.function.Supplier;

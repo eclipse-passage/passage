@@ -15,6 +15,8 @@ package org.eclipse.passage.seal.internal.demo;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -31,8 +33,6 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
@@ -55,8 +55,8 @@ import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
-import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
-import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
+import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
+import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 import org.osgi.framework.Bundle;
 
 @SuppressWarnings("restriction")

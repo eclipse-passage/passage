@@ -12,12 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi.tests;
 
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.tests.inspection.RuntimeEnvironmentContractTest;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.OS;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.OS.Family;
-import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
+import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 
 @SuppressWarnings("restriction")
 public final class HardwareEnvironmentTest extends RuntimeEnvironmentContractTest {

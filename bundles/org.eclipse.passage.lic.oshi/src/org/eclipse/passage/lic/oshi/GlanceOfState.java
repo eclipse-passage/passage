@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.oshi;
+package org.eclipse.passage.lic.oshi;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 
 final class GlanceOfState implements Supplier<String> {
 

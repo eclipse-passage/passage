@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.inspection;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.base.i18n.InspectionMessages;
 
 public abstract class BaseEnvironmentProperty implements EnvironmentProperty {
