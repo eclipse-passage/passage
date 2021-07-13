@@ -28,6 +28,7 @@ import oshi.SystemInfo;
  * </p>
  * 
  * @see State
+ * @since 1.1
  */
 
 public final class HardwareEnvironment implements RuntimeEnvironment {

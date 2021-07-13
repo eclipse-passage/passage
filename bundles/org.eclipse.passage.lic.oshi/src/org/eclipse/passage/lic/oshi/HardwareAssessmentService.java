@@ -21,6 +21,9 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionToke
 import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
+/**
+ * @since 1.1
+ */
 public final class HardwareAssessmentService implements ExpressionTokenAssessmentService {
 
 	private final EvaluationType type = new EvaluationType.Hardware();
