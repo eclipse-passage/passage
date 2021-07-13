@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.workspace;
 
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 
 @SuppressWarnings("restriction")
 interface DomainFileExtension {

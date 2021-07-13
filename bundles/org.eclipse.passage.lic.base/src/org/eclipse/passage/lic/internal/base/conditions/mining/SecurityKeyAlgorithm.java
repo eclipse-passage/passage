@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
+import org.eclipse.passage.lic.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 public final class SecurityKeyAlgorithm extends BaseNamedData<EncryptionAlgorithm> {

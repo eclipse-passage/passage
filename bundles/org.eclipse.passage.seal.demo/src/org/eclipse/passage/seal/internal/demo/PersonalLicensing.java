@@ -15,14 +15,14 @@ package org.eclipse.passage.seal.internal.demo;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.io.Hashes;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.io.Hashes;
-import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;

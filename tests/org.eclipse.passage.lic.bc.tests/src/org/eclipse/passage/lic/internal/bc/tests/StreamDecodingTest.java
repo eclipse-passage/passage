@@ -27,12 +27,12 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.api.io.DigestExpectation;
+import org.eclipse.passage.lic.base.io.BaseDigestExpectation;
+import org.eclipse.passage.lic.base.io.FileContent;
+import org.eclipse.passage.lic.bc.BcDigest;
+import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
-import org.eclipse.passage.lic.internal.base.io.BaseDigestExpectation;
-import org.eclipse.passage.lic.internal.base.io.FileContent;
-import org.eclipse.passage.lic.internal.bc.BcDigest;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.base.io.Settings;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.StringNamedData;
-import org.eclipse.passage.lic.internal.base.io.Settings;
 import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
 
 /**

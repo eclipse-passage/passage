@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.internal.hc.remote.impl;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.hc.remote.Connection;
 import org.eclipse.passage.lic.internal.hc.remote.Request;

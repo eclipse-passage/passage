@@ -18,10 +18,10 @@ import static org.junit.Assert.fail;
 
 import java.nio.file.Paths;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.base.io.FileKeyKeeper;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.base.io.FileKeyKeeper;
-import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.junit.Test;
 

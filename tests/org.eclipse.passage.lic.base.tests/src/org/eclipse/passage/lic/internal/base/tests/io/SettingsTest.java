@@ -21,9 +21,9 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.base.io.Settings;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.Settings;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;

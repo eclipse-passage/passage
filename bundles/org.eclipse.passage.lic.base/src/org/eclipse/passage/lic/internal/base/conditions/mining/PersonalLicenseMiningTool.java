@@ -18,6 +18,8 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
@@ -27,8 +29,6 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport.Data;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 import org.eclipse.passage.lic.internal.base.conditions.BaseConditionOrigin;

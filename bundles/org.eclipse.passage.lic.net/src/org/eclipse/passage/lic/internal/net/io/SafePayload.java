@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.internal.net.io;
 
 import java.util.Base64;
 
+import org.eclipse.passage.lic.api.io.Hashes;
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.base.io.KeyContent;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.Hashes;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.base.io.KeyContent;
 
 public final class SafePayload {
 

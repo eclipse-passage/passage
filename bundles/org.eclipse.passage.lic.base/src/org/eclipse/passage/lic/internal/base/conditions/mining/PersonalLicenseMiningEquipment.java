@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.conditions.mining;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.api.io.StreamCodec;
+import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
@@ -20,10 +24,6 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 public final class PersonalLicenseMiningEquipment implements MiningEquipment {

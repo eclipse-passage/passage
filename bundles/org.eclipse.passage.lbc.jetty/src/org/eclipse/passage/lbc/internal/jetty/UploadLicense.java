@@ -16,9 +16,9 @@ import java.nio.file.Path;
 import java.util.List;
 
 import org.eclipse.passage.lbc.internal.base.interaction.IncomingLicense;
+import org.eclipse.passage.lic.base.io.LicensingFolder;
+import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
-import org.eclipse.passage.lic.internal.base.io.UserHomePath;
 import org.eclipse.passage.lic.internal.jetty.interaction.Command;
 import org.eclipse.passage.lic.internal.jetty.interaction.Scope;
 

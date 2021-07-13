@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.eclipse.passage.lic.equinox
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.equinox
-Bundle-Version: 2.0.1.qualifier
+Bundle-Version: 2.0.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.osgi;bundle-version="0.0.0";visibility:=reexport,
  org.eclipse.passage.lic.api;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.passage.lic.base;bundle-version="1.0.0";visibility:=reexport,
  org.apache.logging.log4j;bundle-version="2.8.2"
-Export-Package: org.eclipse.passage.lic.internal.equinox;
+Export-Package: org.eclipse.passage.lic.equinox.io,
+ org.eclipse.passage.lic.internal.equinox;
   x-friends:="org.eclipse.passage.lac,
    org.eclipse.passage.lic.e4.ui,
    org.eclipse.passage.lic.jface,

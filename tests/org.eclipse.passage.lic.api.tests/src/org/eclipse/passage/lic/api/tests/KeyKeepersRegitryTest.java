@@ -16,9 +16,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.tests.fakes.io.FakeKeyKeeper;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 
 /**
  * <p>

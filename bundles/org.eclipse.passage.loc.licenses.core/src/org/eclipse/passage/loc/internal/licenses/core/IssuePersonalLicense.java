@@ -20,6 +20,8 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
@@ -27,8 +29,6 @@ import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;

@@ -16,11 +16,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.base.io.FileNameFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.base.io.FileNameFromLicensedProduct;
+import org.eclipse.passage.lic.base.io.LicensingFolder;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
+import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 

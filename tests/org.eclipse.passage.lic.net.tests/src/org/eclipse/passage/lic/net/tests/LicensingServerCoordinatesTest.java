@@ -19,9 +19,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.net.HostPort;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinatesFromSettings;
 import org.eclipse.passage.lic.internal.net.LicensingServerHost;

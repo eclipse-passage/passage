@@ -19,12 +19,12 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import org.eclipse.passage.lic.api.io.DigestExpectation;
+import org.eclipse.passage.lic.api.io.EncryptionAlgorithm;
+import org.eclipse.passage.lic.api.io.EncryptionKeySize;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.DigestExpectation;
-import org.eclipse.passage.lic.internal.api.io.EncryptionAlgorithm;
-import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
 final class EchoStreamCodec implements StreamCodec {
