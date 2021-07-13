@@ -26,10 +26,10 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.inspection.EnvironmentProperty;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 import org.junit.Test;
 
 public abstract class RuntimeEnvironmentContractTest {

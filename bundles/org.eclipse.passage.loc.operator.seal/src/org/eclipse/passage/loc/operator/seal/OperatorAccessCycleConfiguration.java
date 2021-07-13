@@ -15,6 +15,8 @@ package org.eclipse.passage.loc.operator.seal;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
@@ -36,8 +38,6 @@ import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.Hashes;
 import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
@@ -67,8 +67,8 @@ import org.eclipse.passage.lic.internal.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.internal.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.internal.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
-import org.eclipse.passage.lic.internal.oshi.HardwareAssessmentService;
-import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
+import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
+import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 

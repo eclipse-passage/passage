@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
 
 public final class EnvironmentNames implements Supplier<List<String>> {
 

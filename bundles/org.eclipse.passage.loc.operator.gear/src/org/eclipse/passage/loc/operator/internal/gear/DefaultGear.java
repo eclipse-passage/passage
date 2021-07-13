@@ -16,15 +16,15 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
+import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.oshi.HardwareEnvironment;
+import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
 import org.eclipse.passage.loc.internal.api.workspace.OperatorWorkspace;
 import org.eclipse.passage.loc.workspace.CollectiveWorkspace;
