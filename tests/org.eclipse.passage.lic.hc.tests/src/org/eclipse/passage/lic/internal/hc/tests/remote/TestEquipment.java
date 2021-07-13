@@ -15,17 +15,17 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.io.Hashes;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
+import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
+import org.eclipse.passage.lic.base.io.MD5Hashes;
+import org.eclipse.passage.lic.base.io.PathKeyKeeper;
+import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.io.Hashes;
-import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.base.io.MD5Hashes;
-import org.eclipse.passage.lic.internal.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 

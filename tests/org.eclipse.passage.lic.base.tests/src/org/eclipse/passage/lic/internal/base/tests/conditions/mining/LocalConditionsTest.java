@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
@@ -33,7 +34,6 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.internal.base.conditions.mining.PersonalLicenseMiningEquipment;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Rule;
 import org.junit.Test;

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.products.core;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
 import org.eclipse.passage.lic.keys.model.meta.KeysFactory;

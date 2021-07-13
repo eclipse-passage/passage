@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.base.io.PathFromLicensedProduct;
 
 public final class PathResidentConditions extends LocalConditions {
 

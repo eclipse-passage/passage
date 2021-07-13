@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.base.conditions.mining;
 
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
+import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 
 public abstract class ArmedMiningTool implements MiningTool {
 

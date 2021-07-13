@@ -18,8 +18,8 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lbc.internal.base.acquire.AcquiredGrants;
 import org.eclipse.passage.lbc.internal.base.api.FloatingState;
 import org.eclipse.passage.lbc.internal.base.api.Grants;
-import org.eclipse.passage.lic.internal.base.io.LicensingFolder;
-import org.eclipse.passage.lic.internal.base.io.UserHomePath;
+import org.eclipse.passage.lic.base.io.LicensingFolder;
+import org.eclipse.passage.lic.base.io.UserHomePath;
 
 public final class EagerFloatingState implements FloatingState {
 

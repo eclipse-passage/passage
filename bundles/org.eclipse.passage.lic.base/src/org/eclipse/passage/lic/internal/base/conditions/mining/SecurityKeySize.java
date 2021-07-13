@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.io.EncryptionKeySize;
+import org.eclipse.passage.lic.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.internal.base.BaseNamedData;
 
 public final class SecurityKeySize extends BaseNamedData<EncryptionKeySize> {

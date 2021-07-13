@@ -23,12 +23,12 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.api.io.StreamCodec;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.StreamCodec;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.bc.BcStreamCodec;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 

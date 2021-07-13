@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.mining;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
 final class RuntimeKeyKeeper implements KeyKeeper {

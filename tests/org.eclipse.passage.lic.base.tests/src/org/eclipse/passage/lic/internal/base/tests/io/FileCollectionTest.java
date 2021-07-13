@@ -21,9 +21,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.base.io.FileCollection;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.io.FileCollection;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;

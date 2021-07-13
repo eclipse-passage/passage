@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.base.io.FileCollection;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
@@ -32,8 +34,6 @@ import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoLicenses;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
-import org.eclipse.passage.lic.internal.base.io.FileCollection;
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
 
 /**
  * <p>

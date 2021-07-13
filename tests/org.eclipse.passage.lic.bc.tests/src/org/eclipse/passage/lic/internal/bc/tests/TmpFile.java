@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.stream.IntStream;
 
-import org.eclipse.passage.lic.internal.base.io.PassageFileExtension;
+import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("restriction")

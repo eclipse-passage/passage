@@ -13,6 +13,9 @@
 package org.eclipse.passage.lic.internal.api;
 
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.api.io.HashesRegistry;
+import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
+import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
@@ -21,9 +24,6 @@ import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmit
 import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.io.HashesRegistry;
-import org.eclipse.passage.lic.internal.api.io.KeyKeeperRegistry;
-import org.eclipse.passage.lic.internal.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 
