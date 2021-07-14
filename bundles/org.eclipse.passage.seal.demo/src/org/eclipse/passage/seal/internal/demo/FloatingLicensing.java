@@ -12,6 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.internal.demo;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransportRegistry;
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
@@ -20,16 +24,12 @@ import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.io.MD5Hashes;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
+import org.eclipse.passage.lic.hc.remote.impl.Equipment;
+import org.eclipse.passage.lic.hc.remote.impl.NetConnection;
+import org.eclipse.passage.lic.hc.remote.impl.acquire.RemoteAcquisitionService;
+import org.eclipse.passage.lic.hc.remote.impl.mine.RemoteConditions;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
-import org.eclipse.passage.lic.internal.hc.remote.impl.Equipment;
-import org.eclipse.passage.lic.internal.hc.remote.impl.NetConnection;
-import org.eclipse.passage.lic.internal.hc.remote.impl.acquire.RemoteAcquisitionService;
-import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditions;
 
 @SuppressWarnings("restriction")
 final class FloatingLicensing implements LicensingDirection {

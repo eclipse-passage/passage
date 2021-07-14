@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions;
 
+import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

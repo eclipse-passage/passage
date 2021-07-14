@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.api.restrictions;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 
 /**
  * several permissions for the same feature: keep

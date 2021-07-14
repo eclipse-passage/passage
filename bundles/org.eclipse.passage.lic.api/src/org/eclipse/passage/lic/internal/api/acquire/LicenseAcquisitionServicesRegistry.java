@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.api.acquire;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 
 public interface LicenseAcquisitionServicesRegistry
 		extends Supplier<Registry<ConditionMiningTarget, LicenseAcquisitionService>> {

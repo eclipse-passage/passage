@@ -16,9 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.junit.Test;
 
 public abstract class ExpressionParsingServiceContractTest {

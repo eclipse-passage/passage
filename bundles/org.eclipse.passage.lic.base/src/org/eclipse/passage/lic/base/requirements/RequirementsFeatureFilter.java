@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.FeatureFilter;
 
+/**
+ * @since 1.1
+ */
 public final class RequirementsFeatureFilter implements Supplier<FeatureFilter<Requirement>> {
 
 	private final String feature;

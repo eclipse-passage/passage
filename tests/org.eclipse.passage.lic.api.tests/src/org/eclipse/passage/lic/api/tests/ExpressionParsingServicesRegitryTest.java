@@ -16,9 +16,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 
 /**
  * <p>

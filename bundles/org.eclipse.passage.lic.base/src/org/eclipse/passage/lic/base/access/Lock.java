@@ -16,14 +16,14 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;

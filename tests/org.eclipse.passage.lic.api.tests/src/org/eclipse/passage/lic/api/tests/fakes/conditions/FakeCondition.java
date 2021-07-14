@@ -14,12 +14,11 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
+import org.eclipse.passage.lic.api.conditions.VersionMatch;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
-import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
 
-@SuppressWarnings("restriction")
 public final class FakeCondition implements Condition {
 
 	private Optional<String> identifier = Optional.empty();

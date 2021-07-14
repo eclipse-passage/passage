@@ -31,6 +31,8 @@ import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
  * publish either a system failure or a sabotage attempt - to prevent access
  * cycle from successful completion.
  * </p>
+ * 
+ * @since 1.1
  */
 public final class UnsatisfiableRequirement implements Supplier<Requirement> {
 

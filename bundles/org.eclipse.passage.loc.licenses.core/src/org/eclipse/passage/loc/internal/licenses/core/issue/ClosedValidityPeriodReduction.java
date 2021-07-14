@@ -20,8 +20,8 @@ import java.util.function.Function;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.ReductionMessages;
 
 final class ClosedValidityPeriodReduction<L> implements Reduction<L> {

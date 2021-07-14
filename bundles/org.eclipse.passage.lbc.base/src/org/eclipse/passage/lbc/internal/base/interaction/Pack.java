@@ -19,12 +19,12 @@ import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
+import org.eclipse.passage.lic.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.base.io.FileKeyKeeper;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
-import org.eclipse.passage.lic.internal.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ProductRef;

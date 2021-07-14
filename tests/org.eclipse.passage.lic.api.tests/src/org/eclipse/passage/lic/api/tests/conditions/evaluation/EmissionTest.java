@@ -17,10 +17,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.junit.Test;
 
 public final class EmissionTest {

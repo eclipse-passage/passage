@@ -14,10 +14,10 @@ package org.eclipse.passage.seal.internal.demo;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
 import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")

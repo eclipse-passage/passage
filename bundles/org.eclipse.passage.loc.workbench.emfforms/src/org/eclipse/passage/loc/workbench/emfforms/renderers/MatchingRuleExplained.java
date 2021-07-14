@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.api.conditions.MatchingRule;
 import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
 import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
 

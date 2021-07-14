@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
@@ -71,17 +71,17 @@ public final class FloatingLicenseIssuingProtection implements Consumer<Floating
 		featureReductions.forEach(r -> r.accept(grant));
 	}
 
-	private Optional<org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed> validGet(
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
 			FloatingLicensePack lic) {
 		return validGet(lic.getLicense().getValid());
 	}
 
-	private Optional<org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed> validGet(
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
 			FeatureGrant grant) {
 		return validGet(grant.getValid());
 	}
 
-	private Optional<org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed> validGet(
+	private Optional<org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed> validGet(
 			ValidityPeriod period) {
 		if (!(period instanceof ValidityPeriodClosed)) {
 			return Optional.empty(); // nothing we can reduce for now
@@ -91,16 +91,16 @@ public final class FloatingLicenseIssuingProtection implements Consumer<Floating
 	}
 
 	private void validSet(FloatingLicensePack lic,
-			org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed period) {
+			org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
 		lic.getLicense().setValid(convert(period));
 	}
 
 	private void validSet(FeatureGrant grant,
-			org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed period) {
+			org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
 		grant.setValid(convert(period));
 	}
 
-	private ValidityPeriodClosed convert(org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed period) {
+	private ValidityPeriodClosed convert(org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed period) {
 		org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed valid = LicensesFactory.eINSTANCE
 				.createValidityPeriodClosed();
 		valid.setFrom(Date.from(period.from().toInstant()));

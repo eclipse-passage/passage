@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.json;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.Condition;
 
 /**
  * Cover connection of typed elements as our persistence library requires.

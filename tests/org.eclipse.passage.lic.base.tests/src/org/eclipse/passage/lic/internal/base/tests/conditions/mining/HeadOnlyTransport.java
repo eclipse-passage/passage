@@ -20,18 +20,18 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
+import org.eclipse.passage.lic.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.base.conditions.BaseCondition;
+import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriod;
-import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
-import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
 @SuppressWarnings("restriction")

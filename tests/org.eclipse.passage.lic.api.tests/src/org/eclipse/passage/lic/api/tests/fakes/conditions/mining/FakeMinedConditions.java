@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,13 +14,12 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions.mining;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 
-@SuppressWarnings("restriction")
 public final class FakeMinedConditions implements MinedConditions {
 
 	@Override

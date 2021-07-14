@@ -18,8 +18,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 

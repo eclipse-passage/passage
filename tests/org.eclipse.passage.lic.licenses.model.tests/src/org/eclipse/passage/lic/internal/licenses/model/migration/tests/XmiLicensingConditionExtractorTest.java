@@ -24,7 +24,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.equinox.conditions;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 
 public final class ConfigurationMiningTarget implements Supplier<ConditionMiningTarget> {
 

@@ -16,8 +16,8 @@ import java.time.ZonedDateTime;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonParser;

@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeRequirement;
 /**
  * Each requirement resolution service must follow the contract.
  */
-@SuppressWarnings("restriction")
 public abstract class ResolvedRequirementsContractTest extends ReadOnlyCollectionTest<Requirement> {
 
 	@Override

@@ -19,14 +19,14 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;
 
