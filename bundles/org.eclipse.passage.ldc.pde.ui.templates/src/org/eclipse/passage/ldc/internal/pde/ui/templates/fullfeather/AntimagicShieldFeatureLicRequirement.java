@@ -14,10 +14,10 @@ package org.eclipse.passage.ldc.internal.pde.ui.templates.fullfeather;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
-import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 
 @SuppressWarnings("restriction")
 public final class AntimagicShieldFeatureLicRequirement implements Supplier<Requirement> {

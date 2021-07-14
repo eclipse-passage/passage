@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api.restrictions;
 
+import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 
 /**
  * </p>

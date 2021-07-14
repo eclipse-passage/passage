@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.base.conditions;
 import java.util.List;
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
 import org.eclipse.passage.lic.internal.base.version.NumericalVersion;
 import org.eclipse.passage.lic.internal.base.version.SafeVersion;

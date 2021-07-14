@@ -16,6 +16,10 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.api.requirements.Feature;
+import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
@@ -23,8 +27,6 @@ import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.requirements.Feature;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel.Of;
@@ -37,8 +39,6 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed
 import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
-import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
-import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
 
 import com.fasterxml.jackson.databind.JsonNode;

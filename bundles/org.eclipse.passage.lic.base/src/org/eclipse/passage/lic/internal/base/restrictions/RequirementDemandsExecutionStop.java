@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.function.Predicate;
 
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevelComparator;
 
