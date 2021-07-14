@@ -19,9 +19,9 @@ import java.util.Collection;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.diagnostic.NoErrors;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.equinox.requirements.RequirementsFromManifest;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.junit.Test;
 import org.osgi.framework.FrameworkUtil;
 

@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.base.restrictions;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 
 public final class BaseRestriction implements Restriction {
 

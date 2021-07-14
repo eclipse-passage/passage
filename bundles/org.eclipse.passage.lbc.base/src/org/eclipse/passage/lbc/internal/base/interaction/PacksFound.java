@@ -22,14 +22,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.NoDataOfType;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoDataOfType;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 
 final class PacksFound implements Supplier<ServiceInvocationResult<Collection<Pack>>> {
 

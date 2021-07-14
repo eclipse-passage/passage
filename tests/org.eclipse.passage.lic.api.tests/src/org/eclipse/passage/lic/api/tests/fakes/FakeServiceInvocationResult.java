@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.api.tests.fakes;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.tests.fakes.diagnostic.FakeFailureDiagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
 public final class FakeServiceInvocationResult<T> implements ServiceInvocationResult<T> {
 

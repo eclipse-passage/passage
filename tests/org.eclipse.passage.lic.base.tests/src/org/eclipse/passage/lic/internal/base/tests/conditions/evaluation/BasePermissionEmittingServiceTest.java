@@ -32,6 +32,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsReg
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
@@ -42,10 +43,9 @@ import org.eclipse.passage.lic.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermissionEmittingService;
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

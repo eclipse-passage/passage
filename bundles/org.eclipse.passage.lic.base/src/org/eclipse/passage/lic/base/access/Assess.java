@@ -16,10 +16,10 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
 final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {
 

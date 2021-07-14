@@ -20,11 +20,11 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.Bundle;
 

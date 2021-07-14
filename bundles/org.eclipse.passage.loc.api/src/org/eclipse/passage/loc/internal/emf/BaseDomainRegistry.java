@@ -33,12 +33,12 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.emf.resource.ResourceLoadFailed;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 @SuppressWarnings("restriction")

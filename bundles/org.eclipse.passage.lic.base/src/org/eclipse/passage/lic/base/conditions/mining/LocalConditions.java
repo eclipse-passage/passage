@@ -26,13 +26,13 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.NoLicenses;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.base.io.FileCollection;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoLicenses;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
 
 /**

@@ -27,14 +27,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.LicenseRequisites;
@@ -45,10 +45,10 @@ import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.FloatingLicenseIssuingProtection;
-import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
-import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 import org.eclipse.passage.loc.internal.products.core.PublicKeyReplcated;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 
 @SuppressWarnings("restriction")
 final class IssueFloatingLicense {

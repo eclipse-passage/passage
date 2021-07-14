@@ -24,9 +24,9 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
 import org.eclipse.passage.lic.base.access.Requirements;
+import org.eclipse.passage.lic.base.diagnostic.code.NoRequirements;
+import org.eclipse.passage.lic.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

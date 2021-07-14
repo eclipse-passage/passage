@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.loc.dashboard.ui.wizards.LicenseIssuedNotification;

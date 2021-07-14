@@ -25,7 +25,7 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
+import org.eclipse.passage.lic.base.diagnostic.code.InsufficientLicenseCoverage;
 
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {
 

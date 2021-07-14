@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.base.diagnostic.SumOfDiagnostics;
 import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public abstract class ServiceAny<C extends Connection, T, D extends RemoteServiceData> extends ServiceRemote<C, T, D> {

@@ -28,7 +28,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
+import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.jface.dialogs.licensing.DiagnosticDialog;
 import org.eclipse.passage.lic.jface.resource.LicensingImages;
 import org.eclipse.passage.loc.internal.emf.EditingDomainRegistry;

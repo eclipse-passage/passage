@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 import java.util.Optional;
 
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.internal.base.diagnostic.SumOfLists;
-import org.eclipse.passage.lic.internal.base.diagnostic.TroubleHasException;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.diagnostic.SumOfLists;
+import org.eclipse.passage.lic.base.diagnostic.TroubleHasException;
 import org.eclipse.passage.lic.internal.jface.i18n.DiagnosticDialogMessages;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
