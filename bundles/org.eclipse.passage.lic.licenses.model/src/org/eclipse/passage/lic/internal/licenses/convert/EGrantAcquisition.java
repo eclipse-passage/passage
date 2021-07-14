@@ -19,9 +19,9 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
 public final class EGrantAcquisition implements Supplier<GrantAcqisition> {
 
-	private final org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition source;
+	private final org.eclipse.passage.lic.api.acquire.GrantAcquisition source;
 
-	public EGrantAcquisition(org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition source) {
+	public EGrantAcquisition(org.eclipse.passage.lic.api.acquire.GrantAcquisition source) {
 		this.source = source;
 	}
 

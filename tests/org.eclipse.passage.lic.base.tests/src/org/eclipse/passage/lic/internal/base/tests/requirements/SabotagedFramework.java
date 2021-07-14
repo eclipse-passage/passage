@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -35,7 +36,6 @@ import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRegistry;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 
 @SuppressWarnings("restriction")
 final class SabotagedFramework implements Framework {

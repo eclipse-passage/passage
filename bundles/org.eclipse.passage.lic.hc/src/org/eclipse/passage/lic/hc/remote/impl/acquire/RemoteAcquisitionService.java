@@ -17,6 +17,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.UserHomePath;
@@ -25,8 +27,6 @@ import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 
 public final class RemoteAcquisitionService<C extends Connection> implements LicenseAcquisitionService {
 

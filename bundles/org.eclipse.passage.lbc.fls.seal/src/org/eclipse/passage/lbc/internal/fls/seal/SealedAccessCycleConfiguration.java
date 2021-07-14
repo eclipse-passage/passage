@@ -16,15 +16,15 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;

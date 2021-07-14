@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.inspection.hardware;
 
-import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
+import org.eclipse.passage.lic.base.inspection.BaseEnvironmentProperty;
 
 public abstract class Computer extends BaseEnvironmentProperty {
 

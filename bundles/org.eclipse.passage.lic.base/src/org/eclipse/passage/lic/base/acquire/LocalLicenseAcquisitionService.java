@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,15 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.acquire;
+package org.eclipse.passage.lic.base.acquire;
 
 import java.util.Date;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 
 // FIXME: just stub for now. Implement properly. #568791
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {
