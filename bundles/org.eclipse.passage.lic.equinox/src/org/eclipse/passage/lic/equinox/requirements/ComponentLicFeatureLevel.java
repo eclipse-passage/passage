@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.equinox.requirements;
 
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.NamedData;
 import org.eclipse.passage.lic.base.StringNamedData;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 
 /**
  * Encapsulate reading of a raw {@linkplain RestrictionLevel} identifier from

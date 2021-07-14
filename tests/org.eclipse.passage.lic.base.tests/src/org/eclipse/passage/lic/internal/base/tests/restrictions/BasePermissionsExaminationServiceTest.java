@@ -24,14 +24,14 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
+import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
 import org.eclipse.passage.lic.api.tests.resrictions.PermissionsExaminationServiceContractTest;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
+import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
-import org.eclipse.passage.lic.internal.base.restrictions.BasePermissionsExaminationService;
-import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

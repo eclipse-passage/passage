@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.restrictions;
+package org.eclipse.passage.lic.base.restrictions;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationService;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationService;
+import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.InsufficientLicenseCoverage;
 
 public final class BasePermissionsExaminationService implements PermissionsExaminationService {

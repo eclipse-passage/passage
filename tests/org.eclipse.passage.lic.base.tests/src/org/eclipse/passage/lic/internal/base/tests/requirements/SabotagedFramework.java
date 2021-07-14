@@ -32,10 +32,10 @@ import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
+import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRegistry;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 
 @SuppressWarnings("restriction")
 final class SabotagedFramework implements Framework {

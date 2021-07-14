@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api;
 
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**
  * <p>

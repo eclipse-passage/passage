@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
  * <p>

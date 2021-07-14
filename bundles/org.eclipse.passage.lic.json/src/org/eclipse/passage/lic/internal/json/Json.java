@@ -24,6 +24,9 @@ import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.Restriction;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel.Of;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseConditionOrigin;
@@ -35,11 +38,8 @@ import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.base.restrictions.BaseRestriction;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel.Of;
-import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

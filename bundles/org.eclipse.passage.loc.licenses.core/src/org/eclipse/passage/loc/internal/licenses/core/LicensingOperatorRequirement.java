@@ -17,8 +17,8 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.Restriction;
 
 @SuppressWarnings("restriction")
 final class LicensingOperatorRequirement implements Supplier<Optional<Requirement>> {

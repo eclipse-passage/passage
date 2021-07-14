@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.base.access;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 abstract class BaseGrantLockAttempt implements GrantLockAttempt {
 

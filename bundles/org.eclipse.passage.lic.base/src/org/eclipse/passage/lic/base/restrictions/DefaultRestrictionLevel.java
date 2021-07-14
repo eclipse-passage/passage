@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,17 +10,17 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.restrictions;
+package org.eclipse.passage.lic.base.restrictions;
 
-import java.util.Collection;
+import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
-/**
- * several permissions for the same feature: keep
- */
-public interface PermissionObservationService {
+public final class DefaultRestrictionLevel implements Supplier<RestrictionLevel> {
 
-	void watch(Collection<Permission> permissions);
+	@Override
+	public RestrictionLevel get() {
+		return new RestrictionLevel.Warning();
+	}
 
 }

@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.access;
 
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 /**
  * @since 1.1

@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.base.access;
 import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.base.restrictions.NoSevereRestrictions;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
 /**
  * Tells if the examination result should cause use notification
