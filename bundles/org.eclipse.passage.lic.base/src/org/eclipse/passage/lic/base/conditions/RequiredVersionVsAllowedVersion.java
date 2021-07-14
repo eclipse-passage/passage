@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
-import org.eclipse.passage.lic.internal.base.version.NumericalVersion;
-import org.eclipse.passage.lic.internal.base.version.SafeVersion;
+import org.eclipse.passage.lic.base.version.DefaultVersion;
+import org.eclipse.passage.lic.base.version.NumericalVersion;
+import org.eclipse.passage.lic.base.version.SafeVersion;
 
 /**
  * Define if the {@code actual} version (that originates in declared

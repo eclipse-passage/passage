@@ -17,10 +17,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
-import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
+import org.eclipse.passage.lic.api.version.SemanticVersion;
+import org.eclipse.passage.lic.base.version.BaseSemanticVersion;
 
-@SuppressWarnings("restriction")
 final class MatchingRuleExplained {
 
 	private final List<Sample> samples;

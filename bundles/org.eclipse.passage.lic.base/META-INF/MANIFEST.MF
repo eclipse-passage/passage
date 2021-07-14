@@ -17,6 +17,7 @@ Export-Package: org.eclipse.passage.lic.base,
  org.eclipse.passage.lic.base.io,
  org.eclipse.passage.lic.base.registry,
  org.eclipse.passage.lic.base.requirements,
+ org.eclipse.passage.lic.base.version,
  org.eclipse.passage.lic.internal.base;x-friends:="org.eclipse.passage.lic.equinox.tests",
  org.eclipse.passage.lic.internal.base.acquire;x-friends:="org.eclipse.passage.lic.floating.model,org.eclipse.passage.lic.equinox,org.eclipse.passage.lic.licenses.model",
  org.eclipse.passage.lic.internal.base.diagnostic;
@@ -46,5 +47,4 @@ Export-Package: org.eclipse.passage.lic.base,
    org.eclipse.passage.lic.equinox,
    org.eclipse.passage.lic.json,
    org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests",
- org.eclipse.passage.lic.internal.base.version;x-friends:="org.eclipse.passage.lic.equinox"
+ org.eclipse.passage.lic.internal.base.time;x-friends:="org.eclipse.passage.lic.base.tests"

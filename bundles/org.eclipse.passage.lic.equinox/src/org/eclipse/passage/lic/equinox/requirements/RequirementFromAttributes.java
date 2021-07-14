@@ -24,12 +24,12 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.base.version.DefaultVersion;
+import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
-import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
-import org.eclipse.passage.lic.internal.base.version.SafeVersion;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 

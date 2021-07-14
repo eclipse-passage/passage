@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,8 +13,8 @@
 package org.eclipse.passage.lic.internal.base.tests.version.contract;
 
 import org.eclipse.passage.lic.api.tests.version.SemanticVersionContractTest;
-import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
-import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
+import org.eclipse.passage.lic.api.version.SemanticVersion;
+import org.eclipse.passage.lic.base.version.BaseSemanticVersion;
 
 @SuppressWarnings("restriction")
 public final class BaseSemanticVersionContractTest extends SemanticVersionContractTest {

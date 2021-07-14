@@ -23,7 +23,7 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.base.ProductIdentifier;
 import org.eclipse.passage.lic.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
+import org.eclipse.passage.lic.base.version.DefaultVersion;
 import org.eclipse.passage.lic.internal.equinox.LicensedProductFromContext;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
