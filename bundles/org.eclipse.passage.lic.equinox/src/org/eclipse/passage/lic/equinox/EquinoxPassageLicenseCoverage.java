@@ -22,13 +22,13 @@ import org.eclipse.passage.lic.base.access.Access;
  */
 public final class EquinoxPassageLicenseCoverage implements PassageLicenseCoverage {
 
-	private final FrameworkAware<?> delegate;
+	private final EquinoxFrameworkAware<?> delegate;
 
 	public EquinoxPassageLicenseCoverage() {
 		this(new SuppliedFrameworkAware());
 	}
 
-	public EquinoxPassageLicenseCoverage(FrameworkAware<?> delegate) {
+	public EquinoxPassageLicenseCoverage(EquinoxFrameworkAware<?> delegate) {
 		this.delegate = delegate;
 	}
 

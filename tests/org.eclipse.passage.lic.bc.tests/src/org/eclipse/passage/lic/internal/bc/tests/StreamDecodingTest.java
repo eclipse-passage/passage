@@ -35,7 +35,6 @@ import org.eclipse.passage.lic.bc.BcDigest;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class StreamDecodingTest extends BcStreamCodecTest {
 
 	@Test

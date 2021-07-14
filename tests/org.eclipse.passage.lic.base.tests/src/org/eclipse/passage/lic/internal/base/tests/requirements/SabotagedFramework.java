@@ -37,7 +37,6 @@ import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRe
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 
-@SuppressWarnings("restriction")
 final class SabotagedFramework implements Framework {
 
 	private final AccessCycleConfiguration config = new SabotagedAccessCycleConfiguration();

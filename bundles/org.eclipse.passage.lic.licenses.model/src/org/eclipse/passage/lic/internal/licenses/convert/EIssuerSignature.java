@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
-@SuppressWarnings("restriction")
 public final class EIssuerSignature implements Supplier<Signature> {
 
 	private final IssuerSignature signature;

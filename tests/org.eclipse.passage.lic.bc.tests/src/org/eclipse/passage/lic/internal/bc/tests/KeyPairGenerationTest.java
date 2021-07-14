@@ -33,7 +33,6 @@ import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class KeyPairGenerationTest extends BcStreamCodecTest {
 
 	@Test

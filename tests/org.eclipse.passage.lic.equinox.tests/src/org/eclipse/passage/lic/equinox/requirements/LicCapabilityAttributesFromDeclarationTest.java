@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensingException;
-import org.eclipse.passage.lic.equinox.requirements.LicCapabilityAttributesFromDeclaration;
 import org.junit.Test;
 
 public final class LicCapabilityAttributesFromDeclarationTest {

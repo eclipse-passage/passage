@@ -25,7 +25,6 @@ import org.eclipse.passage.lic.base.StringNamedData;
 import org.junit.Test;
 import org.osgi.framework.wiring.BundleCapability;
 
-@SuppressWarnings("restriction")
 abstract class CapabilityLicFeatureInfoTest {
 
 	@Test

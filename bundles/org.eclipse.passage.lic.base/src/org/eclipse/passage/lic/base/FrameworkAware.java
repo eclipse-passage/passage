@@ -10,18 +10,21 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.emf.resource;
+package org.eclipse.passage.lic.base;
 
-import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
+import java.util.Optional;
+import java.util.function.Function;
+
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
- * @since 2.0
+ * @since 1.1
  */
-public final class ResourceSaveFailed extends TroubleCode {
+public interface FrameworkAware {
 
-	public ResourceSaveFailed() {
-		super(898, EmfMessages.ResourceSaveFailed_explanation);
-	}
+	<T> ServiceInvocationResult<T> withFrameworkService(Function<Framework, ServiceInvocationResult<T>> invoke);
+
+	<T> Optional<T> withFramework(Function<Framework, T> invoke);
 
 }

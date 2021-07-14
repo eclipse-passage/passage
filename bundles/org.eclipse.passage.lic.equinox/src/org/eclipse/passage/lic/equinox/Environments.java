@@ -24,13 +24,13 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
  */
 public final class Environments implements Supplier<Collection<RuntimeEnvironment>> {
 
-	private final FrameworkAware<?> delegate;
+	private final EquinoxFrameworkAware<?> delegate;
 
 	public Environments() {
 		this(new SuppliedFrameworkAware());
 	}
 
-	public Environments(FrameworkAware<?> delegate) {
+	public Environments(EquinoxFrameworkAware<?> delegate) {
 		this.delegate = delegate;
 	}
 

@@ -18,9 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.passage.lic.base.StringNamedData;
-import org.eclipse.passage.lic.equinox.requirements.CapabilityLicFeatureName;
 
-@SuppressWarnings("restriction")
 public final class CapabilityLicFeatureNameTest extends CapabilityLicFeatureInfoTest {
 
 	@Override

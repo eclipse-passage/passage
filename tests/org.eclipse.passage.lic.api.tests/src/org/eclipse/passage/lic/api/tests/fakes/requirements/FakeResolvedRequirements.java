@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.api.tests.fakes.FakeServiceInvocationResult;
 
-@SuppressWarnings("restriction")
 public final class FakeResolvedRequirements implements ResolvedRequirements {
 
 	private final Collection<Requirement> requirements;

@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
 
-@SuppressWarnings("restriction")
 final class BiasedAssessor implements ExpressionTokenAssessmentService {
 
 	private final Map<String, String> answers = new HashMap<>();

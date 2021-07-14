@@ -24,13 +24,13 @@ import org.eclipse.passage.lic.base.conditions.mining.BaseLicenseReadingService;
  */
 public final class LicenseReadingServiceRequest implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 
-	private final FrameworkAware<?> delegate;
+	private final EquinoxFrameworkAware<?> delegate;
 
 	public LicenseReadingServiceRequest() {
 		this(new SuppliedFrameworkAware());
 	}
 
-	public LicenseReadingServiceRequest(FrameworkAware<?> delegate) {
+	public LicenseReadingServiceRequest(EquinoxFrameworkAware<?> delegate) {
 		this.delegate = delegate;
 	}
 

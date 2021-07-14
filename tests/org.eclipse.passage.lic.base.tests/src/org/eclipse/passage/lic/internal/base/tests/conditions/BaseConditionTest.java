@@ -29,7 +29,6 @@ import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class BaseConditionTest {
 
 	/**

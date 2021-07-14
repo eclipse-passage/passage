@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.junit.Test;
 
 // reflects requirements of LicensingVersion::testToVersionValue
-@SuppressWarnings("restriction")
 public final class SafeVersionTest {
 
 	@Test

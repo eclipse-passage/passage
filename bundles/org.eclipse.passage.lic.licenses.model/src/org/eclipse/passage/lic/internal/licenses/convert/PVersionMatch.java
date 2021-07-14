@@ -21,7 +21,6 @@ import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
 
-@SuppressWarnings("restriction")
 public final class PVersionMatch implements Supplier<VersionMatch> {
 
 	private final VersionMatchDescriptor descriptor;

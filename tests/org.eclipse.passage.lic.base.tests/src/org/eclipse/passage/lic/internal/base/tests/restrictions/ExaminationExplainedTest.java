@@ -38,7 +38,6 @@ import org.eclipse.passage.lic.base.restrictions.BaseRestriction;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class ExaminationExplainedTest {
 
 	@Test(expected = NullPointerException.class)

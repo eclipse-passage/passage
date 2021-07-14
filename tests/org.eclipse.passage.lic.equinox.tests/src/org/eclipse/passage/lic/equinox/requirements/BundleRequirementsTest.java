@@ -16,7 +16,6 @@ import java.util.Set;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
-import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 
 /**
  * Integration test: requires OSGi running

@@ -16,7 +16,6 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class BaseEvaluationInstructionsTest {
 
 	@Test(expected = NullPointerException.class)

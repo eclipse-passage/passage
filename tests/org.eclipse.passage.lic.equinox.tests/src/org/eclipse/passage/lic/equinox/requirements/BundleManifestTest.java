@@ -16,7 +16,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import org.eclipse.passage.lic.api.LicensingException;
-import org.eclipse.passage.lic.equinox.requirements.BundleManifest;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;

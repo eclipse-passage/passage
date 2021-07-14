@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.equinox.requirements;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.passage.lic.equinox.requirements.BundleVendor;
 import org.junit.Test;
 
 public final class BundleVendorTest {

@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.net;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.equinox.FrameworkAware;
+import org.eclipse.passage.lic.equinox.EquinoxFrameworkAware;
 import org.eclipse.passage.lic.internal.net.api.FrameworkConstructor;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
-public final class NetFrameworkAware<R extends NetRequest> extends FrameworkAware<FrameworkConstructor> {
+public final class NetFrameworkAware<R extends NetRequest> extends EquinoxFrameworkAware<FrameworkConstructor> {
 
 	public NetFrameworkAware(ProductUserRequest<R> request) {
 		super(FrameworkConstructor.class, ctor -> Optional.of(ctor.forRequest(request)));

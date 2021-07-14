@@ -31,7 +31,6 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginReference;
 
-@SuppressWarnings("restriction")
 @Deprecated
 public class LicensedE4ProductTemplateSection extends BaseLicensedProductSection {
 

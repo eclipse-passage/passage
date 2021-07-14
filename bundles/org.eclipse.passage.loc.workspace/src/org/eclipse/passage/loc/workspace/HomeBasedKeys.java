@@ -24,7 +24,6 @@ import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;
 import org.eclipse.passage.loc.internal.api.workspace.ResourceHandle;
 
-@SuppressWarnings("restriction")
 final class HomeBasedKeys implements Keys {
 
 	private final Path residence;

@@ -40,7 +40,6 @@ import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
  * @param <R> root classifier to store created if not present
  * 
  */
-@SuppressWarnings("restriction")
 public final class InnerClassifierWizard<I, R> extends BaseClassifierWizard<InnerClassifierWizardPage<R>> {
 
 	private final Class<I> clazz;

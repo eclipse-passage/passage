@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.FrameworkSupplier;
  * 
  * @since 2.1
  */
-public final class SuppliedFrameworkAware extends FrameworkAware<FrameworkSupplier> {
+public final class SuppliedFrameworkAware extends EquinoxFrameworkAware<FrameworkSupplier> {
 
 	public SuppliedFrameworkAware() {
 		super(FrameworkSupplier.class, FrameworkSupplier::get);

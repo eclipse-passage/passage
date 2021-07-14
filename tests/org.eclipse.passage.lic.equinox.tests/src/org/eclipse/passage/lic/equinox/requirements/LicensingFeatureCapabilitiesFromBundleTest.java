@@ -22,12 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.equinox.requirements.CapabilityLicFeatureId;
-import org.eclipse.passage.lic.equinox.requirements.LicensingFeatureCapabilitiesFromBundle;
 import org.junit.Test;
 import org.osgi.framework.wiring.BundleCapability;
 
-@SuppressWarnings("restriction")
 public final class LicensingFeatureCapabilitiesFromBundleTest {
 
 	@Test

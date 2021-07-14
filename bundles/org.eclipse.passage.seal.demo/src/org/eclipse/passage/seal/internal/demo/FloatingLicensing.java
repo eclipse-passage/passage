@@ -31,7 +31,6 @@ import org.eclipse.passage.lic.hc.remote.impl.NetConnection;
 import org.eclipse.passage.lic.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.hc.remote.impl.mine.RemoteConditions;
 
-@SuppressWarnings("restriction")
 final class FloatingLicensing implements LicensingDirection {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;

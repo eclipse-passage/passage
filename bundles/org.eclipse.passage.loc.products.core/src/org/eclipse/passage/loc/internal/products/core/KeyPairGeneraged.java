@@ -42,7 +42,6 @@ final class KeyPairGeneraged implements Supplier<KeyPair> {
 		return pair;
 	}
 
-	@SuppressWarnings("restriction")
 	private ProductRef product() {
 		ProductRef product = KeysFactory.eINSTANCE.createProductRef();
 		product.setIdentifier(author.id().identifier());

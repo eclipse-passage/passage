@@ -34,7 +34,6 @@ import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.internal.base.tests.conditions.mining.LocalConditionsTest.Spy;
 
-@SuppressWarnings("restriction")
 final class HeadOnlyTransport implements ConditionTransport {
 
 	private final Spy spy;

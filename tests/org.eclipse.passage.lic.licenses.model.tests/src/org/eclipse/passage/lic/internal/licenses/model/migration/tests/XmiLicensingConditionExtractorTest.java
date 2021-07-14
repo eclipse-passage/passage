@@ -36,7 +36,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-@SuppressWarnings("restriction")
 public class XmiLicensingConditionExtractorTest {
 
 	private static final String COND1_FEATURE_ID = "loc.workbench"; //$NON-NLS-1$

@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermiss
 import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeRequirement;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public abstract class PermissionsExaminationServiceContractTest {
 
 	@Test(expected = NullPointerException.class)

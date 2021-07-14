@@ -43,7 +43,6 @@ import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
-@SuppressWarnings("restriction")
 abstract class BaseXmiConditionTransport implements ConditionTransport {
 
 	private final ContentType type = new ContentType.Xml();
