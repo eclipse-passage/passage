@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
+import org.eclipse.passage.lic.api.PassageLicenseCoverage;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.base.access.Access;
-import org.eclipse.passage.lic.internal.api.PassageLicenseCoverage;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 
 public final class EquinoxPassageLicenseCoverage implements PassageLicenseCoverage {

@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
-import org.eclipse.passage.lic.internal.api.PassageAction;
+import org.eclipse.passage.lic.api.PassageAction;
 import org.eclipse.passage.lic.internal.net.api.handle.Chore;
 import org.eclipse.passage.lic.internal.net.handle.NetServices;
 

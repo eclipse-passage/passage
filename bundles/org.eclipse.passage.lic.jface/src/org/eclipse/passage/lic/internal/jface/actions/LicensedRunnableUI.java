@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.jface.actions;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.equinox.LicensedRunnable;
 import org.eclipse.passage.lic.internal.jface.EquinoxPassageUI;
 import org.eclipse.swt.widgets.Display;

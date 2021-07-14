@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.base.access;
 
 import java.util.Collections;
 
-import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 
 final class Assess extends Cycle<ServiceInvocationResult<ExaminationCertificate>> {

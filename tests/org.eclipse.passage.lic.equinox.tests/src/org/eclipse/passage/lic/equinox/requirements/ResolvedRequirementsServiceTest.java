@@ -21,10 +21,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.tests.ResolvedRequirementsContractTest;
 import org.eclipse.passage.lic.base.requirements.RequirementsFeatureFilter;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.junit.Test;
 import org.osgi.framework.InvalidSyntaxException;
 

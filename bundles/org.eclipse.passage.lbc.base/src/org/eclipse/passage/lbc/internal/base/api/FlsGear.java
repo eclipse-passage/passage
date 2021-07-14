@@ -15,13 +15,13 @@ package org.eclipse.passage.lbc.internal.base.api;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.Gear;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.api.Gear;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 public interface FlsGear extends Gear {
 

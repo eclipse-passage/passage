@@ -18,8 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.NamedData;
 import org.eclipse.passage.lic.equinox.requirements.RequirementsToBundle;
-import org.eclipse.passage.lic.internal.base.NamedData;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

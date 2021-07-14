@@ -18,12 +18,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.eclipse.passage.lbc.internal.base.FlotingRequestHandled;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.PassageAction;
+import org.eclipse.passage.lic.base.ProductIdentifier;
+import org.eclipse.passage.lic.base.ProductVersion;
+import org.eclipse.passage.lic.base.StringNamedData;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;

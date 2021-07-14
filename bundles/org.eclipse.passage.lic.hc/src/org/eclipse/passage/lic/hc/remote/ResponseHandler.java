@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.1

@@ -17,10 +17,10 @@ import java.util.Collection;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 public abstract class ServiceEvery<C extends Connection, T, D extends RemoteServiceData>

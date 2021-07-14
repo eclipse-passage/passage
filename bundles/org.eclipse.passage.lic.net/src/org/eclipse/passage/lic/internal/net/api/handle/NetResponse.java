@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.api.handle;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.0

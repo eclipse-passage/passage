@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,8 +18,8 @@ import static org.junit.Assert.fail;
 
 import java.util.Properties;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.KeyValuePairs;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.KeyValuePairs;
 import org.junit.Test;
 
 public final class KeyValuePairsTest {

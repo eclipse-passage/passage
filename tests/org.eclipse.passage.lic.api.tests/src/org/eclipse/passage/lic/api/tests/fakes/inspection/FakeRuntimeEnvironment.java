@@ -12,10 +12,10 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.inspection;
 
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 public final class FakeRuntimeEnvironment implements RuntimeEnvironment {
 

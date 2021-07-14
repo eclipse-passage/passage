@@ -21,8 +21,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.base.inspection.hardware.Disk;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyFeatureGrant;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;

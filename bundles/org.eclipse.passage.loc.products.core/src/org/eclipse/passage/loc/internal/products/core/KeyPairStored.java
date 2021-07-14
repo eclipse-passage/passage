@@ -15,7 +15,7 @@ package org.eclipse.passage.loc.internal.products.core;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;

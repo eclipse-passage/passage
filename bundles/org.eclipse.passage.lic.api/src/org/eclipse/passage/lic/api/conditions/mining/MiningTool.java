@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.api.conditions.mining;
 import java.nio.file.Path;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 /**
  * @since 1.1

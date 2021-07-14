@@ -17,6 +17,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.AccessCycleConfiguration;
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
@@ -24,8 +26,6 @@ import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
-import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
-import org.eclipse.passage.lic.internal.api.Framework;
 import org.junit.Test;
 
 /**

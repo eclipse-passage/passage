@@ -16,8 +16,8 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
+import org.eclipse.passage.lic.base.InvalidLicensedProduct;
+import org.eclipse.passage.lic.base.ProductIdentifier;
 
 public final class ApplicationIdentifier implements Supplier<String> {
 

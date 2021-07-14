@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.internal.hc.tests.remote;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
@@ -26,7 +27,6 @@ import org.eclipse.passage.lic.base.io.PathKeyKeeper;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 
 @SuppressWarnings("restriction")

@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.base.conditions.evaluation;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
@@ -22,11 +25,11 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegist
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
+/**
+ * @since 1.1
+ */
 public final class Authentication {
 
 	private final ExpressionPasringRegistry parsers;

@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.hc.remote.impl;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.hc.remote.Request;
 import org.eclipse.passage.lic.hc.remote.RequestContext;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.net.HostPort;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;

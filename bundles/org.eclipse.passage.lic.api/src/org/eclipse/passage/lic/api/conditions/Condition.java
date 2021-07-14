@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions;
 
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.EvaluationInstructions;
 
 /**
  * <p>
@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
  * years starting from the 1st of May, 2020." {@code Condition} represents such
  * a bundle of demands.
  * </p>
+ * 
+ * @since 1.1
  */
 public interface Condition {
 

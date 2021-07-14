@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.net.api;
 
-import org.eclipse.passage.lic.internal.api.Framework;
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 

@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.api.io.EncryptionKeySize;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.lic.keys.model.api.ProductRef;
 import org.eclipse.passage.lic.keys.model.meta.KeysFactory;

@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2020, 2021 ArSysOp
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     ArSysOp - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.passage.loc.internal.workbench.wizards;
 
 import static org.eclipse.swt.events.SelectionListener.widgetSelectedAdapter;
@@ -11,9 +23,9 @@ import java.util.function.Supplier;
 import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.passage.lic.api.MandatoryService;
 import org.eclipse.passage.lic.emf.meta.ComposableClassMetadata;
 import org.eclipse.passage.lic.emf.meta.EntityMetadata;
-import org.eclipse.passage.lic.internal.api.MandatoryService;
 import org.eclipse.passage.loc.internal.api.ComposableClassSupply;
 import org.eclipse.passage.loc.internal.api.InstanceSupply;
 import org.eclipse.passage.loc.internal.workbench.MandatoryEclipseContext;
@@ -45,8 +57,7 @@ public final class InnerClassifierWizardPage<R> extends BaseClassifierWizardPage
 
 	private Text text;
 
-	protected InnerClassifierWizardPage(EntityMetadata metadata, SelectRequest<R> request,
-			MandatoryService context) {
+	protected InnerClassifierWizardPage(EntityMetadata metadata, SelectRequest<R> request, MandatoryService context) {
 		super(InnerClassifierWizardPage.class.getSimpleName(), metadata);
 		this.request = request;
 		this.context = context;

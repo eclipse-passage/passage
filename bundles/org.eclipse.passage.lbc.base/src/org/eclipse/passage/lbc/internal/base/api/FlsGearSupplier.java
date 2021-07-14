@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.api;
 
-import org.eclipse.passage.lic.internal.api.GearSupplier;
+import org.eclipse.passage.lic.api.GearSupplier;
 
 /**
  * @since 1.1

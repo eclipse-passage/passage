@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.base.acquire;
 
 import java.util.Date;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 // FIXME: just stub for now. Implement properly. #568791
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {

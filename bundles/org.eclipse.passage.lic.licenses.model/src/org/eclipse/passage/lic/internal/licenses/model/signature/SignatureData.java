@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.licenses.model.signature;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.base.NamedData;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;

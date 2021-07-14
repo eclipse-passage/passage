@@ -16,9 +16,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.tests.fakes.inspection.FakeRuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.Framework;
 
 /**
  * <p>

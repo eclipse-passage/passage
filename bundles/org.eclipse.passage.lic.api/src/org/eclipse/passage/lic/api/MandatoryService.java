@@ -10,15 +10,25 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.hc.remote;
-
-import org.eclipse.passage.lic.api.ServiceInvocationResult;
+package org.eclipse.passage.lic.api;
 
 /**
+ * 
+ * Resolves a service instance for a given type if present
+ * 
  * @since 1.1
+ *
  */
-public interface Client<C extends Connection, T> {
+@FunctionalInterface
+public interface MandatoryService {
 
-	ServiceInvocationResult<T> request(Request<C> request, ResponseHandler<T> handler);
+	/**
+	 * Resolve a service instance by a given type class
+	 * 
+	 * @param <T>  a type of a service to resolve
+	 * @param type a class of a service to resolve
+	 * @return a resolved service instance
+	 */
+	<T> T get(Class<T> type);
 
 }

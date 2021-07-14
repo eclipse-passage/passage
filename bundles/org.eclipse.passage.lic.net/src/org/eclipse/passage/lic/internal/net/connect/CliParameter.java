@@ -18,7 +18,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.base.NamedData;
 
 /**
  * @since 1.1

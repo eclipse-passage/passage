@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions;
 
-import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.api.EvaluationType;
 
 public final class EvaluationTypeOfContractTest extends EvaluationTypeContractTest {
 

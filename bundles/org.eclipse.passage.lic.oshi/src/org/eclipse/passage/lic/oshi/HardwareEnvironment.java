@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.oshi;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 import oshi.SystemInfo;
 

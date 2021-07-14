@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 
 public final class FakeCondition implements Condition {
 

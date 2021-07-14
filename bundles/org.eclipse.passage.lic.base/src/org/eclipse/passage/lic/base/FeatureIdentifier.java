@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,40 +10,34 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.base;
 
 import java.util.Map;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-
 /**
- * Supplies an {@code identifier} of a product under licensing, which is
+ * Supplies an {@code identifier} of a feature under licensing, which is
  * expected to be stored in a variety of sources under a special key.
  * 
  * @see NamedData
  */
-public final class ProductIdentifier extends StringNamedData {
+public final class FeatureIdentifier extends StringNamedData {
 
-	public ProductIdentifier(String value) {
+	public FeatureIdentifier(String value) {
 		super(value);
 	}
 
-	public ProductIdentifier(Map<String, Object> values) {
+	public FeatureIdentifier(Map<String, Object> values) {
 		super(values);
 	}
 
-	public ProductIdentifier(Function<String, String> retriever) {
+	public FeatureIdentifier(Function<String, String> retriever) {
 		super(retriever);
-	}
-
-	public ProductIdentifier(LicensedProduct product) {
-		super(product.identifier());
 	}
 
 	@Override
 	public String key() {
-		return "licensing.product.identifier"; //$NON-NLS-1$
+		return "licensing.feature.identifier"; //$NON-NLS-1$
 	}
 
 }

@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.api;
 
 import java.util.Collection;
 
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.EvaluationInstructions;
 
 /**
  * Collection of all the data required to issue a floating license pack.

@@ -17,9 +17,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 public final class NetConnection implements Connection {
 

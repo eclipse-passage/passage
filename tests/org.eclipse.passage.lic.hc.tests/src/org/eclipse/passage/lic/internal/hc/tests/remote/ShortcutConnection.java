@@ -16,10 +16,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.hc.remote.QueryParameters;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 
 @SuppressWarnings("restriction")

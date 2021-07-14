@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,12 +27,12 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.DigestExpectation;
 import org.eclipse.passage.lic.base.io.BaseDigestExpectation;
 import org.eclipse.passage.lic.base.io.FileContent;
 import org.eclipse.passage.lic.bc.BcDigest;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

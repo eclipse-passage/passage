@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 
 public final class FakeExpressionTokenAssessmentService implements ExpressionTokenAssessmentService {
 

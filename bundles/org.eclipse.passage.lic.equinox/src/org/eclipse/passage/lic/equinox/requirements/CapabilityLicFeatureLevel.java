@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.equinox.requirements;
 import java.util.Map;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.base.NamedData;
 
 /**
  * Encapsulate reading of a {@code restriction level} of a feature under

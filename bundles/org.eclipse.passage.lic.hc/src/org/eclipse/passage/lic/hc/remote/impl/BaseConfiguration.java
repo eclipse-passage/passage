@@ -16,10 +16,10 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.hc.remote.Configuration;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 public abstract class BaseConfiguration<C extends Connection> implements Configuration<C> {
 

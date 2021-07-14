@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
 
 /**
  * Subset of Request data that are significant for Response handling

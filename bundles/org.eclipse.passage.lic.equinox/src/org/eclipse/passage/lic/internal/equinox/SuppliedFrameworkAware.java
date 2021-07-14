@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox;
 
-import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
+import org.eclipse.passage.lic.api.FrameworkSupplier;
 
 /**
  * <p>

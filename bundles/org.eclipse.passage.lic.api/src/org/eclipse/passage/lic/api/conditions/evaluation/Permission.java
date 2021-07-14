@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.api.conditions.evaluation;
 
 import java.time.ZonedDateTime;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 /**
  * @since 1.1

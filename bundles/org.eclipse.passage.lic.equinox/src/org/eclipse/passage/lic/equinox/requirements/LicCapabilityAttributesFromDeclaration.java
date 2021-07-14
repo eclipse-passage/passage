@@ -22,9 +22,9 @@ import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.KeyValuePairs;
+import org.eclipse.passage.lic.base.KeyValuePairs;
 
 /**
  * Looks for {@linkplain Requirement} declaration in a single

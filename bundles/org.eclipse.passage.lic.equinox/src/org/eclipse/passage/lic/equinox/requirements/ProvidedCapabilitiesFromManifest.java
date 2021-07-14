@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.equinox.requirements;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.KeyValuePairs;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.KeyValuePairs;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 
 final class ProvidedCapabilitiesFromManifest {

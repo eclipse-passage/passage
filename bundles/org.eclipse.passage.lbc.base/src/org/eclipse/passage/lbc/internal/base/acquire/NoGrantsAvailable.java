@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.acquire;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.net.handle.Failure;
 
 /**

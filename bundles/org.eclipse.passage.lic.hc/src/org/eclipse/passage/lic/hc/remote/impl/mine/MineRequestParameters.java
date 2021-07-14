@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.hc.remote.impl.mine;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.api.PassageAction;
+import org.eclipse.passage.lic.base.NamedData;
 import org.eclipse.passage.lic.hc.remote.impl.RequestParameters;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.base.NamedData;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 final class MineRequestParameters extends RequestParameters {

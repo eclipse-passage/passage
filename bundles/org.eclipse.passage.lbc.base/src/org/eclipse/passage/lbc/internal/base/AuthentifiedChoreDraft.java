@@ -17,11 +17,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import org.eclipse.passage.lbc.internal.base.api.RawRequest;
+import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;
 import org.eclipse.passage.lic.internal.net.handle.Failure;

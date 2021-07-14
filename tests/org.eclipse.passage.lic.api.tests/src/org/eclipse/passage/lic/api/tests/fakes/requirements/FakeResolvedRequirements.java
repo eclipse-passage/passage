@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.api.tests.fakes.FakeServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 @SuppressWarnings("restriction")
 public final class FakeResolvedRequirements implements ResolvedRequirements {
