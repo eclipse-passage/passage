@@ -28,21 +28,20 @@ import org.eclipse.emfforms.spi.common.report.ReportService;
 import org.eclipse.emfforms.spi.core.services.databinding.EMFFormsDatabinding;
 import org.eclipse.emfforms.spi.core.services.label.EMFFormsLabelProvider;
 import org.eclipse.passage.lic.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.api.version.SemanticVersion;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleEquivalent;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleGreaterOrEqual;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
-import org.eclipse.passage.lic.internal.api.version.SemanticVersion;
-import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
-import org.eclipse.passage.lic.internal.base.version.SafeVersion;
+import org.eclipse.passage.lic.base.version.BaseSemanticVersion;
+import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.eclipse.passage.lic.licenses.PersonalFeatureGrantDescriptor;
 import org.eclipse.passage.lic.licenses.LicensePlanFeatureDescriptor;
 import org.eclipse.passage.lic.licenses.model.api.VersionMatch;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 
-@SuppressWarnings("restriction")
 public class MatchRuleRenderer extends ExplainedComboControlRenderer {
 
 	private final List<MatchingRule> values;

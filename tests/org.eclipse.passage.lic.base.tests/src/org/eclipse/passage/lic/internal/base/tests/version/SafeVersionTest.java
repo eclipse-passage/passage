@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.base.tests.version;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
-import org.eclipse.passage.lic.internal.base.version.SafeVersion;
+import org.eclipse.passage.lic.base.version.DefaultVersion;
+import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.junit.Test;
 
 // reflects requirements of LicensingVersion::testToVersionValue

@@ -16,6 +16,7 @@ Export-Package: org.eclipse.passage.lic.api,
  org.eclipse.passage.lic.api.io,
  org.eclipse.passage.lic.api.registry,
  org.eclipse.passage.lic.api.requirements,
+ org.eclipse.passage.lic.api.version,
  org.eclipse.passage.lic.internal.api.acquire;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.floating.model,
@@ -49,5 +50,4 @@ Export-Package: org.eclipse.passage.lic.api,
    org.eclipse.passage.seal.demo.tests,
    org.eclipse.passage.lic.jface,
    org.eclipse.passage.lic.e4.ui,
-   org.eclipse.passage.lic.jetty",
- org.eclipse.passage.lic.internal.api.version;x-friends:="org.eclipse.passage.lic.base"
+   org.eclipse.passage.lic.jetty"

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,22 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.version;
+package org.eclipse.passage.lic.base.version;
 
-/**
- * <p>
- * Raw notion of a version constructed and parsed for an arbitrary source
- * supplies a valid string representation or a structured equivalent.
- * </p>
- * <p>
- * Instance of this interface that survived the construction must always be
- * valid. That means eager parsing.
- * </p>
- */
-public interface Version {
+import org.eclipse.passage.lic.api.version.SemanticVersion;
 
-	String value();
+public final class DefaultVersion extends BaseVersion {
 
-	SemanticVersion semantic();
+	@Override
+	public String value() {
+		return "0.0.0"; //$NON-NLS-1$
+	}
+
+	@Override
+	public SemanticVersion semantic() {
+		return new BaseSemanticVersion(0, 0, 0);
+	}
 
 }
