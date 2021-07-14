@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.base.FeatureFilter;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class ConditionsFeatureFilter implements Supplier<FeatureFilter<ConditionPack>> {
 

@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
  * cycle from successful completion.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class UnsatisfiableRequirement implements Supplier<Requirement> {
 

@@ -17,6 +17,10 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class BaseGrantAcquisition implements GrantAcquisition {
 
 	private final String id;

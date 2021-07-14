@@ -29,7 +29,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  * an expression is met by the supplied environment or not.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface RuntimeEnvironment extends Service<EvaluationType> {
 

@@ -21,6 +21,9 @@ import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.hc.remote.Connection;
 
+/**
+ * @since 1.1
+ */
 public final class ResultsTransfered {
 
 	private final byte[] data;

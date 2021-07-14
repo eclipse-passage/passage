@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface MiningTool {
 

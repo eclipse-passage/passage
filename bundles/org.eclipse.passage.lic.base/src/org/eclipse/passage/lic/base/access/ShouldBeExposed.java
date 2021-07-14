@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.base.restrictions.NoSevereRestrictions;
 /**
  * Tells if the examination result should cause use notification
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class ShouldBeExposed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
 

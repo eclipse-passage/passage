@@ -20,7 +20,7 @@ import java.util.Objects;
  * {@code allowed}. Comparison is case sensitive.
  * 
  * @author user
- * @since 1.1
+ * @since 2.1
  *
  */
 public final class MatchingRulePerfect extends StrictMatchingRule {

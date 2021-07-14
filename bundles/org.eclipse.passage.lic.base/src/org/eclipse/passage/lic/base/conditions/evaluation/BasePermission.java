@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class BasePermission implements Permission {
 

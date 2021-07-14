@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.base.SumOfCollections;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class SumOfEmissions implements BinaryOperator<Emission> {
 

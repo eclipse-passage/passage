@@ -29,6 +29,8 @@ import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRe
 
 /**
  * Supplies all the service that runtime <i>access cycle</i> can count on.
+ * 
+ * @since 2.1
  */
 public interface AccessCycleConfiguration {
 

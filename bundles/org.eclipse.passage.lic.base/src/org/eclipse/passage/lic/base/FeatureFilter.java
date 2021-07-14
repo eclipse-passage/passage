@@ -21,6 +21,14 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
+/**
+ * 
+ * @author afedorov3un
+ *
+ * @param <T>
+ * 
+ * @since 2.1
+ */
 public final class FeatureFilter<T>
 		implements Function<ServiceInvocationResult<Collection<T>>, ServiceInvocationResult<Collection<T>>> {
 

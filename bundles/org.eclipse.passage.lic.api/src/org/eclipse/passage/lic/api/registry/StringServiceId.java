@@ -17,7 +17,7 @@ import java.util.Objects;
 /**
  * Base {@linkplain ServiceId} service implementation represents a single
  * {@code not null} string.
- * @since 1.1
+ * @since 2.1
  */
 public final class StringServiceId implements ServiceId {
 

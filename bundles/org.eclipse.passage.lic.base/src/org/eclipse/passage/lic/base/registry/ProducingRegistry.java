@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 /**
  * Begets new instance of a service for each {@code service} request.
  * 
- * @since 1.1
+ * @since 2.1
  */
 public abstract class ProducingRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 

@@ -25,6 +25,8 @@ import org.eclipse.passage.lic.base.io.UserHomePath;
 /**
  * Reads all the conditions containing in license files under
  * {@code user.home}'s {@code .passage} data folder.
+ * 
+ * @since 2.1
  */
 public final class UserHomeResidentConditions extends LocalConditions {
 

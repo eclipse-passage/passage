@@ -39,6 +39,8 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * <p>
  * If the examination produced no {@linkplain Restriction}s, then it is treated
  * as successful ({@code examinationPassed()})
+ * 
+ * @since 2.1
  */
 public interface ExaminationCertificate {
 

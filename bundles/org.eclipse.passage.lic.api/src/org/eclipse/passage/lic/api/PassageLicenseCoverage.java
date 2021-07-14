@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api;
 
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface PassageLicenseCoverage {
 
 	ServiceInvocationResult<ExaminationCertificate> assess();

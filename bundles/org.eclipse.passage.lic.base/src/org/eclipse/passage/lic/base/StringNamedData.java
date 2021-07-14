@@ -21,6 +21,8 @@ import java.util.function.Function;
  * interested in retrieving string data.
  * 
  * @see NamedData
+ * 
+ * @since 2.1
  */
 public abstract class StringNamedData extends BaseNamedData<String> {
 

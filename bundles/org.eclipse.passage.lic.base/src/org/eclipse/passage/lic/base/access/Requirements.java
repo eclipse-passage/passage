@@ -35,7 +35,7 @@ import org.eclipse.passage.lic.base.requirements.RequirementsFeatureFilter;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class Requirements implements Supplier<ServiceInvocationResult<Collection<Requirement>>> {
 

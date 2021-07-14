@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionPack;
  * Subset of a {@code parent} {@linkplain ConditionPack} contained
  * {@linkplain Condition}s for single feature.
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class FeatureConditionPack implements ConditionPack {
 

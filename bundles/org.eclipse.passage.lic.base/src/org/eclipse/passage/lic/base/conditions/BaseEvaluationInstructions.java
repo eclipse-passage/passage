@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.EvaluationType;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class BaseEvaluationInstructions implements EvaluationInstructions {
 

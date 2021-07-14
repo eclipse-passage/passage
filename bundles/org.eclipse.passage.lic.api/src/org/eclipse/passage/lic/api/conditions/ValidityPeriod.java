@@ -23,7 +23,7 @@ import java.time.ZonedDateTime;
  * Examples: 'from 1st of May, 2020 for two months' or 'each Friday ever'.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface ValidityPeriod {
 

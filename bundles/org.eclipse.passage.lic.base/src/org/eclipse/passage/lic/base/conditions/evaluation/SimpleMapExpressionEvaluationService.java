@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class SimpleMapExpressionEvaluationService implements ExpressionEvaluationService {
 

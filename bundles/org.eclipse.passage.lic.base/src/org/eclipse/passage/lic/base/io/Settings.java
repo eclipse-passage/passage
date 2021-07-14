@@ -40,7 +40,7 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * </p>
  * 
  * @see PassageFileExtension.Settings
- * @since 1.1
+ * @since 2.1
  */
 public final class Settings {
 

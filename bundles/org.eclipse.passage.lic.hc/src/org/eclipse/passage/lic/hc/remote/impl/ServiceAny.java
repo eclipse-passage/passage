@@ -28,6 +28,9 @@ import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
+/**
+ * @since 1.1
+ */
 public abstract class ServiceAny<C extends Connection, T, D extends RemoteServiceData> extends ServiceRemote<C, T, D> {
 
 	protected ServiceAny(Equipment equipment, Supplier<Client<C, T>> client, Supplier<Path> source) {

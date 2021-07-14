@@ -24,7 +24,7 @@ import java.time.ZonedDateTime;
  * {@code from < to}
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface ValidityPeriodClosed extends ValidityPeriodOpen {
 

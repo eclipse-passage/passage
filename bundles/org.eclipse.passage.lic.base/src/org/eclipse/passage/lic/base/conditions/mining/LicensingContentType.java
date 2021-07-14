@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.base.BaseNamedData;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class LicensingContentType extends BaseNamedData<ContentType> {
 

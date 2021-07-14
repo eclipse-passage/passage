@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
  * FIXME: explain exhaustively how to use, with code examples
  * 
  * @see org.eclipse.passage.lic.api
+ * 
+ * @since 2.1
  */
 public interface Passage {
 

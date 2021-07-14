@@ -23,6 +23,8 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  * encapsulated here.
  * 
  * @see NamedData
+ * 
+ * @since 2.1
  */
 public final class ProductVersion extends StringNamedData {
 

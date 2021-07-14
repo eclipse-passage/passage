@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 /**
  * String-valued {@linkplain ServiceId} with mime content type semantics
  * 
- * @since 1.1
+ * @since 2.1
  */
 public abstract class ConditionMiningTarget implements ServiceId {
 

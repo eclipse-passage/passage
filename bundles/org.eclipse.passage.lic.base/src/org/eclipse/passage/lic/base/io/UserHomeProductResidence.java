@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.LicensedProduct;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class UserHomeProductResidence implements Supplier<Path> {
 

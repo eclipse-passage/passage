@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class JointRegistry<I extends ServiceId, S extends Service<I>> implements Registry<I, S> {
 

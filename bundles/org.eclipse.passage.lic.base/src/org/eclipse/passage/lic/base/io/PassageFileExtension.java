@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public abstract class PassageFileExtension implements Supplier<String> {
 

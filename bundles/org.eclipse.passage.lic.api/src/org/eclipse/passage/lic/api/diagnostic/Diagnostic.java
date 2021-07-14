@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api.diagnostic;
 
 import java.util.List;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface Diagnostic {
 
 	List<Trouble> severe();

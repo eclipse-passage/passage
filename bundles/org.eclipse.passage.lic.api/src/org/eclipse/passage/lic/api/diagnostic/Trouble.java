@@ -15,6 +15,10 @@ package org.eclipse.passage.lic.api.diagnostic;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class Trouble {
 
 	private final TroubleCode code;

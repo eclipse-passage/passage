@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.function.Supplier;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class UserHomePath implements Supplier<Path> {
 

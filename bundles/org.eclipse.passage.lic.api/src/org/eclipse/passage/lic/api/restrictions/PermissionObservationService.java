@@ -18,6 +18,8 @@ import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 
 /**
  * several permissions for the same feature: keep
+ * 
+ * @since 2.1
  */
 public interface PermissionObservationService {
 

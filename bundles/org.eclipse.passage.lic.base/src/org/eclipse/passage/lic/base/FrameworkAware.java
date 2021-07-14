@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface FrameworkAware {
 

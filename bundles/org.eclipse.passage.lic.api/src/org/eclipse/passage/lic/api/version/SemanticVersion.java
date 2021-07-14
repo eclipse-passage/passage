@@ -17,7 +17,7 @@ package org.eclipse.passage.lic.api.version;
  * Well structured representation of a version.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface SemanticVersion {
 

@@ -19,6 +19,8 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  * {@code access cycle}. For the cases of any sabotage is detected this <i>
  * knowingly invalid</i> configuration is used to make an {@code access cycle}
  * fail.
+ * 
+ * @since 2.1
  */
 public final class InvalidLicensedProduct implements LicensedProduct {
 

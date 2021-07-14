@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class ReadOnlyRegistry<I extends ServiceId, S extends Service<I>> extends BaseRegistry<I, S> {
 

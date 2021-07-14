@@ -23,6 +23,10 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class BaseExaminationCertificate implements ExaminationCertificate {
 
 	private final Map<Requirement, Permission> satisfied;

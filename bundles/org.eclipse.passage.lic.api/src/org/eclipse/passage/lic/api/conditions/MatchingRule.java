@@ -30,7 +30,7 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * 
  * @see VersionMatch
  * @see Condition
- * @since 1.1
+ * @since 2.1
  */
 public abstract interface MatchingRule {
 

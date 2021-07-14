@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api.inspection;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface EnvironmentProperty {
 

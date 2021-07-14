@@ -17,6 +17,10 @@ import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.registry.Service;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface LicenseAcquisitionService extends Service<ConditionMiningTarget> {
 
 	ServiceInvocationResult<GrantAcquisition> acquire(LicensedProduct product, String feature);

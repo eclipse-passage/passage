@@ -16,6 +16,10 @@ import java.nio.file.Path;
 
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class PathLicenseAcquisitionService extends LocalLicenseAcquisitionService {
 
 	private final Path root;

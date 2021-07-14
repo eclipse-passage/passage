@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.registry.Registry;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface StreamCodecRegistry extends Supplier<Registry<LicensedProduct, StreamCodec>> {
 

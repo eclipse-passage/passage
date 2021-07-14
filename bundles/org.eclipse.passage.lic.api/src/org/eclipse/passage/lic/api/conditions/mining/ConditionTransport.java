@@ -25,6 +25,8 @@ import org.eclipse.passage.lic.api.registry.Service;
 /**
  * Encapsulates knowledge how to retrieve {@link Condition}(s) from an input
  * source of the configured {@linkplain ContentType}.
+ * 
+ * @since 2.1
  */
 public interface ConditionTransport extends Service<ContentType> {
 

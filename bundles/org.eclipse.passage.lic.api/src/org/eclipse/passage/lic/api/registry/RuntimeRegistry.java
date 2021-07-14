@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api.registry;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface RuntimeRegistry<I extends ServiceId, S extends Service<I>> extends Registry<I, S> {
 

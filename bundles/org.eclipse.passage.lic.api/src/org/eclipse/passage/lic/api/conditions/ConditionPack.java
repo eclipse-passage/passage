@@ -25,7 +25,7 @@ import java.util.Collection;
  * affect fates of conditions from other origins.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface ConditionPack {
 

@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class FileNameFromLicensedProduct implements Supplier<String> {
 

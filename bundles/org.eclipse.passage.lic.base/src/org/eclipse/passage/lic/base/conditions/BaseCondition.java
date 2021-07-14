@@ -19,6 +19,10 @@ import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class BaseCondition implements Condition {
 
 	private final String identifier;

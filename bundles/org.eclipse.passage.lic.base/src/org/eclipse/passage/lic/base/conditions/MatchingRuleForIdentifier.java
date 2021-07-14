@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.conditions.MatchingRule;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class MatchingRuleForIdentifier implements Supplier<MatchingRule> {
 	private final String identifier;

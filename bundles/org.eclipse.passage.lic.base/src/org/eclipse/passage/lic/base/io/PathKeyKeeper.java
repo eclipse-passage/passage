@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class PathKeyKeeper implements KeyKeeper {
 

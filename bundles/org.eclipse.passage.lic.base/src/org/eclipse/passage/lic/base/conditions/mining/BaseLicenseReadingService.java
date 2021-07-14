@@ -24,7 +24,7 @@ import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class BaseLicenseReadingService implements LicenseReadingService {
 

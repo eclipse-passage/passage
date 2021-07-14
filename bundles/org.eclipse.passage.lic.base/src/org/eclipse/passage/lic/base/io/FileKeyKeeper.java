@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class FileKeyKeeper implements KeyKeeper {
 

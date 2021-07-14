@@ -29,6 +29,8 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * <p>
  * Issue a {@linkplain Restriction} for each such unsatisfied requirement.
  * </p>
+ * 
+ * @since 2.1
  */
 public interface PermissionsExaminationService extends Service<StringServiceId> {
 

@@ -22,6 +22,8 @@ import java.util.function.Function;
  * 
  * @param <T> type of the value to supply
  * @see NamedData
+ * 
+ * @since 2.1
  */
 public abstract class BaseNamedData<T> implements NamedData<T> {
 

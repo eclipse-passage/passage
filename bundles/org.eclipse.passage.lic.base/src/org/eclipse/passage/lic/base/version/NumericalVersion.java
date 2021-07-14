@@ -21,6 +21,8 @@ import org.eclipse.passage.lic.api.version.SemanticVersion;
 /**
  * Auxiliary unit operating over {@linkplain SemanticVersion} collects it's
  * numerical fields in a list.
+ * 
+ * @since 2.1
  */
 public final class NumericalVersion implements Supplier<List<Integer>> {
 

@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
  * {@link ResolvedRequirements}s.
  *
  * @see ResolvedRequirements
- * @since 1.1
+ * @since 2.1
  */
 public interface Requirement {
 

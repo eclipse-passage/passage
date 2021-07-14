@@ -20,7 +20,7 @@ import java.util.Optional;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class BaseIssuerSignature implements IssuerSignature {
 

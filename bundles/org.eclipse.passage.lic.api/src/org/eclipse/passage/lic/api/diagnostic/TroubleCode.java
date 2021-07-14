@@ -15,6 +15,10 @@ package org.eclipse.passage.lic.api.diagnostic;
 import java.util.Objects;
 
 // FIXME: let it work on contract too
+/**
+ * 
+ * @since 2.1
+ */
 public abstract class TroubleCode {
 
 	private final int code;

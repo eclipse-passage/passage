@@ -35,6 +35,8 @@ import org.eclipse.passage.lic.api.registry.Service;
  * This interface is to be extended further to cover all atomic queries we might
  * need.
  * </p>
+ * 
+ * @since 2.1
  */
 public interface ExpressionTokenAssessmentService extends Service<EvaluationType> {
 
