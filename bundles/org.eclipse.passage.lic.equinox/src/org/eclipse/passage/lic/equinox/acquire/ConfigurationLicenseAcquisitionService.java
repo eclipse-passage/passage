@@ -16,6 +16,9 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.base.acquire.LocalLicenseAcquisitionService;
 import org.eclipse.passage.lic.equinox.conditions.ConfigurationMiningTarget;
 
+/**
+ * @since 2.1
+ */
 public final class ConfigurationLicenseAcquisitionService extends LocalLicenseAcquisitionService {
 
 	@Override

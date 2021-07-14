@@ -26,6 +26,9 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * @since 2.1
+ */
 public abstract class GearAware<G extends Gear, S extends GearSupplier<G>> {
 
 	private final Logger log = LogManager.getLogger(getClass());

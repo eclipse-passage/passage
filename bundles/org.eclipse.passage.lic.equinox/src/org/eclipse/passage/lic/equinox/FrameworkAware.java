@@ -39,6 +39,8 @@ import org.osgi.framework.ServiceReference;
  * <p>
  * Use {@code withFrameworkService} to implement client level secondary services
  * or {@code withFramework} to retrieve parts of configuration directly.
+ * 
+ * @since 2.1
  */
 public abstract class FrameworkAware<S> {
 

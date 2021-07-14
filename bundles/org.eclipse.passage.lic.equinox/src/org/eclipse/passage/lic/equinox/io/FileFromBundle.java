@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.Path;
 import org.osgi.framework.Bundle;
 
 /**
- * @since 2.0
+ * @since 2.1
  */
 public final class FileFromBundle {
 

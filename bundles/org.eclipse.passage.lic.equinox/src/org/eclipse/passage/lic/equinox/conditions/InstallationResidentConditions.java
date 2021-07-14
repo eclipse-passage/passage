@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.equinox.io.InstallationPath;
  * settings folder located under the product installation directory (supplied by
  * the eclipse platform).
  * 
- * @since 2.0
+ * @since 2.1
  */
 public final class InstallationResidentConditions extends LocalConditions {
 

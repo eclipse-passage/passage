@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 
+/**
+ * @since 2.1
+ */
 public final class ProductContacts implements Supplier<String> {
 
 	private final String key = "licensing.product.contacts"; //$NON-NLS-1$

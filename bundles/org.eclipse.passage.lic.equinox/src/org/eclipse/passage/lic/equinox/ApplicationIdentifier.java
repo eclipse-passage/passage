@@ -19,6 +19,9 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.base.ProductIdentifier;
 
+/**
+ * @since 2.1
+ */
 public final class ApplicationIdentifier implements Supplier<String> {
 
 	private final IApplicationContext context;

@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 
 /**
- * @since 2.0
+ * @since 2.1
  */
 public final class InstallationMiningTarget implements Supplier<ConditionMiningTarget> {
 

@@ -19,6 +19,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 
+/**
+ * @since 2.1
+ */
 public final class Environments implements Supplier<Collection<RuntimeEnvironment>> {
 
 	private final FrameworkAware<?> delegate;

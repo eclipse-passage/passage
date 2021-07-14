@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
  * Reads all the conditions containing in license files under {@code .passage}
  * settings folder located under the product {@code configuration} directory
  * (supplied by the eclipse platform).
+ * 
+ * @since 2.1
  */
 public final class ConfigurationResidentConditions extends LocalConditions {
 

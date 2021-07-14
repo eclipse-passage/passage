@@ -19,6 +19,9 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 
+/**
+ * @since 2.1
+ */
 public final class LicensedProductFromContext implements Supplier<LicensedProduct> {
 
 	private final IApplicationContext context;

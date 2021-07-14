@@ -20,6 +20,9 @@ import java.util.function.Supplier;
 import org.eclipse.core.runtime.FileLocator;
 import org.osgi.framework.Bundle;
 
+/**
+ * @since 2.1
+ */
 public final class BundleResource implements Supplier<Optional<URL>> {
 	private final Bundle bundle;
 	private final Path path;

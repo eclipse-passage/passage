@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
  * the configuration folder.
  * </p>
  * 
- * @since 2.0
+ * @since 2.1
  */
 public final class ConfigurationPath implements Supplier<Path> {
 

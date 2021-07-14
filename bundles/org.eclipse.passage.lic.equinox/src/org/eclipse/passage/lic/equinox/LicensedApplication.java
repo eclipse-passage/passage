@@ -22,6 +22,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 
+/**
+ * @since 2.1
+ */
 public final class LicensedApplication {
 
 	public LicensedProduct product() throws LicensingException {

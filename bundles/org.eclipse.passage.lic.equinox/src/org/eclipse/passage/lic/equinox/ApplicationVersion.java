@@ -23,6 +23,9 @@ import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
+/**
+ * @since 2.1
+ */
 public final class ApplicationVersion implements Supplier<String> {
 
 	private final IApplicationContext context;

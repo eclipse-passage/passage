@@ -31,7 +31,7 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
  * the general installation folder.
  * </p>
  * 
- * @since 2.0
+ * @since 2.1
  */
 public final class InstallationPath implements Supplier<Path> {
 
