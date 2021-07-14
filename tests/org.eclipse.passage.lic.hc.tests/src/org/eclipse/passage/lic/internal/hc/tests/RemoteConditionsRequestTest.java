@@ -44,7 +44,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-@SuppressWarnings("restriction")
 public final class RemoteConditionsRequestTest {
 
 	private final String host = "fake.licensing.server"; //$NON-NLS-1$

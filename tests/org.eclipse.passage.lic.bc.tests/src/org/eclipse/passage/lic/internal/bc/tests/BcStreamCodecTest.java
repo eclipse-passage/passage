@@ -32,7 +32,6 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
-@SuppressWarnings("restriction")
 abstract class BcStreamCodecTest {
 
 	@Rule

@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 
-@SuppressWarnings("restriction")
 final class LicensingOperatorRequirement implements Supplier<Optional<Requirement>> {
 
 	private final ExaminationCertificate certificate;

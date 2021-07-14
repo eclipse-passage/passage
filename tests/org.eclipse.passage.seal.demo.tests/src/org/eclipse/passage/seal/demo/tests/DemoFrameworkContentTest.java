@@ -31,9 +31,8 @@ import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class DemoFrameworkContentTest {
-	
+
 	@Test
 	public void providesBothEquinoxRequirementServices() {
 		Registry<StringServiceId, ResolvedRequirements> registry = registry();
@@ -54,11 +53,11 @@ public final class DemoFrameworkContentTest {
 		assumeTrue(registry.isPresent());
 		return registry.get().get();
 	}
-	
+
 	private Framework framework() {
 		Optional<Framework> framework = new DemoFrameworkSupplier().get();
 		assumeTrue(framework.isPresent());
 		return framework.get();
 	}
-	
+
 }

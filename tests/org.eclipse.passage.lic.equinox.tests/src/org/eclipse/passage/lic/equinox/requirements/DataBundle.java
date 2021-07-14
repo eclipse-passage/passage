@@ -22,13 +22,11 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
-import org.eclipse.passage.lic.equinox.requirements.LicensingFeatureCapabilitiesFromBundle;
 import org.eclipse.passage.lic.internal.base.Cached;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.BundleWiring;
 
-@SuppressWarnings("restriction")
 final class DataBundle {
 
 	private final String id = "org.eclipse.passage.lic.equinox.tests.data.requirements"; //$NON-NLS-1$

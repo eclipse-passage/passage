@@ -32,7 +32,6 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginReference;
 
-@SuppressWarnings("restriction")
 public final class LicensedE4FullFeatherProductTemplateSection extends BaseLicensedProductSection {
 
 	public LicensedE4FullFeatherProductTemplateSection() {

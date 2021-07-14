@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,7 +17,6 @@ import java.nio.file.Path;
 
 import org.eclipse.passage.lic.base.io.FileContent;
 
-@SuppressWarnings("restriction")
 final class PairContent extends PairInfo<byte[]> {
 
 	PairContent(Path first, Path second) throws IOException {

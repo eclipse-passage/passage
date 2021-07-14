@@ -27,7 +27,6 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.base.registry.JointRegistry;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 
-@SuppressWarnings("restriction")
 interface LicensingDirection {
 
 	public MinedConditionsRegistry conditionMiners();

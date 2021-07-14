@@ -17,7 +17,6 @@ import java.time.ZonedDateTime;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class BaseValidityPeriodClosedTest {
 
 	@Test(expected = NullPointerException.class)

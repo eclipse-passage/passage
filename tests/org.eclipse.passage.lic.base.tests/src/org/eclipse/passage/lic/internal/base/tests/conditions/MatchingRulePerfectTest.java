@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.api.conditions.MatchingRule;
 import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class MatchingRulePerfectTest {
 
 	@Test

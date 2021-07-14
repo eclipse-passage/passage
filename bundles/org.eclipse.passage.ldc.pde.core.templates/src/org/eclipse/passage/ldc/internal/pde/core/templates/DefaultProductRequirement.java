@@ -19,7 +19,6 @@ import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 
-@SuppressWarnings("restriction")
 public final class DefaultProductRequirement implements Supplier<Requirement> {
 
 	private final Supplier<String> product;

@@ -20,7 +20,6 @@ import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.osgi.framework.FrameworkUtil;
 
-@SuppressWarnings("restriction")
 abstract class FocusedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
 
 	protected LicensingDirection delegate; // lateinit, practically final and not null

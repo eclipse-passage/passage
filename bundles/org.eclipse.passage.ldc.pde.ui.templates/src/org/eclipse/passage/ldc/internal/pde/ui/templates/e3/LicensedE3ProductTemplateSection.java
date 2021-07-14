@@ -31,7 +31,6 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginReference;
 
-@SuppressWarnings("restriction")
 public class LicensedE3ProductTemplateSection extends BaseLicensedProductSection {
 
 	private static final String LICENSED_E3_PRODUCT = "LicensedE3Product"; //$NON-NLS-1$

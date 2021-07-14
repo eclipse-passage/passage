@@ -19,10 +19,8 @@ import java.util.List;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.base.NamedData;
-import org.eclipse.passage.lic.equinox.requirements.RequirementsToBundle;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class WriteLicCapablitiesTest {
 	private final String expectation = "Provide-Capability: " //$NON-NLS-1$
 			+ "licensing.feature;licensing.feature=\"E\";name=\"Euler number\";version=\"2.71.82\";provider=\"Euler\";level=\"info\"," //$NON-NLS-1$

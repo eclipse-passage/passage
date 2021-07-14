@@ -32,7 +32,6 @@ import org.eclipse.passage.loc.internal.workbench.i18n.WorkbenchMessages;
  * instance.
  * 
  */
-@SuppressWarnings("restriction")
 public final class RootClassifierWizard extends BaseClassifierWizard<RootClassifierWizardPage> {
 
 	/**

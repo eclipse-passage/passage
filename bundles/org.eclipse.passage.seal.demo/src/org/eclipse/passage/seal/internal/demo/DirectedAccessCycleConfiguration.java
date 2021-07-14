@@ -30,7 +30,6 @@ import org.eclipse.passage.lic.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.osgi.framework.Bundle;
 
-@SuppressWarnings("restriction")
 public final class DirectedAccessCycleConfiguration extends BaseAccessCycleConfiguration {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;

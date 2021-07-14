@@ -33,7 +33,6 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 
-@SuppressWarnings("restriction")
 final class TestState {
 
 	private final LicensedProduct product;

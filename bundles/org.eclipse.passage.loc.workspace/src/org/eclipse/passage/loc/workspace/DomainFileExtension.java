@@ -14,7 +14,6 @@ package org.eclipse.passage.loc.workspace;
 
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 
-@SuppressWarnings("restriction")
 interface DomainFileExtension {
 
 	public static final class Keys extends PassageFileExtension {

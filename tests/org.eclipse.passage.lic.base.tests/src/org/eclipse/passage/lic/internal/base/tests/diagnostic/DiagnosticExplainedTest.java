@@ -23,7 +23,6 @@ import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public final class DiagnosticExplainedTest {
 
 	@Test(expected = NullPointerException.class)

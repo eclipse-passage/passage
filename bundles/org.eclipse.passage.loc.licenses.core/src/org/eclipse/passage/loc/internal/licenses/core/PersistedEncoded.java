@@ -58,7 +58,6 @@ final class PersistedEncoded {
 		return new ProductKeys(product).scrStream();
 	}
 
-	@SuppressWarnings("restriction")
 	private StreamCodec codec() throws LicensingException {
 		Optional<StreamCodec> codec = new OperatorGearAware().withGear(gear -> gear.codec(product));
 		if (!codec.isPresent()) {

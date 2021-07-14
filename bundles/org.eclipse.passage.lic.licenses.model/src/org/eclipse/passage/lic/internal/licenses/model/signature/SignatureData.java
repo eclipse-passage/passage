@@ -22,7 +22,6 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 /**
  * @since 2.0
  */
-@SuppressWarnings("restriction")
 public abstract class SignatureData implements NamedData<String> {
 
 	private final Signature signature;

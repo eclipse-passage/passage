@@ -14,7 +14,6 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 
-@SuppressWarnings("restriction")
 public final class FakeFeature implements Feature {
 
 	private final String identity;
