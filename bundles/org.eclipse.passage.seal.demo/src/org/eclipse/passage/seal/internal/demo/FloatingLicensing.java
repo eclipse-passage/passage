@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.seal.internal.demo;
 
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransportRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
@@ -28,8 +30,6 @@ import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.NetConnection;
 import org.eclipse.passage.lic.hc.remote.impl.acquire.RemoteAcquisitionService;
 import org.eclipse.passage.lic.hc.remote.impl.mine.RemoteConditions;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 
 @SuppressWarnings("restriction")
 final class FloatingLicensing implements LicensingDirection {

@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
-import org.eclipse.passage.lic.internal.base.acquire.BaseGrantAcquisition;
+import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
+import org.eclipse.passage.lic.base.acquire.BaseGrantAcquisition;
 
 final class TentativeFeatureAccess implements Supplier<GrantAcquisition>, Predicate<GrantAcquisition> {
 

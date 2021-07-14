@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
@@ -25,7 +26,6 @@ import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRegistry;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 
 /**
  * Supplies all the service that runtime <i>access cycle</i> can count on.

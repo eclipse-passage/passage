@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationExc
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
-import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
+import org.eclipse.passage.lic.base.inspection.BaseEnvironmentProperty;
 import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 
 /**

@@ -18,6 +18,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.registry.Registry;
@@ -25,7 +26,6 @@ import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.base.registry.JointRegistry;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 
 @SuppressWarnings("restriction")
 interface LicensingDirection {
