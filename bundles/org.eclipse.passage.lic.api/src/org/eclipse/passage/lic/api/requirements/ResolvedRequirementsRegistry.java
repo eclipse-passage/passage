@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface ResolvedRequirementsRegistry extends Supplier<Registry<StringServiceId, ResolvedRequirements>> {
 

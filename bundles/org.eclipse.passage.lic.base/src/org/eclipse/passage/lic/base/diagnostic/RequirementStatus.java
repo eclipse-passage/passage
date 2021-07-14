@@ -19,6 +19,10 @@ import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.base.i18n.ExaminationExplanedMessages;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class RequirementStatus {
 
 	private final String feature;

@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.base.SumOfMaps;
 import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class SumOfCertificates implements BinaryOperator<ExaminationCertificate> {
 

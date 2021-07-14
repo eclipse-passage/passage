@@ -16,7 +16,7 @@ package org.eclipse.passage.lic.api;
  * 
  * Resolves a service instance for a given type if present
  * 
- * @since 1.1
+ * @since 2.1
  *
  */
 @FunctionalInterface

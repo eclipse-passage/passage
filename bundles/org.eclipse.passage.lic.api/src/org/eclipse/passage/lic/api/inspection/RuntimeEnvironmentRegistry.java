@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.registry.Registry;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface RuntimeEnvironmentRegistry extends Supplier<Registry<EvaluationType, RuntimeEnvironment>> {
 

@@ -18,6 +18,10 @@ import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevelComparator;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class RestrictionMustPauseExecution implements Predicate<Restriction> {
 
 	@Override

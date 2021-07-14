@@ -33,7 +33,7 @@ import org.eclipse.passage.lic.base.SumOfCollections;
 /**
  * FIXME: Has public visibility only for testing.
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class Permissions implements Supplier<ServiceInvocationResult<Collection<Permission>>> {
 

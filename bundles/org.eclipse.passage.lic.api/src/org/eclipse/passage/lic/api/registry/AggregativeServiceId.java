@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.api.registry;
 import java.util.Objects;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class AggregativeServiceId<I1 extends ServiceId, I2 extends ServiceId> implements ServiceId {
 

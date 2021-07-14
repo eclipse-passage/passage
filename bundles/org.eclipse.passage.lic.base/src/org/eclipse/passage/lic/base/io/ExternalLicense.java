@@ -20,7 +20,7 @@ import java.nio.file.StandardCopyOption;
 import org.eclipse.passage.lic.api.LicensedProduct;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class ExternalLicense {
 

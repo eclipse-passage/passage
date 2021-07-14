@@ -20,6 +20,8 @@ import java.util.function.Function;
  * expected to be stored in a variety of sources under a special key.
  * 
  * @see NamedData
+ * 
+ * @since 2.1
  */
 public final class FeatureIdentifier extends StringNamedData {
 

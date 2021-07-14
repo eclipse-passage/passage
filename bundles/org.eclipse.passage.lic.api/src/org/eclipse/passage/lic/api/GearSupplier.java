@@ -12,6 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api;
 
+/**
+ * 
+ * @param <G>
+ * 
+ * @since 2.1
+ */
 public interface GearSupplier<G extends Gear> {
 
 	G gear();

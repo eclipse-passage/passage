@@ -42,7 +42,7 @@ import org.eclipse.passage.lic.internal.base.i18n.ConditionMiningMessages;
  * declare.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public abstract class LocalConditions implements MinedConditions {
 

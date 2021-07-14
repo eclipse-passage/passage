@@ -20,7 +20,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class FileContent {
 

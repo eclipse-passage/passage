@@ -29,6 +29,8 @@ import java.util.function.Supplier;
  * </p>
  * 
  * @param <T> type of a value to be supplied
+ * 
+ * @since 2.1
  */
 public interface NamedData<T> extends Supplier<Optional<T>> {
 

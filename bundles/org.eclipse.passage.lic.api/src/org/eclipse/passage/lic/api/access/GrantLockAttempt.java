@@ -16,7 +16,7 @@ import org.eclipse.passage.lic.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface GrantLockAttempt {
 

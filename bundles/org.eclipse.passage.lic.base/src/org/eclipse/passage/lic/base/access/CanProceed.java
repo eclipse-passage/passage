@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.base.restrictions.NoSevereRestrictions;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class CanProceed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
 

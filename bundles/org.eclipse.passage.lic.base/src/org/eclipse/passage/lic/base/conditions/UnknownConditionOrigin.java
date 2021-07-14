@@ -16,6 +16,10 @@ import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.IssuerSignature;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class UnknownConditionOrigin implements ConditionOrigin {
 
 	private final ConditionMiningTarget target = new ConditionMiningTarget.Of("unknown"); //$NON-NLS-1$

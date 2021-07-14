@@ -18,6 +18,8 @@ import java.time.ZonedDateTime;
  * As licensing runtime is a complicated and infrastructure-dependent, wide
  * variety of things can occasionally go south. This general purpose exception
  * serves misbehaviors in crucial parts.
+ * 
+ * @since 2.1
  */
 public final class LicensingException extends Exception {
 

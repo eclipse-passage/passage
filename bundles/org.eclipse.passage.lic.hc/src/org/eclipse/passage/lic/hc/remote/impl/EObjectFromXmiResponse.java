@@ -22,6 +22,9 @@ import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
+/**
+ * @since 1.1
+ */
 public final class EObjectFromXmiResponse<T extends EObject> implements ResponseHandler<T> {
 
 	private final Class<T> expected;

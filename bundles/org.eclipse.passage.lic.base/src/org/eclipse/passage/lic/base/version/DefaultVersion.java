@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.base.version;
 
 import org.eclipse.passage.lic.api.version.SemanticVersion;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class DefaultVersion extends BaseVersion {
 
 	@Override

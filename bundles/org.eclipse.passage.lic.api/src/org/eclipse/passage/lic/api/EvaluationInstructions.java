@@ -22,6 +22,8 @@ package org.eclipse.passage.lic.api;
  * hardware evaluation and assessing it against condition's expectations. These
  * ones can demand particular hardware part of have predefined serial id.
  * </p>
+ * 
+ * @since 2.1
  */
 public interface EvaluationInstructions {
 

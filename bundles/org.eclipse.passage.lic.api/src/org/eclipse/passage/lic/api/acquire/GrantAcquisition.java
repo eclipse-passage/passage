@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api.acquire;
 
 import java.util.Date;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface GrantAcquisition {
 
 	String identifier();

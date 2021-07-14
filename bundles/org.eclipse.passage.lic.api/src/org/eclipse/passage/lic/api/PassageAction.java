@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api;
 
 import java.util.Objects;
 
+/**
+ * 
+ * @since 2.1
+ */
 public abstract class PassageAction {
 
 	private final String name;

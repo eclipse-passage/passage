@@ -22,7 +22,7 @@ package org.eclipse.passage.lic.api.version;
  * valid. That means eager parsing.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface Version {
 

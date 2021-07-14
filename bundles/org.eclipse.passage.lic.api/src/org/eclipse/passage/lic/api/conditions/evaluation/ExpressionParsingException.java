@@ -13,7 +13,7 @@
 package org.eclipse.passage.lic.api.conditions.evaluation;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 @SuppressWarnings("serial")
 public final class ExpressionParsingException extends Exception {

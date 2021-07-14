@@ -30,6 +30,8 @@ import org.eclipse.passage.lic.api.requirements.Requirement;
  * All restrictions begotten then come to {@code execution} - licensing
  * protection in action.
  * </p>
+ * 
+ * @since 2.1
  */
 public interface Restriction {
 

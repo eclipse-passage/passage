@@ -16,6 +16,10 @@ import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.LicensedProduct;
 
+/**
+ * 
+ * @since 2.1
+ */
 public abstract class BaseFramework implements Framework {
 
 	private final AccessCycleConfiguration access;

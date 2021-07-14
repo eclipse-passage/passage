@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface PermissionEmittingService extends Service<StringServiceId> {
 

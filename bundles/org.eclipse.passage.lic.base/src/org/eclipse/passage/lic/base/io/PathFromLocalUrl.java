@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class PathFromLocalUrl implements Supplier<Path> {
 

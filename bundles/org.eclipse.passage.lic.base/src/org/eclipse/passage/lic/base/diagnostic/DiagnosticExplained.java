@@ -22,6 +22,10 @@ import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticExplainedMessages;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class DiagnosticExplained implements Supplier<String> {
 
 	private final Diagnostic diagnostic;

@@ -32,7 +32,7 @@ import org.eclipse.passage.lic.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class Conditions implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 

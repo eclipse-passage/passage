@@ -18,6 +18,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.version.SemanticVersion;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class BaseSemanticVersion implements SemanticVersion {
 
 	private final int major;

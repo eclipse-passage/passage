@@ -15,6 +15,10 @@ package org.eclipse.passage.lic.base.diagnostic.code;
 import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.base.i18n.DiagnosticCodeMessages;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class ServiceFailedOnMorsel extends TroubleCode {
 
 	public ServiceFailedOnMorsel() {

@@ -21,6 +21,9 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.hc.remote.Connection;
 
+/**
+ * @since 1.1
+ */
 public final class NetConnection implements Connection {
 
 	private final HttpURLConnection connection;

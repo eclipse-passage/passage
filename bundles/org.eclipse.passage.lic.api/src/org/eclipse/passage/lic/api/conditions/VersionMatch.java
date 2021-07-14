@@ -31,7 +31,7 @@ package org.eclipse.passage.lic.api.conditions;
  * 
  * @see Condition
  * @see MatchingRule
- * @since 1.1
+ * @since 2.1
  */
 public interface VersionMatch {
 

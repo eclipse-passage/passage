@@ -17,6 +17,10 @@ import java.util.function.Predicate;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class NoSevereRestrictions implements Predicate<ExaminationCertificate> {
 
 	@Override

@@ -37,7 +37,7 @@ import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
  * </p>
  * 
  * @param <S> type of {@linkplain Service} to keep
- * @since 1.1
+ * @since 2.1
  */
 public final class BaseRuntimeRegistry<I extends ServiceId, S extends Service<I>> //
 		extends BaseRegistry<I, S> //

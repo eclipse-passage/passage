@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class SimpleMapExpression implements ParsedExpression {
 

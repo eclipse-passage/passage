@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.api.registry.ServiceId;
  * <p>
  * Designed to be a <i>data-class</i>.
  * </p>
+ * 
+ * @since 2.1
  */
 public abstract class EvaluationType implements ServiceId {
 

@@ -20,7 +20,7 @@ import org.eclipse.passage.lic.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.base.BaseNamedData;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public final class SecurityKeyAlgorithm extends BaseNamedData<EncryptionAlgorithm> {
 

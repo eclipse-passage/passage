@@ -37,7 +37,7 @@ package org.eclipse.passage.lic.base.conditions;
  * {@code default required} always matches to any {@code allowed} version.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class MatchingRuleEquivalent extends StrictMatchingRule {
 

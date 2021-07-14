@@ -21,7 +21,7 @@ import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.registry.Service;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface LicenseReadingService extends Service<LicensedProduct> {
 

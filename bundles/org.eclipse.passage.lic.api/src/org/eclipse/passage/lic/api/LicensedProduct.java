@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api;
 
 import org.eclipse.passage.lic.api.registry.ServiceId;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface LicensedProduct extends ServiceId {
 
 	String identifier();

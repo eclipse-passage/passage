@@ -28,7 +28,7 @@ import org.eclipse.passage.lic.api.registry.Service;
  * public key content.
  * </p>
  * 
- * @since 1.1
+ * @since 2.1
  */
 public interface KeyKeeper extends Service<LicensedProduct> {
 	/**

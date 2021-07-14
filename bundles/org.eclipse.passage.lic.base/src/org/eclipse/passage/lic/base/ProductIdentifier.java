@@ -22,6 +22,8 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  * expected to be stored in a variety of sources under a special key.
  * 
  * @see NamedData
+ * 
+ * @since 2.1
  */
 public final class ProductIdentifier extends StringNamedData {
 

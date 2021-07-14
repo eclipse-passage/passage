@@ -23,6 +23,8 @@ import org.eclipse.passage.lic.api.LicensedProduct;
  * @see LicensedProduct
  * @see ProductIdentifier
  * @see ProductVersion
+ * 
+ * @since 2.1
  */
 public final class BaseLicensedProduct implements LicensedProduct {
 

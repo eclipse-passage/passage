@@ -21,6 +21,10 @@ import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 
 // FIXME: just stub for now. Implement properly. #568791
+/**
+ * 
+ * @since 2.1
+ */
 public abstract class LocalLicenseAcquisitionService implements LicenseAcquisitionService {
 
 	@Override

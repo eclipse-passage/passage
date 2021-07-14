@@ -26,6 +26,8 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
  * Which inevitably means end user involvement through dialogs exposing current
  * licensing status, failures diagnostic, import license facilities, etc
  * </p>
+ * 
+ * @since 2.1
  */
 public interface PassageUI {
 

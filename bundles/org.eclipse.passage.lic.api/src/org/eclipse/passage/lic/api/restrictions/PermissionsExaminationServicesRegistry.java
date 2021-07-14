@@ -17,6 +17,10 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface PermissionsExaminationServicesRegistry
 		extends Supplier<Registry<StringServiceId, PermissionsExaminationService>> {
 

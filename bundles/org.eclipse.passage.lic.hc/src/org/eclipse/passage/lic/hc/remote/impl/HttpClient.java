@@ -26,6 +26,9 @@ import org.eclipse.passage.lic.hc.remote.RequestContext;
 import org.eclipse.passage.lic.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 
+/**
+ * @since 1.1
+ */
 public final class HttpClient<T> implements Client<NetConnection, T> {
 
 	@Override

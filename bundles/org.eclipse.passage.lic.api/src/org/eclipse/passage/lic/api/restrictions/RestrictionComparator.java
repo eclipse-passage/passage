@@ -14,6 +14,10 @@ package org.eclipse.passage.lic.api.restrictions;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class RestrictionComparator implements Comparator<Restriction> {
 
 	@Override

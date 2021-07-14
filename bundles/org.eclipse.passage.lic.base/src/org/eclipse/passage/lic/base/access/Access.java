@@ -27,7 +27,7 @@ import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 /**
  * Top-level access cycle
  * 
- * @since 1.1
+ * @since 2.1
  */
 public final class Access {
 

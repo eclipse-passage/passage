@@ -17,6 +17,10 @@ import java.util.function.Predicate;
 
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class CertificateIsRestrictive implements Predicate<Optional<ExaminationCertificate>> {
 
 	@Override

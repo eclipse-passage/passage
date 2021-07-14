@@ -16,6 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BinaryOperator;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class SumOfMaps<K, V> implements BinaryOperator<Map<K, V>> {
 
 	@Override

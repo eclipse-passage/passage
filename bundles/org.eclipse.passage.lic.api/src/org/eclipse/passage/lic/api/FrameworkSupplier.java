@@ -15,6 +15,11 @@ package org.eclipse.passage.lic.api;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * 
+ * @since 2.1
+ *
+ */
 public interface FrameworkSupplier extends Supplier<Optional<Framework>> {
 
 }

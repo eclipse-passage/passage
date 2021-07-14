@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Automatic-Module-Name: org.eclipse.passage.lic.api.base
+Automatic-Module-Name: org.eclipse.passage.lic.base
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.passage.lic.base
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright

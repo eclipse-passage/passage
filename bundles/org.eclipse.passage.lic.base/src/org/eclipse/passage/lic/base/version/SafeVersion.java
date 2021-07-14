@@ -28,6 +28,8 @@ import org.eclipse.passage.lic.api.version.SemanticVersion;
  * Provides the famous {@code default} version in case of any {@code source}
  * inconsistency.
  * </p>
+ * 
+ * @since 2.1
  */
 public final class SafeVersion extends BaseVersion {
 

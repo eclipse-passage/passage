@@ -17,6 +17,8 @@ import org.eclipse.passage.lic.api.registry.Service;
 /**
  * Any implementation must follow the contract defined in
  * {@code ExpressionEvaluationServiceContractTest}
+ * 
+ * @since 2.1
  */
 public interface ExpressionEvaluationService extends Service<ExpressionProtocol> {
 

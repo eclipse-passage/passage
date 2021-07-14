@@ -20,6 +20,8 @@ import org.eclipse.passage.lic.api.conditions.ConditionPack;
 
 /**
  * Aggregates results of a {@linkplain ConditionPack}'s successful evaluation.
+ * 
+ * @since 2.1
  */
 public final class Emission {
 

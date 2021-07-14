@@ -33,6 +33,9 @@ import org.eclipse.passage.lic.internal.net.ServerAuthenticationExpression;
 import org.eclipse.passage.lic.internal.net.ServerAuthenticationType;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
+/**
+ * @since 1.1
+ */
 public abstract class RequestParameters implements QueryParameters {
 
 	private final LicensedProduct product;

@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public abstract class ArmedMiningTool implements MiningTool {
 

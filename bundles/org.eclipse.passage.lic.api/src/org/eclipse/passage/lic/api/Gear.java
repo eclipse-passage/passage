@@ -15,6 +15,8 @@ package org.eclipse.passage.lic.api;
 /**
  * Marker interface for a product based on Passage infrastructure to supply all
  * necessary services
+ * 
+ * @since 2.1
  */
 public interface Gear {
 

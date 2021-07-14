@@ -17,6 +17,10 @@ import java.util.Objects;
 import org.eclipse.passage.lic.api.inspection.EnvironmentProperty;
 import org.eclipse.passage.lic.internal.base.i18n.InspectionMessages;
 
+/**
+ * 
+ * @since 2.1
+ */
 public abstract class BaseEnvironmentProperty implements EnvironmentProperty {
 
 	protected final String separator = ".";//$NON-NLS-1$

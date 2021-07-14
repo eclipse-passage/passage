@@ -26,6 +26,10 @@ import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class PersonalLicenseMiningEquipment implements MiningEquipment {
 
 	private final KeyKeeperRegistry keys;

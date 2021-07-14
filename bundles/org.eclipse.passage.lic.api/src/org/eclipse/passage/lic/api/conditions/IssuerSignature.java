@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * @since 1.1
+ * @since 2.1
  */
 public interface IssuerSignature {
 

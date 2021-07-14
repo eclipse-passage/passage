@@ -19,6 +19,10 @@ import java.util.Objects;
 import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 
+/**
+ * 
+ * @since 2.1
+ */
 public final class BaseDiagnostic implements Diagnostic {
 
 	private final List<Trouble> severe;

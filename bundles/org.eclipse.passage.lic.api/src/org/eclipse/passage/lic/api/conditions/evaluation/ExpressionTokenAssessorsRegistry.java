@@ -17,6 +17,10 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.registry.Registry;
 
+/**
+ * 
+ * @since 2.1
+ */
 public interface ExpressionTokenAssessorsRegistry
 		extends Supplier<Registry<EvaluationType, ExpressionTokenAssessmentService>> {
 
