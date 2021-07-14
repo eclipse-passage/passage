@@ -23,6 +23,9 @@ import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
+/**
+ * @since 1.1
+ */
 public final class PathKeyKeeper implements KeyKeeper {
 
 	private final LicensedProduct product;
