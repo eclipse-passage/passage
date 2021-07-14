@@ -23,6 +23,7 @@ import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.FrameworkAware;
 import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.base.diagnostic.code.NoFramework;
 import org.eclipse.passage.lic.base.diagnostic.code.SeveralFrameworks;
@@ -42,19 +43,20 @@ import org.osgi.framework.ServiceReference;
  * 
  * @since 2.1
  */
-public abstract class FrameworkAware<S> {
+public abstract class EquinoxFrameworkAware<S> implements FrameworkAware {
 
 	private final BundleContext context;
 	private final Class<S> component;
 	private final Function<S, Optional<Framework>> constructor;
 
-	protected FrameworkAware(Class<S> cls, Function<S, Optional<Framework>> constructor) {
+	protected EquinoxFrameworkAware(Class<S> cls, Function<S, Optional<Framework>> constructor) {
 		// get this exact bundle, not a bundle of an ancestor class
-		this.context = FrameworkUtil.getBundle(FrameworkAware.class).getBundleContext();
+		this.context = FrameworkUtil.getBundle(EquinoxFrameworkAware.class).getBundleContext();
 		this.component = cls;
 		this.constructor = constructor;
 	}
 
+	@Override
 	public final <T> ServiceInvocationResult<T> withFrameworkService(
 			Function<Framework, ServiceInvocationResult<T>> invoke) {
 		return withReference(//
@@ -67,6 +69,7 @@ public abstract class FrameworkAware<S> {
 				this::severalFrameworks);
 	}
 
+	@Override
 	public final <T> Optional<T> withFramework(Function<Framework, T> invoke) {
 		return withReference(//
 				reference -> //
