@@ -17,12 +17,12 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.base.restrictions.DefaultRestrictionLevel;
 import org.eclipse.passage.lic.base.version.DefaultVersion;
 import org.eclipse.passage.lic.base.version.SafeVersion;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.base.restrictions.DefaultRestrictionLevel;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 

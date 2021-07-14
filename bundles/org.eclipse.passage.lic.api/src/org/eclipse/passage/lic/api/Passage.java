@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.api;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.Restriction;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
  * <p>

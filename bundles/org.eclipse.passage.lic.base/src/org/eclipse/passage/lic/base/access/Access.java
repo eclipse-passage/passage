@@ -15,14 +15,14 @@ package org.eclipse.passage.lic.base.access;
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
-import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
 
 /**
  * Top-level access cycle

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 @SuppressWarnings("restriction")
 public final class FakeRequirement implements Requirement {

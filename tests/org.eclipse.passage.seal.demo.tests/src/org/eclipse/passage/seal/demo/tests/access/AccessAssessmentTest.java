@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.access.Access;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.junit.Test;
 

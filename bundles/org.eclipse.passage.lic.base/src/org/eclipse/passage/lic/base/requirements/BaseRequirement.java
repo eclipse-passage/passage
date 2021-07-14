@@ -16,7 +16,7 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
  * Base <i>data-driven</i> implementation of a {@linkplain Requirement}.

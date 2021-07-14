@@ -20,6 +20,8 @@ import java.util.Collections;
 
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.BaseCondition;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
@@ -30,12 +32,10 @@ import org.eclipse.passage.lic.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
+import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
+import org.eclipse.passage.lic.base.restrictions.BaseRestriction;
+import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
-import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
-import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

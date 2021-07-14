@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,9 +17,9 @@ import java.util.function.Consumer;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.base.restrictions.CertificateIsRestrictive;
-import org.eclipse.passage.lic.internal.base.restrictions.CertificateWorthAttention;
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
+import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 
 final class CertificateSummary implements Consumer<TitleAreaDialog> {

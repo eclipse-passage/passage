@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.requirements;
 
-import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
+import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 
 /**
  * The usage constraint defined for specific feature identifier with given

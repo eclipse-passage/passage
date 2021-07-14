@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,13 +12,13 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.jface.dialogs.licensing;
 
+import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
+import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.LicensingStatus;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.RequirementStatus;
-import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;
 import org.eclipse.passage.lic.internal.equinox.ProductContacts;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 import org.eclipse.swt.SWT;

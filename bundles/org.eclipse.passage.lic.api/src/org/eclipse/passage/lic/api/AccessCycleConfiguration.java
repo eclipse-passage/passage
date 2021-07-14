@@ -24,8 +24,8 @@ import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
 import org.eclipse.passage.lic.api.io.StreamCodecRegistry;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
+import org.eclipse.passage.lic.api.restrictions.PermissionsExaminationServicesRegistry;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 
 /**
  * Supplies all the service that runtime <i>access cycle</i> can count on.
