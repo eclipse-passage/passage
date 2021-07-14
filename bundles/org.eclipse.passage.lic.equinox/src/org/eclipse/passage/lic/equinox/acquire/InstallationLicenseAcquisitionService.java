@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,17 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.conditions;
-
-import java.util.function.Supplier;
+package org.eclipse.passage.lic.equinox.acquire;
 
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.base.acquire.LocalLicenseAcquisitionService;
+import org.eclipse.passage.lic.equinox.conditions.InstallationMiningTarget;
 
-public final class InstallationMiningTarget implements Supplier<ConditionMiningTarget> {
+/**
+ * @since 2.1
+ */
+public final class InstallationLicenseAcquisitionService extends LocalLicenseAcquisitionService {
 
 	@Override
-	public ConditionMiningTarget get() {
-		return new ConditionMiningTarget.Local().child("installation-conditions"); //$NON-NLS-1$
+	public ConditionMiningTarget id() {
+		return new InstallationMiningTarget().get();
 	}
 
 }

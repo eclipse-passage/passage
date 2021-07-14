@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,28 +10,35 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox.io;
 
-import java.net.URL;
-import java.nio.file.Path;
-import java.util.Optional;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.osgi.framework.Bundle;
 
-public final class BundleResource implements Supplier<Optional<URL>> {
-	private final Bundle bundle;
-	private final Path path;
+/**
+ * @since 2.1
+ */
+public final class FileFromBundle {
 
-	public BundleResource(Bundle bundle, Path path) {
+	private final Supplier<Bundle> bundle;
+	private final String path;
+
+	public FileFromBundle(Supplier<Bundle> bundle, String path) {
 		this.bundle = bundle;
 		this.path = path;
 	}
 
-	@Override
-	public Optional<URL> get() {
-		return Optional.ofNullable(FileLocator.find(bundle, new org.eclipse.core.runtime.Path(path.toString())));
+	public FileFromBundle(Bundle bundle, String path) {
+		this(() -> bundle, path);
+	}
+
+	public InputStream get() throws IOException {
+		return FileLocator.find(bundle.get(), new Path(path), null).openStream();
 	}
 
 }

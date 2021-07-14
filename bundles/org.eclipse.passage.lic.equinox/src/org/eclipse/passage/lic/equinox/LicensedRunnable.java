@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -18,6 +18,9 @@ import java.util.function.Consumer;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 
+/**
+ * @since 2.1
+ */
 public abstract class LicensedRunnable implements Runnable {
 
 	private final String feature;

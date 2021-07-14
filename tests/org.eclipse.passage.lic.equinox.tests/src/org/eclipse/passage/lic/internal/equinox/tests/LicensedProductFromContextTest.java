@@ -24,11 +24,10 @@ import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.base.ProductIdentifier;
 import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.base.version.DefaultVersion;
-import org.eclipse.passage.lic.internal.equinox.LicensedProductFromContext;
+import org.eclipse.passage.lic.equinox.LicensedProductFromContext;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
-@SuppressWarnings("restriction")
 public final class LicensedProductFromContextTest {
 
 	@Test(expected = NullPointerException.class)

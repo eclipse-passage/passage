@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.conditions;
+package org.eclipse.passage.lic.equinox.conditions;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -20,12 +20,14 @@ import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.equinox.io.ConfigurationPath;
+import org.eclipse.passage.lic.equinox.io.ConfigurationPath;
 
 /**
  * Reads all the conditions containing in license files under {@code .passage}
  * settings folder located under the product {@code configuration} directory
  * (supplied by the eclipse platform).
+ * 
+ * @since 2.1
  */
 public final class ConfigurationResidentConditions extends LocalConditions {
 

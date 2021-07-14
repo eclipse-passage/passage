@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassageLicenseCoverage;
+import org.eclipse.passage.lic.equinox.EquinoxPassageLicenseCoverage;
 
 final class LicenseStatus extends Command {
 

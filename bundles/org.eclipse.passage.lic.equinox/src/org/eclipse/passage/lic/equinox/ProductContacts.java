@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 
+/**
+ * @since 2.1
+ */
 public final class ProductContacts implements Supplier<String> {
 
 	private final String key = "licensing.product.contacts"; //$NON-NLS-1$

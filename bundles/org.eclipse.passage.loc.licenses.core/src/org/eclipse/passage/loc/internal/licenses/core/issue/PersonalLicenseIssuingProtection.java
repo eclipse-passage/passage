@@ -22,11 +22,10 @@ import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 
-@SuppressWarnings("restriction")
 public final class PersonalLicenseIssuingProtection implements Consumer<PersonalLicensePack> {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.personal.full"; //$NON-NLS-1$

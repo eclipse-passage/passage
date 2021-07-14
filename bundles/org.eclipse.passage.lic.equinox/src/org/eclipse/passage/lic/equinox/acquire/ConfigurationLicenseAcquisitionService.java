@@ -10,17 +10,20 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.acquire;
+package org.eclipse.passage.lic.equinox.acquire;
 
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.base.acquire.LocalLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.conditions.InstallationMiningTarget;
+import org.eclipse.passage.lic.equinox.conditions.ConfigurationMiningTarget;
 
-public final class InstallationLicenseAcquisitionService extends LocalLicenseAcquisitionService {
+/**
+ * @since 2.1
+ */
+public final class ConfigurationLicenseAcquisitionService extends LocalLicenseAcquisitionService {
 
 	@Override
 	public ConditionMiningTarget id() {
-		return new InstallationMiningTarget().get();
+		return new ConfigurationMiningTarget().get();
 	}
 
 }

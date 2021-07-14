@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -19,9 +19,12 @@ import java.util.stream.Collectors;
 import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 
+/**
+ * @since 2.1
+ */
 public final class EnvironmentNames implements Supplier<List<String>> {
 
-	//FIXME: work for caching supplier
+	// FIXME: work for caching supplier
 	private final List<String> names;
 
 	public EnvironmentNames() {

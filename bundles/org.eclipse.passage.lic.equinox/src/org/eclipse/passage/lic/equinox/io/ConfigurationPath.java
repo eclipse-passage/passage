@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.io;
+package org.eclipse.passage.lic.equinox.io;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -23,19 +23,21 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
 /**
  * <p>
  * Accompanies {@code lic.base.internal.io} with eclipse-specific runtime
- * location: a product installation path.
+ * location: a product {@code configuration} path.
  * </p>
  * <p>
  * Decorate with {@link PathFromLicensedProduct} to get a product-named folder
  * or with {@link LicensingFolder} to get Passage settings host directory under
- * the general installation folder.
+ * the configuration folder.
  * </p>
+ * 
+ * @since 2.1
  */
-public final class InstallationPath implements Supplier<Path> {
+public final class ConfigurationPath implements Supplier<Path> {
 
 	@Override
 	public Path get() {
-		return new PathFromLocalUrl(Platform.getInstallLocation().getURL()).get();
+		return new PathFromLocalUrl(Platform.getConfigurationLocation().getURL()).get();
 	}
 
 }

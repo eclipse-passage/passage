@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base.api;
 
-import org.eclipse.passage.lic.internal.equinox.GearAware;
+import org.eclipse.passage.lic.equinox.GearAware;
 
 public final class FlsGearAwre extends GearAware<FlsGear, FlsGearSupplier> {
 

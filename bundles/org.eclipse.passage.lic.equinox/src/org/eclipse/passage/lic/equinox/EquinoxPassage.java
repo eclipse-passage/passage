@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.Passage;
@@ -20,6 +20,9 @@ import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.access.Access;
 
+/**
+ * @since 2.1
+ */
 public final class EquinoxPassage implements Passage {
 
 	private final FrameworkAware<?> delegate;

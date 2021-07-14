@@ -59,13 +59,13 @@ import org.eclipse.passage.lic.base.conditions.mining.UserHomeResidentConditions
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.base.restrictions.BasePermissionsExaminationService;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
+import org.eclipse.passage.lic.equinox.acquire.ConfigurationLicenseAcquisitionService;
+import org.eclipse.passage.lic.equinox.acquire.InstallationLicenseAcquisitionService;
+import org.eclipse.passage.lic.equinox.conditions.ConfigurationResidentConditions;
+import org.eclipse.passage.lic.equinox.conditions.InstallationResidentConditions;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
-import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;

@@ -19,7 +19,7 @@ import org.eclipse.passage.lic.base.diagnostic.LicensingStatus;
 import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.base.diagnostic.RequirementStatus;
 import org.eclipse.passage.lic.base.restrictions.ExaminationExplained;
-import org.eclipse.passage.lic.internal.equinox.ProductContacts;
+import org.eclipse.passage.lic.equinox.ProductContacts;
 import org.eclipse.passage.lic.internal.jface.i18n.LicenseStatusDialogMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;

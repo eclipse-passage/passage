@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -39,6 +39,8 @@ import org.osgi.framework.ServiceReference;
  * <p>
  * Use {@code withFrameworkService} to implement client level secondary services
  * or {@code withFramework} to retrieve parts of configuration directly.
+ * 
+ * @since 2.1
  */
 public abstract class FrameworkAware<S> {
 

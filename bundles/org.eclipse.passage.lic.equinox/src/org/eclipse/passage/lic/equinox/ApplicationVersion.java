@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox;
+package org.eclipse.passage.lic.equinox;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -23,6 +23,9 @@ import org.eclipse.passage.lic.base.version.SafeVersion;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
+/**
+ * @since 2.1
+ */
 public final class ApplicationVersion implements Supplier<String> {
 
 	private final IApplicationContext context;
