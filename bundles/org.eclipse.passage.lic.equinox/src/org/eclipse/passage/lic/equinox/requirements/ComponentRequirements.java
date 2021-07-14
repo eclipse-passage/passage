@@ -34,7 +34,7 @@ import org.osgi.service.component.runtime.ServiceComponentRuntime;
  * 
  * @see Requirement
  * @see ResolvedRequirements
- * @since 2.0
+ * @since 2.1
  */
 public final class ComponentRequirements implements ResolvedRequirements {
 

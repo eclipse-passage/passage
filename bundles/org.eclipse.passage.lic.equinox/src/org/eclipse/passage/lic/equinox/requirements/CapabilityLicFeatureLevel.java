@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.internal.base.NamedData;
  * licensing from a {@code Capability}'s attributes.
  * 
  * @see NamedData
- * @since 2.0
+ * @since 2.1
  */
 public final class CapabilityLicFeatureLevel extends CapabilityLicFeatureInfo {
 

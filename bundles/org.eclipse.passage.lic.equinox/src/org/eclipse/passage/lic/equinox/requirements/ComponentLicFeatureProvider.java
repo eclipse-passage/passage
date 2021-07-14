@@ -22,7 +22,7 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * properties.
  * 
  * @see NamedData
- * @since 2.0
+ * @since 2.1
  */
 public final class ComponentLicFeatureProvider extends StringNamedData {
 

@@ -33,7 +33,7 @@ import org.eclipse.passage.lic.internal.base.NamedData;
  * Á
  * 
  * @see NamedData.Writable
- * @since 2.0
+ * @since 2.1
  */
 public final class RequirementsToBundle implements NamedData<List<Requirement>> {
 

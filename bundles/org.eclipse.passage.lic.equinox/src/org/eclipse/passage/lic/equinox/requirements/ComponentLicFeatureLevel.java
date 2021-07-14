@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * {@code OSGi component}'s properties for the requirement under construction.
  * 
  * @see NamedData
- * @since 2.0
+ * @since 2.1
  */
 public final class ComponentLicFeatureLevel extends StringNamedData {
 
