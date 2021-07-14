@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,11 +16,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.emf.resource;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 /**

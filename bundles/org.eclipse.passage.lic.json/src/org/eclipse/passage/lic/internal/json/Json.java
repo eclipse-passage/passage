@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.requirements.Feature;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
@@ -39,7 +40,6 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.base.requirements.BaseFeature;
 import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.base.restrictions.BaseRestriction;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

@@ -19,17 +19,17 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.NoSevereErrors;
+import org.eclipse.passage.lic.base.diagnostic.code.AbsentLicenseAttendantFile;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.UserHomePath;
 import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Connection;
 import org.eclipse.passage.lic.hc.remote.ResponseHandler;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.AbsentLicenseAttendantFile;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 

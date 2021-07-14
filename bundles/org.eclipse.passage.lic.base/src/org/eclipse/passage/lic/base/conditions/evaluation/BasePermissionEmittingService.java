@@ -31,15 +31,15 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingExcept
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.SumOfCollections;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseDoesNotMatch;
+import org.eclipse.passage.lic.base.diagnostic.code.LicenseInvalid;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.internal.base.i18n.ConditionsEvaluationMessages;
 
 public final class BasePermissionEmittingService implements PermissionEmittingService {

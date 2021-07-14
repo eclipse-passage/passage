@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.hc.remote.impl;
 import java.util.Collections;
 
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
 import org.eclipse.passage.lic.hc.remote.Connection;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
 
 public final class ResultsTransfered {
 

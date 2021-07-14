@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoFramework;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.SeveralFrameworks;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.NoFramework;
+import org.eclipse.passage.lic.base.diagnostic.code.SeveralFrameworks;
 import org.eclipse.passage.lic.internal.equinox.i18n.AccessMessages;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;

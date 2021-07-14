@@ -23,18 +23,18 @@ import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.Restriction;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.code.NoServicesOfType;
+import org.eclipse.passage.lic.base.diagnostic.code.ServiceFailedOnMorsel;
+import org.eclipse.passage.lic.base.diagnostic.code.TentativeAccess;
 import org.eclipse.passage.lic.base.restrictions.CertificateIsRestrictive;
 import org.eclipse.passage.lic.base.restrictions.RequirementDemandsExecutionStop;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnMorsel;
-import org.eclipse.passage.lic.internal.base.diagnostic.code.TentativeAccess;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 final class Lock {

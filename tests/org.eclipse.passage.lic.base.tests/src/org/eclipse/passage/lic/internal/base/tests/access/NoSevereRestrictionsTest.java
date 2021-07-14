@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeLicensedProduct;
@@ -26,7 +27,6 @@ import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeRequirement;
 import org.eclipse.passage.lic.base.restrictions.BaseExaminationCertificate;
 import org.eclipse.passage.lic.base.restrictions.BaseRestriction;
 import org.eclipse.passage.lic.base.restrictions.NoSevereRestrictions;
-import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

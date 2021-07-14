@@ -17,10 +17,10 @@ import java.util.Optional;
 import java.util.function.BinaryOperator;
 
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.SumOfDiagnostics;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
+import org.eclipse.passage.lic.base.diagnostic.BaseDiagnostic;
+import org.eclipse.passage.lic.base.diagnostic.SumOfDiagnostics;
 
 public final class BaseServiceInvocationResult<T> implements ServiceInvocationResult<T> {
 

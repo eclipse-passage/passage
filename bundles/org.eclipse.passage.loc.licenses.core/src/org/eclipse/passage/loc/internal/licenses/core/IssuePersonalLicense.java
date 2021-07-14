@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.UserHomeProductResidence;
 import org.eclipse.passage.lic.emf.validation.ErrorMessages;
-import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.licenses.model.AssignGrantIdentifiers;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;
 import org.eclipse.passage.loc.internal.api.IssuedLicense;
@@ -37,9 +37,9 @@ import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.licenses.LicenseRegistry;
 import org.eclipse.passage.loc.internal.licenses.core.i18n.LicensesCoreMessages;
 import org.eclipse.passage.loc.internal.licenses.core.issue.PersonalLicenseIssuingProtection;
-import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseIssuingFailed;
-import org.eclipse.passage.loc.internal.licenses.trouble.code.LicenseValidationFailed;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseIssuingFailed;
+import org.eclipse.passage.loc.licenses.trouble.code.LicenseValidationFailed;
 import org.osgi.service.event.EventAdmin;
 
 final class IssuePersonalLicense {

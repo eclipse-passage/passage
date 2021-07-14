@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
 
 public interface ServiceInvocationResult<T> {
 

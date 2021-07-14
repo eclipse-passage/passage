@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 
 import java.util.Hashtable;
 
-import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
-import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
-import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
+import org.eclipse.passage.lic.api.diagnostic.Diagnostic;
+import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
+import org.eclipse.passage.lic.base.diagnostic.NoErrors;
 import org.osgi.framework.BundleContext;
 
 public abstract class Command {
