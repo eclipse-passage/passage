@@ -19,8 +19,6 @@ import static org.junit.Assert.fail;
 import java.util.Optional;
 
 import org.eclipse.passage.lic.api.LicensingException;
-import org.eclipse.passage.lic.equinox.requirements.BundleManifest;
-import org.eclipse.passage.lic.equinox.requirements.ProvidedCapabilitiesFromManifest;
 import org.junit.Test;
 
 public final class ProvidedCapabilitiesFromManifestTest {
