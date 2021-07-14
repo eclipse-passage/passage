@@ -28,12 +28,11 @@ import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.base.conditions.mining.UserHomeResidentConditions;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
-import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;
-import org.eclipse.passage.lic.internal.equinox.conditions.InstallationResidentConditions;
+import org.eclipse.passage.lic.equinox.acquire.ConfigurationLicenseAcquisitionService;
+import org.eclipse.passage.lic.equinox.acquire.InstallationLicenseAcquisitionService;
+import org.eclipse.passage.lic.equinox.conditions.ConfigurationResidentConditions;
+import org.eclipse.passage.lic.equinox.conditions.InstallationResidentConditions;
 
-@SuppressWarnings("restriction")
 final class PersonalLicensing implements LicensingDirection {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> conditions;

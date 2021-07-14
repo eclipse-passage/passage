@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.io;
+package org.eclipse.passage.lic.equinox.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +20,9 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.osgi.framework.Bundle;
 
+/**
+ * @since 2.0
+ */
 public final class FileFromBundle {
 
 	private final Supplier<Bundle> bundle;

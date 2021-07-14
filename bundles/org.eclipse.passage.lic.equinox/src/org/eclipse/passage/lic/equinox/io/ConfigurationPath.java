@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.equinox.io;
+package org.eclipse.passage.lic.equinox.io;
 
 import java.nio.file.Path;
 import java.util.function.Supplier;
@@ -30,6 +30,8 @@ import org.eclipse.passage.lic.base.io.PathFromLocalUrl;
  * or with {@link LicensingFolder} to get Passage settings host directory under
  * the configuration folder.
  * </p>
+ * 
+ * @since 2.0
  */
 public final class ConfigurationPath implements Supplier<Path> {
 

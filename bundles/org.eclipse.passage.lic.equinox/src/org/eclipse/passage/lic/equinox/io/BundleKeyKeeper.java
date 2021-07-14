@@ -26,7 +26,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.equinox.BundleResource;
+import org.eclipse.passage.lic.equinox.BundleResource;
 import org.eclipse.passage.lic.internal.equinox.i18n.EquinoxMessages;
 import org.osgi.framework.Bundle;
 
@@ -34,7 +34,7 @@ import org.osgi.framework.Bundle;
  * Look for the product's public key into OSGI-INF folder of the configured
  * bundle.
  * 
- * @since 2.1
+ * @since 2.0
  */
 public final class BundleKeyKeeper implements KeyKeeper {
 

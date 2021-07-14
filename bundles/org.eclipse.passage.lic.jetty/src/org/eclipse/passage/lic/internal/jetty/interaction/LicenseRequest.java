@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.equinox.Environments;
+import org.eclipse.passage.lic.equinox.Environments;
 
-@SuppressWarnings("restriction")
 final class LicenseRequest extends Command {
 
 	public LicenseRequest() {

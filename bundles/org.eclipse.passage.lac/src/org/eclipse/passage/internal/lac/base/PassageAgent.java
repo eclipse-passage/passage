@@ -17,12 +17,11 @@ import org.eclipse.passage.lic.api.Passage;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.internal.net.NetFrameworkAware;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 
-@SuppressWarnings("restriction")
 final class PassageAgent implements Passage {
 
 	private final EquinoxPassage delegate;

@@ -22,9 +22,9 @@ import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.BaseFramework;
 import org.eclipse.passage.lic.base.InvalidLicensedProduct;
+import org.eclipse.passage.lic.equinox.LicensedApplication;
+import org.eclipse.passage.lic.equinox.io.FileFromBundle;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
-import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
-import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 

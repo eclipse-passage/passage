@@ -23,7 +23,7 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.passage.lic.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.GrantAcqisition;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;

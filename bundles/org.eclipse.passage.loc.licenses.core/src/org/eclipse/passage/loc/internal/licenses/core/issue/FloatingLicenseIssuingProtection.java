@@ -21,14 +21,13 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.FeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriod;
 import org.eclipse.passage.lic.licenses.model.api.ValidityPeriodClosed;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;
 
-@SuppressWarnings("restriction")
 public final class FloatingLicenseIssuingProtection implements Consumer<FloatingLicensePack> {
 
 	private final String feature = "org.eclipse.passage.loc.operator.issue.floating.full"; //$NON-NLS-1$

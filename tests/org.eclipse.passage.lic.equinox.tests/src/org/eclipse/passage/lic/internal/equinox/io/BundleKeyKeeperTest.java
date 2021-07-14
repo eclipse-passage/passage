@@ -30,7 +30,6 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * Integration test: demands OSGi running
  */
-@SuppressWarnings("restriction")
 public final class BundleKeyKeeperTest {
 
 	@Test

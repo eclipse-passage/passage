@@ -23,8 +23,8 @@ import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.base.restrictions.CertificateWorthAttention;
-import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
-import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
+import org.eclipse.passage.lic.equinox.EquinoxPassage;
+import org.eclipse.passage.lic.equinox.LicensedApplication;
 
 final class LicenseProtection {
 

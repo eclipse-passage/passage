@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.equinox;
 
-import org.eclipse.passage.lic.internal.equinox.GearAware;
+import org.eclipse.passage.lic.equinox.GearAware;
 import org.eclipse.passage.loc.internal.api.OperatorGear;
 import org.eclipse.passage.loc.internal.api.OperatorGearSupplier;
 

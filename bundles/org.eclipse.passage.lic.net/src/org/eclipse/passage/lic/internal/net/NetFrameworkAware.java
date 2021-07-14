@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.net;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.equinox.FrameworkAware;
+import org.eclipse.passage.lic.equinox.FrameworkAware;
 import org.eclipse.passage.lic.internal.net.api.FrameworkConstructor;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
