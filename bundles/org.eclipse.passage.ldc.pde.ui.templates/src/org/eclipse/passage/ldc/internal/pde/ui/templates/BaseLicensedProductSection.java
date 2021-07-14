@@ -27,8 +27,8 @@ import org.eclipse.passage.ldc.internal.pde.core.templates.features.FeatureVersi
 import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductIdentifierOptionId;
 import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductNameOptionId;
 import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductVersionVersionOptionId;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.equinox.requirements.RequirementsToBundle;
+import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.equinox.requirements.RequirementsToBundle;
 import org.eclipse.pde.core.plugin.IMatchRules;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;

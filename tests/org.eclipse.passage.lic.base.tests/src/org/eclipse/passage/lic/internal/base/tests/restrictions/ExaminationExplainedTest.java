@@ -18,6 +18,8 @@ import static org.junit.Assert.assertTrue;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
@@ -31,8 +33,6 @@ import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
-import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
-import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.restrictions.BaseRestriction;
 import org.eclipse.passage.lic.internal.base.restrictions.ExaminationExplained;

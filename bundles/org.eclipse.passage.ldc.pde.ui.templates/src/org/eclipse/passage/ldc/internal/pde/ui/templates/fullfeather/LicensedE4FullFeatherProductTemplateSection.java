@@ -26,7 +26,7 @@ import org.eclipse.passage.ldc.internal.pde.core.templates.products.ProductIdent
 import org.eclipse.passage.ldc.internal.pde.ui.templates.BaseLicensedProductSection;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.HelpContexts;
 import org.eclipse.passage.ldc.internal.pde.ui.templates.i18n.PdeUiTemplatesMessages;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
+import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;

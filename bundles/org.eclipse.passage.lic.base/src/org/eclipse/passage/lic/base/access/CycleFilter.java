@@ -15,11 +15,11 @@ package org.eclipse.passage.lic.base.access;
 import java.util.Collection;
 import java.util.function.Function;
 
+import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.requirements.RequirementsFeatureFilter;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.base.conditions.ConditionsFeatureFilter;
-import org.eclipse.passage.lic.internal.base.requirements.RequirementsFeatureFilter;
 
 final class CycleFilter {
 

@@ -14,12 +14,14 @@ package org.eclipse.passage.lic.internal.base.tests.restrictions;
 
 import java.time.ZonedDateTime;
 
+import org.eclipse.passage.lic.api.requirements.Feature;
+import org.eclipse.passage.lic.api.requirements.Requirement;
+import org.eclipse.passage.lic.base.requirements.BaseFeature;
+import org.eclipse.passage.lic.base.requirements.BaseRequirement;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.requirements.Feature;
-import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionLevel;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
@@ -30,8 +32,6 @@ import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
 import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
 import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
-import org.eclipse.passage.lic.internal.base.requirements.BaseFeature;
-import org.eclipse.passage.lic.internal.base.requirements.BaseRequirement;
 
 @SuppressWarnings("restriction")
 final class TestState {
