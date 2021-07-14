@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,19 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api.registry;
+package org.eclipse.passage.lic.api.registry;
 
 /**
- * <p>
- * General notion of a {@code service} interface which can potentially have
- * multiple implementations that need to be somehow <i>collected and managed
- * together</i>.
- * </p>
+ * Implementation is expected to represent <i>data class</i>: with
+ * {@code hashCode} and {@code equals} overloaded basing on enclosed data.
  * 
- * @param <I> sub type of {@linkplain ServiceId}
+ * @since 1.1
  */
-public interface Service<I extends ServiceId> {
-
-	I id();
+public interface ServiceId {
 
 }

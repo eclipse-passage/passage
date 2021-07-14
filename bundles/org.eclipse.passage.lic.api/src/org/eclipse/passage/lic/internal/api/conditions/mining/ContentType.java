@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.api.conditions.mining;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.ServiceId;
 
 /**
  * FIXME: move to upper package

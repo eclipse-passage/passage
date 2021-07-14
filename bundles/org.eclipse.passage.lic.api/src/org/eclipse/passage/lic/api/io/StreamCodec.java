@@ -19,10 +19,10 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.registry.Service;
 
 /**
  * Coder and decoder for licensing data, used by {@link MinedConditions} to read

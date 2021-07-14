@@ -15,9 +15,9 @@ package org.eclipse.passage.lic.api.tests.fakes.requirements;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.tests.fakes.FakeServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 

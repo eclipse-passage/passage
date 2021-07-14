@@ -18,9 +18,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
-import org.eclipse.passage.lic.internal.api.registry.Service;
 
 /**
  * Encapsulates knowledge how to retrieve {@link Condition}(s) from an input

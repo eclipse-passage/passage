@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -18,15 +18,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.tests.fakes.requirements.FakeResolvedRequirements;
+import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.internal.base.access.Requirements;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoRequirements;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

@@ -10,15 +10,18 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.registry;
+package org.eclipse.passage.lic.base.registry;
 
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.passage.lic.internal.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.ServiceId;
 
+/**
+ * @since 1.1
+ */
 public final class ReadOnlyRegistry<I extends ServiceId, S extends Service<I>> extends BaseRegistry<I, S> {
 
 	public ReadOnlyRegistry(Collection<S> services) {

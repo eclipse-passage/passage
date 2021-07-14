@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.io;
 
+import org.eclipse.passage.lic.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 public interface Hashes extends Service<StringServiceId> {
 

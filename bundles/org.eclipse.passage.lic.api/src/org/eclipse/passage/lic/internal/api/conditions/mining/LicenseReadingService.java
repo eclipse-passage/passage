@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.internal.api.conditions.mining;
 import java.nio.file.Path;
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.registry.Service;
 
 public interface LicenseReadingService extends Service<LicensedProduct> {
 

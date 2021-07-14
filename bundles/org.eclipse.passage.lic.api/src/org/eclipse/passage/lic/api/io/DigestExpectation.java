@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.io;
 
+/**
+ * @since 1.1
+ */
 public interface DigestExpectation {
 
 	/**

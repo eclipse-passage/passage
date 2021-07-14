@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.api.io;
 
 import java.util.Objects;
 
+/**
+ * @since 1.1
+ */
 public abstract class EncryptionAlgorithm {
 
 	private final String name;

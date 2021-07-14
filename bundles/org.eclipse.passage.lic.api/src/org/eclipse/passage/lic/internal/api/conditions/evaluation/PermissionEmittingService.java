@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.api.conditions.evaluation;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.registry.Service;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 
 public interface PermissionEmittingService extends Service<StringServiceId> {
 

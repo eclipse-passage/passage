@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.mining;
 
+import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 import org.junit.Test;
 
 public final class ContentTypeTest extends ServiceIdContractTest {

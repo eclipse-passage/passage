@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.registry;
 
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
+import org.eclipse.passage.lic.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.junit.Test;
 
 public final class StringServiceIdTest extends ServiceIdContractTest {

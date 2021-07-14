@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.api;
 
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
+import org.eclipse.passage.lic.api.registry.ServiceId;
 
 public interface LicensedProduct extends ServiceId {
 

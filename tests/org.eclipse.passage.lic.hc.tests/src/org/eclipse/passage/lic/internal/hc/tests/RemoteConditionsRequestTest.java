@@ -22,15 +22,15 @@ import java.net.URL;
 
 import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
+import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.io.MD5Hashes;
+import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.ProductIdentifier;
 import org.eclipse.passage.lic.internal.base.ProductVersion;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.hc.remote.impl.mine.RemoteConditionsRequest;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.LicensingAction;

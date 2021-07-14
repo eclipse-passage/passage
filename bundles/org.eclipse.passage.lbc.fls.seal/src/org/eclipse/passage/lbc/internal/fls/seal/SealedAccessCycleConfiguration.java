@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,16 +15,16 @@ package org.eclipse.passage.lbc.internal.fls.seal;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.registry.Registry;
+import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
 import org.eclipse.passage.lic.internal.base.acquire.UserHomeLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.base.conditions.mining.UserHomeResidentConditions;
-import org.eclipse.passage.lic.internal.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.equinox.acquire.ConfigurationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.acquire.InstallationLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.conditions.ConfigurationResidentConditions;

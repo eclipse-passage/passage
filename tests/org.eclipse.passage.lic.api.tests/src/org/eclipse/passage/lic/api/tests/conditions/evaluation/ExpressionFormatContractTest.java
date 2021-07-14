@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
+import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
-import org.eclipse.passage.lic.internal.api.registry.ServiceId;
 
 public class ExpressionFormatContractTest extends ServiceIdContractTest {
 

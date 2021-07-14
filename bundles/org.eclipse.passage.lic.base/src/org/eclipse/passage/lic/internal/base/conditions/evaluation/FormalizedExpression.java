@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.base.conditions.evaluation;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
-import org.eclipse.passage.lic.internal.api.registry.Registry;
 
 /**
  * <p>
