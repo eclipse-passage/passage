@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.net;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.PassageAction;
-import org.eclipse.passage.lic.internal.base.BaseNamedData;
+import org.eclipse.passage.lic.api.PassageAction;
+import org.eclipse.passage.lic.base.BaseNamedData;
 
 public final class LicensingAction extends BaseNamedData<PassageAction> {
 

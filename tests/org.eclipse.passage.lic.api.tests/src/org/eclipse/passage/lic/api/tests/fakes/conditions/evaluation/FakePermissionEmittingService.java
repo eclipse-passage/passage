@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 public final class FakePermissionEmittingService implements PermissionEmittingService {
 

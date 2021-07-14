@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,8 +14,8 @@ package org.eclipse.passage.seal.demo.tests.registries;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.tests.RequirementResolutionServicesRegitryTest;
-import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 
 public final class SealedConitionMiningServicesRegistryTest extends RequirementResolutionServicesRegitryTest {

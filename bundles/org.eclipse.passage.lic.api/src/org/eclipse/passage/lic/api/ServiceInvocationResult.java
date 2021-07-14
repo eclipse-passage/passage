@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,14 +10,15 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.api;
 
-import org.eclipse.passage.lic.api.registry.ServiceId;
+import java.util.Optional;
 
-public interface LicensedProduct extends ServiceId {
+import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 
-	String identifier();
+public interface ServiceInvocationResult<T> {
 
-	String version();
+	Diagnostic diagnostic();
 
+	Optional<T> data();
 }

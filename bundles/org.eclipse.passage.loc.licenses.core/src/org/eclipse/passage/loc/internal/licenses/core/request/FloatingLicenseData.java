@@ -18,9 +18,9 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.licenses.LicensePlanDescriptor;
 import org.eclipse.passage.lic.products.ProductVersionDescriptor;
 import org.eclipse.passage.lic.users.UserDescriptor;

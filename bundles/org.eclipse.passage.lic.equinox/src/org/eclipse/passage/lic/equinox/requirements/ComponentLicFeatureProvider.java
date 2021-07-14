@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.equinox.requirements;
 
 import java.util.Map;
 
-import org.eclipse.passage.lic.internal.base.NamedData;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.base.NamedData;
+import org.eclipse.passage.lic.base.StringNamedData;
 
 /**
  * Encapsulate reading of {@code provider name} from an {@code OSGi component}'s

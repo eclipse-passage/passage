@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.licenses.core;
 
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.loc.internal.api.OperatorProductService;
 import org.eclipse.passage.loc.internal.products.ProductRegistry;
 

@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.base.conditions.mining.DecodedContent;
 import org.eclipse.passage.lic.base.io.FileCollection;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicensePack;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;

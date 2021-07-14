@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,23 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.api;
 
-/**
- * 
- * Resolves a service instance for a given type if present
- *
- */
-@FunctionalInterface
-public interface MandatoryService {
+import org.eclipse.passage.lic.api.registry.ServiceId;
 
-	/**
-	 * Resolve a service instance by a given type class
-	 * 
-	 * @param <T>  a type of a service to resolve
-	 * @param type a class of a service to resolve
-	 * @return a resolved service instance
-	 */
-	<T> T get(Class<T> type);
+public interface LicensedProduct extends ServiceId {
+
+	String identifier();
+
+	String version();
 
 }

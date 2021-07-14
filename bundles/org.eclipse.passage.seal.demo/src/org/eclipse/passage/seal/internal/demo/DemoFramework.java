@@ -16,12 +16,12 @@ import java.io.InputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
-import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.BaseFramework;
-import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
+import org.eclipse.passage.lic.api.AccessCycleConfiguration;
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.BaseFramework;
+import org.eclipse.passage.lic.base.InvalidLicensedProduct;
 import org.eclipse.passage.lic.internal.base.logging.Logging;
 import org.eclipse.passage.lic.internal.equinox.LicensedApplication;
 import org.eclipse.passage.lic.internal.equinox.io.FileFromBundle;

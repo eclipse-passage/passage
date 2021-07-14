@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,12 +10,12 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.api;
 
-import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
-
-public interface PassageLicenseCoverage {
-
-	ServiceInvocationResult<ExaminationCertificate> assess();
+/**
+ * Marker interface for a product based on Passage infrastructure to supply all
+ * necessary services
+ */
+public interface Gear {
 
 }

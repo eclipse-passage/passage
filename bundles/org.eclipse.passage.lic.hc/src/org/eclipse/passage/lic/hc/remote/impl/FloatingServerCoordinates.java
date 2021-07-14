@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote.impl;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.HostPort;
 import org.eclipse.passage.lic.internal.net.LicensingServerCoordinates;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;

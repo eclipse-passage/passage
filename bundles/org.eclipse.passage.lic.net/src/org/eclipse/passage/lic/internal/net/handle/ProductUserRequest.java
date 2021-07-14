@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.net.handle;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.base.ProductIdentifier;
+import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.internal.net.EncodingAlgorithm;
 import org.eclipse.passage.lic.internal.net.LicenseUser;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;

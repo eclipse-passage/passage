@@ -21,6 +21,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
@@ -31,6 +34,7 @@ import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessor
 import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittingService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.BaseConditionPack;
 import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
@@ -39,11 +43,7 @@ import org.eclipse.passage.lic.base.conditions.evaluation.BasePermissionEmitting
 import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
 import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseDoesNotMatch;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.LicenseInvalid;
 import org.junit.Test;

@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.api.tests.conditions;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.junit.Test;
 
 public abstract class EvaluationTypeContractTest {

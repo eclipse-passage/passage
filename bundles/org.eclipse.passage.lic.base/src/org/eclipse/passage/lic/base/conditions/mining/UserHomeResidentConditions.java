@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.base.conditions.mining;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.base.io.LicensingFolder;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.UserHomePath;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 /**
  * Reads all the conditions containing in license files under

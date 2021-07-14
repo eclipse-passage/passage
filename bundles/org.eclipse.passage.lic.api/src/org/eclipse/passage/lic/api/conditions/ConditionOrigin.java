@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions;
 
+/**
+ * @since 1.1
+ */
 public interface ConditionOrigin {
 
 	ConditionMiningTarget miner();

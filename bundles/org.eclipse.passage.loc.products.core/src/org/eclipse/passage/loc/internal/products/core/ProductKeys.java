@@ -18,9 +18,9 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.keys.model.api.KeyPair;
 import org.eclipse.passage.loc.internal.api.workspace.Keys;

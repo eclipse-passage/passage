@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.api.workspace;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
 
 public interface Keys {
 

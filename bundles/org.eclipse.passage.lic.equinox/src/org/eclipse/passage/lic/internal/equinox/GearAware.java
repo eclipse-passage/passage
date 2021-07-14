@@ -18,9 +18,9 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.passage.lic.internal.api.Gear;
-import org.eclipse.passage.lic.internal.api.GearSupplier;
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.Gear;
+import org.eclipse.passage.lic.api.GearSupplier;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;

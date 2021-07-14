@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.FeatureFilter;
+import org.eclipse.passage.lic.base.FeatureFilter;
 
 /**
  * @since 1.1

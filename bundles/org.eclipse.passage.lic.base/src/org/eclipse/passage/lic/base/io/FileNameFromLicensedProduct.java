@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.base.io;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
 
 /**
  * @since 1.1

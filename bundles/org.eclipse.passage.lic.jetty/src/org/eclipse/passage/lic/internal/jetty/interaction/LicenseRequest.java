@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.jetty.interaction;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.equinox.Environments;
 
 @SuppressWarnings("restriction")

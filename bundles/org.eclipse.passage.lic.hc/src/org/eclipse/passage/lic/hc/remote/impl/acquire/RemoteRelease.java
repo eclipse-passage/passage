@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.hc.remote.impl.acquire;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Configuration;
@@ -28,7 +29,6 @@ import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData;
 import org.eclipse.passage.lic.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
 import org.eclipse.passage.lic.hc.remote.impl.ServiceAny;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.api.acquire.GrantAcquisition;
 import org.eclipse.passage.lic.internal.emf.EObjectToBytes;
 import org.eclipse.passage.lic.internal.licenses.convert.EGrantAcquisition;

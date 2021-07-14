@@ -19,6 +19,7 @@ import static org.junit.Assume.assumeTrue;
 
 import java.util.Optional;
 
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.ServiceId;
@@ -27,7 +28,6 @@ import org.eclipse.passage.lic.api.requirements.ResolvedRequirements;
 import org.eclipse.passage.lic.api.requirements.ResolvedRequirementsRegistry;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 import org.junit.Test;
 

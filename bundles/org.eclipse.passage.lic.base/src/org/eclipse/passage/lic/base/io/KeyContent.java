@@ -16,8 +16,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.1

@@ -14,8 +14,8 @@ package org.eclipse.passage.loc.operator.seal;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.Framework;
-import org.eclipse.passage.lic.internal.api.FrameworkSupplier;
+import org.eclipse.passage.lic.api.Framework;
+import org.eclipse.passage.lic.api.FrameworkSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @SuppressWarnings("restriction")

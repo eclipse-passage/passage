@@ -12,9 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions.mining;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.1

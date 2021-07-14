@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.loc.internal.api;
 
-import org.eclipse.passage.lic.internal.api.GearSupplier;
+import org.eclipse.passage.lic.api.GearSupplier;
 
 public interface OperatorGearSupplier extends GearSupplier<OperatorGear> {
 

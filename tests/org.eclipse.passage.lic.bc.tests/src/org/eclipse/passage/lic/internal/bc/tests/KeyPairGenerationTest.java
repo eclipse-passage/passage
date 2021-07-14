@@ -24,13 +24,13 @@ import java.io.OutputStream;
 import java.nio.file.Path;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.DigestExpectation;
 import org.eclipse.passage.lic.api.io.StreamCodec;
 import org.eclipse.passage.lic.api.io.StreamCodec.Smart;
 import org.eclipse.passage.lic.base.io.FileContent;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
 import org.eclipse.passage.lic.bc.BcStreamCodec;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

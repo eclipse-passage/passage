@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.tests;
 
 import org.eclipse.passage.lic.api.registry.ServiceId;
 import org.eclipse.passage.lic.api.tests.registry.ServiceIdContractTest;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
 
 @SuppressWarnings("restriction")
 public class BaseLicensedProductServiceIdContractTest extends ServiceIdContractTest {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.api;
+package org.eclipse.passage.lic.api;
 
-public interface GearSupplier<G extends Gear> {
+import java.util.Optional;
+import java.util.function.Supplier;
 
-	G gear();
+public interface FrameworkSupplier extends Supplier<Optional<Framework>> {
 
 }

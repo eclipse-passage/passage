@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.api.conditions;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @since 1.1
+ */
 public interface IssuerSignature {
 
 	Map<String, String> attributes();

@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.version.BaseSemanticVersion;
 import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
 import org.eclipse.passage.lic.internal.base.version.SafeVersion;

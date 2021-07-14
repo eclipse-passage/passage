@@ -27,7 +27,7 @@ import org.bouncycastle.openpgp.PGPSecretKey;
 import org.bouncycastle.openpgp.PGPSecretKeyRing;
 import org.bouncycastle.openpgp.PGPUtil;
 import org.bouncycastle.openpgp.jcajce.JcaPGPSecretKeyRingCollection;
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.bc.i18n.BcMessages;
 
 /**

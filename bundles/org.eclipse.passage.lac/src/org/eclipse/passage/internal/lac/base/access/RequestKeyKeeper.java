@@ -14,9 +14,9 @@ package org.eclipse.passage.internal.lac.base.access;
 
 import java.io.InputStream;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.handle.ProductUserRequest;
 

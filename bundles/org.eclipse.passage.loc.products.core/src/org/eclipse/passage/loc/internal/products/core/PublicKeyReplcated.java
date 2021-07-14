@@ -17,10 +17,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.base.io.FileNameFromLicensedProduct;
 import org.eclipse.passage.lic.base.io.PassageFileExtension;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 public final class PublicKeyReplcated {
 

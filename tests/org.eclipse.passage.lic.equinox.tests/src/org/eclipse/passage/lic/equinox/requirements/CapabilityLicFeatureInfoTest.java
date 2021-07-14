@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.base.StringNamedData;
 import org.junit.Test;
 import org.osgi.framework.wiring.BundleCapability;
 

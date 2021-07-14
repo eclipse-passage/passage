@@ -12,12 +12,12 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.oshi;
 
+import org.eclipse.passage.lic.api.EvaluationType;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
 import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.inspection.BaseEnvironmentProperty;
 import org.eclipse.passage.lic.internal.oshi.i18n.AssessmentMessages;
 

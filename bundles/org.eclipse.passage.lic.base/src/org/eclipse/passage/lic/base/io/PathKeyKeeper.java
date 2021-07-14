@@ -18,9 +18,9 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
 /**

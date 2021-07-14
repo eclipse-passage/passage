@@ -18,7 +18,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 
 final class OnlyFileOfType {
 

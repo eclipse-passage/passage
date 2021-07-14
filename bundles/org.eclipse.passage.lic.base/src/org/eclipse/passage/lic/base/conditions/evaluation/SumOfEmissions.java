@@ -16,7 +16,7 @@ import java.util.function.BinaryOperator;
 
 import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.base.SumOfCollections;
+import org.eclipse.passage.lic.base.SumOfCollections;
 
 /**
  * @since 1.1

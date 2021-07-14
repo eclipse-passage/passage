@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -20,9 +20,9 @@ import java.util.Map;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.passage.lic.internal.base.InvalidLicensedProduct;
-import org.eclipse.passage.lic.internal.base.ProductIdentifier;
-import org.eclipse.passage.lic.internal.base.ProductVersion;
+import org.eclipse.passage.lic.base.InvalidLicensedProduct;
+import org.eclipse.passage.lic.base.ProductIdentifier;
+import org.eclipse.passage.lic.base.ProductVersion;
 import org.eclipse.passage.lic.internal.base.version.DefaultVersion;
 import org.eclipse.passage.lic.internal.equinox.LicensedProductFromContext;
 import org.junit.Test;

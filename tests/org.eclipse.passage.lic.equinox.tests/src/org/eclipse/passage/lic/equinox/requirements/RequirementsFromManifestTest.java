@@ -17,9 +17,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.equinox.requirements.RequirementsFromManifest;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.junit.Test;

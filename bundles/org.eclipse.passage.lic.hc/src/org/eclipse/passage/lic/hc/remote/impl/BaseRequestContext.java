@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.hc.remote.impl;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.hc.remote.RequestContext;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 public final class BaseRequestContext implements RequestContext {
 

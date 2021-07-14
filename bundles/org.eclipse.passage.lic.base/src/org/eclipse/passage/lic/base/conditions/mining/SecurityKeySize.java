@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.api.io.EncryptionKeySize;
-import org.eclipse.passage.lic.internal.base.BaseNamedData;
+import org.eclipse.passage.lic.base.BaseNamedData;
 
 /**
  * @since 1.1

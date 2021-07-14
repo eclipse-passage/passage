@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.equinox;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.access.GrantLockAttempt;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 public abstract class LicensedRunnable implements Runnable {
 

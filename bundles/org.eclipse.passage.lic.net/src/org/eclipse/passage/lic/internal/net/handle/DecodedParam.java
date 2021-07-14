@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.internal.net.handle;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.net.i18n.NetMessages;
 
 final class DecodedParam {

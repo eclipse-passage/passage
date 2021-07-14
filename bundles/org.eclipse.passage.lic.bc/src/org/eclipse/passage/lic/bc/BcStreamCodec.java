@@ -19,12 +19,12 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.io.DigestExpectation;
 import org.eclipse.passage.lic.api.io.EncryptionAlgorithm;
 import org.eclipse.passage.lic.api.io.EncryptionKeySize;
 import org.eclipse.passage.lic.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.1

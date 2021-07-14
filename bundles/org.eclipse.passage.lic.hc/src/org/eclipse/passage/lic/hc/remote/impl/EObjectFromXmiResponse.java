@@ -13,10 +13,10 @@
 package org.eclipse.passage.lic.hc.remote.impl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 import org.eclipse.passage.lic.hc.remote.RequestContext;
 import org.eclipse.passage.lic.hc.remote.ResponseHandler;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.EObjectFromBytes;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;

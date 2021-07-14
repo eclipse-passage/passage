@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.internal.equinox;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.base.conditions.mining.BaseLicenseReadingService;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 
 public final class LicenseReadingServiceRequest implements Supplier<ServiceInvocationResult<LicenseReadingService>> {
 

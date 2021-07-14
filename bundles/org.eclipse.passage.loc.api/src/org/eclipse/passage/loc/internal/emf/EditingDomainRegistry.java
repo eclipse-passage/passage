@@ -14,7 +14,7 @@ package org.eclipse.passage.loc.internal.emf;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 public interface EditingDomainRegistry<I> {
 

@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.equinox.requirements;
 import java.util.Map;
 
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.base.NamedData;
+import org.eclipse.passage.lic.base.NamedData;
 
 /**
  * Encapsulate reading of a raw string {@code version} value of a feature under

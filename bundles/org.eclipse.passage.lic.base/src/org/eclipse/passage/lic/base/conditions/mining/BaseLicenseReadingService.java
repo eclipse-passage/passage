@@ -16,12 +16,12 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.mining.LicenseReadingService;
 import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 /**
  * @since 1.1

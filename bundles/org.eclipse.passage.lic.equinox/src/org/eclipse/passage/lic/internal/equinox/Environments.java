@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.Framework;
 
 public final class Environments implements Supplier<Collection<RuntimeEnvironment>> {
 

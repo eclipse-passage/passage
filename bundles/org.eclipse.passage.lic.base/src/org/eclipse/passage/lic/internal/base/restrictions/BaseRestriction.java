@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.internal.base.restrictions;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 

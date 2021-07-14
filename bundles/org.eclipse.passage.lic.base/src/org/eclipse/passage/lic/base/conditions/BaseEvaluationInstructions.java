@@ -14,9 +14,12 @@ package org.eclipse.passage.lic.base.conditions;
 
 import java.util.Objects;
 
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
+import org.eclipse.passage.lic.api.EvaluationInstructions;
+import org.eclipse.passage.lic.api.EvaluationType;
 
+/**
+ * @since 1.1
+ */
 public final class BaseEvaluationInstructions implements EvaluationInstructions {
 
 	private final EvaluationType type;

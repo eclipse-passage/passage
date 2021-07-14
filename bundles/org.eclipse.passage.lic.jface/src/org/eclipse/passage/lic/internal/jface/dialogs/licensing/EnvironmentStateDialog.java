@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironment;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.equinox.Environments;
 import org.eclipse.passage.lic.internal.jface.i18n.EnvironmentStateDialogMessages;
 import org.eclipse.swt.SWT;

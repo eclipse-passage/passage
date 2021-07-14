@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.passage.lic.internal.api.LicensingException;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.internal.emf.i18n.EmfMessages;
 
 public final class EObjectToBytes {

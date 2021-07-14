@@ -14,6 +14,9 @@ package org.eclipse.passage.lic.api.conditions;
 
 import java.util.function.Predicate;
 
+/**
+ * @since 1.1
+ */
 public final class LicenseSignatureIsEmpty implements Predicate<IssuerSignature> {
 
 	@Override

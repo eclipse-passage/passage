@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.api.conditions.evaluation;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 
 public interface ExpressionTokenAssessorsRegistry
 		extends Supplier<Registry<EvaluationType, ExpressionTokenAssessmentService>> {

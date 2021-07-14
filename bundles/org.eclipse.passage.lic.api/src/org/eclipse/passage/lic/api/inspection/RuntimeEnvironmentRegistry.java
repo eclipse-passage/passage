@@ -14,8 +14,8 @@ package org.eclipse.passage.lic.api.inspection;
 
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.registry.Registry;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 
 /**
  * @since 1.1

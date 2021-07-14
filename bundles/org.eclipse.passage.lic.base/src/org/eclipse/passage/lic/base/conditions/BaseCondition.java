@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.base.conditions;
 
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.EvaluationInstructions;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ValidityPeriod;
 import org.eclipse.passage.lic.api.conditions.VersionMatch;
-import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 
 public final class BaseCondition implements Condition {
 

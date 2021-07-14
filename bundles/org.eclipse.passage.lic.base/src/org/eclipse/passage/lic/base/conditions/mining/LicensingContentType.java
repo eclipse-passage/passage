@@ -15,7 +15,7 @@ package org.eclipse.passage.lic.base.conditions.mining;
 import java.util.function.Function;
 
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.base.BaseNamedData;
+import org.eclipse.passage.lic.base.BaseNamedData;
 
 /**
  * @since 1.1

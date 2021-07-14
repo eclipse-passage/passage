@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.net;
 
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.base.StringNamedData;
+import org.eclipse.passage.lic.base.StringNamedData;
 
 public final class ServerAuthenticationType extends StringNamedData {
 

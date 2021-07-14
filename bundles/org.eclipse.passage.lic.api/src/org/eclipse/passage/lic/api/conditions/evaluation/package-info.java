@@ -60,7 +60,7 @@
  * </ul>
  * 
  * @see org.eclipse.passage.lic.api.conditions.Condition
- * @see org.eclipse.passage.lic.internal.api.EvaluationType
+ * @see org.eclipse.passage.lic.api.EvaluationType
  * @see org.eclipse.passage.lic.api.inspection.RuntimeEnvironment
  */
 package org.eclipse.passage.lic.api.conditions.evaluation;

@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.api.io;
 
 import java.io.InputStream;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * <p>

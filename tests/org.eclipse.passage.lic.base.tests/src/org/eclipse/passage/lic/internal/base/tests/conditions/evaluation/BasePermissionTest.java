@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
 import java.time.ZonedDateTime;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
+import org.eclipse.passage.lic.base.BaseLicensedProduct;
 import org.eclipse.passage.lic.base.conditions.UnknownConditionOrigin;
 import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

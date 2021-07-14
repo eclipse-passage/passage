@@ -14,8 +14,8 @@ package org.eclipse.passage.internal.lac.base;
 
 import java.util.Optional;
 
-import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.base.FeatureIdentifier;
+import org.eclipse.passage.lic.api.LicensingException;
+import org.eclipse.passage.lic.base.FeatureIdentifier;
 import org.eclipse.passage.lic.internal.net.api.handle.NetRequest;
 import org.eclipse.passage.lic.internal.net.api.handle.NetResponse;
 import org.eclipse.passage.lic.internal.net.handle.ChoreDraft;

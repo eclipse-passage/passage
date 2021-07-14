@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.base.StringNamedData;
 import org.eclipse.passage.lic.equinox.requirements.CapabilityLicFeatureLevel;
-import org.eclipse.passage.lic.internal.base.StringNamedData;
 
 @SuppressWarnings("restriction")
 public final class CapabilityLicFeatureRestrictionTest extends CapabilityLicFeatureInfoTest {

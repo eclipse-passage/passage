@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
@@ -27,7 +28,6 @@ import org.eclipse.passage.lic.hc.remote.RequestContext;
 import org.eclipse.passage.lic.hc.remote.ResponseHandler;
 import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
 import org.eclipse.passage.lic.internal.net.io.SafePayload;
 import org.eclipse.passage.lic.licenses.model.api.FloatingServerConnection;

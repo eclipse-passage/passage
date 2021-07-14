@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.api.tests.fakes.conditions.mining;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.ConditionPack;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 
 public final class FakeMinedConditions implements MinedConditions {
 

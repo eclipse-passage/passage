@@ -16,6 +16,7 @@ import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
@@ -24,7 +25,6 @@ import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
 import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
 import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.junit.Ignore;
 

@@ -15,13 +15,13 @@ package org.eclipse.passage.lic.hc.remote.impl;
 import java.net.HttpURLConnection;
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.ServiceInvocationResult;
+import org.eclipse.passage.lic.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.hc.remote.Client;
 import org.eclipse.passage.lic.hc.remote.Request;
 import org.eclipse.passage.lic.hc.remote.RequestContext;
 import org.eclipse.passage.lic.hc.remote.ResponseHandler;
-import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
-import org.eclipse.passage.lic.internal.base.BaseServiceInvocationResult;
 import org.eclipse.passage.lic.internal.base.diagnostic.BaseDiagnostic;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.ServiceFailedOnInfrastructureDenial;
 import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;

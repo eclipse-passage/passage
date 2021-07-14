@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,19 +10,19 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base;
+package org.eclipse.passage.lic.base;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.BinaryOperator;
 
-public final class SumOfMaps<K, V> implements BinaryOperator<Map<K, V>> {
+public final class SumOfCollections<E> implements BinaryOperator<Collection<E>> {
 
 	@Override
-	public Map<K, V> apply(Map<K, V> first, Map<K, V> second) {
-		Map<K, V> sum = new HashMap<>(first.size() + second.size());
-		sum.putAll(first);
-		sum.putAll(second);
+	public Collection<E> apply(Collection<E> first, Collection<E> second) {
+		ArrayList<E> sum = new ArrayList<>(first.size() + second.size());
+		sum.addAll(first);
+		sum.addAll(second);
 		return sum;
 	}
 

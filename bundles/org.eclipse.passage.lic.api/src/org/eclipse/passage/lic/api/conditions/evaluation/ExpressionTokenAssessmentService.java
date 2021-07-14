@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.conditions.evaluation;
 
+import org.eclipse.passage.lic.api.EvaluationType;
 import org.eclipse.passage.lic.api.registry.Service;
-import org.eclipse.passage.lic.internal.api.EvaluationType;
 
 /**
  * <p>

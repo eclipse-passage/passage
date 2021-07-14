@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.base.conditions.mining;
 
 import java.nio.file.Path;
 
+import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.conditions.mining.MiningTool;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.api.io.StreamCodec;
-import org.eclipse.passage.lic.internal.api.LicensingException;
 
 /**
  * @since 1.1

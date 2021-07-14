@@ -15,10 +15,10 @@ package org.eclipse.passage.lic.base.conditions.evaluation;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.conditions.ConditionOrigin;
 import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
 /**
  * @since 1.1

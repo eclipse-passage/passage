@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,6 +15,7 @@ package org.eclipse.passage.seal.internal.demo;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditions;
 import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
@@ -24,7 +25,6 @@ import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.base.conditions.mining.PathResidentConditions;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
-import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
 import org.eclipse.passage.lic.internal.base.acquire.PathLicenseAcquisitionService;
