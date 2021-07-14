@@ -17,6 +17,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+/**
+ * @since 1.1
+ */
 public final class PathFromLocalUrl implements Supplier<Path> {
 
 	private final URL url;

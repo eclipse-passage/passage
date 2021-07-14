@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 
+/**
+ * @since 1.1
+ */
 public final class FileNameFromLicensedProduct implements Supplier<String> {
 
 	private final LicensedProduct product;

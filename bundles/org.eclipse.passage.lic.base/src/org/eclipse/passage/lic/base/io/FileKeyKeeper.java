@@ -22,6 +22,9 @@ import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
+/**
+ * @since 1.1
+ */
 public final class FileKeyKeeper implements KeyKeeper {
 
 	private final Path key;

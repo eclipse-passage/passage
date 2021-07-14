@@ -19,6 +19,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
+/**
+ * @since 1.1
+ */
 public final class FileContent {
 
 	private final Path file;

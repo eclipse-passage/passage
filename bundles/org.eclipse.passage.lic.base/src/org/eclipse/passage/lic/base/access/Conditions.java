@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.base.access;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,6 +31,9 @@ import org.eclipse.passage.lic.internal.base.conditions.ConditionsFeatureFilter;
 import org.eclipse.passage.lic.internal.base.diagnostic.code.NoServicesOfType;
 import org.eclipse.passage.lic.internal.base.i18n.AccessCycleMessages;
 
+/**
+ * @since 1.1
+ */
 public final class Conditions implements Supplier<ServiceInvocationResult<Collection<ConditionPack>>> {
 
 	private final Registry<ConditionMiningTarget, MinedConditions> registry;

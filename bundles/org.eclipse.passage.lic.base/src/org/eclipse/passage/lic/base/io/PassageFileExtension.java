@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.base.io;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+/**
+ * @since 1.1
+ */
 public abstract class PassageFileExtension implements Supplier<String> {
 
 	public final boolean ends(Path path) {

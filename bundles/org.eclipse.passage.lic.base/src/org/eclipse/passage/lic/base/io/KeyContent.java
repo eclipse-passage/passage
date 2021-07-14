@@ -19,6 +19,9 @@ import java.io.InputStream;
 import org.eclipse.passage.lic.api.io.KeyKeeper;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
+/**
+ * @since 1.1
+ */
 public final class KeyContent {
 
 	private final KeyKeeper keeper;

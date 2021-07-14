@@ -15,6 +15,9 @@ package org.eclipse.passage.lic.base.io;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+/**
+ * @since 1.1
+ */
 public final class LicensingFolder implements Supplier<Path> {
 
 	private final Supplier<Path> base;

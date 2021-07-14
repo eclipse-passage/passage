@@ -12,6 +12,9 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.base.io;
 
+/**
+ * @since 1.1
+ */
 public abstract class FloatingFileExtension extends PassageFileExtension {
 
 	public static final class FloatingLicenseEncrypted extends FloatingFileExtension {

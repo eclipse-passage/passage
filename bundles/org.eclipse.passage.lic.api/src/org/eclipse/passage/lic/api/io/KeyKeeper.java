@@ -27,6 +27,8 @@ import org.eclipse.passage.lic.internal.api.LicensingException;
  * This interface covers the service that supplies access to the product's
  * public key content.
  * </p>
+ * 
+ * @since 1.1
  */
 public interface KeyKeeper extends Service<LicensedProduct> {
 	/**

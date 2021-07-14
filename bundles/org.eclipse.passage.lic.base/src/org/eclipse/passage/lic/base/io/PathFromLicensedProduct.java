@@ -17,6 +17,9 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
+/**
+ * @since 1.1
+ */
 public final class PathFromLicensedProduct implements Supplier<Path> {
 
 	private final Supplier<Path> base;
