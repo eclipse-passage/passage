@@ -16,6 +16,9 @@ import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
+/**
+ * @since 1.1
+ */
 public interface Hashes extends Service<StringServiceId> {
 
 	byte[] get(byte[] source) throws LicensingException;

@@ -18,9 +18,9 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.passage.lic.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.PassageUI;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;

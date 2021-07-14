@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.internal.base.access;
+package org.eclipse.passage.lic.base.access;
 
 import java.util.function.Predicate;
 
@@ -19,13 +19,26 @@ import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;
 import org.eclipse.passage.lic.internal.base.restrictions.NoSevereRestrictions;
 
-public final class CanProceed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
+/**
+ * Tells if the examination result should cause use notification
+ * 
+ * @since 1.1
+ */
+public final class ShouldBeExposed implements Predicate<ServiceInvocationResult<ExaminationCertificate>> {
 
 	@Override
 	public boolean test(ServiceInvocationResult<ExaminationCertificate> result) {
-		return new NoSevereErrors().test(result.diagnostic()) && //
-				result.data().map(certificate -> new NoSevereRestrictions().test(certificate))//
-						.orElse(false);
+		if (!result.data().isPresent()) {
+			return true;
+		}
+		if (!new NoSevereErrors().test(result.diagnostic())) {
+			return true;
+		}
+
+		if (!new NoSevereRestrictions().test(result.data().get())) {
+			return true;
+		}
+		return false;
 	}
 
 }

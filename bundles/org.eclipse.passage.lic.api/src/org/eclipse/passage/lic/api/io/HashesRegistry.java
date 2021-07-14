@@ -17,6 +17,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.api.registry.Registry;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 
+/**
+ * @since 1.1
+ */
 public interface HashesRegistry extends Supplier<Registry<StringServiceId, Hashes>> {
 
 }

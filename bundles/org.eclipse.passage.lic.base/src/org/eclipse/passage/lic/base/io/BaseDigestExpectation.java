@@ -16,6 +16,9 @@ import java.util.Objects;
 
 import org.eclipse.passage.lic.api.io.DigestExpectation;
 
+/**
+ * @since 1.1
+ */
 public final class BaseDigestExpectation implements DigestExpectation {
 
 	private final byte[] digest;

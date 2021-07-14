@@ -7,7 +7,8 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.passage.lic.api.inspection,
+Export-Package: org.eclipse.passage.lic.api.access,
+ org.eclipse.passage.lic.api.inspection,
  org.eclipse.passage.lic.api.io,
  org.eclipse.passage.lic.api.registry,
  org.eclipse.passage.lic.internal.api;
@@ -47,14 +48,6 @@ Export-Package: org.eclipse.passage.lic.api.inspection,
    org.eclipse.passage.lic.jetty,
    org.eclipse.passage.lbc.jetty,
    org.eclipse.passage.lic.licenses.model",
- org.eclipse.passage.lic.internal.api.access;
-  x-friends:="org.eclipse.passage.lac,
-   org.eclipse.passage.lic.base,
-   org.eclipse.passage.lic.e4.ui,
-   org.eclipse.passage.lic.equinox,
-   org.eclipse.passage.lic.jface,
-   org.eclipse.passage.seal.demo.tests,
-   org.eclipse.passage.lic.jetty",
  org.eclipse.passage.lic.internal.api.acquire;
   x-friends:="org.eclipse.passage.lic.hc,
    org.eclipse.passage.lic.floating.model,

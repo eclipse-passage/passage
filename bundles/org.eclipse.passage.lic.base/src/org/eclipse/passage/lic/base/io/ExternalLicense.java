@@ -19,6 +19,9 @@ import java.nio.file.StandardCopyOption;
 
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 
+/**
+ * @since 1.1
+ */
 public final class ExternalLicense {
 
 	private final Path destination;

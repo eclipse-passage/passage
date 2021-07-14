@@ -18,12 +18,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.eclipse.passage.lic.api.access.GrantLockAttempt;
+import org.eclipse.passage.lic.base.access.Access;
 import org.eclipse.passage.lic.internal.api.ServiceInvocationResult;
-import org.eclipse.passage.lic.internal.api.access.GrantLockAttempt;
 import org.eclipse.passage.lic.internal.api.diagnostic.Diagnostic;
 import org.eclipse.passage.lic.internal.api.diagnostic.Trouble;
 import org.eclipse.passage.lic.internal.api.diagnostic.TroubleCode;
-import org.eclipse.passage.lic.internal.base.access.Access;
 import org.eclipse.passage.lic.internal.base.diagnostic.DiagnosticExplained;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoErrors;
 import org.eclipse.passage.lic.internal.base.diagnostic.NoSevereErrors;

@@ -17,6 +17,7 @@ import java.util.Collection;
 /**
  * 
  * @param <S> sub type of {@linkplain Service}
+ * @since 1.1
  */
 public interface Registry<I extends ServiceId, S extends Service<I>> {
 

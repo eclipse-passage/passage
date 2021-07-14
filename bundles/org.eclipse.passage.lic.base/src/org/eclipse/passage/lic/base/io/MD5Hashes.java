@@ -19,6 +19,9 @@ import org.eclipse.passage.lic.api.io.Hashes;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 
+/**
+ * @since 1.1
+ */
 public final class MD5Hashes implements Hashes {
 
 	private final String algorithm = "MD5"; //$NON-NLS-1$

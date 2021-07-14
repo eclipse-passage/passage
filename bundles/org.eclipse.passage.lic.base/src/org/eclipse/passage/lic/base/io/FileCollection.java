@@ -27,6 +27,9 @@ import java.util.function.Supplier;
 import org.eclipse.passage.lic.internal.api.LicensingException;
 import org.eclipse.passage.lic.internal.base.i18n.BaseMessages;
 
+/**
+ * @since 1.1
+ */
 public final class FileCollection {
 
 	private final Supplier<Path> base;
