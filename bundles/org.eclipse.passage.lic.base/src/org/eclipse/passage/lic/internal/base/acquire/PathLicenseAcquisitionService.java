@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.acquire;
 
 import java.nio.file.Path;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 
 public final class PathLicenseAcquisitionService extends LocalLicenseAcquisitionService {
 

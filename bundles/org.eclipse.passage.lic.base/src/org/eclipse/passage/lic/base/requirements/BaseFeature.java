@@ -18,6 +18,8 @@ import org.eclipse.passage.lic.api.requirements.Feature;
 
 /**
  * Base <i>data driven</i> implementation of a {@linkplain Feature} descriptor.
+ * 
+ * @since 1.1
  */
 public final class BaseFeature implements Feature {
 

@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.api.tests.fakes.io;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 
 public final class FakeConditionTransport implements ConditionTransport {
 

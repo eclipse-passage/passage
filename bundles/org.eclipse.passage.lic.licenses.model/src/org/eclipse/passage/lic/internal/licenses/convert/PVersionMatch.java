@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.licenses.convert;
 
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.api.conditions.VersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleForIdentifier;
+import org.eclipse.passage.lic.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.api.conditions.VersionMatch;
+import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleForIdentifier;
 import org.eclipse.passage.lic.licenses.VersionMatchDescriptor;
 
 @SuppressWarnings("restriction")

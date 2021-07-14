@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 
 import java.time.ZonedDateTime;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeCondition;
+import org.eclipse.passage.lic.base.conditions.UnknownConditionOrigin;
+import org.eclipse.passage.lic.base.conditions.evaluation.BasePermission;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
-import org.eclipse.passage.lic.internal.base.conditions.UnknownConditionOrigin;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.BasePermission;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

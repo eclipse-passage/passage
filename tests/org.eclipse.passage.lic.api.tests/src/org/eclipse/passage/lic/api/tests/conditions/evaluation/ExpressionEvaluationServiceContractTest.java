@@ -14,12 +14,12 @@ package org.eclipse.passage.lic.api.tests.conditions.evaluation;
 
 import static org.junit.Assert.fail;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeParsedExpression;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
 import org.junit.Test;
 
 public abstract class ExpressionEvaluationServiceContractTest {

@@ -17,8 +17,8 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
-import org.eclipse.passage.lic.internal.base.conditions.BaseIssuerSignature;
+import org.eclipse.passage.lic.api.conditions.IssuerSignature;
+import org.eclipse.passage.lic.base.conditions.BaseIssuerSignature;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 

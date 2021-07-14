@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.equinox.EquinoxPassage;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;
 import org.eclipse.passage.lic.licenses.model.api.PersonalLicensePack;

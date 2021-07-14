@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.base.tests.conditions;
 
 import java.time.ZonedDateTime;
 
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

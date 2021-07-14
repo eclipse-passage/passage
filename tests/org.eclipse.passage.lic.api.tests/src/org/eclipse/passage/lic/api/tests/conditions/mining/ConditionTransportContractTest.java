@@ -23,12 +23,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public abstract class ConditionTransportContractTest {
 
 	@Test

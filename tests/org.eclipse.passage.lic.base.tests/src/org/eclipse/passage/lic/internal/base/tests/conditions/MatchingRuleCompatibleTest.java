@@ -16,8 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
+import org.eclipse.passage.lic.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleCompatible;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

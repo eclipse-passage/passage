@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.json.tests;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.api.tests.conditions.mining.ConditionTransportContractTest;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
 import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 
 public final class JsonConditionTransportTest extends ConditionTransportContractTest {

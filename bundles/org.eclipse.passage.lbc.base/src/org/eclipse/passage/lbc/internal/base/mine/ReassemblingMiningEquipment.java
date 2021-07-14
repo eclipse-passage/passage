@@ -18,12 +18,12 @@ import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.internal.base.api.FlsGear;
 import org.eclipse.passage.lbc.internal.base.api.FlsGearAwre;
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
+import org.eclipse.passage.lic.api.conditions.mining.MiningTool;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MiningTool;
 
 public final class ReassemblingMiningEquipment implements MiningEquipment {
 

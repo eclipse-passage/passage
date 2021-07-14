@@ -12,18 +12,18 @@
  *******************************************************************************/
 package org.eclipse.passage.lbc.internal.base;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
+import org.eclipse.passage.lic.base.conditions.evaluation.Authentication;
+import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
+import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.base.registry.ReadOnlyRegistry;
 import org.eclipse.passage.lic.internal.api.EvaluationInstructions;
 import org.eclipse.passage.lic.internal.api.LicensingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.Authentication;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
 

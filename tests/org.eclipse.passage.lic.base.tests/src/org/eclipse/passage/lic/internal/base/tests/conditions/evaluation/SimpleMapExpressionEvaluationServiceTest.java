@@ -19,14 +19,14 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionProtocol;
 import org.eclipse.passage.lic.api.tests.conditions.evaluation.ExpressionEvaluationServiceContractTest;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakeParsedExpression;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpression;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
+import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpression;
+import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpressionEvaluationService;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

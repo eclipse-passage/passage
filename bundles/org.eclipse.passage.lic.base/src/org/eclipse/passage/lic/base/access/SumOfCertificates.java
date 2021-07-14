@@ -17,8 +17,8 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.requirements.Requirement;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.internal.api.restrictions.ExaminationCertificate;
 import org.eclipse.passage.lic.internal.api.restrictions.Restriction;
 import org.eclipse.passage.lic.internal.base.SumOfCollections;

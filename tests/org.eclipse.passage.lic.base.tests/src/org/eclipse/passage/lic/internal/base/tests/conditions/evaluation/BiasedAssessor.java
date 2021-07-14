@@ -17,9 +17,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
 
 @SuppressWarnings("restriction")
 final class BiasedAssessor implements ExpressionTokenAssessmentService {

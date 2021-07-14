@@ -14,11 +14,11 @@ package org.eclipse.passage.lic.internal.api.restrictions;
 
 import java.util.Collection;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.Permission;
 import org.eclipse.passage.lic.api.registry.Service;
 import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.api.requirements.Requirement;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Permission;
 
 /**
  * <p>

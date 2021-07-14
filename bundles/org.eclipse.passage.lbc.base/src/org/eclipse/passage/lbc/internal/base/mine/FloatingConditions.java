@@ -15,11 +15,11 @@ package org.eclipse.passage.lbc.internal.base.mine;
 import java.nio.file.Path;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.base.conditions.mining.LocalConditions;
 import org.eclipse.passage.lic.base.io.FloatingFileExtension;
 import org.eclipse.passage.lic.base.io.PathFromLicensedProduct;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
-import org.eclipse.passage.lic.internal.base.conditions.mining.LocalConditions;
 
 final class FloatingConditions extends LocalConditions {
 

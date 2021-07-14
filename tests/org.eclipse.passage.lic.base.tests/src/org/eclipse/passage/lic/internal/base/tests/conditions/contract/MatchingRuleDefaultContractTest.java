@@ -12,8 +12,8 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleDefault;
+import org.eclipse.passage.lic.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleDefault;
 
 @SuppressWarnings("restriction")
 public final class MatchingRuleDefaultContractTest extends BaseMatchingRuleContractTest {

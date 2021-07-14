@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
 
+import org.eclipse.passage.lic.api.conditions.ConditionPack;
+import org.eclipse.passage.lic.api.conditions.evaluation.Emission;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.FakeConditionPack;
 import org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation.FakePermission;
-import org.eclipse.passage.lic.internal.api.conditions.ConditionPack;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.Emission;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SumOfEmissions;
+import org.eclipse.passage.lic.base.conditions.evaluation.SumOfEmissions;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

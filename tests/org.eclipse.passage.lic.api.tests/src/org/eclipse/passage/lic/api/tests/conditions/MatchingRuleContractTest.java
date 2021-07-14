@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -15,10 +15,9 @@ package org.eclipse.passage.lic.api.tests.conditions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.passage.lic.internal.api.conditions.MatchingRule;
+import org.eclipse.passage.lic.api.conditions.MatchingRule;
 import org.junit.Test;
 
-@SuppressWarnings("restriction")
 public abstract class MatchingRuleContractTest {
 
 	@Test

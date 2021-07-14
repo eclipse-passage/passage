@@ -14,9 +14,9 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.contract;
 
 import java.time.ZonedDateTime;
 
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.api.tests.conditions.ValidityPeriodClosedContractTest;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
 
 @SuppressWarnings("restriction")
 public final class BaseValidityPeriodContractTest extends ValidityPeriodClosedContractTest {

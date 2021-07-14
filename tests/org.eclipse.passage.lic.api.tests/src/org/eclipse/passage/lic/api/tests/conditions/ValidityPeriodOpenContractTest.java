@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 import java.time.ZonedDateTime;
 import java.util.function.Function;
 
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodOpen;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodOpen;
 import org.junit.Test;
 
 /**
@@ -30,7 +30,6 @@ import org.junit.Test;
  * Successfully created period is always consistent.
  * </p>
  */
-@SuppressWarnings("restriction")
 public abstract class ValidityPeriodOpenContractTest<V extends ValidityPeriodOpen>
 		extends ValidityPeriodContractTest<V> {
 

@@ -14,6 +14,13 @@ package org.eclipse.passage.lic.internal.base.tests.requirements;
 
 import java.util.ArrayList;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionPasringRegistry;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
+import org.eclipse.passage.lic.api.conditions.evaluation.PermissionEmittersRegistry;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransportRegistry;
+import org.eclipse.passage.lic.api.conditions.mining.MinedConditionsRegistry;
+import org.eclipse.passage.lic.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.api.inspection.RuntimeEnvironmentRegistry;
 import org.eclipse.passage.lic.api.io.HashesRegistry;
 import org.eclipse.passage.lic.api.io.KeyKeeperRegistry;
@@ -27,13 +34,6 @@ import org.eclipse.passage.lic.internal.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.internal.api.Framework;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
 import org.eclipse.passage.lic.internal.api.acquire.LicenseAcquisitionServicesRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluatorsRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionPasringRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessorsRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.PermissionEmittersRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransportRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MinedConditionsRegistry;
-import org.eclipse.passage.lic.internal.api.conditions.mining.MiningEquipment;
 import org.eclipse.passage.lic.internal.api.restrictions.PermissionsExaminationServicesRegistry;
 import org.eclipse.passage.lic.internal.base.BaseLicensedProduct;
 

@@ -15,12 +15,12 @@ package org.eclipse.passage.lic.internal.base.tests.conditions.evaluation;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionParsingService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 import org.eclipse.passage.lic.api.tests.conditions.evaluation.ExpressionParsingServiceContractTest;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionParsingService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.BerlinProtocolExpressionParseService;
-import org.eclipse.passage.lic.internal.base.conditions.evaluation.SimpleMapExpression;
+import org.eclipse.passage.lic.base.conditions.evaluation.BerlinProtocolExpressionParseService;
+import org.eclipse.passage.lic.base.conditions.evaluation.SimpleMapExpression;
 import org.junit.Test;
 
 @SuppressWarnings("restriction")

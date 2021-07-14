@@ -22,15 +22,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.base.conditions.BaseCondition;
+import org.eclipse.passage.lic.base.conditions.BaseEvaluationInstructions;
+import org.eclipse.passage.lic.base.conditions.BaseValidityPeriodClosed;
+import org.eclipse.passage.lic.base.conditions.BaseVersionMatch;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleCompatible;
+import org.eclipse.passage.lic.base.conditions.MatchingRuleEquivalent;
+import org.eclipse.passage.lic.base.conditions.MatchingRulePerfect;
 import org.eclipse.passage.lic.internal.api.EvaluationType;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.base.conditions.BaseCondition;
-import org.eclipse.passage.lic.internal.base.conditions.BaseEvaluationInstructions;
-import org.eclipse.passage.lic.internal.base.conditions.BaseValidityPeriodClosed;
-import org.eclipse.passage.lic.internal.base.conditions.BaseVersionMatch;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleCompatible;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRuleEquivalent;
-import org.eclipse.passage.lic.internal.base.conditions.MatchingRulePerfect;
 import org.eclipse.passage.lic.internal.json.ConditionPack;
 import org.eclipse.passage.lic.internal.json.JsonObjectMapper;
 

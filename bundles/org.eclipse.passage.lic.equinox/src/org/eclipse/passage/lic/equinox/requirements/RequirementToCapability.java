@@ -33,7 +33,7 @@ import org.eclipse.passage.lic.internal.base.StringNamedData;
  * RequirementToCapability(requirement)).write(target); </span>
  * 
  * @see NamedData.Writable
- * @since 2.0
+ * @since 2.1
  */
 public final class RequirementToCapability implements NamedData<Requirement> {
 

@@ -19,9 +19,9 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.eclipse.passage.lic.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.api.LicensedProduct;
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalFeatureGrant;
 import org.eclipse.passage.lic.internal.licenses.model.EmptyPersonalLicensePack;
 import org.eclipse.passage.lic.licenses.model.api.PersonalFeatureGrant;

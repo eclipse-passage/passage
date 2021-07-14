@@ -12,7 +12,7 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.internal.equinox.acquire;
 
-import org.eclipse.passage.lic.internal.api.conditions.ConditionMiningTarget;
+import org.eclipse.passage.lic.api.conditions.ConditionMiningTarget;
 import org.eclipse.passage.lic.internal.base.acquire.LocalLicenseAcquisitionService;
 import org.eclipse.passage.lic.internal.equinox.conditions.InstallationMiningTarget;
 

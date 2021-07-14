@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2020 ArSysOp
+ * Copyright (c) 2020, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.ZonedDateTime;
 
-import org.eclipse.passage.lic.internal.api.conditions.ValidityPeriodClosed;
+import org.eclipse.passage.lic.api.conditions.ValidityPeriodClosed;
 import org.junit.Test;
 
 /**
@@ -29,7 +29,6 @@ import org.junit.Test;
  * Successfully created period is always valid.
  * </p>
  */
-@SuppressWarnings("restriction")
 public abstract class ValidityPeriodClosedContractTest extends ValidityPeriodOpenContractTest<ValidityPeriodClosed> {
 
 	/**

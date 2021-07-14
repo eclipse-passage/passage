@@ -14,7 +14,7 @@ package org.eclipse.passage.lic.internal.json;
 
 import java.io.IOException;
 
-import org.eclipse.passage.lic.internal.api.conditions.Condition;
+import org.eclipse.passage.lic.api.conditions.Condition;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

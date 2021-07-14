@@ -16,8 +16,8 @@ import java.nio.file.Paths;
 import java.util.function.Supplier;
 
 import org.eclipse.passage.lbc.base.tests.TestData;
-import org.eclipse.passage.lic.internal.hc.remote.RequestContext;
-import org.eclipse.passage.lic.internal.hc.remote.impl.BaseRequestContext;
+import org.eclipse.passage.lic.hc.remote.RequestContext;
+import org.eclipse.passage.lic.hc.remote.impl.BaseRequestContext;
 
 class TestRequestContext implements Supplier<RequestContext> {
 

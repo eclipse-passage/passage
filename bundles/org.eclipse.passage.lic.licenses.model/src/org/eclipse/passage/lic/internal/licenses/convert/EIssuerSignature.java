@@ -16,8 +16,8 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.eclipse.passage.lic.internal.api.conditions.IssuerSignature;
-import org.eclipse.passage.lic.internal.api.conditions.LicenseSignatureIsEmpty;
+import org.eclipse.passage.lic.api.conditions.IssuerSignature;
+import org.eclipse.passage.lic.api.conditions.LicenseSignatureIsEmpty;
 import org.eclipse.passage.lic.licenses.model.api.Signature;
 import org.eclipse.passage.lic.licenses.model.api.SignatureAttribute;
 import org.eclipse.passage.lic.licenses.model.meta.LicensesFactory;

@@ -15,8 +15,8 @@ package org.eclipse.passage.lic.internal.json;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.eclipse.passage.lic.internal.api.conditions.mining.ConditionTransport;
-import org.eclipse.passage.lic.internal.api.conditions.mining.ContentType;
+import org.eclipse.passage.lic.api.conditions.mining.ConditionTransport;
+import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 
 public final class JsonConditionTransport implements ConditionTransport {
 

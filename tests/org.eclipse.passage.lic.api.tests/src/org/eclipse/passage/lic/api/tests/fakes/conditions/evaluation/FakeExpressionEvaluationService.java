@@ -12,11 +12,11 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.api.tests.fakes.conditions.evaluation;
 
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationException;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionEvaluationService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionProtocol;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ExpressionTokenAssessmentService;
-import org.eclipse.passage.lic.internal.api.conditions.evaluation.ParsedExpression;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationException;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionEvaluationService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionProtocol;
+import org.eclipse.passage.lic.api.conditions.evaluation.ExpressionTokenAssessmentService;
+import org.eclipse.passage.lic.api.conditions.evaluation.ParsedExpression;
 
 public class FakeExpressionEvaluationService implements ExpressionEvaluationService {
 
