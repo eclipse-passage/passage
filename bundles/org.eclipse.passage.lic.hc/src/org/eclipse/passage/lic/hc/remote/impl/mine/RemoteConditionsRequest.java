@@ -21,6 +21,10 @@ import org.eclipse.passage.lic.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.hc.remote.impl.RequestParameters;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
+/**
+ * 
+ * @since 1.1
+ */
 public final class RemoteConditionsRequest<C extends Connection> extends RemoteRequest<C> {
 
 	public RemoteConditionsRequest(LicensedProduct product, FloatingLicenseAccess access, HashesRegistry hashes) {

@@ -26,6 +26,7 @@ import org.eclipse.passage.lic.api.registry.StringServiceId;
 import org.eclipse.passage.lic.internal.hc.i18n.MineMessages;
 
 /**
+ * 
  * @since 1.1
  */
 public final class Equipment {

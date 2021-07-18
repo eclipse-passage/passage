@@ -16,6 +16,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.hc.remote.impl.ResultsTransfered;
 
 /**
+ * 
  * @since 1.1
  */
 public interface ResponseHandler<T> {

@@ -16,6 +16,7 @@ import org.eclipse.passage.lic.api.LicensingException;
 import org.eclipse.passage.lic.api.conditions.mining.ContentType;
 
 /**
+ * 
  * @since 1.1
  */
 public interface Connection {

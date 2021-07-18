@@ -28,6 +28,12 @@ import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData;
 
+/**
+ * 
+ * @param <C>
+ * 
+ * @since 1.1
+ */
 public final class RemoteAcquisitionService<C extends Connection> implements LicenseAcquisitionService {
 
 	private final Equipment equipment;

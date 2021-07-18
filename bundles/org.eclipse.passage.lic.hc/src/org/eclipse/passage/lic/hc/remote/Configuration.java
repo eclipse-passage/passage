@@ -13,6 +13,7 @@
 package org.eclipse.passage.lic.hc.remote;
 
 /**
+ * 
  * @since 1.1
  */
 public interface Configuration<C extends Connection> {

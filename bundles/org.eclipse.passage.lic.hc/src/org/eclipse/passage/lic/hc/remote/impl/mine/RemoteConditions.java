@@ -33,10 +33,14 @@ import org.eclipse.passage.lic.hc.remote.impl.Equipment;
 import org.eclipse.passage.lic.hc.remote.impl.HttpClient;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteRequest;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData;
-import org.eclipse.passage.lic.hc.remote.impl.ServiceEvery;
 import org.eclipse.passage.lic.hc.remote.impl.RemoteServiceData.Bulk;
+import org.eclipse.passage.lic.hc.remote.impl.ServiceEvery;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
+/**
+ * 
+ * @since 1.1
+ */
 public final class RemoteConditions<C extends Connection> //
 		extends ServiceEvery<C, Collection<ConditionPack>, RemoteServiceData.Bulk> implements MinedConditions {
 
