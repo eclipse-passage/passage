@@ -15,6 +15,7 @@ package org.eclipse.passage.lic.hc.remote;
 import org.eclipse.passage.lic.api.ServiceInvocationResult;
 
 /**
+ * 
  * @since 1.1
  */
 public interface Client<C extends Connection, T> {

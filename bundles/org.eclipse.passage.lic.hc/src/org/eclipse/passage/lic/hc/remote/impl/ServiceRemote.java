@@ -34,6 +34,7 @@ import org.eclipse.passage.lic.internal.hc.i18n.AccessMessages;
 import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
 
 /**
+ * 
  * @since 1.1
  */
 public abstract class ServiceRemote<C extends Connection, T, D extends RemoteServiceData> {

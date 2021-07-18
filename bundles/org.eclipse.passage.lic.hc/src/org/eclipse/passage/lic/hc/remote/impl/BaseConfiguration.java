@@ -22,6 +22,7 @@ import org.eclipse.passage.lic.hc.remote.Configuration;
 import org.eclipse.passage.lic.hc.remote.Connection;
 
 /**
+ * 
  * @since 1.1
  */
 public abstract class BaseConfiguration<C extends Connection> implements Configuration<C> {

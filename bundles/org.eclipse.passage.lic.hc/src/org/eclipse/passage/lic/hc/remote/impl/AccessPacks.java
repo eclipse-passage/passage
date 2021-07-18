@@ -42,6 +42,7 @@ import org.eclipse.passage.lic.licenses.model.meta.LicensesPackage;
 import org.eclipse.passage.lic.licenses.model.util.LicensesResourceImpl;
 
 /**
+ * 
  * @since 1.1
  */
 public final class AccessPacks implements Supplier<ServiceInvocationResult<Collection<FloatingLicenseAccess>>> {

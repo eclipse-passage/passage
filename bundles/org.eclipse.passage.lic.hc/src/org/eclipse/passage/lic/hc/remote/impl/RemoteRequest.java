@@ -35,6 +35,8 @@ import org.eclipse.passage.lic.licenses.model.api.FloatingLicenseAccess;
  * parameters
  * <li>{@code config()} to gain a proper request headers configuring unit</li>
  * </ul>
+ * 
+ * @since 1.1
  */
 public abstract class RemoteRequest<C extends Connection> implements Request<C> {
 

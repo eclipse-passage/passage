@@ -17,6 +17,7 @@ import java.net.URL;
 import org.eclipse.passage.lic.api.LicensingException;
 
 /**
+ * 
  * @since 1.1
  */
 public interface Request<C extends Connection> {
