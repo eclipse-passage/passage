@@ -119,6 +119,7 @@
 		<module>../../bundles/org.eclipse.passage.lic.compile.branding</module>
 		<module>../../features/org.eclipse.passage.lic.compile.feature</module>
 
+		<module>../../bundles/org.eclipse.passage.lic.execute</module>
 		<module>../../bundles/org.eclipse.passage.lic.execute.branding</module>
 		<module>../../features/org.eclipse.passage.lic.execute.feature</module>
 

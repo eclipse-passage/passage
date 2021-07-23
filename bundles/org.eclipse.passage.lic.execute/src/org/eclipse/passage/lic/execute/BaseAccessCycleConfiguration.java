@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.internal.demo;
+package org.eclipse.passage.lic.execute;
 
 import java.util.Arrays;
 import java.util.function.Supplier;
@@ -53,7 +53,6 @@ import org.eclipse.passage.lic.bc.BcStreamCodec;
 import org.eclipse.passage.lic.equinox.io.BundleKeyKeeper;
 import org.eclipse.passage.lic.equinox.requirements.BundleRequirements;
 import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
-import org.eclipse.passage.lic.internal.json.JsonConditionTransport;
 import org.eclipse.passage.lic.internal.licenses.model.toberemoved.XmiConditionTransport;
 import org.eclipse.passage.lic.oshi.HardwareAssessmentService;
 import org.eclipse.passage.lic.oshi.HardwareEnvironment;
@@ -79,7 +78,6 @@ abstract class BaseAccessCycleConfiguration implements AccessCycleConfiguration 
 				new ComponentRequirements() //
 		));
 		transports = new ReadOnlyRegistry<>(Arrays.asList(//
-				new JsonConditionTransport(), //
 				new XmiConditionTransport() //
 		));
 		codecs = new ReadOnlyRegistry<>(Arrays.asList(//

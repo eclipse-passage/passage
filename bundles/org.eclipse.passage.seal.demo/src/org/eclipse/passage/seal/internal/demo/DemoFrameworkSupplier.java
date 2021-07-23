@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import org.eclipse.passage.lic.api.Framework;
 import org.eclipse.passage.lic.api.FrameworkSupplier;
+import org.eclipse.passage.lic.execute.DefaultFramework;
 import org.osgi.service.component.annotations.Component;
 
 @Component
@@ -23,7 +24,7 @@ public final class DemoFrameworkSupplier implements FrameworkSupplier {
 
 	@Override
 	public Optional<Framework> get() {
-		return Optional.of(DemoFramework.demo);
+		return Optional.of(DefaultFramework.framework);
 	}
 
 }

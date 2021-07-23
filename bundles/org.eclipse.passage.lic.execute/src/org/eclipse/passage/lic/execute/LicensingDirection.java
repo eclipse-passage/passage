@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.internal.demo;
+package org.eclipse.passage.lic.execute;
 
 import java.util.Arrays;
 import java.util.List;

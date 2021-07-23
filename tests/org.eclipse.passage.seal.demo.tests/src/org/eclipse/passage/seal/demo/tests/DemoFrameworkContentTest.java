@@ -31,6 +31,7 @@ import org.eclipse.passage.lic.equinox.requirements.ComponentRequirements;
 import org.eclipse.passage.seal.internal.demo.DemoFrameworkSupplier;
 import org.junit.Test;
 
+@SuppressWarnings("restriction")
 public final class DemoFrameworkContentTest {
 
 	@Test
