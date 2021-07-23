@@ -18,7 +18,7 @@ import org.eclipse.passage.lic.api.AccessCycleConfiguration;
 import org.eclipse.passage.lic.api.LicensedProduct;
 import org.eclipse.passage.lic.base.BaseFramework;
 import org.eclipse.passage.lic.base.BaseLicensedProduct;
-import org.eclipse.passage.seal.internal.demo.DirectedAccessCycleConfiguration;
+import org.eclipse.passage.lic.execute.DirectedAccessCycleConfiguration;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 

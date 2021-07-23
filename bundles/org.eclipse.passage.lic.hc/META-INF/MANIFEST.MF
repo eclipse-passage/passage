@@ -7,7 +7,6 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Copyright: %Bundle-Copyright
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.slf4j;version="1.7.0"
 Require-Bundle: org.apache.httpcomponents.httpcore;bundle-version="0.0.0",
  org.apache.httpcomponents.httpclient;bundle-version="0.0.0",
  org.eclipse.emf.ecore.xmi;bundle-version="0.0.0",

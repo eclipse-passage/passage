@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.seal.internal.demo;
+package org.eclipse.passage.lic.execute;
 
 import java.io.InputStream;
 
@@ -29,13 +29,13 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 @SuppressWarnings("restriction")
-final class DemoFramework extends BaseFramework {
+public final class DefaultFramework extends BaseFramework {
 
-	static final Framework demo = new DemoFramework();
+	public static final Framework framework = new DefaultFramework();
 
 	private final Logger log;
 
-	private DemoFramework() {
+	private DefaultFramework() {
 		configureLogging();
 		this.log = LogManager.getLogger(getClass());
 		logConfiguration();
