@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.tycho>2.3.0</version.tycho>
+    <version.passage>2.0.1</version.passage>
+    <p2.passage>https://download.eclipse.org/passage/updates/release/${version.passage}</p2.passage>
+  </properties>
+
+  <groupId>org.eclipse.passage</groupId>
+  <artifactId>org.eclipse.passage.releng.publish</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>eclipse-feature</packaging>
+
+  <build>
+    <defaultGoal>clean resources:resources verify</defaultGoal>
+    <resources>
+      <resource>
+        <directory>aggr</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${version.tycho}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-eclipserun-plugin</artifactId>
+        <version>${version.tycho}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>eclipse-run</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- DO NOT FORMAT THE FOLLOWING LINE, IT MUST BE ON ONE LINE -->
+          <appArgLine>-application org.eclipse.cbi.p2repo.cli.headless aggregate --buildModel target/classes/passage.aggr</appArgLine>
+          <dependencies>
+            <dependency>
+              <artifactId>org.eclipse.cbi.p2repo.aggregator.engine.feature</artifactId>
+              <type>eclipse-feature</type>
+            </dependency>
+            <dependency>
+              <artifactId>org.eclipse.equinox.core.feature</artifactId>
+              <type>eclipse-feature</type>
+            </dependency>
+            <dependency>
+              <artifactId>org.eclipse.equinox.p2.core.feature</artifactId>
+              <type>eclipse-feature</type>
+            </dependency>
+          </dependencies>
+          <repositories>
+            <repository>
+              <id>cbi-aggregator</id>
+              <layout>p2</layout>
+              <url>https://download.eclipse.org/cbi/updates/aggregator/headless/4.13/I20200625-1232</url>
+            </repository>
+          </repositories>
+          <executionEnvironment>JavaSE-11</executionEnvironment>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${version.tycho}</version>
+        <configuration>
+          <strictBinIncludes>false</strictBinIncludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${version.tycho}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+</project>
