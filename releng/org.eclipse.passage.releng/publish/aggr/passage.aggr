@@ -5,19 +5,19 @@ label="Passage Execute Repository Aggregation" buildRoot="../repository" packedS
     <contributions label="Passage ${version.passage}">
       <repositories location="${p2.passage}">
         <bundles name="org.eclipse.passage.lic.api"/>
-        <bundles name="org.eclipse.passage.lic.api.sources"/>
+        <bundles name="org.eclipse.passage.lic.api.source"/>
         <bundles name="org.eclipse.passage.lic.base"/>
-        <bundles name="org.eclipse.passage.lic.base.sources"/>
+        <bundles name="org.eclipse.passage.lic.base.source"/>
         <bundles name="org.eclipse.passage.lic.licenses.model"/>
-        <bundles name="org.eclipse.passage.lic.licenses.model.sources"/>
+        <bundles name="org.eclipse.passage.lic.licenses.model.source"/>
         <bundles name="org.eclipse.passage.lic.equinox"/>
-        <bundles name="org.eclipse.passage.lic.equinox.sources"/>
+        <bundles name="org.eclipse.passage.lic.equinox.source"/>
         <bundles name="org.eclipse.passage.lic.hc"/>
-        <bundles name="org.eclipse.passage.lic.hc.sources"/>
+        <bundles name="org.eclipse.passage.lic.hc.source"/>
         <bundles name="org.eclipse.passage.lic.bc"/>
-        <bundles name="org.eclipse.passage.lic.bc.sources"/>
+        <bundles name="org.eclipse.passage.lic.bc.source"/>
         <bundles name="org.eclipse.passage.lic.oshi"/>
-        <bundles name="org.eclipse.passage.lic.oshi.sources"/>
+        <bundles name="org.eclipse.passage.lic.oshi.source"/>
       </repositories>
       <mavenMappings namePattern="org.eclipse.ant.core" groupId="org.eclipse.platform" artifactId="org.eclipse.ant.core"/>
       <mavenMappings namePattern="org.eclipse.debug.(.*)" groupId="org.eclipse.platform" artifactId="org.eclipse.debug.$1"/>
