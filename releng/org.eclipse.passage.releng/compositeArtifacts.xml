@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?compositeMetadataRepository version='1.0.0'?>
+<!--
+	Copyright (c) 2021 ArSysOp and others
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License 2.0 which is available at
+	https://www.eclipse.org/legal/epl-2.0/.
+
+	SPDX-License-Identifier: EPL-2.0
+
+	Contributors:
+		ArSysOp - initial API and implementation
+-->
+<repository name='&quot;Eclipse Passage Composite Site&quot;'
+	type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository'
+	version='1.0.0'>
+	<properties size='1'>
+		<property name='p2.timestamp' value='1243822502499' />
+	</properties>
+	<children size='6'>
+		<child location='lic' />
+		<child location='loc' />
+		<child location='lbc' />
+		<child location='ldc' />
+		<child location='lac' />
+		<child location='demo' />
+	</children>
+</repository>
