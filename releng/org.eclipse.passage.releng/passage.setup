@@ -329,9 +329,9 @@
           <repository
               url="https://download.eclipse.org/cbi/updates/license/"/>
           <repository
-              url="https://download.eclipse.org/eclipse/updates/4.20/R-4.20-202106111600/"/>
+              url="https://download.eclipse.org/eclipse/updates/4.21-I-builds/I20210709-0030/"/>
           <repository
-              url="https://download.eclipse.org/ecp/rt/1260a"/>
+              url="https://download.eclipse.org/ecp/releases/releases_126/1261_RC1a/"/>
           <repository
               url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.25/"/>
           <repository
