@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.eclipse.passage.lic.agreements.model/src-gen"
+    creationIcons="false" editDirectory="org.eclipse.passage.lic.agreements.edit/src-gen"
+    editorDirectory="org.eclipse.passage.lic.agreements.editor/src-gen" modelPluginID="org.eclipse.passage.lic.agreements.model"
+    templateDirectory="/org.eclipse.passage.lic.emf/templates/" dynamicTemplates="true"
+    modelName="Agreements" editPluginClass="org.eclipse.passage.lic.agreements.edit.AgreementsEditPlugin"
+    editorPluginClass="org.eclipse.passage.lic.agreements.editor.AgreementsEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" testSuiteClass="org.eclipse.passage.lic.agreements.model.tests.AgreementsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.eclipse.passage.lic.agreements.edit" editorPluginID="org.eclipse.passage.lic.agreements.editor"
+    language="" operationReflection="true" runtimePlatform="RCP" importOrganizing="true"
+    cleanup="true" oSGiCompatible="true">
+  <foreignModel>platform:/resource/org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore</foreignModel>
+  <genPackages prefix="Agreements" basePackage="org.eclipse.passage.lic" resource="XMI"
+      disposableProviderFactory="true" interfacePackageSuffix="model.api" metaDataPackageSuffix="model.meta"
+      classPackageSuffix="model.impl" utilityPackageSuffix="model.util" providerPackageSuffix="edit.providers"
+      presentationPackageSuffix="editor" testsPackageSuffix="model.tests" literalsInterface="false"
+      ecorePackage="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#/">
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/spdx"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/mime"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementDescriptor"/>
+  </genPackages>
+</genmodel:GenModel>
