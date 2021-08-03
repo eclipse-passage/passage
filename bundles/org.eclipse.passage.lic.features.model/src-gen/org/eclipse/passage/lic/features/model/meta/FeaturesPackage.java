@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,15 +19,14 @@ import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
- * 
- * The <b>Package</b> for the model. It contains accessors for the meta objects
- * to represent
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each operation of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesFactory
@@ -38,7 +37,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -47,16 +45,14 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/passage/lic/features/0.5.0"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/passage/lic/features/2.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -65,7 +61,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -74,7 +69,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureSetDescriptor()
@@ -85,7 +79,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Feature Set Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -95,7 +88,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Feature Set Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -105,7 +97,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureDescriptor()
@@ -116,7 +107,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Feature Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -126,7 +116,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Feature Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -136,7 +125,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureVersionDescriptor()
@@ -147,7 +135,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Feature Version Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -157,7 +144,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Feature Version Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -167,7 +153,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureSetImpl <em>Feature Set</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.model.impl.FeatureSetImpl
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureSet()
@@ -178,7 +163,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -188,7 +172,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -198,7 +181,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -208,7 +190,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -218,7 +199,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Feature Set</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -228,7 +208,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Feature Set</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -238,7 +217,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureImpl <em>Feature</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.model.impl.FeatureImpl
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeature()
@@ -249,7 +227,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -268,7 +245,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -278,7 +254,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -288,7 +263,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Feature Set</b></em>' container reference.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -298,7 +272,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Feature Versions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -308,7 +281,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -318,7 +290,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -328,7 +299,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl <em>Feature Version</em>}' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.passage.lic.features.model.impl.FeatureVersionImpl
 	 * @see org.eclipse.passage.lic.features.model.impl.FeaturesPackageImpl#getFeatureVersion()
@@ -339,7 +309,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -349,7 +318,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -359,7 +327,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>News</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -367,19 +334,27 @@ public interface FeaturesPackage extends EPackage {
 	int FEATURE_VERSION__NEWS = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Agreements</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 1.1
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_VERSION__AGREEMENTS = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Feature Version</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_VERSION_FEATURE_COUNT = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 3;
+	int FEATURE_VERSION_FEATURE_COUNT = FEATURE_VERSION_DESCRIPTOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Feature Version</em>' class.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -389,7 +364,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureSetDescriptor <em>Feature Set Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Set Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureSetDescriptor
@@ -401,7 +375,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureDescriptor <em>Feature Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureDescriptor
@@ -413,7 +386,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.FeatureVersionDescriptor <em>Feature Version Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Version Descriptor</em>'.
 	 * @see org.eclipse.passage.lic.features.FeatureVersionDescriptor
@@ -425,7 +397,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.model.api.FeatureSet <em>Feature Set</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Set</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureSet
@@ -436,7 +407,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureSet#getIdentifier()
@@ -448,7 +418,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureSet#getName()
@@ -460,7 +429,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureSet#getDescription()
@@ -472,7 +440,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Features</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureSet#getFeatures()
@@ -484,7 +451,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.model.api.Feature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature
@@ -495,7 +461,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.Feature#getIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature#getIdentifier()
@@ -518,7 +483,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.Feature#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature#getName()
@@ -530,7 +494,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.Feature#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature#getDescription()
@@ -542,7 +505,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureSet <em>Feature Set</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Feature Set</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature#getFeatureSet()
@@ -554,7 +516,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureVersions <em>Feature Versions</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Feature Versions</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.Feature#getFeatureVersions()
@@ -566,7 +527,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion <em>Feature Version</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Feature Version</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion
@@ -577,7 +537,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Version</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion()
@@ -589,7 +548,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Feature</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature()
@@ -601,7 +559,6 @@ public interface FeaturesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews <em>News</em>}'.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>News</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews()
@@ -611,13 +568,24 @@ public interface FeaturesPackage extends EPackage {
 	EAttribute getFeatureVersion_News();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements <em>Agreements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Agreements</em>'.
+	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements()
+	 * @see #getFeatureVersion()
+	 * @since 1.1
+	 * @generated
+	 */
+	EAttribute getFeatureVersion_Agreements();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	FeaturesFactory getFeaturesFactory();
 
-} // FeaturesPackage
+} //FeaturesPackage

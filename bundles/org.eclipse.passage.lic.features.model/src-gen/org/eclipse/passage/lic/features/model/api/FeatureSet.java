@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,14 +13,14 @@
 package org.eclipse.passage.lic.features.model.api;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * A representation of the model object '<em><b>Feature Set</b></em>'.
- * 
  * <!-- end-user-doc -->
  *
  * <p>
@@ -41,10 +41,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
@@ -58,7 +54,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getIdentifier <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Identifier</em>' attribute.
 	 * @see #getIdentifier()
@@ -69,10 +64,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
@@ -86,7 +77,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -97,10 +87,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
@@ -114,7 +100,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureSet#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
@@ -127,10 +112,6 @@ public interface FeatureSet extends EObject, FeatureSetDescriptor {
 	 * The list contents are of type {@link org.eclipse.passage.lic.features.model.api.Feature}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureSet <em>Feature Set</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Features</em>' containment reference list isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureSet_Features()

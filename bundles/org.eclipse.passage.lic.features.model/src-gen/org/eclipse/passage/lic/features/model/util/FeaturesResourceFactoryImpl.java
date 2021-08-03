@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl
  * @generated
- * @since 1.1
+ * @since 2.0
  */
 public class FeaturesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,28 +16,29 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.passage.lic.features.FeatureDescriptor;
 import org.eclipse.passage.lic.features.FeatureSetDescriptor;
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
+
 import org.eclipse.passage.lic.features.model.api.Feature;
 import org.eclipse.passage.lic.features.model.api.FeatureSet;
 import org.eclipse.passage.lic.features.model.api.FeatureVersion;
+
 import org.eclipse.passage.lic.features.model.meta.FeaturesFactory;
 import org.eclipse.passage.lic.features.model.meta.FeaturesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * An implementation of the model <b>Package</b>.
- * 
  * <!-- end-user-doc -->
  * @generated
  */
 public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage {
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -45,7 +46,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -53,7 +53,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -61,7 +60,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -69,7 +67,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -77,7 +74,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -92,7 +88,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#eNS_URI
@@ -105,7 +100,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -117,7 +111,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * <p>This method is used to initialize {@link FeaturesPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -152,7 +145,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -163,7 +155,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -174,7 +165,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -185,7 +175,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -196,7 +185,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -207,7 +195,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -218,7 +205,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -229,7 +215,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -240,7 +225,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -251,7 +235,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -272,7 +255,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -283,7 +265,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -294,7 +275,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -305,7 +285,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -316,7 +295,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -327,7 +305,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -338,7 +315,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -349,7 +325,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -360,7 +335,17 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
+	 * <!-- end-user-doc -->
+	 * @since 1.1
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeatureVersion_Agreements() {
+		return (EAttribute) featureVersionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -371,7 +356,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -381,7 +365,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -415,11 +398,11 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		createEAttribute(featureVersionEClass, FEATURE_VERSION__VERSION);
 		createEReference(featureVersionEClass, FEATURE_VERSION__FEATURE);
 		createEAttribute(featureVersionEClass, FEATURE_VERSION__NEWS);
+		createEAttribute(featureVersionEClass, FEATURE_VERSION__AGREEMENTS);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -429,7 +412,6 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -502,9 +484,12 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeatureVersion_News(), ecorePackage.getEString(), "news", null, 0, 1, FeatureVersion.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeatureVersion_Agreements(), ecorePackage.getEString(), "agreements", null, 0, -1, //$NON-NLS-1$
+				FeatureVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} // FeaturesPackageImpl
+} //FeaturesPackageImpl

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2018, 2020 ArSysOp
+ * Copyright (c) 2018, 2021 ArSysOp
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,14 +12,15 @@
  *******************************************************************************/
 package org.eclipse.passage.lic.features.model.api;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
 
 /**
  * <!-- begin-user-doc -->
- * 
  * A representation of the model object '<em><b>Feature Version</b></em>'.
- * 
  * <!-- end-user-doc -->
  *
  * <p>
@@ -29,6 +30,7 @@ import org.eclipse.passage.lic.features.FeatureVersionDescriptor;
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews <em>News</em>}</li>
+ *   <li>{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements <em>Agreements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureVersion()
@@ -39,10 +41,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Returns the value of the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Version</em>' attribute isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
@@ -56,7 +54,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getVersion <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Version</em>' attribute.
 	 * @see #getVersion()
@@ -68,10 +65,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	 * Returns the value of the '<em><b>Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.passage.lic.features.model.api.Feature#getFeatureVersions <em>Feature Versions</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Feature</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Feature</em>' container reference.
 	 * @see #setFeature(Feature)
@@ -86,7 +79,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getFeature <em>Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Feature</em>' container reference.
 	 * @see #getFeature()
@@ -97,10 +89,6 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Returns the value of the '<em><b>News</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>News</em>' attribute isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>News</em>' attribute.
 	 * @see #setNews(String)
@@ -114,12 +102,27 @@ public interface FeatureVersion extends EObject, FeatureVersionDescriptor {
 	/**
 	 * Sets the value of the '{@link org.eclipse.passage.lic.features.model.api.FeatureVersion#getNews <em>News</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * 
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>News</em>' attribute.
 	 * @see #getNews()
 	 * @generated
 	 */
 	void setNews(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Agreements</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * @since 2.0
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Agreements</em>' attribute list.
+	 * @see org.eclipse.passage.lic.features.model.meta.FeaturesPackage#getFeatureVersion_Agreements()
+	 * @model
+	 * @generated
+	 */
+	@Override
+	EList<String> getAgreements();
 
 } // FeatureVersion
