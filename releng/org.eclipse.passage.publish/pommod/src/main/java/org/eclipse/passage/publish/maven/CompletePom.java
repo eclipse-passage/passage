@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.releng.maven;
+package org.eclipse.passage.publish.maven;
 
 import java.io.BufferedReader;
 import java.io.File;
