@@ -336,7 +336,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 1.1
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override

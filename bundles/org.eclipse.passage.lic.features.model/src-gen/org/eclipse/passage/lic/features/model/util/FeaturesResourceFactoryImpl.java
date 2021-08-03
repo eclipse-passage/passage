@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * package. <!-- end-user-doc -->
  * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceImpl
- * @generated
- * @since 2.0
+ * @generated NOT
+ * @since 1.1
  */
 public class FeaturesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**

@@ -337,7 +337,7 @@ public interface FeaturesPackage extends EPackage {
 	 * The feature id for the '<em><b>Agreements</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 1.1
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -574,7 +574,7 @@ public interface FeaturesPackage extends EPackage {
 	 * @return the meta object for the attribute list '<em>Agreements</em>'.
 	 * @see org.eclipse.passage.lic.features.model.api.FeatureVersion#getAgreements()
 	 * @see #getFeatureVersion()
-	 * @since 1.1
+	 * @since 2.0
 	 * @generated
 	 */
 	EAttribute getFeatureVersion_Agreements();

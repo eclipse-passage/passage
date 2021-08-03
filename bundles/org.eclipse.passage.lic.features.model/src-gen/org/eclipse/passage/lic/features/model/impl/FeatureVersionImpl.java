@@ -96,7 +96,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAgreements()
-	 * @since 1.1
+	 * @since 2.0
 	 * @generated
 	 * @ordered
 	 */
@@ -225,7 +225,7 @@ public class FeatureVersionImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @since 1.1
+	 * @since 2.0
 	 * @generated
 	 */
 	@Override
