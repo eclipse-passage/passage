@@ -23,7 +23,7 @@ import org.eclipse.passage.lic.internal.features.model.migration.FeaturesResourc
  * <!-- end-user-doc -->
  * 
  * @see org.eclipse.passage.lic.features.model.util.FeaturesResourceFactoryImpl
- * @generated
+ * @generated NOT
  * @since 1.1
  */
 public class FeaturesResourceImpl extends XMIResourceImpl {

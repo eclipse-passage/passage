@@ -67,6 +67,7 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 
 			addVersionPropertyDescriptor(object);
 			addNewsPropertyDescriptor(object);
+			addAgreementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,6 +103,23 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 						getString("_UI_PropertyDescriptor_description", "_UI_FeatureVersion_news_feature", //$NON-NLS-1$//$NON-NLS-2$
 								"_UI_FeatureVersion_type"), //$NON-NLS-1$
 						FeaturesPackage.eINSTANCE.getFeatureVersion_News(), true, true, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Agreements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @since 2.0
+	 * @generated
+	 */
+	protected void addAgreementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_FeatureVersion_agreements_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_FeatureVersion_agreements_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_FeatureVersion_type"), //$NON-NLS-1$
+						FeaturesPackage.eINSTANCE.getFeatureVersion_Agreements(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -169,6 +187,7 @@ public class FeatureVersionItemProvider extends ItemProviderAdapter implements I
 		switch (notification.getFeatureID(FeatureVersion.class)) {
 		case FeaturesPackage.FEATURE_VERSION__VERSION:
 		case FeaturesPackage.FEATURE_VERSION__NEWS:
+		case FeaturesPackage.FEATURE_VERSION__AGREEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		default:

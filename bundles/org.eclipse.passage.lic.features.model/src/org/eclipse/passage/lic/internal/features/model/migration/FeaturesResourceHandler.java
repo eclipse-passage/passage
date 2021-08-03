@@ -33,6 +33,7 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 	protected void register() {
 		migrate033();
 		migrate040();
+		migrate050();
 	}
 
 	@Override
@@ -52,6 +53,12 @@ public final class FeaturesResourceHandler extends MigratingResourceHandler {
 
 	private void migrate040() {
 		String uri = "http://www.eclipse.org/passage/lic/features/0.4.0"; //$NON-NLS-1$
+		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
+		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
+	}
+
+	private void migrate050() {
+		String uri = "http://www.eclipse.org/passage/lic/features/0.5.0"; //$NON-NLS-1$
 		FeaturesPackage delegate = FeaturesPackage.eINSTANCE;
 		EPackage.Registry.INSTANCE.computeIfAbsent(uri, ns -> delegate);
 	}
