@@ -63,10 +63,27 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdentifierPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_AgreementsGroup_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Identifier(), true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -180,6 +197,7 @@ public class AgreementsGroupItemProvider extends ItemProviderAdapter implements 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AgreementsGroup.class)) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
 		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

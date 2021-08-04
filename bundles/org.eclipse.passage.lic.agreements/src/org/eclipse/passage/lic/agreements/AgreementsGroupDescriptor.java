@@ -16,6 +16,8 @@ import java.util.List;
 
 public interface AgreementsGroupDescriptor {
 
+	String getIdentifier();
+
 	String getName();
 
 	String getDescription();

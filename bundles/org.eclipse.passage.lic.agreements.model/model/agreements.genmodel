@@ -28,6 +28,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//Agreement/mime"/>
     </genClasses>
     <genClasses image="false" ecoreClass="../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsGroup/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsGroup/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsGroup/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.eclipse.passage.lic.agreements.ecore/model/agreements.ecore#//AgreementsGroup/agreements"/>

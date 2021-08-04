@@ -203,7 +203,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAgreementsGroup_Name() {
+	public EAttribute getAgreementsGroup_Identifier() {
 		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -213,7 +213,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAgreementsGroup_Description() {
+	public EAttribute getAgreementsGroup_Name() {
 		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -223,8 +223,18 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 	 * @generated
 	 */
 	@Override
+	public EAttribute getAgreementsGroup_Description() {
+		return (EAttribute) agreementsGroupEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getAgreementsGroup_Agreements() {
-		return (EReference) agreementsGroupEClass.getEStructuralFeatures().get(2);
+		return (EReference) agreementsGroupEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -289,6 +299,7 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 		createEAttribute(agreementEClass, AGREEMENT__MIME);
 
 		agreementsGroupEClass = createEClass(AGREEMENTS_GROUP);
+		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__IDENTIFIER);
 		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__NAME);
 		createEAttribute(agreementsGroupEClass, AGREEMENTS_GROUP__DESCRIPTION);
 		createEReference(agreementsGroupEClass, AGREEMENTS_GROUP__AGREEMENTS);
@@ -348,6 +359,9 @@ public class AgreementsPackageImpl extends EPackageImpl implements AgreementsPac
 
 		initEClass(agreementsGroupEClass, AgreementsGroup.class, "AgreementsGroup", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAgreementsGroup_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1, //$NON-NLS-1$
+				AgreementsGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAgreementsGroup_Name(), ecorePackage.getEString(), "name", null, 1, 1, AgreementsGroup.class, //$NON-NLS-1$
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAgreementsGroup_Description(), ecorePackage.getEString(), "description", null, 1, 1, //$NON-NLS-1$

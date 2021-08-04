@@ -27,6 +27,7 @@ import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getAgreements <em>Agreements</em>}</li>
@@ -37,6 +38,28 @@ import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
  * @generated
  */
 public interface AgreementsGroup extends EObject, AgreementsGroupDescriptor {
+	/**
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
+	 * @see org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage#getAgreementsGroup_Identifier()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

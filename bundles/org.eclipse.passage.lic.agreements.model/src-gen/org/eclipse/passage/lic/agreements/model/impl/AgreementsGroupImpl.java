@@ -42,6 +42,7 @@ import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.passage.lic.agreements.model.impl.AgreementsGroupImpl#getAgreements <em>Agreements</em>}</li>
@@ -50,6 +51,26 @@ import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
  * @generated
  */
 public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements AgreementsGroup {
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	private String identifier = IDENTIFIER_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +138,31 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass() {
 		return AgreementsPackage.eINSTANCE.getAgreementsGroup();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER,
+					oldIdentifier, identifier));
+		}
 	}
 
 	/**
@@ -206,6 +252,8 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+			return getIdentifier();
 		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			return getName();
 		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
@@ -226,6 +274,9 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+			setIdentifier((String) newValue);
+			return;
 		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			setName((String) newValue);
 			return;
@@ -250,6 +301,9 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
+			return;
 		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -273,6 +327,8 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+			return !Objects.equals(IDENTIFIER_EDEFAULT, identifier);
 		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
 			return !Objects.equals(NAME_EDEFAULT, name);
 		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
@@ -295,7 +351,9 @@ public class AgreementsGroupImpl extends MinimalEObjectImpl.Container implements
 			return super.toString();
 		}
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: "); //$NON-NLS-1$
+		result.append(" (identifier: "); //$NON-NLS-1$
+		result.append(identifier);
+		result.append(", name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$
 		result.append(description);
