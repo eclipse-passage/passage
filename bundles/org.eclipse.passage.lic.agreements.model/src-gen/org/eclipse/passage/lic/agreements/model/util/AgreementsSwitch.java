@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.passage.lic.agreements.AgreementDescriptor;
 
+import org.eclipse.passage.lic.agreements.AgreementsGroupDescriptor;
 import org.eclipse.passage.lic.agreements.model.api.*;
 
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
@@ -80,6 +81,20 @@ public class AgreementsSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+		case AgreementsPackage.AGREEMENT_DESCRIPTOR: {
+			AgreementDescriptor agreementDescriptor = (AgreementDescriptor) theEObject;
+			T result = caseAgreementDescriptor(agreementDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case AgreementsPackage.AGREEMENTS_GROUP_DESCRIPTOR: {
+			AgreementsGroupDescriptor agreementsGroupDescriptor = (AgreementsGroupDescriptor) theEObject;
+			T result = caseAgreementsGroupDescriptor(agreementsGroupDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case AgreementsPackage.AGREEMENT: {
 			Agreement agreement = (Agreement) theEObject;
 			T result = caseAgreement(agreement);
@@ -89,9 +104,11 @@ public class AgreementsSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case AgreementsPackage.AGREEMENT_DESCRIPTOR: {
-			AgreementDescriptor agreementDescriptor = (AgreementDescriptor) theEObject;
-			T result = caseAgreementDescriptor(agreementDescriptor);
+		case AgreementsPackage.AGREEMENTS_GROUP: {
+			AgreementsGroup agreementsGroup = (AgreementsGroup) theEObject;
+			T result = caseAgreementsGroup(agreementsGroup);
+			if (result == null)
+				result = caseAgreementsGroupDescriptor(agreementsGroup);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -117,6 +134,21 @@ public class AgreementsSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAgreementsGroup(AgreementsGroup object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Agreement Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -128,6 +160,21 @@ public class AgreementsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAgreementDescriptor(AgreementDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Group Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Group Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAgreementsGroupDescriptor(AgreementsGroupDescriptor object) {
 		return null;
 	}
 

@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,16 +30,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.passage.lic.agreements.edit.AgreementsEditPlugin;
-import org.eclipse.passage.lic.agreements.model.api.Agreement;
+import org.eclipse.passage.lic.agreements.model.api.AgreementsGroup;
+import org.eclipse.passage.lic.agreements.model.meta.AgreementsFactory;
 import org.eclipse.passage.lic.agreements.model.meta.AgreementsPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.Agreement} object.
+ * This is the item provider adapter for a {@link org.eclipse.passage.lic.agreements.model.api.AgreementsGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AgreementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class AgreementsGroupItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -46,7 +48,7 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AgreementItemProvider(AdapterFactory adapterFactory) {
+	public AgreementsGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,10 +64,8 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 			super.getPropertyDescriptors(object);
 
 			addIdentifierPropertyDescriptor(object);
-			addSpdxPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addFilePropertyDescriptor(object);
-			addMimePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,26 +79,10 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	protected void addIdentifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Agreement_identifier_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Agreement_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_Agreement_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreement_Identifier(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Spdx feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSpdxPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Agreement_spdx_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Agreement_spdx_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_Agreement_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreement_Spdx(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementsGroup_identifier_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_identifier_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Identifier(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -111,47 +95,61 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Agreement_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Agreement_name_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_Agreement_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreement_Name(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementsGroup_name_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_name_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Name(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the File feature.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilePropertyDescriptor(Object object) {
+	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Agreement_file_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Agreement_file_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_Agreement_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreement_File(), true, false, false,
+						getResourceLocator(), getString("_UI_AgreementsGroup_description_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_AgreementsGroup_description_feature", //$NON-NLS-1$//$NON-NLS-2$
+								"_UI_AgreementsGroup_type"), //$NON-NLS-1$
+						AgreementsPackage.eINSTANCE.getAgreementsGroup_Description(), true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Mime feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Agreement_mime_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Agreement_mime_feature", //$NON-NLS-1$//$NON-NLS-2$
-								"_UI_Agreement_type"), //$NON-NLS-1$
-						AgreementsPackage.eINSTANCE.getAgreement_Mime(), true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements());
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns 'agreement' image
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns general 'agreement' image
 	 * 
 	 * <!-- begin-user-doc -->
 	 * 
@@ -182,9 +180,9 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Agreement) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Agreement_type") : //$NON-NLS-1$
-				getString("_UI_Agreement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		String label = ((AgreementsGroup) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_AgreementsGroup_type") : //$NON-NLS-1$
+				getString("_UI_AgreementsGroup_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -198,13 +196,14 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Agreement.class)) {
-		case AgreementsPackage.AGREEMENT__IDENTIFIER:
-		case AgreementsPackage.AGREEMENT__SPDX:
-		case AgreementsPackage.AGREEMENT__NAME:
-		case AgreementsPackage.AGREEMENT__FILE:
-		case AgreementsPackage.AGREEMENT__MIME:
+		switch (notification.getFeatureID(AgreementsGroup.class)) {
+		case AgreementsPackage.AGREEMENTS_GROUP__IDENTIFIER:
+		case AgreementsPackage.AGREEMENTS_GROUP__NAME:
+		case AgreementsPackage.AGREEMENTS_GROUP__DESCRIPTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case AgreementsPackage.AGREEMENTS_GROUP__AGREEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		default:
 			super.notifyChanged(notification);
@@ -222,6 +221,9 @@ public class AgreementItemProvider extends ItemProviderAdapter implements IEditi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(AgreementsPackage.eINSTANCE.getAgreementsGroup_Agreements(),
+				AgreementsFactory.eINSTANCE.createAgreement()));
 	}
 
 	/**
